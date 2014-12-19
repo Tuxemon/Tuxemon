@@ -3,13 +3,6 @@ Tuxemon
 
 Tuxemon is a free, open source monster-fighting RPG.
 
-Copyright (C) 2014 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-
-This software is distributed under the GNU General Public Licence as published
-by the Free Software Foundation.  See the file LICENCE for the conditions
-under which this software is made available.  Tuxemon also contains code from
-other sources.
-
 ![screenshot](http://www.tuxemon.org/images/featurette-01.png)
 
 

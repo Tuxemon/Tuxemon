@@ -10,6 +10,8 @@ by the Free Software Foundation.  See the file LICENCE for the conditions
 under which this software is made available.  Tuxemon also contains code from
 other sources.
 
+![screenshot](http://www.tuxemon.org/images/featurette-01.png)
+
 
 Version
 ----

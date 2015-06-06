@@ -1,0 +1,13 @@
+{
+    "id": 1, 
+    "monsters": [
+        {
+            "monster_id": 1, 
+            "encounter_rate": 10, 
+            "level_range": [
+                5, 
+                10
+            ]
+        }
+    ]
+}

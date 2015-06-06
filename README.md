@@ -1,10 +1,12 @@
 Tuxemon
-=======
+=========
 
-Tuxemon is a free, open source monster-fighting RPG. The current repository
-can be found [here](https://git.tuxemon.org:3000).
+Copyright (C) 2015 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 
-![screenshot](http://www.tuxemon.org/images/featurette-01.png)
+This software is distributed under the GNU General Public Licence as published
+by the Free Software Foundation.  See the file LICENCE for the conditions
+under which this software is made available.  Tuxemon also contains code from
+other sources.
 
 
 Version
@@ -30,11 +32,28 @@ Ubuntu
 
 ```sh
 
-sudo apt-get install python python-sqlite3 python-pygame python-pip git
+sudo apt-get install python python-pygame python-pip python-imaging git
 sudo pip install pytmx
 git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
+cd Tuxemon/tuxemon
 ./tuxemon.py
+
+```
+
+Mac OS X (Yosemite)
+
+```sh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap Homebrew/python
+brew update
+brew install python
+brew install sdl sdl_image sdl_mixer sdl_ttf portmidi hg git
+pip install pytmx
+pip install pillow
+pip install hg+http://bitbucket.org/pygame/pygame
+git clone https://github.com/Tuxemon/Tuxemon.git
+cd Tuxemon/tuxemon
+ulimit -n 10000; python tuxemon.py
 
 ```
 
@@ -57,4 +76,5 @@ License
 ----
 
 GNU v3
+
 

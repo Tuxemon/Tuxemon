@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="13" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
+  <image source="../gfx/tileset.png" width="80" height="528"/>
+ </tileset>
+ <layer name="Background" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJyt0DsLgWEUwPH3m7jf7wYGBhSl3lxyCYUoFAqjxcJgsVgsFt/UfzA8PZ1Hwqnfcjr/5VjWb+OAEy644YGtqaGOBvZK64UPfgQQRFPTQhsdHJQ2hDAiiCKGrqaHPgY4Km0cCSSRQhpVzRAjjHFW2pJ2dxJa1cXQZpB97SeYCu3V0OaQxwxzLIT2ZmgLKGKJFdZCeze0ZVSwwRY7oX28+dUn/tF+O08HWSpw
+  </data>
+ </layer>
+ <layer name="Midground" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi6oBOI+4B4BhDPBOJZONRQExhDaVMy9FpAaSsy9NoCsR0Q25OhFxuAhd1kIJ4CxFOBeBoJemkNYO6bC8Tz6GAfCAAAM9kLRA==
+  </data>
+ </layer>
+ <layer name="Highground" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUgAAAAwwAAQ==
+  </data>
+ </layer>
+ <layer name="Foreground" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFpAITNH40CXot0fgJlDllFGABVWRgEAAAu54HWw==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision" width="15" height="13">
+  <object type="collision" x="0" y="32" width="16" height="160"/>
+  <object type="collision" x="224" y="32" width="16" height="176"/>
+  <object type="collision" x="0" y="192" width="224" height="16"/>
+  <object type="collision" x="16" y="32" width="208" height="16"/>
+  <object type="collision" x="96" y="96" width="16" height="32"/>
+  <object type="collision" x="32" y="96" width="16" height="32"/>
+  <object type="collision" x="160" y="48" width="16" height="32"/>
+  <object type="collision" x="176" y="64" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Conditions" width="15" height="13">
+  <object name="Teleport/Music" type="condition" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="1"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="1"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="2,3"/>
+   </properties>
+  </object>
+  <object name="Variable Set" type="condition" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_id" value="20"/>
+    <property name="condition_type" value="variable_set"/>
+    <property name="condition_id" value="2"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="battle_won:yes"/>
+   </properties>
+  </object>
+  <object name="Use Computer" type="condition" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_type" value="button_pressed"/>
+    <property name="condition_id" value="3"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="K_RETURN"/>
+   </properties>
+  </object>
+  <object name="Use Computer" type="condition" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="3"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="1,3"/>
+   </properties>
+  </object>
+  <object name="Use Computer" type="condition" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_type" value="player_facing"/>
+    <property name="condition_id" value="3"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="up"/>
+   </properties>
+  </object>
+  <object name="Read Sign" type="condition" x="208" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="4"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="4"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="13,3"/>
+   </properties>
+  </object>
+  <object name="Read Sign" type="condition" x="208" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="4"/>
+    <property name="condition_type" value="player_facing"/>
+    <property name="condition_id" value="4"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="up"/>
+   </properties>
+  </object>
+  <object name="Read Sign" type="condition" x="208" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="4"/>
+    <property name="condition_type" value="button_pressed"/>
+    <property name="condition_id" value="4"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="K_RETURN"/>
+   </properties>
+  </object>
+  <object name="Go Downstairs" type="condition" x="176" y="48" width="16" height="16">
+   <properties>
+    <property name="action_id" value="5"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="5"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="11,3"/>
+   </properties>
+  </object>
+  <object name="Create Maple NPC" type="condition" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_id" value="6"/>
+    <property name="condition_type" value="npc_exists"/>
+    <property name="condition_id" value="6"/>
+    <property name="operator" value="is_not"/>
+    <property name="parameters" value="Maple"/>
+   </properties>
+  </object>
+  <object name="Facing Maple" type="condition" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_id" value="7"/>
+    <property name="condition_type" value="facing_npc"/>
+    <property name="condition_id" value="7"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="Maple"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="condition" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="action_id" value="9"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="9"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="1,11"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="condition" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="action_id" value="9"/>
+    <property name="condition_type" value="combat_started"/>
+    <property name="condition_id" value="9"/>
+    <property name="operator" value="is_not"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Start Cinema Mode" type="condition" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="action_id" value="10"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="10"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="6,8"/>
+   </properties>
+  </object>
+  <object name="Stop Cinema Mode" type="condition" x="96" y="144" width="16" height="16">
+   <properties>
+    <property name="action_id" value="11"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="condition_id" value="11"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="6,9"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="condition" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="action_id" value="9"/>
+    <property name="condition_type" value="variable_set"/>
+    <property name="condition_id" value="9"/>
+    <property name="operator" value="is_not"/>
+    <property name="parameters" value="battle_won:yes"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Actions" width="15" height="13">
+  <object name="Teleport/Music" type="action" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="action_type" value="teleport"/>
+    <property name="action_id" value="1"/>
+    <property name="parameters" value="pallet_town-room.tmx,5,5"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Teleport/Music" type="action" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="action_type" value="play_music"/>
+    <property name="action_id" value="1"/>
+    <property name="parameters" value="472452_8-Bit-Ambient.ogg"/>
+    <property name="priority" value="2"/>
+   </properties>
+  </object>
+  <object name="Teleport/Music" type="action" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="action_type" value="dialog"/>
+    <property name="action_id" value="1"/>
+    <property name="parameters" value="Red:\n This is some dialog!"/>
+    <property name="priority" value="3"/>
+   </properties>
+  </object>
+  <object name="Teleport/Music" type="action" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="action_type" value="set_variable"/>
+    <property name="action_id" value="1"/>
+    <property name="parameters" value="battle_won:yes"/>
+    <property name="priority" value="4"/>
+   </properties>
+  </object>
+  <object name="Play Sound" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="play_sound"/>
+    <property name="action_id" value="2"/>
+    <property name="parameters" value="interface/50561__broumbroum__sf3-sfx-menu-select.ogg"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Use Computer" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="dialog"/>
+    <property name="action_id" value="3"/>
+    <property name="parameters" value="Red:\n It's Running Ubuntu!"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Read Sign" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="dialog"/>
+    <property name="action_id" value="4"/>
+    <property name="parameters" value="GOD DAMNIT BILLY\n THE MATH IS OFF!"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Go Downstairs" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="screen_transition"/>
+    <property name="action_id" value="5"/>
+    <property name="parameters" value="1"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Go Downstairs" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="teleport"/>
+    <property name="action_id" value="5"/>
+    <property name="parameters" value="test.tmx,10,19"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Create Maple NPC" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="create_npc"/>
+    <property name="action_id" value="6"/>
+    <property name="parameters" value="Maple,1,5,maple,wander"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="start_battle"/>
+    <property name="action_id" value="9"/>
+    <property name="parameters" value="1"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="add_monster"/>
+    <property name="action_id" value="9"/>
+    <property name="parameters" value="Fruitera,10"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Start Cinema Mode" type="action" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="action_type" value="start_cinema_mode"/>
+    <property name="action_id" value="10"/>
+    <property name="parameters" value=""/>
+    <property name="priority" value="10"/>
+   </properties>
+  </object>
+  <object name="Stop Cinema Mode" type="action" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="action_type" value="stop_cinema_mode"/>
+    <property name="action_id" value="11"/>
+    <property name="parameters" value=""/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="add_item"/>
+    <property name="action_id" value="9"/>
+    <property name="parameters" value="Potion"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="add_item"/>
+    <property name="action_id" value="9"/>
+    <property name="parameters" value="Super Potion"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Start Combat" type="action" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="action_type" value="set_variable"/>
+    <property name="action_id" value="9"/>
+    <property name="parameters" value="battle_won:yes"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

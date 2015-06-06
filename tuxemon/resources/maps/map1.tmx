@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="60" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="64" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2z0OgjAYxnETw9GUTSZ18Gvw60SOeiRPoMbBeA77JpKUBoEiUNrnIfkPJi4/3zZlqEk0GCQWTXqejaVOrn3009+V//Snf1YQgh99/sj+vepQUOh+9PmH4D+rLkaufV3683Lt89k/Bfejz59++ukP3z9q0BN76EefP/3Y/nT/x9rncU1P2/vf9nE937Laflz76O+/3/b8L/q+7f7vgx99/vTTT395bbxP+uRHnz/99NNPP/30008//fSj++WOQHpHcA7mF/tOtf62AfOvNLu0jbJ3RqusB5/9cmdwafwGelXWg89+cw0souydySOYH23/008//dnzz/YdyHe/eQbKGrip7kaPQP3y6P8dkDPvpboOs70D9OfNWXqC+PPm/Cv66W/C/wF91+ZZ
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="64" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmtlu00AUhieODQ/BThGboL0qzQOU0pSCuCCtKpZesFVCQAstEvAu8ABsL8N2Aw/BdsfyW83IS8+snrEbZ37pk1WP3Zy/v499kpSxbS0kanR0GcetgNcRY2/AW/AOvI+2969orn/vMPYD/AS/wO9OcZ3ivmaNlESe+xL/E9h3jmAKfICfj+AT+Ay+RMVzVev78PN+cAAcBIdK65SeePAvy39Ksu8P6v0L/qV1dxnrdIvHqdZnsf88mAMXwLxn/zaS+T8OPyfASXAKnC75U60/gN+H4BFYBxtgOpbXY+P/ZULzavi7ePbTxHU+MzyG98HkcF/aiwNFLUuJPcuC/rLxfxZ/00kwEPxtuf9BnFEWdR3cwL6bnlhN6P6x8b8EP8tgVnAu938mztgN/qn+qdL/iwr/pvmrdDfJuJ7zdi0prlHH3JL0ham4P5V/0/w3DGrJXyurgvN0rifRuTLp+jfNX+T/MPr1CDgKJsCxaKd/6t7WlP+yqHlnxsB/H14WwEWwCC4R/ql72x1BX+S5V4N/XVH+0+f34/Q5BTbBFnhK+FfNBiLZ3P9E/mPUmsQ7t7oS5U/dt25XvIa5XPrnc4HtlvLvq4e5XPrnc4Ht9hlRi24PP7fkxS7K35Xqet2rQ/+8z6vm70p1v27V3Ec1f1e5m+QwlxSh1urK31XupjmIZspUvcR//q5zN81B5j+V7/xd5+4yf5v6TOU6d9v8y/eCuvtfVy5z6OfeV64JZpemnjsita3/TVVn/8/XcP83Vej/ds5/umr7/K9SyD/kH/IP+fvalufAUc3f1fuGccu/6uv5Vp35r43w/BfyD/3fxFzgWy7y7Um+pyk//66IvkcM+Y9s/j7r8C1Vvnu6jO3tZttxy/9rxNi3KNv6yKcnmQt8K/R/6P+QfzP55+eGtuTP5xvZTGRSh2+F/g/9H/JvNn/Z/4X4VtX8Te9zpnX4lu/Pf0Tvd3Xr8K26P/8xrcO36v78z7QO3xr3/Num/2JFBYg=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="64" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztm8tO3DAYhaNh/CCwA4bLCqiQWFQCSqkEEp0ZNq1AtKiqCnRRdVVaKngBbisKvAe3FW15D2jZ9MYb9ETEGhPsxImdjD3OkT5lRhOP/5OT2E4YPE+f+sgt84T/ebnseaQc/R0y++hok4UGA/9TAv89qLEXzAk+HyKNfUTqD9pOk8b7uDZZakjghacaaqyDWUEb3wvdJ4nStCl0K3rtVGKOX6XcwHU9JnfxNZ3gOrBdPP8uqfCfzP9Eix0j1/PnSbSm0aVWO4d0y+b551dbsyvIRq9SZiKTZdrvVhVdL8ZtXxM+WfVnyj1gqyvPHPwx39b8s54PmyXZHMYIn/HguIwGW9495ShJ3p9p+YfXiDx82XZPLZuDLv+m5S/bj+v5j4XGP9F4YFv+aRR1Dsj6N0VpctDh37b8HzHnv4p/06Q6/7NrAJ39mZZ/1Jgvs5+pz5ZU5/+w4vwX+ZulIn85uZ5/3v2Zln+rKmkeqvmZln+4H9fOO9fzd12689Vdh+l6gzl9KYIVZs5/K7FP3lLN/52m2m3Nn/rfBFtgG+yA3Yg2Jv2+TVf+R+AYnIBTcJaghqrF4z/1fwmuwA/wE1yDQU79e+AL2AcH4DCXKsXSkT/7W44qXtdAXTAunIOv4Bv4Di5i6jBdNH/q+wV4DhaC96z88+E3tn/AX/AP3ORb7j3puv6fBb7DqNaRtVTX/9T/S2wXOZgu1fw/MOsXf32zyrBsQf6qag+egT8AHSG/7x3I/wnzbGuYNP4m4B+LdY7/rpLndYMK6AG9oK9kb/6sf5aHguxn4PUpqIIaqIPZUr41s9KZP8sk2AgdgwF/vIDXVfARfAJr4LPF+XfC4wiHLuLG9R+lJP5tzT9KLuRfPL+zW6bk36zzh/6vZVZb1TqS6j9gzJ1W
+  </data>
+ </layer>
+ <layer name="Above Player" width="64" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2kkKwkAQheEyw23Ua6hbT+AyDgvxTs7T8Zw2FiiIcyZI0vV/8IiLXuQljQlFRNJrh4/fvfD7OpdY6YnfooL3wdoT2Wi2mp1m7xV7PpZ0w+dYQ3/6p+1/qIkcNSfNWXOpva8p+3+b9fufp5Z/O3b8Ys+jKON770lF+geBSBj8PwIAYNHrO+KnuIz+tvvjwfoeoL/t/hbFvd+uPiPoT3/62+0fd07I3BAAgM9cfDZGmr5moBlqRj/WNrR707H+WdQNXYsk+wQAAFdMPZGZZq5ZaJaaVcm+h0yq6rOtrFya86Vhvb9lzH+RB/YPkN0VHyNLuQ==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision" width="64" height="60">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object type="collision" x="192" y="208" width="160" height="400"/>
+  <object type="collision" x="352" y="528" width="224" height="96"/>
+  <object type="collision" x="464" y="624" width="128" height="16"/>
+  <object type="collision" x="352" y="624" width="112" height="336"/>
+  <object type="collision" x="464" y="848" width="112" height="112"/>
+  <object type="collision" x="640" y="688" width="48" height="48"/>
+  <object type="collision" x="688" y="688" width="32" height="32"/>
+  <object type="collision" x="704" y="720" width="16" height="16"/>
+  <object type="collision" x="640" y="800" width="96" height="32"/>
+  <object type="collision" x="640" y="832" width="64" height="16"/>
+  <object type="collision" x="720" y="832" width="16" height="16"/>
+  <object type="collision" x="736" y="640" width="96" height="320"/>
+  <object type="collision" x="720" y="672" width="16" height="16"/>
+  <object type="collision" x="640" y="240" width="192" height="400"/>
+  <object type="collision" x="592" y="224" width="240" height="16"/>
+  <object type="collision" x="352" y="224" width="96" height="16"/>
+  <object type="collision" x="352" y="128" width="16" height="96"/>
+  <object type="collision" x="432" y="0" width="32" height="48"/>
+  <object type="collision" x="336" y="0" width="496" height="16"/>
+  <object type="collision" x="816" y="0" width="16" height="112"/>
+  <object type="collision" x="816" y="176" width="16" height="64"/>
+  <object type="collision" x="512" y="288" width="32" height="144"/>
+  <object type="collision" x="592" y="144" width="80" height="48"/>
+  <object type="collision" x="608" y="0" width="32" height="64"/>
+  <object type="collision" x="656" y="0" width="32" height="64"/>
+  <object type="collision" x="640" y="16" width="16" height="32"/>
+  <object type="collision" x="480" y="0" width="80" height="64"/>
+  <object type="collision" x="480" y="144" width="16" height="32"/>
+  <object type="collision" x="448" y="144" width="32" height="48"/>
+  <object type="collision" x="496" y="144" width="32" height="48"/>
+  <object type="collision" x="432" y="176" width="16" height="16"/>
+  <object type="collision" x="784" y="0" width="32" height="48"/>
+  <object type="collision" x="288" y="64" width="16" height="112"/>
+  <object type="collision" x="192" y="160" width="96" height="16"/>
+  <object type="collision" x="192" y="64" width="16" height="112"/>
+  <object type="collision" x="192" y="0" width="64" height="80"/>
+  <object type="collision" x="256" y="0" width="64" height="32"/>
+  <object type="collision" x="480" y="656" width="80" height="32"/>
+  <object type="collision" x="479" y="672" width="47" height="32"/>
+  <object type="collision" x="543" y="673" width="18" height="32"/>
+  <object type="collision" x="556" y="687" width="20" height="18"/>
+  <object type="collision" x="464" y="768" width="16" height="16"/>
+  <object type="collision" x="544" y="832" width="32" height="16"/>
+  <object type="collision" x="496" y="768" width="80" height="48"/>
+  <object type="collision" x="336" y="16" width="96" height="48"/>
+  <object type="collision" x="320" y="64" width="32" height="16"/>
+  <object type="collision" x="736" y="64" width="80" height="48"/>
+  <object type="collision" x="656" y="656" width="32" height="16"/>
+  <object type="collision" x="624" y="720" width="16" height="16"/>
+  <object type="collision" x="624" y="832" width="16" height="16"/>
+  <object type="collision" x="688" y="48" width="16" height="16"/>
+  <object type="collision" x="576" y="912" width="160" height="48"/>
+  <object type="collision" x="672" y="880" width="64" height="32"/>
+  <object type="collision" x="624" y="624" width="16" height="16"/>
+  <object type="collision" x="352" y="416" width="128" height="16"/>
+  <object type="collision" x="544" y="416" width="96" height="16"/>
+  <object type="collision" x="544" y="352" width="96" height="16"/>
+  <object type="collision" x="400" y="352" width="112" height="16"/>
+  <object type="collision" x="352" y="352" width="32" height="16"/>
+  <object type="collision" x="352" y="288" width="112" height="16"/>
+  <object type="collision" x="480" y="288" width="32" height="16"/>
+  <object type="collision" x="544" y="288" width="16" height="16"/>
+  <object type="collision" x="592" y="288" width="48" height="16"/>
+  <object type="collision" x="576" y="0" width="32" height="48"/>
+  <object type="collision" x="528" y="192" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Conditions" width="64" height="60">
+  <object name="Teleport to test room (id: 1)" type="condition" x="528" y="688" width="16" height="16">
+   <properties>
+    <property name="action_id" value="1"/>
+    <property name="condition_id" value="1"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="21,43"/>
+   </properties>
+  </object>
+  <object name="Teleport to downstairs_test (id: 2)" type="condition" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="2"/>
+    <property name="condition_id" value="2"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="31,45"/>
+   </properties>
+  </object>
+  <object name="Random Battle 1 (id: 3)" type="condition" x="512" y="432" width="128" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="3"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 1 (id: 3)" type="condition" x="512" y="432" width="128" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="3"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 2 (id: 4)" type="condition" x="352" y="432" width="96" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="4"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 2 (id: 4)" type="condition" x="352" y="432" width="96" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="4"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 3 (id: 5)" type="condition" x="400" y="368" width="112" height="48">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="5"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 3 (id: 5)" type="condition" x="400" y="368" width="112" height="48">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="5"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 4 (id: 6)" type="condition" x="352" y="304" width="144" height="48">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="6"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 4 (id: 6)" type="condition" x="352" y="304" width="144" height="48">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="6"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 5 (id: 7)" type="condition" x="208" y="80" width="64" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="7"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Random Battle 5 (id: 7)" type="condition" x="208" y="80" width="64" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="condition_id" value="7"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Play Music (id: 8)" type="condition" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="4"/>
+    <property name="condition_id" value="8"/>
+    <property name="condition_type" value="music_playing"/>
+    <property name="operator" value="is_not"/>
+    <property name="parameters" value="479403_its-a-unix-system.ogg"/>
+   </properties>
+  </object>
+  <object name="Empty Grass (id: 9)" type="condition" x="464" y="816" width="80" height="32">
+   <properties>
+    <property name="action_id" value="5"/>
+    <property name="condition_id" value="9"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Empty Grass (id: 9)" type="condition" x="464" y="816" width="80" height="32">
+   <properties>
+    <property name="action_id" value="5"/>
+    <property name="condition_id" value="9"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Empty Grass (id: 10)" type="condition" x="464" y="800" width="32" height="16">
+   <properties>
+    <property name="action_id" value="5"/>
+    <property name="condition_id" value="10"/>
+    <property name="condition_type" value="player_moved"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Empty Grass (id: 10)" type="condition" x="464" y="800" width="32" height="16">
+   <properties>
+    <property name="action_id" value="5"/>
+    <property name="condition_id" value="10"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Play Sign Animation (id: 11)" type="condition" x="464" y="800" width="32" height="16">
+   <properties>
+    <property name="action_id" value="6"/>
+    <property name="condition_id" value="11"/>
+    <property name="condition_type" value="true"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Your House Sign (id: 12)" type="condition" x="624" y="736" width="16" height="16">
+   <properties>
+    <property name="action_id" value="7"/>
+    <property name="condition_id" value="12"/>
+    <property name="condition_type" value="player_facing"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="up"/>
+   </properties>
+  </object>
+  <object name="Your House Sign (id: 12)" type="condition" x="624" y="736" width="16" height="16">
+   <properties>
+    <property name="action_id" value="7"/>
+    <property name="condition_id" value="12"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Your House Sign (id: 12)" type="condition" x="624" y="736" width="16" height="16">
+   <properties>
+    <property name="action_id" value="7"/>
+    <property name="condition_id" value="12"/>
+    <property name="condition_type" value="button_pressed"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="K_RETURN"/>
+   </properties>
+  </object>
+  <object name="Professor's House Sign (id: 13)" type="condition" x="560" y="704" width="16" height="16">
+   <properties>
+    <property name="action_id" value="8"/>
+    <property name="condition_id" value="13"/>
+    <property name="condition_type" value="button_pressed"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="K_RETURN"/>
+   </properties>
+  </object>
+  <object name="Professor's House Sign (id: 13)" type="condition" x="560" y="704" width="16" height="16">
+   <properties>
+    <property name="action_id" value="8"/>
+    <property name="condition_id" value="13"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value=""/>
+   </properties>
+  </object>
+  <object name="Professor's House Sign (id: 13)" type="condition" x="560" y="704" width="16" height="16">
+   <properties>
+    <property name="action_id" value="8"/>
+    <property name="condition_id" value="13"/>
+    <property name="condition_type" value="player_facing"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="up"/>
+   </properties>
+  </object>
+  <object name="Teleport to route 1 (id: 14)" type="condition" x="192" y="192" width="16" height="16">
+   <properties>
+    <property name="action_id" value="9"/>
+    <property name="condition_id" value="14"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="12,12"/>
+   </properties>
+  </object>
+  <object name="Teleport to route 1 (id: 15)" type="condition" x="192" y="176" width="16" height="16">
+   <properties>
+    <property name="action_id" value="10"/>
+    <property name="condition_id" value="15"/>
+    <property name="condition_type" value="player_at"/>
+    <property name="operator" value="is"/>
+    <property name="parameters" value="12,11"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Actions" width="64" height="60">
+  <object name="Teleport to test room (action id: 1)" type="action" x="528" y="688" width="16" height="16">
+   <properties>
+    <property name="action_id" value="1"/>
+    <property name="action_type" value="transition_teleport"/>
+    <property name="parameters" value="pallet_town-room.tmx,1,3,0.5"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Teleport to test room (action id: 1)" type="action" x="528" y="688" width="16" height="16">
+   <properties>
+    <property name="action_id" value="1"/>
+    <property name="action_type" value="player_face"/>
+    <property name="parameters" value="down"/>
+    <property name="priority" value="2"/>
+   </properties>
+  </object>
+  <object name="Teleport to downstairs_test (action id: 2)" type="action" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="2"/>
+    <property name="action_type" value="player_face"/>
+    <property name="parameters" value="up"/>
+    <property name="priority" value="2"/>
+   </properties>
+  </object>
+  <object name="Teleport to downstairs_test (action id: 2)" type="action" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="2"/>
+    <property name="action_type" value="transition_teleport"/>
+    <property name="parameters" value="downstairs_test.tmx,5,7,0.5"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Random Battle (action id: 3)" type="action" x="512" y="432" width="128" height="80">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="action_type" value="random_encounter"/>
+    <property name="parameters" value="1"/>
+    <property name="priority" value="2"/>
+   </properties>
+  </object>
+  <object name="Play Music (action id: 4)" type="action" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="4"/>
+    <property name="action_type" value="play_music"/>
+    <property name="parameters" value="479403_its-a-unix-system.ogg"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Grass Animation (action id: 3)" type="action" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="3"/>
+    <property name="action_type" value="play_map_animation"/>
+    <property name="parameters" value="grass,0.1,noloop,player"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Grass Animation (action id: 5)" type="action" x="688" y="720" width="16" height="16">
+   <properties>
+    <property name="action_id" value="5"/>
+    <property name="action_type" value="play_map_animation"/>
+    <property name="parameters" value="grass,0.1,noloop,player"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Play Sign Animation (action id: 6)" type="action" x="528" y="160" width="16" height="16">
+   <properties>
+    <property name="action_id" value="6"/>
+    <property name="action_type" value="play_map_animation"/>
+    <property name="parameters" value="sign01,0.4,loop,33,10"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Your house sign (action id: 7)" type="action" x="624" y="736" width="16" height="16">
+   <properties>
+    <property name="action_id" value="7"/>
+    <property name="action_type" value="dialog"/>
+    <property name="parameters" value="${{name}}'s house"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Professor's house sign (action id: 8)" type="action" x="560" y="704" width="16" height="16">
+   <properties>
+    <property name="action_id" value="8"/>
+    <property name="action_type" value="dialog"/>
+    <property name="parameters" value="Professor's house"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Teleport to route 1 (action id: 9)" type="action" x="192" y="192" width="16" height="16">
+   <properties>
+    <property name="action_id" value="9"/>
+    <property name="action_type" value="teleport"/>
+    <property name="parameters" value="route1.tmx,47,12"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+  <object name="Teleport to route 1 (action id: 10)" type="action" x="192" y="192" width="16" height="16">
+   <properties>
+    <property name="action_id" value="10"/>
+    <property name="action_type" value="teleport"/>
+    <property name="parameters" value="route1.tmx,47,11"/>
+    <property name="priority" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

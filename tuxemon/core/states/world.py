@@ -157,21 +157,21 @@ class World(tools._State):
         ######################################################################
 
         # Dialog Window - Used to display dialog.
-        DialogMenu = menu.plugins["dialog_menu"].DialogMenu
+        DialogMenu = menu.dialog_menu.DialogMenu
         self.dialog_window = DialogMenu(self.screen,
                                         self.resolution,
                                         self,
                                         name="Dialog Window")
 
         # Main Menu - Allows users to open the main menu in game.
-        MainMenu = menu.plugins["main_menu"].MainMenu
+        MainMenu = menu.main_menu.MainMenu
         self.main_menu = MainMenu(self.screen,
                                   self.resolution,
                                   self,
                                   name="Main Menu")
 
         # Save Menu - Allows the user to save their game.
-        SaveMenu = menu.plugins["save_menu"].SaveMenu
+        SaveMenu = menu.save_menu.SaveMenu
         self.save_menu = SaveMenu(self.screen,
                                   self.resolution,
                                   self,
@@ -199,13 +199,13 @@ class World(tools._State):
                                               name="Not implemented")
         
         # Item menus
-        ItemMenu = menu.plugins["item_menu"].ItemMenu
+        ItemMenu = menu.item_menu.ItemMenu
         self.item_menu = ItemMenu(self.screen,
                                   self.resolution,
                                   self)
         
         #Monster menu
-        MonsterMenu = menu.plugins["monster_menu"].MonsterMenu
+        MonsterMenu = menu.monster_menu.MonsterMenu
         self.monster_menu = MonsterMenu(self.screen,
                                         self.resolution,
                                         self)

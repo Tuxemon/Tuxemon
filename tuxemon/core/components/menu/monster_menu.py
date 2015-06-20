@@ -63,7 +63,7 @@ class MonsterMenu(Menu):
                                            resolution,
                                            game,
                                            background=_resources + "filled_monster_slot_bg.png"))
-            self.monster_hp_bars.append(menu.plugins["interface"].HpBar(screen))
+            self.monster_hp_bars.append(menu.interface.HpBar(screen))
 
         # Set up the border images used for the monster slots
         self.monster_slot_border = {}

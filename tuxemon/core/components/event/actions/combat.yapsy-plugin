@@ -1,0 +1,9 @@
+[Core]
+Name = Combat
+Module = combat
+
+[Documentation]
+Author = William Edwards
+Version = 1.0
+Website = http://www.tuxemon.org
+Description = Combat event plugin.

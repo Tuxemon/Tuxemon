@@ -63,6 +63,9 @@ ICON_SIZE = [7, 7]
 # Set the healthbar color
 HP_COLOR = (112, 248, 168)
 
+# Set the XP bar color
+XP_COLOR = (248, 245, 71)
+
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.
 NATIVE_RESOLUTION = [240, 160]

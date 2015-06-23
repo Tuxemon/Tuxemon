@@ -229,7 +229,7 @@ class Player(IPlugin):
         monster_level = parameters[1]
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_name)
-        current_monster.level = int(monster_level)
+        current_monster.set_level(int(monster_level))
     
         game.player1.add_monster(current_monster)
     

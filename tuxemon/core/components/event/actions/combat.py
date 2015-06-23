@@ -112,6 +112,8 @@ class Combat(IPlugin):
             current_monster.speed = npc_monster_details['speed']
             current_monster.special_attack = npc_monster_details['special_attack']
             current_monster.special_defense = npc_monster_details['special_defense']
+            current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']
+            current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
     
             current_monster.type1 = results['types'][0]
     

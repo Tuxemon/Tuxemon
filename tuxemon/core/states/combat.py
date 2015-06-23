@@ -379,6 +379,31 @@ class Combat(tools._State):
                                         color=prepare.HP_COLOR,
                                         value=health_percent * 100)
 
+            # Set up the player's experience bar
+            if player_name == "player":
+                # The XP bar is at pixel position 32,33 of the health interface
+                xp_x = hp_pos[0] + (32 * prepare.SCALE)
+                xp_y = hp_pos[1] + (33 * prepare.SCALE)
+
+                # Leveling is based off of total experience, so we need to do a bit of calculation
+                # to get the percentage of experience needed for the current level.
+                zero_xp = player_dict['monster'].experience_required_modifier * \
+                    (player_dict['monster'].level) ** 3
+                full_xp = player_dict['monster'].experience_required_modifier * \
+                    (player_dict['monster'].level + 1) ** 3
+                level_xp = player_dict['monster'].total_experience - zero_xp
+                max_xp = full_xp - zero_xp
+                # This will give us a percentage of how full the bar should be for this level.
+                current_xp = level_xp / float(max_xp)
+                logger.info("Current XP: %s / %s" % (level_xp, max_xp))
+
+                # Create our XP bar.
+                ui["xp_bar"] = bar.Bar([64, 2],
+                                       [xp_x, xp_y],
+                                       screen,
+                                       color=prepare.XP_COLOR,
+                                       value=current_xp * 100)
+
             # Set up the player's status icon.
             player_status = player_name + "_status"
             ui[player_status] = UserInterface(
@@ -624,6 +649,7 @@ class Combat(tools._State):
         # Draw the monsters' health
         for player_name, player in self.current_players.items():
             ui[player_name + "_healthbar"].draw()
+        ui["xp_bar"].draw()
 
         # Draw Monster Menu
         if self.monster_menu.visible:
@@ -987,8 +1013,9 @@ class Combat(tools._State):
                         player_monster = players['player']['monster']
                         opponent_monster = players['opponent']['monster']
                         # Give player's monster experience for faint of opponent monster
-                        player_monster.give_experience(
-                            opponent_monster.experience_give_modifier*opponent_monster.level)
+                        xp = (opponent_monster.experience_give_modifier * opponent_monster.level) ** 3
+                        player_monster.give_experience(xp)
+                        logger.info("Monster gained experience: %i" % xp)
 
                     # Check to see if the player has any more remaining monsters in their
                     # party that haven't fainted.

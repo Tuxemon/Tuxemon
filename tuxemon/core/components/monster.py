@@ -264,6 +264,7 @@ class Monster(object):
         :rtype: None
         :returns: None
         """
+        logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
         #Increase Level and stats
         self.level += 1
         hp_up = random.choice(self.hp_modifier)
@@ -278,6 +279,7 @@ class Monster(object):
         #Learn New Moves
         for move in self.moveset:
             if move['level_learned'] >= self.level:
+                logger.info("%s learned technique id %i!" % (self.name, move['technique_id']))
                 technique = Technique(id=move['technique_id'])
                 self.learn(technique)
 

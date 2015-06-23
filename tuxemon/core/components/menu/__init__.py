@@ -1007,5 +1007,11 @@ class Menu(UserInterface):
         pass
         
         
-plugins = plugin.load_directory("core/components/menu")
-
+#plugins = plugin.load_directory("core/components/menu")
+import main_menu
+import dialog_menu
+import bottom_menu
+import interface
+import item_menu
+import monster_menu
+import save_menu

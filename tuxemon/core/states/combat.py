@@ -137,11 +137,11 @@ class Combat(tools._State):
         self.fight_info_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
         
         # Item menus
-        ItemMenu = menu.plugins["item_menu"].ItemMenu
+        ItemMenu = menu.item_menu.ItemMenu
         self.item_menu = ItemMenu(game.screen, prepare.SCREEN_SIZE, game)
         
         # Monster Menu
-        MonsterMenu = menu.plugins["monster_menu"].MonsterMenu
+        MonsterMenu = menu.monster_menu.MonsterMenu
         self.monster_menu = MonsterMenu(game.screen, prepare.SCREEN_SIZE, game)
 
         # Active Monster Menu

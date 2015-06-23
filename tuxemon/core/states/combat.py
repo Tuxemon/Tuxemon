@@ -501,177 +501,7 @@ class Combat(tools._State):
 
         # Handle things that take place during the action phase like health going down, etc.
         if self.action_phase:
-
-            # Set the monsters' status icon to reflect their current status. For example, if
-            # the monster was poisoned, this will set their status icon to the poison icon.
-            for player_name, player_dict in self.current_players.items():
-                ui[player_name + "_status"].surface = \
-                    self.status_icons[player_dict['monster'].status]
-
-            #######################################
-            #         Start Action Phase          #
-            #######################################
-
-            # If we're in the action phase, but an action is not actively being carried out, start
-            # the next player's action.
-            if not self.turn_in_progress:
-                logger.info("")
-                logger.info("Starting turn for " + self.turn_order[0]['player'].name)
-                if not self.status_check_in_progress and not self.status_check_completed:
-                    logger.info("  Performing status check and resolving damage from status.")
-                    self.status_check(self.turn_order[0])
-                    self.status_check_in_progress = True
-                    self.status_check_completed = False
-                    self.state = "status check in progress"
-
-                # We want to perform our action AFTER the status check has completed.
-                elif self.status_check_completed:
-                    logger.info("  Status check completed. Performing action.")
-                    self.perform_action(self.turn_order[0])
-                    self.status_check_in_progress = False
-                    self.status_check_completed = False
-
-                self.turn_in_progress = True
-
-
-            # If an action IS actively being carried out, draw the animations for the action.
-            else:
-
-                ##############################################
-                #               Health Animations            #
-                ##############################################
-
-                # If a monster has taken damage this frame, then start animating the health.
-                for player_name, player in self.current_players.items():
-                    if player['monster_last_hp'] != player['monster'].current_hp:
-                        logger.info("Player Health Change: " + str(player['monster_last_hp']) +
-                            " -> " + str(player['monster'].current_hp))
-            
-                        self.current_players[player_name]['starting_health'] = player['monster_last_hp']
-                        self.current_players[player_name]['target_health'] = player['monster'].current_hp
-
-                        # Indicate that this monster's health has changed and in which direction it has been changed. Was
-                        # the monster damaged or healed?
-                        if player['monster_last_hp'] < player['monster'].current_hp:
-                            self.current_players[player_name]['health_changed'] = "up"
-                        else:
-                            self.current_players[player_name]['health_changed'] = "down"
-
-                        # Set the last HP value to the current one so we don't execute this function endlessly
-                        self.current_players[player_name]['monster_last_hp'] = player['monster'].current_hp
-            
-                    # If we're in the middle of animating health change, then calculate the percentage of health left and
-                    # transform the health bar based on that percentage.
-                    if player['health_changed']:
-                        health_percent = self.animate_health(player_name) * 100
-                        ui[player_name + '_healthbar'].value = health_percent
-
-                        logger.debug("  Animating player health: " + str(health_percent))
-            
-
-                    ########################################################
-                    #                  Fainting Animations                 #
-                    ########################################################
-
-                    # If the monster is fainting, play the fainting animation and remove the monster.
-                    if player['monster'].state == "fainting" and not player['health_changed']:
-                        monster_sprite = ui[player_name + "_monster_sprite"]
-                        monster_sprite.move(monster_sprite.faint_position, 0.5)
-
-                        # If the sprite's position has reached the fainting position, make the
-                        # sprite invisible and set the state to "fainted"
-                        if monster_sprite.position[1] >= monster_sprite.faint_position[1]:
-                            self.current_players[player_name]['monster'].state = "fainted"
-                            monster_sprite.visible = False
-
-                            # Play the sound of their HORRIBLE DEATH
-                            sound = mixer.Sound("resources/sounds/monster/1/faint.ogg")
-                            sound.play()
-
-                            # Award experience to player if opponent's monster fainted
-                            if player_name == "opponent":
-                                # Aliases to make referencing monsters more concise
-                                player_monster = self.current_players['player']['monster']
-                                opponent_monster = self.current_players['opponent']['monster']
-                                # Give player's monster experience for faint of opponent monster
-                                player_monster.give_experience(
-                                    opponent_monster.experience_give_modifier*opponent_monster.level)
-
-                            # Check to see if the player has any more remaining monsters in their
-                            # party that haven't fainted.
-                            alive_monster_found = False
-                            for monster in player['player'].monsters:
-                                if monster.status != "FNT":
-                                    alive_monster_found = True
-
-                            if alive_monster_found:
-                                logger.warning("Let the player choose his next monster!")
-
-                            else:
-                                if player_name == "player":
-                                    logger.info("YOU LOST!")
-                                    self.info_menu.text = "YOU LOST!"
-                                    self.info_menu.elapsed_time = 0.0
-                                    self.state = "lost"
-
-                                elif player_name == "opponent":
-                                    logger.info("YOU WON!")
-                                    self.info_menu.text = "YOU WON!"
-                                    self.info_menu.elapsed_time = 0.0
-                                    self.state = "won"
-
-                # Handle when all monsters in the player's party have fainted
-                if (self.state == "lost" or self.state == "won") and self.info_menu.elapsed_time > self.info_menu.delay:
-
-                    # Teleport the player and end combat
-                    mapname = "pallet_town-room.tmx"
-                    position_x = "1"
-                    position_y = "3"
-                    parameters = [None, mapname + "," + position_x + "," + position_y]
-
-                    fadeout_music = self.game.event_engine.actions["fadeout_music"]["method"]
-                    fadeout_music(self.game, [None, 1000])
-                    #teleport = self.game.event_engine.actions["teleport"]["method"]
-                    #teleport(self.game, parameters)
-
-                    # Set the next scene we're going to switch to based on where we came from.
-                    # Then set "self.done" to true to allow the scene manager to switch scenes.
-                    self.next = self.previous
-                    self.done = True
-
-
-                #######################################################
-                #                   Finish turn                       #
-                #######################################################
-
-                # Stop this turn once the health animations have stopped and the appropriate amount
-                # of time has passed for the info menu.
-                if (not self.current_players['player']['health_changed'] 
-                    and not self.current_players['opponent']['health_changed'] 
-                    and self.info_menu.elapsed_time > self.info_menu.delay 
-                    and (self.current_players['player']['monster'].state != "fainting" or self.current_players['opponent']['monster'].state != "fainting")):
-                    self.turn_in_progress = False
-
-                    if self.status_check_in_progress:
-                        self.status_check_completed = True
-                        self.state = "status check completed"
-
-                    # If this isn't part of a status check, end the turn for the current player.
-                    else:
-                        self.turn_order.pop(0)      # Remove the player from the turn list.
-
-                #elif self.info_menu.elapsed_time < self.info_menu.delay:
-                #    print "  Waiting %f seconds for window delay" % (self.info_menu.delay - self.info_menu.elapsed_time)
-
-
-            #################################################
-            #             Finish Action Phase               #
-            #################################################
-
-            # If all turns have been taken, start the decision phase.
-            if len(self.turn_order) == 0:
-                self.start_decision_phase()
-
+            self.action_phase_update()
 
         #################################################
         #                 UI Animations                 #
@@ -832,29 +662,33 @@ class Combat(tools._State):
         
         # Set how quickly the health will change in HP points per second
         hp_per_second = 10
+
+        # Set some aliases
+        current_player = self.current_players[player]
+        game = self.game
         
         # Start adding or subtracting hp until we reach our target value.
-        if self.current_players[player]['target_health'] < self.current_players[player]['starting_health']: 
-            self.current_players[player]['starting_health'] -= hp_per_second * self.game.time_passed_seconds
-        elif self.current_players[player]['target_health'] > self.current_players[player]['starting_health']:
-            self.current_players[player]['starting_health'] += hp_per_second * self.game.time_passed_seconds
+        if current_player['target_health'] < current_player['starting_health']: 
+            current_player['starting_health'] -= hp_per_second * game.time_passed_seconds
+        elif current_player['target_health'] > current_player['starting_health']:
+            current_player['starting_health'] += hp_per_second * game.time_passed_seconds
             
         # If we've reached our target health value, then stop animating by setting "health_changed" = False.
-        if self.current_players[player]['health_changed'] == "down":
-            if self.current_players[player]['starting_health'] <= self.current_players[player]['target_health']: 
-                self.current_players[player]['health_changed'] = False
-                self.current_players[player]['starting_health'] = self.current_players[player]['target_health']
+        if current_player['health_changed'] == "down":
+            if current_player['starting_health'] <= current_player['target_health']: 
+                current_player['health_changed'] = False
+                current_player['starting_health'] = current_player['target_health']
 
-        elif self.current_players[player]['health_changed'] == "up":
-            if self.current_players[player]['starting_health'] >= self.current_players[player]['target_health']: 
-                self.current_players[player]['health_changed'] = False
-                self.current_players[player]['starting_health'] = self.current_players[player]['target_health']
+        elif current_player['health_changed'] == "up":
+            if current_player['starting_health'] >= current_player['target_health']: 
+                current_player['health_changed'] = False
+                current_player['starting_health'] = current_player['target_health']
             
             
         # Set the size of health bar based on how much health the monster has remaining.
-        if self.current_players[player]['starting_health'] > 0:
-            health_percent = float(self.current_players[player]['starting_health']) / float(self.current_players[player]['monster'].hp)
-        elif self.current_players[player]['starting_health'] > self.current_players[player]['monster'].hp:
+        if current_player['starting_health'] > 0:
+            health_percent = float(current_player['starting_health']) / float(current_player['monster'].hp)
+        elif current_player['starting_health'] > current_player['monster'].hp:
             health_percent = 1.0
         else:
             health_percent = 0
@@ -997,6 +831,12 @@ class Combat(tools._State):
             party_ui = self.ui[player_name + '_party_bg']
             party_ui.move(party_ui.open_position, 0.5)
 
+        # Set the monsters' status icon to reflect their current status. For example, if
+        # the monster was poisoned, this will set their status icon to the poison icon.
+        for player_name, player_dict in self.current_players.items():
+            self.ui[player_name + "_status"].surface = \
+                self.status_icons[player_dict['monster'].status]
+
         # End the action phase and start the decision phase.
         self.action_phase = False
         self.decision_phase = True
@@ -1018,6 +858,7 @@ class Combat(tools._State):
         self.action_phase = True
         self.decision_phase = False
         self.state = "action phase"
+        players = self.current_players
 
         # Create a list of players ordered by who will go first.
         self.turn_order = []
@@ -1034,14 +875,188 @@ class Combat(tools._State):
             print "Closed position for " + player_name + ":", party_ui.closed_position
 
         # Determine which monster goes first based on the speed of the monsters.
-        if self.current_players['player']['monster'].speed >= self.current_players['opponent']['monster'].speed:
-            self.turn_order.append(self.current_players['player'])
-            self.turn_order.append(self.current_players['opponent'])
+        if players['player']['monster'].speed >= players['opponent']['monster'].speed:
+            self.turn_order.append(players['player'])
+            self.turn_order.append(players['opponent'])
         else:
-            self.turn_order.append(self.current_players['opponent'])
-            self.turn_order.append(self.current_players['player'])
-        
+            self.turn_order.append(players['opponent'])
+            self.turn_order.append(players['player'])
 
+
+    def action_phase_update(self):
+        """Updates the game every frame during the action phase.
+        """
+        # Create an alias for our UI data structure.
+        ui = self.ui
+
+        # If we're in the action phase, but an action is not actively being carried out, start
+        # the next player's action.
+        if not self.turn_in_progress:
+            self.start_turn()
+
+        # If an action IS actively being carried out, draw the animations for the action.
+        else:
+            self.turn_update()
+
+        # If all turns have been taken, start the decision phase.
+        if len(self.turn_order) == 0:
+            self.start_decision_phase()
+
+
+    def start_turn(self):
+        """Starts a turn for a monster during the action phase.
+        """
+        logger.info("")
+        logger.info("Starting turn for " + self.turn_order[0]['player'].name)
+        if not self.status_check_in_progress and not self.status_check_completed:
+            logger.info("  Performing status check and resolving damage from status.")
+            self.status_check(self.turn_order[0])
+            self.status_check_in_progress = True
+            self.status_check_completed = False
+            self.state = "status check in progress"
+
+        # We want to perform our action AFTER the status check has completed.
+        elif self.status_check_completed:
+            logger.info("  Status check completed. Performing action.")
+            self.perform_action(self.turn_order[0])
+            self.status_check_in_progress = False
+            self.status_check_completed = False
+
+        self.turn_in_progress = True
+
+
+    def turn_update(self):
+        """Updates every frame to carry out a monster's turn during the action phase.
+        """
+        ##############################################
+        #               Health Animations            #
+        ##############################################
+        ui = self.ui
+        players = self.current_players
+
+        # If a monster has taken damage this frame, then start animating the health.
+        for player_name, player in players.items():
+            if player['monster_last_hp'] != player['monster'].current_hp:
+                logger.info("Player Health Change: " + str(player['monster_last_hp']) +
+                    " -> " + str(player['monster'].current_hp))
+    
+                players[player_name]['starting_health'] = player['monster_last_hp']
+                players[player_name]['target_health'] = player['monster'].current_hp
+
+                # Indicate that this monster's health has changed and in which direction it has been changed. Was
+                # the monster damaged or healed?
+                if player['monster_last_hp'] < player['monster'].current_hp:
+                    players[player_name]['health_changed'] = "up"
+                else:
+                    players[player_name]['health_changed'] = "down"
+
+                # Set the last HP value to the current one so we don't execute this function endlessly
+                players[player_name]['monster_last_hp'] = player['monster'].current_hp
+    
+            # If we're in the middle of animating health change, then calculate the percentage of health left and
+            # transform the health bar based on that percentage.
+            if player['health_changed']:
+                health_percent = self.animate_health(player_name) * 100
+                ui[player_name + '_healthbar'].value = health_percent
+
+                logger.debug("  Animating player health: " + str(health_percent))
+    
+
+            ########################################################
+            #                  Fainting Animations                 #
+            ########################################################
+
+            # If the monster is fainting, play the fainting animation and remove the monster.
+            if player['monster'].state == "fainting" and not player['health_changed']:
+                monster_sprite = ui[player_name + "_monster_sprite"]
+                monster_sprite.move(monster_sprite.faint_position, 0.5)
+
+                # If the sprite's position has reached the fainting position, make the
+                # sprite invisible and set the state to "fainted"
+                if monster_sprite.position[1] >= monster_sprite.faint_position[1]:
+                    players[player_name]['monster'].state = "fainted"
+                    monster_sprite.visible = False
+
+                    # Play the sound of their HORRIBLE DEATH
+                    sound = mixer.Sound("resources/sounds/monster/1/faint.ogg")
+                    sound.play()
+
+                    # Award experience to player if opponent's monster fainted
+                    if player_name == "opponent":
+                        # Aliases to make referencing monsters more concise
+                        player_monster = players['player']['monster']
+                        opponent_monster = players['opponent']['monster']
+                        # Give player's monster experience for faint of opponent monster
+                        player_monster.give_experience(
+                            opponent_monster.experience_give_modifier*opponent_monster.level)
+
+                    # Check to see if the player has any more remaining monsters in their
+                    # party that haven't fainted.
+                    alive_monster_found = False
+                    for monster in player['player'].monsters:
+                        if monster.status != "FNT":
+                            alive_monster_found = True
+
+                    if alive_monster_found:
+                        logger.warning("Let the player choose his next monster!")
+
+                    else:
+                        if player_name == "player":
+                            logger.info("YOU LOST!")
+                            self.info_menu.text = "YOU LOST!"
+                            self.info_menu.elapsed_time = 0.0
+                            self.state = "lost"
+
+                        elif player_name == "opponent":
+                            logger.info("YOU WON!")
+                            self.info_menu.text = "YOU WON!"
+                            self.info_menu.elapsed_time = 0.0
+                            self.state = "won"
+
+        # Handle when all monsters in the player's party have fainted
+        if (self.state == "lost" or self.state == "won") and self.info_menu.elapsed_time > self.info_menu.delay:
+
+            # Teleport the player and end combat
+            mapname = "pallet_town-room.tmx"
+            position_x = "1"
+            position_y = "3"
+            parameters = [None, mapname + "," + position_x + "," + position_y]
+
+            fadeout_music = self.game.event_engine.actions["fadeout_music"]["method"]
+            fadeout_music(self.game, [None, 1000])
+            #teleport = self.game.event_engine.actions["teleport"]["method"]
+            #teleport(self.game, parameters)
+
+            # Set the next scene we're going to switch to based on where we came from.
+            # Then set "self.done" to true to allow the scene manager to switch scenes.
+            self.next = self.previous
+            self.done = True
+
+
+        #######################################################
+        #                   Finish turn                       #
+        #######################################################
+
+        # Stop this turn once the health animations have stopped and the appropriate amount
+        # of time has passed for the info menu.
+        if (not players['player']['health_changed'] 
+            and not players['opponent']['health_changed'] 
+            and self.info_menu.elapsed_time > self.info_menu.delay 
+            and (players['player']['monster'].state != "fainting" or players['opponent']['monster'].state != "fainting")):
+            self.turn_in_progress = False
+
+            if self.status_check_in_progress:
+                self.status_check_completed = True
+                self.state = "status check completed"
+
+            # If this isn't part of a status check, end the turn for the current player.
+            else:
+                self.turn_order.pop(0)      # Remove the player from the turn list.
+
+        #elif self.info_menu.elapsed_time < self.info_menu.delay:
+        #    print "  Waiting %f seconds for window delay" % (self.info_menu.delay - self.info_menu.elapsed_time)
+
+        
     def perform_action(self, player):
         """Perform an action that a single player has decided on. Players can decide to use a
         technique, item, switch monsters, or run away.

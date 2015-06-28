@@ -38,18 +38,18 @@ import os
 import pprint
 
 # Import Tuxemon internal libraries
-from .. import tools, prepare
-from ..components import screen
-from ..components import config
-from ..components import map
-from ..components import pyganim
-from ..components import player
-from ..components import event
-from ..components import save
-from ..components import monster
-from ..components import cli
-from . import combat
-from . import start
+from core import tools, prepare
+from core.components import screen
+from core.components import config
+from core.components import map
+from core.components import pyganim
+from core.components import player
+from core.components import event
+from core.components import save
+from core.components import monster
+from core.components import cli
+from core.states import combat
+from core.states import start
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -60,29 +60,9 @@ class World(tools._State):
         # Initiate our common state properties.
         tools._State.__init__(self)
 
-        # For some reason, importing menu only works here.
-        from ..components import menu
-
         # Provide an instance of our scene manager to this scene.
         self.game = game
-
-        # Provide access to the screen surface
         self.screen = game.screen
-        self.screen_rect = prepare.SCREEN_RECT
-
-        # Set the native tile size so we know how much to scale
-        self.tile_size = prepare.TILE_SIZE
-
-        # Set the status icon size so we know how much to scale
-        self.icon_size = prepare.ICON_SIZE
-
-        # Get the screen's resolution
-        self.resolution = prepare.SCREEN_SIZE
-
-        # Native resolution is similar to the old gameboy resolution. This is
-        # used for scaling.
-        self.native_resolution = prepare.NATIVE_RESOLUTION
-        self.scale = prepare.SCALE
 
         # Set the tiles and mapsize variables
         self.tiles = []
@@ -90,15 +70,12 @@ class World(tools._State):
 
         # Find out how many tiles can fit on the visible screen. We use this
         # so we draw only the tiles that are visible.
-        self.visible_tiles = [
-            int(math.ceil(self.resolution[0] / self.tile_size[0]) + 1),
-            int(math.ceil(self.resolution[1] / self.tile_size[1]) + 1)]
-        # self.visible_tiles = [5, 5]
+        self.visible_tiles = self.get_visible_tiles()
 
         # Create a new map instance
         self.current_map = map.Map("resources/maps/%s" % prepare.CONFIG.starting_map)
         self.tiles, self.collision_map, self.map_size = \
-            self.current_map.loadfile(self.tile_size)
+            self.current_map.loadfile(prepare.TILE_SIZE)
 
         # Create an empty collision_rectmap list which contains rectangle
         # objects that we can test collision with
@@ -110,104 +87,92 @@ class World(tools._State):
 
         # Scale the loaded tiles if enabled
         if prepare.CONFIG.scaling == "1":
-            x_pos = 0   # Here we need to keep track of the x index in list
+            self.scale_tiles()
 
-            # Loop through each row in the map. Each row is a list of Tile
-            # objects in that row.
-            for row in self.tiles:
-                # Here we need to keep track of the y index of the list within
-                # the row
-                y_pos = 0
+        # Set our viewport's pixel position
+        self.viewport_position = [0, 0]
 
-                # Now loop through each tile in the row and scale it
-                # accordingly.
-                for column in row:
-                    if column:
-                        layer_pos = 0
-                        for tile in column:
-                            tile["surface"] = \
-                                pygame.transform.scale(
-                                    tile["surface"],
-                                    (self.tile_size[0], self.tile_size[1]))
-                            self.tiles[x_pos][y_pos][layer_pos] = tile
-                            layer_pos += 1
-                    y_pos += 1
-                x_pos += 1
-
-        # Set the world's current state. This is used for various functions.
-        self.state = "World"
-
-
-        ######################################################################
-        #                           Player Details                           #
-        ######################################################################
-
+        # Set up our players
         self.player1 = prepare.player1
         self.npcs = []
 
-        # Set the global coordinates used to pan the screen.
-        self.start_position = prepare.CONFIG.starting_position
-        self.global_x = self.player1.position[0] - \
-            (self.start_position[0] * self.tile_size[0])
-        self.global_y = self.player1.position[1] - \
-            (self.start_position[1] * self.tile_size[1]) + self.tile_size[0]
+        # Create menus
+        self.create_menus()
 
+        # If we want to display the collision map for debug purposes
+        if prepare.CONFIG.collision_map == "1":
+            # For drawing the collision map
+            self.collision_tile = pygame.Surface(
+                (prepare.TILE_SIZE[0], prepare.TILE_SIZE[1]))
+            self.collision_tile.set_alpha(128)
+            self.collision_tile.fill((255, 0, 0))
+
+        # Get a copy of the event engine from core.tools.Control.
+        self.event_engine = self.game.event_engine
+
+        # Set the currently loaded map. This is needed because the event
+        # engine loads event conditions and event actions from the currently
+        # loaded map. If we change maps, we need to update this.
+        self.event_engine.current_map = self.current_map
+
+
+    def create_menus(self):
         ######################################################################
         #                          Available Menus                           #
         ######################################################################
+        from core.components import menu
 
-        # Dialog Window - Used to display dialog.
         DialogMenu = menu.dialog_menu.DialogMenu
         self.dialog_window = DialogMenu(self.screen,
-                                        self.resolution,
+                                        prepare.SCREEN_SIZE,
                                         self,
                                         name="Dialog Window")
 
         # Main Menu - Allows users to open the main menu in game.
         MainMenu = menu.main_menu.MainMenu
         self.main_menu = MainMenu(self.screen,
-                                  self.resolution,
+                                  prepare.SCREEN_SIZE,
                                   self,
                                   name="Main Menu")
 
         # Save Menu - Allows the user to save their game.
         SaveMenu = menu.save_menu.SaveMenu
         self.save_menu = SaveMenu(self.screen,
-                                  self.resolution,
+                                  prepare.SCREEN_SIZE,
                                   self,
                                   name="Save Menu")
 
         # Enter Name Menu - Allows the user to input custom names. This is
         # used for naming the player as well as monsters.
         self.entername_menu = menu.Menu(self.screen,
-                                        self.resolution,
+                                        prepare.SCREEN_SIZE,
                                         self,
                                         name="Enter Name Menu")
 
         # Display Name Menu - Displays the name entered in by the "Enter
         # Name" menu. This is considered a child of the Enter Name menu.
         self.displayname_menu = menu.Menu(self.screen,
-                                          self.resolution,
+                                          prepare.SCREEN_SIZE,
                                           self,
                                           name="Display Entered Name")
         
         # This menu is just used to display a message that a particular
         # feature is not yet implemented.
         self.not_implmeneted_menu = menu.Menu(self.screen,
-                                              self.resolution,
+                                              prepare.SCREEN_SIZE,
                                               self,
                                               name="Not implemented")
         
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
         self.item_menu = ItemMenu(self.screen,
-                                  self.resolution,
+                                  prepare.SCREEN_SIZE,
                                   self)
         
         #Monster menu
         MonsterMenu = menu.monster_menu.MonsterMenu
         self.monster_menu = MonsterMenu(self.screen,
-                                        self.resolution,
+                                        prepare.SCREEN_SIZE,
                                         self)
 
         # Add child menus to their parent menus
@@ -228,34 +193,34 @@ class World(tools._State):
 
         # Scale the menu borders of all menus
         for menu in self.menus:
-            menu.scale = self.scale    # Set the scale of the menu.
-            menu.set_font(size=menu.font_size * self.scale,
+            menu.scale = prepare.SCALE    # Set the scale of the menu.
+            menu.set_font(size=menu.font_size * prepare.SCALE,
                           font="resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
-                          spacing=menu.font_size * self.scale)
+                          spacing=menu.font_size * prepare.SCALE)
 
             # Scale the selection arrow image based on our game's scale.
             menu.arrow = pygame.transform.scale(
                 menu.arrow,
-                (menu.arrow.get_width() * self.scale,
-                 menu.arrow.get_height() * self.scale))
+                (menu.arrow.get_width() * prepare.SCALE,
+                 menu.arrow.get_height() * prepare.SCALE))
 
             # Scale the border images based on our game's scale.
             for key, border in menu.border.items():
                 menu.border[key] = pygame.transform.scale(
                     border,
-                    (border.get_width() * self.scale,
-                     border.get_height() * self.scale))
+                    (border.get_width() * prepare.SCALE,
+                     border.get_height() * prepare.SCALE))
 
         # Set the size and position of all the windows.
         self.dialog_window.difference = \
             self.dialog_window.border["left-top"].get_width()
         self.dialog_window.size_x = \
-            (self.resolution[0] / 2 - (self.dialog_window.difference))
+            (prepare.SCREEN_SIZE[0] / 2 - (self.dialog_window.difference))
         self.dialog_window.size_y = \
             (self.dialog_window.difference_y - self.dialog_window.difference)
         self.dialog_window.pos_x = \
-            (self.resolution[0] / 2 - (self.dialog_window.size_x / 2))
+            (prepare.SCREEN_SIZE[0] / 2 - (self.dialog_window.size_x / 2))
         self.dialog_window.pos_y = \
             (self.dialog_window.difference_y * 3)
         self.dialog_window.visible = False
@@ -263,34 +228,34 @@ class World(tools._State):
 
         # The main menu will be positioned on the right-hand side of the
         # screen and be about 1/5th the width of the window.
-        self.main_menu.size_x = int(self.resolution[0] / 5.)
-        self.main_menu.size_y = self.resolution[1] - \
+        self.main_menu.size_x = int(prepare.SCREEN_SIZE[0] / 5.)
+        self.main_menu.size_y = prepare.SCREEN_SIZE[1] - \
             (2 * self.main_menu.border["left-top"].get_width())
-        self.main_menu.pos_x = ((self.resolution[0] / 6) * 5) - \
+        self.main_menu.pos_x = ((prepare.SCREEN_SIZE[0] / 6) * 5) - \
             self.main_menu.border["left-top"].get_width()
         self.main_menu.pos_y = 0 + self.main_menu.border["top"].get_height()
         self.main_menu.visible = False
         self.main_menu.interactable = False
 
         # The save menu will appear in the middle of the screen.
-        self.save_menu.size_x = int(self.resolution[0] / 1.5)
-        self.save_menu.size_y = int(self.resolution[1] / 1.5)
-        self.save_menu.pos_x = (self.resolution[0] / 2) - \
+        self.save_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
+        self.save_menu.size_y = int(prepare.SCREEN_SIZE[1] / 1.5)
+        self.save_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
             (self.save_menu.size_x / 2)
-        self.save_menu.pos_y = (self.resolution[1] / 2) - \
+        self.save_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
             (self.save_menu.size_y / 2)
         self.save_menu.visible = False
         self.save_menu.interactable = False
 
         # The enter name menu will take up the full width of the screen
         # and fill up 3/4 of the height of the screen.
-        self.entername_menu.size_x = self.resolution[0] - \
+        self.entername_menu.size_x = prepare.SCREEN_SIZE[0] - \
             (2 * self.entername_menu.border["left-top"].get_width())
-        self.entername_menu.size_y = ((self.resolution[1] / 4) * 3) - \
+        self.entername_menu.size_y = ((prepare.SCREEN_SIZE[1] / 4) * 3) - \
             self.entername_menu.border["left-top"].get_width()
         self.entername_menu.pos_x = \
             self.dialog_window.border["left-top"].get_width()
-        self.entername_menu.pos_y = self.resolution[1] / 4
+        self.entername_menu.pos_y = prepare.SCREEN_SIZE[1] / 4
         self.entername_menu.columns = 11   # The number of columns in each row
         self.entername_menu.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
                                        'i', ' ', ' ', 'j', 'k', 'l', 'm', 'n',
@@ -340,101 +305,6 @@ class World(tools._State):
         self.monster_menu.visible = False
         self.monster_menu.interactable = False
 
-        # variables for transition
-        self.transition_alpha = 0
-        self.start_transition = False
-        self.start_transition_back = False
-        self.black_screen = 0
-
-        # The delayed teleport variable is used to perform a teleport in the
-        # middle of a transition. For example, fading to black, then
-        # teleporting the player, and fading back in again.
-        self.delayed_teleport = False
-        
-        # The delayed facing variable used to change the player's facing in
-        # the middle of a transition.
-        self.delayed_facing = None
-
-        # Variables used for battle transition animation. The battle
-        # transition animation works by filling the screen with white at a
-        # certain alpha level to create flashing.
-        self.start_battle_transition = False    # Kick-off the transition.
-        self.battle_transition_in_progress = False
-
-        # Set the alpha level that the white screen will have.
-        self.battle_transition_alpha = 0
-
-        # Set the number of times the screen will flash before starting combat
-        self.max_battle_flash_count = 6
-
-        # Keep track of the current number of flashes that have passed
-        self.battle_flash_count = 0
-
-        # Either "up" or "down" indicating whether we are adding or
-        # subtracting alpha levels.
-        self.battle_flash_state = "up"
-
-        ######################################################################
-        #                          Collision Map                             #
-        ######################################################################
-
-        # If we want to display the collision map for debug purposes
-        if prepare.CONFIG.collision_map == "1":
-            # For drawing the collision map
-            self.collision_tile = pygame.Surface(
-                (self.tile_size[0], self.tile_size[1]))
-            self.collision_tile.set_alpha(128)
-            self.collision_tile.fill((255, 0, 0))
-
-        ######################################################################
-        #                          Event Engine                              #
-        ######################################################################
-
-        # Get a copy of the event engine from core.tools.Control.
-        self.event_engine = self.game.event_engine
-
-        # Set the currently loaded map. This is needed because the event
-        # engine loads event conditions and event actions from the currently
-        # loaded map. If we change maps, we need to update this.
-        self.event_engine.current_map = self.current_map
-
-        ######################################################################
-        #                       Fullscreen Animations                        #
-        ######################################################################
-
-        # The cinema bars are used for cinematic moments.
-        # The cinema state can be: "off", "on", "turning on" or "turning off"
-        self.cinema_state = "off"
-        self.cinema_speed = 15 * self.scale    # Pixels per second speed of the animation.
-
-        self.cinema_top = {}
-        self.cinema_bottom = {}
-
-        # Create a surface that we'll use as black bars for a cinematic
-        # experience
-        self.cinema_top['surface'] = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6))
-        self.cinema_bottom['surface'] = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6))
-
-        # Fill our empty surface with black
-        self.cinema_top['surface'].fill((0, 0, 0))
-        self.cinema_bottom['surface'].fill((0, 0, 0))
-
-        # When cinema mode is off, this will be the position we'll draw the
-        # black bar.
-        self.cinema_top['off_position'] = [
-            0, -self.cinema_top['surface'].get_height()]
-        self.cinema_bottom['off_position'] = [0, self.resolution[1]]
-        self.cinema_top['position'] = list(self.cinema_top['off_position'])
-        self.cinema_bottom['position'] = list(
-            self.cinema_bottom['off_position'])
-
-        # When cinema mode is ON, this will be the position we'll draw the
-        # black bar.
-        self.cinema_top['on_position'] = [0, 0]
-        self.cinema_bottom['on_position'] = [
-            0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
 
     def startup(self, current_time, persistant):
@@ -529,7 +399,7 @@ class World(tools._State):
         # tiles in size, we add 1 to the 'y' position so the player's actual position will be on the bottom
         # portion of the sprite.
         self.player1.tile_pos = (float((self.player1.position[0] - self.global_x)) / float(
-            self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
+            prepare.TILE_SIZE[0]), (float((self.player1.position[1] - self.global_y)) / float(prepare.TILE_SIZE[1])) + 1)
 
         # Handle world events
         self.map_drawing()
@@ -654,10 +524,10 @@ class World(tools._State):
         self.medlayer_tiles = []
 
         starting_tile_x = - \
-            (self.global_x / self.tile_size[0])
+            (self.global_x / prepare.TILE_SIZE[0])
              # How many tiles over we have to draw the first tile
         starting_tile_y = - \
-            (self.global_y / self.tile_size[
+            (self.global_y / prepare.TILE_SIZE[
              1])  # How many tiles down we have to draw the first tile
         self.tile_buffer = 2  # This is how many tiles we should draw past the visible region
 
@@ -721,18 +591,18 @@ class World(tools._State):
         for item in self.collision_map:
             self.collision_rectmap.append(
                 pygame.Rect(
-                    (item[0] * self.tile_size[0]) + self.global_x,
-                    (item[1] * self.tile_size[0]) + self.global_y, self.tile_size[0], self.tile_size[1]))
+                    (item[0] * prepare.TILE_SIZE[0]) + self.global_x,
+                    (item[1] * prepare.TILE_SIZE[0]) + self.global_y, prepare.TILE_SIZE[0], prepare.TILE_SIZE[1]))
 
         # Add any NPC's to the collision rectangle map. We use this to see if
         # the player is colliding or not
         for npc in self.npcs:
             self.collision_rectmap.append(
-                pygame.Rect(npc.position[0], npc.position[1], self.tile_size[0], self.tile_size[1]))
+                pygame.Rect(npc.position[0], npc.position[1], prepare.TILE_SIZE[0], prepare.TILE_SIZE[1]))
 
         # Set the global_x/y when the player moves around
         self.global_x, self.global_y = self.player1.move(
-            self.screen, self.tile_size, self.time_passed_seconds, (self.global_x, self.global_y), self)
+            self.screen, prepare.TILE_SIZE, self.time_passed_seconds, (self.global_x, self.global_y), self)
 
         # Find out how many pixels we've moved since we started moving
         self.global_x_diff = self.orig_global_x - self.global_x
@@ -740,15 +610,17 @@ class World(tools._State):
 
         # Draw any game NPC's
         for npc in self.npcs:
+            npc_x, npc_y = npc.move(
+                self.screen, prepare.TILE_SIZE, self.time_passed_seconds, (self.global_x, self.global_y), self)
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.
             npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
-                self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
+                prepare.TILE_SIZE[0]), (float((npc.position[1] - self.global_y)) / float(prepare.TILE_SIZE[1])) + 1)
 
             # If the NPC is not visible on the screen, don't draw him
             if self.screen_rect.colliderect(npc.rect):
-                npc.move(self.screen, self.tile_size, self.time_passed_seconds, (
+                npc.move(self.screen, prepare.TILE_SIZE, self.time_passed_seconds, (
                     self.global_x, self.global_y), self)
 
             # Move the NPC with the map as it moves
@@ -817,16 +689,16 @@ class World(tools._State):
 
             if self.player1.direction["up"]:
                 self.screen.blit(self.collision_tile, (
-                    self.player1.position[0], self.player1.position[1] - self.tile_size[1]))
+                    self.player1.position[0], self.player1.position[1] - prepare.TILE_SIZE[1]))
             elif self.player1.direction["down"]:
                 self.screen.blit(self.collision_tile, (
-                    self.player1.position[0], self.player1.position[1] + self.tile_size[1]))
+                    self.player1.position[0], self.player1.position[1] + prepare.TILE_SIZE[1]))
             elif self.player1.direction["left"]:
                 self.screen.blit(self.collision_tile, (
-                    self.player1.position[0] - self.tile_size[0], self.player1.position[1]))
+                    self.player1.position[0] - prepare.TILE_SIZE[0], self.player1.position[1]))
             elif self.player1.direction["right"]:
                 self.screen.blit(self.collision_tile, (
-                    self.player1.position[0] + self.tile_size[0], self.player1.position[1]))
+                    self.player1.position[0] + prepare.TILE_SIZE[0], self.player1.position[1]))
 
     ####################################################
     #                 Menu Functions                   #
@@ -857,7 +729,7 @@ class World(tools._State):
 
             self.displayname_menu.draw()
             self.displayname_menu.draw_text(
-                'Enter Name:\\n\\n', pos_y=2 * self.scale)
+                'Enter Name:\\n\\n', pos_y=2 * prepare.SCALE)
 
             if len(self.entername_menu.input) > 0:
                 self.displayname_menu.draw_text(
@@ -882,9 +754,9 @@ class World(tools._State):
             self.save_screenshot = self.screen.copy()
 
             # Set up menu animations
-            animation_speed = self.resolution[0] / 1.1
+            animation_speed = prepare.SCREEN_SIZE[0] / 1.1
             if self.main_menu.state == "closed":
-                self.main_menu.pos_x = self.resolution[0] + \
+                self.main_menu.pos_x = prepare.SCREEN_SIZE[0] + \
                     self.main_menu.border['left'].get_width()
                 self.main_menu.state = "opening"
 
@@ -892,8 +764,8 @@ class World(tools._State):
                 self.main_menu.pos_x -= animation_speed * \
                     self.time_passed_seconds
 
-                if self.main_menu.pos_x <= self.resolution[0] - self.main_menu.size_x - self.main_menu.border['left'].get_width():
-                    self.main_menu.pos_x = self.resolution[
+                if self.main_menu.pos_x <= prepare.SCREEN_SIZE[0] - self.main_menu.size_x - self.main_menu.border['left'].get_width():
+                    self.main_menu.pos_x = prepare.SCREEN_SIZE[
                         0] - self.main_menu.size_x - self.main_menu.border['left'].get_width()
                     self.main_menu.state = "open"
 
@@ -901,8 +773,8 @@ class World(tools._State):
                 self.main_menu.pos_x += animation_speed * \
                     self.time_passed_seconds
 
-                if self.main_menu.pos_x >= self.resolution[0] + self.main_menu.border['left'].get_width():
-                    self.main_menu.pos_x = self.resolution[
+                if self.main_menu.pos_x >= prepare.SCREEN_SIZE[0] + self.main_menu.border['left'].get_width():
+                    self.main_menu.pos_x = prepare.SCREEN_SIZE[
                         0] + self.main_menu.border['left'].get_width()
                     self.main_menu.state = "closed"
                     self.main_menu.visible = False
@@ -1031,7 +903,7 @@ class World(tools._State):
         if self.start_battle_transition:
             logger.info("Initializing battle transition")
             self.battle_transition_in_progress = True
-            self.transition_surface = pygame.Surface(self.resolution)
+            self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
             self.transition_surface.fill((255, 255, 255))
             self.start_battle_transition = False
 
@@ -1120,7 +992,7 @@ class World(tools._State):
                 self.event_engine.current_map = map.Map(
                     "resources/maps/" + self.delayed_mapname)
                 self.tiles, self.collision_map, self.map_size = self.current_map.loadfile(
-                    self.tile_size)
+                    prepare.TILE_SIZE)
                 self.game.event_conditions, self.game.event_actions = self.current_map.loadevents(
                 )
                 
@@ -1129,23 +1001,7 @@ class World(tools._State):
 
                 # Scale the loaded tiles if enabled
                 if prepare.CONFIG.scaling == "1":
-                    x_pos = 0        # Here we need to keep track of the x index of the list
-                    # Loop through each row in the map. Each row is a list of
-                    # Tile objects in that row.
-                    for row in self.tiles:
-                        y_pos = 0       # Here we need to keep track of the y index of the list within the row
-                        # Now loop through each tile in the row and scale it
-                        # accordingly.
-                        for column in row:
-                            if column:
-                                layer_pos = 0
-                                for tile in column:
-                                    tile["surface"] = pygame.transform.scale(
-                                        tile["surface"], (self.tile_size[0], self.tile_size[1]))
-                                    self.tiles[x_pos][y_pos][layer_pos] = tile
-                                    layer_pos += 1
-                            y_pos += 1
-                        x_pos += 1
+                    self.scale_tiles()
                         
             self.delayed_teleport = False
 
@@ -1181,7 +1037,44 @@ class World(tools._State):
 
         """
 
-        x = (self.tile_size[0] * tile_position[0]) + self.global_x
-        y = (self.tile_size[1] * tile_position[1]) + self.global_y
+        x = (prepare.TILE_SIZE[0] * tile_position[0]) + self.global_x
+        y = (prepare.TILE_SIZE[1] * tile_position[1]) + self.global_y
 
         return x, y
+
+
+    def get_visible_tiles(self):
+        # Find out how many tiles can fit on the visible screen. We use this
+        # so we draw only the tiles that are visible.
+        screen = self.game.screen
+        visible_tiles = [
+            int(math.ceil(screen.get_width() / prepare.TILE_SIZE[0]) + 1),
+            int(math.ceil(screen.get_height() / prepare.TILE_SIZE[1]) + 1)]
+
+        return visible_tiles
+
+
+    def scale_tiles(self):
+        x_pos = 0   # Here we need to keep track of the x index in list
+
+        # Loop through each row in the map. Each row is a list of Tile
+        # objects in that row.
+        for row in self.tiles:
+            # Here we need to keep track of the y index of the list within
+            # the row
+            y_pos = 0
+
+            # Now loop through each tile in the row and scale it
+            # accordingly.
+            for column in row:
+                if column:
+                    layer_pos = 0
+                    for tile in column:
+                        tile["surface"] = \
+                            pygame.transform.scale(
+                                tile["surface"],
+                                (prepare.TILE_SIZE[0], prepare.TILE_SIZE[1]))
+                        self.tiles[x_pos][y_pos][layer_pos] = tile
+                        layer_pos += 1
+                y_pos += 1
+            x_pos += 1

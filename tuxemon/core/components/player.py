@@ -33,9 +33,9 @@ import logging
 import pygame
 import pprint
 
-from . import pyganim
-from . import ai
-from . import config
+from core.components import pyganim
+from core.components import ai
+from core.components import config
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -61,47 +61,52 @@ class Player(object):
 
 
     """
-    def __init__(self, sprite_name="player", name="Red"):
-        self.name = name			# This is the player's name to be used in dialog
-        self.ai = None              # Whether or not this player has AI associated with it
-        self.sprite = {}			# The pyganim object that contains the player animations
+    def __init__(self, sprite_name="player", name="Red", ai=None):
+        self.name = name
+        self.ai = ai
+        self.sprite = {}
 
+        self.width = 1
+        self.height = 2
+        self.x = 0.0
+        self.y = 0.0
+
+        self.inventory = {}
+        self.monsters = []
+
+        self.facing = "down"
+        self.running = False
+        self.moving = False
+        self.move_direction = "down"
+        self.direction = {"up": False,
+                          "down": False,
+                          "left": False,
+                          "right": False}
+        self.walkrate = 1.0
+        self.runrate = 2.0
+        self.moverate = self.walkrate
+        self.move_destination = [0, 0]
+
+        self.game_variables = {}
+
+
+    def load_sprite(self):
         # Get all of the player's standing animation images.
-        self.standing = {}
+        self.sprite['standing'] = {}
         standing_types = ["front", "back", "left", "right"]
         for standing_type in standing_types:
-            surface = pygame.image.load('resources/sprites/%s_%s.png' % (sprite_name, standing_type)).convert_alpha()
+            surface = pygame.image.load('resources/sprites/%s_%s.png' % 
+                (sprite_name, standing_type)).convert_alpha()
             surface_top = surface.subsurface((0, 0,
                                               surface.get_width(), int(surface.get_height() / 2)))
             surface_bottom = surface.subsurface((0, int(surface.get_height() / 2),
                                                  surface.get_width(), int(surface.get_height() / 2)))
-            self.standing[standing_type] = surface
-            self.standing[standing_type + "-top"] = surface_top
-            self.standing[standing_type + "-bottom"] = surface_bottom
-
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()    # The player's sprite size in pixels
-        self.inventory = {}			# The Player's inventory.
-        self.monsters = []			# This is a list of tuxemon the player has
-        self.party_limit = 6        # The maximum number of tuxemon this player can hold
-        self.walking = False			# Whether or not the player is walking
-        self.running = False			# Whether or not the player is running
-        self.moving = False			# Whether or not the player is moving
-        self.move_direction = "down"		# This is a string of the direction we're moving if we're in the middle of moving
-        self.direction = {"up": False, "down": False, "left": False, "right": False}	# What direction the player is moving
-        self.facing = "down"	# What direction the player is facing
-        self.walkrate = 60			# The rate in pixels per second the player is walking
-        self.runrate = 118			# The rate in pixels per second the player is running
-        self.moverate = self.walkrate		# The movement rate in pixels per second
-        self.position = [0,0]			# The player's sprite position on the screen
-        self.global_pos = [0,0]			# This is the offset we're going to add to the x,y coordinates of everything on the map
-        self.tile_pos = (0,0)       # This is the position of the player based on tile
-        self.tile_size = [16,16]
-        self.move_destination = [0,0]		# The player's destination location to move to
-        #self.colliding = False			# To check and see if we're colliding with anything
-        self.rect = pygame.Rect(self.position[0], self.position[1], self.playerWidth, self.playerHeight) # Collision rect
-        self.game_variables = {}		# Game variables for use with events
+            self.sprite['standing'][standing_type] = surface
+            self.sprite['standing'][standing_type + "-top"] = surface_top
+            self.sprite['standing'][standing_type + "-bottom"] = surface_bottom
 
         # Load all of the player's sprite animations
+        self.sprite['walking'] = {}
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
             images_and_durations = [('resources/sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')), 
@@ -122,20 +127,20 @@ class Player(object):
 
             # Create an animation set for the top and bottom halfs of our sprite, so we can draw
             # them on different layers.
-            self.sprite[anim_type] = pyganim.PygAnimation(images_and_durations)
-            self.sprite[anim_type + '-top'] = pyganim.PygAnimation(top_frames)
-            self.sprite[anim_type + '-bottom'] = pyganim.PygAnimation(bottom_frames)
+            self.sprite['walking'][anim_type] = pyganim.PygAnimation(images_and_durations)
+            self.sprite['walking'][anim_type + '-top'] = pyganim.PygAnimation(top_frames)
+            self.sprite['walking'][anim_type + '-bottom'] = pyganim.PygAnimation(bottom_frames)
 
         # Have the animation objects managed by a conductor.
         # With the conductor, we can call play() and stop() on all the animtion
         # objects at the same time, so that way they'll always be in sync with each
         # other.
-        self.moveConductor = pyganim.PygConductor(self.sprite)
-        self.moveConductor.play()
+        self.move_conductor = pyganim.PygConductor(self.sprite['walking'])
+        self.move_conductor.play()
 
 
-    def move(self, screen, tile_size, time_passed_seconds, (global_x, global_y), game):
-        """Draws text to the current menu object
+    def move(self, direction, game):
+        """Moves our player in a particular direction.
         
         :param screen: The pygame surface you wish to blit the player onto.
         :param tile_size: A list with the [width, height] of the tiles in pixels. This is used for
@@ -158,6 +163,10 @@ class Player(object):
         
         """
 
+        # If we're already moving, don't do anything.
+        if self.moving:
+            return
+
         # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
         # collisions.
         npc_positions = set()
@@ -166,16 +175,52 @@ class Player(object):
         for npc in game.npcs:
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
-            npc_positions.add( (npc_pos_x, npc_pos_y) )
+            npc_positions.add((npc_pos_x, npc_pos_y))
         
         # Combine our map collision tiles with our npc collision positions
         collision_set = game.collision_map.union(npc_positions)
             
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
-        player_pos = ( int(round(self.tile_pos[0])), int(round(self.tile_pos[1])) )
+        player_position = (int(round(self.x)), int(round(self.y)))
         
-            
+        # Here we're playing the animation and setting a new destination if
+        # we currently don't have one. player.direction is set when a key is
+        # pressed. player.moving is set when we're still in the middle of a move.
+        if self.direction["up"] or self.direction["down"] or self.direction["left"] or self.direction["right"]:
+            # If we've pressed any arrow key, play the move animations
+            if self.sprite:
+                self.move_conductor.play()
+
+            # If we pressed an arrow key and we're not currently moving, set a new tile destination
+            if self.direction["up"]:
+                self.move_destination = [player_position[0], player_position[1] + 1]
+                if not "up" in self.collision_check(player_position, collision_set):
+                    self.move_direction = "up"
+                    self.moving = True
+
+            elif self.direction["down"]:
+                self.move_destination = [player_position[0], player_position[1] - 1]
+                if not "down" in self.collision_check(player_position, collision_set):
+                    self.move_direction = "up"
+                    self.moving = True
+                self.move_direction = "down"
+                self.moving = True
+
+            elif self.direction["left"]:
+                self.move_destination = [player_position[0] - 1, player_position[1]]
+                if not "left" in self.collision_check(player_position, collision_set):
+                    self.move_direction = "left"
+                    self.moving = True
+
+            elif self.direction["right"]:
+                self.move_destination = [player_position[0] + 1, player_position[1]]
+                if not "right" in self.collision_check(player_position, collision_set):
+                    self.move_direction = "right"
+                    self.moving = True
+
+
+    def update(self, time_passed_seconds, game):
         # *** Here we're continuing a move it we're in the middle of one already *** #
         # If the player is in the middle of moving and facing a certain direction, move in that
         # direction
@@ -275,60 +320,8 @@ class Player(object):
                         global_x = self.move_destination[0]
 
 
-        # *** Here we're playing the animation and setting a new destination if we currently don't have one. *** #
-        # player.direction is set when a key is pressed. player.moving is set when we're still in
-        # the middle of a move
-        if self.direction["up"] or self.direction["down"] or self.direction["left"] or self.direction["right"]:
-            # If we've pressed any arrow key, play the move animations
-            self.moveConductor.play()
+        pass
 
-            # If we pressed an arrow key and we're not currently moving, set a new tile destination
-            if self.direction["up"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    self.move_destination = [int(global_x), int(global_y + tile_size[1])]
-
-                    # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_set):
-                        self.moving = True
-                        self.move_direction = "up"
-
-            elif self.direction["down"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    self.move_destination = [int(global_x), int(global_y - tile_size[1])]
-
-                    if not "down" in self.collision_check(player_pos, collision_set):
-                        self.moving = True
-                        self.move_direction = "down"
-
-            elif self.direction["left"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    self.move_destination = [int(global_x + tile_size[1]), int(global_y)]
-
-                    if not "left" in self.collision_check(player_pos, collision_set):
-                        self.moving = True
-                        self.move_direction = "left"
-
-            elif self.direction["right"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    self.move_destination = [int(global_x - tile_size[1]), int(global_y)]
-
-                    if not "right" in self.collision_check(player_pos, collision_set):
-                        self.moving = True
-                        self.move_direction = "right"
-
-
-        # If we're not holding down an arrow key and the player is not moving, stop the animation
-        # and draw the standing gfx
-        else:
-            if not self.moving:
-                self.moveConductor.stop()
-
-        return global_x, global_y
-    
 
     def draw(self, screen, layer):
         """Draws the player to the screen depending on whether or not they are moving or

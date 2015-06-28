@@ -66,6 +66,9 @@ HP_COLOR = (112, 248, 168)
 # Set the XP bar color
 XP_COLOR = (248, 245, 71)
 
+# Set the party limit
+PARTY_LIMIT = 6
+
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.
 NATIVE_RESOLUTION = [240, 160]

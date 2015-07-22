@@ -64,7 +64,7 @@ class Player(object):
     def __init__(self, sprite_name="player", name="Red", ai=None):
         self.name = name
         self.ai = ai
-        self.sprite = {}
+        self.sprite = {"name": sprite_name}
 
         self.width = 1
         self.height = 2
@@ -96,7 +96,7 @@ class Player(object):
         standing_types = ["front", "back", "left", "right"]
         for standing_type in standing_types:
             surface = pygame.image.load('resources/sprites/%s_%s.png' % 
-                (sprite_name, standing_type)).convert_alpha()
+                (self.sprite['name'], standing_type)).convert_alpha()
             surface_top = surface.subsurface((0, 0,
                                               surface.get_width(), int(surface.get_height() / 2)))
             surface_bottom = surface.subsurface((0, int(surface.get_height() / 2),
@@ -109,7 +109,7 @@ class Player(object):
         self.sprite['walking'] = {}
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
-            images_and_durations = [('resources/sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')), 
+            images_and_durations = [('resources/sprites/%s_%s.%s.png' % (self.sprite['name'], anim_type, str(num).rjust(3, '0')), 
                                     config.Config().player_animation_speed) for num in range(4)]
 
             # Loop through all of our animations and get the top and bottom subsurfaces.
@@ -425,7 +425,7 @@ class Player(object):
         
         """
         
-        if len(self.monsters) >= self.party_limit:
+        if len(self.monsters) >= prepare.PARTY_LIMIT:
             print "Send to PC"
             
         else:

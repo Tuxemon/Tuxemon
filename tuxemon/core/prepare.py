@@ -134,36 +134,17 @@ def init():
 
     # Create an instance of the player and list of NPCs
     player1 = player.Player()
+    player1.load_sprite()
 
     # Scale the sprite and its animations
-    for key, animation in player1.sprite.items():
+    for key, animation in player1.sprite["walking"].items():
         animation.scale(
             tuple(i * SCALE for i in animation.getMaxSize()))
 
-    for key, image in player1.standing.items():
-        player1.standing[key] = pg.transform.scale(
+    for key, image in player1.sprite["standing"].items():
+        player1.sprite['standing'][key] = pg.transform.scale(
             image, (image.get_width() * SCALE,
                     image.get_height() * SCALE))
-
-    # Set the player's width and height based on the size of our scaled
-    # sprite.
-    player1.playerWidth, player1.playerHeight = \
-        player1.standing["front"].get_size()
-    player1.playerWidth = TILE_SIZE[0]
-    player1.playerHeight = TILE_SIZE[1]
-    player1.tile_size = TILE_SIZE
-
-    # Put the player right in the middle of our screen.
-    player1.position = [
-        (SCREEN_SIZE[0] / 2) - (player1.playerWidth / 2),
-        (SCREEN_SIZE[1] / 2) - (player1.playerHeight / 2)]
-
-    # Set the player's collision rectangle
-    player1.rect = pg.Rect(
-        player1.position[0],
-        player1.position[1],
-        TILE_SIZE[0],
-        TILE_SIZE[1])
 
     # Set the walking and running pixels per second based on the scale
     player1.walkrate *= SCALE

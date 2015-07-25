@@ -14,7 +14,7 @@ Programming
 
 * [Nathan Moore](https://git.tuxemon.org:3000/u/Nate-Devv) for the experience system
 * [C Nelson](https://git.tuxemon.org:3000/u/cnelsonsic) for pep8 auditing
-* [Arsène Thieffry](https://git.tuxemon.org:3000/u/druz320)
+* [Arsène Thieffry](https://git.tuxemon.org:3000/u/druz320) for menu sorting
 
 
 Graphics
@@ -106,6 +106,12 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 
 * ["Pixel Farm and Shack"](http://opengameart.org/content/pixel-farm-and-shack) by [pixel32](http://opengameart.org/users/pixel32)
 is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Bigfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 
 Maps

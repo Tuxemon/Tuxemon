@@ -49,9 +49,9 @@
     ], 
     "sprites": {
         "battle1": "resources/gfx/sprites/battle/bigfin-front.png", 
-        "battle2": "resources/gfx/sprites/battle/rockitten-back.png", 
-        "menu1": "resources/gfx/sprites/battle/rockitten-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/rockitten-menu02.png"
+        "battle2": "resources/gfx/sprites/battle/bigfin-back.png", 
+        "menu1": "resources/gfx/sprites/battle/bigfin-menu01.png", 
+        "menu2": "resources/gfx/sprites/battle/bigfin-menu02.png"
     }, 
     "types": [
         "water",

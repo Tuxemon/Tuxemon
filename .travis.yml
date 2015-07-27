@@ -1,16 +1,13 @@
+os:
+  - linux
+  - osx
 language: python
 python:
   - "2.7"
 sudo: required 
 # command to install dependencies
-before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get build-dep -qq python-pygame
-    - sudo apt-get install -qq python-pygame
 install:
-  - pip install pytmx
-  - pip install Pillow
-  - pip install Yapsy
+  - ./.travis/install.sh
 # command to run tests
 script: nosetests
 virtualenv:

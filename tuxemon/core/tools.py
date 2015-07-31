@@ -287,6 +287,12 @@ class Control(object):
                 self.mouse_pos = pg.mouse.get_pos()
                 self.controller_event_loop(event)
 
+            # Loop through our joystick events and pass them to the current state.
+            joy_events = self.joystick_event_loop(event)
+            if joy_events:
+                for joy_event in joy_events:
+                    self.state.get_event(joy_event)
+
             self.state.get_event(event)
 
         # Loop through our network events and pass them to the current state.
@@ -528,6 +534,8 @@ class Control(object):
                             self.keyboard_events["KEYUP"]["up"])
                         events.append(
                             self.keyboard_events["KEYUP"]["down"])
+
+        return events
 
 
     def toggle_show_fps(self, key):

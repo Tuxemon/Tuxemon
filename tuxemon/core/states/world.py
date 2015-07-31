@@ -1030,6 +1030,7 @@ class World(tools._State):
 
         if self.start_battle_transition:
             logger.info("Initializing battle transition")
+            self.game.rumble.rumble(-1, length=1.5)
             self.battle_transition_in_progress = True
             self.transition_surface = pygame.Surface(self.resolution)
             self.transition_surface.fill((255, 255, 255))

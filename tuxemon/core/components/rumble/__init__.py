@@ -30,7 +30,7 @@
 #
 import logging
 from ctypes import cdll
-from .tools import find_library
+from .tools import *
 
 # Set up logging for the rumble manager.
 logger = logging.getLogger(__name__)
@@ -53,4 +53,5 @@ class RumbleManager(object):
             self.rumbler = LibShakeRumble(lib_shake)
         else:
             logger.error("No rumble backends available.")
+            self.rumbler = Rumble()
 

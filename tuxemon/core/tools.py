@@ -40,6 +40,7 @@ from .components import controller
 from .components import player
 from .components import cli
 from .components import event
+from .components import rumble
 
 # Try and import networking if it is available.
 try:
@@ -176,6 +177,10 @@ class Control(object):
         if self.config.controller_overlay == "1":
             self.controller = controller.Controller(self)
             self.controller.load()
+
+        # Set up rumble support for gamepads
+        self.rumble_manager = rumble.RumbleManager()
+        self.rumble = self.rumble_manager.rumbler
 
 
     def setup_states(self, state_dict, start_state):

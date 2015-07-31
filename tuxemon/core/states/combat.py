@@ -963,6 +963,7 @@ class Combat(tools._State):
         # If a monster has taken damage this frame, then start animating the health.
         for player_name, player in players.items():
             if player['monster_last_hp'] != player['monster'].current_hp:
+                self.game.rumble.rumble(-1, length=1)
                 logger.info("Player Health Change: " + str(player['monster_last_hp']) +
                     " -> " + str(player['monster'].current_hp))
     

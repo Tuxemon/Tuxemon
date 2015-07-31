@@ -22,12 +22,17 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 2.7+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
+* *python-yapsy* - simple plugin system for events
+
+*Optional*
+
+* *libShake* - rumble library for Linux.
 
 
 Installation
 --------------
 
-Ubuntu
+**Ubuntu**
 
 ```sh
 
@@ -39,7 +44,18 @@ cd Tuxemon/tuxemon
 
 ```
 
-Mac OS X (Yosemite)
+*Optional rumble support*
+
+```sh
+
+sudo apt-get install build-essential
+git clone https://github.com/zear/libShake.git
+cd libShake/
+make; make install
+
+```
+
+**Mac OS X (Yosemite)**
 
 ```sh
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

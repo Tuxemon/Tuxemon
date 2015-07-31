@@ -103,3 +103,41 @@ class Core(IPlugin):
             game.state.dialog_window.text = text
     
     
+    def rumble(self, game, action):
+        """Rumbles available controllers with rumble support
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.tools.Control
+        :type action: Tuple
+    
+        :rtype: None
+        :returns: None
+    
+        Valid Parameters: duration,power
+
+        * duration (float): time in seconds to rumble for
+        * power (int): percentage of power to rumble. (1-100)
+    
+        **Examples:**
+    
+        >>> action
+        ('rumble', '2,100', '3', 1)
+    
+        """
+
+        duration = float(action[1].split(',')[0])
+        power = int(action[1].split(',')[1])
+
+        min_power = 0
+        max_power = 24576
+
+        if power < 0:
+            power = 0
+        elif power > 100:
+            power = 100
+
+        magnitude = int((power * 0.01) * max_power)
+        game.rumble.rumble(-1, length=duration, magnitude=magnitude)

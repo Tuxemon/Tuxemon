@@ -48,14 +48,14 @@
  <objectgroup color="#ffff00" name="Events" width="0" height="0">
   <object name="Go Downstairs" type="event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport &quot;downstairs.tmx&quot; 1 3 0.3"/>
-    <property name="cond1" value="player_at 8 3"/>
+    <property name="act1" value="transition_teleport downstairs.tmx,1,3,0.3"/>
+    <property name="cond1" value="player_at 8,3"/>
    </properties>
   </object>
   <object name="Use Computer" type="event" x="64" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog &quot;What is that on the screen? It's too pixelated to tell.&quot;"/>
-    <property name="cond1" value="player_at 4 3"/>
+    <property name="act1" value="dialog What is that on the screen? It's too pixelated to tell."/>
+    <property name="cond1" value="player_at 4,3"/>
     <property name="cond2" value="player_facing up"/>
     <property name="cond3" value="button_pressed K_RETURN"/>
    </properties>

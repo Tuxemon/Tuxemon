@@ -82,50 +82,19 @@ class EventEngine(object):
         :rtype: None
         :returns: None
         
-        """ 
+        """
 
-        # Loop through the groups of conditions
-        for condition_group in game.event_conditions:
-
-            logger.debug("Current Condition Group: " + str(condition_group))
+        for e in game.events:
+            should_run = True
             
-            # Keep track of whether or not all conditions in the group have been met
-            group_met = False
-            
-            # Loop through each condition in a condition group
-            for condition in condition_group:
-                logger.debug(condition["type"] + " " + condition["operator"] + " " + condition["parameters"])
-
-                if condition["type"] not in condition_methods:
-                    error = 'Error: Condition method "%s" not implemented' % str(condition["type"])
-                    logger.error(error)
-                    group_met = False
+            # If any conditions fail, the event should not be run
+            for cond in e['conds']:
+                if not condition_methods[cond['type']]['method'](game, cond):
+                    should_run = False
                     break
-                    
-                # Call the method based on the type of condition we're checking for
-                try:
-                    condition_met = condition_methods[condition["type"]]["method"](game, condition)
-                    if self.operator_check(condition, condition_met):
-                        group_met = True
-                    # If just one condition in the condition group isn't met then stop looping and
-                    # go to the next group
-                    else:
-                        group_met = False
-                        break
-                except Exception, err:
-                    logger.error(traceback.format_exc())
-
-            # If all the conditions in the condition group were met, execute the action(s)
-            # associated with it
-            if group_met:
-                action_list = self.current_map.loadactions(condition_group[0]["action_id"])
-                logger.debug("All conditions met!")
-                logger.debug(str(action_list))
-                
-                # Execute the action according to its action type
-                self.execute_action(action_list, game) 
-            else:
-                logger.debug("Conditions not met!")
+            
+            if should_run:
+                self.execute_action(e['acts'], game)
                 
         
     def execute_action(self, action_list, game):
@@ -145,14 +114,10 @@ class EventEngine(object):
         :rtype: None
         :returns: None
         
-        """ 
+        """
         
         logger.debug("Executing Action")
 
-        # Sort the action list by the priority column so actions are executed in the correct
-        # order. (e.g. priority 1 actions execute first)
-        action_list.sort(key=lambda tup: tup[2])
-        
         # Loop through the list of actions and execute them
         for action in action_list:
             

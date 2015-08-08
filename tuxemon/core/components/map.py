@@ -166,9 +166,9 @@ class Map(object):
                 
                 for k in keys:
                     if k.startswith('cond'):
-                        conds.append(obj.properties[k])
+                        conds.append(obj.properties[k].split(' ', 1))
                     elif k.startswith('act'):
-                        acts.append(obj.properties[k])
+                        acts.append(obj.properties[k].split(' ', 1))
                 
                 self.events.append({'conds':conds, 'acts':acts})
 

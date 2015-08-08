@@ -1121,8 +1121,7 @@ class World(tools._State):
                     "resources/maps/" + self.delayed_mapname)
                 self.tiles, self.collision_map, self.map_size = self.current_map.loadfile(
                     self.tile_size)
-                self.game.event_conditions, self.game.event_actions = self.current_map.loadevents(
-                )
+                self.game.events = self.current_map.events
                 
                 # Clear out any existing NPCs
                 self.npcs = []

@@ -170,8 +170,10 @@ class Map(object):
                         conds.append({
                             'type': type,
                             'parameters': args,
-                            'x': obj.x, 'y': obj.y,
-                            'width': obj.width, 'height': obj.height
+                            'x': int(obj.x),
+                            'y': int(obj.y),
+                            'width': int(obj.width),
+                            'height': int(obj.height)
                         })
                     elif k.startswith('act'):
                         acts.append(obj.properties[k].split(' ', 1))

@@ -105,8 +105,7 @@ class World(tools._State):
         self.collision_rectmap = []
 
         # Get the events actions and conditions from the current map
-        self.game.event_conditions, self.game.event_actions = \
-            self.current_map.loadevents()
+        self.game.events = self.current_map.events
 
         # Scale the loaded tiles if enabled
         if prepare.CONFIG.scaling == "1":

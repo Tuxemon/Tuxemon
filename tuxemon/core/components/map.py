@@ -138,7 +138,7 @@ class Map(object):
          'x': 0,
          'y': 0}
 
-        """ 
+        """
         
         # Load the tmx map data using the pytmx library.
         self.filename = filename
@@ -166,7 +166,13 @@ class Map(object):
                 
                 for k in keys:
                     if k.startswith('cond'):
-                        conds.append(obj.properties[k].split(' ', 1))
+                        type, args = obj.properties[k].split(' ', 1)
+                        conds.append({
+                            'type': type,
+                            'parameters': args,
+                            'x': obj.x, 'y': obj.y,
+                            'width': obj.width, 'height': obj.height
+                        })
                     elif k.startswith('act'):
                         acts.append(obj.properties[k].split(' ', 1))
                 

@@ -89,8 +89,14 @@ class EventEngine(object):
             
             # If any conditions fail, the event should not be run
             for cond in e['conds']:
-                if not condition_methods[cond['type']]['method'](game, cond):
-                    should_run = False
+                # Conditions have so-called "operators".  If a condition's operator == "is" then
+                # the condition should be processed as usual.
+                # However, if the condition != "is", the result should be inverted.
+                # The following line implements this.
+                # I am not satisfied with the clarity of this line, so if anyone can express this better,
+                # please change it.
+                should_run = (condition_methods[cond['type']]['method'](game, cond) == (cond['operator'] == 'is'))
+                if not should_run:
                     break
             
             if should_run:
@@ -130,34 +136,3 @@ class EventEngine(object):
                 logger.error(error)
                 logger.error(message)
                 traceback.print_exc()
-
-
-    def operator_check(self, condition, conditions_met):
-        """Checks the condition operator to see if we need to meet these conditions or if we need
-        to NOT meet these conditions. For example, if we do meet the conditions and we WANT to
-        meet them, return true. If we meet the conditions but we DON'T WANT to meet them, 
-        return false.
-
-        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary. 
-        :param conditions_met: A True/False value of whether or not the conditions were met.
-        
-        :type condition: Dictionary
-        :type conditions_met: Boolean
-    
-        :rtype: Boolean
-        :returns: True or False 
-        
-        """ 
-
-        operator = condition["operator"].lower()
-        if operator == "is" and conditions_met:
-            return True
-        elif operator == "is" and not conditions_met:
-            return False
-        elif operator == "is_not" and conditions_met:
-            return False
-        elif operator == "is_not" and not conditions_met:
-            return True
-
-

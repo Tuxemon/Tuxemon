@@ -166,14 +166,23 @@ class Map(object):
                 
                 for k in keys:
                     if k.startswith('cond'):
-                        type, args = obj.properties[k].split(' ', 1)
+                        words = obj.properties[k].split(' ', 2)
+                        
+                        # Conditions have the form 'operator type parameters'.
+                        operator, type = words[0:2]
+                        
+                        args = ''
+                        if len(words) > 2:
+                            args = words[2]
+                        
                         conds.append({
                             'type': type,
                             'parameters': args,
                             'x': int(obj.x / self.tile_size[0]),
                             'y': int(obj.y / self.tile_size[1]),
                             'width': int(obj.width / self.tile_size[0]),
-                            'height': int(obj.height / self.tile_size[1])
+                            'height': int(obj.height / self.tile_size[1]),
+                            'operator': operator
                         })
                     elif k.startswith('act'):
                         acts.append(obj.properties[k].split(' ', 1))

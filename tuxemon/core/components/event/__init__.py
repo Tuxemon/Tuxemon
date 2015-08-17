@@ -95,7 +95,8 @@ class EventEngine(object):
                 # The following line implements this.
                 # I am not satisfied with the clarity of this line, so if anyone can express this better,
                 # please change it.
-                should_run = (condition_methods[cond['type']]['method'](game, cond) == (cond['operator'] == 'is'))
+                check_condition = condition_methods[cond['type']]['method']
+                should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
                 if not should_run:
                     break
             

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="23">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="28">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="66">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
  </tileset>
@@ -45,126 +45,34 @@
   <object id="7" type="collision" x="16" y="16" width="16" height="16"/>
   <object id="8" type="collision" x="16" y="128" width="144" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Conditions">
-  <object id="9" name="Read Sign (id: 4)" type="condition" x="64" y="48" width="16" height="16">
+ <objectgroup color="#ffff00" name="Events">
+  <object id="23" name="Play Music" type="event" x="144" y="16" width="16" height="16">
    <properties>
-    <property name="action_id" value="4"/>
-    <property name="condition_id" value="4"/>
-    <property name="condition_type" value="button_pressed"/>
-    <property name="operator" value="is"/>
-    <property name="parameters" value="K_RETURN"/>
+    <property name="act1" value="play_music 472452_8-Bit-Ambient.ogg"/>
+    <property name="cond1" value="not music_playing 472452_8-Bit-Ambient.ogg"/>
    </properties>
   </object>
-  <object id="10" name="Read Sign (id: 4)" type="condition" x="32" y="48" width="16" height="16">
+  <object id="25" name="Read Sign" type="event" x="32" y="48" width="16" height="16">
    <properties>
-    <property name="action_id" value="4"/>
-    <property name="condition_id" value="4"/>
-    <property name="condition_type" value="player_at"/>
-    <property name="operator" value="is"/>
-    <property name="parameters" value="13,3"/>
+    <property name="act1" value="dialog Home Sweet Home"/>
+    <property name="cond1" value="is player_at 2,3"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="11" name="Read Sign (id: 4)" type="condition" x="48" y="48" width="16" height="16">
+  <object id="26" name="Go Upstairs" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="action_id" value="4"/>
-    <property name="condition_id" value="4"/>
-    <property name="condition_type" value="player_facing"/>
-    <property name="operator" value="is"/>
-    <property name="parameters" value="up"/>
+    <property name="act1" value="transition_teleport bedroom_test.tmx,9,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 1,2"/>
    </properties>
   </object>
-  <object id="12" name="Go Outside (id: 5)" type="condition" x="80" y="112" width="16" height="16">
+  <object id="27" name="Go Outside" type="event" x="80" y="112" width="16" height="16">
    <properties>
-    <property name="action_id" value="5"/>
-    <property name="condition_id" value="5"/>
-    <property name="condition_type" value="player_at"/>
-    <property name="operator" value="is"/>
-    <property name="parameters" value="5,7"/>
-   </properties>
-  </object>
-  <object id="13" name="Go Upstairs (id: 6)" type="condition" x="16" y="32" width="16" height="16">
-   <properties>
-    <property name="action_id" value="6"/>
-    <property name="condition_id" value="6"/>
-    <property name="condition_type" value="player_at"/>
-    <property name="operator" value="is"/>
-    <property name="parameters" value="1,2"/>
-   </properties>
-  </object>
-  <object id="14" name="Go Outside (id: 5)" type="condition" x="96" y="112" width="16" height="16">
-   <properties>
-    <property name="action_id" value="5"/>
-    <property name="condition_id" value="5"/>
-    <property name="condition_type" value="button_pressed"/>
-    <property name="operator" value="is"/>
-    <property name="parameters" value="K_DOWN"/>
-   </properties>
-  </object>
-  <object id="15" name="Play Music (id: 1)" type="condition" x="64" y="48" width="16" height="16">
-   <properties>
-    <property name="action_id" value="1"/>
-    <property name="condition_id" value="1"/>
-    <property name="condition_type" value="music_playing"/>
-    <property name="operator" value="is_not"/>
-    <property name="parameters" value="472452_8-Bit-Ambient.ogg"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup color="#00ff00" name="Actions">
-  <object id="16" name="Read Sign (action id: 4)" type="action" x="80" y="48" width="16" height="16">
-   <properties>
-    <property name="action_id" value="4"/>
-    <property name="action_type" value="dialog"/>
-    <property name="parameters" value="GOD DAMNIT BILLY\n THE MATH IS OFF!"/>
-    <property name="priority" value="1"/>
-   </properties>
-  </object>
-  <object id="17" name="Go Outside (action id: 5)" type="action" x="128" y="112" width="16" height="16">
-   <properties>
-    <property name="action_id" value="5"/>
-    <property name="action_type" value="teleport"/>
-    <property name="parameters" value="map1.tmx,43,46"/>
-    <property name="priority" value="2"/>
-   </properties>
-  </object>
-  <object id="18" name="Go Upstairs (action id: 6)" type="action" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="action_id" value="6"/>
-    <property name="action_type" value="teleport"/>
-    <property name="parameters" value="bedroom_test.tmx,9,3"/>
-    <property name="priority" value="2"/>
-   </properties>
-  </object>
-  <object id="19" name="Go Upstairs (action id: 6)" type="action" x="16" y="16" width="16" height="16">
-   <properties>
-    <property name="action_id" value="6"/>
-    <property name="action_type" value="screen_transition"/>
-    <property name="parameters" value="1"/>
-    <property name="priority" value="1"/>
-   </properties>
-  </object>
-  <object id="20" name="Go Outside (action id: 5)" type="action" x="112" y="112" width="16" height="16">
-   <properties>
-    <property name="action_id" value="5"/>
-    <property name="action_type" value="screen_transition"/>
-    <property name="parameters" value="1"/>
-    <property name="priority" value="1"/>
-   </properties>
-  </object>
-  <object id="21" name="Play Music (action id: 1)" type="action" x="80" y="48" width="16" height="16">
-   <properties>
-    <property name="action_id" value="1"/>
-    <property name="action_type" value="play_music"/>
-    <property name="parameters" value="472452_8-Bit-Ambient.ogg"/>
-    <property name="priority" value="1"/>
-   </properties>
-  </object>
-  <object id="22" name="Read Sign (action id: 4)" type="action" x="80" y="48" width="16" height="16">
-   <properties>
-    <property name="action_id" value="4"/>
-    <property name="action_type" value="rumble"/>
-    <property name="parameters" value="2,100"/>
-    <property name="priority" value="2"/>
+    <property name="act1" value="transition_teleport map1.tmx,43,46,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 5,7"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
  </objectgroup>

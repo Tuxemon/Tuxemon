@@ -96,11 +96,11 @@ class Player(IPlugin):
                     "resources/maps/" + mapname)
                 world.tiles, world.collision_map, world.map_size = world.current_map.loadfile(
                     world.tile_size)
-                world.game.event_conditions, world.game.event_actions = world.current_map.loadevents()
-    
+                world.game.events = world.current_map.events
+
                 # Clear out any existing NPCs
                 world.npcs = []
-    
+
                 # Scale the loaded tiles if enabled
                 if world.scale > 1:
                     x_pos = 0        # Here we need to keep track of the x index of the list
@@ -120,8 +120,7 @@ class Player(IPlugin):
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
-    
-    
+
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False
     

@@ -152,19 +152,19 @@ class Player(IPlugin):
         if 'move_destination' not in game.event_persist:
             game.event_persist['move_destination'] = {}
     
-        if condition['id'] not in game.event_persist['move_destination']:
-            game.event_persist['move_destination'][condition['id']] = game.player1.move_destination
+        if str(condition) not in game.event_persist['move_destination']:
+            game.event_persist['move_destination'][str(condition)] = game.player1.move_destination
     
         # Check to see if the player's "move destination" has changed since the last
         # frame. If it has, WE'RE MOVING!
         moved = False
-        if game.player1.move_destination == game.event_persist['move_destination'][condition['id']]:
+        if game.player1.move_destination == game.event_persist['move_destination'][str(condition)]:
             moved = False
         else:
             moved = True
     
         # Update the current player's last move destination.
-        game.event_persist['move_destination'][condition['id']] = game.player1.move_destination
+        game.event_persist['move_destination'][str(condition)] = game.player1.move_destination
     
         # Check for "is" or "is_not" in the condition.
         if moved:

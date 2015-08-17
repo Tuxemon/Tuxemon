@@ -601,7 +601,7 @@ class Control(object):
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
         self.event_data = {}
-        self.event_engine.check_conditions(self)
+        self.event_engine.check_conditions(self, time_delta)
         logger.debug("Event Data:" + str(self.event_data))
 
         # Draw and update our display

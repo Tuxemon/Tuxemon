@@ -141,3 +141,59 @@ class Core(IPlugin):
 
         magnitude = int((power * 0.01) * max_power)
         game.rumble.rumble(-1, length=duration, magnitude=magnitude)
+
+
+    def wait_for_secs(self, game, action):
+        """Pauses the event engine for n number of seconds.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.tools.Control
+        :type action: Tuple
+    
+        :rtype: None
+        :returns: None
+    
+        Valid Parameters: duration
+
+        * duration (float): time in seconds for the event engine to wait for
+    
+        **Examples:**
+    
+        >>> action
+        ('wait_for_secs', '2.0')
+    
+        """
+        secs = float(action[1])
+        game.event_engine.state = "waiting"
+        game.event_engine.wait = secs
+
+
+    def wait_for_input(self, game, action):
+        """Pauses the event engine until specified button is pressed
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.tools.Control
+        :type action: Tuple
+    
+        :rtype: None
+        :returns: None
+    
+        Valid Parameters: button
+
+        * button (str): pygame key to wait for
+    
+        **Examples:**
+    
+        >>> action
+        ('wait_for_input', 'K_RETURN')
+    
+        """
+        button = str(action[1])
+        game.event_engine.state = "waiting for input"
+        game.event_engine.button = button

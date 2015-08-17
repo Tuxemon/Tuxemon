@@ -160,12 +160,12 @@ class Player(IPlugin):
         from core.components.event.actions.map import Map as MapAction
         map_action = MapAction()
         screen_transition = map_action.screen_transition
-        transition_action = (action[0], transition_time, action[2], action[3])
+        transition_action = (action[0], transition_time)
         screen_transition(game, transition_action)
             
         # Start the teleport. The teleport action will notice a screen transition in progress,
         # and wait until it is done before teleporting.
-        teleport_action = (action[0], action[1], action[2], action[3])
+        teleport_action = (action[0], action[1])
         self.teleport(game, action)
     
     

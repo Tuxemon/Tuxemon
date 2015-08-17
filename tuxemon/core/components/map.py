@@ -64,13 +64,7 @@ class Map(object):
         # Collision tiles in tmx object format
         self.collisions = []
         
-        # Event actions/conditions in tmx object format
-        self.conditions = []
-        self.actions = []
-        
-        # Event actions/conditions in dictionary format
-        self.event_conditions = None
-        self.event_actions = None
+        self.events = []
         
         # Initialize the map
         self.load(filename)
@@ -144,7 +138,7 @@ class Map(object):
          'x': 0,
          'y': 0}
 
-        """ 
+        """
         
         # Load the tmx map data using the pytmx library.
         self.filename = filename
@@ -162,211 +156,40 @@ class Map(object):
             if obj.type == 'collision':
                 self.collisions.append(obj)
 
-            elif obj.type == 'condition':
-                self.conditions.append(obj)
-
-            elif obj.type == 'action':
-                self.actions.append(obj)
-
-
-    def loadactions(self, actionid):
-        """Get all of the actions in this map that match a particular action ID. This allows you
-        to execute multiple actions all at once or in a particular order when a set of conditions
-        are met. For example, if a "teleport" and "play_music" action both have the same id, then
-        this function will return a list of both actions.
-        
-        :param actionid: The action ID to look up.
-        
-        :type actionid: Integer
-    
-        :rtype: List
-        :returns: A list of actions ordered by priority. Priorities with a lower number are 
-                  executed first.
-
-        **Examples:**
-
-        The action list that is returned is a list of action tuples. One action tuple follows this
-        format:
-
-        **(action_type, parameters, priority, action_id)**
-
-        >>> action_list
-        [('teleport', 'pallet_town-room.tmx,5,5', '1', 1),
-         ('play_music', '472452_8-Bit-Ambient.ogg', '2', 1),
-         ('dialog', 'Red:\\n This is some dialog!', '3', 1),
-         ('set_variable', 'battle_won:yes', '4', 1)]
-        
-        """
-        
-        # Load our actions from the map data if we haven't already
-        if not self.event_actions:
-            self.loadevents()
-        
-        # Create a list that will contain all the actions to execute for this action group.
-        actions = []
-        
-        # Find the action group with the provided action id
-        for action_group in self.event_actions:
-            if int(action_group[0]['action_id']) == int(actionid):
-                actions = action_group
-        
-        # Format the data structure for the event engine
-        action_list = []
-        for item in actions:
-            action_list.insert(int(item['priority']),
-                                (
-                                 item['action_type'],
-                                 item['parameters'],
-                                 item['priority'],
-                                 item['action_id']
-                                )
-                              )
-
-        return action_list
+            elif obj.type == 'event':
+                conds = []
+                acts = []
+                
+                # Conditions & actions are stored as Tiled properties.
+                # We need to sort them by name, so that "act1" comes before "act2" and so on..
+                keys = sorted(obj.properties.keys())
+                
+                for k in keys:
+                    if k.startswith('cond'):
+                        words = obj.properties[k].split(' ', 2)
+                        
+                        # Conditions have the form 'operator type parameters'.
+                        operator, type = words[0:2]
+                        
+                        args = ''
+                        if len(words) > 2:
+                            args = words[2]
+                        
+                        conds.append({
+                            'type': type,
+                            'parameters': args,
+                            'x': int(obj.x / self.tile_size[0]),
+                            'y': int(obj.y / self.tile_size[1]),
+                            'width': int(obj.width / self.tile_size[0]),
+                            'height': int(obj.height / self.tile_size[1]),
+                            'operator': operator
+                        })
+                    elif k.startswith('act'):
+                        acts.append(obj.properties[k].split(' ', 1))
+                
+                self.events.append({'conds':conds, 'acts':acts})
 
 
-    def loadevents(self):
-        """Loads the event data from a map file and returns it as a multi-dimensional list of
-        dictionaries.
-        
-        :param: None
-    
-        :rtype: List
-        :returns: A multi-dimensional list of event conditions and actions grouped by ID. Here
-            are examples:
-
-        >>> event_conditions, event_actions = map.loadevents()
-        >>> event_conditions
-        [
-            [
-                {'operator': u'is', 
-                 'condition_type': u'player_at', 
-                 'condition_id': 1, 
-                 'parameters': u'1,2', 
-                 'action_id': 1, 
-                 'x': 0,
-                 'y': 0},
-                {'operator': u'is_not', 
-                 'condition_type': u'inventory_contains', 
-                 'condition_id': 1, 
-                 'parameters': u'repel', 
-                 'action_id': 1,
-                 'x': 0,
-                 'y': 0}
-            ],
-            [
-                {'operator': u'is', 
-                 'condition_type': u'button_pressed', 
-                 'condition_id': 2, 
-                 'parameters': u'CTRL', 
-                 'action_id': 2,
-                 'x': 0,
-                 'y': 0}
-            ]
-        ]
-        >>> event_actions
-        [
-            [
-                {'priority': 1, 
-                 'action_type': u'teleport', 
-                 'action_id': 1, 
-                 'parameters': u'example.map,1,1',
-                 'x': 0,
-                 'y': 0}
-            ], 
-            [
-                {'priority': 1, 
-                 'action_type': u'dialog', 
-                 'action_id': 2, 
-                 'parameters': u'WTF',
-                 'x': 0,
-                 'y': 0}
-            ]
-        ]
-
-        
-        """ 
-        
-        # Create an empty list that will contain lists of condition grouped by id
-        event_conditions = []
-
-        # Keep track of all the condition id's we'll look at in the following loop.
-        condition_ids = []
-
-        # Loop through all of the conditions that we've loaded from the map file
-        for condition in self.conditions:
-
-            # If we haven't looked at this condition group id, then look for all other conditions
-            # that match our condition group id.
-            if condition.condition_id not in condition_ids:
-
-                condition_group = []
-                condition_ids.append(condition.condition_id)
-
-                # Look for all other conditions that match this condition group and add them to our list.
-                for item in self.conditions:
-                    if item.condition_id == condition.condition_id:
-                        condition_obj = {'operator': item.operator,
-                                 'type': item.condition_type,
-                                 'id': item.condition_id,
-                                 'parameters': item.parameters,
-                                 'action_id': item.action_id, 
-                                 'x': int(item.x / self.tile_size[0]),
-                                 'y': int(item.y / self.tile_size[1]),
-                                 'width': int(item.width / self.tile_size[0]),
-                                 'height': int(item.height / self.tile_size[1])}
-                        condition_group.append(condition_obj)
-
-                event_conditions.append(condition_group)
-
-            # If we HAVE looked at this condition group id, then we don't need to look at it again.
-            else:
-                continue
-
-
-        # Create an empty list that will contain lists of action grouped by id
-        event_actions = []
-
-        # Keep track of all the action id's we'll look at in the following loop.
-        action_ids = []
-
-        # Loop through all of the action that we've loaded from the map file
-        for action in self.actions:
-
-            # If we haven't looked at this action group id, then look for all other actions
-            # that match our action group id.
-            if action.action_id not in action_ids:
-
-                action_group = []
-                action_ids.append(action.action_id)
-
-                # Look for all other actions that match this action group and add them to our list.
-                for item in self.actions:
-                    if item.action_id == action.action_id:
-                        action_obj = {'priority': item.priority,
-                                      'action_type': item.action_type,
-                                      'action_id': item.action_id,
-                                      'parameters': item.parameters,
-                                      'x': int(item.x / self.tile_size[0]),
-                                      'y': int(item.y / self.tile_size[1]),
-                                      'width': int(item.width / self.tile_size[0]),
-                                      'height': int(item.height / self.tile_size[1])}
-                        action_group.append(action_obj)
-
-                event_actions.append(action_group)
-
-            # If we HAVE looked at this action group id, then we don't need to look at it again.
-            else:
-                continue
-
-        self.event_actions = event_actions
-        self.event_conditions = event_conditions
-
-        logger.debug("Event Conditions Loaded: " + str(event_conditions))
-
-        return event_conditions, event_actions
-
-        
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with
         their position and pygame surface, a set of collision tile coordinates, and the size of

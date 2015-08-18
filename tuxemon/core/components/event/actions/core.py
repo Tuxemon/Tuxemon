@@ -196,4 +196,5 @@ class Core(IPlugin):
         """
         button = str(action[1])
         game.event_engine.state = "waiting for input"
+        game.event_engine.wait = 2
         game.event_engine.button = button

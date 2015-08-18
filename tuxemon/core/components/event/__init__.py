@@ -102,6 +102,8 @@ class EventEngine(object):
                     # The following line implements this.
                     # I am not satisfied with the clarity of this line, so if anyone can express this better,
                     # please change it.
+                    if not self.state == "running":
+                        return
                     check_condition = condition_methods[cond['type']]['method']
                     should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
                     if not should_run:
@@ -124,13 +126,14 @@ class EventEngine(object):
                 return
 
             # Get the keys pressed from the game.
-            keys_pressed = game.keys
+            events = game.key_events
 
-            if keys_pressed[getattr(pygame, self.button)]:
-                self.state = "running"
-                self.button = None
-            else:
-                logger.info("Waiting for %s input..." % str(self.button))
+            # Loop through each event
+            for event in events:
+                # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
+                if event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
+                    self.state = "running"
+                    self.button = None
 
         
     def execute_action(self, action_list, game):

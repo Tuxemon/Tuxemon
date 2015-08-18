@@ -97,6 +97,7 @@ class Control(object):
         self.show_fps = True
         self.current_time = 0.0
         self.keys = pg.key.get_pressed()
+        self.key_events = []
         self.state_dict = {}
         self.state_name = None
         self.state = None
@@ -274,8 +275,10 @@ class Control(object):
         """
 
         # Loop through our pygame events and pass them to the current state.
+        self.key_events = []
         self.keys = list(pg.key.get_pressed())
         for event in pg.event.get():
+            self.key_events.append(event)
             if event.type == pg.QUIT:
                 self.done = True
                 self.exit = True
@@ -283,21 +286,31 @@ class Control(object):
             elif event.type == pg.KEYDOWN:
                 self.toggle_show_fps(event.key)
 
+            # Loop through our controller overlay events and pass them to the current state.
             if self.config.controller_overlay == "1":
                 self.mouse_pos = pg.mouse.get_pos()
-                self.controller_event_loop(event)
+                contr_events = self.controller_event_loop(event)
+                if contr_events:
+                    for contr_event in contr_events:
+                        self.key_events.append(contr_event)
+                        self.state.get_event(contr_event)
 
             # Loop through our joystick events and pass them to the current state.
             joy_events = self.joystick_event_loop(event)
             if joy_events:
                 for joy_event in joy_events:
+                    self.key_events.append(joy_event)
                     self.state.get_event(joy_event)
 
             self.state.get_event(event)
 
         # Loop through our network events and pass them to the current state.
         if self.server:
-            self.network_event_loop()
+            net_events = self.network_event_loop()
+            if net_events:
+                for net_event in net_events:
+                    self.key_events.append(net_event)
+                    self.state.get_event(net_event)
 
 
     def network_event_loop(self):
@@ -311,6 +324,7 @@ class Control(object):
         :returns: None
 
         """
+        events = []
         for event_data in self.network_events:
             if event_data == "KEYDOWN:up":
                 self.keys[pg.K_UP] = 1
@@ -364,8 +378,12 @@ class Control(object):
                 print "Unknown network event."
                 event = None
 
-            self.state.get_event(event)
+            if event:
+                events.append(event)
+
         self.network_events = []
+
+        return events
 
 
     def controller_event_loop(self, event):
@@ -421,8 +439,7 @@ class Control(object):
             self.keys[pg.K_RETURN] = 0
             events.append(self.keyboard_events["KEYUP"]["escape"])
 
-        for event in events:
-            self.state.get_event(event)
+        return events
 
 
     def joystick_event_loop(self, event):

@@ -77,13 +77,16 @@ class Core(IPlugin):
         """
     
         # Get the keys pressed from the game.
-        keys_pressed = game.keys
+        events = game.key_events
         button = str(condition["parameters"])
-    
-        if keys_pressed[getattr(pygame, button)]:
-            return True
-        else:
-            return False
+ 
+        # Loop through each event
+        for event in events:
+            # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
+            if event.type == pygame.KEYUP and event.key == getattr(pygame, button):
+                return True
+            else:
+                return False
     
     
     def variable_set(self, game, condition):

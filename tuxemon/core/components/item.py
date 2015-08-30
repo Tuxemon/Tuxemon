@@ -70,7 +70,7 @@ class Item(object):
     """
 
     def __init__(self, name=None, id=None):
-        
+
         self.id = 0
         self.name = "Blank"
         self.description = "None"
@@ -80,12 +80,12 @@ class Item(object):
         self.sprite = ""                    # The path to the sprite to load.
         self.surface = None                 # The pygame.Surface object of the item.
         self.surface_size_original = (0,0)  # The original size of the image before scaling.
-        
+
         # If a name of the item was provided, autoload it from the item database.
         if name or id:
             self.load(name, id)
-            
-    
+
+
     def load(self, name, id):
         """Loads and sets this items's attributes from the item.db database. The item is looked up
         in the database by name or id.
@@ -98,7 +98,7 @@ class Item(object):
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
         >>> potion_item = Item()
@@ -125,12 +125,13 @@ class Item(object):
         self.type = results["type"]
         self.power = results["power"]
         self.sprite = results["sprite"]
+        self.target = results["target"]
         self.surface = pygame.image.load(self.sprite).convert_alpha()
         self.surface_size_original = self.surface.get_size()
 
         self.effect = results["effects"]
-        
-        
+
+
     def use(self, target, game):
         """Applies this items's effects as defined in the "effect" column of the item database.
         This method will execute a function with the same name as the effect defined in the
@@ -145,7 +146,7 @@ class Item(object):
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
         >>> potion_item = Item("Potion")
@@ -164,7 +165,7 @@ class Item(object):
             else:
                 game.player1.inventory[self.name]['quantity'] -= 1
 
-            
+
     def heal(self, target, game):
         """This effect heals the target based on the item's power attribute.
 
@@ -176,21 +177,37 @@ class Item(object):
 
         :rtype: None
         :returns: None
-        
-        **Examples:**
 
+        **Examples:**
         >>> potion_item = Item("Potion")
         >>> potion_item.heal(bulbatux, game)
 
         """
-        
+
         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
-        
+
         # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
         if target.current_hp > target.hp:
             target.current_hp = target.hp
-            
+
+
+    def capture(self, target, game):
+        """Captures target monster.
+
+        :param target: The monster object that we will capture.
+        :param game: The main game object that contains all the game's variables.
+
+        :type target: core.monster.Monster
+        :type game: tuxemon.Game
+
+        :rtype: None
+        :returns: None
+
+        """
+
+        # TODO: Make this not work 100% of the time and check to see if this is a trainer battle.
+        game.player1.add_monster(target)
 
 
 if __name__ == "__main__":

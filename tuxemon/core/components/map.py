@@ -64,6 +64,12 @@ class Map(object):
         # Collision tiles in tmx object format
         self.collisions = []
         
+        # Collision walls (player can walk in them, but cannot cross from one to another)
+        # Items in this list should be in the form of pairs, signifying that it is NOT
+        # possible to travel between the two tile locations
+        # All pairs of tiles must be adjacent (not diagonal)
+        self.collision_walls = []
+
         self.events = []
         
         # Initialize the map
@@ -156,6 +162,9 @@ class Map(object):
             if obj.type == 'collision':
                 self.collisions.append(obj)
 
+            elif obj.type == 'collision-wall':
+                self.collision_walls.append(obj)
+                
             elif obj.type == 'event':
                 conds = []
                 acts = []
@@ -349,6 +358,9 @@ class Map(object):
         # Create a list of all tile positions that we cannot walk through
         collision_map = set()
 
+        # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
+        collision_walls_map = set()
+
         # Right now our collisions are defined in our tmx file as large regions that the player
         # can't pass through. We need to convert these areas into individual tile coordinates
         # that the player can't pass through.
@@ -381,6 +393,59 @@ class Map(object):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y)
                     collision_map.add(collision_tile)
+                    
+        # Similar to collisions, except we need to identify the tiles
+        # on either side of the poly-line and prevent moving between
+        # them
+        for collision_polyline in self.collision_walls:
+            print "collision_wall.__dict__ = "
+            print str(collision_polyline.__dict__)
+
+            # >>> collision_wall.__dict__  
+            # {'name': None, 
+            # 'parent': <TiledMap: "resources/maps/test_pathfinding.tmx">,
+            # 'visible': 1, 
+            # 'height': 160.0, 
+            # 'width': 80.0, '
+            # gid': 0, 
+            # 'closed': False,
+            # 'y': 80.0, 'x': 80.0,
+            # 'rotation': 0,
+            # 'type': 'collision-wall',
+            # 'points': ((80.0, 80.0), (80.0, 128.0), (160.0, 128.0), (160.0, 240.0)) 
+            
+            # For each pair of points, get the tiles on either side of the line.
+            # Assumption: The points will only be vertical or horizontal (no diagonal lines)
+            
+            if len(points) < 2):
+                raise Exception("Error: map has polyline with only one point")
+
+            # get two points
+            point1 = collision_wall.points[0]
+            point2 = collision_wall.points[1]
+            
+            # check to see if horizontal or vertical
+            line_type = None
+            if point1[0] == point2[0] and point1[1] != point2[1]:
+                # x's are same, must be vertical
+                line_type = 'vertical'
+            elif point1[0] != point2[0] and point1[1] == point2[1]:
+                # y's are same, must be horizontal
+                line_type = 'horizontal'
+            else:
+                raise Exception("Error: Points on polyline are not strictly horizontal or vertical....")
+                
+            if line_type is 'vertical':
+                # get all tile coordinates on either side 
+                x = point1[0] # same as point2[0] b/c vertical
+                left_side_tiles = set()
+                right_side_tiles = set()
+                line_start = point1[1]
+                line_end = point2[1]
+                num_tiles_in_line = abs(line_end - line_start) / self.tile_size[1] # [1] b/c vertical
+                for i in range(num_tiles_in_line):
+                    left_side_tiles.append((x,
+
 
         return tiles, collision_map, mapsize
 
@@ -458,7 +523,8 @@ if __name__=="__main__":
     print "Loading map"
     tile_size = [80, 80]    # 1 tile = 16 pixels
     testmap = Map()
-    testmap.loadfile("resources/maps/test.map", tile_size)
+    #testmap.loadfile("resources/maps/test.map", tile_size)
+    testmap.loadfile("resources/maps/test_pathfinding.map", tile_size)
 
     # Event loop THIS IS WHAT SHIT IS DOING RIGHT NOW BRAH
     while True:

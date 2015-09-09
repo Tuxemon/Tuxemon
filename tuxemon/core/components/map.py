@@ -457,10 +457,9 @@ class Map(object):
                 for i in range(num_tiles_in_line):
                     left_side_tile = (x,curr_y)
                     right_side_tile = (x+1,curr_y)
-                    # TODO: allow one-directional crossing, need to
-                    # add extra tag into pairs of tiles
-                    collision_lines_map.add((left_side_tile, right_side_tile))
-               
+                    collision_lines_map.add((left_side_tile, "right"))
+                    collision_lines_map.add((right_side_tile, "left"))
+                                   
                     if line_start > line_end:
                         curr_y -= 1
                     else:

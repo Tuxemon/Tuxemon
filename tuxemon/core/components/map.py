@@ -64,11 +64,13 @@ class Map(object):
         # Collision tiles in tmx object format
         self.collisions = []
         
-        # Collision walls (player can walk in them, but cannot cross from one to another)
-        # Items in this list should be in the form of pairs, signifying that it is NOT
-        # possible to travel between the two tile locations
-        # All pairs of tiles must be adjacent (not diagonal)
-        self.collision_walls = []
+        # Collision lines (player can walk in tiles, but cannot cross
+        # from one to another) Items in this list should be in the
+        # form of pairs, signifying that it is NOT possible to travel
+        # from the first tile to the second (but reverse may be
+        # possible, i.e. jumping) All pairs of tiles must be adjacent
+        # (not diagonal)
+        self.collision_lines = []
 
         self.events = []
         
@@ -162,8 +164,8 @@ class Map(object):
             if obj.type == 'collision':
                 self.collisions.append(obj)
 
-            elif obj.type == 'collision-wall':
-                self.collision_walls.append(obj)
+            elif obj.type == 'collision-line':
+                self.collision_lines.append(obj)
                 
             elif obj.type == 'event':
                 conds = []
@@ -359,7 +361,8 @@ class Map(object):
         collision_map = set()
 
         # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
-        collision_walls_map = set()
+        # example: ((5,4),(5,3), both)
+        collision_lines_map = set()
 
         # Right now our collisions are defined in our tmx file as large regions that the player
         # can't pass through. We need to convert these areas into individual tile coordinates
@@ -397,9 +400,9 @@ class Map(object):
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between
         # them
-        for collision_polyline in self.collision_walls:
-            print "collision_wall.__dict__ = "
-            print str(collision_polyline.__dict__)
+        for collision_line in self.collision_lines:
+            print "collision_line.__dict__ = "
+            print str(collision_line.__dict__)
 
             # >>> collision_wall.__dict__  
             # {'name': None, 
@@ -414,15 +417,24 @@ class Map(object):
             # 'type': 'collision-wall',
             # 'points': ((80.0, 80.0), (80.0, 128.0), (160.0, 128.0), (160.0, 240.0)) 
             
+            # Another example:
+            # 'points': ((192.0, 80.0), (192.0, 192.0))
+
             # For each pair of points, get the tiles on either side of the line.
-            # Assumption: The points will only be vertical or horizontal (no diagonal lines)
+            # Assumption: A pair of points will only be vertical or horizontal (no diagonal lines)
             
-            if len(points) < 2):
+            if len(collision_line.points) < 2:
                 raise Exception("Error: map has polyline with only one point")
 
-            # get two points
-            point1 = collision_wall.points[0]
-            point2 = collision_wall.points[1]
+            # get two points, and round them
+            point1 = (self.round_to_divisible(collision_line.points[0][0], self.tile_size[0]),
+                      self.round_to_divisible(collision_line.points[0][1], self.tile_size[1]))
+            point2 = (self.round_to_divisible(collision_line.points[1][0], self.tile_size[0]),
+                      self.round_to_divisible(collision_line.points[1][1], self.tile_size[1]))
+
+            print "point1 is " + str(point1)
+            print "point2 is " + str(point2)
+
             
             # check to see if horizontal or vertical
             line_type = None
@@ -437,17 +449,43 @@ class Map(object):
                 
             if line_type is 'vertical':
                 # get all tile coordinates on either side 
-                x = point1[0] # same as point2[0] b/c vertical
-                left_side_tiles = set()
-                right_side_tiles = set()
+                x = point1[0] / self.tile_size[0] # same as point2[0] b/c vertical
                 line_start = point1[1]
                 line_end = point2[1]
-                num_tiles_in_line = abs(line_end - line_start) / self.tile_size[1] # [1] b/c vertical
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
+                curr_y = line_start / self.tile_size[1]
                 for i in range(num_tiles_in_line):
-                    left_side_tiles.append((x,
+                    left_side_tile = (x,curr_y)
+                    right_side_tile = (x+1,curr_y)
+                    # TODO: allow one-directional crossing, need to
+                    # add extra tag into pairs of tiles
+                    collision_lines_map.add((left_side_tile, right_side_tile))
+               
+                    if line_start > line_end:
+                        curr_y -= 1
+                    else:
+                        curr_y += 1
 
+        # #### FOR MY REFERENCE
+        #     # Get the collision area's tile location and dimension in tiles using the tileset's
+        #     # tile size.
+        #     x = self.round_to_divisible(collision_region.x, self.tile_size[0]) / self.tile_size[0]
+        #     y = self.round_to_divisible(collision_region.y, self.tile_size[1]) / self.tile_size[1]
+        #     width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
+        #     height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
 
-        return tiles, collision_map, mapsize
+        #     # Loop through the area of this region and create all the tile coordinates that are 
+        #     # inside this region.
+        #     for a in range(0, int(width)):
+        #         for b in range(0, int(height)):
+        #             collision_tile = (a + x, b + y)
+        #             collision_map.add(collision_tile)
+        #### END REFERENCE
+
+        print "collision_lines_map is"
+        print str(collision_lines_map)
+
+        return tiles, collision_map, collision_lines_map, mapsize
 
     def round_to_divisible(self, x, base=16):
         """Rounds a number to a divisible base. This is used to round collision areas that aren't

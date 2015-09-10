@@ -40,5 +40,11 @@
   <object type="collision-line" x="80" y="160">
    <polyline points="0,0 0,48"/>
   </object>
+  <object type="collision" x="192" y="192" width="16" height="16"/>
+  <object type="collision" x="224" y="192" width="16" height="16"/>
+  <object type="collision" x="80" y="80" width="112" height="16"/>
+  <object type="collision" x="16" y="224" width="144" height="16"/>
+  <object type="collision" x="32" y="192" width="16" height="16"/>
+  <object type="collision" x="64" y="192" width="16" height="16"/>
  </objectgroup>
 </map>

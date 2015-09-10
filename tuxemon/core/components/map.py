@@ -401,8 +401,6 @@ class Map(object):
         # on either side of the poly-line and prevent moving between
         # them
         for collision_line in self.collision_lines:
-            print "collision_line.__dict__ = "
-            print str(collision_line.__dict__)
 
             # >>> collision_wall.__dict__  
             # {'name': None, 

@@ -94,7 +94,7 @@ class Player(IPlugin):
                     "resources/maps/" + mapname)
                 world.event_engine.current_map = Map(
                     "resources/maps/" + mapname)
-                world.tiles, world.collision_map, world.map_size = world.current_map.loadfile(
+                world.tiles, world.collision_map, world.collision_lines_map, world.map_size = world.current_map.loadfile(
                     world.tile_size)
                 world.game.events = world.current_map.events
 
@@ -296,3 +296,19 @@ class Player(IPlugin):
             game.player1.facing = parameters
     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -63,7 +63,7 @@ class Map(object):
 
         # Collision tiles in tmx object format
         self.collisions = []
-        
+
         # Collision lines (player can walk in tiles, but cannot cross
         # from one to another) Items in this list should be in the
         # form of pairs, signifying that it is NOT possible to travel
@@ -73,10 +73,10 @@ class Map(object):
         self.collision_lines = []
 
         self.events = []
-        
+
         # Initialize the map
         self.load(filename)
-        
+
 
     def load(self, filename):
         """Load map data from a tmx map file and get all the map's events and collision areas.
@@ -84,14 +84,14 @@ class Map(object):
 
         Specifications for the TMX map format can be found here:
         https://github.com/bjorn/tiled/wiki/TMX-Map-Format
-        
+
         :param filename: The path to the tmx map file to load.
-        
+
         :type filename: String
-    
+
         :rtype: None
-        :returns: None 
-        
+        :returns: None
+
         **Examples:**
 
         In each map, there are three types of objects: **collisions**, **conditions**, and
@@ -147,12 +147,12 @@ class Map(object):
          'y': 0}
 
         """
-        
+
         # Load the tmx map data using the pytmx library.
         self.filename = filename
         #self.data = pytmx.TiledMap(filename)
         self.data = load_pygame(filename, pixelalpha=True)
-        
+
         # Get the map dimensions
         self.size = (self.data.width, self.data.height)
 
@@ -166,28 +166,26 @@ class Map(object):
 
             elif obj.type == 'collision-line':
                 self.collision_lines.append(obj)
-                
+
             elif obj.type == 'event':
                 conds = []
                 acts = []
-                
+
                 # Conditions & actions are stored as Tiled properties.
                 # We need to sort them by name, so that "act1" comes before "act2" and so on..
-                print "obj is " + str(obj)
-                print "obj is " + str(dir(obj))
                 keys = sorted(obj.properties.keys())
-                
+
                 for k in keys:
                     if k.startswith('cond'):
                         words = obj.properties[k].split(' ', 2)
-                        
+
                         # Conditions have the form 'operator type parameters'.
                         operator, type = words[0:2]
-                        
+
                         args = ''
                         if len(words) > 2:
                             args = words[2]
-                        
+
                         conds.append({
                             'type': type,
                             'parameters': args,
@@ -199,21 +197,21 @@ class Map(object):
                         })
                     elif k.startswith('act'):
                         acts.append(obj.properties[k].split(' ', 1))
-                
+
                 self.events.append({'conds':conds, 'acts':acts})
 
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with
         their position and pygame surface, a set of collision tile coordinates, and the size of
-        the map itself. The list of tile surfaces is used to draw the map in the main game. The 
+        the map itself. The list of tile surfaces is used to draw the map in the main game. The
         list of collision tile coordinates is used for collision detection.
-        
+
         :param tile_size: An [x, y] size of each tile in pixels AFTER scaling. This is used for
             scaling and positioning.
-        
+
         :type tile_size: List
-    
+
         :rtype: List
         :returns: A multi-dimensional list of tiles in dictionary format; a set of collision
             coordinates; the map size.
@@ -235,16 +233,16 @@ class Map(object):
         >>> tiles
             [
               [
-                [], 
-                [], 
-                [], 
-                [], 
-                [], 
-                [], 
-                [], 
-                [], 
-                [], 
-                [], 
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
                 []
               ],
               [ [],
@@ -277,7 +275,7 @@ class Map(object):
                 'position': (80, 400),
                 'surface': <Surface(16x16x32 SW)>,
                 'tile_pos': [1, 5],
-                'tileset': 'resources/gfx/tileset.png'},            
+                'tileset': 'resources/gfx/tileset.png'},
                 {'layer': 3,
                 'name': '10,0',
                 'position': (80, 400),
@@ -301,19 +299,19 @@ class Map(object):
              (0, 5),
              (0, 6)])
 
-        """ 
+        """
 
         # Create a list of all of the tiles in the map
         tiles = []
 
         # Loop through all tiles in our map file and get the pygame surface associated with it.
         for x in range(0, self.data.width):
-            
+
             # Create a list of tile for the y-axis
             y_list = []
 
             for y in range(0, self.data.height):
-                
+
                 layer_list = []
 
                 # Get the number of tile layers.
@@ -340,7 +338,7 @@ class Map(object):
                         surface = self.data.getTileImage(x, y, layer)
                     except AttributeError:
                         surface = self.data.get_tile_image(x, y, layer)
-                    
+
                     # Create a tile based on the image
                     if surface:
                         tile = {'tile_pos': (x, y),
@@ -349,11 +347,11 @@ class Map(object):
                                 'name': str(x) + "," + str(y),
                                 'surface': surface
                                 }
-                        
+
                         layer_list.append(tile)
-                        
+
                 y_list.append(layer_list)
-                
+
             tiles.append(y_list)
 
         # Get the dimensions of the map
@@ -392,37 +390,37 @@ class Map(object):
             width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
             height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
 
-            # Loop through the area of this region and create all the tile coordinates that are 
+            # Loop through the area of this region and create all the tile coordinates that are
             # inside this region.
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y)
                     collision_map.add(collision_tile)
-                    
+
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between
         # them
         for collision_line in self.collision_lines:
 
-            # >>> collision_wall.__dict__  
-            # {'name': None, 
+            # >>> collision_wall.__dict__
+            # {'name': None,
             # 'parent': <TiledMap: "resources/maps/test_pathfinding.tmx">,
-            # 'visible': 1, 
-            # 'height': 160.0, 
+            # 'visible': 1,
+            # 'height': 160.0,
             # 'width': 80.0, '
-            # gid': 0, 
+            # gid': 0,
             # 'closed': False,
             # 'y': 80.0, 'x': 80.0,
             # 'rotation': 0,
             # 'type': 'collision-wall',
-            # 'points': ((80.0, 80.0), (80.0, 128.0), (160.0, 128.0), (160.0, 240.0)) 
-            
+            # 'points': ((80.0, 80.0), (80.0, 128.0), (160.0, 128.0), (160.0, 240.0))
+
             # Another example:
             # 'points': ((192.0, 80.0), (192.0, 192.0))
 
             # For each pair of points, get the tiles on either side of the line.
             # Assumption: A pair of points will only be vertical or horizontal (no diagonal lines)
-            
+
             if len(collision_line.points) < 2:
                 raise Exception("Error: map has polyline with only one point")
 
@@ -442,9 +440,9 @@ class Map(object):
                 line_type = 'horizontal'
             else:
                 raise Exception("Error: Points on polyline are not strictly horizontal or vertical....")
-                
+
             if line_type is 'vertical':
-                # get all tile coordinates on either side 
+                # get all tile coordinates on either side
                 x = point1[0] / self.tile_size[0] # same as point2[0] b/c vertical
                 line_start = point1[1]
                 line_end = point2[1]
@@ -471,7 +469,7 @@ class Map(object):
                     collision_lines_map.add((right_side_tile, "left"))
 
             elif line_type is 'horizontal':
-                # get all tile coordinates on either side 
+                # get all tile coordinates on either side
                 y = point1[1] / self.tile_size[1] # same as point2[1] b/c horizontal
                 line_start = point1[0]
                 line_end = point2[0]
@@ -495,7 +493,7 @@ class Map(object):
                     # to block, and then here we only block in one
                     # direction, not both.
                     collision_lines_map.add((top_side_tile, "down"))
-                    collision_lines_map.add((bottom_side_tile, "up"))                
+                    collision_lines_map.add((bottom_side_tile, "up"))
 
         return tiles, collision_map, collision_lines_map, mapsize
 
@@ -538,10 +536,10 @@ class Tile(object):
 
 # If the module is being run as a standalone program, run an example
 if __name__=="__main__":
-    
+
     from . import config
-    
-    # set up pygame 
+
+    # set up pygame
     pygame.init()
 
     # read the configuration file
@@ -549,18 +547,18 @@ if __name__=="__main__":
 
     # The game resolution
     resolution = config.resolution
-    
+
     # set up the window with epic name
     screen = pygame.display.set_mode(resolution, config.fullscreen, 32)
     pygame.display.set_caption('Tuxemon Map')
-    
+
     # Native resolution is similar to the old gameboy resolution. This is used for scaling.
     native_resolution = [240, 160]
-    
+
     # If scaling is enabled, scale the tiles based on the resolution
     if config.scaling == "1":
         scale = int( (resolution[0] / native_resolution[0]) )
-        
+
     # Fill background
     background = pygame.Surface(screen.get_size())
     background = background.convert()
@@ -569,7 +567,7 @@ if __name__=="__main__":
     # Blit everything to the screen
     screen.blit(background, (0, 0))
     pygame.display.flip()
-    
+
     print "Loading map"
     tile_size = [80, 80]    # 1 tile = 16 pixels
     testmap = Map()
@@ -579,13 +577,13 @@ if __name__=="__main__":
     # Event loop THIS IS WHAT SHIT IS DOING RIGHT NOW BRAH
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: 
+            if event.type == pygame.QUIT:
                 sys.exit()
-            
+
             # Exit the game if you press ESC
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 pygame.quit()
-                
+
 
         screen.blit(background, (0, 0))
         pygame.display.flip()

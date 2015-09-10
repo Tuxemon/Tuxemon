@@ -6,6 +6,7 @@
     "id": 2,
     "name": "Super Potion", 
     "power": 150, 
-    "sprite": "resources/gfx/items/super_potion.png", 
+    "sprite": "resources/gfx/items/super_potion.png",
+    "target": "player",
     "type": "Consumable"
 }

@@ -7,5 +7,6 @@
     "name": "Potion", 
     "power": 50, 
     "sprite": "resources/gfx/items/potion.png", 
+    "target": "player",
     "type": "Consumable"
 }

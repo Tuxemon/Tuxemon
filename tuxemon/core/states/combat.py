@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>, 
+# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
 #                     Benjamin Bean <superman2k5@gmail.com>
 #
 # This file is part of Tuxemon.
@@ -67,12 +67,12 @@ class Combat(tools._State):
 
         # Initiate our common state properties.
         tools._State.__init__(self)
-        
+
         from core.components import menu
 
         self.players = []
         self.game = game                # Provide access to the scene manager.
-        
+
         self.combat_type = None         # Can be either "monster" or "trainer"
 
         self.current_players = {'player': {}, 'opponent': {}}
@@ -109,7 +109,7 @@ class Combat(tools._State):
         # Scale all the status icons to the appropriate size based on the game's scale
         for status, surface in self.status_icons.items():
             logger.debug(str(status) + "" + str(surface))
-            self.status_icons[status] = pygame.transform.scale(surface, 
+            self.status_icons[status] = pygame.transform.scale(surface,
                 (surface.get_width() * prepare.SCALE, surface.get_height() * prepare.SCALE))
 
         # Load all the party icons to show how many monsters each player has.
@@ -120,44 +120,44 @@ class Combat(tools._State):
             'resources/gfx/ui/icons/party/party_icon02.png').convert_alpha()
         self.party_icons['FNT'] = pygame.image.load(
             'resources/gfx/ui/icons/party/party_icon03.png').convert_alpha()
-            
+
         # Scale all the party icons based on the game's scale
         for icon, surface in self.party_icons.items():
             self.party_icons[icon] = pygame.transform.scale(surface,
                 (surface.get_width() * prepare.SCALE, surface.get_height() * prepare.SCALE))
-        
+
         # Bottom info menu
         self.info_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
 
         # Action Menu
         self.action_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
-        
+
         # Fight menus
         self.fight_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
         self.fight_info_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
-        
+
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
         self.item_menu = ItemMenu(game.screen, prepare.SCREEN_SIZE, game)
-        
+
         # Monster Menu
         MonsterMenu = menu.monster_menu.MonsterMenu
         self.monster_menu = MonsterMenu(game.screen, prepare.SCREEN_SIZE, game)
 
         # Active Monster Menu
         #self.active_monster_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
-        
+
         # Inactive Monster Menu
         #self.inactive_monster_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
-        
+
         # Not yet implemented menu
         self.not_implmeneted_menu =  menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
-        
+
         # List of all menus
-        self.menus = [self.info_menu, self.action_menu, self.fight_menu, self.fight_info_menu, 
+        self.menus = [self.info_menu, self.action_menu, self.fight_menu, self.fight_info_menu,
                       self.monster_menu, #self.active_monster_menu, self.inactive_monster_menu,
                       self.item_menu, self.not_implmeneted_menu]
-        
+
         # Scale the menu border of all menus
         for menu in self.menus:
             menu.scale = prepare.SCALE
@@ -165,8 +165,8 @@ class Combat(tools._State):
                           font="resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
                           spacing=menu.font_size * menu.scale)
-            menu.arrow = pygame.transform.scale(menu.arrow, 
-                                                (menu.arrow.get_width() * prepare.SCALE, 
+            menu.arrow = pygame.transform.scale(menu.arrow,
+                                                (menu.arrow.get_width() * prepare.SCALE,
                                                  menu.arrow.get_height() * prepare.SCALE))
             for key, border in menu.border.items():
                 menu.border[key] = pygame.transform.scale(border,
@@ -180,7 +180,7 @@ class Combat(tools._State):
         self.info_menu.pos_x = (0 + self.info_menu.border["left-top"].get_width())
         self.info_menu.pos_y = prepare.SCREEN_SIZE[1] - \
             (self.info_menu.size_y + (self.info_menu.border["top"].get_height()))
-        
+
         # Action Menu
         self.action_menu.size_x = prepare.SCREEN_SIZE[0] / 3
         self.action_menu.size_y = prepare.SCREEN_SIZE[1] / 6
@@ -191,7 +191,7 @@ class Combat(tools._State):
         self.action_menu.columns = 2
         self.action_menu.visible = True
         self.action_menu.interactable = True
-        
+
         # Fight Menu
         self.fight_menu.size_x = prepare.SCREEN_SIZE[0] - self.action_menu.size_x
         self.fight_menu.size_y = prepare.SCREEN_SIZE[1] / 6
@@ -208,7 +208,7 @@ class Combat(tools._State):
         self.fight_info_menu.pos_y = self.action_menu.pos_y
         self.fight_info_menu.visible = False
         self.fight_info_menu.interactable = False
-        
+
         # Item Menu
         self.item_menu.size_x = prepare.SCREEN_SIZE[0]
         self.item_menu.size_y = prepare.SCREEN_SIZE[1]
@@ -216,7 +216,7 @@ class Combat(tools._State):
         self.item_menu.pos_y = 0
         self.item_menu.visible = False
         self.item_menu.interactable = False
-        
+
         # Monster Menu
         self.monster_menu.size_x = prepare.SCREEN_SIZE[0]
         self.monster_menu.size_y = prepare.SCREEN_SIZE[1]
@@ -227,7 +227,7 @@ class Combat(tools._State):
         #self.monster_menu.add_child(self.active_monster_menu)
         #self.monster_menu.add_child(self.inactive_monster_menu)
 
-        
+
         # Active Monster Menu
         #self.active_monster_menu.size_x = prepare.SCREEN_SIZE[0]/3
         #self.active_monster_menu.size_y = prepare.SCREEN_SIZE[1]/2
@@ -236,7 +236,7 @@ class Combat(tools._State):
         #self.active_monster_menu.visible = False
         #self.active_monster_menu.interactable = False
         #self.active_monster_menu.color = (100, 100, 100)
-        
+
         # Inactive Monster Menu
         #self.inactive_monster_menu.size_x = (prepare.SCREEN_SIZE[0]/3) * 2
         #self.inactive_monster_menu.size_y = (prepare.SCREEN_SIZE[1]/6) * 5
@@ -245,7 +245,7 @@ class Combat(tools._State):
         #self.inactive_monster_menu.visible = False
         #self.inactive_monster_menu.interactable = False
         #self.inactive_monster_menu.color = (0, 0, 0)
-        
+
         # Not yet implemented menu
         self.not_implmeneted_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
         self.not_implmeneted_menu.size_y = prepare.SCREEN_SIZE[1] / 5
@@ -255,12 +255,12 @@ class Combat(tools._State):
             (self.not_implmeneted_menu.size_y / 2)
         self.not_implmeneted_menu.visible = False
         self.not_implmeneted_menu.interactable = False
-        
+
         self.player_mon_sprite = None
-        
+
 
     def startup(self, current_time, persistant):
-        """Initialize combat performs various tasks such as loading images of the players' 
+        """Initialize combat performs various tasks such as loading images of the players'
         monsters and creates pygame.Surface objects that we can use to draw to the screen.
         All of the things needed before we actually start combat itself.
 
@@ -272,10 +272,10 @@ class Combat(tools._State):
 
         :rtype: None
         :returns: None
-        
-        
+
+
         **Examples:**
-        
+
         >>> current_time
         2895
         >>> persistant
@@ -283,7 +283,7 @@ class Combat(tools._State):
 
         **Monster position drawing**
 
-        We draw the monster's battle sprite on the screen according to the resolution and size of 
+        We draw the monster's battle sprite on the screen according to the resolution and size of
         the "info_menu":
 
         >>> self.current_players['player']['monster_sprite']['position'] = (
@@ -309,10 +309,10 @@ class Combat(tools._State):
         ui["background"] = UserInterface(
             "resources/gfx/ui/combat/battle_bg02.png", (0, 0), screen)
         ui["background"].scale(screen_size)
-        
+
         # Loop through all of our players and set up our monsters and UI
         for player_name, player_dict in self.current_players.items():
-            
+
             # Get the current player object
             if player_name == "player":
                 player_dict['player'] = self.players[0]
@@ -320,15 +320,15 @@ class Combat(tools._State):
             elif player_name == "opponent":
                 player_dict['player'] = self.players[1]
                 player_dict['opponent'] = self.current_players['player']
-                
+
             # Get the player's monster object
             player_dict['monster'] = player_dict['player'].monsters[0]
-            
+
             # Set the action that the player has decided to do this turn. For example, this
             # action will be set if the player decides to use a move or an item, etc.
             player_dict['action'] = None
 
-            
+
             self.load_monster_sprite(ui, screen, screen_size, player_name, player_dict)
 
             # Set the monster's sprite to visible. They'll turn invisible after the monster's
@@ -337,7 +337,7 @@ class Combat(tools._State):
 
             # Set the color of the HP bar
             hp_color = (112, 248, 168)
-        
+
             # Load the battle UI elements such as HP bar, etc.
             player_hp_ui = player_name + "_hp_ui"
             self.ui[player_hp_ui] = UserInterface(
@@ -426,7 +426,7 @@ class Combat(tools._State):
 
             # Get the position of where we should draw the battle UI elements
             if player_name == "player":
-                
+
                 # Set up the position of the player's status icon for the player
                 ui[player_status].position = [
                     ui[player_hp_ui].position[0] + (12 * prepare.SCALE) + \
@@ -448,10 +448,10 @@ class Combat(tools._State):
 
 
             elif player_name == "opponent":
-                
+
                 # The opponent's status icon position
                 ui[player_status].position = \
-                    (3 * prepare.SCALE + (prepare.ICON_SIZE[0] * prepare.SCALE), 
+                    (3 * prepare.SCALE + (prepare.ICON_SIZE[0] * prepare.SCALE),
                      15 * prepare.SCALE)
                 # Set up the position of the party UI.
                 # Set the UI position when it is opened and visible.
@@ -467,6 +467,11 @@ class Combat(tools._State):
                 # The starting position of the party UI will be open.
                 ui[party_bg].position = list(ui[party_bg].open_position)
 
+
+        # Set up the capture device animation for use in capturing monsters
+        ui["capture"] = UserInterface(
+            "resources/gfx/items/capture_device.png", (500, 500), screen)
+        ui["capture"].visible = False
         import pprint
         pprint.pprint(ui)
 
@@ -509,15 +514,15 @@ class Combat(tools._State):
         :returns: None
 
         """
-        
+
         player_dict =  self.current_players['player']
         opponent_dict = self.current_players['opponent']
         ui = self.ui
-        
+
         # If a player has an AI associated with it, execute that AI's decision function
         if opponent_dict['player'].ai and not opponent_dict['action']:
             opponent_dict['action'] = opponent_dict['player'].ai.make_decision(
-                opponent_dict, 
+                opponent_dict,
                 player_dict)
 
         # If both players have selected an action, start the action phase.
@@ -561,10 +566,10 @@ class Combat(tools._State):
         :param game: The main game object that contains all the game's variables.
 
         :type game: core.tools.Control
-    
+
         :rtype: None
         :returns: None
-        
+
         """
 
         # Keep an alias of our UI dictionary
@@ -572,7 +577,7 @@ class Combat(tools._State):
 
         # Draw the background
         ui["background"].draw()
-        
+
         # Draw the actual monster sprites
         for player_name, player in self.current_players.items():
             ui[player_name + '_monster_sprite'].draw()
@@ -581,6 +586,9 @@ class Combat(tools._State):
             # Draw technique animations
             if ui[player_name + '_technique']:
                 ui[player_name + '_technique'].draw()
+
+        # Draw the capture device animation
+        ui['capture'].draw()
 
         # Draw the menus
         self.info_menu.draw()
@@ -591,14 +599,14 @@ class Combat(tools._State):
         if self.action_menu.visible:
             self.action_menu.draw()
             self.action_menu.draw_textItem(["Fight", "Item", "Tuxemon", "Run"], columns=2, autoline_spacing=True)
-        
+
         if self.fight_menu.visible:
             available_moves = []
-            
+
             # Get the names of the techniques this monster can use.
             for move in self.current_players['player']['monster'].moves:
                 available_moves.append(move.name)
-            
+
             self.fight_menu.draw()
             self.fight_menu.draw_textItem(available_moves, columns=2, autoline_spacing=True)
             self.fight_info_menu.draw()
@@ -615,21 +623,21 @@ class Combat(tools._State):
             # Draw the player's party if this is a trainer battle.
             if party_ui.visible:
                 party_ui.draw()
-                
+
                 # Keep track of which monster icon we're going to draw.
                 monster_number = 0
-                
+
                 # Space each icon by 10 pixels
                 icon_spacing = 10 * prepare.SCALE
-                
+
                 # Start drawing the icons at (26, 0) on the party ui background
                 icon_starting_pos = 26 * prepare.SCALE
-                
+
                 # Draw the player's party to show how many monsters the player has remaining.
                 for monster in player['player'].monsters:
                     party_icon_position = (party_ui.position[0] + icon_starting_pos +
                         (monster_number * icon_spacing), party_ui.position[1])
-                    
+
                     # Draw the party icon based on the monster's status.
                     if monster.status == "Normal":
                         party_icon_surface = self.party_icons['Normal']
@@ -637,9 +645,9 @@ class Combat(tools._State):
                         party_icon_surface = self.party_icons['FNT']
                     else:
                         party_icon_surface = self.party_icons['Ailment']
-                        
+
                     game.screen.blit(party_icon_surface, party_icon_position)
-                    
+
                     monster_number += 1
 
             # Draw the monsters' level and name
@@ -654,19 +662,19 @@ class Combat(tools._State):
         # Draw Monster Menu
         if self.monster_menu.visible:
             self.monster_menu.draw(draw_borders=False)
-        
+
         # Draw Active Monster Menu
         #if self.active_monster_menu.visible:
         #    self.active_monster_menu.draw(draw_borders=True)
-            
+
         # Draw Inactive Monster Menu
         #if self.inactive_monster_menu.visible:
-        #    self.inactive_monster_menu.draw(draw_borders=True)     
-            
+        #    self.inactive_monster_menu.draw(draw_borders=True)
+
         # Draw the Item Menu
         if self.item_menu.visible:
             self.item_menu.draw(draw_borders=False)
-            
+
         # Draw the not yet implemented menu to let the player know when shit ain't
         # workin' yet
         if self.not_implmeneted_menu.visible:
@@ -674,43 +682,43 @@ class Combat(tools._State):
             self.not_implmeneted_menu.draw_text("This feature is not yet implemented.",
                 justify="center", align="middle")
 
-            
+
     def animate_health(self, player):
         """Animates changes in health for monsters in combat. The speed of the animation is based
         on HP change per second. Returns the percentage of health remaining.
 
         :param None:
-    
+
         :rtype: Float
         :returns: A float of the percentage of health remaining for the monster.
-        
+
         """
-        
+
         # Set how quickly the health will change in HP points per second
         hp_per_second = 10
 
         # Set some aliases
         current_player = self.current_players[player]
         game = self.game
-        
+
         # Start adding or subtracting hp until we reach our target value.
-        if current_player['target_health'] < current_player['starting_health']: 
+        if current_player['target_health'] < current_player['starting_health']:
             current_player['starting_health'] -= hp_per_second * game.time_passed_seconds
         elif current_player['target_health'] > current_player['starting_health']:
             current_player['starting_health'] += hp_per_second * game.time_passed_seconds
-            
+
         # If we've reached our target health value, then stop animating by setting "health_changed" = False.
         if current_player['health_changed'] == "down":
-            if current_player['starting_health'] <= current_player['target_health']: 
+            if current_player['starting_health'] <= current_player['target_health']:
                 current_player['health_changed'] = False
                 current_player['starting_health'] = current_player['target_health']
 
         elif current_player['health_changed'] == "up":
-            if current_player['starting_health'] >= current_player['target_health']: 
+            if current_player['starting_health'] >= current_player['target_health']:
                 current_player['health_changed'] = False
                 current_player['starting_health'] = current_player['target_health']
-            
-            
+
+
         # Set the size of health bar based on how much health the monster has remaining.
         if current_player['starting_health'] > 0:
             health_percent = float(current_player['starting_health']) / float(current_player['monster'].hp)
@@ -718,7 +726,7 @@ class Combat(tools._State):
             health_percent = 1.0
         else:
             health_percent = 0
-                
+
         return health_percent
 
 
@@ -729,42 +737,42 @@ class Combat(tools._State):
         :param game: The main game object that contains all the game's variables.
 
         :type game: core.tools.Control
-    
+
         :rtype: None
         :returns: None
 
         """
 
         # Handle menu events
-        
+
         # If the not implemented window is open, send pygame events to it.
         if self.not_implmeneted_menu.interactable:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 self.not_implmeneted_menu.visible = False
                 self.not_implmeneted_menu.interactable = False
-            
+
             # Don't process any other input until the user presses ENTER.
             return False
-        
+
         if self.action_menu.interactable:
             self.action_menu.update_menu_selection(event)
-            
+
         if self.fight_menu.interactable:
             self.fight_menu.update_menu_selection(event)
-            
+
         if self.item_menu.interactable:
             self.item_menu.get_event(event, self.game)
 
         if self.monster_menu.interactable:
             self.monster_menu.get_event(event, self.game)
-                
-                
+
+
         # Handle key inputs.
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             if self.fight_menu.visible:
                 self.fight_menu.visible = False
                 self.fight_menu.interactable = False
-                    
+
                 self.action_menu.visible = True
                 self.action_menu.interactable = True
 
@@ -774,16 +782,16 @@ class Combat(tools._State):
 
             ### Action Menu Events ###
             if self.action_menu.interactable:
-                    
+
                 # If we selected the "Fight" option, then open the fight menu.
                 if self.action_menu.selected_menu_item == 0:
                     self.fight_menu.visible = True
                     self.fight_menu.interactable = True
                     self.fight_info_menu.visible = True
-                        
+
                     self.action_menu.visible = False
                     self.action_menu.interactable = False
-                    
+
                 # If "Item" was selected, open the item menu
                 elif self.action_menu.selected_menu_item == 1:
                     logger.info("Opening Item menu!")
@@ -792,7 +800,7 @@ class Combat(tools._State):
                     self.item_menu.state = "open"
                     self.action_menu.visible = False
                     self.action_menu.interactable = False
-                    
+
                 # If "Tuxemon" was selected, open the tuxemon menu
                 elif self.action_menu.selected_menu_item == 2:
                     logger.info("Tuxemon menu!")
@@ -823,7 +831,7 @@ class Combat(tools._State):
                     #self.game.event_engine.action.teleport(self.game, parameters)
                     self.next = "WORLD"
                     self.done = True
-                        
+
 
             ### Fight Menu Events ###
             elif self.fight_menu.interactable:
@@ -831,7 +839,7 @@ class Combat(tools._State):
                 # Use the selected move against the opponent
                 selected_move = self.fight_menu.selected_menu_item
                 # Set the player's action to use a technique this turn.
-                self.current_players['player']['action'] = {'technique': selected_move}    
+                self.current_players['player']['action'] = {'technique': selected_move}
 
 
     def start_decision_phase(self):
@@ -839,7 +847,7 @@ class Combat(tools._State):
         player to make a new decision.
 
         :param None:
-    
+
         :rtype: None
         :returns: None
 
@@ -874,7 +882,7 @@ class Combat(tools._State):
         perform the selected actions of each player.
 
         :param None:
-    
+
         :rtype: None
         :returns: None
 
@@ -966,7 +974,7 @@ class Combat(tools._State):
                 self.game.rumble.rumble(-1, length=1)
                 logger.info("Player Health Change: " + str(player['monster_last_hp']) +
                     " -> " + str(player['monster'].current_hp))
-    
+
                 players[player_name]['starting_health'] = player['monster_last_hp']
                 players[player_name]['target_health'] = player['monster'].current_hp
 
@@ -979,7 +987,7 @@ class Combat(tools._State):
 
                 # Set the last HP value to the current one so we don't execute this function endlessly
                 players[player_name]['monster_last_hp'] = player['monster'].current_hp
-    
+
             # If we're in the middle of animating health change, then calculate the percentage of health left and
             # transform the health bar based on that percentage.
             if player['health_changed']:
@@ -987,7 +995,7 @@ class Combat(tools._State):
                 ui[player_name + '_healthbar'].value = health_percent
 
                 logger.debug("  Animating player health: " + str(health_percent))
-    
+
 
             ########################################################
             #                  Fainting Animations                 #
@@ -1041,19 +1049,18 @@ class Combat(tools._State):
                             self.info_menu.elapsed_time = 0.0
                             self.state = "won"
 
-        # Handle when all monsters in the player's party have fainted
-        if (self.state == "lost" or self.state == "won") and self.info_menu.elapsed_time > self.info_menu.delay:
+        # Handle when a monster is being captured.
+        if (self.state == "capturing") and self.info_menu.elapsed_time > self.info_menu.delay:
+            print "Capturing!!"
+            self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
+            self.info_menu.elapsed_time = 0.0
+            self.state = "captured"
 
-            # Teleport the player and end combat
-            mapname = "pallet_town-room.tmx"
-            position_x = "1"
-            position_y = "3"
-            parameters = [None, mapname + "," + position_x + "," + position_y]
+        # Handle when all monsters in the player's party have fainted
+        if (self.state == "lost" or self.state == "won" or self.state == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:
 
             fadeout_music = self.game.event_engine.actions["fadeout_music"]["method"]
             fadeout_music(self.game, [None, 1000])
-            #teleport = self.game.event_engine.actions["teleport"]["method"]
-            #teleport(self.game, parameters)
 
             # Set the next scene we're going to switch to based on where we came from.
             # Then set "self.done" to true to allow the scene manager to switch scenes.
@@ -1067,9 +1074,9 @@ class Combat(tools._State):
 
         # Stop this turn once the health animations have stopped and the appropriate amount
         # of time has passed for the info menu.
-        if (not players['player']['health_changed'] 
-            and not players['opponent']['health_changed'] 
-            and self.info_menu.elapsed_time > self.info_menu.delay 
+        if (not players['player']['health_changed']
+            and not players['opponent']['health_changed']
+            and self.info_menu.elapsed_time > self.info_menu.delay
             and (players['player']['monster'].state != "fainting" or players['opponent']['monster'].state != "fainting")):
             self.turn_in_progress = False
 
@@ -1084,7 +1091,7 @@ class Combat(tools._State):
         #elif self.info_menu.elapsed_time < self.info_menu.delay:
         #    print "  Waiting %f seconds for window delay" % (self.info_menu.delay - self.info_menu.elapsed_time)
 
-        
+
     def perform_action(self, player):
         """Perform an action that a single player has decided on. Players can decide to use a
         technique, item, switch monsters, or run away.
@@ -1092,7 +1099,7 @@ class Combat(tools._State):
         :param player: The player object dictionary that is performing the action.
 
         :type player: Dictionary
-    
+
         :rtype: None
         :returns: None
 
@@ -1113,9 +1120,9 @@ class Combat(tools._State):
          'player': <player.Player instance at 0x7f9d80977c20>}
 
         """
-        
+
         screen = self.game.screen
-        
+
         # If the player selected a technique, use the selected technique on the opposing monster.
         if 'technique' in player['action']:
 
@@ -1129,7 +1136,7 @@ class Combat(tools._State):
                 user=player['monster'], target=player['opponent']['monster'])
 
             # Display a dialog showing that we used a move
-            self.info_menu.text = "%s used %s!" % (player['monster'].name, 
+            self.info_menu.text = "%s used %s!" % (player['monster'].name,
                                                    player['monster'].moves[selected_move].name)
             self.info_menu.elapsed_time = 0.0
 
@@ -1138,7 +1145,7 @@ class Combat(tools._State):
             logger.info("")
             logger.info("Player monster HP: " + str(player['monster'].current_hp))
             logger.info("Opponent monster HP: " + str(player['opponent']['monster'].current_hp))
-                
+
             # If using this technique kills either the player's monster OR the opponent's
             # monster, set their status to FUCKING DEAD.
             if player['opponent']['monster'].current_hp <= 0:
@@ -1194,55 +1201,60 @@ class Combat(tools._State):
             player['opponent']['monster_last_hp'] = player['opponent']['monster'].current_hp
 
             # Get the item object from the player's inventory that the player decided to use
-            # and USE IT. For now, just target the player's current monster.
+            # and USE IT.
             item_name = player['action']['item']['name']
-            player['player'].inventory[item_name]['item'].use(player['monster'], 
-                self.game)
+            item_target = player['action']['item']['target']
+            item_to_use = player['player'].inventory[item_name]['item']
+            item_to_use.use(item_target, self.game)
 
             # Display a dialog showing that we used an item
-            self.info_menu.text = "%s used %s on %s!" % (player['player'].name, 
-                item_name, player['monster'].name)
+            self.info_menu.text = "%s used %s on %s!" % (player['player'].name,
+                item_name, item_target.name)
 
             # Set the info menu timer to zero, so the menu will display for a short period of
             # time.
-            self.info_menu.elapsed_time = 0.0       
+            self.info_menu.elapsed_time = 0.0
 
             logger.info("Using item!")
+            if "capture" in item_to_use.effect:
+                self.ui["capture"].visible = True
+                self.ui["capture"].move(self.ui["opponent_monster_sprite"].position, 1.)
+                self.state = "capturing"
 
         elif 'switch' in player['action']:
             for player_name, player_dict in self.current_players.items():
                 if player_dict['player'] == self.current_players['player']['player']:
-                    
+
                     # Display switch message
                     self.info_menu.text = "Go %s!" % (player['monster'].name)
-                    
+
                     # Load new Tuxemon sprite
                     self.load_monster_sprite(self.ui, screen, prepare.SCREEN_SIZE, player_name, player_dict)
-                    
+
                     # Set new Tuxemon hp, name, and level
                     self.set_hp_ui(player_name, player_dict)
-                    
+
                     # Set the info menu timer to zero, so the menu will display for a short period of
                     # time.
                     self.info_menu.elapsed_time = 0.0
-                    
+
                     # We're not the other player, so stop here
                     break
                 elif player_dict['player'] == self.current_players['opponent']['player']:
-                    
+
                     # Display switch message
                     self.info_menu.text = "%s sent out %s!" % (player_name, player['monster'].name)
-                    
+
                     # Load new Tuxemon sprite
                     self.load_monster_sprite(self.ui, screen, prepare.SCREEN_SIZE, player_name, player_dict)
-                    
+
                     # Set new Tuxemon hp, name, and level
                     self.set_hp_ui(player_name, player_dict)
-                    
+
                     # Set the info menu timer to zero, so the menu will display for a short period of
                     # time.
                     self.info_menu.elapsed_time = 0.0
-                    
+
                     # We're not the other player, so stop here
                     break
 
@@ -1260,7 +1272,7 @@ class Combat(tools._State):
         :param player: The player object dictionary that we're checking the status for.
 
         :type player: Dictionary
-    
+
         :rtype: None
         :returns: None
 
@@ -1302,7 +1314,7 @@ class Combat(tools._State):
             # Keep track of how many turns this monster has been poisoned.
             player['monster'].status_turn += 1
 
-        # If the player's HP drops below zero due to status effects, set them fainting. 
+        # If the player's HP drops below zero due to status effects, set them fainting.
         # Then we can animate the monster fainting based on this variable.
         if player['monster'].current_hp <= 0:
             player['monster'].status = 'FNT'
@@ -1330,7 +1342,7 @@ class Combat(tools._State):
             **Example:**
 
             """
-        
+
             if player_name == "player":
                 monster_sprite = player_dict['monster'].back_battle_sprite
             elif player_name == "opponent":
@@ -1338,7 +1350,7 @@ class Combat(tools._State):
 
             self.player_mon_sprite = player_name + '_monster_sprite'
             ui[self.player_mon_sprite] = UserInterface(monster_sprite, (0, 0), screen)
-            
+
             if player_name == "player":
                 ui[self.player_mon_sprite].position = [
                     (screen_size[0] / 7),
@@ -1349,9 +1361,9 @@ class Combat(tools._State):
                     screen_size[0] - ui[self.player_mon_sprite].width - \
                     (screen_size[0] / 7),
                     (screen_size[1] / 8)]
-            
+
             ui[self.player_mon_sprite].faint_position = \
-                (ui[self.player_mon_sprite].position[0], 
+                (ui[self.player_mon_sprite].position[0],
                 ui[self.player_mon_sprite].position[1] + \
                 ui[self.player_mon_sprite].height)
 
@@ -1359,36 +1371,36 @@ class Combat(tools._State):
 
 
     def set_hp_ui(self, player_name, player_dict):
-        
+
         screen = self.game.screen
         player_hp_ui = player_name + "_hp_ui"
-        
+
         # Set Tuxemon hp bar
         player_dict['monster_last_hp'] = player_dict['monster'].current_hp
         player_dict['starting_health'] = player_dict['monster'].current_hp
         player_dict['target_health'] = player_dict['monster'].current_hp
         health_percent = self.animate_health(player_name) * 100
         self.ui[player_name + '_healthbar'].value = health_percent
-        
+
         # Set Tuxemon level text
         lvl_font = pygame.font.Font("resources/font/PressStart2P.ttf", 7 * prepare.SCALE)
-        lvl_text = lvl_font.render(str(player_dict['monster'].level), 
+        lvl_text = lvl_font.render(str(player_dict['monster'].level),
                             1, self.text_color)
         self.ui[player_name + '_lvl_text'] = UserInterface(lvl_text, (0, 0), screen, scale=False)
-                    
+
         # The Tuxemon level text position
         self.ui[player_name + '_lvl_text'].position = (
         self.ui[player_hp_ui].position[0] + \
         self.ui[player_hp_ui].width - (18 * prepare.SCALE),
         self.ui[player_hp_ui].position[1] + (6 * prepare.SCALE))
-                    
+
         # Set Tuxemon name text
         player_mon_name = player_name + "_monster_name"
         monster_text = lvl_font.render(str(player_dict['monster'].name),
                                 1,
                                 self.text_color)
         self.ui[player_mon_name] = UserInterface(monster_text, (0, 0), screen, scale=False)
-                    
+
         # Set Tuxemon name text position
         self.ui[player_mon_name].position = [
         self.ui[player_hp_ui].position[0] + (14 * prepare.SCALE),
@@ -1453,6 +1465,6 @@ if __name__ == "__main__":
 
                 pygame.display.flip()
 
-            
+
 
     Game()

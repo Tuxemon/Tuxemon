@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="14">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="66">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
  </tileset>
@@ -56,15 +56,21 @@
   <object id="10" name="Use Computer" type="event" x="64" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="dialog What is that on the screen? It's too pixelated to tell."/>
+    <property name="act2" value="wait_for_input K_RETURN"/>
+    <property name="act3" value="set_variable start_battle:true"/>
     <property name="cond1" value="is player_at 4,3"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set start_battle:true"/>
    </properties>
   </object>
   <object id="11" name="Get Fruitera" type="event" x="128" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster Fruitera,10"/>
     <property name="act2" value="dialog Recieved Fruitera!"/>
+    <property name="act3" value="add_item Capture Device"/>
+    <property name="act4" value="add_item Potion"/>
+    <property name="act5" value="add_item Capture Device"/>
     <property name="cond1" value="is player_at 8,7"/>
     <property name="cond2" value="is player_facing right"/>
     <property name="cond3" value="is party_size less_than,1"/>
@@ -75,10 +81,20 @@
    <properties>
     <property name="act1" value="add_monster Fruitera,10"/>
     <property name="act2" value="dialog Recieved Fruitera!"/>
+    <property name="act3" value="add_item Capture Device"/>
+    <property name="act4" value="add_item Potion"/>
+    <property name="act5" value="add_item Capture Device"/>
     <property name="cond1" value="is player_at 9,6"/>
     <property name="cond2" value="is player_facing down"/>
     <property name="cond3" value="is party_size less_than,1"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="13" name="Start Battle" type="event" x="64" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="start_battle 1"/>
+    <property name="act2" value="set_variable start_battle:false"/>
+    <property name="cond1" value="is variable_set start_battle:true"/>
    </properties>
   </object>
  </objectgroup>

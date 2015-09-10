@@ -67,42 +67,74 @@ class EventEngine(object):
         self.current_map = None
         self.conditions = condition_methods
         self.actions = action_methods
+        self.state = "running"
+        self.timer = 0.0
+        self.wait = 0.0
+        self.button = None
 
 
-    def check_conditions(self, game):
+    def check_conditions(self, game, dt):
         """Checks a list of conditions to see if any of them have been met.
 
         :param game: The main game object that contains all the game's variables.
         :param game.event_conditions: The multi-dimensional list of conditions to check for. See
             :py:func:`core.components.map.Map.loadevents` to see the format of the list.
-        
+        :param dt: Amount of time passed in seconds since last frame.
+
         :type game: core.tools.Control
         :type game.event_conditions: List
+        :type dt: Float
     
         :rtype: None
         :returns: None
         
         """
 
-        for e in game.events:
-            should_run = True
+        if self.state == "running":
+            for e in game.events:
+                should_run = True
             
-            # If any conditions fail, the event should not be run
-            for cond in e['conds']:
-                # Conditions have so-called "operators".  If a condition's operator == "is" then
-                # the condition should be processed as usual.
-                # However, if the condition != "is", the result should be inverted.
-                # The following line implements this.
-                # I am not satisfied with the clarity of this line, so if anyone can express this better,
-                # please change it.
-                check_condition = condition_methods[cond['type']]['method']
-                should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
-                if not should_run:
-                    break
+                # If any conditions fail, the event should not be run
+                for cond in e['conds']:
+                    # Conditions have so-called "operators".  If a condition's operator == "is" then
+                    # the condition should be processed as usual.
+                    # However, if the condition != "is", the result should be inverted.
+                    # The following line implements this.
+                    # I am not satisfied with the clarity of this line, so if anyone can express this better,
+                    # please change it.
+                    if not self.state == "running":
+                        return
+                    check_condition = condition_methods[cond['type']]['method']
+                    should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
+                    if not should_run:
+                        break
             
-            if should_run:
-                self.execute_action(e['acts'], game)
-                
+                if should_run:
+                    self.execute_action(e['acts'], game)
+
+        elif self.state == "waiting":
+            if self.timer >= self.wait:
+                self.state = "running"
+                self.timer = 0.0
+            else:
+                self.timer += dt
+                logger.debug("Waiting %s seconds to resume event engine..." % str(self.wait - self.timer))
+
+        elif self.state == "waiting for input":
+            if not self.button:
+                self.state = "running"
+                return
+
+            # Get the keys pressed from the game.
+            events = game.key_events
+
+            # Loop through each event
+            for event in events:
+                # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
+                if event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
+                    self.state = "running"
+                    self.button = None
+
         
     def execute_action(self, action_list, game):
         """Executes a particular action in a list of actions.

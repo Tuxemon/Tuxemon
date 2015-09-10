@@ -46,5 +46,29 @@
   <object type="collision" x="16" y="224" width="144" height="16"/>
   <object type="collision" x="32" y="192" width="16" height="16"/>
   <object type="collision" x="64" y="192" width="16" height="16"/>
+  <object type="collision-line" x="16" y="16">
+   <polyline points="0,0 224,0"/>
+  </object>
+  <object type="collision-line" x="32" y="160">
+   <polyline points="0,0 48,0"/>
+  </object>
+  <object type="collision-line" x="0" y="0">
+   <polyline points="0,0 240,0"/>
+  </object>
+  <object type="collision-line" x="0" y="240">
+   <polyline points="0,0 240,0"/>
+  </object>
+  <object type="collision-line" x="240" y="208">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object type="collision-line" x="0" y="0">
+   <polyline points="0,0 0,240"/>
+  </object>
+  <object type="collision-line" x="240" y="0">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object type="collision-line" x="160" y="128">
+   <polyline points="0,0 -80,0"/>
+  </object>
  </objectgroup>
 </map>

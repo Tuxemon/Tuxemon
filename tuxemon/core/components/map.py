@@ -465,6 +465,29 @@ class Map(object):
                     # TODO - change this depending on property
                     collision_lines_map.add((left_side_tile, "right"))
                     collision_lines_map.add((right_side_tile, "left"))
+
+            elif line_type is 'horizontal':
+                # get all tile coordinates on either side 
+                y = point1[1] / self.tile_size[1] # same as point2[0] b/c vertical
+                line_start = point1[0]
+                line_end = point2[0]
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [1] b/c vertical
+                curr_x = line_start / self.tile_size[0]
+                for i in range(num_tiles_in_line):
+                    if line_start > line_end: # slightly different
+                                              # behavior depending on
+                                              # direction
+                        top_side_tile = (curr_x-1,y-1)
+                        bottom_side_tile = (curr_x-1,y)
+                        curr_x -= 1
+                    else:
+                        top_side_tile = (curr_x, y-1)
+                        bottom_side_tile = (curr_x, y)
+                        curr_x += 1
+
+                    # TODO - change this depending on property
+                    collision_lines_map.add((top_side_tile, "down"))
+                    collision_lines_map.add((bottom_side_tile, "up"))                
                                    
 
 

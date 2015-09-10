@@ -432,10 +432,6 @@ class Map(object):
             point2 = (self.round_to_divisible(collision_line.points[1][0], self.tile_size[0]),
                       self.round_to_divisible(collision_line.points[1][1], self.tile_size[1]))
 
-            print "point1 is " + str(point1)
-            print "point2 is " + str(point2)
-
-            
             # check to see if horizontal or vertical
             line_type = None
             if point1[0] == point2[0] and point1[1] != point2[1]:
@@ -455,15 +451,22 @@ class Map(object):
                 num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
                 curr_y = line_start / self.tile_size[1]
                 for i in range(num_tiles_in_line):
-                    left_side_tile = (x-1,curr_y)
-                    right_side_tile = (x,curr_y)
+                    if line_start > line_end: # slightly different
+                                              # behavior depending on
+                                              # direction
+                        left_side_tile = (x-1,curr_y-1)
+                        right_side_tile = (x,curr_y-1)
+                        curr_y -= 1
+                    else:
+                        left_side_tile = (x-1,curr_y)
+                        right_side_tile = (x,curr_y)
+                        curr_y += 1
+
+                    # TODO - change this depending on property
                     collision_lines_map.add((left_side_tile, "right"))
                     collision_lines_map.add((right_side_tile, "left"))
                                    
-                    if line_start > line_end:
-                        curr_y -= 1
-                    else:
-                        curr_y += 1
+
 
         # #### FOR MY REFERENCE
         #     # Get the collision area's tile location and dimension in tiles using the tileset's

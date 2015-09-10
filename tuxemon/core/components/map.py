@@ -64,6 +64,14 @@ class Map(object):
         # Collision tiles in tmx object format
         self.collisions = []
         
+        # Collision lines (player can walk in tiles, but cannot cross
+        # from one to another) Items in this list should be in the
+        # form of pairs, signifying that it is NOT possible to travel
+        # from the first tile to the second (but reverse may be
+        # possible, i.e. jumping) All pairs of tiles must be adjacent
+        # (not diagonal)
+        self.collision_lines = []
+
         self.events = []
         
         # Initialize the map
@@ -156,12 +164,17 @@ class Map(object):
             if obj.type == 'collision':
                 self.collisions.append(obj)
 
+            elif obj.type == 'collision-line':
+                self.collision_lines.append(obj)
+                
             elif obj.type == 'event':
                 conds = []
                 acts = []
                 
                 # Conditions & actions are stored as Tiled properties.
                 # We need to sort them by name, so that "act1" comes before "act2" and so on..
+                print "obj is " + str(obj)
+                print "obj is " + str(dir(obj))
                 keys = sorted(obj.properties.keys())
                 
                 for k in keys:
@@ -349,6 +362,10 @@ class Map(object):
         # Create a list of all tile positions that we cannot walk through
         collision_map = set()
 
+        # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
+        # example: ((5,4),(5,3), both)
+        collision_lines_map = set()
+
         # Right now our collisions are defined in our tmx file as large regions that the player
         # can't pass through. We need to convert these areas into individual tile coordinates
         # that the player can't pass through.
@@ -381,8 +398,106 @@ class Map(object):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y)
                     collision_map.add(collision_tile)
+                    
+        # Similar to collisions, except we need to identify the tiles
+        # on either side of the poly-line and prevent moving between
+        # them
+        for collision_line in self.collision_lines:
 
-        return tiles, collision_map, mapsize
+            # >>> collision_wall.__dict__  
+            # {'name': None, 
+            # 'parent': <TiledMap: "resources/maps/test_pathfinding.tmx">,
+            # 'visible': 1, 
+            # 'height': 160.0, 
+            # 'width': 80.0, '
+            # gid': 0, 
+            # 'closed': False,
+            # 'y': 80.0, 'x': 80.0,
+            # 'rotation': 0,
+            # 'type': 'collision-wall',
+            # 'points': ((80.0, 80.0), (80.0, 128.0), (160.0, 128.0), (160.0, 240.0)) 
+            
+            # Another example:
+            # 'points': ((192.0, 80.0), (192.0, 192.0))
+
+            # For each pair of points, get the tiles on either side of the line.
+            # Assumption: A pair of points will only be vertical or horizontal (no diagonal lines)
+            
+            if len(collision_line.points) < 2:
+                raise Exception("Error: map has polyline with only one point")
+
+            # get two points, and round them
+            point1 = (self.round_to_divisible(collision_line.points[0][0], self.tile_size[0]),
+                      self.round_to_divisible(collision_line.points[0][1], self.tile_size[1]))
+            point2 = (self.round_to_divisible(collision_line.points[1][0], self.tile_size[0]),
+                      self.round_to_divisible(collision_line.points[1][1], self.tile_size[1]))
+
+            # check to see if horizontal or vertical
+            line_type = None
+            if point1[0] == point2[0] and point1[1] != point2[1]:
+                # x's are same, must be vertical
+                line_type = 'vertical'
+            elif point1[0] != point2[0] and point1[1] == point2[1]:
+                # y's are same, must be horizontal
+                line_type = 'horizontal'
+            else:
+                raise Exception("Error: Points on polyline are not strictly horizontal or vertical....")
+                
+            if line_type is 'vertical':
+                # get all tile coordinates on either side 
+                x = point1[0] / self.tile_size[0] # same as point2[0] b/c vertical
+                line_start = point1[1]
+                line_end = point2[1]
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
+                curr_y = line_start / self.tile_size[1]
+                for i in range(num_tiles_in_line):
+                    if line_start > line_end: # slightly different
+                                              # behavior depending on
+                                              # direction
+                        left_side_tile = (x-1,curr_y-1)
+                        right_side_tile = (x,curr_y-1)
+                        curr_y -= 1
+                    else:
+                        left_side_tile = (x-1,curr_y)
+                        right_side_tile = (x,curr_y)
+                        curr_y += 1
+
+                    # TODO - if we want to enable single-direction
+                    # walls (i.e. for jumping) then ask map-designer
+                    # to include a special property for the direction
+                    # to block, and then here we only block in one
+                    # direction, not both.
+                    collision_lines_map.add((left_side_tile, "right"))
+                    collision_lines_map.add((right_side_tile, "left"))
+
+            elif line_type is 'horizontal':
+                # get all tile coordinates on either side 
+                y = point1[1] / self.tile_size[1] # same as point2[1] b/c horizontal
+                line_start = point1[0]
+                line_end = point2[0]
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [0] b/c horizontal
+                curr_x = line_start / self.tile_size[0]
+                for i in range(num_tiles_in_line):
+                    if line_start > line_end: # slightly different
+                                              # behavior depending on
+                                              # direction
+                        top_side_tile = (curr_x-1,y-1)
+                        bottom_side_tile = (curr_x-1,y)
+                        curr_x -= 1
+                    else:
+                        top_side_tile = (curr_x, y-1)
+                        bottom_side_tile = (curr_x, y)
+                        curr_x += 1
+
+                    # TODO - if we want to enable single-direction
+                    # walls (i.e. for jumping) then ask map-designer
+                    # to include a special property for the direction
+                    # to block, and then here we only block in one
+                    # direction, not both.
+                    collision_lines_map.add((top_side_tile, "down"))
+                    collision_lines_map.add((bottom_side_tile, "up"))                
+
+        return tiles, collision_map, collision_lines_map, mapsize
 
     def round_to_divisible(self, x, base=16):
         """Rounds a number to a divisible base. This is used to round collision areas that aren't
@@ -458,7 +573,8 @@ if __name__=="__main__":
     print "Loading map"
     tile_size = [80, 80]    # 1 tile = 16 pixels
     testmap = Map()
-    testmap.loadfile("resources/maps/test.map", tile_size)
+    #testmap.loadfile("resources/maps/test.map", tile_size)
+    testmap.loadfile("resources/maps/test_pathfinding.map", tile_size)
 
     # Event loop THIS IS WHAT SHIT IS DOING RIGHT NOW BRAH
     while True:

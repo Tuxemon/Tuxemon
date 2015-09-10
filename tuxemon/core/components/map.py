@@ -173,6 +173,8 @@ class Map(object):
                 
                 # Conditions & actions are stored as Tiled properties.
                 # We need to sort them by name, so that "act1" comes before "act2" and so on..
+                print "obj is " + str(obj)
+                print "obj is " + str(dir(obj))
                 keys = sorted(obj.properties.keys())
                 
                 for k in keys:

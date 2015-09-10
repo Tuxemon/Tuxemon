@@ -460,16 +460,20 @@ class Map(object):
                         right_side_tile = (x,curr_y)
                         curr_y += 1
 
-                    # TODO - change this depending on property
+                    # TODO - if we want to enable single-direction
+                    # walls (i.e. for jumping) then ask map-designer
+                    # to include a special property for the direction
+                    # to block, and then here we only block in one
+                    # direction, not both.
                     collision_lines_map.add((left_side_tile, "right"))
                     collision_lines_map.add((right_side_tile, "left"))
 
             elif line_type is 'horizontal':
                 # get all tile coordinates on either side 
-                y = point1[1] / self.tile_size[1] # same as point2[0] b/c vertical
+                y = point1[1] / self.tile_size[1] # same as point2[1] b/c horizontal
                 line_start = point1[0]
                 line_end = point2[0]
-                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [1] b/c vertical
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [0] b/c horizontal
                 curr_x = line_start / self.tile_size[0]
                 for i in range(num_tiles_in_line):
                     if line_start > line_end: # slightly different
@@ -483,30 +487,13 @@ class Map(object):
                         bottom_side_tile = (curr_x, y)
                         curr_x += 1
 
-                    # TODO - change this depending on property
+                    # TODO - if we want to enable single-direction
+                    # walls (i.e. for jumping) then ask map-designer
+                    # to include a special property for the direction
+                    # to block, and then here we only block in one
+                    # direction, not both.
                     collision_lines_map.add((top_side_tile, "down"))
                     collision_lines_map.add((bottom_side_tile, "up"))                
-                                   
-
-
-        # #### FOR MY REFERENCE
-        #     # Get the collision area's tile location and dimension in tiles using the tileset's
-        #     # tile size.
-        #     x = self.round_to_divisible(collision_region.x, self.tile_size[0]) / self.tile_size[0]
-        #     y = self.round_to_divisible(collision_region.y, self.tile_size[1]) / self.tile_size[1]
-        #     width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
-        #     height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
-
-        #     # Loop through the area of this region and create all the tile coordinates that are 
-        #     # inside this region.
-        #     for a in range(0, int(width)):
-        #         for b in range(0, int(height)):
-        #             collision_tile = (a + x, b + y)
-        #             collision_map.add(collision_tile)
-        #### END REFERENCE
-
-        print "collision_lines_map is"
-        print str(collision_lines_map)
 
         return tiles, collision_map, collision_lines_map, mapsize
 

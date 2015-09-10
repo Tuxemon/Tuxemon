@@ -419,7 +419,6 @@ class Player(object):
         for tile, direction in collision_lines_map:
             if player_tile_pos == tile:
                 collisions.append(direction)
-                print "just appended direction to collisions: " + direction
 
         # Return a list of all the collision tiles around the player.
         return collisions

@@ -455,8 +455,8 @@ class Map(object):
                 num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
                 curr_y = line_start / self.tile_size[1]
                 for i in range(num_tiles_in_line):
-                    left_side_tile = (x,curr_y)
-                    right_side_tile = (x+1,curr_y)
+                    left_side_tile = (x-1,curr_y)
+                    right_side_tile = (x,curr_y)
                     collision_lines_map.add((left_side_tile, "right"))
                     collision_lines_map.add((right_side_tile, "left"))
                                    

@@ -189,20 +189,20 @@ class World(tools._State):
                                           self.resolution,
                                           self,
                                           name="Display Entered Name")
-        
+
         # This menu is just used to display a message that a particular
         # feature is not yet implemented.
         self.not_implmeneted_menu = menu.Menu(self.screen,
                                               self.resolution,
                                               self,
                                               name="Not implemented")
-        
+
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
         self.item_menu = ItemMenu(self.screen,
                                   self.resolution,
                                   self)
-        
+
         #Monster menu
         MonsterMenu = menu.monster_menu.MonsterMenu
         self.monster_menu = MonsterMenu(self.screen,
@@ -313,7 +313,7 @@ class World(tools._State):
         # self.displayname_menu.visible = True  # for debug
         self.displayname_menu.visible = False
         self.displayname_menu.interactable = False
-        
+
         self.not_implmeneted_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
         self.not_implmeneted_menu.size_y = prepare.SCREEN_SIZE[1] / 5
         self.not_implmeneted_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
@@ -322,7 +322,7 @@ class World(tools._State):
             (self.not_implmeneted_menu.size_y / 2)
         self.not_implmeneted_menu.visible = False
         self.not_implmeneted_menu.interactable = False
-        
+
         # Item Menu
         self.item_menu.size_x = prepare.SCREEN_SIZE[0]
         self.item_menu.size_y = prepare.SCREEN_SIZE[1]
@@ -330,7 +330,7 @@ class World(tools._State):
         self.item_menu.pos_y = 0
         self.item_menu.visible = False
         self.item_menu.interactable = False
-        
+
         # Monster Menu
         self.monster_menu.size_x = prepare.SCREEN_SIZE[0]
         self.monster_menu.size_y = prepare.SCREEN_SIZE[1]
@@ -349,7 +349,7 @@ class World(tools._State):
         # middle of a transition. For example, fading to black, then
         # teleporting the player, and fading back in again.
         self.delayed_teleport = False
-        
+
         # The delayed facing variable used to change the player's facing in
         # the middle of a transition.
         self.delayed_facing = None
@@ -438,7 +438,7 @@ class World(tools._State):
 
     def startup(self, current_time, persistant):
         """This is called every time the scene manager switches to this scene.
-        
+
         :param current_time: Current time passed.
         :param persistant: Keep a dictionary of optional persistant variables.
 
@@ -447,29 +447,29 @@ class World(tools._State):
 
         :rtype: None
         :returns: None
-        
-        
+
+
         **Examples:**
-        
+
         >>> current_time
         2895
         >>> persistant
         {}
-        
+
         """
-        
+
         # Allow player movement and make all menus invisible.
         self.menu_blocking = False
         for menu in self.menus:
             menu.interactable = False
             menu.visible = False
-            
+
         # Clear our next screen and any combat related variables.
         self.next = ""
         self.combat_started = False
         self.start_battle_transition = False
         self.battle_transition_in_progress = False
-        
+
 
     def update(self, screen, keys, current_time, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -481,21 +481,21 @@ class World(tools._State):
 
         :type surface: pygame.Surface
         :type keys: Tuple
-        :type current_time: Integer 
+        :type current_time: Integer
         :type time_delta: Float
 
         :rtype: None
         :returns: None
 
         **Examples:**
-        
+
         >>> surface
         <Surface(1280x720x32 SW)>
         >>> keys
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
         >>> current_time
         435
-        
+
         """
 
         logger.debug("*** Game Loop Started ***")
@@ -542,14 +542,14 @@ class World(tools._State):
     def get_event(self, event):
         """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
-        
+
         :param event: A pygame key event from pygame.event.get()
 
         :type event: PyGame Event
 
         :rtype: None
         :returns: None
-        
+
         """
 
         # If the not implemented window is open, send pygame events to it.
@@ -557,14 +557,14 @@ class World(tools._State):
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 self.not_implmeneted_menu.visible = False
                 self.not_implmeneted_menu.interactable = False
-            
+
             # Don't process any other input until the user presses ENTER.
             return False
 
         # Handle events if the item menu is interactable.
         if self.item_menu.interactable:
             self.item_menu.get_event(event, self.game)
-            
+
         # Handle events if the monster menu is interactable.
         if self.monster_menu.interactable:
             self.monster_menu.get_event(event, self.game)
@@ -580,7 +580,7 @@ class World(tools._State):
         # If the save menu is interactable, send pygame events to it.
         if self.save_menu.interactable:
             self.save_menu.get_event(event)
-            
+
         # Exit the game if the close button is pressed
         if event.type == pygame.QUIT:
             self.exit = True
@@ -595,6 +595,10 @@ class World(tools._State):
             else:
                 self.main_menu.visible = True
                 self.menu_blocking = True
+                self.player1.direction["up"] = False
+                self.player1.direction["down"] = False
+                self.player1.direction["left"] = False
+                self.player1.direction["right"] = False
 
         # Only allow player movement if they are not in a menu and are not
         # in combat
@@ -936,15 +940,15 @@ class World(tools._State):
             # false
             if not self.save_menu.visible:
                 self.main_menu.save = False
-                
+
         # Draw the Item Menu
         if self.item_menu.visible:
             self.item_menu.draw(draw_borders=False)
-        
+
         # Draw the Monster menu
         if self.monster_menu.visible:
             self.monster_menu.draw(draw_borders=False)
-            
+
         # Not implemented menu
         if self.not_implmeneted_menu.visible:
             self.not_implmeneted_menu.draw()
@@ -1109,7 +1113,7 @@ class World(tools._State):
         if self.delayed_teleport and self.start_transition_back:
             self.global_x = self.delayed_x
             self.global_y = self.delayed_y
-            
+
             if self.delayed_facing:
                 self.player1.facing = self.delayed_facing
                 self.delayed_facing = None
@@ -1122,7 +1126,7 @@ class World(tools._State):
                 self.tiles, self.collision_map, self.map_size = self.current_map.loadfile(
                     self.tile_size)
                 self.game.events = self.current_map.events
-                
+
                 # Clear out any existing NPCs
                 self.npcs = []
 
@@ -1145,7 +1149,7 @@ class World(tools._State):
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
-                        
+
             self.delayed_teleport = False
 
         # Replace this SAVE_THIS_FUCKING_SCREEN with the value of the blit of

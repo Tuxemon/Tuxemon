@@ -82,4 +82,3 @@ class Npc(IPlugin):
         # Add the NPC to the game's NPC list
         world.npcs.append(npc)
     
-    

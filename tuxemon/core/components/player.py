@@ -101,6 +101,9 @@ class Player(object):
         self.rect = pygame.Rect(self.position[0], self.position[1], self.playerWidth, self.playerHeight) # Collision rect
         self.game_variables = {}		# Game variables for use with events
 
+        self.pathfind_dest = None # tile position, current destination of the player
+        self.path = None
+        
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
@@ -488,7 +491,44 @@ class Player(object):
                 image, (image.get_width() * scale,
                         image.get_height() * scale))
 
+    def pathfind_r(self, dest, curr_loc, tiles_left_to_check):
+        # recursive breadth first search algorithm
+        if dest in tiles_left_to_check:
+            # done
+            return dest
+        elif len(tiles_left_to_check) == 0:
+            # does reaching this case mean we exhausted the search? I think so
+            return False
+        else:
+            # pop next tile off queue
+            next_tile = tiles_left_to_check.pop(0)
+            # add neighbors of current tile to queue
+            tiles_left_to_check += self.get_adjacent_tiles(next_tile)
+            # recur
+            rest_of_path = self.pathfind_r(dest, next_tile, tiles_left_to_check)
+            if rest_of_path:
+                return [curr_loc] + rest_of_path 
+            else:
+                return False
 
+    def pathfind(self, dest):
+        # compute a path to dest (tile pos)
+        # Breadth-First-Search algorithm (later use A* by adding hueristic)
+        return self.pathfind_r(dest, self.tile_pos, self.get_adjacent_tiles(self.tile_pos))
+            
+    def get_adjacent_tiles(self, curr_loc):
+        collision_set = game.collision_map.union(npc_positions)
+        blocked_directions = self.collision_check(curr_loc, collision_set, game.collision_lines_map)        
+        adj_tiles = []
+        if "up" not in blocked_directions:
+            adj_tiles.append((curr_loc[0],curr_loc[1]-1))
+        if "down" not in blocked_directions:
+            adj_tiles.append((curr_loc[0],curr_loc[1]+1))
+        if "left" not in blocked_directions:
+            adj_tiles.append((curr_loc[0]-1,curr_loc[1]))
+        if "right" not in blocked_directions:
+            adj_tiles.append((curr_loc[0]+1,curr_loc[1]-1))        
+        return adj_tiles
 
 class Npc(Player):
     def __init__(self, sprite_name="maple", name="Maple"):
@@ -499,5 +539,5 @@ class Npc(Player):
         self.name = name
         self.behavior = "wander"
 
-
+    
 

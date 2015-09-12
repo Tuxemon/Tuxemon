@@ -32,7 +32,7 @@
 import logging
 import pygame
 import pprint
-
+import time
 from . import pyganim
 from . import ai
 from . import config
@@ -491,38 +491,78 @@ class Player(object):
                 image, (image.get_width() * scale,
                         image.get_height() * scale))
 
-    def pathfind(self, dest):
-        path = self.pathfind_r(dest, self.tile_pos,
-                               self.get_adjacent_tiles(self.tile_pos))
+    def pathfind(self, dest, game):
+        #starting_queue = self.get_adjacent_tiles(self.tile_pos, game)
+        #starting_queue = map(lambda x: PathfindNode(x), starting_queue)
+        starting_loc = (int(round(self.tile_pos[0])),
+                        int(round(self.tile_pos[1])))
+        path = self.pathfind_r(dest,
+                               [PathfindNode(starting_loc)], # queue
+                               [], # visited
+                               0,  # depth
+                               game)
+        print "finished pathfind_r, path is "+str(path)
         if path:
             self.path = path 
             self.pathfind_dest = dest
             print "path is " + path
+            time.sleep(1000)
             
-    def pathfind_r(self, dest, curr_loc, tiles_left_to_check):
-        # recursive breadth first search algorithm
-        if dest in tiles_left_to_check:
-            # done
-            return dest
-        elif len(tiles_left_to_check) == 0:
+    def pathfind_r(self, dest, queue, visited, depth, game):
+#        print "----- "
+#        print "depth is " + str(depth) + " curr_loc is " + str(curr_loc)
+#        print "len(queue) " + str(len(queue)) + " len(visited) "+str(len(visited))
+        #print "dest is " + str(dest)
+        #print "tiles_left " + str(tiles_left_to_check)
+        #print "tiles explored " + str(tiles_already_checked)
+
+        # recursive breadth first search algorithm        
+
+        if len(queue) == 0:
             # does reaching this case mean we exhausted the search? I think so
+            # which means there is no possible path
+            print "REACHED EMPTY QUEUE!!!"
+            time.sleep(5)
             return False
+
+        elif queue[0].get_value() == dest:
+            # done
+            print "REACHED DESTINATION!!!!"
+            time.sleep(1)
+            print "path is :"
+            tmp_curr_node = queue[0]
+            while tmp_curr_node.get_parent != None:
+                print "  " + str(tmp_curr_node.get_value())
+                tmp_curr_node = tmp_curr_node.get_parent()
+            time.sleep(1000)
+            return queue[0]
+
         else:
             # pop next tile off queue
-            next_tile = tiles_left_to_check.pop(0)
-            # add neighbors of current tile to queue
-            tiles_left_to_check += self.get_adjacent_tiles(next_tile)
-            # recur
-            rest_of_path = self.pathfind_r(dest, next_tile, tiles_left_to_check)
-            if rest_of_path:
-                return [curr_loc] + rest_of_path 
-            else:
-                return False
+            next_node = queue.pop(0)
+            print "popping off " + str(next_node.get_value())
+            time.sleep(.05)
 
-    def get_adjacent_tiles(self, curr_loc):
-        collision_set = game.collision_map.union(npc_positions)
-        blocked_directions = self.collision_check(curr_loc, collision_set, game.collision_lines_map)        
+            # add neighbors of current tile to queue
+            # if we haven't checked them already
+            for adj_pos in self.get_adjacent_tiles(next_node.get_value(), game):
+                if adj_pos not in visited and adj_pos not in map(lambda x: x.get_value(), queue):
+                    queue = [PathfindNode(adj_pos,next_node)]+queue
+                    visited = [next_node.get_value()]+visited
+
+            # recur
+            path = self.pathfind_r(dest,queue,visited,depth+1,game)
+            #print "path is: " + str(path)
+            return path
+            
+    def get_adjacent_tiles(self, curr_loc, game):
+        # Get a copy of the world state.
+        world = game.state_dict["WORLD"]
+        #collision_set = world.collision_map.union(npc_positions)
+        blocked_directions = self.collision_check(curr_loc, world.collision_map, world.collision_lines_map)        
+        print "blocked_directions are " + str(blocked_directions)
         adj_tiles = []
+        curr_loc = (int(round(curr_loc[0])),int(round(curr_loc[1])))
         if "up" not in blocked_directions:
             adj_tiles.append((curr_loc[0],curr_loc[1]-1))
         if "down" not in blocked_directions:
@@ -530,7 +570,7 @@ class Player(object):
         if "left" not in blocked_directions:
             adj_tiles.append((curr_loc[0]-1,curr_loc[1]))
         if "right" not in blocked_directions:
-            adj_tiles.append((curr_loc[0]+1,curr_loc[1]-1))        
+            adj_tiles.append((curr_loc[0]+1,curr_loc[1]))        
         return adj_tiles
 
 class Npc(Player):
@@ -543,4 +583,20 @@ class Npc(Player):
         self.behavior = "wander"
 
     
+class PathfindNode():
+    '''
+    Used in path finding search
+    '''
+    def __init__(self, value, parent=None):
+        self.parent = parent
+        self.value = value
 
+    def get_parent(self):
+        return self.parent
+
+    def set_parent(self, parent):
+        self.parent = parent
+
+    def get_value(self):
+        return self.value
+    

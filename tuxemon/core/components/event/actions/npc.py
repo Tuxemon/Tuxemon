@@ -99,7 +99,7 @@ class Npc(IPlugin):
                 curr_npc = n
                 print "found npc: " +npc_name
 
-        curr_npc.pathfind((dest_x,dest_y))
+        curr_npc.pathfind((int(dest_x),int(dest_y)), game)
 
 
 

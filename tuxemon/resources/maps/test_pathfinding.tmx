@@ -80,7 +80,7 @@
   </object>
   <object id="29" name="Create Maple" type="event" x="144" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc Maple,9,7,maple,wander"/>
+    <property name="act1" value="create_npc Maple,9,6,maple,stay"/>
     <property name="cond1" value="not npc_exists Maple"/>
    </properties>
   </object>

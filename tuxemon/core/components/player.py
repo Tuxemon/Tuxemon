@@ -491,6 +491,14 @@ class Player(object):
                 image, (image.get_width() * scale,
                         image.get_height() * scale))
 
+    def pathfind(self, dest):
+        path = self.pathfind_r(dest, self.tile_pos,
+                               self.get_adjacent_tiles(self.tile_pos))
+        if path:
+            self.path = path 
+            self.pathfind_dest = dest
+            print "path is " + path
+            
     def pathfind_r(self, dest, curr_loc, tiles_left_to_check):
         # recursive breadth first search algorithm
         if dest in tiles_left_to_check:
@@ -511,11 +519,6 @@ class Player(object):
             else:
                 return False
 
-    def pathfind(self, dest):
-        # compute a path to dest (tile pos)
-        # Breadth-First-Search algorithm (later use A* by adding hueristic)
-        return self.pathfind_r(dest, self.tile_pos, self.get_adjacent_tiles(self.tile_pos))
-            
     def get_adjacent_tiles(self, curr_loc):
         collision_set = game.collision_map.union(npc_positions)
         blocked_directions = self.collision_check(curr_loc, collision_set, game.collision_lines_map)        

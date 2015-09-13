@@ -492,56 +492,41 @@ class Player(object):
                         image.get_height() * scale))
 
     def pathfind(self, dest, game):
-        #starting_queue = self.get_adjacent_tiles(self.tile_pos, game)
-        #starting_queue = map(lambda x: PathfindNode(x), starting_queue)
+        # will generate a path and store it in 
+        # player.path
         starting_loc = (int(round(self.tile_pos[0])),
                         int(round(self.tile_pos[1])))
-        path = self.pathfind_r(dest,
+
+        path = self.pathfind_r(dest, 
                                [PathfindNode(starting_loc)], # queue
                                [], # visited
                                0,  # depth
                                game)
-        print "finished pathfind_r, path is "+str(path)
         if path:
             self.path = path 
             self.pathfind_dest = dest
-            print "path is " + path
-            time.sleep(1000)
+        else:
+            # TODO get current map name for a more useful error
+            logger.error("Pathfinding failed to find a path from " + 
+                         str(starting_loc) + " to " + str(dest) + 
+                         ". Are you sure that an obstacle-free path exists?")
             
     def pathfind_r(self, dest, queue, visited, depth, game):
-#        print "----- "
-#        print "depth is " + str(depth) + " curr_loc is " + str(curr_loc)
-#        print "len(queue) " + str(len(queue)) + " len(visited) "+str(len(visited))
-        #print "dest is " + str(dest)
-        #print "tiles_left " + str(tiles_left_to_check)
-        #print "tiles explored " + str(tiles_already_checked)
-
         # recursive breadth first search algorithm        
 
         if len(queue) == 0:
             # does reaching this case mean we exhausted the search? I think so
             # which means there is no possible path
-            print "REACHED EMPTY QUEUE!!!"
-            time.sleep(5)
             return False
 
         elif queue[0].get_value() == dest:
             # done
-            print "REACHED DESTINATION!!!!"
-            time.sleep(1)
-            print "path is :"
-            tmp_curr_node = queue[0]
-            while tmp_curr_node.get_parent != None:
-                print "  " + str(tmp_curr_node.get_value())
-                tmp_curr_node = tmp_curr_node.get_parent()
-            time.sleep(1000)
+            print str(queue[0])
             return queue[0]
 
         else:
             # pop next tile off queue
             next_node = queue.pop(0)
-            print "popping off " + str(next_node.get_value())
-            time.sleep(.05)
 
             # add neighbors of current tile to queue
             # if we haven't checked them already
@@ -558,9 +543,7 @@ class Player(object):
     def get_adjacent_tiles(self, curr_loc, game):
         # Get a copy of the world state.
         world = game.state_dict["WORLD"]
-        #collision_set = world.collision_map.union(npc_positions)
-        blocked_directions = self.collision_check(curr_loc, world.collision_map, world.collision_lines_map)        
-        print "blocked_directions are " + str(blocked_directions)
+        blocked_directions = self.collision_check(curr_loc, world.collision_map, world.collision_lines_map)
         adj_tiles = []
         curr_loc = (int(round(curr_loc[0])),int(round(curr_loc[1])))
         if "up" not in blocked_directions:
@@ -600,3 +583,10 @@ class PathfindNode():
     def get_value(self):
         return self.value
     
+    def __str__(self):
+        s = str(self.value)
+        if self.parent != None:
+            s += str(self.parent)
+        return s
+
+        

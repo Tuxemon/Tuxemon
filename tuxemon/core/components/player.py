@@ -332,47 +332,59 @@ class Player(object):
         return global_x, global_y
 
     def move_one_tile(self, direction):
-        # moves one tile in the given direction
-        print "In move_one_tile("+direction+")"
+        self.direction[direction] = True
+        
 
-        # round self.tile_pos
-        my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1]))) 
+        # # moves one tile in the given direction
+        # print "In move_one_tile("+direction+")"
 
-        # start moving if we aren't moving
-        if not self.moving:
-            if direction == "up":
-                self.tile_move_dest = (my_tile_pos[0], my_tile_pos[1]-1)
-                self.moving = True
-                self.move_direction = "up"
-                self.direction["up"] = True
-            elif direction == "down":
-                self.tile_move_dest = (my_tile_pos[0], my_tile_pos[1]+1)
-                self.moving = True
-                self.move_direction = "down"
-                self.direction["down"] = True
-            elif direction == "left":
-                self.tile_move_dest = (my_tile_pos[0]-1, my_tile_pos[1])
-                self.moving = True
-                self.move_direction = "left"
-                self.direction["left"] = True
-            elif direction == "right":
-                self.tile_move_dest = (my_tile_pos[0]+1, my_tile_pos[1])
-                self.moving = True
-                self.move_direction = "right"
-                self.direction["right"] = True
-            else:
-                logger.error("In player.move_one_tile() direction is not up,down,left,right")
+        # # round self.tile_pos
+        # my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1]))) 
+
+        # # start moving if we aren't moving
+        # if not self.moving:
+        #     if direction == "up":
+        #         #self.move_destination = (my_tile_pos[0], my_tile_pos[1]-1)
+        #         #print "started moving up! my local dest is " + str(self.move_destination)
+        #         #self.moving = True
+        #         #self.move_direction = "up"
+        #         self.direction["up"] = True
+        #         #self.moveConductor.play()
+        #     elif direction == "down":
+        #         #self.move_destination = (my_tile_pos[0], my_tile_pos[1]+1)
+        #         #print "started moving down! my local dest is " + str(self.move_destination)
+        #         #self.moving = True
+        #         #self.move_direction = "down"
+        #         self.direction["down"] = True
+        #         #self.moveConductor.play()
+        #     elif direction == "left":
+        #         #self.move_destination = (my_tile_pos[0]-1, my_tile_pos[1])
+        #         #print "started moving left! my local dest is " + str(self.move_destination)
+        #         #self.moving = True
+        #         #self.move_direction = "left"
+        #         self.direction["left"] = True
+        #         #self.moveConductor.play()
+        #     elif direction == "right":
+        #         #self.move_destination = (my_tile_pos[0]+1, my_tile_pos[1])
+        #         #print "started moving right! my local dest is " + str(self.move_destination)
+        #         #self.moving = True
+        #         #self.move_direction = "right"
+        #         self.direction["right"] = True
+        #         #self.moveConductor.play()
+        #     else:
+        #         logger.error("In player.move_one_tile() direction is not up,down,left,right")
                 
-        # if we are moving, see if we have reached our destination
-        if self.moving:
-            if my_tile_pos == self.tile_move_dest:
-                print "stopping moving! in move_one_tile"
-                self.moving = False
-                self.move_direction = False
-                self.direction["right"] = False                
-                self.direction["left"] = False              
-                self.direction["down"] = False
-                self.direction["up"] = False                
+        # # if we are moving, see if we have reached our destination
+        # #if self.moving:
+        #     #if my_tile_pos == self.move_destination:
+        #         #print "stopping moving! in move_one_tile"
+        #         #self.moving = False
+        #         #self.move_direction = False
+        #         #self.direction["right"] = False                
+        #         #self.direction["left"] = False              
+        #         #self.direction["down"] = False
+        #         #self.direction["up"] = False                
+        #         #self.moveConductor.stop()
 
     def move_by_path(self):
         '''
@@ -407,7 +419,8 @@ class Player(object):
             if my_tile_pos == next_plan_step:
                 # somehow we are already at the next plan step, just pop
                 self.path.pop()
-
+        else:
+            print "self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving)
 
     def draw(self, screen, layer):
         """Draws the player to the screen depending on whether or not they are moving or

@@ -758,6 +758,9 @@ class World(tools._State):
             npc.position[0] -= self.global_x_diff
             npc.position[1] -= self.global_y_diff
 
+            # debug info
+            print "npc.tile_pos="+str(npc.tile_pos)
+            
             # if the npc has a path, move it along its path
             if npc.path:
                 npc.move_by_path()

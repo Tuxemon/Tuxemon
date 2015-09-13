@@ -758,6 +758,13 @@ class World(tools._State):
             npc.position[0] -= self.global_x_diff
             npc.position[1] -= self.global_y_diff
 
+            # if the npc has a path, move it along its path
+            if npc.path:
+                npc.move_by_path()
+
+            npc.move(self.screen, self.tile_size, self.time_passed_seconds,
+                     (self.global_x, self.global_y), self)
+
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
 

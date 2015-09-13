@@ -83,6 +83,9 @@ class Npc(IPlugin):
         world.npcs.append(npc)
     
     def pathfind(self, game, action):
+        '''
+        Will move the player / npc to the given location
+        '''
         # Get a copy of the world state.
         world = game.state_dict["WORLD"]
         
@@ -100,6 +103,4 @@ class Npc(IPlugin):
                 print "found npc: " +npc_name
 
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)
-
-
 

@@ -101,7 +101,6 @@ class Player(object):
         self.rect = pygame.Rect(self.position[0], self.position[1], self.playerWidth, self.playerHeight) # Collision rect
         self.game_variables = {}		# Game variables for use with events
 
-        self.pathfind_dest = None # tile position, current destination of the player
         self.path = None
         
         # Load all of the player's sprite animations
@@ -179,7 +178,7 @@ class Player(object):
         player_pos = ( int(round(self.tile_pos[0])), int(round(self.tile_pos[1])) )
         
             
-        # *** Here we're continuing a move it we're in the middle of one already *** #
+        # *** Here we're continuing a move if we're in the middle of one already *** #
         # If the player is in the middle of moving and facing a certain direction, move in that
         # direction
         if self.move_direction == "up" and self.moving:
@@ -331,7 +330,61 @@ class Player(object):
                 self.moveConductor.stop()
 
         return global_x, global_y
-    
+
+    def move_one_tile(self, direction):
+        # moves one tile in the given direction
+        
+        # start moving if we aren't moving
+        if not self.moving:
+            if direction == "up":
+                self.tile_move_dest = (self.tile_pos[0], self.tile_pos[1]-1)
+                self.moving = True
+                self.move_direction = "up"
+            elif direction == "down":
+                self.tile_move_dest = (self.tile_pos[0], self.tile_pos[1]+1)
+                self.moving = True
+                self.move_direction = "down"
+            elif direction == "left":
+                self.tile_move_dest = (self.tile_pos[0]-1, self.tile_pos[1])
+                self.moving = True
+                self.move_direction = "left"
+            elif direction == "right":
+                self.tile_move_dest = (self.tile_pos[0]+1, self.tile_pos[1])
+                self.moving = True
+                self.move_direction = "right"
+            else:
+                logger.error("In player.move_one_tile() direction is not up,down,left,right")
+                
+        # if we are moving, see if we have reached our destination
+        if self.moving:
+            if self.tile_pos == self.tile_move_dest:
+                self.moving = False
+
+    def move_by_path(self):
+        '''
+        This method will ensure movement will happen until the player
+        reaches its destination
+        '''
+        # TODO maybe this function could be organized better
+        if self.path:
+            # get the next step of the plan
+            next_plan_step = self.path.pop(0)
+            # make sure it's adjacent to current location
+            adj_x = abs(self.tile_pos[0] - next_plan_step[0]) == 1
+            adj_y = abs(self.tile_pos[1] - next_plan_step[1]) == 1
+            # do xor to invalidate diagonal adjacency
+            if (adj_x and not adj_y) or (not adj_x and adj_y):
+                # adjacent is true, so execute move to next plan step
+                # get direction we need to move
+                if self.tile_pos[0] > next_plan_step[0]:
+                    self.move_one_tile("left")
+                elif self.tile_pos[0] < next_plan_step[0]:
+                    self.move_one_tile("right")
+                elif self.tile_pos[1] < next_plan_step[1]:
+                    self.move_one_tile("down")
+                elif self.tile_pos[1] > next_plan_step[1]:
+                    self.move_one_tile("up")
+
 
     def draw(self, screen, layer):
         """Draws the player to the screen depending on whether or not they are moving or
@@ -492,24 +545,32 @@ class Player(object):
                         image.get_height() * scale))
 
     def pathfind(self, dest, game):
-        # will generate a path and store it in 
-        # player.path
-        starting_loc = (int(round(self.tile_pos[0])),
-                        int(round(self.tile_pos[1])))
+        # first check npc doesn't already have a path
+        if not self.path:
 
-        path = self.pathfind_r(dest, 
-                               [PathfindNode(starting_loc)], # queue
-                               [], # visited
-                               0,  # depth
-                               game)
-        if path:
-            self.path = path 
-            self.pathfind_dest = dest
-        else:
-            # TODO get current map name for a more useful error
-            logger.error("Pathfinding failed to find a path from " + 
-                         str(starting_loc) + " to " + str(dest) + 
-                         ". Are you sure that an obstacle-free path exists?")
+            # will generate a path and store it in 
+            # player.path
+            starting_loc = (int(round(self.tile_pos[0])),
+                            int(round(self.tile_pos[1])))
+            
+            pathnode = self.pathfind_r(dest, 
+                                   [PathfindNode(starting_loc)], # queue
+                                   [], # visited
+                                   0,  # depth (not a limit, just a counter)
+                                   game)
+            if pathnode:
+                # traverse the node to get the path
+                path = []
+                while pathnode:
+                    path.append(pathnode.get_value())
+                    pathnode = pathnode.get_parent()
+                # store the path
+                self.path = path 
+            else:
+                # TODO get current map name for a more useful error
+                logger.error("Pathfinding failed to find a path from " + 
+                             str(starting_loc) + " to " + str(dest) + 
+                             ". Are you sure that an obstacle-free path exists?")
             
     def pathfind_r(self, dest, queue, visited, depth, game):
         # recursive breadth first search algorithm        
@@ -521,7 +582,6 @@ class Player(object):
 
         elif queue[0].get_value() == dest:
             # done
-            print str(queue[0])
             return queue[0]
 
         else:

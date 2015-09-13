@@ -33,6 +33,7 @@ import logging
 import pygame
 import pprint
 
+from core import prepare
 from . import pyganim
 from . import ai
 from . import config
@@ -44,7 +45,7 @@ logger.debug("components.player successfully imported")
 # Class definition for the player.
 class Player(object):
     """A class for a player object. This object can be used for NPCs as well as the player:
-    
+
     Example:
 
     >>> player1 = core.components.player.Player()
@@ -70,7 +71,7 @@ class Player(object):
         self.standing = {}
         standing_types = ["front", "back", "left", "right"]
         for standing_type in standing_types:
-            surface = pygame.image.load('resources/sprites/%s_%s.png' % (sprite_name, standing_type)).convert_alpha()
+            surface = pygame.image.load(prepare.BASEDIR + 'resources/sprites/%s_%s.png' % (sprite_name, standing_type)).convert_alpha()
             surface_top = surface.subsurface((0, 0,
                                               surface.get_width(), int(surface.get_height() / 2)))
             surface_bottom = surface.subsurface((0, int(surface.get_height() / 2),
@@ -104,8 +105,8 @@ class Player(object):
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
-            images_and_durations = [('resources/sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')), 
-                                    config.Config().player_animation_speed) for num in range(4)]
+            images_and_durations = [(prepare.BASEDIR + 'resources/sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')),
+                                    prepare.CONFIG.player_animation_speed) for num in range(4)]
 
             # Loop through all of our animations and get the top and bottom subsurfaces.
             top_frames = []
@@ -136,7 +137,7 @@ class Player(object):
 
     def move(self, screen, tile_size, time_passed_seconds, (global_x, global_y), game):
         """Draws text to the current menu object
-        
+
         :param screen: The pygame surface you wish to blit the player onto.
         :param tile_size: A list with the [width, height] of the tiles in pixels. This is used for
             tile-based movement.
@@ -145,7 +146,7 @@ class Player(object):
         :param global_x/global_y: The global_x/y variables that we add to everything on a map
             to move everything around the player.
         :param game: The Tuxemon game instance itself.
-        
+
         :type screen: pygame.Surface
         :type tile_size: List
         :type time_passed_seconds: Float
@@ -155,27 +156,27 @@ class Player(object):
         :rtype: Tuple
         :returns: The updated (global_x, global_y) coordinates after moving (or stopping due
             to collision)
-        
+
         """
 
         # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
         # collisions.
         npc_positions = set()
-        
+
         # Get all the NPC's tile positions so we can check for collisions.
         for npc in game.npcs:
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add( (npc_pos_x, npc_pos_y) )
-        
+
         # Combine our map collision tiles with our npc collision positions
         collision_set = game.collision_map.union(npc_positions)
-            
+
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
         player_pos = ( int(round(self.tile_pos[0])), int(round(self.tile_pos[1])) )
-        
-            
+
+
         # *** Here we're continuing a move it we're in the middle of one already *** #
         # If the player is in the middle of moving and facing a certain direction, move in that
         # direction
@@ -202,7 +203,7 @@ class Player(object):
 
                         # Set the destination position we'd wish to reach if we just started walking.
                         self.move_destination = [int(self.move_destination[0]), int(self.move_destination[1] + tile_size[1])]
-                        
+
 
                     # If we are going to collide with something, set our position to the original
                     # move destination and stop moving
@@ -210,7 +211,7 @@ class Player(object):
                         self.moving = False
                         global_y = self.move_destination[1]
 
-    
+
         if self.move_direction == "down" and self.moving:
             if global_y <= self.move_destination[1] and not self.direction["down"]:
                 self.moving = False
@@ -232,7 +233,7 @@ class Player(object):
                         self.moving = False
                         global_y = self.move_destination[1]
 
-    
+
         if self.move_direction == "left" and self.moving:
             if global_x >= self.move_destination[0] and not self.direction["left"]:
                 self.moving = False
@@ -253,7 +254,7 @@ class Player(object):
                          self.moving = False
                          global_x = self.move_destination[0]
 
-    
+
         if self.move_direction == "right" and self.moving:
             if global_x <= self.move_destination[0] and not self.direction["right"]:
                 self.moving = False
@@ -328,7 +329,7 @@ class Player(object):
                 self.moveConductor.stop()
 
         return global_x, global_y
-    
+
 
     def draw(self, screen, layer):
         """Draws the player to the screen depending on whether or not they are moving or
@@ -386,22 +387,22 @@ class Player(object):
         :param player_pos: An (x, y) list of the player's current tile position. Must be an
             integer.
         :param collision_set: A set() object of (x, y) coordinates that are collidable.
-        
+
         :type player_pos: List
         :type collision_set: Set
 
         :rtype: List
         :returns: A list indicating what tiles relative to the player are collision tiles.
             e.g. ["down", "up"]
-        
+
         """
-        
+
         collisions = []
-        
+
         # Check to see if the tile below the player is a collision tile.
         if (player_tile_pos[0], player_tile_pos[1] + 1) in collision_set:
             collisions.append("down")
-        
+
         # Check to see if the tile above the player is a collision tile.
         if (player_tile_pos[0], player_tile_pos[1] - 1) in collision_set:
             collisions.append("up")
@@ -413,7 +414,7 @@ class Player(object):
         # Check to see if the tile to the right of the player is a collision tile.
         if (player_tile_pos[0] + 1, player_tile_pos[1]) in collision_set:
             collisions.append("right")
-            
+
         # From the players current tile, check to see if any nearby tile
         # is separated by a wall
         for tile, direction in collision_lines_map:
@@ -429,54 +430,54 @@ class Player(object):
         will send the monster to PC archive.
 
         :param monster: The core.components.monster.Monster object to add to the player's party.
-        
+
         :type monster: core.components.monster.Monster
 
         :rtype: None
         :returns: None
-        
+
         """
-        
+
         if len(self.monsters) >= self.party_limit:
             print "Send to PC"
-            
+
         else:
             self.monsters.append(monster)
-        
-        
+
+
     def remove_monster(self, monster):
         """Removes a monster from this player's party.
 
         :param monster: The core.components.monster.Monster object to remove from the player's
             party.
-        
+
         :type monster: core.components.monster.Monster
 
         :rtype: None
         :returns: None
-        
+
         """
-        
+
         # Remove the tuxemon if they are in this player's party
         if monster in self.monsters:
             self.monsters.remove(monster)
 
     def switch_monsters(self, index_monster_1, index_monster_2):
         """Swap two monsters in this player's party
-        
+
         :param index_monster_1/index_monster_2: The indexes of the monsters to switch in the player's party.
-        
+
         :type index_monster_1/index_monster_2: int
-        
+
         :rtype: None
         :returns: None
-        
+
         """
-        
+
         # Swap the tuxemons if they are in the player's party
         if index_monster_1 < len(self.monsters) and index_monster_2 < len(self.monsters):
             self.monsters[index_monster_1], self.monsters[index_monster_2] = self.monsters[index_monster_2], self.monsters[index_monster_1]
-        
+
     def scale_sprites(self, scale):
         # Scale the sprite and its animations
         for key, animation in self.sprite.items():

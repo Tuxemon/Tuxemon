@@ -96,7 +96,7 @@ class World(tools._State):
         # self.visible_tiles = [5, 5]
 
         # Create a new map instance
-        self.current_map = map.Map("resources/maps/%s" % prepare.CONFIG.starting_map)
+        self.current_map = map.Map(prepare.BASEDIR + "resources/maps/%s" % prepare.CONFIG.starting_map)
         self.tiles, self.collision_map, self.collision_lines_map, self.map_size = \
             self.current_map.loadfile(self.tile_size)
 
@@ -229,7 +229,7 @@ class World(tools._State):
         for menu in self.menus:
             menu.scale = self.scale    # Set the scale of the menu.
             menu.set_font(size=menu.font_size * self.scale,
-                          font="resources/font/PressStart2P.ttf",
+                          font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
                           spacing=menu.font_size * self.scale)
 
@@ -1118,11 +1118,11 @@ class World(tools._State):
                 self.player1.facing = self.delayed_facing
                 self.delayed_facing = None
 
-            if "resources/maps/" + self.delayed_mapname != self.current_map.filename:
+            if prepare.BASEDIR + "resources/maps/" + self.delayed_mapname != self.current_map.filename:
                 self.current_map = map.Map(
-                    "resources/maps/" + self.delayed_mapname)
+                    prepare.BASEDIR + "resources/maps/" + self.delayed_mapname)
                 self.event_engine.current_map = map.Map(
-                    "resources/maps/" + self.delayed_mapname)
+                    prepare.BASEDIR + "resources/maps/" + self.delayed_mapname)
                 self.tiles, self.collision_map, self.collision_lines_map, self.map_size = self.current_map.loadfile(
                     self.tile_size)
                 self.game.events = self.current_map.events

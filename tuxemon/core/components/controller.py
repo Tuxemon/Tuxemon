@@ -32,6 +32,7 @@
 import logging
 import pygame
 from . import screen
+from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -54,8 +55,8 @@ class Controller(object):
 
     def load(self):
         from core import prepare
-        self.dpad["surface"] = pygame.image.load("resources/gfx/d-pad.png").convert_alpha()
-        self.dpad["surface"] = pygame.transform.scale(self.dpad["surface"], 
+        self.dpad["surface"] = pygame.image.load(prepare.BASEDIR + "resources/gfx/d-pad.png").convert_alpha()
+        self.dpad["surface"] = pygame.transform.scale(self.dpad["surface"],
             (self.dpad["surface"].get_width() * prepare.SCALE, self.dpad["surface"].get_height() * prepare.SCALE))
         self.dpad["position"] = (0, prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height() )
 
@@ -65,23 +66,23 @@ class Controller(object):
             self.dpad["position"][1],                      # Rectangle position_y
             self.dpad["surface"].get_width() /3,           # Rectangle size_x
             self.dpad["surface"].get_height() /2)          # Rectangle size_y
-        self.dpad["rect"]["down"] = pygame.Rect(self.dpad["position"][0] + (self.dpad["surface"].get_width() /3), 
-            self.dpad["position"][1] + (self.dpad["surface"].get_height() /2), 
-            self.dpad["surface"].get_width() /3, 
+        self.dpad["rect"]["down"] = pygame.Rect(self.dpad["position"][0] + (self.dpad["surface"].get_width() /3),
+            self.dpad["position"][1] + (self.dpad["surface"].get_height() /2),
+            self.dpad["surface"].get_width() /3,
             self.dpad["surface"].get_height() /2)
-        self.dpad["rect"]["left"] = pygame.Rect(self.dpad["position"][0], 
-            self.dpad["position"][1] + (self.dpad["surface"].get_height() /3), 
-            self.dpad["surface"].get_width() /2, 
+        self.dpad["rect"]["left"] = pygame.Rect(self.dpad["position"][0],
+            self.dpad["position"][1] + (self.dpad["surface"].get_height() /3),
+            self.dpad["surface"].get_width() /2,
             self.dpad["surface"].get_height() /3)
-        self.dpad["rect"]["right"] = pygame.Rect(self.dpad["position"][0] + (self.dpad["surface"].get_width() /2), 
-            self.dpad["position"][1] + (self.dpad["surface"].get_height() /3), 
-            self.dpad["surface"].get_width() /2, 
+        self.dpad["rect"]["right"] = pygame.Rect(self.dpad["position"][0] + (self.dpad["surface"].get_width() /2),
+            self.dpad["position"][1] + (self.dpad["surface"].get_height() /3),
+            self.dpad["surface"].get_width() /2,
             self.dpad["surface"].get_height() /3)
 
         # Create the buttons
         self.a_button = {}
-        self.a_button["surface"] = pygame.image.load("resources/gfx/a-button.png").convert_alpha()
-        self.a_button["surface"] = pygame.transform.scale(self.a_button["surface"], 
+        self.a_button["surface"] = pygame.image.load(prepare.BASEDIR + "resources/gfx/a-button.png").convert_alpha()
+        self.a_button["surface"] = pygame.transform.scale(self.a_button["surface"],
             (self.a_button["surface"].get_width() * prepare.SCALE, self.a_button["surface"].get_height() * prepare.SCALE))
         self.a_button["position"] = (prepare.SCREEN_SIZE[0] - int( self.a_button["surface"].get_width() * 1.0 ),
             (self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2) - (self.a_button["surface"].get_height() / 2)))
@@ -91,10 +92,10 @@ class Controller(object):
             self.a_button["surface"].get_height())
 
         self.b_button = {}
-        self.b_button["surface"] = pygame.image.load("resources/gfx/b-button.png").convert_alpha()
+        self.b_button["surface"] = pygame.image.load(prepare.BASEDIR + "resources/gfx/b-button.png").convert_alpha()
         self.b_button["surface"] = pygame.transform.scale(self.b_button["surface"],
             (self.b_button["surface"].get_width() * prepare.SCALE, self.b_button["surface"].get_height() * prepare.SCALE))
-        self.b_button["position"] = (prepare.SCREEN_SIZE[0] - int( self.b_button["surface"].get_width() * 2.1 ), 
+        self.b_button["position"] = (prepare.SCREEN_SIZE[0] - int( self.b_button["surface"].get_width() * 2.1 ),
             (self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2) - (self.b_button["surface"].get_height() / 2)))
         self.b_button["rect"] = pygame.Rect(
             self.b_button["position"][0],
@@ -108,7 +109,7 @@ class Controller(object):
 
         :param game: The main game object that contains all the game’s variables.
         :type game: tuxemon.Game
-    
+
         :rtype: None
         :returns: None
 

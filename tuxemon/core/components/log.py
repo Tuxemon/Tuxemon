@@ -29,12 +29,15 @@
 #
 #
 
+import os
 import sys
 import logging
 from . import config as Config
 
 # read the configuration file
-config = Config.Config()
+config_path = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "..")) + "/tuxemon.cfg"
+print config_path
+config = Config.Config(config_path)
 loggers = {}
 
 # Set up logging if the configuration has it enabled

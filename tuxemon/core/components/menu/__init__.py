@@ -52,7 +52,7 @@ except ImportError:
 
 
 class Menu(UserInterface):
-    """A class to create menu objects. 
+    """A class to create menu objects.
 
     :param screen: The pygame.display surface to draw the menu to.
     :param resolution: A tuple of the display's resolution in (x, y) format. TODO: We should be
@@ -87,7 +87,7 @@ class Menu(UserInterface):
 
     To create a new menu, simply create a new menu instance and then set the size and coordinates
     of the menu like this:
-    
+
     Example:
 
     >>> menu = Menu(screen, resolution)
@@ -98,7 +98,7 @@ class Menu(UserInterface):
     >>> menu.draw()
 
     """
-    
+
     def __init__(self, screen, resolution, game, name="Menu", background=None, scale_borders=False):
 
         self.name = name                                    # An arbitrary name of the menu
@@ -143,31 +143,31 @@ class Menu(UserInterface):
 
         # Native resolution is similar to the old gameboy resolution. This is used for scaling.
         self.native_resolution = [240, 160]
-        
-        
+
+
         # Font shit for drawing text
         self.font_size = 4
         self.min_font_size = 7
-        self.font = pygame.font.Font("resources/font/PressStart2P.ttf", self.font_size)
+        self.font = pygame.font.Font(prepare.BASEDIR + "resources/font/PressStart2P.ttf", self.font_size)
         self.font_color = (10, 10, 10)
         self.line_spacing = 10
-        
+
         self.border = {
-           'left':pygame.image.load("resources/gfx/menu-left.png").convert_alpha(),
-           'right':pygame.image.load("resources/gfx/menu-right.png").convert_alpha(),
-           'top':pygame.image.load("resources/gfx/menu-top.png").convert_alpha(),
-           'bottom':pygame.image.load("resources/gfx/menu-bottom.png").convert_alpha(),
-           'left-top':pygame.image.load("resources/gfx/menu-left-top.png").convert_alpha(),
-           'left-bottom':pygame.image.load("resources/gfx/menu-left-bottom.png").convert_alpha(),
-           'right-top':pygame.image.load("resources/gfx/menu-right-top.png").convert_alpha(),
-           'right-bottom':pygame.image.load("resources/gfx/menu-right-bottom.png").convert_alpha(),
+           'left':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-left.png").convert_alpha(),
+           'right':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-right.png").convert_alpha(),
+           'top':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-top.png").convert_alpha(),
+           'bottom':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-bottom.png").convert_alpha(),
+           'left-top':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-left-top.png").convert_alpha(),
+           'left-bottom':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-left-bottom.png").convert_alpha(),
+           'right-top':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-right-top.png").convert_alpha(),
+           'right-bottom':pygame.image.load(prepare.BASEDIR + "resources/gfx/menu-right-bottom.png").convert_alpha(),
            }
 
         # Scale the window's borders based on the game's scale.
         if scale_borders:
             self.border = self.scale_borders(self.border)
 
-        self.arrow = pygame.image.load("resources/gfx/arrow.png").convert_alpha()
+        self.arrow = pygame.image.load(prepare.BASEDIR + "resources/gfx/arrow.png").convert_alpha()
 
         self.difference = self.border["left-top"].get_width()  # TODO: Rename to "border_size"
 
@@ -334,7 +334,7 @@ class Menu(UserInterface):
         # If the menu was a child of this menu, remove it as a parent from the child menu
         menu.parents.remove(self)
 
-        
+
     def draw(self, draw_borders=True, fill_background=True):
         """Draws the menu object to a pygame screen.
 
@@ -342,7 +342,7 @@ class Menu(UserInterface):
         :param fill_background: True or False value of whether or not to fill the menu background
             with the menu color. If a menu background was set, it will scale the background image
             to fit the size of the menu.
-        
+
         :type draw_borders: boolean
         :type fill_background: boolean
 
@@ -350,7 +350,7 @@ class Menu(UserInterface):
         :returns: None
 
         """
-        
+
         # Draw the background box
         if fill_background:
             # If a background image was specified, draw that. Otherwise, fill it in with the menu
@@ -358,7 +358,7 @@ class Menu(UserInterface):
             if self.background:
                 self.screen.blit(self.background, (self.pos_x, self.pos_y))
             else:
-                pygame.draw.rect(self.screen, self.color, 
+                pygame.draw.rect(self.screen, self.color,
                                  (self.pos_x, self.pos_y, self.size_x, self.size_y))
 
         # Draw the border images.
@@ -371,7 +371,7 @@ class Menu(UserInterface):
                              (self.pos_x, self.pos_y - self.border["top"].get_height()) )
             self.screen.blit(self.border["bottom"],
                              (self.pos_x, self.pos_y + self.size_y) )
-            
+
             # Draw the corners
             self.screen.blit(self.border["left-top"],
                 (self.pos_x - self.border["left-top"].get_width(),
@@ -379,7 +379,7 @@ class Menu(UserInterface):
             self.screen.blit(self.border["left-bottom"],
                 (self.pos_x - self.border["left-bottom"].get_width(),
                  self.pos_y + self.size_y))
-            
+
             self.screen.blit(self.border["right-top"],
                 (self.pos_x + self.size_x,
                  self.pos_y - self.border["left-top"].get_height()))
@@ -387,11 +387,11 @@ class Menu(UserInterface):
                 (self.pos_x + self.size_x,
                  self.pos_y + self.size_y ))
 
-        
+
     def draw_text(self, text=None, pos_x=None, pos_y=None, justify="left", align=None, font_size=None, font_color=None):
         """Draws text to the current menu object. If the text exceeds the window size, it will
         autowrap. To place text on a new line, put TWO newline characters (\\n)  in your text.
-        
+
         :param text: The text that you want to draw to the current menu item.
             *Default: core.components.menu.Menu.text*
         :param pos_x: The horizontal pixel position of the text relative to the menu's position.
@@ -404,7 +404,7 @@ class Menu(UserInterface):
             "top", "middle", "bottom". *Default: "top"*
         :param font_size: Size of the font in pixels BEFORE scaling is done. *Default: 4*
         :param font_color: Tuple of RGB values of the font color to use. *Default: (10, 10, 10)*
-        
+
         :type text: String
         :type pos_x: Integer
         :type pos_y: Integer
@@ -415,13 +415,13 @@ class Menu(UserInterface):
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
         >>> menu.draw_text("boo", justify="center", align="middle")
-        
+
         .. image:: images/menu/justify_center.png
-        
+
         """
 
         # If the position isn't specified in the function, set it to the current intance's
@@ -436,43 +436,43 @@ class Menu(UserInterface):
             pos_y = pos_y + self.pos_y
         if text == None:
             text = self.text
-            
+
         # Set up our font that we're going to use, including size, color, etc.
         font = self.font
-        
+
         # If font_size was specified, we need to create a new font object
         if font_size:
             font_size *= self.scale    # Scale the font if graphic scaling is enabled
             if font_size < self.min_font_size:
                 font_size = self.min_font_size
-            font = pygame.font.Font("resources/font/PressStart2P.ttf", font_size)
-        
+            font = pygame.font.Font(prepare.BASEDIR + "resources/font/PressStart2P.ttf", font_size)
+
         # If a font color wasn't specified, use the menu's font color
         if not font_color:
             font_color = self.font_color
-            
-        
+
+
         # Create a text surface so we can determine how many pixels
         # wide each character is
         text_surface = font.render(text, 1, font_color)
-        
+
         # Calculate the number of pixels per letter based on the size
         # of the text and the number of characters in the text
         pixels_per_letter = text_surface.get_width() / len(text)
-        
-        # Create a list of the lines of text as well as a list of the 
+
+        # Create a list of the lines of text as well as a list of the
         # individual words so we can check each line's length in pixels
         lines = []
         wordlist = []
 
         # Loop through each word in the text and add it to the word list
         for word in text.split():
-            
+
             # If there is a linebreak in this word, then split it up into a list separated by \n
             if "\\n" in word:
                 w = word.split("\\n")
 
-                # Loop through the list and every time we encounter a blank string, then that is 
+                # Loop through the list and every time we encounter a blank string, then that is
                 # a new line. So we append the current line and reset the word list for a new line
                 for item in w:
                     if item == '':
@@ -482,34 +482,34 @@ class Menu(UserInterface):
                     # If we encounter an actual word, then just append it to the word list
                     else:
                         wordlist.append(item)
-                        
+
             # If there's no line break, continue normally to word wrap
             else:
 
                 # Append the word to the current line
                 wordlist.append(word)
-              
+
                 # Here, we convert the list into a string separated by spaces and multiply
                 # the number of characters in the string by the number of pixels per letter
                 # that we calculated earlier. This will let us know how large the text will
-                # be in pixels. 
+                # be in pixels.
                 if len(" ".join(wordlist)) * pixels_per_letter > self.size_x:
                     # If the size exceeds the width of the menu, then append the line to the
                     # list of lines, but stripping off the last word we added (because this
                     # was the word that made us exceed the menubox's size.
                     lines.append(" ".join(wordlist[:-1]))
-                
+
                     # Reset the wordlist for the next line and add the word we stripped off
                     wordlist = []
                     wordlist.append(word)
-        
-        
+
+
         # If the last line is not blank, then append it to the list
         if " ".join(wordlist) != '':
             lines.append(" ".join(wordlist))
-        
-        
-        
+
+
+
         # If the justification was set, handle the position of the text automatically
         if justify == "center":
             if len(lines) > 0:
@@ -517,24 +517,24 @@ class Menu(UserInterface):
                     ((len(lines[0]) * pixels_per_letter) / 2)
             else:
                 pos_x = 0
-        
+
         elif justify == "right":
              raise NotImplementedError, "Needs to be implemented"
-        
+
         # If text alignment was set, handle the position of the text automatically
         if align == "middle":
             pos_y = (self.pos_y + (self.size_y / 2)) - \
                 ((text_surface.get_height() * len(lines)) / 2)
-            
+
         elif align == "bottom":
             raise NotImplementedError, "Needs to be implemented"
-        
-        
+
+
         # Set a spacing variable that we will add to to space each line.
         spacing = 0
         for item in lines:
             line = font.render(item, 1, self.font_color)
-            
+
             self.screen.blit(line, (pos_x, pos_y + spacing))
             spacing += line.get_height() + self.line_spacing
 
@@ -549,7 +549,7 @@ class Menu(UserInterface):
             variables. *Default: None*
         :param input_allowed: True or False value to allow the player to use the menu to input
             text. *Default: False*
-        
+
         :type events: pygame.event
         :type game: core.tools.Control
         :type input_allowed: Boolean
@@ -566,7 +566,7 @@ class Menu(UserInterface):
         >>> entername_menu.letters = ['a','b','c','d','e','f','g','h','i',' ',' ','j','k','l','m','n','o','p','q','r',' ',' ','s','t','u','v','w','x','y','z',
         ...                          ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','0','1','2','3','4','5','6','7','8','9',' ','CLR','END']
         >>> entername_menu.visible = True
-        >>> entername_menu.interactable = True 
+        >>> entername_menu.interactable = True
         ...
         >>> while True:                                                                             # Start our main game loop
         ...     if entername_menu.visible:
@@ -580,7 +580,7 @@ class Menu(UserInterface):
 
         .. image:: images/menu/update_menu_selections.png
 
-        
+
         """
 
         # Only handle user input only if this menu is interactable
@@ -589,7 +589,7 @@ class Menu(UserInterface):
 
         # If the down key was pressed, move our selection down.
         if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                
+
             self.selected_menu_item += self.columns
             if self.selected_menu_item > len(self.menu_items) -1:
 
@@ -604,14 +604,14 @@ class Menu(UserInterface):
 
             # Get the total number of rows based on the number of items divided by the number of columns
             total_rows = len(self.menu_items) / self.columns
-                
-            if (self.selected_menu_item) - self.columns < 0:                   
+
+            if (self.selected_menu_item) - self.columns < 0:
                 self.selected_menu_item += self.columns * total_rows
-                    
+
                 # If we overshot the size of the menu items, go up a row
                 if self.selected_menu_item > len(self.menu_items) - 1:
                     self.selected_menu_item -= self.columns
-                    
+
             else:
                 self.selected_menu_item -= self.columns
 
@@ -621,13 +621,13 @@ class Menu(UserInterface):
 
         # If the right key was pressed, move our selection to the right.
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                                
+
             # If the next selected menu item is PERFECTLY divisble by the product of the number of
             # columns times the selected row, then we need to go BACK to the beginning of the row
             # instead of selecting the next menu item
             if (self.selected_menu_item + 1) % (self.columns * self.selected_row) == 0:
                 self.selected_menu_item -= self.columns - 1
-                    
+
             else:
                 self.selected_menu_item += 1
                 if self.selected_menu_item > len(self.menu_items) - 1:
@@ -640,14 +640,14 @@ class Menu(UserInterface):
             # If the previos selected menu item is PERFECTLY divisble by the product of the number
             # of columns times the previous selected row, then we need to go BACK to the beginning
             # of the row instead of selecting the previous menu item
-            if ((self.columns * (self.selected_row - 1)) > 0 
+            if ((self.columns * (self.selected_row - 1)) > 0
                 and (self.selected_menu_item) % (self.columns * (self.selected_row - 1)) == 0):
                 self.selected_menu_item += self.columns - 1
-                
+
             # If we're not at the start of the row, simply select the previous menu item
             else:
                 self.selected_menu_item -= 1
-                    
+
                 # If our selection is going to be less than zero, select the right-most item
                 # in this row instead
                 if self.selected_menu_item < 0:
@@ -680,22 +680,22 @@ class Menu(UserInterface):
                     logger.debug("Input character limit reached")
 
                 logger.debug("Current Input: " + self.input)
-                    
-            
+
+
         # Set our selected row based on the number of columns we have and what item we have
-        # selected      
+        # selected
         self.selected_row = (self.selected_menu_item / self.columns) + 1
 
-            
-        
+
+
     def scale_sides(self):
         """Scales the border images of this menu instance to fit the size of the menu.
-        
+
         :param: None
 
         :rtype: None
         :returns: None
-        
+
         """
         #print self.border["right"].get_width(), self.size_y
         self.border["right"] = pygame.transform.scale(
@@ -711,17 +711,17 @@ class Menu(UserInterface):
         if self.background:
             self.background = pygame.transform.scale(
                 self.background, (self.size_x, self.size_y))
-        
- 
+
+
     def set_font(self, size=14, font="resources/font/PressStart2P.ttf", color=(10, 10, 10), spacing=10):
         """Set the font properties that the menu uses including font color, size, typeface,
         and line spacing.
-        
+
         :param size: The font size in pixels
         :param font: Path to the typeface file (.ttf)
         :param color: A tuple of the RGB color values
         :param spacing: The spacing in pixels between lines of text
-        
+
         :type size: Integer
         :type font: String
         :type color: Tuple
@@ -735,13 +735,13 @@ class Menu(UserInterface):
 
         >>> menu = core.components.menu.Menu(screen, resolution)
         >>> menu.set_font(size=24, color=(255, 0, 0))
-        >>> 
+        >>>
         >>> while True:                         # Start our main game loop
         ...     menu.draw()                   # Draw the menu background and borders
         ...     menu.draw_text("SUCH FONT")   # Draw text
 
         .. image:: images/menu/set_font.png
-        
+
         """
         if size < self.min_font_size:
             size = self.min_font_size
@@ -749,19 +749,19 @@ class Menu(UserInterface):
         self.font = pygame.font.Font(font, self.font_size)
         self.font_color = color
         self.line_spacing = spacing
-        
+
     def clicked(self, mouse_pos):
         print "Do nothing"
-        
-    
+
+
     def draw_button(self, text, mouse_pos):
         print "Button!"
-        
+
 
     def draw_textItem(self, textlist, columns=1, pos_x=0, pos_y=0, align="middle", autoline_spacing=False, paging=False):
         """Draws selectable menu items to the window. Menu items are automatically centered based
         on the number of columns specified.
-        
+
         :param textlist: A list of strings to draw to the window.
         :param columns: The number of items to display in each row. * Default: 1*
         :param pos_x: Start drawing the items at position x relative to the menu's position.
@@ -774,7 +774,7 @@ class Menu(UserInterface):
             rows based on window size.
         :param paging: True or false value on whether or not to separate the list of items into
             pages if all the items can't fit on one screen.
-        
+
         :type textlist: List
         :type columns: Integer
         :type pos_x: Integer
@@ -785,7 +785,7 @@ class Menu(UserInterface):
 
         :rtype: None
         :returns: None
-        
+
         """
         #if len(self.menu_items) < 1:
         #    self.menu_items = textlist
@@ -798,16 +798,16 @@ class Menu(UserInterface):
         if self.selected_menu_item > len(self.menu_items) - 1:
             self.selected_menu_item = len(self.menu_items) - 1
 
-        
+
         # Do nothing if the text list is empty
         if not textlist:
             return False
-        
+
         text_surfaceList = []	# This is the list of text surfaces to blit
         # Here we create an empty list that will contain lists of menu items sorted
         # into the appropriate number of columns. For example, if 3 columns are specified
         # then the list will look like this: [['Test', 'Testie', 'dick'], ['ass']]
-        text_lists = []		
+        text_lists = []
 
         # Here we create an empty list to keep track of the current set of menu items we're
         # looking at.
@@ -817,13 +817,13 @@ class Menu(UserInterface):
         # if we've reached the number of columns. This will give us a list that has a length of x
         # where "x" is the number of columns specified.
         for text in textlist:
-            if len(current_list) >= columns:              
+            if len(current_list) >= columns:
                 text_lists.append(current_list)
                 current_list = []
                 current_list.append(text)
             else:
                 current_list.append(text)
-        
+
         # If we've come to the last menu item in the list and we don't have an empty list, append
         # it to the text_lists.
         if current_list:
@@ -834,7 +834,7 @@ class Menu(UserInterface):
 
         # Now we loop through each row
         for list in text_lists:
-            
+
             # Now we loop through each column within that individual row
             for item in list:
                 # Create a surface from the supplied word so we can draw it to the screen and
@@ -843,12 +843,12 @@ class Menu(UserInterface):
 
             text_surfaceList.append(current_surface_list)
             current_surface_list = []
-        
+
         # Here we're going to find the longest word out of all of the menu items so we know how to
         # format the columns. First we'll just set the first surface as the longest item and then
         # loop through the rest to see if they're longer.
         longest_item = text_surfaceList[0][0]
-        
+
         # Here we loop through each surface and check its width in pixels. If it's longer than the
         # current one we're looking at, then make it the longest item
         for surfaceList in text_surfaceList:
@@ -864,7 +864,7 @@ class Menu(UserInterface):
             line_spacing = int(self.size_y / (len(textlist) / self.columns)) - longest_item.get_height()
         else:
             line_spacing = self.line_spacing
-        
+
         if self.menuitempositions == False:
             self.menudis_x = self.column_spacing
             #self.menudis_y = longest_item.get_height()
@@ -873,7 +873,7 @@ class Menu(UserInterface):
         # Keep track of the original "x" position so we can reset the value back every time we
         # loop through a row
         orig_x = self.menudis_x
-        
+
         # Keep track of the item number so we can see if it is selected or not
         item_num = 0
 
@@ -882,43 +882,43 @@ class Menu(UserInterface):
 
         # If we specified paging, check to see how many rows will fit on a single page.
         if paging:
-            
+
             # Get the total size in pixels of all the text plus line spacing we're going to draw.
             content_size = pos_y + (longest_item.get_height() * number_of_lines) + (line_spacing * number_of_lines)
-            
+
             # Divide the size of the content in pixels by the size of the window to determine how
             # many pages we'll need.
             number_of_pages = math.ceil(float(content_size) / float(self.size_y))
-            
+
             # Get the number of lines we'll be drawing per page.
             lines_per_page = math.floor(float(number_of_lines) / float(number_of_pages))
-            
+
             # If our calculated number of lines per page and number of pages is
             # LESS than our actual number of lines, add an additional page.
             # This usually occurs if an odd number of items was specified.
             if (lines_per_page * number_of_pages) < number_of_lines:
                 number_of_pages += 1
-            
+
             # Loop through our list of rows we're going to draw and separate them into pages.
             pages = []
             current_lines = 1
             current_page = []
             for line in text_surfaceList:
-                if current_lines <= lines_per_page: 
+                if current_lines <= lines_per_page:
                     current_page.append(line)
                     current_lines += 1
                 else:
                     pages.append(current_page)
                     current_page = [line]
                     current_lines = 2
-                    
+
             # If we have a page left over, add it to our pages.
             if current_page:
                 pages.append(current_page)
-            
+
             # >>> pages
             # [[[<Surface(120x21x32 SW)>]], [[<Surface(240x21x32 SW)>]]]
-            
+
             # Find out what page we're on based on our current menu selection.
             page_number = 1
 
@@ -937,38 +937,38 @@ class Menu(UserInterface):
 
             # Loop through each item in the row and blit it to the screen
             for item in row:
-                
+
                 icon_width = 0
                 icon_height = 0
-                
+
                 # If we have an icon associated with this menu item, blit it as well
                 if self.menu_icons:
                     self.screen.blit(
                         self.menu_icons[item_num],
-                        ((self.pos_x + pos_x + (self.menudis_x) - (self.menu_icons[item_num].get_width()/1.5)), 
+                        ((self.pos_x + pos_x + (self.menudis_x) - (self.menu_icons[item_num].get_width()/1.5)),
                         (self.pos_y + pos_y + self.menudis_y - (self.menu_icons[item_num].get_height()/2))))
-                    
+
                     icon_width = self.menu_icons[item_num].get_width()
                     icon_height = self.menu_icons[item_num].get_height()
-    
+
                 self.screen.blit(item,
                     ((self.pos_x + pos_x + (self.menudis_x) + (icon_width / 2)),
                      (self.pos_y + pos_y + self.menudis_y)))
-                
+
                 # Draw the selection arrow if an item is selected
                 if not paging and self.selected_menu_item == item_num:
                     self.screen.blit(self.arrow,
                         ((self.pos_x + pos_x + self.menudis_x ) - (self.arrow.get_width() * 1.3),
                          (self.pos_y + pos_y + self.menudis_y - (self.arrow.get_height() / 2) + (item.get_height() /2) ) ))
-                
+
                 # If paging is enabled, draw the selection arrow next to the selected menu item
                 # based on the page we're on.
                 elif paging:
                     # Get the ACTUAL selected menu item number by multiplying the page number
                     # we're on by the number of lines per page.
                     paged_selection_number = int(item_num + ((page_number - 1) * lines_per_page))
-                    
-                    # If we're currently drawing the selected menu item, draw the arrow next to it. 
+
+                    # If we're currently drawing the selected menu item, draw the arrow next to it.
                     if self.selected_menu_item == paged_selection_number:
                         self.screen.blit(self.arrow,
                             ((self.pos_x + pos_x + self.menudis_x ) - (self.arrow.get_width() * 1.3),
@@ -992,21 +992,21 @@ class Menu(UserInterface):
 
         """Run this function to process pygame events (such as keypresses/mouse clicks). By
         default this function does nothing.
-        
+
         :param event: -- A single pygame event from pygame.event.get()
         :param game: -- An optional instance of the game itself so we can directly manipulate
             its variables
-        
+
         :type events: List
         :type game: core.tools.Control
 
         :rtype: None
         :returns: None
-        
+
         """
         pass
-        
-        
+
+
 #plugins = plugin.load_directory("core/components/menu")
 import main_menu
 import dialog_menu

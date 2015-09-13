@@ -35,6 +35,7 @@ import os
 import sys
 import pprint
 import random
+from core import prepare
 from . import pyganim
 from . import db
 from . import fusion
@@ -83,7 +84,7 @@ class Monster(object):
          'type2': u'poison',
          'experience_give_modifier': 3,
          'experience_required_modifier': 55}
-    
+
     """
 
     def __init__(self):
@@ -117,7 +118,7 @@ class Monster(object):
         self.status = "Normal"
         self.status_damage = 0
         self.status_turn = 0
-        
+
         self.weight = 0
 
         # The tuxemon's state is used for various animations, etc. For example
@@ -128,7 +129,7 @@ class Monster(object):
         # A fusion body object that contains the monster's face and body
         # sprites, as well as color scheme.
         self.body = fusion.Body()
-        
+
         # Set up our sprites.
         self.sprites = {}
         self.front_battle_sprite = ""
@@ -142,12 +143,12 @@ class Monster(object):
 
         :param name: The name of the monster to look up in the monster
             database.
-        
+
         :type name: String
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
         >>> bulbatux = Monster()
@@ -182,9 +183,9 @@ class Monster(object):
             self.type2          = results["types"][1]
         else:
             self.type2          = None
-        
+
         self.weight             = results['weight']
-                
+
         # Look up the moves that this monster can learn AND LEARN THEM.
         for move in results["moveset"]:
             self.moveset.append(move)
@@ -193,9 +194,9 @@ class Monster(object):
                 self.learn(technique)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = results['sprites']['battle1']
-        self.back_battle_sprite = results['sprites']['battle2']
-        self.menu_sprite = results['sprites']['menu1']
+        self.front_battle_sprite = prepare.BASEDIR + results['sprites']['battle1']
+        self.back_battle_sprite = prepare.BASEDIR + results['sprites']['battle2']
+        self.menu_sprite = prepare.BASEDIR + results['sprites']['menu1']
 
 
     def load_sprite_from_db(self):
@@ -222,12 +223,12 @@ class Monster(object):
 
         :param technique: The core.components.monster.Technique object for
             the monster to learn.
-        
+
         :type technique: core.components.monster.Technique
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
         >>> bulbatux.learn(Technique())
@@ -240,9 +241,9 @@ class Monster(object):
     def give_experience(self, amount=1):
         """Gives the Monster a specified amount of experience, and levels
         up the monster if necessary.
-        
+
         :param amount: The amount of experience to add to the monster.
-        
+
         :type amount: Integer
 
         :rtype: None
@@ -286,7 +287,7 @@ class Monster(object):
     def set_level(self, level=5):
         """Sets the Monster's level to the specified arbitrary level,
         and modifies experience accordingly.
-        
+
         :param level: The level to set the monster to.
 
         :type level: Integer
@@ -309,7 +310,7 @@ class Monster(object):
 
         :rtype: Boolean
         :returns: True if the sprites are already loaded.
-        
+
         **Examples:**
 
         >>> bulbatux.load_sprites()
@@ -376,10 +377,10 @@ class Technique(object):
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
-        >>> 
+        >>>
 
         """
 
@@ -404,14 +405,14 @@ class Technique(object):
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]
         self.images = []
-        animation_dir = "resources/animations/technique/"
+        animation_dir = prepare.BASEDIR + "resources/animations/technique/"
         directory = sorted(os.listdir(animation_dir))
         for image in directory:
             if self.animation and image.startswith(self.animation):
                 self.images.append(animation_dir + image)
 
         # Load the sound effect for this technique
-        sfx_directory = "resources/sounds/technique/"
+        sfx_directory = prepare.BASEDIR + "resources/sounds/technique/"
         self.sfx = sfx_directory + results["sfx"]
 
 
@@ -430,12 +431,12 @@ class Technique(object):
 
         :rtype: None
         :returns: None
-        
+
         **Examples:**
 
         >>> poison_tech = Technique("Poison Sting")
         >>> bulbatux.learn(poison_tech)
-        >>> 
+        >>>
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
 
         """
@@ -460,7 +461,7 @@ class Technique(object):
 
         :rtype: None
         :returns: None
-        
+
         """
 
         # Original Pokemon battle damage formula:
@@ -502,7 +503,7 @@ class Technique(object):
 
         if random.randrange(1,2) == 1:
             target.status = "Poisoned"
-            if target.status != 'Poisoned':  
+            if target.status != 'Poisoned':
                 target.status_turn = 0
             target.status_damage = self.power
 

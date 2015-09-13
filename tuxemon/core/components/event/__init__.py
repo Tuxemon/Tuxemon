@@ -37,6 +37,7 @@ import random
 import re
 import pprint
 
+from core import prepare
 from core.components import map
 from core.components import player
 from core.components import pyganim
@@ -47,9 +48,9 @@ from core.components import ai
 from core.components import plugin
 
 # Load all the available conditions and actions as plugins.
-condition_plugins = plugin.load_directory("core/components/event/conditions")
+condition_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/conditions")
 condition_methods = plugin.get_available_methods(condition_plugins)
-action_plugins = plugin.load_directory("core/components/event/actions")
+action_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/actions")
 action_methods = plugin.get_available_methods(action_plugins)
 
 # Create a logger for optional handling of debug messages.
@@ -84,16 +85,16 @@ class EventEngine(object):
         :type game: core.tools.Control
         :type game.event_conditions: List
         :type dt: Float
-    
+
         :rtype: None
         :returns: None
-        
+
         """
 
         if self.state == "running":
             for e in game.events:
                 should_run = True
-            
+
                 # If any conditions fail, the event should not be run
                 for cond in e['conds']:
                     # Conditions have so-called "operators".  If a condition's operator == "is" then
@@ -108,7 +109,7 @@ class EventEngine(object):
                     should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
                     if not should_run:
                         break
-            
+
                 if should_run:
                     self.execute_action(e['acts'], game)
 
@@ -135,13 +136,13 @@ class EventEngine(object):
                     self.state = "running"
                     self.button = None
 
-        
+
     def execute_action(self, action_list, game):
         """Executes a particular action in a list of actions.
-        
-        :param action_list: A list of actions fetched from the database. 
+
+        :param action_list: A list of actions fetched from the database.
         :param game: The main game object that contains all the game's variables.
-        
+
         :type action_list: List
         :type game: core.tools.Control
 
@@ -149,21 +150,21 @@ class EventEngine(object):
 
         >>> action_list
         [(u'teleport', u'example.map,1,1', 1, 1), (u'teleport', u'test.map,4,3', 2, 2)]
-    
+
         :rtype: None
         :returns: None
-        
+
         """
-        
+
         logger.debug("Executing Action")
 
         # Loop through the list of actions and execute them
         for action in action_list:
-            
+
             # Call the method listed and return the modified event data
             try:
                 action_methods[action[0]]["method"](game, action)
-                #getattr( self.action, str(action[0]))(game, action) 
+                #getattr( self.action, str(action[0]))(game, action)
             except Exception, message:
                 error = 'Error: Action method "%s" not implemented' % str(action[0])
                 logger.error(error)

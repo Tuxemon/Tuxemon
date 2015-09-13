@@ -61,6 +61,8 @@ class UserInterface(object):
 
         # Handle loading a single image, multiple images, or surfaces
         if type(images) is str or type(images) is unicode:
+            if prepare.BASEDIR not in images:
+                images = prepare.BASEDIR + images
             surface = pygame.image.load(images).convert_alpha()
             self.original_width = surface.get_width()
             self.original_height = surface.get_height()

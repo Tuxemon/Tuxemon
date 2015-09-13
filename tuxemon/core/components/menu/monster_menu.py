@@ -18,7 +18,7 @@ class MonsterMenu(Menu):
 
     To create a new menu, simply create a new menu instance and then set the size and coordinates
     of the menu like this:
-    
+
     Example:
 
     >>> monster_menu = MonsterMenu(screen, resolution, self)
@@ -29,25 +29,25 @@ class MonsterMenu(Menu):
     >>> monster_menu.draw()
 
     """
-    
+
     def __init__(self, screen, resolution, game, name="Monster Menu"):
 
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, name)
-        
+
         # Give this menu instance access to the main game object.
         self.game = game
-        
+
         # Set the background color of our menu
         self.color = (32, 104, 96)
 
         # Load the item menu background image
-        _resources = "resources/gfx/ui/monster/"
+        _resources = prepare.BASEDIR + "resources/gfx/ui/monster/"
         self.background_image = _resources + "monster_menu_bg.png"
         self.background_surface = pygame.image.load(self.background_image).convert()
         self.background_surface = pygame.transform.scale(self.background_surface,
             (prepare.SCREEN_SIZE[0], prepare.SCREEN_SIZE[1]))
-        
+
 
         # Create the item menu's submenus.
         self.active_monster_menu = Menu(screen, resolution, game)
@@ -94,9 +94,9 @@ class MonsterMenu(Menu):
         for menu in self.children:
             # Scale the font and selection arrow to the appropriate size.
             menu.font = pygame.font.Font(
-                "resources/font/PressStart2P.ttf", menu.font_size * prepare.SCALE)
+                prepare.BASEDIR + "resources/font/PressStart2P.ttf", menu.font_size * prepare.SCALE)
             menu.arrow = pygame.transform.scale(
-                menu.arrow, 
+                menu.arrow,
                 (menu.arrow.get_width() * prepare.SCALE, menu.arrow.get_height() * prepare.SCALE))
 
             # Scale the window's borders based on the game's scale.
@@ -128,14 +128,14 @@ class MonsterMenu(Menu):
         self.selected_monster = None
 
     def draw(self, draw_borders=False, fill_background=False):
-        
+
         # We can call the draw function from our parent "Menu" class, and also draw
         # some additional stuff specifically for the Monster Menu.
         Menu.draw(self, draw_borders, fill_background)
 
         # Draw our background image.
         self.screen.blit(self.background_surface, (0,0))
-        
+
         # Draw our empty monster slots.
         monster_index = 0
         for monster_slot in self.monster_slots:
@@ -177,7 +177,7 @@ class MonsterMenu(Menu):
             active_monster_y = int(prepare.SCREEN_SIZE[1] / 12)
             active_monster_pos = (active_monster_x, active_monster_y)
             self.screen.blit(active_monster.sprites["front"], active_monster_pos)
-        
+
 
     def get_event(self, event, game):
 
@@ -224,7 +224,7 @@ class MonsterMenu(Menu):
                         self.selected_menu_item = 0
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-            
+
             if game.state_name == "COMBAT":
                 for player_name, player_dict in self.game.state_dict["COMBAT"].current_players.items():
                     if player_name == 'player':
@@ -243,7 +243,7 @@ class MonsterMenu(Menu):
                             player_dict["monster"] = player_dict['player'].monsters[self.selected_menu_item]
                             self.game.state_dict["COMBAT"].start_action_phase()
                         break
-                    
+
             elif game.state_name == "WORLD":
                 if self.selected_monster is None:
                     self.selected_monster = self.selected_menu_item
@@ -252,4 +252,4 @@ class MonsterMenu(Menu):
                 else:
                     self.game.player1.switch_monsters(self.selected_monster,self.selected_menu_item)
                     self.selected_monster = None
-                    
+

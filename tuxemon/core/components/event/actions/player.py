@@ -28,6 +28,7 @@ print "TRYING THIS SHIT"
 import logging
 import pygame
 from yapsy.IPlugin import IPlugin
+from core import prepare
 from core.components import item
 from core.components import monster
 from core.components.map import Map
@@ -89,11 +90,11 @@ class Player(IPlugin):
             world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
             ### THIS NEEDS TO BE MOVED IN ITS OWN FUNCTION AND IS DUPLICATED IN THE WORLD STATE ###
-            if "resources/maps/" + mapname != world.current_map.filename:
+            if prepare.BASEDIR + "resources/maps/" + mapname != world.current_map.filename:
                 world.current_map = Map(
-                    "resources/maps/" + mapname)
+                    prepare.BASEDIR + "resources/maps/" + mapname)
                 world.event_engine.current_map = Map(
-                    "resources/maps/" + mapname)
+                    prepare.BASEDIR + "resources/maps/" + mapname)
                 world.tiles, world.collision_map, world.collision_lines_map, world.map_size = world.current_map.loadfile(
                     world.tile_size)
                 world.game.events = world.current_map.events

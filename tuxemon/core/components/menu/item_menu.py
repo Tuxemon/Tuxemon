@@ -41,7 +41,7 @@ class ItemMenu(Menu):
         self.color = (32, 104, 96)
 
         # Load the item menu background image
-        self.background_image = "resources/gfx/ui/item/item_menu_bg.png"
+        self.background_image = prepare.BASEDIR + "resources/gfx/ui/item/item_menu_bg.png"
         self.background_surface = pygame.image.load(self.background_image).convert()
         self.background_surface = pygame.transform.scale(self.background_surface,
             (prepare.SCREEN_SIZE[0], prepare.SCREEN_SIZE[1]))
@@ -61,7 +61,7 @@ class ItemMenu(Menu):
 
             # Scale the font and selection arrow to the appropriate size.
             menu.font = pygame.font.Font(
-                "resources/font/PressStart2P.ttf", menu.font_size * prepare.SCALE)
+                prepare.BASEDIR + "resources/font/PressStart2P.ttf", menu.font_size * prepare.SCALE)
             menu.arrow = pygame.transform.scale(
                 menu.arrow,
                 (menu.arrow.get_width() * prepare.SCALE, menu.arrow.get_height() * prepare.SCALE))
@@ -99,7 +99,7 @@ class ItemMenu(Menu):
 
         # Load the backpack icon
         self.backpack = {}
-        self.backpack['image'] = "resources/gfx/ui/item/backpack.png"
+        self.backpack['image'] = prepare.BASEDIR + "resources/gfx/ui/item/backpack.png"
         self.backpack['surface'] = pygame.image.load(self.backpack['image']).convert_alpha()
         self.backpack['surface'] = pygame.transform.scale(
             self.backpack['surface'],

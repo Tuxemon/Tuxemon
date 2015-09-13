@@ -6,7 +6,7 @@ from core.components.menu import Menu
 
 class HpBar(object):
 
-    def __init__(self, screen, monster=None, x=0, y=0, 
+    def __init__(self, screen, monster=None, x=0, y=0,
                  width=48, height=3, color=(112,248,168),
                  bar_position=(16,2), image="resources/gfx/ui/monster/hp_bar.png"):
         self.screen = screen
@@ -19,7 +19,7 @@ class HpBar(object):
         self.bar_position = bar_position
 
         # Load the hp bar ui.
-        self.image = image
+        self.image = prepare.BASEDIR + image
         self.surface = pygame.image.load(self.image).convert_alpha()
         self.surface = pygame.transform.scale(
             self.surface,

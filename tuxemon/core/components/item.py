@@ -36,6 +36,7 @@ import sys
 import pprint
 import random
 
+from core import prepare
 from . import pyganim
 from . import db
 from . import fusion
@@ -126,7 +127,7 @@ class Item(object):
         self.power = results["power"]
         self.sprite = results["sprite"]
         self.target = results["target"]
-        self.surface = pygame.image.load(self.sprite).convert_alpha()
+        self.surface = pygame.image.load(prepare.BASEDIR + self.sprite).convert_alpha()
         self.surface_size_original = self.surface.get_size()
 
         self.effect = results["effects"]

@@ -82,7 +82,7 @@ class Control(object):
     :param caption: The window caption to use for the game itself.
 
     :type caption: String
-    
+
     :rtype: None
     :returns: None
 
@@ -109,7 +109,8 @@ class Control(object):
             self.server = None
 
         # Set up our game's configuration from the prepare module.
-        self.config = config.Config()
+        from core import prepare
+        self.config = prepare.CONFIG
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
@@ -193,7 +194,7 @@ class Control(object):
 
         :type state_dict: Dictionary
         :type start_state: String
-    
+
         :rtype: None
         :returns: None
 
@@ -652,14 +653,14 @@ class _State(object):
     def get_event(self, event):
         """Processes events that were passed from the main event loop.
         Must be overridden in children.
-        
+
         :param event: A pygame key event from pygame.event.get()
 
         :type event: PyGame Event
 
         :rtype: None
         :returns: None
-        
+
         """
         pass
 
@@ -667,7 +668,7 @@ class _State(object):
     def startup(self, current_time, persistant):
         """Add variables passed in persistant to the proper attributes and
         set the start time of the State to the current time.
-        
+
         :param current_time: Current time passed.
         :param persistant: Keep a dictionary of optional persistant variables.
 
@@ -676,24 +677,24 @@ class _State(object):
 
         :rtype: None
         :returns: None
-        
-        
+
+
         **Examples:**
-        
+
         >>> current_time
         2895
         >>> persistant
         {}
-        
+
         """
-        
+
         self.persist = persistant
         self.start_time = current_time
 
 
     def shutdown(self):
         """Called when State.done is set to True.
-        
+
         :param current_time: Current time passed.
         :param persistant: Keep a dictionary of optional persistant variables.
 
@@ -702,15 +703,15 @@ class _State(object):
 
         :rtype: None
         :returns: None
-        
-        
+
+
         **Examples:**
-        
+
         >>> current_time
         2895
         >>> persistant
         {}
-        
+
         """
         pass
 
@@ -718,12 +719,12 @@ class _State(object):
     def cleanup(self):
         """Add variables that should persist to the self.persist dictionary.
         Then reset State.done to False.
-        
+
         :param None:
 
         :rtype: Dictionary
         :returns: Persist dictionary of variables.
-        
+
         """
         self.done = False
         self.shutdown()
@@ -732,27 +733,27 @@ class _State(object):
 
     def update(self, surface, keys, current_time):
         """Update function for state.  Must be overloaded in children.
-        
+
         :param surface: The pygame.Surface of the screen to draw to.
         :param keys: List of keys from pygame.event.get().
         :param current_time: The amount of time that has passed.
 
         :type surface: pygame.Surface
         :type keys: Tuple
-        :type current_time: Integer 
+        :type current_time: Integer
 
         :rtype: None
         :returns: None
 
         **Examples:**
-        
+
         >>> surface
         <Surface(1280x720x32 SW)>
         >>> keys
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
         >>> current_time
         435
-        
+
         """
         pass
 
@@ -765,22 +766,25 @@ class _State(object):
 
 
 ### Resource loading functions.
-def load_all_gfx(directory,colorkey=(255,0,255),accept=(".png",".jpg",".bmp")):
+def load_all_gfx(directory, colorkey=(255,0,255), accept=(".png",".jpg",".bmp")):
     """Load all graphics with extensions in the accept argument.  If alpha
     transparency is found in the image the image will be converted using
     convert_alpha().  If no alpha transparency is detected image will be
     converted using convert() and colorkey will be set to colorkey."""
     graphics = {}
-    for pic in os.listdir(directory):
-        name,ext = os.path.splitext(pic)
-        if ext.lower() in accept:
-            img = pg.image.load(os.path.join(directory, pic))
-            if img.get_alpha():
-                img = img.convert_alpha()
-            else:
-                img = img.convert()
-                img.set_colorkey(colorkey)
-            graphics[name]=img
+
+    for root, directories, filenames in os.walk(directory):
+        for filename in filenames:
+            name, ext = os.path.splitext(filename)
+            if ext.lower() in accept:
+                img = pg.image.load(os.path.join(root, filename))
+                if img.get_alpha():
+                    img = img.convert_alpha()
+                else:
+                    img = img.convert()
+                    img.set_colorkey(colorkey)
+                graphics[name] = img
+
     return graphics
 
 
@@ -788,10 +792,12 @@ def load_all_music(directory, accept=(".ogg", ".mdi")):
     """Create a dictionary of paths to music files in given directory
     if their extensions are in accept."""
     songs = {}
-    for song in os.listdir(directory):
-        name,ext = os.path.splitext(song)
-        if ext.lower() in accept:
-            songs[name] = os.path.join(directory, song)
+    for root, directories, filenames in os.walk(directory):
+        for filename in filenames:
+            name, ext = os.path.splitext(filename)
+            if ext.lower() in accept:
+                song = os.path.join(root, filename)
+                songs[name] = song
     return songs
 
 
@@ -812,11 +818,17 @@ def load_all_sfx(directory, accept=(".ogg", ".mdi")):
     common to need to set sfx volume on a one-by-one basis.  This must be done
     manually if necessary in the setup module."""
     effects = {}
-    for fx in os.listdir(directory):
-        name,ext = os.path.splitext(fx)
-        if ext.lower() in accept:
-            effects[name] = pg.mixer.Sound(os.path.join(directory, fx))
+    for root, directories, filenames in os.walk(directory):
+        for filename in filenames:
+            name, ext = os.path.splitext(filename)
+            if ext.lower() in accept:
+                effects[name] = pg.mixer.Sound(os.path.join(root, filename))
+
     return effects
+
+
+def load_all_maps(directory, accept=(".tmx")):
+    pass
 
 
 def strip_from_sheet(sheet, start, size, columns, rows=1):
@@ -861,3 +873,22 @@ def cursor_from_image(image):
             this_row.append(colors.get(pixel, " "))
         icon_string.append("".join(this_row))
     return icon_string
+
+
+def explore(rootdir):
+    """
+    Creates a nested dictionary that represents the folder structure of rootdir
+    """
+    dir = {}
+    rootdir = rootdir.rstrip(os.sep)
+    start = rootdir.rfind(os.sep) + 1
+    for path, dirs, files in os.walk(rootdir):
+        folders = path[start:].split(os.sep)
+        subdir = dict.fromkeys(files)
+        parent = reduce(dict.get, folders[:-1], dir)
+        parent[folders[-1]] = subdir
+
+    for key, value in dir.items():
+        for k, v in value.items():
+            return v
+

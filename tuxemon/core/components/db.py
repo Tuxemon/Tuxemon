@@ -37,6 +37,7 @@ import random
 import sys
 
 from . import player
+from core import prepare
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("core.db successfully imported")
@@ -46,10 +47,10 @@ class JSONDatabase(object):
     """Handles connecting to the game database for resources such as monsters,
     stats, etc.
 
-    """  
+    """
 
     def __init__(self):
-        self.path = "resources/db/"
+        self.path = prepare.BASEDIR + "resources/db/"
         self.database = {"item": {},
                          "monster": {},
                          "npc": {},
@@ -113,7 +114,7 @@ class JSONDatabase(object):
             "item", "npc", or "technique".
         :type name: String
         :type table: String
-    
+
         :rtype: Dict
         :returns: A dictionary from the resulting lookup.
 
@@ -133,7 +134,7 @@ class JSONDatabase(object):
 
         :param id: The monster ID or technique ID to look up.
         :type id: Integer
-    
+
         :rtype: List
         :returns: A list of monsters or techniques
 
@@ -149,7 +150,7 @@ class JSONDatabase(object):
 
         :param monster_id: The monster ID to look up.
         :type monster_id: Integer
-    
+
         :rtype: List
         :returns: A list of sprites
 
@@ -173,11 +174,11 @@ if __name__ == "__main__":
     #monsters.load("resources/db/monster.db")
     #tuxemon = monsters.lookup("Bulbatux")
     #print tuxemon
-    
+
     # JSON way
     db = JSONDatabase()
     db.load()
 
     pprint.pprint(db.lookup("Bulbatux"))
     #pprint.pprint(db.lookup(1))
-        
+

@@ -102,7 +102,7 @@ class Combat(tools._State):
         self.status_icons['Normal'] = pygame.Surface((prepare.ICON_SIZE[0], prepare.ICON_SIZE[1]))
         self.status_icons['Normal'].set_alpha(0)
         self.status_icons['Poisoned'] = pygame.image.load(
-            'resources/gfx/ui/icons/status/poison-icon.png').convert_alpha()
+            prepare.BASEDIR + 'resources/gfx/ui/icons/status/poison-icon.png').convert_alpha()
         self.status_icons['FNT'] = pygame.Surface((prepare.ICON_SIZE[0], prepare.ICON_SIZE[1]))
         self.status_icons['FNT'].set_alpha(0)
 
@@ -115,11 +115,11 @@ class Combat(tools._State):
         # Load all the party icons to show how many monsters each player has.
         self.party_icons = {}
         self.party_icons['Normal'] = pygame.image.load(
-            'resources/gfx/ui/icons/party/party_icon01.png').convert_alpha()
+            prepare.BASEDIR + 'resources/gfx/ui/icons/party/party_icon01.png').convert_alpha()
         self.party_icons['Ailment'] = pygame.image.load(
-            'resources/gfx/ui/icons/party/party_icon02.png').convert_alpha()
+            prepare.BASEDIR + 'resources/gfx/ui/icons/party/party_icon02.png').convert_alpha()
         self.party_icons['FNT'] = pygame.image.load(
-            'resources/gfx/ui/icons/party/party_icon03.png').convert_alpha()
+            prepare.BASEDIR + 'resources/gfx/ui/icons/party/party_icon03.png').convert_alpha()
 
         # Scale all the party icons based on the game's scale
         for icon, surface in self.party_icons.items():
@@ -162,7 +162,7 @@ class Combat(tools._State):
         for menu in self.menus:
             menu.scale = prepare.SCALE
             menu.set_font(size=menu.font_size * menu.scale,
-                          font="resources/font/PressStart2P.ttf",
+                          font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
                           spacing=menu.font_size * menu.scale)
             menu.arrow = pygame.transform.scale(menu.arrow,
@@ -307,7 +307,7 @@ class Combat(tools._State):
 
         # Load the combat background surface
         ui["background"] = UserInterface(
-            "resources/gfx/ui/combat/battle_bg02.png", (0, 0), screen)
+            prepare.BASEDIR + "resources/gfx/ui/combat/battle_bg02.png", (0, 0), screen)
         ui["background"].scale(screen_size)
 
         # Loop through all of our players and set up our monsters and UI
@@ -341,7 +341,7 @@ class Combat(tools._State):
             # Load the battle UI elements such as HP bar, etc.
             player_hp_ui = player_name + "_hp_ui"
             self.ui[player_hp_ui] = UserInterface(
-                "resources/gfx/ui/combat/hp_%s.png" % player_name,
+                prepare.BASEDIR + "resources/gfx/ui/combat/hp_%s.png" % player_name,
                 (0, 0), screen)
 
             if player_name == "player":
@@ -416,7 +416,7 @@ class Combat(tools._State):
             # Load the monster party UI to display the number of monsters a player has in their party.
             # This will only be drawn if the combat is type is "trainer"
             party_bg = player_name + "_party_bg"
-            party_bg_image = "resources/gfx/ui/combat/party_bg_%s.png" % player_name
+            party_bg_image = prepare.BASEDIR + "resources/gfx/ui/combat/party_bg_%s.png" % player_name
             ui[party_bg] = UserInterface(party_bg_image, (0, 0), screen)
             ui[party_bg].state = "open"
 
@@ -470,7 +470,7 @@ class Combat(tools._State):
 
         # Set up the capture device animation for use in capturing monsters
         ui["capture"] = UserInterface(
-            "resources/gfx/items/capture_device.png", (500, 500), screen)
+            prepare.BASEDIR + "resources/gfx/items/capture_device.png", (500, 500), screen)
         ui["capture"].visible = False
         import pprint
         pprint.pprint(ui)
@@ -1013,7 +1013,7 @@ class Combat(tools._State):
                     monster_sprite.visible = False
 
                     # Play the sound of their HORRIBLE DEATH
-                    sound = mixer.Sound("resources/sounds/monster/1/faint.ogg")
+                    sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/monster/1/faint.ogg")
                     sound.play()
 
                     # Award experience to player if opponent's monster fainted
@@ -1383,7 +1383,7 @@ class Combat(tools._State):
         self.ui[player_name + '_healthbar'].value = health_percent
 
         # Set Tuxemon level text
-        lvl_font = pygame.font.Font("resources/font/PressStart2P.ttf", 7 * prepare.SCALE)
+        lvl_font = pygame.font.Font(prepare.BASEDIR + "resources/font/PressStart2P.ttf", 7 * prepare.SCALE)
         lvl_text = lvl_font.render(str(player_dict['monster'].level),
                             1, self.text_color)
         self.ui[player_name + '_lvl_text'] = UserInterface(lvl_text, (0, 0), screen, scale=False)
@@ -1428,7 +1428,7 @@ if __name__ == "__main__":
             # Create a clock object that will keep track of how much time has passed since the last frame
             self.clock = pygame.time.Clock()
             # Set the font for the FPS and other shit
-            self.font = pygame.font.Font("resources/font/PressStart2P.ttf", 14)
+            self.font = pygame.font.Font(prepare.BASEDIR + "resources/font/PressStart2P.ttf", 14)
 
             # Native resolution is similar to the old gameboy resolution. This is used for scaling.
             self.native_resolution = [240, 160]

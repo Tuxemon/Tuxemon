@@ -333,57 +333,80 @@ class Player(object):
 
     def move_one_tile(self, direction):
         # moves one tile in the given direction
-        
+        print "In move_one_tile("+direction+")"
+
+        # round self.tile_pos
+        my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1]))) 
+
         # start moving if we aren't moving
         if not self.moving:
             if direction == "up":
-                self.tile_move_dest = (self.tile_pos[0], self.tile_pos[1]-1)
+                self.tile_move_dest = (my_tile_pos[0], my_tile_pos[1]-1)
                 self.moving = True
                 self.move_direction = "up"
+                self.direction["up"] = True
             elif direction == "down":
-                self.tile_move_dest = (self.tile_pos[0], self.tile_pos[1]+1)
+                self.tile_move_dest = (my_tile_pos[0], my_tile_pos[1]+1)
                 self.moving = True
                 self.move_direction = "down"
+                self.direction["down"] = True
             elif direction == "left":
-                self.tile_move_dest = (self.tile_pos[0]-1, self.tile_pos[1])
+                self.tile_move_dest = (my_tile_pos[0]-1, my_tile_pos[1])
                 self.moving = True
                 self.move_direction = "left"
+                self.direction["left"] = True
             elif direction == "right":
-                self.tile_move_dest = (self.tile_pos[0]+1, self.tile_pos[1])
+                self.tile_move_dest = (my_tile_pos[0]+1, my_tile_pos[1])
                 self.moving = True
                 self.move_direction = "right"
+                self.direction["right"] = True
             else:
                 logger.error("In player.move_one_tile() direction is not up,down,left,right")
                 
         # if we are moving, see if we have reached our destination
         if self.moving:
-            if self.tile_pos == self.tile_move_dest:
+            if my_tile_pos == self.tile_move_dest:
+                print "stopping moving! in move_one_tile"
                 self.moving = False
+                self.move_direction = False
+                self.direction["right"] = False                
+                self.direction["left"] = False              
+                self.direction["down"] = False
+                self.direction["up"] = False                
 
     def move_by_path(self):
         '''
         This method will ensure movement will happen until the player
         reaches its destination
         '''
+        print "move_by_path()"
         # TODO maybe this function could be organized better
-        if self.path:
+        if self.path and not self.moving:
             # get the next step of the plan
-            next_plan_step = self.path.pop(0)
+            next_plan_step = self.path[len(self.path)-1]
+            # round self.tile_pos
+            my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1]))) 
+            print "my_tile_pos="+str(my_tile_pos)+" next plan step is " + str(next_plan_step)
             # make sure it's adjacent to current location
-            adj_x = abs(self.tile_pos[0] - next_plan_step[0]) == 1
-            adj_y = abs(self.tile_pos[1] - next_plan_step[1]) == 1
+            adj_x = abs(int(round(my_tile_pos[0])) - int(round(next_plan_step[0]))) == 1
+            adj_y = abs(int(round(my_tile_pos[1])) - int(round(next_plan_step[1]))) == 1
             # do xor to invalidate diagonal adjacency
             if (adj_x and not adj_y) or (not adj_x and adj_y):
+                print "tiles are adjacent!!!"
                 # adjacent is true, so execute move to next plan step
                 # get direction we need to move
-                if self.tile_pos[0] > next_plan_step[0]:
+                if my_tile_pos[0] > next_plan_step[0]:
                     self.move_one_tile("left")
-                elif self.tile_pos[0] < next_plan_step[0]:
+                elif my_tile_pos[0] < next_plan_step[0]:
                     self.move_one_tile("right")
-                elif self.tile_pos[1] < next_plan_step[1]:
+                elif my_tile_pos[1] < next_plan_step[1]:
                     self.move_one_tile("down")
-                elif self.tile_pos[1] > next_plan_step[1]:
+                elif my_tile_pos[1] > next_plan_step[1]:
                     self.move_one_tile("up")
+                self.path.pop() # only pop if we have already executed a move
+            if my_tile_pos == next_plan_step:
+                # somehow we are already at the next plan step, just pop
+                self.path.pop()
 
 
     def draw(self, screen, layer):
@@ -564,6 +587,14 @@ class Player(object):
                 while pathnode:
                     path.append(pathnode.get_value())
                     pathnode = pathnode.get_parent()
+                
+                print "path is " + str(path)
+
+                # last minute check to remove the top plan step if
+                # it's the same as our location
+                if path[len(path)-1] == self.tile_pos:
+                    plan.pop()
+                    
                 # store the path
                 self.path = path 
             else:

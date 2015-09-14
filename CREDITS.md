@@ -15,6 +15,8 @@ Programming
 * [Nathan Moore](https://git.tuxemon.org:3000/u/Nate-Devv) for the experience system
 * [C Nelson](https://git.tuxemon.org:3000/u/cnelsonsic) for pep8 auditing
 * [Arsène Thieffry](https://git.tuxemon.org:3000/u/druz320) for menu sorting
+* [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
+* [ChillyCider](https://github.com/ChillyCider) for improved event system
 
 
 Graphics
@@ -111,6 +113,9 @@ is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 * ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Player Sprite](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](https://forum.tuxemon.org/profile.php?id=22)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 

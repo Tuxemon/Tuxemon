@@ -62,7 +62,7 @@ class Player(object):
 
 
     """
-    def __init__(self, sprite_name="player", name="Red"):
+    def __init__(self, sprite_name="player1", name="Red"):
         self.name = name			# This is the player's name to be used in dialog
         self.ai = None              # Whether or not this player has AI associated with it
         self.sprite = {}			# The pyganim object that contains the player animations

@@ -205,22 +205,32 @@ class ItemMenu(Menu):
                     # Get the name of the item from our menu list.
                     item_name = self.item_list.menu_items[self.item_list.selected_menu_item]
 
-                    # For now, just use the item on the currently active monster.
-                    print "Using " + item_name
-                    item_to_use = game.player1.inventory[item_name]['item']
-                    if item_to_use.target == "opponent":
-                        item_target = game.state.current_players['opponent']['monster']
-                    elif item_to_use.target == "player":
-                        item_target = game.state.current_players['player']['monster']
+                    # if in combat use item on currently active monster
+                    if game.state_name == "COMBAT":                    
 
-                    if game.state_name == "COMBAT":
+                        print "Using " + item_name
+                        item_to_use = game.player1.inventory[item_name]['item']
+                        if item_to_use.target == "opponent":
+                            item_target = game.state.current_players['opponent']['monster']
+                        elif item_to_use.target == "player":
+                            item_target = game.state.current_players['player']['monster']
+
                         # Set the player's decided action for this turn to "item" and give the name
                         # and target of the item.
                         game.state.current_players['player']['action'] = {'item':
                             {'name': item_name,
                              'target': item_target}}
-
+    
                     else:
+                        print "*********|||||| About to close menu |||||*******"
+                        # first exit out of item menu
+                        self.item_menu.visible = False
+                        self.item_menu.interactable = False
+
+                        print "*********|||||| About to bring up tuxemon menu |||||*******"               
+                        # bring up tuxemon menu to choose what tuxemon to use the item on
+                        self.monster_menu.visible=True
+                        self.monster_menu.interactable=True
                         game.player1.inventory[item_name]['item'].use(item_target, game)
 
             # Item List Menu

@@ -1,12 +1,20 @@
 core.components package
 =======================
 
+.. automodule:: core.components
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
 
+    core.components.event
     core.components.menu
+    core.components.rumble
+    core.components.ui
 
 Submodules
 ----------
@@ -18,7 +26,6 @@ Submodules
    core.components.config
    core.components.controller
    core.components.db
-   core.components.event
    core.components.eztext
    core.components.fusion
    core.components.item
@@ -32,10 +39,3 @@ Submodules
    core.components.save
    core.components.screen
 
-Module contents
----------------
-
-.. automodule:: core.components
-    :members:
-    :undoc-members:
-    :show-inheritance:

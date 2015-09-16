@@ -1,9 +1,9 @@
-.. Tuxemon documentation master file, created by
-   sphinx-quickstart on Fri Jan  9 14:25:58 2015.
+.. tuxemon documentation master file, created by
+   sphinx-quickstart on Tue Sep 15 18:31:05 2015.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Tuxemon's documentation!
+Welcome to tuxemon's documentation!
 ===================================
 
 Contents:
@@ -11,7 +11,6 @@ Contents:
 .. toctree::
    :maxdepth: 4
 
-   build_win32
    core
    main
    tuxemon

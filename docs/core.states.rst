@@ -1,6 +1,11 @@
 core.states package
 ===================
 
+.. automodule:: core.states
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Submodules
 ----------
 
@@ -10,10 +15,3 @@ Submodules
    core.states.start
    core.states.world
 
-Module contents
----------------
-
-.. automodule:: core.states
-    :members:
-    :undoc-members:
-    :show-inheritance:

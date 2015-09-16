@@ -1,6 +1,11 @@
 core package
 ============
 
+.. automodule:: core
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Subpackages
 -----------
 
@@ -18,10 +23,3 @@ Submodules
    core.prepare
    core.tools
 
-Module contents
----------------
-
-.. automodule:: core
-    :members:
-    :undoc-members:
-    :show-inheritance:

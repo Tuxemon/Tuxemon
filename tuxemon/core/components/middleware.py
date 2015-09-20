@@ -53,14 +53,15 @@ class Anarchy():
         pass
 
 
-class Controller():
-    """This middleware will allow you to use the AsteriaServer as a basic controller. When it receives 
-    KEYDOWN/KEYUP events, it will set the corresponding dictionary key in "network_events" to true or
-    false. In your main game loop, you can then iterate through this dictionary and change the game
-    accordingly.
+class Multiplayer():
+    """This middleware will allow you to use the AsteriaServer for Multiplayer games and the mobile controller. 
+    When it receives KEYDOWN/KEYUP/NETKBD events, it will set the corresponding dictionary key in 
+    "network_events" to true or false. In your main game loop, you can then iterate through this dictionary 
+    and change the game accordingly.
 
     Public functions:
-    event_legal -- Returns true for all events
+    event_legal -- Returns True for all events that pass the legal logic. Returns False for all events that 
+                   fail legal logic.
     event_execute -- Sets the game_server.network_events dictionary based on what key was pressed
 
     """
@@ -69,7 +70,7 @@ class Controller():
         self.server = None
 
     def event_legal(self, cuuid, euuid, event_data):
-        if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
+        if "KEYDOWN:" in event_data or "KEYUP:" in event_data or "NETKBDN:" in event_data or "NETKBUP:" in event_data:
             return True
         else:
             return False

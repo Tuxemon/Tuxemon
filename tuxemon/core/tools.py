@@ -27,11 +27,13 @@
 #
 # core.tools Contains various tools such as scene manager and states.
 #
+import netifaces
 """This module contains the fundamental Control class and a prototype class
 for States.  Also contained here are resource loading functions.
 """
 
 import logging
+import netifaces
 import os
 import pygame as pg
 import pprint
@@ -41,29 +43,13 @@ from .components import player
 from .components import cli
 from .components import event
 from .components import rumble
+from .components.middleware import Multiplayer
 
-# Try and import networking if it is available.
-try:
-    from neteria.server import NeteriaServer
-    from .components.middleware import Controller
-
-    # Enable logging for the server.
-    import sys
-    import logging
-    neteria_logger = logging.getLogger('neteria.server')
-    neteria_logger.setLevel(logging.DEBUG)
-    log_hdlr = logging.StreamHandler(sys.stdout)
-    log_hdlr.setLevel(logging.DEBUG)
-    log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
-                                            "%(levelname)s - %(message)s"))
-    neteria_logger.addHandler(log_hdlr)
-    neteria_logger.info("Server Started")
-
-except ImportError:
-    NeteriaServer = None
-    Controller = None
-
-# Import the android module. If we can't import it, set it to None - this
+# Import networking.
+from neteria.client import NeteriaClient
+from neteria.server import NeteriaServer
+  
+# Import the android module and android specific components. If we can't import, set to None - this
 # lets us test it, and check to see if we want android-specific behavior.
 try:
     import android
@@ -101,12 +87,22 @@ class Control(object):
         self.state_dict = {}
         self.state_name = None
         self.state = None
-        if NeteriaServer and Controller:
-            self.network_events = []
-            self.server = NeteriaServer(Controller(self))
-            self.server.listen()
-        else:
-            self.server = None
+        
+        # Set up our networking for Multiplayer and Controls
+        self.interfaces = {}
+        for interface in netifaces.interfaces():
+            addr = netifaces.ifaddresses(interface)
+            self.interfaces[interface] = addr
+        
+        print self.interfaces
+            
+            
+        self.network_events = []
+        self.server = NeteriaServer(Multiplayer(self))
+        self.server.listen()
+        self.client = NeteriaClient()
+        self.client.listen()
+        self.client.autodiscover(autoregister=False)
 
         # Set up our game's configuration from the prepare module.
         from core import prepare
@@ -325,6 +321,21 @@ class Control(object):
         :returns: None
 
         """
+        
+        # Proof of concept.
+        # Logic to prevent joining your own game as a client.
+        if not self.client.registered and self.client.discovered_servers > 0:
+            for ip, port in self.client.discovered_servers:
+                ipp = (ip, port)
+                for interface in self.interfaces:
+                    for type in self.interfaces[interface]:
+                        if ip == self.interfaces[interface][type][0]['addr']:
+                            logger.info('Users server responded to users own broadcast, Deleting entry.')
+                            del self.client.discovered_servers[ipp]
+                            return False 
+                self.client.register(ipp)
+            
+            
         events = []
         for event_data in self.network_events:
             if event_data == "KEYDOWN:up":

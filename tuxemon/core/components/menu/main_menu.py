@@ -6,6 +6,7 @@ from core.components.menu import Menu
 try:
     import pygame.mixer as mixer
 except ImportError:
+    
     import android.mixer as mixer
 
 class MainMenu(Menu):

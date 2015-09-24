@@ -657,6 +657,16 @@ class Control(object):
             
     
     def update_multiplayer(self):
+        """Sends a broadcast to 'ping' all servers on the local network. Once a server responds
+        it  will verify that the server is not hosted by the client who sent the ping. Once a 
+        server has been identified it adds it to self.available_games.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
         self.client.autodiscover(autoregister=False)
     
         # Logic to prevent joining your own game as a client.
@@ -674,7 +684,6 @@ class Control(object):
                         del self.client.discovered_servers[(ip, port)]
                         return False
                         
-                    
                 # Populate list of detected servers   
                 self.available_games[ip] = port
         
@@ -685,6 +694,7 @@ class Control(object):
         
         if self.selected_game:
             self.client.register(self.selected_game)
+            
             
     def get_menu_event(self, menu, event):
         

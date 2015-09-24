@@ -1,0 +1,47 @@
+
+import pygame
+from core.components.menu import Menu
+from core import prepare
+# Import the android mixer if on the android platform
+
+
+
+class PCMenu(Menu):
+
+    def __init__(self, screen, resolution, game, name="PC Menu"):
+
+        # Initialize the parent menu class's default shit
+        Menu.__init__(self, screen, resolution, game, name)
+        self.delay = 0.5
+        self.elapsed_time = self.delay
+           
+    def menu_event(self):
+        
+        if self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
+                self.game.state.previous_menu = self
+                self.game.state.multiplayer_menu.visible = True
+                self.game.state.multiplayer_menu.interactable = True
+                self.game.state.pc_menu.interactable = False
+        elif self.menu_items[self.selected_menu_item] == "EXIT":
+            self.game.exit = True
+
+class Multiplayer_Menu(Menu):
+    
+    def __init__(self, screen, resolution, game, name="MULTIPLAYER"):
+        
+        # Initialize the parent menu class's default shit
+        Menu.__init__(self, screen, resolution, game, name)
+        self.delay = 0.5
+        self.elapsed_time = self.delay
+    
+    def menu_event(self):
+        
+        if self.menu_items[self.selected_menu_item] == "JOIN":
+            self.game.client.listen()
+            self.game.enable_join_multiplayer = True
+            
+        elif self.menu_items[self.selected_menu_item] == "HOST":
+            self.game.server.listen()
+            
+            
+        

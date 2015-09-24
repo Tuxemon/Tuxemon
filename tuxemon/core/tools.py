@@ -37,6 +37,10 @@ import netifaces
 import os
 import pygame as pg
 import pprint
+import pygame
+import pygame.mixer as mixer
+
+
 from .components import config
 from .components import controller
 from .components import player
@@ -44,6 +48,7 @@ from .components import cli
 from .components import event
 from .components import rumble
 from .components.middleware import Multiplayer
+from core import prepare
 
 # Import networking.
 from neteria.client import NeteriaClient
@@ -90,20 +95,31 @@ class Control(object):
         
         # Set up our networking for Multiplayer and Controls
         self.interfaces = {}
-        for interface in netifaces.interfaces():
-            addr = netifaces.ifaddresses(interface)
-            self.interfaces[interface] = addr
+#         for interface in netifaces.interfaces():
+#             addr = netifaces.ifaddresses(interface)
+#             self.interfaces[interface] = addr
+        for device in netifaces.interfaces():
+            
+            interface = netifaces.ifaddresses(device)
+            try:
+                addr = interface[netifaces.AF_INET][0]['addr']
+            except KeyError:
+                pass
+            
+            self.interfaces[device] = addr
         
         print self.interfaces
-            
-            
+        
         self.network_events = []
+        self.available_games = {}
+        self.selected_game = None
+        self.enable_join_multiplayer = False
         self.server = NeteriaServer(Multiplayer(self))
-        self.server.listen()
+        
         self.client = NeteriaClient()
         self.client.listen()
-        self.client.autodiscover(autoregister=False)
-
+        self.wait_broadcast = 0
+        
         # Set up our game's configuration from the prepare module.
         from core import prepare
         self.config = prepare.CONFIG
@@ -239,6 +255,7 @@ class Control(object):
         self.state.update(self.screen, self.keys, self.current_time, dt)
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
+            
 
 
     def flip_state(self):
@@ -322,19 +339,6 @@ class Control(object):
 
         """
         
-        # Proof of concept.
-        # Logic to prevent joining your own game as a client.
-        if not self.client.registered and self.client.discovered_servers > 0:
-            for ip, port in self.client.discovered_servers:
-                ipp = (ip, port)
-                for interface in self.interfaces:
-                    for type in self.interfaces[interface]:
-                        if ip == self.interfaces[interface][type][0]['addr']:
-                            logger.info('Users server responded to users own broadcast, Deleting entry.')
-                            del self.client.discovered_servers[ipp]
-                            return False 
-                self.client.register(ipp)
-            
             
         events = []
         for event_data in self.network_events:
@@ -636,12 +640,104 @@ class Control(object):
         # Draw and update our display
         self.update(time_delta)
         pg.display.update()
+        
+        # 
+        if self.client and not self.client.registered and self.enable_join_multiplayer:
+            if self.wait_broadcast >= 1:
+                self.update_multiplayer()
+                self.wait_broadcast = 0
+            else: self.wait_broadcast += time_delta
+               
         if self.show_fps:
             fps = self.clock.get_fps()
             with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
             pg.display.set_caption(with_fps)
         if self.exit:
             self.done = True
+            
+    
+    def update_multiplayer(self):
+        self.client.autodiscover(autoregister=False)
+    
+        # Logic to prevent joining your own game as a client.
+        if self.client.discovered_servers > 0:
+            for ip, port in self.client.discovered_servers:
+                try: 
+                    if self.available_games[ip]:
+                        logger.info('Game already in list, skipping.')
+                        return False
+                except KeyError:
+                    pass
+                for interface in self.interfaces:
+                    if ip == self.interfaces[interface]:
+                        logger.info('Users server responded to users own broadcast, Deleting entry.')
+                        del self.client.discovered_servers[(ip, port)]
+                        return False
+                        
+                    
+                # Populate list of detected servers   
+                self.available_games[ip] = port
+        
+        # Automatically add server (for now)                    
+        if len(self.available_games) == 1:
+            for game in self.available_games:
+                self.selected_game = (game, self.available_games[game]) 
+        
+        if self.selected_game:
+            self.client.register(self.selected_game)
+            
+    def get_menu_event(self, menu, event):
+        
+        """Run this function to process pygame basic menu events (such as keypresses/mouse clicks - 
+        up, down, enter, escape). 
+        
+        :param menu: -- The active menu.
+        :param event: -- A single pygame event from pygame.event.get()
+        
+        :type menu: core.components.menu
+        :type events: List
+
+        :rtype: None
+        :returns: None
+
+        """
+        
+        try:
+            if menu.menu_select_sound:
+                pass
+        except AttributeError:
+            menu.menu_select_sound = mixer.Sound(
+                prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
+
+        
+        if len(menu.menu_items) > 0:
+            menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
+        
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            menu.interactable = False
+            menu.visible = False
+            if self.state.previous_menu:
+                self.state.previous_menu.interactable = True
+                self.state.previous_menu.visible = True
+            menu.menu_select_sound.play()
+            
+                        
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+            menu.selected_menu_item += 1
+            if menu.selected_menu_item > len(menu.menu_items) -1:
+                menu.selected_menu_item = 0
+
+            menu.menu_select_sound.play()
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+            menu.selected_menu_item -= 1
+            if menu.selected_menu_item < 0:
+                menu.selected_menu_item = len(menu.menu_items) -1
+
+            menu.menu_select_sound.play()
+        
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            menu.menu_event()
 
 
 class _State(object):
@@ -774,6 +870,9 @@ class _State(object):
         msg = font.render(msg, 1, color)
         rect = msg.get_rect(center=center)
         return msg, rect
+    
+    
+    
 
 
 ### Resource loading functions.
@@ -903,3 +1002,6 @@ def explore(rootdir):
         for k, v in value.items():
             return v
 
+    
+
+    

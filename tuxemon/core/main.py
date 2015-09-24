@@ -34,7 +34,7 @@ different states of the game such as combat, the overworld, etc.
 """
 
 from . import prepare, tools
-from .states import start, world, combat
+from .states import start, world, combat, pc
 
 def main():
     """Add all available states to our scene manager (tools.Control)
@@ -54,6 +54,7 @@ def main():
     run_it.player1 = prepare.player1
     state_dict = {"START": start.StartScreen(run_it),
                   "WORLD": world.World(run_it),
-                  "COMBAT": combat.Combat(run_it)}
+                  "COMBAT": combat.Combat(run_it),
+                  "PC": pc.PC(run_it)}
     run_it.setup_states(state_dict, "START")
     run_it.main()

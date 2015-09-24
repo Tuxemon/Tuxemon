@@ -198,3 +198,31 @@ class Core(IPlugin):
         game.event_engine.state = "waiting for input"
         game.event_engine.wait = 2
         game.event_engine.button = button
+
+    def change_state(self, game, action):
+        
+        """Pauses the event engine until specified button is pressed
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.tools.Control
+        :type action: Tuple
+    
+        :rtype: None
+        :returns: None
+    
+        Valid Parameters: button
+
+        * button (str): pygame key to wait for
+    
+        **Examples:**
+    
+        >>> action
+        ('change_state', 'MAIN_MENU')
+    
+        """
+        
+        game.state.next = "PC"
+        game.state.done = True

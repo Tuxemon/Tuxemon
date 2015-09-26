@@ -57,9 +57,9 @@ class TuxPluginManager(object):
     """Yapsy semi-compatible plugin manager.
     """
 
-    def __init__(self, base_folder="tuxemon"):
+    def __init__(self, base_folders=["files", "tuxemon"]):
         self.folders = []
-        self.base_folder = base_folder
+        self.base_folders = base_folders
         self.modules = []
         self.file_extension = ".yapsy-plugin"
         self.exclude_classes = ["IPlugin"]
@@ -70,7 +70,10 @@ class TuxPluginManager(object):
     def collectPlugins(self):
         for folder in self.folders:
             # Take the plugin folder and create a base module path based on it.
-            module_path = '.'.join(folder.split(self.base_folder + os.sep)[-1].split(os.sep))
+            for base_folder in self.base_folders:
+                if base_folder in folder:
+                    module_path = '.'.join(folder.split(base_folder + os.sep)[-1].split(os.sep))
+                    break
             logger.debug("Plugin folder: " + folder)
             logger.debug("Module path: " + module_path)
 

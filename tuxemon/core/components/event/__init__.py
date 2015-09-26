@@ -65,11 +65,6 @@ class EventEngine(object):
         action_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/actions")
         self.actions = plugin.get_available_methods(action_plugins)
 
-        print "***********************************************************"
-        pprint.pprint(self.conditions)
-        pprint.pprint(self.actions)
-        print "***********************************************************"
-
         self.name = "Event"
         self.current_map = None
         self.state = "running"

@@ -89,7 +89,7 @@ class TuxPluginManager(object):
     def getAllPlugins(self):
         imported_modules = []
         for module in self.modules:
-            print "Importing module:", module
+            logger.debug("Importing module: " + str(module))
             m = importlib.import_module(module)
             for c in self._getClassesFromModule(m):
                 class_name = c[0]
@@ -105,41 +105,6 @@ class TuxPluginManager(object):
         return members
 
 
-def manual_load_directory(plugin_folder):
-    """Manually loads events instead of using a plugin manager. This is
-    necessary for certain platforms such as Android, which doesn't
-    provide an easy way to dynamically load plugins.
-    """
-    print "  Manual loading"
-    import importlib
-
-    # Take the plugin folder and create a base module path based on it.
-    module_path = '.'.join(plugin_folder.split("tuxemon" + os.sep)[-1].split(os.sep))
-    print "PLUGIN FOLDER:", plugin_folder
-    print "MODULE PATH:", module_path
-
-    # Look for a "yapsy-plugin" in the plugin folder to create a list of modules
-    # to import.
-    modules = []
-    for f in os.listdir(plugin_folder):
-        if f.endswith(".yapsy-plugin"):
-            modules.append(f.split(".yapsy-plugin")[0])
-
-    for module in modules:
-        manual_get_methods(importlib.import_module(module_path + "." + module))
-
-    #import core.components.event.actions.player as act_player
-    #manual_get_methods(act_player.Player)
-
-def manual_get_methods(module):
-    for class_name, c in module.__dict__.items():
-        if "__" not in class_name:
-            if inspect.isclass(c) and class_name != "IPlugin":
-                print "  Class name:", class_name
-                for method_name, m in c.__dict__.items():
-                    if "__" not in method_name:
-                        print method_name
-
 def load_directory(plugin_folder):
     """Loads and imports a directory of plugins.
 
@@ -150,18 +115,6 @@ def load_directory(plugin_folder):
     :returns: A dictionary of imported plugins.
 
     """
-    #manual_load_directory(plugin_folder)
-    #m = TuxPluginManager()
-    #m.setPluginPlaces([plugin_folder])
-    #m.collectPlugins()
-    #print "MANAGER MODULES:", m.getAllPlugins()
-    #methods = {}
-    #for plugin in m.getAllPlugins():
-    #    items = inspect.getmembers(plugin.plugin_object, predicate=inspect.ismethod)
-    #    for method in items:
-    #        methods[method[0]] = {"method": method[1], "module": plugin.name}
-    #print methods
-
     manager = TuxPluginManager()
     manager.setPluginPlaces([plugin_folder])
     manager.collectPlugins()

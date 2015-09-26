@@ -24,10 +24,8 @@
 # William Edwards <shadowapex@gmail.com>
 #
 
-from yapsy.IPlugin import IPlugin
 
-
-class Npc(IPlugin):
+class Npc(object):
 
     def create_npc(self, game, action):
         """Creates an NPC object and adds it to the game's current list of NPC's.

@@ -29,7 +29,6 @@
 #
 #
 
-from yapsy.PluginManager import PluginManager
 from pprint import pformat, pprint
 import logging
 import os
@@ -39,13 +38,10 @@ import sys
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-plugin_logger = logging.getLogger('yapsy')
-plugin_logger.setLevel(logging.DEBUG)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
 log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
                                         "%(levelname)s - %(message)s"))
-plugin_logger.addHandler(log_hdlr)
 
 class Plugin(object):
     def __init__(self, name, module):
@@ -53,7 +49,7 @@ class Plugin(object):
         self.plugin_object = module
 
 
-class TuxPluginManager(object):
+class PluginManager(object):
     """Yapsy semi-compatible plugin manager.
     """
 
@@ -61,7 +57,7 @@ class TuxPluginManager(object):
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
-        self.file_extension = ".yapsy-plugin"
+        self.file_extension = ".plugin"
         self.exclude_classes = ["IPlugin"]
 
     def setPluginPlaces(self, plugin_folders):
@@ -115,7 +111,7 @@ def load_directory(plugin_folder):
     :returns: A dictionary of imported plugins.
 
     """
-    manager = TuxPluginManager()
+    manager = PluginManager()
     manager.setPluginPlaces([plugin_folder])
     manager.collectPlugins()
 

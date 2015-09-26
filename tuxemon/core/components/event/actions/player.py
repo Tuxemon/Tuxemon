@@ -26,13 +26,12 @@
 
 import logging
 import pygame
-from yapsy.IPlugin import IPlugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-class Player(IPlugin):
+class Player(object):
 
     def teleport(self, game, action):
         """Teleport the player to a particular map and coordinates

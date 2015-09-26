@@ -26,7 +26,6 @@
 
 import logging
 import random
-from yapsy.IPlugin import IPlugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -38,7 +37,7 @@ except ImportError:
     import android.mixer as mixer
 
 
-class Combat(IPlugin):
+class Combat(object):
 
     def start_battle(self, game, action):
         """Start a battle and switch to the combat module. The parameters must contain an NPC id

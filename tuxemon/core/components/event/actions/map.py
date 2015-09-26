@@ -28,13 +28,12 @@ import logging
 import os
 import pygame
 import re
-from yapsy.IPlugin import IPlugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-class Map(IPlugin):
+class Map(object):
 
     def screen_transition(self, game, action):
         """Initiates a screen transition

@@ -25,10 +25,8 @@
 #
 
 import pygame
-from yapsy.IPlugin import IPlugin
 
-
-class Core(IPlugin):
+class Core(object):
 
     def true(self, game, condition):
         """This function always returns true unless the operator is set to "is_not"
@@ -84,7 +82,6 @@ class Core(IPlugin):
         for event in events:
             # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
             if event.type == pygame.KEYUP and event.key == getattr(pygame, button):
-                print event.key, "==", getattr(pygame, button)
                 return True
 
         return False

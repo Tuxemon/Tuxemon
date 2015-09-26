@@ -25,84 +25,83 @@
 #
 
 import logging
-from yapsy.IPlugin import IPlugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-class Core(IPlugin):
+class Core(object):
 
     def set_variable(self, game, action):
         """Sets the key in the player.game_variables dictionary.
-            
+
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
-            
+
         :type game: core.tools.Control
         :type action: Tuple
-    
+
         :rtype: None
         :returns: None
-    
+
         Valid Parameters: variable_name:value
-            
+
         **Examples:**
-    
+
         >>> action
         ('set_variable', 'battle_won:yes', '4', 1)
-    
+
         """
-    
+
         # Get the player object from the game.
         player = game.player1
-    
+
         # Split the variable into a key: value pair
         varlist = action[1].split(":")
         varkey = str(varlist[0])
         varvalue = str(varlist[1])
-    
+
         # Append the game_variables dictionary with the key: value pair
         player.game_variables[varkey] = varvalue
-    
-    
+
+
     def dialog(self, game, action):
         """Opens a dialog window with text
-            
+
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
-            
+
         :type game: core.tools.Control
         :type action: Tuple
-    
+
         :rtype: None
         :returns: None
-    
+
         Valid Parameters: text_to_display
-    
+
         You may also use special variables in dialog events. Here is a list of available variables:
-    
+
         * ${{name}} - The current player's name.
-            
+
         **Examples:**
-    
+
         >>> action
         ('dialog', 'Red:\\n This is some dialog!', '3', 1)
-    
+
         """
-    
+
         text = str(action[1])
         text = text.replace("${{name}}", game.player1.name)
-        logger.info("Dialog window opened") 
-    
+        logger.info("Dialog window opened")
+
         # Open a dialog window in the current scene.
         if not game.state.dialog_window.visible:
             game.state.dialog_window.visible = True
             game.state.dialog_window.text = text
-    
-    
+
+
     def rumble(self, game, action):
         """Rumbles available controllers with rumble support
 
@@ -112,20 +111,20 @@ class Core(IPlugin):
 
         :type game: core.tools.Control
         :type action: Tuple
-    
+
         :rtype: None
         :returns: None
-    
+
         Valid Parameters: duration,power
 
         * duration (float): time in seconds to rumble for
         * power (int): percentage of power to rumble. (1-100)
-    
+
         **Examples:**
-    
+
         >>> action
         ('rumble', '2,100', '3', 1)
-    
+
         """
 
         duration = float(action[1].split(',')[0])
@@ -152,19 +151,19 @@ class Core(IPlugin):
 
         :type game: core.tools.Control
         :type action: Tuple
-    
+
         :rtype: None
         :returns: None
-    
+
         Valid Parameters: duration
 
         * duration (float): time in seconds for the event engine to wait for
-    
+
         **Examples:**
-    
+
         >>> action
         ('wait_for_secs', '2.0')
-    
+
         """
         secs = float(action[1])
         game.event_engine.state = "waiting"
@@ -180,19 +179,19 @@ class Core(IPlugin):
 
         :type game: core.tools.Control
         :type action: Tuple
-    
+
         :rtype: None
         :returns: None
-    
+
         Valid Parameters: button
 
         * button (str): pygame key to wait for
-    
+
         **Examples:**
-    
+
         >>> action
         ('wait_for_input', 'K_RETURN')
-    
+
         """
         button = str(action[1])
         game.event_engine.state = "waiting for input"

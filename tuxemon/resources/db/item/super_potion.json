@@ -8,5 +8,9 @@
     "power": 150, 
     "sprite": "resources/gfx/items/super_potion.png",
     "target": "player",
-    "type": "Consumable"
+    "type": "Consumable",
+    "usable_in": [
+        "combat",
+        "world"
+    ]
 }

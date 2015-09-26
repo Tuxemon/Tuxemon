@@ -8,5 +8,8 @@
     "power": 1, 
     "sprite": "resources/gfx/items/capture_device.png", 
     "target": "opponent",
-    "type": "Consumable"
+    "type": "Consumable",
+    "usable_in": [
+        "combat"
+    ]
 }

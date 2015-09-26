@@ -127,6 +127,7 @@ class Item(object):
         self.power = results["power"]
         self.sprite = results["sprite"]
         self.target = results["target"]
+        self.usable_in = results["usable_in"]
         self.surface = pygame.image.load(prepare.BASEDIR + self.sprite).convert_alpha()
         self.surface_size_original = self.surface.get_size()
 

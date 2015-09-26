@@ -53,7 +53,7 @@ class PluginManager(object):
     """Yapsy semi-compatible plugin manager.
     """
 
-    def __init__(self, base_folders=["files", "tuxemon"]):
+    def __init__(self, base_folders=["/data/data/org.tuxemon.game/files", "tuxemon"]):
         self.folders = []
         self.base_folders = base_folders
         self.modules = []

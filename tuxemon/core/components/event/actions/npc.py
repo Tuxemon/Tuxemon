@@ -24,7 +24,6 @@
 # William Edwards <shadowapex@gmail.com>
 #
 
-
 class Npc(object):
 
     def create_npc(self, game, action):
@@ -81,4 +80,25 @@ class Npc(object):
         # Add the NPC to the game's NPC list
         world.npcs.append(npc)
 
+    def pathfind(self, game, action):
+        '''
+        Will move the player / npc to the given location
+        '''
+        # Get a copy of the world state.
+        world = game.state_dict["WORLD"]
+
+        print "action is " + str(action)
+        parameters = action[1].split(",")
+        npc_name = parameters[0]
+        dest_x = parameters[1]
+        dest_y = parameters[2]
+
+        # get npc object via name
+        curr_npc = None
+        for n in world.npcs:
+            if n.name == npc_name:
+                curr_npc = n
+                print "found npc: " +npc_name
+
+        curr_npc.pathfind((int(dest_x),int(dest_y)), game)
 

@@ -751,13 +751,28 @@ class World(tools._State):
                 self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
             # If the NPC is not visible on the screen, don't draw him
-            if self.screen_rect.colliderect(npc.rect):
-                npc.move(self.screen, self.tile_size, self.time_passed_seconds, (
-                    self.global_x, self.global_y), self)
+            #if self.screen_rect.colliderect(npc.rect):
+            #    npc.move(self.screen, self.tile_size, self.time_passed_seconds, (     #### Disabled for now
+            #        npc.position[0], npc.position[1]), self)
 
             # Move the NPC with the map as it moves
             npc.position[0] -= self.global_x_diff
             npc.position[1] -= self.global_y_diff
+
+            # debug info
+            #print "npc.tile_pos="+str(npc.tile_pos)
+
+            # if the npc has a path, move it along its path
+            if npc.path:
+                npc.move_by_path()
+
+            npc.move(self.tile_size, self.time_passed_seconds, self)
+
+            # Reset our directions after moving.
+            npc.direction["up"] = False
+            npc.direction["down"] = False
+            npc.direction["left"] = False
+            npc.direction["right"] = False
 
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")

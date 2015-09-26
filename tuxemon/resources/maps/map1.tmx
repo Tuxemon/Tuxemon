@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="82">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="95">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -9,6 +9,9 @@
  <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
  <layer name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
    eJzt2z0OgjAYxnETw9GUTSZ18Gvw60SOeiRPoMbBeA77JpKUBoEiUNrnIfkPJi4/3zZlqEk0GCQWTXqejaVOrn3009+V//Snf1YQgh99/sj+vepQUOh+9PmH4D+rLkaufV3683Lt89k/Bfejz59++ukP3z9q0BN76EefP/3Y/nT/x9rncU1P2/vf9nE937Laflz76O+/3/b8L/q+7f7vgx99/vTTT395bbxP+uRHnz/99NNPP/30008//fSj++WOQHpHcA7mF/tOtf62AfOvNLu0jbJ3RqusB5/9cmdwafwGelXWg89+cw0souydySOYH23/008//dnzz/YdyHe/eQbKGrip7kaPQP3y6P8dkDPvpboOs70D9OfNWXqC+PPm/Cv66W/C/wF91+ZZ
@@ -16,7 +19,7 @@
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
@@ -101,6 +104,8 @@
   <object id="66" type="collision-line" x="288" y="64">
    <polyline points="0,0 0,96"/>
   </object>
+  <object id="88" type="collision" x="384" y="240" width="16" height="16"/>
+  <object id="90" type="collision" x="352" y="240" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <properties>
@@ -211,6 +216,12 @@
   <object id="81" name="Teleport to Route 1" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="teleport route1.tmx,47,12"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="82" name="Go to Buddha Mountain" type="event" x="368" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport BuddhaMountain.tmx,3,90,0.5"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>

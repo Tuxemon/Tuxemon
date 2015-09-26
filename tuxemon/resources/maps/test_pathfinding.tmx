@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="22">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="31">
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
@@ -69,6 +69,20 @@
   </object>
   <object id="21" type="collision-line" x="160" y="128">
    <polyline points="0,0 -80,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="26" name="Test Pathfinding" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind Maple,3,10"/>
+    <property name="cond1" value="is player_at 7,7 "/>
+   </properties>
+  </object>
+  <object id="29" name="Create Maple" type="event" x="144" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Maple,9,6,maple,stay"/>
+    <property name="cond1" value="not npc_exists Maple"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

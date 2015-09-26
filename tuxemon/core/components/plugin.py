@@ -53,7 +53,7 @@ class PluginManager(object):
     """Yapsy semi-compatible plugin manager.
     """
 
-    def __init__(self, base_folders=["/data/data/org.tuxemon.game/files", "tuxemon"]):
+    def __init__(self, base_folders=["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "tuxemon"]):
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
@@ -74,7 +74,7 @@ class PluginManager(object):
             logger.debug("Plugin folder: " + folder)
             logger.debug("Module path: " + module_path)
 
-            # Look for a "yapsy-plugin" in the plugin folder to create a list of modules
+            # Look for a ".plugin" in the plugin folder to create a list of modules
             # to import.
             modules = []
             for f in os.listdir(folder):

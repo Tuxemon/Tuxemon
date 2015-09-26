@@ -86,6 +86,7 @@ class TuxPluginManager(object):
     def getAllPlugins(self):
         imported_modules = []
         for module in self.modules:
+            print "Importing module:", module
             m = importlib.import_module(module)
             for c in self._getClassesFromModule(m):
                 class_name = c[0]

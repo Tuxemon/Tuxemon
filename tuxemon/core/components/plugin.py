@@ -65,10 +65,11 @@ class PluginManager(object):
 
     def collectPlugins(self):
         for folder in self.folders:
+            folder = folder.replace('\\', '/')
             # Take the plugin folder and create a base module path based on it.
             for base_folder in self.base_folders:
                 if base_folder in folder:
-                    module_path = '.'.join(folder.split(base_folder + os.sep)[-1].split(os.sep))
+                    module_path = '.'.join(folder.split(base_folder + '/')[-1].split('/'))
                     break
             logger.debug("Plugin folder: " + folder)
             logger.debug("Module path: " + module_path)

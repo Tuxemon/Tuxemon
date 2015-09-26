@@ -61,7 +61,7 @@ class Sound(IPlugin):
 
         """
 
-        from core import prepare
+        prepare = game.imports["prepare"]
         filename = str(action[1])
         sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
         sound.play()
@@ -89,7 +89,7 @@ class Sound(IPlugin):
 
         """
 
-        from core import prepare
+        prepare = game.imports["prepare"]
         filename = str(action[1])
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)

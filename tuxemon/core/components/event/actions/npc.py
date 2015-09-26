@@ -51,8 +51,8 @@ class Npc(IPlugin):
 
         """
 
-        from core.components import ai
-        from core.components import player
+        ai = game.imports["ai"]
+        player = game.imports["player"]
 
         # Get a copy of the world state.
         world = game.state_dict["WORLD"]

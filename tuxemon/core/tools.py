@@ -41,6 +41,12 @@ from core.components import player
 from core.components import cli
 from core.components import event
 from core.components import rumble
+from core.components import ai
+from core.components import db
+from core.components import monster
+from core.components import item
+from core.components import map as maps
+from core.components import pyganim
 
 # Try and import networking if it is available.
 try:
@@ -110,6 +116,17 @@ class Control(object):
 
         # Set up our game's configuration from the prepare module.
         from core import prepare
+        self.imports = {
+                "prepare": prepare,
+                "ai": ai,
+                "rumble": rumble,
+                "db": db,
+                "monster": monster,
+                "player": player,
+                "item": item,
+                "map": maps,
+                "pyganim": pyganim
+                }
         self.config = prepare.CONFIG
 
         # Set up our game's event engine which executes actions based on

@@ -55,10 +55,10 @@ class Player(IPlugin):
         ('teleport', 'pallet_town-room.tmx,5,5', '1', 1)
 
         """
-        from core import prepare
-        from core.components import item
-        from core.components import monster
-        from core.components.map import Map
+        prepare = game.imports["prepare"]
+        item = game.imports["item"]
+        monster = game.imports["monster"]
+        Map = game.imports["map"].Map
 
 
         # Get the player object from the game.
@@ -157,9 +157,7 @@ class Player(IPlugin):
         transition_time = parameters[3]
 
         # Start the screen transition
-        from core.components.event.actions.map import Map as MapAction
-        map_action = MapAction()
-        screen_transition = map_action.screen_transition
+        screen_transition = game.event_engine.actions["screen_transition"]["method"]
         transition_action = (action[0], transition_time)
         screen_transition(game, transition_action)
 
@@ -224,6 +222,8 @@ class Player(IPlugin):
 
         """
 
+        monster = game.imports["monster"]
+
         parameters = action[1].split(",")
         monster_name = parameters[0]
         monster_level = parameters[1]
@@ -257,7 +257,7 @@ class Player(IPlugin):
 
         """
 
-        from core.components import item
+        item = game.imports["item"]
 
         player = game.player1
         item_to_add = item.Item(action[1])

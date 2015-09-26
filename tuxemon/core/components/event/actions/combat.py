@@ -62,11 +62,11 @@ class Combat(IPlugin):
         ... (u'start_battle', u'1', 1, 9)
 
         """
-        from core import prepare
-        from core.components import ai
-        from core.components import db
-        from core.components import monster
-        from core.components import player
+        prepare = game.imports["prepare"]
+        ai = game.imports["ai"]
+        db = game.imports["db"]
+        monster = game.imports["monster"]
+        player = game.imports["player"]
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if len(game.player1.monsters) < 1:
@@ -165,11 +165,11 @@ class Combat(IPlugin):
 
         """
 
-        from core import prepare
-        from core.components import ai
-        from core.components import db
-        from core.components import monster
-        from core.components import player
+        prepare = game.imports["prepare"]
+        ai = game.imports["ai"]
+        db = game.imports["db"]
+        monster = game.imports["monster"]
+        player = game.imports["player"]
 
 
         player1 = game.player1

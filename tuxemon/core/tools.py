@@ -35,17 +35,17 @@ import logging
 import os
 import pygame as pg
 import pprint
-from .components import config
-from .components import controller
-from .components import player
-from .components import cli
-from .components import event
-from .components import rumble
+from core.components import config
+from core.components import controller
+from core.components import player
+from core.components import cli
+from core.components import event
+from core.components import rumble
 
 # Try and import networking if it is available.
 try:
     from neteria.server import NeteriaServer
-    from .components.middleware import Controller
+    from core.components.middleware import Controller
 
     # Enable logging for the server.
     import sys

@@ -212,6 +212,7 @@ class World(tools._State):
         # Add child menus to their parent menus
         self.entername_menu.add_child(self.displayname_menu)
         self.main_menu.add_child(self.save_menu)
+        self.item_menu.add_child(self.monster_menu)
 
         # Set the window font sizes if they are not default
         self.entername_menu.font_size = 6

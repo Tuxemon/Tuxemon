@@ -257,6 +257,8 @@ class Player(IPlugin):
 
         """
 
+        from core.components import item
+
         player = game.player1
         item_to_add = item.Item(action[1])
 

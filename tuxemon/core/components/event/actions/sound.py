@@ -26,7 +26,6 @@
 
 import logging
 from yapsy.IPlugin import IPlugin
-from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -62,6 +61,7 @@ class Sound(IPlugin):
 
         """
 
+        from core import prepare
         filename = str(action[1])
         sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
         sound.play()
@@ -89,6 +89,7 @@ class Sound(IPlugin):
 
         """
 
+        from core import prepare
         filename = str(action[1])
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)

@@ -32,39 +32,39 @@ class Core(IPlugin):
 
     def true(self, game, condition):
         """This function always returns true unless the operator is set to "is_not"
-    
+
         :param game: The main game object that contains all the game's variables.
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
-    
-        :type game: core.tools.Control
-        :type condition: Dictionary 
-        
-        :rtype: Boolean
-        :returns: True or False 
-    
-        """
-    
-        return True
-    
-    
-    def button_pressed(self, game, condition):
-        """Checks to see if a particular key was pressed
-            
-        :param game: The main game object that contains all the game's variables.
-        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary. 
-    
+
         :type game: core.tools.Control
         :type condition: Dictionary
-        
+
         :rtype: Boolean
-        :returns: True or False 
-    
+        :returns: True or False
+
+        """
+
+        return True
+
+
+    def button_pressed(self, game, condition):
+        """Checks to see if a particular key was pressed
+
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type game: core.tools.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
         Valid Parameters: A pygame key (E.g. "K_RETURN")
-    
+
         **Examples:**
-    
+
         >>> condition
         {'action_id': '3',
          'id': 3,
@@ -73,41 +73,42 @@ class Core(IPlugin):
          'type': 'button_pressed',
          'x': 1,
          'y': 3}
-    
+
         """
-    
+
         # Get the keys pressed from the game.
         events = game.key_events
         button = str(condition["parameters"])
- 
+
         # Loop through each event
         for event in events:
             # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
             if event.type == pygame.KEYUP and event.key == getattr(pygame, button):
+                print event.key, "==", getattr(pygame, button)
                 return True
-            else:
-                return False
-    
-    
+
+        return False
+
+
     def variable_set(self, game, condition):
         """Checks to see if a player game variable has been set. This will look for a particular
-        key in the player.game_variables dictionary and see if it exists. If it exists, it will 
+        key in the player.game_variables dictionary and see if it exists. If it exists, it will
         return true.
-    
+
         :param game: The main game object that contains all the game's variables.
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary. 
-            
+            for the format of the dictionary.
+
         :type game: core.tools.Control
         :type condition: Dictionary
-    
+
         :rtype: Boolean
-        :returns: True or False 
-    
+        :returns: True or False
+
         Valid Parameters: variable_name:value
-        
+
         **Examples:**
-    
+
         >>> condition
         {'action_id': '20',
          'id': 2,
@@ -116,23 +117,23 @@ class Core(IPlugin):
          'type': 'variable_set',
          'x': 0,
          'y': 0}
-    
+
         """
-    
+
         # Get the player object from the game.
         player = game.player1
-    
+
         # Loop through the player's game variables to see if they have a value that is set.
         for key, value in player.game_variables.items():
-    
+
             # Split the string by ":" into a list
             varlist = condition["parameters"].split(":")
             varkey = varlist[0]
             varvalue = varlist[1]
-    
+
             # If the variable is set in the game variables, then we've met the condition.
             if (varkey == key) and (varvalue == value):
                 return True
-    
+
         return False
-    
+

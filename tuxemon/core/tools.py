@@ -197,6 +197,18 @@ class Control(object):
             self.controller = controller.Controller(self)
             self.controller.load()
 
+            # Keep track of what buttons have been pressed when the overlay
+            # controller is enabled.
+            self.overlay_pressed = {
+                    "up": False,
+                    "down": False,
+                    "left": False,
+                    "right": False,
+                    "a": False,
+                    "b": False
+                    }
+
+
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
@@ -425,37 +437,54 @@ class Control(object):
                 events.append(
                     self.keyboard_events["KEYDOWN"]["up"])
                 self.keys[pg.K_UP] = 1
+                self.overlay_pressed["up"] = True
             if self.controller.dpad["rect"]["down"].collidepoint(self.mouse_pos):
                 events.append(
                     self.keyboard_events["KEYDOWN"]["down"])
                 self.keys[pg.K_DOWN] = 1
+                self.overlay_pressed["down"] = True
             if self.controller.dpad["rect"]["left"].collidepoint(self.mouse_pos):
                 events.append(
                     self.keyboard_events["KEYDOWN"]["left"])
                 self.keys[pg.K_LEFT] = 1
+                self.overlay_pressed["left"] = True
             if self.controller.dpad["rect"]["right"].collidepoint(self.mouse_pos):
                 events.append(
                     self.keyboard_events["KEYDOWN"]["right"])
                 self.keys[pg.K_RIGHT] = 1
-
+                self.overlay_pressed["right"] = True
             if self.controller.a_button["rect"].collidepoint(self.mouse_pos):
                 events.append(
                     self.keyboard_events["KEYDOWN"]["enter"])
                 self.keys[pg.K_RETURN] = 1
+                self.overlay_pressed["a"] = True
             if self.controller.b_button["rect"].collidepoint(self.mouse_pos):
                 events.append(
                     self.keyboard_events["KEYDOWN"]["escape"])
                 self.keys[pg.K_ESCAPE] = 1
+                self.overlay_pressed["b"] = True
 
 
         if (event.type == pg.MOUSEBUTTONUP) and (event.button == 1):
-            events.append(self.keyboard_events["KEYUP"]["up"])
-            events.append(self.keyboard_events["KEYUP"]["down"])
-            events.append(self.keyboard_events["KEYUP"]["left"])
-            events.append(self.keyboard_events["KEYUP"]["right"])
-            events.append(self.keyboard_events["KEYUP"]["enter"])
-            self.keys[pg.K_RETURN] = 0
-            events.append(self.keyboard_events["KEYUP"]["escape"])
+            if self.overlay_pressed["up"]:
+                events.append(self.keyboard_events["KEYUP"]["up"])
+                self.overlay_pressed["up"] = False
+            if self.overlay_pressed["down"]:
+                events.append(self.keyboard_events["KEYUP"]["down"])
+                self.overlay_pressed["down"] = False
+            if self.overlay_pressed["left"]:
+                events.append(self.keyboard_events["KEYUP"]["left"])
+                self.overlay_pressed["left"] = False
+            if self.overlay_pressed["right"]:
+                events.append(self.keyboard_events["KEYUP"]["right"])
+                self.overlay_pressed["right"] = False
+            if self.overlay_pressed["a"]:
+                events.append(self.keyboard_events["KEYUP"]["enter"])
+                self.overlay_pressed["a"] = False
+                self.keys[pg.K_RETURN] = 0
+            if self.overlay_pressed["b"]:
+                events.append(self.keyboard_events["KEYUP"]["escape"])
+                self.overlay_pressed["b"] = False
 
         return events
 

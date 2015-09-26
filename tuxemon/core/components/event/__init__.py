@@ -136,7 +136,7 @@ class EventEngine(object):
             # Loop through each event
             for event in events:
                 # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
-                if event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
+                if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
                     self.state = "running"
                     self.button = None
 

@@ -11,7 +11,7 @@ Tuxemon is a free, open source monster-fighting RPG.
 Version
 ----
 
-0.2
+0.3
 
 
 Requirements

@@ -46,6 +46,21 @@ log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
                                         "%(levelname)s - %(message)s"))
 plugin_logger.addHandler(log_hdlr)
 
+def manual_load_directory(plugin_folder):
+    """Manually loads events instead of using a plugin manager. This is
+    necessary for certain platforms such as Android, which doesn't
+    provide an easy way to dynamically load plugins.
+    """
+    print "  Manual loading"
+    import importlib
+    act_player = importlib.import_module("core.components.event.actions.player")
+    #import core.components.event.actions.player as act_player
+    manual_get_methods(act_player.Player)
+
+def manual_get_methods(module):
+    for method_name, method in module.__dict__.items():
+        if "__" not in method_name:
+            print method_name
 
 def load_directory(plugin_folder):
     """Loads and imports a directory of plugins.
@@ -57,6 +72,7 @@ def load_directory(plugin_folder):
     :returns: A dictionary of imported plugins.
 
     """
+    manual_load_directory(plugin_folder)
     manager = PluginManager()
     manager.setPluginPlaces([plugin_folder])
     manager.collectPlugins()
@@ -86,9 +102,7 @@ def get_available_methods(plugin_manager):
     methods = {}
     for plugin in plugin_manager.getAllPlugins():
         items = inspect.getmembers(plugin.plugin_object, predicate=inspect.ismethod)
-        pprint(items)
         for method in items:
             methods[method[0]] = {"method": method[1], "module": plugin.name}
 
-    pprint(methods)
     return methods

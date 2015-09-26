@@ -24,14 +24,9 @@
 # William Edwards <shadowapex@gmail.com>
 #
 
-print "TRYING THIS SHIT"
 import logging
 import pygame
 from yapsy.IPlugin import IPlugin
-from core import prepare
-from core.components import item
-from core.components import monster
-from core.components.map import Map
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -60,6 +55,11 @@ class Player(IPlugin):
         ('teleport', 'pallet_town-room.tmx,5,5', '1', 1)
 
         """
+        from core import prepare
+        from core.components import item
+        from core.components import monster
+        from core.components.map import Map
+
 
         # Get the player object from the game.
         player = game.player1

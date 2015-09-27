@@ -112,6 +112,7 @@ class Control(object):
         
         self.network_events = []
         self.available_games = {}
+        self.server_list = []
         self.selected_game = None
         self.enable_join_multiplayer = False
         self.server = NeteriaServer(Multiplayer(self))
@@ -642,7 +643,10 @@ class Control(object):
         pg.display.update()
         
         # 
-        if self.client and not self.client.registered and self.enable_join_multiplayer:
+        if self.client and self.enable_join_multiplayer:
+            if self.client.registered:
+                self.enable_join_multiplayer = False
+                return False 
             if self.wait_broadcast >= 1:
                 self.update_multiplayer()
                 self.wait_broadcast = 0
@@ -667,6 +671,9 @@ class Control(object):
         :returns: None
 
         """
+        if self.selected_game:
+            self.client.register(self.selected_game)
+            
         self.client.autodiscover(autoregister=False)
     
         # Logic to prevent joining your own game as a client.
@@ -683,18 +690,12 @@ class Control(object):
                         logger.info('Users server responded to users own broadcast, Deleting entry.')
                         del self.client.discovered_servers[(ip, port)]
                         return False
-                        
+#                         
                 # Populate list of detected servers   
                 self.available_games[ip] = port
-        
-        # Automatically add server (for now)                    
-        if len(self.available_games) == 1:
-            for game in self.available_games:
-                self.selected_game = (game, self.available_games[game]) 
-        
-        if self.selected_game:
-            self.client.register(self.selected_game)
             
+        for item in self.available_games.items():
+            self.server_list.append(item[0])
             
     def get_menu_event(self, menu, event):
         
@@ -711,7 +712,7 @@ class Control(object):
         :returns: None
 
         """
-        
+
         try:
             if menu.menu_select_sound:
                 pass
@@ -723,31 +724,39 @@ class Control(object):
         if len(menu.menu_items) > 0:
             menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
         
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and not menu.previous_menu:
+            menu.menu_select_sound.play()
+            self.state.next = self.state.previous
+            self.flip_state()
+              
+            
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and menu.previous_menu:
+            menu.menu_select_sound.play()
             menu.interactable = False
             menu.visible = False
-            if self.state.previous_menu:
-                self.state.previous_menu.interactable = True
-                self.state.previous_menu.visible = True
-            menu.menu_select_sound.play()
-            
-                        
+            if menu.previous_menu:
+                menu.previous_menu.interactable = True
+                menu.previous_menu.visible = True
+        
         if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+            menu.menu_select_sound.play()
             menu.selected_menu_item += 1
             if menu.selected_menu_item > len(menu.menu_items) -1:
                 menu.selected_menu_item = 0
-
-            menu.menu_select_sound.play()
-
+                
         if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+            menu.menu_select_sound.play()
             menu.selected_menu_item -= 1
             if menu.selected_menu_item < 0:
                 menu.selected_menu_item = len(menu.menu_items) -1
 
-            menu.menu_select_sound.play()
-        
+
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            menu.menu_select_sound.play()
+            
             menu.menu_event()
+        
+        
 
 
 class _State(object):

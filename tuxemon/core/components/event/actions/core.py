@@ -223,6 +223,7 @@ class Core(IPlugin):
         ('change_state', 'MAIN_MENU')
     
         """
-        
-        game.state.next = "PC"
-        game.state.done = True
+        # Don't override previous state if we are still in the state.
+        if game.state_name != action[1]:
+            game.state.next = action[1]
+            game.state.done = True

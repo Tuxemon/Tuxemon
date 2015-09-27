@@ -64,6 +64,8 @@ class PC(tools._State):
         self.game = game            # The scene manger object
         self.previous_menu = None
         
+        scale = prepare.SCALE
+        
         self.pc_menu = pc_menu.PCMenu(self.game.screen, prepare.SCREEN_SIZE, self.game)
         self.pc_menu.size_x= int(prepare.SCREEN_SIZE[0]*0.9)
         self.pc_menu.size_y= int(prepare.SCREEN_SIZE[1]*0.9)
@@ -85,24 +87,41 @@ class PC(tools._State):
         self.multiplayer_menu.visible = False
         self.multiplayer_menu.interactable = False
         
+        self.multiplayer_join_menu = pc_menu.Multiplayer_Join_Menu(self.game.screen,
+                                              prepare.SCREEN_SIZE,
+                                              self.game)
+        self.multiplayer_join_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
+        self.multiplayer_join_menu.size_y = prepare.SCREEN_SIZE[1] / 5
+        self.multiplayer_join_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
+            (self.multiplayer_menu.size_x / 2)
+        self.multiplayer_join_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
+            (self.multiplayer_menu.size_y / 2)
+        self.multiplayer_join_menu.visible = False
+        self.multiplayer_join_menu.interactable = False
         
-        self.menus = [self.pc_menu, self.multiplayer_menu]
-
-        # Scale the menu border of all menus
+        
+        self.menus = [self.pc_menu, self.multiplayer_menu, self.multiplayer_join_menu]
+        
+        
         for menu in self.menus:
-            menu.scale = prepare.SCALE
-            menu.set_font(size=menu.font_size * menu.scale,
+            menu.scale = scale    # Set the scale of the menu.
+            menu.set_font(size=menu.font_size * scale,
                           font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
-                          spacing=menu.font_size * menu.scale)
-            menu.arrow = pygame.transform.scale(menu.arrow,
-                                                (menu.arrow.get_width() * prepare.SCALE,
-                                                 menu.arrow.get_height() * prepare.SCALE))
+                          spacing=menu.font_size * scale)
+
+            # Scale the selection arrow image based on our game's scale.
+            menu.arrow = pygame.transform.scale(
+                menu.arrow,
+                (menu.arrow.get_width() * scale,
+                 menu.arrow.get_height() * scale))
+
+            # Scale the border images based on our game's scale.
             for key, border in menu.border.items():
-                menu.border[key] = pygame.transform.scale(border,
-                    (border.get_width() * prepare.SCALE, border.get_height() * prepare.SCALE))
-                
-        
+                menu.border[key] = pygame.transform.scale(
+                    border,
+                    (border.get_width() * scale,
+                     border.get_height() * scale))
 
         
 
@@ -187,14 +206,18 @@ class PC(tools._State):
         :returns: None
 
         """
-        # If the not implemented window is open, send pygame events to it.
-        if self.multiplayer_menu.interactable:
+        
+        if self.multiplayer_join_menu.interactable:
+            self.game.get_menu_event(self.multiplayer_join_menu, event)
+        
+        elif self.multiplayer_menu.interactable:
             self.game.get_menu_event(self.multiplayer_menu, event)
-#         
-        if self.pc_menu.interactable:
+        
+        elif self.pc_menu.interactable:
             self.game.get_menu_event(self.pc_menu, event)
             
-
+        
+        
 
     def draw(self):
         """Draws the start screen to the screen.
@@ -212,11 +235,24 @@ class PC(tools._State):
         self.pc_menu.draw_textItem(
                 ["MULTIPLAYER", "LOG OFF"])
         
-        # Not implemented menu
+        
         if self.multiplayer_menu.visible:
             self.multiplayer_menu.draw()
             self.multiplayer_menu.draw_textItem(
                 ["JOIN", "HOST"])
+
+        
+        if self.multiplayer_join_menu.visible:
+            self.multiplayer_join_menu.draw()
+            self.multiplayer_join_menu.draw_textItem(self.game.server_list)
+            
+            # If no options are selected because there were no items when the menu was populated,
+            # and there are items in the list to select, set the selected item to the top of the list. 
+            if self.multiplayer_join_menu.selected_menu_item <= 0 and \
+            len(self.multiplayer_join_menu.menu_items) > 0:
+                self.multiplayer_join_menu.selected_menu_item = 0
+                
+            
     
     
 

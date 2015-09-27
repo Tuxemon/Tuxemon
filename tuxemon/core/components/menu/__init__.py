@@ -103,6 +103,7 @@ class Menu(UserInterface):
 
         self.name = name                                    # An arbitrary name of the menu
         self.game = game
+        self.previous_menu = None
 
         self.size_x = 400                                   # The width of the menu in pixels
         self.size_y = 200                                   # The height of the menu in pixels

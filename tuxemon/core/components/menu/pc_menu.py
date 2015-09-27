@@ -16,8 +16,7 @@ class PCMenu(Menu):
         self.elapsed_time = self.delay
         
            
-    
-    def menu_event(self):
+    def menu_event(self, event=None):
         """Run once a menu item has been selected by  the core.tools.Control 
         get_menu_event() function
 
@@ -37,6 +36,7 @@ class PCMenu(Menu):
             self.game.state.next = self.game.state.previous
             self.game.flip_state()
         
+        
 
 class Multiplayer_Menu(Menu):
     
@@ -49,7 +49,7 @@ class Multiplayer_Menu(Menu):
         self.elapsed_time = self.delay
     
     
-    def menu_event(self):
+    def menu_event(self, event=None):
         """Run once a menu item has been selected by  the core.tools.Control 
         get_menu_event() function
 
@@ -71,6 +71,7 @@ class Multiplayer_Menu(Menu):
             self.game.server.listen()
 
 
+
 class Multiplayer_Join_Menu(Menu):
     
     
@@ -82,7 +83,7 @@ class Multiplayer_Join_Menu(Menu):
         self.elapsed_time = self.delay
         
     
-    def menu_event(self):
+    def menu_event(self, event=None):
         """Run once a menu item has been selected by  the core.tools.Control 
         get_menu_event() function
 

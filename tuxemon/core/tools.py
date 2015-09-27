@@ -27,7 +27,6 @@
 #
 # core.tools Contains various tools such as scene manager and states.
 #
-import netifaces
 """This module contains the fundamental Control class and a prototype class
 for States.  Also contained here are resource loading functions.
 """
@@ -95,20 +94,12 @@ class Control(object):
         
         # Set up our networking for Multiplayer and Controls
         self.interfaces = {}
-#         for interface in netifaces.interfaces():
-#             addr = netifaces.ifaddresses(interface)
-#             self.interfaces[interface] = addr
         for device in netifaces.interfaces():
-            
             interface = netifaces.ifaddresses(device)
             try:
-                addr = interface[netifaces.AF_INET][0]['addr']
+                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
             except KeyError:
                 pass
-            
-            self.interfaces[device] = addr
-        
-        print self.interfaces
         
         self.network_events = []
         self.available_games = {}
@@ -116,10 +107,9 @@ class Control(object):
         self.selected_game = None
         self.enable_join_multiplayer = False
         self.server = NeteriaServer(Multiplayer(self))
-        
         self.client = NeteriaClient()
-        self.client.listen()
-        self.wait_broadcast = 0
+        self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
+        self.join_self = True # Default False. Set True for testing on one device.
         
         # Set up our game's configuration from the prepare module.
         from core import prepare
@@ -339,8 +329,6 @@ class Control(object):
         :returns: None
 
         """
-        
-            
         events = []
         for event_data in self.network_events:
             if event_data == "KEYDOWN:up":
@@ -651,6 +639,13 @@ class Control(object):
                 self.update_multiplayer()
                 self.wait_broadcast = 0
             else: self.wait_broadcast += time_delta
+        
+        if self.server:
+            for plyr in self.server.registry:
+                if not "sprite" in self.server.registry[plyr]:
+                    self.server.registry[plyr]["sprite"] = player.Player(sprite_name="player", name="Blue")
+                    self.scale_new_player(self.server.registry[plyr]["sprite"])
+                    self.state_dict["WORLD"].npcs.append(self.server.registry[plyr]["sprite"])
                
         if self.show_fps:
             fps = self.clock.get_fps()
@@ -685,11 +680,12 @@ class Control(object):
                         return False
                 except KeyError:
                     pass
-                for interface in self.interfaces:
-                    if ip == self.interfaces[interface]:
-                        logger.info('Users server responded to users own broadcast, Deleting entry.')
-                        del self.client.discovered_servers[(ip, port)]
-                        return False
+                if not self.join_self:
+                    for interface in self.interfaces:
+                        if ip == self.interfaces[interface]:
+                            logger.info('Users server responded to users own broadcast, Deleting entry.')
+                            del self.client.discovered_servers[(ip, port)]
+                            return False
 #                         
                 # Populate list of detected servers   
                 self.available_games[ip] = port
@@ -697,8 +693,8 @@ class Control(object):
         for item in self.available_games.items():
             self.server_list.append(item[0])
             
+            
     def get_menu_event(self, menu, event):
-        
         """Run this function to process pygame basic menu events (such as keypresses/mouse clicks - 
         up, down, enter, escape). 
         
@@ -754,9 +750,56 @@ class Control(object):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
             menu.menu_select_sound.play()
             
-            menu.menu_event()
+            menu.menu_event(event)
+    
+    def scale_new_player(self, sprite):
+        """Scales a new player to the screen.
+
+        :param sprite: Player sprite from the server registry. 
         
-        
+        :type sprite: -- core.components.player.Player object
+
+        :rtype: None
+        :returns: None
+
+        """       
+        SCALE = prepare.SCALE
+        TILE_SIZE = prepare.TILE_SIZE
+        SCREEN_SIZE = prepare.TILE_SIZE
+                    
+        for key, animation in sprite.sprite.items():
+            animation.scale(
+                tuple(i * SCALE for i in animation.getMaxSize()))
+    
+        for key, image in sprite.standing.items():
+            sprite.standing[key] = pg.transform.scale(
+                image, (image.get_width() * SCALE,
+                        image.get_height() * SCALE))
+    
+        # Set the player's width and height based on the size of our scaled
+        # sprite.
+        sprite.playerWidth, sprite.playerHeight = \
+            sprite.standing["front"].get_size()
+        sprite.playerWidth = TILE_SIZE[0]
+        sprite.playerHeight = TILE_SIZE[1]
+        sprite.tile_size = TILE_SIZE
+    
+        # Put the player right in the middle of our screen.
+        sprite.position = [
+            (SCREEN_SIZE[0] / 2) - (sprite.playerWidth / 2),
+            (SCREEN_SIZE[1] / 2) - (sprite.playerHeight / 2)]
+    
+        # Set the player's collision rectangle
+        sprite.rect = pg.Rect(
+            sprite.position[0],
+            sprite.position[1],
+            TILE_SIZE[0],
+            TILE_SIZE[1])
+    
+        # Set the walking and running pixels per second based on the scale
+        sprite.walkrate *= SCALE
+        sprite.runrate *= SCALE
+
 
 
 class _State(object):

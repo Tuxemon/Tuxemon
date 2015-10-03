@@ -109,7 +109,7 @@ class Control(object):
         self.server = NeteriaServer(Multiplayer(self))
         self.client = NeteriaClient()
         self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
-        self.join_self = True # Default False. Set True for testing on one device.
+        self.join_self = False # Default False. Set True for testing on one device.
         
         # Set up our game's configuration from the prepare module.
         from core import prepare

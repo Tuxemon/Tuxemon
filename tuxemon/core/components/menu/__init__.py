@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
+# Copyright (C) 2015, William Edwards <shadowapex@gmail.com>,
 #                     Benjamin Bean <superman2k5@gmail.com>
 #
 # This file is part of Tuxemon.
@@ -36,6 +36,7 @@ import os
 import sys
 
 from core.components.ui import UserInterface
+from core.components import pyganim
 from .. import eztext
 from .. import plugin
 from ... import prepare
@@ -49,6 +50,240 @@ try:
     import pygame.mixer as mixer
 except ImportError:
     import android.mixer as mixer
+
+
+class NewMenu(UserInterface):
+    """A class to create menu objects.
+
+    The only methods that NEED to be called every frame:
+        * self.update
+        * self.draw
+
+    :param background: Can be an image, surface, list of images, or list of surfaces
+        to use as the menu's background. If a list of images/surfaces is provided,
+        then the background will be animated.
+    """
+
+    def __init__(self, game, size, position, size, scale=True, animation_speed=0.2,
+                 animation_loop=True, name="Menu", background=None,
+                 background_color=(248, 248, 248), interactable=False, visible=True,
+                 children=[], parents=[], visible=True, draw_border=True,
+                 border_images="default", border_animation_speed=0.2,
+                 arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2):
+
+        # If our background image is `None`, then use our background color.
+        if not background:
+            background = pygame.Surface(size)
+            background.fill(background_color)
+
+        # Initialize our parent user interface class.
+        super(NewMenu, self).__init__(background, position, game.screen, scale, animation_speed,
+                                      animation_loop)
+
+        self.name = name
+        self.game = game
+        self.size = size
+        self.is_scaled = scale
+
+        # We pass our background to the parent `UserInterface` class which, when
+        # initialized, will be set to `self.animation`.
+        self.background = self.animation
+
+        # Set up this menu's text properties
+        self.text = []
+        self.add_text(text, text_size, text_color,
+                      text_font, text_line_spacing)
+        self.text_size = text_size
+        self.text_color = text_color
+        self.text_font = text_font
+        self.text_line_spacing = text_line_spacing
+        self._set_font()
+
+        # Set up whether this menu is interactable and visible
+        self.interactable = interactable
+        self.visible = visible
+
+        # If this menu is going to switch to another menu, list it here.
+        self.next = None
+        self.previous = None
+        self.done = False
+
+        # Set up a child/parent relationship
+        for parent in parents:
+            parent.add_child(self)
+        for child in children:
+            self.add_child(child)
+
+        # Set up our menu's selection arrow
+        arrow_frames = []
+        for image in arrow_images:
+            arrow_surface = pygame.image.load(image).convert_alpha()
+            if scale:
+                arrow_surface = self.scale_surface(arrow_surface)
+            arrow_frames.append((arrow_surface, arrow_animation_speed))
+        self.arrow = pyganim.PygAnimation(arrow_frames, loop=True)
+
+        # Set up our menu border images.
+        self.draw_border = draw_border
+        self.border_animation_speed = border_animation_speed
+        self.borders = {}
+        self.border_images = {}
+        self.border_directions = ["left", "right", "top", "bottom", "left-top",
+                                  "left-bottom", "right-top", "right-bottom"]
+        if border_images is "default":
+            for d in self.border_directions:
+                self.border_images[d] = ["resources/gfx/menu-" + d + ".png"]
+        else:
+            self.border_images = border_images
+        self._load_border_images()
+        self._stretch_borders()
+        self._stretch_background()
+
+    def update(self, dt):
+        """Updates the menu based on its current state.
+        """
+        super(NewMenu, self).update(dt)
+        pass
+
+    def draw(self):
+        super(NewMenu, self).draw()
+        pass
+
+    def _load_border_images(self):
+        for d in self.border_directions:
+            frames = []
+            for item in self.border_images[d]:
+                surface = pygame.image.load(item).convert_alpha()
+                if self.is_scaled:
+                    surface = self.scale_surface(surface)
+                frames.append((surface, self.border_animation_speed))
+            self.borders[d] = pyganim.Pyganimation(frames, loop=True)
+            self.borders[d].play()
+
+    def _stretch_borders(self):
+        """Scales the border images of this menu instance to fit the size of the menu.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
+        """
+        border_thickness = self.borders["right-bottom"].getFrame(0).get_width()
+        self.borders["right"].scale((border_thickness, self.width))
+        self.borders["left"].scale((border_thickness, self.width))
+        self.borders["top"].scale((self.height, border_thickness))
+        self.borders["bottom"].scale((self.height, border_thickness))
+
+    def _stretch_background(self):
+        self.background.scale((self.width, self.height))
+
+    def add_text(self, text=None, x=None, y=None, justify="left", align=None, size=10,
+                 color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
+                 line_spacing=10):
+        """Add text to draw to the menu"""
+        text = MenuText(text, x, y, justify, align, size,
+                        color, font, line_spacing)
+        self.text.append(text)
+
+    def set_width(self, width):
+        size = list(self.size)
+        size[0] = width
+        self.size = size
+        self._stretch_background()
+        self._stretch_borders()
+
+    def set_height(self, height):
+        size = list(self.size)
+        size[1] = height
+        self.size = size
+        self._stretch_background()
+        self._stretch_borders()
+
+    def set_size(self, w, h):
+        self.size = [w, h]
+        self._stretch_background()
+        self._stretch_borders()
+
+    def set_position(self, x, y):
+        self.position = [x, y]
+
+    def set_interactable(self, is_interactable):
+        self.interactable = is_interactable
+
+    def add_child(self, menu):
+        """Add a menu object as a child of this menu. This is used to establish a parent-child
+        relationship between menus.
+
+        :param menu: A core.components.menu.Menu object that will be the child of this menu.
+
+        :type menu: core.components.menu.Menu
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> main_menu = Menu(screen, resolution)
+        >>> sub_menu = SaveMenu(screen, resolution)
+        ...
+        >>> main_menu.add_child(sub_menu)
+        ...
+        >>> main_menu.children
+        ... [<core.components.menu.SaveMenu instance at 0x2002c68>]
+        >>> sub_menu.parents
+        ... [<core.components.menu.Menu instance at 0x2002320>]
+
+        """
+
+        self.children.append(menu)
+        menu.parents.append(self)
+
+
+    def remove_child(self, menu):
+        """Removes a child from this menu object. This is used to destroy a parent-child
+        relationship between menus.
+
+        :param menu: A core.components.menu.Menu object to remove.
+
+        :type menu: core.components.menu.Menu
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> main_menu = Menu(screen, resolution)
+        >>> sub_menu = SaveMenu(screen, resolution)
+        ...
+        >>> main_menu.add_child(sub_menu)
+        ...
+        >>> main_menu.children
+        ... [<core.components.menu.SaveMenu instance at 0x2002c68>]
+        >>> sub_menu.parents
+        ... [<core.components.menu.Menu instance at 0x2002320>]
+        ...
+        >>> main_menu.remove_child(sub_menu)
+        ...
+        >>> main_menu.children
+        ... []
+        >>> sub_menu.parents
+        ... []
+
+        """
+
+        # If the menu exists as a child of this menu, remove it
+        if menu in self.children:
+            self.children.remove(menu)
+
+        # If the menu does not exist as a child menu, log an error and return nothing
+        else:
+            logger.WARNING("Child does not exist")
+            return None
+
+        # If the menu was a child of this menu, remove it as a parent from the child menu
+        menu.parents.remove(self)
+
 
 
 class Menu(UserInterface):
@@ -1005,6 +1240,45 @@ class Menu(UserInterface):
 
         """
         pass
+
+
+class MenuText(object):
+    def __init__(self, text, x=0, y=0, justify="left", align=None, size=10,
+                 color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
+                 line_spacing=10, is_scaled=True):
+        self.text = text
+        self.x = x
+        self.y = y
+        self.justify = justify
+        self.align = align
+        self.size = size
+        self.color = color
+        self.font_type = font
+        self.line_spacing = line_spacing
+        self._set_font()
+
+    def set_text(self, text):
+        self.text = text
+
+    def set_size(self, size):
+        self.size = size
+        self._set_font()
+
+    def set_color(self, color):
+        self.color = color
+        self._set_font()
+
+    def set_font(self, font):
+        self.font_type = font
+        self._set_font()
+
+    def _set_font(self):
+        if self.is_scaled:
+            font_size = prepare.SCALE * self.size
+        else:
+            font_size = self.size
+        self.font = pygame.font.Font(prepare.BASEDIR + self.font_type, font_size)
+
 
 
 #plugins = plugin.load_directory("core/components/menu")

@@ -64,10 +64,10 @@ class NewMenu(UserInterface):
         then the background will be animated.
     """
 
-    def __init__(self, game, size, position, size, scale=True, animation_speed=0.2,
+    def __init__(self, game, size, position, scale=True, animation_speed=0.2,
                  animation_loop=True, name="Menu", background=None,
                  background_color=(248, 248, 248), interactable=False, visible=True,
-                 children=[], parents=[], visible=True, draw_border=True,
+                 children=[], parents=[], draw_border=True,
                  border_images="default", border_animation_speed=0.2,
                  arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2):
 
@@ -91,13 +91,6 @@ class NewMenu(UserInterface):
 
         # Set up this menu's text properties
         self.text = []
-        self.add_text(text, text_size, text_color,
-                      text_font, text_line_spacing)
-        self.text_size = text_size
-        self.text_color = text_color
-        self.text_font = text_font
-        self.text_line_spacing = text_line_spacing
-        self._set_font()
 
         # Set up whether this menu is interactable and visible
         self.interactable = interactable
@@ -147,7 +140,131 @@ class NewMenu(UserInterface):
 
     def draw(self):
         super(NewMenu, self).draw()
-        pass
+        if self.visible:
+            self._draw_borders()
+            self._draw_all_text()
+
+    def _draw_all_text(self):
+        for text in self.text:
+            self._draw_text(text)
+
+    def _draw_text(self, text):
+        """Draws a `MenuText` item to the current menu"""
+
+        # Set up the positions to draw our text.
+        pos_x = self.position[0] + text.x
+        pos_y = self.position[1] + text.y
+
+        # Create a text surface so we can determine how many pixels
+        # wide each character is
+        text_surface = text.font.render(text.text, 1, text.color)
+
+        # Calculate the number of pixels per letter based on the size
+        # of the text and the number of characters in the text
+        pixels_per_letter = text_surface.get_width() / len(text.text)
+
+        # Create a list of the lines of text as well as a list of the
+        # individual words so we can check each line's length in pixels
+        lines = []
+        wordlist = []
+
+        # Loop through each word in the text and add it to the word list
+        for word in text.text.split():
+
+            # If there is a linebreak in this word, then split it up into a list separated by \n
+            if "\\n" in word:
+                w = word.split("\\n")
+
+                # Loop through the list and every time we encounter a blank string, then that is
+                # a new line. So we append the current line and reset the word list for a new line
+                for item in w:
+                    if item == '':
+                        # This is a new line!
+                        lines.append(" ".join(wordlist))
+                        wordlist = []
+                    # If we encounter an actual word, then just append it to the word list
+                    else:
+                        wordlist.append(item)
+
+            # If there's no line break, continue normally to word wrap
+            else:
+
+                # Append the word to the current line
+                wordlist.append(word)
+
+                # Here, we convert the list into a string separated by spaces and multiply
+                # the number of characters in the string by the number of pixels per letter
+                # that we calculated earlier. This will let us know how large the text will
+                # be in pixels.
+                if len(" ".join(wordlist)) * pixels_per_letter > self.size[0]:
+                    # If the size exceeds the width of the menu, then append the line to the
+                    # list of lines, but stripping off the last word we added (because this
+                    # was the word that made us exceed the menubox's size.
+                    lines.append(" ".join(wordlist[:-1]))
+
+                    # Reset the wordlist for the next line and add the word we stripped off
+                    wordlist = []
+                    wordlist.append(word)
+
+
+        # If the last line is not blank, then append it to the list
+        if " ".join(wordlist) != '':
+            lines.append(" ".join(wordlist))
+
+        # If the justification was set, handle the position of the text automatically
+        if text.justify == "center":
+            if len(lines) > 0:
+                pos_x = (self.position[0] + (self.size[0] / 2)) - \
+                    ((len(lines[0]) * pixels_per_letter) / 2)
+            else:
+                pos_x = 0
+
+        elif text.justify == "right":
+             raise NotImplementedError, "Needs to be implemented"
+
+        # If text alignment was set, handle the position of the text automatically
+        if text.align == "middle":
+            pos_y = (self.position[1] + (self.size[1] / 2)) - \
+                ((text_surface.get_height() * len(lines)) / 2)
+
+        elif text.align == "bottom":
+            raise NotImplementedError, "Needs to be implemented"
+
+
+        # Set a spacing variable that we will add to to space each line.
+        spacing = 0
+        for item in lines:
+            line = text.font.render(item, 1, text.color)
+
+            self.screen.blit(line, (pos_x, pos_y + spacing))
+            spacing += line.get_height() + text.line_spacing
+
+    def _draw_borders(self):
+        border_thickness = self.borders["right-bottom"].getFrame(0).get_width()
+        for d in self.border_directions:
+            position = list(self.position)
+            size = list(self.size)
+            if d == "left":
+                position[0] -= border_thickness
+            elif d == "right":
+                position[0] += size[0]
+            elif d == "top":
+                position[1] -= border_thickness
+            elif d == "bottom":
+                position[1] += size[1]
+            elif d == "left-top":
+                position[0] -= border_thickness
+                position[1] -= border_thickness
+            elif d == "left-bottom":
+                position[0] -= border_thickness
+                position[1] += size[1]
+            elif d == "right-top":
+                position[0] += size[0]
+                position[1] -= border_thickness
+            elif d == "right-bottom":
+                position[0] += size[0]
+                position[1] += size[1]
+            self.borders[d].blit(self.screen, position)
 
     def _load_border_images(self):
         for d in self.border_directions:
@@ -157,7 +274,7 @@ class NewMenu(UserInterface):
                 if self.is_scaled:
                     surface = self.scale_surface(surface)
                 frames.append((surface, self.border_animation_speed))
-            self.borders[d] = pyganim.Pyganimation(frames, loop=True)
+            self.borders[d] = pyganim.PygAnimation(frames, loop=True)
             self.borders[d].play()
 
     def _stretch_borders(self):
@@ -170,21 +287,32 @@ class NewMenu(UserInterface):
 
         """
         border_thickness = self.borders["right-bottom"].getFrame(0).get_width()
-        self.borders["right"].scale((border_thickness, self.width))
-        self.borders["left"].scale((border_thickness, self.width))
-        self.borders["top"].scale((self.height, border_thickness))
-        self.borders["bottom"].scale((self.height, border_thickness))
+        self.borders["right"].scale((border_thickness, self.size[1]))
+        self.borders["left"].scale((border_thickness, self.size[1]))
+        self.borders["top"].scale((self.size[0], border_thickness))
+        self.borders["bottom"].scale((self.size[0], border_thickness))
 
     def _stretch_background(self):
-        self.background.scale((self.width, self.height))
+        self.background.scale((self.size[0], self.size[1]))
 
-    def add_text(self, text=None, x=None, y=None, justify="left", align=None, size=10,
+    def add_text(self, text="", x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10):
         """Add text to draw to the menu"""
         text = MenuText(text, x, y, justify, align, size,
                         color, font, line_spacing)
         self.text.append(text)
+
+    def set_text(self, text="", x=0, y=0, justify="left", align=None, size=4,
+                 color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
+                 line_spacing=10):
+        """Replaces all current text with the following text"""
+        text = MenuText(text, x, y, justify, align, size,
+                        color, font, line_spacing)
+        self.text = [text]
+
+    def clear_text(self):
+        self.text = []
 
     def set_width(self, width):
         size = list(self.size)
@@ -210,6 +338,9 @@ class NewMenu(UserInterface):
 
     def set_interactable(self, is_interactable):
         self.interactable = is_interactable
+
+    def set_visible(self, is_visible):
+        self.visible = is_visible
 
     def add_child(self, menu):
         """Add a menu object as a child of this menu. This is used to establish a parent-child
@@ -283,6 +414,24 @@ class NewMenu(UserInterface):
 
         # If the menu was a child of this menu, remove it as a parent from the child menu
         menu.parents.remove(self)
+
+    def get_event(self, event, game=None):
+        """Run this function to process pygame events (such as keypresses/mouse clicks). By
+        default this function does nothing.
+
+        :param event: -- A single pygame event from pygame.event.get()
+        :param game: -- An optional instance of the game itself so we can directly manipulate
+            its variables
+
+        :type events: List
+        :type game: core.tools.Control
+
+        :rtype: None
+        :returns: None
+
+        """
+        if self.interactable:
+            pass
 
 
 
@@ -1243,7 +1392,7 @@ class Menu(UserInterface):
 
 
 class MenuText(object):
-    def __init__(self, text, x=0, y=0, justify="left", align=None, size=10,
+    def __init__(self, text, x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10, is_scaled=True):
         self.text = text
@@ -1255,6 +1404,7 @@ class MenuText(object):
         self.color = color
         self.font_type = font
         self.line_spacing = line_spacing
+        self.is_scaled = is_scaled
         self._set_font()
 
     def set_text(self, text):

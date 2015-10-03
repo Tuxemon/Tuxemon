@@ -112,11 +112,17 @@ is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1
 * ["Bigfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Eyenemy"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 * ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Player Sprite](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](https://forum.tuxemon.org/profile.php?id=22)
+* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](https://forum.tuxemon.org/profile.php?id=22)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Nut & Bolt"](https://forum.tuxemon.org/viewtopic.php?id=59) by [TacoBot](https://forum.tuxemon.org/profile.php?id=40)
+is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
 
 
 Maps

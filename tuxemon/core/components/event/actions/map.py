@@ -28,13 +28,12 @@ import logging
 import os
 import pygame
 import re
-from yapsy.IPlugin import IPlugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-class Map(IPlugin):
+class Map(object):
 
     def screen_transition(self, game, action):
         """Initiates a screen transition
@@ -127,7 +126,7 @@ class Map(IPlugin):
 
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
-        from core import prepare
+        prepare = game.imports["prepare"]
 
         parameters = action[1].split(",")
         animation_name = parameters[0]
@@ -167,7 +166,7 @@ class Map(IPlugin):
         # Scale the animations based on our game's scale: game.state_dict["WORLD"].scale
 
         # Create an animation object and conductor.
-        from core.components import pyganim
+        pyganim = game.imports["pyganim"]
         animation = pyganim.PygAnimation(images_and_durations, loop=loop)
         conductor = pyganim.PygConductor({'animation': animation})
         conductor.play()

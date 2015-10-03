@@ -24,28 +24,26 @@
 # William Edwards <shadowapex@gmail.com>
 #
 
-from yapsy.IPlugin import IPlugin
 
-
-class Combat(IPlugin):
+class Combat(object):
 
     def combat_started(self, game, condition):
         """Checks to see if combat has been started or not.
-            
+
         :param game: The main game object that contains all the game's variables.
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary. 
-            
+            for the format of the dictionary.
+
         :type game: core.tools.Control
         :type condition: Dictionary
-        
+
         :rtype: Boolean
-        :returns: True or False 
-            
+        :returns: True or False
+
         Valid Parameters: None
-           
+
         **Examples:**
-    
+
         >>> condition
         {'action_id': '9',
          'id': 9,
@@ -54,9 +52,9 @@ class Combat(IPlugin):
          'type': 'combat_started',
          'x': 1,
          'y': 11}
-    
+
         """
-    
+
         if (game.state_name == "COMBAT"
             or game.state_dict["WORLD"].battle_transition_in_progress
             or game.state_dict["WORLD"].start_battle_transition
@@ -64,6 +62,6 @@ class Combat(IPlugin):
             return True
         else:
             return False
-    
-    
-    
+
+
+

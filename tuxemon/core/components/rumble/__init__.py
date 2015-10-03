@@ -29,7 +29,10 @@
 #
 #
 import logging
-from ctypes import cdll
+try:
+    from ctypes import cdll
+except:
+    cdll = None
 from .tools import *
 
 # Set up logging for the rumble manager.
@@ -44,7 +47,11 @@ class RumbleManager(object):
         # Select the rumble backend to use.
         self.backend = None
         locations = ['libshake.so', './libshake.so', '/usr/lib/libshake.so']
-        lib_shake = find_library(locations)
+        if not cdll:
+            logger.debug("Ctypes is unavailable.")
+            lib_shake = None
+        else:
+            lib_shake = find_library(locations)
 
         if lib_shake:
             logger.debug("Using libShake as backend.")

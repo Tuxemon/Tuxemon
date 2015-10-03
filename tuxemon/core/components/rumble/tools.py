@@ -1,4 +1,7 @@
-from ctypes import cdll
+try:
+    from ctypes import cdll
+except:
+    cdll = None
 
 class Rumble(object):
     def __init__(self):

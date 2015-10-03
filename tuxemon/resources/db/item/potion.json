@@ -8,5 +8,9 @@
     "power": 50, 
     "sprite": "resources/gfx/items/potion.png", 
     "target": "player",
-    "type": "Consumable"
+    "type": "Consumable",
+    "usable_in": [
+        "combat",
+        "world"
+    ]
 }

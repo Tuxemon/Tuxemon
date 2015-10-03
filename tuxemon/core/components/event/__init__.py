@@ -47,12 +47,6 @@ from core.components import monster
 from core.components import ai
 from core.components import plugin
 
-# Load all the available conditions and actions as plugins.
-condition_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/conditions")
-condition_methods = plugin.get_available_methods(condition_plugins)
-action_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/actions")
-action_methods = plugin.get_available_methods(action_plugins)
-
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("components.event successfully imported")
@@ -64,10 +58,15 @@ class EventEngine(object):
 
     """
     def __init__(self):
+
+        # Load all the available conditions and actions as plugins.
+        condition_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/conditions")
+        self.conditions = plugin.get_available_methods(condition_plugins)
+        action_plugins = plugin.load_directory(prepare.BASEDIR + "core/components/event/actions")
+        self.actions = plugin.get_available_methods(action_plugins)
+
         self.name = "Event"
         self.current_map = None
-        self.conditions = condition_methods
-        self.actions = action_methods
         self.state = "running"
         self.timer = 0.0
         self.wait = 0.0
@@ -105,7 +104,7 @@ class EventEngine(object):
                     # please change it.
                     if not self.state == "running":
                         return
-                    check_condition = condition_methods[cond['type']]['method']
+                    check_condition = self.conditions[cond['type']]['method']
                     should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
                     if not should_run:
                         break
@@ -132,7 +131,7 @@ class EventEngine(object):
             # Loop through each event
             for event in events:
                 # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
-                if event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
+                if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
                     self.state = "running"
                     self.button = None
 
@@ -163,7 +162,7 @@ class EventEngine(object):
 
             # Call the method listed and return the modified event data
             try:
-                action_methods[action[0]]["method"](game, action)
+                self.actions[action[0]]["method"](game, action)
                 #getattr( self.action, str(action[0]))(game, action)
             except Exception, message:
                 error = 'Error: Action method "%s" not implemented' % str(action[0])

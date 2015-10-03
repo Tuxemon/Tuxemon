@@ -3,7 +3,23 @@
     "monsters": [
         {
             "monster_id": 1, 
-            "encounter_rate": 10, 
+            "encounter_rate": 1, 
+            "level_range": [
+                1, 
+                6
+            ]
+        },
+       {
+            "monster_id": 2, 
+            "encounter_rate": 1, 
+            "level_range": [
+                1, 
+                6
+            ]
+        },
+        {
+            "monster_id": 3, 
+            "encounter_rate": 1, 
             "level_range": [
                 1, 
                 6
@@ -11,15 +27,39 @@
         },
         {
             "monster_id": 4, 
-            "encounter_rate": 10, 
+            "encounter_rate": 1, 
             "level_range": [
                 1, 
                 6
             ]
         },
         {
-            "monster_id": 2, 
-            "encounter_rate": 10, 
+            "monster_id": 5, 
+            "encounter_rate": 1, 
+            "level_range": [
+                1, 
+                6
+            ]
+        },
+        {
+            "monster_id": 6, 
+            "encounter_rate": 1, 
+            "level_range": [
+                1, 
+                6
+            ]
+        },
+        {
+            "monster_id": 7, 
+            "encounter_rate": 1, 
+            "level_range": [
+                1, 
+                6
+            ]
+        },
+        {
+            "monster_id": 8, 
+            "encounter_rate": 1, 
             "level_range": [
                 1, 
                 6

@@ -25,8 +25,6 @@
 #
 
 import logging
-from yapsy.IPlugin import IPlugin
-from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -38,7 +36,7 @@ except ImportError:
     import android.mixer as mixer
 
 
-class Sound(IPlugin):
+class Sound(object):
 
     def play_sound(self, game, action):
         """Plays a sound from "resources/sounds/"
@@ -62,6 +60,7 @@ class Sound(IPlugin):
 
         """
 
+        prepare = game.imports["prepare"]
         filename = str(action[1])
         sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
         sound.play()
@@ -89,6 +88,7 @@ class Sound(IPlugin):
 
         """
 
+        prepare = game.imports["prepare"]
         filename = str(action[1])
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)

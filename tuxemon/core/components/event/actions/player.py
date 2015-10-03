@@ -24,20 +24,14 @@
 # William Edwards <shadowapex@gmail.com>
 #
 
-print "TRYING THIS SHIT"
 import logging
 import pygame
-from yapsy.IPlugin import IPlugin
-from core import prepare
-from core.components import item
-from core.components import monster
-from core.components.map import Map
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-class Player(IPlugin):
+class Player(object):
 
     def teleport(self, game, action):
         """Teleport the player to a particular map and coordinates
@@ -60,6 +54,11 @@ class Player(IPlugin):
         ('teleport', 'pallet_town-room.tmx,5,5', '1', 1)
 
         """
+        prepare = game.imports["prepare"]
+        item = game.imports["item"]
+        monster = game.imports["monster"]
+        Map = game.imports["map"].Map
+
 
         # Get the player object from the game.
         player = game.player1
@@ -157,9 +156,7 @@ class Player(IPlugin):
         transition_time = parameters[3]
 
         # Start the screen transition
-        from core.components.event.actions.map import Map as MapAction
-        map_action = MapAction()
-        screen_transition = map_action.screen_transition
+        screen_transition = game.event_engine.actions["screen_transition"]["method"]
         transition_action = (action[0], transition_time)
         screen_transition(game, transition_action)
 
@@ -224,6 +221,8 @@ class Player(IPlugin):
 
         """
 
+        monster = game.imports["monster"]
+
         parameters = action[1].split(",")
         monster_name = parameters[0]
         monster_level = parameters[1]
@@ -256,6 +255,8 @@ class Player(IPlugin):
         >>>
 
         """
+
+        item = game.imports["item"]
 
         player = game.player1
         item_to_add = item.Item(action[1])

@@ -25,31 +25,30 @@
 #
 
 import logging
-from yapsy.IPlugin import IPlugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-class Npc(IPlugin):
+class Npc(object):
 
     def npc_exists(self, game, condition):
         """Checks to see if a particular NPC object exists in the current list of NPCs.
-            
+
         :param game: The main game object that contains all the game's variables.
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary. 
-            
+            for the format of the dictionary.
+
         :type game: core.tools.Control
         :type condition: Dictionary
-        
+
         :rtype: Boolean
-        :returns: True or False 
-    
+        :returns: True or False
+
         Valid Parameters: npc_name
-            
+
         **Examples:**
-    
+
         >>> condition
         {'action_id': '6',
          'id': 6,
@@ -58,34 +57,34 @@ class Npc(IPlugin):
          'type': 'npc_exists',
          'x': 0,
          'y': 0}
-    
+
         """
-    
+
         # Loop through the NPC list and see if the name matches any in the list
         for npc in game.state_dict["WORLD"].npcs:
             if npc.name == condition["parameters"]:
                 return True
-    
+
         return False
-    
-    
+
+
     def facing_npc(self, game, condition):
         """Checks to see the player is next to and facing a particular NPC
-    
+
         :param game: The main game object that contains all the game's variables.
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary. 
-    
+            for the format of the dictionary.
+
         :type game: core.tools.Control
         :type condition: Dictionary
-        
+
         :rtype: Boolean
-        :returns: True or False 
-    
+        :returns: True or False
+
         Valid Parameters: npc_name
-    
+
         **Examples:**
-    
+
         >>> condition
         {'action_id': '7',
          'id': 7,
@@ -94,21 +93,21 @@ class Npc(IPlugin):
          'type': 'facing_npc',
          'x': 0,
          'y': 0}
-    
+
         """
-    
+
         npc_name = condition["parameters"]
         npc_location = None
-    
+
         # First, find the NPC by name
         for item in game.state_dict["WORLD"].npcs:
             if item.name == npc_name:
                 npc = item      # We found the NPC!
-    
+
         # If we couldn't find the NPC, return false as we're not next to it :P
         if not npc:
             return False
-    
+
         # Next, we check the player position and see if we're one tile away from the NPC.
         if npc.tile_pos[1] == game.player1.tile_pos[1]:
             # Check to see if the NPC is to the left of the player
@@ -119,7 +118,7 @@ class Npc(IPlugin):
             elif npc.tile_pos[0] == game.player1.tile_pos[0] + 1:
                 logger.debug("NPC is to the right of the player")
                 npc_location = "right"
-    
+
         if npc.tile_pos[0] == game.player1.tile_pos[0]:
             # Check to see if the NPC is above the player
             if npc.tile_pos[1] == game.player1.tile_pos[1] - 1:
@@ -128,10 +127,10 @@ class Npc(IPlugin):
             elif npc.tile_pos[1] == game.player1.tile_pos[1] + 1:
                 logger.debug("NPC is below the player")
                 npc_location = "down"
-    
+
         # Then we check to see if we're facing the NPC
         if game.player1.facing == npc_location:
             return True
         else:
             return False
-    
+

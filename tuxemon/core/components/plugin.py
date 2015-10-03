@@ -29,22 +29,77 @@
 #
 #
 
-from yapsy.PluginManager import PluginManager
 from pprint import pformat, pprint
 import logging
 import os
 import inspect
+import importlib
 import sys
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-plugin_logger = logging.getLogger('yapsy')
-plugin_logger.setLevel(logging.DEBUG)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
 log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
                                         "%(levelname)s - %(message)s"))
-plugin_logger.addHandler(log_hdlr)
+
+class Plugin(object):
+    def __init__(self, name, module):
+        self.name = name
+        self.plugin_object = module
+
+
+class PluginManager(object):
+    """Yapsy semi-compatible plugin manager.
+    """
+
+    def __init__(self, base_folders=["/data/data/org.tuxemon.game/files", "tuxemon"]):
+        self.folders = []
+        self.base_folders = base_folders
+        self.modules = []
+        self.file_extension = ".plugin"
+        self.exclude_classes = ["IPlugin"]
+
+    def setPluginPlaces(self, plugin_folders):
+        self.folders = plugin_folders
+
+    def collectPlugins(self):
+        for folder in self.folders:
+            folder = folder.replace('\\', '/')
+            # Take the plugin folder and create a base module path based on it.
+            for base_folder in self.base_folders:
+                if base_folder in folder:
+                    module_path = '.'.join(folder.split(base_folder + '/')[-1].split('/'))
+                    break
+            logger.debug("Plugin folder: " + folder)
+            logger.debug("Module path: " + module_path)
+
+            # Look for a "yapsy-plugin" in the plugin folder to create a list of modules
+            # to import.
+            modules = []
+            for f in os.listdir(folder):
+                if f.endswith(self.file_extension):
+                    modules.append(module_path + "." + f.split(self.file_extension)[0])
+            self.modules += modules
+        logger.debug("Modules to load: " + str(self.modules))
+
+    def getAllPlugins(self):
+        imported_modules = []
+        for module in self.modules:
+            logger.debug("Importing module: " + str(module))
+            m = importlib.import_module(module)
+            for c in self._getClassesFromModule(m):
+                class_name = c[0]
+                class_obj = c[1]
+                if class_name not in self.exclude_classes:
+                    imported_modules.append(Plugin(module + "." + class_name, class_obj()))
+
+        return imported_modules
+
+
+    def _getClassesFromModule(self, module):
+        members = inspect.getmembers(module, predicate=inspect.isclass)
+        return members
 
 
 def load_directory(plugin_folder):
@@ -86,9 +141,7 @@ def get_available_methods(plugin_manager):
     methods = {}
     for plugin in plugin_manager.getAllPlugins():
         items = inspect.getmembers(plugin.plugin_object, predicate=inspect.ismethod)
-        pprint(items)
         for method in items:
             methods[method[0]] = {"method": method[1], "module": plugin.name}
 
-    pprint(methods)
     return methods

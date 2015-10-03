@@ -26,12 +26,6 @@
 
 import logging
 import random
-from yapsy.IPlugin import IPlugin
-from core import prepare
-from core.components import ai
-from core.components import db
-from core.components import monster
-from core.components import player
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -43,7 +37,7 @@ except ImportError:
     import android.mixer as mixer
 
 
-class Combat(IPlugin):
+class Combat(object):
 
     def start_battle(self, game, action):
         """Start a battle and switch to the combat module. The parameters must contain an NPC id
@@ -67,6 +61,11 @@ class Combat(IPlugin):
         ... (u'start_battle', u'1', 1, 9)
 
         """
+        prepare = game.imports["prepare"]
+        ai = game.imports["ai"]
+        db = game.imports["db"]
+        monster = game.imports["monster"]
+        player = game.imports["player"]
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if len(game.player1.monsters) < 1:
@@ -140,6 +139,7 @@ class Combat(IPlugin):
         # Start some music!
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
+
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
 
@@ -163,6 +163,13 @@ class Combat(IPlugin):
         Valid Parameters: encounter_id
 
         """
+
+        prepare = game.imports["prepare"]
+        ai = game.imports["ai"]
+        db = game.imports["db"]
+        monster = game.imports["monster"]
+        player = game.imports["player"]
+
 
         player1 = game.player1
 

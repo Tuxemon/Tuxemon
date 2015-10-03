@@ -208,20 +208,28 @@ class ItemMenu(Menu):
                     # For now, just use the item on the currently active monster.
                     print "Using " + item_name
                     item_to_use = game.player1.inventory[item_name]['item']
-                    if item_to_use.target == "opponent":
-                        item_target = game.state.current_players['opponent']['monster']
-                    elif item_to_use.target == "player":
-                        item_target = game.state.current_players['player']['monster']
 
-                    if game.state_name == "COMBAT":
-                        # Set the player's decided action for this turn to "item" and give the name
-                        # and target of the item.
-                        game.state.current_players['player']['action'] = {'item':
-                            {'name': item_name,
-                             'target': item_target}}
+                    # Check to see if the item can be used in the current state.
+                    if game.state_name.lower() in item_to_use.usable_in:
+                        print "%s can be used here!" % item_name
+
+                        if game.state_name == "COMBAT":
+                            if item_to_use.target == "opponent":
+                                item_target = game.state.current_players['opponent']['monster']
+                            elif item_to_use.target == "player":
+                                item_target = game.state.current_players['player']['monster']
+
+                            # Set the player's decided action for this turn to "item" and give the name
+                            # and target of the item.
+                            game.state.current_players['player']['action'] = {'item':
+                                {'name': item_name,
+                                 'target': item_target}}
+                        else:
+                            game.player1.inventory[item_name]['item'].use(game.player1.monsters[0], game)
 
                     else:
-                        game.player1.inventory[item_name]['item'].use(item_target, game)
+                        print "%s cannot be used here!" % item_name
+
 
             # Item List Menu
             else:

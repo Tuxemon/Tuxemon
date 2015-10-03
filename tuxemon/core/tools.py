@@ -38,12 +38,18 @@ import pygame as pg
 import pprint
 import pygame.mixer as mixer
 
-from .components import config
-from .components import controller
-from .components import player
-from .components import cli
-from .components import event
-from .components import rumble
+from core.components import config
+from core.components import controller
+from core.components import player
+from core.components import cli
+from core.components import event
+from core.components import rumble
+from core.components import ai
+from core.components import db
+from core.components import monster
+from core.components import item
+from core.components import map as maps
+from core.components import pyganim
 from .components.middleware import Multiplayer
 from core import prepare
 
@@ -743,13 +749,13 @@ class Control(object):
         if len(menu.menu_items) > 0:
             menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
         
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and not menu.previous_menu:
+        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and not menu.previous_menu:
             menu.menu_select_sound.play()
             self.state.next = self.state.previous
             self.flip_state()
               
             
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and menu.previous_menu:
+        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
             menu.menu_select_sound.play()
             menu.interactable = False
             menu.visible = False
@@ -757,20 +763,20 @@ class Control(object):
                 menu.previous_menu.interactable = True
                 menu.previous_menu.visible = True
         
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
             menu.menu_select_sound.play()
             menu.selected_menu_item += 1
             if menu.selected_menu_item > len(menu.menu_items) -1:
                 menu.selected_menu_item = 0
                 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        if event.type == pg.KEYDOWN and event.key == pg.K_UP:
             menu.menu_select_sound.play()
             menu.selected_menu_item -= 1
             if menu.selected_menu_item < 0:
                 menu.selected_menu_item = len(menu.menu_items) -1
 
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
             menu.menu_select_sound.play()
             
             menu.menu_event(event)

@@ -203,6 +203,7 @@ class World(tools._State):
                                                  interactable=False)
         self.not_implmeneted_menu.set_text("This feature is not yet implemented.",
                                            justify="center", align="middle")
+        self.not_implmeneted_menu.set_text_menu_items(["One", "Two"], align="middle")
 
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
@@ -528,6 +529,8 @@ class World(tools._State):
         # portion of the sprite.
         self.player1.tile_pos = (float((self.player1.position[0] - self.global_x)) / float(
             self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
+
+        self.not_implmeneted_menu.update(time_delta)
 
         # Handle world events
         self.map_drawing()

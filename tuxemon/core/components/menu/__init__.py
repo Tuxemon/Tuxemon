@@ -71,7 +71,7 @@ class NewMenu(UserInterface):
                  children=[], parents=[], draw_border=True,
                  border_images="default", border_animation_speed=0.2,
                  arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2,
-                 menu_item_columns=1, menu_item_autospacing=True):
+                 menu_item_columns=1, menu_item_autospacing=True, menu_item_paging=False):
 
         # Handle our size and position if they were given as a percentage of the screen
         size = list(size)
@@ -106,6 +106,7 @@ class NewMenu(UserInterface):
         self.text_menu = []
         self.columns = menu_item_columns
         self.menu_item_autospacing = menu_item_autospacing
+        self.paging = menu_item_paging
         self.selected_menu_item = 0
         self.selected_menu_value = ""
 
@@ -161,6 +162,7 @@ class NewMenu(UserInterface):
         if self.visible:
             self._draw_borders()
             self._draw_all_text()
+            self._draw_text_menu()
 
     def _draw_all_text(self):
         for text in self.text:
@@ -268,17 +270,20 @@ class NewMenu(UserInterface):
         """
         menu_items = self.text_menu
         columns = self.columns
+        paging = self.paging
+
+        pos_x = 0
+        pos_y = 0
+
+        # Do nothing if the text list is empty
+        if not menu_items:
+            return False
 
         # If the our list of menu items is now SHORTER than it was before, and our
         # "selected_menu_item" number exceeds the size of our list, set our selection to the
         # last item.
         if self.selected_menu_item > len(menu_items) - 1:
             self.selected_menu_item = len(menu_items) - 1
-
-
-        # Do nothing if the text list is empty
-        if not menu_items:
-            return False
 
         text_surfaceList = []	# This is the list of text surfaces to blit
         # Here we create an empty list that will contain lists of menu items sorted
@@ -338,18 +343,17 @@ class NewMenu(UserInterface):
 
         # If autoline spacing was specified, set our line spacing based on the size of our menu.
         if self.menu_item_autospacing:
-            line_spacing = int(self.size[1] / (len(textlist) / self.columns)) - longest_item.get_height()
+            line_spacing = int(self.size[1] / (len(menu_items) / self.columns)) - longest_item.get_height()
         else:
             line_spacing = menu_items[0].line_spacing
 
-        if self.menuitempositions == False:
-            self.menudis_x = self.column_spacing
-            #self.menudis_y = longest_item.get_height()
-            self.menudis_y = line_spacing/2
+        menudis_x = column_spacing
+        #self.menudis_y = longest_item.get_height()
+        menudis_y = line_spacing/2
 
         # Keep track of the original "x" position so we can reset the value back every time we
         # loop through a row
-        orig_x = self.menudis_x
+        orig_x = menudis_x
 
         # Keep track of the item number so we can see if it is selected or not
         item_num = 0
@@ -365,7 +369,7 @@ class NewMenu(UserInterface):
 
             # Divide the size of the content in pixels by the size of the window to determine how
             # many pages we'll need.
-            number_of_pages = math.ceil(float(content_size) / float(self.size_y))
+            number_of_pages = math.ceil(float(content_size) / float(self.size[1]))
 
             # Get the number of lines we'll be drawing per page.
             lines_per_page = math.floor(float(number_of_lines) / float(number_of_pages))
@@ -415,28 +419,16 @@ class NewMenu(UserInterface):
             # Loop through each item in the row and blit it to the screen
             for item in row:
 
-                icon_width = 0
-                icon_height = 0
-
-                # If we have an icon associated with this menu item, blit it as well
-                if self.menu_icons:
-                    self.screen.blit(
-                        self.menu_icons[item_num],
-                        ((self.pos_x + pos_x + (self.menudis_x) - (self.menu_icons[item_num].get_width()/1.5)),
-                        (self.pos_y + pos_y + self.menudis_y - (self.menu_icons[item_num].get_height()/2))))
-
-                    icon_width = self.menu_icons[item_num].get_width()
-                    icon_height = self.menu_icons[item_num].get_height()
-
                 self.screen.blit(item,
-                    ((self.pos_x + pos_x + (self.menudis_x) + (icon_width / 2)),
-                     (self.pos_y + pos_y + self.menudis_y)))
+                    (self.position[0] + pos_x + menudis_x,
+                     self.position[1] + pos_y + menudis_y))
 
                 # Draw the selection arrow if an item is selected
+                print self.selected_menu_item, item_num
                 if not paging and self.selected_menu_item == item_num:
-                    self.screen.blit(self.arrow,
-                        ((self.pos_x + pos_x + self.menudis_x ) - (self.arrow.get_width() * 1.3),
-                         (self.pos_y + pos_y + self.menudis_y - (self.arrow.get_height() / 2) + (item.get_height() /2) ) ))
+                    self.arrow.blit(self.screen,
+                        ((self.position[0] + pos_x + menudis_x ) - (self.arrow.getMaxSize()[0] * 1.3),
+                         (self.position[1] + pos_y + menudis_y - (self.arrow.getMaxSize()[1] / 2) + (item.get_height() /2) ) ))
 
                 # If paging is enabled, draw the selection arrow next to the selected menu item
                 # based on the page we're on.
@@ -447,22 +439,22 @@ class NewMenu(UserInterface):
 
                     # If we're currently drawing the selected menu item, draw the arrow next to it.
                     if self.selected_menu_item == paged_selection_number:
-                        self.screen.blit(self.arrow,
-                            ((self.pos_x + pos_x + self.menudis_x ) - (self.arrow.get_width() * 1.3),
-                             (self.pos_y + pos_y + self.menudis_y - (self.arrow.get_height() / 2) + (item.get_height() /2) ) ))
+                        self.arrow.blit(self.screen,
+                            ((self.position[0] + pos_x + menudis_x ) - (self.arrow.getMaxSize()[0] * 1.3),
+                             (self.position[1] + pos_y + menudis_y - (self.arrow.getMaxSize()[1] / 2) + (item.get_height() /2) ) ))
 
                 # Offset the "x" value so that the next item is blitted to the right of the
                 # previous one
-                self.menudis_x += self.column_spacing + longest_item.get_width()
+                menudis_x += column_spacing + longest_item.get_width()
 
                 # Increment the item number so we can keep track of it
                 item_num += 1
 
             # Reset the "x" value so that it's back to its original position for the next row.
-            self.menudis_x = orig_x
+            menudis_x = orig_x
 
             # Offset the "y" value by the height of the text plus the line spacing.
-            self.menudis_y += line_spacing + longest_item.get_height()
+            menudis_y += line_spacing + longest_item.get_height()
 
 
 
@@ -543,7 +535,7 @@ class NewMenu(UserInterface):
                 text_item = MenuText(t, x, y, justify, align, size,
                                      color, font, line_spacing, columns,
                                      auto_line_spacing, paging)
-                self.text_menu.append(t)
+                self.text_menu.append(text_item)
 
     def set_text(self, text="", x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
@@ -563,6 +555,9 @@ class NewMenu(UserInterface):
 
     def clear_text(self):
         self.text = []
+
+    def clear_text_menu_items(self):
+        self.text_menu = []
 
     def set_width(self, width):
         size = list(self.size)
@@ -664,6 +659,9 @@ class NewMenu(UserInterface):
 
         # If the menu was a child of this menu, remove it as a parent from the child menu
         menu.parents.remove(self)
+
+    def get_current_selection(self):
+        return self.text_menu[self.selected_menu_item]
 
     def get_event(self, event, game=None, callback=None):
         """Run this function to process pygame events (such as keypresses/mouse clicks). By

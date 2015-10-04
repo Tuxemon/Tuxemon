@@ -70,7 +70,8 @@ class NewMenu(UserInterface):
                  background_color=(248, 248, 248), interactable=False, visible=True,
                  children=[], parents=[], draw_border=True,
                  border_images="default", border_animation_speed=0.2,
-                 arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2):
+                 arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2,
+                 menu_item_columns=1, menu_item_autospacing=True):
 
         # Handle our size and position if they were given as a percentage of the screen
         size = list(size)
@@ -100,6 +101,13 @@ class NewMenu(UserInterface):
 
         # Set up this menu's text properties
         self.text = []
+
+        # Set up this menu's selectable text menu items
+        self.text_menu = []
+        self.columns = menu_item_columns
+        self.menu_item_autospacing = menu_item_autospacing
+        self.selected_menu_item = 0
+        self.selected_menu_value = ""
 
         # Set up whether this menu is interactable and visible
         self.interactable = interactable
@@ -249,6 +257,215 @@ class NewMenu(UserInterface):
             self.screen.blit(line, (pos_x, pos_y + spacing))
             spacing += line.get_height() + text.line_spacing
 
+
+    def _draw_text_menu(self):
+        """Draws selectable menu items to the window. Menu items are automatically centered based
+        on the number of columns specified.
+
+        :rtype: None
+        :returns: None
+
+        """
+        menu_items = self.text_menu
+        columns = self.columns
+
+        # If the our list of menu items is now SHORTER than it was before, and our
+        # "selected_menu_item" number exceeds the size of our list, set our selection to the
+        # last item.
+        if self.selected_menu_item > len(menu_items) - 1:
+            self.selected_menu_item = len(menu_items) - 1
+
+
+        # Do nothing if the text list is empty
+        if not menu_items:
+            return False
+
+        text_surfaceList = []	# This is the list of text surfaces to blit
+        # Here we create an empty list that will contain lists of menu items sorted
+        # into the appropriate number of columns. For example, if 3 columns are specified
+        # then the list will look like this: [['Test', 'Testie', 'dick'], ['ass']]
+        text_lists = []
+
+        # Here we create an empty list to keep track of the current set of menu items we're
+        # looking at.
+        current_list = []
+
+        # Loop through all the words in the list that was provided and add them to the text_lists
+        # if we've reached the number of columns. This will give us a list that has a length of x
+        # where "x" is the number of columns specified.
+        for text in menu_items:
+            if len(current_list) >= columns:
+                text_lists.append(current_list)
+                current_list = []
+                current_list.append(text)
+            else:
+                current_list.append(text)
+
+        # If we've come to the last menu item in the list and we don't have an empty list, append
+        # it to the text_lists.
+        if current_list:
+            text_lists.append(current_list)
+
+
+        current_surface_list = []
+
+        # Now we loop through each row
+        for l in text_lists:
+
+            # Now we loop through each column within that individual row
+            for item in l:
+                # Create a surface from the supplied word so we can draw it to the screen and
+                # append it to the surface list.
+                current_surface_list.append(item.font.render(item.text, 1, item.color))
+
+            text_surfaceList.append(current_surface_list)
+            current_surface_list = []
+
+        # Here we're going to find the longest word out of all of the menu items so we know how to
+        # format the columns. First we'll just set the first surface as the longest item and then
+        # loop through the rest to see if they're longer.
+        longest_item = text_surfaceList[0][0]
+
+        # Here we loop through each surface and check its width in pixels. If it's longer than the
+        # current one we're looking at, then make it the longest item
+        for surfaceList in text_surfaceList:
+            for surface in surfaceList:
+                if surface.get_width() > longest_item.get_width():
+                    longest_item = surface
+
+        # Generate the space between the columns based on the longest item in our text
+        column_spacing = (self.size[0] - ((longest_item.get_width() * self.columns))) / (self.columns + 1)
+
+        # If autoline spacing was specified, set our line spacing based on the size of our menu.
+        if self.menu_item_autospacing:
+            line_spacing = int(self.size[1] / (len(textlist) / self.columns)) - longest_item.get_height()
+        else:
+            line_spacing = menu_items[0].line_spacing
+
+        if self.menuitempositions == False:
+            self.menudis_x = self.column_spacing
+            #self.menudis_y = longest_item.get_height()
+            self.menudis_y = line_spacing/2
+
+        # Keep track of the original "x" position so we can reset the value back every time we
+        # loop through a row
+        orig_x = self.menudis_x
+
+        # Keep track of the item number so we can see if it is selected or not
+        item_num = 0
+
+        # Get the total number of lines we're going to be drawing to the screen
+        number_of_lines = len(text_surfaceList)
+
+        # If we specified paging, check to see how many rows will fit on a single page.
+        if paging:
+
+            # Get the total size in pixels of all the text plus line spacing we're going to draw.
+            content_size = pos_y + (longest_item.get_height() * number_of_lines) + (line_spacing * number_of_lines)
+
+            # Divide the size of the content in pixels by the size of the window to determine how
+            # many pages we'll need.
+            number_of_pages = math.ceil(float(content_size) / float(self.size_y))
+
+            # Get the number of lines we'll be drawing per page.
+            lines_per_page = math.floor(float(number_of_lines) / float(number_of_pages))
+
+            # If our calculated number of lines per page and number of pages is
+            # LESS than our actual number of lines, add an additional page.
+            # This usually occurs if an odd number of items was specified.
+            if (lines_per_page * number_of_pages) < number_of_lines:
+                number_of_pages += 1
+
+            # Loop through our list of rows we're going to draw and separate them into pages.
+            pages = []
+            current_lines = 1
+            current_page = []
+            for line in text_surfaceList:
+                if current_lines <= lines_per_page:
+                    current_page.append(line)
+                    current_lines += 1
+                else:
+                    pages.append(current_page)
+                    current_page = [line]
+                    current_lines = 2
+
+            # If we have a page left over, add it to our pages.
+            if current_page:
+                pages.append(current_page)
+
+            # >>> pages
+            # [[[<Surface(120x21x32 SW)>]], [[<Surface(240x21x32 SW)>]]]
+
+            # Find out what page we're on based on our current menu selection.
+            page_number = 1
+
+            for line_number in range(1, int(number_of_lines + 1)):
+
+                if line_number > (page_number * lines_per_page):
+                    page_number += 1
+                if line_number == int(self.selected_menu_item + 1):
+                    break
+
+            text_surfaceList = pages[page_number - 1]
+
+
+        # Loop through the rows and blit the menu items to the screen
+        for row in text_surfaceList:
+
+            # Loop through each item in the row and blit it to the screen
+            for item in row:
+
+                icon_width = 0
+                icon_height = 0
+
+                # If we have an icon associated with this menu item, blit it as well
+                if self.menu_icons:
+                    self.screen.blit(
+                        self.menu_icons[item_num],
+                        ((self.pos_x + pos_x + (self.menudis_x) - (self.menu_icons[item_num].get_width()/1.5)),
+                        (self.pos_y + pos_y + self.menudis_y - (self.menu_icons[item_num].get_height()/2))))
+
+                    icon_width = self.menu_icons[item_num].get_width()
+                    icon_height = self.menu_icons[item_num].get_height()
+
+                self.screen.blit(item,
+                    ((self.pos_x + pos_x + (self.menudis_x) + (icon_width / 2)),
+                     (self.pos_y + pos_y + self.menudis_y)))
+
+                # Draw the selection arrow if an item is selected
+                if not paging and self.selected_menu_item == item_num:
+                    self.screen.blit(self.arrow,
+                        ((self.pos_x + pos_x + self.menudis_x ) - (self.arrow.get_width() * 1.3),
+                         (self.pos_y + pos_y + self.menudis_y - (self.arrow.get_height() / 2) + (item.get_height() /2) ) ))
+
+                # If paging is enabled, draw the selection arrow next to the selected menu item
+                # based on the page we're on.
+                elif paging:
+                    # Get the ACTUAL selected menu item number by multiplying the page number
+                    # we're on by the number of lines per page.
+                    paged_selection_number = int(item_num + ((page_number - 1) * lines_per_page))
+
+                    # If we're currently drawing the selected menu item, draw the arrow next to it.
+                    if self.selected_menu_item == paged_selection_number:
+                        self.screen.blit(self.arrow,
+                            ((self.pos_x + pos_x + self.menudis_x ) - (self.arrow.get_width() * 1.3),
+                             (self.pos_y + pos_y + self.menudis_y - (self.arrow.get_height() / 2) + (item.get_height() /2) ) ))
+
+                # Offset the "x" value so that the next item is blitted to the right of the
+                # previous one
+                self.menudis_x += self.column_spacing + longest_item.get_width()
+
+                # Increment the item number so we can keep track of it
+                item_num += 1
+
+            # Reset the "x" value so that it's back to its original position for the next row.
+            self.menudis_x = orig_x
+
+            # Offset the "y" value by the height of the text plus the line spacing.
+            self.menudis_y += line_spacing + longest_item.get_height()
+
+
+
     def _draw_borders(self):
         border_thickness = self.border_thickness
         for d in self.border_directions:
@@ -313,13 +530,36 @@ class NewMenu(UserInterface):
                         color, font, line_spacing)
         self.text.append(text)
 
+    def add_text_menu_items(self, text, x=0, y=0, justify="left", align=None, size=4,
+                 color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
+                 line_spacing=10, columns=1, auto_line_spacing=False, paging=False):
+        if type(text) is str or type(text) is unicode:
+            text_item = MenuText(text, x, y, justify, align, size,
+                                 color, font, line_spacing, columns,
+                                 auto_line_spacing, paging)
+            self.text_menu.append(text_item)
+        else:
+            for t in text:
+                text_item = MenuText(t, x, y, justify, align, size,
+                                     color, font, line_spacing, columns,
+                                     auto_line_spacing, paging)
+                self.text_menu.append(t)
+
     def set_text(self, text="", x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10):
         """Replaces all current text with the following text"""
-        text = MenuText(text, x, y, justify, align, size,
-                        color, font, line_spacing)
-        self.text = [text]
+        self.text = []
+        self.add_text(text, x, y, justify, align, size,
+                      color, font, line_spacing)
+
+    def set_text_menu_items(self, text, x=0, y=0, justify="left", align=None, size=4,
+                 color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
+                 line_spacing=10, columns=1, auto_line_spacing=False, paging=False):
+        self.text_menu = []
+        self.add_text_menu_items(text, x, y, justify, align, size, color, font,
+                                 line_spacing, columns, auto_line_spacing, paging)
+
 
     def clear_text(self):
         self.text = []
@@ -1405,7 +1645,8 @@ class Menu(UserInterface):
 class MenuText(object):
     def __init__(self, text, x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
-                 line_spacing=10, is_scaled=True):
+                 line_spacing=10, is_scaled=True, columns=1,
+                 auto_line_spacing=False, paging=False):
         self.text = text
         self.x = x
         self.y = y
@@ -1415,6 +1656,9 @@ class MenuText(object):
         self.color = color
         self.font_type = font
         self.line_spacing = line_spacing
+        self.columns = columns
+        self.auto_line_spacing = auto_line_spacing
+        self.paging = paging
         self.is_scaled = is_scaled
         self._set_font()
 
@@ -1439,7 +1683,6 @@ class MenuText(object):
         else:
             font_size = self.size
         self.font = pygame.font.Font(prepare.BASEDIR + self.font_type, font_size)
-
 
 
 #plugins = plugin.load_directory("core/components/menu")

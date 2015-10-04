@@ -35,6 +35,7 @@ import math
 import os
 import sys
 
+from core.tools import get_pos_from_percent
 from core.components.ui import UserInterface
 from core.components import pyganim
 from .. import eztext
@@ -70,6 +71,14 @@ class NewMenu(UserInterface):
                  children=[], parents=[], draw_border=True,
                  border_images="default", border_animation_speed=0.2,
                  arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2):
+
+        # Handle our size and position if they were given as a percentage of the screen
+        size = list(size)
+        position = list(position)
+        size[0] = get_pos_from_percent(size[0], prepare.SCREEN_SIZE[0])
+        size[1] = get_pos_from_percent(size[1], prepare.SCREEN_SIZE[1])
+        position[0] = get_pos_from_percent(position[0], prepare.SCREEN_SIZE[0])
+        position[1] = get_pos_from_percent(position[1], prepare.SCREEN_SIZE[1])
 
         # If our background image is `None`, then use our background color.
         if not background:
@@ -129,6 +138,7 @@ class NewMenu(UserInterface):
         else:
             self.border_images = border_images
         self._load_border_images()
+        self.border_thickness = self.borders["right-bottom"].getFrame(0).get_width()
         self._stretch_borders()
         self._stretch_background()
 
@@ -240,7 +250,7 @@ class NewMenu(UserInterface):
             spacing += line.get_height() + text.line_spacing
 
     def _draw_borders(self):
-        border_thickness = self.borders["right-bottom"].getFrame(0).get_width()
+        border_thickness = self.border_thickness
         for d in self.border_directions:
             position = list(self.position)
             size = list(self.size)
@@ -286,7 +296,7 @@ class NewMenu(UserInterface):
         :returns: None
 
         """
-        border_thickness = self.borders["right-bottom"].getFrame(0).get_width()
+        border_thickness = self.border_thickness
         self.borders["right"].scale((border_thickness, self.size[1]))
         self.borders["left"].scale((border_thickness, self.size[1]))
         self.borders["top"].scale((self.size[0], border_thickness))
@@ -415,7 +425,7 @@ class NewMenu(UserInterface):
         # If the menu was a child of this menu, remove it as a parent from the child menu
         menu.parents.remove(self)
 
-    def get_event(self, event, game=None):
+    def get_event(self, event, game=None, callback=None):
         """Run this function to process pygame events (such as keypresses/mouse clicks). By
         default this function does nothing.
 
@@ -431,7 +441,8 @@ class NewMenu(UserInterface):
 
         """
         if self.interactable:
-            pass
+            if callback:
+                callback(self, event, game)
 
 
 

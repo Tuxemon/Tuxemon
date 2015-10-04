@@ -938,3 +938,22 @@ def explore(rootdir):
         for k, v in value.items():
             return v
 
+def get_pos_from_percent(percentage, of_size):
+    # Handle percentages given in string form.
+    if type(percentage) is str or type(percentage) is unicode:
+        if '%' in percentage:
+            percentage = percentage.replace('%', '')
+        percent = float(percentage) * 0.01
+        position = int(of_size * percent)
+
+    # Handle percentages given in float form.
+    elif type(percentage) is float:
+        position = int(of_size * percentage)
+
+    # If the percentage is any other type, do no conversion.
+    else:
+        position = percentage
+
+    return position
+
+

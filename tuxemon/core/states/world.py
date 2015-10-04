@@ -192,10 +192,17 @@ class World(tools._State):
 
         # This menu is just used to display a message that a particular
         # feature is not yet implemented.
-        self.not_implmeneted_menu = menu.Menu(self.screen,
-                                              self.resolution,
-                                              self,
-                                              name="Not implemented")
+        width = int(prepare.SCREEN_SIZE[0] / 1.5)
+        height = int(prepare.SCREEN_SIZE[1] / 5)
+        x = int(prepare.SCREEN_SIZE[0] / 2) - (width / 2)
+        y = int(prepare.SCREEN_SIZE[1] / 2) - (height / 2)
+        self.not_implmeneted_menu = menu.NewMenu(self.game,
+                                                 (width, height),
+                                                 (x, y),
+                                                 visible=False,
+                                                 interactable=False)
+        self.not_implmeneted_menu.set_text("This feature is not yet implemented.",
+                                           justify="center", align="middle")
 
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
@@ -224,7 +231,7 @@ class World(tools._State):
         # List of available menus
         self.menus = [self.dialog_window, self.main_menu, self.save_menu,
                       self.entername_menu, self.displayname_menu,
-                      self.not_implmeneted_menu, self.item_menu, self.monster_menu]
+                      self.item_menu, self.monster_menu]
 
         # Scale the menu borders of all menus
         for menu in self.menus:
@@ -314,15 +321,6 @@ class World(tools._State):
         # self.displayname_menu.visible = True  # for debug
         self.displayname_menu.visible = False
         self.displayname_menu.interactable = False
-
-        self.not_implmeneted_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
-        self.not_implmeneted_menu.size_y = prepare.SCREEN_SIZE[1] / 5
-        self.not_implmeneted_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
-            (self.not_implmeneted_menu.size_x / 2)
-        self.not_implmeneted_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
-            (self.not_implmeneted_menu.size_y / 2)
-        self.not_implmeneted_menu.visible = False
-        self.not_implmeneted_menu.interactable = False
 
         # Item Menu
         self.item_menu.size_x = prepare.SCREEN_SIZE[0]
@@ -966,10 +964,7 @@ class World(tools._State):
             self.monster_menu.draw(draw_borders=False)
 
         # Not implemented menu
-        if self.not_implmeneted_menu.visible:
-            self.not_implmeneted_menu.draw()
-            self.not_implmeneted_menu.draw_text("This feature is not yet implemented.",
-                justify="center", align="middle")
+        self.not_implmeneted_menu.draw()
 
 
     def midscreen_animations(self):

@@ -244,7 +244,7 @@ class PC(tools._State):
         
         if self.multiplayer_join_menu.visible:
             self.multiplayer_join_menu.draw()
-            self.multiplayer_join_menu.draw_textItem(self.game.server_list)
+            self.multiplayer_join_menu.draw_textItem(self.game.client.server_list)
             
             # If no options are selected because there were no items when the menu was populated,
             # and there are items in the list to select, set the selected item to the top of the list. 

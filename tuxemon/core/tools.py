@@ -32,7 +32,6 @@ for States.  Also contained here are resource loading functions.
 """
 
 import logging
-import netifaces
 import os
 import pygame as pg
 import pprint
@@ -50,12 +49,8 @@ from core.components import monster
 from core.components import item
 from core.components import map as maps
 from core.components import pyganim
-from .components.middleware import Multiplayer
+from core.components.networking import TuxemonServer, TuxemonClient
 from core import prepare
-
-# Import networking.
-from neteria.client import NeteriaClient
-from neteria.server import NeteriaServer
   
 # Import the android module and android specific components. If we can't import, set to None - this
 # lets us test it, and check to see if we want android-specific behavior.
@@ -97,23 +92,8 @@ class Control(object):
         self.state = None
         
         # Set up our networking for Multiplayer and Controls
-        self.interfaces = {}
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
-        
-        self.network_events = []
-        self.available_games = {}
-        self.server_list = []
-        self.selected_game = None
-        self.enable_join_multiplayer = False
-        self.server = NeteriaServer(Multiplayer(self))
-        self.client = NeteriaClient()
-        self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
-        self.join_self = False # Default False. Set True for testing on one device.
+        self.server = TuxemonServer(self)
+        self.client = TuxemonClient(self)
         
         # Set up our game's configuration from the prepare module.
         from core import prepare
@@ -323,86 +303,8 @@ class Control(object):
 
             self.state.get_event(event)
 
-        # Loop through our network events and pass them to the current state.
-        if self.server:
-            net_events = self.network_event_loop()
-            if net_events:
-                for net_event in net_events:
-                    self.key_events.append(net_event)
-                    self.state.get_event(net_event)
-
-
-    def network_event_loop(self):
-        """Process all network events from the mobile controller and pass them
-        down to current State. All network events are converted to keyboard
-        events for compatibility.
-
-        :param None:
-
-        :rtype: None
-        :returns: None
-
-        """
-        events = []
-        for event_data in self.network_events:
-            if event_data == "KEYDOWN:up":
-                self.keys[pg.K_UP] = 1
-                event = self.keyboard_events["KEYDOWN"]["up"]
-
-            elif event_data == "KEYUP:up":
-                self.keys[pg.K_UP] = 0
-                event = self.keyboard_events["KEYUP"]["up"]
-
-            elif event_data == "KEYDOWN:down":
-                self.keys[pg.K_DOWN] = 1
-                event = self.keyboard_events["KEYDOWN"]["down"]
-
-            elif event_data == "KEYUP:down":
-                self.keys[pg.K_DOWN] = 0
-                event = self.keyboard_events["KEYUP"]["down"]
-
-            elif event_data == "KEYDOWN:left":
-                self.keys[pg.K_LEFT] = 1
-                event = self.keyboard_events["KEYDOWN"]["left"]
-
-            elif event_data == "KEYUP:left":
-                self.keys[pg.K_LEFT] = 0
-                event = self.keyboard_events["KEYUP"]["left"]
-
-            elif event_data == "KEYDOWN:right":
-                self.keys[pg.K_RIGHT] = 1
-                event = self.keyboard_events["KEYDOWN"]["right"]
-
-            elif event_data == "KEYUP:right":
-                self.keys[pg.K_RIGHT] = 0
-                event = self.keyboard_events["KEYUP"]["right"]
-
-            elif event_data == "KEYDOWN:enter":
-                self.keys[pg.K_RETURN] = 1
-                event = self.keyboard_events["KEYDOWN"]["enter"]
-
-            elif event_data == "KEYUP:enter":
-                self.keys[pg.K_RETURN] = 0
-                event = self.keyboard_events["KEYUP"]["enter"]
-
-            elif event_data == "KEYDOWN:esc":
-                self.keys[pg.K_ESCAPE] = 1
-                event = self.keyboard_events["KEYDOWN"]["escape"]
-
-            elif event_data == "KEYUP:esc":
-                self.keys[pg.K_ESCAPE] = 0
-                event = self.keyboard_events["KEYUP"]["escape"]
-
-            else:
-                print "Unknown network event."
-                event = None
-
-            if event:
-                events.append(event)
-
-        self.network_events = []
-
-        return events
+    
+    
 
 
     def controller_event_loop(self, event):
@@ -650,31 +552,21 @@ class Control(object):
         self.time_passed_seconds = time_delta
         self.event_loop()
 
-        # Run our event engine which will check to see if game conditions
+        # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.
         self.event_data = {}
         self.event_engine.check_conditions(self, time_delta)
         logger.debug("Event Data:" + str(self.event_data))
+        
+        # Update our networking.
+        if self.client.listening: self.client.update(time_delta)
+        if self.server.listening: self.server.update()
 
         # Draw and update our display
         self.update(time_delta)
         pg.display.update()
  
-        if self.client and self.enable_join_multiplayer:
-            if self.client.registered:
-                self.enable_join_multiplayer = False
-                return False 
-            if self.wait_broadcast >= 1:
-                self.update_multiplayer()
-                self.wait_broadcast = 0
-            else: self.wait_broadcast += time_delta
         
-        if self.server:
-            for plyr in self.server.registry:
-                if not "sprite" in self.server.registry[plyr]:
-                    self.server.registry[plyr]["sprite"] = player.Player(sprite_name="player", name="Blue")
-                    self.scale_new_player(self.server.registry[plyr]["sprite"])
-                    self.state_dict["WORLD"].npcs.append(self.server.registry[plyr]["sprite"])
                
         if self.show_fps:
             fps = self.clock.get_fps()
@@ -683,44 +575,6 @@ class Control(object):
         if self.exit:
             self.done = True
             
-    
-    def update_multiplayer(self):
-        """Sends a broadcast to 'ping' all servers on the local network. Once a server responds
-        it  will verify that the server is not hosted by the client who sent the ping. Once a 
-        server has been identified it adds it to self.available_games.
-
-        :param None:
-
-        :rtype: None
-        :returns: None
-
-        """
-        if self.selected_game:
-            self.client.register(self.selected_game)
-            
-        self.client.autodiscover(autoregister=False)
-    
-        # Logic to prevent joining your own game as a client.
-        if self.client.discovered_servers > 0:
-            for ip, port in self.client.discovered_servers:
-                try: 
-                    if self.available_games[ip]:
-                        logger.info('Game already in list, skipping.')
-                        return False
-                except KeyError:
-                    pass
-                if not self.join_self:
-                    for interface in self.interfaces:
-                        if ip == self.interfaces[interface]:
-                            logger.info('Users server responded to users own broadcast, Deleting entry.')
-                            del self.client.discovered_servers[(ip, port)]
-                            return False
-#                         
-                # Populate list of detected servers   
-                self.available_games[ip] = port
-            
-        for item in self.available_games.items():
-            self.server_list.append(item[0])
             
             
     def get_menu_event(self, menu, event):

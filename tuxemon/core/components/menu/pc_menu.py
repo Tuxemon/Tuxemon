@@ -65,10 +65,13 @@ class Multiplayer_Menu(Menu):
             self.game.state.multiplayer_join_menu.visible = True
             self.game.state.multiplayer_join_menu.interactable = True
             self.game.state.multiplayer_menu.interactable = False
-            self.game.client.listen()    
-            self.game.enable_join_multiplayer = True        
+            self.game.client.enable_join_multiplayer = True
+            self.game.client.listening = True 
+            self.game.client.client.listen()    
+                   
         elif self.menu_items[self.selected_menu_item] == "HOST":
-            self.game.server.listen()
+            self.game.server.listening = True
+            self.game.server.server.listen()
 
 
 
@@ -93,9 +96,12 @@ class Multiplayer_Join_Menu(Menu):
         :returns: None
 
         """
-        self.game.selected_game = (self.menu_items[self.selected_menu_item], 
-                                   self.game.available_games[self.menu_items[self.selected_menu_item]])
-        
+        try:
+            self.game.client.selected_game = (self.menu_items[self.selected_menu_item], 
+                                       self.game.client.available_games[self.menu_items[self.selected_menu_item]])
+        except IndexError:
+            pass
+            
         
     
         

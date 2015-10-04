@@ -613,7 +613,6 @@ class Player(object):
 
 class Npc(Player):
     def __init__(self, sprite_name="maple", name="Maple"):
-
         # Initialize the parent menu class's default shit
         Player.__init__(self, sprite_name, name)
 

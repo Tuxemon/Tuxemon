@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="77">
+ <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="73" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="1042">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,43,46,0.3"/>
+    <property name="act2" value="player_face down"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="66">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ </tileset>
+ <tileset firstgid="1467" name="stairs_down" tilewidth="16" tileheight="16" tilecount="12">
+  <image source="../gfx/tilesets/stairs_down.png" width="64" height="48"/>
+ </tileset>
+ <tileset firstgid="1479" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAKlbKMDpoZaUMo4MJrJRhdNBOIR41b9S8UfNGzcNl3kRWyvBQAQD2kplh
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgagAWI2YA4E8jIAuJsID4KxMdYMNUeYmZgOMyM3zwZIJYDYlNWBobJQDPMgfQ7IP0ezTwnIH4NNOsNAfNIAerUM2rQA1BwAoMWHHfUAAJALAjEQlQyD5QOZBkgaQEfgKU7dJzNQpoaGIClO3QMSoekqKE3WAS0ezEUL6GCO9YCzVgHxetJMK8FS5iCwA6gGTuheBcO87DpPQ1VywnEXEDMjSRXywrBMICu5vQAxsdAAwCv1SOo
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgawBOIvahonhoVzRoFo2AUjIKRCAAETAC6
+  </data>
+ </layer>
+ <layer name="Above player" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUEAKZLAwMWVhwNgtpakYBdUALBWFKid5RgAoAb3UHFQ==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="11" name="Teleport to map1" type="event" x="144" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,44,53,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 8,17"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="69" name="Choose Creature 1" x="192" y="96" width="16" height="16"/>
+  <object id="74" name="Choose Creature 2" x="208" y="96" width="16" height="16"/>
+  <object id="75" name="Choose Creature 3" x="224" y="96" width="16" height="16"/>
+  <object id="76" name="Teleport to map1" type="event" x="160" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,44,53,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 9,17"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="43" type="collision" x="192" y="112" width="48" height="32"/>
+  <object id="50" type="collision" x="288" y="0" width="32" height="320"/>
+  <object id="51" type="collision" x="32" y="272" width="256" height="48"/>
+  <object id="52" type="collision" x="0" y="0" width="32" height="320"/>
+  <object id="54" type="collision" x="32" y="0" width="256" height="48"/>
+  <object id="56" type="collision" x="192" y="48" width="48" height="16"/>
+  <object id="58" type="collision" x="64" y="48" width="80" height="16"/>
+  <object id="60" type="collision" x="64" y="256" width="48" height="16"/>
+  <object id="63" type="collision" x="32" y="256" width="16" height="16"/>
+  <object id="64" type="collision" x="208" y="256" width="48" height="16"/>
+  <object id="65" type="collision" x="272" y="256" width="16" height="16"/>
+  <object id="67" type="collision" x="176" y="176" width="112" height="16"/>
+  <object id="68" type="collision" x="32" y="176" width="112" height="16"/>
+ </objectgroup>
+</map>

@@ -238,27 +238,67 @@ class NewMenu(UserInterface):
 
 
     def update(self, dt):
-        """Updates the menu based on its current state.
+        """Updates the menu based on its current state. If this method is overrided
+        in a child class, ensure the parent update method is called.
+
+        :param dt: Time in ms since the last frame.
+        :type dt: Float
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> menu.update(dt)
+
         """
         super(NewMenu, self).update(dt)
-        pass
 
 
     def draw(self):
+        """Draws the menu and all its text if the menu is visible.
+
+        :param: None
+        :type: None
+
+        :rtype: None
+        :returns: None
+
+        """
         super(NewMenu, self).draw()
         if self.visible:
-            self._draw_borders()
+            if self.draw_border:
+                self._draw_borders()
             self._draw_all_text()
             self._draw_text_menu()
 
 
     def _draw_all_text(self):
+        """Draws any text added to the menu instance.
+
+        :param: None
+        :type None
+
+        :rtype: None
+        :returns: None
+
+        """
         for text in self.text:
             self._draw_text(text)
 
 
     def _draw_text(self, text):
-        """Draws a `MenuText` item to the current menu"""
+        """Draws a `MenuText` item to the current menu. This method also handles
+        wrapping text to fit the size of the menu and supports features like
+        justifying and aligning text.
+
+        :param text: Menu text object to draw on the screen.
+        :type text: core.components.menu.MenuText
+
+        :rtype: None
+        :returns: None
+
+        """
 
         # Set up the positions to draw our text.
         pos_x = self.position[0] + text.x
@@ -353,6 +393,15 @@ class NewMenu(UserInterface):
         """Sorts a list of strings into a multi-dimensional list based on the number of
         columns provided.
 
+        :param text_list: List of strings to sort into columns.
+        :param columns: Number of columns to sort the text into.
+
+        :type text_list: List
+        :type columns: Int
+
+        :rtype: List
+        :returns: Multi-dimensional list of strings
+
         **Examples:**
 
         >>> menu_items = ["Journal", "Monsters", "Exit"]
@@ -401,6 +450,25 @@ class NewMenu(UserInterface):
         the screen. This method requires the multi-dimensional list created from the
         _sort_to_columns() method.
 
+        :param text_lists: Multi-dimensional list of strings to create text surfaces of.
+        :type text_lists: List
+
+        :rtype: List
+        :returns: Multi-dimensional list of pygame surfaces
+
+        **Examples:**
+
+        >>> menu._render_text_columns(text_lists)
+        [
+            [
+                <Surface(60x21x32 SW)>,
+                <Surface(60x21x32 SW)>
+            ],
+            [
+                <Surface(60x21x32 SW)>
+            ]
+        ]
+
         """
         text_surfaces = []
         current_surface_list = []
@@ -423,6 +491,18 @@ class NewMenu(UserInterface):
     def _get_widest_surface(self, text_surfaces):
         """Gets the longest surface in pixels from a multi-dimensional list of text
         surfaces. This is used to calculate the draw positions of text menu items.
+
+        :param text_surfaces: Multi-dimensional list of text surfaces.
+        :type text_surfaces: List
+
+        :rtype: Tuple
+        :returns: Tuple of the longest text's width and height in pixels
+
+        **Examples:**
+
+        >>> menu._get_widest_surface(text_surfaces)
+        (100, 38)
+
         """
         # Here we're going to find the longest word out of all of the menu items so we know how to
         # format the columns. First we'll just set the first surface as the longest item and then
@@ -442,6 +522,29 @@ class NewMenu(UserInterface):
     def _draw_selection_arrow(self, current_xy, pos_xy, paging, lines_per_page,
                               page_number, item_num, surface):
         """Draws the selection arrow next to the currently selected menu item
+
+        :param current_xy: The (x, y) position of the current menu item being drawn.
+        :param pos_xy: The (x, y) position of the first menu item being drawn relative
+            to the menu's position.
+        :param paging: Whether or not this menu will separate menu items into separate
+            pages if they cannot fit on the menu.
+        :param lines_per_page: The calculated number of menu items that can fit on a
+            single page, if paging is used.
+        :param page_number: The current page number we're on if paging is used.
+        :param item_num: The current menu item number that is being drawn to the screen.
+        :param surface: The menu item text surface that the arrow will be drawn next to.
+
+        :type current_xy: Tuple
+        :type pos_xy: Tuple
+        :type paging: Bool
+        :type lines_per_page: Int
+        :type page_number: Int
+        :type item_num: Int
+        :type surface: pygame.Surface
+
+        :rtype: None
+        :returns: None
+
         """
         current_x = current_xy[0]
         current_y = current_xy[1]
@@ -607,6 +710,12 @@ class NewMenu(UserInterface):
 
 
     def _draw_borders(self):
+        """Draws the borders of the menu.
+
+        :rtype: None
+        :returns: None
+
+        """
         border_thickness = self.border_thickness
         for d in self.border_directions:
             position = list(self.position)
@@ -663,13 +772,55 @@ class NewMenu(UserInterface):
 
 
     def _stretch_background(self):
+        """Scales the background images of this menu instance to fit the size of the menu.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
+        """
         self.background.scale((self.size[0], self.size[1]))
 
 
     def add_text(self, text="", x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10):
-        """Add text to draw to the menu"""
+        """Add text to draw to the menu. Strings with "\n" will be placed on a separate
+        line.
+
+        :param text: The text to draw to the menu.
+        :param x: The text's x position to start drawing the text. Defaults to 0.
+        :param y: The text's y position to start drawing the text. Defaults to 0.
+        :param justify: Whether the text should be left or middle justified. Can be
+            either "left" or "center". Defaults to "left".
+        :param align: Aligns the text vertically. Can be either "top" or "middle".
+            Defaults to "top" aligned.
+        :param size: The size of the font in pixels BEFORE scaling. Defaults to 4.
+        :param color: An (r, g, b) color value of the text. Defaults to (10, 10, 10).
+        :param font: Path to the font file to use to draw the text. Defaults to
+            "PressStart2P.ttf".
+        :param line_spacing: Space in pixels between each line BEFORE scaling. Defaults
+            to 10.
+
+        :type text: Str
+        :type x: Int
+        :type y: Int
+        :type justify: Str
+        :type align: Str
+        :type size: Int
+        :type color: Tuple
+        :type font: Str
+        :type line_spacing: Int
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> menu.add_text("Hello there!", justify="center", align="middle")
+
+        """
         text = MenuText(text, x, y, justify, align, size,
                         color, font, line_spacing)
         self.text.append(text)
@@ -678,6 +829,49 @@ class NewMenu(UserInterface):
     def add_text_menu_items(self, text, x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10, columns=1, auto_line_spacing=False, paging=False):
+        """Adds one or more selectable menu items.
+
+        :param text: A list of text menu items to add.
+        :param x: The text's x position to start drawing the text. Defaults to 0.
+        :param y: The text's y position to start drawing the text. Defaults to 0.
+        :param justify: Whether the text should be left or middle justified. Can be
+            either "left" or "center". Defaults to "left".
+        :param align: Aligns the text vertically. Can be either "top" or "middle".
+            Defaults to "top" aligned.
+        :param size: The size of the font in pixels BEFORE scaling. Defaults to 4.
+        :param color: An (r, g, b) color value of the text. Defaults to (10, 10, 10).
+        :param font: Path to the font file to use to draw the text. Defaults to
+            "PressStart2P.ttf".
+        :param line_spacing: Space in pixels between each line BEFORE scaling. Defaults
+            to 10.
+        :param columns: Number of columns to separate the menu items in. Defaults to
+            1 column.
+        :param auto_line_spacing: Whether or not to automatically space out the menu
+            items based on the size of the menu. Defaults to False.
+        :param paging: Whether or not to split the menu items into pages if they
+            cannot all fit on one menu. Defaults to False.
+
+        :type text: Str
+        :type x: Int
+        :type y: Int
+        :type justify: Str
+        :type align: Str
+        :type size: Int
+        :type color: Tuple
+        :type font: Str
+        :type line_spacing: Int
+        :type columns: Int
+        :type auto_line_spacing: Bool
+        :type paging: Bool
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> menu.add_text_menu_items(["Journal", "Bag"], auto_line_spacing=True, columns=2)
+
+        """
         if type(text) is str or type(text) is unicode:
             text_item = MenuText(text, x, y, justify, align, size,
                                  color, font, line_spacing, columns,
@@ -694,7 +888,40 @@ class NewMenu(UserInterface):
     def set_text(self, text="", x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10):
-        """Replaces all current text with the following text"""
+        """Replaces all current text with the following text.
+
+        :param text: The text to draw to the menu.
+        :param x: The text's x position to start drawing the text. Defaults to 0.
+        :param y: The text's y position to start drawing the text. Defaults to 0.
+        :param justify: Whether the text should be left or middle justified. Can be
+            either "left" or "center". Defaults to "left".
+        :param align: Aligns the text vertically. Can be either "top" or "middle".
+            Defaults to "top" aligned.
+        :param size: The size of the font in pixels BEFORE scaling. Defaults to 4.
+        :param color: An (r, g, b) color value of the text. Defaults to (10, 10, 10).
+        :param font: Path to the font file to use to draw the text. Defaults to
+            "PressStart2P.ttf".
+        :param line_spacing: Space in pixels between each line BEFORE scaling. Defaults
+            to 10.
+
+        :type text: Str
+        :type x: Int
+        :type y: Int
+        :type justify: Str
+        :type align: Str
+        :type size: Int
+        :type color: Tuple
+        :type font: Str
+        :type line_spacing: Int
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> menu.set_text("Hello there!", justify="center", align="middle")
+
+        """
         self.text = []
         self.add_text(text, x, y, justify, align, size,
                       color, font, line_spacing)
@@ -703,20 +930,88 @@ class NewMenu(UserInterface):
     def set_text_menu_items(self, text, x=0, y=0, justify="left", align=None, size=4,
                  color=(10, 10, 10), font="resources/font/PressStart2P.ttf",
                  line_spacing=10, columns=1, auto_line_spacing=False, paging=False):
+        """Replaces the current text menu items with the given items.
+
+        :param text: A list of text menu items to add.
+        :param x: The text's x position to start drawing the text. Defaults to 0.
+        :param y: The text's y position to start drawing the text. Defaults to 0.
+        :param justify: Whether the text should be left or middle justified. Can be
+            either "left" or "center". Defaults to "left".
+        :param align: Aligns the text vertically. Can be either "top" or "middle".
+            Defaults to "top" aligned.
+        :param size: The size of the font in pixels BEFORE scaling. Defaults to 4.
+        :param color: An (r, g, b) color value of the text. Defaults to (10, 10, 10).
+        :param font: Path to the font file to use to draw the text. Defaults to
+            "PressStart2P.ttf".
+        :param line_spacing: Space in pixels between each line BEFORE scaling. Defaults
+            to 10.
+        :param columns: Number of columns to separate the menu items in. Defaults to
+            1 column.
+        :param auto_line_spacing: Whether or not to automatically space out the menu
+            items based on the size of the menu. Defaults to False.
+        :param paging: Whether or not to split the menu items into pages if they
+            cannot all fit on one menu. Defaults to False.
+
+        :type text: Str
+        :type x: Int
+        :type y: Int
+        :type justify: Str
+        :type align: Str
+        :type size: Int
+        :type color: Tuple
+        :type font: Str
+        :type line_spacing: Int
+        :type columns: Int
+        :type auto_line_spacing: Bool
+        :type paging: Bool
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> menu.set_text_menu_items(["Journal", "Bag"], auto_line_spacing=True, columns=2)
+
+        """
         self.text_menu = []
         self.add_text_menu_items(text, x, y, justify, align, size, color, font,
                                  line_spacing, columns, auto_line_spacing, paging)
 
 
     def clear_text(self):
+        """Clears the menu of all text.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
+        """
         self.text = []
 
 
     def clear_text_menu_items(self):
+        """Clears the menu of all text menu items.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
+        """
         self.text_menu = []
 
 
     def set_width(self, width):
+        """Sets the width of the menu in pixels.
+
+        :param width: The width of the menu in pixels.
+        :type width: Int
+
+        :rtype: None
+        :returns: None
+
+        """
         size = list(self.size)
         size[0] = width
         self.size = size
@@ -725,6 +1020,15 @@ class NewMenu(UserInterface):
 
 
     def set_height(self, height):
+        """Sets the height of the menu in pixels.
+
+        :param height: The height of the menu in pixels.
+        :type height: Int
+
+        :rtype: None
+        :returns: None
+
+        """
         size = list(self.size)
         size[1] = height
         self.size = size
@@ -733,26 +1037,73 @@ class NewMenu(UserInterface):
 
 
     def set_size(self, w, h):
+        """Sets the size of the menu in pixels.
+
+        :param w: The width of the menu in pixels.
+        :param h: The height of the menu in pixels.
+        :type w: Int
+        :type h: Int
+
+        :rtype: None
+        :returns: None
+
+        """
         self.size = [w, h]
         self._stretch_background()
         self._stretch_borders()
 
 
     def set_position(self, x, y):
+        """Sets the position of the menu.
+
+        :param x: The x-coordinate to draw the menu.
+        :param y: The y-coordinate to draw the menu.
+        :type x: Int
+        :type y: Int
+
+        :rtype: None
+        :returns: None
+
+        """
         self.position = [x, y]
 
 
     def set_interactable(self, is_interactable):
+        """Allows events to be passed to this menu's "get_event" method.
+
+        :param is_interactable: True or False value of whether or not this menu
+            is interactable.
+        :type is_interactable: Bool
+
+        :rtype: None
+        :returns: None
+
+        """
         self.interactable = is_interactable
 
 
     def set_visible(self, is_visible):
+        """Choose whether or not this menu should be drawn.
+
+        :param is_visible: Whether or not to draw this menu.
+        :type is_visible: Bool
+
+        :rtype: None
+        :returns: None
+
+        """
         self.visible = is_visible
 
 
     def menu_select_next(self):
         """Selects the next available menu item. If the end of the menu
         items is reached, selection will loop back to the beginning.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
         """
         if self.selected_menu_item + 1 > len(self.text_menu) - 1:
             self.selected_menu_item = 0
@@ -765,6 +1116,12 @@ class NewMenu(UserInterface):
     def menu_select_prev(self):
         """Selects the previous available menu item. If the beginning
         of the menu items is reached, selection will loop to the end.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
         """
         if self.selected_menu_item - 1 < 0:
             self.selected_menu_item = len(self.text_menu) - 1
@@ -775,6 +1132,16 @@ class NewMenu(UserInterface):
 
 
     def menu_select_left(self):
+        """Selects the left available menu item if more than one column was
+        specified.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
+        """
+
         # If the previos selected menu item is PERFECTLY divisble by the product of the number
         # of columns times the previous selected row, then we need to go BACK to the beginning
         # of the row instead of selecting the previous menu item
@@ -794,6 +1161,16 @@ class NewMenu(UserInterface):
 
 
     def menu_select_right(self):
+        """Selects the right available menu item if more than one column was
+        specified.
+
+        :param: None
+
+        :rtype: None
+        :returns: None
+
+        """
+
         # If the next selected menu item is PERFECTLY divisble by the product of the number of
         # columns times the selected row, then we need to go BACK to the beginning of the row
         # instead of selecting the next menu item

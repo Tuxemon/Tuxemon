@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="95">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="97">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10">
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
  <layer name="Tile Layer 1" width="64" height="60">
@@ -201,7 +201,7 @@
   </object>
   <object id="79" name="Professor's House Sign" type="event" x="560" y="704" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Generic Proffesor's House"/>
+    <property name="act1" value="dialog Generic Professor's House"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
@@ -223,6 +223,20 @@
    <properties>
     <property name="act1" value="transition_teleport BuddhaMountain.tmx,3,90,0.5"/>
     <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport professor_lab.tmx,9,17,0.5"/>
+    <property name="cond1" value="is player_at 44,52"/>
+   </properties>
+  </object>
+  <object id="96" name="Professor's Lab Sign" type="event" x="624" y="848" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Generic Professor's Lab"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

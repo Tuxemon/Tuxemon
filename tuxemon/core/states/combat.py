@@ -1058,18 +1058,18 @@ class Combat(tools._State):
             else:
                 prob_range = players['opponent']['monster'].level
                 if players['opponent']['monster'].current_hp < players['opponent']['monster'].hp: 
+                    print "--- Capture Probability ---"
                     print "Probability Range:", prob_range
                     print "Current HP:", players['opponent']['monster'].current_hp
                     print "Maximum HP:", players['opponent']['monster'].hp
                     hp_percent = (float(players['opponent']['monster'].current_hp) / players['opponent']['monster'].hp)*100
-                    print "HP Percent:", hp_percent
                     hp_percent = 100 - hp_percent
-                    print "HP Percent negative:", hp_percent
+                    print "Percent of missing HP:", hp_percent
                     prob_modifier = hp_percent * prob_range / 100
                     print "Probability Modifier:", prob_modifier
                     prob_range = int(prob_range - prob_modifier)
                     print "New Probability Range:", prob_range
-            if random.randint(1,prob_range) == 1:
+            if prob_range < 2 or random.randint(1,prob_range) == 1:
                 print "Capturing %s!!!" % players['opponent']['monster'].name
                 self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0

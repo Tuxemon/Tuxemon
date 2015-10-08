@@ -1066,8 +1066,8 @@ class Combat(tools._State):
                 
                 # If opponent is damaged, subtract damage percentage from the prob_max (make it less likely to fail)
                 if players['opponent']['monster'].current_hp < players['opponent']['monster'].hp: 
-                    hp_percent = (float(players['opponent']['monster'].current_hp) / players['opponent']['monster'].hp)*100
-                    hp_percent = 100 - hp_percent
+                    total_damage = players['opponent']['monster'].hp - players['opponent']['monster'].current_hp
+                    hp_percent = (float(total_damage) / players['opponent']['monster'].hp)*100
                     prob_modifier = hp_percent * prob_max / 100
                     prob_max = int(prob_max - prob_modifier)
 

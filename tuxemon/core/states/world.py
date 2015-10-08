@@ -513,7 +513,7 @@ class World(tools._State):
         # Get all the pygame events
         self.events = keys
 
-        # Get all the keys presse
+        # Get all the keys pressed
         self.pressed = pygame.key.get_pressed()
         self.pressed = list(self.pressed)
                             # Convert the keys pressed into a list so we can

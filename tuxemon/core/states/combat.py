@@ -36,6 +36,7 @@ import os
 import sys
 import pprint
 import time
+import random
 
 from core import prepare
 from core import tools
@@ -1057,19 +1058,27 @@ class Combat(tools._State):
             else:
                 prob_range = players['opponent']['monster'].level
                 if players['opponent']['monster'].current_hp < players['opponent']['monster'].hp: 
-                    # pprint(players)
-                    print prob_range
-                    hp_percent = (players['opponent']['monster'].current_hp / players['opponent']['monster'].hp)*100
-                    print hp_percent
+                    print "Probability Range:", prob_range
+                    print "Current HP:", players['opponent']['monster'].current_hp
+                    print "Maximum HP:", players['opponent']['monster'].hp
+                    hp_percent = (float(players['opponent']['monster'].current_hp) / players['opponent']['monster'].hp)*100
+                    print "HP Percent:", hp_percent
                     hp_percent = 100 - hp_percent
-                    print hp_percent
+                    print "HP Percent negative:", hp_percent
                     prob_modifier = hp_percent * prob_range / 100
-                    print prob_modifier
-                    prob_range = prob_range - prob_modifier
-                    print prob_range
-            self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
-            self.info_menu.elapsed_time = 0.0
-            self.state = "captured"
+                    print "Probability Modifier:", prob_modifier
+                    prob_range = int(prob_range - prob_modifier)
+                    print "New Probability Range:", prob_range
+            if random.randint(1,prob_range) == 1:
+                print "Capturing %s!!!" % players['opponent']['monster'].name
+                self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
+                self.info_menu.elapsed_time = 0.0
+                self.state = "captured"
+            else:
+                print "Could not capture %s!" % players['opponent']['monster'].name
+                self.info_menu.text = "%s broke free!" % players['opponent']['monster'].name
+                self.info_menu.elapsed_time = 0.0
+                self.state = "action phase"
 
         # Handle when all monsters in the player's party have fainted
         if (self.state == "lost" or self.state == "won" or self.state == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:

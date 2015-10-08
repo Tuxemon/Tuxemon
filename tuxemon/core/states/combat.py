@@ -1050,26 +1050,46 @@ class Combat(tools._State):
                             self.info_menu.elapsed_time = 0.0
                             self.state = "won"
 
-        # Handle when a monster is being captured.
+            ########################################################
+            #                  Creature Capturing                  #
+            ########################################################
+
+        # Success is determined by level, health, and status effects
         if (self.state == "capturing") and self.info_menu.elapsed_time > self.info_menu.delay:
+
             print "Attempting to capture"
-            if players['opponent']['monster'].level == 1:
-                prob_range = 1
-            else:
-                prob_range = players['opponent']['monster'].level
+            prob_min = 2    # Set bottom of range for random number gen
+            prob_max = 2    # Set top of range for random number gen
+          
+            if players['opponent']['monster'].level > prob_min:
+                prob_max = players['opponent']['monster'].level
+                
+                # If opponent is damaged, subtract damage percentage from the prob_max (make it less likely to fail)
                 if players['opponent']['monster'].current_hp < players['opponent']['monster'].hp: 
-                    print "--- Capture Probability ---"
-                    print "Probability Range:", prob_range
-                    print "Current HP:", players['opponent']['monster'].current_hp
-                    print "Maximum HP:", players['opponent']['monster'].hp
                     hp_percent = (float(players['opponent']['monster'].current_hp) / players['opponent']['monster'].hp)*100
                     hp_percent = 100 - hp_percent
-                    print "Percent of missing HP:", hp_percent
-                    prob_modifier = hp_percent * prob_range / 100
-                    print "Probability Modifier:", prob_modifier
-                    prob_range = int(prob_range - prob_modifier)
-                    print "New Probability Range:", prob_range
-            if prob_range < 2 or random.randint(1,prob_range) == 1:
+                    prob_modifier = hp_percent * prob_max / 100
+                    prob_max = int(prob_max - prob_modifier)
+
+                # If opponent has status effect, multiply the prob_max by status_modifier to determine new prob_max
+                if not players['opponent']['monster'].status == "Normal":
+                    # Decreases prob_max by 25% (again, making it less likely to fail)
+                    status_modifier = 0.25 
+                    prob_max = prob_max * status_modifier
+                    prob_max = int(prob_max)
+
+            # If the prob_max is greater that prob_min, pick a random number between the two numbers
+            if prob_max > prob_min:
+                random_num = random.randint(prob_min,prob_max)
+            else:
+                prob_max = prob_min
+                random_num = prob_min
+
+            print "--- Capture Probability ---"
+            print "Probability range: %s-%s" % (prob_min, prob_max)
+            print "Random Number:", random_num
+
+            if random_num == prob_min:
                 print "Capturing %s!!!" % players['opponent']['monster'].name
                 self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0
@@ -1078,6 +1098,7 @@ class Combat(tools._State):
                 print "Could not capture %s!" % players['opponent']['monster'].name
                 self.info_menu.text = "%s broke free!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0
+                ui["capture"].visible = False
                 self.state = "action phase"
 
         # Handle when all monsters in the player's party have fainted

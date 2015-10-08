@@ -1051,7 +1051,22 @@ class Combat(tools._State):
 
         # Handle when a monster is being captured.
         if (self.state == "capturing") and self.info_menu.elapsed_time > self.info_menu.delay:
-            print "Capturing!!"
+            print "Attempting to capture"
+            if players['opponent']['monster'].level == 1:
+                prob_range = 1
+            else:
+                prob_range = players['opponent']['monster'].level
+                if players['opponent']['monster'].current_hp < players['opponent']['monster'].hp: 
+                    # pprint(players)
+                    print prob_range
+                    hp_percent = (players['opponent']['monster'].current_hp / players['opponent']['monster'].hp)*100
+                    print hp_percent
+                    hp_percent = 100 - hp_percent
+                    print hp_percent
+                    prob_modifier = hp_percent * prob_range / 100
+                    print prob_modifier
+                    prob_range = prob_range - prob_modifier
+                    print prob_range
             self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
             self.info_menu.elapsed_time = 0.0
             self.state = "captured"

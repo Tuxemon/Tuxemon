@@ -513,7 +513,7 @@ class World(tools._State):
         # Get all the pygame events
         self.events = keys
 
-        # Get all the keys pressed
+        # Get all the keys presse
         self.pressed = pygame.key.get_pressed()
         self.pressed = list(self.pressed)
                             # Convert the keys pressed into a list so we can
@@ -573,6 +573,11 @@ class World(tools._State):
         # If the dialog window is interactable/visible, send pygame events to it.
         if self.dialog_window.visible:
             self.dialog_window.get_event(event)
+            self.menu_blocking = True
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                logger.info("Closing dialog window!")
+                self.dialog_window.state = "closing"
+                self.menu_blocking = False
 
         # If the main menu is interactable, send pygame events to it.
         if self.main_menu.interactable:
@@ -596,10 +601,6 @@ class World(tools._State):
             else:
                 self.main_menu.visible = True
                 self.menu_blocking = True
-                self.player1.direction["up"] = False
-                self.player1.direction["down"] = False
-                self.player1.direction["left"] = False
-                self.player1.direction["right"] = False
 
         # Only allow player movement if they are not in a menu and are not
         # in combat

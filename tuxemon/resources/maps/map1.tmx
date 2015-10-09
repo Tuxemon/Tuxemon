@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="97">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="101">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -109,7 +109,7 @@
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <properties>
-   <property name="act1" value=""/>
+   <property name="act1" value="transition_teleport .tmx,1,3,0.3"/>
    <property name="cond1" value=""/>
   </properties>
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -237,6 +237,13 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport healing_center.tmx,7,10,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

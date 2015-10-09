@@ -204,12 +204,51 @@ class Item(object):
         :type game: tuxemon.Game
 
         :rtype: None
-        :returns: None
+        :returns: True or False
 
         """
 
-        # TODO: Make this not work 100% of the time and check to see if this is a trainer battle.
-        game.player1.add_monster(target)
+        print "Attempting to capture"
+        prob_min = 1    # Set bottom of range for random number gen (alters likeliness of capture)
+        prob_max = prob_min   # Set top of range for random number gen
+      
+        if target.level > prob_min:
+            prob_max = target.level
+            print "Range top:", prob_max
+            prob_max -= self.power
+            print "Range top minus power:", prob_max
+            
+            # If opponent is damaged, subtract damage percentage from the prob_max (make it less likely to fail)
+            if target.current_hp < target.hp: 
+                total_damage = target.hp - target.current_hp
+                hp_percent = (float(total_damage) / target.hp)*100
+                prob_modifier = hp_percent * prob_max / 100
+                prob_max = int(prob_max - prob_modifier)
+
+            # If opponent has status effect, multiply the prob_max by status_modifier to determine new prob_max
+            if not target.status == "Normal":
+                # Decreases prob_max by 25% (again, making it less likely to fail)
+                status_modifier = 0.25 
+                prob_max = prob_max * status_modifier
+                prob_max = int(prob_max)
+
+        # If the prob_max is greater than prob_min, pick a random number between the two numbers
+        if prob_max > prob_min:
+            random_num = random.randint(prob_min,prob_max)
+        else:
+            prob_max = prob_min
+            random_num = prob_min
+
+        print "--- Capture Probability ---"
+        print "Probability range: %s-%s" % (prob_min, prob_max)
+        print "Random Number:", random_num
+
+        if random_num == prob_min:
+            game.player1.add_monster(target)
+            return True
+        else:
+            return False
+
 
 
 if __name__ == "__main__":

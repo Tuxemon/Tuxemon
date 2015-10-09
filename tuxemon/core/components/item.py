@@ -209,46 +209,43 @@ class Item(object):
         """
 
         print "Attempting to capture"
-        prob_min = 1    # Set bottom of range for random number gen (alters likeliness of capture)
-        prob_max = prob_min   # Set top of range for random number gen
+
+        # Set up variables for capture equation
+        success_max = 0
         damage_modifier = 0
-        status_modifier = 1
-      
-        # Set top of range to the monster's level
-        if target.level > prob_min:
-            prob_max = target.level
-            
-            # If opponent is damaged, subtract damage percentage from the prob_max (make it less likely to fail)
-            if target.current_hp < target.hp: 
-                total_damage = target.hp - target.current_hp
-                hp_percent = (float(total_damage) / target.hp)*100
-                damage_modifier = int(hp_percent * prob_max / 100)
+        status_modifier = 0
+        item_power = self.power
+        
+        # Get percent of damage taken and multiply it by 10
+        if target.current_hp < target.hp: 
+            total_damage = target.hp - target.current_hp
+            damage_modifier = int((float(total_damage) / target.hp)*1000)
 
-            # If opponent has status effect, multiply the prob_max by status_modifier to determine new prob_max
-            if not target.status == "Normal":
-                # Decreases prob_max by 25% (again, making it less likely to fail)
-                status_modifier = 0.25 
+        # Check if target has any status effects
+        if not target.status == "Normal":
+            status_modifier = 150 
 
-            # Equation to determine top of range             
-            prob_max = ((prob_max - self.power) - damage_modifier) * status_modifier
+        # Calculate the top of success range (random_num must be in range to succeed)
+        success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
 
-        # If the prob_max is greater than prob_min, pick a random number between the two numbers
-        if prob_max > prob_min:
-            random_num = random.randint(prob_min,prob_max)
-        else:
-            prob_max = prob_min
-            random_num = prob_min
+        #Generate random_num
+        random_num = random.randint(0,1000)
 
-        print "--- Capture Probability ---"
-        print "Probability range: %s-%s" % (prob_min, prob_max)
-        print "Random Number:", random_num
+        # Debugging Text
+        print "--- Capture Variables ---"
+        print "(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power"
+        print "(0 - (%s * 10)) + %s + %s + %s = %s" % (
+            target.level, damage_modifier, status_modifier, item_power, success_max)
+        print "Success if between: 0 -", success_max
+        print "Chance of capture: %s / 100" % (success_max / 10)
+        print "Random number:", random_num
 
-        if prob_min <= random_num <= 3:
+        # If random_num falls between 0 and success_max, capture target
+        if 0 <= random_num <= success_max:
             game.player1.add_monster(target)
             return True
         else:
             return False
-
 
 
 if __name__ == "__main__":

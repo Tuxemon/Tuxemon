@@ -36,7 +36,6 @@ import os
 import sys
 import pprint
 import time
-import random
 
 from core import prepare
 from core import tools
@@ -1054,10 +1053,7 @@ class Combat(tools._State):
             #                  Creature Capturing                  #
             ########################################################
 
-        # Success is determined by level, health, and status effects
         if ("capturing" in self.state) and self.info_menu.elapsed_time > self.info_menu.delay:
-            
-            print self.state
             
             if self.state == "capturing success":
                 print "Capturing %s!!!" % players['opponent']['monster'].name

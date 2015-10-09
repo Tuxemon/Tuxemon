@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="38">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="66">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16">
   <image source="../gfx/tilesets/floorsandwalls.png" trans="aaaa7f" width="176" height="128"/>
  </tileset>
@@ -11,56 +11,58 @@
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgYCIDwwAvGRgGJMjAMGBABh7VO3T0jiQAAMIWFXw=
+   eJxjYKAMMJGBYYCXDAwDEmRgGDAgA4/qHTp6hxoAALj3FXw=
   </data>
  </layer>
  <layer name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgcYDcLA8NRID7Ggil+iJmB4TAzbr1TgWreAfF7Fkzx10B9b/DoxQfeE6HPlJWBYTILApuzkmcXLUEPAXmQP/OAbs9nIc7P6HqnA/XNIEHvIAyiAQUA7hUTMw==
+   eJxjYBj6YDcLA8NRID7Ggil+iJmB4TAzbr1TgWreAfF7Fkzx10B9b/DoxQfeE6HPlJWBYTILApuzkmcXLUEPAXmQP/OAbs9nIc7P6HqnA/XNIEHvIAwiigEAbiETMw==
   </data>
  </layer>
  <layer name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBj6YDcLaeLI4AkONbjER8EooDYAAIYEA08=
+   eJxjYBjZYDcLaeLI4AkONbjER8EowAYAv60DTw==
   </data>
  </layer>
  <layer name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFmSwMDFlIOJtloF2ECZIH2gGjgGYAAAmeAoo=
+   eJxjYBgFlIBMFgaGLCSczTLQLsIEyQPtgFGAFwAAcXMCig==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
-  <object id="7" type="collision" x="16" y="0" width="208" height="48"/>
-  <object id="10" type="collision" x="160" y="128" width="32" height="32"/>
-  <object id="11" x="176" y="48" width="16"/>
-  <object id="18" type="collision" x="80" y="48" width="32" height="16"/>
-  <object id="25" type="collision" x="80" y="64" width="80" height="32"/>
-  <object id="28" type="collision" x="160" y="48" width="16" height="32"/>
-  <object id="30" type="collision" x="176" y="48" width="32" height="16"/>
-  <object id="31" type="collision" x="-16" y="32" width="32" height="160"/>
-  <object id="32" type="collision" x="224" y="32" width="32" height="160"/>
-  <object id="33" type="collision" x="16" y="176" width="208" height="32"/>
-  <object id="34" type="collision" x="64" y="48" width="16" height="32"/>
+  <object id="52" type="collision" x="16" y="16" width="208" height="48"/>
+  <object id="53" type="collision" x="160" y="144" width="32" height="32"/>
+  <object id="54" x="176" y="64" width="16"/>
+  <object id="55" type="collision" x="80" y="64" width="32" height="16"/>
+  <object id="56" type="collision" x="80" y="80" width="80" height="32"/>
+  <object id="57" type="collision" x="160" y="64" width="16" height="32"/>
+  <object id="58" type="collision" x="176" y="64" width="32" height="16"/>
+  <object id="59" type="collision" x="-16" y="48" width="32" height="160"/>
+  <object id="60" type="collision" x="224" y="48" width="32" height="160"/>
+  <object id="61" type="collision" x="16" y="192" width="208" height="32"/>
+  <object id="62" type="collision" x="64" y="64" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <properties>
-   <property name="cond1" value="is player_at"/>
-   <property name="cond2" value="is player facing left"/>
-  </properties>
-  <object id="19" name="Teleport to map1" type="event" x="112" y="160" width="16" height="16">
+  <object id="63" name="Teleport to map1" type="event" x="112" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport map1.tmx,40,4,0.1"/>
     <property name="cond1" value="is player_at 7, 11"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="20" name="Heal Tuxemon" type="event" x="112" y="96" width="16" height="16">
+  <object id="64" name="Heal Tuxemon" type="event" x="112" y="112" width="16" height="16">
    <properties>
+    <property name="act1" value="dialog Your tuxemon are now at full health!"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="37" x="16" y="128" width="16" height="16"/>
+  <object id="65" name="Teleport upstairs" type="event" x="16" y="144" width="16" height="16">
+   <properties>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

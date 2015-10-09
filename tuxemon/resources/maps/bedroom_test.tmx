@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="14">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="66">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="67" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="139" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="155" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16">
   <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="171" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+ <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
  <layer name="Tile Layer 1" width="11" height="9">
@@ -22,17 +22,17 @@
  </layer>
  <layer name="Tile Layer 2" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYKAeYEHjpwNxDpTtBsQeSHL8aGqLgbgCiFuAOA6IE6Dim4F4C5raeijNCcRcUMwNxLuBeA8Ot4kAsSgUi+H3BoM8ECtAsSIBtdQEACwFB/s=
+   eJxjYKAeYEHj1wJxE5QdA8RxSHL8aGo7gbgPiGcBcQkQl0HFTwLxKTS1U6E0JxBzQTE3EF8E4ks43CYCxKJQLEbAH/JArADFigTUUhMAAFmMCS8=
   </data>
  </layer>
  <layer name="Tile Layer 3" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYKAt6IfS3UDcQ6SeDDLt2gvE+8jUOxgAAGNhA4o=
+   eJxjYKAtWAqlFwLxIiL11JFp12UgvkKm3sEAAOT5BA4=
   </data>
  </layer>
  <layer name="Above player" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYKA/WAvE63DIpaHxtwLxNto6h2gwmwS185HYkkRgEAAAmkEFSA==
+   eJxjYKA/OAzER3DI1aDxTwPxGdo6h2iwkQS1W5HYkkRgEAAAFLAF4g==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -94,6 +94,7 @@
    <properties>
     <property name="act1" value="start_battle 1"/>
     <property name="act2" value="set_variable start_battle:false"/>
+    <property name="act3" value="wait_for_input K_RETURN"/>
     <property name="cond1" value="is variable_set start_battle:true"/>
    </properties>
   </object>

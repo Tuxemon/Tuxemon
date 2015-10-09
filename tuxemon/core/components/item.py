@@ -215,6 +215,7 @@ class Item(object):
         damage_modifier = 0
         status_modifier = 0
         item_power = self.power
+        random_num = random.randint(0,1000)
         
         # Get percent of damage taken and multiply it by 10
         if target.current_hp < target.hp: 
@@ -227,9 +228,6 @@ class Item(object):
 
         # Calculate the top of success range (random_num must be in range to succeed)
         success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
-
-        #Generate random_num
-        random_num = random.randint(0,1000)
 
         # Debugging Text
         print "--- Capture Variables ---"

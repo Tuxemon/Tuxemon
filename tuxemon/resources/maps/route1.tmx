@@ -16,35 +16,35 @@
  </layer>
  <layer name="Tile Layer 2" width="60" height="40">
   <data encoding="base64" compression="zlib">
-   eJztljEOgkAQRTe4XEUbtdSToIeyl0o5gDQaY6WFhZ5AC0sPonFMmJDgAgu7mhkzL/nZZKWYx98NKkWTTVgfG3bw3BGyCpRKg+/O7EKZ47rCdwZ7S0NiyAVcrwx9q/qNK/Ye4Pok7NuGKt9uR6le57fz2DAKzRlnc2O3C8O5TbJn8FzPs733/T1Y3vdfM9BKDSGRNv+OvpHOU8TU8wn2zgSdJzD/FJKWzIa+fZ2nCCdfZFvj27RfqqBPnW/Tfm9E34Gtb9N+ufoWMf2/SP7Y1xZuvhrObag/V1u4+eJ3ue3KzRe/y23XOzNf136ps8988Z669ssF11659OurVy79+uqVer++e6Xer+9eqffru1fq/QqCIAiCIAiCIAiC4M4LOhWO3w==
+   eJztljEOgkAQAC8IX9FGLfUl6KPspVIeII3GWGlhoS/QwtKHaFwTNiTkOA7uJLtmJ9mQHBQ3DASUoskuqh8bDnDdGWYTKJUFv92zC1WOW4PvAtbWmklgbuB6Z+hr6psY1l7g+ibs2waTb7+n1KDX7X5smET6meb7xrYrzXOb5tfgc73M177v78nyfe+aUajUGCYO9efRNw6LKaPrfIG1K0HnGex/DpNV7A19h2ExZTj5Ivsa36Z9qYI+db5N+z6I3gNb36Z9ufqW0f1fpH/sa4v40qDKF7/LbY/cfPG73Pb4ZObr2pc6R899ueDalUtfxLUrl76+unLp66sr9b6+u1Lv67sr9b6CIAiCIAiCIAiCILjzASVOjnk=
   </data>
  </layer>
  <layer name="Tile Layer 3" width="60" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOwjAQRFEXu7fJfSnhBBRpwhFChzgRICeKIlnxViBm/5NGblJ4tLbiUnSdvObuv97Jd5yXvpNw34twNwVmpfg7gx1/N9iWbEbf5+MmfK5bfZXRV1u2vi1z0t7I4yFwxtf3WG99eg3+S3S+2aj8n6LzvXpNFipvr+h81fr2qPWN3F8AAAAAAKDpBadyILw=
+   eJzt1jEOQEAYROEt9r+N+yo5gULDEejEiZCViESUJDPvS6ZTeMnKSklXHWVz/P0m32jO3kG4txVuU5BzSrGvyu/PVfmamz7uO4zC5/qpVxm92tx6n0ym3fCxGJ3xNcoABW73UxdlLtz+vejV5vTtAgAAAADgZgOjjB8C
   </data>
  </layer>
  <layer name="Above Player" width="60" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1iEOgGAIBlAC3P8qZk9g9EhG9wdnFXxvYxAo3yhEzLHVPR/1vNfZ1FysTncea6+1ppN3Nnmhp8yIyvcOAF/wt99LXgAAAICeLqS8FuA=
+   eJzt1iEOgDAQRNEVu/e/SjUnQHIkFGkqMFCSYfpf0hSBmXzTCB+t+vde9//9mesujA4629pqPO7Y6429gLbMiMrnN7TR19PbrvTVNKvrqn1V316zu1636t6vrLYXAAAAAAD4OgGklxmZ
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
-  <object id="1" x="672" y="208" width="96" height="160"/>
-  <object id="2" x="736" y="64" width="32" height="96"/>
-  <object id="3" x="608" y="64" width="16" height="208"/>
-  <object id="4" x="640" y="272" width="32" height="96"/>
-  <object id="5" x="608" y="304" width="32" height="64"/>
-  <object id="6" x="576" y="336" width="32" height="32"/>
-  <object id="7" x="576" y="64" width="32" height="48"/>
-  <object id="8" x="624" y="64" width="64" height="16"/>
-  <object id="9" x="688" y="160" width="80" height="16"/>
-  <object id="10" x="688" y="80" height="96"/>
-  <object id="11" x="768" y="208" width="192" height="160"/>
-  <object id="12" x="768" y="160" width="16" height="48"/>
-  <object id="13" x="0" y="0" width="128" height="640"/>
-  <object id="14" x="128" y="576" width="832" height="64"/>
-  <object id="15" x="0" y="-48" width="960" height="48"/>
+  <object id="1" type="collision" x="672" y="208" width="96" height="160"/>
+  <object id="2" type="collision" x="736" y="64" width="32" height="96"/>
+  <object id="3" type="collision" x="608" y="64" width="16" height="208"/>
+  <object id="4" type="collision" x="640" y="272" width="32" height="96"/>
+  <object id="5" type="collision" x="608" y="304" width="32" height="64"/>
+  <object id="6" type="collision" x="576" y="336" width="32" height="32"/>
+  <object id="7" type="collision" x="576" y="64" width="32" height="48"/>
+  <object id="8" type="collision" x="624" y="64" width="64" height="16"/>
+  <object id="9" type="collision" x="688" y="160" width="80" height="16"/>
+  <object id="10" type="collision" x="688" y="80" height="96"/>
+  <object id="11" type="collision" x="768" y="208" width="192" height="160"/>
+  <object id="12" type="collision" x="768" y="160" width="16" height="48"/>
+  <object id="13" type="collision" x="0" y="0" width="128" height="640"/>
+  <object id="14" type="collision" x="128" y="576" width="832" height="64"/>
+  <object id="15" type="collision" x="0" y="-48" width="960" height="48"/>
   <object id="18" type="collision" x="768" y="64" width="64" height="16"/>
   <object id="19" type="collision" x="832" y="16" height="48"/>
   <object id="20" type="collision" x="832" y="16" width="64" height="16"/>

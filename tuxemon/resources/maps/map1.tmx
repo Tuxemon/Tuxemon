@@ -111,10 +111,6 @@
   <object id="90" type="collision" x="352" y="240" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <properties>
-   <property name="act1" value="transition_teleport .tmx,1,3,0.3"/>
-   <property name="cond1" value=""/>
-  </properties>
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.5"/>

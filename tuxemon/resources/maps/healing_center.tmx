@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="66">
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16">
-  <image source="../gfx/tilesets/floorsandwalls.png" trans="aaaa7f" width="176" height="128"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="21">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16">
-  <image source="../gfx/tilesets/setPiecesTSR.png" trans="aaaa7f" width="671" height="512"/>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="1401" name="furniture" tilewidth="16" tileheight="16">
-  <image source="../gfx/tilesets/furniture.png" trans="aaaa7f" width="192" height="96"/>
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMMJGBYYCXDAwDEmRgGDAgA4/qHTp6hxoAALj3FXw=
+   eJxjYBg4wEQGhgFeMjAMSJCBYcCADDyqd+joHQgAAK/YFXw=
   </data>
  </layer>
  <layer name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBj6YDcLA8NRID7Ggil+iJmB4TAzbr1TgWreAfF7Fkzx10B9b/DoxQfeE6HPlJWBYTILApuzkmcXLUEPAXmQP/OAbs9nIc7P6HqnA/XNIEHvIAwiigEAbiETMw==
+   eJxjYBjZgJmVgYEXiPlYMcW5WBgYuFlw670LlDMDqjNnxRQ3BmITPHrxAXMi9NUC7bzNgsD1rIT1kAOu0MZYMAD5cxsQb2chzs/oeu8D8QMS9NIoiCgGAGmOC9o=
   </data>
  </layer>
  <layer name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBjZYDcLaeLI4AkONbjER8EowAYAv60DTw==
+   eJxjYBgF5AJmVtLEkYEODjW4xEfB8AUA6zAAcw==
   </data>
  </layer>
  <layer name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFlIBMFgaGLCSczTLQLsIEyQPtgFGAFwAAcXMCig==
+   eJxjYBgFAwU2sjAwbELCm1loY89q2hg7CqgEADW4BDo=
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
-  <object id="52" type="collision" x="16" y="16" width="208" height="48"/>
-  <object id="53" type="collision" x="160" y="144" width="32" height="32"/>
-  <object id="54" x="176" y="64" width="16"/>
-  <object id="55" type="collision" x="80" y="64" width="32" height="16"/>
-  <object id="56" type="collision" x="80" y="80" width="80" height="32"/>
-  <object id="57" type="collision" x="160" y="64" width="16" height="32"/>
-  <object id="58" type="collision" x="176" y="64" width="32" height="16"/>
-  <object id="59" type="collision" x="-16" y="48" width="32" height="160"/>
-  <object id="60" type="collision" x="224" y="48" width="32" height="160"/>
-  <object id="61" type="collision" x="16" y="192" width="208" height="32"/>
-  <object id="62" type="collision" x="64" y="64" width="16" height="32"/>
+  <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
+  <object id="5" type="collision" x="160" y="160" width="32" height="32"/>
+  <object id="6" type="collision" x="176" y="80" width="32" height="16"/>
+  <object id="7" type="collision" x="160" y="80" width="16" height="32"/>
+  <object id="8" type="collision" x="80" y="112" width="80" height="16"/>
+  <object id="9" type="collision" x="64" y="80" width="16" height="32"/>
+  <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
+  <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
+  <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <object id="63" name="Teleport to map1" type="event" x="112" y="176" width="16" height="16">
+  <object id="16" name="Heal Tuxemon" type="event" x="112" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,40,4,0.1"/>
-    <property name="cond1" value="is player_at 7, 11"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="64" name="Heal Tuxemon" type="event" x="112" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="dialog Your tuxemon are now at full health!"/>
+    <property name="act1" value="dialog Your tuxemon are now at full health! (Not yet implemented)"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="65" name="Teleport upstairs" type="event" x="16" y="144" width="16" height="16">
+  <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,40,4,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="18" name="Go upstairs" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
  </objectgroup>

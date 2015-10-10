@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="60" height="40" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="23">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16">
+ <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16">
+ <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
  <layer name="Tile Layer 1" width="60" height="40">
@@ -29,18 +29,28 @@
    eJzt1iEOgGAIBlAC3P8qZk9g9EhG9wdnFXxvYxAo3yhEzLHVPR/1vNfZ1FysTncea6+1ppN3Nnmhp8yIyvcOAF/wt99LXgAAAICeLqS8FuA=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision" width="60" height="40">
-  <object x="672" y="208" width="96" height="160"/>
-  <object x="736" y="64" width="32" height="96"/>
-  <object x="608" y="64" width="16" height="208"/>
-  <object x="640" y="272" width="32" height="96"/>
-  <object x="608" y="304" width="32" height="64"/>
-  <object x="576" y="336" width="32" height="32"/>
-  <object x="576" y="64" width="32" height="48"/>
-  <object x="624" y="64" width="64" height="16"/>
-  <object x="688" y="160" width="80" height="16"/>
-  <object x="672" y="80" width="16" height="96"/>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" x="672" y="208" width="96" height="160"/>
+  <object id="2" x="736" y="64" width="32" height="96"/>
+  <object id="3" x="608" y="64" width="16" height="208"/>
+  <object id="4" x="640" y="272" width="32" height="96"/>
+  <object id="5" x="608" y="304" width="32" height="64"/>
+  <object id="6" x="576" y="336" width="32" height="32"/>
+  <object id="7" x="576" y="64" width="32" height="48"/>
+  <object id="8" x="624" y="64" width="64" height="16"/>
+  <object id="9" x="688" y="160" width="80" height="16"/>
+  <object id="10" x="688" y="80" height="96"/>
+  <object id="11" x="768" y="208" width="192" height="160"/>
+  <object id="12" x="768" y="160" width="16" height="48"/>
+  <object id="13" x="0" y="0" width="128" height="640"/>
+  <object id="14" x="128" y="576" width="832" height="64"/>
+  <object id="15" x="0" y="-48" width="960" height="48"/>
+  <object id="18" type="collision" x="768" y="64" width="64" height="16"/>
+  <object id="19" type="collision" x="832" y="16" height="48"/>
+  <object id="20" type="collision" x="832" y="16" width="64" height="16"/>
+  <object id="21" type="collision" x="896" y="0" height="16"/>
+  <object id="22" type="collision" x="960" y="-48" width="32" height="688"/>
  </objectgroup>
- <objectgroup name="Actions" width="60" height="40"/>
- <objectgroup name="Conditions" width="60" height="40"/>
+ <objectgroup name="Actions"/>
+ <objectgroup name="Conditions"/>
 </map>

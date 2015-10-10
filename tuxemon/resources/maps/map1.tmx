@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="97">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="101">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16">
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16">
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16">
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
  <layer name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2z0OgjAYxnETw9GUTSZ18Gvw60SOeiRPoMbBeA77JpKUBoEiUNrnIfkPJi4/3zZlqEk0GCQWTXqejaVOrn3009+V//Snf1YQgh99/sj+vepQUOh+9PmH4D+rLkaufV3683Lt89k/Bfejz59++ukP3z9q0BN76EefP/3Y/nT/x9rncU1P2/vf9nE937Laflz76O+/3/b8L/q+7f7vgx99/vTTT395bbxP+uRHnz/99NNPP/30008//fSj++WOQHpHcA7mF/tOtf62AfOvNLu0jbJ3RqusB5/9cmdwafwGelXWg89+cw0souydySOYH23/008//dnzz/YdyHe/eQbKGrip7kaPQP3y6P8dkDPvpboOs70D9OfNWXqC+PPm/Cv66W/C/wF91+ZZ
+   eJzt2z0KwjAYxnFBejTtZid18Gvw60SOeiRPoOIgXkMTsJCEmja1NU2ep/AfBJefb0I6xCzp9TKHRh3PxVIn376m/S9wP/r8bR1+9E8sIfjR54/s34p2lmL3o88/Bv9RdDLy7funvyjfvpD9Y3A/+vzpp5/++P2DBj1pgH70+dOP7c/3f6p8Htb0tL3/XR/f8y2r7ce3j/7u+13Pf9v3Xfd/F/zo86effvrLa+N9MiQ/+vzpp59++umnn3766acf3S/vCOR3BKdgfmnfiJafVmD+hWKXrRP9zmiV9RCyX94ZnBu/gVqV9RCy31wDs0S/M7kH86Ptf/rpp18//1zfgUL3m2egXAMX0dXoFqlfPup/B+SZ9xCd+3rPCP1Fc5bdQfxFc/4W/fQ34X8DYC/nCQ==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
@@ -108,10 +111,6 @@
   <object id="90" type="collision" x="352" y="240" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <properties>
-   <property name="act1" value=""/>
-   <property name="cond1" value=""/>
-  </properties>
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.5"/>
@@ -237,6 +236,13 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport healing_center.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

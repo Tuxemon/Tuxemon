@@ -16,7 +16,7 @@
  </layer>
  <layer name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBjZgJmVgYEXiPlYMcW5WBgYuFlw670LlDMDqjNnxRQ3BmITPHrxAXMi9NUC7bzNgsD1rIT1kAOu0MZYMAD5cxsQb2chzs/oeu8D8QMS9NIoiCgGAGmOC9o=
+   eJxjYBi6gJkCvXwwM1gZGHiBmI8VzWwgn4uFgYGbBbcZd4FyZkB15kh6a1kg4sZAbIJHLz5gToS+WqCdt1kQuJ6VsB5ywBXaGAsGIH9uA+LtLMT5GV3vfSB+QIJeGgURxQAAsc0MbA==
   </data>
  </layer>
  <layer name="Tile Layer 3" width="15" height="15">
@@ -29,7 +29,7 @@
    eJxjYBgFAwU2sjAwbELCm1loY89q2hg7CqgEADW4BDo=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" name="Collision" visible="0">
   <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
   <object id="5" type="collision" x="160" y="160" width="32" height="32"/>
   <object id="6" type="collision" x="176" y="80" width="32" height="16"/>

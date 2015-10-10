@@ -240,7 +240,7 @@
   </object>
   <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport healing_center.tmx,7,11,0.3"/>
+    <property name="act1" value="transition_teleport healing_center.tmx,7,12,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>

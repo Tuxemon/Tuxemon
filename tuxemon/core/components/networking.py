@@ -5,6 +5,7 @@ from neteria.server import NeteriaServer
 from neteria.client import NeteriaClient
 
 import netifaces
+import pygame
 
 # Create a logger for optional handling of debug messages.
 import logging
@@ -42,14 +43,14 @@ class TuxemonServer():
 
         """        
         # Loop through our network events and pass them to the current state.
-        net_events = self.net_event_loop()
-        if net_events:
-            for net_event in net_events:
-                self.game.key_events.append(net_event)
-                self.game.state.get_event(net_event)
-                
-    
-    def net_event_loop(self):
+        controller_events = self.net_controller_loop()
+        if controller_events:
+            for controller_event in controller_events:
+                self.game.key_events.append(controller_event)
+                self.game.state.get_event(controller_event)
+
+
+    def net_controller_loop(self):
         """Process all network events from controllers and pass them
         down to current State. All network events are converted to keyboard
         events for compatibility.
@@ -118,24 +119,68 @@ class TuxemonServer():
                 events.append(event)
         
         # Clear out the network events list once all events have been processed.
-#         self.network_events = []
+        self.network_events = []
         return events
     
     
     def populate_client(self, cuuid, event_data):
+        """Adds client character information to the local server registry.
+
+        :param cuuid: Clients unique user identification number.
+        :param event_data: Client characters current status.
+        
+        :type cuuid: String 
+        :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
+
+        """
         self.server.registry[cuuid]["map"] = event_data["map"]
         char_dict = event_data["char_dict"]
-        sn = event_data["sprite_name"]
-        nm = char_dict["name"]
-        sprite = player.Npc(sprite_name="player", 
-                             name="Blue")
+        sn = str(event_data["sprite_name"])
+        nm = str(char_dict["name"])
+        sprite = player.Npc(sprite_name=sn, 
+                             name=nm)
         self.server.registry[cuuid]["sprite"] = sprite
-        playah = self.server.registry[cuuid]["sprite"]
-        self.game.scale_new_player(playah)
+        client = self.server.registry[cuuid]["sprite"]
+        self.game.scale_new_player(client)
+        self.update_client(client, char_dict)
+
+
+    def update_client(self, client, char_dict):
+        
         for item in char_dict:
-            playah.__dict__[item] = char_dict[item]
-            
-        self.game.state_dict["WORLD"].npcs.append(playah)
+            client.__dict__[item] = char_dict[item]
+
+
+    def move_client_npc(self, cuuid, event_data):
+        """Moves the client character in the local game.
+
+        :param cuuid: Clients unique user identification number.
+        :param event_data: Client characters current status.
+        
+        :type cuuid: String 
+        :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
+
+        """
+        client = self.server.registry[cuuid]["sprite"]
+        char_dict = event_data["char_dict"]
+        
+        if event_data["key"] == "KEYDOWN":
+            self.server.registry[cuuid]["map"] = event_data["map"]
+            self.update_client(client, char_dict)
+            #client.direction[event_data["direction"]] = True
+            client.facing = event_data["direction"]
+                
+        if event_data["key"] == "KEYUP":
+            #client.direction[event_data["direction"]] = False
+            self.server.registry[cuuid]["map"] = event_data["map"]
+            self.update_client(client, char_dict)
+                    
 
 
 class TuxemonClient():
@@ -257,7 +302,13 @@ class TuxemonClient():
         
     
     def populate_player(self):
-        print "populate_player"
+        """Sends client character to the server.
+
+        :param None
+        :rtype: None
+        :returns: None
+
+        """
         pd = self.game.state_dict["WORLD"].player1.__dict__
         map = self.game.state_dict["WORLD"].current_map.filename
         
@@ -285,6 +336,78 @@ class TuxemonClient():
                       }
         self.client.event(event_data)
         self.populated = True
+    
+    
+    def move_player(self, event):
+        """Sends client character movement events to the server.
+
+        :param event: Input event passed from core.tools.Control event_loop.
+        
+        :type event: Pygame Event.
+        
+        :rtype: None
+        :returns: None
+
+        """
+        key = None
+        direction = None
+        
+        # Don't move if we are in a menu
+        if not self.game.state.menu_blocking:
+            
+            # Handle Key DOWN events
+            if event.type == pygame.KEYDOWN:
+               
+                if event.key == pygame.K_UP:
+                    key = "KEYDOWN"
+                    direction = "up"
+                if event.key == pygame.K_DOWN:
+                    key = "KEYDOWN"
+                    direction = "down"
+                if event.key == pygame.K_LEFT:
+                    key = "KEYDOWN"
+                    direction = "left"
+                if event.key == pygame.K_RIGHT:
+                    key = "KEYDOWN"
+                    direction = "right"
+
+            # Handle Key UP events
+            if event.type == pygame.KEYUP:
+                    
+                if event.key == pygame.K_UP:
+                    key = "KEYUP"
+                    direction = "up"
+                if event.key == pygame.K_DOWN:
+                    key = "KEYUP"
+                    direction = "down"
+                if event.key == pygame.K_LEFT:
+                    key = "KEYUP"
+                    direction = "left"
+                if event.key == pygame.K_RIGHT:
+                    key = "KEYUP"
+                    direction = "right"
+            
+            if direction and key:
+                
+                pd = self.game.state_dict["WORLD"].player1.__dict__
+                map = self.game.state_dict["WORLD"].current_map.filename
+                
+                event_data = {"type": "CLIENT_EVENT",
+                              "direction": direction,
+                              "key": key,
+                              "map": map,
+                              "char_dict": {"global_pos": pd["global_pos"],
+                                            "tile_pos": pd["tile_pos"],
+                                            "runrate": pd["runrate"],
+                                            "running": pd["running"],
+                                            "moving": pd["moving"],
+                                            "walkrate": pd["walkrate"],
+                                            "moverate": pd["moverate"],
+                                            "position": pd["position"]
+                                            }
+                              }
+                self.client.event(event_data)
+        
             
     
     

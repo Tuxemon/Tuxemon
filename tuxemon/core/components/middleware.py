@@ -67,14 +67,13 @@ class Multiplayer():
     """
     def __init__(self, game=None, server=None):
         self.game = game
-        self.server = server
-        print self.game
-        print self.server
 
     def event_legal(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             return True
         elif event_data["type"] == "PUSH_SELF":
+            return True
+        elif event_data["type"] =="CLIENT_EVENT":
             return True
         else:
             return False
@@ -82,9 +81,9 @@ class Multiplayer():
     def event_execute(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             self.game.server.network_events.append(event_data)
-         
         elif event_data["type"] == "PUSH_SELF":
-#             pass
             self.game.server.populate_client(cuuid, event_data)
+        elif event_data["type"] =="CLIENT_EVENT":
+            self.game.server.move_client_npc(cuuid, event_data)
 
             

@@ -6,6 +6,7 @@ encoding//tuxemon/core/components/event/actions/core.py=utf-8
 encoding//tuxemon/core/components/event/conditions/combat.py=utf-8
 encoding//tuxemon/core/components/event/conditions/core.py=utf-8
 encoding//tuxemon/core/components/item.py=utf-8
+encoding//tuxemon/core/components/log.py=utf-8
 encoding//tuxemon/core/components/map.py=utf-8
 encoding//tuxemon/core/components/menu/__init__.py=utf-8
 encoding//tuxemon/core/components/player.py=utf-8

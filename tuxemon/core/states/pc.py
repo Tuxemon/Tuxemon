@@ -63,6 +63,7 @@ class PC(tools._State):
         # Provide an instance of the scene manager to this scene.
         self.game = game            # The scene manger object
         self.previous_menu = None
+        self.menu_blocking = True
         
         scale = prepare.SCALE
         

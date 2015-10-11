@@ -302,11 +302,12 @@ class Control(object):
                     self.state.get_event(joy_event)
 
             self.state.get_event(event)
+            
+            # Send the event to the server if we are in a multiplayer game.
+            if self.client.client.registered and self.client.populated:
+                self.client.move_player(event)
 
     
-    
-
-
     def controller_event_loop(self, event):
         """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
@@ -378,6 +379,7 @@ class Control(object):
                 self.overlay_pressed["b"] = False
 
         return events
+
 
     def joystick_event_loop(self, event):
         """Process all events from a joystick and pass them down to
@@ -541,7 +543,8 @@ class Control(object):
         :returns: None
 
         """
-
+        
+        
         # Android-specific check for pause
         if android:
             if android.check_pause():
@@ -550,31 +553,31 @@ class Control(object):
         # Get the amount of time that has passed since the last frame.
         time_delta = self.clock.tick(self.fps)/1000.0
         self.time_passed_seconds = time_delta
-        self.event_loop()
-
-        # Run our event engine which will check to see if game conditions.
-        # are met and run an action associated with that condition.
-        self.event_data = {}
-        self.event_engine.check_conditions(self, time_delta)
-        logger.debug("Event Data:" + str(self.event_data))
         
         # Update our networking.
         if self.client.listening: self.client.update(time_delta)
         if self.server.listening: self.server.update()
-
+        
+        # Check if any clients are on our map.
+        self.add_clients_to_map()
+        
+        # Run our event engine which will check to see if game conditions.
+        # are met and run an action associated with that condition.
+        self.event_loop()
+        self.event_data = {}
+        self.event_engine.check_conditions(self, time_delta)
+        logger.debug("Event Data:" + str(self.event_data))
+        
         # Draw and update our display
         self.update(time_delta)
         pg.display.update()
- 
-        
-               
+   
         if self.show_fps:
             fps = self.clock.get_fps()
             with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
             pg.display.set_caption(with_fps)
         if self.exit:
             self.done = True
-            
             
             
     def get_menu_event(self, menu, event):
@@ -591,7 +594,7 @@ class Control(object):
         :returns: None
 
         """
-
+        # use the default sound if a custom sound is nt specified.
         try:
             if menu.menu_select_sound:
                 pass
@@ -599,7 +602,6 @@ class Control(object):
             menu.menu_select_sound = mixer.Sound(
                 prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
 
-        
         if len(menu.menu_items) > 0:
             menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
         
@@ -607,7 +609,6 @@ class Control(object):
             menu.menu_select_sound.play()
             self.state.next = self.state.previous
             self.flip_state()
-              
             
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
             menu.menu_select_sound.play()
@@ -629,10 +630,8 @@ class Control(object):
             if menu.selected_menu_item < 0:
                 menu.selected_menu_item = len(menu.menu_items) -1
 
-
         if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
             menu.menu_select_sound.play()
-            
             menu.menu_event(event)
     
     def scale_new_player(self, sprite):
@@ -682,6 +681,36 @@ class Control(object):
         # Set the walking and running pixels per second based on the scale
         sprite.walkrate *= SCALE
         sprite.runrate *= SCALE
+    
+    
+    def add_clients_to_map(self):
+        """Checks to see if clients are supposed to be displayed on the current map. If
+        they are on the same map as the host then it will add them to the npc's list. 
+        If they are still being displayed and have left the map it will remove them from 
+        the map.
+
+        :param: None
+        
+        :rtype: None
+        :returns: None
+
+        """ 
+        for client in self.server.server.registry:
+            if "sprite" in self.server.server.registry[client]:
+                sprite = self.server.server.registry[client]["sprite"]
+                client_map = self.server.server.registry[client]["map"]
+                current_map = self.state_dict["WORLD"].current_map.filename
+                
+                # Add the player to the screen if they are on the same map.
+                if client_map == current_map:
+                    if not sprite in self.state_dict["WORLD"].npcs:
+                        self.state_dict["WORLD"].npcs.append(sprite)
+                        
+                # Remove player from the map if they have changed maps.
+                elif client_map != current_map:
+                    while sprite in self.state_dict["WORLD"].npcs:
+                        self.state_dict["WORLD"].npcs.remove(sprite)
+                        
 
 
 
@@ -700,6 +729,7 @@ class _State(object):
         self.next = None
         self.previous = None
         self.persist = {}
+        self.menu_blocking = False
 
 
     def get_event(self, event):
@@ -737,7 +767,6 @@ class _State(object):
         2895
         >>> persistant
         {}
-
         """
 
         self.persist = persistant

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="108">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="111">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -246,6 +246,29 @@
     <property name="act1" value="transition_teleport healing_center.tmx,7,12,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport tuxe_mart.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="109" name="Tuxemart Sign" type="event" x="432" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="110" name="Tuxecenter Sign" type="event" x="688" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxecenter - A place to heal your tuxemon"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

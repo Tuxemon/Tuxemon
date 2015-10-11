@@ -152,7 +152,17 @@ class TuxemonServer():
     def update_client(self, client, char_dict):
         
         for item in char_dict:
-            client.__dict__[item] = char_dict[item]
+            if item != "tile_pos":
+                client.__dict__[item] = char_dict[item]
+            elif item == "tile_pos":
+                tile_size = self.game.state_dict["WORLD"].tile_size
+                abs_position = [char_dict["tile_pos"][0] * tile_size[0],
+                                char_dict["tile_pos"][1] * tile_size[1]]
+                global_x = self.game.state_dict["WORLD"].global_x
+                global_y = self.game.state_dict["WORLD"].global_y
+                position = [abs_position[0] + global_x, abs_position[1] + global_y]
+                #client.__dict__[item] = char_dict[item]
+                client.__dict__["position"] = position
 
 
     def move_client_npc(self, cuuid, event_data):
@@ -313,15 +323,11 @@ class TuxemonClient():
         pd = self.game.state_dict["WORLD"].player1.__dict__
         map_path = self.game.state_dict["WORLD"].current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
-        x_diff = self.game.state_dict["WORLD"].global_x
-        y_diff = self.game.state_dict["WORLD"].global_y
-        position = [pd["position"][0] + x_diff, pd["position"][1] + y_diff]
         
         event_data = {"type": "PUSH_SELF",
                       "map_name": map_name,
                       "sprite_name": "player1",
                       "char_dict": {
-                                  "global_pos": pd["global_pos"],
                                   "tile_pos": pd["tile_pos"],
                                   "game_variables": pd["game_variables"],
                                   "inventory": pd["inventory"],
@@ -336,7 +342,6 @@ class TuxemonClient():
                                   "party_limit": pd["party_limit"],
                                   "moverate": pd["moverate"],
                                   "facing": pd["facing"],
-                                  "position": pd["position"],
                                   }
                       }
         self.client.event(event_data)
@@ -398,23 +403,16 @@ class TuxemonClient():
                 map_path = self.game.state_dict["WORLD"].current_map.filename
                 map_name = str(map_path.replace(prepare.BASEDIR, ""))
                 
-                # Get our actual position.
-                x_diff = self.game.state_dict["WORLD"].global_x
-                y_diff = self.game.state_dict["WORLD"].global_y
-                position = [pd["position"][0] + x_diff, pd["position"][1] + y_diff]
-                
                 event_data = {"type": "CLIENT_EVENT",
                               "direction": direction,
                               "key": key,
                               "map_name": map_name,
-                              "char_dict": {"global_pos": pd["global_pos"],
-                                            #"tile_pos": pd["tile_pos"],
-#                                             "runrate": pd["runrate"],
-#                                             "running": pd["running"],
-#                                             "moving": pd["moving"],
-#                                             "walkrate": pd["walkrate"],
-#                                             "moverate": pd["moverate"],
-                                            "position": pd["position"]
+                              "char_dict": {"tile_pos": pd["tile_pos"],
+                                            "runrate": pd["runrate"],
+                                            "running": pd["running"],
+                                            "moving": pd["moving"],
+                                            "walkrate": pd["walkrate"],
+                                            "moverate": pd["moverate"],
                                             }
                               }
                 self.client.event(event_data)

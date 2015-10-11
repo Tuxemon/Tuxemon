@@ -19,12 +19,12 @@
  </layer>
  <layer name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5gJmVdD0dLAwM7UB8l4V8e2mhtxbol9tAuXo8fiLHXmLMJRfQ0mxsgE7WkAwAQpAKWA==
+   eJxjYBi5gJmVdD0dLAwM7UB8l4V8e2mhtxbol9tAuXo8frpJhr3EmEsuoKXZ2ACdrCEZAAA8MApU
   </data>
  </layer>
  <layer name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF5IBw1qGndzML+XpHAe0AAGCGAcw=
+   eJxjYBgF5IBw1oHRu4GFfL2bKdA7CmgHAAF2AiQ=
   </data>
  </layer>
  <layer name="Above player" width="15" height="15">

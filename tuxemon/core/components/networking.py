@@ -156,7 +156,7 @@ class TuxemonServer():
             elif item == "position":
                 x_diff = self.game.state_dict["WORLD"].global_x_diff
                 y_diff = self.game.state_dict["WORLD"].global_y_diff
-                position = [char_dict["position"][0] + x_diff, char_dict["position"][0] + y_diff]
+                position = [char_dict["position"][0] - x_diff, char_dict["position"][0] - y_diff]
 
 
     def move_client_npc(self, cuuid, event_data):
@@ -398,9 +398,12 @@ class TuxemonClient():
                 
                 pd = self.game.state_dict["WORLD"].player1.__dict__
                 map = self.game.state_dict["WORLD"].current_map.filename
+                
+                # Get our actual position.
                 x_diff = self.game.state_dict["WORLD"].global_x_diff
                 y_diff = self.game.state_dict["WORLD"].global_y_diff
                 position = [pd["position"][0] + x_diff, pd["position"][0] + y_diff]
+                
                 event_data = {"type": "CLIENT_EVENT",
                               "direction": direction,
                               "key": key,
@@ -415,9 +418,6 @@ class TuxemonClient():
                                             "position": position
                                             }
                               }
-                print pd["global_pos"]
-                print pd["position"]
-                print pd["tile_pos"]
                 self.client.event(event_data)
         
             

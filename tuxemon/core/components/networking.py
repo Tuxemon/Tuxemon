@@ -125,10 +125,11 @@ class TuxemonServer():
     
     
     def populate_client(self, cuuid, event_data):
-        """Adds client character information to the local server registry.
-
+        """Creates a local NPC to represent the client character and adds the
+        iformation to the server registry. 
+        
         :param cuuid: Clients unique user identification number.
-        :param event_data: Client characters current status.
+        :param event_data: Client characters current variable values.
         
         :type cuuid: String 
         :type event_data: Dictionary
@@ -150,7 +151,18 @@ class TuxemonServer():
 
 
     def update_client(self, client, char_dict):
+        """Adds updated client character information to the local server registry.
+
+        :param client: Clients local NPC sprite stored in the server registry.
+        :param char_dict: Client characters current variable values.
         
+        :type client: core.components.player.Npc() module 
+        :type event_data: Dictionary
+
+        :rtype: None
+        :returns: None
+
+        """
         for item in char_dict:
             if item != "tile_pos":
                 client.__dict__[item] = char_dict[item]
@@ -160,8 +172,7 @@ class TuxemonServer():
                                 char_dict["tile_pos"][1] * tile_size[1]]
                 global_x = self.game.state_dict["WORLD"].global_x
                 global_y = self.game.state_dict["WORLD"].global_y
-                position = [abs_position[0] + global_x, abs_position[1] + global_y]
-                #client.__dict__[item] = char_dict[item]
+                position = [abs_position[0] + global_x, abs_position[1] + (global_y-tile_size[1])]
                 client.__dict__["position"] = position
 
 
@@ -181,17 +192,14 @@ class TuxemonServer():
         client = self.server.registry[cuuid]["sprite"]
         char_dict = event_data["char_dict"]
         
-        if event_data["key"] == "KEYDOWN":
-            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-            self.update_client(client, char_dict)
+        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+        self.update_client(client, char_dict)
+        client.facing = event_data["direction"]
+#         if event_data["key"] == "KEYDOWN":
 #             client.direction[event_data["direction"]] = True
-            client.facing = event_data["direction"]
-                
-        if event_data["key"] == "KEYUP":
-            client.direction[event_data["direction"]] = False
-            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-            self.update_client(client, char_dict)
-                    
+#                 
+#         elif event_data["key"] == "KEYUP":
+#             client.direction[event_data["direction"]] = False
 
 
 class TuxemonClient():
@@ -348,7 +356,7 @@ class TuxemonClient():
         self.populated = True
     
     
-    def move_player(self, event):
+    def move_player(self, event=None):
         """Sends client character movement events to the server.
 
         :param event: Input event passed from core.tools.Control event_loop.
@@ -361,62 +369,61 @@ class TuxemonClient():
         """
         key = None
         direction = None
+        pd = self.game.state_dict["WORLD"].player1.__dict__
+        map_path = self.game.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
         
         # Don't move if we are in a menu
         if not self.game.state.menu_blocking:
             
-            # Handle Key DOWN events
-            if event.type == pygame.KEYDOWN:
-               
-                if event.key == pygame.K_UP:
-                    key = "KEYDOWN"
-                    direction = "up"
-                if event.key == pygame.K_DOWN:
-                    key = "KEYDOWN"
-                    direction = "down"
-                if event.key == pygame.K_LEFT:
-                    key = "KEYDOWN"
-                    direction = "left"
-                if event.key == pygame.K_RIGHT:
-                    key = "KEYDOWN"
-                    direction = "right"
-
-            # Handle Key UP events
-            if event.type == pygame.KEYUP:
+            if event:
+                # Handle Key DOWN events
+                if event.type == pygame.KEYDOWN:
+                   
+                    if event.key == pygame.K_UP:
+                        key = "KEYDOWN"
+                        direction = "up"
+                    if event.key == pygame.K_DOWN:
+                        key = "KEYDOWN"
+                        direction = "down"
+                    if event.key == pygame.K_LEFT:
+                        key = "KEYDOWN"
+                        direction = "left"
+                    if event.key == pygame.K_RIGHT:
+                        key = "KEYDOWN"
+                        direction = "right"
+    
+                # Handle Key UP events
+                if event.type == pygame.KEYUP:
+                        
+                    if event.key == pygame.K_UP:
+                        key = "KEYUP"
+                        direction = "up"
+                    if event.key == pygame.K_DOWN:
+                        key = "KEYUP"
+                        direction = "down"
+                    if event.key == pygame.K_LEFT:
+                        key = "KEYUP"
+                        direction = "left"
+                    if event.key == pygame.K_RIGHT:
+                        key = "KEYUP"
+                        direction = "right"
+                
+                if direction and key:
                     
-                if event.key == pygame.K_UP:
-                    key = "KEYUP"
-                    direction = "up"
-                if event.key == pygame.K_DOWN:
-                    key = "KEYUP"
-                    direction = "down"
-                if event.key == pygame.K_LEFT:
-                    key = "KEYUP"
-                    direction = "left"
-                if event.key == pygame.K_RIGHT:
-                    key = "KEYUP"
-                    direction = "right"
-            
-            if direction and key:
-                
-                pd = self.game.state_dict["WORLD"].player1.__dict__
-                map_path = self.game.state_dict["WORLD"].current_map.filename
-                map_name = str(map_path.replace(prepare.BASEDIR, ""))
-                
-                event_data = {"type": "CLIENT_EVENT",
-                              "direction": direction,
-                              "key": key,
-                              "map_name": map_name,
-                              "char_dict": {"tile_pos": pd["tile_pos"],
-                                            "runrate": pd["runrate"],
-                                            "running": pd["running"],
-                                            "moving": pd["moving"],
-                                            "walkrate": pd["walkrate"],
-                                            "moverate": pd["moverate"],
-                                            }
-                              }
-                self.client.event(event_data)
-        
+                    event_data = {"type": "CLIENT_EVENT",
+                                  "direction": direction,
+                                  "key": key,
+                                  "map_name": map_name,
+                                  "char_dict": {"tile_pos": pd["tile_pos"],
+                                                "runrate": pd["runrate"],
+                                                "running": pd["running"],
+                                                "moving": pd["moving"],
+                                                "walkrate": pd["walkrate"],
+                                                "moverate": pd["moverate"],
+                                                }
+                                  }
+                    self.client.event(event_data)
             
     
     

@@ -231,7 +231,6 @@ class Control(object):
         0.031
 
         """
-
         self.current_time = pg.time.get_ticks()
         if self.state.quit:
             self.done = True
@@ -272,7 +271,6 @@ class Control(object):
         :returns: None
 
         """
-
         # Loop through our pygame events and pass them to the current state.
         self.key_events = []
         self.keys = list(pg.key.get_pressed())
@@ -300,13 +298,14 @@ class Control(object):
                 for joy_event in joy_events:
                     self.key_events.append(joy_event)
                     self.state.get_event(joy_event)
-
-            self.state.get_event(event)
             
             # Send the event to the server if we are in a multiplayer game.
             if self.client.client.registered and self.client.populated:
                 self.client.move_player(event)
-
+            
+                
+            self.state.get_event(event)
+            
     
     def controller_event_loop(self, event):
         """Process all events from the controller overlay and pass them down to
@@ -505,7 +504,6 @@ class Control(object):
         :returns: None
 
         """
-
         if key == pg.K_F5:
             self.show_fps = not self.show_fps
             if not self.show_fps:
@@ -524,7 +522,6 @@ class Control(object):
         :returns: None
 
         """
-
         # This sets up Asteria networking to handle executing the game loop
         #listen(Controller(self), self, port=8000, game_loop=True)
         while not self.exit:
@@ -543,8 +540,6 @@ class Control(object):
         :returns: None
 
         """
-        
-        
         # Android-specific check for pause
         if android:
             if android.check_pause():

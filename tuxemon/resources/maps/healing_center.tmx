@@ -21,7 +21,7 @@
  </layer>
  <layer name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF5AJmVtLEkYEODjW4xEfB8AUA6zAAcw==
+   eJxjYBgF5IJwVtLEkYEODjW4xEfB8AUAYq4BGw==
   </data>
  </layer>
  <layer name="Above player" width="15" height="15">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="218">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="226">
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
@@ -40,6 +40,13 @@
    <properties>
     <property name="act1" value="play_music TheAdventureBegins8bitRemix.ogg"/>
     <property name="cond1" value="not music_playing TheAdventureBegins8bitRemix.ogg"/>
+   </properties>
+  </object>
+  <object id="225" name="Teleport to map1" type="event" x="32" y="1424" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,23,16,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
  </objectgroup>
@@ -325,7 +332,11 @@
    <polyline points="0,0 0,1600"/>
   </object>
   <object id="214" type="collision" x="176" y="1424" width="16" height="16"/>
-  <object id="216" x="0" y="1456" width="272" height="16"/>
-  <object id="217" x="0" y="1408" width="208" height="16"/>
+  <object id="216" type="collision" x="0" y="1456" width="272" height="16"/>
+  <object id="217" type="collision" x="0" y="1408" width="208" height="16"/>
+  <object id="218" type="collision" x="-32" y="-32" width="1664" height="32"/>
+  <object id="219" type="collision" x="1600" y="0" width="32" height="1600"/>
+  <object id="220" type="collision" x="-32" y="1600" width="1664" height="32"/>
+  <object id="221" type="collision" x="-32" y="0" width="48" height="1600"/>
  </objectgroup>
 </map>

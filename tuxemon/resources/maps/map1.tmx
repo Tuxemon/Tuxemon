@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="101">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="111">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -22,17 +22,17 @@
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJztm8tO3DAYhaNh/CCwA4bLCqiQWFQCSqkEEp0ZNq1AtKiqCnRRdVVaKngBbisKvAe3FW15D2jZ9MYb9ETEGhPsxImdjD3OkT5lRhOP/5OT2E4YPE+f+sgt84T/ebnseaQc/R0y++hok4UGA/9TAv89qLEXzAk+HyKNfUTqD9pOk8b7uDZZakjghacaaqyDWUEb3wvdJ4nStCl0K3rtVGKOX6XcwHU9JnfxNZ3gOrBdPP8uqfCfzP9Eix0j1/PnSbSm0aVWO4d0y+b551dbsyvIRq9SZiKTZdrvVhVdL8ZtXxM+WfVnyj1gqyvPHPwx39b8s54PmyXZHMYIn/HguIwGW9495ShJ3p9p+YfXiDx82XZPLZuDLv+m5S/bj+v5j4XGP9F4YFv+aRR1Dsj6N0VpctDh37b8HzHnv4p/06Q6/7NrAJ39mZZ/1Jgvs5+pz5ZU5/+w4vwX+ZulIn85uZ5/3v2Zln+rKmkeqvmZln+4H9fOO9fzd12689Vdh+l6gzl9KYIVZs5/K7FP3lLN/52m2m3Nn/rfBFtgG+yA3Yg2Jv2+TVf+R+AYnIBTcJaghqrF4z/1fwmuwA/wE1yDQU79e+AL2AcH4DCXKsXSkT/7W44qXtdAXTAunIOv4Bv4Di5i6jBdNH/q+wV4DhaC96z88+E3tn/AX/AP3ORb7j3puv6fBb7DqNaRtVTX/9T/S2wXOZgu1fw/MOsXf32zyrBsQf6qag+egT8AHSG/7x3I/wnzbGuYNP4m4B+LdY7/rpLndYMK6AG9oK9kb/6sf5aHguxn4PUpqIIaqIPZUr41s9KZP8sk2AgdgwF/vIDXVfARfAJr4LPF+XfC4wiHLuLG9R+lJP5tzT9KLuRfPL+zW6bk36zzh/6vZVZb1TqS6j9gzJ1W
+   eJztm9tOFDEcxifr9kH0TlzAK8CYeGECHhNJcHe5kUhQY4ynC+OVCEZfAIUrT+8hhytF30OBGzy9gV/DNFvGdqYz7XT/pfslv8xudrrz/+brtJ1hSRJ3GmUHzDP1581mkrBm/neY7OOiTR0aT/1f0/gfRo0j4Kbm8wnW20en02nbadZ7X9SmTk1ovKjUQY1dMKtpw72IfcqoSpuBDiSunVbB+Ws1e8Suy+wwXNMlroPQpfIfk6j6X/JUS1n/lzzVtYOxadfD+EQ1f1/+VdKtaVzJpA8tE8rCt0Kef/aP9buCenS3YiYmWVb9bluJ9WLRluseO4zuvtDF8ajcAx51+cyBj/mh5l/3fNgvmeYwxdRcSM/LZLpV3VNOsvLHo5Z/do2ogiu0e2rTHFz5p5a/6XFiz38qM/7pxoPQ8q+ivD5g6p+KquTgwn9o+V+U+r+Nf2qynf/lNYDL41HLP2/MN9mP2rMlIdv5P6si/4P8aWmQv5liz9/38ajlf1RVNg/b/Kjlnz1ObP0u9vxjl+t8XddBXfcxpz/I4ZE05z822Me3bPN/4qj2UPMX/lfAa/AGrIK1nDaUft/mKv9PYB1sgE2wVaKGdsDjv/D/HfwAO2AX7IFxRf1vwTvwHnwAH71UqZeL/OXfcrTxugO6mnHhM/gCtsFX8K2gDuoS+Qvft8AcWEjfy+L94Se2v8Bv8Af89Vvuf3J1/d9IfWexraNu2a7/hf/b2N5RQF22+T+T1i98fbMo8TCA/G11PH0GfgacyPh9GkH+V6VnW2dZ728C/Fy8VPgfaiTJKdACw2AEjDbCzV/2L3Nek/0MvF4HbdABXTDb8FuzLJf5y1wBrzLnYIyPF/C6CJ6DJbAMXgSc/0l4PKdgiMVx/eepjP9Q889TDPkPnt+FLSr596v/iP+1rGtrW0dZ/QN3j6GN
   </data>
  </layer>
  <layer name="Above Player" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2kkKwkAQheEyw23Ua6hbT+AyDgvxTs7T8Zw2FiiIcyZI0vV/8IiLXuQljQlFRNJrh4/fvfD7OpdY6YnfooL3wdoT2Wi2mp1m7xV7PpZ0w+dYQ3/6p+1/qIkcNSfNWXOpva8p+3+b9fufp5Z/O3b8Ys+jKON770lF+geBSBj8PwIAYNHrO+KnuIz+tvvjwfoeoL/t/hbFvd+uPiPoT3/62+0fd07I3BAAgM9cfDZGmr5moBlqRj/WNrR707H+WdQNXYsk+wQAAFdMPZGZZq5ZaJaaVcm+h0yq6rOtrFya86Vhvb9lzH+RB/YPkN0VHyNLuQ==
+   eJzt2kcOwjAUBNCfdhvgGsCWE7AMZYG4E70dj7ZhJJAiIIQUS4n950mjsPAig62YWIiU14uSz8Po9ziXaOlJ2eKa18HOF9kjB+SInPx670eTQfQebdif/cv2P3siF+SK3JC79z2m6c827fNvUjd4XvtBvfdRl9mr99yS/mEoEoX/r2Q3zqtunH+d+Fw34/M3YlqaxPS+blt/07T3p4T2NcD+uvtrlHe+Xd0j2J/92V9v/7zvE3y/JCIiSufi3hgjI2SMTJBpxtg2uncc619FS9F3UWSdEBERuWLhiyyRFbJGNsi2Yf+HLMr2s62qXDrnK0N7f814/ksmcP0QVfcAYN1MuA==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -58,8 +58,6 @@
   <object id="17" type="collision" x="352" y="128" width="16" height="96"/>
   <object id="18" type="collision" x="432" y="0" width="32" height="48"/>
   <object id="19" type="collision" x="336" y="0" width="496" height="16"/>
-  <object id="20" type="collision" x="816" y="0" width="16" height="112"/>
-  <object id="21" type="collision" x="816" y="176" width="16" height="64"/>
   <object id="22" type="collision" x="512" y="288" width="32" height="144"/>
   <object id="23" type="collision" x="592" y="144" width="80" height="48"/>
   <object id="24" type="collision" x="608" y="0" width="32" height="64"/>
@@ -109,6 +107,9 @@
   </object>
   <object id="88" type="collision" x="384" y="240" width="16" height="16"/>
   <object id="90" type="collision" x="352" y="240" width="16" height="16"/>
+  <object id="104" type="collision" x="304" y="-16" width="48" height="16"/>
+  <object id="105" type="collision" x="176" y="160" width="16" height="64"/>
+  <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -210,12 +211,14 @@
    <properties>
     <property name="act1" value="teleport route1.tmx,47,11"/>
     <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="teleport route1.tmx,47,12"/>
     <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="82" name="Go to Buddha Mountain" type="event" x="368" y="240" width="16" height="16">
@@ -243,6 +246,29 @@
     <property name="act1" value="transition_teleport healing_center.tmx,7,12,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport tuxe_mart.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="109" name="Tuxemart Sign" type="event" x="432" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="110" name="Tuxecenter Sign" type="event" x="688" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxecenter - A place to heal your tuxemon"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

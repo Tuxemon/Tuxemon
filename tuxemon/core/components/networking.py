@@ -1,5 +1,6 @@
 from middleware import Multiplayer
 from core.components import player
+from core import prepare
 
 from neteria.server import NeteriaServer
 from neteria.client import NeteriaClient
@@ -136,7 +137,7 @@ class TuxemonServer():
         :returns: None
 
         """
-        self.server.registry[cuuid]["map"] = event_data["map"]
+        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
         char_dict = event_data["char_dict"]
         sn = str(event_data["sprite_name"])
         nm = str(char_dict["name"])
@@ -171,14 +172,14 @@ class TuxemonServer():
         char_dict = event_data["char_dict"]
         
         if event_data["key"] == "KEYDOWN":
-            self.server.registry[cuuid]["map"] = event_data["map"]
+            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.update_client(client, char_dict)
-            #client.direction[event_data["direction"]] = True
+#             client.direction[event_data["direction"]] = True
             client.facing = event_data["direction"]
                 
         if event_data["key"] == "KEYUP":
-            #client.direction[event_data["direction"]] = False
-            self.server.registry[cuuid]["map"] = event_data["map"]
+            client.direction[event_data["direction"]] = False
+            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.update_client(client, char_dict)
                     
 
@@ -310,9 +311,14 @@ class TuxemonClient():
 
         """
         pd = self.game.state_dict["WORLD"].player1.__dict__
-        map = self.game.state_dict["WORLD"].current_map.filename
+        map_path = self.game.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
+        x_diff = self.game.state_dict["WORLD"].global_x
+        y_diff = self.game.state_dict["WORLD"].global_y
+        position = [pd["position"][0] + x_diff, pd["position"][1] + y_diff]
+        
         event_data = {"type": "PUSH_SELF",
-                      "map": map,
+                      "map_name": map_name,
                       "sprite_name": "player1",
                       "char_dict": {
                                   "global_pos": pd["global_pos"],
@@ -389,19 +395,25 @@ class TuxemonClient():
             if direction and key:
                 
                 pd = self.game.state_dict["WORLD"].player1.__dict__
-                map = self.game.state_dict["WORLD"].current_map.filename
+                map_path = self.game.state_dict["WORLD"].current_map.filename
+                map_name = str(map_path.replace(prepare.BASEDIR, ""))
+                
+                # Get our actual position.
+                x_diff = self.game.state_dict["WORLD"].global_x
+                y_diff = self.game.state_dict["WORLD"].global_y
+                position = [pd["position"][0] + x_diff, pd["position"][1] + y_diff]
                 
                 event_data = {"type": "CLIENT_EVENT",
                               "direction": direction,
                               "key": key,
-                              "map": map,
+                              "map_name": map_name,
                               "char_dict": {"global_pos": pd["global_pos"],
-                                            "tile_pos": pd["tile_pos"],
-                                            "runrate": pd["runrate"],
-                                            "running": pd["running"],
-                                            "moving": pd["moving"],
-                                            "walkrate": pd["walkrate"],
-                                            "moverate": pd["moverate"],
+                                            #"tile_pos": pd["tile_pos"],
+#                                             "runrate": pd["runrate"],
+#                                             "running": pd["running"],
+#                                             "moving": pd["moving"],
+#                                             "walkrate": pd["walkrate"],
+#                                             "moverate": pd["moverate"],
                                             "position": pd["position"]
                                             }
                               }

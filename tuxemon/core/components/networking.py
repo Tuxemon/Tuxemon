@@ -151,7 +151,12 @@ class TuxemonServer():
     def update_client(self, client, char_dict):
         
         for item in char_dict:
-            client.__dict__[item] = char_dict[item]
+            if item != "position":
+                client.__dict__[item] = char_dict[item]
+            elif item == "position":
+                x_diff = self.game.state_dict["WORLD"].global_x_diff
+                y_diff = self.game.state_dict["WORLD"].global_y_diff
+                position = [char_dict["position"][0] + x_diff, char_dict["position"][0] + y_diff]
 
 
     def move_client_npc(self, cuuid, event_data):
@@ -311,7 +316,9 @@ class TuxemonClient():
         """
         pd = self.game.state_dict["WORLD"].player1.__dict__
         map = self.game.state_dict["WORLD"].current_map.filename
-        
+        x_diff = self.game.state_dict["WORLD"].global_x_diff
+        y_diff = self.game.state_dict["WORLD"].global_y_diff
+        position = [pd["position"][0] + x_diff, pd["position"][0] + y_diff]
         event_data = {"type": "PUSH_SELF",
                       "map": map,
                       "sprite_name": "player1",
@@ -331,7 +338,7 @@ class TuxemonClient():
                                   "party_limit": pd["party_limit"],
                                   "moverate": pd["moverate"],
                                   "facing": pd["facing"],
-                                  "position": pd["position"],
+                                  "position": position,
                                   }
                       }
         self.client.event(event_data)
@@ -391,21 +398,26 @@ class TuxemonClient():
                 
                 pd = self.game.state_dict["WORLD"].player1.__dict__
                 map = self.game.state_dict["WORLD"].current_map.filename
-                
+                x_diff = self.game.state_dict["WORLD"].global_x_diff
+                y_diff = self.game.state_dict["WORLD"].global_y_diff
+                position = [pd["position"][0] + x_diff, pd["position"][0] + y_diff]
                 event_data = {"type": "CLIENT_EVENT",
                               "direction": direction,
                               "key": key,
                               "map": map,
                               "char_dict": {"global_pos": pd["global_pos"],
                                             "tile_pos": pd["tile_pos"],
-                                            "runrate": pd["runrate"],
-                                            "running": pd["running"],
-                                            "moving": pd["moving"],
-                                            "walkrate": pd["walkrate"],
-                                            "moverate": pd["moverate"],
-                                            "position": pd["position"]
+#                                             "runrate": pd["runrate"],
+#                                             "running": pd["running"],
+#                                             "moving": pd["moving"],
+#                                             "walkrate": pd["walkrate"],
+#                                             "moverate": pd["moverate"],
+                                            "position": position
                                             }
                               }
+                print pd["global_pos"]
+                print pd["position"]
+                print pd["tile_pos"]
                 self.client.event(event_data)
         
             

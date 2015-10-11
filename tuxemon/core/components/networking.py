@@ -156,7 +156,9 @@ class TuxemonServer():
             elif item == "position":
                 x_diff = self.game.state_dict["WORLD"].global_x_diff
                 y_diff = self.game.state_dict["WORLD"].global_y_diff
-                position = [char_dict["position"][0] - x_diff, char_dict["position"][0] - y_diff]
+                position = [char_dict["position"][0] - x_diff, char_dict["position"][1] - y_diff]
+                print "Server Position: " +str(char_dict["position"]), str(position) 
+                client.__dict__[item] = position
 
 
     def move_client_npc(self, cuuid, event_data):
@@ -318,7 +320,7 @@ class TuxemonClient():
         map = self.game.state_dict["WORLD"].current_map.filename
         x_diff = self.game.state_dict["WORLD"].global_x_diff
         y_diff = self.game.state_dict["WORLD"].global_y_diff
-        position = [pd["position"][0] + x_diff, pd["position"][0] + y_diff]
+        position = [pd["position"][0] + x_diff, pd["position"][1] + y_diff]
         event_data = {"type": "PUSH_SELF",
                       "map": map,
                       "sprite_name": "player1",
@@ -402,7 +404,9 @@ class TuxemonClient():
                 # Get our actual position.
                 x_diff = self.game.state_dict["WORLD"].global_x_diff
                 y_diff = self.game.state_dict["WORLD"].global_y_diff
-                position = [pd["position"][0] + x_diff, pd["position"][0] + y_diff]
+                position = [pd["position"][0] + x_diff, pd["position"][1] + y_diff]
+                print 
+                print "Client Position: " +str(position), str(pd["position"])
                 
                 event_data = {"type": "CLIENT_EVENT",
                               "direction": direction,
@@ -411,7 +415,7 @@ class TuxemonClient():
                               "char_dict": {"global_pos": pd["global_pos"],
                                             "tile_pos": pd["tile_pos"],
 #                                             "runrate": pd["runrate"],
-#                                             "running": pd["running"],
+                                            "running": pd["running"],
 #                                             "moving": pd["moving"],
 #                                             "walkrate": pd["walkrate"],
 #                                             "moverate": pd["moverate"],

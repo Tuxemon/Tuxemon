@@ -335,7 +335,7 @@ class Player(object):
                     self.anim_playing = False
                     if game.client.client.registered and game.client.populated:
                         game.client.update_player_location(type="CLIENT_MOVE_COMPLETE")
-                    game.server.notify_client_move(self, self.tile_pos)
+                    game.server.notify_client_move(self, self.tile_pos, self.facing)
         return global_x, global_y
 
     def move_one_tile(self, direction):

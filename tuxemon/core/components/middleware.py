@@ -73,9 +73,9 @@ class Multiplayer():
             return True
         elif event_data["type"] == "PUSH_SELF":
             return True
-        elif event_data["type"] =="CLIENT_EVENT": 
+        elif event_data["type"] == "CLIENT_EVENT": 
             return True
-        elif event_data["type"] =="CLIENT_MAP_UPDATE" or event_data["type"] =="CLIENT_MOVE_COMPLETE":
+        elif event_data["type"] == "CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
             return True
         else:
             return False
@@ -87,7 +87,7 @@ class Multiplayer():
             self.game.server.populate_client(cuuid, event_data)
         elif event_data["type"] =="CLIENT_EVENT":
             self.game.server.move_client_npc(cuuid, event_data)
-        elif event_data["type"] =="CLIENT_MAP_UPDATE" or event_data["type"] =="CLIENT_MOVE_COMPLETE":
+        elif event_data["type"] =="CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
             self.game.server.update_client_map(cuuid, event_data)
 
             

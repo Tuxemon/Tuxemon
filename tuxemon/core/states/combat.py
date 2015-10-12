@@ -1056,6 +1056,15 @@ class Combat(tools._State):
             self.info_menu.elapsed_time = 0.0
             self.state = "captured"
 
+	# Handle when the player failed to catch a monster
+	if (self.state == "failedCapture") and self.info_menu.elapsed_time > self.info_menu.delay:
+		print "Failed to capture monster"
+		self.info_menu.text = "Unfortunately, %s was not captured!" % players['opponent']['monster'].name
+		self.info_menu.elapsed_time = 0.0
+		self.ui["capture"].visible = False
+        	#TODO reset the capture device sprite back to the position of the player monster
+		self.state = "action phase"
+
         # Handle when all monsters in the player's party have fainted
         if (self.state == "lost" or self.state == "won" or self.state == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:
 
@@ -1205,7 +1214,7 @@ class Combat(tools._State):
             item_name = player['action']['item']['name']
             item_target = player['action']['item']['target']
             item_to_use = player['player'].inventory[item_name]['item']
-            item_to_use.use(item_target, self.game)
+            captured = item_to_use.use(item_target, self.game)
 
             # Display a dialog showing that we used an item
             self.info_menu.text = "%s used %s on %s!" % (player['player'].name,
@@ -1217,9 +1226,13 @@ class Combat(tools._State):
 
             logger.info("Using item!")
             if "capture" in item_to_use.effect:
-                self.ui["capture"].visible = True
-                self.ui["capture"].move(self.ui["opponent_monster_sprite"].position, 1.)
-                self.state = "capturing"
+                    self.ui["capture"].visible = True
+                    self.ui["capture"].move(self.ui["opponent_monster_sprite"].position, 1.)
+		    if captured:
+                        self.state = "capturing"
+		    else:
+			    self.state = "failedCapture"
+			    #self.ui["capture"].visible = False
 
         elif 'switch' in player['action']:
             for player_name, player_dict in self.current_players.items():

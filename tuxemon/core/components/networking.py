@@ -144,7 +144,7 @@ class TuxemonServer():
         sprite = player.Npc(sprite_name=sn, 
                              name=nm)
         self.server.registry[cuuid]["sprite"] = sprite
-        self.server.registry[cuuid]["map_name"] = None
+        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
         client = self.server.registry[cuuid]["sprite"]
         self.game.scale_new_player(client)
         self.update_client(client, char_dict)
@@ -177,15 +177,9 @@ class TuxemonServer():
     
     
     def update_client_map(self, cuuid, event_data):
-        client = None
-        try:
-            client = self.server.registry[cuuid]["sprite"]
-        except KeyError:
-            pass
+        client = self.server.registry[cuuid]["sprite"]
         self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-        
-        if client:
-            self.update_client(client, event_data["char_dict"])
+        self.update_client(client, event_data["char_dict"])
         
 
     def move_client_npc(self, cuuid, event_data):
@@ -263,8 +257,7 @@ class TuxemonClient():
         
         if self.client.registered and not self.populated:
             self.populate_player()
-            
-            
+
     
     def join_multiplayer(self, time_delta):
         """Joins the client to the selected server.
@@ -339,9 +332,13 @@ class TuxemonClient():
 
         """
         pd = self.game.state_dict["WORLD"].player1.__dict__
+        
+        map_path = self.game.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
               
         event_data = {"type": "PUSH_SELF",
                       "sprite_name": "player1",
+                      "map_name": map_name,
                       "char_dict": {
                                   "tile_pos": pd["tile_pos"],
                                   "game_variables": pd["game_variables"],
@@ -360,7 +357,6 @@ class TuxemonClient():
                                   }
                       }
         self.client.event(event_data)
-        self.update_player_map()
         self.populated = True
         
     
@@ -431,7 +427,7 @@ class TuxemonClient():
                     self.client.event(event_data)
     
     
-    
+
     def update_player_map(self):
         
         map_path = self.game.state_dict["WORLD"].current_map.filename

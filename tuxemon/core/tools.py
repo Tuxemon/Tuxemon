@@ -550,7 +550,9 @@ class Control(object):
         self.time_passed_seconds = time_delta
         
         # Update our networking.
-        if self.client.listening: self.client.update(time_delta)
+        if self.client.listening: 
+            self.client.update(time_delta)
+        
         if self.server.listening: 
             self.server.update()
             self.add_clients_to_map()
@@ -707,8 +709,6 @@ class Control(object):
                     while sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.remove(sprite)
                         
-
-
 
 class _State(object):
     """This is a prototype class for States.  All states should inherit from it.

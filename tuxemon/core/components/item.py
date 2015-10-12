@@ -158,7 +158,8 @@ class Item(object):
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effect:
-            getattr(self, str(effect))(target, game)
+# value is only important for capture, it's a boolean value indicating whether the monster was captured or not
+            value = getattr(self, str(effect))(target, game)
 
         # If this is a consumable item, remove it from the player's inventory.
         if self.type == "Consumable":
@@ -166,6 +167,8 @@ class Item(object):
                 del game.player1.inventory[self.name]
             else:
                 game.player1.inventory[self.name]['quantity'] -= 1
+	
+	return value
 
 
     def heal(self, target, game):
@@ -208,8 +211,19 @@ class Item(object):
 
         """
 
-        # TODO: Make this not work 100% of the time and check to see if this is a trainer battle.
-        game.player1.add_monster(target)
+        # TODO: Check to see if this is a trainer battle.
+
+	# loosely based on the gen1 Pokemon catching algorithm
+	# based on information found here: http://bulbapedia.bulbagarden.net/wiki/Catch_rate
+	# TODO Give each monster a unique catch rate
+	roll = int(random.random() * 256)
+	threshold = (target.hp * 255 * 4)/(target.current_hp * 12)
+
+	if (threshold >= roll):
+		game.player1.add_monster(target)
+		return True
+	else:
+		return False
 
 
 if __name__ == "__main__":

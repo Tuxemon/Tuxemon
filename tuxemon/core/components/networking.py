@@ -144,6 +144,7 @@ class TuxemonServer():
         sprite = player.Npc(sprite_name=sn, 
                              name=nm)
         self.server.registry[cuuid]["sprite"] = sprite
+        self.server.registry[cuuid]["map_name"] = None
         client = self.server.registry[cuuid]["sprite"]
         self.game.scale_new_player(client)
         self.update_client(client, char_dict)
@@ -176,9 +177,15 @@ class TuxemonServer():
     
     
     def update_client_map(self, cuuid, event_data):
-        client = self.server.registry[cuuid]["sprite"]
+        client = None
+        try:
+            client = self.server.registry[cuuid]["sprite"]
+        except KeyError:
+            pass
         self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-        self.update_client(client, event_data["char_dict"])
+        
+        if client:
+            self.update_client(client, event_data["char_dict"])
         
 
     def move_client_npc(self, cuuid, event_data):

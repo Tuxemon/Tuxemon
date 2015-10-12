@@ -1193,7 +1193,6 @@ class World(tools._State):
             # Update the server of our new map.
             if self.game.client.client.registered and self.game.client.populated:
                 self.game.client.update_player_map()
-                self.game.client.u
 
 
     def get_pos_from_tilepos(self, tile_position):

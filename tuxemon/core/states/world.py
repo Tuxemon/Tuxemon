@@ -1190,6 +1190,10 @@ class World(tools._State):
             # print transition_alpha
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
+            # Update the server of our new map.
+            if self.game.client.client.registered and self.game.client.populated:
+                self.game.client.update_player_map()
+                self.game.client.u
 
 
     def get_pos_from_tilepos(self, tile_position):

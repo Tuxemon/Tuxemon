@@ -176,7 +176,9 @@ class TuxemonServer():
     
     
     def update_client_map(self, cuuid, event_data):
+        client = self.server.registry[cuuid]["sprite"]
         self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+        self.update_client(client, event_data["char_dict"])
         
 
     def move_client_npc(self, cuuid, event_data):
@@ -427,8 +429,12 @@ class TuxemonClient():
         
         map_path = self.game.state_dict["WORLD"].current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
+        pd = self.game.state_dict["WORLD"].player1.__dict__
+        
         event_data = {"type": "CLIENT_MAP_UPDATE",
-                      "map_name": map_name
+                      "map_name": map_name,
+                      "char_dict": {"tile_pos": pd["tile_pos"]
+                                    }
                       }
         self.client.event(event_data)
     

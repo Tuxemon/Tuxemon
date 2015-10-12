@@ -438,21 +438,27 @@ class Player(object):
         """
 
         collisions = []
+        
+        down_tile = (player_tile_pos[0], player_tile_pos[1] + 1)
+        up_tile = (player_tile_pos[0], player_tile_pos[1] - 1)
+        left_tile = (player_tile_pos[0] - 1, player_tile_pos[1])
+        right_tile = (player_tile_pos[0] + 1, player_tile_pos[1])
 
         # Check to see if the tile below the player is a collision tile.
-        if (player_tile_pos[0], player_tile_pos[1] + 1) in collision_set:
+        if down_tile in collision_set:
+            # if not "down" in collision_set[down_tile][
             collisions.append("down")
 
         # Check to see if the tile above the player is a collision tile.
-        if (player_tile_pos[0], player_tile_pos[1] - 1) in collision_set:
+        if up_tile in collision_set:
             collisions.append("up")
 
         # Check to see if the tile to the left of the player is a collision tile.
-        if (player_tile_pos[0] - 1, player_tile_pos[1]) in collision_set:
+        if left_tile in collision_set:
             collisions.append("left")
 
         # Check to see if the tile to the right of the player is a collision tile.
-        if (player_tile_pos[0] + 1, player_tile_pos[1]) in collision_set:
+        if right_tile in collision_set:
             collisions.append("right")
 
         # From the players current tile, check to see if any nearby tile

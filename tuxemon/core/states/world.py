@@ -65,6 +65,10 @@ class World(tools._State):
 
         # Provide an instance of our scene manager to this scene.
         self.game = game
+        
+        # Provide access to the client and server
+        self.client = game.client
+        self.server = game.server
 
         # Provide access to the screen surface
         self.screen = game.screen
@@ -1145,7 +1149,7 @@ class World(tools._State):
                 
                 # Update the server of our new map.
                 if self.game.client.client.registered and self.game.client.populated:
-                    self.game.client.update_player_map()
+                    self.game.client.update_player_location()
 
                 # Clear out any existing NPCs
                 self.npcs = []
@@ -1192,7 +1196,7 @@ class World(tools._State):
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
             # Update the server of our new map.
             if self.game.client.client.registered and self.game.client.populated:
-                self.game.client.update_player_map()
+                self.game.client.update_player_location()
 
 
     def get_pos_from_tilepos(self, tile_position):

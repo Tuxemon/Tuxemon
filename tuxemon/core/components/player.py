@@ -135,6 +135,7 @@ class Player(object):
         # other.
         self.moveConductor = pyganim.PygConductor(self.sprite)
         self.moveConductor.play()
+        self.anim_playing = True
 
 
     def move(self, screen, tile_size, time_passed_seconds, (global_x, global_y), game):
@@ -284,6 +285,7 @@ class Player(object):
         if self.direction["up"] or self.direction["down"] or self.direction["left"] or self.direction["right"]:
             # If we've pressed any arrow key, play the move animations
             self.moveConductor.play()
+            self.anim_playing = True
 
             # If we pressed an arrow key and we're not currently moving, set a new tile destination
             if self.direction["up"]:
@@ -328,8 +330,12 @@ class Player(object):
         # and draw the standing gfx
         else:
             if not self.moving:
-                self.moveConductor.stop()
-
+                if self.anim_playing:
+                    self.moveConductor.stop()
+                    self.anim_playing = False
+                    if game.client.client.registered and game.client.populated:
+                        game.client.update_player_location(type="CLIENT_MOVE_COMPLETE")
+                    game.server.notify_client_move(self, self.tile_pos)
         return global_x, global_y
 
     def move_one_tile(self, direction):

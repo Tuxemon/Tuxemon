@@ -552,10 +552,11 @@ class Control(object):
         # Update our networking.
         if self.client.listening: 
             self.client.update(time_delta)
+            self.add_clients_to_map(self.client.client.registry)
         
         if self.server.listening: 
             self.server.update()
-            self.add_clients_to_map()
+            self.add_clients_to_map(self.server.server.registry)
         
         # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.
@@ -679,7 +680,7 @@ class Control(object):
         sprite.runrate *= SCALE
     
     
-    def add_clients_to_map(self):
+    def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If
         they are on the same map as the host then it will add them to the npc's list. 
         If they are still being displayed and have left the map it will remove them from 
@@ -691,10 +692,10 @@ class Control(object):
         :returns: None
 
         """ 
-        for client in self.server.server.registry:
-            if "sprite" in self.server.server.registry[client]:
-                sprite = self.server.server.registry[client]["sprite"]
-                client_map = self.server.server.registry[client]["map_name"]
+        for client in registry:
+            if "sprite" in registry[client]:
+                sprite = registry[client]["sprite"]
+                client_map = registry[client]["map_name"]
                 current_map_path = self.state_dict["WORLD"].current_map.filename
                 current_map = current_map_path.replace(prepare.BASEDIR, "")
                 

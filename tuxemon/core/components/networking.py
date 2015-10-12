@@ -138,7 +138,6 @@ class TuxemonServer():
         :returns: None
 
         """
-        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
         char_dict = event_data["char_dict"]
         sn = str(event_data["sprite_name"])
         nm = str(char_dict["name"])
@@ -174,7 +173,11 @@ class TuxemonServer():
                 global_y = self.game.state_dict["WORLD"].global_y
                 position = [abs_position[0] + global_x, abs_position[1] + (global_y-tile_size[1])]
                 client.__dict__["position"] = position
-
+    
+    
+    def update_client_map(self, cuuid, event_data):
+        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+        
 
     def move_client_npc(self, cuuid, event_data):
         """Moves the client character in the local game.
@@ -184,15 +187,13 @@ class TuxemonServer():
         
         :type cuuid: String 
         :type event_data: Dictionary
-
+     
         :rtype: None
         :returns: None
 
         """
         client = self.server.registry[cuuid]["sprite"]
         char_dict = event_data["char_dict"]
-        
-        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
         self.update_client(client, char_dict)
         client.facing = event_data["direction"]
 #         if event_data["key"] == "KEYDOWN":
@@ -329,11 +330,8 @@ class TuxemonClient():
 
         """
         pd = self.game.state_dict["WORLD"].player1.__dict__
-        map_path = self.game.state_dict["WORLD"].current_map.filename
-        map_name = str(map_path.replace(prepare.BASEDIR, ""))
-        
+              
         event_data = {"type": "PUSH_SELF",
-                      "map_name": map_name,
                       "sprite_name": "player1",
                       "char_dict": {
                                   "tile_pos": pd["tile_pos"],
@@ -353,7 +351,9 @@ class TuxemonClient():
                                   }
                       }
         self.client.event(event_data)
+        self.update_player_map()
         self.populated = True
+        
     
     
     def move_player(self, event=None):
@@ -370,9 +370,6 @@ class TuxemonClient():
         key = None
         direction = None
         pd = self.game.state_dict["WORLD"].player1.__dict__
-        map_path = self.game.state_dict["WORLD"].current_map.filename
-        map_name = str(map_path.replace(prepare.BASEDIR, ""))
-        
         # Don't move if we are in a menu
         if not self.game.state.menu_blocking:
             
@@ -414,7 +411,6 @@ class TuxemonClient():
                     event_data = {"type": "CLIENT_EVENT",
                                   "direction": direction,
                                   "key": key,
-                                  "map_name": map_name,
                                   "char_dict": {"tile_pos": pd["tile_pos"],
                                                 "runrate": pd["runrate"],
                                                 "running": pd["running"],
@@ -424,7 +420,17 @@ class TuxemonClient():
                                                 }
                                   }
                     self.client.event(event_data)
-            
+    
+    
+    
+    def update_player_map(self):
+        
+        map_path = self.game.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
+        event_data = {"type": "CLIENT_MAP_UPDATE",
+                      "map_name": map_name
+                      }
+        self.client.event(event_data)
     
     
         

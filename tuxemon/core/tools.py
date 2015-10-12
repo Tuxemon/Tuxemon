@@ -551,10 +551,9 @@ class Control(object):
         
         # Update our networking.
         if self.client.listening: self.client.update(time_delta)
-        if self.server.listening: self.server.update()
-        
-        # Check if any clients are on our map.
-        self.add_clients_to_map()
+        if self.server.listening: 
+            self.server.update()
+            self.add_clients_to_map()
         
         # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.

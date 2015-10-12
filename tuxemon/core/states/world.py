@@ -1142,6 +1142,10 @@ class World(tools._State):
                 self.tiles, self.collision_map, self.collision_lines_map, self.map_size = self.current_map.loadfile(
                     self.tile_size)
                 self.game.events = self.current_map.events
+                
+                # Update the server of our new map.
+                if self.game.client.client.registered and self.game.client.populated:
+                    self.game.client.update_player_map()
 
                 # Clear out any existing NPCs
                 self.npcs = []
@@ -1199,7 +1203,6 @@ class World(tools._State):
         :returns: The pixel coordinates to draw at the given tile position.
 
         """
-
         x = (self.tile_size[0] * tile_position[0]) + self.global_x
         y = (self.tile_size[1] * tile_position[1]) + self.global_y
 

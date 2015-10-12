@@ -99,7 +99,7 @@ class Core(object):
         # Open a dialog window in the current scene.
         if not game.state.dialog_window.visible:
             game.state.dialog_window.visible = True
-            game.state.dialog_window.text = text
+            game.state.dialog_window.set_text(text)
 
 
     def rumble(self, game, action):

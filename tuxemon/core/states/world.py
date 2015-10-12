@@ -155,19 +155,18 @@ class World(tools._State):
         #                          Available Menus                           #
         ######################################################################
 
+        # Set up some common variables used for menu positioning
+        #half_screen_width = tools.get_pos_from_percent('50%', resolution[0])
+        #half_screen_height = tools.get_pos_from_percent('50%', resolution[1])
+        #quart_screen_width = tools.get_pos_from_percent('20%', resolution[0])
+        #quart_screen_height = tools.get_pos_from_percent('20%', resolution[1])
+
         # Dialog Window - Used to display dialog.
-        DialogMenu = menu.dialog_menu.DialogMenu
-        self.dialog_window = DialogMenu(self.screen,
-                                        self.resolution,
-                                        self,
-                                        name="Dialog Window")
+        self.dialog_window = menu.dialog_menu.DialogMenu(self.game)
 
         # Main Menu - Allows users to open the main menu in game.
         MainMenu = menu.main_menu.MainMenu
-        self.main_menu = MainMenu(self.screen,
-                                  self.resolution,
-                                  self,
-                                  name="Main Menu")
+        self.main_menu = MainMenu(self.game)
 
         # Save Menu - Allows the user to save their game.
         SaveMenu = menu.save_menu.SaveMenu
@@ -203,7 +202,6 @@ class World(tools._State):
                                                  interactable=False)
         self.not_implmeneted_menu.set_text("This feature is not yet implemented.",
                                            justify="center", align="middle")
-        self.not_implmeneted_menu.set_text_menu_items(["One", "Two"], align="middle")
 
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
@@ -219,7 +217,7 @@ class World(tools._State):
 
         # Add child menus to their parent menus
         self.entername_menu.add_child(self.displayname_menu)
-        self.main_menu.add_child(self.save_menu)
+        #self.main_menu.add_child(self.save_menu)
         self.item_menu.add_child(self.monster_menu)
 
         # Set the window font sizes if they are not default
@@ -236,6 +234,9 @@ class World(tools._State):
 
         # Scale the menu borders of all menus
         for menu in self.menus:
+            # Skip this if we're using the new menu class
+            if "Dialog" in menu.name or "Main Menu" in menu.name:
+                continue
             menu.scale = self.scale    # Set the scale of the menu.
             menu.set_font(size=menu.font_size * self.scale,
                           font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
@@ -255,31 +256,6 @@ class World(tools._State):
                     (border.get_width() * self.scale,
                      border.get_height() * self.scale))
 
-        # Set the size and position of all the windows.
-        self.dialog_window.difference = \
-            self.dialog_window.border["left-top"].get_width()
-        self.dialog_window.size_x = \
-            (self.resolution[0] / 2 - (self.dialog_window.difference))
-        self.dialog_window.size_y = \
-            (self.dialog_window.difference_y - self.dialog_window.difference)
-        self.dialog_window.pos_x = \
-            (self.resolution[0] / 2 - (self.dialog_window.size_x / 2))
-        self.dialog_window.pos_y = \
-            (self.dialog_window.difference_y * 3)
-        self.dialog_window.visible = False
-        self.dialog_window.interactable = False
-
-        # The main menu will be positioned on the right-hand side of the
-        # screen and be about 1/5th the width of the window.
-        self.main_menu.size_x = int(self.resolution[0] / 5.)
-        self.main_menu.size_y = self.resolution[1] - \
-            (2 * self.main_menu.border["left-top"].get_width())
-        self.main_menu.pos_x = ((self.resolution[0] / 6) * 5) - \
-            self.main_menu.border["left-top"].get_width()
-        self.main_menu.pos_y = 0 + self.main_menu.border["top"].get_height()
-        self.main_menu.visible = False
-        self.main_menu.interactable = False
-
         # The save menu will appear in the middle of the screen.
         self.save_menu.size_x = int(self.resolution[0] / 1.5)
         self.save_menu.size_y = int(self.resolution[1] / 1.5)
@@ -297,7 +273,7 @@ class World(tools._State):
         self.entername_menu.size_y = ((self.resolution[1] / 4) * 3) - \
             self.entername_menu.border["left-top"].get_width()
         self.entername_menu.pos_x = \
-            self.dialog_window.border["left-top"].get_width()
+            self.dialog_window.border_thickness
         self.entername_menu.pos_y = self.resolution[1] / 4
         self.entername_menu.columns = 11   # The number of columns in each row
         self.entername_menu.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -531,6 +507,7 @@ class World(tools._State):
             self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
         self.not_implmeneted_menu.update(time_delta)
+        self.main_menu.update(time_delta)
 
         # Handle world events
         self.map_drawing()
@@ -577,7 +554,7 @@ class World(tools._State):
 
         # If the main menu is interactable, send pygame events to it.
         if self.main_menu.interactable:
-            self.main_menu.get_event(event, self)
+            self.main_menu.get_event(event)
 
         # If the save menu is interactable, send pygame events to it.
         if self.save_menu.interactable:
@@ -589,13 +566,17 @@ class World(tools._State):
             self.game.exit = True
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            if self.main_menu.visible and self.main_menu.interactable:
+            if self.main_menu.visible:
                 logger.info("Closing main menu!")
-                self.main_menu.state = "closing"
-                self.main_menu.interactable = False
+                self.main_menu.menu_state = "closing"
+                self.main_menu.move(self.main_menu.closed_position, duration=.5)
                 self.menu_blocking = False
             else:
-                self.main_menu.visible = True
+                logger.info("Opening main menu!")
+                self.main_menu.menu_state = "opening"
+                self.main_menu.set_visible(True)
+                self.main_menu.set_interactable(True)
+                self.main_menu.move(self.main_menu.open_position, duration=.5)
                 self.menu_blocking = True
                 self.player1.direction["up"] = False
                 self.player1.direction["down"] = False
@@ -888,49 +869,30 @@ class World(tools._State):
         # the dialog menu from opening up again immediately when the user dismisses the menu.
         if (self.dialog_window.visible) and (self.dialog_window.elapsed_time >= self.dialog_window.delay):
             self.dialog_window.draw()
-            self.dialog_window.draw_text()
         else:
             # Keep track how long it's been since the dialog menu has been last opened.
             self.dialog_window.visible = False
             if self.dialog_window.elapsed_time < self.dialog_window.delay:
                 self.dialog_window.elapsed_time += self.time_passed_seconds
 
+
+        # Set up menu animations
+        if self.main_menu.menu_state == "opening":
+            if self.main_menu.position[0] == self.main_menu.open_position[0]:
+                self.main_menu.menu_state = "open"
+        elif self.main_menu.menu_state == "closing":
+            if self.main_menu.position[0] == self.main_menu.closed_position[0]:
+                self.main_menu.menu_state = "closed"
+                self.main_menu.set_visible(False)
+                self.main_menu.set_interactable(False)
+
+        self.main_menu.draw()
+
         # Main Menu
         if self.main_menu.visible:
             # Take a copy of the screen before we open the menu so we can save
             # it as a screenshot with no menus
             self.save_screenshot = self.screen.copy()
-
-            # Set up menu animations
-            animation_speed = self.resolution[0] / 1.1
-            if self.main_menu.state == "closed":
-                self.main_menu.pos_x = self.resolution[0] + \
-                    self.main_menu.border['left'].get_width()
-                self.main_menu.state = "opening"
-
-            elif self.main_menu.state == "opening":
-                self.main_menu.pos_x -= animation_speed * \
-                    self.time_passed_seconds
-
-                if self.main_menu.pos_x <= self.resolution[0] - self.main_menu.size_x - self.main_menu.border['left'].get_width():
-                    self.main_menu.pos_x = self.resolution[
-                        0] - self.main_menu.size_x - self.main_menu.border['left'].get_width()
-                    self.main_menu.state = "open"
-
-            elif self.main_menu.state == "closing":
-                self.main_menu.pos_x += animation_speed * \
-                    self.time_passed_seconds
-
-                if self.main_menu.pos_x >= self.resolution[0] + self.main_menu.border['left'].get_width():
-                    self.main_menu.pos_x = self.resolution[
-                        0] + self.main_menu.border['left'].get_width()
-                    self.main_menu.state = "closed"
-                    self.main_menu.visible = False
-                    self.main_menu.interactable = False
-
-            self.main_menu.draw()
-            self.main_menu.draw_textItem(
-                ["JOURNAL", "TUXEMON", "BAG", "PLAYER", "SAVE", "LOAD", "OPTIONS", "EXIT"], 1)
 
             if self.main_menu.save:
                 self.save_menu.visible = True

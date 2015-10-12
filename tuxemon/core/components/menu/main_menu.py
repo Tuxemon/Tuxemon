@@ -1,6 +1,6 @@
 import pygame
-from core import prepare
-from core.components.menu import Menu
+from core import tools, prepare
+from core.components.menu import NewMenu
 
 # Import the android mixer if on the android platform
 try:
@@ -8,53 +8,57 @@ try:
 except ImportError:
     import android.mixer as mixer
 
-class MainMenu(Menu):
+class MainMenu(NewMenu):
 
-    def __init__(self, screen, resolution, game, name="Main Menu"):
+    def __init__(self, game, name="Main Menu"):
 
         # Initialize the parent menu class's default shit
-        Menu.__init__(self, screen, resolution, game, name)
+        NewMenu.__init__(self, game, name=name)
         self.first_run = True
         self.save = False
-        self.state = "closed"
+        self.menu_state = "closed"
         self.visible = False
-
-        #self.menu_icons_paths = ['resources/gfx/ui/menu/journal.png',
-        #                         'resources/gfx/ui/menu/tuxemon.png',
-        #                         'resources/gfx/ui/menu/backpack.png',
-        #                         'resources/gfx/ui/menu/player.png',
-        #                         'resources/gfx/ui/menu/save.png',
-        #                         'resources/gfx/ui/menu/load.png',
-        #                         'resources/gfx/ui/menu/settings.png',
-        #                         'resources/gfx/ui/menu/exit.png',]
-
-        # Load all the menu icon images
-        #for path in self.menu_icons_paths:
-        #    icon_surface = pygame.image.load(path).convert_alpha()
-        #    icon_surface = pygame.transform.scale(icon_surface, (icon_surface.get_width() * prepare.SCALE, icon_surface.get_height() * prepare.SCALE))
-        #    self.menu_icons.append(icon_surface)
 
         self.menu_select_sound = mixer.Sound(
             prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
 
+        # Used to calculate menu position
+        resolution = prepare.SCREEN_SIZE
+        fifth_screen_width = tools.get_pos_from_percent('20%', resolution[0])
+        sixth_screen_width = int(resolution[0] / 6)
 
-    def get_event(self, event, game=None):
+        # The main menu will be positioned on the right-hand side of the
+        # screen and be about 1/5th the width of the window.
+        x = (sixth_screen_width * 5) - (self.border_thickness * 2)
+        y = self.border_thickness
 
-        if len(self.menu_items) > 0:
-            self.line_spacing = (self.size_y / len(self.menu_items)) - self.font_size
+        # Set up our open and closed positions
+        self.open_position = (x, y)
+        self.closed_position = (x + self.width + (self.border_thickness * 2), y)
+        self.set_position(self.closed_position[0], self.closed_position[1])
+
+        # Set the size of our main menu
+        width = fifth_screen_width
+        height = resolution[1] - (self.border_thickness * 2)
+        self.set_size(width, height)
+
+        # By default, set menu to invisible and non-interactable
+        self.set_visible(False)
+        self.set_interactable(False)
+
+        # Set our default menu items
+        menu_items = ["JOURNAL", "TUXEMON", "BAG", "PLAYER",
+                      "SAVE", "LOAD", "OPTIONS", "EXIT"]
+        self.set_text_menu_items(menu_items, align="middle", justify="center")
+
+    def get_event(self, event):
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-            self.selected_menu_item += 1
-            if self.selected_menu_item > len(self.menu_items) -1:
-                self.selected_menu_item = 0
-
+            self.menu_select_down()
             self.menu_select_sound.play()
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-            self.selected_menu_item -= 1
-            if self.selected_menu_item < 0:
-                self.selected_menu_item = len(self.menu_items) -1
-
+            self.menu_select_up()
             self.menu_select_sound.play()
 
 
@@ -62,35 +66,38 @@ class MainMenu(Menu):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
             self.menu_select_sound.play()
 
-            if self.menu_items[self.selected_menu_item] == "JOURNAL":
-                self.game.not_implmeneted_menu.visible = True
-                self.game.not_implmeneted_menu.interactable = True
-            elif self.menu_items[self.selected_menu_item] == "TUXEMON":
-                self.game.monster_menu.visible = True
-                self.game.monster_menu.interactable = True
-                self.interactable = False
+            world = self.game.state_dict["WORLD"]
+            selected_item = self.get_current_selection()
+
+            if selected_item == "JOURNAL":
+                world.not_implmeneted_menu.visible = True
+                world.not_implmeneted_menu.interactable = True
+            elif selected_item == "TUXEMON":
+                world.monster_menu.visible = True
+                world.monster_menu.interactable = True
+                self.set_interactable(False)
                 self.state = "closing"
-            elif self.menu_items[self.selected_menu_item] == "BAG":
-                self.game.item_menu.visible = True
-                self.game.item_menu.interactable = True
-                self.interactable = False
+            elif selected_item == "BAG":
+                world.item_menu.visible = True
+                world.item_menu.interactable = True
+                self.set_interactable(False)
                 self.state = "closing"
-            elif self.menu_items[self.selected_menu_item] == "PLAYER":
-                self.game.not_implmeneted_menu.visible = True
-                self.game.not_implmeneted_menu.interactable = True
-            elif self.menu_items[self.selected_menu_item] == "SAVE":
-                self.game.save_menu.visible = True
-                self.game.save_menu.interactable = True
-                self.interactable = False
+            elif selected_item == "PLAYER":
+                world.not_implmeneted_menu.set_visible(True)
+                world.not_implmeneted_menu.set_interactable(True)
+            elif selected_item == "SAVE":
+                world.save_menu.visible = True
+                world.save_menu.interactable = True
+                self.set_interactable(False)
                 self.state = "closing"
-            elif self.menu_items[self.selected_menu_item] == "LOAD":
-                self.game.not_implmeneted_menu.visible = True
-                self.game.not_implmeneted_menu.interactable = True
-            elif self.menu_items[self.selected_menu_item] == "OPTIONS":
-                self.game.not_implmeneted_menu.visible = True
-                self.game.not_implmeneted_menu.interactable = True
-            elif self.menu_items[self.selected_menu_item] == "EXIT":
-                game.exit = True
-                game.game.exit = True
+            elif selected_item == "LOAD":
+                world.not_implmeneted_menu.visible = True
+                world.not_implmeneted_menu.interactable = True
+            elif selected_item == "OPTIONS":
+                world.not_implmeneted_menu.set_visible(True)
+                world.not_implmeneted_menu.set_interactable(True)
+            elif selected_item == "EXIT":
+                world.exit = True
+                self.game.exit = True
 
 

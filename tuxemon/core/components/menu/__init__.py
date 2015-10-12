@@ -143,8 +143,8 @@ class NewMenu(UserInterface):
 
     """
 
-    def __init__(self, game, size, position, scale=True, animation_speed=0.2,
-                 animation_loop=True, name="Menu", background=None,
+    def __init__(self, game, size=(100, 100), position=(100, 100), scale=True,
+                 animation_speed=0.2, animation_loop=True, name="Menu", background=None,
                  background_color=(248, 248, 248), interactable=False, visible=True,
                  children=[], parents=[], draw_border=True,
                  border_images="default", border_animation_speed=0.2,
@@ -206,7 +206,7 @@ class NewMenu(UserInterface):
         # Set up our menu's selection arrow
         arrow_frames = []
         for image in arrow_images:
-            arrow_surface = pygame.image.load(image).convert_alpha()
+            arrow_surface = pygame.image.load(prepare.BASEDIR + image).convert_alpha()
             if scale:
                 arrow_surface = self.scale_surface(arrow_surface)
             arrow_frames.append((arrow_surface, arrow_animation_speed))
@@ -222,7 +222,7 @@ class NewMenu(UserInterface):
                                   "left-bottom", "right-top", "right-bottom"]
         if border_images is "default":
             for d in self.border_directions:
-                self.border_images[d] = ["resources/gfx/menu-" + d + ".png"]
+                self.border_images[d] = [prepare.BASEDIR + "resources/gfx/menu-" + d + ".png"]
         else:
             self.border_images = border_images
         self._load_border_images()
@@ -1287,7 +1287,8 @@ class NewMenu(UserInterface):
     def get_current_selection(self):
         """Gets the value of the currently selected menu item.
         """
-        return self.text_menu[self.selected_menu_item]
+        if len(self.text_menu) > 0:
+            return self.text_menu[self.selected_menu_item].text
 
 
     def get_selected_row(self):

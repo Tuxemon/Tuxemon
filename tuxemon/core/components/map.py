@@ -397,20 +397,20 @@ class Map(object):
             # inside this region.
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
-                  collision_tile = (a + x, b + y) 
-                  collision_map.add(collision_tile)
+                    collision_tile = (a + x, b + y) 
+                    collision_map.add(collision_tile)
 
-                  # Check if collision region has properties, and is therefore a conditional zone
-                  # then add the location and conditions to semi_collision_map
-                  if collision_region.properties:
+                    # Check if collision region has properties, and is therefore a conditional zone
+                    # then add the location and conditions to semi_collision_map
+                    if collision_region.properties:
 
-                      cond_collision_tile = {'location': collision_tile}
-                      for key in collision_region.properties.keys():
-                          if "enter" in key:
-                              cond_collision_tile['enter'] = collision_region.properties[key]
-                          if "exit" in key:
-                              cond_collision_tile['exit'] = collision_region.properties[key]
-                      cond_collision_map[collision_tile] = cond_collision_tile
+                        cond_collision_tile = {'location': collision_tile}
+                        for key in collision_region.properties.keys():
+                            if "enter" in key:
+                                cond_collision_tile['enter'] = collision_region.properties[key]
+                            if "exit" in key:
+                                cond_collision_tile['exit'] = collision_region.properties[key]
+                        cond_collision_map[collision_tile] = cond_collision_tile
 
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between

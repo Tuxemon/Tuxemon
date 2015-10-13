@@ -362,7 +362,7 @@ class Map(object):
         collision_map = set()
 
         # Create a dictionary of coordinates that have conditional collisions
-        semi_collision_map = {}
+        cond_collision_map = {}
 
         # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
         # example: ((5,4),(5,3), both)
@@ -404,15 +404,13 @@ class Map(object):
                   # then add the location and conditions to semi_collision_map
                   if collision_region.properties:
 
-                      semi_collision_tile = {'location': collision_tile}
+                      cond_collision_tile = {'location': collision_tile}
                       for key in collision_region.properties.keys():
                           if "enter" in key:
-                              semi_collision_tile['enter'] = collision_region.properties[key]
+                              cond_collision_tile['enter'] = collision_region.properties[key]
                           if "exit" in key:
-                              semi_collision_tile['exit'] = collision_region.properties[key]
-                      semi_collision_map[collision_tile] = semi_collision_tile
-                print(semi_collision_map)
-
+                              cond_collision_tile['exit'] = collision_region.properties[key]
+                      cond_collision_map[collision_tile] = cond_collision_tile
 
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between
@@ -512,7 +510,7 @@ class Map(object):
                     collision_lines_map.add((top_side_tile, "down"))
                     collision_lines_map.add((bottom_side_tile, "up"))
 
-        return tiles, collision_map, collision_lines_map, semi_collision_map, mapsize
+        return tiles, collision_map, collision_lines_map, cond_collision_map, mapsize
 
     def round_to_divisible(self, x, base=16):
         """Rounds a number to a divisible base. This is used to round collision areas that aren't

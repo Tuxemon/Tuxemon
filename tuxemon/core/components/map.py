@@ -33,6 +33,7 @@ import logging
 import pygame
 import os
 import sys
+from pprint import pprint
 
 # PyTMX LOVES to change their API without notice. Here we try and handle that.
 try:
@@ -360,6 +361,9 @@ class Map(object):
         # Create a list of all tile positions that we cannot walk through
         collision_map = set()
 
+        # Create a dictionary of coordinates that have conditional collisions
+        cond_collision_map = {}
+
         # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
         # example: ((5,4),(5,3), both)
         collision_lines_map = set()
@@ -382,20 +386,44 @@ class Map(object):
             # 'x': 176,
             # 'y': 64}
 
-
             # Get the collision area's tile location and dimension in tiles using the tileset's
             # tile size.
             x = self.round_to_divisible(collision_region.x, self.tile_size[0]) / self.tile_size[0]
             y = self.round_to_divisible(collision_region.y, self.tile_size[1]) / self.tile_size[1]
             width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
             height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
+            
+            # Loop through properties and create list of directions for each property
+            if collision_region.properties:
+                enters = []
+                exits = []
+
+                for key in collision_region.properties:
+                    if "enter" in key:
+                        for direction in collision_region.properties[key].split():
+                            enters.append(direction)
+                    elif "exit" in key:
+                        for direction in collision_region.properties[key].split():
+                            exits.append(direction)
 
             # Loop through the area of this region and create all the tile coordinates that are
             # inside this region.
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
-                    collision_tile = (a + x, b + y)
+                    collision_tile = (a + x, b + y) 
                     collision_map.add(collision_tile)
+
+                    # Check if collision region has properties, and is therefore a conditional zone
+                    # then add the location and conditions to semi_collision_map
+                    if collision_region.properties:
+
+                        cond_collision_tile = {'location': collision_tile}
+                        for key in collision_region.properties.keys():
+                            if "enter" in key:
+                                cond_collision_tile['enter'] = enters
+                            if "exit" in key:
+                                cond_collision_tile['exit'] = exits
+                        cond_collision_map[collision_tile] = cond_collision_tile
 
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between
@@ -495,7 +523,7 @@ class Map(object):
                     collision_lines_map.add((top_side_tile, "down"))
                     collision_lines_map.add((bottom_side_tile, "up"))
 
-        return tiles, collision_map, collision_lines_map, mapsize
+        return tiles, collision_map, collision_lines_map, cond_collision_map, mapsize
 
     def round_to_divisible(self, x, base=16):
         """Rounds a number to a divisible base. This is used to round collision areas that aren't

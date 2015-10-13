@@ -97,7 +97,7 @@ class World(tools._State):
 
         # Create a new map instance
         self.current_map = map.Map(prepare.BASEDIR + "resources/maps/%s" % prepare.CONFIG.starting_map)
-        self.tiles, self.collision_map, self.collision_lines_map, self.map_size = \
+        self.tiles, self.collision_map, self.collision_lines_map, self.cond_collision_map, self.map_size = \
             self.current_map.loadfile(self.tile_size)
 
         # Create an empty collision_rectmap list which contains rectangle
@@ -1140,7 +1140,7 @@ class World(tools._State):
                     prepare.BASEDIR + "resources/maps/" + self.delayed_mapname)
                 self.event_engine.current_map = map.Map(
                     prepare.BASEDIR + "resources/maps/" + self.delayed_mapname)
-                self.tiles, self.collision_map, self.collision_lines_map, self.map_size = self.current_map.loadfile(
+                self.tiles, self.collision_map, self.collision_lines_map, self.cond_collision_map, self.map_size = self.current_map.loadfile(
                     self.tile_size)
                 self.game.events = self.current_map.events
 

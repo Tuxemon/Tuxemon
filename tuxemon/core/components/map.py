@@ -400,13 +400,15 @@ class Map(object):
                   collision_map.add(collision_tile)
 
                   if collision_region.properties:
-                      semi_collision_map[collision_tile] = collision_tile
-                      for key in collision_region.properties.keys():
-                          if key == "enter":
-                              semi_collision_map[collision_tile]['enter'] = collision_region.properties[key]
-                          if key == "exit":
-                              semi_collision_map[collision_tile]['exit'] = collision_region.properties[key]
 
+                      semi_collision_tile = {'location': collision_tile}
+                      for key in collision_region.properties.keys():
+                          if "enter" in key:
+                              semi_collision_tile['enter'] = collision_region.properties[key]
+                          if "exit" in key:
+                              semi_collision_tile['exit'] = collision_region.properties[key]
+                      semi_collision_map[collision_tile] = semi_collision_tile
+                print(semi_collision_map)
 
 
         # Similar to collisions, except we need to identify the tiles

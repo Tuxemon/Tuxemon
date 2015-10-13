@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="111">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="112">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -22,7 +22,7 @@
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
@@ -90,15 +90,60 @@
   <object id="51" type="collision" x="576" y="912" width="160" height="48"/>
   <object id="52" type="collision" x="672" y="880" width="64" height="32"/>
   <object id="53" type="collision" x="624" y="624" width="16" height="16"/>
-  <object id="54" type="collision" x="352" y="416" width="128" height="16"/>
-  <object id="55" type="collision" x="544" y="416" width="96" height="16"/>
-  <object id="56" type="collision" x="544" y="352" width="96" height="16"/>
-  <object id="57" type="collision" x="400" y="352" width="112" height="16"/>
-  <object id="58" type="collision" x="352" y="352" width="32" height="16"/>
-  <object id="59" type="collision" x="352" y="288" width="112" height="16"/>
-  <object id="60" type="collision" x="480" y="288" width="32" height="16"/>
-  <object id="61" type="collision" x="544" y="288" width="16" height="16"/>
-  <object id="62" type="collision" x="592" y="288" width="48" height="16"/>
+  <object id="54" type="collision" x="352" y="416" width="128" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="55" type="collision" x="544" y="416" width="96" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="56" type="collision" x="544" y="352" width="96" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="57" type="collision" x="400" y="352" width="112" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="58" type="collision" x="352" y="352" width="32" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="59" type="collision" x="352" y="288" width="112" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="60" type="collision" x="480" y="288" width="32" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="61" type="collision" x="544" y="288" width="16" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="62" type="collision" x="592" y="288" width="48" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
   <object id="63" type="collision" x="576" y="0" width="32" height="48"/>
   <object id="64" type="collision" x="528" y="192" width="16" height="16"/>
   <object id="65" type="collision" x="288" y="64" width="16" height="16"/>

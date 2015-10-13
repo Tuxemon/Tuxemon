@@ -147,8 +147,6 @@ class TuxemonServer():
         self.server.registry[cuuid]["map_name"] = event_data["map_name"]
         client = self.server.registry[cuuid]["sprite"]
         self.game.scale_new_player(client)
-        self.update_client_location(client, char_dict)
-        
         
         for client_id in self.server.registry:
             # Don't notify a player that they themselves moved.
@@ -214,7 +212,7 @@ class TuxemonServer():
                                       } 
                           }
         self.server.notify(cuuid, new_event_data)
-        
+        #self.update_client_location(client, char_dict)
 
     def update_client_location(self, sprite, char_dict):
         """Adds updated client character information to the local server registry.

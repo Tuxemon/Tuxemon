@@ -445,6 +445,7 @@ class Player(object):
         left_tile = (player_tile_pos[0] - 1, player_tile_pos[1])
         right_tile = (player_tile_pos[0] + 1, player_tile_pos[1])
 
+        # Check if the players current position has any limitations.
         if current_pos in semi_collision_map:
             if not "down" in semi_collision_map[current_pos]["exit"]:
                 collisions.append("down")
@@ -457,7 +458,7 @@ class Player(object):
         
         # Check to see if the tile below the player is a collision tile.
         if down_tile in collision_set:
-            if down_tile in semi_collision_map:
+            if down_tile in semi_collision_map: # Used for conditional collision zones
                 if not "up" in semi_collision_map[down_tile]['enter']:
                     collisions.append("down")
             else: 
@@ -465,7 +466,7 @@ class Player(object):
 
         # Check to see if the tile above the player is a collision tile.
         if up_tile in collision_set:
-            if down_tile in semi_collision_map:
+            if down_tile in semi_collision_map: # Used for conditional collision zones
                 if not "down" in semi_collision_map[down_tile]['enter']:
                     collisions.append("up")
             else: 
@@ -473,7 +474,7 @@ class Player(object):
 
         # Check to see if the tile to the left of the player is a collision tile.
         if left_tile in collision_set:
-            if down_tile in semi_collision_map:
+            if down_tile in semi_collision_map: # Used for conditional collision zones
                 if not "right" in semi_collision_map[down_tile]['enter']:
                     collisions.append("left")
             else: 
@@ -481,7 +482,7 @@ class Player(object):
 
         # Check to see if the tile to the right of the player is a collision tile.
         if right_tile in collision_set:
-            if down_tile in semi_collision_map:
+            if down_tile in semi_collision_map: # Used for conditional collision zones
                 if not "left" in semi_collision_map[down_tile]['enter']:
                     collisions.append("right")
             else: 

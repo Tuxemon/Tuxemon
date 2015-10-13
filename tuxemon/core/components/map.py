@@ -361,6 +361,7 @@ class Map(object):
         # Create a list of all tile positions that we cannot walk through
         collision_map = set()
 
+        # Create a dictionary of coordinates that have conditional collisions
         semi_collision_map = {}
 
         # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
@@ -399,6 +400,8 @@ class Map(object):
                   collision_tile = (a + x, b + y) 
                   collision_map.add(collision_tile)
 
+                  # Check if collision region has properties, and is therefore a conditional zone
+                  # then add the location and conditions to semi_collision_map
                   if collision_region.properties:
 
                       semi_collision_tile = {'location': collision_tile}

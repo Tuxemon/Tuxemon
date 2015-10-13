@@ -147,7 +147,7 @@ class TuxemonServer():
         self.server.registry[cuuid]["map_name"] = event_data["map_name"]
         client = self.server.registry[cuuid]["sprite"]
         self.game.scale_new_player(client)
-        self.update_client(client, char_dict)
+        self.update_client_location(client, char_dict)
         
         
         for client_id in self.server.registry:
@@ -190,11 +190,13 @@ class TuxemonServer():
                 self.server.notify(cuuid, new_event_data)
         
         # Send server characters data to the new client
+        map_path = self.game.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
         pd = self.server.registry[cuuid]["sprite"].__dict__
         new_event_data = {"type": "NOTIFY_CLIENT_NEW",
-                          "cuuid": client_id,
+                          "cuuid": str(self.game.client.client.cuuid),
                           "sprite_name": "player1",
-                          "map_name": self.server.registry[cuuid]["map_name"],
+                          "map_name": map_name,
                           "char_dict": {"tile_pos": pd["tile_pos"],
                                       "game_variables": pd["game_variables"],
                                       "inventory": pd["inventory"],
@@ -214,7 +216,7 @@ class TuxemonServer():
         self.server.notify(cuuid, new_event_data)
         
 
-    def update_client(self, sprite, char_dict):
+    def update_client_location(self, sprite, char_dict):
         """Adds updated client character information to the local server registry.
 
         :param client: Clients local NPC sprite stored in the server registry.
@@ -242,7 +244,7 @@ class TuxemonServer():
                 self.notify_client_move(sprite, item, sprite.facing)
 
     
-    def update_client_map(self, cuuid, event_data):
+    def update_client_map(self, cuuid, event_data=None):
         """Updates client's current map and location in the server registry.
 
         :param cuuid: Clients unique user identification number.
@@ -255,23 +257,33 @@ class TuxemonServer():
         :returns: None
 
         """
-        sprite = self.server.registry[cuuid]["sprite"]
-        self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-        self.update_client(sprite, event_data["char_dict"])
+        sprite = None
+        if event_data:
+            sprite = self.server.registry[cuuid]["sprite"]
+            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            self.update_client_location(sprite, event_data["char_dict"])
+            map_name = event_data["map_name"]
+            char_dict = event_data["char_dict"]
         
-        for cuuid in self.server.registry:
+        if not event_data:
+            map_path = self.game.state_dict["WORLD"].current_map.filename
+            map_name = str(map_path.replace(prepare.BASEDIR, ""))
+            char_dict = {"tile_pos": self.game.state_dict["WORLD"].player1.tile_pos}
+            
+        
+        for client_id in self.server.registry:
             # Don't notify a player that they themselves moved.
-            if sprite == self.server.registry[cuuid]["sprite"]:
-                return False
+            if sprite:
+                if sprite == self.server.registry[client_id]["sprite"]:
+                    return False
+            
             # Notify client of the players new position.
-            elif sprite != self.server.registry[cuuid]["sprite"]:
-                event_data = {"type": "NOTFIY_CLIENT_MAP",
-                              "cuuid": cuuid,
-                              "map_name": event_data["map_name"],
-                              "char_dict": event_data["char_dict"]
-                              }
-                self.server.notify(cuuid, event_data)
-        
+            event_data = {"type": "NOTFIY_CLIENT_MAP",
+                          "cuuid": cuuid,
+                          "map_name": map_name,
+                          "char_dict": char_dict
+                          }
+            self.server.notify(client_id, event_data)
         
 
     def move_client_npc(self, cuuid, event_data):
@@ -287,11 +299,11 @@ class TuxemonServer():
         :returns: None
 
         """
-        client = self.server.registry[cuuid]["sprite"]
+        sprite = self.server.registry[cuuid]["sprite"]
         char_dict = event_data["char_dict"]
-        self.update_client(client, char_dict)
-        client.facing = event_data["direction"]
-        self.notify_client_move(client, tile_pos=char_dict["tile_pos"], facing=event_data["direction"])
+        self.update_client_location(sprite, char_dict)
+        sprite.facing = event_data["direction"]
+        self.notify_client_move(sprite, tile_pos=char_dict["tile_pos"], facing=event_data["direction"])
 #         if event_data["key"] == "KEYDOWN":
 #             client.direction[event_data["direction"]] = True
 #                 
@@ -314,20 +326,25 @@ class TuxemonServer():
         :returns: None
 
         """
+        client_id = str(self.game.client.client.cuuid)
         for cuuid in self.server.registry:
             # Don't notify a player that they themselves moved.
             if sprite == self.server.registry[cuuid]["sprite"]:
-                return False
+                client_id = cuuid
+        
+        for cuuid in self.server.registry:
+            # Don't notify a player that they themselves moved.
+            if sprite == self.server.registry[cuuid]["sprite"]:
+                pass
             # Notify client of the players new position.
             elif sprite != self.server.registry[cuuid]["sprite"]:
                 event_data = {"type": "NOTFIY_CLIENT_MOVE",
-                              "cuuid": cuuid,
+                              "cuuid": client_id,
                               "char_dict":{"tile_pos": tile_pos,
                                            "facing": facing
                                            }
                               }
                 self.server.notify(cuuid, event_data)
-        
         
 
 class TuxemonClient():
@@ -396,11 +413,10 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
                 
             if event_data["type"] == "NOTFIY_CLIENT_MOVE":
-                self.update_client(self.client.registry[event_data["cuuid"]]["sprite"], event_data["char_dict"])
+                self.update_client_location(self.client.registry[event_data["cuuid"]]["sprite"], event_data["char_dict"])
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTFIY_CLIENT_MAP":
-                print "!"
                 self.update_client_map(event_data["cuuid"], event_data)
                 del self.client.event_notifies[euuid]
                 
@@ -503,7 +519,6 @@ class TuxemonClient():
                       }
         self.client.event(event_data)
         self.populated = True
-        
     
     
     def move_player(self, event):
@@ -619,11 +634,11 @@ class TuxemonClient():
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
         client = self.client.registry[cuuid]["sprite"]
         self.game.scale_new_player(client)
-        self.update_client(client, char_dict)
+        self.update_client_location(client, char_dict)
     
     
-    def update_client(self, sprite, char_dict):
-        """Adds updated client character information to the local client registry.
+    def update_client_location(self, sprite, char_dict):
+        """Adds updated client character location to the local client registry.
 
         :param client: Clients local NPC sprite stored in the client registry.
         :param char_dict: Client characters current variable values.
@@ -661,8 +676,6 @@ class TuxemonClient():
         :returns: None
 
         """
-        print self.client.registry[cuuid]["map_name"]
         sprite = self.client.registry[cuuid]["sprite"]
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
-        self.update_client(sprite, event_data["char_dict"])
-        print self.client.registry[cuuid]["map_name"]
+        self.update_client_location(sprite, event_data["char_dict"])

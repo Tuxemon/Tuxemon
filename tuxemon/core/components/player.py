@@ -438,7 +438,7 @@ class Player(object):
         """
 
         collisions = []
-        
+
         current_pos = (player_tile_pos[0], player_tile_pos[1])
         down_tile = (player_tile_pos[0], player_tile_pos[1] + 1)
         up_tile = (player_tile_pos[0], player_tile_pos[1] - 1)
@@ -466,24 +466,24 @@ class Player(object):
 
         # Check to see if the tile above the player is a collision tile.
         if up_tile in collision_set:
-            if down_tile in cond_collision_map: # Used for conditional collision zones
-                if not "down" in cond_collision_map[down_tile]['enter']:
+            if up_tile in cond_collision_map: # Used for conditional collision zones
+                if not "down" in cond_collision_map[up_tile]['enter']:
                     collisions.append("up")
             else: 
                 collisions.append("up")
 
         # Check to see if the tile to the left of the player is a collision tile.
         if left_tile in collision_set:
-            if down_tile in cond_collision_map: # Used for conditional collision zones
-                if not "right" in cond_collision_map[down_tile]['enter']:
+            if left_tile in cond_collision_map: # Used for conditional collision zones
+                if not "right" in cond_collision_map[left_tile]['enter']:
                     collisions.append("left")
             else: 
                 collisions.append("left")
 
         # Check to see if the tile to the right of the player is a collision tile.
         if right_tile in collision_set:
-            if down_tile in cond_collision_map: # Used for conditional collision zones
-                if not "left" in cond_collision_map[down_tile]['enter']:
+            if right_tile in cond_collision_map: # Used for conditional collision zones
+                if not "left" in cond_collision_map[right_tile]['enter']:
                     collisions.append("right")
             else: 
                 collisions.append("right")

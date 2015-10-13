@@ -393,6 +393,19 @@ class Map(object):
             width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
             height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
             
+            # Loop through properties and create list of directions for each property
+            if collision_region.properties:
+                enters = []
+                exits = []
+
+                for key in collision_region.properties:
+                    if "enter" in key:
+                        for direction in collision_region.properties[key].split():
+                            enters.append(direction)
+                    elif "exit" in key:
+                        for direction in collision_region.properties[key].split():
+                            exits.append(direction)
+
             # Loop through the area of this region and create all the tile coordinates that are
             # inside this region.
             for a in range(0, int(width)):
@@ -407,9 +420,9 @@ class Map(object):
                         cond_collision_tile = {'location': collision_tile}
                         for key in collision_region.properties.keys():
                             if "enter" in key:
-                                cond_collision_tile['enter'] = collision_region.properties[key]
+                                cond_collision_tile['enter'] = enters
                             if "exit" in key:
-                                cond_collision_tile['exit'] = collision_region.properties[key]
+                                cond_collision_tile['exit'] = exits
                         cond_collision_map[collision_tile] = cond_collision_tile
 
         # Similar to collisions, except we need to identify the tiles

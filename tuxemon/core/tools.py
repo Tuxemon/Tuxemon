@@ -549,8 +549,6 @@ class Control(object):
         time_delta = self.clock.tick(self.fps)/1000.0
         self.time_passed_seconds = time_delta
         
-        print self.client.client.cuuid
-        
         # Update our networking.
         if self.client.listening: 
             self.client.update(time_delta)

@@ -149,11 +149,15 @@ class TuxemonServer():
         self.game.scale_new_player(client)
         
         for client_id in self.server.registry:
+            print client_id
+            
             # Don't notify a player that they themselves moved.
-            if sprite == self.server.registry[cuuid]["sprite"]:
+            if sprite == self.server.registry[client_id]["sprite"]:
+                print "different"
                 pass
             # Notify client of the players new position.
-            elif sprite != self.server.registry[cuuid]["sprite"]:
+            elif sprite != self.server.registry[client_id]["sprite"]:
+                print "same same"
                 # Send the new client data to this client
                 new_event_data = {"type": "NOTIFY_CLIENT_NEW",
                                   "cuuid": cuuid,
@@ -188,6 +192,7 @@ class TuxemonServer():
                 self.server.notify(cuuid, new_event_data)
         
         # Send server characters data to the new client
+        # Server's character is not in the registry
         map_path = self.game.state_dict["WORLD"].current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
         pd = self.server.registry[cuuid]["sprite"].__dict__

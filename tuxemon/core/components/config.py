@@ -39,12 +39,12 @@ class Config(object):
         self.config = ConfigParser.ConfigParser()
         self.config.read(file)
 
-	self.key_up = self.config.get("keybindings", "up")
-	self.key_down = self.config.get("keybindings", "down")
-	self.key_left = self.config.get("keybindings", "left")
-	self.key_right = self.config.get("keybindings", "right")
-	self.key_action = self.config.get("keybindings", "action")
-	self.key_menu = self.config.get("keybindings", "menu")
+	self.key_up = eval('pygame.' + self.config.get("keybindings", "up"))
+	self.key_down = eval('pygame.' + self.config.get("keybindings", "down"))
+	self.key_left = eval('pygame.' + self.config.get("keybindings", "left"))
+	self.key_right = eval('pygame.' + self.config.get("keybindings", "right"))
+	self.key_action = eval('pygame.' + self.config.get("keybindings", "action"))
+	self.key_menu = eval('pygame.' + self.config.get("keybindings", "menu"))
         
         self.resolution_x = self.config.get("display", "resolution_x")
         self.resolution_y = self.config.get("display", "resolution_y")

@@ -137,7 +137,7 @@ class Monster(object):
         self.menu_sprite = ""
 
 
-    def load_from_db(self, name):
+    def load_from_db(self, id):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.
 
@@ -152,12 +152,12 @@ class Monster(object):
         **Examples:**
 
         >>> bulbatux = Monster()
-        >>> bulbatux.load_from_db("Bulbatux")
+        >>> bulbatux.load_from_db(2)
 
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = monsters.lookup(name)
+        results = monsters.lookup(id)
 
         self.name               = results["name"]
         self.monster_id         = results["id"]
@@ -301,6 +301,20 @@ class Monster(object):
         """
         self.level = level
         self.total_experience = self.experience_required_modifier * self.level ** 3
+
+        count = 1 
+
+        # For each level between 1 and current, calculate stats 
+        while count < self.level:
+            hp_up = random.choice(self.hp_modifier)
+            self.hp += hp_up
+            self.current_hp += hp_up
+            self.attack += random.choice(self.attack_modifier)
+            self.defense += random.choice(self.defense_modifier)
+            self.speed += random.choice(self.speed_modifier)
+            self.special_attack += random.choice(self.special_attack_modifier)
+            self.special_defense += random.choice(self.special_defense_modifier)        
+            count += 1
 
     def load_sprites(self, scale):
         """Loads the monster's sprite images as Pygame surfaces.

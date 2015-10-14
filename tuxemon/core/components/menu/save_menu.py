@@ -102,17 +102,17 @@ class SaveMenu(Menu):
         
     def get_event(self, event):
         # Handle key events when the menu is visible
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_down:
             self.selected_menu_item += 1
             if self.selected_menu_item > self.slots - 1:
                 self.selected_menu_item = 0
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_up:
             self.selected_menu_item -= 1
             if self.selected_menu_item < 0:
                 self.selected_menu_item = self.slots - 1
                 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_menu:
             logger.info("Closing save menu!")
             self.visible = False
             self.interactable = False
@@ -120,7 +120,7 @@ class SaveMenu(Menu):
             self.game.main_menu.interactable = True
 
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and not self.first_run:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action and not self.first_run:
             logger.info("Saving!")
             # Save the game!!
             try:

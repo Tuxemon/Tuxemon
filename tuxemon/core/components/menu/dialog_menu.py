@@ -1,6 +1,7 @@
 
 import pygame
 from core.components.menu import Menu
+from ... import prepare
 
 class DialogMenu(Menu):
 
@@ -13,7 +14,7 @@ class DialogMenu(Menu):
 
     def get_event(self, event):
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
 
             # Hide the menu
             self.visible = False

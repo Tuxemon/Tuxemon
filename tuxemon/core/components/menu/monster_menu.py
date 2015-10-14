@@ -182,7 +182,7 @@ class MonsterMenu(Menu):
     def get_event(self, event, game):
 
         # Handle when the player presses "ESC".
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_menu:
 
             # If the "ESC" key was pressed while the decision menu was up, close it.
             if self.decision_menu.visible:
@@ -202,7 +202,7 @@ class MonsterMenu(Menu):
                     game.state.action_menu.interactable = True
 
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        elif event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_down:
 
             if self.decision_menu.interactable:
                 pass
@@ -211,7 +211,7 @@ class MonsterMenu(Menu):
                 if self.selected_menu_item >= len(self.game.player1.monsters):
                     self.selected_menu_item = 0
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        elif event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_up:
 
             if self.decision_menu.interactable:
                 pass
@@ -223,7 +223,7 @@ class MonsterMenu(Menu):
                     else:
                         self.selected_menu_item = 0
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        elif event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
 
             if game.state_name == "COMBAT":
                 for player_name, player_dict in self.game.state_dict["COMBAT"].current_players.items():

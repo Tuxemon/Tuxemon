@@ -25,12 +25,15 @@
 #
 
 import logging
+from .... import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
 class Core(object):
+    
+    from .... import prepare
 
     def set_variable(self, game, action):
         """Sets the key in the player.game_variables dictionary.
@@ -165,6 +168,7 @@ class Core(object):
         ('wait_for_secs', '2.0')
 
         """
+	from .... import prepare
         secs = float(action[1])
         game.event_engine.state = "waiting"
         game.event_engine.wait = secs
@@ -193,6 +197,7 @@ class Core(object):
         ('wait_for_input', 'K_RETURN')
 
         """
+	from .... import prepare
         button = str(action[1])
         game.event_engine.state = "waiting for input"
         game.event_engine.wait = 2

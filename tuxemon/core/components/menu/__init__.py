@@ -588,7 +588,7 @@ class Menu(UserInterface):
             return False
 
         # If the down key was pressed, move our selection down.
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_down:
 
             self.selected_menu_item += self.columns
             if self.selected_menu_item > len(self.menu_items) -1:
@@ -600,7 +600,7 @@ class Menu(UserInterface):
 
 
         # If the up key was pressed, move our selection up.
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_up:
 
             # Get the total number of rows based on the number of items divided by the number of columns
             total_rows = len(self.menu_items) / self.columns
@@ -620,7 +620,7 @@ class Menu(UserInterface):
 
 
         # If the right key was pressed, move our selection to the right.
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_right:
 
             # If the next selected menu item is PERFECTLY divisble by the product of the number of
             # columns times the selected row, then we need to go BACK to the beginning of the row
@@ -635,7 +635,7 @@ class Menu(UserInterface):
 
 
         # If the left key was pressed, move our selection to the left.
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_left:
 
             # If the previos selected menu item is PERFECTLY divisble by the product of the number
             # of columns times the previous selected row, then we need to go BACK to the beginning
@@ -656,7 +656,7 @@ class Menu(UserInterface):
 
 
         # Handle the player pressing ENTER on one of the selected letters.
-        if input_allowed and event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if input_allowed and event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
 
             # If the "CLR" button was selected, delete the last character from our name
             if self.menu_items[self.selected_menu_item] == "CLR":

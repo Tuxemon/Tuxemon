@@ -302,8 +302,9 @@ class Monster(object):
         self.level = level
         self.total_experience = self.experience_required_modifier * self.level ** 3
 
-        count = 0
+        count = 1 
 
+        # For each level between 1 and current, calculate stats 
         while count < self.level:
             hp_up = random.choice(self.hp_modifier)
             self.hp += hp_up

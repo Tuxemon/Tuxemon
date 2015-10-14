@@ -302,6 +302,19 @@ class Monster(object):
         self.level = level
         self.total_experience = self.experience_required_modifier * self.level ** 3
 
+        count = 0
+
+        while count < self.level:
+            hp_up = random.choice(self.hp_modifier)
+            self.hp += hp_up
+            self.current_hp += hp_up
+            self.attack += random.choice(self.attack_modifier)
+            self.defense += random.choice(self.defense_modifier)
+            self.speed += random.choice(self.speed_modifier)
+            self.special_attack += random.choice(self.special_attack_modifier)
+            self.special_defense += random.choice(self.special_defense_modifier)        
+            count += 1
+
     def load_sprites(self, scale):
         """Loads the monster's sprite images as Pygame surfaces.
 

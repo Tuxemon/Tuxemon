@@ -102,7 +102,7 @@ class Combat(object):
 
             # Create a monster object for each monster the NPC has in their party.
             current_monster = monster.Monster()
-            current_monster.load_from_db(npc_monster_details['name'])
+            current_monster.load_from_db(npc_monster_details['monster_id'])
             current_monster.name = npc_monster_details['name']
             current_monster.monster_id = npc_monster_details['monster_id']
             current_monster.level = npc_monster_details['level']

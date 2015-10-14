@@ -137,7 +137,7 @@ class Monster(object):
         self.menu_sprite = ""
 
 
-    def load_from_db(self, name):
+    def load_from_db(self, id):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.
 
@@ -152,12 +152,12 @@ class Monster(object):
         **Examples:**
 
         >>> bulbatux = Monster()
-        >>> bulbatux.load_from_db("Bulbatux")
+        >>> bulbatux.load_from_db(2)
 
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = monsters.lookup(name)
+        results = monsters.lookup(id)
 
         self.name               = results["name"]
         self.monster_id         = results["id"]

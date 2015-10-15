@@ -258,6 +258,47 @@ class Monster(object):
             #Level up worthy monsters
             self.level_up()
 
+    def set_stats(self):
+        """Sets the monsters initial stats, or imporves stats 
+        when called during a level up. If this is being called
+        when the game is creating a monster, it should be looped
+        through. Once for each level of the monster being created.
+
+        :rtype: None
+        :returns: None
+        
+        **Example:**
+
+
+        """
+        if self.level < 10:
+            level = 10
+        else:
+            level = self.level
+
+        hp_up = int(self.hp * 0.1 + random.choice(self.hp_modifier) * (level / 10))
+        self.current_hp += hp_up
+        self.hp += hp_up
+
+        self.attack += int(
+            self.attack * 0.1 + random.choice(self.attack_modifier) * (level / 10))
+        self.defense += int(
+            self.defense * 0.1 + random.choice(self.defense_modifier) * (level / 10))
+        self.speed += int(
+            self.speed * 0.1 + random.choice(self.speed_modifier) * (level / 10))
+        self.special_attack += int(
+            self.special_attack * 0.1 + random.choice(self.special_attack_modifier) * (level / 10))
+        self.special_defense += int(
+            self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
+
+        # print "---- Level: %s ----" % self.level
+        # print "HP:", self.hp
+        # print "Attack:", self.attack
+        # print "Defense:", self.defense
+        # print "Speed:", self.speed
+        # print "Spc Atk:", self.special_attack
+        # print "Spc Def:", self.special_defense
+
     def level_up(self):
         """Increases a Monster's level by one and increases stats
         accordingly
@@ -268,14 +309,7 @@ class Monster(object):
         logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
         #Increase Level and stats
         self.level += 1
-        hp_up = random.choice(self.hp_modifier)
-        self.hp += hp_up
-        self.current_hp += hp_up
-        self.attack += random.choice(self.attack_modifier)
-        self.defense += random.choice(self.defense_modifier)
-        self.speed += random.choice(self.speed_modifier)
-        self.special_attack += random.choice(self.special_attack_modifier)
-        self.special_defense += random.choice(self.special_defense_modifier)
+        self.set_stats()
 
         #Learn New Moves
         for move in self.moveset:
@@ -302,19 +336,12 @@ class Monster(object):
         self.level = level
         self.total_experience = self.experience_required_modifier * self.level ** 3
 
-        count = 1 
+        count = 0 
 
         # For each level between 1 and current, calculate stats 
         while count < self.level:
-            hp_up = random.choice(self.hp_modifier)
-            self.hp += hp_up
-            self.current_hp += hp_up
-            self.attack += random.choice(self.attack_modifier)
-            self.defense += random.choice(self.defense_modifier)
-            self.speed += random.choice(self.speed_modifier)
-            self.special_attack += random.choice(self.special_attack_modifier)
-            self.special_defense += random.choice(self.special_defense_modifier)        
             count += 1
+            self.set_stats()
 
     def load_sprites(self, scale):
         """Loads the monster's sprite images as Pygame surfaces.

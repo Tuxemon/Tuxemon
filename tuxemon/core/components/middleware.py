@@ -73,7 +73,7 @@ class Multiplayer():
             return True
         elif event_data["type"] == "PUSH_SELF":
             return True
-        elif event_data["type"] == "CLIENT_EVENT": 
+        elif event_data["type"] == "CLIENT_MOVE_START": 
             return True
         elif event_data["type"] == "CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
             return True
@@ -83,11 +83,6 @@ class Multiplayer():
     def event_execute(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             self.game.server.network_events.append(event_data)
-        elif event_data["type"] == "PUSH_SELF":
-            self.game.server.populate_client(cuuid, event_data)
-        elif event_data["type"] =="CLIENT_EVENT":
-            self.game.server.move_client_npc(cuuid, event_data)
-        elif event_data["type"] =="CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
-            self.game.server.update_client_map(cuuid, event_data)
-
+        else:
+            self.game.server.server_event_handler(cuuid, event_data)
             

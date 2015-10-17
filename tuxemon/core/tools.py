@@ -709,6 +709,20 @@ class Control(object):
                 elif client_map != current_map:
                     while sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.remove(sprite)
+    
+    
+    def get_map_name(self):
+        """Gets the map of the player.
+
+        :param: None
+        
+        :rtype: String
+        :returns: map_name
+
+        """ 
+        map_path = self.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
+        return map_name
                         
 
 class _State(object):

@@ -161,6 +161,8 @@ class Player(object):
 
         """
 
+        collision_dict = {}
+
         # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
         # collisions.
         npc_positions = set()
@@ -172,7 +174,11 @@ class Player(object):
             npc_positions.add( (npc_pos_x, npc_pos_y) )
 
         # Combine our map collision tiles with our npc collision positions
-        collision_set = game.collision_map.union(npc_positions)
+        for pos in npc_positions:
+            collision_dict[pos] = "None"
+
+        for tile in game.collision_map:
+            collision_dict[tile] = game.collision_map[tile] 
 
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
@@ -199,7 +205,7 @@ class Player(object):
                 if global_y >= self.move_destination[1] and self.direction["up"]:
 
                     # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "up"
 
@@ -224,7 +230,7 @@ class Player(object):
 
                 if global_y <= self.move_destination[1] and self.direction["down"]:
 
-                    if not "down" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "down"
 
@@ -245,7 +251,7 @@ class Player(object):
 
                 if global_x >= self.move_destination[0] and self.direction["left"]:
 
-                    if not "left" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                          self.moving = True
                          self.move_direction = "left"
 
@@ -266,7 +272,7 @@ class Player(object):
 
                 if global_x <= self.move_destination[0] and self.direction["right"]:
 
-                    if not "right" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "right"
 
@@ -292,7 +298,7 @@ class Player(object):
                     self.move_destination = [int(global_x), int(global_y + tile_size[1])]
 
                     # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "up"
 
@@ -301,7 +307,7 @@ class Player(object):
                     # Set the destination position we'd wish to reach if we just started walking.
                     self.move_destination = [int(global_x), int(global_y - tile_size[1])]
 
-                    if not "down" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "down"
 
@@ -310,7 +316,7 @@ class Player(object):
                     # Set the destination position we'd wish to reach if we just started walking.
                     self.move_destination = [int(global_x + tile_size[1]), int(global_y)]
 
-                    if not "left" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "left"
 
@@ -319,7 +325,7 @@ class Player(object):
                     # Set the destination position we'd wish to reach if we just started walking.
                     self.move_destination = [int(global_x - tile_size[1]), int(global_y)]
 
-                    if not "right" in self.collision_check(player_pos, collision_set, game.collision_lines_map, game.cond_collision_map):
+                    if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "right"
 
@@ -421,15 +427,15 @@ class Player(object):
                                                               self.position[1] + offset))
 
 
-    def collision_check(self, player_tile_pos, collision_set, collision_lines_map, cond_collision_map):
+    def collision_check(self, player_tile_pos, collision_dict, collision_lines_map):
         """Checks collision tiles around the player.
 
         :param player_pos: An (x, y) list of the player's current tile position. Must be an
             integer.
-        :param collision_set: A set() object of (x, y) coordinates that are collidable.
+        :param collision_dict: A dictionary object of (x, y) coordinates that are collidable.
 
         :type player_pos: List
-        :type collision_set: Set
+        :type collision_dict: Dictionary
 
         :rtype: List
         :returns: A list indicating what tiles relative to the player are collision tiles.
@@ -446,44 +452,44 @@ class Player(object):
         right_tile = (player_tile_pos[0] + 1, player_tile_pos[1])
 
         # Check if the players current position has any limitations.
-        if current_pos in cond_collision_map:
-            if not "down" in cond_collision_map[current_pos]["exit"]:
+        if current_pos in collision_dict and collision_dict[current_pos] != "None":
+            if not "down" in collision_dict[current_pos]["exit"]:
                 collisions.append("down")
-            if not "up" in cond_collision_map[current_pos]["exit"]:
+            if not "up" in collision_dict[current_pos]["exit"]:
                 collisions.append("up")
-            if not "left" in cond_collision_map[current_pos]["exit"]:
+            if not "left" in collision_dict[current_pos]["exit"]:
                 collisions.append("left")
-            if not "right" in cond_collision_map[current_pos]["exit"]:
+            if not "right" in collision_dict[current_pos]["exit"]:
                 collisions.append("right")
         
         # Check to see if the tile below the player is a collision tile.
-        if down_tile in collision_set:
-            if down_tile in cond_collision_map: # Used for conditional collision zones
-                if not "up" in cond_collision_map[down_tile]['enter']:
+        if down_tile in collision_dict:
+            if collision_dict[down_tile] != "None": # Used for conditional collision zones
+                if not "up" in collision_dict[down_tile]['enter']:
                     collisions.append("down")
             else: 
                 collisions.append("down")
 
         # Check to see if the tile above the player is a collision tile.
-        if up_tile in collision_set:
-            if up_tile in cond_collision_map: # Used for conditional collision zones
-                if not "down" in cond_collision_map[up_tile]['enter']:
+        if up_tile in collision_dict:
+            if collision_dict[up_tile] != "None": # Used for conditional collision zones
+                if not "down" in collision_dict[up_tile]['enter']:
                     collisions.append("up")
             else: 
                 collisions.append("up")
 
         # Check to see if the tile to the left of the player is a collision tile.
-        if left_tile in collision_set:
-            if left_tile in cond_collision_map: # Used for conditional collision zones
-                if not "right" in cond_collision_map[left_tile]['enter']:
+        if left_tile in collision_dict:
+            if collision_dict[left_tile] != "None": # Used for conditional collision zones
+                if not "right" in collision_dict[left_tile]['enter']:
                     collisions.append("left")
             else: 
                 collisions.append("left")
 
         # Check to see if the tile to the right of the player is a collision tile.
-        if right_tile in collision_set:
-            if right_tile in cond_collision_map: # Used for conditional collision zones
-                if not "left" in cond_collision_map[right_tile]['enter']:
+        if right_tile in collision_dict:
+            if collision_dict[right_tile] != "None": # Used for conditional collision zones
+                if not "left" in collision_dict[right_tile]['enter']:
                     collisions.append("right")
             else: 
                 collisions.append("right")
@@ -695,12 +701,17 @@ class Npc(Player):
             npc_positions.add( (npc_pos_x, npc_pos_y) )
 
         # Combine our map collision tiles with our npc collision positions
-        collision_set = game.collision_map.union(npc_positions)
-        self._continue_move(collision_set, tile_size, time_passed_seconds, game)
-        self._start_move(collision_set, game)
+        for pos in npc_positions:
+            collision_dict[pos] = "None"
+
+        for tile in game.collision_map:
+            collision_dict[tile] = game.collision_map[tile] 
+
+        self._continue_move(collision_dict, tile_size, time_passed_seconds, game)
+        self._start_move(collision_dict, game)
 
 
-    def _start_move(self, collision_set, game):
+    def _start_move(self, collision_dict, game):
 
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
@@ -723,7 +734,7 @@ class Npc(Player):
                     self.tile_destination = [player_pos[0], player_pos[1] - 1]
 
                     # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "up"
 
@@ -733,7 +744,7 @@ class Npc(Player):
                     #self.move_destination = [int(global_x), int(global_y - tile_size[1])]
                     self.tile_destination = [player_pos[0], player_pos[1] + 1]
 
-                    if not "down" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "down"
 
@@ -743,7 +754,7 @@ class Npc(Player):
                     #self.move_destination = [int(global_x + tile_size[1]), int(global_y)]
                     self.tile_destination = [player_pos[0] - 1, player_pos[1]]
 
-                    if not "left" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "left"
 
@@ -753,7 +764,7 @@ class Npc(Player):
                     #self.move_destination = [int(global_x - tile_size[1]), int(global_y)]
                     self.tile_destination = [player_pos[0] + 1, player_pos[1]]
 
-                    if not "right" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "right"
 
@@ -764,7 +775,7 @@ class Npc(Player):
                 self.moveConductor.stop()
 
 
-    def _continue_move(self, collision_set, tile_size, time_passed_seconds, game):
+    def _continue_move(self, collision_dict, tile_size, time_passed_seconds, game):
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
         player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
@@ -790,7 +801,7 @@ class Npc(Player):
                 if self.current_tile[1] <= self.tile_destination[1] and self.direction["up"]:
 
                     # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "up"
 
@@ -813,9 +824,9 @@ class Npc(Player):
             else:
                 self.current_tile[1] += (self.moverate * time_passed_seconds)
 
-                if self.current_tile[1] >= self.tile_destination[1] and self.direction["down"]:
+            if self.current_tile[1] >= self.tile_destination[1] and self.direction["down"]:
 
-                    if not "down" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "down"
 
@@ -835,7 +846,7 @@ class Npc(Player):
 
                 if self.current_tile[0] <= self.tile_destination[0] and self.direction["left"]:
 
-                    if not "left" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                          self.moving = True
                          self.move_direction = "left"
 
@@ -855,7 +866,7 @@ class Npc(Player):
 
                 if self.current_tile[0] >= self.tile_destination[0] and self.direction["right"]:
 
-                    if not "right" in self.collision_check(player_pos, collision_set, game.collision_lines_map):
+                    if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "right"
 

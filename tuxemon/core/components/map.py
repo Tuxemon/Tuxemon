@@ -359,7 +359,7 @@ class Map(object):
         mapsize = self.size
 
         # Create a list of all tile positions that we cannot walk through
-        collision_map = set()
+        collision_map = {}
 
         # Create a dictionary of coordinates that have conditional collisions
         cond_collision_map = {}
@@ -411,19 +411,18 @@ class Map(object):
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y) 
-                    collision_map.add(collision_tile)
+                    collision_map[collision_tile] = "None"
 
                     # Check if collision region has properties, and is therefore a conditional zone
                     # then add the location and conditions to semi_collision_map
                     if collision_region.properties:
-
-                        cond_collision_tile = {'location': collision_tile}
+                        tile_conditions = {}
                         for key in collision_region.properties.keys():
                             if "enter" in key:
-                                cond_collision_tile['enter'] = enters
+                                tile_conditions['enter'] = enters
                             if "exit" in key:
-                                cond_collision_tile['exit'] = exits
-                        cond_collision_map[collision_tile] = cond_collision_tile
+                                tile_conditions['exit'] = exits
+                        collision_map[collision_tile] = tile_conditions
 
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between
@@ -523,7 +522,7 @@ class Map(object):
                     collision_lines_map.add((top_side_tile, "down"))
                     collision_lines_map.add((bottom_side_tile, "up"))
 
-        return tiles, collision_map, collision_lines_map, cond_collision_map, mapsize
+        return tiles, collision_map, collision_lines_map, mapsize
 
     def round_to_divisible(self, x, base=16):
         """Rounds a number to a divisible base. This is used to round collision areas that aren't

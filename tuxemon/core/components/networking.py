@@ -372,7 +372,7 @@ class TuxemonClient():
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
                 sprite = populate_client(event_data["cuuid"], event_data, self.client.registry, self.game)
-                update_client_location(sprite, event_data["char_dict"], game)
+                update_client_location(sprite, event_data["char_dict"], self.game)
                 del self.client.event_notifies[euuid]
                 
             if event_data["type"] == "NOTIFY_CLIENT_MOVE":

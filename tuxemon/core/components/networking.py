@@ -147,7 +147,11 @@ class TuxemonServer():
             print sprite
             char_dict = event_data["char_dict"]
             sprite.facing = event_data["direction"]
-            sprite.direction = event_data["direction"]
+            sprite.direction[event_data["direction"]] = True
+            print sprite.moverate
+            print sprite.walkrate
+            print sprite.runrate
+            print self.game.player1.moverate
             #update_client_location(sprite, char_dict, self.game)
             self.notify_client_move(sprite, tile_pos=char_dict["tile_pos"], facing=event_data["direction"])
 #         if event_data["key"] == "KEYDOWN":
@@ -156,7 +160,13 @@ class TuxemonServer():
 #         elif event_data["key"] == "KEYUP":
 #             client.direction[event_data["direction"]] = False
             
-        elif event_data["type"] =="CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
+        elif event_data["type"] =="CLIENT_MAP_UPDATE":
+            self.update_client_map(cuuid, event_data)
+        
+        elif event_data["type"] == "CLIENT_MOVE_COMPLETE":
+            sprite = self.server.registry[cuuid]["sprite"]
+            for d in sprite.direction:
+                sprite.direction[d] = False
             self.update_client_map(cuuid, event_data)
 
     
@@ -642,12 +652,14 @@ def update_client_location(sprite, char_dict, game):
 
     """
     for item in char_dict:
-        if item != "tile_pos":
-            sprite.__dict__[item] = char_dict[item]
-        elif item == "tile_pos":
+        
+        sprite.__dict__[item] = char_dict[item]
+        if item == "tile_pos":
             tile_size = game.state_dict["WORLD"].tile_size
+            # Get the pixel position of our tile position.
             abs_position = [char_dict["tile_pos"][0] * tile_size[0],
-                            char_dict["tile_pos"][1] * tile_size[1]]
+                            char_dict["tile_pos"][1] * tile_size[1]
+                            ]
             global_x = game.state_dict["WORLD"].global_x
             global_y = game.state_dict["WORLD"].global_y
             position = [abs_position[0] + global_x, abs_position[1] + (global_y-tile_size[1])]

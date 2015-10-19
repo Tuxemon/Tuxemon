@@ -790,6 +790,10 @@ class Npc(Player):
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
         player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
+        print self.name
+        print "self.tile_pos:", self.tile_pos
+        print "self.tile_destination:", self.tile_destination
+        
 
         # *** Here we're continuing a move if we're in the middle of one already *** #
         # If the player is in the middle of moving and facing a certain direction, move in that

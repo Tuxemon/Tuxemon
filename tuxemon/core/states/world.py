@@ -38,7 +38,7 @@ import os
 import pprint
 
 # Import Tuxemon internal libraries
-import core.components.networking
+import core.components.networking as networking
 from .. import tools, prepare
 from ..components import screen
 from ..components import config
@@ -149,6 +149,7 @@ class World(tools._State):
 
         self.player1 = prepare.player1
         self.npcs = []
+        self.npcs_off_map = []
 
         # Set the global coordinates used to pan the screen.
         self.start_position = prepare.CONFIG.starting_position
@@ -783,7 +784,31 @@ class World(tools._State):
 
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
+        
+        for npc in self.npcs_off_map:
+            # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
+            # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
+            # portion of the sprite.
+            npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
+                self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
+            # If the NPC is not visible on the screen, don't draw him
+            #if self.screen_rect.colliderect(npc.rect):
+            #    npc.move(self.screen, self.tile_size, self.time_passed_seconds, (     #### Disabled for now
+            #        npc.position[0], npc.position[1]), self)
+
+            # Move the NPC with the map as it moves
+            npc.position[0] -= self.global_x_diff
+            npc.position[1] -= self.global_y_diff
+
+            # debug info
+            #print "npc.tile_pos="+str(npc.tile_pos)
+
+            # if the npc has a path, move it along its path
+            if npc.path:
+                npc.move_by_path()
+
+            npc.move(self.tile_size, self.time_passed_seconds, self)
         # Draw the bottom half of the player
         self.player1.draw(self.screen, "bottom")
 
@@ -1156,17 +1181,8 @@ class World(tools._State):
 
                 # Clear out any existing NPCs
                 self.npcs = []
-                if self.game.client.client.registered and self.game.client.populated:
-                    self.game.add_clients_to_map(self.game.client.client.registry)
-                else:
-                    self.game.add_clients_to_map(self.game.server.server.registry)                
-                
-                for npc in self.npcs:
-                    char_dict ={"tile_pos": npc.tile_pos,
-                                }
-                    update_client_location(npc, char_dict, self.game)
+                self.npcs_off_map = []
                     
-
                 # Scale the loaded tiles if enabled
                 if prepare.CONFIG.scaling == "1":
                     x_pos = 0        # Here we need to keep track of the x index of the list
@@ -1186,7 +1202,8 @@ class World(tools._State):
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
-
+                
+                       
             self.delayed_teleport = False
 
         # Replace this SAVE_THIS_FUCKING_SCREEN with the value of the blit of
@@ -1207,10 +1224,25 @@ class World(tools._State):
             # print transition_alpha
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
-            # Update the server of our new map.
+           
+            # Update the server/clients of our new map and populate any other players.
             if self.game.client.client.registered and self.game.client.populated:
-                self.game.client.update_player(self.player1.facing)
-            self.game.server.update_client_map(str(self.game.client.client.cuuid))
+                self.game.add_clients_to_map(self.game.client.client.registry)
+            else:
+                self.game.add_clients_to_map(self.game.server.server.registry)                
+            
+            for npc in self.npcs:
+                char_dict ={"tile_pos": npc.tile_pos,
+                            }
+                networking.update_client_location(npc, char_dict, self.game)
+            
+            for npc in self.npcs_off_map:
+                char_dict ={"tile_pos": npc.tile_pos,
+                            }
+                networking.update_client_location(npc, char_dict, self.game)
+#             if self.game.client.client.registered and self.game.client.populated:
+#                 self.game.client.update_player(self.player1.facing)
+#             self.game.server.update_client_map(str(self.game.client.client.cuuid))
 
 
     def get_pos_from_tilepos(self, tile_position):

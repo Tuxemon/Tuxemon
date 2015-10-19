@@ -687,6 +687,7 @@ class Control(object):
 
         """ 
         self.state_dict["WORLD"].npcs = []
+        self.state_dict["WORLD"].npcs_off_map = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
@@ -697,12 +698,17 @@ class Control(object):
                 if client_map == current_map:
                     if not sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.append(sprite)
+                    while sprite in self.state_dict["WORLD"].npcs_off_map:
+                        self.state_dict["WORLD"].npcs_off_map.remove(sprite)
                         
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
+                    if not sprite in self.state_dict["WORLD"].npcs_off_map:
+                        self.state_dict["WORLD"].npcs_off_map.append(sprite)
                     while sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.remove(sprite)
-    
+                        
+                        
     
     def get_map_name(self):
         """Gets the map of the player.

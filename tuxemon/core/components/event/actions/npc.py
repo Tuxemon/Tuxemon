@@ -77,7 +77,7 @@ class Npc(object):
         # Set the NPC's pixel position based on its tile position, tile size, and
         # current global_x/global_y variables
         npc.position = [(tile_pos_x * world.tile_size[0]) + world.global_x,
-                        (tile_pos_y * world.tile_size[1]) + world.global_y]
+                        (tile_pos_y * world.tile_size[1]) + (world.global_y - world.tile_size[0])]
 
 
         # Add the NPC to the game's NPC list

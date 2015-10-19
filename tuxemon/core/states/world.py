@@ -1150,7 +1150,7 @@ class World(tools._State):
                 
                 # Update the server of our new map.
                 if self.game.client.client.registered and self.game.client.populated:
-                    self.game.client.update_player_location()
+                    self.game.client.update_player(self.player1.facing)
 
                 # Clear out any existing NPCs
                 self.npcs = []
@@ -1197,7 +1197,7 @@ class World(tools._State):
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
             # Update the server of our new map.
             if self.game.client.client.registered and self.game.client.populated:
-                self.game.client.update_player_location()
+                self.game.client.update_player(self.player1.facing)
             self.game.server.update_client_map(str(self.game.client.client.cuuid))
 
 

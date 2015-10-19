@@ -74,7 +74,6 @@ class Multiplayer():
         elif event_data["type"] == "PUSH_SELF":
             return True
         elif event_data["type"] == "CLIENT_MOVE_START": 
-            print "!"
             return True
         elif event_data["type"] == "CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
             return True

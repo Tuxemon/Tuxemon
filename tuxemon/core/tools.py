@@ -61,7 +61,7 @@ except ImportError:
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-
+pp = pprint.PrettyPrinter(indent=4)
 
 class Control(object):
     """Control class for entire project. Contains the game loop, and contains
@@ -298,12 +298,6 @@ class Control(object):
                 for joy_event in joy_events:
                     self.key_events.append(joy_event)
                     self.state.get_event(joy_event)
-            
-            # Send the event to the server if we are in a multiplayer game.
-            if self.client.client.registered and self.client.populated:
-                self.client.move_player(event)
-            
-                
             self.state.get_event(event)
             
     

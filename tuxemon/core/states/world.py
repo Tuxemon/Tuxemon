@@ -1228,9 +1228,12 @@ class World(tools._State):
             # Update the server/clients of our new map and populate any other players.
             if self.game.client.client.registered and self.game.client.populated:
                 self.game.add_clients_to_map(self.game.client.client.registry)
+                self.game.client.update_player(self.player1.facing)
             else:
                 self.game.add_clients_to_map(self.game.server.server.registry)                
+                self.game.server.update_client_map(str(self.game.client.client.cuuid))
             
+            # Update the location of the npc. Doesn't send network data.
             for npc in self.npcs:
                 char_dict ={"tile_pos": npc.tile_pos,
                             }
@@ -1240,9 +1243,6 @@ class World(tools._State):
                 char_dict ={"tile_pos": npc.tile_pos,
                             }
                 networking.update_client_location(npc, char_dict, self.game)
-#             if self.game.client.client.registered and self.game.client.populated:
-#                 self.game.client.update_player(self.player1.facing)
-#             self.game.server.update_client_map(str(self.game.client.client.cuuid))
 
 
     def get_pos_from_tilepos(self, tile_position):

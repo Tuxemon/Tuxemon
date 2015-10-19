@@ -515,7 +515,7 @@ class TuxemonClient():
             if event:
                 # Handle Key DOWN events
                 if event.type == pygame.KEYDOWN:
-                   
+                    event_type = "CLIENT_MOVE_START"
                     if event.key == pygame.K_UP:
                         key = "KEYDOWN"
                         direction = "up"
@@ -531,7 +531,7 @@ class TuxemonClient():
     
                 # Handle Key UP events
                 if event.type == pygame.KEYUP:
-                        
+                    event_type = "CLIENT_MOVE_COMPLETE"  
                     if event.key == pygame.K_UP:
                         key = "KEYUP"
                         direction = "up"
@@ -547,7 +547,7 @@ class TuxemonClient():
                 
                 if direction and key:
                     
-                    event_data = {"type": "CLIENT_MOVE_START",
+                    event_data = {"type": event_type,
                                   "direction": direction,
                                   "key": key,
                                   "char_dict": {"tile_pos": pd["tile_pos"],

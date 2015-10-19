@@ -698,13 +698,19 @@ class Npc(Player):
         # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
         # collisions.
         npc_positions = set()
+        collision_dict = {}
 
         # Get all the NPC's tile positions so we can check for collisions.
         for npc in game.npcs:
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
-            npc_positions.add( (npc_pos_x, npc_pos_y) )
-
+            npc_positions.add((npc_pos_x, npc_pos_y))
+        
+        # Make sure the NPC doesn't collide with the player too.    
+        player_pos_x = int(round(game.player1.tile_pos[0]))
+        player_pos_y = int(round(game.player1.tile_pos[1]))
+        npc_positions.add((player_pos_x, player_pos_y))
+        
         # Combine our map collision tiles with our npc collision positions
         for pos in npc_positions:
             collision_dict[pos] = "None"

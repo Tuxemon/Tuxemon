@@ -773,11 +773,11 @@ class World(tools._State):
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
-            # Reset our directions after moving.
-            npc.direction["up"] = False
-            npc.direction["down"] = False
-            npc.direction["left"] = False
-            npc.direction["right"] = False
+#             # Reset our directions after moving.
+#             npc.direction["up"] = False
+#             npc.direction["down"] = False
+#             npc.direction["left"] = False
+#             npc.direction["right"] = False
 
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")

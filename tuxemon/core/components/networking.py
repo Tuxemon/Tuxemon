@@ -142,10 +142,13 @@ class TuxemonServer():
             self.notify_populate_client(cuuid, event_data, sprite)
             
         elif event_data["type"] =="CLIENT_MOVE_START":
+            print "!!"
             sprite = self.server.registry[cuuid]["sprite"]
+            print sprite
             char_dict = event_data["char_dict"]
             sprite.facing = event_data["direction"]
-            update_client_location(sprite, char_dict, self.game)
+            sprite.direction = event_data["direction"]
+            #update_client_location(sprite, char_dict, self.game)
             self.notify_client_move(sprite, tile_pos=char_dict["tile_pos"], facing=event_data["direction"])
 #         if event_data["key"] == "KEYDOWN":
 #             client.direction[event_data["direction"]] = True

@@ -70,6 +70,9 @@ class Npc(object):
         npc.behavior = behavior
         npc.ai = ai.AI()
         npc.scale_sprites(world.scale)
+        npc.walkrate *= world.scale
+        npc.runrate *=world.scale
+        npc.moverate = npc.walkrate
 
         # Set the NPC's pixel position based on its tile position, tile size, and
         # current global_x/global_y variables

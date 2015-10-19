@@ -142,7 +142,7 @@ class TuxemonServer():
         """
         if event_data["type"] == "PUSH_SELF":
             sprite = populate_client(cuuid, event_data, self.server.registry, self.game)
-            update_client_location(sprite, event_data["char_dict"], game)
+            update_client_location(sprite, event_data["char_dict"], self.game)
             self.notify_populate_client(cuuid, event_data, sprite)
             
         elif event_data["type"] =="CLIENT_MOVE_START":

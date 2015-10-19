@@ -692,6 +692,7 @@ class Control(object):
         :returns: None
 
         """ 
+        
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]

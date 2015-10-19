@@ -1,5 +1,6 @@
 from middleware import Multiplayer
 from core.components import player
+from core.components.event.actions.npc import Npc
 from core import prepare
 
 from neteria.server import NeteriaServer
@@ -167,7 +168,7 @@ class TuxemonServer():
             sprite = self.server.registry[cuuid]["sprite"]
             for d in sprite.direction:
                 sprite.direction[d] = False
-            self.update_client_map(cuuid, event_data)
+            #self.update_client_map(cuuid, event_data)
 
     
     def update_client_map(self, cuuid, event_data=None):
@@ -476,19 +477,7 @@ class TuxemonClient():
                       "map_name": map_name,
                       "char_dict": {
                                   "tile_pos": pd["tile_pos"],
-                                  "game_variables": pd["game_variables"],
-                                  "inventory": pd["inventory"],
-                                  "tile_size": pd["tile_size"],
-                                  "runrate": pd["runrate"],
-                                  "monsters": pd["monsters"],
-                                  "direction": pd["direction"],
-                                  "running": pd["running"],
-                                  "moving": pd["moving"],
-                                  "walkrate": pd["walkrate"],
-                                  "name": pd["name"],
-                                  "party_limit": pd["party_limit"],
-                                  "moverate": pd["moverate"],
-                                  "facing": pd["facing"],
+                                  "name": pd["name"]
                                   }
                       }
         self.client.event(event_data)
@@ -624,13 +613,14 @@ def populate_client(cuuid, event_data, registry, game):
     char_dict = event_data["char_dict"]
     sn = str(event_data["sprite_name"])
     nm = str(char_dict["name"])
-    sprite = player.Npc(sprite_name=sn, 
-                         name=nm)
+    tile_pos_x = int(char_dict["tile_pos"][0])
+    tile_pos_y = int(char_dict["tile_pos"][1])
+    
+    sprite = Npc().create_npc(game,(None, str(nm)+","+str(tile_pos_x)+","+str(tile_pos_y)+","+str(sn)+",network"))
+    
     registry[cuuid]["sprite"] = sprite
     registry[cuuid]["map_name"] = event_data["map_name"]
     client = registry[cuuid]["sprite"]
-    game.scale_new_player(client)
-    update_client_location(sprite, char_dict, game)
     return sprite
 
 

@@ -79,6 +79,7 @@ class Npc(object):
 
         # Add the NPC to the game's NPC list
         world.npcs.append(npc)
+        return npc
 
     def pathfind(self, game, action):
         '''

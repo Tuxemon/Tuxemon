@@ -352,20 +352,20 @@ class Player(object):
         This method will ensure movement will happen until the player
         reaches its destination
         '''
-        print "move_by_path()"
+        #print "move_by_path()"
         # TODO maybe this function could be organized better
         if self.path and not self.moving:
             # get the next step of the plan
             next_plan_step = self.path[len(self.path)-1]
             # round self.tile_pos
             my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-            print "my_tile_pos="+str(my_tile_pos)+" next plan step is " + str(next_plan_step)
+            #print "my_tile_pos="+str(my_tile_pos)+" next plan step is " + str(next_plan_step)
             # make sure it's adjacent to current location
             adj_x = abs(int(round(my_tile_pos[0])) - int(round(next_plan_step[0]))) == 1
             adj_y = abs(int(round(my_tile_pos[1])) - int(round(next_plan_step[1]))) == 1
             # do xor to invalidate diagonal adjacency
             if (adj_x and not adj_y) or (not adj_x and adj_y):
-                print "tiles are adjacent!!!"
+                #print "tiles are adjacent!!!"
                 # adjacent is true, so execute move to next plan step
                 # get direction we need to move
                 if my_tile_pos[0] > next_plan_step[0]:
@@ -595,7 +595,7 @@ class Player(object):
                     path.append(pathnode.get_value())
                     pathnode = pathnode.get_parent()
 
-                print "path is " + str(path)
+                #print "path is " + str(path)
 
                 # last minute check to remove the top plan step if
                 # it's the same as our location
@@ -637,7 +637,7 @@ class Player(object):
 
             # recur
             path = self.pathfind_r(dest,queue,visited,depth+1,game)
-            #print "path is: " + str(path)
+            ##print "path is: " + str(path)
             return path
 
     def get_adjacent_tiles(self, curr_loc, game):
@@ -790,9 +790,9 @@ class Npc(Player):
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
         player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-        print self.name
-        print "self.tile_pos:", self.tile_pos
-        print "self.tile_destination:", self.tile_destination
+        #print self.name
+        #print "self.tile_pos:", self.tile_pos
+        #print "self.tile_destination:", self.tile_destination
         
 
         # *** Here we're continuing a move if we're in the middle of one already *** #

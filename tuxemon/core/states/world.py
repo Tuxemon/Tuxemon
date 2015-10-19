@@ -38,6 +38,7 @@ import os
 import pprint
 
 # Import Tuxemon internal libraries
+import core.components.networking
 from .. import tools, prepare
 from ..components import screen
 from ..components import config
@@ -48,6 +49,7 @@ from ..components import event
 from ..components import save
 from ..components import monster
 from ..components import cli
+
 from . import combat
 from . import start
 
@@ -1154,6 +1156,16 @@ class World(tools._State):
 
                 # Clear out any existing NPCs
                 self.npcs = []
+                if self.game.client.client.registered and self.game.client.populated:
+                    self.game.add_clients_to_map(self.game.client.client.registry)
+                else:
+                    self.game.add_clients_to_map(self.game.server.server.registry)                
+                
+                for npc in self.npcs:
+                    char_dict ={"tile_pos": npc.tile_pos,
+                                }
+                    update_client_location(npc, char_dict, self.game)
+                    
 
                 # Scale the loaded tiles if enabled
                 if prepare.CONFIG.scaling == "1":

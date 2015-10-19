@@ -1,8 +1,9 @@
 import pygame
 from core import prepare
-from core.components.menu import Menu
+from core.components.menu import NewMenu
+from core.components.ui import UserInterface
 
-class ItemMenu(Menu):
+class ItemMenu(NewMenu):
     """A class to create item menu objects. The item menu allows you to view and use items in your
     inventory.
 
@@ -29,115 +30,118 @@ class ItemMenu(Menu):
 
     """
 
-    def __init__(self, screen, resolution, game, name="Item Menu"):
+    def __init__(self, game, size=('100%', '100%'), position=(0, 0), name="Item Menu",
+                 background="resources/gfx/ui/item/item_menu_bg.png",
+                 background_color=(32, 104, 96), interactable=False, visible=False,
+                 children=[], parents=[], draw_border=False,
+                 border_images="default", border_animation_speed=0.2,
+                 arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2,
+                 menu_item_columns=1, menu_item_autospacing=True, menu_item_paging=False):
 
         # Initialize the parent menu class's default shit
-        Menu.__init__(self, screen, resolution, name)
+        NewMenu.__init__(self, game, size, position, name, background, background_color,
+                         visible=visible, draw_border=draw_border)
 
-        # Give this menu instance access to the main game object.
-        self.game = game
-
-        # Set the background color of our menu
-        self.color = (32, 104, 96)
-
-        # Load the item menu background image
-        self.background_image = prepare.BASEDIR + "resources/gfx/ui/item/item_menu_bg.png"
-        self.background_surface = pygame.image.load(self.background_image).convert()
-        self.background_surface = pygame.transform.scale(self.background_surface,
-            (prepare.SCREEN_SIZE[0], prepare.SCREEN_SIZE[1]))
+        # Set up our menu's default position.
+        from core import prepare, tools
+        resolution = prepare.SCREEN_SIZE
+        half_screen_width = tools.get_pos_from_percent('50%', resolution[0])
+        half_screen_height = tools.get_pos_from_percent('50%', resolution[1])
+        third_screen_width = tools.get_pos_from_percent('33.333%', resolution[0])
+        quart_screen_width = tools.get_pos_from_percent('25%', resolution[0])
+        quart_screen_height = tools.get_pos_from_percent('25%', resolution[1])
+        fifth_screen_width = tools.get_pos_from_percent('20%', resolution[0])
+        fifth_screen_height = tools.get_pos_from_percent('20%', resolution[1])
+        sixth_screen_height = tools.get_pos_from_percent('16%', resolution[1])
 
         # Create the item menu's submenus.
-        self.decision_menu = Menu(screen, resolution, game)
-        self.item_list = Menu(screen, resolution, game)
-        self.info_menu = Menu(screen, resolution, game)
-
-        # Add the submenus as this menu's children
-        self.add_child(self.decision_menu)
-        self.add_child(self.item_list)
-        self.add_child(self.info_menu)
-
-        # Scale the sides of all the submenus
-        for menu in self.children:
-
-            # Scale the font and selection arrow to the appropriate size.
-            menu.font = pygame.font.Font(
-                prepare.BASEDIR + "resources/font/PressStart2P.ttf", menu.font_size * prepare.SCALE)
-            menu.arrow = pygame.transform.scale(
-                menu.arrow,
-                (menu.arrow.get_width() * prepare.SCALE, menu.arrow.get_height() * prepare.SCALE))
-
-            # Scale the window's borders based on the game's scale.
-            for key, border in menu.border.items():
-                menu.border[key] = pygame.transform.scale(
-                    border,
-                    (border.get_width() * prepare.SCALE, border.get_height() * prepare.SCALE))
-
-        # Set up our submenus.
-        self.decision_menu.size_x = prepare.SCREEN_SIZE[0] / 5
-        self.decision_menu.size_y = prepare.SCREEN_SIZE[1] / 6
-        self.decision_menu.pos_x = prepare.SCREEN_SIZE[0] - self.decision_menu.size_x - \
-            (self.decision_menu.border["left-top"].get_height() * 2)
-        self.decision_menu.pos_y = prepare.SCREEN_SIZE[1] - self.decision_menu.size_y - \
-            (self.decision_menu.border["left-top"].get_height() * 2)
-        self.decision_menu.visible = False
-        self.decision_menu.interactable = False
-
-        self.info_menu.size_x = prepare.SCREEN_SIZE[0]
-        self.info_menu.size_y = int(prepare.SCREEN_SIZE[1] / 4.2)
-        self.info_menu.pos_x = 0
-        self.info_menu.pos_y = prepare.SCREEN_SIZE[1] - self.info_menu.size_y
-        #self.info_menu.color = (0, 120, 192)
-        self.info_menu.visible = True
-        self.info_menu.interactable = False
-
-        self.item_list.size_x = int((prepare.SCREEN_SIZE[0] / 3) * 2)
-        self.item_list.size_y = int(prepare.SCREEN_SIZE[1] - self.info_menu.size_y)
-        self.item_list.pos_x = int(prepare.SCREEN_SIZE[0] / 3)
-        self.item_list.pos_y = 0
-        self.item_list.visible = True
-        self.item_list.interactable = True
+        self.decision_menu = self._create_descision_menu()
+        self.info_menu = self._create_info_menu()
+        self.item_list = self._create_item_list_menu()
 
         # Load the backpack icon
-        self.backpack = {}
-        self.backpack['image'] = prepare.BASEDIR + "resources/gfx/ui/item/backpack.png"
-        self.backpack['surface'] = pygame.image.load(self.backpack['image']).convert_alpha()
-        self.backpack['surface'] = pygame.transform.scale(
-            self.backpack['surface'],
-            (self.backpack['surface'].get_width() * prepare.SCALE,
-             self.backpack['surface'].get_height() * prepare.SCALE))
-        self.backpack['pos_x'] = (self.item_list.pos_x / 2) - \
-            (self.backpack['surface'].get_width() / 2)
-        self.backpack['pos_y'] = prepare.SCREEN_SIZE[1] - self.info_menu.size_y - \
-            (self.backpack['surface'].get_height() * 1.2)
+        self.backpack = UserInterface("resources/gfx/ui/item/backpack.png", (0, 0), game.screen)
+        x = (self.item_list.position[0] / 2) - \
+            (self.backpack.width / 2)
+        y = resolution[1] - self.info_menu.height - \
+            (self.backpack.height * 1.2)
+        self.backpack.position = [x, y]
 
+    def _create_descision_menu(self):
+        # Set up our menu's default position.
+        from core import prepare, tools
+        resolution = prepare.SCREEN_SIZE
+        fifth_screen_width = tools.get_pos_from_percent('20%', resolution[0])
+        sixth_screen_height = tools.get_pos_from_percent('16%', resolution[1])
+
+        decision_menu = NewMenu(game, visible=False, interactable=False)
+        width = fifth_screen_width
+        height = sixth_screen_height
+        x = resolution[0] - width - decision_menu.border_thickness
+        y = resolution[1] - height - decision_menu.border_thickness
+        decision_menu.set_size(width, height)
+        decision_menu.set_position(x, y)
+        self.add_child(decision_menu)
+
+        return decision_menu
+
+    def _create_info_menu(self):
+        # Set up our menu's default position.
+        from core import prepare, tools
+        resolution = prepare.SCREEN_SIZE
+        quart_screen_height = tools.get_pos_from_percent('23%', resolution[1])
+
+        info_menu = NewMenu(game, visible=True, interactable=False)
+        width = resolution[0]
+        height = quart_screen_height
+        x = 0
+        y = resolution[1] - height
+        info_menu.set_size(width, height)
+        info_menu.set_position(x, y)
+        self.add_child(info_menu)
+
+        return info_menu
+
+    def _create_item_list_menu(self):
+        # Set up our menu's default position.
+        from core import prepare, tools
+        resolution = prepare.SCREEN_SIZE
+        third_screen_width = tools.get_pos_from_percent('33.333%', resolution[0])
+        quart_screen_height = tools.get_pos_from_percent('25%', resolution[1])
+
+        item_list = NewMenu(game, visible=True, interactable=True)
+        width = third_screen_width * 2
+        height = resolution[1] - self.info_menu.height
+        x = third_screen_width
+        y = 0
+        item_list.set_size(width, height)
+        item_list.set_position(x, y)
+        self.add_child(item_list)
+
+        return item_list
 
     def draw(self, draw_borders=True, fill_background=False):
 
         # We can call the draw function from our parent "Menu" class, and also draw
         # some additional stuff specifically for the Item Menu.
-        Menu.draw(self, draw_borders, fill_background)
+        super(NewMenu, self).draw()
 
-        # Draw our background image.
-        self.screen.blit(self.background_surface, (0,0))
-
-        # Draw the backpage icon.
-        self.screen.blit(self.backpack['surface'],
-            (self.backpack['pos_x'], self.backpack['pos_y']))
+        self.backpack.draw()
 
         # If the item list submenu is visible, draw it and its menu items.
         if self.item_list.visible:
-            self.item_list.draw(draw_borders=False, fill_background=False)
+            self.item_list.draw()
 
             items = []
             for item_name, item_details in self.game.player1.inventory.items():
                 items.append(item_name)
 
             #self.item_list.line_spacing = 250
-            self.item_list.draw_textItem(items, pos_y=prepare.SCREEN_SIZE[1]/10, paging=True)
+            self.item_list.set_text_menu_items(items)
 
         # If the info submenu is visible, draw it and its menu items.
         if self.info_menu.visible:
-            self.info_menu.draw(draw_borders=False, fill_background=True)
+            self.info_menu.draw()
 
             # Draw the image of the currently selected item.
             if len(self.item_list.menu_items) > 0:

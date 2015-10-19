@@ -45,7 +45,9 @@ except ImportError:
     android = None
 
 # Get the tuxemon base directory
-BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + "/"
+BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + os.sep
+if "library.zip" in BASEDIR:
+    BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
 
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(BASEDIR + "tuxemon.cfg")

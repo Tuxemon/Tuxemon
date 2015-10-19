@@ -14,9 +14,10 @@ Programming
 
 * [Nathan Moore](https://git.tuxemon.org:3000/u/Nate-Devv) for the experience system
 * [C Nelson](https://git.tuxemon.org:3000/u/cnelsonsic) for pep8 auditing
-* [Arsène Thieffry](https://git.tuxemon.org:3000/u/druz320) for menu sorting
+* [Arsène Thieffry](https://github.com/druz320) for menu sorting and bug fixes
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
+* [treetrunk](https://github.com/treetrunk) for creature catching variability and bug fixes
 
 
 Graphics
@@ -130,6 +131,11 @@ Maps
 * ["Map1 v1"](http://tuxemon.weebly.com/maps.html)
 by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+* ["Healing Center"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrunk](https://github.com/treetrunk)
+is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+* ["Professor's Lab"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrunk](https://github.com/treetrunk)
+is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+
 
 
 Fonts

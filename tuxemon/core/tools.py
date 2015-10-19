@@ -686,14 +686,12 @@ class Control(object):
         :returns: None
 
         """ 
-        
+        self.state_dict["WORLD"].npcs = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
                 client_map = registry[client]["map_name"]
-                current_map_path = self.state_dict["WORLD"].current_map.filename
-                current_map = current_map_path.replace(prepare.BASEDIR, "")
-                
+                current_map = self.get_map_name()
                 
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:

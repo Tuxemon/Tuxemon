@@ -151,6 +151,8 @@ class TuxemonServer():
             sprite = self.server.registry[cuuid]["sprite"]
             char_dict = event_data["char_dict"]
             sprite.facing = direction
+            for d in sprite.direction:
+                if sprite.direction[d]: sprite.direction[d] = False
             sprite.direction[direction] = True
             #update_client_location(sprite, char_dict, self.game)
             self.notify_client_move(sprite, char_dict["tile_pos"], event_data["direction"])

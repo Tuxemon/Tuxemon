@@ -315,13 +315,15 @@ class Monster(object):
         self.special_defense += int(
             self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
 
-        print "---- Level: %s ----" % self.level
+        # Display stats each time they are calculated 
+        """print "---- Level: %s ----" % self.level
         print "HP:", self.hp
         print "Attack:", self.attack
         print "Defense:", self.defense
         print "Speed:", self.speed
         print "Spc Atk:", self.special_attack
         print "Spc Def:", self.special_defense
+        """
 
     def level_up(self):
         """Increases a Monster's level by one and increases stats

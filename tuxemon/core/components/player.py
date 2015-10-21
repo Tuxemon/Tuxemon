@@ -306,7 +306,7 @@ class Player(object):
                         self.move_direction = "up"
                         if game.client.client.registered and game.client.populated:
                             game.client.update_player("up", event_type="CLIENT_MOVE_START")
-                        game.server.notify_client_move(self.game.client.client.cuuid,
+                        game.server.notify_client_move(game.client.client.cuuid,
                                                        self, self.tile_pos,
                                                        self.facing,
                                                        event_type="NOTIFY_CLIENT_MOVE"
@@ -322,7 +322,7 @@ class Player(object):
                         self.move_direction = "down"
                         if game.client.client.registered and game.client.populated:
                             game.client.update_player("down", event_type="CLIENT_MOVE_START")
-                        game.server.notify_client_move(self.game.client.client.cuuid,
+                        game.server.notify_client_move(game.client.client.cuuid,
                                                        self, 
                                                        self.tile_pos, 
                                                        self.facing, 
@@ -338,7 +338,7 @@ class Player(object):
                         self.move_direction = "left"
                         if game.client.client.registered and game.client.populated:
                             game.client.update_player("left", event_type="CLIENT_MOVE_START")
-                        game.server.notify_client_move(self.game.client.client.cuuid, 
+                        game.server.notify_client_move(game.client.client.cuuid, 
                                                        self, 
                                                        self.tile_pos, 
                                                        self.facing, 
@@ -354,7 +354,7 @@ class Player(object):
                         self.move_direction = "right"
                         if game.client.client.registered and game.client.populated:
                             game.client.update_player("right", event_type="CLIENT_MOVE_START")
-                        game.server.notify_client_move(self.game.client.client.cuuid,
+                        game.server.notify_client_move(game.client.client.cuuid,
                                                        self,
                                                        self.tile_pos,
                                                        self.facing,
@@ -370,7 +370,7 @@ class Player(object):
                     self.anim_playing = False
                     if game.client.client.registered and game.client.populated:
                         game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
-                    game.server.notify_client_move(self.game.client.client.cuuid,
+                    game.server.notify_client_move(game.client.client.cuuid,
                                                    self,
                                                    self.tile_pos,
                                                    self.facing,

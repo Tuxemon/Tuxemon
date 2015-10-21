@@ -156,14 +156,14 @@ class TuxemonServer():
                 if sprite.direction[d]: sprite.direction[d] = False
             sprite.direction[direction] = True
             #update_client_location(sprite, char_dict, self.game)
-            self.notify_client_move(sprite, char_dict["tile_pos"], event_data["direction"])
+            self.notify_client_move(event_data["cuuid"], sprite, char_dict["tile_pos"], event_data["direction"])
        
         elif event_data["type"] == "CLIENT_MOVE_COMPLETE":
             #pp.pprint("Client Move Complete")
             #pp.pprint(event_data)
             sprite = self.server.registry[cuuid]["sprite"]
             char_dict = event_data["char_dict"]
-            self.notify_client_move(sprite, char_dict["tile_pos"], sprite.facing, event_type="NOTIFY_MOVE_COMPLETE")
+            self.notify_client_move(event_data["cuuid"], sprite, char_dict["tile_pos"], sprite.facing, event_type="NOTIFY_MOVE_COMPLETE")
             for d in sprite.direction:
                 if sprite.direction[d]: sprite.direction[d] = False
             
@@ -215,7 +215,7 @@ class TuxemonServer():
             self.server.notify(client_id, event_data)
 
 
-    def notify_client_move(self, sprite, tile_pos, facing, event_type="NOTIFY_CLIENT_MOVE"):
+    def notify_client_move(self, cuuid, sprite, tile_pos, facing, event_type="NOTIFY_CLIENT_MOVE"):
         """Updates all clients with location a player that moved.
 
         :param sprite: Clients local copy of their character.
@@ -231,35 +231,29 @@ class TuxemonServer():
 
         """
         
-        client_id = str(self.game.client.client.cuuid)
-        for cuuid in self.server.registry:
+
+        for client_id in self.server.registry:
             # Don't notify a player that they themselves moved.
-            if sprite == self.server.registry[cuuid]["sprite"]:
-                client_id = cuuid
+            if client_id == cuuid: continue
         
-        for cuuid in self.server.registry:
-            # Don't notify a player that they themselves moved.
-            if sprite == self.server.registry[cuuid]["sprite"]:
-                pass
             # Notify client of the players new position.
-            elif sprite != self.server.registry[cuuid]["sprite"]:
+            elif client_id != cuuid:
                 event_data = {"type": event_type,
-                              "cuuid": client_id,
+                              "cuuid": cuuid,
                               "direction": facing,
                               "char_dict":{"tile_pos": tile_pos
                                            }
                               }
                 #pp.pprint(event_type)
                 #pp.pprint(event_data)
-                self.server.notify(cuuid, event_data)
+                self.server.notify(client_id, event_data)
 
 
     def notify_populate_client(self, cuuid, event_data, sprite):
     
         for client_id in self.server.registry:
             # Don't notify a player that they themselves populated.
-            if client_id == cuuid:
-                continue
+            if client_id == cuuid:continue
             
             elif client_id != cuuid:
                 # Send the new client data to this client

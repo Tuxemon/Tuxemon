@@ -66,7 +66,8 @@ class Player(object):
         self.name = name			# This is the player's name to be used in dialog
         self.ai = None              # Whether or not this player has AI associated with it
         self.sprite = {}			# The pyganim object that contains the player animations
-
+        self.sprite_name = sprite_name # Hold on the the string so it can be sent over the network
+        
         # Get all of the player's standing animation images.
         self.standing = {}
         standing_types = ["front", "back", "left", "right"]

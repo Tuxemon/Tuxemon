@@ -1174,10 +1174,6 @@ class World(tools._State):
                 self.tiles, self.collision_map, self.collision_lines_map, self.map_size = self.current_map.loadfile(
                     self.tile_size)
                 self.game.events = self.current_map.events
-                
-                # Update the server of our new map.
-                if self.game.client.client.registered and self.game.client.populated:
-                    self.game.client.update_player(self.player1.facing)
 
                 # Clear out any existing NPCs
                 self.npcs = []

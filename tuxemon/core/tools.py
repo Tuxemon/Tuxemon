@@ -61,6 +61,8 @@ except ImportError:
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
+
+# Create a pretty printer for debugging
 pp = pprint.PrettyPrinter(indent=4)
 
 class Control(object):

@@ -258,11 +258,10 @@ class TuxemonServer():
     
         for client_id in self.server.registry:
             # Don't notify a player that they themselves populated.
-            if sprite == self.server.registry[client_id]["sprite"]:
-                pass
-            # Notify client of the players new position.
-            elif sprite != self.server.registry[client_id]["sprite"]:
-                
+            if client_id == cuuid:
+                continue
+            
+            elif client_id != cuuid:
                 # Send the new client data to this client
                 new_event_data_1 = {"type": "NOTIFY_CLIENT_NEW",
                                   "cuuid": cuuid,
@@ -270,34 +269,41 @@ class TuxemonServer():
                                   "map_name": event_data["map_name"],
                                   "char_dict": event_data["char_dict"]
                                   }
+                pp.pprint("new_event_data_1")
+                pp.pprint(new_event_data_1)
                 self.server.notify(client_id, new_event_data_1)
                 
                 # Send this clients data to the new client
-                pd = self.server.registry[cuuid]["sprite"].__dict__
+                pd = self.server.registry[client_id]["sprite"].__dict__
                 new_event_data_2 = {"type": "NOTIFY_CLIENT_NEW",
                                   "cuuid": client_id,
-                                  "sprite_name": event_data["sprite_name"],
-                                  "map_name": self.server.registry[cuuid]["map_name"],
+                                  "sprite_name": pd["sprite_name"],
+                                  "map_name": self.server.registry[client_id]["map_name"],
                                   "char_dict": {"tile_pos": pd["tile_pos"],
                                                 "name": pd["name"],
                                                 "facing": pd["facing"]
                                                 } 
                                   }
+                pp.pprint("new_event_data_2")
+                pp.pprint(new_event_data_2)
                 self.server.notify(cuuid, new_event_data_2)
+                
         
         # Send server characters data to the new client
         # Server's character is not in the registry
         map_name = self.game.get_map_name()
-        pd = self.game.state_dict["WORLD"].player1.__dict__
+        pd2 = self.game.state_dict["WORLD"].player1.__dict__
         new_event_data_3 = {"type": "NOTIFY_CLIENT_NEW",
                           "cuuid": str(self.game.client.client.cuuid),
                           "sprite_name": event_data["sprite_name"],
                           "map_name": map_name,
-                          "char_dict": {"tile_pos": pd["tile_pos"],
-                                        "name": pd["name"],
-                                        "facing": pd["facing"]
+                          "char_dict": {"tile_pos": pd2["tile_pos"],
+                                        "name": pd2["name"],
+                                        "facing": pd2["facing"]
                                         } 
                           }
+        pp.pprint("new_event_data_3")
+        pp.pprint(new_event_data_3)
         self.server.notify(cuuid, new_event_data_3)
 
 

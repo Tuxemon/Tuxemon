@@ -96,6 +96,7 @@ class Control(object):
         # Set up our networking for Multiplayer and Controls
         self.server = TuxemonServer(self)
         self.client = TuxemonClient(self)
+        pp.pprint(self.client.client.cuuid)
         
         # Set up our game's configuration from the prepare module.
         from core import prepare

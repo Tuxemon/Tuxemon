@@ -405,7 +405,7 @@ class TuxemonClient():
             if event_data["type"] == "NOTIFY_CLIENT_MOVE":
                 #pp.pprint("Notify Move Start")
                 #pp.pprint(event_data)
-            
+                
                 direction = str(event_data["direction"])
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
@@ -417,6 +417,7 @@ class TuxemonClient():
                 #pp.pprint(event_data)
             
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
+                sprite.final_move_dest = char_dict["tile_pos"]
                 for d in sprite.direction:
                     if sprite.direction[d]: sprite.direction[d] = False
                 del self.client.event_notifies[euuid]

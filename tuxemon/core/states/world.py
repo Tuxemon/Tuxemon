@@ -775,16 +775,17 @@ class World(tools._State):
                 npc.move_by_path()
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
-
-#             # Reset our directions after moving.
-#             npc.direction["up"] = False
-#             npc.direction["down"] = False
-#             npc.direction["left"] = False
-#             npc.direction["right"] = False
-
+            
+            if npc.update_location:
+                char_dict ={"tile_pos": npc.final_move_dest,
+                            }
+                networking.update_client_location(npc, char_dict, self.game)
+                npc.update_location = False
+                
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
         
+        # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map:
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
@@ -792,23 +793,16 @@ class World(tools._State):
             npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
                 self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
-            # If the NPC is not visible on the screen, don't draw him
-            #if self.screen_rect.colliderect(npc.rect):
-            #    npc.move(self.screen, self.tile_size, self.time_passed_seconds, (     #### Disabled for now
-            #        npc.position[0], npc.position[1]), self)
-
             # Move the NPC with the map as it moves
             npc.position[0] -= self.global_x_diff
             npc.position[1] -= self.global_y_diff
-
-            # debug info
-            #print "npc.tile_pos="+str(npc.tile_pos)
 
             # if the npc has a path, move it along its path
             if npc.path:
                 npc.move_by_path()
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
+        
         # Draw the bottom half of the player
         self.player1.draw(self.screen, "bottom")
 
@@ -1229,7 +1223,7 @@ class World(tools._State):
                 self.game.add_clients_to_map(self.game.server.server.registry)                
                 self.game.server.update_client_map(str(self.game.client.client.cuuid))
             
-            # Update the location of the npc. Doesn't send network data.
+            # Update the location of the npcs. Doesn't send network data.
             for npc in self.npcs:
                 char_dict ={"tile_pos": npc.tile_pos,
                             }

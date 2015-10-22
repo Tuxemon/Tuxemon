@@ -633,7 +633,7 @@ class Control(object):
 
         :param sprite: Player sprite from the server registry. 
         
-        :type sprite: -- core.components.player.Player object
+        :type sprite: -- Player or Npc object from core.components.player
 
         :rtype: None
         :returns: None
@@ -683,7 +683,9 @@ class Control(object):
         If they are still being displayed and have left the map it will remove them from 
         the map.
 
-        :param: None
+        :param registry: Locally hosted Neteria client/server registry.
+        
+        :type registry: Dictionary
         
         :rtype: None
         :returns: None
@@ -703,16 +705,15 @@ class Control(object):
                         self.state_dict["WORLD"].npcs.append(sprite)
                     while sprite in self.state_dict["WORLD"].npcs_off_map:
                         self.state_dict["WORLD"].npcs_off_map.remove(sprite)
-                        
+
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
                     if not sprite in self.state_dict["WORLD"].npcs_off_map:
                         self.state_dict["WORLD"].npcs_off_map.append(sprite)
                     while sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.remove(sprite)
-                        
-                        
-    
+
+
     def get_map_name(self):
         """Gets the map of the player.
 

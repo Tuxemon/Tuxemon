@@ -34,6 +34,7 @@ import pygame
 import pprint
 import time
 from core import prepare
+
 from . import pyganim
 from . import ai
 from . import config
@@ -67,6 +68,7 @@ class Player(object):
         self.ai = None              # Whether or not this player has AI associated with it
         self.sprite = {}			# The pyganim object that contains the player animations
         self.sprite_name = sprite_name # Hold on the the string so it can be sent over the network
+        self.isplayer = True
         
         # Get all of the player's standing animation images.
         self.standing = {}
@@ -99,6 +101,7 @@ class Player(object):
         self.tile_pos = (0,0)       # This is the position of the player based on tile
         self.tile_size = [16,16]
         self.move_destination = [0,0]		# The player's destination location to move to
+        self.final_move_dest = [0,0]        # Stores the final destination sent from a client
         #self.colliding = False			# To check and see if we're colliding with anything
         self.rect = pygame.Rect(self.position[0], self.position[1], self.playerWidth, self.playerHeight) # Collision rect
         self.game_variables = {}		# Game variables for use with events
@@ -697,6 +700,8 @@ class Npc(Player):
 
         self.name = name
         self.behavior = "wander"
+        self.isplayer = False
+        self.update_location = False
 
         # These attributes are used with the new movement system
         self.walkrate = 1.1                 # Tiles per second walk rate
@@ -767,6 +772,7 @@ class Npc(Player):
         # the middle of a move
         if self.direction["up"] or self.direction["down"] or self.direction["left"] or self.direction["right"]:
             # If we've pressed any arrow key, play the move animations
+            self.anim_playing = True
             self.moveConductor.play()
             if not self.moving:
                 self.current_tile = [player_pos[0], player_pos[1]]
@@ -817,7 +823,11 @@ class Npc(Player):
         # and draw the standing gfx
         else:
             if not self.moving:
-                self.moveConductor.stop()
+                if self.anim_playing:
+                    self.anim_playing = False
+                    self.moveConductor.stop()
+                    if self.isplayer and self.tile_pos != self.final_move_dest:
+                        self.update_location = True
 
 
     def _continue_move(self, collision_dict, tile_size, time_passed_seconds, game):

@@ -100,7 +100,7 @@ class Player(object):
 
                 # Clear out any existing NPCs
                 world.npcs = []
-
+                    
                 # Scale the loaded tiles if enabled
                 if world.scale > 1:
                     x_pos = 0        # Here we need to keep track of the x index of the list
@@ -120,10 +120,17 @@ class Player(object):
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
-
+        
+        # Update the server/clients of our new map and populate any other players.
+        if game.client.client.registered and game.client.populated:
+            game.add_clients_to_map(game.client.client.registry)
+            game.client.update_player(player.facing)
+        else:
+            game.add_clients_to_map(game.server.server.registry)                
+            game.server.update_client_map(str(game.client.client.cuuid))
+            
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False
-
 
     def transition_teleport(self, game, action):
         """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
@@ -147,7 +154,6 @@ class Player(object):
         ('teleport', 'pallet_town-room.tmx,5,5,2,2', '1', 1)
 
         """
-
         # Get the teleport parameters for the position x,y and the map to load.
         parameters = action[1].split(",")
         mapname = parameters[0]

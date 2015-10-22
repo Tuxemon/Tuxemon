@@ -45,7 +45,6 @@ class TuxemonServer():
         
         for interface in self.interfaces:
                         ip = self.interfaces[interface]
-                        print ip
                         if ip == "127.0.0.1": continue
                         else: self.ips.append(ip)
         
@@ -303,8 +302,8 @@ class TuxemonServer():
                                   "map_name": event_data["map_name"],
                                   "char_dict": event_data["char_dict"]
                                   }
-                pp.pprint("new_event_data_1")
-                pp.pprint(new_event_data_1)
+                #pp.pprint("new_event_data_1")
+                #pp.pprint(new_event_data_1)
                 self.server.notify(client_id, new_event_data_1)
                 
                 # Send this clients data to the new client
@@ -318,8 +317,8 @@ class TuxemonServer():
                                                 "facing": pd["facing"]
                                                 } 
                                   }
-                pp.pprint("new_event_data_2")
-                pp.pprint(new_event_data_2)
+                #pp.pprint("new_event_data_2")
+                #pp.pprint(new_event_data_2)
                 self.server.notify(cuuid, new_event_data_2)
                 
         
@@ -336,8 +335,8 @@ class TuxemonServer():
                                         "facing": pd2["facing"]
                                         } 
                           }
-        pp.pprint("new_event_data_3")
-        pp.pprint(new_event_data_3)
+        #pp.pprint("new_event_data_3")
+        #pp.pprint(new_event_data_3)
         self.server.notify(cuuid, new_event_data_3)
 
 
@@ -410,8 +409,8 @@ class TuxemonClient():
         for euuid, event_data in self.client.event_notifies.items():
             
             if event_data["type"] == "NOTIFY_CLIENT_NEW":
-                pp.pprint("Notify Client New")
-                pp.pprint(event_data)
+                #pp.pprint("Notify Client New")
+                #pp.pprint(event_data)
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
                 sprite = populate_client(event_data["cuuid"], event_data, self.client.registry, self.game)
@@ -552,8 +551,8 @@ class TuxemonClient():
                       "char_dict": {"tile_pos": pd["tile_pos"]
                                     }
                       }
-        pp.pprint("Update player")
-        pp.pprint(event_data)
+        #pp.pprint("Update player")
+        #pp.pprint(event_data)
         self.client.event(event_data)
     
         

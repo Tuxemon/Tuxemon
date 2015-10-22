@@ -725,6 +725,7 @@ class Control(object):
         """ 
         map_path = self.state_dict["WORLD"].current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
+        map_name = str(map_name.replace("resources/maps/", ""))
         return map_name
                         
 

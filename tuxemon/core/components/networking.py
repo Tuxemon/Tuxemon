@@ -586,6 +586,7 @@ def populate_client(cuuid, event_data, registry, game):
     
     sprite = Npc().create_npc(game,(None, str(nm)+","+str(tile_pos_x)+","+str(tile_pos_y)+","+str(sn)+",network"))
     sprite.isplayer = True
+    sprite.final_move_dest = sprite.tile_pos
     
     registry[cuuid]["sprite"] = sprite
     registry[cuuid]["map_name"] = event_data["map_name"]

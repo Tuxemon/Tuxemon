@@ -417,7 +417,7 @@ class TuxemonClient():
                 #pp.pprint(event_data)
             
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
-                sprite.final_move_dest = char_dict["tile_pos"]
+                sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
                     if sprite.direction[d]: sprite.direction[d] = False
                 del self.client.event_notifies[euuid]

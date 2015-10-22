@@ -33,8 +33,23 @@ class TuxemonServer():
         self.server = NeteriaServer(Multiplayer(self.game, self))
         self.network_events = []
         self.listening = False
+        self.interfaces = {}
+        self.ips = []
         
+        for device in netifaces.interfaces():
+            interface = netifaces.ifaddresses(device)
+            try:
+                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
+            except KeyError:
+                pass
         
+        for interface in self.interfaces:
+                        ip = self.interfaces[interface]
+                        print ip
+                        if ip == "127.0.0.1": continue
+                        else: self.ips.append(ip)
+        
+
     def update(self):
         """Updates the server state with information sent from the clients
 
@@ -376,6 +391,7 @@ class TuxemonClient():
             self.join_multiplayer(time_delta)
         
         if self.client.registered and not self.populated:
+            self.game.state_dict["PC"].multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
         
         self.check_notify()

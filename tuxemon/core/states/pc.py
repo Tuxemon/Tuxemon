@@ -94,14 +94,38 @@ class PC(tools._State):
         self.multiplayer_join_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
         self.multiplayer_join_menu.size_y = prepare.SCREEN_SIZE[1] / 5
         self.multiplayer_join_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
-            (self.multiplayer_menu.size_x / 2)
+            (self.multiplayer_join_menu.size_x / 2)
         self.multiplayer_join_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
-            (self.multiplayer_menu.size_y / 2)
+            (self.multiplayer_join_menu.size_y / 2)
         self.multiplayer_join_menu.visible = False
         self.multiplayer_join_menu.interactable = False
         
+        self.multiplayer_join_success_menu = pc_menu.Multiplayer_Join_Success_Menu(self.game.screen,
+                                              prepare.SCREEN_SIZE,
+                                              self.game)
+        self.multiplayer_join_success_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
+        self.multiplayer_join_success_menu.size_y = prepare.SCREEN_SIZE[1] / 5
+        self.multiplayer_join_success_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
+            (self.multiplayer_join_success_menu.size_x / 2)
+        self.multiplayer_join_success_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
+            (self.multiplayer_join_success_menu.size_y / 2)
+        self.multiplayer_join_success_menu.visible = False
+        self.multiplayer_join_success_menu.interactable = False
         
-        self.menus = [self.pc_menu, self.multiplayer_menu, self.multiplayer_join_menu]
+        self.multiplayer_host_menu = pc_menu.Multiplayer_Host_Menu(self.game.screen,
+                                              prepare.SCREEN_SIZE,
+                                              self.game)
+        self.multiplayer_host_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
+        self.multiplayer_host_menu.size_y = prepare.SCREEN_SIZE[1] / 5
+        self.multiplayer_host_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
+            (self.multiplayer_host_menu.size_x / 2)
+        self.multiplayer_host_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
+            (self.multiplayer_host_menu.size_y / 2)
+        self.multiplayer_host_menu.visible = False
+        self.multiplayer_host_menu.interactable = False
+        
+        self.menus = [self.pc_menu, self.multiplayer_menu, self.multiplayer_join_menu, 
+                      self.multiplayer_join_success_menu, self.multiplayer_host_menu]
         
         
         for menu in self.menus:
@@ -207,8 +231,13 @@ class PC(tools._State):
         :returns: None
 
         """
+        if self.multiplayer_join_success_menu.interactable:
+            self.game.get_menu_event(self.multiplayer_join_success_menu, event)
         
-        if self.multiplayer_join_menu.interactable:
+        elif self.multiplayer_host_menu.interactable:
+            self.game.get_menu_event(self.multiplayer_host_menu, event)
+            
+        elif self.multiplayer_join_menu.interactable:
             self.game.get_menu_event(self.multiplayer_join_menu, event)
         
         elif self.multiplayer_menu.interactable:
@@ -217,8 +246,6 @@ class PC(tools._State):
         elif self.pc_menu.interactable:
             self.game.get_menu_event(self.pc_menu, event)
             
-        
-        
 
     def draw(self):
         """Draws the start screen to the screen.
@@ -252,7 +279,14 @@ class PC(tools._State):
             if self.multiplayer_join_menu.selected_menu_item <= 0 and \
             len(self.multiplayer_join_menu.menu_items) > 0:
                 self.multiplayer_join_menu.selected_menu_item = 0
-                
+        
+        if self.multiplayer_join_success_menu.visible:
+            self.multiplayer_join_success_menu.draw()
+            self.multiplayer_join_success_menu.draw_textItem(self.multiplayer_join_success_menu.text)   
+        
+        if self.multiplayer_host_menu.visible:
+            self.multiplayer_host_menu.draw()
+            self.multiplayer_host_menu.draw_textItem(self.multiplayer_host_menu.text)  
             
     
     

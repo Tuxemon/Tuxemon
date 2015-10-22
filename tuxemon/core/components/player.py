@@ -704,7 +704,7 @@ class Npc(Player):
         self.update_location = False
 
         # These attributes are used with the new movement system
-        self.walkrate = 1.1                 # Tiles per second walk rate
+        self.walkrate = .65                 # Tiles per second walk rate
         self.runrate = 2.1                  # Tiles per second run rate
         self.moverate = self.walkrate
         self.tile_destination = [0, 0]

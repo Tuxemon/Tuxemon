@@ -370,7 +370,7 @@ class TuxemonClient():
         self.selected_game = None
         self.enable_join_multiplayer = False
         self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
-        self.join_self = True # Default False. Set True for testing on one device.
+        self.join_self = False # Default False. Set True for testing on one device.
         self.populated = False
         self.listening = False
     

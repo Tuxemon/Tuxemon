@@ -40,7 +40,7 @@ def main():
     """Add all available states to our scene manager (tools.Control)
     and start the game.
 
-    Currently available states are: "START", "WORLD", and "COMBAT".
+    Currently available states are: "START", "WORLD", "COMBAT", and "PC".
 
     :param None:
     

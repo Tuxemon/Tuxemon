@@ -26,7 +26,6 @@ class PCMenu(Menu):
         :returns: None
 
         """
-        
         if self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
             self.game.state.multiplayer_menu.previous_menu = self
             self.game.state.multiplayer_menu.visible = True

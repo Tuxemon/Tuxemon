@@ -65,91 +65,100 @@ class PC(tools._State):
         self.previous_menu = None
         self.menu_blocking = True
         
-        scale = prepare.SCALE
+         # Provide access to the screen surface
+        self.screen = game.screen
+        self.screen_rect = prepare.SCREEN_RECT
+
+        # Set the native tile size so we know how much to scale
+        self.tile_size = prepare.TILE_SIZE
+
+        # Set the status icon size so we know how much to scale
+        self.icon_size = prepare.ICON_SIZE
+
+        # Get the screen's resolution
+        self.resolution = prepare.SCREEN_SIZE
+
+        # Native resolution is similar to the old gameboy resolution. This is
+        # used for scaling.
+        self.native_resolution = prepare.NATIVE_RESOLUTION
+        self.scale = prepare.SCALE
         
-        self.pc_menu = pc_menu.PCMenu(self.game.screen, prepare.SCREEN_SIZE, self.game)
-        self.pc_menu.size_x= int(prepare.SCREEN_SIZE[0]*0.9)
-        self.pc_menu.size_y= int(prepare.SCREEN_SIZE[1]*0.9)
-        self.pc_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - (self.pc_menu.size_x/2)
-        self.pc_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - (self.pc_menu.size_y/2)
+        # Main PC menu.
+        self.pc_menu = pc_menu.PCMenu(self.screen,
+                                      self.resolution,
+                                      self.game)
+        
         self.pc_menu.interactable = True
+        self.pc_menu.size_ratio = [0.8, 0.3]
         
-        # This menu is just used to display a message that a particular
-        # feature is not yet implemented.
-        self.multiplayer_menu = pc_menu.Multiplayer_Menu(self.game.screen,
-                                              prepare.SCREEN_SIZE,
-                                              self.game)
-        self.multiplayer_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
-        self.multiplayer_menu.size_y = prepare.SCREEN_SIZE[1] / 5
-        self.multiplayer_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
-            (self.multiplayer_menu.size_x / 2)
-        self.multiplayer_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
-            (self.multiplayer_menu.size_y / 2)
+        # Main multiplayer menu.
+        self.multiplayer_menu = pc_menu.Multiplayer_Menu(self.screen,
+                                                         self.resolution,
+                                                         self.game)
         self.multiplayer_menu.visible = False
         self.multiplayer_menu.interactable = False
+        self.multiplayer_menu.size_ratio = [0.7, 0.3]
         
-        self.multiplayer_join_menu = pc_menu.Multiplayer_Join_Menu(self.game.screen,
-                                              prepare.SCREEN_SIZE,
-                                              self.game)
-        self.multiplayer_join_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
-        self.multiplayer_join_menu.size_y = prepare.SCREEN_SIZE[1] / 5
-        self.multiplayer_join_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
-            (self.multiplayer_join_menu.size_x / 2)
-        self.multiplayer_join_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
-            (self.multiplayer_join_menu.size_y / 2)
+        # Join a multiplayer game menu.
+        self.multiplayer_join_menu = pc_menu.Multiplayer_Join_Menu(self.screen,
+                                                                   self.resolution,
+                                                                   self.game)
         self.multiplayer_join_menu.visible = False
         self.multiplayer_join_menu.interactable = False
+        self.multiplayer_join_menu.size_ratio = [0.6, 0.2]
         
-        self.multiplayer_join_success_menu = pc_menu.Multiplayer_Join_Success_Menu(self.game.screen,
-                                              prepare.SCREEN_SIZE,
-                                              self.game)
-        self.multiplayer_join_success_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
-        self.multiplayer_join_success_menu.size_y = prepare.SCREEN_SIZE[1] / 5
-        self.multiplayer_join_success_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
-            (self.multiplayer_join_success_menu.size_x / 2)
-        self.multiplayer_join_success_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
-            (self.multiplayer_join_success_menu.size_y / 2)
+        # Successfully joined a game menu.
+        self.multiplayer_join_success_menu = pc_menu.Multiplayer_Join_Success_Menu(self.screen,
+                                                                                   self.resolution,
+                                                                                   self.game)
         self.multiplayer_join_success_menu.visible = False
         self.multiplayer_join_success_menu.interactable = False
+        self.multiplayer_join_success_menu.size_ratio = [0.6, 0.2]
         
-        self.multiplayer_host_menu = pc_menu.Multiplayer_Host_Menu(self.game.screen,
-                                              prepare.SCREEN_SIZE,
-                                              self.game)
-        self.multiplayer_host_menu.size_x = int(prepare.SCREEN_SIZE[0] / 1.5)
-        self.multiplayer_host_menu.size_y = prepare.SCREEN_SIZE[1] / 5
-        self.multiplayer_host_menu.pos_x = (prepare.SCREEN_SIZE[0] / 2) - \
-            (self.multiplayer_host_menu.size_x / 2)
-        self.multiplayer_host_menu.pos_y = (prepare.SCREEN_SIZE[1] / 2) - \
-            (self.multiplayer_host_menu.size_y / 2)
+        # Successfully host a game menu.
+        self.multiplayer_host_menu = pc_menu.Multiplayer_Host_Menu(self.screen,
+                                                                   self.resolution,
+                                                                   self.game)
         self.multiplayer_host_menu.visible = False
         self.multiplayer_host_menu.interactable = False
+        self.multiplayer_host_menu.size_ratio = [0.6, 0.2]
         
-        self.menus = [self.pc_menu, self.multiplayer_menu, self.multiplayer_join_menu, 
-                      self.multiplayer_join_success_menu, self.multiplayer_host_menu]
+        self.menus = [self.pc_menu, 
+                      self.multiplayer_menu, 
+                      self.multiplayer_join_menu, 
+                      self.multiplayer_join_success_menu, 
+                      self.multiplayer_host_menu
+                      ]
         
         
         for menu in self.menus:
-            menu.scale = scale    # Set the scale of the menu.
-            menu.set_font(size=menu.font_size * scale,
+            menu.scale = self.scale    # Set the scale of the menu.
+            menu.set_font(size=menu.font_size * self.scale,
                           font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
-                          spacing=menu.font_size * scale)
+                          spacing=menu.font_size * self.scale)
 
             # Scale the selection arrow image based on our game's scale.
             menu.arrow = pygame.transform.scale(
                 menu.arrow,
-                (menu.arrow.get_width() * scale,
-                 menu.arrow.get_height() * scale))
+                (menu.arrow.get_width() * self.scale,
+                 menu.arrow.get_height() * self.scale))
 
             # Scale the border images based on our game's scale.
             for key, border in menu.border.items():
                 menu.border[key] = pygame.transform.scale(
                     border,
-                    (border.get_width() * scale,
-                     border.get_height() * scale))
-
+                    (border.get_width() * self.scale,
+                     border.get_height() * self.scale))
         
-
+            # Set the menu size.
+            menu.size_x= int(self.resolution[0] * menu.size_ratio[0])
+            menu.size_y= int(self.resolution[1] * menu.size_ratio[1])
+            menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
+            menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
+    
+        
+        
     def startup(self, current_time, persistant):
         """Perform startup tasks when we switch to this scene.
 

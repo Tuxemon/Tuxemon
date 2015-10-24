@@ -466,9 +466,6 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
                 
             if event_data["type"] == "NOTIFY_CLIENT_MOVE":
-                #pp.pprint("Notify Move Start")
-                #pp.pprint(event_data)
-                
                 direction = str(event_data["direction"])
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
@@ -476,9 +473,6 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_MOVE_COMPLETE":
-                #pp.pprint("Notify Move Complete")
-                #pp.pprint(event_data)
-            
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
@@ -487,11 +481,10 @@ class TuxemonClient():
             
             if event_data["type"] == "NOTIFY_CLIENT_MAP":
                 self.update_client_map(event_data["cuuid"], event_data)
-#                 pp.pprint("Notify Map Changed")
-#                 pp.pprint(event_data)
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_CLIENT_KEYDOWN":
+                print "!"
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = True
@@ -504,6 +497,7 @@ class TuxemonClient():
                 
         
             if event_data["type"] == "NOTIFY_CLIENT_KEYUP":
+                print "!!"
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = False
@@ -669,7 +663,8 @@ class TuxemonClient():
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.
-            if len(self.game.server.server.registry) > 0:
+            if self.game.server.server.registry:
+                print "HUZZAH!"
                 event_type = "NOTIFY_" + event_type
                 self.game.server.notify_key_condition(self.client.cuuid, kb_key, event_type)
         

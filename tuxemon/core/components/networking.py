@@ -383,8 +383,8 @@ class TuxemonServer():
                               "cuuid": cuuid,
                               "kb_key": kb_key,
                               }
-                pp.pprint(event_type)
-                pp.pprint(event_data)
+#                 pp.pprint(event_type)
+#                 pp.pprint(event_data)
                 self.server.notify(client_id, event_data)
 
 
@@ -484,11 +484,9 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_CLIENT_KEYDOWN":
-                print "!"
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = True
-                    print sprite.running
                     del self.client.event_notifies[euuid]
                 elif event_data["kb_key"] == "CRTL":
                     del self.client.event_notifies[euuid]
@@ -497,11 +495,9 @@ class TuxemonClient():
                 
         
             if event_data["type"] == "NOTIFY_CLIENT_KEYUP":
-                print "!!"
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = False
-                    print sprite.running
                     del self.client.event_notifies[euuid]
                 elif event_data["kb_key"] == "CRTL":
                     del self.client.event_notifies[euuid]
@@ -664,7 +660,6 @@ class TuxemonClient():
         
             # If we are the server send our condition info to the clients.
             if self.game.server.server.registry:
-                print event_type
                 self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
         
             

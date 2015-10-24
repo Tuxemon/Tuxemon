@@ -645,7 +645,8 @@ class World(tools._State):
                     if event.key == pygame.K_RIGHT:
                         self.player1.direction["right"] = False
 
-        # print self.events
+            if self.game.client.client.registered and self.game.client.populated:
+                self.game.client.set_key_condition(event)
 
 
     ####################################################
@@ -725,6 +726,7 @@ class World(tools._State):
         # Handle tile based movement for the player
         if self.shift_held:
             self.player1.moverate = self.player1.runrate
+            print self.player1.moverate
         else:
             self.player1.moverate = self.player1.walkrate
 
@@ -752,6 +754,11 @@ class World(tools._State):
 
         # Draw any game NPC's
         for npc in self.npcs:
+            if npc.running:
+                npc.moverate = npc.runrate
+                print npc.moverate
+            else:
+                npc.moverate = npc.walkrate
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.
@@ -787,6 +794,11 @@ class World(tools._State):
         
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map:
+            
+            if npc.running:
+                npc.moverate = npc.runrate
+            else:
+                npc.moverate = npc.walkrate
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.

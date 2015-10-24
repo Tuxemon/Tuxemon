@@ -97,7 +97,7 @@ class PC(tools._State):
                                                          self.game)
         self.multiplayer_menu.visible = False
         self.multiplayer_menu.interactable = False
-        self.multiplayer_menu.size_ratio = [0.7, 0.3]
+        self.multiplayer_menu.size_ratio = [0.7, 0.25]
         
         # Join a multiplayer game menu.
         self.multiplayer_join_menu = pc_menu.Multiplayer_Join_Menu(self.screen,
@@ -240,10 +240,12 @@ class PC(tools._State):
 
         """
         if self.multiplayer_join_success_menu.interactable:
-            self.game.get_menu_event(self.multiplayer_join_success_menu, event)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.game.get_menu_event(self.multiplayer_join_success_menu, event)
         
         elif self.multiplayer_host_menu.interactable:
-            self.game.get_menu_event(self.multiplayer_host_menu, event)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.game.get_menu_event(self.multiplayer_host_menu, event)
             
         elif self.multiplayer_join_menu.interactable:
             self.game.get_menu_event(self.multiplayer_join_menu, event)

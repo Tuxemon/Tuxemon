@@ -705,10 +705,11 @@ class Npc(Player):
 
         # These attributes are used with the new movement system
         self.walkrate = .635                 # Tiles per second walk rate
-        self.runrate = 1.270                  # Tiles per second run rate
+        self.runrate = 1.41                  # Tiles per second run rate
         self.moverate = self.walkrate
         self.tile_destination = [0, 0]
         self.current_tile = [0.0, 0.0]
+        self.running = False
 
 
     def move(self, tile_size, time_passed_seconds, game):

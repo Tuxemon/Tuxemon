@@ -195,6 +195,17 @@ class TuxemonServer():
 
         elif event_data["type"] =="CLIENT_MAP_UPDATE":
             self.update_client_map(cuuid, event_data)
+            
+        
+        elif event_data["type"] == "CLIENT_KEYDOWN":
+            sprite = self.server.registry[cuuid]["sprite"]
+            if event_data["key"] == "SHIFT":
+                sprite.running = True
+        
+        elif event_data["type"] == "CLIENT_KEYUP":
+            sprite = self.server.registry[cuuid]["sprite"]
+            if event_data["key"] == "SHIFT":
+                sprite.running = False
         
         
     def update_client_map(self, cuuid, event_data=None):
@@ -370,7 +381,7 @@ class TuxemonClient():
         self.selected_game = None
         self.enable_join_multiplayer = False
         self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
-        self.join_self = False # Default False. Set True for testing on one device.
+        self.join_self = True # Default False. Set True for testing on one device.
         self.populated = False
         self.listening = False
     
@@ -557,7 +568,39 @@ class TuxemonClient():
         #pp.pprint(event_data)
         self.client.event(event_data)
     
+    
+    def set_key_condition(self, event):
+        """Sends server information about a key condition being set or that an
+        interaction has occurred.
+
+        :param event: Pygame key event
         
+        :type event: Dictionary
+
+        :rtype: None
+        :returns: None
+
+        """
+        event_type = None
+        kb_key = None
+        if event.type == pygame.KEYDOWN:
+            event_type = "CLIENT_KEYDOWN"
+            if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+                kb_key = "SHIFT"
+                
+        
+        if event.type == pygame.KEYUP:
+            event_type = "CLIENT_KEYUP"
+            if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+                kb_key = "SHIFT"
+        
+        if event_type and kb_key:
+            event_data = {"type": event_type,
+                          "key": kb_key
+                          }
+            self.client.event(event_data)
+        
+            
     def update_client_map(self, cuuid, event_data):
         """Updates client's current map and location to reflect the server registry.
 
@@ -574,7 +617,7 @@ class TuxemonClient():
         sprite = self.client.registry[cuuid]["sprite"]
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
         update_client_location(sprite, event_data["char_dict"], self.game)
-
+    
 
 # Universal functions
 def populate_client(cuuid, event_data, registry, game):

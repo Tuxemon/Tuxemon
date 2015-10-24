@@ -130,7 +130,7 @@ class Multiplayer_Join_Success_Menu(Menu):
         :returns: None
 
         """
-        pass
+        return False
             
             
 class Multiplayer_Host_Menu(Menu):
@@ -155,7 +155,7 @@ class Multiplayer_Host_Menu(Menu):
         :returns: None
 
         """
-        pass
+        return False
             
             
         

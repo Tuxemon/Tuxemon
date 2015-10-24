@@ -300,9 +300,10 @@ class Control(object):
                 for joy_event in joy_events:
                     self.key_events.append(joy_event)
                     self.state.get_event(joy_event)
+            
             self.state.get_event(event)
             
-    
+            
     def controller_event_loop(self, event):
         """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard

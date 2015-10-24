@@ -77,6 +77,8 @@ class Multiplayer():
             return True
         elif event_data["type"] == "CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
             return True
+        elif event_data["type"] == "CLIENT_KEYDOWN" or event_data["type"] == "CLIENT_KEYUP":
+            return True
         else:
             return False
 

@@ -169,7 +169,6 @@ class TuxemonServer():
             for d in sprite.direction:
                 if sprite.direction[d]: sprite.direction[d] = False
             sprite.direction[direction] = True
-            #update_client_location(sprite, char_dict, self.game)
             self.notify_client_move(cuuid,
                                     sprite,
                                     char_dict["tile_pos"],
@@ -190,22 +189,29 @@ class TuxemonServer():
             for d in sprite.direction:
                 if sprite.direction[d]: sprite.direction[d] = False
             sprite.final_move_dest = char_dict["tile_pos"]
-            #update_client_location(sprite, char_dict, self.game)
             
-
         elif event_data["type"] =="CLIENT_MAP_UPDATE":
             self.update_client_map(cuuid, event_data)
             
-        
         elif event_data["type"] == "CLIENT_KEYDOWN":
             sprite = self.server.registry[cuuid]["sprite"]
-            if event_data["key"] == "SHIFT":
+            if event_data["kb_key"] == "SHIFT":
                 sprite.running = True
+                self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
+            elif event_data["kb_key"] == "CRTL":
+                pass
+            elif event_data["kb_key"] == "ALT":
+                pass
         
         elif event_data["type"] == "CLIENT_KEYUP":
             sprite = self.server.registry[cuuid]["sprite"]
-            if event_data["key"] == "SHIFT":
+            if event_data["kb_key"] == "SHIFT":
                 sprite.running = False
+                self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
+            elif event_data["kb_key"] == "CRTL":
+                pass
+            elif event_data["kb_key"] == "ALT":
+                pass
         
         
     def update_client_map(self, cuuid, event_data=None):
@@ -349,6 +355,36 @@ class TuxemonServer():
         #pp.pprint("new_event_data_3")
         #pp.pprint(new_event_data_3)
         self.server.notify(cuuid, new_event_data_3)
+    
+    def notify_key_condition(self, cuuid, kb_key, event_type):
+        """Updates all clients with location a player that moved.
+        
+        :param cuuid: Clients unique user identification number.
+        :param kb_key: Key being pressed that modifies client behavior.
+        :param event_type: Notification flag information.
+        
+        :type cuuid: String
+        :type kb_key: String
+        :type event_type: String
+        
+        :rtype: None
+        :returns: None
+
+        """
+        cuuid = str(cuuid)
+        event_type = "NOTIFY_" + event_type
+        for client_id in self.server.registry:
+            # Don't notify a player that they themselves moved.
+            if client_id == cuuid: continue
+        
+            # Notify client of the players new position.
+            elif client_id != cuuid:
+                event_data = {"type": event_type,
+                              "kb_key": kb_key,
+                              }
+                #pp.pprint(event_type)
+                #pp.pprint(event_data)
+                self.server.notify(client_id, event_data)
 
 
 class TuxemonClient():
@@ -453,6 +489,29 @@ class TuxemonClient():
 #                 pp.pprint("Notify Map Changed")
 #                 pp.pprint(event_data)
                 del self.client.event_notifies[euuid]
+            
+            if event_data["type"] == "NOTIFY_CLIENT_KEYDOWN":
+                sprite = self.client.registry[cuuid]["sprite"]
+                if event_data["kb_key"] == "SHIFT":
+                    sprite.running = True
+                    print sprite.running
+                    del self.client.event_notifies[euuid]
+                elif event_data["kb_key"] == "CRTL":
+                    del self.client.event_notifies[euuid]
+                elif event_data["kb_key"] == "ALT":
+                    del self.client.event_notifies[euuid]
+                
+        
+            if event_data["type"] == "NOTIFY_CLIENT_KEYUP":
+                sprite = self.client.registry[cuuid]["sprite"]
+                if event_data["kb_key"] == "SHIFT":
+                    sprite.running = False
+                    print sprite.running
+                    del self.client.event_notifies[euuid]
+                elif event_data["kb_key"] == "CRTL":
+                    del self.client.event_notifies[euuid]
+                elif event_data["kb_key"] == "ALT":
+                    del self.client.event_notifies[euuid]
             
                 
 
@@ -587,16 +646,23 @@ class TuxemonClient():
             event_type = "CLIENT_KEYDOWN"
             if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
                 kb_key = "SHIFT"
+            elif  event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+                kb_key = "CTRL"
+            elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
+                kb_key = "ALT"
                 
-        
         if event.type == pygame.KEYUP:
             event_type = "CLIENT_KEYUP"
             if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
                 kb_key = "SHIFT"
+            elif  event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+                kb_key = "CTRL"
+            elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
+                kb_key = "ALT"
         
         if event_type and kb_key:
             event_data = {"type": event_type,
-                          "key": kb_key
+                          "kb_key": kb_key
                           }
             self.client.event(event_data)
         

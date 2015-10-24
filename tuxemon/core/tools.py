@@ -580,7 +580,7 @@ class Control(object):
         :param menu: -- The active menu.
         :param event: -- A single pygame event from pygame.event.get()
         
-        :type menu: core.components.menu
+        :type menu: core.components.menu.Menu()
         :type events: List
 
         :rtype: None

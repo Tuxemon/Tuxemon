@@ -1,9 +1,12 @@
 eclipse.preferences.version=1
 encoding//tuxemon/core/components/ai.py=utf-8
+encoding//tuxemon/core/components/config.py=utf-8
 encoding//tuxemon/core/components/controller.py=utf-8
 encoding//tuxemon/core/components/event/actions/combat.py=utf-8
 encoding//tuxemon/core/components/event/actions/core.py=utf-8
+encoding//tuxemon/core/components/event/actions/map.py=utf-8
 encoding//tuxemon/core/components/event/actions/npc.py=utf-8
+encoding//tuxemon/core/components/event/actions/player.py=utf-8
 encoding//tuxemon/core/components/event/conditions/combat.py=utf-8
 encoding//tuxemon/core/components/event/conditions/core.py=utf-8
 encoding//tuxemon/core/components/item.py=utf-8

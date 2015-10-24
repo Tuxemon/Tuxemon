@@ -47,7 +47,7 @@ logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
 class PC(tools._State):
-    """The module responsible for the splash screen and start menu.
+    """The module responsible in game settings.
 
     :param game: The scene manager object that contains all the game's variables.
     :type game: core.tools.Control
@@ -107,7 +107,7 @@ class PC(tools._State):
         self.multiplayer_join_menu.interactable = False
         self.multiplayer_join_menu.size_ratio = [0.6, 0.2]
         
-        # Successfully joined a game menu.
+        # Successfully joined a multiplayer game menu.
         self.multiplayer_join_success_menu = pc_menu.Multiplayer_Join_Success_Menu(self.screen,
                                                                                    self.resolution,
                                                                                    self.game)
@@ -157,7 +157,6 @@ class PC(tools._State):
             menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
             menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
     
-        
         
     def startup(self, current_time, persistant):
         """Perform startup tasks when we switch to this scene.

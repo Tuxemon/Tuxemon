@@ -6,7 +6,6 @@ from core import prepare
 
 
 class PCMenu(Menu):
-
     
     def __init__(self, screen, resolution, game, name="PC Menu"):
 
@@ -38,7 +37,6 @@ class PCMenu(Menu):
         
 
 class Multiplayer_Menu(Menu):
-    
     
     def __init__(self, screen, resolution, game, name="MULTIPLAYER"):
         
@@ -80,7 +78,6 @@ class Multiplayer_Menu(Menu):
 
 class Multiplayer_Join_Menu(Menu):
     
-    
     def __init__(self, screen, resolution, game, name="JOIN"):
         
         # Initialize the parent menu class's default shit
@@ -114,7 +111,6 @@ class Multiplayer_Join_Menu(Menu):
 
 class Multiplayer_Join_Success_Menu(Menu):
     
-    
     def __init__(self, screen, resolution, game, name="SUCCESS"):
         
         # Initialize the parent menu class's default shit
@@ -138,7 +134,6 @@ class Multiplayer_Join_Success_Menu(Menu):
             
             
 class Multiplayer_Host_Menu(Menu):
-    
     
     def __init__(self, screen, resolution, game, name="HOSTING"):
         

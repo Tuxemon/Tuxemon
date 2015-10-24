@@ -201,7 +201,7 @@ class TuxemonServer():
         """Updates client's current map and location in the server registry.
 
         :param cuuid: Clients unique user identification number.
-        :param event_data: Client characters current variable values.
+        :param event_data: Event information sent by client.
         
         :type cuuid: String 
         :type event_data: Dictionary
@@ -474,7 +474,7 @@ class TuxemonClient():
         
     def update_multiplayer_list(self):
         """Sends a broadcast to 'ping' all servers on the local network. Once a server responds
-        it  will verify that the server is not hosted by the client who sent the ping. Once a 
+        it will verify that the server is not hosted by the client who sent the ping. Once a 
         server has been identified it adds it to self.available_games.
 
         :param None:
@@ -534,9 +534,11 @@ class TuxemonClient():
     def update_player(self, direction, event_type="CLIENT_MAP_UPDATE"):
         """Sends client's current map and location to the server.
 
-        :param type: Event type sent to server used for event_legal() and event_execute()
+        :param direction: Facing/Movement direction of clients character
+        :param event_type: Event type sent to server used for event_legal() and event_execute()
         functions in middleware.
         
+        :type direction: String
         :type type: String
 
         :rtype: None
@@ -580,7 +582,7 @@ def populate_client(cuuid, event_data, registry, game):
     information to the registry. 
     
     :param cuuid: Clients unique user identification number.
-    :param event_data: Client characters current variable values.
+    :param event_data: Event information sent by client.
     :param registry: Server or client game registry.
     :param game: Server or client Control object.
     
@@ -615,12 +617,10 @@ def update_client_location(sprite, char_dict, game):
 
     :param sprite: Local NPC sprite stored in the registry.
     :param char_dict: sprite's updated variable values.
-    :param registry: Server or client game registry.
     :param game: Server or client Control object.
     
     :type sprite: Player or Npc object from core.components.player
     :type event_data: Dictionary
-    :type registry: Dictionary
     :type game: core.tools.Control() object
 
     :rtype: None

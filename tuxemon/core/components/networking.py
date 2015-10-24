@@ -664,7 +664,6 @@ class TuxemonClient():
         
             # If we are the server send our condition info to the clients.
             if self.game.server.server.registry:
-                event_type = "NOTIFY_" + event_type
                 print event_type
                 self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
         

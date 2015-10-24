@@ -383,8 +383,8 @@ class TuxemonServer():
                               "cuuid": cuuid,
                               "kb_key": kb_key,
                               }
-                #pp.pprint(event_type)
-                #pp.pprint(event_data)
+                pp.pprint(event_type)
+                pp.pprint(event_data)
                 self.server.notify(client_id, event_data)
 
 
@@ -664,9 +664,9 @@ class TuxemonClient():
         
             # If we are the server send our condition info to the clients.
             if self.game.server.server.registry:
-                print "HUZZAH!"
                 event_type = "NOTIFY_" + event_type
-                self.game.server.notify_key_condition(self.client.cuuid, kb_key, event_type)
+                print event_type
+                self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
         
             
     def update_client_map(self, cuuid, event_data):

@@ -645,9 +645,8 @@ class World(tools._State):
                     if event.key == pygame.K_RIGHT:
                         self.player1.direction["right"] = False
 
-            if self.game.client.client.registered and self.game.client.populated:
-                self.game.client.set_key_condition(event)
-
+            self.game.client.set_key_condition(event)
+                
 
     ####################################################
     #                   Map Drawing                    #

@@ -78,7 +78,6 @@ class Control(object):
     :returns: None
 
     """
-
     def __init__(self, caption):
         self.screen = pg.display.get_surface()
         self.caption = caption

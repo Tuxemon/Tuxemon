@@ -380,6 +380,7 @@ class TuxemonServer():
             # Notify client of the players new position.
             elif client_id != cuuid:
                 event_data = {"type": event_type,
+                              "cuuid": cuuid,
                               "kb_key": kb_key,
                               }
                 #pp.pprint(event_type)
@@ -491,7 +492,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_CLIENT_KEYDOWN":
-                sprite = self.client.registry[cuuid]["sprite"]
+                sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = True
                     print sprite.running
@@ -503,7 +504,7 @@ class TuxemonClient():
                 
         
             if event_data["type"] == "NOTIFY_CLIENT_KEYUP":
-                sprite = self.client.registry[cuuid]["sprite"]
+                sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = False
                     print sprite.running
@@ -661,10 +662,16 @@ class TuxemonClient():
                 kb_key = "ALT"
         
         if event_type and kb_key:
-            event_data = {"type": event_type,
-                          "kb_key": kb_key
-                          }
-            self.client.event(event_data)
+            if self.client.registered and self.game.client.populated:
+                event_data = {"type": event_type,
+                              "kb_key": kb_key
+                              }
+                self.client.event(event_data)
+        
+            # If we are the server send our condition info to the clients.
+            if len(self.game.server.server.registry) > 0:
+                event_type = "NOTIFY_" + event_type
+                self.game.server.notify_key_condition(self.client.cuuid, kb_key, event_type)
         
             
     def update_client_map(self, cuuid, event_data):

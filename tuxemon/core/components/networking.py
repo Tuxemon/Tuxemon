@@ -421,6 +421,7 @@ class TuxemonClient():
         self.selected_game = None
         self.enable_join_multiplayer = False
         self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
+        self.wait_delay = 0.25  # Delay used in autodiscover broadcast.
         self.join_self = True # Default False. Set True for testing on one device.
         self.populated = False
         self.listening = False
@@ -534,7 +535,7 @@ class TuxemonClient():
             self.client.register(self.selected_game)
         
         # Once per second send a server discovery packet. 
-        if self.wait_broadcast >= 1:
+        if self.wait_broadcast >= self.wait_delay:
             self.update_multiplayer_list()
             self.wait_broadcast = 0
         else: self.wait_broadcast += time_delta
@@ -748,6 +749,7 @@ def populate_client(cuuid, event_data, registry, game):
     sprite = Npc().create_npc(game,(None, str(nm)+","+str(tile_pos_x)+","+str(tile_pos_y)+","+str(sn)+",network"))
     sprite.isplayer = True
     sprite.final_move_dest = sprite.tile_pos
+    sprite.interactions = ["TRADE", "DUEL"]
     
     registry[cuuid]["sprite"] = sprite
     registry[cuuid]["map_name"] = event_data["map_name"]

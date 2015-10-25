@@ -166,24 +166,24 @@ class Player(object):
 
         """
 
-        collision_dict = {}
+        collision_dict = self.get_collision_dict(game)
 
-        # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
-        # collisions.
-        npc_positions = set()
-
-        # Get all the NPC's tile positions so we can check for collisions.
-        for npc in game.npcs:
-            npc_pos_x = int(round(npc.tile_pos[0]))
-            npc_pos_y = int(round(npc.tile_pos[1]))
-            npc_positions.add( (npc_pos_x, npc_pos_y) )
-
-        # Combine our map collision tiles with our npc collision positions
-        for pos in npc_positions:
-            collision_dict[pos] = "None"
-
-        for tile in game.collision_map:
-            collision_dict[tile] = game.collision_map[tile] 
+#         # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
+#         # collisions.
+#         npc_positions = set()
+# 
+#         # Get all the NPC's tile positions so we can check for collisions.
+#         for npc in game.npcs:
+#             npc_pos_x = int(round(npc.tile_pos[0]))
+#             npc_pos_y = int(round(npc.tile_pos[1]))
+#             npc_positions.add( (npc_pos_x, npc_pos_y) )
+# 
+#         # Combine our map collision tiles with our npc collision positions
+#         for pos in npc_positions:
+#             collision_dict[pos] = "None"
+# 
+#         for tile in game.collision_map:
+#             collision_dict[tile] = game.collision_map[tile] 
 
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
@@ -469,7 +469,40 @@ class Player(object):
                 screen.blit(self.standing["right-" + layer], (self.position[0],
                                                               self.position[1] + offset))
 
+    
+    def get_collision_dict(self, game):
+        """Checks for collision tiles around the player.
 
+        :param game: The Tuxemon game instance itself.
+        
+        :type game: tuxemon.Game
+        
+        :rtype: Dictionary
+        :returns: A dictionary of collision tiles around the player
+
+        """
+        collision_dict = {}
+
+        # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
+        # collisions.
+        npc_positions = set()
+
+        # Get all the NPC's tile positions so we can check for collisions.
+        for npc in game.npcs:
+            npc_pos_x = int(round(npc.tile_pos[0]))
+            npc_pos_y = int(round(npc.tile_pos[1]))
+            npc_positions.add( (npc_pos_x, npc_pos_y) )
+
+        # Combine our map collision tiles with our npc collision positions
+        for pos in npc_positions:
+            collision_dict[pos] = "None"
+
+        for tile in game.collision_map:
+            collision_dict[tile] = game.collision_map[tile] 
+        
+        return collision_dict
+    
+    
     def collision_check(self, player_tile_pos, collision_dict, collision_lines_map):
         """Checks collision tiles around the player.
 
@@ -710,6 +743,7 @@ class Npc(Player):
         self.tile_destination = [0, 0]
         self.current_tile = [0.0, 0.0]
         self.running = False
+        self.interactions = []               # List of ways player can interact with the Npc
 
 
     def move(self, tile_size, time_passed_seconds, game):

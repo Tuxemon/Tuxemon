@@ -1017,3 +1017,4 @@ import interface
 import item_menu
 import monster_menu
 import save_menu
+import interaction_menu

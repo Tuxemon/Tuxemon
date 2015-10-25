@@ -228,9 +228,10 @@ class TuxemonServer():
         elif event_data["type"] == "CLIENT_INTERACTION":
             target = event_data["target"]
             if target == str(self.game.client.client.cuuid):
-                print "I Am the target"
+                event_data["target"] = cuuid
+                self.game.state_dict["WORLD"].handle_interaction(event_data)
             else:
-                print "Someone else is the target"
+                self.notify_client_interaction(cuuid, event_data)
         
         
     def update_client_map(self, cuuid, event_data=None):
@@ -396,6 +397,25 @@ class TuxemonServer():
                               "kb_key": kb_key,
                               }
                 self.server.notify(client_id, event_data)
+    
+    def notify_client_interaction(self, cuuid, event_data):
+        """Notify a client that another client has interacted with them.
+        
+        :param cuuid: Clients unique user identification number.
+        :param event_data: Notification information.
+        
+        :type cuuid: String
+        :type event_data: Dictionary
+        
+        :rtype: None
+        :returns: None
+
+        """
+        cuuid = str(cuuid)
+        event_data["type"] = "NOTIFY_" + event_data["type"]
+        client_id = event_data["target"]
+        event_data["target"] = cuuid
+        self.server.notify(client_id, event_data)
 
 
 class TuxemonClient():
@@ -429,7 +449,7 @@ class TuxemonClient():
         self.enable_join_multiplayer = False
         self.wait_broadcast = 0 # Used to delay autodiscover broadcast.
         self.wait_delay = 0.25  # Delay used in autodiscover broadcast.
-        self.join_self = True # Default False. Set True for testing on one device.
+        self.join_self = False # Default False. Set True for testing on one device.
         self.populated = False
         self.listening = False
         self.event_list = {}
@@ -520,6 +540,10 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if not sprite.moving:
                     sprite.facing = event_data["kb_key"]
+                del self.client.event_notifies[euuid]
+            
+            if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
+                self.game.state_dict["WORLD"].handle_interaction(event_data)
                 del self.client.event_notifies[euuid]
             
     def join_multiplayer(self, time_delta):

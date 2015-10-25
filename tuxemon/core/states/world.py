@@ -1342,4 +1342,18 @@ class World(tools._State):
                             self.menu_blocking = True
                             return True
                         else: continue
+    
+    
+    def handle_interaction(self, event_data):
+        """Presents options window when another player has interacted with this player.
+
+        :param event_data: Information on the type of interaction and who sent it.
+        
+        :type: event_data: Dictionary
+
+        :rtype: Bool
+        :returns: True if there is an Npc to interact with.
+
+        """
+        print event_data
                                 

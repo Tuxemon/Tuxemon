@@ -508,7 +508,7 @@ class TuxemonClient():
             
             if event_data["type"] == "NOTIFY_CLIENT_FACING":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
-                sprite.facing = event_data["facing"]
+                sprite.facing = event_data["kb_key"]
             
     def join_multiplayer(self, time_delta):
         """Joins the client to the selected server.

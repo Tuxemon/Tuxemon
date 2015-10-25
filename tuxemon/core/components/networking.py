@@ -215,7 +215,7 @@ class TuxemonServer():
         
         elif event_data["type"] == "CLIENT_FACING":
             sprite = self.server.registry[cuuid]["sprite"]
-            print sprite.facing
+            print "sprite.facing", sprite.facing
             sprite.facing = event_data["kb_key"]
             self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
         
@@ -508,6 +508,7 @@ class TuxemonClient():
             
             if event_data["type"] == "NOTIFY_CLIENT_FACING":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
+                print "sprite.facing", sprite.facing
                 sprite.facing = event_data["kb_key"]
             
     def join_multiplayer(self, time_delta):
@@ -682,7 +683,6 @@ class TuxemonClient():
                 event_data = {"type": event_type,
                               "kb_key": kb_key
                               }
-                pp.pprint(event_data)
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.

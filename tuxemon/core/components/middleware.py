@@ -75,11 +75,17 @@ class Multiplayer():
             return True
         elif event_data["type"] == "CLIENT_MOVE_START": 
             return True
-        elif event_data["type"] == "CLIENT_MAP_UPDATE" or event_data["type"] == "CLIENT_MOVE_COMPLETE":
+        elif event_data["type"] == "CLIENT_MAP_UPDATE":
             return True
-        elif event_data["type"] == "CLIENT_KEYDOWN" or event_data["type"] == "CLIENT_KEYUP":
+        elif event_data["type"] == "CLIENT_MOVE_COMPLETE":
+            return True
+        elif event_data["type"] == "CLIENT_KEYDOWN":
+            return True
+        elif event_data["type"] == "CLIENT_KEYUP":
             return True
         elif event_data["type"] == "CLIENT_FACING":
+            return True
+        elif event_data["type"] == "CLIENT_INTERACTION":
             return True
         else:
             return False

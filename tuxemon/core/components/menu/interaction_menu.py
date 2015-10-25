@@ -47,8 +47,13 @@ class InteractionMenu(Menu):
             self.menu_select_sound.play()
 
             if self.menu_items[self.selected_menu_item] == "DUEL":
-                self.game.not_implmeneted_menu.visible = True
-                self.game.not_implmeneted_menu.interactable = True
+                if self.game.game.isclient:
+                    self.game.game.client.player_interact(self.player, "DUEL")
+                    pass
+                elif self.game.game.ishost:
+                    return False
+                    self.game.game.server.notify_client_interaction(self.player, "DUEL")
+                    
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True
                 self.game.not_implmeneted_menu.interactable = True

@@ -91,6 +91,8 @@ class Control(object):
         self.state_dict = {}
         self.state_name = None
         self.state = None
+        self.ishost = False
+        self.isclient = False
         
         # Set up our networking for Multiplayer and Controls
         self.server = TuxemonServer(self)

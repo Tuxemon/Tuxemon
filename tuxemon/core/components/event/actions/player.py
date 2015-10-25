@@ -122,10 +122,10 @@ class Player(object):
                         x_pos += 1
         
         # Update the server/clients of our new map and populate any other players.
-        if game.client.client.registered and game.client.populated:
+        if game.isclient:
             game.add_clients_to_map(game.client.client.registry)
             game.client.update_player(player.facing)
-        else:
+        elif game.ishost:
             game.add_clients_to_map(game.server.server.registry)                
             game.server.update_client_map(str(game.client.client.cuuid))
             

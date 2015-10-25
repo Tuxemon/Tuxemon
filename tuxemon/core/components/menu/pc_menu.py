@@ -58,22 +58,28 @@ class Multiplayer_Menu(Menu):
         """
         
         if self.menu_items[self.selected_menu_item] == "JOIN":
-            self.game.state.multiplayer_join_menu.previous_menu = self
-            self.game.state.multiplayer_join_menu.visible = True
-            self.game.state.multiplayer_join_menu.interactable = True
-            self.game.state.multiplayer_menu.interactable = False
-            self.game.client.enable_join_multiplayer = True
-            self.game.client.listening = True 
-            self.game.client.client.listen()    
+            if not self.game.ishost:
+                self.game.state.multiplayer_join_menu.previous_menu = self
+                self.game.state.multiplayer_join_menu.visible = True
+                self.game.state.multiplayer_join_menu.interactable = True
+                self.game.state.multiplayer_menu.interactable = False
+                self.game.client.enable_join_multiplayer = True
+                self.game.client.listening = True
+                self.game.client.client.listen()
+            else:
+                return False    
                    
         elif self.menu_items[self.selected_menu_item] == "HOST":
-            self.game.state.multiplayer_host_menu.previous_menu = self
-            self.game.state.multiplayer_host_menu.visible = True
-            self.game.state.multiplayer_host_menu.interactable = True
-            self.game.state.multiplayer_menu.interactable = False
-            self.game.server.listening = True
-            self.game.server.server.listen()
-
+            if not self.game.isclient:
+                self.game.state.multiplayer_host_menu.previous_menu = self
+                self.game.state.multiplayer_host_menu.visible = True
+                self.game.state.multiplayer_host_menu.interactable = True
+                self.game.state.multiplayer_menu.interactable = False
+                self.game.server.listening = True
+                self.game.ishost = True
+                self.game.server.server.listen()
+            else:
+                return False
 
 
 class Multiplayer_Join_Menu(Menu):

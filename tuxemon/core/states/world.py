@@ -1257,6 +1257,7 @@ class World(tools._State):
             self.transition_alpha -= (
                 255 * ((self.time_passed_seconds) / self.transition_time))
             if self.transition_alpha <= 0:
+                
                 self.transition_alpha = 0
                 self.start_transition_back = False
                 self.black_screen = 0
@@ -1268,10 +1269,10 @@ class World(tools._State):
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
            
             # Update the server/clients of our new map and populate any other players.
-            if self.game.client.client.registered and self.game.client.populated:
+            if self.game.isclient:
                 self.game.add_clients_to_map(self.game.client.client.registry)
                 self.game.client.update_player(self.player1.facing)
-            else:
+            elif self.game.ishost:
                 self.game.add_clients_to_map(self.game.server.server.registry)                
                 self.game.server.update_client_map(str(self.game.client.client.cuuid))
             

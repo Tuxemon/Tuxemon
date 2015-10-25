@@ -225,6 +225,13 @@ class TuxemonServer():
                 sprite.facing = event_data["kb_key"]
                 self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
         
+        elif event_data["type"] == "CLIENT_INTERACTION":
+            target = event_data["target"]
+            if target == str(self.game.client.client.cuuid):
+                print "I Am the target"
+            else:
+                print "Someone else is the target"
+        
         
     def update_client_map(self, cuuid, event_data=None):
         """Updates client's current map and location in the server registry.
@@ -443,6 +450,7 @@ class TuxemonClient():
             self.join_multiplayer(time_delta)
         
         if self.client.registered and not self.populated:
+            self.game.isclient = True
             self.game.state_dict["PC"].multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
         
@@ -524,8 +532,13 @@ class TuxemonClient():
         :rtype: None
         :returns: None
 
-        """ 
-        # If we have already joined a game end the loop 
+        """
+        # Don't allow player to join another game if they are hosting.
+        if self.game.ishost:
+            self.enable_join_multiplayer = False
+            return False
+        
+        # If we have already joined a game end the loop. 
         if self.client.registered:
             self.enable_join_multiplayer = False
             return False
@@ -690,7 +703,7 @@ class TuxemonClient():
             self.event_list[event_type] = 0
             
         if event_type and kb_key:
-            if self.client.registered and self.game.client.populated:
+            if self.game.isclient:
                 event_data = {"type": event_type,
                               "event_number": self.event_list[event_type],
                               "kb_key": kb_key
@@ -699,7 +712,7 @@ class TuxemonClient():
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.
-            if self.game.server.server.registry and not self.game.player1.moving:
+            elif self.game.ishost and not self.game.player1.moving:
                 self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
         
             
@@ -720,6 +733,29 @@ class TuxemonClient():
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
         update_client_location(sprite, event_data["char_dict"], self.game)
     
+    def player_interact(self, sprite, interaction):
+        """Sends client to client interaction request to the server.
+
+        :param sprite: Character sprite being interacted with.
+        :param interaction: Which interaction you wish to do.
+        
+        :type sprite: core.components.player.Npc() object
+        :type interaction: String
+
+        :rtype: None
+        :returns: None
+
+        """
+        cuuid = None
+        
+        for client_id in self.client.registry:
+            if self.client.registry[client_id]["sprite"] == sprite: cuuid = client_id
+        
+        event_data = {"type": "CLIENT_INTERACTION",
+                      "interaction": interaction,
+                      "target": cuuid,
+                      }
+        self.client.event(event_data)
 
 # Universal functions
 def populate_client(cuuid, event_data, registry, game):

@@ -362,7 +362,7 @@ class World(tools._State):
         
         # Interaction Menu
         self.interaction_menu.size_y = int(self.resolution[1] / 5.)
-        self.interaction_menu.size_x = int(self.resolution[0] / 5.)
+        self.interaction_menu.size_x = int(self.resolution[0] / 2.5)
         self.interaction_menu.pos_x = 0 + self.interaction_menu.border["top"].get_width()
         self.interaction_menu.pos_y = 0 + self.interaction_menu.border["left-top"].get_width()
         self.interaction_menu.visible = False
@@ -1337,22 +1337,34 @@ class World(tools._State):
                             self.interaction_menu.visible = True
                             self.interaction_menu.interactable = True
                             self.interaction_menu.player = npc
-                            self.interaction_menu.menu_items = npc.interactions
+                            self.interaction_menu.menu_items = ["Player Interactions:"]
+                            for menu_item in npc.interactions:
+                                self.interaction_menu.menu_items.append(menu_item)
                             self.menu_blocking = True
                             return True
                         else: continue
     
     
-    def handle_interaction(self, event_data):
+    def handle_interaction(self, event_data, registry):
         """Presents options window when another player has interacted with this player.
 
         :param event_data: Information on the type of interaction and who sent it.
+        :param registry:
         
-        :type: event_data: Dictionary
+        :type event_data: Dictionary
+        :type registry: Dictionary
 
         :rtype: Bool
         :returns: True if there is an Npc to interact with.
 
         """
-        print event_data
+        target = registry[event_data["target"]]["sprite"]
+        target_name = str(target.name)
+        if event_data["interaction"] == "DUEL":
+            self.interaction_menu.visible = True
+            self.interaction_menu.interactable = True
+            self.interaction_menu.player = target
+            self.interaction_menu.interaction = "DUEL"
+            self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
+            self.menu_blocking = True
                                 

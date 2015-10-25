@@ -24,20 +24,23 @@ class InteractionMenu(Menu):
 
 
     def get_event(self, event, game=None):
-
+        
+        if self.selected_menu_item == 0 and len(self.menu_items) > 1:
+            self.selected_menu_item = 1
+            
         if len(self.menu_items) > 0:
             self.line_spacing = (self.size_y / len(self.menu_items)) - self.font_size
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
             self.selected_menu_item += 1
-            if self.selected_menu_item > len(self.menu_items) -1:
-                self.selected_menu_item = 0
+            if self.selected_menu_item > len(self.menu_items):
+                self.selected_menu_item = 1
 
             self.menu_select_sound.play()
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
             self.selected_menu_item -= 1
-            if self.selected_menu_item < 0:
+            if self.selected_menu_item < 1:
                 self.selected_menu_item = len(self.menu_items) -1
 
             self.menu_select_sound.play()
@@ -49,7 +52,6 @@ class InteractionMenu(Menu):
             if self.menu_items[self.selected_menu_item] == "DUEL":
                 if self.game.game.isclient:
                     self.game.game.client.player_interact(self.player, "DUEL")
-                    pass
                 elif self.game.game.ishost:
                     client = None
                     cuuid = str(self.game.client.client.cuuid)
@@ -66,6 +68,24 @@ class InteractionMenu(Menu):
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True
                 self.game.not_implmeneted_menu.interactable = True
-            
+                
+            elif self.menu_items[self.selected_menu_item] == "Accept" or self.menu_items[self.selected_menu_item] == "Decline":
+                response = self.menu_items[self.selected_menu_item]
+                if self.game.game.isclient:
+                    self.game.game.client.player_interaction(self.player, self.interaction, "CLIENT_RESPONSE", response)
+                elif self.game.game.ishost:
+                    client = None
+                    cuuid = str(self.game.client.client.cuuid)
+                    for client_id in self.game.server.server.registry:
+                        if self.player == self.game.server.server.registry[client_id]["sprite"]:
+                            client = client_id 
+                    
+                    event_data = {"type": "CLIENT_RESPONSE",
+                                  "interaction": "DUEL",
+                                  "target": client,
+                                  "response": response
+                                  }
+                    self.game.game.server.notify_client_interaction(cuuid, event_data)
+                
 
 

@@ -229,7 +229,7 @@ class TuxemonServer():
             target = event_data["target"]
             if target == str(self.game.client.client.cuuid):
                 event_data["target"] = cuuid
-                self.game.state_dict["WORLD"].handle_interaction(event_data)
+                self.game.state_dict["WORLD"].handle_interaction(event_data, self.server.registry)
             else:
                 self.notify_client_interaction(cuuid, event_data)
         
@@ -544,7 +544,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                self.game.state_dict["WORLD"].handle_interaction(event_data)
+                self.game.state_dict["WORLD"].handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
             
     def join_multiplayer(self, time_delta):
@@ -758,7 +758,7 @@ class TuxemonClient():
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
         update_client_location(sprite, event_data["char_dict"], self.game)
     
-    def player_interact(self, sprite, interaction, event_type="CLIENT_INTERACTION"):
+    def player_interact(self, sprite, interaction, event_type="CLIENT_INTERACTION", response=None):
         """Sends client to client interaction request to the server.
 
         :param sprite: Character sprite being interacted with.
@@ -782,6 +782,7 @@ class TuxemonClient():
                       "event_number": self.event_list[event_type],
                       "interaction": interaction,
                       "target": cuuid,
+                      "response": response
                       }
         self.event_list[event_type] +=1
         self.client.event(event_data)

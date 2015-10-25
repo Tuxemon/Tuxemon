@@ -512,6 +512,7 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 print "sprite.facing", sprite.facing
                 sprite.facing = event_data["kb_key"]
+                del self.client.event_notifies[euuid]
             
     def join_multiplayer(self, time_delta):
         """Joins the client to the selected server.
@@ -652,13 +653,13 @@ class TuxemonClient():
                 kb_key = "ALT"
                 
             elif event.key == pygame.K_UP: 
-                kb_key = "UP"
+                kb_key = "up"
             elif event.key == pygame.K_DOWN:
-                kb_key = "DOWN" 
+                kb_key = "down" 
             elif event.key == pygame.K_LEFT:
-                kb_key = "LEFT"
+                kb_key = "left"
             elif event.key == pygame.K_RIGHT:
-                kb_key = "RIGHT"
+                kb_key = "right"
                 
         if event.type == pygame.KEYUP:
             event_type = "CLIENT_KEYUP"
@@ -670,16 +671,16 @@ class TuxemonClient():
                 kb_key = "ALT"
             
             elif event.key == pygame.K_UP: 
-                kb_key = "UP"
+                kb_key = "up"
             elif event.key == pygame.K_DOWN:
-                kb_key = "DOWN" 
+                kb_key = "down" 
             elif event.key == pygame.K_LEFT:
-                kb_key = "LEFT"
+                kb_key = "left"
             elif event.key == pygame.K_RIGHT:
-                kb_key = "RIGHT"
+                kb_key = "right"
         pp.pprint(event_type)
         pp.pprint(kb_key)
-        if kb_key == "UP" or kb_key == "DOWN" or kb_key == "LEFT" or kb_key == "RIGHT":
+        if kb_key == "up" or kb_key == "down" or kb_key == "left" or kb_key == "right":
             event_type = "CLIENT_FACING"
         pp.pprint(event_type)
         pp.pprint(kb_key)

@@ -79,6 +79,8 @@ class Multiplayer():
             return True
         elif event_data["type"] == "CLIENT_KEYDOWN" or event_data["type"] == "CLIENT_KEYUP":
             return True
+        elif event_data["type"] == "CLIENT_FACING":
+            return True
         else:
             return False
 

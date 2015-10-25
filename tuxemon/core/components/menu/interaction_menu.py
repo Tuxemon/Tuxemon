@@ -51,8 +51,17 @@ class InteractionMenu(Menu):
                     self.game.game.client.player_interact(self.player, "DUEL")
                     pass
                 elif self.game.game.ishost:
-                    return False
-                    self.game.game.server.notify_client_interaction(self.player, "DUEL")
+                    client = None
+                    cuuid = str(self.game.client.client.cuuid)
+                    for client_id in self.game.server.server.registry:
+                        if self.player == self.game.server.server.registry[client_id]["sprite"]:
+                            client = client_id 
+                    
+                    event_data = {"type": "CLIENT_INTERACTION",
+                                  "interaction": "DUEL",
+                                  "target": client,
+                                  }
+                    self.game.game.server.notify_client_interaction(cuuid, event_data)
                     
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True

@@ -413,6 +413,7 @@ class TuxemonServer():
         """
         cuuid = str(cuuid)
         event_data["type"] = "NOTIFY_" + event_data["type"]
+        print event_data["type"]
         client_id = event_data["target"]
         event_data["target"] = cuuid
         self.server.notify(client_id, event_data)

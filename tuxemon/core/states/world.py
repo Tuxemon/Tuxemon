@@ -1318,7 +1318,6 @@ class World(tools._State):
         collision_dict = self.player1.get_collision_dict(self)
         player_tile_pos = ( int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])) )
         collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
-        print collisions
         if not collisions:
             pass
         else:

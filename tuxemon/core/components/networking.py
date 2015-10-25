@@ -754,6 +754,7 @@ class TuxemonClient():
             if self.client.registry[client_id]["sprite"] == sprite: cuuid = client_id
         
         event_data = {"type": event_type,
+                      "event_number": self.event_list[event_type],
                       "interaction": interaction,
                       "target": cuuid,
                       }

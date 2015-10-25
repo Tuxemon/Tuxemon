@@ -1358,6 +1358,7 @@ class World(tools._State):
         :returns: True if there is an Npc to interact with.
 
         """
+        print event_data
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
         if event_data["interaction"] == "DUEL":

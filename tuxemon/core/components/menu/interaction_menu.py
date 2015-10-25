@@ -72,7 +72,7 @@ class InteractionMenu(Menu):
             elif self.menu_items[self.selected_menu_item] == "Accept" or self.menu_items[self.selected_menu_item] == "Decline":
                 response = self.menu_items[self.selected_menu_item]
                 if self.game.game.isclient:
-                    self.game.game.client.player_interaction(self.player, self.interaction, "CLIENT_RESPONSE", response)
+                    self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
                 elif self.game.game.ishost:
                     client = None
                     cuuid = str(self.game.client.client.cuuid)

@@ -378,6 +378,7 @@ class TuxemonServer():
         """
         cuuid = str(cuuid)
         event_type = "NOTIFY_" + event_type
+        print "Notify"
         for client_id in self.server.registry:
             # Don't notify a player that they themselves moved.
             if client_id == cuuid: continue
@@ -388,6 +389,7 @@ class TuxemonServer():
                               "cuuid": cuuid,
                               "kb_key": kb_key,
                               }
+                print "Sent to Client:"
                 pp.pprint(event_type)
                 pp.pprint(event_data)
                 self.server.notify(client_id, event_data)
@@ -638,7 +640,8 @@ class TuxemonClient():
         """
         event_type = None
         kb_key = None
-            
+        print "Event:"
+        pp.pprint(event)    
         if event.type == pygame.KEYDOWN:
             event_type = "CLIENT_KEYDOWN"
             if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
@@ -674,19 +677,26 @@ class TuxemonClient():
                 kb_key = "LEFT"
             elif event.key == pygame.K_RIGHT:
                 kb_key = "RIGHT"
-        
+        pp.pprint(event_type)
+        pp.pprint(kb_key)
         if kb_key == "UP" or kb_key == "DOWN" or kb_key == "LEFT" or kb_key == "RIGHT":
             event_type = "CLIENT_FACING"
-            
+        pp.pprint(event_type)
+        pp.pprint(kb_key)
         if event_type and kb_key:
             if self.client.registered and self.game.client.populated:
                 event_data = {"type": event_type,
                               "kb_key": kb_key
                               }
+                print "Client:"
+                pp.pprint(event_data)
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.
             if self.game.server.server.registry:
+                print "Host:"
+                pp.pprint(event_type)
+                pp.pprint(kb_key)
                 self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
         
             

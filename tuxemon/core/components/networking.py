@@ -733,7 +733,7 @@ class TuxemonClient():
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
         update_client_location(sprite, event_data["char_dict"], self.game)
     
-    def player_interact(self, sprite, interaction):
+    def player_interact(self, sprite, interaction, event_type="CLIENT_INTERACTION"):
         """Sends client to client interaction request to the server.
 
         :param sprite: Character sprite being interacted with.
@@ -746,15 +746,18 @@ class TuxemonClient():
         :returns: None
 
         """
+        if not event_type in self.event_list:
+            self.event_list[event_type] = 0
         cuuid = None
         
         for client_id in self.client.registry:
             if self.client.registry[client_id]["sprite"] == sprite: cuuid = client_id
         
-        event_data = {"type": "CLIENT_INTERACTION",
+        event_data = {"type": event_type,
                       "interaction": interaction,
                       "target": cuuid,
                       }
+        self.event_list[event_type] +=1
         self.client.event(event_data)
 
 # Universal functions

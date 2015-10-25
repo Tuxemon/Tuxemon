@@ -696,20 +696,21 @@ class Control(object):
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
                 client_map = registry[client]["map_name"]
+#                 print client_map
                 current_map = self.get_map_name()
-                
+#                 print current_map
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
                     if not sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.append(sprite)
-                    while sprite in self.state_dict["WORLD"].npcs_off_map:
+                    if sprite in self.state_dict["WORLD"].npcs_off_map:
                         self.state_dict["WORLD"].npcs_off_map.remove(sprite)
 
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
                     if not sprite in self.state_dict["WORLD"].npcs_off_map:
                         self.state_dict["WORLD"].npcs_off_map.append(sprite)
-                    while sprite in self.state_dict["WORLD"].npcs:
+                    if sprite in self.state_dict["WORLD"].npcs:
                         self.state_dict["WORLD"].npcs.remove(sprite)
 
 

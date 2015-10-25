@@ -154,12 +154,23 @@ class TuxemonServer():
         :returns: None
 
         """
+        # Only respond to the latest message of a given type
+        if event_data["type"] != "PUSH_SELF":
+            print event_data
+            if not event_data["type"] in self.server.registry[cuuid]["event_list"]:
+                self.server.registry[cuuid]["event_list"][event_data["type"]] = 0
+            if event_data["event_number"] <= self.server.registry[cuuid]["event_list"][event_data["type"]]:
+                return False
+            else:
+                self.server.registry[cuuid]["event_list"][event_data["type"]] = event_data["event_number"]
+                
         if event_data["type"] == "PUSH_SELF":
             sprite = populate_client(cuuid, event_data, self.server.registry, self.game)
+            self.server.registry[cuuid]["event_list"] = {}
             update_client_location(sprite, event_data["char_dict"], self.game)
             self.notify_populate_client(cuuid, event_data, sprite)
             
-        elif event_data["type"] =="CLIENT_MOVE_START":
+        elif event_data["type"] == "CLIENT_MOVE_START":
             direction = str(event_data["direction"])
             sprite = self.server.registry[cuuid]["sprite"]
             char_dict = event_data["char_dict"]
@@ -186,7 +197,7 @@ class TuxemonServer():
                 if sprite.direction[d]: sprite.direction[d] = False
             sprite.final_move_dest = char_dict["tile_pos"]
             
-        elif event_data["type"] =="CLIENT_MAP_UPDATE":
+        elif event_data["type"] == "CLIENT_MAP_UPDATE":
             self.update_client_map(cuuid, event_data)
             
         elif event_data["type"] == "CLIENT_KEYDOWN":
@@ -414,6 +425,7 @@ class TuxemonClient():
         self.join_self = True # Default False. Set True for testing on one device.
         self.populated = False
         self.listening = False
+        self.event_list = {}
     
     
     def update(self, time_delta):
@@ -563,7 +575,7 @@ class TuxemonClient():
             self.server_list.append(item[0])
         
         
-    def populate_player(self):
+    def populate_player(self, event_type="PUSH_SELF"):
         """Sends client character to the server.
 
         :param None
@@ -571,9 +583,12 @@ class TuxemonClient():
         :returns: None
 
         """
+        if not event_type in self.event_list:
+            self.event_list[event_type] = 0
         pd = self.game.state_dict["WORLD"].player1.__dict__
         map_name = self.game.get_map_name()
-        event_data = {"type": "PUSH_SELF",
+        event_data = {"type": event_type,
+                      "event_number": self.event_list[event_type],
                       "sprite_name": pd["sprite_name"],
                       "map_name": map_name,
                       "char_dict": {
@@ -582,6 +597,7 @@ class TuxemonClient():
                                   "facing": pd["facing"]
                                   }
                       }
+        self.event_list[event_type] +=1
         self.client.event(event_data)
         self.populated = True
 
@@ -600,14 +616,18 @@ class TuxemonClient():
         :returns: None
 
         """
+        if not event_type in self.event_list:
+            self.event_list[event_type] = 0
         pd = self.game.state_dict["WORLD"].player1.__dict__
         map_name = self.game.get_map_name()
         event_data = {"type": event_type,
+                      "event_number": self.event_list[event_type],
                       "map_name": map_name,
                       "direction": direction,
                       "char_dict": {"tile_pos": pd["tile_pos"]
                                     }
                       }
+        self.event_list[event_type] +=1
         self.client.event(event_data)
     
     
@@ -664,11 +684,16 @@ class TuxemonClient():
         if kb_key == "up" or kb_key == "down" or kb_key == "left" or kb_key == "right":
             event_type = "CLIENT_FACING"
         
+        if not event_type in self.event_list:
+            self.event_list[event_type] = 0
+            
         if event_type and kb_key:
             if self.client.registered and self.game.client.populated:
                 event_data = {"type": event_type,
+                              "event_number": self.event_list[event_type],
                               "kb_key": kb_key
                               }
+                self.event_list[event_type] +=1
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.

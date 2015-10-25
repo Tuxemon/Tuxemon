@@ -156,7 +156,6 @@ class TuxemonServer():
         """
         # Only respond to the latest message of a given type
         if event_data["type"] != "PUSH_SELF":
-            print event_data
             if not event_data["type"] in self.server.registry[cuuid]["event_list"]:
                 self.server.registry[cuuid]["event_list"][event_data["type"]] = 0
             if event_data["event_number"] <= self.server.registry[cuuid]["event_list"][event_data["type"]]:

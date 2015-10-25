@@ -472,6 +472,8 @@ class TuxemonClient():
                 direction = str(event_data["direction"])
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
+                for d in sprite.direction:
+                    if sprite.direction[d]: sprite.direction[d] = False
                 sprite.direction[direction] = True
                 del self.client.event_notifies[euuid]
             

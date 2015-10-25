@@ -362,11 +362,9 @@ class World(tools._State):
         
         # Interaction Menu
         self.interaction_menu.size_y = int(self.resolution[1] / 5.)
-        self.interaction_menu.size_x = self.resolution[0] - \
-            (2 * self.interaction_menu.border["left-top"].get_width())
+        self.interaction_menu.size_x = int(self.resolution[0] / 5.)
         self.interaction_menu.pos_x = 0 + self.interaction_menu.border["top"].get_width()
-        self.interaction_menu.pos_y = ((self.resolution[1] / 6) * 5) - \
-            self.interaction_menu.border["left-top"].get_width()
+        self.interaction_menu.pos_y = 0 + self.interaction_menu.border["left-top"].get_width()
         self.interaction_menu.visible = False
         self.interaction_menu.interactable = False
         self.interaction_menu.player = None
@@ -638,6 +636,7 @@ class World(tools._State):
                 logger.info("Closing interaction menu!")
                 self.interaction_menu.visible = False
                 self.interaction_menu.interactable = False
+                self.interaction_menu.menu_items = None
                 self.menu_blocking = False
                 
             else:
@@ -1016,9 +1015,8 @@ class World(tools._State):
         
         # Interaction Menu
         if self.interaction_menu.visible:
-            
             self.interaction_menu.draw()
-            self.main_menu.draw_textItem(self.interaction_menu.menu_items)
+            self.interaction_menu.draw_textItem(self.interaction_menu.menu_items)
             
         # Save Menu
         if self.save_menu.visible:

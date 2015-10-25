@@ -213,6 +213,11 @@ class TuxemonServer():
             elif event_data["kb_key"] == "ALT":
                 pass
         
+        elif event_data["type"] == "CLIENT_FACING":
+            sprite = self.server.registry[cuuid]["sprite"]
+            print sprite.facing
+            sprite.facing = event_data["kb_key"]
+            self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
         
     def update_client_map(self, cuuid, event_data=None):
         """Updates client's current map and location in the server registry.
@@ -383,8 +388,8 @@ class TuxemonServer():
                               "cuuid": cuuid,
                               "kb_key": kb_key,
                               }
-#                 pp.pprint(event_type)
-#                 pp.pprint(event_data)
+                pp.pprint(event_type)
+                pp.pprint(event_data)
                 self.server.notify(client_id, event_data)
 
 
@@ -457,8 +462,6 @@ class TuxemonClient():
         for euuid, event_data in self.client.event_notifies.items():
             
             if event_data["type"] == "NOTIFY_CLIENT_NEW":
-                #pp.pprint("Notify Client New")
-                #pp.pprint(event_data)
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
                 sprite = populate_client(event_data["cuuid"], event_data, self.client.registry, self.game)
@@ -493,7 +496,6 @@ class TuxemonClient():
                 elif event_data["kb_key"] == "ALT":
                     del self.client.event_notifies[euuid]
                 
-        
             if event_data["type"] == "NOTIFY_CLIENT_KEYUP":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if event_data["kb_key"] == "SHIFT":
@@ -504,8 +506,10 @@ class TuxemonClient():
                 elif event_data["kb_key"] == "ALT":
                     del self.client.event_notifies[euuid]
             
-                
-
+            if event_data["type"] == "NOTIFY_CLIENT_FACING":
+                sprite = self.client.registry[event_data["cuuid"]]["sprite"]
+                sprite.facing = event_data["facing"]
+            
     def join_multiplayer(self, time_delta):
         """Joins the client to the selected server.
 
@@ -633,6 +637,7 @@ class TuxemonClient():
         """
         event_type = None
         kb_key = None
+            
         if event.type == pygame.KEYDOWN:
             event_type = "CLIENT_KEYDOWN"
             if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
@@ -642,6 +647,15 @@ class TuxemonClient():
             elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
                 kb_key = "ALT"
                 
+            elif event.key == pygame.K_UP: 
+                kb_key = "UP"
+            elif event.key == pygame.K_DOWN:
+                kb_key = "DOWN" 
+            elif event.key == pygame.K_LEFT:
+                kb_key = "LEFT"
+            elif event.key == pygame.K_RIGHT:
+                kb_key = "RIGHT"
+                
         if event.type == pygame.KEYUP:
             event_type = "CLIENT_KEYUP"
             if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
@@ -650,12 +664,25 @@ class TuxemonClient():
                 kb_key = "CTRL"
             elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
                 kb_key = "ALT"
+            
+            elif event.key == pygame.K_UP: 
+                kb_key = "UP"
+            elif event.key == pygame.K_DOWN:
+                kb_key = "DOWN" 
+            elif event.key == pygame.K_LEFT:
+                kb_key = "LEFT"
+            elif event.key == pygame.K_RIGHT:
+                kb_key = "RIGHT"
         
+        if kb_key == "UP" or kb_key == "DOWN" or kb_key == "LEFT" or kb_key == "RIGHT":
+            event_type = "CLIENT_FACING"
+            
         if event_type and kb_key:
             if self.client.registered and self.game.client.populated:
                 event_data = {"type": event_type,
                               "kb_key": kb_key
                               }
+                pp.pprint(event_data)
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.

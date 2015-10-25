@@ -1318,6 +1318,7 @@ class World(tools._State):
         collision_dict = self.player1.get_collision_dict(self)
         player_tile_pos = ( int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])) )
         collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
+        print collisions
         if not collisions:
             pass
         else:
@@ -1331,13 +1332,14 @@ class World(tools._State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                
                     for npc in self.npcs:
-                            if npc.tile_pos == tile:
-                                self.interaction_menu.visible = True
-                                self.interaction_menu.interactable = True
-                                self.interaction_menu.player = npc
-                                self.interaction_menu.menu_items = npc.interactions
-                                self.menu_blocking = True
-                                return True
+                        tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
+                        if tile_pos == tile:
+                            self.interaction_menu.visible = True
+                            self.interaction_menu.interactable = True
+                            self.interaction_menu.player = npc
+                            self.interaction_menu.menu_items = npc.interactions
+                            self.menu_blocking = True
+                            return True
+                        else: continue
                                 

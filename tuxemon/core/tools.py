@@ -690,8 +690,8 @@ class Control(object):
         :returns: None
 
         """ 
-        self.state_dict["WORLD"].npcs = []
-        self.state_dict["WORLD"].npcs_off_map = []
+#         self.state_dict["WORLD"].npcs = []
+#         self.state_dict["WORLD"].npcs_off_map = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]

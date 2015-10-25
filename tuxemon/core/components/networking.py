@@ -672,7 +672,7 @@ class TuxemonClient():
                 self.client.event(event_data)
         
             # If we are the server send our condition info to the clients.
-            if self.game.server.server.registry:
+            if self.game.server.server.registry and not self.game.player1.moving:
                 self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
         
             

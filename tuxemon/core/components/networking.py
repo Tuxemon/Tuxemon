@@ -213,7 +213,8 @@ class TuxemonServer():
             sprite = self.server.registry[cuuid]["sprite"]
             if not sprite.moving:
                 sprite.facing = event_data["kb_key"]
-            self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
+                self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
+        
         
     def update_client_map(self, cuuid, event_data=None):
         """Updates client's current map and location in the server registry.
@@ -348,6 +349,7 @@ class TuxemonServer():
                                         } 
                           }
         self.server.notify(cuuid, new_event_data_3)
+    
     
     def notify_key_condition(self, cuuid, kb_key, event_type):
         """Updates all clients with location a player that moved.
@@ -560,7 +562,7 @@ class TuxemonClient():
         for item in self.available_games.items():
             self.server_list.append(item[0])
         
-    
+        
     def populate_player(self):
         """Sends client character to the server.
 

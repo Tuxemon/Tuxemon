@@ -215,8 +215,8 @@ class TuxemonServer():
         
         elif event_data["type"] == "CLIENT_FACING":
             sprite = self.server.registry[cuuid]["sprite"]
-            print "sprite.facing", sprite.facing
-            sprite.facing = event_data["kb_key"]
+            if not sprite.moving:
+                sprite.facing = event_data["kb_key"]
             self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
         
     def update_client_map(self, cuuid, event_data=None):
@@ -510,8 +510,8 @@ class TuxemonClient():
             
             if event_data["type"] == "NOTIFY_CLIENT_FACING":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
-                print "sprite.facing", sprite.facing
-                sprite.facing = event_data["kb_key"]
+                if not sprite.moving:
+                    sprite.facing = event_data["kb_key"]
                 del self.client.event_notifies[euuid]
             
     def join_multiplayer(self, time_delta):

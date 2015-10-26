@@ -225,7 +225,7 @@ class TuxemonServer():
                 sprite.facing = event_data["kb_key"]
                 self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
         
-        elif event_data["type"] == "CLIENT_INTERACTION":
+        elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
             target = event_data["target"]
             if target == str(self.game.client.client.cuuid):
                 event_data["target"] = cuuid

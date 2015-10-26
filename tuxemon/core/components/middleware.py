@@ -87,6 +87,8 @@ class Multiplayer():
             return True
         elif event_data["type"] == "CLIENT_INTERACTION":
             return True
+        elif event_data["type"] == "CLIENT_RESPONSE":
+            return True
         else:
             return False
 

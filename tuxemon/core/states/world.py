@@ -1362,10 +1362,13 @@ class World(tools._State):
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
         if event_data["interaction"] == "DUEL":
-            self.interaction_menu.visible = True
-            self.interaction_menu.interactable = True
-            self.interaction_menu.player = target
-            self.interaction_menu.interaction = "DUEL"
-            self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
-            self.menu_blocking = True
+            if not event_data["response"]:
+                self.interaction_menu.visible = True
+                self.interaction_menu.interactable = True
+                self.interaction_menu.player = target
+                self.interaction_menu.interaction = "DUEL"
+                self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
+                self.menu_blocking = True
+            elif event_data["response"]:
+                print "ACCEPTED!"
                                 

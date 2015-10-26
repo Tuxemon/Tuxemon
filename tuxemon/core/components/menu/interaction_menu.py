@@ -62,6 +62,7 @@ class InteractionMenu(Menu):
                     event_data = {"type": "CLIENT_INTERACTION",
                                   "interaction": "DUEL",
                                   "target": client,
+                                  "response": None
                                   }
                     self.game.game.server.notify_client_interaction(cuuid, event_data)
                     

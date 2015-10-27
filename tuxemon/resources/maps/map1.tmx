@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="112">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="113">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -22,12 +22,12 @@
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJztm9tOFDEcxifr9kH0TlzAK8CYeGECHhNJcHe5kUhQY4ynC+OVCEZfAIUrT+8hhytF30OBGzy9gV/DNFvGdqYz7XT/pfslv8xudrrz/+brtJ1hSRJ3GmUHzDP1581mkrBm/neY7OOiTR0aT/1f0/gfRo0j4Kbm8wnW20en02nbadZ7X9SmTk1ovKjUQY1dMKtpw72IfcqoSpuBDiSunVbB+Ws1e8Suy+wwXNMlroPQpfIfk6j6X/JUS1n/lzzVtYOxadfD+EQ1f1/+VdKtaVzJpA8tE8rCt0Kef/aP9buCenS3YiYmWVb9bluJ9WLRluseO4zuvtDF8ajcAx51+cyBj/mh5l/3fNgvmeYwxdRcSM/LZLpV3VNOsvLHo5Z/do2ogiu0e2rTHFz5p5a/6XFiz38qM/7pxoPQ8q+ivD5g6p+KquTgwn9o+V+U+r+Nf2qynf/lNYDL41HLP2/MN9mP2rMlIdv5P6si/4P8aWmQv5liz9/38ajlf1RVNg/b/Kjlnz1ObP0u9vxjl+t8XddBXfcxpz/I4ZE05z822Me3bPN/4qj2UPMX/lfAa/AGrIK1nDaUft/mKv9PYB1sgE2wVaKGdsDjv/D/HfwAO2AX7IFxRf1vwTvwHnwAH71UqZeL/OXfcrTxugO6mnHhM/gCtsFX8K2gDuoS+Qvft8AcWEjfy+L94Se2v8Bv8Af89Vvuf3J1/d9IfWexraNu2a7/hf/b2N5RQF22+T+T1i98fbMo8TCA/G11PH0GfgacyPh9GkH+V6VnW2dZ728C/Fy8VPgfaiTJKdACw2AEjDbCzV/2L3Nek/0MvF4HbdABXTDb8FuzLJf5y1wBrzLnYIyPF/C6CJ6DJbAMXgSc/0l4PKdgiMVx/eepjP9Q889TDPkPnt+FLSr596v/iP+1rGtrW0dZ/QN3j6GN
+   eJztm8tu1DAYhaMh3vIOsGuZtqxoKyQWSC1XqZVgZrqhKuIihLgtECtKi+AFKLDi9h7cVuXyHrRlAy28ASdqrHGDndix4/ldz5E+eUYTj/+T4ziXTpPEnSbYLpeZ/PM0TRKWln+HzjYu+jShydz/nML/GGocB0uKz6dYfxuVjuZ951n/fVWfJjWl8CJTFzX2wIKiT+aFb2OiOn2G2hU/dtoV+6+d9oldZ9leMs0bHAehS+Y/JlH1v+KpFlP/ZzzVtYm1acvD+kQ1f1/+ZVJd07iSzhxaJZSFb4V8/vl1YNAVNKMbNTPRybLud9uKXy9WtZlusr2o7gtdjEflHnC/y2cO2Zofav5Nnw8HJd0cZpmcU/l+mclb2T3lDDMfj1r+xWtEGZlCu6fWzcGVf2r5644Te/6zhfVPtR6Eln8dlc0BXf9UVCcHF/5Dy/+0MP9t/FOT7flfvAZwOR61/MvWfJ3tqD1b4rI9/xdV5X+YPy0N89dT7Pn7Ho9a/vtVpnnY5kct/+I4sc272POPXa7zdV0Hdd3COf12CXeFc/7BtHob37LN/75B7ZMleYaaP/f/DKyB5+AFeFnSh9Lv21zl/x58AB/BJ/DZoIZOwOs/9/8DbIBNsAV+JvL5/gq8Bm/AW/DOS5Vquchf/C1HB6+7oKdYF9bBF/AVfAPfK+qgLp4/930VLIIr+XtR2Xz4jXYb7IA/4K/fcv+Tq+P/Uu67iG0dTcv2+p/7v4b2ugTqss3/oXD9cg/tssCdAPK31aH8Gfg0OFzw+yCC/M8Lz7aOs/7fBLJ98UTif7SVJEdAG4yBcTDRCjd/0b/ISUX2F+D1IuiALuiBhZbfmkW5zF/kHHha2AfHsvUCXpfBI7ACVsHjgPMfgccTEkZZHMd/mUz8h5p/mWLIf/j8LmxRyX9Q84f/r2VTrW0dpvoHDL+hZQ==
   </data>
  </layer>
  <layer name="Above Player" width="64" height="60">
@@ -89,7 +89,7 @@
   <object id="50" type="collision" x="688" y="48" width="16" height="16"/>
   <object id="51" type="collision" x="576" y="912" width="160" height="48"/>
   <object id="52" type="collision" x="672" y="880" width="64" height="32"/>
-  <object id="53" type="collision" x="624" y="624" width="16" height="16"/>
+  <object id="53" type="collision" x="624" y="624" width="16" height="32"/>
   <object id="54" type="collision" x="352" y="416" width="128" height="16">
    <properties>
     <property name="enter_from" value="up"/>
@@ -311,6 +311,14 @@
   <object id="110" name="Tuxecenter Sign" type="event" x="688" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Tuxecenter - A place to heal your tuxemon"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="112" name="Startup Town Sign" type="event" x="624" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Startup Town: Colors of your journey await!"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

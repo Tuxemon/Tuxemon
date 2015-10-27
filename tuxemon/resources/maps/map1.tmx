@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="113">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="118">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -27,7 +27,7 @@
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJztm8tu1DAYhaMh3vIOsGuZtqxoKyQWSC1XqZVgZrqhKuIihLgtECtKi+AFKLDi9h7cVuXyHrRlAy28ASdqrHGDndix4/ldz5E+eUYTj/+T4ziXTpPEnSbYLpeZ/PM0TRKWln+HzjYu+jShydz/nML/GGocB0uKz6dYfxuVjuZ951n/fVWfJjWl8CJTFzX2wIKiT+aFb2OiOn2G2hU/dtoV+6+d9oldZ9leMs0bHAehS+Y/JlH1v+KpFlP/ZzzVtYm1acvD+kQ1f1/+ZVJd07iSzhxaJZSFb4V8/vl1YNAVNKMbNTPRybLud9uKXy9WtZlusr2o7gtdjEflHnC/y2cO2Zofav5Nnw8HJd0cZpmcU/l+mclb2T3lDDMfj1r+xWtEGZlCu6fWzcGVf2r5644Te/6zhfVPtR6Eln8dlc0BXf9UVCcHF/5Dy/+0MP9t/FOT7flfvAZwOR61/MvWfJ3tqD1b4rI9/xdV5X+YPy0N89dT7Pn7Ho9a/vtVpnnY5kct/+I4sc272POPXa7zdV0Hdd3COf12CXeFc/7BtHob37LN/75B7ZMleYaaP/f/DKyB5+AFeFnSh9Lv21zl/x58AB/BJ/DZoIZOwOs/9/8DbIBNsAV+JvL5/gq8Bm/AW/DOS5Vquchf/C1HB6+7oKdYF9bBF/AVfAPfK+qgLp4/930VLIIr+XtR2Xz4jXYb7IA/4K/fcv+Tq+P/Uu67iG0dTcv2+p/7v4b2ugTqss3/oXD9cg/tssCdAPK31aH8Gfg0OFzw+yCC/M8Lz7aOs/7fBLJ98UTif7SVJEdAG4yBcTDRCjd/0b/ISUX2F+D1IuiALuiBhZbfmkW5zF/kHHha2AfHsvUCXpfBI7ACVsHjgPMfgccTEkZZHMd/mUz8h5p/mWLIf/j8LmxRyX9Q84f/r2VTrW0dpvoHDL+hZQ==
+   eJztm8tu1DAYhaMh3vIOsKNMLyvaCokFUstVolKZmW5AIC5CiNsCsaK0iPIA0HZVoO9RLiugvAe0bLi+ASdqrHGDndix4/k9yZE+eUaTjP+T4zhOOo0idxpne1xl8s/jOIpYnP8dOtu42KcKTab+Lyj8j6LGMXBF8fkU62+j0kS67xzrvy/ap0pNKbzI1EWNPbCg2CfxwrcxUZl9Gu2JnzvtguPXjvvUXWfZfhLNGZwHoUvmv06i6n/JUy2m/s94qmsHc9Ouh/mJav6+/MukWtO4ks4YWiaUhW+FfP35cWDQFVSjWyUz0cmy7Hfbiq8Xi9pEt9l+VPeFLvqjcg847PKZQzLnh5p/1dfDQUk3h1km51R6XGbSVnZPOcPM+6OWf3aNKCNRaPfUujm48k8tf91+6p7/bGb+U80HoeVfRnljQNc/FZXJwYX/0PI/LYx/G//UZHv9F9cALvujln/enK+zHbVnS1y21/+sivw3+dNSk7+e6p6/7/6o5T+sMs3DtH0e2/Xny7/q/bCr6vxt+2tUrVzn67oO6rqDa/rdHO4L1/yDcfE2vmWb/0OD2idz8gw1f+7/BXgJVsEaWM/Zh9Lv21zlvwXegnfgPfhgUEMn4Pmf+/8KvoEdsAu+R/LxvgFegdfgDdj0UqVaLvIXf8vRwesu6CnmhY/gE/gMtsGXgjqoi+fPfV8Hl8G19L2oZDz8RPsL/AZ/wF+/5f4nV+f/pdR3Fts6qpbt+p/7v4H2pgTqss3/sbB+eYB2UeBeAPnb6lD6DHwaHM74fVSD/M8Lz7aOs/7fBJJj8Uzif6QVRUdBG4yCMTDeCjd/0b/ISUX28/B6EXRAF/TAQstvzaJc5i9yDqxkjsGxZL6A10XwBCyBZfA04PyPwOMJCSOsHud/nkz8h5p/nuqQf/P8LmxRyX9Q44f/r2VVrW0dpvoHqm6h7g==
   </data>
  </layer>
  <layer name="Above Player" width="64" height="60">
@@ -155,6 +155,7 @@
   <object id="104" type="collision" x="304" y="-16" width="48" height="16"/>
   <object id="105" type="collision" x="176" y="160" width="16" height="64"/>
   <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
+  <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -318,7 +319,15 @@
   </object>
   <object id="112" name="Startup Town Sign" type="event" x="624" y="656" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Startup Town: Colors of your journey await!"/>
+    <property name="act1" value="dialog Startup Town - Colors of your journey await!"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="115" name="Route 0 Sign" type="event" x="576" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Route 0"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

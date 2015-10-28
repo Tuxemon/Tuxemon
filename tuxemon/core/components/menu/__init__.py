@@ -32,14 +32,10 @@
 import logging
 import pygame
 import math
-import os
-import sys
 
 from core.tools import get_pos_from_percent
 from core.components.ui import UserInterface
 from core.components import pyganim
-from .. import eztext
-from .. import plugin
 from ... import prepare
 
 # Create a logger for optional handling of debug messages.
@@ -145,9 +141,9 @@ class NewMenu(UserInterface):
 
     def __init__(self, game, size=(100, 100), position=(100, 100), scale=True,
                  animation_speed=0.2, animation_loop=True, name="Menu", background=None,
-                 background_color=(248, 248, 248), interactable=False, visible=True,
-                 children=[], parents=[], draw_border=True,
-                 border_images="default", border_animation_speed=0.2,
+                 background_color=(248, 248, 248), draw_background=True,
+                 interactable=False, visible=True, children=[], parents=[],
+                 draw_border=True, border_images="default", border_animation_speed=0.2,
                  arrow_images=["resources/gfx/arrow.png"], arrow_animation_speed=0.2,
                  menu_item_columns=1, menu_item_autospacing=True, menu_item_paging=False):
 
@@ -176,6 +172,7 @@ class NewMenu(UserInterface):
         # We pass our background to the parent `UserInterface` class which, when
         # initialized, will be set to `self.animation`.
         self.background = self.animation
+        self.draw_background = draw_background
 
         # Set up this menu's text properties
         self.text = []
@@ -198,6 +195,8 @@ class NewMenu(UserInterface):
         self.done = False
 
         # Set up a child/parent relationship
+        self.parents = []
+        self.children = []
         for parent in parents:
             parent.add_child(self)
         for child in children:
@@ -265,12 +264,26 @@ class NewMenu(UserInterface):
         :returns: None
 
         """
-        super(NewMenu, self).draw()
         if self.visible:
+            self._draw_background()
             if self.draw_border:
                 self._draw_borders()
             self._draw_all_text()
             self._draw_text_menu()
+
+
+    def _draw_background(self):
+        """Draws the background image or color to the screen if `draw_background` is True.
+
+        :param: None
+        :type: None
+
+        :rtype: None
+        :returns: None
+
+        """
+        if self.draw_background:
+            super(NewMenu, self).draw()
 
 
     def _draw_all_text(self):

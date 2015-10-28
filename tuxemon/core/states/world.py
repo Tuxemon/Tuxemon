@@ -32,24 +32,11 @@
 # Import various python libraries
 import logging
 import pygame
-import sys
 import math
-import os
-import pprint
 
 # Import Tuxemon internal libraries
 from .. import tools, prepare
-from ..components import screen
-from ..components import config
 from ..components import map
-from ..components import pyganim
-from ..components import player
-from ..components import event
-from ..components import save
-from ..components import monster
-from ..components import cli
-from . import combat
-from . import start
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -205,9 +192,7 @@ class World(tools._State):
 
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
-        self.item_menu = ItemMenu(self.screen,
-                                  self.resolution,
-                                  self)
+        self.item_menu = ItemMenu(self.game)
 
         #Monster menu
         MonsterMenu = menu.monster_menu.MonsterMenu
@@ -218,7 +203,7 @@ class World(tools._State):
         # Add child menus to their parent menus
         self.entername_menu.add_child(self.displayname_menu)
         #self.main_menu.add_child(self.save_menu)
-        self.item_menu.add_child(self.monster_menu)
+        #self.item_menu.add_child(self.monster_menu)
 
         # Set the window font sizes if they are not default
         self.entername_menu.font_size = 6
@@ -230,28 +215,28 @@ class World(tools._State):
         # List of available menus
         self.menus = [self.dialog_window, self.main_menu, self.save_menu,
                       self.entername_menu, self.displayname_menu,
-                      self.item_menu, self.monster_menu]
+                      self.monster_menu]
 
         # Scale the menu borders of all menus
-        for menu in self.menus:
+        for m in self.menus:
             # Skip this if we're using the new menu class
-            if "Dialog" in menu.name or "Main Menu" in menu.name:
+            if "Dialog" in m.name or "Main Menu" in m.name:
                 continue
-            menu.scale = self.scale    # Set the scale of the menu.
-            menu.set_font(size=menu.font_size * self.scale,
+            m.scale = self.scale    # Set the scale of the menu.
+            m.set_font(size=m.font_size * self.scale,
                           font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
                           color=(10, 10, 10),
-                          spacing=menu.font_size * self.scale)
+                          spacing=m.font_size * self.scale)
 
             # Scale the selection arrow image based on our game's scale.
-            menu.arrow = pygame.transform.scale(
-                menu.arrow,
-                (menu.arrow.get_width() * self.scale,
-                 menu.arrow.get_height() * self.scale))
+            m.arrow = pygame.transform.scale(
+                m.arrow,
+                (m.arrow.get_width() * self.scale,
+                 m.arrow.get_height() * self.scale))
 
             # Scale the border images based on our game's scale.
-            for key, border in menu.border.items():
-                menu.border[key] = pygame.transform.scale(
+            for key, border in m.border.items():
+                m.border[key] = pygame.transform.scale(
                     border,
                     (border.get_width() * self.scale,
                      border.get_height() * self.scale))
@@ -298,14 +283,6 @@ class World(tools._State):
         # self.displayname_menu.visible = True  # for debug
         self.displayname_menu.visible = False
         self.displayname_menu.interactable = False
-
-        # Item Menu
-        self.item_menu.size_x = prepare.SCREEN_SIZE[0]
-        self.item_menu.size_y = prepare.SCREEN_SIZE[1]
-        self.item_menu.pos_x = 0
-        self.item_menu.pos_y = 0
-        self.item_menu.visible = False
-        self.item_menu.interactable = False
 
         # Monster Menu
         self.monster_menu.size_x = prepare.SCREEN_SIZE[0]
@@ -508,6 +485,7 @@ class World(tools._State):
 
         self.not_implmeneted_menu.update(time_delta)
         self.main_menu.update(time_delta)
+        self.item_menu.update(time_delta)
 
         # Handle world events
         self.map_drawing()
@@ -542,7 +520,7 @@ class World(tools._State):
 
         # Handle events if the item menu is interactable.
         if self.item_menu.interactable:
-            self.item_menu.get_event(event, self.game)
+            self.item_menu.get_event(event)
 
         # Handle events if the monster menu is interactable.
         if self.monster_menu.interactable:
@@ -887,6 +865,7 @@ class World(tools._State):
                 self.main_menu.set_interactable(False)
 
         self.main_menu.draw()
+        self.item_menu.draw()
 
         # Main Menu
         if self.main_menu.visible:
@@ -919,10 +898,6 @@ class World(tools._State):
             # false
             if not self.save_menu.visible:
                 self.main_menu.save = False
-
-        # Draw the Item Menu
-        if self.item_menu.visible:
-            self.item_menu.draw(draw_borders=False)
 
         # Draw the Monster menu
         if self.monster_menu.visible:

@@ -39,20 +39,12 @@ class ItemMenu(NewMenu):
                  menu_item_columns=1, menu_item_autospacing=True, menu_item_paging=False):
 
         # Initialize the parent menu class's default shit
-        NewMenu.__init__(self, game, size, position, name, background, background_color,
+        NewMenu.__init__(self, game, size=size, position=position, name=name,
+                         background=background, background_color=background_color,
                          visible=visible, draw_border=draw_border)
 
         # Set up our menu's default position.
-        from core import prepare, tools
         resolution = prepare.SCREEN_SIZE
-        half_screen_width = tools.get_pos_from_percent('50%', resolution[0])
-        half_screen_height = tools.get_pos_from_percent('50%', resolution[1])
-        third_screen_width = tools.get_pos_from_percent('33.333%', resolution[0])
-        quart_screen_width = tools.get_pos_from_percent('25%', resolution[0])
-        quart_screen_height = tools.get_pos_from_percent('25%', resolution[1])
-        fifth_screen_width = tools.get_pos_from_percent('20%', resolution[0])
-        fifth_screen_height = tools.get_pos_from_percent('20%', resolution[1])
-        sixth_screen_height = tools.get_pos_from_percent('16%', resolution[1])
 
         # Create the item menu's submenus.
         self.decision_menu = self._create_descision_menu()
@@ -74,13 +66,15 @@ class ItemMenu(NewMenu):
         fifth_screen_width = tools.get_pos_from_percent('20%', resolution[0])
         sixth_screen_height = tools.get_pos_from_percent('16%', resolution[1])
 
-        decision_menu = NewMenu(game, visible=False, interactable=False)
+        decision_menu = NewMenu(self.game, visible=False, interactable=False)
         width = fifth_screen_width
         height = sixth_screen_height
         x = resolution[0] - width - decision_menu.border_thickness
         y = resolution[1] - height - decision_menu.border_thickness
         decision_menu.set_size(width, height)
         decision_menu.set_position(x, y)
+        decision_menu.add_text_menu_items(["Use", "Cancel"], justify="center", align="middle")
+
         self.add_child(decision_menu)
 
         return decision_menu
@@ -91,7 +85,7 @@ class ItemMenu(NewMenu):
         resolution = prepare.SCREEN_SIZE
         quart_screen_height = tools.get_pos_from_percent('23%', resolution[1])
 
-        info_menu = NewMenu(game, visible=True, interactable=False)
+        info_menu = NewMenu(self.game, visible=True, interactable=False)
         width = resolution[0]
         height = quart_screen_height
         x = 0
@@ -109,7 +103,8 @@ class ItemMenu(NewMenu):
         third_screen_width = tools.get_pos_from_percent('33.333%', resolution[0])
         quart_screen_height = tools.get_pos_from_percent('25%', resolution[1])
 
-        item_list = NewMenu(game, visible=True, interactable=True)
+        item_list = NewMenu(self.game, visible=True, interactable=True,
+                            draw_background=False, draw_border=False)
         width = third_screen_width * 2
         height = resolution[1] - self.info_menu.height
         x = third_screen_width
@@ -120,11 +115,13 @@ class ItemMenu(NewMenu):
 
         return item_list
 
-    def draw(self, draw_borders=True, fill_background=False):
+    def draw(self):
 
         # We can call the draw function from our parent "Menu" class, and also draw
         # some additional stuff specifically for the Item Menu.
         super(NewMenu, self).draw()
+        if not self.visible:
+            return
 
         self.backpack.draw()
 
@@ -144,34 +141,35 @@ class ItemMenu(NewMenu):
             self.info_menu.draw()
 
             # Draw the image of the currently selected item.
-            if len(self.item_list.menu_items) > 0:
-
-                # Get the selected item's description text and draw it on the info menu.
-                selected_item_name = self.item_list.menu_items[self.item_list.selected_menu_item]
-                info_text = self.game.player1.inventory[selected_item_name]['item'].description
-                self.info_menu.draw_text(info_text, justify="center", align="middle")
-
-                current_item_surface = self.game.player1.inventory[selected_item_name]['item'].surface
-
-                # Scale the item's sprite if it hasn't been scaled already.
-                if (prepare.SCALE != 1
-                    and current_item_surface.get_size() == self.game.player1.inventory[selected_item_name]['item'].surface_size_original):
-                    self.game.player1.inventory[selected_item_name]['item'].surface = pygame.transform.scale(
-                        current_item_surface, (current_item_surface.get_width() * prepare.SCALE, current_item_surface.get_height() * prepare.SCALE))
-
-                # Position the item's sprite in the middle of the left-hand part of the item list.
-                item_pos_x = (self.item_list.pos_x / 2) - (current_item_surface.get_width() / 2)
-
-                self.screen.blit(current_item_surface, (item_pos_x,0))
+            #if len(self.item_list.text_menu) > 0:
+            #
+            #    # Get the selected item's description text and draw it on the info menu.
+            #    selected_item_name = self.item_list.menu_items[self.item_list.selected_menu_item]
+            #    info_text = self.game.player1.inventory[selected_item_name]['item'].description
+            #    self.info_menu.draw_text(info_text, justify="center", align="middle")
+            #
+            #    current_item_surface = self.game.player1.inventory[selected_item_name]['item'].surface
+            #
+            #    # Scale the item's sprite if it hasn't been scaled already.
+            #    if (prepare.SCALE != 1
+            #        and current_item_surface.get_size() == self.game.player1.inventory[selected_item_name]['item'].surface_size_original):
+            #        self.game.player1.inventory[selected_item_name]['item'].surface = pygame.transform.scale(
+            #            current_item_surface, (current_item_surface.get_width() * prepare.SCALE, current_item_surface.get_height() * prepare.SCALE))
+            #
+            #    # Position the item's sprite in the middle of the left-hand part of the item list.
+            #    item_pos_x = (self.item_list.pos_x / 2) - (current_item_surface.get_width() / 2)
+            #
+            #    self.screen.blit(current_item_surface, (item_pos_x,0))
 
 
         # If the decision submenu is visible, draw it and its menu items.
-        if self.decision_menu.visible:
-            self.decision_menu.draw()
-            self.decision_menu.draw_textItem(["Use", "Cancel"], 1, autoline_spacing=True)
+        self.decision_menu.draw()
 
 
-    def get_event(self, event, game):
+    def get_event(self, event):
+        # Local access to the game
+        game = self.game
+
         # Handle when the player presses "ESC".
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
 
@@ -197,17 +195,17 @@ class ItemMenu(NewMenu):
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN: #and len(self.menu_items) > 0:
             # Decision Menu
             if self.decision_menu.interactable:
-                if self.decision_menu.menu_items[self.decision_menu.selected_menu_item] == "Cancel":
+                if self.decision_menu.text_menu[self.decision_menu.selected_menu_item] == "Cancel":
                     self.decision_menu.visible = False
                     self.decision_menu.interactable = False
                     self.decision_menu.selected_menu_item = 0
                     self.item_list.interactable = True
 
                 # Use the selected item.
-                elif self.decision_menu.menu_items[self.decision_menu.selected_menu_item] == "Use":
+                elif self.decision_menu.text_menu[self.decision_menu.selected_menu_item] == "Use":
 
                     # Get the name of the item from our menu list.
-                    item_name = self.item_list.menu_items[self.item_list.selected_menu_item]
+                    item_name = self.item_list.text_menu[self.item_list.selected_menu_item]
 
                     # For now, just use the item on the currently active monster.
                     print "Using " + item_name
@@ -238,7 +236,7 @@ class ItemMenu(NewMenu):
             # Item List Menu
             else:
                 if self.item_list.interactable:
-                    print self.item_list.menu_items[self.item_list.selected_menu_item]
+                    print self.item_list.text_menu[self.item_list.selected_menu_item]
                     self.decision_menu.visible = True
                     self.decision_menu.interactable = True
                     self.item_list.interactable = False
@@ -252,7 +250,7 @@ class ItemMenu(NewMenu):
                 # If by pressing up our selected item number is less than zero, select the last
                 # item in the list.
                 if self.decision_menu.selected_menu_item - 1 < 0:
-                    self.decision_menu.selected_menu_item = len(self.decision_menu.menu_items) - 1
+                    self.decision_menu.selected_menu_item = len(self.decision_menu.text_menu) - 1
                 else:
                     self.decision_menu.selected_menu_item -= 1
 
@@ -260,7 +258,7 @@ class ItemMenu(NewMenu):
             else:
 
                 if self.item_list.selected_menu_item -1 < 0:
-                    self.item_list.selected_menu_item = len(self.item_list.menu_items) - 1
+                    self.item_list.selected_menu_item = len(self.item_list.text_menu) - 1
                 else:
                     self.item_list.selected_menu_item -= 1
 
@@ -273,7 +271,7 @@ class ItemMenu(NewMenu):
 
                 # If by pressing up our selected item number is less than zero, select the last
                 # item in the list.
-                if self.decision_menu.selected_menu_item + 1 > len(self.decision_menu.menu_items) - 1:
+                if self.decision_menu.selected_menu_item + 1 > len(self.decision_menu.text_menu) - 1:
                     self.decision_menu.selected_menu_item = 0
                 else:
                     self.decision_menu.selected_menu_item += 1
@@ -281,7 +279,7 @@ class ItemMenu(NewMenu):
             # If the devision menu isn't open, allow item selection.
             else:
 
-                if self.item_list.selected_menu_item + 1 > len(self.item_list.menu_items) - 1:
+                if self.item_list.selected_menu_item + 1 > len(self.item_list.text_menu) - 1:
                     self.item_list.selected_menu_item = 0
                 else:
                     self.item_list.selected_menu_item += 1

@@ -138,7 +138,7 @@ class Combat(tools._State):
 
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
-        self.item_menu = ItemMenu(game.screen, prepare.SCREEN_SIZE, game)
+        self.item_menu = ItemMenu(game)
 
         # Monster Menu
         MonsterMenu = menu.monster_menu.MonsterMenu
@@ -156,7 +156,7 @@ class Combat(tools._State):
         # List of all menus
         self.menus = [self.info_menu, self.action_menu, self.fight_menu, self.fight_info_menu,
                       self.monster_menu, #self.active_monster_menu, self.inactive_monster_menu,
-                      self.item_menu, self.not_implmeneted_menu]
+                      self.not_implmeneted_menu]
 
         # Scale the menu border of all menus
         for menu in self.menus:
@@ -208,14 +208,6 @@ class Combat(tools._State):
         self.fight_info_menu.pos_y = self.action_menu.pos_y
         self.fight_info_menu.visible = False
         self.fight_info_menu.interactable = False
-
-        # Item Menu
-        self.item_menu.size_x = prepare.SCREEN_SIZE[0]
-        self.item_menu.size_y = prepare.SCREEN_SIZE[1]
-        self.item_menu.pos_x = 0
-        self.item_menu.pos_y = 0
-        self.item_menu.visible = False
-        self.item_menu.interactable = False
 
         # Monster Menu
         self.monster_menu.size_x = prepare.SCREEN_SIZE[0]
@@ -672,8 +664,7 @@ class Combat(tools._State):
         #    self.inactive_monster_menu.draw(draw_borders=True)
 
         # Draw the Item Menu
-        if self.item_menu.visible:
-            self.item_menu.draw(draw_borders=False)
+        self.item_menu.draw()
 
         # Draw the not yet implemented menu to let the player know when shit ain't
         # workin' yet
@@ -761,7 +752,7 @@ class Combat(tools._State):
             self.fight_menu.update_menu_selection(event)
 
         if self.item_menu.interactable:
-            self.item_menu.get_event(event, self.game)
+            self.item_menu.get_event(event)
 
         if self.monster_menu.interactable:
             self.monster_menu.get_event(event, self.game)
@@ -795,8 +786,8 @@ class Combat(tools._State):
                 # If "Item" was selected, open the item menu
                 elif self.action_menu.selected_menu_item == 1:
                     logger.info("Opening Item menu!")
-                    self.item_menu.visible = True
-                    self.item_menu.interactable = True
+                    self.item_menu.set_visible(True)
+                    self.item_menu.set_interactable(True)
                     self.item_menu.state = "open"
                     self.action_menu.visible = False
                     self.action_menu.interactable = False

@@ -310,7 +310,7 @@ class Player(object):
                         if game.game.isclient:
                             game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
                         elif game.game.ishost:
-                            game.game.server.notify_client_move(game.game.client.client.cuuid,
+                            game.game.server.notify_client_move(str(game.game.client.client.cuuid),
                                                            self, self.tile_pos,
                                                            self.facing,
                                                            event_type="NOTIFY_CLIENT_MOVE"
@@ -327,7 +327,7 @@ class Player(object):
                         if game.game.isclient:
                             game.game.client.update_player("down", event_type="CLIENT_MOVE_START")
                         elif game.game.ishost:
-                            game.game.server.notify_client_move(game.game.client.client.cuuid,
+                            game.game.server.notify_client_move(str(game.game.client.client.cuuid),
                                                            self, 
                                                            self.tile_pos, 
                                                            self.facing, 
@@ -344,7 +344,7 @@ class Player(object):
                         if game.game.isclient:
                             game.game.client.update_player("left", event_type="CLIENT_MOVE_START")
                         elif game.game.ishost:
-                            game.game.server.notify_client_move(game.game.client.client.cuuid, 
+                            game.game.server.notify_client_move(str(game.game.client.client.cuuid), 
                                                            self, 
                                                            self.tile_pos, 
                                                            self.facing, 
@@ -361,7 +361,7 @@ class Player(object):
                         if game.game.isclient:
                             game.game.client.update_player("right", event_type="CLIENT_MOVE_START")
                         elif game.game.ishost:
-                            game.game.server.notify_client_move(game.game.client.client.cuuid,
+                            game.game.server.notify_client_move(str(game.game.client.client.cuuid),
                                                            self,
                                                            self.tile_pos,
                                                            self.facing,
@@ -378,7 +378,7 @@ class Player(object):
                     if game.game.isclient:
                         game.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
                     elif game.game.ishost:
-                        game.game.server.notify_client_move(game.game.client.client.cuuid,
+                        game.game.server.notify_client_move(str(game.game.client.client.cuuid),
                                                        self,
                                                        self.tile_pos,
                                                        self.facing,

@@ -150,6 +150,7 @@ class World(tools._State):
         self.player1 = prepare.player1
         self.npcs = []
         self.npcs_off_map = []
+        self.started_duel = False
 
         # Set the global coordinates used to pan the screen.
         self.start_position = prepare.CONFIG.starting_position
@@ -1369,6 +1370,13 @@ class World(tools._State):
                 self.interaction_menu.interaction = "DUEL"
                 self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
                 self.menu_blocking = True
-            elif event_data["response"]:
-                print "ACCEPTED!"
+            else:
+                print event_data["response"]
+                
+                event_data = {"type": "CLIENT_INTERACTION",
+                              "interaction": "START_DUEL",
+                              "target": [event_data["target"]],
+                              "response": self.started_duel
+                              }
+                #self.game.game.server.notify_client_interaction(cuuid, event_data)
                                 

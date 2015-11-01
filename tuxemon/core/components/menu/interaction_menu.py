@@ -25,6 +25,8 @@ class InteractionMenu(Menu):
 
     def get_event(self, event, game=None):
         
+        interaction = None
+        
         if self.selected_menu_item == 0 and len(self.menu_items) > 1:
             self.selected_menu_item = 1
             
@@ -65,12 +67,19 @@ class InteractionMenu(Menu):
                                   "response": None
                                   }
                     self.game.game.server.notify_client_interaction(cuuid, event_data)
+                    self.game.started_duel = True
                     
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True
                 self.game.not_implmeneted_menu.interactable = True
                 
             elif self.menu_items[self.selected_menu_item] == "Accept" or self.menu_items[self.selected_menu_item] == "Decline":
+                if "DUEL" in self.menu_items[0]:
+                    interaction = "DUEL"
+                elif "TRADE" in self.menu_items[0]:
+                    interaction = "TRADE"
+                
+                print interaction
                 response = self.menu_items[self.selected_menu_item]
                 if self.game.game.isclient:
                     self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
@@ -82,11 +91,17 @@ class InteractionMenu(Menu):
                             client = client_id 
                     
                     event_data = {"type": "CLIENT_RESPONSE",
-                                  "interaction": "DUEL",
+                                  "interaction": interaction,
                                   "target": client,
                                   "response": response
                                   }
                     self.game.game.server.notify_client_interaction(cuuid, event_data)
+                    
+                    if interaction == "DUEL":
+                        if response == "Accept":
+                            self.game.started_duel = True
+                        elif response == "Decline":
+                            self.game.started_duel = False
                 
 
 

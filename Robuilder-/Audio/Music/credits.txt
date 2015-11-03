@@ -1,0 +1,24 @@
+Music (Open Source)
+
+--------------
+Supertux (GPL)
+
+bossattack
+
+-----------------------------
+Secret Maryo Chronicles (GPLv3)
+
+land_3
+land_4
+menu
+
+------------------
+Open Sonic (GPLv2)
+
+boss
+
+----------------
+Game Vega Strike
+
+snow
+

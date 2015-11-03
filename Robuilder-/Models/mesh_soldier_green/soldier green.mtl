@@ -1,0 +1,17 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.27
+# URL: http://www.unwrap3d.com
+# Time: Wed Mar 02 13:27:19 2011
+# num_materials: 1
+
+newmtl soldier_green
+Ka 0.000000 0.000000 0.000000
+Kd 0.737255 0.737255 0.737255
+Ks 0.100000 0.100000 0.100000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd soldier_green_tex.png
+map_Bump soldier_NM.png
+
+# num_materials: 1

@@ -1,0 +1,10 @@
+# Created on: Tue Nov 20 10:50:22 2007 0x061c6cb0
+
+newmtl Cylinder,1
+Ns 0
+Ka 0.170000 0.170000 0.170000
+Kd 1.000000 1.000000 1.000000
+Ks 0.100000 0.100000 0.100000
+d 0.996078
+map_Kd barrel_tex.bmp 
+# End

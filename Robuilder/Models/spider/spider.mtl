@@ -1,0 +1,17 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.38
+# URL: http://www.unwrap3d.com
+# Time: Sat Sep 15 11:16:38 2012
+# num_materials: 1
+
+newmtl spidermat
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd spider_tex.png
+map_Bump spider_NM.png
+
+# num_materials: 1

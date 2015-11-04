@@ -1,0 +1,12 @@
+# File created by luuv TSX
+# Created on: Mon Sep 27 11:04:07 2010 -1
+
+newmtl wheel_front_right
+Ns 0
+Ka 0.300000 0.300000 0.300000
+Kd 1.000000 1.000000 1.000000
+Ks 0.100000 0.100000 0.100000
+d 0.996078
+map_bump wheel_b_NM.bmp 
+map_Kd wheel_b_tex.bmp 
+# End

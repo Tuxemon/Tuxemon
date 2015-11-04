@@ -1,0 +1,17 @@
+# Wavefront MTL file
+# Creator: Ultimate Unwrap3D Pro v3.27
+# URL: http://www.unwrap3d.com
+# Time: Wed Mar 02 09:53:02 2011
+# num_materials: 1
+
+newmtl armygun
+Ka 0.340000 0.340000 0.340000
+Kd 1.000000 1.000000 1.000000
+Ks 0.100000 0.100000 0.100000
+d 1.000000
+illum 2
+Ns 0.000000
+map_Kd armygun_tex.png
+map_Bump armygun_NM.png
+
+# num_materials: 1

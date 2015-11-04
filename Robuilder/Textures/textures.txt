@@ -1,0 +1,24 @@
+﻿Textures
+
+-----------
+My Textures (Open Source)
+
+mine_dirt&grass
+mine_dirt
+mine_grass
+mine_stone
+
+------------
+Game Pioneer (CC BY SA 3.0)
+
+kanara_civ_diff
+ac33
+deneb
+pumpkinseed_diff
+
+-----------------------------
+flickr.com (Creative Commons)
+
+scratched_metal
+tire
+rock_floor - cc by 2.0

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="28">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="66">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ </tileset>
+ <tileset firstgid="67" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="139" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="163" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="179" name="kitchen" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="11" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYCANTABiRgIYBmYAsTgBDAMqRGAY0CeAB5taYgEA6DYJnQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="11" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAdMJOglg+IPYHYC8rfBsRbgHgrEG/Goj4UiMOAeDcQ7wLiHUC8E4i3I6lRB2ININZE09sAxcjACIiNgdgESawZid2ExLYFYjsgtkczoxKIq7G4FRmwEpAnBgAAoooMiA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="11" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj+YCUWsUQgTiZSfwMU0xoAAEZHAm4=
+  </data>
+ </layer>
+ <layer name="Above player" width="11" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiaYOkA2+8NxD5A7EuEWkk0jEsMAOQoAlI=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="112" y="80" width="32" height="16"/>
+  <object id="2" type="collision" x="32" y="32" width="128" height="16"/>
+  <object id="3" type="collision" x="160" y="48" width="16" height="80"/>
+  <object id="4" type="collision" x="16" y="112" width="48" height="16"/>
+  <object id="5" type="collision" x="32" y="80" width="16" height="16"/>
+  <object id="6" type="collision" x="0" y="16" width="16" height="112"/>
+  <object id="7" type="collision" x="16" y="16" width="16" height="16"/>
+  <object id="8" type="collision" x="16" y="128" width="144" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="23" name="Play Music" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music 472452_8-Bit-Ambient.ogg"/>
+    <property name="cond1" value="not music_playing 472452_8-Bit-Ambient.ogg"/>
+   </properties>
+  </object>
+  <object id="25" name="Read Sign" type="event" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Home Sweet Home"/>
+    <property name="cond1" value="is player_at 2,3"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="26" name="Go Upstairs" type="event" x="16" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport bedroom_test.tmx,9,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 1,2"/>
+   </properties>
+  </object>
+  <object id="27" name="Go Outside" type="event" x="80" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,43,46,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 5,7"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

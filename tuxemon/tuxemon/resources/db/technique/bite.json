@@ -1,0 +1,14 @@
+{
+    "animation": "bite",
+    "sfx": "bite1.ogg",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ], 
+    "id": 3, 
+    "name": "Bite", 
+    "power": 55, 
+    "types": [
+        "Normal"
+    ]
+}

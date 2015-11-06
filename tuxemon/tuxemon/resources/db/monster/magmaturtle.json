@@ -1,0 +1,68 @@
+{
+    "attack_base": 32, 
+    "attack_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "defense_base": 9, 
+    "defense_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "hp_base": 35, 
+    "hp_mod": [
+        0.9, 
+        1.0, 
+        1.1
+    ], 
+    "id": 19, 
+    "moveset": [
+        {
+            "level_learned": 2, 
+            "technique_id": 1
+        }, 
+        {
+            "level_learned": 2, 
+            "technique_id": 4
+        },
+        {
+            "level_learned": 7, 
+            "technique_id": 3
+        }
+
+
+    ], 
+    "name": "MagmaTurtle", 
+    "special_attack_base": 6, 
+    "special_attack_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "special_defense_base": 8, 
+    "special_defense_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "speed_base": 7, 
+    "speed_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "sprites": {
+        "battle1": "resources/gfx/sprites/battle/magmaturtle-front.png", 
+        "battle2": "resources/gfx/sprites/battle/magmaturtle-back.png", 
+        "menu1": "resources/gfx/sprites/battle/magmaturtle-menu01.png", 
+        "menu2": "resources/gfx/sprites/battle/magmaturtle-menu02.png"
+    }, 
+    "types": [
+        "fire"
+    ], 
+    "weight": 40,
+    "exp_give_mod": 3,
+    "exp_req_mod": 27
+}

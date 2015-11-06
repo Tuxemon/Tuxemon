@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="25" tilewidth="16" tileheight="16" nextobjectid="13">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="66">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAEjBRgbICHAowNiFOAsQE2IGYnA3PgME8QiIXIwMKj5o1I8yTxYFkoxiVPqnmE1IyCUTAKhi4AACJPDKw=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="20" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAHAAfQAAE=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="20" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAHAAfQAAE=
+  </data>
+ </layer>
+ <layer name="Above Player" width="20" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAHAAfQAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="80" y="0" width="240" height="48"/>
+  <object id="5" type="collision" x="320" y="48" width="16" height="128"/>
+  <object id="6" type="collision" x="320" y="176" width="16" height="32"/>
+  <object id="7" type="collision" x="224" y="176" width="96" height="16"/>
+  <object id="8" type="collision" x="80" y="176" width="112" height="16"/>
+  <object id="9" type="collision" x="64" y="48" width="16" height="144"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="11" name="Go Outside" type="event" x="192" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport boulder_city.tmx,40,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 12,12"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="12" name="Go Outside" type="event" x="208" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport boulder_city.tmx,40,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 13,12"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

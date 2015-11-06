@@ -1,0 +1,14 @@
+{
+    "animation": "moss",
+    "sfx": "blaster1.ogg",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ], 
+    "id": 5, 
+    "name": "Moss", 
+    "power": 35, 
+    "types": [
+        "Wood"
+    ]
+}

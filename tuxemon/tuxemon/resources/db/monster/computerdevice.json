@@ -1,0 +1,63 @@
+{
+    "attack_base": 40, 
+    "attack_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "defense_base": 6, 
+    "defense_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "hp_base": 40, 
+    "hp_mod": [
+        0.9, 
+        1.0, 
+        1.1
+    ], 
+    "id": 10, 
+    "moveset": [
+        {
+            "level_learned": 2, 
+            "technique_id": 4
+        }, 
+        {
+            "level_learned": 2, 
+            "technique_id": 1
+        } 
+
+        ], 
+    "name": "CD", 
+    "special_attack_base": 7, 
+    "special_attack_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "special_defense_base": 9, 
+    "special_defense_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "speed_base": 7, 
+    "speed_mod": [
+        1.0, 
+        1.1, 
+        1.2
+    ], 
+    "sprites": {
+        "battle1": "resources/gfx/sprites/battle/computerdevice-front.png", 
+        "battle2": "resources/gfx/sprites/battle/computerdevice-back.png", 
+        "menu1": "resources/gfx/sprites/battle/tumbleworm-menu01.png", 
+        "menu2": "resources/gfx/sprites/battle/tumbleworm-menu02.png"
+    }, 
+    "types": [
+        "metal"    
+    ], 
+    "weight": 35,
+    "exp_give_mod": 3,
+    "exp_req_mod": 27
+}

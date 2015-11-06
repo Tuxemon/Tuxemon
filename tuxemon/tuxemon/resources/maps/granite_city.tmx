@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="70" tilewidth="16" tileheight="16" nextobjectid="4">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="66">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ </tileset>
+ <tileset firstgid="67" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1379" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1483" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="1499" name="signs" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/signs.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztw0EJAAAIBLD72MmYRraGyAbrJK2qqqqqvjylqqqqqqpeu2N/jO0=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztl0dKBEEYRmvSynQP08p0BdPKtJp0BRN4AdMFFAyjG8PKdAUTuHA7aWU6h29AUHHosf1tux2+Bw9q0VCvG+qn2jkh/g/pmHMZzGIO87Gwiz6zTM8KruIarkes74SeUzzDc7wIuO8h7twjPuEzvsS9ny/SU8IyVrAacF9LwrlWbMN27EgEu59f+ujpxwEcxCFMJcOueidNTwazmMM89kaoTzQ3ReZJCctYwWqD+fLXxDgPcUxgsnZ2fc6XYd5nBEdxDMd/+f066enCbuypnV2ffbP0zOE8LuDiL/dN0DOJUziNMz77tujZxh3cxYJH312q/jpILum5wmu8wVuPvvtU/bUQPyXo+WIl6Plixc98CQM/80WIZmNJ/yImCtwz9t7cj+CdQ3021GdDfTbUZ0N9NtRnQ3021GdDfTbUZ0N9NtRnQ302wu7bYM9NDw9C7vv4fRqpvq8csufRNz2O4PkQQkSXV3sFnBs=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="40" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJgDAQRcEPW72xm2iBbgE5G5EZePeXALzjqGR0Z+0+WZv9dXX3R/8AAAAAAAAAAAD4hwedpwPK
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAgJcBK8AAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="events">
+  <object id="1" name="go to bug_forest" type="event" x="0" y="976" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport bug_forest.tmx,55,2,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="2" x="96" y="816">
+   <properties>
+    <property name="act1" value="create_npc Boss,5,52,boss,stand"/>
+    <property name="act2" value="create_npc Boss,5,51,player,stand"/>
+    <property name="act3" value="dialog BOY: Leave me alone! I didn't do anything!"/>
+    <property name="act4" value="dialog BOY2: That's why I'm mad at you. You have to pay."/>
+    <property name="act5" value="dialog BOY: Help!"/>
+    <property name="act6" value="dialog RED: Hey! What are you doing!"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="collision"/>
+</map>

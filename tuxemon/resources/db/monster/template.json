@@ -1,5 +1,5 @@
 {
-    "id": 3, 
+    "id":   0,
 
     "attack_base":            60, 
     "defense_base":           7, 
@@ -11,12 +11,12 @@
     "attack_mod":             1,
     "defense_mod":            1,
     "hp_mod":                 1,
-    "special_attack_mod":     1, 
+    "special_attack_mod":     1,
     "special_defense_mod":    1,
     "speed_mod":              1,
 
-    "exp_give_mod": 3,
-    "exp_req_mod": 27,
+    "exp_give_mod":           3,
+    "exp_req_mod":            27,
 
     "moveset": [
         {
@@ -28,15 +28,15 @@
             "technique_id": 2
         }
     ], 
-    "name": "Fruitera", 
+    "name": "Template", 
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/fruitera-front.png", 
-        "battle2": "resources/gfx/sprites/battle/fruitera-back.png", 
-        "menu1": "resources/gfx/sprites/battle/fruitera-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/fruitera-menu02.png"
+        "battle1": "resources/gfx/sprites/battle/template-front.png", 
+        "battle2": "resources/gfx/sprites/battle/template-back.png", 
+        "menu1": "resources/gfx/sprites/battle/template-menu01.png", 
+        "menu2": "resources/gfx/sprites/battle/template-menu02.png"
     }, 
     "types": [
-        "wood"
+        "earth"
     ], 
     "weight": 25
 }

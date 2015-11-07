@@ -554,7 +554,6 @@ class Control(object):
         
         if self.server.listening: 
             self.server.update()
-            self.add_clients_to_map(self.server.server.registry)
         
         # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.
@@ -692,11 +691,11 @@ class Control(object):
         :returns: None
 
         """ 
+        self.state_dict["WORLD"].npcs = []
+        self.state_dict["WORLD"].npcs_off_map = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
-                if sprite == self.state_dict["WORLD"].player1:
-                    continue
                 client_map = registry[client]["map_name"]
                 current_map = self.get_map_name()
                 

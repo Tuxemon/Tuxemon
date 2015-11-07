@@ -52,25 +52,10 @@ class InteractionMenu(Menu):
             self.menu_select_sound.play()
 
             if self.menu_items[self.selected_menu_item] == "DUEL":
-                if self.game.game.isclient:
-                    self.game.game.client.player_interact(self.player, "DUEL")
-                elif self.game.game.ishost:
-                    client = None
-                    cuuid = str(self.game.client.client.cuuid)
-                    for client_id in self.game.server.server.registry:
-                        if self.player == self.game.server.server.registry[client_id]["sprite"]:
-                            client = client_id 
-                    
-                    event_data = {"type": "CLIENT_INTERACTION",
-                                  "interaction": "DUEL",
-                                  "target": client,
-                                  "response": None,
-                                  "char_dict": {"monsters": pd["monsters"],
-                                                "inventory": pd["inventory"]
-                                                }
-                                  }
-                    self.game.game.server.notify_client_interaction(cuuid, event_data)
-                    self.game.wants_duel = True
+                self.game.not_implmeneted_menu.visible = True
+                self.game.not_implmeneted_menu.interactable = True
+#                 if self.game.game.isclient or self.game.game.ishost:
+#                     self.game.game.client.player_interact(self.player, "DUEL")
                     
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True

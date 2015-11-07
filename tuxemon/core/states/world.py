@@ -709,8 +709,8 @@ class World(tools._State):
             (self.global_x / self.tile_size[0])
              # How many tiles over we have to draw the first tile
         starting_tile_y = - \
-            (self.global_y / self.tile_size[
-             1])  # How many tiles down we have to draw the first tile
+            (self.global_y / self.tile_size[1])  
+             # How many tiles down we have to draw the first tile
         self.tile_buffer = 2  # This is how many tiles we should draw past the visible region
 
         # Loop through the number of visible tiles and draw only the tiles that
@@ -1273,7 +1273,7 @@ class World(tools._State):
             if self.game.isclient or self.game.ishost:
                 self.game.add_clients_to_map(self.game.client.client.registry)
                 self.game.client.update_player(self.player1.facing)
-    
+            
             # Update the location of the npcs. Doesn't send network data.
             for npc in self.npcs:
                 char_dict ={"tile_pos": npc.tile_pos,
@@ -1370,6 +1370,7 @@ class World(tools._State):
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
+                        pd = self.game.state_dict["WORLD"].player1.__dict__
                         event_data = {"type": "CLIENT_INTERACTION",
                                       "interaction": "START_DUEL",
                                       "target": [event_data["target"]],

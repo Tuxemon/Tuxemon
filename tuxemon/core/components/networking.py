@@ -155,35 +155,29 @@ class TuxemonServer():
 
         """
         # Only respond to the latest message of a given type
-        if event_data["type"] != "PUSH_SELF":
-            if not event_data["type"] in self.server.registry[cuuid]["event_list"]:
-                self.server.registry[cuuid]["event_list"][event_data["type"]] = 0
-            if event_data["event_number"] <= self.server.registry[cuuid]["event_list"][event_data["type"]]:
-                return False
-            else:
-                self.server.registry[cuuid]["event_list"][event_data["type"]] = event_data["event_number"]
+        if not "event_list" in self.server.registry[cuuid]:
+            self.server.registry[cuuid]["event_list"] = {}
+        elif not event_data["type"] in self.server.registry[cuuid]["event_list"]:
+                self.server.registry[cuuid]["event_list"][event_data["type"]] = -1
+        elif event_data["event_number"] <= self.server.registry[cuuid]["event_list"][event_data["type"]]:
+            return False
+        else:
+            self.server.registry[cuuid]["event_list"][event_data["type"]] = event_data["event_number"]
                 
         if event_data["type"] == "PUSH_SELF":
-            if cuuid == str(self.game.client.client.cuuid):
-                sprite = self.game.state_dict["WORLD"].player1
-                self.server.registry[cuuid]["event_list"] = {}
-                self.notify_populate_client(cuuid, event_data, sprite)
-                self.server.registry[cuuid]["sprite"] = sprite
-                self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-            else:
-                sprite = populate_client(cuuid, event_data, self.server.registry, self.game)
-                self.server.registry[cuuid]["event_list"] = {}
-                update_client(sprite, event_data["char_dict"], self.game)
-                self.notify_populate_client(cuuid, event_data, sprite)
+            sprite = populate_client(cuuid, event_data, self.game, self.server.registry)
+            self.server.registry[cuuid]["event_list"] = {}
+            update_client(sprite, event_data["char_dict"], self.game)
+            self.notify_populate_client(cuuid, event_data, sprite)
             
         elif event_data["type"] == "CLIENT_MOVE_START":
             direction = str(event_data["direction"])
             sprite = self.server.registry[cuuid]["sprite"]
             char_dict = event_data["char_dict"]
-            sprite.facing = direction
-            for d in sprite.direction:
-                if sprite.direction[d]: sprite.direction[d] = False
-            sprite.direction[direction] = True
+#             sprite.facing = direction
+#             for d in sprite.direction:
+#                 if sprite.direction[d]: sprite.direction[d] = False
+#             sprite.direction[direction] = True
             self.notify_client_move(cuuid,
                                     sprite,
                                     char_dict["tile_pos"],
@@ -199,9 +193,9 @@ class TuxemonServer():
                                     sprite.facing,
                                     event_type="NOTIFY_MOVE_COMPLETE"
                                     )
-            for d in sprite.direction:
-                if sprite.direction[d]: sprite.direction[d] = False
-            sprite.final_move_dest = char_dict["tile_pos"]
+#             for d in sprite.direction:
+#                 if sprite.direction[d]: sprite.direction[d] = False
+#             sprite.final_move_dest = char_dict["tile_pos"]
             
         elif event_data["type"] == "CLIENT_MAP_UPDATE":
             self.update_client_map(cuuid, event_data)
@@ -487,7 +481,7 @@ class TuxemonClient():
             if event_data["type"] == "NOTIFY_CLIENT_NEW":
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
-                sprite = populate_client(event_data["cuuid"], event_data, self.client.registry, self.game)
+                sprite = populate_client(event_data["cuuid"], event_data, self.game, self.client.registry)
                 update_client(sprite, event_data["char_dict"], self.game)
                 del self.client.event_notifies[euuid]
                 
@@ -788,7 +782,7 @@ class TuxemonClient():
         self.client.event(event_data)
 
 # Universal functions
-def populate_client(cuuid, event_data, registry, game):
+def populate_client(cuuid, event_data, game, registry):
     """Creates an NPC to represent the client character and adds the
     information to the registry. 
     

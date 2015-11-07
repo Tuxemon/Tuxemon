@@ -196,6 +196,7 @@ class TuxemonServer():
             for d in sprite.direction:
                 if sprite.direction[d]: sprite.direction[d] = False
             sprite.final_move_dest = char_dict["tile_pos"]
+            update_client(sprite, char_dict, self.game)
             
         elif event_data["type"] == "CLIENT_MAP_UPDATE":
             self.update_client_map(cuuid, event_data)

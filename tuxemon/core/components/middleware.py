@@ -44,8 +44,9 @@ class Multiplayer():
     event_execute -- Sets the game_server.network_events dictionary based on what key was pressed
 
     """
-    def __init__(self, game=None, server=None):
+    def __init__(self, game=None, game_server=None):
         self.game = game
+        self.game_server = game_server
 
     def event_legal(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
@@ -73,7 +74,7 @@ class Multiplayer():
 
     def event_execute(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
-            self.game.server.network_events.append(event_data)
+            self.game_server.network_events.append(event_data)
         else:
-            self.game.server.server_event_handler(cuuid, event_data)
+            self.game_server.server_event_handler(cuuid, event_data)
             

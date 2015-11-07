@@ -22,5 +22,6 @@ encoding//tuxemon/core/states/pc.py=utf-8
 encoding//tuxemon/core/states/start.py=utf-8
 encoding//tuxemon/core/states/world.py=utf-8
 encoding//tuxemon/core/tools.py=utf-8
+encoding//tuxemon/headless_server.py=utf-8
 encoding//tuxemon/main.py=utf-8
 encoding//tuxemon/tuxemon.py=utf-8

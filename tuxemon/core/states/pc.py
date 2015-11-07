@@ -22,13 +22,13 @@
 #
 # Contributor(s):
 #
-# Derek J. Clark <derekjohn.clark@gmail.com>
+# William Edwards <shadowapex@gmail.com>
+# Derek Clark <derekjohn.clark@gmail.com>
 #
+# core.components.states
 #
-# core.states.start Handles the splash screen and start menu.
-#
-#
-
+"""This module contains the PC state.
+"""
 import logging
 import pygame
 import os

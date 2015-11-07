@@ -23,7 +23,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-#
+# Derek Clark <derekjohn.clark@gmail.com>
 #
 # core.components.ai Artificial intelligence module.
 #

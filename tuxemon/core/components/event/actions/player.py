@@ -100,7 +100,7 @@ class Player(object):
 
                 # Clear out any existing NPCs
                 world.npcs = []
-                    
+
                 # Scale the loaded tiles if enabled
                 if world.scale > 1:
                     x_pos = 0        # Here we need to keep track of the x index of the list
@@ -122,12 +122,9 @@ class Player(object):
                         x_pos += 1
         
         # Update the server/clients of our new map and populate any other players.
-        if game.isclient:
+        if game.isclient or game.ishost:
             game.add_clients_to_map(game.client.client.registry)
             game.client.update_player(player.facing)
-        elif game.ishost:
-            game.add_clients_to_map(game.server.server.registry)                
-            game.server.update_client_map(str(game.client.client.cuuid))
             
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False

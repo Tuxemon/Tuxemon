@@ -1,32 +1,34 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 #
-# Asteria
-# Copyright (C) 2013, William Edwards <shadowapex@gmail.com>
+# Tuxemon
+# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
+#                     Benjamin Bean <superman2k5@gmail.com>
 #
-# This file is part of Asteria.
+# This file is part of Tuxemon.
 #
-# Asteria is free software: you can redistribute it and/or modify
+# Tuxemon is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Asteria is distributed in the hope that it will be useful,
+# Tuxemon is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Asteria.  If not, see <http://www.gnu.org/licenses/>.
+# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Derek Clark <derekjohn.clark@gmail.com>
 #
+# core.components.middleware
 #
-# middleware.py Legal processing of event data
-#
-#
-
+"""This module contains the Tuxemon server middleware.
+"""
 import logging
 
 # Create a logger for optional handling of debug messages.

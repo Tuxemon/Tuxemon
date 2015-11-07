@@ -23,12 +23,12 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Derek Clark <derekjohn.clark@gmail.com>
 #
+# core.components.player
 #
-# core.components.player Player module.
-#
-#
-
+"""This module contains the player and npc modules.
+"""
 import logging
 import pygame
 import pprint

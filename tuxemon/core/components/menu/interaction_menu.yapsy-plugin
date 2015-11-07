@@ -1,9 +1,0 @@
-[Core]
-Name = Interaction Menu
-Module = interaction_menu
-
-[Documentation]
-Author = Derek Clark
-Version = 1.0
-Website = http://www.tuxemon.org
-Description = Interaction menu plugin.

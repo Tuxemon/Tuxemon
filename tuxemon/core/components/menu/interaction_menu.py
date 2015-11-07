@@ -78,30 +78,12 @@ class InteractionMenu(Menu):
                 
             elif self.menu_items[self.selected_menu_item] == "Accept" or self.menu_items[self.selected_menu_item] == "Decline":
                 response = self.menu_items[self.selected_menu_item]
-                if self.game.game.isclient:
-                    self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
-                elif self.game.game.ishost:
-                    client = None
-                    cuuid = str(self.game.client.client.cuuid)
-                    for client_id in self.game.server.server.registry:
-                        if self.player == self.game.server.server.registry[client_id]["sprite"]:
-                            client = client_id 
-                    pd = self.game.state_dict["WORLD"].player1.__dict__
-                    event_data = {"type": "CLIENT_RESPONSE",
-                                  "interaction": self.interaction,
-                                  "target": client,
-                                  "response": response,
-                                  "char_dict": {"monsters": pd["monsters"],
-                                                "inventory": pd["inventory"]
-                                                }
-                                  }
-                    self.game.game.server.notify_client_interaction(cuuid, event_data)
-                    
-                    if self.interaction == "DUEL":
-                        if response == "Accept":
-                            self.game.wants_duel = True
-                        elif response == "Decline":
-                            self.game.wants_duel = False
+                self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)                    
+                if self.interaction == "DUEL":
+                    if response == "Accept":
+                        self.game.wants_duel = True
+                    elif response == "Decline":
+                        self.game.wants_duel = False
                 
 
 

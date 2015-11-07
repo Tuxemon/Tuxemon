@@ -150,7 +150,7 @@ class World(tools._State):
         self.player1 = prepare.player1
         self.npcs = []
         self.npcs_off_map = []
-        self.started_duel = False
+        self.wants_duel = False
 
         # Set the global coordinates used to pan the screen.
         self.start_position = prepare.CONFIG.starting_position
@@ -823,7 +823,7 @@ class World(tools._State):
             if npc.update_location:
                 char_dict ={"tile_pos": npc.final_move_dest,
                             }
-                networking.update_client_location(npc, char_dict, self.game)
+                networking.update_client(npc, char_dict, self.game)
                 npc.update_location = False
                 
             # Draw the bottom part of the NPC.
@@ -1270,23 +1270,20 @@ class World(tools._State):
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
            
             # Update the server/clients of our new map and populate any other players.
-            if self.game.isclient:
+            if self.game.isclient or self.game.ishost:
                 self.game.add_clients_to_map(self.game.client.client.registry)
                 self.game.client.update_player(self.player1.facing)
-            elif self.game.ishost:
-                self.game.add_clients_to_map(self.game.server.server.registry)                
-                self.game.server.update_client_map(str(self.game.client.client.cuuid))
-            
+    
             # Update the location of the npcs. Doesn't send network data.
             for npc in self.npcs:
                 char_dict ={"tile_pos": npc.tile_pos,
                             }
-                networking.update_client_location(npc, char_dict, self.game)
+                networking.update_client(npc, char_dict, self.game)
             
             for npc in self.npcs_off_map:
                 char_dict ={"tile_pos": npc.tile_pos,
                             }
-                networking.update_client_location(npc, char_dict, self.game)
+                networking.update_client(npc, char_dict, self.game)
 
 
     def get_pos_from_tilepos(self, tile_position):
@@ -1355,13 +1352,13 @@ class World(tools._State):
         :type event_data: Dictionary
         :type registry: Dictionary
 
-        :rtype: Bool
-        :returns: True if there is an Npc to interact with.
-
+        :rtype: None
+        :returns: None
         """
         print event_data
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
+        networking.update_client(target, event_data["char_dict"], self.game)
         if event_data["interaction"] == "DUEL":
             if not event_data["response"]:
                 self.interaction_menu.visible = True
@@ -1371,12 +1368,16 @@ class World(tools._State):
                 self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
                 self.menu_blocking = True
             else:
-                print event_data["response"]
-                
-                event_data = {"type": "CLIENT_INTERACTION",
-                              "interaction": "START_DUEL",
-                              "target": [event_data["target"]],
-                              "response": self.started_duel
-                              }
-                #self.game.game.server.notify_client_interaction(cuuid, event_data)
+                if self.wants_duel:
+                    if event_data["response"] == "Accept":
+                        event_data = {"type": "CLIENT_INTERACTION",
+                                      "interaction": "START_DUEL",
+                                      "target": [event_data["target"]],
+                                      "response": None,
+                                      "char_dict": {"monsters": pd["monsters"],
+                                                    "inventory": pd["inventory"]
+                                                    }
+                                      
+                                      }
+                        self.game.game.server.notify_client_interaction(cuuid, event_data)
                                 

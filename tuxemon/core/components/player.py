@@ -307,14 +307,8 @@ class Player(object):
                     if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "up"
-                        if game.game.isclient:
+                        if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
-                        elif game.game.ishost:
-                            game.game.server.notify_client_move(str(game.game.client.client.cuuid),
-                                                           self, self.tile_pos,
-                                                           self.facing,
-                                                           event_type="NOTIFY_CLIENT_MOVE"
-                                                           )
 
             elif self.direction["down"]:
                 if not self.moving:
@@ -324,15 +318,9 @@ class Player(object):
                     if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "down"
-                        if game.game.isclient:
+                        if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("down", event_type="CLIENT_MOVE_START")
-                        elif game.game.ishost:
-                            game.game.server.notify_client_move(str(game.game.client.client.cuuid),
-                                                           self, 
-                                                           self.tile_pos, 
-                                                           self.facing, 
-                                                           event_type="NOTIFY_CLIENT_MOVE")
-
+                        
             elif self.direction["left"]:
                 if not self.moving:
                     # Set the destination position we'd wish to reach if we just started walking.
@@ -341,15 +329,9 @@ class Player(object):
                     if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "left"
-                        if game.game.isclient:
+                        if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("left", event_type="CLIENT_MOVE_START")
-                        elif game.game.ishost:
-                            game.game.server.notify_client_move(str(game.game.client.client.cuuid), 
-                                                           self, 
-                                                           self.tile_pos, 
-                                                           self.facing, 
-                                                           event_type="NOTIFY_CLIENT_MOVE"
-                                                           )
+                        
             elif self.direction["right"]:
                 if not self.moving:
                     # Set the destination position we'd wish to reach if we just started walking.
@@ -358,16 +340,9 @@ class Player(object):
                     if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
                         self.moving = True
                         self.move_direction = "right"
-                        if game.game.isclient:
+                        if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("right", event_type="CLIENT_MOVE_START")
-                        elif game.game.ishost:
-                            game.game.server.notify_client_move(str(game.game.client.client.cuuid),
-                                                           self,
-                                                           self.tile_pos,
-                                                           self.facing,
-                                                           event_type="NOTIFY_CLIENT_MOVE"
-                                                           )
-
+                        
         # If we're not holding down an arrow key and the player is not moving, stop the animation
         # and draw the standing gfx
         else:
@@ -375,15 +350,9 @@ class Player(object):
                 if self.anim_playing:
                     self.moveConductor.stop()
                     self.anim_playing = False
-                    if game.game.isclient:
+                    if game.game.isclient or game.game.ishost:
                         game.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
-                    elif game.game.ishost:
-                        game.game.server.notify_client_move(str(game.game.client.client.cuuid),
-                                                       self,
-                                                       self.tile_pos,
-                                                       self.facing,
-                                                       event_type="NOTIFY_MOVE_COMPLETE"
-                                                       )
+                    
         return global_x, global_y
 
     def move_one_tile(self, direction):

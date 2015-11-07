@@ -26,6 +26,7 @@
 
 import logging
 import random
+from __builtin__ import False
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -68,8 +69,7 @@ class Combat(object):
         player = game.imports["player"]
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if len(game.player1.monsters) < 1:
-            logger.warning("Cannot start battle, player has no monsters!")
+        if not self.check_battle_legal(game.player1):
             return False
 
         # Start combat
@@ -147,6 +147,40 @@ class Combat(object):
         mixer.music.play(-1)
 
 
+    def start_psudo_battle(self, game, npc):
+        """Start a networked duel and switch to the combat module. 
+
+        :param game: The main game object that contains all the game's variables.
+        :param npc: The NPC to fight if fighting a specific character.
+
+        :type game: core.tools.Control
+        :type npc: core.components.player.Npc
+
+        :rtype: None
+        :returns: None
+        """
+        # Don't start a battle if we don't even have monsters in our party yet.
+        if not self.check_battle_legal(game.player1):
+            return False
+        
+        if not self.check_battle_legal(npc):
+            return False
+        
+
+        # Add our players and start combat
+        game.state_dict["COMBAT"].players.append(game.player1)
+        game.state_dict["COMBAT"].players.append(npc)
+        game.state_dict["COMBAT"].combat_type = "trainer"
+        game.state_dict["WORLD"].start_battle_transition = True
+
+        # Start some music!
+        logger.info("Playing battle music!")
+        filename = "147066_pokemon.ogg"
+
+        mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+        mixer.music.play(-1)
+        
+        
     def random_encounter(self, game, action):
         """Randomly starts a battle with a monster defined in the "encounter" table in the
         "monster.db" database. The chance that this will start a battle depends on the
@@ -177,13 +211,8 @@ class Combat(object):
         player1 = game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if len(player1.monsters) < 1:
-            logger.warning("Cannot start battle, player has no monsters!")
+        if not self.check_battle_legal(player1):
             return False
-        else:
-            if player1.monsters[0].current_hp <= 0:
-                logger.warning("Cannot start battle, player's monsters are all DEAD")
-                return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
         encounter_id = int(action[1])
@@ -250,4 +279,23 @@ class Combat(object):
             game.state_dict["WORLD"].menu_blocking = True
             player1.moving = False
             player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
+    
+    
+    def check_battle_legal(self, player):
+        """Checks to see if the player has any monsters fit for battle.
+
+        :param: None
+        
+        :rtype: Bool
+        :returns: True/False
+        """
+        # Don't start a battle if we don't even have monsters in our party yet.
+        if len(player.monsters) < 1:
+            logger.warning("Cannot start battle, player has no monsters!")
+            return False
+        else:
+            if player.monsters[0].current_hp <= 0:
+                logger.warning("Cannot start battle, player's monsters are all DEAD")
+                return False
+            else: return True
 

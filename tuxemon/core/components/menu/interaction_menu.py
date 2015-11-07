@@ -64,22 +64,19 @@ class InteractionMenu(Menu):
                     event_data = {"type": "CLIENT_INTERACTION",
                                   "interaction": "DUEL",
                                   "target": client,
-                                  "response": None
+                                  "response": None,
+                                  "char_dict": {"monsters": pd["monsters"],
+                                                "inventory": pd["inventory"]
+                                                }
                                   }
                     self.game.game.server.notify_client_interaction(cuuid, event_data)
-                    self.game.started_duel = True
+                    self.game.wants_duel = True
                     
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True
                 self.game.not_implmeneted_menu.interactable = True
                 
             elif self.menu_items[self.selected_menu_item] == "Accept" or self.menu_items[self.selected_menu_item] == "Decline":
-                if "DUEL" in self.menu_items[0]:
-                    interaction = "DUEL"
-                elif "TRADE" in self.menu_items[0]:
-                    interaction = "TRADE"
-                
-                print interaction
                 response = self.menu_items[self.selected_menu_item]
                 if self.game.game.isclient:
                     self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
@@ -89,19 +86,22 @@ class InteractionMenu(Menu):
                     for client_id in self.game.server.server.registry:
                         if self.player == self.game.server.server.registry[client_id]["sprite"]:
                             client = client_id 
-                    
+                    pd = self.game.state_dict["WORLD"].player1.__dict__
                     event_data = {"type": "CLIENT_RESPONSE",
-                                  "interaction": interaction,
+                                  "interaction": self.interaction,
                                   "target": client,
-                                  "response": response
+                                  "response": response,
+                                  "char_dict": {"monsters": pd["monsters"],
+                                                "inventory": pd["inventory"]
+                                                }
                                   }
                     self.game.game.server.notify_client_interaction(cuuid, event_data)
                     
-                    if interaction == "DUEL":
+                    if self.interaction == "DUEL":
                         if response == "Accept":
-                            self.game.started_duel = True
+                            self.game.wants_duel = True
                         elif response == "Decline":
-                            self.game.started_duel = False
+                            self.game.wants_duel = False
                 
 
 

@@ -32,27 +32,6 @@ import logging
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-class Anarchy():
-    """This is the most basic middleware you can have. With it, all events sent to it will return legal
-    no matter what. To make the middleware perform in-game events in response to network events, extend
-    the "event_execute" method with what actions you wish to perform.
-
-    Public functions:
-    event_legal -- Returns true for all events
-    event_execute -- Does nothing. Can be extended to modify variables/run in-game functions.
-
-    """
-    def __init__(self, game_server=None):
-        self.game_server = game_server
-        self.server = None
-
-    def event_legal(self, cuuid, euuid, event_data):
-        return True
-
-    def event_execute(self, cuuid, euuid, event_data):
-        pass
-
-
 class Multiplayer():
     """This middleware will allow you to use the AsteriaServer for Multiplayer games and the mobile controller. 
     When it receives KEYDOWN/KEYUP/NETKBD events, it will set the corresponding dictionary key in 

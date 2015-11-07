@@ -164,10 +164,17 @@ class TuxemonServer():
                 self.server.registry[cuuid]["event_list"][event_data["type"]] = event_data["event_number"]
                 
         if event_data["type"] == "PUSH_SELF":
-            sprite = populate_client(cuuid, event_data, self.server.registry, self.game)
-            self.server.registry[cuuid]["event_list"] = {}
-            update_client_location(sprite, event_data["char_dict"], self.game)
-            self.notify_populate_client(cuuid, event_data, sprite)
+            if cuuid == str(self.game.client.client.cuuid):
+                sprite = self.game.state_dict["WORLD"].player1
+                self.server.registry[cuuid]["event_list"] = {}
+                self.notify_populate_client(cuuid, event_data, sprite)
+                self.server.registry[cuuid]["sprite"] = sprite
+                self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            else:
+                sprite = populate_client(cuuid, event_data, self.server.registry, self.game)
+                self.server.registry[cuuid]["event_list"] = {}
+                update_client(sprite, event_data["char_dict"], self.game)
+                self.notify_populate_client(cuuid, event_data, sprite)
             
         elif event_data["type"] == "CLIENT_MOVE_START":
             direction = str(event_data["direction"])
@@ -227,6 +234,8 @@ class TuxemonServer():
         
         elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
             target = event_data["target"]
+            sprite = self.server.registry[cuuid]["sprite"]
+            update_client(sprite, event_data["char_dict"], self.game)
             if target == str(self.game.client.client.cuuid):
                 event_data["target"] = cuuid
                 self.game.state_dict["WORLD"].handle_interaction(event_data, self.server.registry)
@@ -251,7 +260,7 @@ class TuxemonServer():
         if event_data:
             self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             sprite = self.server.registry[cuuid]["sprite"]
-            update_client_location(sprite, event_data["char_dict"], self.game)
+            update_client(sprite, event_data["char_dict"], self.game)
             map_name = event_data["map_name"]
             char_dict = event_data["char_dict"]
         
@@ -347,28 +356,14 @@ class TuxemonServer():
                                   "map_name": self.server.registry[client_id]["map_name"],
                                   "char_dict": {"tile_pos": pd["tile_pos"],
                                                 "name": pd["name"],
-                                                "facing": pd["facing"]
+                                                "facing": pd["facing"],
+                                                "monsters": pd["monsters"],
+                                                "inventory": pd["inventory"]
                                                 } 
                                   }
                 self.server.notify(cuuid, new_event_data_2)
                 
-        
-        # Send server characters data to the new client
-        # Server's character is not in the registry
-        map_name = self.game.get_map_name()
-        pd2 = self.game.state_dict["WORLD"].player1.__dict__
-        new_event_data_3 = {"type": "NOTIFY_CLIENT_NEW",
-                          "cuuid": str(self.game.client.client.cuuid),
-                          "sprite_name": event_data["sprite_name"],
-                          "map_name": map_name,
-                          "char_dict": {"tile_pos": pd2["tile_pos"],
-                                        "name": pd2["name"],
-                                        "facing": pd2["facing"]
-                                        } 
-                          }
-        self.server.notify(cuuid, new_event_data_3)
-    
-    
+                
     def notify_key_condition(self, cuuid, kb_key, event_type):
         """Updates all clients with location a player that moved.
         
@@ -493,7 +488,7 @@ class TuxemonClient():
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
                 sprite = populate_client(event_data["cuuid"], event_data, self.client.registry, self.game)
-                update_client_location(sprite, event_data["char_dict"], self.game)
+                update_client(sprite, event_data["char_dict"], self.game)
                 del self.client.event_notifies[euuid]
                 
             if event_data["type"] == "NOTIFY_CLIENT_MOVE":
@@ -633,7 +628,9 @@ class TuxemonClient():
                       "char_dict": {
                                   "tile_pos": pd["tile_pos"],
                                   "name": pd["name"],
-                                  "facing": pd["facing"]
+                                  "facing": pd["facing"],
+                                  "monsters": pd["monsters"],
+                                  "inventory": pd["inventory"]
                                   }
                       }
         self.event_list[event_type] +=1
@@ -755,7 +752,7 @@ class TuxemonClient():
         """
         sprite = self.client.registry[cuuid]["sprite"]
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
-        update_client_location(sprite, event_data["char_dict"], self.game)
+        update_client(sprite, event_data["char_dict"], self.game)
     
     def player_interact(self, sprite, interaction, event_type="CLIENT_INTERACTION", response=None):
         """Sends client to client interaction request to the server.
@@ -781,7 +778,10 @@ class TuxemonClient():
                       "event_number": self.event_list[event_type],
                       "interaction": interaction,
                       "target": cuuid,
-                      "response": response
+                      "response": response,
+                      "char_dict": {"monsters": pd["monsters"],
+                                    "inventory": pd["inventory"]
+                                    }
                       }
         self.event_list[event_type] +=1
         self.client.event(event_data)
@@ -818,12 +818,11 @@ def populate_client(cuuid, event_data, registry, game):
     
     registry[cuuid]["sprite"] = sprite
     registry[cuuid]["map_name"] = event_data["map_name"]
-    client = registry[cuuid]["sprite"]
     
     return sprite
 
 
-def update_client_location(sprite, char_dict, game):
+def update_client(sprite, char_dict, game):
     """Corrects character location when it changes map or loses sync.
 
     :param sprite: Local NPC sprite stored in the registry.

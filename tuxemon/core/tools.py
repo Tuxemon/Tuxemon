@@ -692,15 +692,14 @@ class Control(object):
         :returns: None
 
         """ 
-#         self.state_dict["WORLD"].npcs = []
-#         self.state_dict["WORLD"].npcs_off_map = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
+                if sprite == self.state_dict["WORLD"].player1:
+                    continue
                 client_map = registry[client]["map_name"]
-#                 print client_map
                 current_map = self.get_map_name()
-#                 print current_map
+                
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
                     if not sprite in self.state_dict["WORLD"].npcs:

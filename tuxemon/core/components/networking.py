@@ -768,12 +768,13 @@ class TuxemonClient():
 
         """
         if not event_type in self.event_list:
-            self.event_list[event_type] = 0
+            self.event_list[event_type] = 1
         cuuid = None
         
         for client_id in self.client.registry:
             if self.client.registry[client_id]["sprite"] == sprite: cuuid = client_id
-        
+            
+        pd = self.game.state_dict["WORLD"].player1.__dict__
         event_data = {"type": event_type,
                       "event_number": self.event_list[event_type],
                       "interaction": interaction,

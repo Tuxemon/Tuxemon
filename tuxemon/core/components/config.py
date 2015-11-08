@@ -81,3 +81,19 @@ class Config(object):
         else:
             return 0
 
+
+class HeadlessConfig(object):
+    """Handles loading of the configuration file for the headless server.
+    """
+    def __init__(self, file="tuxemon.cfg"):
+        self.config = ConfigParser.ConfigParser()
+        self.config.read(file)
+
+        self.cli = int(self.config.get("game", "cli_enabled"))
+
+        self.debug_logging = self.config.get("logging", "debug_logging")
+        self.debug_level = self.config.get("logging", "debug_level")
+        self.loggers = self.config.get("logging", "loggers")
+        self.loggers = self.loggers.replace(" ", "").split(",")
+
+

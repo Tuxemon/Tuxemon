@@ -34,7 +34,7 @@ different states of the game such as combat, the overworld, etc.
 """
 
 from . import prepare, tools
-from .states import start, world, combat, pc
+from .states import start, world, combat, pc, serverheadless
 
 def main():
     """Add all available states to our scene manager (tools.Control)
@@ -57,4 +57,20 @@ def main():
                   "COMBAT": combat.Combat(run_it),
                   "PC": pc.PC(run_it)}
     run_it.setup_states(state_dict, "START")
+    run_it.main()
+
+def headless():
+    """Sets up out headless server (tools.HeadlessControl)
+    and start the game.
+
+    :param None:
+    
+    :rtype: None
+    :returns: None
+
+    """
+    prepare.init()
+    run_it = tools.HeadlessControl()
+    state_dict = {"WORLD": serverheadless.Headless(run_it)}
+    run_it.setup_states(state_dict, "WORLD")
     run_it.main()

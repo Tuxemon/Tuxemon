@@ -68,10 +68,6 @@ class World(tools._State):
         # Provide an instance of our scene manager to this scene.
         self.game = game
         
-        # Provide access to the client and server
-        self.client = game.client
-        self.server = game.server
-
         # Provide access to the screen surface
         self.screen = game.screen
         self.screen_rect = prepare.SCREEN_RECT

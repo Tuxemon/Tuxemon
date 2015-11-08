@@ -24,6 +24,7 @@ encoding//tuxemon/core/main.py=utf-8
 encoding//tuxemon/core/prepare.py=utf-8
 encoding//tuxemon/core/states/combat.py=utf-8
 encoding//tuxemon/core/states/pc.py=utf-8
+encoding//tuxemon/core/states/serverheadless.py=utf-8
 encoding//tuxemon/core/states/start.py=utf-8
 encoding//tuxemon/core/states/world.py=utf-8
 encoding//tuxemon/core/tools.py=utf-8

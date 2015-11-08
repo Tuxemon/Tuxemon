@@ -727,7 +727,121 @@ class Control(object):
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
         map_name = str(map_name.replace("resources/maps/", ""))
         return map_name
-                        
+
+
+import time                       
+class HeadlessControl():
+    """Control class for headless server. Contains the game loop, and contains
+    the event_loop which passes events to States as needed. Logic for flipping
+    states is also found here.
+
+    :param: None
+    :rtype: None
+    :returns: None
+
+    """
+    def __init__(self):
+        self.done = False
+        
+        self.clock = time.clock()
+        self.fps = 60.0
+        self.current_time = 0.0
+        
+        import threading
+        self.server = TuxemonServer(self)
+#         self.server_thread = threading.Thread(target=self.server)
+#         self.server_thread.start()
+        self.server.server.listen()
+         
+        #Set up our game's configuration from the prepare module.
+        from core import prepare
+        self.imports = {
+                "prepare": prepare,
+                "ai": ai,
+                "rumble": rumble,
+                "db": db,
+                "monster": monster,
+                "player": player,
+                "item": item,
+                "map": maps,
+                "pyganim": pyganim
+                }
+        self.config = prepare.HEADLESSCONFIG
+
+        # Set up the command line. This provides a full python shell for
+        # troubleshooting. You can view and manipulate any variables in
+        # the game.
+        self.exit = False   # Allow exit from the CLI
+        if self.config.cli:
+            self.cli = cli.CommandLine(self)
+    
+    def setup_states(self, state_dict, start_state):
+        """Given a dictionary of States and a State to start in,
+        builds the self.state_dict.
+
+        :param state_dict: A dictionary of core.tools._State objects.
+        :param start_state: A string of the starting state. E.g. "START"
+
+        :type state_dict: Dictionary
+        :type start_state: String
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> state_dict
+        {'COMBAT': <core.states.combat.Combat object at 0x7f681d736590>,
+         'START': <core.states.start.StartScreen object at 0x7f68230f5150>,
+         'WORLD': <core.states.world.World object at 0x7f68230f54d0>}
+        >>> start_state
+        "START"
+
+        """
+
+        self.state_dict = state_dict
+        self.state_name = start_state
+        self.state = self.state_dict[self.state_name]
+        
+        
+    def main(self):
+        """Initiates the main game loop. Since we are using Asteria networking
+        to handle network events, we pass this core.tools.Control instance to
+        networking which in turn executes the "main_loop" method every frame.
+        This leaves the networking component responsible for the main loop.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        while not self.exit:
+            self.main_loop()
+
+
+    def main_loop(self):
+        """Main loop for entire game. This method gets execute every frame
+        by Asteria Networking's "listen()" function. Every frame we get the
+        amount of time that has passed each frame, check game conditions,
+        and draw the game to the screen.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        # Get the amount of time that has passed since the last frame.
+#         self.time_passed_seconds = time.clock() - self.clock
+        
+#         self.server.update()
+     
+        if self.exit:
+            self.done = True
+
+#         self.clock = time.clock()
+
 
 class _State(object):
     """This is a prototype class for States.  All states should inherit from it.

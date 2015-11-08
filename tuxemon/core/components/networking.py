@@ -224,7 +224,6 @@ class TuxemonServer():
                 pass
                       
         else: 
-            print "Server side:", event_data
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
                 self.server.registry[cuuid]["map_name"] = event_data["map_name"]
@@ -287,20 +286,27 @@ class TuxemonServer():
 
         """
         cuuid = str(cuuid)
-        print event_data
         event_data["type"] = "NOTIFY_" + event_data["type"]
+        event_data_1 = event_data
         for client_id in self.server.registry:
             # Don't notify a player that they themselves populated.
             if client_id == cuuid:continue
             
             elif client_id != cuuid:
                 # Send the new client data to this client
-                event_data["cuuid"] = cuuid
-                self.server.notify(client_id, event_data)
+                event_data_1["cuuid"] = cuuid
+                self.server.notify(client_id, event_data_1)
                 
                 # Send this clients data to the new client
-                event_data["cuuid"] =  client_id
-                self.server.notify(cuuid, event_data)
+                char = self.server.registry[client_id]
+                event_data_2 = {"type":event_data["type"],
+                                "cuuid": client_id,
+                                "event_number": event_data["event_number"],
+                                "sprite_name": char["sprite_name"],
+                                "map_name": char["map_name"],
+                                "char_dict": char["char_dict"]
+                                }
+                self.server.notify(cuuid, event_data_2)
                 
     
     def notify_client_interaction(self, cuuid, event_data):
@@ -419,7 +425,6 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_CLIENT_MAP_UPDATE":
-                print "Client side:",event_data
                 self.update_client_map(event_data["cuuid"], event_data)
                 del self.client.event_notifies[euuid]
             

@@ -394,7 +394,7 @@ class TuxemonClient():
         """ 
         for euuid, event_data in self.client.event_notifies.items():
             
-            if event_data["type"] == "NOTIFY_CLIENT_NEW":
+            if event_data["type"] == "NOTIFY_PUSH_SELF":
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
                 sprite = populate_client(event_data["cuuid"], event_data, self.game, self.client.registry)

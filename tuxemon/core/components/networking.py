@@ -190,234 +190,117 @@ class TuxemonServer():
             self.server.registry[cuuid]["event_list"] = {}
         elif not event_data["type"] in self.server.registry[cuuid]["event_list"]:
                 self.server.registry[cuuid]["event_list"][event_data["type"]] = -1
+        
         elif event_data["event_number"] <= self.server.registry[cuuid]["event_list"][event_data["type"]]:
             return False
         else:
             self.server.registry[cuuid]["event_list"][event_data["type"]] = event_data["event_number"]
                 
         if event_data["type"] == "PUSH_SELF":
-            sprite = populate_client(cuuid, event_data, self.game, self.server.registry)
-            self.server.registry[cuuid]["event_list"] = {}
-            update_client(sprite, event_data["char_dict"], self.game)
-            self.notify_populate_client(cuuid, event_data, sprite)
-            
-        elif event_data["type"] == "CLIENT_MOVE_START":
-            direction = str(event_data["direction"])
-            sprite = self.server.registry[cuuid]["sprite"]
-            char_dict = event_data["char_dict"]
-            sprite.facing = direction
-            for d in sprite.direction:
-                if sprite.direction[d]: sprite.direction[d] = False
-            sprite.direction[direction] = True
-            self.notify_client_move(cuuid,
-                                    sprite,
-                                    char_dict["tile_pos"],
-                                    event_data["direction"]
-                                    )
-       
-        elif event_data["type"] == "CLIENT_MOVE_COMPLETE":
-            sprite = self.server.registry[cuuid]["sprite"]
-            char_dict = event_data["char_dict"]
-            self.notify_client_move(cuuid,
-                                    sprite,
-                                    char_dict["tile_pos"],
-                                    sprite.facing,
-                                    event_type="NOTIFY_MOVE_COMPLETE"
-                                    )
-            for d in sprite.direction:
-                if sprite.direction[d]: sprite.direction[d] = False
-            sprite.final_move_dest = char_dict["tile_pos"]
-            update_client(sprite, char_dict, self.game)
-            
-        elif event_data["type"] == "CLIENT_MAP_UPDATE":
-            self.update_client_map(cuuid, event_data)
-            
+            self.server.registry[cuuid]["sprite_name"] = event_data["sprite_name"]
+            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            self.server.registry[cuuid]["char_dict"] = event_data["char_dict"]
+            self.notify_populate_client(cuuid, event_data)
+         
+        elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
+            self.notify_client_interaction(cuuid, event_data)
+        
         elif event_data["type"] == "CLIENT_KEYDOWN":
-            sprite = self.server.registry[cuuid]["sprite"]
             if event_data["kb_key"] == "SHIFT":
-                sprite.running = True
-                self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
+                self.server.registry[cuuid]["char_dict"]["running"] = True
+                self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "CRTL":
                 pass
             elif event_data["kb_key"] == "ALT":
                 pass
         
         elif event_data["type"] == "CLIENT_KEYUP":
-            sprite = self.server.registry[cuuid]["sprite"]
             if event_data["kb_key"] == "SHIFT":
-                sprite.running = False
-                self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
+                self.server.registry[cuuid]["char_dict"]["running"] = False
+                self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "CRTL":
                 pass
             elif event_data["kb_key"] == "ALT":
                 pass
-        
-        elif event_data["type"] == "CLIENT_FACING":
-            sprite = self.server.registry[cuuid]["sprite"]
-            if not sprite.moving:
-                sprite.facing = event_data["kb_key"]
-                self.notify_key_condition(cuuid, event_data["kb_key"], event_data["type"])
-        
-        elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
-            target = event_data["target"]
-            sprite = self.server.registry[cuuid]["sprite"]
-            update_client(sprite, event_data["char_dict"], self.game)
-            if target == str(self.game.client.client.cuuid):
-                event_data["target"] = cuuid
-                self.game.state_dict["WORLD"].handle_interaction(event_data, self.server.registry)
-            else:
-                self.notify_client_interaction(cuuid, event_data)
+                      
+        else: 
+            self.update_char_dict(cuuid, event_data["char_dict"])
+            if "map_name" in event_data:
+                self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            self.notify_client(cuuid, event_data)
         
         
-    def update_client_map(self, cuuid, event_data=None):
-        """Updates client's current map and location in the server registry.
-
+    def update_char_dict(self, cuuid, char_dict):
+        """Updates registry with player updates.
+        
         :param cuuid: Clients unique user identification number.
-        :param event_data: Event information sent by client.
+        :param char_dict: character dictionary
         
-        :type cuuid: String 
-        :type event_data: Dictionary
-
+        :type cuuid: String
+        :type event_data: String
+        
         :rtype: None
         :returns: None
 
         """
-        sprite = None
-        if event_data:
-            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-            sprite = self.server.registry[cuuid]["sprite"]
-            update_client(sprite, event_data["char_dict"], self.game)
-            map_name = event_data["map_name"]
-            char_dict = event_data["char_dict"]
+        for param in char_dict:
+            self.server.registry[cuuid]["char_dict"][param] = char_dict[param]
+    
         
-        if not event_data:
-            map_name = self.game.get_map_name()
-            char_dict = {"tile_pos": self.game.state_dict["WORLD"].player1.tile_pos}
-            
-        
-        for client_id in self.server.registry:
-            # Don't notify a player that they themselves moved.
-            if sprite:
-                if sprite == self.server.registry[client_id]["sprite"]: continue
-            
-            # Notify client of the players new position.
-            event_data = {"type": "NOTIFY_CLIENT_MAP",
-                          "cuuid": cuuid,
-                          "map_name": map_name,
-                          "char_dict": char_dict
-                          }
-            self.server.notify(client_id, event_data)
-
-
-    def notify_client_move(self, cuuid, sprite, tile_pos, facing, event_type="NOTIFY_CLIENT_MOVE"):
-        """Updates all clients with location a player that moved.
+    def notify_client(self, cuuid, event_data):
+        """Updates all clients with player updates.
         
         :param cuuid: Clients unique user identification number.
-        :param sprite: Clients local copy of their character.
-        :param tile_pos: Client characters current global location.
-        :param facing: Direction character is facing.
-        :param event_type: Notification flag information.
+        :param event_data: Notification flag information.
         
         :type cuuid: String
-        :type sprite: Player or Npc object from core.components.player
-        :type tile_pos: Tuple
-        :type facing: String
-        :type event_type: String
+        :type event_data: String
         
         :rtype: None
         :returns: None
 
         """
         cuuid = str(cuuid)
-
+        event_data["type"] = "NOTIFY_" + event_data["type"]
+        event_data["cuuid"] = cuuid
         for client_id in self.server.registry:
             # Don't notify a player that they themselves moved.
             if client_id == cuuid: continue
         
             # Notify client of the players new position.
             elif client_id != cuuid:
-                event_data = {"type": event_type,
-                              "cuuid": cuuid,
-                              "direction": facing,
-                              "char_dict":{"tile_pos": tile_pos
-                                           }
-                              }
                 self.server.notify(client_id, event_data)
 
 
-    def notify_populate_client(self, cuuid, event_data, sprite):
-        """Updates all clients with location a player that moved.
+    def notify_populate_client(self, cuuid, event_data):
+        """Updates all clients with the details of the new client.
         
         :param cuuid: Clients unique user identification number.
         :param event_data: Event information sent by client.
-        :param sprite: Clients local copy of their character.
         
         :type cuuid: String
         :type event_data: Dictionary
-        :type sprite: Player or Npc object from core.components.player
         
         :rtype: None
         :returns: None
 
         """
+        cuuid = str(cuuid)
+        print event_data
+        event_data["type"] = "NOTIFY_" + event_data["type"]
         for client_id in self.server.registry:
             # Don't notify a player that they themselves populated.
             if client_id == cuuid:continue
             
             elif client_id != cuuid:
                 # Send the new client data to this client
-                new_event_data_1 = {"type": "NOTIFY_CLIENT_NEW",
-                                  "cuuid": cuuid,
-                                  "sprite_name": event_data["sprite_name"],
-                                  "map_name": event_data["map_name"],
-                                  "char_dict": event_data["char_dict"]
-                                  }
-                self.server.notify(client_id, new_event_data_1)
+                event_data["cuuid"] = cuuid
+                self.server.notify(client_id, event_data)
                 
                 # Send this clients data to the new client
-                pd = self.server.registry[client_id]["sprite"].__dict__
-                new_event_data_2 = {"type": "NOTIFY_CLIENT_NEW",
-                                  "cuuid": client_id,
-                                  "sprite_name": pd["sprite_name"],
-                                  "map_name": self.server.registry[client_id]["map_name"],
-                                  "char_dict": {"tile_pos": pd["tile_pos"],
-                                                "name": pd["name"],
-                                                "facing": pd["facing"],
-                                                "monsters": pd["monsters"],
-                                                "inventory": pd["inventory"]
-                                                } 
-                                  }
-                self.server.notify(cuuid, new_event_data_2)
+                event_data["cuuid"] =  client_id
+                self.server.notify(cuuid, event_data)
                 
-                
-    def notify_key_condition(self, cuuid, kb_key, event_type):
-        """Updates all clients with location a player that moved.
-        
-        :param cuuid: Clients unique user identification number.
-        :param kb_key: Key being pressed that modifies client behavior.
-        :param event_type: Notification flag information.
-        
-        :type cuuid: String
-        :type kb_key: String
-        :type event_type: String
-        
-        :rtype: None
-        :returns: None
-
-        """
-        cuuid = str(cuuid)
-        event_type = "NOTIFY_" + event_type
-        for client_id in self.server.registry:
-            # Don't notify a player that they themselves moved.
-            if client_id == cuuid: continue
-        
-            # Notify client of the players new position.
-            elif client_id != cuuid:
-                event_data = {"type": event_type,
-                              "cuuid": cuuid,
-                              "kb_key": kb_key,
-                              }
-                self.server.notify(client_id, event_data)
     
     def notify_client_interaction(self, cuuid, event_data):
         """Notify a client that another client has interacted with them.
@@ -437,8 +320,9 @@ class TuxemonServer():
         client_id = event_data["target"]
         event_data["target"] = cuuid
         self.server.notify(client_id, event_data)
-
-
+        
+        
+        
 class TuxemonClient():
     """Client class for multiplayer games. Creates a netaria client and
     synchronizes the local game with the host state.
@@ -526,7 +410,7 @@ class TuxemonClient():
                 sprite.direction[direction] = True
                 del self.client.event_notifies[euuid]
             
-            if event_data["type"] == "NOTIFY_MOVE_COMPLETE":
+            if event_data["type"] == "NOTIFY_CLIENT_MOVE_COMPLETE":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
@@ -750,18 +634,23 @@ class TuxemonClient():
             self.event_list[event_type] = 0
             
         if event_type and kb_key:
-            if self.game.isclient:
+            if event_type == "CLIENT_FACING":
+                if self.game.isclient or self.game.ishost:
+                    event_data = {"type": event_type,
+                                  "event_number": self.event_list[event_type],
+                                  "char_dict": {"facing": kb_key}
+                                  }
+                    self.event_list[event_type] +=1
+                    self.client.event(event_data)
+                    
+            elif event_type == "CLIENT_KEYUP" or event_type == "CLIENT_KEYDOWN":
                 event_data = {"type": event_type,
                               "event_number": self.event_list[event_type],
                               "kb_key": kb_key
                               }
                 self.event_list[event_type] +=1
                 self.client.event(event_data)
-        
-            # If we are the server send our condition info to the clients.
-            elif self.game.ishost and not self.game.player1.moving:
-                self.game.server.notify_key_condition(str(self.client.cuuid), kb_key, event_type)
-        
+
             
     def update_client_map(self, cuuid, event_data):
         """Updates client's current map and location to reflect the server registry.

@@ -168,23 +168,6 @@ class Player(object):
 
         collision_dict = self.get_collision_dict(game)
 
-#         # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
-#         # collisions.
-#         npc_positions = set()
-# 
-#         # Get all the NPC's tile positions so we can check for collisions.
-#         for npc in game.npcs:
-#             npc_pos_x = int(round(npc.tile_pos[0]))
-#             npc_pos_y = int(round(npc.tile_pos[1]))
-#             npc_positions.add( (npc_pos_x, npc_pos_y) )
-# 
-#         # Combine our map collision tiles with our npc collision positions
-#         for pos in npc_positions:
-#             collision_dict[pos] = "None"
-# 
-#         for tile in game.collision_map:
-#             collision_dict[tile] = game.collision_map[tile] 
-
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
         player_pos = ( int(round(self.tile_pos[0])), int(round(self.tile_pos[1])) )
@@ -843,10 +826,6 @@ class Npc(Player):
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
         player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-        #print self.name
-        #print "self.tile_pos:", self.tile_pos
-        #print "self.tile_destination:", self.tile_destination
-        
 
         # *** Here we're continuing a move if we're in the middle of one already *** #
         # If the player is in the middle of moving and facing a certain direction, move in that

@@ -97,7 +97,7 @@ class Control(object):
         # Set up our networking for Multiplayer and Controls
         self.server = TuxemonServer(self)
         self.client = TuxemonClient(self)
-        
+
         # Set up our game's configuration from the prepare module.
         from core import prepare
         self.imports = {
@@ -301,7 +301,7 @@ class Control(object):
                 for joy_event in joy_events:
                     self.key_events.append(joy_event)
                     self.state.get_event(joy_event)
-            
+
             self.state.get_event(event)
             
             
@@ -561,7 +561,7 @@ class Control(object):
         self.event_data = {}
         self.event_engine.check_conditions(self, time_delta)
         logger.debug("Event Data:" + str(self.event_data))
-        
+
         # Draw and update our display
         self.update(time_delta)
         pg.display.update()
@@ -861,9 +861,6 @@ class _State(object):
         return msg, rect
     
     
-    
-
-
 ### Resource loading functions.
 def load_all_gfx(directory, colorkey=(255,0,255), accept=(".png",".jpg",".bmp")):
     """Load all graphics with extensions in the accept argument.  If alpha

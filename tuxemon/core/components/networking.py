@@ -61,7 +61,7 @@ class TuxemonServer():
     
     def __init__(self, game):
         self.game = game
-        self.server = NeteriaServer(Multiplayer(self.game, self))
+        self.server = NeteriaServer(Multiplayer(self))
         self.network_events = []
         self.listening = False
         self.interfaces = {}

@@ -620,7 +620,7 @@ class World(tools._State):
         # If the save menu is interactable, send pygame events to it.
         if self.save_menu.interactable:
             self.save_menu.get_event(event)
-        
+
         # Exit the game if the close button is pressed
         if event.type == pygame.QUIT:
             self.exit = True
@@ -665,9 +665,6 @@ class World(tools._State):
                     self.player1.facing = "right"
                 if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
                     self.check_interactible_space()
-                      
-                    
-                            
 
             # Handle Key UP events
             if event.type == pygame.KEYUP:
@@ -686,7 +683,7 @@ class World(tools._State):
                         self.player1.direction["right"] = False
 
             self.game.client.set_key_condition(event)
-                
+
 
     ####################################################
     #                   Map Drawing                    #
@@ -709,7 +706,7 @@ class World(tools._State):
             (self.global_x / self.tile_size[0])
              # How many tiles over we have to draw the first tile
         starting_tile_y = - \
-            (self.global_y / self.tile_size[1])  
+            (self.global_y / self.tile_size[1])
              # How many tiles down we have to draw the first tile
         self.tile_buffer = 2  # This is how many tiles we should draw past the visible region
 
@@ -819,13 +816,13 @@ class World(tools._State):
                 npc.move_by_path()
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
-            
+
             if npc.update_location:
                 char_dict ={"tile_pos": npc.final_move_dest,
                             }
                 networking.update_client(npc, char_dict, self.game)
                 npc.update_location = False
-                
+
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
         
@@ -1049,7 +1046,7 @@ class World(tools._State):
             self.not_implmeneted_menu.draw()
             self.not_implmeneted_menu.draw_text("This feature is not yet implemented.",
                 justify="center", align="middle")
-        
+
 
     def midscreen_animations(self):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.

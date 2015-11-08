@@ -224,6 +224,7 @@ class TuxemonServer():
                 pass
                       
         else: 
+            print "Server side:", event_data
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
                 self.server.registry[cuuid]["map_name"] = event_data["map_name"]
@@ -401,7 +402,7 @@ class TuxemonClient():
                 update_client(sprite, event_data["char_dict"], self.game)
                 del self.client.event_notifies[euuid]
                 
-            if event_data["type"] == "NOTIFY_CLIENT_MOVE":
+            if event_data["type"] == "NOTIFY_CLIENT_MOVE_START":
                 direction = str(event_data["direction"])
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
@@ -417,7 +418,8 @@ class TuxemonClient():
                     if sprite.direction[d]: sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
             
-            if event_data["type"] == "NOTIFY_CLIENT_MAP":
+            if event_data["type"] == "NOTIFY_CLIENT_MAP_UPDATE":
+                print "Client side:",event_data
                 self.update_client_map(event_data["cuuid"], event_data)
                 del self.client.event_notifies[euuid]
             
@@ -444,7 +446,7 @@ class TuxemonClient():
             if event_data["type"] == "NOTIFY_CLIENT_FACING":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 if not sprite.moving:
-                    sprite.facing = event_data["kb_key"]
+                    sprite.facing = event_data["char_dict"]["facing"]
                 del self.client.event_notifies[euuid]
             
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":

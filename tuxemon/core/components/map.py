@@ -306,12 +306,12 @@ class Map(object):
         tiles = []
 
         # Loop through all tiles in our map file and get the pygame surface associated with it.
-        for x in range(0, self.data.width):
+        for x in range(0, int(self.data.width)):
 
             # Create a list of tile for the y-axis
             y_list = []
 
-            for y in range(0, self.data.height):
+            for y in range(0, int(self.data.height)):
 
                 layer_list = []
 
@@ -392,7 +392,7 @@ class Map(object):
             y = self.round_to_divisible(collision_region.y, self.tile_size[1]) / self.tile_size[1]
             width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
             height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
-            
+
             # Loop through properties and create list of directions for each property
             if collision_region.properties:
                 enters = []
@@ -410,7 +410,7 @@ class Map(object):
             # inside this region.
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
-                    collision_tile = (a + x, b + y) 
+                    collision_tile = (a + x, b + y)
                     collision_map[collision_tile] = "None"
 
                     # Check if collision region has properties, and is therefore a conditional zone

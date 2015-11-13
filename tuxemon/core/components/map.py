@@ -34,6 +34,7 @@ import pygame
 import os
 import sys
 from pprint import pprint
+from core.components.pyganim import PygAnimation
 
 # PyTMX LOVES to change their API without notice. Here we try and handle that.
 try:
@@ -339,6 +340,18 @@ class Map(object):
                         surface = self.data.getTileImage(x, y, layer)
                     except AttributeError:
                         surface = self.data.get_tile_image(x, y, layer)
+
+                    # Check to see if this tile has an animation
+                    tile_gid = self.data.get_tile_gid(x, y, layer)
+                    tile_properties = self.data.get_tile_properties(x, y, layer)
+                    if tile_properties and "frames" in tile_properties:
+                        images_and_durations = list()
+                        for frame in tile_properties["frames"]:
+                            gid = self.data.gidmap[frame["tileid"] + tile_gid][0][0]
+                            anim_surface = self.data.get_tile_image_by_gid(gid)
+                            images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
+                        surface = PygAnimation(images_and_durations)
+                        surface.play()
 
                     # Create a tile based on the image
                     if surface:

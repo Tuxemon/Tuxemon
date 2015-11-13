@@ -124,10 +124,13 @@ class World(tools._State):
                     if column:
                         layer_pos = 0
                         for tile in column:
-                            tile["surface"] = \
-                                pygame.transform.scale(
-                                    tile["surface"],
-                                    (self.tile_size[0], self.tile_size[1]))
+                            if type(tile["surface"]) is pygame.Surface:
+                                tile["surface"] = \
+                                    pygame.transform.scale(
+                                        tile["surface"],
+                                        (self.tile_size[0], self.tile_size[1]))
+                            else:
+                                tile["surface"].scale(self.tile_size)
                             self.tiles[x_pos][y_pos][layer_pos] = tile
                             layer_pos += 1
                     y_pos += 1
@@ -684,10 +687,12 @@ class World(tools._State):
                                     elif tile["layer"] > 4:
                                         self.highlayer_tiles.append(tile)
                                     else:
-                                        self.screen.blit(tile["surface"],
-                                                        (tile[
-                                                            "position"][0] + self.global_x,
-                                                         tile["position"][1] + self.global_y))
+                                        draw_position = (tile["position"][0] + self.global_x,
+                                                         tile["position"][1] + self.global_y)
+                                        if type(tile["surface"]) is pygame.Surface:
+                                            self.screen.blit(tile["surface"], draw_position)
+                                        else:
+                                            tile["surface"].blit(self.screen, draw_position)
 
                         # If we try drawing a tile that is out of index range, that means we
                         # reached the end of the list, so just break the loop

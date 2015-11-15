@@ -342,12 +342,11 @@ class Map(object):
                         surface = self.data.get_tile_image(x, y, layer)
 
                     # Check to see if this tile has an animation
-                    tile_gid = self.data.get_tile_gid(x, y, layer)
                     tile_properties = self.data.get_tile_properties(x, y, layer)
                     if tile_properties and "frames" in tile_properties:
-                        images_and_durations = list()
+                        images_and_durations = []
                         for frame in tile_properties["frames"]:
-                            gid = self.data.gidmap[frame["tileid"] + tile_gid][0][0]
+                            gid = frame["gid"]
                             anim_surface = self.data.get_tile_image_by_gid(gid)
                             images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
                         surface = PygAnimation(images_and_durations)
@@ -608,7 +607,6 @@ if __name__=="__main__":
     screen.blit(background, (0, 0))
     pygame.display.flip()
 
-    print "Loading map"
     tile_size = [80, 80]    # 1 tile = 16 pixels
     testmap = Map()
     #testmap.loadfile("resources/maps/test.map", tile_size)

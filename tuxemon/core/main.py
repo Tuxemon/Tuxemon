@@ -69,7 +69,6 @@ def headless():
     :returns: None
 
     """
-#     prepare.init()
     run_it = tools.HeadlessControl()
     state_dict = {"WORLD": serverheadless.Headless(run_it)}
     run_it.setup_states(state_dict, "WORLD")

@@ -49,7 +49,7 @@ from core.components import monster
 from core.components import item
 from core.components import map as maps
 from core.components import pyganim
-from core.components.networking import TuxemonServer, TuxemonClient
+from core.components.networking import TuxemonServer, TuxemonClient, ControllerServer
 from core import prepare
   
 # Import the android module and android specific components. If we can't import, set to None - this
@@ -180,6 +180,9 @@ class Control(object):
         if self.config.controller_overlay == "1":
             self.controller = controller.Controller(self)
             self.controller.load()
+        
+        if self.config.net_controller_enabled == "1":
+            self.controller_server = ControllerServer(self)
 
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
@@ -520,8 +523,6 @@ class Control(object):
         :returns: None
 
         """
-        # This sets up Asteria networking to handle executing the game loop
-        #listen(Controller(self), self, port=8000, game_loop=True)
         while not self.exit:
             self.main_loop()
 
@@ -548,6 +549,9 @@ class Control(object):
         self.time_passed_seconds = time_delta
         
         # Update our networking.
+        if self.controller_server:
+            self.controller_server.update()
+            
         if self.client.listening: 
             self.client.update(time_delta)
             self.add_clients_to_map(self.client.client.registry)

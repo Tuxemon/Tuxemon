@@ -29,7 +29,7 @@
 #
 """This module contains the Tuxemon server and client.
 """
-from middleware import Multiplayer
+from middleware import Multiplayer, Controller
 from core.components import player
 from core.components.event.actions.npc import Npc
 from core import prepare
@@ -61,7 +61,7 @@ class TuxemonServer():
     
     def __init__(self, game):
         self.game = game
-        self.server = NeteriaServer(Multiplayer(self))
+        self.server = NeteriaServer(Multiplayer(self), server_port=40081)
         self.network_events = []
         self.listening = False
         self.interfaces = {}
@@ -75,9 +75,9 @@ class TuxemonServer():
                 pass
         
         for interface in self.interfaces:
-                        ip = self.interfaces[interface]
-                        if ip == "127.0.0.1": continue
-                        else: self.ips.append(ip)
+            ip = self.interfaces[interface]
+            if ip == "127.0.0.1": continue
+            else: self.ips.append(ip)
         
 
     def update(self):
@@ -91,85 +91,7 @@ class TuxemonServer():
         :returns: None
 
         """        
-        # Loop through our network events and pass them to the current state.
-        controller_events = self.net_controller_loop()
-        if controller_events:
-            for controller_event in controller_events:
-                self.game.key_events.append(controller_event)
-                self.game.state.get_event(controller_event)
-
-
-    def net_controller_loop(self):
-        """Process all network events from controllers and pass them
-        down to current State. All network events are converted to keyboard
-        events for compatibility.
-
-        :param None:
-
-        :rtype: None
-        :returns: None
-
-        """
-        events = []
-        for event_data in self.network_events:
-            if event_data == "KEYDOWN:up":
-                self.keys[pg.K_UP] = 1
-                event = self.game.keyboard_events["KEYDOWN"]["up"]
-
-            elif event_data == "KEYUP:up":
-                self.keys[pg.K_UP] = 0
-                event = self.game.keyboard_events["KEYUP"]["up"]
-
-            elif event_data == "KEYDOWN:down":
-                self.keys[pg.K_DOWN] = 1
-                event = self.game.keyboard_events["KEYDOWN"]["down"]
-
-            elif event_data == "KEYUP:down":
-                self.keys[pg.K_DOWN] = 0
-                event = self.game.keyboard_events["KEYUP"]["down"]
-
-            elif event_data == "KEYDOWN:left":
-                self.keys[pg.K_LEFT] = 1
-                event = self.game.keyboard_events["KEYDOWN"]["left"]
-
-            elif event_data == "KEYUP:left":
-                self.keys[pg.K_LEFT] = 0
-                event = self.game.keyboard_events["KEYUP"]["left"]
-
-            elif event_data == "KEYDOWN:right":
-                self.keys[pg.K_RIGHT] = 1
-                event = self.game.keyboard_events["KEYDOWN"]["right"]
-
-            elif event_data == "KEYUP:right":
-                self.keys[pg.K_RIGHT] = 0
-                event = self.game.keyboard_events["KEYUP"]["right"]
-
-            elif event_data == "KEYDOWN:enter":
-                self.keys[pg.K_RETURN] = 1
-                event = self.game.keyboard_events["KEYDOWN"]["enter"]
-
-            elif event_data == "KEYUP:enter":
-                self.keys[pg.K_RETURN] = 0
-                event = self.game.keyboard_events["KEYUP"]["enter"]
-
-            elif event_data == "KEYDOWN:esc":
-                self.keys[pg.K_ESCAPE] = 1
-                event = self.game.keyboard_events["KEYDOWN"]["escape"]
-
-            elif event_data == "KEYUP:esc":
-                self.keys[pg.K_ESCAPE] = 0
-                event = self.game.keyboard_events["KEYUP"]["escape"]
-            
-            else:
-                logger.debug("Unknown network event: " +str(event_data))
-                event = None
-
-            if event:
-                events.append(event)
-        
-        # Clear out the network events list once all events have been processed.
-        self.network_events = []
-        return events
+        pass
     
     
     def server_event_handler(self, cuuid, event_data):
@@ -328,8 +250,135 @@ class TuxemonServer():
         event_data["target"] = cuuid
         self.server.notify(client_id, event_data)
         
+      
         
+class ControllerServer():
+    """Server class for networked controller. Creates a netaria server and
+    passes the network events to the local game.
+
+    :param game: instance of the local game.
+    
+    :type game: core.tools.Control object.
+
+    :rtype: None
+    :returns: None
+
+    """
+    
+    def __init__(self, game):
+        self.game = game
+        self.server = NeteriaServer(Controller(self))
+        self.network_events = []
+        self.listening = False
+        self.interfaces = {}
+        self.ips = []
         
+        for device in netifaces.interfaces():
+            interface = netifaces.ifaddresses(device)
+            try:
+                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
+            except KeyError:
+                pass
+        
+        for interface in self.interfaces:
+            ip = self.interfaces[interface]
+            if ip == "127.0.0.1": continue
+            else: self.ips.append(ip)
+        
+
+    def update(self):
+        """Updates the server state with information sent from the clients
+
+        :param None
+        
+        :type None 
+
+        :rtype: None
+        :returns: None
+
+        """        
+        # Loop through our network events and pass them to the current state.
+        controller_events = self.net_controller_loop()
+        if controller_events:
+            for controller_event in controller_events:
+                self.game.key_events.append(controller_event)
+                self.game.state.get_event(controller_event)
+
+
+    def net_controller_loop(self):
+        """Process all network events from controllers and pass them
+        down to current State. All network events are converted to keyboard
+        events for compatibility.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        events = []
+        for event_data in self.network_events:
+            if event_data == "KEYDOWN:up":
+                self.game.keys[pg.K_UP] = 1
+                event = self.game.keyboard_events["KEYDOWN"]["up"]
+
+            elif event_data == "KEYUP:up":
+                self.game.keys[pg.K_UP] = 0
+                event = self.game.keyboard_events["KEYUP"]["up"]
+
+            elif event_data == "KEYDOWN:down":
+                self.game.keys[pg.K_DOWN] = 1
+                event = self.game.keyboard_events["KEYDOWN"]["down"]
+
+            elif event_data == "KEYUP:down":
+                self.game.keys[pg.K_DOWN] = 0
+                event = self.game.keyboard_events["KEYUP"]["down"]
+
+            elif event_data == "KEYDOWN:left":
+                self.game.keys[pg.K_LEFT] = 1
+                event = self.game.keyboard_events["KEYDOWN"]["left"]
+
+            elif event_data == "KEYUP:left":
+                self.keys[pg.K_LEFT] = 0
+                event = self.game.keyboard_events["KEYUP"]["left"]
+
+            elif event_data == "KEYDOWN:right":
+                self.game.keys[pg.K_RIGHT] = 1
+                event = self.game.keyboard_events["KEYDOWN"]["right"]
+
+            elif event_data == "KEYUP:right":
+                self.game.keys[pg.K_RIGHT] = 0
+                event = self.game.keyboard_events["KEYUP"]["right"]
+
+            elif event_data == "KEYDOWN:enter":
+                self.game.keys[pg.K_RETURN] = 1
+                event = self.game.keyboard_events["KEYDOWN"]["enter"]
+
+            elif event_data == "KEYUP:enter":
+                self.game.keys[pg.K_RETURN] = 0
+                event = self.game.keyboard_events["KEYUP"]["enter"]
+
+            elif event_data == "KEYDOWN:esc":
+                self.game.keys[pg.K_ESCAPE] = 1
+                event = self.game.keyboard_events["KEYDOWN"]["escape"]
+
+            elif event_data == "KEYUP:esc":
+                self.game.keys[pg.K_ESCAPE] = 0
+                event = self.game.keyboard_events["KEYUP"]["escape"]
+            
+            else:
+                logger.debug("Unknown network event: " +str(event_data))
+                event = None
+
+            if event:
+                events.append(event)
+        
+        # Clear out the network events list once all events have been processed.
+        self.network_events = []
+        return events
+    
+    
+            
 class TuxemonClient():
     """Client class for multiplayer games. Creates a netaria client and
     synchronizes the local game with the host state.
@@ -506,6 +555,8 @@ class TuxemonClient():
         # Logic to prevent joining your own game as a client.
         if self.client.discovered_servers > 0:
             for ip, port in self.client.discovered_servers:
+                if port != 40081:
+                    return False
                 try: 
                     if self.available_games[ip]:
                         logger.info('Game already in list, skipping.')
@@ -708,6 +759,7 @@ class TuxemonClient():
                       }
         self.event_list[event_type] +=1
         self.client.event(event_data)
+
 
 # Universal functions
 def populate_client(cuuid, event_data, game, registry):

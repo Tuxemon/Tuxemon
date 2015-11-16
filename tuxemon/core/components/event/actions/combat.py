@@ -26,7 +26,6 @@
 
 import logging
 import random
-from __builtin__ import False
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

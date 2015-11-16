@@ -53,7 +53,7 @@ class Multiplayer():
     def event_legal(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             return True
-        elif event_data["type"] == "PUSH_SELF":
+        if event_data["type"] == "PUSH_SELF":
             return True
         elif event_data["type"] == "CLIENT_MOVE_START": 
             return True
@@ -75,8 +75,29 @@ class Multiplayer():
             return False
 
     def event_execute(self, cuuid, euuid, event_data):
+        self.game_server.server_event_handler(cuuid, event_data)
+
+class Controller():
+    """This middleware will allow you to use the AsteriaServer for Multiplayer games and the mobile controller. 
+    When it receives KEYDOWN/KEYUP events, it will set the corresponding dictionary key in 
+    "network_events" to true or false. In your main game loop, you can then iterate through this dictionary 
+    and change the game accordingly.
+
+    Public functions:
+    event_legal -- Returns True for all events that pass the legal logic. Returns False for all events that 
+                   fail legal logic.
+    event_execute -- Sets the game_server.network_events dictionary based on what key was pressed
+
+    """
+    def __init__(self, game_server=None):
+        self.game_server = game_server
+        self.server = None
+
+    def event_legal(self, cuuid, euuid, event_data):
+        if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
+            return True
+    
+    def event_execute(self, cuuid, euuid, event_data):
         if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
             self.game_server.network_events.append(event_data)
-        else:
-            self.game_server.server_event_handler(cuuid, event_data)
             

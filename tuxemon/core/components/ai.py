@@ -77,7 +77,7 @@ class AI(object):
 
 
 
-class PsudoAI(object):
+class PseudoAI(object):
     """A class to provide networking input to an opponents Npc object. This object can be used to push combat decisions during 
     battle from one client to another.
     

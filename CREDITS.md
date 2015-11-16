@@ -84,6 +84,11 @@ by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
 by [Midi](http://opengameart.org/users/midi)
 
+* ["Grass, Sand, Snow"](https://forum.tuxemon.org/viewtopic.php?pid=280#p280)
+by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) is licensed under
+[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
+by [Midi](http://opengameart.org/users/midi)
+
 * ["Trainer Sprite Spree"](http://oniwanbashu.deviantart.com/art/Trainer-Sprite-Spree-124465962)
 by [Oniwanbashu](http://oniwanbashu.deviantart.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)

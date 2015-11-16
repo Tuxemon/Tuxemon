@@ -32,26 +32,13 @@
 # Import various python libraries
 import logging
 import pygame
-import sys
 import math
-import os
 import pprint
 
 # Import Tuxemon internal libraries
 import core.components.networking as networking
 from .. import tools, prepare
-from ..components import screen
-from ..components import config
 from ..components import map
-from ..components import pyganim
-from ..components import player
-from ..components import event
-from ..components import save
-from ..components import monster
-from ..components import cli
-
-from . import combat
-from . import start
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -67,7 +54,7 @@ class World(tools._State):
 
         # Provide an instance of our scene manager to this scene.
         self.game = game
-        
+
         # Provide access to the screen surface
         self.screen = game.screen
         self.screen_rect = prepare.SCREEN_RECT
@@ -126,10 +113,13 @@ class World(tools._State):
                     if column:
                         layer_pos = 0
                         for tile in column:
-                            tile["surface"] = \
-                                pygame.transform.scale(
-                                    tile["surface"],
-                                    (self.tile_size[0], self.tile_size[1]))
+                            if type(tile["surface"]) is pygame.Surface:
+                                tile["surface"] = \
+                                    pygame.transform.scale(
+                                        tile["surface"],
+                                        (self.tile_size[0], self.tile_size[1]))
+                            else:
+                                tile["surface"].scale(self.tile_size)
                             self.tiles[x_pos][y_pos][layer_pos] = tile
                             layer_pos += 1
                     y_pos += 1
@@ -724,10 +714,12 @@ class World(tools._State):
                                     elif tile["layer"] > 4:
                                         self.highlayer_tiles.append(tile)
                                     else:
-                                        self.screen.blit(tile["surface"],
-                                                        (tile[
-                                                            "position"][0] + self.global_x,
-                                                         tile["position"][1] + self.global_y))
+                                        draw_position = (tile["position"][0] + self.global_x,
+                                                         tile["position"][1] + self.global_y)
+                                        if type(tile["surface"]) is pygame.Surface:
+                                            self.screen.blit(tile["surface"], draw_position)
+                                        else:
+                                            tile["surface"].blit(self.screen, draw_position)
 
                         # If we try drawing a tile that is out of index range, that means we
                         # reached the end of the list, so just break the loop
@@ -813,7 +805,13 @@ class World(tools._State):
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
-            if npc.update_location:
+            # Reset our directions after moving.
+            npc.direction["up"] = False
+            npc.direction["down"] = False
+            npc.direction["left"] = False
+            npc.direction["right"] = False
+
+	    if npc.update_location:
                 char_dict ={"tile_pos": npc.final_move_dest,
                             }
                 networking.update_client(npc, char_dict, self.game)
@@ -854,14 +852,22 @@ class World(tools._State):
             # Get the rectangle object of the tile that is going to be drawn so
             # we can see if it is going to be outside the visible screen area
             # or not
-            tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
-                                    "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            if type(tile["surface"]) is pygame.Surface:
+                tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
+                                        "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            else:
+                tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
+                                        tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
 
             # If any part of the tile overlaps with the screen, then draw it to
             # the screen
             if self.screen_rect.colliderect(tile_rect):
-                self.screen.blit(
-                    tile["surface"], (tile["position"][0] + self.orig_global_x, tile["position"][1] + self.orig_global_y))
+                med_x = tile["position"][0] + self.orig_global_x
+                med_y = tile["position"][1] + self.orig_global_y
+                if type(tile["surface"]) is pygame.Surface:
+                    self.screen.blit(tile["surface"], (med_x, med_y))
+                else:
+                    tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw the top half of our NPCs above layer 4.
         for npc in self.npcs:
@@ -881,14 +887,24 @@ class World(tools._State):
             # Get the rectangle object of the tile that is going to be drawn so
             # we can see if it is going to be outside the visible screen area
             # or not
-            tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
-                                    "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            if type(tile["surface"]) is pygame.Surface:
+                tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
+                                        "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            else:
+                tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
+                                        tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
+
+
 
             # If any part of the tile overlaps with the screen, then draw it to
             # the screen
             if self.screen_rect.colliderect(tile_rect):
-                self.screen.blit(
-                    tile["surface"], (tile["position"][0] + self.orig_global_x, tile["position"][1] + self.orig_global_y))
+                med_x = tile["position"][0] + self.orig_global_x
+                med_y = tile["position"][1] + self.orig_global_y
+                if type(tile["surface"]) is pygame.Surface:
+                    self.screen.blit(tile["surface"], (med_x, med_y))
+                else:
+                    tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw any map animations over everything.
         for animation_name, animation in self.game.animations.items():
@@ -1232,14 +1248,16 @@ class World(tools._State):
                             if column:
                                 layer_pos = 0
                                 for tile in column:
-                                    tile["surface"] = pygame.transform.scale(
-                                        tile["surface"], (self.tile_size[0], self.tile_size[1]))
+                                    if type(tile["surface"]) is pygame.Surface:
+                                        tile["surface"] = pygame.transform.scale(
+                                            tile["surface"], self.tile_size)
+                                    else:
+                                        tile["surface"].scale(self.tile_size)
                                     self.tiles[x_pos][y_pos][layer_pos] = tile
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
-                
-                       
+
             self.delayed_teleport = False
 
         # Replace this SAVE_THIS_FUCKING_SCREEN with the value of the blit of
@@ -1251,7 +1269,6 @@ class World(tools._State):
             self.transition_alpha -= (
                 255 * ((self.time_passed_seconds) / self.transition_time))
             if self.transition_alpha <= 0:
-                
                 self.transition_alpha = 0
                 self.start_transition_back = False
                 self.black_screen = 0

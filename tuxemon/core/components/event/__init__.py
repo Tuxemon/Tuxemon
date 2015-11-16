@@ -30,21 +30,10 @@
 #
 
 import logging
-import os
 import pygame
 import traceback
-import random
-import re
-import pprint
 
 from core import prepare
-from core.components import map
-from core.components import player
-from core.components import pyganim
-from core.components import item
-from core.components import db
-from core.components import monster
-from core.components import ai
 from core.components import plugin
 
 # Create a logger for optional handling of debug messages.
@@ -169,3 +158,40 @@ class EventEngine(object):
                 logger.error(error)
                 logger.error(message)
                 traceback.print_exc()
+
+class Condition(object):
+    """Condition object to be created from an imported TMX map file.
+
+    **Example**
+
+    {
+        "y": 3,
+        "parameters": "K_RETURN",
+        "height": 1,
+        "width": 1,
+        "operator": "is",
+        "x": 4,
+        "type": "button_pressed"
+    }
+    """
+    def __init__(self, cond_type, operator, parameters, width, height, x, y):
+        self.type = cond_type
+        self.operator = operator
+        self.parameters = parameters.split(',')
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
+
+class Action(object):
+    """Action object created from an import imported TMX map file.
+
+    **Example**
+
+    [(u'teleport', u'example.map,1,1', 1, 1), (u'teleport', u'test.map,4,3', 2, 2)]
+    """
+    def __init__(self, action_type, parameters, x, y):
+        self.type = action_type
+        self.parameters = parameters.split(',')
+        self.x = x
+        self.y = y

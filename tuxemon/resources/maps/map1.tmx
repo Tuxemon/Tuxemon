@@ -2,6 +2,22 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="118">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
  </tileset>
  <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
@@ -15,9 +31,24 @@
  <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
+ <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="100"/>
+    <frame tileid="249" duration="100"/>
+    <frame tileid="250" duration="100"/>
+    <frame tileid="251" duration="100"/>
+    <frame tileid="252" duration="100"/>
+    <frame tileid="253" duration="100"/>
+    <frame tileid="254" duration="100"/>
+    <frame tileid="255" duration="100"/>
+   </animation>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2z0KwjAYxnFBejTtZid18Gvw60SOeiRPoOIgXkMTsJCEmja1NU2ep/AfBJefb0I6xCzp9TKHRh3PxVIn376m/S9wP/r8bR1+9E8sIfjR54/s34p2lmL3o88/Bv9RdDLy7funvyjfvpD9Y3A/+vzpp5/++P2DBj1pgH70+dOP7c/3f6p8Htb0tL3/XR/f8y2r7ce3j/7u+13Pf9v3Xfd/F/zo86effvrLa+N9MiQ/+vzpp59++umnn3766acf3S/vCOR3BKdgfmnfiJafVmD+hWKXrRP9zmiV9RCyX94ZnBu/gVqV9RCy31wDs0S/M7kH86Ptf/rpp18//1zfgUL3m2egXAMX0dXoFqlfPup/B+SZ9xCd+3rPCP1Fc5bdQfxFc/4W/fQ34X8DYC/nCQ==
+   eJzt27sKwjAYhmGX4pVpNwuCOngaPF2Ro16ZioN4G5qAhSTUtKmtafJ9hXcQXB7/hHSIWdLrZQ6NOp6LpU6+fU37X+B+9PnbOv7on1pC8KPPH9m/E+0txe5Hn38M/pPobOTb909/Ub59Ifsn4H70+dNPP/3x+wcNetIA/ejzpx/bn+//VPk8rOlpe/+7Pr7nW1bbj28f/d33u57/tu+77v8u+NHnTz/99JfXxvtkSH70+dNPP/30008//fTTTz+6X94RyO8IzsD80r4VrT6twfxLxS7bJPqd0SrrIWS/vDO4MH4DtSrrIWS/uQbmiX5n8gDmR9v/9NNPv37+ub4Dhe43z0C5Bi6iq9EtUr981P8OyDPvIRr39Z4R+ovmLLuD+Ivm/C366W/C/wbQOdU5
   </data>
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
@@ -32,7 +63,12 @@
  </layer>
  <layer name="Above Player" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2kcOwjAUBNCfdhvgGsCWE7AMZYG4E70dj7ZhJJAiIIQUS4n950mjsPAig62YWIiU14uSz8Po9ziXaOlJ2eKa18HOF9kjB+SInPx670eTQfQebdif/cv2P3siF+SK3JC79z2m6c827fNvUjd4XvtBvfdRl9mr99yS/mEoEoX/r2Q3zqtunH+d+Fw34/M3YlqaxPS+blt/07T3p4T2NcD+uvtrlHe+Xd0j2J/92V9v/7zvE3y/JCIiSufi3hgjI2SMTJBpxtg2uncc619FS9F3UWSdEBERuWLhiyyRFbJGNsi2Yf+HLMr2s62qXDrnK0N7f814/ksmcP0QVfcAYN1MuA==
+   eJzt2kkOgjAUxvEHobdRz+HaE7jE4VrO0/GcNr4dUREZmgB9/1/yRRZd+NmGQqNIfWOXXU/d73EhsdITxdKW18EhFjlqTpqz5hK3+30smbj3WEN/+tftf41Ebpq75qF5Rt9jun5vsz7/sCtJRFzy/xP9xrzaxvzbxH3dj89nxLx0ie99vW/9fbPeHxnra4D+tvtbVHa+Q90j6E9/+tvtX/Z9gvdLAADyhbg3ppqZZq5ZaJYFY4fafRRY/yYGhn6LKusEAIBQrGKRtWaj2Wp2mn3H/g9ZVd/PtpoK6ZyvDuv9LeP8Fz6wfoDmXm2qSzo=
+  </data>
+ </layer>
+ <layer name="Above Player" width="64" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztz7ERABAQRNGbURy6Qf+B60BG4L2Zn+9GAADAPbVEtKyX10veGPl7ZuvT/wAAAAAAAAAAAAAAwNkGqM0CPg==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -229,12 +265,6 @@
     <property name="act1" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="77" name="Play Sign Animation" type="event" x="528" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_map_animation sign01,0.4,loop,33,10"/>
-    <property name="cond1" value="is true"/>
    </properties>
   </object>
   <object id="78" name="Player's House Sign" type="event" x="624" y="736" width="16" height="16">

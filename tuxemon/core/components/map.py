@@ -34,6 +34,7 @@ import pygame
 import os
 import sys
 from pprint import pprint
+from core.components.pyganim import PygAnimation
 
 # PyTMX LOVES to change their API without notice. Here we try and handle that.
 try:
@@ -306,12 +307,12 @@ class Map(object):
         tiles = []
 
         # Loop through all tiles in our map file and get the pygame surface associated with it.
-        for x in range(0, self.data.width):
+        for x in range(0, int(self.data.width)):
 
             # Create a list of tile for the y-axis
             y_list = []
 
-            for y in range(0, self.data.height):
+            for y in range(0, int(self.data.height)):
 
                 layer_list = []
 
@@ -339,6 +340,17 @@ class Map(object):
                         surface = self.data.getTileImage(x, y, layer)
                     except AttributeError:
                         surface = self.data.get_tile_image(x, y, layer)
+
+                    # Check to see if this tile has an animation
+                    tile_properties = self.data.get_tile_properties(x, y, layer)
+                    if tile_properties and "frames" in tile_properties:
+                        images_and_durations = []
+                        for frame in tile_properties["frames"]:
+                            gid = frame["gid"]
+                            anim_surface = self.data.get_tile_image_by_gid(gid)
+                            images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
+                        surface = PygAnimation(images_and_durations)
+                        surface.play()
 
                     # Create a tile based on the image
                     if surface:
@@ -392,7 +404,7 @@ class Map(object):
             y = self.round_to_divisible(collision_region.y, self.tile_size[1]) / self.tile_size[1]
             width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
             height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
-            
+
             # Loop through properties and create list of directions for each property
             if collision_region.properties:
                 enters = []
@@ -410,7 +422,7 @@ class Map(object):
             # inside this region.
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
-                    collision_tile = (a + x, b + y) 
+                    collision_tile = (a + x, b + y)
                     collision_map[collision_tile] = "None"
 
                     # Check if collision region has properties, and is therefore a conditional zone
@@ -595,7 +607,6 @@ if __name__=="__main__":
     screen.blit(background, (0, 0))
     pygame.display.flip()
 
-    print "Loading map"
     tile_size = [80, 80]    # 1 tile = 16 pixels
     testmap = Map()
     #testmap.loadfile("resources/maps/test.map", tile_size)

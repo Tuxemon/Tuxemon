@@ -105,24 +105,23 @@ class Multiplayer_Menu(Menu):
                 self.game.state.multiplayer_host_menu.visible = True
                 self.game.state.multiplayer_host_menu.interactable = True
                 self.game.state.multiplayer_menu.interactable = False
-                self.game.server.listening = True
                 self.game.ishost = True
                 self.game.server.server.listen()
+                self.game.server.listening = True
                 
                 # Enable the client and auto join our own game.
                 self.game.client.enable_join_multiplayer = True
-                self.game.client.listening = True
                 self.game.client.client.listen()
+                self.game.client.listening = True
                 
                 while not self.game.client.client.registered:
                     self.game.client.client.autodiscover(autoregister=False)
-    
                     if self.game.client.client.discovered_servers > 0:
                         for ip, port in self.game.client.client.discovered_servers:
-                                for interface in self.game.client.interfaces:
-                                    if ip == self.game.client.interfaces[interface]:
-                                        game = (ip, 40081)
-                                        self.game.client.client.register(game)
+                            for interface in self.game.client.interfaces:
+                                if ip == self.game.client.interfaces[interface]:
+                                    game = (ip, port)
+                                    self.game.client.client.register(game)
             
             else:
                 return False

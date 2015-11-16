@@ -62,6 +62,7 @@ class TuxemonServer():
     def __init__(self, game):
         self.game = game
         self.server = NeteriaServer(Multiplayer(self), server_port=40081)
+        print self.server.port
         self.network_events = []
         self.listening = False
         self.interfaces = {}
@@ -393,7 +394,7 @@ class TuxemonClient():
     """    
     def __init__(self, game):
         self.game = game
-        self.client = NeteriaClient()
+        self.client = NeteriaClient(server_port=40081)
         self.client.registry = {}
         self.interfaces = {}
         
@@ -555,8 +556,6 @@ class TuxemonClient():
         # Logic to prevent joining your own game as a client.
         if self.client.discovered_servers > 0:
             for ip, port in self.client.discovered_servers:
-                if port != 40081:
-                    return False
                 try: 
                     if self.available_games[ip]:
                         logger.info('Game already in list, skipping.')

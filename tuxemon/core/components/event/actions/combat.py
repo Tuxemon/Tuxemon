@@ -119,7 +119,7 @@ class Combat(object):
             current_monster.type1 = results['types'][0]
 
             current_monster.set_level(current_monster.level)
-           
+
             if len(results['types']) > 1:
                 current_monster.type2 = results['types'][1]
 
@@ -201,9 +201,8 @@ class Combat(object):
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1,100)
-            rate = range(1, int(item['encounter_rate']) + 1)
-            if roll in rate:
+            roll = random.randrange(1,1000)
+            if roll <= int(item['encounter_rate']):
                 # Set our encounter details
                 encounter = item
 

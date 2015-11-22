@@ -342,6 +342,9 @@ class Control(object):
                     self.key_events.append(net_event)
                     self.state.get_event(net_event)
 
+        # Remove the remaining events after they have been processed
+        pg.event.pump()
+
 
     def network_event_loop(self):
         """Process all network events from the mobile controller and pass them

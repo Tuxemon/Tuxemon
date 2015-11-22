@@ -16,16 +16,10 @@ class ItemMenu(NewMenu):
     :type resolution: Tuple
     :type game: core.tools.Control
 
-    To create a new menu, simply create a new menu instance and then set the size and coordinates
-    of the menu like this:
-
     Example:
 
-    >>> item_menu = ItemMenu(screen, resolution, self)
-    >>> item_menu.size_x = 200
-    >>> item_menu.size_y = 100
-    >>> item_menu.pos_x = 500
-    >>> item_menu.pos_y = 500
+    >>> item_menu = ItemMenu(game)
+    >>> item_menu.update(dt)
     >>> item_menu.draw()
 
     """

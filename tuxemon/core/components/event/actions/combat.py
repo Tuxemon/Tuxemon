@@ -118,7 +118,7 @@ class Combat(object):
             current_monster.type1 = results['types'][0]
 
             current_monster.set_level(current_monster.level)
-           
+
             if len(results['types']) > 1:
                 current_monster.type2 = results['types'][1]
 
@@ -146,8 +146,8 @@ class Combat(object):
         mixer.music.play(-1)
 
 
-    def start_psudo_battle(self, game, npc):
-        """Start a networked duel and switch to the combat module. 
+    def start_pseudo_battle(self, game, npc):
+        """Start a networked duel and switch to the combat module.
 
         :param game: The main game object that contains all the game's variables.
         :param npc: The NPC to fight if fighting a specific character.
@@ -161,10 +161,10 @@ class Combat(object):
         # Don't start a battle if we don't even have monsters in our party yet.
         if not self.check_battle_legal(game.player1):
             return False
-        
+
         if not self.check_battle_legal(npc):
             return False
-        
+
 
         # Add our players and start combat
         game.state_dict["COMBAT"].players.append(game.player1)
@@ -178,8 +178,8 @@ class Combat(object):
 
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
-        
-        
+
+
     def random_encounter(self, game, action):
         """Randomly starts a battle with a monster defined in the "encounter" table in the
         "monster.db" database. The chance that this will start a battle depends on the
@@ -278,13 +278,13 @@ class Combat(object):
             game.state_dict["WORLD"].menu_blocking = True
             player1.moving = False
             player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
-    
-    
+
+
     def check_battle_legal(self, player):
         """Checks to see if the player has any monsters fit for battle.
 
         :param: None
-        
+
         :rtype: Bool
         :returns: True/False
         """

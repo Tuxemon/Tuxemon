@@ -133,13 +133,14 @@ class ItemMenu(NewMenu):
             return
 
         self.backpack.draw()
+        inventory = self.game.player1.inventory
 
         # If the item list submenu is visible, draw it and its menu items.
         if self.item_list.visible:
             self.item_list.draw()
 
             items = []
-            for item_name, item_details in self.game.player1.inventory.items():
+            for item_name, item_details in inventory.items():
                 items.append(item_name)
 
             #self.item_list.line_spacing = 250
@@ -148,27 +149,26 @@ class ItemMenu(NewMenu):
         # If the info submenu is visible, draw it and its menu items.
         if self.info_menu.visible:
             self.info_menu.draw()
+            selected_item_name = self.item_list.get_current_selection()
 
             # Draw the image of the currently selected item.
-            #if len(self.item_list.text_menu) > 0:
-            #
-            #    # Get the selected item's description text and draw it on the info menu.
-            #    selected_item_name = self.item_list.menu_items[self.item_list.selected_menu_item]
-            #    info_text = self.game.player1.inventory[selected_item_name]['item'].description
-            #    self.info_menu.draw_text(info_text, justify="center", align="middle")
-            #
-            #    current_item_surface = self.game.player1.inventory[selected_item_name]['item'].surface
-            #
-            #    # Scale the item's sprite if it hasn't been scaled already.
-            #    if (prepare.SCALE != 1
-            #        and current_item_surface.get_size() == self.game.player1.inventory[selected_item_name]['item'].surface_size_original):
-            #        self.game.player1.inventory[selected_item_name]['item'].surface = pygame.transform.scale(
-            #            current_item_surface, (current_item_surface.get_width() * prepare.SCALE, current_item_surface.get_height() * prepare.SCALE))
-            #
-            #    # Position the item's sprite in the middle of the left-hand part of the item list.
-            #    item_pos_x = (self.item_list.pos_x / 2) - (current_item_surface.get_width() / 2)
-            #
-            #    self.screen.blit(current_item_surface, (item_pos_x,0))
+            if len(self.item_list.text_menu) > 0 and selected_item_name in inventory:
+
+                # Get the selected item's description text and draw it on the info menu.
+                current_item_surface = inventory[selected_item_name]['item'].surface
+
+                # Scale the item's sprite if it hasn't been scaled already.
+                original_sprite_size = inventory[selected_item_name]['item'].surface_size_original
+                if (prepare.SCALE != 1 and current_item_surface.get_size() == original_sprite_size):
+                    width = current_item_surface.get_width() * prepare.SCALE
+                    height = current_item_surface.get_height() * prepare.SCALE
+                    size = (width, height)
+                    inventory[selected_item_name]['item'].surface = pygame.transform.scale(current_item_surface, size)
+
+                # Position the item's sprite in the middle of the left-hand part of the item list.
+                item_pos_x = (self.item_list.position[0] / 2) - (current_item_surface.get_width() / 2)
+
+                self.screen.blit(current_item_surface, (item_pos_x, 0))
 
 
         # If the decision submenu is visible, draw it and its menu items.

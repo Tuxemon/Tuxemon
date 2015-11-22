@@ -102,6 +102,7 @@ class Combat(object):
 
             # Create a monster object for each monster the NPC has in their party.
             current_monster = monster.Monster()
+            current_monster.load_from_db(npc_monster_details['monster_id'])
             current_monster.name = npc_monster_details['name']
             current_monster.monster_id = npc_monster_details['monster_id']
             current_monster.level = npc_monster_details['level']
@@ -117,6 +118,8 @@ class Combat(object):
 
             current_monster.type1 = results['types'][0]
 
+            current_monster.set_level(current_monster.level)
+           
             if len(results['types']) > 1:
                 current_monster.type2 = results['types'][1]
 
@@ -221,6 +224,7 @@ class Combat(object):
 
             # Set the monster's level
             current_monster.level = level
+            current_monster.set_level(current_monster.level)
 
             # Create an NPC object which will be this monster's "trainer"
             npc = player.Npc()

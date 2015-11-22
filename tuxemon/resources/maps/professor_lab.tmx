@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="93">
+ <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="73" name="electronics" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="1042">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,43,46,0.3"/>
+    <property name="act2" value="player_face down"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1489" name="stairs_down" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/stairs_down.png" width="64" height="48"/>
+ </tileset>
+ <tileset firstgid="1501" name="plants" tilewidth="16" tileheight="16">
+  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYECADaykY3xgNyvpGB84xko6xgdWsJKOR80bNW/UvFHzBsK8wQgAniChCA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg6gAWI2YA4E8jIBuKjQHyMBVPdIWYGhsPMhM2TAWI5IDZlZWAwB+J3QLPeo5nnBMSvgWa9IcI8YoE69YwiCXzCEla0BiArgUELjjdCwIKVsBoBIBYEYiGKXIUAoDQgywBJB/QGoHQ3mQWBzVlJk6c3WAS0fzESXkKhe9YC9a9DwuspNG8HUP9OJLxrgMPrIdB+TiDNBcTcSOK1SO5Cln84wO4lBwAAHSEcKQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg6wBOIvahonhoVzRoFo2AUjIKRBgABaAC6
+  </data>
+ </layer>
+ <layer name="Above player" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgxWcZBloF+AHuwe5+6gNMoH+zULC2SykyY+CwQ1aSIwvUtUPRwAAvfQG6Q==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="11" name="Teleport to map1" type="event" x="144" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,44,53,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 8,17"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="69" name="Choose Creature 1" x="192" y="96" width="16" height="16"/>
+  <object id="74" name="Choose Creature 2" x="208" y="96" width="16" height="16"/>
+  <object id="75" name="Choose Creature 3" x="224" y="96" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="43" type="collision" x="192" y="112" width="48" height="32"/>
+  <object id="56" type="collision" x="192" y="48" width="48" height="16"/>
+  <object id="81" type="collision" x="256" y="-16" width="16" height="320"/>
+  <object id="83" type="collision" x="48" y="288" width="208" height="16"/>
+  <object id="84" type="collision" x="32" y="-16" width="16" height="320"/>
+  <object id="85" type="collision" x="48" y="0" width="208" height="48"/>
+  <object id="86" type="collision" x="80" y="48" width="64" height="16"/>
+  <object id="87" type="collision" x="48" y="96" width="16" height="16"/>
+  <object id="88" type="collision" x="48" y="128" width="16" height="16"/>
+  <object id="89" type="collision" x="48" y="176" width="80" height="16"/>
+  <object id="90" type="collision" x="176" y="176" width="80" height="16"/>
+  <object id="91" type="collision" x="48" y="272" width="64" height="16"/>
+  <object id="92" type="collision" x="192" y="272" width="64" height="16"/>
+ </objectgroup>
+</map>

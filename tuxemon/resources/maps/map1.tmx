@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="95">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="118">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
  </tileset>
  <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
@@ -12,24 +28,47 @@
  <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2z0OgjAYxnETw9GUTSZ18Gvw60SOeiRPoMbBeA77JpKUBoEiUNrnIfkPJi4/3zZlqEk0GCQWTXqejaVOrn3009+V//Snf1YQgh99/sj+vepQUOh+9PmH4D+rLkaufV3683Lt89k/Bfejz59++ukP3z9q0BN76EefP/3Y/nT/x9rncU1P2/vf9nE937Laflz76O+/3/b8L/q+7f7vgx99/vTTT395bbxP+uRHnz/99NNPP/30008//fSj++WOQHpHcA7mF/tOtf62AfOvNLu0jbJ3RqusB5/9cmdwafwGelXWg89+cw0souydySOYH23/008//dnzz/YdyHe/eQbKGrip7kaPQP3y6P8dkDPvpboOs70D9OfNWXqC+PPm/Cv66W/C/wF91+ZZ
+   eJzt27sKwjAYhmGX4pVpNwuCOngaPF2Ro16ZioN4G5qAhSTUtKmtafJ9hXcQXB7/hHSIWdLrZQ6NOp6LpU6+fU37X+B+9PnbOv7on1pC8KPPH9m/E+0txe5Hn38M/pPobOTb909/Ub59Ifsn4H70+dNPP/3x+wcNetIA/ejzpx/bn+//VPk8rOlpe/+7Pr7nW1bbj28f/d33u57/tu+77v8u+NHnTz/99JfXxvtkSH70+dNPP/30008//fTTTz+6X94RyO8IzsD80r4VrT6twfxLxS7bJPqd0SrrIWS/vDO4MH4DtSrrIWS/uQbmiX5n8gDmR9v/9NNPv37+ub4Dhe43z0C5Bi6iq9EtUr981P8OyDPvIRr39Z4R+ovmLLuD+Ivm/C366W/C/wbQOdU5
   </data>
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJztWtlu00AUnTg2fAQ7RWyC9qk0H1BKUwrigbRULH1gq4SglBYk4F/gA9h+hu0FPoKlbyzHSkZeemf1jNM4c6SjUT12fE+Oz/jaKWN9LCRq6uAy9lsB30SMvQXfge/BD1F/+4rm/I8WYz/BX+BvcLtVnKf4QLNGCiLNXYn+CWw7R3AK/Ag9n8DP4Bfwa1Q8VjW/D3/vBw+AB8FDpXkKmx70y/yfkmz7g3r/gv/SutuMtdrF/VTzs9h+HpwDL4DznvXbQKb/OPScAE+Cp8DTJX2q+YfQ+whcBx+DG+B0LK/HRv+rhObrwWdx76eJ63xmsA/PweRgW5rFnqKWpcSey4J82eg/i+90EuwJvluuvxdnLIO6Dm5i2y1PXE3o/NjoX4KeZXBWcCzXfybOuBv0U/mpkv9FhX5T/1W4l2S8kdN2PSnOUfvcluTCFFyfSr+p/xsGteSvlVXBcTrXk+hYGXT1m/ov0n8YeT0CHgUnwGPRTv3U2jYs/WVQ/c6Mgf4utCyAF8FF8BKhn1rb7gpykef9GvTrgtKf3r+fpPcpcAt8Cj4j9Kt6AxFs1j+R/hi1JvHOURci/6l1607Fa5jDpX7eF9iOlH5fGeZwqZ/3Bbbjc6IW3Qy/sOTLXeT/Nj7vWtIfq8D0vLa4OqiT57yq/65Q93mr+l7Vh6r12MKV7yY+zCVFUnN1+e/Kd1MfRD1lik7i33/Xvpv6INOfwrf/rn136b9NfaZw7but/+W1oO7868KlD93cc+WaoE8Y1n1HhKbl3xR15n++hvXfFCH/zez/dNH0/l+F4H/wP/gf/Pc1lvvAUfXf1XPDuPlf9Xy+Uaf/ayPc/wX/Q/6H0Rf4hgt/O5LfRMr3vyui3xGD/yPrv886fEPl7542Y3vb2Thu/n+LGPseZaMPfzqSvsA3Qv5D/oP/w/E/3zc0xX/e38h6IpM6fCPkP+Q/+D9c/2X/F+IbVf03XedM6/AN3+9/RM+7unX4Rt3vf0zr8I263/+Z1uEb4+5/0/AfKXoH2w==
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJztm8tO3DAYhaNh/CCwA4bLCqiQWFQCSqkEEp0ZNq1AtKiqCnRRdVVaKngBbisKvAe3FW15D2jZ9MYb9ETEGhPsxImdjD3OkT5lRhOP/5OT2E4YPE+f+sgt84T/ebnseaQc/R0y++hok4UGA/9TAv89qLEXzAk+HyKNfUTqD9pOk8b7uDZZakjghacaaqyDWUEb3wvdJ4nStCl0K3rtVGKOX6XcwHU9JnfxNZ3gOrBdPP8uqfCfzP9Eix0j1/PnSbSm0aVWO4d0y+b551dbsyvIRq9SZiKTZdrvVhVdL8ZtXxM+WfVnyj1gqyvPHPwx39b8s54PmyXZHMYIn/HguIwGW9495ShJ3p9p+YfXiDx82XZPLZuDLv+m5S/bj+v5j4XGP9F4YFv+aRR1Dsj6N0VpctDh37b8HzHnv4p/06Q6/7NrAJ39mZZ/1Jgvs5+pz5ZU5/+w4vwX+ZulIn85uZ5/3v2Zln+rKmkeqvmZln+4H9fOO9fzd12689Vdh+l6gzl9KYIVZs5/K7FP3lLN/52m2m3Nn/rfBFtgG+yA3Yg2Jv2+TVf+R+AYnIBTcJaghqrF4z/1fwmuwA/wE1yDQU79e+AL2AcH4DCXKsXSkT/7W44qXtdAXTAunIOv4Bv4Di5i6jBdNH/q+wV4DhaC96z88+E3tn/AX/AP3ORb7j3puv6fBb7DqNaRtVTX/9T/S2wXOZgu1fw/MOsXf32zyrBsQf6qag+egT8AHSG/7x3I/wnzbGuYNP4m4B+LdY7/rpLndYMK6AG9oK9kb/6sf5aHguxn4PUpqIIaqIPZUr41s9KZP8sk2AgdgwF/vIDXVfARfAJr4LPF+XfC4wiHLuLG9R+lJP5tzT9KLuRfPL+zW6bk36zzh/6vZVZb1TqS6j9gzJ1W
+   eJztm8tu1DAYhaMh3vIOsKNMLyvaCokFUstVolKZmW5AIC5CiNsCsaK0iPIA0HZVoO9RLiugvAe0bLi+ASdqrHGDndix4/k9yZE+eUaTjP+T4zhOOo0idxpne1xl8s/jOIpYnP8dOtu42KcKTab+Lyj8j6LGMXBF8fkU62+j0kS67xzrvy/ap0pNKbzI1EWNPbCg2CfxwrcxUZl9Gu2JnzvtguPXjvvUXWfZfhLNGZwHoUvmv06i6n/JUy2m/s94qmsHc9Ouh/mJav6+/MukWtO4ks4YWiaUhW+FfP35cWDQFVSjWyUz0cmy7Hfbiq8Xi9pEt9l+VPeFLvqjcg847PKZQzLnh5p/1dfDQUk3h1km51R6XGbSVnZPOcPM+6OWf3aNKCNRaPfUujm48k8tf91+6p7/bGb+U80HoeVfRnljQNc/FZXJwYX/0PI/LYx/G//UZHv9F9cALvujln/enK+zHbVnS1y21/+sivw3+dNSk7+e6p6/7/6o5T+sMs3DtH0e2/Xny7/q/bCr6vxt+2tUrVzn67oO6rqDa/rdHO4L1/yDcfE2vmWb/0OD2idz8gw1f+7/BXgJVsEaWM/Zh9Lv21zlvwXegnfgPfhgUEMn4Pmf+/8KvoEdsAu+R/LxvgFegdfgDdj0UqVaLvIXf8vRwesu6CnmhY/gE/gMtsGXgjqoi+fPfV8Hl8G19L2oZDz8RPsL/AZ/wF+/5f4nV+f/pdR3Fts6qpbt+p/7v4H2pgTqss3/sbB+eYB2UeBeAPnb6lD6DHwaHM74fVSD/M8Lz7aOs/7fBJJj8Uzif6QVRUdBG4yCMTDeCjd/0b/ISUX28/B6EXRAF/TAQstvzaJc5i9yDqxkjsGxZL6A10XwBCyBZfA04PyPwOMJCSOsHud/nkz8h5p/nuqQf/P8LmxRyX9Q44f/r2VVrW0dpvoHqm6h7g==
   </data>
  </layer>
  <layer name="Above Player" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2kkKwkAQheEyw23Ua6hbT+AyDgvxTs7T8Zw2FiiIcyZI0vV/8IiLXuQljQlFRNJrh4/fvfD7OpdY6YnfooL3wdoT2Wi2mp1m7xV7PpZ0w+dYQ3/6p+1/qIkcNSfNWXOpva8p+3+b9fufp5Z/O3b8Ys+jKON770lF+geBSBj8PwIAYNHrO+KnuIz+tvvjwfoeoL/t/hbFvd+uPiPoT3/62+0fd07I3BAAgM9cfDZGmr5moBlqRj/WNrR707H+WdQNXYsk+wQAAFdMPZGZZq5ZaJaaVcm+h0yq6rOtrFya86Vhvb9lzH+RB/YPkN0VHyNLuQ==
+   eJzt2kkOgjAUxvEHobdRz+HaE7jE4VrO0/GcNr4dUREZmgB9/1/yRRZd+NmGQqNIfWOXXU/d73EhsdITxdKW18EhFjlqTpqz5hK3+30smbj3WEN/+tftf41Ebpq75qF5Rt9jun5vsz7/sCtJRFzy/xP9xrzaxvzbxH3dj89nxLx0ie99vW/9fbPeHxnra4D+tvtbVHa+Q90j6E9/+tvtX/Z9gvdLAADyhbg3ppqZZq5ZaJYFY4fafRRY/yYGhn6LKusEAIBQrGKRtWaj2Wp2mn3H/g9ZVd/PtpoK6ZyvDuv9LeP8Fz6wfoDmXm2qSzo=
+  </data>
+ </layer>
+ <layer name="Above Player" width="64" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztz7ERABAQRNGbURy6Qf+B60BG4L2Zn+9GAADAPbVEtKyX10veGPl7ZuvT/wAAAAAAAAAAAAAAwNkGqM0CPg==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -55,8 +94,6 @@
   <object id="17" type="collision" x="352" y="128" width="16" height="96"/>
   <object id="18" type="collision" x="432" y="0" width="32" height="48"/>
   <object id="19" type="collision" x="336" y="0" width="496" height="16"/>
-  <object id="20" type="collision" x="816" y="0" width="16" height="112"/>
-  <object id="21" type="collision" x="816" y="176" width="16" height="64"/>
   <object id="22" type="collision" x="512" y="288" width="32" height="144"/>
   <object id="23" type="collision" x="592" y="144" width="80" height="48"/>
   <object id="24" type="collision" x="608" y="0" width="32" height="64"/>
@@ -88,16 +125,61 @@
   <object id="50" type="collision" x="688" y="48" width="16" height="16"/>
   <object id="51" type="collision" x="576" y="912" width="160" height="48"/>
   <object id="52" type="collision" x="672" y="880" width="64" height="32"/>
-  <object id="53" type="collision" x="624" y="624" width="16" height="16"/>
-  <object id="54" type="collision" x="352" y="416" width="128" height="16"/>
-  <object id="55" type="collision" x="544" y="416" width="96" height="16"/>
-  <object id="56" type="collision" x="544" y="352" width="96" height="16"/>
-  <object id="57" type="collision" x="400" y="352" width="112" height="16"/>
-  <object id="58" type="collision" x="352" y="352" width="32" height="16"/>
-  <object id="59" type="collision" x="352" y="288" width="112" height="16"/>
-  <object id="60" type="collision" x="480" y="288" width="32" height="16"/>
-  <object id="61" type="collision" x="544" y="288" width="16" height="16"/>
-  <object id="62" type="collision" x="592" y="288" width="48" height="16"/>
+  <object id="53" type="collision" x="624" y="624" width="16" height="32"/>
+  <object id="54" type="collision" x="352" y="416" width="128" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="55" type="collision" x="544" y="416" width="96" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="56" type="collision" x="544" y="352" width="96" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="57" type="collision" x="400" y="352" width="112" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="58" type="collision" x="352" y="352" width="32" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="59" type="collision" x="352" y="288" width="112" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="60" type="collision" x="480" y="288" width="32" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="61" type="collision" x="544" y="288" width="16" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="62" type="collision" x="592" y="288" width="48" height="16">
+   <properties>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
   <object id="63" type="collision" x="576" y="0" width="32" height="48"/>
   <object id="64" type="collision" x="528" y="192" width="16" height="16"/>
   <object id="65" type="collision" x="288" y="64" width="16" height="16"/>
@@ -106,12 +188,12 @@
   </object>
   <object id="88" type="collision" x="384" y="240" width="16" height="16"/>
   <object id="90" type="collision" x="352" y="240" width="16" height="16"/>
+  <object id="104" type="collision" x="304" y="-16" width="48" height="16"/>
+  <object id="105" type="collision" x="176" y="160" width="16" height="64"/>
+  <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
+  <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <properties>
-   <property name="act1" value=""/>
-   <property name="cond1" value=""/>
-  </properties>
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.5"/>
@@ -185,12 +267,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="77" name="Play Sign Animation" type="event" x="528" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_map_animation sign01,0.4,loop,33,10"/>
-    <property name="cond1" value="is true"/>
-   </properties>
-  </object>
   <object id="78" name="Player's House Sign" type="event" x="624" y="736" width="16" height="16">
    <properties>
     <property name="act1" value="dialog ${{name}}'s house"/>
@@ -201,7 +277,7 @@
   </object>
   <object id="79" name="Professor's House Sign" type="event" x="560" y="704" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Generic Proffesor's House"/>
+    <property name="act1" value="dialog Generic Professor's House"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
@@ -211,18 +287,80 @@
    <properties>
     <property name="act1" value="teleport route1.tmx,47,11"/>
     <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="teleport route1.tmx,47,12"/>
     <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="82" name="Go to Buddha Mountain" type="event" x="368" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport BuddhaMountain.tmx,3,90,0.5"/>
     <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport professor_lab.tmx,9,17,0.5"/>
+    <property name="cond1" value="is player_at 44,52"/>
+   </properties>
+  </object>
+  <object id="96" name="Professor's Lab Sign" type="event" x="624" y="848" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Generic Professor's Lab"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport healing_center.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport tuxe_mart.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="109" name="Tuxemart Sign" type="event" x="432" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="110" name="Tuxecenter Sign" type="event" x="688" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxecenter - A place to heal your tuxemon"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="112" name="Startup Town Sign" type="event" x="624" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Startup Town - Colors of your journey await!"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="115" name="Route 0 Sign" type="event" x="576" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Route 0"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

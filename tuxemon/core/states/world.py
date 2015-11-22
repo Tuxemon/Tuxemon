@@ -547,14 +547,14 @@ class World(tools._State):
             if self.main_menu.visible:
                 logger.info("Closing main menu!")
                 self.main_menu.menu_state = "closing"
-                self.main_menu.move(self.main_menu.closed_position, duration=.5)
+                self.main_menu.move(self.main_menu.closed_position, duration=.3)
                 self.menu_blocking = False
             else:
                 logger.info("Opening main menu!")
                 self.main_menu.menu_state = "opening"
                 self.main_menu.set_visible(True)
                 self.main_menu.set_interactable(True)
-                self.main_menu.move(self.main_menu.open_position, duration=.5)
+                self.main_menu.move(self.main_menu.open_position, duration=.3)
                 self.menu_blocking = True
                 self.player1.direction["up"] = False
                 self.player1.direction["down"] = False

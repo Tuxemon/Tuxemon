@@ -346,6 +346,8 @@ class Map(object):
                     if tile_properties and "frames" in tile_properties:
                         images_and_durations = []
                         for frame in tile_properties["frames"]:
+                            if "gid" not in frame:
+                                continue
                             gid = frame["gid"]
                             anim_surface = self.data.get_tile_image_by_gid(gid)
                             images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))

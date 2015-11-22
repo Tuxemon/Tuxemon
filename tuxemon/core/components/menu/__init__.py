@@ -374,7 +374,7 @@ class NewMenu(UserInterface):
             lines.append(" ".join(wordlist))
 
         # If the justification was set, handle the position of the text automatically
-        if text.justify == "center":
+        if text.justify in ["center", "middle"]:
             if len(lines) > 0:
                 pos_x = (self.position[0] + (self.size[0] / 2)) - \
                     ((len(lines[0]) * pixels_per_letter) / 2)
@@ -385,7 +385,7 @@ class NewMenu(UserInterface):
              raise NotImplementedError, "Needs to be implemented"
 
         # If text alignment was set, handle the position of the text automatically
-        if text.align == "middle":
+        if text.align in ["center", "middle"]:
             pos_y = (self.position[1] + (self.size[1] / 2)) - \
                 ((text_surface.get_height() * len(lines)) / 2)
 

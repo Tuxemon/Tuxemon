@@ -55,7 +55,7 @@ class ItemMenu(NewMenu):
         self.backpack = UserInterface("resources/gfx/ui/item/backpack.png", (0, 0), game.screen)
         x = (self.item_list.position[0] / 2) - \
             (self.backpack.width / 2)
-        y = resolution[1] - self.info_menu.height - \
+        y = resolution[1] - self.info_menu.size[1] - \
             (self.backpack.height * 1.2)
         self.backpack.position = [x, y]
 
@@ -114,6 +114,21 @@ class ItemMenu(NewMenu):
         self.add_child(item_list)
 
         return item_list
+
+    def update(self, dt):
+        super(NewMenu, self).update(dt)
+        self.info_menu.update(dt)
+        self.item_list.update(dt)
+        self.decision_menu.update(dt)
+        self.backpack.update(dt)
+
+        # Update our info menu with our current selection
+        selected_item = self.item_list.get_current_selection()
+        if selected_item and selected_item in self.game.player1.inventory:
+            info_text = self.game.player1.inventory[selected_item]['item'].description
+            self.info_menu.set_text(info_text, justify="middle", align="center")
+        else:
+            self.info_menu.clear_text()
 
     def draw(self):
 
@@ -175,37 +190,36 @@ class ItemMenu(NewMenu):
 
             # If the "ESC" key was pressed while the decision menu was up, close it.
             if self.decision_menu.visible:
-                self.decision_menu.visible = False
-                self.decision_menu.interactable = False
+                self.decision_menu.set_visible(False)
+                self.decision_menu.set_interactable(False)
                 self.decision_menu.selected_menu_item = 0
-                self.item_list.interactable = True
+                self.item_list.set_interactable(True)
 
             # If no other submenus were up when we pressed "ESC", close the item menu.
             else:
-                self.visible = False
-                self.interactable = False
+                self.set_visible(False)
+                self.set_interactable(False)
 
                 # If the item menu was opened from combat, open up the action menu.
                 if game.state_name == "COMBAT":
                     game.state.action_menu.visible = True
                     game.state.action_menu.interactable = True
 
-
         # Handle when the player presses "ENTER"
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN: #and len(self.menu_items) > 0:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and len(self.item_list.text_menu) > 0:
             # Decision Menu
             if self.decision_menu.interactable:
-                if self.decision_menu.text_menu[self.decision_menu.selected_menu_item] == "Cancel":
-                    self.decision_menu.visible = False
-                    self.decision_menu.interactable = False
+                if self.decision_menu.get_current_selection() == "Cancel":
+                    self.decision_menu.set_visible(False)
+                    self.decision_menu.set_interactable(False)
                     self.decision_menu.selected_menu_item = 0
-                    self.item_list.interactable = True
+                    self.item_list.set_interactable(True)
 
                 # Use the selected item.
-                elif self.decision_menu.text_menu[self.decision_menu.selected_menu_item] == "Use":
+                elif self.decision_menu.get_current_selection() == "Use":
 
                     # Get the name of the item from our menu list.
-                    item_name = self.item_list.text_menu[self.item_list.selected_menu_item]
+                    item_name = self.item_list.get_current_selection()
 
                     # For now, just use the item on the currently active monster.
                     print "Using " + item_name
@@ -228,60 +242,39 @@ class ItemMenu(NewMenu):
                                  'target': item_target}}
                         else:
                             game.player1.inventory[item_name]['item'].use(game.player1.monsters[0], game)
+                        self.decision_menu.set_interactable(False)
+                        self.decision_menu.set_visible(False)
+                        self.item_list.set_interactable(True)
 
                     else:
                         print "%s cannot be used here!" % item_name
 
-
             # Item List Menu
             else:
                 if self.item_list.interactable:
-                    print self.item_list.text_menu[self.item_list.selected_menu_item]
-                    self.decision_menu.visible = True
-                    self.decision_menu.interactable = True
-                    self.item_list.interactable = False
+                    self.item_list.get_current_selection()
+                    self.decision_menu.set_visible(True)
+                    self.decision_menu.set_interactable(True)
+                    self.item_list.set_interactable(False)
 
         # Handle when the player presses "Up"
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
 
             # Handle the decision submenu.
             if self.decision_menu.interactable:
-
-                # If by pressing up our selected item number is less than zero, select the last
-                # item in the list.
-                if self.decision_menu.selected_menu_item - 1 < 0:
-                    self.decision_menu.selected_menu_item = len(self.decision_menu.text_menu) - 1
-                else:
-                    self.decision_menu.selected_menu_item -= 1
+                self.decision_menu.menu_select_prev()
 
             # If the decision menu isn't open, allow item selection.
             else:
-
-                if self.item_list.selected_menu_item -1 < 0:
-                    self.item_list.selected_menu_item = len(self.item_list.text_menu) - 1
-                else:
-                    self.item_list.selected_menu_item -= 1
-
+                self.item_list.menu_select_prev()
 
         # Handle when the player presses "Down"
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
 
             # Handle the decision submenu.
             if self.decision_menu.interactable:
+                self.decision_menu.menu_select_next()
 
-                # If by pressing up our selected item number is less than zero, select the last
-                # item in the list.
-                if self.decision_menu.selected_menu_item + 1 > len(self.decision_menu.text_menu) - 1:
-                    self.decision_menu.selected_menu_item = 0
-                else:
-                    self.decision_menu.selected_menu_item += 1
-
-            # If the devision menu isn't open, allow item selection.
+            # If the decision menu isn't open, allow item selection.
             else:
-
-                if self.item_list.selected_menu_item + 1 > len(self.item_list.text_menu) - 1:
-                    self.item_list.selected_menu_item = 0
-                else:
-                    self.item_list.selected_menu_item += 1
-
-
+                self.item_list.menu_select_next()

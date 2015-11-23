@@ -1,0 +1,14 @@
+{
+    "animation": "drip",
+    "sfx": "blaster1.ogg",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ], 
+    "id": 9, 
+    "name": "Drip", 
+    "power": 28, 
+    "types": [
+        "Water"
+    ]
+}

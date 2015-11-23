@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="24">
+ <tileset firstgid="1" name="mountain" tilewidth="16" tileheight="16" tilecount="84">
+  <image source="../../../../../Tuxemon-master/Tuxemon-master/tuxemon/resources/gfx/tilesets/mountain.png" width="112" height="192"/>
+ </tileset>
+ <tileset firstgid="85" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+  <image source="../../../../../Tuxemon-master/Tuxemon-master/tuxemon/resources/gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="189" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../../../../../Tuxemon-master/Tuxemon-master/tuxemon/resources/gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1501" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+  <image source="../../../../../Tuxemon-master/Tuxemon-master/tuxemon/resources/gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1605" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="66">
+  <image source="../../../../../Tuxemon-master/Tuxemon-master/tuxemon/resources/gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzzENACAQBLCf8MLIiH9jKGAj+UvoUAFdVbWCzce6P76+vr6+vr55fH19fX0zdX73uPP19fX17ft28PX19fXN5Ovr6+ubydfX1/fX7wGNKbS8
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztmb0KwjAURjP0Z9JBW3d1cVQncWq7SBf1BfQhXEQd9FHc3HwvfQpvkYCUkERzg71tPjgEarj04xgttM3k6QKRBTaB/PMYyBX39kvaFmZixfU1T5X73izMdH2rk6Z9n11f8zSx71HCHjgwdpXtKThZuLd/+D0DF8Wenv9eHx5jTw9vvVuYidGXpwO9uz7eamMm7xv55n2xXdiYWfTdSdgCG8UeDiW/qoyC+vjVyRj6TiRMg3r5nSn8zoN6+dXp6/w6v86v81sFvwn0SSVkNfOrE0p+Y9+8r/NbXb+i9IGBJkMifkPGrk3yW/zNfBIa9KXgtxyT80zBL2Zfyn6XwApINcka5jcn4lf0nnn1JbwvBb9YzxtU/PK+CdM/qyLWxPwuEBxT8st/j02g5BcjFPyWnyd1aAmuhUT8vgDCNJ3O
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt0bENgEAQA8ELPqb/cqAzekCPQKuZxJmTnQEAgH8418y19u1bnzyjb5u+bfq26dumb5u+bfq26dumb5u+/3Ns/NK3Td82ffnaDZlVrfY=
+  </data>
+ </layer>
+ <layer name="Above Player" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzDERADAMxLAfwh9Ty6wk0iEXafHmBABgjlPJrb7+egIAAAAAAAA7PPFvHrU=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="0" y="0" width="16" height="448"/>
+  <object id="2" type="collision" x="0" y="448" width="80" height="96"/>
+  <object id="3" type="collision" x="0" y="544" width="16" height="80"/>
+  <object id="4" type="collision" x="0" y="624" width="208" height="16"/>
+  <object id="5" type="collision" x="224" y="624" width="80" height="16"/>
+  <object id="6" type="collision" x="304" y="160" width="656" height="496"/>
+  <object id="7" type="collision" x="96" y="496" width="208" height="16"/>
+  <object id="8" type="collision" x="80" y="528" width="192" height="16"/>
+  <object id="11" type="collision" x="288" y="512" width="16" height="48"/>
+  <object id="12" type="collision" x="32" y="560" width="272" height="48"/>
+  <object id="14" type="collision" x="112" y="416" width="192" height="16"/>
+  <object id="17" type="collision" x="16" y="-16" width="720" height="16"/>
+  <object id="18" type="collision" x="176" y="256" width="112" height="96"/>
+  <object id="20" type="collision" x="624" y="0" width="16" height="160"/>
+  <object id="21" type="collision" x="16" y="144" width="112" height="80"/>
+  <object id="22" type="collision" x="160" y="144" width="144" height="80"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="19" name="goto granite city" type="event" x="208" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport granite_city.tmx,28,0,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="23" name="goto grimly cave" type="event" x="480" y="0" width="16" height="16"/>
+ </objectgroup>
+</map>

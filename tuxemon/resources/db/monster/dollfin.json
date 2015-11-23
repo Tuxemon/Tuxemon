@@ -26,7 +26,7 @@
         {
             "level_learned": 2, 
             "technique_id": 4
-        },
+        }
     ], 
     "name": "Dollfin", 
     "special_attack_base": 6, 

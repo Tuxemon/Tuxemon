@@ -1,9 +1,0 @@
-[Core]
-Name = Item Menu
-Module = item_menu
-
-[Documentation]
-Author = William Edwards
-Version = 1.0
-Website = http://www.tuxemon.org
-Description = Item menu plugin.

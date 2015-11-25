@@ -1,3 +1,11 @@
+READ THIS FIRST!
+****************************************************************************
+The texture licenses listed below by the website name may only apply to 
+those specific textures used in this short movie. They may not apply to all
+textures on that site. Be sure to check the individual licenses when on these
+sites.
+***************************************************************************
+
 Textures
 
 -----------
@@ -7,6 +15,13 @@ mine_dirt&grass
 mine_dirt
 mine_grass
 mine_stone
+mine_face
+mine_hair_back
+mine_hair_side
+mine_hair_side2
+mine_jeans
+mine_skin
+bark
 
 ------------
 Game Pioneer (CC BY SA 3.0)
@@ -17,8 +32,19 @@ deneb
 pumpkinseed_diff
 
 -----------------------------
-flickr.com (Creative Commons)
+flickr.com (CC BY 2.0)
 
 scratched_metal
 tire
 rock_floor - cc by 2.0
+
+-----------------------------
+pixabay.com (CC0 1.0 Universal (CC0 1.0)) 
+
+texture-366834_640.jpg
+
+-----------------------------
+commons.wikimedia.org (Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0))
+
+Hêtre_feuille.png
+

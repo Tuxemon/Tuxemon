@@ -49,6 +49,7 @@ Greenhouse-palm-jubaea.blend
 Palm-arecaceae.blend
 Pine.blend
 
+----------------------------------
 Pioneer game models (CC BY-SA 3.0)
 
 ac33-venturestar
@@ -56,5 +57,8 @@ deneb
 kanara_hi
 pumpkinseed_1hi
 
+-------------
+Blendswap.com
 
+STR_64.blend (Creative Commons Zero (Public Domain))
 

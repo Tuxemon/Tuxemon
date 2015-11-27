@@ -35,7 +35,6 @@ import logging
 import os
 import pygame as pg
 import pprint
-import pygame.mixer as mixer
 
 from core.components import config
 from core.components import controller
@@ -58,10 +57,6 @@ try:
     import android
 except ImportError:
     android = None
-try:
-    from core.components.middleware import Controller
-except ImportError:
-    Controller = None
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -322,6 +317,9 @@ class Control(object):
                     self.state.get_event(joy_event)
 
             self.state.get_event(event)
+        
+        # Remove the remaining events after they have been processed
+        pg.event.pump()
             
             
     def controller_event_loop(self, event):
@@ -616,7 +614,7 @@ class Control(object):
             if menu.menu_select_sound:
                 pass
         except AttributeError:
-            menu.menu_select_sound = mixer.Sound(
+            menu.menu_select_sound = pg.mixer.Sound(
                 prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
 
         if len(menu.menu_items) > 0:

@@ -202,7 +202,7 @@ class World(tools._State):
         self.monster_menu = MonsterMenu(self.screen,
                                         self.resolution,
                                         self)
-        
+
         #Interaction menu
         InteractionMenu = menu.interaction_menu.InteractionMenu
         self.interaction_menu = InteractionMenu(self.screen,
@@ -222,14 +222,14 @@ class World(tools._State):
         self.menu_blocking = False
 
         # List of available menus
-        self.menus = [self.dialog_window, 
-                      self.main_menu, 
+        self.menus = [self.dialog_window,
+                      self.main_menu,
                       self.save_menu,
-                      self.entername_menu, 
+                      self.entername_menu,
                       self.displayname_menu,
-                      self.not_implmeneted_menu, 
-                      self.item_menu, 
-                      self.monster_menu, 
+                      self.not_implmeneted_menu,
+                      self.item_menu,
+                      self.monster_menu,
                       self.interaction_menu
                       ]
 
@@ -346,7 +346,7 @@ class World(tools._State):
         self.monster_menu.pos_y = 0
         self.monster_menu.visible = False
         self.monster_menu.interactable = False
-        
+
         # Interaction Menu
         self.interaction_menu.size_y = int(self.resolution[1] / 5.)
         self.interaction_menu.size_x = int(self.resolution[0] / 2.5)
@@ -594,11 +594,11 @@ class World(tools._State):
                 logger.info("Closing dialog window!")
                 self.dialog_window.state = "closing"
                 self.menu_blocking = False
-        
+
         # If the interaction menu in interactable, send pygame events to it.
         if self.interaction_menu.interactable:
             self.interaction_menu.get_event(event)
-            
+
         # If the main menu is interactable, send pygame events to it.
         if self.main_menu.interactable:
             self.main_menu.get_event(event, self)
@@ -618,14 +618,14 @@ class World(tools._State):
                 self.main_menu.state = "closing"
                 self.main_menu.interactable = False
                 self.menu_blocking = False
-            
+
             elif self.interaction_menu.visible and self.interaction_menu.interactable:
                 logger.info("Closing interaction menu!")
                 self.interaction_menu.visible = False
                 self.interaction_menu.interactable = False
                 self.interaction_menu.menu_items = None
                 self.menu_blocking = False
-                
+
             else:
                 self.main_menu.visible = True
                 self.menu_blocking = True
@@ -650,7 +650,7 @@ class World(tools._State):
                     self.player1.direction["right"] = True
                     self.player1.facing = "right"
                 if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                    self.check_interactible_space()
+                    self.check_interactable_space()
 
             # Handle Key UP events
             if event.type == pygame.KEYUP:
@@ -819,7 +819,7 @@ class World(tools._State):
 
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
-        
+
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map:
             if npc.running:
@@ -841,7 +841,7 @@ class World(tools._State):
                 npc.move_by_path()
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
-        
+
         # Draw the bottom half of the player
         self.player1.draw(self.screen, "bottom")
 
@@ -1022,12 +1022,12 @@ class World(tools._State):
             else:
                 if self.main_menu.state == "open" or self.main_menu.state == "opening":
                     self.main_menu.interactable = True
-        
+
         # Interaction Menu
         if self.interaction_menu.visible:
             self.interaction_menu.draw()
             self.interaction_menu.draw_textItem(self.interaction_menu.menu_items)
-            
+
         # Save Menu
         if self.save_menu.visible:
             # Set the save game variables so we can save the game in the menu
@@ -1234,7 +1234,7 @@ class World(tools._State):
                 # Clear out any existing NPCs
                 self.npcs = []
                 self.npcs_off_map = []
-                    
+
                 # Scale the loaded tiles if enabled
                 if prepare.CONFIG.scaling == "1":
                     x_pos = 0        # Here we need to keep track of the x index of the list
@@ -1278,18 +1278,18 @@ class World(tools._State):
             # print transition_alpha
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
-           
+
             # Update the server/clients of our new map and populate any other players.
             if self.game.isclient or self.game.ishost:
                 self.game.add_clients_to_map(self.game.client.client.registry)
                 self.game.client.update_player(self.player1.facing)
-            
+
             # Update the location of the npcs. Doesn't send network data.
             for npc in self.npcs:
                 char_dict ={"tile_pos": npc.tile_pos,
                             }
                 networking.update_client(npc, char_dict, self.game)
-            
+
             for npc in self.npcs_off_map:
                 char_dict ={"tile_pos": npc.tile_pos,
                             }
@@ -1311,9 +1311,9 @@ class World(tools._State):
         y = (self.tile_size[1] * tile_position[1]) + self.global_y
 
         return x, y
-    
-    
-    def check_interactible_space(self):
+
+
+    def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu
         of possible actions.
 
@@ -1351,14 +1351,14 @@ class World(tools._State):
                             self.menu_blocking = True
                             return True
                         else: continue
-    
-    
+
+
     def handle_interaction(self, event_data, registry):
         """Presents options window when another player has interacted with this player.
 
         :param event_data: Information on the type of interaction and who sent it.
         :param registry:
-        
+
         :type event_data: Dictionary
         :type registry: Dictionary
 
@@ -1388,7 +1388,7 @@ class World(tools._State):
                                       "char_dict": {"monsters": pd["monsters"],
                                                     "inventory": pd["inventory"]
                                                     }
-                                      
+
                                       }
                         self.game.game.server.notify_client_interaction(cuuid, event_data)
-                                
+

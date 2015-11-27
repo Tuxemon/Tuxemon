@@ -989,12 +989,12 @@ class Menu(UserInterface):
             self.menudis_y += line_spacing + longest_item.get_height()
 
 
-    def menu_event(self, event=None, game=None):
+    def get_event(self, event=None, game=None):
 
-        """Run this function to process menu specific events (such as actions for a specific 
+        """Run this function to process menu specific events (such as actions for a specific
         menu item). By default this function does nothing.
 
-        :param event: -- An optional pygame event from pygame.event.get() passed by 
+        :param event: -- An optional pygame event from pygame.event.get() passed by
             core.tools.Control get_menu_event() or a custom funtion.
         :param game: -- An optional instance of the game itself so the variables can be directly
             manipulated if needed.

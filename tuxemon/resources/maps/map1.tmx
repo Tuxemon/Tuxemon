@@ -35,14 +35,14 @@
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
   <tile id="255">
    <animation>
-    <frame tileid="248" duration="100"/>
-    <frame tileid="249" duration="100"/>
-    <frame tileid="250" duration="100"/>
-    <frame tileid="251" duration="100"/>
-    <frame tileid="252" duration="100"/>
-    <frame tileid="253" duration="100"/>
-    <frame tileid="254" duration="100"/>
-    <frame tileid="255" duration="100"/>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
    </animation>
   </tile>
  </tileset>

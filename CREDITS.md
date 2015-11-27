@@ -125,11 +125,25 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 * ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](https://forum.tuxemon.org/profile.php?id=22)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](http://kelvinshadewing.net)
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
 * ["Nut & Bolt"](https://forum.tuxemon.org/viewtopic.php?id=59) by [TacoBot](https://forum.tuxemon.org/profile.php?id=40)
 is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
+
+* ["Kelvin Terrain"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by 
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Kelvin Buildings"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by 
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
 
 Maps
@@ -220,5 +234,5 @@ Sounds
 
 * ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/resSounds.html) by
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[Kelvin Shadewing's license](http://kelvinshadewing.net/dl/kssp_01.zip).
+[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 

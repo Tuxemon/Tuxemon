@@ -346,9 +346,18 @@ class Map(object):
                     if tile_properties and "frames" in tile_properties:
                         images_and_durations = []
                         for frame in tile_properties["frames"]:
-                            gid = frame["gid"]
-                            anim_surface = self.data.get_tile_image_by_gid(gid)
-                            images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
+                            # bitcraft/PyTMX 3.20.14+ support
+                            if hasattr(frame, 'gid'):
+                                anim_surface = self.data.get_tile_image_by_gid(frame.gid)
+                                images_and_durations.append((anim_surface, float(frame.duration) / 1000))
+                            # ShadowApex/PyTMX 3.20.13 fork support
+                            elif "gid" in frame:
+                                anim_surface = self.data.get_tile_image_by_gid(frame["gid"])
+                                images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
+                            # bitcraft/PyTMX 3.20.13 support
+                            elif "gid" not in frame:
+                                images_and_durations = [(surface, 1)]
+                                break
                         surface = PygAnimation(images_and_durations)
                         surface.play()
 

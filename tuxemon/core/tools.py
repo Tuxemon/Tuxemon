@@ -58,6 +58,10 @@ try:
     import android
 except ImportError:
     android = None
+try:
+    from core.components.middleware import Controller
+except ImportError:
+    Controller = None
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -180,9 +184,21 @@ class Control(object):
         if self.config.controller_overlay == "1":
             self.controller = controller.Controller(self)
             self.controller.load()
-        
-        if self.config.net_controller_enabled == "1":
+
+            # Keep track of what buttons have been pressed when the overlay
+            # controller is enabled.
+            self.overlay_pressed = {
+                    "up": False,
+                    "down": False,
+                    "left": False,
+                    "right": False,
+                    "a": False,
+                    "b": False
+                    }
+
+	if self.config.net_controller_enabled == "1":
             self.controller_server = ControllerServer(self)
+
 
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
@@ -562,6 +578,9 @@ class Control(object):
         # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.
         self.event_loop()
+
+        # Run our event engine which will check to see if game conditions
+        # are met and run an action associated with that condition.
         self.event_data = {}
         self.event_engine.check_conditions(self, time_delta)
         logger.debug("Event Data:" + str(self.event_data))
@@ -977,8 +996,8 @@ class _State(object):
         msg = font.render(msg, 1, color)
         rect = msg.get_rect(center=center)
         return msg, rect
-    
-    
+
+
 ### Resource loading functions.
 def load_all_gfx(directory, colorkey=(255,0,255), accept=(".png",".jpg",".bmp")):
     """Load all graphics with extensions in the accept argument.  If alpha

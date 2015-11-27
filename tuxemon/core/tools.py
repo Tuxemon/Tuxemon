@@ -630,7 +630,7 @@ class Control(object):
 
         if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
             menu.menu_select_sound.play()
-            menu.menu_event(event)
+            menu.get_event(event)
     
     def scale_new_player(self, sprite):
         """Scales a new player to the screen.

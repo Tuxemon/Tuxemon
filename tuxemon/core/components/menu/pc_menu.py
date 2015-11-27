@@ -31,8 +31,6 @@
 """
 from core.components.menu import Menu
 from core import prepare
-# Import the android mixer if on the android platform
-
 
 
 class PCMenu(Menu):
@@ -45,8 +43,8 @@ class PCMenu(Menu):
         self.elapsed_time = self.delay
         
            
-    def menu_event(self, event=None):
-        """Run once a menu item has been selected by  the core.tools.Control 
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.tools.Control 
         get_menu_event() function
 
         :param None:
@@ -76,8 +74,8 @@ class Multiplayer_Menu(Menu):
         self.elapsed_time = self.delay
     
     
-    def menu_event(self, event=None):
-        """Run once a menu item has been selected by  the core.tools.Control 
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.tools.Control 
         get_menu_event() function
 
         :param None:
@@ -127,6 +125,7 @@ class Multiplayer_Menu(Menu):
                 return False
 
 
+
 class Multiplayer_Join_Menu(Menu):
     
     def __init__(self, screen, resolution, game, name="JOIN"):
@@ -137,8 +136,8 @@ class Multiplayer_Join_Menu(Menu):
         self.elapsed_time = self.delay
         
     
-    def menu_event(self, event=None):
-        """Run once a menu item has been selected by  the core.tools.Control 
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.tools.Control 
         get_menu_event() function
 
         :param None:
@@ -160,6 +159,7 @@ class Multiplayer_Join_Menu(Menu):
             self.game.state.multiplayer_join_menu.interactable = False
 
 
+
 class Multiplayer_Join_Success_Menu(Menu):
     
     def __init__(self, screen, resolution, game, name="SUCCESS"):
@@ -171,8 +171,8 @@ class Multiplayer_Join_Success_Menu(Menu):
         self.text = ["Joining. Please wait..."]
         
     
-    def menu_event(self, event=None):
-        """Run once a menu item has been selected by  the core.tools.Control 
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.tools.Control 
         get_menu_event() function
 
         :param None:
@@ -182,6 +182,7 @@ class Multiplayer_Join_Success_Menu(Menu):
 
         """
         return False
+            
             
             
 class Multiplayer_Host_Menu(Menu):
@@ -196,8 +197,9 @@ class Multiplayer_Host_Menu(Menu):
         for ip in self.game.server.ips:
             self.text.append(ip)
     
-    def menu_event(self, event=None):
-        """Run once a menu item has been selected by  the core.tools.Control 
+    
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.tools.Control 
         get_menu_event() function
 
         :param None:

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="31">
+ <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="15" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="15" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+ <layer name="TIle Layer 3rd" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzzYWBg8KEAswIxG4mYHaqXlwz7+NH0cpCAseklxk5cepmBWAwPZsGjFyYWCMRBQByM5lZeIvRGAnEUEEeToJcbR3wQoxdXmOLTy8qAGuek6EUXI0WvKBDzAbE4Ab3o6kjxLzL2gZqFLz2I49ALAMOCG2k=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="collision">
+  <object id="1" type="collision-line" x="192" y="80">
+   <polyline points="0,0 0,112"/>
+  </object>
+  <object id="2" type="collision-line" x="160" y="240">
+   <polyline points="0,0 0,-112"/>
+  </object>
+  <object id="3" type="collision-line" x="80" y="80">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="4" type="collision-line" x="16" y="16">
+   <polyline points="0,0 0,224"/>
+  </object>
+  <object id="5" type="collision-line" x="240" y="16">
+   <polyline points="0,0 0,192"/>
+  </object>
+  <object id="6" type="collision-line" x="32" y="160">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="7" type="collision-line" x="80" y="160">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="8" type="collision" x="192" y="192" width="16" height="16"/>
+  <object id="9" type="collision" x="224" y="192" width="16" height="16"/>
+  <object id="10" type="collision" x="80" y="80" width="112" height="16"/>
+  <object id="11" type="collision" x="16" y="224" width="144" height="16"/>
+  <object id="12" type="collision" x="32" y="192" width="16" height="16"/>
+  <object id="13" type="collision" x="64" y="192" width="16" height="16"/>
+  <object id="14" type="collision-line" x="16" y="16">
+   <polyline points="0,0 224,0"/>
+  </object>
+  <object id="15" type="collision-line" x="32" y="160">
+   <polyline points="0,0 48,0"/>
+  </object>
+  <object id="16" type="collision-line" x="0" y="0">
+   <polyline points="0,0 240,0"/>
+  </object>
+  <object id="17" type="collision-line" x="0" y="240">
+   <polyline points="0,0 240,0"/>
+  </object>
+  <object id="18" type="collision-line" x="240" y="208">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="19" type="collision-line" x="0" y="0">
+   <polyline points="0,0 0,240"/>
+  </object>
+  <object id="20" type="collision-line" x="240" y="0">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="21" type="collision-line" x="160" y="128">
+   <polyline points="0,0 -80,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="26" name="Test Pathfinding" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind Maple,3,10"/>
+    <property name="cond1" value="is player_at 7,7 "/>
+   </properties>
+  </object>
+  <object id="29" name="Create Maple" type="event" x="144" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Maple,9,6,maple,stay"/>
+    <property name="cond1" value="not npc_exists Maple"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

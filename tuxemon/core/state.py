@@ -250,9 +250,3 @@ class State(object):
 
         """
         pass
-
-    def render_font(self, font, msg, color, center):
-        """Returns the rendered font surface and its rect centered on center."""
-        msg = font.render(msg, 1, color)
-        rect = msg.get_rect(center=center)
-        return msg, rect

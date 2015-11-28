@@ -28,7 +28,7 @@
 # tuxemon.py Main game
 #
 """Starts the core.main.main() function which, in turn, initializes
-pygame and starts the game.
+pygame and starts the game, unless headless is specified.
 
 The scene manager was implemented based on Mek's scene manager:
 https://github.com/Mekire/pygame-mutiscene-template-with-movie
@@ -40,12 +40,27 @@ To run an individual component (e.g. core/prepare.py):
 """
 
 import sys
-import logging
-import pygame
+import getopt
 from core.main import main
-from core.components import log
 
 if __name__ == '__main__':
-    main()
-    pygame.quit()
+    server = False
+    opts, args = getopt.getopt(sys.argv[1:], "hs", ["help", "server"])
+    for opt, arg in opts:
+        if opt == '-h':
+            print sys.argv[0], '[--server]'
+            print "  -h              Display this help message"
+            print "  -s, --headless  Start a headless server"
+            sys.exit()
+        elif opt in ("-s", "--server"):
+            server = True
+
+    if server:
+        from core.main import headless
+        headless()
+    else:
+        import pygame
+        main()
+        pygame.quit()
+
     sys.exit()

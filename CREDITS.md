@@ -9,6 +9,7 @@ Programming
 
 * [William Edwards](mailto:shadowapex@gmail.com)
 * [Benjamin Bean](mailto:superman2k5@gmail.com)
+* [Derek Clark](mailto:derekjohn.clark@gmail.com)
 
 **Contributors**
 

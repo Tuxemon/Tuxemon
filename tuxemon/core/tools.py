@@ -23,7 +23,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-#
+# Derek Clark <derekjohn.clark@gmail.com>
 #
 # core.tools Contains various tools such as scene manager and states.
 #
@@ -35,6 +35,7 @@ import logging
 import os
 import pygame as pg
 import pprint
+
 from core.components import config
 from core.components import controller
 from core.components import player
@@ -47,29 +48,10 @@ from core.components import monster
 from core.components import item
 from core.components import map as maps
 from core.components import pyganim
-
-# Try and import networking if it is available.
-try:
-    from neteria.server import NeteriaServer
-    from core.components.middleware import Controller
-
-    # Enable logging for the server.
-    import sys
-    import logging
-    neteria_logger = logging.getLogger('neteria.server')
-    neteria_logger.setLevel(logging.DEBUG)
-    log_hdlr = logging.StreamHandler(sys.stdout)
-    log_hdlr.setLevel(logging.DEBUG)
-    log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
-                                            "%(levelname)s - %(message)s"))
-    neteria_logger.addHandler(log_hdlr)
-    neteria_logger.info("Server Started")
-
-except ImportError:
-    NeteriaServer = None
-    Controller = None
-
-# Import the android module. If we can't import it, set it to None - this
+from core.components.networking import TuxemonServer, TuxemonClient, ControllerServer
+from core import prepare
+  
+# Import the android module and android specific components. If we can't import, set to None - this
 # lets us test it, and check to see if we want android-specific behavior.
 try:
     import android
@@ -79,6 +61,8 @@ except ImportError:
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
+# Create a pretty printer for debugging
+pp = pprint.PrettyPrinter(indent=4)
 
 class Control(object):
     """Control class for entire project. Contains the game loop, and contains
@@ -93,7 +77,6 @@ class Control(object):
     :returns: None
 
     """
-
     def __init__(self, caption):
         self.screen = pg.display.get_surface()
         self.caption = caption
@@ -107,12 +90,12 @@ class Control(object):
         self.state_dict = {}
         self.state_name = None
         self.state = None
-        if NeteriaServer and Controller:
-            self.network_events = []
-            self.server = NeteriaServer(Controller(self))
-            self.server.listen()
-        else:
-            self.server = None
+        self.ishost = False
+        self.isclient = False
+        
+        # Set up our networking for Multiplayer and Controls
+        self.server = TuxemonServer(self)
+        self.client = TuxemonClient(self)
 
         # Set up our game's configuration from the prepare module.
         from core import prepare
@@ -208,6 +191,9 @@ class Control(object):
                     "b": False
                     }
 
+	if self.config.net_controller_enabled == "1":
+            self.controller_server = ControllerServer(self)
+
 
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
@@ -262,7 +248,6 @@ class Control(object):
         0.031
 
         """
-
         self.current_time = pg.time.get_ticks()
         if self.state.quit:
             self.done = True
@@ -303,7 +288,6 @@ class Control(object):
         :returns: None
 
         """
-
         # Loop through our pygame events and pass them to the current state.
         self.key_events = []
         self.keys = list(pg.key.get_pressed())
@@ -333,92 +317,11 @@ class Control(object):
                     self.state.get_event(joy_event)
 
             self.state.get_event(event)
-
-        # Loop through our network events and pass them to the current state.
-        if self.server:
-            net_events = self.network_event_loop()
-            if net_events:
-                for net_event in net_events:
-                    self.key_events.append(net_event)
-                    self.state.get_event(net_event)
-
+        
         # Remove the remaining events after they have been processed
         pg.event.pump()
-
-
-    def network_event_loop(self):
-        """Process all network events from the mobile controller and pass them
-        down to current State. All network events are converted to keyboard
-        events for compatibility.
-
-        :param None:
-
-        :rtype: None
-        :returns: None
-
-        """
-        events = []
-        for event_data in self.network_events:
-            if event_data == "KEYDOWN:up":
-                self.keys[pg.K_UP] = 1
-                event = self.keyboard_events["KEYDOWN"]["up"]
-
-            elif event_data == "KEYUP:up":
-                self.keys[pg.K_UP] = 0
-                event = self.keyboard_events["KEYUP"]["up"]
-
-            elif event_data == "KEYDOWN:down":
-                self.keys[pg.K_DOWN] = 1
-                event = self.keyboard_events["KEYDOWN"]["down"]
-
-            elif event_data == "KEYUP:down":
-                self.keys[pg.K_DOWN] = 0
-                event = self.keyboard_events["KEYUP"]["down"]
-
-            elif event_data == "KEYDOWN:left":
-                self.keys[pg.K_LEFT] = 1
-                event = self.keyboard_events["KEYDOWN"]["left"]
-
-            elif event_data == "KEYUP:left":
-                self.keys[pg.K_LEFT] = 0
-                event = self.keyboard_events["KEYUP"]["left"]
-
-            elif event_data == "KEYDOWN:right":
-                self.keys[pg.K_RIGHT] = 1
-                event = self.keyboard_events["KEYDOWN"]["right"]
-
-            elif event_data == "KEYUP:right":
-                self.keys[pg.K_RIGHT] = 0
-                event = self.keyboard_events["KEYUP"]["right"]
-
-            elif event_data == "KEYDOWN:enter":
-                self.keys[pg.K_RETURN] = 1
-                event = self.keyboard_events["KEYDOWN"]["enter"]
-
-            elif event_data == "KEYUP:enter":
-                self.keys[pg.K_RETURN] = 0
-                event = self.keyboard_events["KEYUP"]["enter"]
-
-            elif event_data == "KEYDOWN:esc":
-                self.keys[pg.K_ESCAPE] = 1
-                event = self.keyboard_events["KEYDOWN"]["escape"]
-
-            elif event_data == "KEYUP:esc":
-                self.keys[pg.K_ESCAPE] = 0
-                event = self.keyboard_events["KEYUP"]["escape"]
-
-            else:
-                print "Unknown network event."
-                event = None
-
-            if event:
-                events.append(event)
-
-        self.network_events = []
-
-        return events
-
-
+            
+            
     def controller_event_loop(self, event):
         """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
@@ -616,7 +519,6 @@ class Control(object):
         :returns: None
 
         """
-
         if key == pg.K_F5:
             self.show_fps = not self.show_fps
             if not self.show_fps:
@@ -635,9 +537,6 @@ class Control(object):
         :returns: None
 
         """
-
-        # This sets up Asteria networking to handle executing the game loop
-        #listen(Controller(self), self, port=8000, game_loop=True)
         while not self.exit:
             self.main_loop()
 
@@ -654,7 +553,6 @@ class Control(object):
         :returns: None
 
         """
-
         # Android-specific check for pause
         if android:
             if android.check_pause():
@@ -663,6 +561,20 @@ class Control(object):
         # Get the amount of time that has passed since the last frame.
         time_delta = self.clock.tick(self.fps)/1000.0
         self.time_passed_seconds = time_delta
+        
+        # Update our networking.
+        if self.controller_server:
+            self.controller_server.update()
+            
+        if self.client.listening: 
+            self.client.update(time_delta)
+            self.add_clients_to_map(self.client.client.registry)
+        
+        if self.server.listening: 
+            self.server.update()
+        
+        # Run our event engine which will check to see if game conditions.
+        # are met and run an action associated with that condition.
         self.event_loop()
 
         # Run our event engine which will check to see if game conditions
@@ -674,12 +586,282 @@ class Control(object):
         # Draw and update our display
         self.update(time_delta)
         pg.display.update()
+   
         if self.show_fps:
             fps = self.clock.get_fps()
             with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
             pg.display.set_caption(with_fps)
         if self.exit:
             self.done = True
+            
+            
+    def get_menu_event(self, menu, event):
+        """Run this function to process pygame basic menu events (such as keypresses/mouse clicks - 
+        up, down, enter, escape). 
+        
+        :param menu: -- The active menu.
+        :param event: -- A single pygame event from pygame.event.get()
+        
+        :type menu: core.components.menu.Menu()
+        :type events: List
+
+        :rtype: None
+        :returns: None
+
+        """
+        # use the default sound if a custom sound is nt specified.
+        try:
+            if menu.menu_select_sound:
+                pass
+        except AttributeError:
+            menu.menu_select_sound = pg.mixer.Sound(
+                prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
+
+        if len(menu.menu_items) > 0:
+            menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
+        
+        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and not menu.previous_menu:
+            menu.menu_select_sound.play()
+            self.state.next = self.state.previous
+            self.flip_state()
+            
+        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
+            menu.menu_select_sound.play()
+            menu.interactable = False
+            menu.visible = False
+            if menu.previous_menu:
+                menu.previous_menu.interactable = True
+                menu.previous_menu.visible = True
+        
+        if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
+            menu.menu_select_sound.play()
+            menu.selected_menu_item += 1
+            if menu.selected_menu_item > len(menu.menu_items) -1:
+                menu.selected_menu_item = 0
+                
+        if event.type == pg.KEYDOWN and event.key == pg.K_UP:
+            menu.menu_select_sound.play()
+            menu.selected_menu_item -= 1
+            if menu.selected_menu_item < 0:
+                menu.selected_menu_item = len(menu.menu_items) -1
+
+        if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
+            menu.menu_select_sound.play()
+            menu.get_event(event)
+    
+    def scale_new_player(self, sprite):
+        """Scales a new player to the screen.
+
+        :param sprite: Player sprite from the server registry. 
+        
+        :type sprite: -- Player or Npc object from core.components.player
+
+        :rtype: None
+        :returns: None
+
+        """       
+        SCALE = prepare.SCALE
+        TILE_SIZE = prepare.TILE_SIZE
+        SCREEN_SIZE = prepare.TILE_SIZE
+                    
+        for key, animation in sprite.sprite.items():
+            animation.scale(
+                tuple(i * SCALE for i in animation.getMaxSize()))
+    
+        for key, image in sprite.standing.items():
+            sprite.standing[key] = pg.transform.scale(
+                image, (image.get_width() * SCALE,
+                        image.get_height() * SCALE))
+    
+        # Set the player's width and height based on the size of our scaled
+        # sprite.
+        sprite.playerWidth, sprite.playerHeight = \
+            sprite.standing["front"].get_size()
+        sprite.playerWidth = TILE_SIZE[0]
+        sprite.playerHeight = TILE_SIZE[1]
+        sprite.tile_size = TILE_SIZE
+    
+        # Put the player right in the middle of our screen.
+        sprite.position = [
+            (SCREEN_SIZE[0] / 2) - (sprite.playerWidth / 2),
+            (SCREEN_SIZE[1] / 2) - (sprite.playerHeight / 2)]
+    
+        # Set the player's collision rectangle
+        sprite.rect = pg.Rect(
+            sprite.position[0],
+            sprite.position[1],
+            TILE_SIZE[0],
+            TILE_SIZE[1])
+    
+        # Set the walking and running pixels per second based on the scale
+        sprite.walkrate *= SCALE
+        sprite.runrate *= SCALE
+    
+    
+    def add_clients_to_map(self, registry):
+        """Checks to see if clients are supposed to be displayed on the current map. If
+        they are on the same map as the host then it will add them to the npc's list. 
+        If they are still being displayed and have left the map it will remove them from 
+        the map.
+
+        :param registry: Locally hosted Neteria client/server registry.
+        
+        :type registry: Dictionary
+        
+        :rtype: None
+        :returns: None
+
+        """ 
+        self.state_dict["WORLD"].npcs = []
+        self.state_dict["WORLD"].npcs_off_map = []
+        for client in registry:
+            if "sprite" in registry[client]:
+                sprite = registry[client]["sprite"]
+                client_map = registry[client]["map_name"]
+                current_map = self.get_map_name()
+                
+                # Add the player to the screen if they are on the same map.
+                if client_map == current_map:
+                    if not sprite in self.state_dict["WORLD"].npcs:
+                        self.state_dict["WORLD"].npcs.append(sprite)
+                    if sprite in self.state_dict["WORLD"].npcs_off_map:
+                        self.state_dict["WORLD"].npcs_off_map.remove(sprite)
+
+                # Remove player from the map if they have changed maps.
+                elif client_map != current_map:
+                    if not sprite in self.state_dict["WORLD"].npcs_off_map:
+                        self.state_dict["WORLD"].npcs_off_map.append(sprite)
+                    if sprite in self.state_dict["WORLD"].npcs:
+                        self.state_dict["WORLD"].npcs.remove(sprite)
+
+
+    def get_map_name(self):
+        """Gets the map of the player.
+
+        :param: None
+        
+        :rtype: String
+        :returns: map_name
+
+        """ 
+        map_path = self.state_dict["WORLD"].current_map.filename
+        map_name = str(map_path.replace(prepare.BASEDIR, ""))
+        map_name = str(map_name.replace("resources/maps/", ""))
+        return map_name
+
+
+import time                       
+class HeadlessControl():
+    """Control class for headless server. Contains the game loop, and contains
+    the event_loop which passes events to States as needed. Logic for flipping
+    states is also found here.
+
+    :param: None
+    :rtype: None
+    :returns: None
+
+    """
+    def __init__(self):
+        self.done = False
+        
+        self.clock = time.clock()
+        self.fps = 60.0
+        self.current_time = 0.0
+        
+        import threading
+        self.server = TuxemonServer(self)
+#         self.server_thread = threading.Thread(target=self.server)
+#         self.server_thread.start()
+        self.server.server.listen()
+         
+        #Set up our game's configuration from the prepare module.
+        from core import prepare
+        self.imports = {
+                "prepare": prepare,
+                "ai": ai,
+                "rumble": rumble,
+                "db": db,
+                "monster": monster,
+                "player": player,
+                "item": item,
+                "map": maps,
+                "pyganim": pyganim
+                }
+        self.config = prepare.HEADLESSCONFIG
+
+        # Set up the command line. This provides a full python shell for
+        # troubleshooting. You can view and manipulate any variables in
+        # the game.
+        self.exit = False   # Allow exit from the CLI
+        if self.config.cli:
+            self.cli = cli.CommandLine(self)
+    
+    def setup_states(self, state_dict, start_state):
+        """Given a dictionary of States and a State to start in,
+        builds the self.state_dict.
+
+        :param state_dict: A dictionary of core.tools._State objects.
+        :param start_state: A string of the starting state. E.g. "START"
+
+        :type state_dict: Dictionary
+        :type start_state: String
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> state_dict
+        {'COMBAT': <core.states.combat.Combat object at 0x7f681d736590>,
+         'START': <core.states.start.StartScreen object at 0x7f68230f5150>,
+         'WORLD': <core.states.world.World object at 0x7f68230f54d0>}
+        >>> start_state
+        "START"
+
+        """
+
+        self.state_dict = state_dict
+        self.state_name = start_state
+        self.state = self.state_dict[self.state_name]
+        
+        
+    def main(self):
+        """Initiates the main game loop. Since we are using Asteria networking
+        to handle network events, we pass this core.tools.Control instance to
+        networking which in turn executes the "main_loop" method every frame.
+        This leaves the networking component responsible for the main loop.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        while not self.exit:
+            self.main_loop()
+
+
+    def main_loop(self):
+        """Main loop for entire game. This method gets execute every frame
+        by Asteria Networking's "listen()" function. Every frame we get the
+        amount of time that has passed each frame, check game conditions,
+        and draw the game to the screen.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        # Get the amount of time that has passed since the last frame.
+#         self.time_passed_seconds = time.clock() - self.clock
+        
+#         self.server.update()
+     
+        if self.exit:
+            self.done = True
+
+#         self.clock = time.clock()
 
 
 class _State(object):
@@ -697,6 +879,7 @@ class _State(object):
         self.next = None
         self.previous = None
         self.persist = {}
+        self.menu_blocking = False
 
 
     def get_event(self, event):
@@ -734,7 +917,6 @@ class _State(object):
         2895
         >>> persistant
         {}
-
         """
 
         self.persist = persistant

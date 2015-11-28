@@ -33,8 +33,10 @@
 import logging
 import pygame
 import math
+import pprint
 
 # Import Tuxemon internal libraries
+import core.components.networking as networking
 from .. import tools, prepare
 from ..components import map
 
@@ -133,6 +135,8 @@ class World(tools._State):
 
         self.player1 = prepare.player1
         self.npcs = []
+        self.npcs_off_map = []
+        self.wants_duel = False
 
         # Set the global coordinates used to pan the screen.
         self.start_position = prepare.CONFIG.starting_position
@@ -199,6 +203,12 @@ class World(tools._State):
                                         self.resolution,
                                         self)
 
+        #Interaction menu
+        InteractionMenu = menu.interaction_menu.InteractionMenu
+        self.interaction_menu = InteractionMenu(self.screen,
+                                              self.resolution,
+                                              self)
+
         # Add child menus to their parent menus
         self.entername_menu.add_child(self.displayname_menu)
         self.main_menu.add_child(self.save_menu)
@@ -212,9 +222,16 @@ class World(tools._State):
         self.menu_blocking = False
 
         # List of available menus
-        self.menus = [self.dialog_window, self.main_menu, self.save_menu,
-                      self.entername_menu, self.displayname_menu,
-                      self.not_implmeneted_menu, self.item_menu, self.monster_menu]
+        self.menus = [self.dialog_window,
+                      self.main_menu,
+                      self.save_menu,
+                      self.entername_menu,
+                      self.displayname_menu,
+                      self.not_implmeneted_menu,
+                      self.item_menu,
+                      self.monster_menu,
+                      self.interaction_menu
+                      ]
 
         # Scale the menu borders of all menus
         for menu in self.menus:
@@ -329,6 +346,15 @@ class World(tools._State):
         self.monster_menu.pos_y = 0
         self.monster_menu.visible = False
         self.monster_menu.interactable = False
+
+        # Interaction Menu
+        self.interaction_menu.size_y = int(self.resolution[1] / 5.)
+        self.interaction_menu.size_x = int(self.resolution[0] / 2.5)
+        self.interaction_menu.pos_x = 0 + self.interaction_menu.border["top"].get_width()
+        self.interaction_menu.pos_y = 0 + self.interaction_menu.border["left-top"].get_width()
+        self.interaction_menu.visible = False
+        self.interaction_menu.interactable = False
+        self.interaction_menu.player = None
 
         # variables for transition
         self.transition_alpha = 0
@@ -569,6 +595,10 @@ class World(tools._State):
                 self.dialog_window.state = "closing"
                 self.menu_blocking = False
 
+        # If the interaction menu in interactable, send pygame events to it.
+        if self.interaction_menu.interactable:
+            self.interaction_menu.get_event(event)
+
         # If the main menu is interactable, send pygame events to it.
         if self.main_menu.interactable:
             self.main_menu.get_event(event, self)
@@ -588,6 +618,14 @@ class World(tools._State):
                 self.main_menu.state = "closing"
                 self.main_menu.interactable = False
                 self.menu_blocking = False
+
+            elif self.interaction_menu.visible and self.interaction_menu.interactable:
+                logger.info("Closing interaction menu!")
+                self.interaction_menu.visible = False
+                self.interaction_menu.interactable = False
+                self.interaction_menu.menu_items = None
+                self.menu_blocking = False
+
             else:
                 self.main_menu.visible = True
                 self.menu_blocking = True
@@ -611,6 +649,8 @@ class World(tools._State):
                 if event.key == pygame.K_RIGHT:
                     self.player1.direction["right"] = True
                     self.player1.facing = "right"
+                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
+                    self.check_interactable_space()
 
             # Handle Key UP events
             if event.type == pygame.KEYUP:
@@ -628,7 +668,7 @@ class World(tools._State):
                     if event.key == pygame.K_RIGHT:
                         self.player1.direction["right"] = False
 
-        # print self.events
+            self.game.client.set_key_condition(event)
 
 
     ####################################################
@@ -652,8 +692,8 @@ class World(tools._State):
             (self.global_x / self.tile_size[0])
              # How many tiles over we have to draw the first tile
         starting_tile_y = - \
-            (self.global_y / self.tile_size[
-             1])  # How many tiles down we have to draw the first tile
+            (self.global_y / self.tile_size[1])
+             # How many tiles down we have to draw the first tile
         self.tile_buffer = 2  # This is how many tiles we should draw past the visible region
 
         # Loop through the number of visible tiles and draw only the tiles that
@@ -737,6 +777,10 @@ class World(tools._State):
 
         # Draw any game NPC's
         for npc in self.npcs:
+            if npc.running:
+                npc.moverate = npc.runrate
+            else:
+                npc.moverate = npc.walkrate
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.
@@ -767,8 +811,36 @@ class World(tools._State):
             npc.direction["left"] = False
             npc.direction["right"] = False
 
+	    if npc.update_location:
+                char_dict ={"tile_pos": npc.final_move_dest,
+                            }
+                networking.update_client(npc, char_dict, self.game)
+                npc.update_location = False
+
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
+
+        # Move any multiplayer characters that are off map so we know where they should be when we change maps.
+        for npc in self.npcs_off_map:
+            if npc.running:
+                npc.moverate = npc.runrate
+            else:
+                npc.moverate = npc.walkrate
+            # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
+            # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
+            # portion of the sprite.
+            npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
+                self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
+
+            # Move the NPC with the map as it moves
+            npc.position[0] -= self.global_x_diff
+            npc.position[1] -= self.global_y_diff
+
+            # if the npc has a path, move it along its path
+            if npc.path:
+                npc.move_by_path()
+
+            npc.move(self.tile_size, self.time_passed_seconds, self)
 
         # Draw the bottom half of the player
         self.player1.draw(self.screen, "bottom")
@@ -951,6 +1023,11 @@ class World(tools._State):
                 if self.main_menu.state == "open" or self.main_menu.state == "opening":
                     self.main_menu.interactable = True
 
+        # Interaction Menu
+        if self.interaction_menu.visible:
+            self.interaction_menu.draw()
+            self.interaction_menu.draw_textItem(self.interaction_menu.menu_items)
+
         # Save Menu
         if self.save_menu.visible:
             # Set the save game variables so we can save the game in the menu
@@ -972,11 +1049,11 @@ class World(tools._State):
         if self.item_menu.visible:
             self.item_menu.draw(draw_borders=False)
 
-        # Draw the Monster menu
+        # Draw the Monster Menu
         if self.monster_menu.visible:
             self.monster_menu.draw(draw_borders=False)
 
-        # Not implemented menu
+        # Not implemented Menu
         if self.not_implmeneted_menu.visible:
             self.not_implmeneted_menu.draw()
             self.not_implmeneted_menu.draw_text("This feature is not yet implemented.",
@@ -1156,6 +1233,7 @@ class World(tools._State):
 
                 # Clear out any existing NPCs
                 self.npcs = []
+                self.npcs_off_map = []
 
                 # Scale the loaded tiles if enabled
                 if prepare.CONFIG.scaling == "1":
@@ -1201,6 +1279,22 @@ class World(tools._State):
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
 
+            # Update the server/clients of our new map and populate any other players.
+            if self.game.isclient or self.game.ishost:
+                self.game.add_clients_to_map(self.game.client.client.registry)
+                self.game.client.update_player(self.player1.facing)
+
+            # Update the location of the npcs. Doesn't send network data.
+            for npc in self.npcs:
+                char_dict ={"tile_pos": npc.tile_pos,
+                            }
+                networking.update_client(npc, char_dict, self.game)
+
+            for npc in self.npcs_off_map:
+                char_dict ={"tile_pos": npc.tile_pos,
+                            }
+                networking.update_client(npc, char_dict, self.game)
+
 
     def get_pos_from_tilepos(self, tile_position):
         """Returns the screen coordinate based on tile position.
@@ -1213,8 +1307,88 @@ class World(tools._State):
         :returns: The pixel coordinates to draw at the given tile position.
 
         """
-
         x = (self.tile_size[0] * tile_position[0]) + self.global_x
         y = (self.tile_size[1] * tile_position[1]) + self.global_y
 
         return x, y
+
+
+    def check_interactable_space(self):
+        """Checks to see if any Npc objects around the player are interactable. It then populates a menu
+        of possible actions.
+
+        :param: None
+
+        :rtype: Bool
+        :returns: True if there is an Npc to interact with.
+
+        """
+        collision_dict = self.player1.get_collision_dict(self)
+        player_tile_pos = ( int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])) )
+        collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
+        if not collisions:
+            pass
+        else:
+            for direction in collisions:
+                if self.player1.facing == direction:
+                    if direction == "up":
+                        tile = (player_tile_pos[0], player_tile_pos[1] - 1)
+                    elif direction == "down":
+                        tile = (player_tile_pos[0], player_tile_pos[1] + 1)
+                    elif direction == "left":
+                        tile = (player_tile_pos[0] - 1, player_tile_pos[1])
+                    elif direction == "right":
+                        tile = (player_tile_pos[0] + 1, player_tile_pos[1])
+                    for npc in self.npcs:
+                        tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
+                        if tile_pos == tile:
+                            self.interaction_menu.visible = True
+                            self.interaction_menu.interactable = True
+                            self.interaction_menu.player = npc
+                            self.interaction_menu.menu_items = ["Player Interactions:"]
+                            for menu_item in npc.interactions:
+                                self.interaction_menu.menu_items.append(menu_item)
+                            self.menu_blocking = True
+                            return True
+                        else: continue
+
+
+    def handle_interaction(self, event_data, registry):
+        """Presents options window when another player has interacted with this player.
+
+        :param event_data: Information on the type of interaction and who sent it.
+        :param registry:
+
+        :type event_data: Dictionary
+        :type registry: Dictionary
+
+        :rtype: None
+        :returns: None
+        """
+        print event_data
+        target = registry[event_data["target"]]["sprite"]
+        target_name = str(target.name)
+        networking.update_client(target, event_data["char_dict"], self.game)
+        if event_data["interaction"] == "DUEL":
+            if not event_data["response"]:
+                self.interaction_menu.visible = True
+                self.interaction_menu.interactable = True
+                self.interaction_menu.player = target
+                self.interaction_menu.interaction = "DUEL"
+                self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
+                self.menu_blocking = True
+            else:
+                if self.wants_duel:
+                    if event_data["response"] == "Accept":
+                        pd = self.game.state_dict["WORLD"].player1.__dict__
+                        event_data = {"type": "CLIENT_INTERACTION",
+                                      "interaction": "START_DUEL",
+                                      "target": [event_data["target"]],
+                                      "response": None,
+                                      "char_dict": {"monsters": pd["monsters"],
+                                                    "inventory": pd["inventory"]
+                                                    }
+
+                                      }
+                        self.game.game.server.notify_client_interaction(cuuid, event_data)
+

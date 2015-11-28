@@ -52,12 +52,14 @@ class Config(object):
 
         self.controller_overlay = self.config.get("display", "controller_overlay")
         self.controller_transparency = int(self.config.get("display", "controller_transparency"))
+        
 
         self.starting_map = self.config.get("game", "starting_map")
         self.starting_position = [int(self.config.get("game", "starting_position_x")), 
                                   int(self.config.get("game", "starting_position_y"))]
         self.cli = int(self.config.get("game", "cli_enabled"))
-
+        self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
+        
         self.player_animation_speed = float(self.config.get("player", "animation_speed"))
 
         self.debug_logging = self.config.get("logging", "debug_logging")
@@ -80,4 +82,20 @@ class Config(object):
             return pygame.FULLSCREEN
         else:
             return 0
+
+
+class HeadlessConfig(object):
+    """Handles loading of the configuration file for the headless server.
+    """
+    def __init__(self, file="tuxemon.cfg"):
+        self.config = ConfigParser.ConfigParser()
+        self.config.read(file)
+
+        self.cli = int(self.config.get("game", "cli_enabled"))
+
+        self.debug_logging = self.config.get("logging", "debug_logging")
+        self.debug_level = self.config.get("logging", "debug_level")
+        self.loggers = self.config.get("logging", "loggers")
+        self.loggers = self.loggers.replace(" ", "").split(",")
+
 

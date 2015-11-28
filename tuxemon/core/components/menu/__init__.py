@@ -103,6 +103,7 @@ class Menu(UserInterface):
 
         self.name = name                                    # An arbitrary name of the menu
         self.game = game
+        self.previous_menu = None
 
         self.size_x = 400                                   # The width of the menu in pixels
         self.size_y = 200                                   # The height of the menu in pixels
@@ -988,14 +989,15 @@ class Menu(UserInterface):
             self.menudis_y += line_spacing + longest_item.get_height()
 
 
-    def get_event(self, event, game=None):
+    def get_event(self, event=None, game=None):
 
-        """Run this function to process pygame events (such as keypresses/mouse clicks). By
-        default this function does nothing.
+        """Run this function to process menu specific events (such as actions for a specific
+        menu item). By default this function does nothing.
 
-        :param event: -- A single pygame event from pygame.event.get()
-        :param game: -- An optional instance of the game itself so we can directly manipulate
-            its variables
+        :param event: -- An optional pygame event from pygame.event.get() passed by
+            core.tools.Control get_menu_event() or a custom funtion.
+        :param game: -- An optional instance of the game itself so the variables can be directly
+            manipulated if needed.
 
         :type events: List
         :type game: core.tools.Control
@@ -1015,3 +1017,4 @@ import interface
 import item_menu
 import monster_menu
 import save_menu
+import interaction_menu

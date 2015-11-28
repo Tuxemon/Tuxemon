@@ -51,6 +51,7 @@ if "library.zip" in BASEDIR:
 
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(BASEDIR + "tuxemon.cfg")
+HEADLESSCONFIG = config.HeadlessConfig(BASEDIR + "tuxemon.cfg")
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution

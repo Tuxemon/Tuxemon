@@ -1,10 +1,9 @@
+import time
+
 import pygame as pg
-
 from . import prepare
-
 from .tools import android, logger
 from .state import StateManager
-
 from .components import controller
 from .components import player
 from .components import cli
@@ -31,6 +30,7 @@ class Control(StateManager):
     :returns: None
 
     """
+
     def __init__(self, caption):
         self.screen = pg.display.get_surface()
         self.caption = caption
@@ -60,17 +60,17 @@ class Control(StateManager):
         # Set up our game's configuration from the prepare module.
         from core import prepare
         self.imports = {
-                "prepare": prepare,
-                "ai": ai,
-                "rumble": rumble,
-                "db": db,
-                "monster": monster,
-                "player": player,
-                "item": item,
-                "map": maps,
-                "networking": networking,
-                "pyganim": pyganim
-                }
+            "prepare": prepare,
+            "ai": ai,
+            "rumble": rumble,
+            "db": db,
+            "monster": monster,
+            "player": player,
+            "item": item,
+            "map": maps,
+            "networking": networking,
+            "pyganim": pyganim
+        }
         self.config = prepare.CONFIG
 
         # Set up our game's event engine which executes actions based on
@@ -143,13 +143,13 @@ class Control(StateManager):
             # Keep track of what buttons have been pressed when the overlay
             # controller is enabled.
             self.overlay_pressed = {
-                    "up": False,
-                    "down": False,
-                    "left": False,
-                    "right": False,
-                    "a": False,
-                    "b": False
-                    }
+                "up": False,
+                "down": False,
+                "left": False,
+                "right": False,
+                "a": False,
+                "b": False
+            }
 
         if self.config.net_controller_enabled == "1":
             self.controller_server = networking.ControllerServer(self)
@@ -157,7 +157,6 @@ class Control(StateManager):
         # Set up rumble support for gamepads
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
-
 
     def update(self, dt):
         """Checks if a state is done or has called for a game quit.
@@ -187,7 +186,6 @@ class Control(StateManager):
         self.state.update(self.screen, self.keys, self.current_time, dt)
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
-
 
     def event_loop(self):
         """Process all events and pass them down to current State.  The F5 key
@@ -231,7 +229,6 @@ class Control(StateManager):
 
         # Remove the remaining events after they have been processed
         pg.event.pump()
-
 
     def controller_event_loop(self, event):
         """Process all events from the controller overlay and pass them down to
@@ -281,7 +278,6 @@ class Control(StateManager):
                 self.keys[pg.K_ESCAPE] = 1
                 self.overlay_pressed["b"] = True
 
-
         if (event.type == pg.MOUSEBUTTONUP) and (event.button == 1):
             if self.overlay_pressed["up"]:
                 events.append(self.keyboard_events["KEYUP"]["up"])
@@ -304,7 +300,6 @@ class Control(StateManager):
                 self.overlay_pressed["b"] = False
 
         return events
-
 
     def joystick_event_loop(self, event):
         """Process all events from a joystick and pass them down to
@@ -417,7 +412,6 @@ class Control(StateManager):
 
         return events
 
-
     def toggle_show_fps(self, key):
         """Press f5 to turn on/off displaying the framerate in the caption.
 
@@ -434,7 +428,6 @@ class Control(StateManager):
             if not self.show_fps:
                 pg.display.set_caption(self.caption)
 
-
     def main(self):
         """Initiates the main game loop. Since we are using Asteria networking
         to handle network events, we pass this core.tools.Control instance to
@@ -449,7 +442,6 @@ class Control(StateManager):
         """
         while not self.exit:
             self.main_loop()
-
 
     def main_loop(self):
         """Main loop for entire game. This method gets execute every frame
@@ -469,7 +461,7 @@ class Control(StateManager):
                 android.wait_for_resume()
 
         # Get the amount of time that has passed since the last frame.
-        time_delta = self.clock.tick(self.fps)/1000.0
+        time_delta = self.clock.tick(self.fps) / 1000.0
         self.time_passed_seconds = time_delta
 
         # Update our networking.
@@ -503,7 +495,6 @@ class Control(StateManager):
             pg.display.set_caption(with_fps)
         if self.exit:
             self.done = True
-
 
     def get_menu_event(self, menu, event):
         """Run this function to process pygame basic menu events (such as keypresses/mouse clicks -
@@ -546,14 +537,14 @@ class Control(StateManager):
         if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
             menu.menu_select_sound.play()
             menu.selected_menu_item += 1
-            if menu.selected_menu_item > len(menu.menu_items) -1:
+            if menu.selected_menu_item > len(menu.menu_items) - 1:
                 menu.selected_menu_item = 0
 
         if event.type == pg.KEYDOWN and event.key == pg.K_UP:
             menu.menu_select_sound.play()
             menu.selected_menu_item -= 1
             if menu.selected_menu_item < 0:
-                menu.selected_menu_item = len(menu.menu_items) -1
+                menu.selected_menu_item = len(menu.menu_items) - 1
 
         if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
             menu.menu_select_sound.play()
@@ -607,7 +598,6 @@ class Control(StateManager):
         sprite.walkrate *= SCALE
         sprite.runrate *= SCALE
 
-
     def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If
         they are on the same map as the host then it will add them to the npc's list.
@@ -645,7 +635,6 @@ class Control(StateManager):
                     if sprite in world.npcs:
                         world.npcs.remove(sprite)
 
-
     def get_map_name(self):
         """Gets the map of the player.
 
@@ -659,3 +648,89 @@ class Control(StateManager):
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
         map_name = str(map_name.replace("resources/maps/", ""))
         return map_name
+
+
+class PygameControl(Control):
+    pass
+
+
+class HeadlessControl(StateManager):
+    """Control class for headless server. Contains the game loop, and contains
+    the event_loop which passes events to States as needed. Logic for flipping
+    states is also found here.
+
+    :param: None
+    :rtype: None
+    :returns: None
+
+    """
+
+    def __init__(self):
+        self.done = False
+
+        self.clock = time.clock()
+        self.fps = 60.0
+        self.current_time = 0.0
+
+        # TODO: move out to state manager
+        self.package = "core.states"
+        self.state_dict = {}
+        self.state_name = None
+
+        self.server = networking.TuxemonServer(self)
+        # self.server_thread = threading.Thread(target=self.server)
+        # self.server_thread.start()
+        self.server.server.listen()
+
+        #Set up our game's configuration from the prepare module.
+        from core import prepare
+        self.imports = {
+            "prepare": prepare,
+            "ai": ai,
+            "rumble": rumble,
+            "db": db,
+            "monster": monster,
+            "player": player,
+            "item": item,
+            "map": maps,
+            "pyganim": pyganim
+        }
+        self.config = prepare.HEADLESSCONFIG
+
+        # Set up the command line. This provides a full python shell for
+        # troubleshooting. You can view and manipulate any variables in
+        # the game.
+        self.exit = False   # Allow exit from the CLI
+        if self.config.cli:
+            self.cli = cli.CommandLine(self)
+
+    def main_loop(self):
+        """Main loop for entire game. This method gets execute every frame
+        by Asteria Networking's "listen()" function. Every frame we get the
+        amount of time that has passed each frame, check game conditions,
+        and draw the game to the screen.
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        # Get the amount of time that has passed since the last frame.
+        # self.time_passed_seconds = time.clock() - self.clock
+        # self.server.update()
+
+        if self.exit:
+            self.done = True
+
+    def main(self):
+        """Initiates the main game loop. Since we are using Asteria networking
+        to handle network events, we pass this core.tools.Control instance to
+        networking which in turn executes the "main_loop" method every frame.
+        This leaves the networking component responsible for the main loop.
+        :param None:
+        :rtype: None
+        :returns: None
+        """
+        while not self.exit:
+            self.main_loop()

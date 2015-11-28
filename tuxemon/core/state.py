@@ -6,11 +6,7 @@ from importlib import import_module
 
 
 class StateManager(object):
-    def __init__(self, package):
-        self.package = package
-        self.state_dict = dict()
-
-    def auto_discovery(self):
+    def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
         state_folder = os.path.join(*self.package.split('.'))
@@ -47,7 +43,6 @@ class StateManager(object):
         :param folder: folder to load from
         :return: Instanced state
         """
-        # TODO: not hardcode package name
         try:
             import_name = self.package + '.' + folder
             import_module(import_name)
@@ -135,7 +130,6 @@ class StateManager(object):
         previous, self.state_name = self.state_name, self.state.next
         persist = self.state.cleanup()
         self.start_state(self.state_name, persist)
-        self.state.previous = previous
 
 
 class State(object):

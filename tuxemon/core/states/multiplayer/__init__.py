@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
 
-class Headless(state.State):
+class HEADLESS(state.State):
     """The module responsible for the headless server.
 
     :param game: The scene manager object that contains all the game's variables.

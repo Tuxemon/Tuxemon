@@ -156,7 +156,7 @@ class Map(object):
             return True
 
         # Loop through our animation resources and find the animation files based on name.
-        world = game.world
+        world = game.state
         scale = world.scale
         images_and_durations = []
         for animation_frame in os.listdir(directory):

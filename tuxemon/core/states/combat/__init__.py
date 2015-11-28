@@ -1431,7 +1431,7 @@ if __name__ == "__main__":
 
     print "Runs as standalone"
 
-    from ..components import config
+    from core.components import config
 
     class Game(object):
 

@@ -27,38 +27,43 @@
 #
 # core.main Sets up the states and main game loop.
 #
-from .control import Control
 from . import prepare
-from . import tools
-
-default_state = "START"
 
 
 def main():
     """Add all available states to our scene manager (tools.Control)
-    and start the game.
+    and start the game using the pygame interface.
 
     :rtype: None
     :returns: None
 
     """
+    import pygame
+    from .control import PygameControl
+
     prepare.init()
-    run_it = Control(prepare.ORIGINAL_CAPTION)
-    run_it.player1 = prepare.player1
-    run_it.auto_discovery()
-    run_it.start_state(default_state)
-    run_it.main()
+    control = PygameControl(prepare.ORIGINAL_CAPTION)
+    control.player1 = prepare.player1
+    control.auto_state_discovery()
+    control.start_state("START")
+    control.main()
+
+    pygame.quit()
 
 
 def headless():
-    """Sets up out headless server (tools.HeadlessControl)
-    and start the game.
+    """Sets up out headless server and start the game.
 
     :rtype: None
     :returns: None
 
     """
-    run_it = tools.HeadlessControl()
-    state_dict = {"WORLD": serverheadless.Headless(run_it)}
-    run_it.setup_states(state_dict, "WORLD")
-    run_it.main()
+    from .control import HeadlessControl
+
+    control = HeadlessControl()
+    control.auto_state_discovery()
+
+    # patch the control to use the headless world
+    control.state_dict["WORLD"] = control.state_dict["HEADLESS"]
+    control.start_state("WORLD")
+    control.main()

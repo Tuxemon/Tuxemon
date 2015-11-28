@@ -69,7 +69,7 @@ class Player(object):
         self.sprite = {}			# The pyganim object that contains the player animations
         self.sprite_name = sprite_name # Hold on the the string so it can be sent over the network
         self.isplayer = True
-        
+
         # Get all of the player's standing animation images.
         self.standing = {}
         standing_types = ["front", "back", "left", "right"]
@@ -303,7 +303,7 @@ class Player(object):
                         self.move_direction = "down"
                         if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("down", event_type="CLIENT_MOVE_START")
-                        
+
             elif self.direction["left"]:
                 if not self.moving:
                     # Set the destination position we'd wish to reach if we just started walking.
@@ -314,7 +314,7 @@ class Player(object):
                         self.move_direction = "left"
                         if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("left", event_type="CLIENT_MOVE_START")
-                        
+
             elif self.direction["right"]:
                 if not self.moving:
                     # Set the destination position we'd wish to reach if we just started walking.
@@ -325,7 +325,7 @@ class Player(object):
                         self.move_direction = "right"
                         if game.game.isclient or game.game.ishost:
                             game.game.client.update_player("right", event_type="CLIENT_MOVE_START")
-                        
+
         # If we're not holding down an arrow key and the player is not moving, stop the animation
         # and draw the standing gfx
         else:
@@ -335,7 +335,7 @@ class Player(object):
                     self.anim_playing = False
                     if game.game.isclient or game.game.ishost:
                         game.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
-                    
+
         return global_x, global_y
 
     def move_one_tile(self, direction):
@@ -426,14 +426,14 @@ class Player(object):
                 screen.blit(self.standing["right-" + layer], (self.position[0],
                                                               self.position[1] + offset))
 
-    
+
     def get_collision_dict(self, game):
         """Checks for collision tiles around the player.
 
         :param game: The Tuxemon game instance itself.
-        
+
         :type game: tuxemon.Game
-        
+
         :rtype: Dictionary
         :returns: A dictionary of collision tiles around the player
 
@@ -455,11 +455,11 @@ class Player(object):
             collision_dict[pos] = "None"
 
         for tile in game.collision_map:
-            collision_dict[tile] = game.collision_map[tile] 
-        
+            collision_dict[tile] = game.collision_map[tile]
+
         return collision_dict
-    
-    
+
+
     def collision_check(self, player_tile_pos, collision_dict, collision_lines_map):
         """Checks collision tiles around the player.
 
@@ -494,13 +494,13 @@ class Player(object):
                 collisions.append("left")
             if not "right" in collision_dict[current_pos]["exit"]:
                 collisions.append("right")
-        
+
         # Check to see if the tile below the player is a collision tile.
         if down_tile in collision_dict:
             if collision_dict[down_tile] != "None": # Used for conditional collision zones
                 if not "up" in collision_dict[down_tile]['enter']:
                     collisions.append("down")
-            else: 
+            else:
                 collisions.append("down")
 
         # Check to see if the tile above the player is a collision tile.
@@ -508,7 +508,7 @@ class Player(object):
             if collision_dict[up_tile] != "None": # Used for conditional collision zones
                 if not "down" in collision_dict[up_tile]['enter']:
                     collisions.append("up")
-            else: 
+            else:
                 collisions.append("up")
 
         # Check to see if the tile to the left of the player is a collision tile.
@@ -516,7 +516,7 @@ class Player(object):
             if collision_dict[left_tile] != "None": # Used for conditional collision zones
                 if not "right" in collision_dict[left_tile]['enter']:
                     collisions.append("left")
-            else: 
+            else:
                 collisions.append("left")
 
         # Check to see if the tile to the right of the player is a collision tile.
@@ -524,7 +524,7 @@ class Player(object):
             if collision_dict[right_tile] != "None": # Used for conditional collision zones
                 if not "left" in collision_dict[right_tile]['enter']:
                     collisions.append("right")
-            else: 
+            else:
                 collisions.append("right")
 
         # From the players current tile, check to see if any nearby tile
@@ -736,18 +736,18 @@ class Npc(Player):
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add((npc_pos_x, npc_pos_y))
-        
-        # Make sure the NPC doesn't collide with the player too.    
+
+        # Make sure the NPC doesn't collide with the player too.
         player_pos_x = int(round(game.player1.tile_pos[0]))
         player_pos_y = int(round(game.player1.tile_pos[1]))
         npc_positions.add((player_pos_x, player_pos_y))
-        
+
         # Combine our map collision tiles with our npc collision positions
         for pos in npc_positions:
             collision_dict[pos] = "None"
 
         for tile in game.collision_map:
-            collision_dict[tile] = game.collision_map[tile] 
+            collision_dict[tile] = game.collision_map[tile]
 
         self._continue_move(collision_dict, tile_size, time_passed_seconds, game)
         self._start_move(collision_dict, game)
@@ -952,7 +952,7 @@ class PathfindNode():
 
     def get_depth(self):
         return self.depth
-    
+
     def __str__(self):
         s = str(self.value)
         if self.parent != None:

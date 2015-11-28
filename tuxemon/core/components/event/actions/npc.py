@@ -52,7 +52,7 @@ class Npc(object):
         player = game.imports["player"]
 
         # Get a copy of the world state.
-        world = game.state_dict["WORLD"]
+        world = game.world
 
         # Get the npc's parameters from the action
         parameters = action[1].split(",")
@@ -89,7 +89,7 @@ class Npc(object):
         Will move the player / npc to the given location
         '''
         # Get a copy of the world state.
-        world = game.state_dict["WORLD"]
+        world = game.world
 
         print "action is " + str(action)
         parameters = action[1].split(",")

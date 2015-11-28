@@ -61,8 +61,9 @@ class Music(object):
 
         """
 
-        if (game.state_dict["WORLD"].start_battle_transition or
-                game.state_dict["WORLD"].battle_transition_in_progress or
+        world = game.state
+        if (world.start_battle_transition or
+                world.battle_transition_in_progress or
                 game.state_name == "COMBAT" or game.state.done):
             return True
 

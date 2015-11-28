@@ -38,7 +38,7 @@ import pprint
 import time
 
 from core import prepare
-from core import tools
+from core import state
 from core.components import map
 from core.components import eztext
 from core.components import save
@@ -46,6 +46,8 @@ from core.components.ui import bar
 from core.components.ui import UserInterface
 
 # Import the android mixer if on the android platform
+import core.state
+
 try:
     import pygame.mixer as mixer
 except ImportError:
@@ -56,7 +58,7 @@ logger = logging.getLogger(__name__)
 logger.debug("states.combat successfully imported")
 
 
-class Combat(tools._State):
+class Combat(state.State):
     """The module responsible for all combat related tasks and functions.
 
     :param game: The main game object that contains all the game’s variables.
@@ -66,7 +68,7 @@ class Combat(tools._State):
     def __init__(self, game):
 
         # Initiate our common state properties.
-        tools._State.__init__(self)
+        state.State.__init__(self)
 
         from core.components import menu
 
@@ -1054,7 +1056,7 @@ class Combat(tools._State):
             ########################################################
 
         if ("capturing" in self.state) and self.info_menu.elapsed_time > self.info_menu.delay:
-            
+
             if self.state == "capturing success":
                 print "Capturing %s!!!" % players['opponent']['monster'].name
                 self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
@@ -1216,7 +1218,7 @@ class Combat(tools._State):
             item_name = player['action']['item']['name']
             item_target = player['action']['item']['target']
             item_to_use = player['player'].inventory[item_name]['item']
-            
+
             # Use item and change game state if captured or not
             if "capture" in item_to_use.effect:
                 self.ui["capture"].visible = True
@@ -1224,10 +1226,10 @@ class Combat(tools._State):
                 if item_to_use.capture(item_target, self.game):
                     self.state = "capturing success"
                 else:
-                    self.state = "capturing fail"   
+                    self.state = "capturing fail"
             else:
                 item_to_use.use(item_target, self.game)
-                
+
 
             # Display a dialog showing that we used an item
             self.info_menu.text = "%s used %s on %s!" % (player['player'].name,

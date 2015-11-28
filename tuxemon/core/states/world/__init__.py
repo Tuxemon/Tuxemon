@@ -33,27 +33,27 @@
 import logging
 import pygame
 import math
-import pprint
 
 # Import Tuxemon internal libraries
-import core.components.networking as networking
-from .. import tools, prepare
-from ..components import map
+from core import prepare
+from core import state
+from core.components import map
+from core.components import networking
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-class World(tools._State):
+
+class WORLD(state.State):
 
     def __init__(self, game):
         # Initiate our common state properties.
-        tools._State.__init__(self)
-
-        # For some reason, importing menu only works here.
-        from ..components import menu
+        state.State.__init__(self)
 
         # Provide an instance of our scene manager to this scene.
         self.game = game
+
+        from core.components import menu
 
         # Provide access to the screen surface
         self.screen = game.screen
@@ -1380,7 +1380,8 @@ class World(tools._State):
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
-                        pd = self.game.state_dict["WORLD"].player1.__dict__
+                        world = self.game.state
+                        pd = world.player1.__dict__
                         event_data = {"type": "CLIENT_INTERACTION",
                                       "interaction": "START_DUEL",
                                       "target": [event_data["target"]],

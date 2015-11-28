@@ -216,15 +216,15 @@ class Item(object):
         status_modifier = 0
         item_power = self.power
         random_num = random.randint(0,1000)
-        
+
         # Get percent of damage taken and multiply it by 10
-        if target.current_hp < target.hp: 
+        if target.current_hp < target.hp:
             total_damage = target.hp - target.current_hp
             damage_modifier = int((float(total_damage) / target.hp)*1000)
 
         # Check if target has any status effects
         if not target.status == "Normal":
-            status_modifier = 150 
+            status_modifier = 150
 
         # Calculate the top of success range (random_num must be in range to succeed)
         success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power

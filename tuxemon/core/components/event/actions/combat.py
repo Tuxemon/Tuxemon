@@ -136,6 +136,8 @@ class Combat(object):
         game.state_dict["COMBAT"].players.append(npc)
         game.state_dict["COMBAT"].combat_type = "trainer"
         #game.state_dict["WORLD"].combat_started = True
+
+
         game.state_dict["WORLD"].start_battle_transition = True
 
         # Start some music!
@@ -170,6 +172,8 @@ class Combat(object):
         game.state_dict["COMBAT"].players.append(game.player1)
         game.state_dict["COMBAT"].players.append(npc)
         game.state_dict["COMBAT"].combat_type = "trainer"
+
+        world = game.state
         game.state_dict["WORLD"].start_battle_transition = True
 
         # Start some music!

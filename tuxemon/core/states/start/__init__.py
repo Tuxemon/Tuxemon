@@ -31,21 +31,17 @@
 
 import logging
 import pygame
-import os
-import sys
-import pprint
-import random
 
-from .. import tools, prepare
-from ..components import pyganim
-from ..components import db
-from ..components import fusion
+from core import prepare
+from core import state
+
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
-class StartScreen(tools._State):
+
+class START(state.State):
     """The module responsible for the splash screen and start menu.
 
     :param game: The scene manager object that contains all the game's variables.
@@ -55,7 +51,7 @@ class StartScreen(tools._State):
 
     def __init__(self, game):
         # Initiate our common state properties.
-        tools._State.__init__(self)
+        state.State.__init__(self)
 
         # The scene to load next when this scene has been completed.
         self.next = "WORLD"
@@ -223,7 +219,6 @@ class StartScreen(tools._State):
 
             if self.transition['alpha'] < 0:
                 self.fade = "waiting"
-
 
         elif self.fade == "out":
 

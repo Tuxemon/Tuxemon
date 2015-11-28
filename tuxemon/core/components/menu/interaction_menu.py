@@ -49,18 +49,18 @@ class InteractionMenu(Menu):
         self.save = False
         self.state = "closed"
         self.visible = False
-        
+
         self.menu_select_sound = mixer.Sound(
             prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
 
 
     def get_event(self, event, game=None):
-        
+
         interaction = None
-        
+
         if self.selected_menu_item == 0 and len(self.menu_items) > 1:
             self.selected_menu_item = 1
-            
+
         if len(self.menu_items) > 0:
             self.line_spacing = (self.size_y / len(self.menu_items)) - self.font_size
 
@@ -87,19 +87,19 @@ class InteractionMenu(Menu):
                 self.game.not_implmeneted_menu.interactable = True
 #                 if self.game.game.isclient or self.game.game.ishost:
 #                     self.game.game.client.player_interact(self.player, "DUEL")
-                    
+
             elif self.menu_items[self.selected_menu_item] == "TRADE":
                 self.game.not_implmeneted_menu.visible = True
                 self.game.not_implmeneted_menu.interactable = True
-                
+
             elif self.menu_items[self.selected_menu_item] == "Accept" or self.menu_items[self.selected_menu_item] == "Decline":
                 response = self.menu_items[self.selected_menu_item]
-                self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)                    
+                self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
                 if self.interaction == "DUEL":
                     if response == "Accept":
                         self.game.wants_duel = True
                     elif response == "Decline":
                         self.game.wants_duel = False
-                
+
 
 

@@ -27,44 +27,33 @@
 #
 # core.main Sets up the states and main game loop.
 #
-"""The main function is defined here. It simply creates an instance of
-tools.Control and adds the game states to its dictionary using
-tools.setup_states.  This allows us to seamlessly switch between
-different states of the game such as combat, the overworld, etc.
-"""
+from .control import Control
+from . import prepare
+from . import tools
 
-from . import prepare, tools
-from .states import start, world, combat, pc, serverheadless
+default_state = "START"
+
 
 def main():
     """Add all available states to our scene manager (tools.Control)
     and start the game.
 
-    Currently available states are: "START", "WORLD", "COMBAT", and "PC".
-
-    :param None:
-    
     :rtype: None
     :returns: None
 
     """
-
     prepare.init()
-    run_it = tools.Control(prepare.ORIGINAL_CAPTION)
+    run_it = Control(prepare.ORIGINAL_CAPTION)
     run_it.player1 = prepare.player1
-    state_dict = {"START": start.StartScreen(run_it),
-                  "WORLD": world.World(run_it),
-                  "COMBAT": combat.Combat(run_it),
-                  "PC": pc.PC(run_it)}
-    run_it.setup_states(state_dict, "START")
+    run_it.auto_discovery()
+    run_it.start_state(default_state)
     run_it.main()
+
 
 def headless():
     """Sets up out headless server (tools.HeadlessControl)
     and start the game.
 
-    :param None:
-    
     :rtype: None
     :returns: None
 

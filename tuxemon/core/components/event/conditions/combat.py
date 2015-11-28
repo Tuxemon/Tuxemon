@@ -54,11 +54,11 @@ class Combat(object):
          'y': 11}
 
         """
-
+        world = game.state
         if (game.state_name == "COMBAT"
-            or game.state_dict["WORLD"].battle_transition_in_progress
-            or game.state_dict["WORLD"].start_battle_transition
-            or game.state_dict["WORLD"].next == "COMBAT"):
+            or world.battle_transition_in_progress
+            or world.start_battle_transition
+            or world.next == "COMBAT"):
             return True
         else:
             return False

@@ -199,7 +199,7 @@ class Core(object):
         game.event_engine.button = button
 
     def change_state(self, game, action):
-        
+
         """Pauses the event engine until specified button is pressed
 
         :param game: The main game object that contains all the game's variables.
@@ -208,20 +208,28 @@ class Core(object):
 
         :type game: core.tools.Control
         :type action: Tuple
-    
+
         :rtype: None
         :returns: None
-    
+
         Valid Parameters: button
 
         * button (str): pygame key to wait for
-    
+
         **Examples:**
-    
+
         >>> action
         ('change_state', 'MAIN_MENU')
-    
+
         """
+        # Handle if networking is not supported and the PC is trying to be
+        # accessed.
+        if action[1] == "PC":
+            if not game.imports["networking"].networking:
+                message = "Networking is not supported on your system"
+                self.dialog(game, (action[0], message))
+                return
+
         # Don't override previous state if we are still in the state.
         if game.state_name != action[1]:
             game.state.next = action[1]

@@ -48,9 +48,9 @@ from core.components import monster
 from core.components import item
 from core.components import map as maps
 from core.components import pyganim
-from core.components.networking import TuxemonServer, TuxemonClient, ControllerServer
+from core.components import networking
 from core import prepare
-  
+
 # Import the android module and android specific components. If we can't import, set to None - this
 # lets us test it, and check to see if we want android-specific behavior.
 try:
@@ -92,10 +92,10 @@ class Control(object):
         self.state = None
         self.ishost = False
         self.isclient = False
-        
+
         # Set up our networking for Multiplayer and Controls
-        self.server = TuxemonServer(self)
-        self.client = TuxemonClient(self)
+        self.server = networking.TuxemonServer(self)
+        self.client = networking.TuxemonClient(self)
 
         # Set up our game's configuration from the prepare module.
         from core import prepare
@@ -108,6 +108,7 @@ class Control(object):
                 "player": player,
                 "item": item,
                 "map": maps,
+                "networking": networking,
                 "pyganim": pyganim
                 }
         self.config = prepare.CONFIG
@@ -192,7 +193,7 @@ class Control(object):
                     }
 
 	if self.config.net_controller_enabled == "1":
-            self.controller_server = ControllerServer(self)
+            self.controller_server = networking.ControllerServer(self)
 
 
         # Set up rumble support for gamepads
@@ -317,11 +318,11 @@ class Control(object):
                     self.state.get_event(joy_event)
 
             self.state.get_event(event)
-        
+
         # Remove the remaining events after they have been processed
         pg.event.pump()
-            
-            
+
+
     def controller_event_loop(self, event):
         """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
@@ -561,18 +562,18 @@ class Control(object):
         # Get the amount of time that has passed since the last frame.
         time_delta = self.clock.tick(self.fps)/1000.0
         self.time_passed_seconds = time_delta
-        
+
         # Update our networking.
         if self.controller_server:
             self.controller_server.update()
-            
-        if self.client.listening: 
+
+        if self.client.listening:
             self.client.update(time_delta)
             self.add_clients_to_map(self.client.client.registry)
-        
-        if self.server.listening: 
+
+        if self.server.listening:
             self.server.update()
-        
+
         # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.
         self.event_loop()
@@ -586,22 +587,22 @@ class Control(object):
         # Draw and update our display
         self.update(time_delta)
         pg.display.update()
-   
+
         if self.show_fps:
             fps = self.clock.get_fps()
             with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
             pg.display.set_caption(with_fps)
         if self.exit:
             self.done = True
-            
-            
+
+
     def get_menu_event(self, menu, event):
-        """Run this function to process pygame basic menu events (such as keypresses/mouse clicks - 
-        up, down, enter, escape). 
-        
+        """Run this function to process pygame basic menu events (such as keypresses/mouse clicks -
+        up, down, enter, escape).
+
         :param menu: -- The active menu.
         :param event: -- A single pygame event from pygame.event.get()
-        
+
         :type menu: core.components.menu.Menu()
         :type events: List
 
@@ -619,12 +620,12 @@ class Control(object):
 
         if len(menu.menu_items) > 0:
             menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
-        
+
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and not menu.previous_menu:
             menu.menu_select_sound.play()
             self.state.next = self.state.previous
             self.flip_state()
-            
+
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
             menu.menu_select_sound.play()
             menu.interactable = False
@@ -632,13 +633,13 @@ class Control(object):
             if menu.previous_menu:
                 menu.previous_menu.interactable = True
                 menu.previous_menu.visible = True
-        
+
         if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
             menu.menu_select_sound.play()
             menu.selected_menu_item += 1
             if menu.selected_menu_item > len(menu.menu_items) -1:
                 menu.selected_menu_item = 0
-                
+
         if event.type == pg.KEYDOWN and event.key == pg.K_UP:
             menu.menu_select_sound.play()
             menu.selected_menu_item -= 1
@@ -648,31 +649,31 @@ class Control(object):
         if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
             menu.menu_select_sound.play()
             menu.get_event(event)
-    
+
     def scale_new_player(self, sprite):
         """Scales a new player to the screen.
 
-        :param sprite: Player sprite from the server registry. 
-        
+        :param sprite: Player sprite from the server registry.
+
         :type sprite: -- Player or Npc object from core.components.player
 
         :rtype: None
         :returns: None
 
-        """       
+        """
         SCALE = prepare.SCALE
         TILE_SIZE = prepare.TILE_SIZE
         SCREEN_SIZE = prepare.TILE_SIZE
-                    
+
         for key, animation in sprite.sprite.items():
             animation.scale(
                 tuple(i * SCALE for i in animation.getMaxSize()))
-    
+
         for key, image in sprite.standing.items():
             sprite.standing[key] = pg.transform.scale(
                 image, (image.get_width() * SCALE,
                         image.get_height() * SCALE))
-    
+
         # Set the player's width and height based on the size of our scaled
         # sprite.
         sprite.playerWidth, sprite.playerHeight = \
@@ -680,38 +681,38 @@ class Control(object):
         sprite.playerWidth = TILE_SIZE[0]
         sprite.playerHeight = TILE_SIZE[1]
         sprite.tile_size = TILE_SIZE
-    
+
         # Put the player right in the middle of our screen.
         sprite.position = [
             (SCREEN_SIZE[0] / 2) - (sprite.playerWidth / 2),
             (SCREEN_SIZE[1] / 2) - (sprite.playerHeight / 2)]
-    
+
         # Set the player's collision rectangle
         sprite.rect = pg.Rect(
             sprite.position[0],
             sprite.position[1],
             TILE_SIZE[0],
             TILE_SIZE[1])
-    
+
         # Set the walking and running pixels per second based on the scale
         sprite.walkrate *= SCALE
         sprite.runrate *= SCALE
-    
-    
+
+
     def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If
-        they are on the same map as the host then it will add them to the npc's list. 
-        If they are still being displayed and have left the map it will remove them from 
+        they are on the same map as the host then it will add them to the npc's list.
+        If they are still being displayed and have left the map it will remove them from
         the map.
 
         :param registry: Locally hosted Neteria client/server registry.
-        
+
         :type registry: Dictionary
-        
+
         :rtype: None
         :returns: None
 
-        """ 
+        """
         self.state_dict["WORLD"].npcs = []
         self.state_dict["WORLD"].npcs_off_map = []
         for client in registry:
@@ -719,7 +720,7 @@ class Control(object):
                 sprite = registry[client]["sprite"]
                 client_map = registry[client]["map_name"]
                 current_map = self.get_map_name()
-                
+
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
                     if not sprite in self.state_dict["WORLD"].npcs:
@@ -739,18 +740,18 @@ class Control(object):
         """Gets the map of the player.
 
         :param: None
-        
+
         :rtype: String
         :returns: map_name
 
-        """ 
+        """
         map_path = self.state_dict["WORLD"].current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
         map_name = str(map_name.replace("resources/maps/", ""))
         return map_name
 
 
-import time                       
+import time
 class HeadlessControl():
     """Control class for headless server. Contains the game loop, and contains
     the event_loop which passes events to States as needed. Logic for flipping
@@ -763,17 +764,17 @@ class HeadlessControl():
     """
     def __init__(self):
         self.done = False
-        
+
         self.clock = time.clock()
         self.fps = 60.0
         self.current_time = 0.0
-        
+
         import threading
-        self.server = TuxemonServer(self)
+        self.server = networking.TuxemonServer(self)
 #         self.server_thread = threading.Thread(target=self.server)
 #         self.server_thread.start()
         self.server.server.listen()
-         
+
         #Set up our game's configuration from the prepare module.
         from core import prepare
         self.imports = {
@@ -795,7 +796,7 @@ class HeadlessControl():
         self.exit = False   # Allow exit from the CLI
         if self.config.cli:
             self.cli = cli.CommandLine(self)
-    
+
     def setup_states(self, state_dict, start_state):
         """Given a dictionary of States and a State to start in,
         builds the self.state_dict.
@@ -823,8 +824,8 @@ class HeadlessControl():
         self.state_dict = state_dict
         self.state_name = start_state
         self.state = self.state_dict[self.state_name]
-        
-        
+
+
     def main(self):
         """Initiates the main game loop. Since we are using Asteria networking
         to handle network events, we pass this core.tools.Control instance to
@@ -855,9 +856,9 @@ class HeadlessControl():
         """
         # Get the amount of time that has passed since the last frame.
 #         self.time_passed_seconds = time.clock() - self.clock
-        
+
 #         self.server.update()
-     
+
         if self.exit:
             self.done = True
 

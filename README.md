@@ -11,7 +11,7 @@ Tuxemon is a free, open source monster-fighting RPG.
 Version
 ----
 
-0.3
+0.3.1
 
 
 Requirements
@@ -22,8 +22,8 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 2.7+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *neteria* - Game networking framework for Python.
 * *python-netifaces* - Cross platform network interface information.
+* *neteria* - Game networking framework for Python.
 
 *Optional*
 
@@ -39,7 +39,6 @@ Installation
 
 sudo apt-get install python python-pygame python-pip python-imaging git python-netifaces
 sudo pip install pytmx
-cd ~/git (or to your prefered development directory)
 git clone https://github.com/ShadowBlip/Neteria.git
 cd Neteria
 sudo python setup.py install

@@ -68,8 +68,7 @@ class Combat(object):
         player = game.imports["player"]
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if len(game.player1.monsters) < 1:
-            logger.warning("Cannot start battle, player has no monsters!")
+        if not self.check_battle_legal(game.player1):
             return False
 
         # Start combat
@@ -119,7 +118,7 @@ class Combat(object):
             current_monster.type1 = results['types'][0]
 
             current_monster.set_level(current_monster.level)
-           
+
             if len(results['types']) > 1:
                 current_monster.type2 = results['types'][1]
 
@@ -137,6 +136,40 @@ class Combat(object):
         game.state_dict["COMBAT"].players.append(npc)
         game.state_dict["COMBAT"].combat_type = "trainer"
         #game.state_dict["WORLD"].combat_started = True
+        game.state_dict["WORLD"].start_battle_transition = True
+
+        # Start some music!
+        logger.info("Playing battle music!")
+        filename = "147066_pokemon.ogg"
+
+        mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+        mixer.music.play(-1)
+
+
+    def start_pseudo_battle(self, game, npc):
+        """Start a networked duel and switch to the combat module.
+
+        :param game: The main game object that contains all the game's variables.
+        :param npc: The NPC to fight if fighting a specific character.
+
+        :type game: core.tools.Control
+        :type npc: core.components.player.Npc
+
+        :rtype: None
+        :returns: None
+        """
+        # Don't start a battle if we don't even have monsters in our party yet.
+        if not self.check_battle_legal(game.player1):
+            return False
+
+        if not self.check_battle_legal(npc):
+            return False
+
+
+        # Add our players and start combat
+        game.state_dict["COMBAT"].players.append(game.player1)
+        game.state_dict["COMBAT"].players.append(npc)
+        game.state_dict["COMBAT"].combat_type = "trainer"
         game.state_dict["WORLD"].start_battle_transition = True
 
         # Start some music!
@@ -177,13 +210,8 @@ class Combat(object):
         player1 = game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if len(player1.monsters) < 1:
-            logger.warning("Cannot start battle, player has no monsters!")
+        if not self.check_battle_legal(player1):
             return False
-        else:
-            if player1.monsters[0].current_hp <= 0:
-                logger.warning("Cannot start battle, player's monsters are all DEAD")
-                return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
         encounter_id = int(action[1])
@@ -201,9 +229,8 @@ class Combat(object):
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1,100)
-            rate = range(1, int(item['encounter_rate']) + 1)
-            if roll in rate:
+            roll = random.randrange(1,1000)
+            if roll <= int(item['encounter_rate']):
                 # Set our encounter details
                 encounter = item
 
@@ -250,4 +277,23 @@ class Combat(object):
             game.state_dict["WORLD"].menu_blocking = True
             player1.moving = False
             player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
+
+
+    def check_battle_legal(self, player):
+        """Checks to see if the player has any monsters fit for battle.
+
+        :param: None
+
+        :rtype: Bool
+        :returns: True/False
+        """
+        # Don't start a battle if we don't even have monsters in our party yet.
+        if len(player.monsters) < 1:
+            logger.warning("Cannot start battle, player has no monsters!")
+            return False
+        else:
+            if player.monsters[0].current_hp <= 0:
+                logger.warning("Cannot start battle, player's monsters are all DEAD")
+                return False
+            else: return True
 

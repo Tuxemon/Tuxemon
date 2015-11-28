@@ -120,10 +120,14 @@ class Player(object):
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
-
+        
+        # Update the server/clients of our new map and populate any other players.
+        if game.isclient or game.ishost:
+            game.add_clients_to_map(game.client.client.registry)
+            game.client.update_player(player.facing)
+            
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False
-
 
     def transition_teleport(self, game, action):
         """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
@@ -147,7 +151,6 @@ class Player(object):
         ('teleport', 'pallet_town-room.tmx,5,5,2,2', '1', 1)
 
         """
-
         # Get the teleport parameters for the position x,y and the map to load.
         parameters = action[1].split(",")
         mapname = parameters[0]

@@ -30,9 +30,6 @@
 """This module contains the Headless Server state.
 """
 import logging
-import os
-import sys
-import pprint
 
 from core import prepare
 from core import state
@@ -43,20 +40,10 @@ logger.debug("states.start successfully imported")
 
 
 class HEADLESS(state.State):
-    """The module responsible for the headless server.
-
-    :param game: The scene manager object that contains all the game's variables.
-    :type game: core.tools.Control
-
+    """ The state responsible for the headless server.
     """
 
-    def __init__(self, game):
-
-        # Initiate our common state properties.
-        state.State.__init__(self, game)
-
-        self.game = game
-
+    def startup(self, params=None):
         # Set the native tile size so we know how much to scale
         self.tile_size = prepare.TILE_SIZE
 

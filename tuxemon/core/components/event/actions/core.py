@@ -39,7 +39,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -73,7 +73,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -97,9 +97,9 @@ class Core(object):
         logger.info("Dialog window opened")
 
         # Open a dialog window in the current scene.
-        if not game.state.dialog_window.visible:
-            game.state.dialog_window.visible = True
-            game.state.dialog_window.text = text
+        if not game.current_state.dialog_window.visible:
+            game.current_state.dialog_window.visible = True
+            game.current_state.dialog_window.text = text
 
 
     def rumble(self, game, action):
@@ -109,7 +109,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -149,7 +149,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -177,7 +177,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -206,7 +206,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -232,5 +232,5 @@ class Core(object):
 
         # Don't override previous state if we are still in the state.
         if game.state_name != action[1]:
-            game.state.next = action[1]
-            game.state.done = True
+            game.pop_state()
+            game.push_state(action[1])

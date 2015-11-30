@@ -42,26 +42,18 @@ logger.debug("states.start successfully imported")
 
 
 class PC(state.State):
-    """The module responsible in game settings.
-
-    :param game: The scene manager object that contains all the game's variables.
-    :type game: core.tools.Control
-
+    """ The state responsible in game settings.
     """
 
-    def __init__(self, game):
-        # Initiate our common state properties.
-        state.State.__init__(self, game)
-
+    def startup(self, params=None):
         from core.components import menu
 
         # Provide an instance of the scene manager to this scene.
-        self.game = game            # The scene manger object
         self.previous_menu = None
         self.menu_blocking = True
 
-         # Provide access to the screen surface
-        self.screen = game.screen
+        # Provide access to the screen surface
+        self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
 
         # Set the native tile size so we know how much to scale

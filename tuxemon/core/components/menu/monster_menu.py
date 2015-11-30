@@ -14,7 +14,7 @@ class MonsterMenu(Menu):
 
     :type screen: pygame.display
     :type resolution: Tuple
-    :type game: core.tools.Control
+    :type game: core.control.Control
 
     To create a new menu, simply create a new menu instance and then set the size and coordinates
     of the menu like this:
@@ -198,8 +198,8 @@ class MonsterMenu(Menu):
 
                 # If the item menu was opened from combat, open up the action menu.
                 if game.state_name == "COMBAT":
-                    game.state.action_menu.visible = True
-                    game.state.action_menu.interactable = True
+                    game.current_state.action_menu.visible = True
+                    game.current_state.action_menu.interactable = True
 
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:

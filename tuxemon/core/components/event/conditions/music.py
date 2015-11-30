@@ -40,7 +40,7 @@ class Music(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -61,10 +61,11 @@ class Music(object):
 
         """
 
-        world = game.state
+        world = game.current_state
         if (world.start_battle_transition or
                 world.battle_transition_in_progress or
-                game.state_name == "COMBAT" or game.state.done):
+                # game.state_name == "COMBAT" or game.current_state.done):
+                game.state_name == "COMBAT"):
             return True
 
         if game.current_music["song"] == condition["parameters"] and mixer.music.get_busy():

@@ -45,18 +45,14 @@ logger = logging.getLogger(__name__)
 
 
 class WORLD(state.State):
+    """ The state responsible for the world game play
+    """
 
-    def __init__(self, game):
-        # Initiate our common state properties.
-        state.State.__init__(self, game)
-
-        # Provide an instance of our scene manager to this scene.
-        self.game = game
-
+    def startup(self, params=None):
         from core.components import menu
 
         # Provide access to the screen surface
-        self.screen = game.screen
+        self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
 
         # Set the native tile size so we know how much to scale
@@ -406,7 +402,7 @@ class WORLD(state.State):
         #                          Event Engine                              #
         ######################################################################
 
-        # Get a copy of the event engine from core.tools.Control.
+        # Get a copy of the event engine from core.control.Control.
         self.event_engine = self.game.event_engine
 
         # Set the currently loaded map. This is needed because the event
@@ -452,28 +448,6 @@ class WORLD(state.State):
         self.cinema_bottom['on_position'] = [
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
-
-    def startup(self, current_time, persistant):
-        """This is called every time the scene manager switches to this scene.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
 
         # Allow player movement and make all menus invisible.
         self.menu_blocking = False
@@ -1173,7 +1147,7 @@ class WORLD(state.State):
                     " times. Stopping transition.")
                 self.battle_transition_in_progress = False
                 self.battle_flash_count = 0
-                self.control.pop_state()
+                self.game.pop_state()
 
             # Set the alpha of the screen and fill the screen with white at
             # that alpha level.
@@ -1375,7 +1349,7 @@ class WORLD(state.State):
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
-                        world = self.game.state
+                        world = self.game.current_state
                         pd = world.player1.__dict__
                         event_data = {"type": "CLIENT_INTERACTION",
                                       "interaction": "START_DUEL",
@@ -1386,5 +1360,5 @@ class WORLD(state.State):
                                                     }
 
                                       }
-                        self.game.game.server.notify_client_interaction(cuuid, event_data)
+                        self.game.server.notify_client_interaction(cuuid, event_data)
 

@@ -42,7 +42,7 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -57,7 +57,7 @@ class Map(object):
 
         """
 
-        world = game.state
+        world = game.current_state
         if not world.start_transition or not world.start_transition_back:
             world.start_transition = True
             world.transition_time = float(action[1])
@@ -70,14 +70,14 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
         :returns: None
         """
 
-        world = game.state
+        world = game.current_state
         if world.cinema_state == "off":
             world.cinema_state = "turning on"
 
@@ -89,14 +89,14 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
         :returns: None
         """
 
-        world = game.state
+        world = game.current_state
         if world.cinema_state == "on":
             logger.info("Turning off cinema mode")
             world.cinema_state = "turning off"
@@ -109,7 +109,7 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -156,7 +156,7 @@ class Map(object):
             return True
 
         # Loop through our animation resources and find the animation files based on name.
-        world = game.state
+        world = game.current_state
         scale = world.scale
         images_and_durations = []
         for animation_frame in os.listdir(directory):

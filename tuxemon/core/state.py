@@ -2,29 +2,44 @@ import inspect
 import os
 import sys
 from abc import ABCMeta, abstractmethod
-from collections import OrderedDict
 from importlib import import_module
 
 
 class State(object):
-    """This is a prototype class for States.  All states should inherit from it.
-    No direct instances of this class should be created. get_event and update
-    must be overloaded in the child class.  startup and cleanup need to be
-    overloaded when there is data that must persist between States.
+    """ This is a prototype class for States.
+
+    All states should inherit from it. No direct instances of this
+    class should be created. get_event and update must be overloaded
+    in the child class.
+
+    Overview of Methods:
+       startup - Called when added to the state stack
+       resume - Called each time state is updated for first time
+       update - Called each frame while state is active
+       get_event
+       pause - Called when state is not destroyed, but also not active
+       shutdown - Called before state is destroyed
 
     """
     __metaclass__ = ABCMeta
 
     def __init__(self, control):
-        self.control = control
+        """ Do no override this unless there is a special need.
+
+        All init for the State, loading of config, images, etc should
+        be done in State.startup or State.resume, not here.
+
+        :param control: State Manager / Control / Game... all the same
+        :return: None
+        """
+        self.game = control   # TODO: rename 'game' to 'control'
         self.start_time = 0.0
         self.current_time = 0.0
-        self.persist = None
         self.menu_blocking = False
 
     @abstractmethod
     def get_event(self, event):
-        """Processes events that were passed from the main event loop.
+        """ Processes events that were passed from the main event loop.
         Must be overridden in children.
 
         :param event: A pygame key event from pygame.event.get()
@@ -38,14 +53,14 @@ class State(object):
         pass
 
     @abstractmethod
-    def update(self, surface, keys, current_time):
-        """Update function for state.  Must be overloaded in children.
+    def update(self, screen, keys, current_time, time_delta):
+        """ Update function for state.  Must be overloaded in children.
 
-        :param surface: The pygame.Surface of the screen to draw to.
+        :param screen: The pygame.Surface of the screen to draw to.
         :param keys: List of keys from pygame.event.get().
         :param current_time: The amount of time that has passed.
 
-        :type surface: pygame.Surface
+        :type screen: pygame.Surface
         :type keys: Tuple
         :type current_time: Integer
 
@@ -54,7 +69,7 @@ class State(object):
 
         **Examples:**
 
-        >>> surface
+        >>> screen
         <Surface(1280x720x32 SW)>
         >>> keys
         (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
@@ -64,63 +79,53 @@ class State(object):
         """
         pass
 
-    def startup(self, current_time, persistant):
-        """Add variables passed in persistant to the proper attributes and
-        set the start time of the State to the current time.
+    def startup(self, params=None):
+        """ Called when scene is added to State Stack
 
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
+        This will be called:
+        * after state is pushed and before next update
+        * just once during the life of a state
 
-        :type current_time: Integer
-        :type persistant: Dictionary
+        Example uses: loading images, configuration, sounds.
 
-        :rtype: None
-        :returns: None
+        :param params: Configuration options
 
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-        """
-        self.persist = persistant
-        self.start_time = current_time
-
-    def pause(self):
-        """ Called when state is pushed back in the stack, allowed to pause
-
-        :return:
         """
         pass
 
     def resume(self):
-        """ Called after state was paused, but is now at top of stack again
+        """ Called before update when state is newly in focus
 
-        :return:
+        This will be called:
+        * before update after being pushed to the stack
+        * before update after state has been paused
+        * state will begin to accept player input
+        * could be called several times over lifetime of state
+
+        Example uses: starting music, playing state transition, open menu
         """
+        pass
+
+    def pause(self):
+        """ Called when state is pushed back in the stack, allowed to pause
+
+        This will be called:
+        * after update when state is pushed back
+        * when state is no longer accepting player input
+        * could be called several times over lifetime of state
+
+        Example uses: stopping music, sounds, fading out, making state graphics dim
+        """
+        pass
 
     def shutdown(self):
-        """Called when State.done is set to True.
+        """ Called when state is removed from stack and will be destroyed
 
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
+        This will be called:
+        * after update when state is popped
 
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
+        Make sure to release any references to objects that may cause
+        cyclical dependencies.
         """
         pass
 
@@ -130,6 +135,7 @@ class StateManager(object):
 
     This is currently undergoing a refactor of sorts, API may not be stable
     """
+
     def __init__(self):
         """ Currently no need to call __init__
             function is declared to provide IDE with some info on the class only
@@ -246,13 +252,21 @@ class StateManager(object):
 
         instance = state(self)
         instance.controller = self
-        instance.startup(self.current_time, params)
+        instance.startup(params)
 
-        self.state = instance
-        self.state_name = state_name
         self.state_stack.insert(0, instance)
 
         return instance
+
+    @property
+    def state_name(self):
+        """ Name of state currently running
+
+        TODO: phase this out?
+
+        :return: string
+        """
+        return self.state_stack[0].__class__.__name__
 
     @property
     def current_state(self):

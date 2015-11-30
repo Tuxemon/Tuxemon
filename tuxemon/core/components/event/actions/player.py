@@ -40,7 +40,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -61,7 +61,7 @@ class Player(object):
 
         # Get the player object from the game.
         player = game.player1
-        world = game.state
+        world = game.current_state
 
         # Get the teleport parameters for the position x,y and the map to load.
         parameters = action[1].split(",")
@@ -136,7 +136,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -176,7 +176,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -243,7 +243,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -278,7 +278,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -294,8 +294,8 @@ class Player(object):
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
-        if game.state.start_transition:
-            game.state.delayed_facing = parameters
+        if game.current_state.start_transition:
+            game.current_state.delayed_facing = parameters
         else:
             game.player1.facing = parameters
 

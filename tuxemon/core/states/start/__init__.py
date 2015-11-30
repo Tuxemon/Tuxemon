@@ -42,19 +42,10 @@ logger.debug("states.start successfully imported")
 
 
 class START(state.State):
-    """The module responsible for the splash screen and start menu.
-
-    :param game: The scene manager object that contains all the game's variables.
-    :type game: core.tools.Control
-
+    """ The state responsible for the splash screen and start menu.
     """
 
-    def __init__(self, game):
-        # Initiate our common state properties.
-        state.State.__init__(self, game)
-
-        # Provide an instance of the scene manager to this scene.
-        self.game = game            # The scene manger object
+    def startup(self, params=None):
         self.state = "Splash"       # Can be Splash or Menu
         self.fade = "in"            # Can be "in", "out", "waiting", or None
 
@@ -89,35 +80,6 @@ class START(state.State):
                                                             ))
         self.splash_cc['position'] = (prepare.SCREEN_SIZE[0] - splash_border - self.splash_cc['surface'].get_width(),
                                       prepare.SCREEN_SIZE[1] - splash_border - self.splash_cc['surface'].get_height())
-
-
-    def startup(self, current_time, persistant):
-        """Perform startup tasks when we switch to this scene.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
-
-        self.persist = persistant
-        self.start_time = current_time
-
-        self.state = "Splash"       # Can be Splash or Menu
-        self.fade = "in"            # Can be "in", "out", "waiting", or None
 
 
     def update(self, screen, keys, current_time, time_delta):
@@ -165,7 +127,7 @@ class START(state.State):
         if event.type == pygame.KEYDOWN and self.state == "Splash":
             self.fade = None
             self.state = None
-            self.control.pop_state()
+            self.game.pop_state()
 
 
     def draw(self):
@@ -185,7 +147,7 @@ class START(state.State):
         if prepare.CONFIG.splash != "1":
                 self.fade = None
                 self.state = None
-                self.control.pop_state()
+                self.game.pop_state()
 
         if self.state == "Splash":
             self.game.screen.blit(self.splash_pygame['surface'], self.splash_pygame['position'])
@@ -211,7 +173,7 @@ class START(state.State):
             if self.transition['alpha'] > 255:
                 self.fade = None
                 self.state = None
-                self.control.pop_state()
+                self.game.pop_state()
 
         elif self.fade == "waiting":
             self.wait_time += self.game.time_passed_seconds

@@ -27,6 +27,8 @@
 import logging
 import random
 
+# from core import prepare
+
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
@@ -47,7 +49,7 @@ class Combat(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -154,7 +156,7 @@ class Combat(object):
         :param game: The main game object that contains all the game's variables.
         :param npc: The NPC to fight if fighting a specific character.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type npc: core.components.player.Npc
 
         :rtype: None
@@ -173,7 +175,7 @@ class Combat(object):
         game.state_dict["COMBAT"].players.append(npc)
         game.state_dict["COMBAT"].combat_type = "trainer"
 
-        world = game.state
+        world = game.current_state
         game.state_dict["WORLD"].start_battle_transition = True
 
         # Start some music!
@@ -194,7 +196,7 @@ class Combat(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None

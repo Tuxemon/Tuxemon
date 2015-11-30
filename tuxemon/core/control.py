@@ -33,6 +33,7 @@ class Control(StateManager):
     """
 
     def __init__(self, caption):
+        # INFO: no need to call superclass for now
         self.screen = pg.display.get_surface()
         self.caption = caption
         self.done = False
@@ -42,13 +43,11 @@ class Control(StateManager):
         self.current_time = 0.0
         self.keys = pg.key.get_pressed()
         self.key_events = []
-        self.state = None
         self.ishost = False
         self.isclient = False
 
         # TODO: move out to state manager
         self.package = "core.states"
-        self.state_name = None
         self.state_dict = dict()
         self.state_stack = list()
 
@@ -180,7 +179,7 @@ class Control(StateManager):
 
         """
         self.current_time = pg.time.get_ticks()
-        self.state.update(self.screen, self.keys, self.current_time, dt)
+        self.current_state.update(self.screen, self.keys, self.current_time, dt)
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
 
@@ -213,16 +212,16 @@ class Control(StateManager):
                 if contr_events:
                     for contr_event in contr_events:
                         self.key_events.append(contr_event)
-                        self.state.get_event(contr_event)
+                        self.current_state.get_event(contr_event)
 
             # Loop through our joystick events and pass them to the current state.
             joy_events = self.joystick_event_loop(event)
             if joy_events:
                 for joy_event in joy_events:
                     self.key_events.append(joy_event)
-                    self.state.get_event(joy_event)
+                    self.current_state.get_event(joy_event)
 
-            self.state.get_event(event)
+            self.current_state.get_event(event)
 
         # Remove the remaining events after they have been processed
         pg.event.pump()
@@ -427,7 +426,7 @@ class Control(StateManager):
 
     def main(self):
         """Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this core.tools.Control instance to
+        to handle network events, we pass this core.control.Control instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
 
@@ -520,7 +519,7 @@ class Control(StateManager):
 
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and not menu.previous_menu:
             menu.menu_select_sound.play()
-            self.state.next = self.state.previous
+            self.current_state.next = self.current_state.previous
             self.flip_state()
 
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
@@ -609,7 +608,7 @@ class Control(StateManager):
         :returns: None
 
         """
-        world = self.state
+        world = self.current_state
         world.npcs = []
         world.npcs_off_map = []
         for client in registry:
@@ -670,7 +669,6 @@ class HeadlessControl(StateManager):
 
         # TODO: move out to state manager
         self.package = "core.states"
-        self.state_name = None
         self.state_dict = dict()
         self.state_stack = list()
 
@@ -722,7 +720,7 @@ class HeadlessControl(StateManager):
 
     def main(self):
         """Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this core.tools.Control instance to
+        to handle network events, we pass this core.control.Control instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
         :param None:

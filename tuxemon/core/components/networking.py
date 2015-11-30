@@ -57,7 +57,7 @@ class TuxemonServer():
 
     :param game: instance of the local game.
 
-    :type game: core.tools.Control object.
+    :type game: core.control.Control object.
 
     :rtype: None
     :returns: None
@@ -271,7 +271,7 @@ class ControllerServer():
 
     :param game: instance of the local game.
 
-    :type game: core.tools.Control object.
+    :type game: core.control.Control object.
 
     :rtype: None
     :returns: None
@@ -321,7 +321,7 @@ class ControllerServer():
         if controller_events:
             for controller_event in controller_events:
                 self.game.key_events.append(controller_event)
-                self.game.state.get_event(controller_event)
+                self.game.current_state.get_event(controller_event)
 
 
     def net_controller_loop(self):
@@ -404,7 +404,7 @@ class TuxemonClient():
 
     :param game: instance of the local game.
 
-    :type game: core.tools.Control object.
+    :type game: core.control.Control object.
 
     :rtype: None
     :returns: None
@@ -816,7 +816,7 @@ def populate_client(cuuid, event_data, game, registry):
     :type cuuid: String
     :type event_data: Dictionary
     :type registry: Dictionary
-    :type game: core.tools.Control() object
+    :type game: core.control.Control() object
 
     :rtype: core.components.player.Npc() object
     :returns: sprite
@@ -848,7 +848,7 @@ def update_client(sprite, char_dict, game):
 
     :type sprite: Player or Npc object from core.components.player
     :type event_data: Dictionary
-    :type game: core.tools.Control() object
+    :type game: core.control.Control() object
 
     :rtype: None
     :returns: None

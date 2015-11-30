@@ -34,7 +34,7 @@ class Combat(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -54,7 +54,7 @@ class Combat(object):
          'y': 11}
 
         """
-        world = game.state
+        world = game.current_state
         if (game.state_name == "COMBAT"
             or world.battle_transition_in_progress
             or world.start_battle_transition

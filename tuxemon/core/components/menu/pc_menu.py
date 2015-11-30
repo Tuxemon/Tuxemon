@@ -44,7 +44,7 @@ class PCMenu(Menu):
 
 
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -54,12 +54,12 @@ class PCMenu(Menu):
 
         """
         if self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
-            self.game.state.multiplayer_menu.previous_menu = self
-            self.game.state.multiplayer_menu.visible = True
-            self.game.state.multiplayer_menu.interactable = True
-            self.game.state.pc_menu.interactable = False
+            self.game.current_state.multiplayer_menu.previous_menu = self
+            self.game.current_state.multiplayer_menu.visible = True
+            self.game.current_state.multiplayer_menu.interactable = True
+            self.game.current_state.pc_menu.interactable = False
         elif self.menu_items[self.selected_menu_item] == "LOG OFF":
-            self.game.state.next = self.game.state.previous
+            self.game.current_state.next = self.game.current_state.previous
             self.game.flip_state()
 
 
@@ -75,7 +75,7 @@ class Multiplayer_Menu(Menu):
 
 
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -87,10 +87,10 @@ class Multiplayer_Menu(Menu):
 
         if self.menu_items[self.selected_menu_item] == "JOIN":
             if not self.game.ishost:
-                self.game.state.multiplayer_join_menu.previous_menu = self
-                self.game.state.multiplayer_join_menu.visible = True
-                self.game.state.multiplayer_join_menu.interactable = True
-                self.game.state.multiplayer_menu.interactable = False
+                self.game.current_state.multiplayer_join_menu.previous_menu = self
+                self.game.current_state.multiplayer_join_menu.visible = True
+                self.game.current_state.multiplayer_join_menu.interactable = True
+                self.game.current_state.multiplayer_menu.interactable = False
                 self.game.client.enable_join_multiplayer = True
                 self.game.client.listening = True
                 self.game.client.client.listen()
@@ -99,10 +99,10 @@ class Multiplayer_Menu(Menu):
 
         elif self.menu_items[self.selected_menu_item] == "HOST":
             if not self.game.isclient:
-                self.game.state.multiplayer_host_menu.previous_menu = self
-                self.game.state.multiplayer_host_menu.visible = True
-                self.game.state.multiplayer_host_menu.interactable = True
-                self.game.state.multiplayer_menu.interactable = False
+                self.game.current_state.multiplayer_host_menu.previous_menu = self
+                self.game.current_state.multiplayer_host_menu.visible = True
+                self.game.current_state.multiplayer_host_menu.interactable = True
+                self.game.current_state.multiplayer_menu.interactable = False
                 self.game.ishost = True
                 self.game.server.server.listen()
                 self.game.server.listening = True
@@ -137,7 +137,7 @@ class Multiplayer_Join_Menu(Menu):
 
 
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -153,10 +153,10 @@ class Multiplayer_Join_Menu(Menu):
             pass
 
         if self.game.client.selected_game:
-            self.game.state.multiplayer_join_success_menu.previous_menu = self
-            self.game.state.multiplayer_join_success_menu.visible = True
-            self.game.state.multiplayer_join_success_menu.interactable = True
-            self.game.state.multiplayer_join_menu.interactable = False
+            self.game.current_state.multiplayer_join_success_menu.previous_menu = self
+            self.game.current_state.multiplayer_join_success_menu.visible = True
+            self.game.current_state.multiplayer_join_success_menu.interactable = True
+            self.game.current_state.multiplayer_join_menu.interactable = False
 
 
 
@@ -172,7 +172,7 @@ class Multiplayer_Join_Success_Menu(Menu):
 
 
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -199,7 +199,7 @@ class Multiplayer_Host_Menu(Menu):
 
 
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:

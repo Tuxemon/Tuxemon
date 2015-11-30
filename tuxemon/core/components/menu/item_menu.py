@@ -13,7 +13,7 @@ class ItemMenu(Menu):
 
     :type screen: pygame.display
     :type resolution: Tuple
-    :type game: core.tools.Control
+    :type game: core.control.Control
 
     To create a new menu, simply create a new menu instance and then set the size and coordinates
     of the menu like this:
@@ -185,8 +185,8 @@ class ItemMenu(Menu):
 
                 # If the item menu was opened from combat, open up the action menu.
                 if game.state_name == "COMBAT":
-                    game.state.action_menu.visible = True
-                    game.state.action_menu.interactable = True
+                    game.current_state.action_menu.visible = True
+                    game.current_state.action_menu.interactable = True
 
 
         # Handle when the player presses "ENTER"
@@ -215,13 +215,13 @@ class ItemMenu(Menu):
 
                         if game.state_name == "COMBAT":
                             if item_to_use.target == "opponent":
-                                item_target = game.state.current_players['opponent']['monster']
+                                item_target = game.current_state.current_players['opponent']['monster']
                             elif item_to_use.target == "player":
-                                item_target = game.state.current_players['player']['monster']
+                                item_target = game.current_state.current_players['player']['monster']
 
                             # Set the player's decided action for this turn to "item" and give the name
                             # and target of the item.
-                            game.state.current_players['player']['action'] = {'item':
+                            game.current_state.current_players['player']['action'] = {'item':
                                 {'name': item_name,
                                  'target': item_target}}
                         else:

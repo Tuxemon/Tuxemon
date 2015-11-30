@@ -59,22 +59,28 @@ logger.debug("states.combat successfully imported")
 
 
 class Combat(state.State):
-    """The module responsible for all combat related tasks and functions.
-
-    :param game: The main game object that contains all the game’s variables.
-    :type game: core.tools.Control
-
+    """ The state responsible for all combat related tasks and functions.
     """
-    def __init__(self, game):
 
-        # Initiate our common state properties.
-        state.State.__init__(self, game)
+    def startup(self, params=None):
+        """
+        **Monster position drawing**
 
+        We draw the monster's battle sprite on the screen according to the resolution and size of
+        the "info_menu":
+
+        >>> self.current_players['player']['monster_sprite']['position'] = (
+        ...     0,
+        ...     prepare.SCREEN_SIZE[1] - self.info_menu.size_y \
+        ...     - self.current_players['player']['monster_sprite']['surface'].get_height()
+        ... )
+
+        .. image:: images/combat/monster_drawing01.png
+
+        """
         from core.components import menu
 
         self.players = []
-        self.game = game                # Provide access to the scene manager.
-
         self.combat_type = None         # Can be either "monster" or "trainer"
 
         self.current_players = {'player': {}, 'opponent': {}}
@@ -260,46 +266,7 @@ class Combat(state.State):
 
         self.player_mon_sprite = None
 
-
-    def startup(self, current_time, persistant):
-        """Initialize combat performs various tasks such as loading images of the players'
-        monsters and creates pygame.Surface objects that we can use to draw to the screen.
-        All of the things needed before we actually start combat itself.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        **Monster position drawing**
-
-        We draw the monster's battle sprite on the screen according to the resolution and size of
-        the "info_menu":
-
-        >>> self.current_players['player']['monster_sprite']['position'] = (
-        ...     0,
-        ...     prepare.SCREEN_SIZE[1] - self.info_menu.size_y \
-        ...     - self.current_players['player']['monster_sprite']['surface'].get_height()
-        ... )
-
-        .. image:: images/combat/monster_drawing01.png
-
-
-        """
-
-        from core.components import menu
+        # code below was inherited from old Combat.startup
 
         # Create an alias to our UI dictionary, game, and screen
         ui = self.ui
@@ -567,7 +534,7 @@ class Combat(state.State):
 
         :param game: The main game object that contains all the game's variables.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
 
         :rtype: None
         :returns: None
@@ -738,7 +705,7 @@ class Combat(state.State):
 
         :param game: The main game object that contains all the game's variables.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
 
         :rtype: None
         :returns: None
@@ -831,7 +798,7 @@ class Combat(state.State):
                     #self.game.event_engine.action.fadeout_music(self.game, [None, 1000])
                     event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
                     #self.game.event_engine.action.teleport(self.game, parameters)
-                    self.control.pop_state()
+                    self.game.pop_state()
 
 
             ### Fight Menu Events ###

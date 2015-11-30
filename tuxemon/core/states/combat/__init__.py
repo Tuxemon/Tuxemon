@@ -68,7 +68,7 @@ class Combat(state.State):
     def __init__(self, game):
 
         # Initiate our common state properties.
-        state.State.__init__(self)
+        state.State.__init__(self, game)
 
         from core.components import menu
 

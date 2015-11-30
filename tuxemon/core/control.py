@@ -180,11 +180,6 @@ class Control(StateManager):
 
         """
         self.current_time = pg.time.get_ticks()
-        if self.state.quit:
-            self.done = True
-            self.exit = True
-        elif self.state.done:
-            self.flip_state()
         self.state.update(self.screen, self.keys, self.current_time, dt)
         if self.config.controller_overlay == "1":
             self.controller.draw(self)

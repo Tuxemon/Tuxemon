@@ -51,7 +51,7 @@ class PC(state.State):
 
     def __init__(self, game):
         # Initiate our common state properties.
-        state.State.__init__(self)
+        state.State.__init__(self, game)
 
         from core.components import menu
 
@@ -150,32 +150,6 @@ class PC(state.State):
             menu.size_y= int(self.resolution[1] * menu.size_ratio[1])
             menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
             menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
-
-
-    def startup(self, current_time, persistant):
-        """Perform startup tasks when we switch to this scene.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
-
-        self.persist = persistant
-        self.start_time = current_time
 
 
     def update(self, screen, keys, current_time, time_delta):

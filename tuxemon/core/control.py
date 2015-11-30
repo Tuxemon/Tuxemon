@@ -1,21 +1,22 @@
 import time
 
 import pygame as pg
+
 from . import prepare
-from .tools import android, logger
-from .state import StateManager
-from .components import controller
-from .components import player
-from .components import cli
-from .components import event
-from .components import rumble
 from .components import ai
+from .components import cli
+from .components import controller
 from .components import db
-from .components import monster
+from .components import event
 from .components import item
 from .components import map as maps
-from .components import pyganim
+from .components import monster
 from .components import networking
+from .components import player
+from .components import pyganim
+from .components import rumble
+from .state import StateManager
+from .tools import android, logger
 
 
 class Control(StateManager):
@@ -47,8 +48,9 @@ class Control(StateManager):
 
         # TODO: move out to state manager
         self.package = "core.states"
-        self.state_dict = {}
         self.state_name = None
+        self.state_dict = dict()
+        self.state_stack = list()
 
         # TODO: do something about the world state clobbering this attribute
         self.events = list()
@@ -656,8 +658,7 @@ class PygameControl(Control):
 
 class HeadlessControl(StateManager):
     """Control class for headless server. Contains the game loop, and contains
-    the event_loop which passes events to States as needed. Logic for flipping
-    states is also found here.
+    the event_loop which passes events to States as needed.
 
     :param: None
     :rtype: None
@@ -674,8 +675,9 @@ class HeadlessControl(StateManager):
 
         # TODO: move out to state manager
         self.package = "core.states"
-        self.state_dict = {}
         self.state_name = None
+        self.state_dict = dict()
+        self.state_stack = list()
 
         self.server = networking.TuxemonServer(self)
         # self.server_thread = threading.Thread(target=self.server)

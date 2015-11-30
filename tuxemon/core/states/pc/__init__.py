@@ -178,21 +178,6 @@ class PC(state.State):
         self.start_time = current_time
 
 
-    def cleanup(self):
-        """Add variables that should persist to the self.persist dictionary.
-        Then reset State.done to False.
-
-        :param None:
-
-        :rtype: Dictionary
-        :returns: Persist dictionary of variables.
-
-        """
-
-        self.done = False
-        return self.persist
-
-
     def update(self, screen, keys, current_time, time_delta):
         """Update function for state.
 

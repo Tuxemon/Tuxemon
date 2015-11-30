@@ -1,11 +1,145 @@
+import inspect
 import os
 import sys
-import inspect
+from abc import ABCMeta, abstractmethod
 from collections import OrderedDict
 from importlib import import_module
 
 
+class State(object):
+    """This is a prototype class for States.  All states should inherit from it.
+    No direct instances of this class should be created. get_event and update
+    must be overloaded in the child class.  startup and cleanup need to be
+    overloaded when there is data that must persist between States.
+
+    """
+    __metaclass__ = ABCMeta
+
+    def __init__(self, control):
+        self.control = control
+        self.start_time = 0.0
+        self.current_time = 0.0
+        self.persist = None
+        self.menu_blocking = False
+
+    @abstractmethod
+    def get_event(self, event):
+        """Processes events that were passed from the main event loop.
+        Must be overridden in children.
+
+        :param event: A pygame key event from pygame.event.get()
+
+        :type event: PyGame Event
+
+        :rtype: None
+        :returns: None
+
+        """
+        pass
+
+    @abstractmethod
+    def update(self, surface, keys, current_time):
+        """Update function for state.  Must be overloaded in children.
+
+        :param surface: The pygame.Surface of the screen to draw to.
+        :param keys: List of keys from pygame.event.get().
+        :param current_time: The amount of time that has passed.
+
+        :type surface: pygame.Surface
+        :type keys: Tuple
+        :type current_time: Integer
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> surface
+        <Surface(1280x720x32 SW)>
+        >>> keys
+        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
+        >>> current_time
+        435
+
+        """
+        pass
+
+    def startup(self, current_time, persistant):
+        """Add variables passed in persistant to the proper attributes and
+        set the start time of the State to the current time.
+
+        :param current_time: Current time passed.
+        :param persistant: Keep a dictionary of optional persistant variables.
+
+        :type current_time: Integer
+        :type persistant: Dictionary
+
+        :rtype: None
+        :returns: None
+
+
+        **Examples:**
+
+        >>> current_time
+        2895
+        >>> persistant
+        {}
+        """
+        self.persist = persistant
+        self.start_time = current_time
+
+    def pause(self):
+        """ Called when state is pushed back in the stack, allowed to pause
+
+        :return:
+        """
+        pass
+
+    def reusme(self):
+        """ Called after state was paused, but is now at top of stack again
+
+        :return:
+        """
+
+    def shutdown(self):
+        """Called when State.done is set to True.
+
+        :param current_time: Current time passed.
+        :param persistant: Keep a dictionary of optional persistant variables.
+
+        :type current_time: Integer
+        :type persistant: Dictionary
+
+        :rtype: None
+        :returns: None
+
+
+        **Examples:**
+
+        >>> current_time
+        2895
+        >>> persistant
+        {}
+
+        """
+        pass
+
+
 class StateManager(object):
+    """ Mix-in style class for use with Control class.
+
+    This is currently undergoing a refactor of sorts, API may not be stable
+    """
+    def __init__(self):
+        """ Currently no need to call __init__
+            function is declared to provide IDE with some info on the class only
+            this may change in the future, do not rely on this behaviour
+        """
+        self.state_stack = list()
+        self.state_dict = dict()
+        self.current_time = 0.0
+        self.package = ""
+
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
@@ -63,190 +197,65 @@ class StateManager(object):
         """
         return self.state_dict.copy()
 
-    def start_state(self, state_name, persist=None):
+    def flip_state(self):
+        """
+        When a State changes to done necessary startup and cleanup functions
+        are called and the current State is changed.
+        """
+        previous = self.state_stack.pop(0)
+        self.push_state(previous.next, previous.cleanup())
+
+    def pop_state(self):
+        """ Pop the currently running state.  The previously running state will resume.
+
+        :return:
+        """
+        try:
+            previous = self.state_stack.pop(0)
+            previous.shutdown()
+            if self.state_stack:
+                self.current_state.resume()
+        except IndexError:
+            print "Attempted to pop state when no state was active."
+            raise RuntimeError
+
+    def push_state(self, state_name, params=None):
         """ Start a state
 
         New stats will be created if there are none.
 
         :param state_name: name of state to start
-        :param persist: dictionary of data for state
-        :return: None
+        :param params: dictionary of data used to init the state
+        :param persist: dictionary of data for shared state
+        :return: instanced State
         """
-        if persist is None:
-            persist = self.create_new_persist()
-
         try:
             state = self.state_dict[state_name]
         except KeyError:
             print('Cannot find state: {}'.format(state_name))
             raise RuntimeError
 
+        previous = self.current_state
+        if previous is not None:
+            previous.pause()
+
         instance = state(self)
-        # instance.controller = self
-        instance.startup(self.current_time, persist)
+        instance.controller = self
+        instance.startup(self.current_time, params)
 
         self.state = instance
         self.state_name = state_name
+        self.state_stack.insert(0, instance)
 
-    def create_new_games_stats(self):
-        """ Create new dict suitable for use when creating CasinoPlayer
+        return instance
 
-        Dict will contain all stats from any game that logs stats
+    @property
+    def current_state(self):
+        """ The currently running state
 
-        :return: dict
+        :return: State
         """
-        stats = dict()
-
-        # if the stats system is desired, use the following code:
-        # for name, state in self.state_dict.items():
-        #     func = getattr(state, 'initialize_stats', None)
-        #     if func:
-        #         game_stats = func()
-        #         stats[name] = game_stats
-
-        return stats
-
-    @staticmethod
-    def create_persist_from_stats(stats):
-        persist = OrderedDict()
-        return persist
-
-    def create_new_persist(self):
-        """ Create new stats dictionary suitable for use as state persist
-
-        Default persist for all states will be new
-        Stats will be default from the states
-
-        :return: None
-        """
-        stats = self.create_new_games_stats()
-        return self.create_persist_from_stats(stats)
-
-    def flip_state(self):
-        """
-        When a State changes to done necessary startup and cleanup functions
-        are called and the current State is changed.
-        """
-        previous, self.state_name = self.state_name, self.state.next
-        persist = self.state.cleanup()
-        self.start_state(self.state_name, persist)
-
-
-class State(object):
-    """This is a prototype class for States.  All states should inherit from it.
-    No direct instances of this class should be created. get_event and update
-    must be overloaded in the child class.  startup and cleanup need to be
-    overloaded when there is data that must persist between States.
-
-    """
-    def __init__(self):
-        self.start_time = 0.0
-        self.current_time = 0.0
-        self.done = False
-        self.quit = False
-        self.next = None
-        self.previous = None
-        self.persist = {}
-        self.menu_blocking = False
-
-    def get_event(self, event):
-        """Processes events that were passed from the main event loop.
-        Must be overridden in children.
-
-        :param event: A pygame key event from pygame.event.get()
-
-        :type event: PyGame Event
-
-        :rtype: None
-        :returns: None
-
-        """
-        pass
-
-    def startup(self, current_time, persistant):
-        """Add variables passed in persistant to the proper attributes and
-        set the start time of the State to the current time.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-        """
-
-        self.persist = persistant
-        self.start_time = current_time
-
-    def shutdown(self):
-        """Called when State.done is set to True.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
-        pass
-
-    def cleanup(self):
-        """Add variables that should persist to the self.persist dictionary.
-        Then reset State.done to False.
-
-        :param None:
-
-        :rtype: Dictionary
-        :returns: Persist dictionary of variables.
-
-        """
-        self.done = False
-        self.shutdown()
-        return self.persist
-
-    def update(self, surface, keys, current_time):
-        """Update function for state.  Must be overloaded in children.
-
-        :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
-        :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
-        :rtype: None
-        :returns: None
-
-        **Examples:**
-
-        >>> surface
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
-
-        """
-        pass
+        try:
+            return self.state_stack[0]
+        except IndexError:
+            return None

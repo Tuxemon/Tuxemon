@@ -123,21 +123,6 @@ class START(state.State):
         self.fade = "in"            # Can be "in", "out", "waiting", or None
 
 
-    def cleanup(self):
-        """Add variables that should persist to the self.persist dictionary.
-        Then reset State.done to False.
-
-        :param None:
-
-        :rtype: Dictionary
-        :returns: Persist dictionary of variables.
-
-        """
-
-        self.done = False
-        return self.persist
-
-
     def update(self, screen, keys, current_time, time_delta):
         """Update function for state.
 

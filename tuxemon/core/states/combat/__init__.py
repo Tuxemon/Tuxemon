@@ -831,8 +831,7 @@ class Combat(state.State):
                     #self.game.event_engine.action.fadeout_music(self.game, [None, 1000])
                     event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
                     #self.game.event_engine.action.teleport(self.game, parameters)
-                    self.next = "WORLD"
-                    self.done = True
+                    self.control.pop_state()
 
 
             ### Fight Menu Events ###
@@ -1074,11 +1073,6 @@ class Combat(state.State):
 
             fadeout_music = self.game.event_engine.actions["fadeout_music"]["method"]
             fadeout_music(self.game, [None, 1000])
-
-            # Set the next scene we're going to switch to based on where we came from.
-            # Then set "self.done" to true to allow the scene manager to switch scenes.
-            self.next = self.previous
-            self.done = True
 
 
         #######################################################

@@ -4,7 +4,7 @@ import sys
 import os
 
 # for some test runners that cannot find the tuxemon core
-sys.path.insert(0, os.path.join('..', 'tuxemon'))
+sys.path.insert(0, os.path.join('tuxemon', ))
 
 from core.state import StateManager
 from core.state import State

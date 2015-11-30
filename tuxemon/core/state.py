@@ -95,7 +95,7 @@ class State(object):
         """
         pass
 
-    def reusme(self):
+    def resume(self):
         """ Called after state was paused, but is now at top of stack again
 
         :return:

@@ -45,6 +45,7 @@ def main():
     control = PygameControl(prepare.ORIGINAL_CAPTION)
     control.player1 = prepare.player1
     control.auto_state_discovery()
+    control.push_state("WORLD")
     control.push_state("START")
     control.main()
 

@@ -53,9 +53,6 @@ class START(state.State):
         # Initiate our common state properties.
         state.State.__init__(self, game)
 
-        # The scene to load next when this scene has been completed.
-        self.next = "WORLD"
-
         # Provide an instance of the scene manager to this scene.
         self.game = game            # The scene manger object
         self.state = "Splash"       # Can be Splash or Menu
@@ -168,7 +165,7 @@ class START(state.State):
         if event.type == pygame.KEYDOWN and self.state == "Splash":
             self.fade = None
             self.state = None
-            self.done = True
+            self.control.pop_state()
 
 
     def draw(self):
@@ -188,8 +185,7 @@ class START(state.State):
         if prepare.CONFIG.splash != "1":
                 self.fade = None
                 self.state = None
-                # Start the game after splash
-                self.done = True
+                self.control.pop_state()
 
         if self.state == "Splash":
             self.game.screen.blit(self.splash_pygame['surface'], self.splash_pygame['position'])
@@ -215,8 +211,7 @@ class START(state.State):
             if self.transition['alpha'] > 255:
                 self.fade = None
                 self.state = None
-                # Start the game after splash
-                self.done = True
+                self.control.pop_state()
 
         elif self.fade == "waiting":
             self.wait_time += self.game.time_passed_seconds

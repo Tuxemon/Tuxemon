@@ -137,6 +137,7 @@ class StateManager(object):
         """
         self.state_stack = list()
         self.state_dict = dict()
+        self.done = False
         self.current_time = 0.0
         self.package = ""
 
@@ -215,6 +216,10 @@ class StateManager(object):
             previous.shutdown()
             if self.state_stack:
                 self.current_state.resume()
+            else:
+                # TODO: make API for quiting the app main loop
+                self.done = True
+                self.exit = True
         except IndexError:
             print "Attempted to pop state when no state was active."
             raise RuntimeError

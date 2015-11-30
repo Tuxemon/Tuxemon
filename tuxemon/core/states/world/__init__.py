@@ -482,7 +482,6 @@ class WORLD(state.State):
             menu.visible = False
 
         # Clear our next screen and any combat related variables.
-        self.next = ""
         self.combat_started = False
         self.start_battle_transition = False
         self.battle_transition_in_progress = False
@@ -1174,11 +1173,7 @@ class WORLD(state.State):
                     " times. Stopping transition.")
                 self.battle_transition_in_progress = False
                 self.battle_flash_count = 0
-
-                # Set our next scene to be "COMBAT". Then, setting "self.done" to True
-                # will cause the scene manager to load the next scene.
-                self.next = "COMBAT"
-                self.done = True
+                self.control.pop_state()
 
             # Set the alpha of the screen and fill the screen with white at
             # that alpha level.

@@ -179,7 +179,8 @@ class Control(StateManager):
 
         """
         self.current_time = pg.time.get_ticks()
-        self.current_state.update(self.screen, self.keys, self.current_time, dt)
+        current_state = self.current_state  # deref here is required in cases where state changes during update
+        current_state.update(self.screen, self.keys, self.current_time, dt)
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
 
@@ -519,8 +520,7 @@ class Control(StateManager):
 
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and not menu.previous_menu:
             menu.menu_select_sound.play()
-            self.current_state.next = self.current_state.previous
-            self.flip_state()
+            self.pop_state()
 
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
             menu.menu_select_sound.play()
@@ -640,7 +640,8 @@ class Control(StateManager):
         :returns: map_name
 
         """
-        map_path = self.state_dict["WORLD"].current_map.filename
+        world = self.current_state
+        map_path = world.current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
         map_name = str(map_name.replace("resources/maps/", ""))
         return map_name

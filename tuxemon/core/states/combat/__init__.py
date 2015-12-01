@@ -58,7 +58,7 @@ logger = logging.getLogger(__name__)
 logger.debug("states.combat successfully imported")
 
 
-class Combat(state.State):
+class COMBAT(state.State):
     """ The state responsible for all combat related tasks and functions.
     """
 
@@ -80,8 +80,8 @@ class Combat(state.State):
         """
         from core.components import menu
 
-        self.players = []
-        self.combat_type = None         # Can be either "monster" or "trainer"
+        self.players = params["players"]
+        self.combat_type = params["combat_type"]         # Can be either "monster" or "trainer"
 
         self.current_players = {'player': {}, 'opponent': {}}
         # If we detected the players' health change, we need to animate it.
@@ -134,32 +134,35 @@ class Combat(state.State):
             self.party_icons[icon] = pygame.transform.scale(surface,
                 (surface.get_width() * prepare.SCALE, surface.get_height() * prepare.SCALE))
 
+        screen = self.game.screen
+        game = self.game
+
         # Bottom info menu
         self.info_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
 
         # Action Menu
-        self.action_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
+        self.action_menu = menu.Menu(screen, prepare.SCREEN_SIZE, game)
 
         # Fight menus
-        self.fight_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
-        self.fight_info_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
+        self.fight_menu = menu.Menu(screen, prepare.SCREEN_SIZE, game)
+        self.fight_info_menu = menu.Menu(screen, prepare.SCREEN_SIZE, game)
 
         # Item menus
         ItemMenu = menu.item_menu.ItemMenu
-        self.item_menu = ItemMenu(game.screen, prepare.SCREEN_SIZE, game)
+        self.item_menu = ItemMenu(screen, prepare.SCREEN_SIZE, game)
 
         # Monster Menu
         MonsterMenu = menu.monster_menu.MonsterMenu
-        self.monster_menu = MonsterMenu(game.screen, prepare.SCREEN_SIZE, game)
+        self.monster_menu = MonsterMenu(screen, prepare.SCREEN_SIZE, game)
 
         # Active Monster Menu
-        #self.active_monster_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
+        #self.active_monster_menu = menu.Menu(screen, prepare.SCREEN_SIZE, game)
 
         # Inactive Monster Menu
-        #self.inactive_monster_menu = menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
+        #self.inactive_monster_menu = menu.Menu(screen, prepare.SCREEN_SIZE, game)
 
         # Not yet implemented menu
-        self.not_implmeneted_menu =  menu.Menu(game.screen, prepare.SCREEN_SIZE, game)
+        self.not_implmeneted_menu =  menu.Menu(screen, prepare.SCREEN_SIZE, game)
 
         # List of all menus
         self.menus = [self.info_menu, self.action_menu, self.fight_menu, self.fight_info_menu,
@@ -270,8 +273,8 @@ class Combat(state.State):
 
         # Create an alias to our UI dictionary, game, and screen
         ui = self.ui
-        game = self.game
-        screen = game.screen
+        game = game
+        screen = screen
         screen_size = prepare.SCREEN_SIZE
 
         # Load the combat background surface
@@ -526,10 +529,10 @@ class Combat(state.State):
                 ui[item].update(time_delta)
 
         # Draw ALL OF THE THINGS
-        self.draw(self.game)
+        self.draw()
 
 
-    def draw(self, game):
+    def draw(self):
         """Draws all combat graphics to the screen including menus, battle sprites, animations, etc.
 
         :param game: The main game object that contains all the game's variables.
@@ -540,6 +543,8 @@ class Combat(state.State):
         :returns: None
 
         """
+        game = self.game
+        screen = self.game.screen
 
         # Keep an alias of our UI dictionary
         ui = self.ui
@@ -615,7 +620,7 @@ class Combat(state.State):
                     else:
                         party_icon_surface = self.party_icons['Ailment']
 
-                    game.screen.blit(party_icon_surface, party_icon_position)
+                    screen.blit(party_icon_surface, party_icon_position)
 
                     monster_number += 1
 
@@ -711,6 +716,7 @@ class Combat(state.State):
         :returns: None
 
         """
+        game = self.game
 
         # Handle menu events
 
@@ -730,10 +736,10 @@ class Combat(state.State):
             self.fight_menu.update_menu_selection(event)
 
         if self.item_menu.interactable:
-            self.item_menu.get_event(event, self.game)
+            self.item_menu.get_event(event, game)
 
         if self.monster_menu.interactable:
-            self.monster_menu.get_event(event, self.game)
+            self.monster_menu.get_event(event, game)
 
 
         # Handle key inputs.
@@ -794,11 +800,11 @@ class Combat(state.State):
                     #position_y = "3"
                     #parameters = [None, mapname + "," + position_x + "," + position_y]
 
-                    event_engine = self.game.event_engine
-                    #self.game.event_engine.action.fadeout_music(self.game, [None, 1000])
-                    event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
-                    #self.game.event_engine.action.teleport(self.game, parameters)
-                    self.game.pop_state()
+                    event_engine = game.event_engine
+                    #game.event_engine.action.fadeout_music(game, [None, 1000])
+                    event_engine.actions["fadeout_music"]["method"](game, [None, 1000])
+                    #game.event_engine.action.teleport(game, parameters)
+                    game.pop_state()
 
 
             ### Fight Menu Events ###
@@ -933,13 +939,14 @@ class Combat(state.State):
         ##############################################
         #               Health Animations            #
         ##############################################
+        game = self.game
         ui = self.ui
         players = self.current_players
 
         # If a monster has taken damage this frame, then start animating the health.
         for player_name, player in players.items():
             if player['monster_last_hp'] != player['monster'].current_hp:
-                self.game.rumble.rumble(-1, length=1)
+                game.rumble.rumble(-1, length=1)
                 logger.info("Player Health Change: " + str(player['monster_last_hp']) +
                     " -> " + str(player['monster'].current_hp))
 
@@ -1038,8 +1045,10 @@ class Combat(state.State):
         # Handle when all monsters in the player's party have fainted
         if (self.state == "lost" or self.state == "won" or self.state == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:
 
-            fadeout_music = self.game.event_engine.actions["fadeout_music"]["method"]
-            fadeout_music(self.game, [None, 1000])
+            fadeout_music = game.event_engine.actions["fadeout_music"]["method"]
+            fadeout_music(game, [None, 1000])
+
+            self.game.pop_state()
 
 
         #######################################################
@@ -1094,7 +1103,7 @@ class Combat(state.State):
          'player': <player.Player instance at 0x7f9d80977c20>}
 
         """
-
+        game = self.game
         screen = self.game.screen
 
         # If the player selected a technique, use the selected technique on the opposing monster.
@@ -1141,7 +1150,7 @@ class Combat(state.State):
                 images = player['monster'].moves[selected_move].images
                 self.ui['player_technique'] = UserInterface(images,
                                                             self.ui['opponent_monster_sprite'].position,
-                                                            self.game.screen,
+                                                            screen,
                                                             animation_speed=0.1)
                 self.ui['player_technique'].play()
 
@@ -1153,7 +1162,7 @@ class Combat(state.State):
                 images = player['monster'].moves[selected_move].images
                 self.ui['opponent_technique'] = UserInterface(images,
                                                             self.ui['player_monster_sprite'].position,
-                                                            self.game.screen,
+                                                            screen,
                                                             animation_speed=0.1)
                 self.ui['opponent_technique'].play()
 
@@ -1184,12 +1193,12 @@ class Combat(state.State):
             if "capture" in item_to_use.effect:
                 self.ui["capture"].visible = True
                 self.ui["capture"].move(self.ui["opponent_monster_sprite"].position, 1.)
-                if item_to_use.capture(item_target, self.game):
+                if item_to_use.capture(item_target, game):
                     self.state = "capturing success"
                 else:
                     self.state = "capturing fail"
             else:
-                item_to_use.use(item_target, self.game)
+                item_to_use.use(item_target, game)
 
 
             # Display a dialog showing that we used an item
@@ -1420,7 +1429,7 @@ if __name__ == "__main__":
             else:
                 self.scale = 1
 
-            self.combat = Combat(self)
+            self.combat = COMBAT(self)
 
             while True:
                 self.clock.tick()

@@ -43,6 +43,7 @@ from . import config
 logger = logging.getLogger(__name__)
 logger.debug("components.player successfully imported")
 
+
 # Class definition for the player.
 class Player(object):
     """A class for a player object. This object can be used for NPCs as well as the player:
@@ -170,7 +171,7 @@ class Player(object):
 
         # Round the player's tile position to an integer value. We test for collisions based on
         # an integer value.
-        player_pos = ( int(round(self.tile_pos[0])), int(round(self.tile_pos[1])) )
+        player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
 
 
         # *** Here we're continuing a move it we're in the middle of one already *** #
@@ -669,7 +670,7 @@ class Player(object):
 
     def get_adjacent_tiles(self, curr_loc, game):
         # Get a copy of the world state.
-        world = game.state_dict["WORLD"]
+        world = game.current_state
         blocked_directions = self.collision_check(curr_loc, world.collision_map, world.collision_lines_map)
         adj_tiles = []
         curr_loc = (int(round(curr_loc[0])),int(round(curr_loc[1])))
@@ -682,6 +683,7 @@ class Player(object):
         if "right" not in blocked_directions:
             adj_tiles.append((curr_loc[0]+1,curr_loc[1]))
         return adj_tiles
+
 
 class Npc(Player):
     def __init__(self, sprite_name="maple", name="Maple"):

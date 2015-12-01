@@ -61,7 +61,8 @@ class Npc(object):
         """
 
         # Loop through the NPC list and see if the name matches any in the list
-        for npc in game.state_dict["WORLD"].npcs:
+        world = game.current_state
+        for npc in world.npcs:
             if npc.name == condition["parameters"]:
                 return True
 
@@ -100,7 +101,8 @@ class Npc(object):
         npc_location = None
 
         # First, find the NPC by name
-        for item in game.state_dict["WORLD"].npcs:
+        world = game.current_state
+        for item in world.npcs:
             if item.name == npc_name:
                 npc = item      # We found the NPC!
 

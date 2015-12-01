@@ -59,8 +59,7 @@ class PCMenu(Menu):
             self.game.current_state.multiplayer_menu.interactable = True
             self.game.current_state.pc_menu.interactable = False
         elif self.menu_items[self.selected_menu_item] == "LOG OFF":
-            self.game.current_state.next = self.game.current_state.previous
-            self.game.flip_state()
+            self.game.pop_state()
 
 
 

@@ -204,14 +204,6 @@ class StateManager(object):
         """
         return self.state_dict.copy()
 
-    def flip_state(self):
-        """
-        When a State changes to done necessary startup and cleanup functions
-        are called and the current State is changed.
-        """
-        previous = self.state_stack.pop(0)
-        self.push_state(previous.next, previous.cleanup())
-
     def pop_state(self):
         """ Pop the currently running state.  The previously running state will resume.
 
@@ -220,12 +212,14 @@ class StateManager(object):
         try:
             previous = self.state_stack.pop(0)
             previous.shutdown()
+
             if self.state_stack:
                 self.current_state.resume()
             else:
                 # TODO: make API for quiting the app main loop
                 self.done = True
                 self.exit = True
+
         except IndexError:
             print "Attempted to pop state when no state was active."
             raise RuntimeError

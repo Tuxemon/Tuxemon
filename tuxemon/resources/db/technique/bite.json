@@ -1,14 +1,14 @@
 {
-    "animation": "watershot",
+    "animation": "teeth",
     "sfx": "blaster1.ogg",
     "category": "physical",
     "effects": [
         "damage"
     ], 
-    "id": 3, 
-    "name": "Water Shot", 
+    "id": 4, 
+    "name": "Bite", 
     "power": 50, 
     "types": [
-        "Water"
+        "Normal"
     ]
 }

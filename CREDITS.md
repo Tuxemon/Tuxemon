@@ -122,6 +122,12 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 * ["Eyenemy"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Dollfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Magmaturtle"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 * ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 

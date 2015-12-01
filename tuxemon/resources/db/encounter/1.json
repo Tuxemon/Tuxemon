@@ -64,6 +64,14 @@
                 1, 
                 6
             ]
+        },
+        {
+            "monster_id": 9, 
+            "encounter_rate": 1, 
+            "level_range": [
+                1, 
+                6
+            ]
         }
     ]
 }

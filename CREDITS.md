@@ -145,6 +145,14 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
 [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
+* ["Sumobug"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 
 Maps
 ------

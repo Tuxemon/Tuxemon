@@ -162,6 +162,9 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Pigabyte"](https://forum.tuxemon.org/viewtopic.php?id=72) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 
 Maps
 ------

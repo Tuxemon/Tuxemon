@@ -169,7 +169,7 @@ class ItemMenu(Menu):
 
     def get_event(self, event, game):
         # Handle when the player presses "ESC".
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_menu:
 
             # If the "ESC" key was pressed while the decision menu was up, close it.
             if self.decision_menu.visible:
@@ -190,7 +190,7 @@ class ItemMenu(Menu):
 
 
         # Handle when the player presses "ENTER"
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN: #and len(self.menu_items) > 0:
+        elif event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action: #and len(self.menu_items) > 0:
             # Decision Menu
             if self.decision_menu.interactable:
                 if self.decision_menu.menu_items[self.decision_menu.selected_menu_item] == "Cancel":
@@ -240,7 +240,7 @@ class ItemMenu(Menu):
                     self.item_list.interactable = False
 
         # Handle when the player presses "Up"
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        elif event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_up:
 
             # Handle the decision submenu.
             if self.decision_menu.interactable:
@@ -262,7 +262,7 @@ class ItemMenu(Menu):
 
 
         # Handle when the player presses "Down"
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        elif event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_down:
 
             # Handle the decision submenu.
             if self.decision_menu.interactable:

@@ -571,7 +571,7 @@ class World(tools._State):
 
         # If the not implemented window is open, send pygame events to it.
         if self.not_implmeneted_menu.interactable:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
                 self.not_implmeneted_menu.visible = False
                 self.not_implmeneted_menu.interactable = False
 
@@ -590,7 +590,7 @@ class World(tools._State):
         if self.dialog_window.visible:
             self.dialog_window.get_event(event)
             self.menu_blocking = True
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
                 logger.info("Closing dialog window!")
                 self.dialog_window.state = "closing"
                 self.menu_blocking = False
@@ -612,7 +612,7 @@ class World(tools._State):
             self.exit = True
             self.game.exit = True
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_menu:
             if self.main_menu.visible and self.main_menu.interactable:
                 logger.info("Closing main menu!")
                 self.main_menu.state = "closing"
@@ -637,16 +637,16 @@ class World(tools._State):
             if event.type == pygame.KEYDOWN:
                 # If we receive an arrow key press, set the facing and
                 # moving direction to that direction
-                if event.key == pygame.K_UP:
+                if event.key == prepare.CONFIG.key_up:
                     self.player1.direction["up"] = True
                     self.player1.facing = "up"
-                if event.key == pygame.K_DOWN:
+                if event.key == prepare.CONFIG.key_down:
                     self.player1.direction["down"] = True
                     self.player1.facing = "down"
-                if event.key == pygame.K_LEFT:
+                if event.key == prepare.CONFIG.key_left:
                     self.player1.direction["left"] = True
                     self.player1.facing = "left"
-                if event.key == pygame.K_RIGHT:
+                if event.key == prepare.CONFIG.key_right:
                     self.player1.direction["right"] = True
                     self.player1.facing = "right"
                 if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
@@ -656,16 +656,16 @@ class World(tools._State):
             if event.type == pygame.KEYUP:
                     # If the player lets go of the key, set the moving
                     # direction to false
-                    if event.key == pygame.K_UP:
+                    if event.key == prepare.CONFIG.key_up:
                         self.player1.direction["up"] = False
 
-                    if event.key == pygame.K_DOWN:
+                    if event.key == prepare.CONFIG.key_down:
                         self.player1.direction["down"] = False
 
-                    if event.key == pygame.K_LEFT:
+                    if event.key == prepare.CONFIG.key_left:
                         self.player1.direction["left"] = False
 
-                    if event.key == pygame.K_RIGHT:
+                    if event.key == prepare.CONFIG.key_right:
                         self.player1.direction["right"] = False
 
             self.game.client.set_key_condition(event)

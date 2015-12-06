@@ -43,14 +43,14 @@ class MainMenu(Menu):
         if len(self.menu_items) > 0:
             self.line_spacing = (self.size_y / len(self.menu_items)) - self.font_size
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_down:
             self.selected_menu_item += 1
             if self.selected_menu_item > len(self.menu_items) -1:
                 self.selected_menu_item = 0
 
             self.menu_select_sound.play()
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_up:
             self.selected_menu_item -= 1
             if self.selected_menu_item < 0:
                 self.selected_menu_item = len(self.menu_items) -1
@@ -59,7 +59,7 @@ class MainMenu(Menu):
 
 
         # If the player presses Enter while a menu item is selected
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
             self.menu_select_sound.play()
 
             if self.menu_items[self.selected_menu_item] == "JOURNAL":

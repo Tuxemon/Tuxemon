@@ -747,7 +747,7 @@ class Combat(tools._State):
 
         # If the not implemented window is open, send pygame events to it.
         if self.not_implmeneted_menu.interactable:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
                 self.not_implmeneted_menu.visible = False
                 self.not_implmeneted_menu.interactable = False
 
@@ -768,7 +768,7 @@ class Combat(tools._State):
 
 
         # Handle key inputs.
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_menu:
             if self.fight_menu.visible:
                 self.fight_menu.visible = False
                 self.fight_menu.interactable = False
@@ -778,7 +778,7 @@ class Combat(tools._State):
 
 
         # If the player presses Enter while a menu item is selected
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_action:
 
             ### Action Menu Events ###
             if self.action_menu.interactable:
@@ -1470,7 +1470,7 @@ if __name__ == "__main__":
                         sys.exit()
 
                     # Exit the game if you press ESC
-                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    if event.type == pygame.KEYDOWN and event.key == prepare.CONFIG.key_menu:
                         pygame.quit()
                         sys.exit()
 

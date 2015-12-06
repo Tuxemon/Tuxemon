@@ -448,35 +448,6 @@ class COMBAT(state.State):
         pprint.pprint(ui)
 
 
-    def shutdown(self):
-        """Called when combat ends to clean up the previous combat variables.
-
-        :param: None
-
-        :rtype: None
-        :returns: None
-
-        """
-        self.players = []
-        self.combat_type = None
-        self.current_players = {'player': {}, 'opponent': {}}
-        self.current_players['player']['health_changed'] = False
-        self.current_players['opponent']['health_changed'] = False
-        self.turn_in_progress = False
-        self.status_check_in_progress = False
-        self.status_check_completed = False
-        self.decision_phase = True
-        self.action_phase = False
-
-        self.action_menu.interactable = True
-        self.action_menu.visible = True
-        self.info_menu.visible = True
-        self.info_menu.text = "  "
-        self.info_menu.elapsed_time = self.info_menu.delay  # Reset the window delay
-
-        self.state = "decision phase"
-
-
     def update(self, screen, keys, current_time, time_delta):
         """The primary game loop that executes all game functions every frame.
 
@@ -793,19 +764,7 @@ class COMBAT(state.State):
 
                     # Exit combat for now. In the future, we'll check for trainer battle and do a
                     # roll, etc.
-
-                    # Teleport the player and end combat
-                    #mapname = "pallet_town-room.tmx"
-                    #position_x = "1"
-                    #position_y = "3"
-                    #parameters = [None, mapname + "," + position_x + "," + position_y]
-
-                    event_engine = game.event_engine
-                    #game.event_engine.action.fadeout_music(game, [None, 1000])
-                    event_engine.actions["fadeout_music"]["method"](game, [None, 1000])
-                    #game.event_engine.action.teleport(game, parameters)
-                    game.pop_state()
-
+                    self.end_combat()
 
             ### Fight Menu Events ###
             elif self.fight_menu.interactable:
@@ -1044,11 +1003,7 @@ class COMBAT(state.State):
 
         # Handle when all monsters in the player's party have fainted
         if (self.state == "lost" or self.state == "won" or self.state == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:
-
-            fadeout_music = game.event_engine.actions["fadeout_music"]["method"]
-            fadeout_music(game, [None, 1000])
-
-            self.game.pop_state()
+            self.end_combat()
 
 
         #######################################################
@@ -1395,6 +1350,14 @@ class COMBAT(state.State):
         self.ui[player_mon_name].position = [
         self.ui[player_hp_ui].position[0] + (14 * prepare.SCALE),
         self.ui[player_hp_ui].position[1] + (6 * prepare.SCALE)]
+
+    def end_combat(self):
+        # TODO: End combat differently depending on winning or losing
+        event_engine = self.game.event_engine
+        event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
+        self.game.pop_state()
+
+
 
 
 if __name__ == "__main__":

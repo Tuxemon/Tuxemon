@@ -268,9 +268,13 @@ class Combat(object):
             npc.ai = ai.AI()
 
             # Add our players and start combat
-            game.push_state("COMBAT", params={
+            #game.push_state("COMBAT", params={
+            #    'players': (player1, npc),
+            #    'combat_type': "monster"})
+            game.push_state("TRANSITION", params={
                 'players': (player1, npc),
-                'combat_type': "monster"})
+                'combat_type': "monster",
+                'screen': game.screen})
 
             # TODO: transition
             game.current_state.start_battle_transition = True

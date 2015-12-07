@@ -1,0 +1,14 @@
+{
+    "animation": "spike",
+    "sfx": "blaster1.ogg",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ], 
+    "id": 1, 
+    "name": "Pound", 
+    "power": 50, 
+    "types": [
+        "Normal"
+    ]
+}

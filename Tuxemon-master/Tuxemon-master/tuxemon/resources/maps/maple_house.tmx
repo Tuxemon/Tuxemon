@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="10">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="66">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJyTZGBgYCIDS0IxLxkYpleCDAzTq0QGhunVJQOP6h06esnFAJT2Gc0=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DoAFYamg0ABNgABg==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUgAAAAwwAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="1" type="collision" x="0" y="192" width="240" height="16"/>
+  <object id="2" type="collision" x="224" y="48" width="16" height="144"/>
+  <object id="3" type="collision" x="0" y="48" width="16" height="144"/>
+  <object id="4" type="collision" x="0" y="0" width="240" height="48"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="9" name="Go Outside" type="event" x="112" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,33,44,0.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

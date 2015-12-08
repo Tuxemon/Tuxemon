@@ -531,6 +531,8 @@ class TuxemonClient():
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
                 world = self.game.get_world_state()
+                if not world:
+                    return
                 world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
 
@@ -856,8 +858,10 @@ def update_client(sprite, char_dict, game):
 
     """
     world = game.get_world_state()
-    for item in char_dict:
+    if not world:
+        return
 
+    for item in char_dict:
         sprite.__dict__[item] = char_dict[item]
 
         # Get the pixel position of our tile position.

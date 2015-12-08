@@ -608,7 +608,10 @@ class Control(StateManager):
         :returns: None
 
         """
-        world = self.current_state
+        world = self.get_world_state()
+        if not world:
+            return
+
         world.npcs = []
         world.npcs_off_map = []
         for client in registry:
@@ -640,12 +643,20 @@ class Control(StateManager):
         :returns: map_name
 
         """
-        world = self.current_state
+        world = self.get_world_state()
+        if not world:
+            return
+
         map_path = world.current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
         map_name = str(map_name.replace("resources/maps/", ""))
         return map_name
 
+    def get_world_state(self):
+        for state in self.state_stack:
+            if state.__module__ == "core.states.world":
+                return state
+        return None
 
 class PygameControl(Control):
     pass

@@ -30,7 +30,6 @@
 """This module contains the PC Menu
 """
 from core.components.menu import Menu
-from core import prepare
 
 
 class PCMenu(Menu):

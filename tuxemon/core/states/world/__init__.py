@@ -367,25 +367,6 @@ class WORLD(state.State):
         # the middle of a transition.
         self.delayed_facing = None
 
-        # Variables used for battle transition animation. The battle
-        # transition animation works by filling the screen with white at a
-        # certain alpha level to create flashing.
-        self.start_battle_transition = False    # Kick-off the transition.
-        self.battle_transition_in_progress = False
-
-        # Set the alpha level that the white screen will have.
-        self.battle_transition_alpha = 0
-
-        # Set the number of times the screen will flash before starting combat
-        self.max_battle_flash_count = 6
-
-        # Keep track of the current number of flashes that have passed
-        self.battle_flash_count = 0
-
-        # Either "up" or "down" indicating whether we are adding or
-        # subtracting alpha levels.
-        self.battle_flash_state = "up"
-
         ######################################################################
         #                          Collision Map                             #
         ######################################################################
@@ -454,12 +435,6 @@ class WORLD(state.State):
         for menu in self.menus:
             menu.interactable = False
             menu.visible = False
-
-        # Clear our next screen and any combat related variables.
-        self.combat_started = False
-        self.start_battle_transition = False
-        self.battle_transition_in_progress = False
-
 
     def update(self, screen, keys, current_time, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -1107,52 +1082,6 @@ class WORLD(state.State):
         :returns: None
 
         """
-
-        if self.start_battle_transition:
-            logger.info("Initializing battle transition")
-            self.game.rumble.rumble(-1, length=1.5)
-            self.battle_transition_in_progress = True
-            self.transition_surface = pygame.Surface(self.resolution)
-            self.transition_surface.fill((255, 255, 255))
-            self.start_battle_transition = False
-
-            # Stop player map movement
-            self.menu_blocking = True
-
-        if self.battle_transition_in_progress:
-            logger.info("Battle transition!")
-
-            flash_time = 0.2  # Time in seconds between flashes
-
-            # self.battle_transition_alpha
-            if self.battle_flash_state == "up":
-                self.battle_transition_alpha += (
-                    255 * ((self.time_passed_seconds) / flash_time))
-
-            elif self.battle_flash_state == "down":
-                self.battle_transition_alpha -= (
-                    255 * ((self.time_passed_seconds) / flash_time))
-
-            if self.battle_transition_alpha >= 255:
-                self.battle_flash_state = "down"
-                self.battle_flash_count += 1
-            elif self.battle_transition_alpha <= 0:
-                self.battle_flash_state = "up"
-                self.battle_flash_count += 1
-
-            # If we've hit our max number of flashes, stop the battle
-            # transition animation.
-            if self.battle_flash_count > self.max_battle_flash_count:
-                logger.info("Flashed " + str(self.battle_flash_count) +
-                    " times. Stopping transition.")
-                self.battle_transition_in_progress = False
-                self.battle_flash_count = 0
-                self.game.pop_state()
-
-            # Set the alpha of the screen and fill the screen with white at
-            # that alpha level.
-            self.transition_surface.set_alpha(self.battle_transition_alpha)
-            self.screen.blit(self.transition_surface, (0, 0))
 
         # FUCKIN' MATH! 0 = NO ALPHA NOT 255 DAMNIT BILLY!
         # if the value of start_transition event is set to true

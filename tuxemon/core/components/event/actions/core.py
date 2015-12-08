@@ -232,5 +232,4 @@ class Core(object):
 
         # Don't override previous state if we are still in the state.
         if game.state_name != action[1]:
-            game.pop_state()
             game.push_state(action[1])

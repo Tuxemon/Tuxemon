@@ -458,7 +458,7 @@ class TuxemonClient():
 
         if self.client.registered and not self.populated:
             self.game.isclient = True
-            self.game.state_dict["PC"].multiplayer_join_success_menu.text = ["Success!"]
+            self.game.current_state.multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
 
         self.check_notify()
@@ -530,7 +530,8 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                self.game.state_dict["WORLD"].handle_interaction(event_data, self.client.registry)
+                world = self.game.get_world_state()
+                world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
 
     def join_multiplayer(self, time_delta):
@@ -611,7 +612,7 @@ class TuxemonClient():
         """
         if not event_type in self.event_list:
             self.event_list[event_type] = 0
-        pd = self.game.state_dict["WORLD"].player1.__dict__
+        pd = prepare.player1.__dict__
         map_name = self.game.get_map_name()
         event_data = {"type": event_type,
                       "event_number": self.event_list[event_type],
@@ -646,7 +647,7 @@ class TuxemonClient():
         """
         if not event_type in self.event_list:
             self.event_list[event_type] = 0
-        pd = self.game.state_dict["WORLD"].player1.__dict__
+        pd = prepare.player1.__dict__
         map_name = self.game.get_map_name()
         event_data = {"type": event_type,
                       "event_number": self.event_list[event_type],
@@ -771,7 +772,7 @@ class TuxemonClient():
         for client_id in self.client.registry:
             if self.client.registry[client_id]["sprite"] == sprite: cuuid = client_id
 
-        pd = self.game.state_dict["WORLD"].player1.__dict__
+        pd = prepare.player1.__dict__
         event_data = {"type": event_type,
                       "event_number": self.event_list[event_type],
                       "interaction": interaction,
@@ -854,18 +855,19 @@ def update_client(sprite, char_dict, game):
     :returns: None
 
     """
+    world = game.get_world_state()
     for item in char_dict:
 
         sprite.__dict__[item] = char_dict[item]
 
         # Get the pixel position of our tile position.
         if item == "tile_pos":
-            tile_size = game.state_dict["WORLD"].tile_size
+            tile_size = prepare.TILE_SIZE
             position = [char_dict["tile_pos"][0] * tile_size[0],
                         char_dict["tile_pos"][1] * tile_size[1]
                         ]
-            global_x = game.state_dict["WORLD"].global_x
-            global_y = game.state_dict["WORLD"].global_y
+            global_x = world.global_x
+            global_y = world.global_y
             abs_position = [position[0] + global_x, position[1] + (global_y-tile_size[1])]
             sprite.__dict__["position"] = abs_position
 

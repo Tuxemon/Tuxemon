@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
-# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
+# Copyright (C) 2015, William Edwards <shadowapex@gmail.com>,
 #                     Benjamin Bean <superman2k5@gmail.com>
 #
 # This file is part of Tuxemon.
@@ -25,7 +25,7 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# core.states.start Handles the splash screen and start menu.
+# core.states.transition Handles the battle transition.
 #
 #
 
@@ -42,7 +42,7 @@ logger.debug("states.transition successfully imported")
 
 
 class TRANSITION(state.State):
-    """ The state responsible for the splash screen and start menu.
+    """ The state responsible for the battle transitions.
     """
 
     def startup(self, params=None):

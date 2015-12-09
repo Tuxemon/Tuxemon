@@ -134,15 +134,10 @@ class Combat(object):
             npc.monsters.append(current_monster)
 
         # Add our players and start combat
-        #game.state_dict["WORLD"].combat_started = True
-
-        # Add our players and start combat
-        game.push_state("COMBAT", params={
+        game.push_state("TRANSITION", params={
             'players': (game.player1, npc),
-            'combat_type': "trainer"})
-
-        # TODO: transition
-        # game.current_state.start_battle_transition = True
+            'combat_type': "trainer",
+            'screen': game.screen})
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -172,12 +167,10 @@ class Combat(object):
             return False
 
         # Add our players and start combat
-        game.push_state("COMBAT", params={
+        game.push_state("TRANSITION", params={
             'players': (game.player1, npc),
-            'combat_type': "trainer"})
-
-        # TODO: transition
-        # game.state_dict["WORLD"].start_battle_transition = True
+            'combat_type': "trainer",
+            'screen': game.screen})
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -268,12 +261,10 @@ class Combat(object):
             npc.ai = ai.AI()
 
             # Add our players and start combat
-            game.push_state("COMBAT", params={
+            game.push_state("TRANSITION", params={
                 'players': (player1, npc),
-                'combat_type': "monster"})
-
-            # TODO: transition
-            game.current_state.start_battle_transition = True
+                'combat_type': "monster",
+                'screen': game.screen})
 
             # Start some music!
             filename = "147066_pokemon.ogg"
@@ -283,8 +274,6 @@ class Combat(object):
             game.current_music["song"] = filename
 
             # Stop the player's movement
-            # TODO: menu blocking
-            # game.state_dict["WORLD"].menu_blocking = True
             player1.moving = False
             player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
 

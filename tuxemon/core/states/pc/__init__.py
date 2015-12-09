@@ -38,7 +38,7 @@ from core.components.menu import pc_menu
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.start successfully imported")
+logger.debug("states.successfully imported")
 
 
 class PC(state.State):
@@ -46,8 +46,6 @@ class PC(state.State):
     """
 
     def startup(self, params=None):
-        from core.components import menu
-
         # Provide an instance of the scene manager to this scene.
         self.previous_menu = None
         self.menu_blocking = True
@@ -143,7 +141,6 @@ class PC(state.State):
             menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
             menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
 
-
     def update(self, screen, keys, current_time, time_delta):
         """Update function for state.
 
@@ -168,9 +165,7 @@ class PC(state.State):
         435
 
         """
-
         self.draw()
-
 
     def get_event(self, event):
         """Processes events that were passed from the main event loop.
@@ -201,7 +196,6 @@ class PC(state.State):
         elif self.pc_menu.interactable:
             self.game.get_menu_event(self.pc_menu, event)
 
-
     def draw(self):
         """Draws the start screen to the screen.
 
@@ -218,19 +212,18 @@ class PC(state.State):
         self.pc_menu.draw_textItem(
                 ["MULTIPLAYER", "LOG OFF"])
 
-
         if self.multiplayer_menu.visible:
             self.multiplayer_menu.draw()
             self.multiplayer_menu.draw_textItem(
                 ["JOIN", "HOST"])
 
-
         if self.multiplayer_join_menu.visible:
             self.multiplayer_join_menu.draw()
             self.multiplayer_join_menu.draw_textItem(self.game.client.server_list)
 
-            # If no options are selected because there were no items when the menu was populated,
-            # and there are items in the list to select, set the selected item to the top of the list.
+            # If no options are selected because there were no items when
+            # the menu was populated, and there are items in the list to
+            # select, set the selected item to the top of the list.
             if self.multiplayer_join_menu.selected_menu_item <= 0 and \
             len(self.multiplayer_join_menu.menu_items) > 0:
                 self.multiplayer_join_menu.selected_menu_item = 0
@@ -242,8 +235,3 @@ class PC(state.State):
         if self.multiplayer_host_menu.visible:
             self.multiplayer_host_menu.draw()
             self.multiplayer_host_menu.draw_textItem(self.multiplayer_host_menu.text)
-
-
-
-
-

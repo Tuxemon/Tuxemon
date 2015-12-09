@@ -65,6 +65,5 @@ def headless():
     control.auto_state_discovery()
 
     # patch the control to use the headless world
-    control.state_dict["WORLD"] = control.state_dict["HEADLESS"]
-    control.push_state("WORLD")
+    control.push_state("HEADLESS")
     control.main()

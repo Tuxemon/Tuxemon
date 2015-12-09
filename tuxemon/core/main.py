@@ -48,7 +48,6 @@ def main():
     control.push_state("WORLD")
     control.push_state("START")
     control.main()
-
     pygame.quit()
 
 
@@ -63,7 +62,5 @@ def headless():
 
     control = HeadlessControl()
     control.auto_state_discovery()
-
-    # patch the control to use the headless world
     control.push_state("HEADLESS")
     control.main()

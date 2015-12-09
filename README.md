@@ -31,24 +31,20 @@ Installation
 **Ubuntu**
 
 ```sh
-
 sudo apt-get install python python-pygame python-pip python-imaging git
 sudo pip install pytmx
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon
 ./tuxemon.py
-
 ```
 
 *Optional rumble support*
 
 ```sh
-
 sudo apt-get install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
 make; make install
-
 ```
 
 **Mac OS X (Yosemite)**
@@ -65,12 +61,11 @@ pip install hg+http://bitbucket.org/pygame/pygame
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon
 ulimit -n 10000; python tuxemon.py
-
 ```
 
 **Smartphones**
 
-[![Get it on Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=naman14.timber)
+* [Android](http://www.tuxemon.org/files/tuxemon-devel.apk) (APK file)
 
 Controls
 --------------

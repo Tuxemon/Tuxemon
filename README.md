@@ -7,12 +7,10 @@ Tuxemon is a free, open source monster-fighting RPG.
 
 ![screenshot](http://www.tuxemon.org/images/featurette-01.png)
 
-
 Version
 ----
 
 0.3
-
 
 Requirements
 -----------
@@ -26,7 +24,6 @@ Tuxemon uses a number of open source projects to work properly:
 *Optional*
 
 * *libShake* - rumble library for Linux.
-
 
 Installation
 --------------
@@ -71,6 +68,9 @@ ulimit -n 10000; python tuxemon.py
 
 ```
 
+**Smartphones**
+
+[![Get it on Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=naman14.timber)
 
 Controls
 --------------
@@ -80,22 +80,6 @@ Controls
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
 
-
 ##### Map Editor
 
 Use *Tiled* map editor: http://www.mapeditor.org/
-
-
-License
-----
-
-GNU v3
-
-Copyright (C) 2015 William Edwards <shadowapex@gmail.com>,  
-Benjamin Bean <superman2k5@gmail.com>
-
-This software is distributed under the GNU General Public Licence as published
-by the Free Software Foundation.  See the file LICENCE for the conditions
-under which this software is made available.  Tuxemon also contains code from
-other sources.
-

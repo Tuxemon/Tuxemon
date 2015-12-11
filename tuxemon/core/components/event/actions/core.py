@@ -199,8 +199,7 @@ class Core(object):
         game.event_engine.button = button
 
     def change_state(self, game, action):
-
-        """Pauses the event engine until specified button is pressed
+        """Changes to the specified state.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -212,9 +211,9 @@ class Core(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: button
+        Valid Parameters: state_name
 
-        * button (str): pygame key to wait for
+        * state_name (str): The state name to switch to.
 
         **Examples:**
 
@@ -233,3 +232,34 @@ class Core(object):
         # Don't override previous state if we are still in the state.
         if game.state_name != action[1]:
             game.push_state(action[1])
+
+
+    def call_event(self, game, action):
+        """Executes the specified event's actions by id.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: event_id
+
+        * event_id (int): The tmx id of the event to call.
+
+        **Examples:**
+
+        >>> action
+        ('call_event', '2')
+
+        """
+        event_engine = game.event_engine
+        events = game.events
+
+        for e in events:
+            if e['id'] == int(action[1]):
+                event_engine.execute_action(e['acts'], game)

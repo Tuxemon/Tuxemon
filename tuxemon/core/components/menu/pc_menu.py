@@ -112,7 +112,7 @@ class Multiplayer_Menu(Menu):
 
                 while not self.game.client.client.registered:
                     self.game.client.client.autodiscover(autoregister=False)
-                    if self.game.client.client.discovered_servers > 0:
+                    if len(self.game.client.client.discovered_servers) > 0:
                         for ip, port in self.game.client.client.discovered_servers:
                             for interface in self.game.client.interfaces:
                                 if ip == self.game.client.interfaces[interface]:

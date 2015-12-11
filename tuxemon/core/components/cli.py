@@ -135,7 +135,7 @@ class CommandLine(cmd.Cmd):
 
         """
 
-        print "Tuxemon\nCopyright (C) 2014, William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>"
+        print("Tuxemon\nCopyright (C) 2014, William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>")
 
 
     def do_credits(self, line):
@@ -163,8 +163,8 @@ class CommandLine(cmd.Cmd):
 
         """
 
-        print "Available variables:"
-        print "self.pp.pprint(self.__dict__)"
+        print("Available variables:")
+        print("self.pp.pprint(self.__dict__)")
         self.pp.pprint(self.__dict__)
         code.interact(local=locals())
 

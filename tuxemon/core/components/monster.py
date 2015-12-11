@@ -316,13 +316,13 @@ class Monster(object):
             self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
 
         # Display stats each time they are calculated
-        """print "---- Level: %s ----" % self.level
-        print "HP:", self.hp
-        print "Attack:", self.attack
-        print "Defense:", self.defense
-        print "Speed:", self.speed
-        print "Spc Atk:", self.special_attack
-        print "Spc Def:", self.special_defense
+        """print("---- Level: %s ----" % self.level)
+        print("HP:", self.hp)
+        print("Attack:", self.attack)
+        print("Defense:", self.defense)
+        print("Speed:", self.speed)
+        print("Spc Atk:", self.special_attack)
+        print("Spc Def:", self.special_defense)
         """
 
     def level_up(self):
@@ -549,7 +549,7 @@ class Technique(object):
             damage = ((level_modifier * attack_modifier) / float(target.special_defense)) / 50.
             target.current_hp -= int(damage)
 
-        print self.name, "Damage:", int(damage)
+        print(self.name, "Damage:", int(damage))
 
 
     def poison(self, user, target):
@@ -596,9 +596,9 @@ if __name__ == "__main__":
     mytuxemon.moves[0].use(user=mytuxemon, target=othertux)
     othertux.moves[0].use(user=othertux, target=mytuxemon)
 
-    print ""
-    print "MyTux"
+    print("")
+    print("MyTux")
     pprint.pprint(mytuxemon.__dict__)
-    print ""
-    print "OtherTux"
+    print("")
+    print("OtherTux")
     pprint.pprint(othertux.__dict__)

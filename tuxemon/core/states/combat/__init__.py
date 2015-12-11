@@ -839,7 +839,7 @@ class COMBAT(state.State):
         for player_name, player in self.current_players.items():
             party_ui = self.ui[player_name + '_party_bg']
             party_ui.move(party_ui.closed_position, 0.5)
-            print "Closed position for " + player_name + ":", party_ui.closed_position
+            print("Closed position for " + player_name + ":", party_ui.closed_position)
 
         # Determine which monster goes first based on the speed of the monsters.
         if players['player']['monster'].speed >= players['opponent']['monster'].speed:
@@ -990,12 +990,12 @@ class COMBAT(state.State):
         if ("capturing" in self.state) and self.info_menu.elapsed_time > self.info_menu.delay:
 
             if self.state == "capturing success":
-                print "Capturing %s!!!" % players['opponent']['monster'].name
+                print("Capturing %s!!!" % players['opponent']['monster'].name)
                 self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0
                 self.state = "captured"
             elif self.state == "capturing fail":
-                print "Could not capture %s!" % players['opponent']['monster'].name
+                print("Could not capture %s!" % players['opponent']['monster'].name)
                 self.info_menu.text = "%s broke free!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0
                 ui["capture"].visible = False
@@ -1027,7 +1027,7 @@ class COMBAT(state.State):
                 self.turn_order.pop(0)      # Remove the player from the turn list.
 
         #elif self.info_menu.elapsed_time < self.info_menu.delay:
-        #    print "  Waiting %f seconds for window delay" % (self.info_menu.delay - self.info_menu.elapsed_time)
+        #    print("  Waiting %f seconds for window delay" % (self.info_menu.delay - self.info_menu.elapsed_time))
 
 
     def perform_action(self, player):
@@ -1362,7 +1362,7 @@ class COMBAT(state.State):
 
 if __name__ == "__main__":
 
-    print "Runs as standalone"
+    print("Runs as standalone")
 
     from core.components import config
 

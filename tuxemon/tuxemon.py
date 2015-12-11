@@ -47,9 +47,9 @@ if __name__ == '__main__':
     opts, args = getopt.getopt(sys.argv[1:], "hs", ["help", "server"])
     for opt, arg in opts:
         if opt == '-h':
-            print sys.argv[0], '[--server]'
-            print "  -h              Display this help message"
-            print "  -s, --headless  Start a headless server"
+            print(sys.argv[0], '[--server]')
+            print("  -h              Display this help message")
+            print("  -s, --headless  Start a headless server")
             sys.exit()
         elif opt in ("-s", "--server"):
             server = True

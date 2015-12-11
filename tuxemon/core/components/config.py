@@ -28,15 +28,19 @@
 # core.components.config Configuration parser.
 #
 #
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
-import ConfigParser, pygame
+import pygame
 
 class Config(object):
     """Handles loading of the configuration file for the primary game and map editor.
 
     """
     def __init__(self, file="tuxemon.cfg"):
-        self.config = ConfigParser.ConfigParser()
+        self.config = configparser.ConfigParser()
         self.config.read(file)
         
         self.resolution_x = self.config.get("display", "resolution_x")
@@ -88,7 +92,7 @@ class HeadlessConfig(object):
     """Handles loading of the configuration file for the headless server.
     """
     def __init__(self, file="tuxemon.cfg"):
-        self.config = ConfigParser.ConfigParser()
+        self.config = configparser.ConfigParser()
         self.config.read(file)
 
         self.cli = int(self.config.get("game", "cli_enabled"))

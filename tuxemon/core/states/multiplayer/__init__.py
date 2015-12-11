@@ -30,40 +30,29 @@
 """This module contains the Headless Server state.
 """
 import logging
-import os
-import sys
-import pprint
 
-from .. import tools, prepare
+from core import prepare
+from core.states import world
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
-class Headless(tools._State):
-    """The module responsible for the headless server.
 
-    :param game: The scene manager object that contains all the game's variables.
-    :type game: core.tools.Control
-
+class HEADLESS(world.WORLD):
+    """ The state responsible for the headless server world state.
     """
 
-    def __init__(self, game):
-        
-        # Initiate our common state properties.
-        tools._State.__init__(self)
-        
-        self.game = game
-        
+    def startup(self, params=None):
         # Set the native tile size so we know how much to scale
         self.tile_size = prepare.TILE_SIZE
- 
+
         # Set the status icon size so we know how much to scale
         self.icon_size = prepare.ICON_SIZE
- 
+
         # Get the screen's resolution
         self.resolution = prepare.SCREEN_SIZE
- 
+
         # Native resolution is similar to the old gameboy resolution. This is
         # used for scaling.
         self.native_resolution = prepare.NATIVE_RESOLUTION
@@ -72,10 +61,9 @@ class Headless(tools._State):
         # Set the tiles and mapsize variables
         self.tiles = []
         self.map_size = []
-        
+
         self.global_x = 0
         self.global_y = 0
-        
+
         self.npcs = []
         self.npcs_off_map = []
-        

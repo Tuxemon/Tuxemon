@@ -39,7 +39,7 @@ class Npc(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -61,7 +61,8 @@ class Npc(object):
         """
 
         # Loop through the NPC list and see if the name matches any in the list
-        for npc in game.state_dict["WORLD"].npcs:
+        world = game.current_state
+        for npc in world.npcs:
             if npc.name == condition["parameters"]:
                 return True
 
@@ -75,7 +76,7 @@ class Npc(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -100,7 +101,8 @@ class Npc(object):
         npc_location = None
 
         # First, find the NPC by name
-        for item in game.state_dict["WORLD"].npcs:
+        world = game.current_state
+        for item in world.npcs:
             if item.name == npc_name:
                 npc = item      # We found the NPC!
 

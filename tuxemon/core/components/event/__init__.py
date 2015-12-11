@@ -30,8 +30,9 @@
 #
 
 import logging
-import pygame
 import traceback
+
+import pygame
 
 from core import prepare
 from core.components import plugin
@@ -46,6 +47,7 @@ class EventEngine(object):
     been met and then executes a set of actions.
 
     """
+
     def __init__(self):
 
         # Load all the available conditions and actions as plugins.
@@ -61,7 +63,6 @@ class EventEngine(object):
         self.wait = 0.0
         self.button = None
 
-
     def check_conditions(self, game, dt):
         """Checks a list of conditions to see if any of them have been met.
 
@@ -70,7 +71,7 @@ class EventEngine(object):
             :py:func:`core.components.map.Map.loadevents` to see the format of the list.
         :param dt: Amount of time passed in seconds since last frame.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type game.event_conditions: List
         :type dt: Float
 
@@ -124,7 +125,6 @@ class EventEngine(object):
                     self.state = "running"
                     self.button = None
 
-
     def execute_action(self, action_list, game):
         """Executes a particular action in a list of actions.
 
@@ -132,7 +132,7 @@ class EventEngine(object):
         :param game: The main game object that contains all the game's variables.
 
         :type action_list: List
-        :type game: core.tools.Control
+        :type game: core.control.Control
 
         Here is an example of what an action list might look like:
 
@@ -159,6 +159,7 @@ class EventEngine(object):
                 logger.error(message)
                 traceback.print_exc()
 
+
 class Condition(object):
     """Condition object to be created from an imported TMX map file.
 
@@ -174,6 +175,7 @@ class Condition(object):
         "type": "button_pressed"
     }
     """
+
     def __init__(self, cond_type, operator, parameters, width, height, x, y):
         self.type = cond_type
         self.operator = operator
@@ -183,6 +185,7 @@ class Condition(object):
         self.x = x
         self.y = y
 
+
 class Action(object):
     """Action object created from an import imported TMX map file.
 
@@ -190,6 +193,7 @@ class Action(object):
 
     [(u'teleport', u'example.map,1,1', 1, 1), (u'teleport', u'test.map,4,3', 2, 2)]
     """
+
     def __init__(self, action_type, parameters, x, y):
         self.type = action_type
         self.parameters = parameters.split(',')

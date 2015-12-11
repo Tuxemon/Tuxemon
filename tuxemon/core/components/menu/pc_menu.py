@@ -30,21 +30,20 @@
 """This module contains the PC Menu
 """
 from core.components.menu import Menu
-from core import prepare
 
 
 class PCMenu(Menu):
-    
+
     def __init__(self, screen, resolution, game, name="PC Menu"):
 
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, game, name)
         self.delay = 0.5
         self.elapsed_time = self.delay
-        
-           
+
+
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control 
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -54,28 +53,27 @@ class PCMenu(Menu):
 
         """
         if self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
-            self.game.state.multiplayer_menu.previous_menu = self
-            self.game.state.multiplayer_menu.visible = True
-            self.game.state.multiplayer_menu.interactable = True
-            self.game.state.pc_menu.interactable = False
+            self.game.current_state.multiplayer_menu.previous_menu = self
+            self.game.current_state.multiplayer_menu.visible = True
+            self.game.current_state.multiplayer_menu.interactable = True
+            self.game.current_state.pc_menu.interactable = False
         elif self.menu_items[self.selected_menu_item] == "LOG OFF":
-            self.game.state.next = self.game.state.previous
-            self.game.flip_state()
-        
-        
+            self.game.pop_state()
+
+
 
 class Multiplayer_Menu(Menu):
-    
+
     def __init__(self, screen, resolution, game, name="MULTIPLAYER"):
-        
+
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, game, name)
         self.delay = 0.5
         self.elapsed_time = self.delay
-    
-    
+
+
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control 
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -84,34 +82,34 @@ class Multiplayer_Menu(Menu):
         :returns: None
 
         """
-        
+
         if self.menu_items[self.selected_menu_item] == "JOIN":
             if not self.game.ishost:
-                self.game.state.multiplayer_join_menu.previous_menu = self
-                self.game.state.multiplayer_join_menu.visible = True
-                self.game.state.multiplayer_join_menu.interactable = True
-                self.game.state.multiplayer_menu.interactable = False
+                self.game.current_state.multiplayer_join_menu.previous_menu = self
+                self.game.current_state.multiplayer_join_menu.visible = True
+                self.game.current_state.multiplayer_join_menu.interactable = True
+                self.game.current_state.multiplayer_menu.interactable = False
                 self.game.client.enable_join_multiplayer = True
                 self.game.client.listening = True
                 self.game.client.client.listen()
             else:
-                return False    
-                   
+                return False
+
         elif self.menu_items[self.selected_menu_item] == "HOST":
             if not self.game.isclient:
-                self.game.state.multiplayer_host_menu.previous_menu = self
-                self.game.state.multiplayer_host_menu.visible = True
-                self.game.state.multiplayer_host_menu.interactable = True
-                self.game.state.multiplayer_menu.interactable = False
+                self.game.current_state.multiplayer_host_menu.previous_menu = self
+                self.game.current_state.multiplayer_host_menu.visible = True
+                self.game.current_state.multiplayer_host_menu.interactable = True
+                self.game.current_state.multiplayer_menu.interactable = False
                 self.game.ishost = True
                 self.game.server.server.listen()
                 self.game.server.listening = True
-                
+
                 # Enable the client and auto join our own game.
                 self.game.client.enable_join_multiplayer = True
                 self.game.client.client.listen()
                 self.game.client.listening = True
-                
+
                 while not self.game.client.client.registered:
                     self.game.client.client.autodiscover(autoregister=False)
                     if self.game.client.client.discovered_servers > 0:
@@ -120,24 +118,24 @@ class Multiplayer_Menu(Menu):
                                 if ip == self.game.client.interfaces[interface]:
                                     game = (ip, port)
                                     self.game.client.client.register(game)
-            
+
             else:
                 return False
 
 
 
 class Multiplayer_Join_Menu(Menu):
-    
+
     def __init__(self, screen, resolution, game, name="JOIN"):
-        
+
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, game, name)
         self.delay = 0.5
         self.elapsed_time = self.delay
-        
-    
+
+
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control 
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -147,32 +145,32 @@ class Multiplayer_Join_Menu(Menu):
 
         """
         try:
-            self.game.client.selected_game = (self.menu_items[self.selected_menu_item], 
+            self.game.client.selected_game = (self.menu_items[self.selected_menu_item],
                                        self.game.client.available_games[self.menu_items[self.selected_menu_item]])
         except IndexError:
             pass
-        
+
         if self.game.client.selected_game:
-            self.game.state.multiplayer_join_success_menu.previous_menu = self
-            self.game.state.multiplayer_join_success_menu.visible = True
-            self.game.state.multiplayer_join_success_menu.interactable = True
-            self.game.state.multiplayer_join_menu.interactable = False
+            self.game.current_state.multiplayer_join_success_menu.previous_menu = self
+            self.game.current_state.multiplayer_join_success_menu.visible = True
+            self.game.current_state.multiplayer_join_success_menu.interactable = True
+            self.game.current_state.multiplayer_join_menu.interactable = False
 
 
 
 class Multiplayer_Join_Success_Menu(Menu):
-    
+
     def __init__(self, screen, resolution, game, name="SUCCESS"):
-        
+
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, game, name)
         self.delay = 0.5
         self.elapsed_time = self.delay
         self.text = ["Joining. Please wait..."]
-        
-    
+
+
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control 
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -182,13 +180,13 @@ class Multiplayer_Join_Success_Menu(Menu):
 
         """
         return False
-            
-            
-            
+
+
+
 class Multiplayer_Host_Menu(Menu):
-    
+
     def __init__(self, screen, resolution, game, name="HOSTING"):
-        
+
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, game, name)
         self.delay = 0.5
@@ -196,10 +194,10 @@ class Multiplayer_Host_Menu(Menu):
         self.text = ["Server started:"]
         for ip in self.game.server.ips:
             self.text.append(ip)
-    
-    
+
+
     def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.tools.Control 
+        """Run once a menu item has been selected by the core.control.Control
         get_menu_event() function
 
         :param None:
@@ -209,6 +207,5 @@ class Multiplayer_Host_Menu(Menu):
 
         """
         return False
-            
-            
-        
+
+

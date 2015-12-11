@@ -27,6 +27,8 @@
 import logging
 import random
 
+# from core import prepare
+
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
@@ -47,7 +49,7 @@ class Combat(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -132,11 +134,10 @@ class Combat(object):
             npc.monsters.append(current_monster)
 
         # Add our players and start combat
-        game.state_dict["COMBAT"].players.append(game.player1)
-        game.state_dict["COMBAT"].players.append(npc)
-        game.state_dict["COMBAT"].combat_type = "trainer"
-        #game.state_dict["WORLD"].combat_started = True
-        game.state_dict["WORLD"].start_battle_transition = True
+        game.push_state("TRANSITION", params={
+            'players': (game.player1, npc),
+            'combat_type': "trainer",
+            'screen': game.screen})
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -152,7 +153,7 @@ class Combat(object):
         :param game: The main game object that contains all the game's variables.
         :param npc: The NPC to fight if fighting a specific character.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type npc: core.components.player.Npc
 
         :rtype: None
@@ -165,17 +166,17 @@ class Combat(object):
         if not self.check_battle_legal(npc):
             return False
 
-
         # Add our players and start combat
-        game.state_dict["COMBAT"].players.append(game.player1)
-        game.state_dict["COMBAT"].players.append(npc)
-        game.state_dict["COMBAT"].combat_type = "trainer"
-        game.state_dict["WORLD"].start_battle_transition = True
+        game.push_state("TRANSITION", params={
+            'players': (game.player1, npc),
+            'combat_type': "trainer",
+            'screen': game.screen})
 
         # Start some music!
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
 
+        prepare = game.imports['prepare']
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
 
@@ -190,7 +191,7 @@ class Combat(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -205,7 +206,6 @@ class Combat(object):
         db = game.imports["db"]
         monster = game.imports["monster"]
         player = game.imports["player"]
-
 
         player1 = game.player1
 
@@ -261,10 +261,10 @@ class Combat(object):
             npc.ai = ai.AI()
 
             # Add our players and start combat
-            game.state_dict["COMBAT"].players.append(player1)
-            game.state_dict["COMBAT"].players.append(npc)
-            game.state_dict["COMBAT"].combat_type = "monster"
-            game.state_dict["WORLD"].start_battle_transition = True
+            game.push_state("TRANSITION", params={
+                'players': (player1, npc),
+                'combat_type': "monster",
+                'screen': game.screen})
 
             # Start some music!
             filename = "147066_pokemon.ogg"
@@ -274,7 +274,6 @@ class Combat(object):
             game.current_music["song"] = filename
 
             # Stop the player's movement
-            game.state_dict["WORLD"].menu_blocking = True
             player1.moving = False
             player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
 

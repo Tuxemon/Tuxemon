@@ -33,30 +33,26 @@
 import logging
 import pygame
 import math
-import pprint
 
 # Import Tuxemon internal libraries
-import core.components.networking as networking
-from .. import tools, prepare
-from ..components import map
+from core import prepare
+from core import state
+from core.components import map
+from core.components import networking
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-class World(tools._State):
 
-    def __init__(self, game):
-        # Initiate our common state properties.
-        tools._State.__init__(self)
+class WORLD(state.State):
+    """ The state responsible for the world game play
+    """
 
-        # For some reason, importing menu only works here.
-        from ..components import menu
-
-        # Provide an instance of our scene manager to this scene.
-        self.game = game
+    def startup(self, params=None):
+        from core.components import menu
 
         # Provide access to the screen surface
-        self.screen = game.screen
+        self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
 
         # Set the native tile size so we know how much to scale
@@ -371,25 +367,6 @@ class World(tools._State):
         # the middle of a transition.
         self.delayed_facing = None
 
-        # Variables used for battle transition animation. The battle
-        # transition animation works by filling the screen with white at a
-        # certain alpha level to create flashing.
-        self.start_battle_transition = False    # Kick-off the transition.
-        self.battle_transition_in_progress = False
-
-        # Set the alpha level that the white screen will have.
-        self.battle_transition_alpha = 0
-
-        # Set the number of times the screen will flash before starting combat
-        self.max_battle_flash_count = 6
-
-        # Keep track of the current number of flashes that have passed
-        self.battle_flash_count = 0
-
-        # Either "up" or "down" indicating whether we are adding or
-        # subtracting alpha levels.
-        self.battle_flash_state = "up"
-
         ######################################################################
         #                          Collision Map                             #
         ######################################################################
@@ -406,7 +383,7 @@ class World(tools._State):
         #                          Event Engine                              #
         ######################################################################
 
-        # Get a copy of the event engine from core.tools.Control.
+        # Get a copy of the event engine from core.control.Control.
         self.event_engine = self.game.event_engine
 
         # Set the currently loaded map. This is needed because the event
@@ -453,40 +430,11 @@ class World(tools._State):
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
 
-    def startup(self, current_time, persistant):
-        """This is called every time the scene manager switches to this scene.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
-
         # Allow player movement and make all menus invisible.
         self.menu_blocking = False
         for menu in self.menus:
             menu.interactable = False
             menu.visible = False
-
-        # Clear our next screen and any combat related variables.
-        self.next = ""
-        self.combat_started = False
-        self.start_battle_transition = False
-        self.battle_transition_in_progress = False
-
 
     def update(self, screen, keys, current_time, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -1135,56 +1083,6 @@ class World(tools._State):
 
         """
 
-        if self.start_battle_transition:
-            logger.info("Initializing battle transition")
-            self.game.rumble.rumble(-1, length=1.5)
-            self.battle_transition_in_progress = True
-            self.transition_surface = pygame.Surface(self.resolution)
-            self.transition_surface.fill((255, 255, 255))
-            self.start_battle_transition = False
-
-            # Stop player map movement
-            self.menu_blocking = True
-
-        if self.battle_transition_in_progress:
-            logger.info("Battle transition!")
-
-            flash_time = 0.2  # Time in seconds between flashes
-
-            # self.battle_transition_alpha
-            if self.battle_flash_state == "up":
-                self.battle_transition_alpha += (
-                    255 * ((self.time_passed_seconds) / flash_time))
-
-            elif self.battle_flash_state == "down":
-                self.battle_transition_alpha -= (
-                    255 * ((self.time_passed_seconds) / flash_time))
-
-            if self.battle_transition_alpha >= 255:
-                self.battle_flash_state = "down"
-                self.battle_flash_count += 1
-            elif self.battle_transition_alpha <= 0:
-                self.battle_flash_state = "up"
-                self.battle_flash_count += 1
-
-            # If we've hit our max number of flashes, stop the battle
-            # transition animation.
-            if self.battle_flash_count > self.max_battle_flash_count:
-                logger.info("Flashed " + str(self.battle_flash_count) +
-                    " times. Stopping transition.")
-                self.battle_transition_in_progress = False
-                self.battle_flash_count = 0
-
-                # Set our next scene to be "COMBAT". Then, setting "self.done" to True
-                # will cause the scene manager to load the next scene.
-                self.next = "COMBAT"
-                self.done = True
-
-            # Set the alpha of the screen and fill the screen with white at
-            # that alpha level.
-            self.transition_surface.set_alpha(self.battle_transition_alpha)
-            self.screen.blit(self.transition_surface, (0, 0))
-
         # FUCKIN' MATH! 0 = NO ALPHA NOT 255 DAMNIT BILLY!
         # if the value of start_transition event is set to true
         if self.start_transition:
@@ -1380,7 +1278,8 @@ class World(tools._State):
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
-                        pd = self.game.state_dict["WORLD"].player1.__dict__
+                        world = self.game.current_state
+                        pd = world.player1.__dict__
                         event_data = {"type": "CLIENT_INTERACTION",
                                       "interaction": "START_DUEL",
                                       "target": [event_data["target"]],
@@ -1390,5 +1289,5 @@ class World(tools._State):
                                                     }
 
                                       }
-                        self.game.game.server.notify_client_interaction(cuuid, event_data)
+                        self.game.server.notify_client_interaction(cuuid, event_data)
 

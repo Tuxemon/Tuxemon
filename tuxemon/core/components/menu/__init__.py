@@ -552,7 +552,7 @@ class Menu(UserInterface):
             text. *Default: False*
 
         :type events: pygame.event
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type input_allowed: Boolean
 
         :rtype: None
@@ -576,7 +576,7 @@ class Menu(UserInterface):
         ...         entername_menu.draw_textItem(entername_menu.letters, entername_menu.columns)  # Draw each individual selectable text item
         ...
         ...         if entername_menu.interactable:                                                 # Handle the user's input to update the selected menu item
-        ...             entername_menu.update_menu_selection(pygame.event.get(), core.tools.Control, input_allowed=True)
+        ...             entername_menu.update_menu_selection(pygame.event.get(), core.control.Control, input_allowed=True)
 
 
         .. image:: images/menu/update_menu_selections.png
@@ -995,12 +995,12 @@ class Menu(UserInterface):
         menu item). By default this function does nothing.
 
         :param event: -- An optional pygame event from pygame.event.get() passed by
-            core.tools.Control get_menu_event() or a custom funtion.
+            core.control.Control get_menu_event() or a custom funtion.
         :param game: -- An optional instance of the game itself so the variables can be directly
             manipulated if needed.
 
         :type events: List
-        :type game: core.tools.Control
+        :type game: core.control.Control
 
         :rtype: None
         :returns: None

@@ -172,7 +172,7 @@ class Monster(object):
         self.hp_modifier = (
             results["hp_mod"] - 1,
             results["hp_mod"],
-            results["hp_mod"] + 1 
+            results["hp_mod"] + 1
             )
         self.attack_modifier = (
             results["attack_mod"] - 1,
@@ -283,14 +283,14 @@ class Monster(object):
             self.level_up()
 
     def set_stats(self):
-        """Sets the monsters initial stats, or imporves stats 
+        """Sets the monsters initial stats, or imporves stats
         when called during a level up. If this is being called
         when the game is creating a monster, it should be looped
         through. Once for each level of the monster being created.
 
         :rtype: None
         :returns: None
-        
+
         **Example:**
 
 
@@ -315,7 +315,7 @@ class Monster(object):
         self.special_defense += int(
             self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
 
-        # Display stats each time they are calculated 
+        # Display stats each time they are calculated
         """print "---- Level: %s ----" % self.level
         print "HP:", self.hp
         print "Attack:", self.attack
@@ -362,9 +362,9 @@ class Monster(object):
         self.level = level
         self.total_experience = self.experience_required_modifier * self.level ** 3
 
-        count = 0 
+        count = 0
 
-        # For each level between 1 and current, calculate stats 
+        # For each level between 1 and current, calculate stats
         while count < self.level:
             count += 1
             self.set_stats()

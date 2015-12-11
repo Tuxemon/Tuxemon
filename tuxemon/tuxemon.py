@@ -38,10 +38,9 @@ To run an individual component (e.g. core/prepare.py):
 `python -m core.prepare`
 
 """
-
 import sys
 import getopt
-from core.main import main
+
 
 if __name__ == '__main__':
     server = False
@@ -58,9 +57,9 @@ if __name__ == '__main__':
     if server:
         from core.main import headless
         headless()
+
     else:
-        import pygame
+        from core.main import main
         main()
-        pygame.quit()
 
     sys.exit()

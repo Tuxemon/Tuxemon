@@ -45,7 +45,7 @@ class Sound(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -73,7 +73,7 @@ class Sound(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -105,7 +105,7 @@ class Sound(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -134,7 +134,7 @@ class Sound(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None

@@ -44,11 +44,11 @@ def save(player, slot, game):
 
     :param player: The player object that contains data to save.
     :param slot: The save slot to save the data to.
-    :param game: The core.tools.Control object that runs the game.
+    :param game: The core.control.Control object that runs the game.
 
     :type player: core.components.player.Player
     :type slot: Integer
-    :type game: core.tools.Control
+    :type game: core.control.Control
 
     :rtype: None
     :returns: None
@@ -71,8 +71,8 @@ def save(player, slot, game):
     saveFile['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     logger.info("Saving data to save file: " + pformat(saveFile))
     saveFile.close()
-    
-    
+
+
 def load(slot):
     """Loads game state data from a shelved save file.
 
@@ -90,20 +90,20 @@ def load(slot):
 
     saveFile = shelve.open('saves/slot' + str(slot) + '.save')
     saveData = {}
-    
+
     saveData['game_variables'] = saveFile['game_variables']
     saveData['tile_pos'] = saveFile['tile_pos']
     saveData['inventory'] = saveFile['inventory']
     saveData['current_map'] = saveFile['current_map']
     saveData['player_name'] = saveFile['player_name']
     saveData['time'] = saveFile['time']
-    
+
     return saveData
 
 
 if __name__ == "__main__":
     saveFile = shelve.open('saves/slot2.save')
-    
+
     # Create save file
     saveFile['game_variables'] = {"battle_won": "yes"}
     saveFile['tile_pos'] = (1,2)
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     saveFile['player_name'] = "Blue"
     saveFile['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     saveFile.close()
-    
+
     # Load save file
     print load(1)
 

@@ -21,11 +21,13 @@
     "moveset": [
         {
             "level_learned": 2, 
-            "technique_id": 1
+            "technique_id": 4,
+            "technique": "Bite"
         }, 
         {
             "level_learned": 2, 
-            "technique_id": 2
+            "technique_id": 2,
+            "technique": "Poison Sting"
         }
     ], 
     "name": "Fruitera", 

@@ -122,6 +122,15 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 * ["Eyenemy"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Dollfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Magmaturtle"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Axylightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 * ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
@@ -144,6 +153,21 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 * ["Kelvin Buildings"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by 
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
 [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Sumobug"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Pigabyte"](https://forum.tuxemon.org/viewtopic.php?id=72) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 
 Maps

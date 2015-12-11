@@ -21,11 +21,8 @@
     "moveset": [
         {
             "level_learned": 2, 
-            "technique_id": 1
-        }, 
-        {
-            "level_learned": 2, 
-            "technique_id": 2
+            "technique_id": 1,
+            "technique": "Pound"
         }
     ], 
     "name": "Bolt", 

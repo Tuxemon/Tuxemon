@@ -1,14 +1,14 @@
 {
-    "animation": "powerslash",
+    "animation": "watershot",
     "sfx": "blaster1.ogg",
     "category": "physical",
     "effects": [
         "damage"
     ], 
-    "id": 1, 
-    "name": "Pound", 
+    "id": 3, 
+    "name": "Water Shot", 
     "power": 50, 
     "types": [
-        "Normal"
+        "Water"
     ]
 }

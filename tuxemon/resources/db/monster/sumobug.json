@@ -1,5 +1,5 @@
 {
-    "id": 2, 
+    "id":   9,
 
     "attack_base":            60, 
     "defense_base":           7, 
@@ -26,16 +26,16 @@
         }, 
         {
             "level_learned": 2, 
-            "technique_id": 4,
-            "technique": "Bite"
+            "technique_id": 2,
+            "technique": "Poison Sting"
         }
     ], 
-    "name": "Rockitten", 
+    "name": "Sumobug", 
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/rockitten-front.png", 
-        "battle2": "resources/gfx/sprites/battle/rockitten-back.png", 
-        "menu1": "resources/gfx/sprites/battle/rockitten-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/rockitten-menu02.png"
+        "battle1": "resources/gfx/sprites/battle/sumobug-front.png", 
+        "battle2": "resources/gfx/sprites/battle/sumobug-back.png", 
+        "menu1": "resources/gfx/sprites/battle/sumobug-menu01.png", 
+        "menu2": "resources/gfx/sprites/battle/sumobug-menu02.png"
     }, 
     "types": [
         "earth"

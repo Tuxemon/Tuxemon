@@ -1,5 +1,5 @@
 {
-    "id": 2, 
+    "id":   12,
 
     "attack_base":            60, 
     "defense_base":           7, 
@@ -25,20 +25,20 @@
             "technique": "Pound"
         }, 
         {
-            "level_learned": 2, 
-            "technique_id": 4,
-            "technique": "Bite"
+            "level_learned": 1, 
+            "technique_id": 3,
+            "technique": "Water Shot"
         }
     ], 
-    "name": "Rockitten", 
+    "name": "Axylightl", 
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/rockitten-front.png", 
-        "battle2": "resources/gfx/sprites/battle/rockitten-back.png", 
-        "menu1": "resources/gfx/sprites/battle/rockitten-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/rockitten-menu02.png"
+        "battle1": "resources/gfx/sprites/battle/axylightl-front.png", 
+        "battle2": "resources/gfx/sprites/battle/axylightl-back.png", 
+        "menu1": "resources/gfx/sprites/battle/axylightl-menu01.png", 
+        "menu2": "resources/gfx/sprites/battle/axylightl-menu02.png"
     }, 
     "types": [
-        "earth"
+        "water"
     ], 
     "weight": 25
 }

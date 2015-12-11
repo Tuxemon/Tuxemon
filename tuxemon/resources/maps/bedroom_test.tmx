@@ -62,30 +62,16 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="11" name="Get Fruitera" type="event" x="128" y="112" width="16" height="16">
+  <object id="11" name="Get Fruitera" type="event" x="144" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster Fruitera,10"/>
     <property name="act2" value="dialog Recieved Fruitera!"/>
     <property name="act3" value="add_item Capture Device"/>
     <property name="act4" value="add_item Potion"/>
     <property name="act5" value="add_item Capture Device"/>
-    <property name="cond1" value="is player_at 8,7"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is party_size less_than,1"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="12" name="Get Fruitera" type="event" x="144" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_monster Fruitera,10"/>
-    <property name="act2" value="dialog Recieved Fruitera!"/>
-    <property name="act3" value="add_item Capture Device"/>
-    <property name="act4" value="add_item Potion"/>
-    <property name="act5" value="add_item Capture Device"/>
-    <property name="cond1" value="is player_at 9,6"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is party_size less_than,1"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

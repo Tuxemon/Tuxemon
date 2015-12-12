@@ -600,6 +600,8 @@ class TuxemonClient():
                 # Populate list of detected servers
                 self.available_games[ip] = port
 
+            print(self.client.discovered_servers)
+
         for item in self.available_games.items():
             self.server_list.append(item[0])
 

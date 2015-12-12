@@ -152,7 +152,7 @@ class StateManager(object):
         """
         state_folder = os.path.join(*self.package.split('.'))
         exclude_endings = (".py", ".pyc", "__pycache__")
-        for folder in os.listdir("tuxemon/" + state_folder):
+        for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
                 continue
             for state in self.collect_states_from_path(folder):

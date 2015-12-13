@@ -51,6 +51,7 @@ def main():
     if prepare.CONFIG.splash == "1":
         control.push_state("FADE_OUT_TRANSITION")
         control.push_state("START")
+        control.push_state("FADE_IN_TRANSITION")
 
     control.main()
     pygame.quit()

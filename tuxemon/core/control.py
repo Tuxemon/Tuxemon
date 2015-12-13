@@ -50,6 +50,7 @@ class Control(StateManager):
         self.package = "core.states"
         self.state_dict = dict()
         self.state_stack = list()
+        self._current_state_requires_resume = True
 
         # TODO: do something about the world state clobbering this attribute
         self.events = list()
@@ -180,6 +181,11 @@ class Control(StateManager):
         """
         self.current_time = pg.time.get_ticks()
         current_state = self.current_state  # deref here is required in cases where state changes during update
+
+        if self._current_state_requires_resume:
+            self._current_state_requires_resume = False
+            current_state.resume()
+
         current_state.update(self.screen, self.keys, self.current_time, dt)
         if self.config.controller_overlay == "1":
             self.controller.draw(self)

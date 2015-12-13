@@ -106,7 +106,7 @@ class State(object):
         * state will begin to accept player input
         * could be called several times over lifetime of state
 
-        Example uses: starting music, playing state transition, open menu
+        Example uses: starting music, open menu, starting animations, timers, etc
         """
         pass
 
@@ -150,6 +150,7 @@ class StateManager(object):
         self.done = False
         self.current_time = 0.0
         self.package = ""
+        self._current_state_requires_resume = False
 
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
@@ -269,6 +270,8 @@ class StateManager(object):
         instance = state(self)
         instance.controller = self
         instance.startup(params)
+
+        self._current_state_requires_resume = True
 
         self.state_stack.insert(0, instance)
 

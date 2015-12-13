@@ -31,6 +31,7 @@ class FadeTransitionBase(State):
         self.original_surface = self.game.screen.copy()
         self.transition_surface = pygame.Surface(size)
         self.transition_surface.fill(self.color)
+        self.animations.add(Task(self.game.pop_state, self.state_duration))
         self.create_fade_animation()
 
     @abstractmethod
@@ -64,15 +65,13 @@ class FadeTransitionBase(State):
 
 class FADE_OUT_TRANSITION(FadeTransitionBase):
     def create_fade_animation(self):
-        task = Task(self.game.pop_state, self.state_duration)
         ani = Animation(set_alpha=255, initial=0, duration=self.fade_duration)
         ani.start(self.transition_surface)
-        self.animations.add(ani, task)
+        self.animations.add(ani)
 
 
 class FADE_IN_TRANSITION(FadeTransitionBase):
     def create_fade_animation(self):
-        task = Task(self.game.pop_state, self.state_duration)
         ani = Animation(set_alpha=0, initial=255, duration=self.fade_duration)
         ani.start(self.transition_surface)
-        self.animations.add(ani, task)
+        self.animations.add(ani)

@@ -46,7 +46,12 @@ def main():
     control.player1 = prepare.player1
     control.auto_state_discovery()
     control.push_state("WORLD")
-    control.push_state("START")
+
+    # Show the splash screen if it is enabled in the game configuration
+    if prepare.CONFIG.splash == "1":
+        control.push_state("FADE_OUT_TRANSITION")
+        control.push_state("START")
+
     control.main()
     pygame.quit()
 

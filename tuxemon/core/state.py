@@ -1,8 +1,13 @@
 import inspect
 import os
 import sys
+import logging
 from abc import ABCMeta, abstractmethod
 from importlib import import_module
+
+# Create a logger for optional handling of debug messages.
+logger = logging.getLogger(__name__)
+logger.debug("{} successfully imported".format(__name__))
 
 
 class State(object):
@@ -32,12 +37,11 @@ class State(object):
         :param control: State Manager / Control / Game... all the same
         :return: None
         """
-        self.game = control   # TODO: rename 'game' to 'control'
+        self.game = control   # TODO: rename 'game' to 'control'?
         self.start_time = 0.0
         self.current_time = 0.0
         self.menu_blocking = False
 
-    @abstractmethod
     def get_event(self, event):
         """ Processes events that were passed from the main event loop.
         Must be overridden in children.
@@ -164,7 +168,17 @@ class StateManager(object):
         :param state: any subclass of core.state.State
         """
         name = state.__name__
-        if name in self.state_dict:
+
+        # this tests if a state has already been imported under
+        # the same name.  This will happen if importing states
+        # to be used as a subclass.  Since the name and state
+        # object are the same, just continue without error.
+        previously_reg_state = self.state_dict.get(name, None)
+        if previously_reg_state == state:
+            return
+
+        if previously_reg_state is not None:
+            print self.state_dict
             print('Duplicate state detected: {}'.format(name))
             raise RuntimeError
         self.state_dict[name] = state
@@ -172,11 +186,19 @@ class StateManager(object):
     @staticmethod
     def collect_states_from_module(import_name):
         """ Given a module, return all classes in it that are a game state
+
+        Abstract Base Classes, those whose metaclass is abc.ABCMeta, will
+        not be included in the state dictionary.
         """
+        import abc
         classes = inspect.getmembers(sys.modules[import_name], inspect.isclass)
-        state_classes = [i[1] for i in classes if issubclass(i[1], State)]
-        for state in state_classes:
-            yield state
+
+        for c in classes:
+            c = c[1]
+
+            if issubclass(c, State):
+                print c
+                yield c
 
     def collect_states_from_path(self, folder):
         """ Load a state from disk, but do not register it

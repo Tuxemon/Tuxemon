@@ -133,11 +133,13 @@ class Combat(object):
             # Add our monster to the NPC's party
             npc.monsters.append(current_monster)
 
-        # Add our players and start combat
-        game.push_state("TRANSITION", params={
+        # Add our players and setup combat
+        game.push_state("COMBAT", params={
             'players': (game.player1, npc),
-            'combat_type': "trainer",
-            'screen': game.screen})
+            'combat_type': "trainer"})
+
+        # Flash the screen before combat
+        game.push_state("FLASH_TRANSITION")
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -166,11 +168,13 @@ class Combat(object):
         if not self.check_battle_legal(npc):
             return False
 
-        # Add our players and start combat
-        game.push_state("TRANSITION", params={
+        # Add our players and setup combat
+        game.push_state("COMBAT", params={
             'players': (game.player1, npc),
-            'combat_type': "trainer",
-            'screen': game.screen})
+            'combat_type': "trainer"})
+
+        # flash the screen
+        game.push_state("FLASH_TRANSITION")
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -260,11 +264,13 @@ class Combat(object):
             # Set the NPC object's AI model.
             npc.ai = ai.AI()
 
-            # Add our players and start combat
-            game.push_state("TRANSITION", params={
+            # Add our players and setup combat
+            game.push_state("COMBAT", params={
                 'players': (player1, npc),
-                'combat_type': "monster",
-                'screen': game.screen})
+                'combat_type': "monster"})
+
+            # flash the screen
+            game.push_state("FLASH_TRANSITION")
 
             # Start some music!
             filename = "147066_pokemon.ogg"

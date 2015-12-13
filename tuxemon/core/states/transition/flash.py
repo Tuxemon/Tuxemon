@@ -14,20 +14,18 @@ class FLASH_TRANSITION(State):
     """
 
     def startup(self, params=None):
-        self.combat_params = params
+        self.flash_time = 0.2  # Time in seconds between flashes
+        self.flash_state = "up"
+        self.transition_alpha = 0
+        self.max_flash_count = 7
+        self.flash_count = 0
+        logger.info("Initializing battle transition")
+        self.game.rumble.rumble(-1, length=1.5)
 
+    def resume(self):
         self.original_surface = self.game.screen.copy()
         self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
         self.transition_surface.fill((255, 255, 255))
-        self.flash_time = 0.2  # Time in seconds between flashes
-        self.battle_flash_state = "up"
-        self.battle_transition_alpha = 0
-
-        self.max_battle_flash_count = 7
-        self.battle_flash_count = 0
-
-        logger.info("Initializing battle transition")
-        self.game.rumble.rumble(-1, length=1.5)
 
     def update(self, screen, keys, current_time, time_delta):
         """Update function for state.
@@ -56,46 +54,42 @@ class FLASH_TRANSITION(State):
         logger.info("Battle transition!")
 
         # self.battle_transition_alpha
-        if self.battle_flash_state == "up":
-            self.battle_transition_alpha += (
+        if self.flash_state == "up":
+            self.transition_alpha += (
                 255 * ((time_delta) / self.flash_time))
 
-        elif self.battle_flash_state == "down":
-            self.battle_transition_alpha -= (
+        elif self.flash_state == "down":
+            self.transition_alpha -= (
                 255 * ((time_delta) / self.flash_time))
 
-        if self.battle_transition_alpha >= 255:
-            self.battle_flash_state = "down"
-            self.battle_flash_count += 1
+        if self.transition_alpha >= 255:
+            self.flash_state = "down"
+            self.flash_count += 1
 
-        elif self.battle_transition_alpha <= 0:
-            self.battle_flash_state = "up"
-            self.battle_flash_count += 1
+        elif self.transition_alpha <= 0:
+            self.flash_state = "up"
+            self.flash_count += 1
+
+        self.draw(self.game.screen)
 
         # If we've hit our max number of flashes, stop the battle
         # transition animation.
-        if self.battle_flash_count > self.max_battle_flash_count:
-            logger.info("Flashed " + str(self.battle_flash_count) +
+        if self.flash_count > self.max_flash_count:
+            logger.info("Flashed " + str(self.flash_count) +
                 " times. Stopping transition.")
             self.game.pop_state()
-            self.game.push_state("COMBAT", params=self.combat_params)
 
-        self.draw()
-
-    def draw(self):
+    def draw(self, surface):
         """Draws the start screen to the screen.
+        :param surface: Surface to draw to
+        :type surface: pygame.Surface
 
-        :param None:
-        :type None:
-
-        :rtype: None
-        :returns: None
-
+        :return: None
         """
         # Blit the original surface to the screen.
-        self.game.screen.blit(self.original_surface, (0, 0))
+        surface.blit(self.original_surface, (0, 0))
 
         # Set the alpha of the screen and fill the screen with white at
         # that alpha level.
-        self.transition_surface.set_alpha(self.battle_transition_alpha)
-        self.game.screen.blit(self.transition_surface, (0, 0))
+        self.transition_surface.set_alpha(self.transition_alpha)
+        surface.blit(self.transition_surface, (0, 0))

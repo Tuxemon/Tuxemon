@@ -40,16 +40,6 @@ class FLASH_TRANSITION(State):
 
         :rtype: None
         :returns: None
-
-        **Examples:**
-
-        >>> surface
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
-
         """
         logger.info("Battle transition!")
 

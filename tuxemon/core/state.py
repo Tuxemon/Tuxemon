@@ -254,7 +254,6 @@ class StateManager(object):
 
         :param state_name: name of state to start
         :param params: dictionary of data used to init the state
-        :param persist: dictionary of data for shared state
         :return: instanced State
         """
         try:

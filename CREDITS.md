@@ -256,7 +256,15 @@ Sounds
 [NenadSimic](https://www.freesound.org/people/NenadSimic/) has been dedicated to
 [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
 
-* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/resSounds.html) by
+* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/sndPack1.php) by
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* ["Kelvin Shadewing's Soundpack Vol. 2"](http://kelvinshadewing.net/sndPack2.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* ["Kelvin Shadewing's Soundpack Vol. 3"](http://kelvinshadewing.net/sndPack3.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
 

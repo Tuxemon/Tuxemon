@@ -92,6 +92,14 @@ class PC(state.State):
         self.multiplayer_join_menu.interactable = False
         self.multiplayer_join_menu.size_ratio = [0.6, 0.2]
 
+        # Enter IP adress "menu"
+        self.multiplayer_join_enter_ip_menu = pc_menu.Multiplayer_Join_Enter_IP_Menu(self.screen,
+                                                                   self.resolution,
+                                                                   self.game)
+        self.multiplayer_join_enter_ip_menu.visible = False
+        self.multiplayer_join_enter_ip_menu.interactable = False
+        self.multiplayer_join_enter_ip_menu.size_ratio = [0.6, 0.2]
+
         # Successfully joined a multiplayer game menu.
         self.multiplayer_join_success_menu = pc_menu.Multiplayer_Join_Success_Menu(self.screen,
                                                                                    self.resolution,
@@ -111,6 +119,7 @@ class PC(state.State):
         self.menus = [self.pc_menu,
                       self.multiplayer_menu,
                       self.multiplayer_join_menu,
+                      self.multiplayer_join_enter_ip_menu,
                       self.multiplayer_join_success_menu,
                       self.multiplayer_host_menu
                       ]
@@ -190,6 +199,9 @@ class PC(state.State):
         elif self.multiplayer_join_menu.interactable:
             self.game.get_menu_event(self.multiplayer_join_menu, event)
 
+        elif self.multiplayer_join_enter_ip_menu.interactable:
+            self.game.get_menu_event(self.multiplayer_join_enter_ip_menu, event)
+            
         elif self.multiplayer_menu.interactable:
             self.game.get_menu_event(self.multiplayer_menu, event)
 
@@ -229,9 +241,12 @@ class PC(state.State):
             # If no options are selected because there were no items when
             # the menu was populated, and there are items in the list to
             # select, set the selected item to the top of the list.
-            if self.multiplayer_join_menu.selected_menu_item <= 0 and \
-            len(self.multiplayer_join_menu.menu_items) > 0:
+            if self.multiplayer_join_menu.selected_menu_item <= 1 and \
+            len(self.multiplayer_join_menu.menu_items) > 1:
                 self.multiplayer_join_menu.selected_menu_item = 0
+
+        if self.multiplayer_join_enter_ip_menu.visible:
+            self.multiplayer_join_enter_ip_menu.draw()
 
         if self.multiplayer_join_success_menu.visible:
             self.multiplayer_join_success_menu.draw()

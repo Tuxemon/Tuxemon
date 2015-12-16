@@ -200,7 +200,7 @@ class Map(object):
                     elif k.startswith('act'):
                         acts.append(obj.properties[k].split(' ', 1))
 
-                self.events.append({'conds':conds, 'acts':acts})
+                self.events.append({'conds': conds, 'acts': acts, 'id': obj.id})
 
 
     def loadfile(self, tile_size):

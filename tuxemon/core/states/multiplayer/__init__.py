@@ -32,15 +32,15 @@
 import logging
 
 from core import prepare
-from core import state
+from core.states import world
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
 
-class HEADLESS(state.State):
-    """ The state responsible for the headless server.
+class HEADLESS(world.WORLD):
+    """ The state responsible for the headless server world state.
     """
 
     def startup(self, params=None):

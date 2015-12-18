@@ -169,12 +169,16 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Lambert"](https://forum.tuxemon.org/viewtopic.php?pid=406#p406) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 
 **Concept Art**
 
 * ["Concept Art"](https://forum.tuxemon.org/viewtopic.php?id=76) by
 [Leo](https://forum.tuxemon.org/profile.php?id=50) is licensed under
-[CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 Maps

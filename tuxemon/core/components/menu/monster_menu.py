@@ -149,7 +149,7 @@ class MonsterMenu(Menu):
                 else:
                     monster_slot.border = self.monster_slot_border["filled"]
                     monster_slot.background = self.monster_slot_border["filled"]["bg"]
-                monster_slot.draw(fill_background=True)
+                monster_slot.draw()
                 monster = self.game.player1.monsters[monster_index]
 
                 # Draw the HP bar
@@ -164,7 +164,7 @@ class MonsterMenu(Menu):
                 monster_slot.draw_text("  Lv " + str(monster.level), pos_y=line_spacing)
             else:
                 monster_slot.border = self.monster_slot_border["empty"]
-                monster_slot.draw(fill_background=False)
+                monster_slot.draw()
 
             monster_index += 1
 

@@ -448,16 +448,7 @@ class COMBAT(state.State):
         pprint.pprint(ui)
 
 
-    def update(self, screen, keys, current_time, time_delta):
-        """The primary game loop that executes all game functions every frame.
-
-        :param: None
-
-        :rtype: None
-        :returns: None
-
-        """
-
+    def update(self, time_delta):
         player_dict =  self.current_players['player']
         opponent_dict = self.current_players['opponent']
         ui = self.ui
@@ -497,15 +488,13 @@ class COMBAT(state.State):
         # Update all of our UI elements positions.
         for item in ui:
             if ui[item]:
-                ui[item].update(time_delta)
-
-        # Draw ALL OF THE THINGS
-        self.draw()
+                ui[item].update()
 
 
-    def draw(self):
+    def draw(self, surface):
         """Draws all combat graphics to the screen including menus, battle sprites, animations, etc.
 
+        :param surface:
         :param game: The main game object that contains all the game's variables.
 
         :type game: core.control.Control
@@ -1409,7 +1398,7 @@ if __name__ == "__main__":
                         pygame.quit()
                         sys.exit()
 
-                self.combat.draw(self)
+                self.combat.draw()
                 self.combat.handle_events(self)
 
                 # Calculate the FPS and print it onscreen for debugging purposes

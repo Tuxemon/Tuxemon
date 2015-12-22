@@ -141,31 +141,15 @@ class PC(state.State):
             menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
             menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
 
-    def update(self, screen, keys, current_time, time_delta):
+    def update(self, time_delta):
         """Update function for state.
 
-        :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
         :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
         :rtype: None
         :returns: None
 
-        **Examples:**
-
-        >>> surface
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
-
         """
-        self.draw()
+        pass
 
     def get_event(self, event):
         """Processes events that were passed from the main event loop.
@@ -196,18 +180,18 @@ class PC(state.State):
         elif self.pc_menu.interactable:
             self.game.get_menu_event(self.pc_menu, event)
 
-    def draw(self):
+    def draw(self, surface):
         """Draws the start screen to the screen.
 
-        :param None:
-        :type None:
+        :param surface: Surface to be drawn onto
+        :type surface: pygame.Surface
 
         :rtype: None
         :returns: None
 
         """
+        surface.fill((15, 15, 15))
 
-        self.game.screen.fill((15, 15, 15))
         self.pc_menu.draw()
         self.pc_menu.draw_textItem(
                 ["MULTIPLAYER", "LOG OFF"])

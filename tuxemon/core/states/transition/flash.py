@@ -27,17 +27,11 @@ class FLASH_TRANSITION(State):
         self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
         self.transition_surface.fill((255, 255, 255))
 
-    def update(self, screen, keys, current_time, time_delta):
+    def update(self, time_delta):
         """Update function for state.
 
         :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
         :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
         :rtype: None
         :returns: None
         """
@@ -60,8 +54,6 @@ class FLASH_TRANSITION(State):
             self.flash_state = "up"
             self.flash_count += 1
 
-        self.draw(self.game.screen)
-
         # If we've hit our max number of flashes, stop the battle
         # transition animation.
         if self.flash_count > self.max_flash_count:
@@ -71,6 +63,7 @@ class FLASH_TRANSITION(State):
 
     def draw(self, surface):
         """Draws the start screen to the screen.
+        :param surface:
         :param surface: Surface to draw to
         :type surface: pygame.Surface
 

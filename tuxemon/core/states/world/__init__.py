@@ -436,33 +436,17 @@ class WORLD(state.State):
             menu.interactable = False
             menu.visible = False
 
-    def update(self, screen, keys, current_time, time_delta):
+    def update(self, time_delta):
         """The primary game loop that executes the world's game functions every frame.
 
-        :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
         :param time_delta: Amount of time passed since last frame.
 
-        :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
         :type time_delta: Float
 
         :rtype: None
         :returns: None
 
-        **Examples:**
-
-        >>> surface
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
-
         """
-
         logger.debug("*** Game Loop Started ***")
         logger.debug(
             "Player Variables:" + str(self.player1.game_variables))
@@ -471,17 +455,10 @@ class WORLD(state.State):
         # config
         self.time_passed_seconds = self.game.time_passed_seconds
 
-        # Fill the screen background with black
-        self.screen.fill((0, 0, 0))
-
-        # Get all the pygame events
-        self.events = keys
-
         # Get all the keys pressed
-        self.pressed = pygame.key.get_pressed()
-        self.pressed = list(self.pressed)
-                            # Convert the keys pressed into a list so we can
-                            # modify the values
+        # Convert the keys pressed into a list so we can modify the values
+        self.pressed = list(pygame.key.get_pressed())
+
         self.ctrl_held = self.pressed[
             pygame.K_LCTRL] or self.pressed[pygame.K_RCTRL]
         self.alt_held = self.pressed[
@@ -495,7 +472,11 @@ class WORLD(state.State):
         self.player1.tile_pos = (float((self.player1.position[0] - self.global_x)) / float(
             self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
-        # Handle world events
+
+    def draw(self, surface):
+        # Fill the screen background with black
+        surface.fill((0, 0, 0))
+
         self.map_drawing()
         self.player_movement()
         self.high_map_drawing()
@@ -766,7 +747,7 @@ class WORLD(state.State):
                 npc.update_location = False
 
             # Draw the bottom part of the NPC.
-            npc.draw(self.screen, "bottom")
+            npc.draw()
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map:
@@ -791,7 +772,7 @@ class WORLD(state.State):
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
         # Draw the bottom half of the player
-        self.player1.draw(self.screen, "bottom")
+        self.player1.draw()
 
         # Draw the medium level tiles. These tiles will appear above the player's body,
         # but below the player's head.
@@ -819,10 +800,10 @@ class WORLD(state.State):
 
         # Draw the top half of our NPCs above layer 4.
         for npc in self.npcs:
-            npc.draw(self.screen, "top")
+            npc.draw()
 
         # Draw the top half of the player above layer 4.
-        self.player1.draw(self.screen, "top")
+        self.player1.draw()
 
 
     def high_map_drawing(self):

@@ -1,7 +1,7 @@
 import logging
 import pygame
 from animation import Animation, Task
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 from core.state import State
 
@@ -13,8 +13,6 @@ logger.debug("{} successfully imported".format(__name__))
 class FadeTransitionBase(State):
     """ The state responsible for the battle transitions.
     """
-    __metaclass__ = ABCMeta
-
     state_duration = 2.5
     fade_duration = 2
     color = (0, 0, 0)
@@ -38,22 +36,15 @@ class FadeTransitionBase(State):
     def create_fade_animation(self):
         pass
 
-    def update(self, screen, keys, current_time, time_delta):
+    def update(self, time_delta):
         """Update function for state.
 
         :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
         :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
         :rtype: None
         :returns: None
         """
         self.animations.update(time_delta)
-        self.draw(self.game.screen)
 
     def draw(self, surface):
         # Blit the original surface to the screen.

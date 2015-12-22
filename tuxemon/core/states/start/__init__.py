@@ -76,23 +76,8 @@ class START(state.State):
         self.splash_cc['position'] = (prepare.SCREEN_SIZE[0] - splash_border - self.splash_cc['surface'].get_width(),
                                       prepare.SCREEN_SIZE[1] - splash_border - self.splash_cc['surface'].get_height())
 
-    def update(self, screen, keys, current_time, time_delta):
-        """Update function for state.
-
-        :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
-        :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
-        :rtype: None
-        :returns: None
-
-        """
+    def update(self, time_delta):
         self.animations.update(time_delta)
-        self.draw(self.game.screen)
 
     def get_event(self, event):
         """Processes events that were passed from the main event loop.
@@ -112,6 +97,7 @@ class START(state.State):
     def draw(self, surface):
         """Draws the start screen to the screen.
 
+        :param surface:
         :param Surface: Surface to draw to
 
         :type Surface: pygame.Surface

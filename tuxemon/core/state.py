@@ -57,29 +57,24 @@ class State(object):
         pass
 
     @abstractmethod
-    def update(self, screen, keys, current_time, time_delta):
+    def update(self, time_delta):
         """ Update function for state.  Must be overloaded in children.
 
-        :param screen: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
-        :type screen: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
+        :param time_delta: amount of time in fractional seconds since last update
+        :type time_delta: Float
         :rtype: None
         :returns: None
 
-        **Examples:**
+        """
+        pass
 
-        >>> screen
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
+    @abstractmethod
+    def draw(self, surface):
+        """ Render the state to the surface passed.  Must be overloaded in children
 
+        :param surface: Surface to be rendered onto
+        :type surface: pygame.Surface
+        :return: None
         """
         pass
 

@@ -31,37 +31,21 @@
 
 import logging
 import pygame
-import os
-import sys
-import pprint
-import random
 
-from .. import tools, prepare
-from ..components import pyganim
-from ..components import db
-from ..components import fusion
+from core import prepare
+from core import state
+
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
-class StartScreen(tools._State):
-    """The module responsible for the splash screen and start menu.
 
-    :param game: The scene manager object that contains all the game's variables.
-    :type game: core.tools.Control
-
+class START(state.State):
+    """ The state responsible for the splash screen and start menu.
     """
 
-    def __init__(self, game):
-        # Initiate our common state properties.
-        tools._State.__init__(self)
-
-        # The scene to load next when this scene has been completed.
-        self.next = "WORLD"
-
-        # Provide an instance of the scene manager to this scene.
-        self.game = game            # The scene manger object
+    def startup(self, params=None):
         self.state = "Splash"       # Can be Splash or Menu
         self.fade = "in"            # Can be "in", "out", "waiting", or None
 
@@ -96,50 +80,6 @@ class StartScreen(tools._State):
                                                             ))
         self.splash_cc['position'] = (prepare.SCREEN_SIZE[0] - splash_border - self.splash_cc['surface'].get_width(),
                                       prepare.SCREEN_SIZE[1] - splash_border - self.splash_cc['surface'].get_height())
-
-
-    def startup(self, current_time, persistant):
-        """Perform startup tasks when we switch to this scene.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
-
-        self.persist = persistant
-        self.start_time = current_time
-
-        self.state = "Splash"       # Can be Splash or Menu
-        self.fade = "in"            # Can be "in", "out", "waiting", or None
-
-
-    def cleanup(self):
-        """Add variables that should persist to the self.persist dictionary.
-        Then reset State.done to False.
-
-        :param None:
-
-        :rtype: Dictionary
-        :returns: Persist dictionary of variables.
-
-        """
-
-        self.done = False
-        return self.persist
 
 
     def update(self, screen, keys, current_time, time_delta):
@@ -187,7 +127,7 @@ class StartScreen(tools._State):
         if event.type == pygame.KEYDOWN and self.state == "Splash":
             self.fade = None
             self.state = None
-            self.done = True
+            self.game.pop_state()
 
 
     def draw(self):
@@ -207,8 +147,7 @@ class StartScreen(tools._State):
         if prepare.CONFIG.splash != "1":
                 self.fade = None
                 self.state = None
-                # Start the game after splash
-                self.done = True
+                self.game.pop_state()
 
         if self.state == "Splash":
             self.game.screen.blit(self.splash_pygame['surface'], self.splash_pygame['position'])
@@ -224,7 +163,6 @@ class StartScreen(tools._State):
             if self.transition['alpha'] < 0:
                 self.fade = "waiting"
 
-
         elif self.fade == "out":
 
             self.transition['alpha'] += (255 * ((self.game.time_passed_seconds)/self.transition['time']))
@@ -235,8 +173,7 @@ class StartScreen(tools._State):
             if self.transition['alpha'] > 255:
                 self.fade = None
                 self.state = None
-                # Start the game after splash
-                self.done = True
+                self.game.pop_state()
 
         elif self.fade == "waiting":
             self.wait_time += self.game.time_passed_seconds

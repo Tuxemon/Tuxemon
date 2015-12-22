@@ -9,14 +9,16 @@ Programming
 
 * [William Edwards](mailto:shadowapex@gmail.com)
 * [Benjamin Bean](mailto:superman2k5@gmail.com)
+* [Derek Clark](mailto:derekjohn.clark@gmail.com)
 
 **Contributors**
 
 * [Nathan Moore](https://git.tuxemon.org:3000/u/Nate-Devv) for the experience system
 * [C Nelson](https://git.tuxemon.org:3000/u/cnelsonsic) for pep8 auditing
-* [Arsène Thieffry](https://git.tuxemon.org:3000/u/druz320) for menu sorting
+* [Arsène Thieffry](https://github.com/druz320) for menu sorting and bug fixes
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
+* [treetrunk](https://github.com/treetrunk) for creature catching variability and bug fixes
 
 
 Graphics
@@ -82,6 +84,11 @@ by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
 by [Midi](http://opengameart.org/users/midi)
 
+* ["Grass, Sand, Snow"](https://forum.tuxemon.org/viewtopic.php?pid=280#p280)
+by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) is licensed under
+[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
+by [Midi](http://opengameart.org/users/midi)
+
 * ["Trainer Sprite Spree"](http://oniwanbashu.deviantart.com/art/Trainer-Sprite-Spree-124465962)
 by [Oniwanbashu](http://oniwanbashu.deviantart.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
@@ -115,14 +122,63 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 * ["Eyenemy"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Dollfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Magmaturtle"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Axylightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 * ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](https://forum.tuxemon.org/profile.php?id=22)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](http://kelvinshadewing.net)
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
 * ["Nut & Bolt"](https://forum.tuxemon.org/viewtopic.php?id=59) by [TacoBot](https://forum.tuxemon.org/profile.php?id=40)
 is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
+
+* ["Kelvin Terrain"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by 
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Kelvin Buildings"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by 
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Sumobug"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Pigabyte"](https://forum.tuxemon.org/viewtopic.php?id=72) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Lambert"](https://forum.tuxemon.org/viewtopic.php?pid=406#p406) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+
+**Concept Art**
+
+* ["Concept Art"](https://forum.tuxemon.org/viewtopic.php?id=76) by
+[Leo](https://forum.tuxemon.org/profile.php?id=50) is licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 Maps
@@ -130,6 +186,11 @@ Maps
 * ["Map1 v1"](http://tuxemon.weebly.com/maps.html)
 by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+* ["Healing Center"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrunk](https://github.com/treetrunk)
+is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+* ["Professor's Lab"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrunk](https://github.com/treetrunk)
+is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+
 
 
 Fonts
@@ -206,7 +267,15 @@ Sounds
 [NenadSimic](https://www.freesound.org/people/NenadSimic/) has been dedicated to
 [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
 
-* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/resSounds.html) by
+* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/sndPack1.php) by
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[Kelvin Shadewing's license](http://kelvinshadewing.net/dl/kssp_01.zip).
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* ["Kelvin Shadewing's Soundpack Vol. 2"](http://kelvinshadewing.net/sndPack2.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* ["Kelvin Shadewing's Soundpack Vol. 3"](http://kelvinshadewing.net/sndPack3.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
 

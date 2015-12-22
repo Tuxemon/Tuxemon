@@ -45,10 +45,13 @@ except ImportError:
     android = None
 
 # Get the tuxemon base directory
-BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + "/"
+BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + os.sep
+if "library.zip" in BASEDIR:
+    BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
 
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(BASEDIR + "tuxemon.cfg")
+HEADLESSCONFIG = config.HeadlessConfig(BASEDIR + "tuxemon.cfg")
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
@@ -166,16 +169,3 @@ def init():
     # Set the walking and running pixels per second based on the scale
     player1.walkrate *= SCALE
     player1.runrate *= SCALE
-
-
-    # Resource loading (Fonts and music just contain path names).
-    # NOTE: Loading all our graphics here increases our memory footprint
-    #from . import tools
-    #FONTS = tools.load_all_fonts(BASEDIR + os.path.join("resources"))
-    #MUSIC = tools.load_all_music(BASEDIR + os.path.join("resources", "music"))
-    #SFX   = tools.load_all_sfx(BASEDIR + os.path.join("resources", "sounds"))
-    #GFX   = tools.load_all_gfx(BASEDIR + os.path.join("resources", "gfx"))
-    #SPRITES = tools.load_all_gfx(BASEDIR + os.path.join("resources", "sprites"))
-    #ANIMS = tools.load_all_gfx(BASEDIR + os.path.join("resources", "animations"))
-    #MAPS  = tools.load_all_maps(BASEDIR + os.path.join("resources", "maps"))
-

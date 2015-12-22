@@ -32,6 +32,29 @@ logger = logging.getLogger(__name__)
 
 class Core(object):
 
+    def _replace_text(self, game, text):
+        """Replaces ${{var}} tiled variables with their in-game value.
+
+        :param game: The main game object that contains all the game's variables.
+        :param text: The text to replace.
+
+        :type game: core.control.Control
+        :type text: String
+
+        :rtype: String
+        :returns: Replaced string text with in-game values.
+
+        **Examples:**
+
+        >>> self._replace_text("${{name}} is running away!")
+        'Red is running away!'
+
+        """
+        text = text.replace("${{name}}", game.player1.name)
+
+        return text
+
+
     def set_variable(self, game, action):
         """Sets the key in the player.game_variables dictionary.
 
@@ -39,7 +62,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -73,7 +96,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -93,13 +116,63 @@ class Core(object):
         """
 
         text = str(action[1])
-        text = text.replace("${{name}}", game.player1.name)
+        text = self._replace_text(game, text)
         logger.info("Dialog window opened")
 
         # Open a dialog window in the current scene.
-        if not game.state.dialog_window.visible:
-            game.state.dialog_window.visible = True
-            game.state.dialog_window.text = text
+        if not game.current_state.dialog_window.visible:
+            game.current_state.dialog_window.visible = True
+            game.current_state.dialog_window.text = text
+
+
+    def dialog_chain(self, game, action):
+        """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: text_to_display
+
+        You may also use special variables in dialog events. Here is a list of available variables:
+
+        * ${{name}} - The current player's name.
+        * ${{end}} - Ends the dialog chain.
+
+        **Examples:**
+
+        >>> action
+        ('dialog_chain', 'Red:\\n This is some dialog!', '3', 1)
+
+        """
+
+        text = str(action[1])
+        text = self._replace_text(game, text)
+        dialog_window = game.current_state.dialog_window
+
+        # Do nothing if a dialog is already open
+        if dialog_window.visible:
+            return
+
+        # If this is the end of the dialog chain, display the window.
+        if "${{end}}" in text:
+            logger.info("Dialog window opened")
+            dialog_window.visible = True
+            if len(dialog_window.dialog_stack) > 0:
+                dialog_window.text = dialog_window.dialog_stack.pop(0)
+            return
+
+        # If this text is part of the dialog chain, add it to the dialog stack.
+        if dialog_window.elapsed_time >= dialog_window.delay:
+            logger.debug("Adding text to dialog stack: " + text)
+            logger.debug("Seconds since last dialog: " + str(dialog_window.elapsed_time))
+            dialog_window.dialog_stack.append(text)
 
 
     def rumble(self, game, action):
@@ -109,7 +182,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -149,7 +222,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -177,7 +250,7 @@ class Core(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -197,3 +270,69 @@ class Core(object):
         game.event_engine.state = "waiting for input"
         game.event_engine.wait = 2
         game.event_engine.button = button
+
+    def change_state(self, game, action):
+        """Changes to the specified state.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: state_name
+
+        * state_name (str): The state name to switch to.
+
+        **Examples:**
+
+        >>> action
+        ('change_state', 'MAIN_MENU')
+
+        """
+        # Handle if networking is not supported and the PC is trying to be
+        # accessed.
+        if action[1] == "PC":
+            if not game.imports["networking"].networking:
+                message = "Networking is not supported on your system"
+                self.dialog(game, (action[0], message))
+                return
+
+        # Don't override previous state if we are still in the state.
+        if game.state_name != action[1]:
+            game.push_state(action[1])
+
+
+    def call_event(self, game, action):
+        """Executes the specified event's actions by id.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: event_id
+
+        * event_id (int): The tmx id of the event to call.
+
+        **Examples:**
+
+        >>> action
+        ('call_event', '2')
+
+        """
+        event_engine = game.event_engine
+        events = game.events
+
+        for e in events:
+            if e['id'] == int(action[1]):
+                event_engine.execute_action(e['acts'], game)

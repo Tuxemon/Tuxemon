@@ -33,6 +33,8 @@ import logging
 import pygame
 import os
 import sys
+from pprint import pprint
+from core.components.pyganim import PygAnimation
 
 # PyTMX LOVES to change their API without notice. Here we try and handle that.
 try:
@@ -198,7 +200,7 @@ class Map(object):
                     elif k.startswith('act'):
                         acts.append(obj.properties[k].split(' ', 1))
 
-                self.events.append({'conds':conds, 'acts':acts})
+                self.events.append({'conds': conds, 'acts': acts, 'id': obj.id})
 
 
     def loadfile(self, tile_size):
@@ -305,12 +307,12 @@ class Map(object):
         tiles = []
 
         # Loop through all tiles in our map file and get the pygame surface associated with it.
-        for x in range(0, self.data.width):
+        for x in range(0, int(self.data.width)):
 
             # Create a list of tile for the y-axis
             y_list = []
 
-            for y in range(0, self.data.height):
+            for y in range(0, int(self.data.height)):
 
                 layer_list = []
 
@@ -339,6 +341,26 @@ class Map(object):
                     except AttributeError:
                         surface = self.data.get_tile_image(x, y, layer)
 
+                    # Check to see if this tile has an animation
+                    tile_properties = self.data.get_tile_properties(x, y, layer)
+                    if tile_properties and "frames" in tile_properties:
+                        images_and_durations = []
+                        for frame in tile_properties["frames"]:
+                            # bitcraft/PyTMX 3.20.14+ support
+                            if hasattr(frame, 'gid'):
+                                anim_surface = self.data.get_tile_image_by_gid(frame.gid)
+                                images_and_durations.append((anim_surface, float(frame.duration) / 1000))
+                            # ShadowApex/PyTMX 3.20.13 fork support
+                            elif "gid" in frame:
+                                anim_surface = self.data.get_tile_image_by_gid(frame["gid"])
+                                images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
+                            # bitcraft/PyTMX 3.20.13 support
+                            elif "gid" not in frame:
+                                images_and_durations = [(surface, 1)]
+                                break
+                        surface = PygAnimation(images_and_durations)
+                        surface.play()
+
                     # Create a tile based on the image
                     if surface:
                         tile = {'tile_pos': (x, y),
@@ -358,7 +380,10 @@ class Map(object):
         mapsize = self.size
 
         # Create a list of all tile positions that we cannot walk through
-        collision_map = set()
+        collision_map = {}
+
+        # Create a dictionary of coordinates that have conditional collisions
+        cond_collision_map = {}
 
         # Create a list of all pairs of adjacent tiles that are impassable (aka walls)
         # example: ((5,4),(5,3), both)
@@ -382,7 +407,6 @@ class Map(object):
             # 'x': 176,
             # 'y': 64}
 
-
             # Get the collision area's tile location and dimension in tiles using the tileset's
             # tile size.
             x = self.round_to_divisible(collision_region.x, self.tile_size[0]) / self.tile_size[0]
@@ -390,12 +414,36 @@ class Map(object):
             width = self.round_to_divisible(collision_region.width, self.tile_size[0]) / self.tile_size[0]
             height = self.round_to_divisible(collision_region.height, self.tile_size[1]) / self.tile_size[1]
 
+            # Loop through properties and create list of directions for each property
+            if collision_region.properties:
+                enters = []
+                exits = []
+
+                for key in collision_region.properties:
+                    if "enter" in key:
+                        for direction in collision_region.properties[key].split():
+                            enters.append(direction)
+                    elif "exit" in key:
+                        for direction in collision_region.properties[key].split():
+                            exits.append(direction)
+
             # Loop through the area of this region and create all the tile coordinates that are
             # inside this region.
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y)
-                    collision_map.add(collision_tile)
+                    collision_map[collision_tile] = "None"
+
+                    # Check if collision region has properties, and is therefore a conditional zone
+                    # then add the location and conditions to semi_collision_map
+                    if collision_region.properties:
+                        tile_conditions = {}
+                        for key in collision_region.properties.keys():
+                            if "enter" in key:
+                                tile_conditions['enter'] = enters
+                            if "exit" in key:
+                                tile_conditions['exit'] = exits
+                        collision_map[collision_tile] = tile_conditions
 
         # Similar to collisions, except we need to identify the tiles
         # on either side of the poly-line and prevent moving between
@@ -448,7 +496,7 @@ class Map(object):
                 line_end = point2[1]
                 num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
                 curr_y = line_start / self.tile_size[1]
-                for i in range(num_tiles_in_line):
+                for i in range(int(num_tiles_in_line)):
                     if line_start > line_end: # slightly different
                                               # behavior depending on
                                               # direction
@@ -475,7 +523,7 @@ class Map(object):
                 line_end = point2[0]
                 num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [0] b/c horizontal
                 curr_x = line_start / self.tile_size[0]
-                for i in range(num_tiles_in_line):
+                for i in range(int(num_tiles_in_line)):
                     if line_start > line_end: # slightly different
                                               # behavior depending on
                                               # direction
@@ -568,7 +616,6 @@ if __name__=="__main__":
     screen.blit(background, (0, 0))
     pygame.display.flip()
 
-    print "Loading map"
     tile_size = [80, 80]    # 1 tile = 16 pixels
     testmap = Map()
     #testmap.loadfile("resources/maps/test.map", tile_size)

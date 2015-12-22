@@ -32,42 +32,27 @@
 # Import various python libraries
 import logging
 import pygame
-import sys
 import math
-import os
-import pprint
 
 # Import Tuxemon internal libraries
-from .. import tools, prepare
-from ..components import screen
-from ..components import config
-from ..components import map
-from ..components import pyganim
-from ..components import player
-from ..components import event
-from ..components import save
-from ..components import monster
-from ..components import cli
-from . import combat
-from . import start
+from core import prepare
+from core import state
+from core.components import map
+from core.components import networking
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-class World(tools._State):
 
-    def __init__(self, game):
-        # Initiate our common state properties.
-        tools._State.__init__(self)
+class WORLD(state.State):
+    """ The state responsible for the world game play
+    """
 
-        # For some reason, importing menu only works here.
-        from ..components import menu
-
-        # Provide an instance of our scene manager to this scene.
-        self.game = game
+    def startup(self, params=None):
+        from core.components import menu
 
         # Provide access to the screen surface
-        self.screen = game.screen
+        self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
 
         # Set the native tile size so we know how much to scale
@@ -124,10 +109,13 @@ class World(tools._State):
                     if column:
                         layer_pos = 0
                         for tile in column:
-                            tile["surface"] = \
-                                pygame.transform.scale(
-                                    tile["surface"],
-                                    (self.tile_size[0], self.tile_size[1]))
+                            if type(tile["surface"]) is pygame.Surface:
+                                tile["surface"] = \
+                                    pygame.transform.scale(
+                                        tile["surface"],
+                                        (self.tile_size[0], self.tile_size[1]))
+                            else:
+                                tile["surface"].scale(self.tile_size)
                             self.tiles[x_pos][y_pos][layer_pos] = tile
                             layer_pos += 1
                     y_pos += 1
@@ -143,6 +131,8 @@ class World(tools._State):
 
         self.player1 = prepare.player1
         self.npcs = []
+        self.npcs_off_map = []
+        self.wants_duel = False
 
         # Set the global coordinates used to pan the screen.
         self.start_position = prepare.CONFIG.starting_position
@@ -209,6 +199,12 @@ class World(tools._State):
                                         self.resolution,
                                         self)
 
+        #Interaction menu
+        InteractionMenu = menu.interaction_menu.InteractionMenu
+        self.interaction_menu = InteractionMenu(self.screen,
+                                              self.resolution,
+                                              self)
+
         # Add child menus to their parent menus
         self.entername_menu.add_child(self.displayname_menu)
         self.main_menu.add_child(self.save_menu)
@@ -222,9 +218,16 @@ class World(tools._State):
         self.menu_blocking = False
 
         # List of available menus
-        self.menus = [self.dialog_window, self.main_menu, self.save_menu,
-                      self.entername_menu, self.displayname_menu,
-                      self.not_implmeneted_menu, self.item_menu, self.monster_menu]
+        self.menus = [self.dialog_window,
+                      self.main_menu,
+                      self.save_menu,
+                      self.entername_menu,
+                      self.displayname_menu,
+                      self.not_implmeneted_menu,
+                      self.item_menu,
+                      self.monster_menu,
+                      self.interaction_menu
+                      ]
 
         # Scale the menu borders of all menus
         for menu in self.menus:
@@ -340,6 +343,15 @@ class World(tools._State):
         self.monster_menu.visible = False
         self.monster_menu.interactable = False
 
+        # Interaction Menu
+        self.interaction_menu.size_y = int(self.resolution[1] / 5.)
+        self.interaction_menu.size_x = int(self.resolution[0] / 2.5)
+        self.interaction_menu.pos_x = 0 + self.interaction_menu.border["top"].get_width()
+        self.interaction_menu.pos_y = 0 + self.interaction_menu.border["left-top"].get_width()
+        self.interaction_menu.visible = False
+        self.interaction_menu.interactable = False
+        self.interaction_menu.player = None
+
         # variables for transition
         self.transition_alpha = 0
         self.start_transition = False
@@ -354,25 +366,6 @@ class World(tools._State):
         # The delayed facing variable used to change the player's facing in
         # the middle of a transition.
         self.delayed_facing = None
-
-        # Variables used for battle transition animation. The battle
-        # transition animation works by filling the screen with white at a
-        # certain alpha level to create flashing.
-        self.start_battle_transition = False    # Kick-off the transition.
-        self.battle_transition_in_progress = False
-
-        # Set the alpha level that the white screen will have.
-        self.battle_transition_alpha = 0
-
-        # Set the number of times the screen will flash before starting combat
-        self.max_battle_flash_count = 6
-
-        # Keep track of the current number of flashes that have passed
-        self.battle_flash_count = 0
-
-        # Either "up" or "down" indicating whether we are adding or
-        # subtracting alpha levels.
-        self.battle_flash_state = "up"
 
         ######################################################################
         #                          Collision Map                             #
@@ -390,7 +383,7 @@ class World(tools._State):
         #                          Event Engine                              #
         ######################################################################
 
-        # Get a copy of the event engine from core.tools.Control.
+        # Get a copy of the event engine from core.control.Control.
         self.event_engine = self.game.event_engine
 
         # Set the currently loaded map. This is needed because the event
@@ -437,40 +430,11 @@ class World(tools._State):
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
 
-    def startup(self, current_time, persistant):
-        """This is called every time the scene manager switches to this scene.
-
-        :param current_time: Current time passed.
-        :param persistant: Keep a dictionary of optional persistant variables.
-
-        :type current_time: Integer
-        :type persistant: Dictionary
-
-        :rtype: None
-        :returns: None
-
-
-        **Examples:**
-
-        >>> current_time
-        2895
-        >>> persistant
-        {}
-
-        """
-
         # Allow player movement and make all menus invisible.
         self.menu_blocking = False
         for menu in self.menus:
             menu.interactable = False
             menu.visible = False
-
-        # Clear our next screen and any combat related variables.
-        self.next = ""
-        self.combat_started = False
-        self.start_battle_transition = False
-        self.battle_transition_in_progress = False
-
 
     def update(self, screen, keys, current_time, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -573,6 +537,15 @@ class World(tools._State):
         # If the dialog window is interactable/visible, send pygame events to it.
         if self.dialog_window.visible:
             self.dialog_window.get_event(event)
+            self.menu_blocking = True
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                logger.info("Closing dialog window!")
+                self.dialog_window.state = "closing"
+                self.menu_blocking = False
+
+        # If the interaction menu in interactable, send pygame events to it.
+        if self.interaction_menu.interactable:
+            self.interaction_menu.get_event(event)
 
         # If the main menu is interactable, send pygame events to it.
         if self.main_menu.interactable:
@@ -593,13 +566,17 @@ class World(tools._State):
                 self.main_menu.state = "closing"
                 self.main_menu.interactable = False
                 self.menu_blocking = False
+
+            elif self.interaction_menu.visible and self.interaction_menu.interactable:
+                logger.info("Closing interaction menu!")
+                self.interaction_menu.visible = False
+                self.interaction_menu.interactable = False
+                self.interaction_menu.menu_items = None
+                self.menu_blocking = False
+
             else:
                 self.main_menu.visible = True
                 self.menu_blocking = True
-                self.player1.direction["up"] = False
-                self.player1.direction["down"] = False
-                self.player1.direction["left"] = False
-                self.player1.direction["right"] = False
 
         # Only allow player movement if they are not in a menu and are not
         # in combat
@@ -620,6 +597,8 @@ class World(tools._State):
                 if event.key == pygame.K_RIGHT:
                     self.player1.direction["right"] = True
                     self.player1.facing = "right"
+                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
+                    self.check_interactable_space()
 
             # Handle Key UP events
             if event.type == pygame.KEYUP:
@@ -637,7 +616,7 @@ class World(tools._State):
                     if event.key == pygame.K_RIGHT:
                         self.player1.direction["right"] = False
 
-        # print self.events
+            self.game.client.set_key_condition(event)
 
 
     ####################################################
@@ -661,16 +640,16 @@ class World(tools._State):
             (self.global_x / self.tile_size[0])
              # How many tiles over we have to draw the first tile
         starting_tile_y = - \
-            (self.global_y / self.tile_size[
-             1])  # How many tiles down we have to draw the first tile
+            (self.global_y / self.tile_size[1])
+             # How many tiles down we have to draw the first tile
         self.tile_buffer = 2  # This is how many tiles we should draw past the visible region
 
         # Loop through the number of visible tiles and draw only the tiles that
         # are visible
-        for row in xrange(starting_tile_x - self.tile_buffer, starting_tile_x + self.visible_tiles[0]):
+        for row in list(range(int(starting_tile_x) - self.tile_buffer, int(starting_tile_x) + self.visible_tiles[0])):
             if row > 0:
 
-                for column in xrange(starting_tile_y - self.tile_buffer, starting_tile_y + self.visible_tiles[1]):
+                for column in list(range(int(starting_tile_y) - self.tile_buffer, int(starting_tile_y) + self.visible_tiles[1])):
                     if row > 0:
                         try:
                             if self.tiles[row][column]:		# Check to see if a tile exists at this coordinates
@@ -683,10 +662,12 @@ class World(tools._State):
                                     elif tile["layer"] > 4:
                                         self.highlayer_tiles.append(tile)
                                     else:
-                                        self.screen.blit(tile["surface"],
-                                                        (tile[
-                                                            "position"][0] + self.global_x,
-                                                         tile["position"][1] + self.global_y))
+                                        draw_position = (tile["position"][0] + self.global_x,
+                                                         tile["position"][1] + self.global_y)
+                                        if type(tile["surface"]) is pygame.Surface:
+                                            self.screen.blit(tile["surface"], draw_position)
+                                        else:
+                                            tile["surface"].blit(self.screen, draw_position)
 
                         # If we try drawing a tile that is out of index range, that means we
                         # reached the end of the list, so just break the loop
@@ -744,6 +725,10 @@ class World(tools._State):
 
         # Draw any game NPC's
         for npc in self.npcs:
+            if npc.running:
+                npc.moverate = npc.runrate
+            else:
+                npc.moverate = npc.walkrate
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.
@@ -760,7 +745,7 @@ class World(tools._State):
             npc.position[1] -= self.global_y_diff
 
             # debug info
-            #print "npc.tile_pos="+str(npc.tile_pos)
+            #print("npc.tile_pos="+str(npc.tile_pos))
 
             # if the npc has a path, move it along its path
             if npc.path:
@@ -769,13 +754,42 @@ class World(tools._State):
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
             # Reset our directions after moving.
-            npc.direction["up"] = False
-            npc.direction["down"] = False
-            npc.direction["left"] = False
-            npc.direction["right"] = False
+            if not npc.isplayer:
+                npc.direction["up"] = False
+                npc.direction["down"] = False
+                npc.direction["left"] = False
+                npc.direction["right"] = False
+
+            if npc.update_location:
+                char_dict ={"tile_pos": npc.final_move_dest,
+                            }
+                networking.update_client(npc, char_dict, self.game)
+                npc.update_location = False
 
             # Draw the bottom part of the NPC.
             npc.draw(self.screen, "bottom")
+
+        # Move any multiplayer characters that are off map so we know where they should be when we change maps.
+        for npc in self.npcs_off_map:
+            if npc.running:
+                npc.moverate = npc.runrate
+            else:
+                npc.moverate = npc.walkrate
+            # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
+            # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
+            # portion of the sprite.
+            npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
+                self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
+
+            # Move the NPC with the map as it moves
+            npc.position[0] -= self.global_x_diff
+            npc.position[1] -= self.global_y_diff
+
+            # if the npc has a path, move it along its path
+            if npc.path:
+                npc.move_by_path()
+
+            npc.move(self.tile_size, self.time_passed_seconds, self)
 
         # Draw the bottom half of the player
         self.player1.draw(self.screen, "bottom")
@@ -787,14 +801,22 @@ class World(tools._State):
             # Get the rectangle object of the tile that is going to be drawn so
             # we can see if it is going to be outside the visible screen area
             # or not
-            tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
-                                    "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            if type(tile["surface"]) is pygame.Surface:
+                tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
+                                        "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            else:
+                tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
+                                        tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
 
             # If any part of the tile overlaps with the screen, then draw it to
             # the screen
             if self.screen_rect.colliderect(tile_rect):
-                self.screen.blit(
-                    tile["surface"], (tile["position"][0] + self.orig_global_x, tile["position"][1] + self.orig_global_y))
+                med_x = tile["position"][0] + self.orig_global_x
+                med_y = tile["position"][1] + self.orig_global_y
+                if type(tile["surface"]) is pygame.Surface:
+                    self.screen.blit(tile["surface"], (med_x, med_y))
+                else:
+                    tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw the top half of our NPCs above layer 4.
         for npc in self.npcs:
@@ -814,14 +836,24 @@ class World(tools._State):
             # Get the rectangle object of the tile that is going to be drawn so
             # we can see if it is going to be outside the visible screen area
             # or not
-            tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
-                                    "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            if type(tile["surface"]) is pygame.Surface:
+                tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
+                                        "position"][0] + self.global_x, tile["position"][1] + self.global_y)
+            else:
+                tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
+                                        tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
+
+
 
             # If any part of the tile overlaps with the screen, then draw it to
             # the screen
             if self.screen_rect.colliderect(tile_rect):
-                self.screen.blit(
-                    tile["surface"], (tile["position"][0] + self.orig_global_x, tile["position"][1] + self.orig_global_y))
+                med_x = tile["position"][0] + self.orig_global_x
+                med_y = tile["position"][1] + self.orig_global_y
+                if type(tile["surface"]) is pygame.Surface:
+                    self.screen.blit(tile["surface"], (med_x, med_y))
+                else:
+                    tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw any map animations over everything.
         for animation_name, animation in self.game.animations.items():
@@ -940,6 +972,11 @@ class World(tools._State):
                 if self.main_menu.state == "open" or self.main_menu.state == "opening":
                     self.main_menu.interactable = True
 
+        # Interaction Menu
+        if self.interaction_menu.visible:
+            self.interaction_menu.draw()
+            self.interaction_menu.draw_textItem(self.interaction_menu.menu_items)
+
         # Save Menu
         if self.save_menu.visible:
             # Set the save game variables so we can save the game in the menu
@@ -961,11 +998,11 @@ class World(tools._State):
         if self.item_menu.visible:
             self.item_menu.draw(draw_borders=False)
 
-        # Draw the Monster menu
+        # Draw the Monster Menu
         if self.monster_menu.visible:
             self.monster_menu.draw(draw_borders=False)
 
-        # Not implemented menu
+        # Not implemented Menu
         if self.not_implmeneted_menu.visible:
             self.not_implmeneted_menu.draw()
             self.not_implmeneted_menu.draw_text("This feature is not yet implemented.",
@@ -1047,56 +1084,6 @@ class World(tools._State):
 
         """
 
-        if self.start_battle_transition:
-            logger.info("Initializing battle transition")
-            self.game.rumble.rumble(-1, length=1.5)
-            self.battle_transition_in_progress = True
-            self.transition_surface = pygame.Surface(self.resolution)
-            self.transition_surface.fill((255, 255, 255))
-            self.start_battle_transition = False
-
-            # Stop player map movement
-            self.menu_blocking = True
-
-        if self.battle_transition_in_progress:
-            logger.info("Battle transition!")
-
-            flash_time = 0.2  # Time in seconds between flashes
-
-            # self.battle_transition_alpha
-            if self.battle_flash_state == "up":
-                self.battle_transition_alpha += (
-                    255 * ((self.time_passed_seconds) / flash_time))
-
-            elif self.battle_flash_state == "down":
-                self.battle_transition_alpha -= (
-                    255 * ((self.time_passed_seconds) / flash_time))
-
-            if self.battle_transition_alpha >= 255:
-                self.battle_flash_state = "down"
-                self.battle_flash_count += 1
-            elif self.battle_transition_alpha <= 0:
-                self.battle_flash_state = "up"
-                self.battle_flash_count += 1
-
-            # If we've hit our max number of flashes, stop the battle
-            # transition animation.
-            if self.battle_flash_count > self.max_battle_flash_count:
-                logger.info("Flashed " + str(self.battle_flash_count) +
-                    " times. Stopping transition.")
-                self.battle_transition_in_progress = False
-                self.battle_flash_count = 0
-
-                # Set our next scene to be "COMBAT". Then, setting "self.done" to True
-                # will cause the scene manager to load the next scene.
-                self.next = "COMBAT"
-                self.done = True
-
-            # Set the alpha of the screen and fill the screen with white at
-            # that alpha level.
-            self.transition_surface.set_alpha(self.battle_transition_alpha)
-            self.screen.blit(self.transition_surface, (0, 0))
-
         # FUCKIN' MATH! 0 = NO ALPHA NOT 255 DAMNIT BILLY!
         # if the value of start_transition event is set to true
         if self.start_transition:
@@ -1122,7 +1109,7 @@ class World(tools._State):
             self.transition_surface.set_alpha(self.transition_alpha)
             self.transition_surface.fill((0, 0, 0))
             self.screen.blit(self.transition_surface, (0, 0))
-            # print transition_alpha
+            # print(transition_alpha)
 
         # Perform a delayed teleport if we're also doing a teleport and we've
         # faded out completely
@@ -1145,6 +1132,7 @@ class World(tools._State):
 
                 # Clear out any existing NPCs
                 self.npcs = []
+                self.npcs_off_map = []
 
                 # Scale the loaded tiles if enabled
                 if prepare.CONFIG.scaling == "1":
@@ -1159,8 +1147,11 @@ class World(tools._State):
                             if column:
                                 layer_pos = 0
                                 for tile in column:
-                                    tile["surface"] = pygame.transform.scale(
-                                        tile["surface"], (self.tile_size[0], self.tile_size[1]))
+                                    if type(tile["surface"]) is pygame.Surface:
+                                        tile["surface"] = pygame.transform.scale(
+                                            tile["surface"], self.tile_size)
+                                    else:
+                                        tile["surface"].scale(self.tile_size)
                                     self.tiles[x_pos][y_pos][layer_pos] = tile
                                     layer_pos += 1
                             y_pos += 1
@@ -1183,9 +1174,25 @@ class World(tools._State):
             self.transition_back_surface.set_alpha(self.transition_alpha)
             self.transition_back_surface.fill((0, 0, 0))
             self.screen.blit(self.transition_back_surface, (0, 0))
-            # print transition_alpha
+            # print(transition_alpha)
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
+
+            # Update the server/clients of our new map and populate any other players.
+            if self.game.isclient or self.game.ishost:
+                self.game.add_clients_to_map(self.game.client.client.registry)
+                self.game.client.update_player(self.player1.facing)
+
+            # Update the location of the npcs. Doesn't send network data.
+            for npc in self.npcs:
+                char_dict ={"tile_pos": npc.tile_pos,
+                            }
+                networking.update_client(npc, char_dict, self.game)
+
+            for npc in self.npcs_off_map:
+                char_dict ={"tile_pos": npc.tile_pos,
+                            }
+                networking.update_client(npc, char_dict, self.game)
 
 
     def get_pos_from_tilepos(self, tile_position):
@@ -1199,8 +1206,89 @@ class World(tools._State):
         :returns: The pixel coordinates to draw at the given tile position.
 
         """
-
         x = (self.tile_size[0] * tile_position[0]) + self.global_x
         y = (self.tile_size[1] * tile_position[1]) + self.global_y
 
         return x, y
+
+
+    def check_interactable_space(self):
+        """Checks to see if any Npc objects around the player are interactable. It then populates a menu
+        of possible actions.
+
+        :param: None
+
+        :rtype: Bool
+        :returns: True if there is an Npc to interact with.
+
+        """
+        collision_dict = self.player1.get_collision_dict(self)
+        player_tile_pos = ( int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])) )
+        collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
+        if not collisions:
+            pass
+        else:
+            for direction in collisions:
+                if self.player1.facing == direction:
+                    if direction == "up":
+                        tile = (player_tile_pos[0], player_tile_pos[1] - 1)
+                    elif direction == "down":
+                        tile = (player_tile_pos[0], player_tile_pos[1] + 1)
+                    elif direction == "left":
+                        tile = (player_tile_pos[0] - 1, player_tile_pos[1])
+                    elif direction == "right":
+                        tile = (player_tile_pos[0] + 1, player_tile_pos[1])
+                    for npc in self.npcs:
+                        tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
+                        if tile_pos == tile:
+                            self.interaction_menu.visible = True
+                            self.interaction_menu.interactable = True
+                            self.interaction_menu.player = npc
+                            self.interaction_menu.menu_items = ["Player Interactions:"]
+                            for menu_item in npc.interactions:
+                                self.interaction_menu.menu_items.append(menu_item)
+                            self.menu_blocking = True
+                            return True
+                        else: continue
+
+
+    def handle_interaction(self, event_data, registry):
+        """Presents options window when another player has interacted with this player.
+
+        :param event_data: Information on the type of interaction and who sent it.
+        :param registry:
+
+        :type event_data: Dictionary
+        :type registry: Dictionary
+
+        :rtype: None
+        :returns: None
+        """
+        print(event_data)
+        target = registry[event_data["target"]]["sprite"]
+        target_name = str(target.name)
+        networking.update_client(target, event_data["char_dict"], self.game)
+        if event_data["interaction"] == "DUEL":
+            if not event_data["response"]:
+                self.interaction_menu.visible = True
+                self.interaction_menu.interactable = True
+                self.interaction_menu.player = target
+                self.interaction_menu.interaction = "DUEL"
+                self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
+                self.menu_blocking = True
+            else:
+                if self.wants_duel:
+                    if event_data["response"] == "Accept":
+                        world = self.game.current_state
+                        pd = world.player1.__dict__
+                        event_data = {"type": "CLIENT_INTERACTION",
+                                      "interaction": "START_DUEL",
+                                      "target": [event_data["target"]],
+                                      "response": None,
+                                      "char_dict": {"monsters": pd["monsters"],
+                                                    "inventory": pd["inventory"]
+                                                    }
+
+                                      }
+                        self.game.server.notify_client_interaction(cuuid, event_data)
+

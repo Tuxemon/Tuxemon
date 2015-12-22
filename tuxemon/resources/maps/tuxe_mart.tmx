@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="30">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100">
+  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg4YEkGhgEXMjAM+JOBYUCPDDyqd+joHQgAADE2HQ0=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi5gJmVdD0dLAwM7UB8l4V8e2mhtxbol9tAuXo8frpJhr3EmEsuoKXZ2ACdrCEZAAA8MApU
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF5IBw1oHRu4GFfL2bKdA7CmgHAAF2AiQ=
+  </data>
+ </layer>
+ <layer name="Above player" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwVsZGFg2ATEm1loYy4tAK3cPJIAACPLBbA=
+  </data>
+ </layer>
+ <layer name="Above player" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwUcYoXgg6yk6z3DCsGnydBLKTjMCsHkgLOsEDySAQBcNgf7
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
+  <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
+  <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
+  <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
+  <object id="21" type="collision" x="48" y="80" width="16" height="64"/>
+  <object id="22" type="collision" x="16" y="144" width="48" height="16"/>
+  <object id="24" type="collision" x="144" y="112" width="48" height="16"/>
+  <object id="25" type="collision" x="144" y="160" width="48" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,30,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="27" name="Receive capture device" type="event" x="64" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_item Capture Device"/>
+    <property name="act2" value="add_item Capture Device"/>
+    <property name="act3" value="add_item Capture Device"/>
+    <property name="act4" value="add_item Capture Device"/>
+    <property name="act5" value="add_item Capture Device"/>
+    <property name="act6" value="dialog Received capture device (x5)!"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

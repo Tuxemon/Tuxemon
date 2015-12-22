@@ -35,8 +35,12 @@ import logging
 from . import config as Config
 
 # read the configuration file
-config_path = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "..")) + "/tuxemon.cfg"
-print config_path
+BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".." + os.sep + "..")) + os.sep
+if "library.zip" in BASEDIR:
+    BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
+
+config_path = BASEDIR + "tuxemon.cfg"
+print(config_path)
 config = Config.Config(config_path)
 loggers = {}
 

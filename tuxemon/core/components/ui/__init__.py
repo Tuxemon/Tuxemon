@@ -165,8 +165,8 @@ class UserInterface(object):
                 if type(self.position) is tuple:
                     self.position = list(self.position)
 
-                    self.position[0] -= (mdt[0] * dt) / dur
-                    self.position[1] -= (mdt[1] * dt) / dur
+                self.position[0] -= (mdt[0] * dt) / dur
+                self.position[1] -= (mdt[1] * dt) / dur
 
 
     def draw(self):
@@ -253,6 +253,7 @@ class UserInterface(object):
             self.last_position = list(self.position)
             self.move_destination = destination
             self.move_time = 0.
+            self.move_delta.append(self.position[1] - destination[1])
             self.move_delta = list(map(operator.sub, self.position, destination))
             self.move_duration = float(duration)
 

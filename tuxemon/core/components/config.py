@@ -41,6 +41,7 @@ class Config(object):
     """
     def __init__(self, file="tuxemon.cfg"):
         self.config = configparser.ConfigParser()
+        self.config.read(file)
  
 
         self.resolution_x = self.config.get("display", "resolution_x")

@@ -29,7 +29,7 @@
 #
 """This module contains the Tuxemon server and client.
 """
-from middleware import Multiplayer, Controller
+from core.components.middleware import Multiplayer, Controller
 from core.components import player
 from core.components.event.actions.npc import Npc
 from core import prepare
@@ -582,7 +582,7 @@ class TuxemonClient():
         self.client.autodiscover(autoregister=False)
 
         # Logic to prevent joining your own game as a client.
-        if self.client.discovered_servers > 0:
+        if len(self.client.discovered_servers) > 0:
             for ip, port in self.client.discovered_servers:
                 try:
                     if self.available_games[ip]:

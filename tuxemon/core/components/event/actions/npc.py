@@ -91,7 +91,7 @@ class Npc(object):
         # Get a copy of the world state.
         world = game.world
 
-        print "action is " + str(action)
+        print("action is " + str(action))
         parameters = action[1].split(",")
         npc_name = parameters[0]
         dest_x = parameters[1]
@@ -102,7 +102,7 @@ class Npc(object):
         for n in world.npcs:
             if n.name == npc_name:
                 curr_npc = n
-                print "found npc: " +npc_name
+                print("found npc: " +npc_name)
 
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)
 

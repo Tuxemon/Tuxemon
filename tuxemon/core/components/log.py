@@ -40,7 +40,7 @@ if "library.zip" in BASEDIR:
     BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
 
 config_path = BASEDIR + "tuxemon.cfg"
-print config_path
+print(config_path)
 config = Config.Config(config_path)
 loggers = {}
 

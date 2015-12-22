@@ -143,7 +143,7 @@ class Player(object):
         self.anim_playing = True
 
 
-    def move(self, screen, tile_size, time_passed_seconds, (global_x, global_y), game):
+    def move(self, screen, tile_size, time_passed_seconds, global_xy, game):
         """Draws text to the current menu object
 
         :param screen: The pygame surface you wish to blit the player onto.
@@ -166,6 +166,8 @@ class Player(object):
             to collision)
 
         """
+
+        global_x, global_y = global_xy
 
         collision_dict = self.get_collision_dict(game)
 
@@ -347,20 +349,20 @@ class Player(object):
         This method will ensure movement will happen until the player
         reaches its destination
         '''
-        #print "move_by_path()"
+        #print("move_by_path()")
         # TODO maybe this function could be organized better
         if self.path and not self.moving:
             # get the next step of the plan
             next_plan_step = self.path[len(self.path)-1]
             # round self.tile_pos
             my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-            #print "my_tile_pos="+str(my_tile_pos)+" next plan step is " + str(next_plan_step)
+            #print("my_tile_pos="+str(my_tile_pos)+" next plan step is " + str(next_plan_step))
             # make sure it's adjacent to current location
             adj_x = abs(int(round(my_tile_pos[0])) - int(round(next_plan_step[0]))) == 1
             adj_y = abs(int(round(my_tile_pos[1])) - int(round(next_plan_step[1]))) == 1
             # do xor to invalidate diagonal adjacency
             if (adj_x and not adj_y) or (not adj_x and adj_y):
-                #print "tiles are adjacent!!!"
+                #print("tiles are adjacent!!!")
                 # adjacent is true, so execute move to next plan step
                 # get direction we need to move
                 if my_tile_pos[0] > next_plan_step[0]:
@@ -376,7 +378,7 @@ class Player(object):
                 # somehow we are already at the next plan step, just pop
                 self.path.pop()
         else:
-            print "self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving)
+            print("self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving))
 
     def draw(self, screen, layer):
         """Draws the player to the screen depending on whether or not they are moving or
@@ -552,7 +554,7 @@ class Player(object):
         """
 
         if len(self.monsters) >= self.party_limit:
-            print "Send to PC"
+            print("Send to PC")
 
         else:
             self.monsters.append(monster)
@@ -623,7 +625,7 @@ class Player(object):
                     path.append(pathnode.get_value())
                     pathnode = pathnode.get_parent()
 
-                #print "path is " + str(path)
+                #print("path is " + str(path))
 
                 # last minute check to remove the top plan step if
                 # it's the same as our location
@@ -665,7 +667,7 @@ class Player(object):
 
             # recur
             path = self.pathfind_r(dest,queue,visited,depth+1,game)
-            ##print "path is: " + str(path)
+            ##print("path is: " + str(path))
             return path
 
     def get_adjacent_tiles(self, curr_loc, game):

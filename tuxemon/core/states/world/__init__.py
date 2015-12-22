@@ -646,10 +646,10 @@ class WORLD(state.State):
 
         # Loop through the number of visible tiles and draw only the tiles that
         # are visible
-        for row in xrange(starting_tile_x - self.tile_buffer, starting_tile_x + self.visible_tiles[0]):
+        for row in list(range(int(starting_tile_x) - self.tile_buffer, int(starting_tile_x) + self.visible_tiles[0])):
             if row > 0:
 
-                for column in xrange(starting_tile_y - self.tile_buffer, starting_tile_y + self.visible_tiles[1]):
+                for column in list(range(int(starting_tile_y) - self.tile_buffer, int(starting_tile_y) + self.visible_tiles[1])):
                     if row > 0:
                         try:
                             if self.tiles[row][column]:		# Check to see if a tile exists at this coordinates
@@ -745,7 +745,7 @@ class WORLD(state.State):
             npc.position[1] -= self.global_y_diff
 
             # debug info
-            #print "npc.tile_pos="+str(npc.tile_pos)
+            #print("npc.tile_pos="+str(npc.tile_pos))
 
             # if the npc has a path, move it along its path
             if npc.path:
@@ -759,7 +759,7 @@ class WORLD(state.State):
             npc.direction["left"] = False
             npc.direction["right"] = False
 
-	    if npc.update_location:
+            if npc.update_location:
                 char_dict ={"tile_pos": npc.final_move_dest,
                             }
                 networking.update_client(npc, char_dict, self.game)
@@ -1108,7 +1108,7 @@ class WORLD(state.State):
             self.transition_surface.set_alpha(self.transition_alpha)
             self.transition_surface.fill((0, 0, 0))
             self.screen.blit(self.transition_surface, (0, 0))
-            # print transition_alpha
+            # print(transition_alpha)
 
         # Perform a delayed teleport if we're also doing a teleport and we've
         # faded out completely
@@ -1173,7 +1173,7 @@ class WORLD(state.State):
             self.transition_back_surface.set_alpha(self.transition_alpha)
             self.transition_back_surface.fill((0, 0, 0))
             self.screen.blit(self.transition_back_surface, (0, 0))
-            # print transition_alpha
+            # print(transition_alpha)
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
 
@@ -1263,7 +1263,7 @@ class WORLD(state.State):
         :rtype: None
         :returns: None
         """
-        print event_data
+        print(event_data)
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
         networking.update_client(target, event_data["char_dict"], self.game)

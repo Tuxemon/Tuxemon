@@ -59,6 +59,12 @@ class UserInterface(object):
     def __init__(self, images, position, screen, scale=True,
                  animation_speed=0.2, animation_loop=False):
 
+        # Python 2
+        try:
+            unicode
+        except NameError:
+            unicode = str
+
         # Handle loading a single image, multiple images, or surfaces
         if type(images) is str or type(images) is unicode:
             if prepare.BASEDIR not in images:
@@ -112,7 +118,7 @@ class UserInterface(object):
         self.height = self.images[0][0].get_height()
         self.moving = False
         self.move_destination = (0, 0)
-        self.move_delta = (0, 0)
+        self.move_delta = [0, 0]
         self.move_duration = 0.
         self.move_time = 0.
         self.fading = False
@@ -160,8 +166,9 @@ class UserInterface(object):
             else:
                 if type(self.position) is tuple:
                     self.position = list(self.position)
-                self.position[0] -= (mdt[0] * dt) / dur
-                self.position[1] -= (mdt[1] * dt) / dur
+                
+                    self.position[0] -= (mdt[0] * dt) / dur
+                    self.position[1] -= (mdt[1] * dt) / dur
 
 
     def draw(self):
@@ -248,7 +255,7 @@ class UserInterface(object):
             self.last_position = list(self.position)
             self.move_destination = destination
             self.move_time = 0.
-            self.move_delta = map(operator.sub, self.position, destination)
+            self.move_delta = list(map(operator.sub, self.position, destination))
             self.move_duration = float(duration)
 
 

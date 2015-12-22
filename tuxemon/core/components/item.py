@@ -208,7 +208,7 @@ class Item(object):
 
         """
 
-        print "Attempting to capture"
+        print("Attempting to capture")
 
         # Set up variables for capture equation
         success_max = 0
@@ -230,13 +230,13 @@ class Item(object):
         success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
 
         # Debugging Text
-        print "--- Capture Variables ---"
-        print "(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power"
-        print "(0 - (%s * 10)) + %s + %s + %s = %s" % (
-            target.level, damage_modifier, status_modifier, item_power, success_max)
-        print "Success if between: 0 -", success_max
-        print "Chance of capture: %s / 100" % (success_max / 10)
-        print "Random number:", random_num
+        print("--- Capture Variables ---")
+        print("(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power")
+        print("(0 - (%s * 10)) + %s + %s + %s = %s" % (
+            target.level, damage_modifier, status_modifier, item_power, success_max))
+        print("Success if between: 0 -", success_max)
+        print("Chance of capture: %s / 100" % (success_max / 10))
+        print("Random number:", random_num)
 
         # If random_num falls between 0 and success_max, capture target
         if 0 <= random_num <= success_max:

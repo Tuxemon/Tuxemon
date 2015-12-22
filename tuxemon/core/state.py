@@ -221,7 +221,7 @@ class StateManager(object):
                 self.exit = True
 
         except IndexError:
-            print "Attempted to pop state when no state was active."
+            print("Attempted to pop state when no state was active.")
             raise RuntimeError
 
     def push_state(self, state_name, params=None):

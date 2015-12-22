@@ -116,42 +116,42 @@ class LibShakeRumble(Rumble):
         t.start()
 
     def device_info(self, device):
-        print "Device #%d" % self.libShake.Shake_DeviceId(device)
-        print " Name:", self.libShake.Shake_DeviceName(device)
-        print " Adjustable gain:", self.libShake.Shake_QueryGainSupport(device)
-        print " Adjustable autocenter:", self.libShake.Shake_QueryAutocenterSupport(device)
-        print " Effect capacity:", self.libShake.Shake_DeviceEffectCapacity(device)
-        print " Supported effects:"
+        print("Device #%d" % self.libShake.Shake_DeviceId(device))
+        print(" Name:", self.libShake.Shake_DeviceName(device))
+        print(" Adjustable gain:", self.libShake.Shake_QueryGainSupport(device))
+        print(" Adjustable autocenter:", self.libShake.Shake_QueryAutocenterSupport(device))
+        print(" Effect capacity:", self.libShake.Shake_DeviceEffectCapacity(device))
+        print(" Supported effects:")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RUMBLE):
-            print "  SHAKE_EFFECT_RUMBLE"
+            print("  SHAKE_EFFECT_RUMBLE")
 
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_PERIODIC):
-            print "  SHAKE_EFFECT_PERIODIC"
+            print("  SHAKE_EFFECT_PERIODIC")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SQUARE):
-                print "  * SHAKE_PERIODIC_SQUARE"
+                print("  * SHAKE_PERIODIC_SQUARE")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_TRIANGLE):
-                print "  * SHAKE_PERIODIC_TRIANGLE"
+                print("  * SHAKE_PERIODIC_TRIANGLE")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SINE):
-                print "  * SHAKE_PERIODIC_SINE"
+                print("  * SHAKE_PERIODIC_SINE")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SAW_UP):
-                print "  * SHAKE_PERIODIC_SAW_UP"
+                print("  * SHAKE_PERIODIC_SAW_UP")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SAW_DOWN):
-                print "  * SHAKE_PERIODIC_SAW_DOWN"
+                print("  * SHAKE_PERIODIC_SAW_DOWN")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_CUSTOM):
-                print "  * SHAKE_PERIODIC_CUSTOM"
+                print("  * SHAKE_PERIODIC_CUSTOM")
 
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_CONSTANT):
-            print "  SHAKE_EFFECT_CONSTANT"
+            print("  SHAKE_EFFECT_CONSTANT")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_SPRING):
-            print "  SHAKE_EFFECT_SPRING"
+            print("  SHAKE_EFFECT_SPRING")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_FRICTION):
-            print "  SHAKE_EFFECT_FRICTION"
+            print("  SHAKE_EFFECT_FRICTION")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_DAMPER):
-            print "  SHAKE_EFFECT_DAMPER"
+            print("  SHAKE_EFFECT_DAMPER")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_INERTIA):
-            print "  SHAKE_EFFECT_INERTIA"
+            print("  SHAKE_EFFECT_INERTIA")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RAMP):
-            print "  SHAKE_EFFECT_RAMP"
+            print("  SHAKE_EFFECT_RAMP")
 
     def device_count(self):
         return self.libShake.Shake_NumOfDevices()

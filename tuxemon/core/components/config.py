@@ -41,8 +41,8 @@ class Config(object):
     """
     def __init__(self, file="tuxemon.cfg"):
         self.config = configparser.ConfigParser()
-        self.config.read(file)
-        
+ 
+
         self.resolution_x = self.config.get("display", "resolution_x")
         self.resolution_y = self.config.get("display", "resolution_y")
         self.resolution = (int(self.resolution_x), int(self.resolution_y))
@@ -56,28 +56,28 @@ class Config(object):
 
         self.controller_overlay = self.config.get("display", "controller_overlay")
         self.controller_transparency = int(self.config.get("display", "controller_transparency"))
-        
+
 
         self.starting_map = self.config.get("game", "starting_map")
-        self.starting_position = [int(self.config.get("game", "starting_position_x")), 
+        self.starting_position = [int(self.config.get("game", "starting_position_x")),
                                   int(self.config.get("game", "starting_position_y"))]
         self.cli = int(self.config.get("game", "cli_enabled"))
         self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
-        
+
         self.player_animation_speed = float(self.config.get("player", "animation_speed"))
 
         self.debug_logging = self.config.get("logging", "debug_logging")
-        self.debug_level = self.config.get("logging", "debug_level")
+        self.debug_level = str(self.config.get("logging", "debug_level")).lower()
         self.loggers = self.config.get("logging", "loggers")
         self.loggers = self.loggers.replace(" ", "").split(",")
 
-        
+
     def fullscreen_check(self):
         """If the fullscreen option is set in our configuration option, return a
         "pygame.FULLSCREEN" object to the game.
 
         :param: None
-    
+
         :rtype: pygame.FULLSCREEN
         :returns: pygame.FULLSCREEN object or 0
 

@@ -152,7 +152,6 @@ class StateManager(object):
         """ Scan a folder, load states found in it, and register them
         """
         state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
-        print('State folder: {}'.format(state_folder))
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
@@ -187,9 +186,7 @@ class StateManager(object):
         :return: Instanced state
         """
         try:
-            print('self.package: {}'.format(self.package))
             import_name = self.package + '.' + folder
-            print('import_name: {}'.format(import_name))
             import_module(import_name)
             for state in self.collect_states_from_module(import_name):
                 yield state

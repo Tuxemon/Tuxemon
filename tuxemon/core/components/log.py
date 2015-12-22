@@ -50,7 +50,6 @@ config = Config.Config(config_path)
 loggers = {}
 
 if config.debug_level in LOG_LEVELS:
-    print "BOOM"
     log_level = LOG_LEVELS[config.debug_level]
 else:
     log_level = logging.INFO

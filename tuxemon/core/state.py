@@ -3,6 +3,7 @@ import os
 import sys
 from abc import ABCMeta, abstractmethod
 from importlib import import_module
+from core import prepare
 
 
 class State(object):
@@ -150,7 +151,7 @@ class StateManager(object):
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = os.path.join(*self.package.split('.'))
+        state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
         exclude_endings = (".py", ".pyc", "__pycache__")
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):

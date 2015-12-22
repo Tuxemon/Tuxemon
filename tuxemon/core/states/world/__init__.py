@@ -35,8 +35,10 @@ import pygame
 import math
 
 # Import Tuxemon internal libraries
+import core
 from core import prepare
 from core import state
+from core import tools
 from core.components import map
 from core.components import networking
 
@@ -109,13 +111,7 @@ class WORLD(state.State):
                     if column:
                         layer_pos = 0
                         for tile in column:
-                            if type(tile["surface"]) is pygame.Surface:
-                                tile["surface"] = \
-                                    pygame.transform.scale(
-                                        tile["surface"],
-                                        (self.tile_size[0], self.tile_size[1]))
-                            else:
-                                tile["surface"].scale(self.tile_size)
+                            tile["surface"] = tools.scale_tile(tile["surface"], self.tile_size)
                             self.tiles[x_pos][y_pos][layer_pos] = tile
                             layer_pos += 1
                     y_pos += 1

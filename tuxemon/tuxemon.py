@@ -40,6 +40,7 @@ To run an individual component (e.g. core/prepare.py):
 """
 import sys
 import getopt
+import core.components.log
 
 
 if __name__ == '__main__':

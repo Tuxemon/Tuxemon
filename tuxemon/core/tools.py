@@ -172,3 +172,15 @@ def explore(rootdir):
     for key, value in dir.items():
         for k, v in value.items():
             return v
+
+
+def scale_tile(surface, tile_size):
+    """
+    Scales a map tile based on resolution.
+    """
+    if type(surface) is pg.Surface:
+        surface = pg.transform.scale(surface, tile_size)
+    else:
+        surface.scale(tile_size)
+    
+    return surface

@@ -57,6 +57,7 @@ class Player(object):
         prepare = game.imports["prepare"]
         item = game.imports["item"]
         monster = game.imports["monster"]
+        tools = game.imports["tools"]
         Map = game.imports["map"].Map
 
         # Get the player object from the game.
@@ -113,8 +114,7 @@ class Player(object):
                             if column:
                                 layer_pos = 0
                                 for tile in column:
-                                    tile["surface"] = pygame.transform.scale(
-                                        tile["surface"], (world.tile_size[0], world.tile_size[1]))
+                                    tile["surface"] = tools.scale_tile(tile["surface"], player.tile_size)
                                     world.tiles[x_pos][y_pos][layer_pos] = tile
                                     layer_pos += 1
                             y_pos += 1

@@ -488,7 +488,8 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
                 for d in sprite.direction:
-                    if sprite.direction[d]: sprite.direction[d] = False
+                    if sprite.direction[d]: 
+                        sprite.direction[d] = False
                 sprite.direction[direction] = True
                 del self.client.event_notifies[euuid]
 
@@ -496,7 +497,8 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
-                    if sprite.direction[d]: sprite.direction[d] = False
+                    if sprite.direction[d]: 
+                        sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_MAP_UPDATE":

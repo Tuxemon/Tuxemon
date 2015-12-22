@@ -754,10 +754,11 @@ class WORLD(state.State):
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
             # Reset our directions after moving.
-            npc.direction["up"] = False
-            npc.direction["down"] = False
-            npc.direction["left"] = False
-            npc.direction["right"] = False
+            if not npc.isplayer:
+                npc.direction["up"] = False
+                npc.direction["down"] = False
+                npc.direction["left"] = False
+                npc.direction["right"] = False
 
             if npc.update_location:
                 char_dict ={"tile_pos": npc.final_move_dest,

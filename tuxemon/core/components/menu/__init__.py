@@ -189,7 +189,7 @@ class Menu(UserInterface):
         :type value: Any
 
         """
-        #print "Changing", key, "to", value
+        #print("Changing", key, "to", value)
 
         # If the background surface changes, scale it to the size of the window.
         if key == "background":
@@ -520,7 +520,7 @@ class Menu(UserInterface):
                 pos_x = 0
 
         elif justify == "right":
-             raise NotImplementedError, "Needs to be implemented"
+             raise NotImplementedError("Needs to be implemented")
 
         # If text alignment was set, handle the position of the text automatically
         if align == "middle":
@@ -528,7 +528,7 @@ class Menu(UserInterface):
                 ((text_surface.get_height() * len(lines)) / 2)
 
         elif align == "bottom":
-            raise NotImplementedError, "Needs to be implemented"
+            raise NotImplementedError("Needs to be implemented")
 
 
         # Set a spacing variable that we will add to to space each line.
@@ -698,15 +698,15 @@ class Menu(UserInterface):
         :returns: None
 
         """
-        #print self.border["right"].get_width(), self.size_y
+        #print(self.border["right"].get_width(), self.size_y)
         self.border["right"] = pygame.transform.scale(
-            self.border["right"], (self.border["right"].get_width(), self.size_y))
+            self.border["right"], (self.border["right"].get_width(), int(self.size_y)))
         self.border["left"] = pygame.transform.scale(
-            self.border["left"], (self.border["left"].get_width(), self.size_y))
+            self.border["left"], (self.border["left"].get_width(), int(self.size_y)))
         self.border["top"] = pygame.transform.scale(
-            self.border["top"], (self.size_x, self.border["top"].get_height()))
+            self.border["top"], (int(self.size_x), self.border["top"].get_height()))
         self.border["bottom"] = pygame.transform.scale(
-            self.border["bottom"], (self.size_x, self.border["bottom"].get_height()))
+            self.border["bottom"], (int(self.size_x), self.border["bottom"].get_height()))
 
         # If a background was specified, scale it to fit the size of the menu.
         if self.background:
@@ -752,11 +752,11 @@ class Menu(UserInterface):
         self.line_spacing = spacing
 
     def clicked(self, mouse_pos):
-        print "Do nothing"
+        print("Do nothing")
 
 
     def draw_button(self, text, mouse_pos):
-        print "Button!"
+        print("Button!")
 
 
     def draw_textItem(self, textlist, columns=1, pos_x=0, pos_y=0, align="middle", autoline_spacing=False, paging=False):
@@ -1010,11 +1010,11 @@ class Menu(UserInterface):
 
 
 #plugins = plugin.load_directory("core/components/menu")
-import main_menu
-import dialog_menu
-import bottom_menu
-import interface
-import item_menu
-import monster_menu
-import save_menu
-import interaction_menu
+import core.components.menu.main_menu
+import core.components.menu.dialog_menu
+import core.components.menu.bottom_menu
+import core.components.menu.interface
+import core.components.menu.item_menu
+import core.components.menu.monster_menu
+import core.components.menu.save_menu
+import core.components.menu.interaction_menu

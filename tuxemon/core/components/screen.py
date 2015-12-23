@@ -88,7 +88,7 @@ def pan_right(global_x, pps, time_passed_seconds, limit_x):
     :returns: The modified global_x variable
 
     """
-    #print "Start paning right!"
+    #print("Start paning right!")
     pan_x = pps * time_passed_seconds
     
     # Check to see if we will exceed the limit if we add the pan_x to the global_x
@@ -119,7 +119,7 @@ def pan_up(global_y, pps, time_passed_seconds, limit_y=0):
     :returns: The modified global_y variable
 
     """
-    #print "Start paning up!"
+    #print("Start paning up!")
     pan_y = pps * time_passed_seconds
     
     # Check to see if we will exceed the limit if we add the pan_x to the global_x
@@ -150,7 +150,7 @@ def pan_down(global_y, pps, time_passed_seconds, limit_y):
     :returns: The modified global_y variable
 
     """
-    #print "Start paning down!"
+    #print("Start paning down!")
     pan_y = pps * time_passed_seconds
     
     # Check to see if we will exceed the limit if we add the pan_x to the global_x

@@ -29,7 +29,7 @@
 #
 """This module contains the Tuxemon server and client.
 """
-from middleware import Multiplayer, Controller
+from core.components.middleware import Multiplayer, Controller
 from core.components import player
 from core.components.event.actions.npc import Npc
 from core import prepare
@@ -488,7 +488,8 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
                 for d in sprite.direction:
-                    if sprite.direction[d]: sprite.direction[d] = False
+                    if sprite.direction[d]: 
+                        sprite.direction[d] = False
                 sprite.direction[direction] = True
                 del self.client.event_notifies[euuid]
 
@@ -496,7 +497,8 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
-                    if sprite.direction[d]: sprite.direction[d] = False
+                    if sprite.direction[d]: 
+                        sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_MAP_UPDATE":
@@ -582,7 +584,7 @@ class TuxemonClient():
         self.client.autodiscover(autoregister=False)
 
         # Logic to prevent joining your own game as a client.
-        if self.client.discovered_servers > 0:
+        if len(self.client.discovered_servers) > 0:
             for ip, port in self.client.discovered_servers:
                 try:
                     if self.available_games[ip]:

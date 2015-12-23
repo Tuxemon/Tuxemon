@@ -114,6 +114,6 @@ if __name__ == "__main__":
     saveFile.close()
 
     # Load save file
-    print load(1)
+    print(load(1))
 
-    #print player
+    #print(player)

@@ -96,13 +96,13 @@ class Bar(UserInterface):
         :type value: Any
 
         """
-        #print "Changing", key, "to", value
+        #print("Changing", key, "to", value)
 
         # If our value changes, scale the bar based on our value.
         if key == "value":
             if value:
                 width = int(self.width * (value * 0.01))
-                #print "Scaling bar to size: %i * (%f * 0.01) = %i" % (self.width, value, width)
+                #print("Scaling bar to size: %i * (%f * 0.01) = %i" % (self.width, value, width))
                 height = self.height
                 if width <= 0:
                     width = 1

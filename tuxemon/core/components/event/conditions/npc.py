@@ -61,7 +61,10 @@ class Npc(object):
         """
 
         # Loop through the NPC list and see if the name matches any in the list
-        world = game.current_state
+        world = game.get_world_state()
+        if not world:
+            return
+        
         for npc in world.npcs:
             if npc.name == condition["parameters"]:
                 return True

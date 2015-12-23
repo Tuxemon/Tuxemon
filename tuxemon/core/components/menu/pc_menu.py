@@ -112,7 +112,7 @@ class Multiplayer_Menu(Menu):
 
                 while not self.game.client.client.registered:
                     self.game.client.client.autodiscover(autoregister=False)
-                    if self.game.client.client.discovered_servers > 0:
+                    if len(self.game.client.client.discovered_servers) > 0:
                         for ip, port in self.game.client.client.discovered_servers:
                             for interface in self.game.client.interfaces:
                                 if ip == self.game.client.interfaces[interface]:
@@ -144,6 +144,8 @@ class Multiplayer_Join_Menu(Menu):
         :returns: None
 
         """
+        print(self.selected_menu_item)
+        
         try:
             self.game.client.selected_game = (self.menu_items[self.selected_menu_item],
                                        self.game.client.available_games[self.menu_items[self.selected_menu_item]])
@@ -155,9 +157,42 @@ class Multiplayer_Join_Menu(Menu):
             self.game.current_state.multiplayer_join_success_menu.visible = True
             self.game.current_state.multiplayer_join_success_menu.interactable = True
             self.game.current_state.multiplayer_join_menu.interactable = False
+            
+        elif self.menu_items[self.selected_menu_item] == "JOIN BY IP":
+            self.game.current_state.multiplayer_menu.previous_menu = self
+            self.game.current_state.multiplayer_join_enter_ip_menu.visible = True
+            self.game.current_state.multiplayer_join_enter_ip_menu.interactable = True
+            self.game.current_state.pc_menu.interactable = False
+
+            
+
+class Multiplayer_Join_Enter_IP_Menu(Menu):
+    """Allows you to enter IP, new window becuase why not?
+
+    """
+
+    def __init__(self, screen, resolution, game, name="JOIN_ENTER_IP"):
+
+        # Stuff from the parent menu
+        Menu.__init__(self, screen, resolution, game, name)
+        self.delay = 0.5
+        self.elapsed_time = self.delay
 
 
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.control.Control
+        get_menu_event() function
 
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        return False
+        
+
+            
 class Multiplayer_Join_Success_Menu(Menu):
 
     def __init__(self, screen, resolution, game, name="SUCCESS"):

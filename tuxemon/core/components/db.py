@@ -173,7 +173,7 @@ if __name__ == "__main__":
     #monsters = Database()
     #monsters.load("resources/db/monster.db")
     #tuxemon = monsters.lookup("Bulbatux")
-    #print tuxemon
+    #print(tuxemon)
 
     # JSON way
     db = JSONDatabase()

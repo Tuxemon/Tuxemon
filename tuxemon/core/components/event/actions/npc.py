@@ -52,7 +52,9 @@ class Npc(object):
         player = game.imports["player"]
 
         # Get a copy of the world state.
-        world = game.world
+        world = game.get_world_state()
+        if not world: 
+            return
 
         # Get the npc's parameters from the action
         parameters = action[1].split(",")
@@ -89,9 +91,11 @@ class Npc(object):
         Will move the player / npc to the given location
         '''
         # Get a copy of the world state.
-        world = game.world
+        world = game.get_world_state()
+        if not world:
+            return
 
-        print "action is " + str(action)
+        print("action is " + str(action))
         parameters = action[1].split(",")
         npc_name = parameters[0]
         dest_x = parameters[1]
@@ -102,7 +106,7 @@ class Npc(object):
         for n in world.npcs:
             if n.name == npc_name:
                 curr_npc = n
-                print "found npc: " +npc_name
+                print("found npc: " +npc_name)
 
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)
 

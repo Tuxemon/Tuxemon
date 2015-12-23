@@ -3,6 +3,7 @@ import time
 import pygame as pg
 
 from . import prepare
+from . import tools
 from .components import ai
 from .components import cli
 from .components import controller
@@ -71,7 +72,8 @@ class Control(StateManager):
             "item": item,
             "map": maps,
             "networking": networking,
-            "pyganim": pyganim
+            "pyganim": pyganim,
+            "tools": tools
         }
         self.config = prepare.CONFIG
 

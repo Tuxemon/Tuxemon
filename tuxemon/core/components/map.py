@@ -496,7 +496,7 @@ class Map(object):
                 line_end = point2[1]
                 num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
                 curr_y = line_start / self.tile_size[1]
-                for i in range(num_tiles_in_line):
+                for i in range(int(num_tiles_in_line)):
                     if line_start > line_end: # slightly different
                                               # behavior depending on
                                               # direction
@@ -523,7 +523,7 @@ class Map(object):
                 line_end = point2[0]
                 num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [0] b/c horizontal
                 curr_x = line_start / self.tile_size[0]
-                for i in range(num_tiles_in_line):
+                for i in range(int(num_tiles_in_line)):
                     if line_start > line_end: # slightly different
                                               # behavior depending on
                                               # direction

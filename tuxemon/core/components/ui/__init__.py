@@ -59,8 +59,11 @@ class UserInterface(object):
     def __init__(self, images, position, screen, scale=True,
                  animation_speed=0.2, animation_loop=False):
 
+        # Check to see what kind of image(s) are being loaded.
+        images_type = type(images).__name__
+
         # Handle loading a single image, multiple images, or surfaces
-        if type(images) is str or type(images) is unicode:
+        if images_type == 'str' or images_type == 'unicode':
             if prepare.BASEDIR not in images:
                 images = prepare.BASEDIR + images
             surface = pygame.image.load(images).convert_alpha()
@@ -70,10 +73,11 @@ class UserInterface(object):
                 surface = self.scale_surface(surface)
             self.images = [(surface, animation_speed)]
 
-        elif type(images) is list or type(images) is tuple:
+        elif images_type == 'list' or images_type == 'tuple':
             self.images = []
             for item in images:
-                if type(item) is str or type(item) is unicode:
+                item_type = type(item).__name__
+                if item_type == 'str' or item_type == 'unicode':
                     surface = pygame.image.load(item).convert_alpha()
                     self.original_width = surface.get_width()
                     self.original_height = surface.get_height()
@@ -112,7 +116,7 @@ class UserInterface(object):
         self.height = self.images[0][0].get_height()
         self.moving = False
         self.move_destination = (0, 0)
-        self.move_delta = (0, 0)
+        self.move_delta = [0, 0]
         self.move_duration = 0.
         self.move_time = 0.
         self.fading = False
@@ -160,6 +164,7 @@ class UserInterface(object):
             else:
                 if type(self.position) is tuple:
                     self.position = list(self.position)
+
                 self.position[0] -= (mdt[0] * dt) / dur
                 self.position[1] -= (mdt[1] * dt) / dur
 
@@ -248,7 +253,8 @@ class UserInterface(object):
             self.last_position = list(self.position)
             self.move_destination = destination
             self.move_time = 0.
-            self.move_delta = map(operator.sub, self.position, destination)
+            self.move_delta.append(self.position[1] - destination[1])
+            self.move_delta = list(map(operator.sub, self.position, destination))
             self.move_duration = float(duration)
 
 

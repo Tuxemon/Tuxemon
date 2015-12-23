@@ -4,6 +4,7 @@ import sys
 import logging
 from abc import ABCMeta, abstractmethod
 from importlib import import_module
+from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -155,8 +156,8 @@ class StateManager(object):
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = os.path.join(*self.package.split('.'))
-        exclude_endings = (".py", ".pyc", "__pycache__")
+        state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
+        exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
                 continue
@@ -244,7 +245,7 @@ class StateManager(object):
                 self.exit = True
 
         except IndexError:
-            print "Attempted to pop state when no state was active."
+            print("Attempted to pop state when no state was active.")
             raise RuntimeError
 
     def push_state(self, state_name, params=None):

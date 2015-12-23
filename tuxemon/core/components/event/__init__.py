@@ -153,7 +153,7 @@ class EventEngine(object):
             try:
                 self.actions[action[0]]["method"](game, action)
                 #getattr( self.action, str(action[0]))(game, action)
-            except Exception, message:
+            except Exception as message:
                 error = 'Error: Action method "%s" not implemented' % str(action[0])
                 logger.error(error)
                 logger.error(message)

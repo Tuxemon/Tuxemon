@@ -39,7 +39,7 @@ class Player(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -87,7 +87,7 @@ class Player(object):
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -126,7 +126,7 @@ class Player(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -180,7 +180,7 @@ class Player(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -234,4 +234,61 @@ class Player(object):
             raise Exception("Party size check parameters are incorrect.")
 
         return False
+
+
+    def player_facing_tile(self, game, condition):
+        """Checks to see the player is facing a tile position
+
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type game: core.control.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
+        **Examples:**
+
+        >>> condition
+        {'action_id': '7',
+         'id': 7,
+         'operator': 'is',
+         'parameters': '',
+         'type': 'facing_tile',
+         'x': 0,
+         'y': 0}
+
+        """
+
+        coordinates = (condition['x'], condition['y'])
+        tile_location = None
+
+        # Next, we check the player position and see if we're one tile away from
+        # the tile.
+        if coordinates[1] == game.player1.tile_pos[1]:
+            # Check to see if the tile is to the left of the player
+            if coordinates[0] == game.player1.tile_pos[0] - 1:
+                logger.debug("Tile is to the left of the player")
+                tile_location = "left"
+            # Check to see if the tile is to the right of the player
+            elif coordinates[0] == game.player1.tile_pos[0] + 1:
+                logger.debug("Tile is to the right of the player")
+                tile_location = "right"
+
+        if coordinates[0] == game.player1.tile_pos[0]:
+            # Check to see if the tile is above the player
+            if coordinates[1] == game.player1.tile_pos[1] - 1:
+                logger.debug("Tile is above the player")
+                tile_location = "up"
+            elif coordinates[1] == game.player1.tile_pos[1] + 1:
+                logger.debug("Tile is below the player")
+                tile_location = "down"
+
+        # Then we check to see if we're facing the Tile
+        if game.player1.facing == tile_location:
+            return True
+        else:
+            return False
 

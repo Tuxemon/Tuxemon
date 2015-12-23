@@ -27,6 +27,8 @@
 import logging
 import random
 
+# from core import prepare
+
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
@@ -47,7 +49,7 @@ class Combat(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -68,8 +70,7 @@ class Combat(object):
         player = game.imports["player"]
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if len(game.player1.monsters) < 1:
-            logger.warning("Cannot start battle, player has no monsters!")
+        if not self.check_battle_legal(game.player1):
             return False
 
         # Start combat
@@ -102,6 +103,7 @@ class Combat(object):
 
             # Create a monster object for each monster the NPC has in their party.
             current_monster = monster.Monster()
+            current_monster.load_from_db(npc_monster_details['monster_id'])
             current_monster.name = npc_monster_details['name']
             current_monster.monster_id = npc_monster_details['monster_id']
             current_monster.level = npc_monster_details['level']
@@ -117,6 +119,8 @@ class Combat(object):
 
             current_monster.type1 = results['types'][0]
 
+            current_monster.set_level(current_monster.level)
+
             if len(results['types']) > 1:
                 current_monster.type2 = results['types'][1]
 
@@ -130,16 +134,49 @@ class Combat(object):
             npc.monsters.append(current_monster)
 
         # Add our players and start combat
-        game.state_dict["COMBAT"].players.append(game.player1)
-        game.state_dict["COMBAT"].players.append(npc)
-        game.state_dict["COMBAT"].combat_type = "trainer"
-        #game.state_dict["WORLD"].combat_started = True
-        game.state_dict["WORLD"].start_battle_transition = True
+        game.push_state("TRANSITION", params={
+            'players': (game.player1, npc),
+            'combat_type': "trainer",
+            'screen': game.screen})
 
         # Start some music!
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
 
+        mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+        mixer.music.play(-1)
+
+
+    def start_pseudo_battle(self, game, npc):
+        """Start a networked duel and switch to the combat module.
+
+        :param game: The main game object that contains all the game's variables.
+        :param npc: The NPC to fight if fighting a specific character.
+
+        :type game: core.control.Control
+        :type npc: core.components.player.Npc
+
+        :rtype: None
+        :returns: None
+        """
+        # Don't start a battle if we don't even have monsters in our party yet.
+        if not self.check_battle_legal(game.player1):
+            return False
+
+        if not self.check_battle_legal(npc):
+            return False
+
+        # Add our players and start combat
+        game.push_state("TRANSITION", params={
+            'players': (game.player1, npc),
+            'combat_type': "trainer",
+            'screen': game.screen})
+
+        # Start some music!
+        logger.info("Playing battle music!")
+        filename = "147066_pokemon.ogg"
+
+        prepare = game.imports['prepare']
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
 
@@ -154,7 +191,7 @@ class Combat(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -170,17 +207,11 @@ class Combat(object):
         monster = game.imports["monster"]
         player = game.imports["player"]
 
-
         player1 = game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if len(player1.monsters) < 1:
-            logger.warning("Cannot start battle, player has no monsters!")
+        if not self.check_battle_legal(player1):
             return False
-        else:
-            if player1.monsters[0].current_hp <= 0:
-                logger.warning("Cannot start battle, player's monsters are all DEAD")
-                return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
         encounter_id = int(action[1])
@@ -198,9 +229,8 @@ class Combat(object):
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1,100)
-            rate = range(1, int(item['encounter_rate']) + 1)
-            if roll in rate:
+            roll = random.randrange(1,1000)
+            if roll <= int(item['encounter_rate']):
                 # Set our encounter details
                 encounter = item
 
@@ -221,6 +251,7 @@ class Combat(object):
 
             # Set the monster's level
             current_monster.level = level
+            current_monster.set_level(current_monster.level)
 
             # Create an NPC object which will be this monster's "trainer"
             npc = player.Npc()
@@ -230,10 +261,10 @@ class Combat(object):
             npc.ai = ai.AI()
 
             # Add our players and start combat
-            game.state_dict["COMBAT"].players.append(player1)
-            game.state_dict["COMBAT"].players.append(npc)
-            game.state_dict["COMBAT"].combat_type = "monster"
-            game.state_dict["WORLD"].start_battle_transition = True
+            game.push_state("TRANSITION", params={
+                'players': (player1, npc),
+                'combat_type': "monster",
+                'screen': game.screen})
 
             # Start some music!
             filename = "147066_pokemon.ogg"
@@ -243,7 +274,25 @@ class Combat(object):
             game.current_music["song"] = filename
 
             # Stop the player's movement
-            game.state_dict["WORLD"].menu_blocking = True
             player1.moving = False
             player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
+
+
+    def check_battle_legal(self, player):
+        """Checks to see if the player has any monsters fit for battle.
+
+        :param: None
+
+        :rtype: Bool
+        :returns: True/False
+        """
+        # Don't start a battle if we don't even have monsters in our party yet.
+        if len(player.monsters) < 1:
+            logger.warning("Cannot start battle, player has no monsters!")
+            return False
+        else:
+            if player.monsters[0].current_hp <= 0:
+                logger.warning("Cannot start battle, player's monsters are all DEAD")
+                return False
+            else: return True
 

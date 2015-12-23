@@ -1,0 +1,14 @@
+{
+    "animation": "teeth",
+    "sfx": "blaster1.ogg",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ], 
+    "id": 4, 
+    "name": "Bite", 
+    "power": 50, 
+    "types": [
+        "Normal"
+    ]
+}

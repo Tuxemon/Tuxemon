@@ -14,7 +14,7 @@ class MonsterMenu(Menu):
 
     :type screen: pygame.display
     :type resolution: Tuple
-    :type game: core.tools.Control
+    :type game: core.control.Control
 
     To create a new menu, simply create a new menu instance and then set the size and coordinates
     of the menu like this:
@@ -198,8 +198,8 @@ class MonsterMenu(Menu):
 
                 # If the item menu was opened from combat, open up the action menu.
                 if game.state_name == "COMBAT":
-                    game.state.action_menu.visible = True
-                    game.state.action_menu.interactable = True
+                    game.current_state.action_menu.visible = True
+                    game.current_state.action_menu.interactable = True
 
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
@@ -226,14 +226,15 @@ class MonsterMenu(Menu):
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
 
             if game.state_name == "COMBAT":
-                for player_name, player_dict in self.game.state_dict["COMBAT"].current_players.items():
+                current_state = game.current_state
+                for player_name, player_dict in current_state.current_players.items():
                     if player_name == 'player':
                         if player_dict['player'].monsters[self.selected_menu_item] == player_dict['monster']:
                             break
                         else:
                             player_dict["action"] = "switch"
                             player_dict["monster"] = player_dict['player'].monsters[self.selected_menu_item]
-                            self.game.state_dict["COMBAT"].start_action_phase()
+                            current_state.start_action_phase()
                         break
                     elif player_name == 'opponent':
                         if player_dict['player'].monsters[self.selected_menu_item] == player_dict['monster']:
@@ -241,7 +242,7 @@ class MonsterMenu(Menu):
                         else:
                             player_dict["action"] = "switch"
                             player_dict["monster"] = player_dict['player'].monsters[self.selected_menu_item]
-                            self.game.state_dict["COMBAT"].start_action_phase()
+                            current_state.start_action_phase()
                         break
 
             elif game.state_name == "WORLD":

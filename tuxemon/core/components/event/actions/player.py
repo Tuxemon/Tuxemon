@@ -40,7 +40,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -57,12 +57,12 @@ class Player(object):
         prepare = game.imports["prepare"]
         item = game.imports["item"]
         monster = game.imports["monster"]
+        tools = game.imports["tools"]
         Map = game.imports["map"].Map
-
 
         # Get the player object from the game.
         player = game.player1
-        world = game.state_dict["WORLD"]
+        world = game.current_state
 
         # Get the teleport parameters for the position x,y and the map to load.
         parameters = action[1].split(",")
@@ -114,16 +114,19 @@ class Player(object):
                             if column:
                                 layer_pos = 0
                                 for tile in column:
-                                    tile["surface"] = pygame.transform.scale(
-                                        tile["surface"], (world.tile_size[0], world.tile_size[1]))
+                                    tile["surface"] = tools.scale_tile(tile["surface"], player.tile_size)
                                     world.tiles[x_pos][y_pos][layer_pos] = tile
                                     layer_pos += 1
                             y_pos += 1
                         x_pos += 1
 
+        # Update the server/clients of our new map and populate any other players.
+        if game.isclient or game.ishost:
+            game.add_clients_to_map(game.client.client.registry)
+            game.client.update_player(player.facing)
+
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False
-
 
     def transition_teleport(self, game, action):
         """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
@@ -133,7 +136,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -147,7 +150,6 @@ class Player(object):
         ('teleport', 'pallet_town-room.tmx,5,5,2,2', '1', 1)
 
         """
-
         # Get the teleport parameters for the position x,y and the map to load.
         parameters = action[1].split(",")
         mapname = parameters[0]
@@ -174,7 +176,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -241,7 +243,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -276,7 +278,7 @@ class Player(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -292,8 +294,8 @@ class Player(object):
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
-        if game.state_dict["WORLD"].start_transition:
-            game.state_dict["WORLD"].delayed_facing = parameters
+        if game.current_state.start_transition:
+            game.current_state.delayed_facing = parameters
         else:
             game.player1.facing = parameters
 

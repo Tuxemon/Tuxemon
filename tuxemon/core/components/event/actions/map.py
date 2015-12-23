@@ -42,7 +42,7 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -57,7 +57,7 @@ class Map(object):
 
         """
 
-        world = game.state_dict["WORLD"]
+        world = game.current_state
         if not world.start_transition or not world.start_transition_back:
             world.start_transition = True
             world.transition_time = float(action[1])
@@ -70,15 +70,16 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
         :returns: None
         """
 
-        if game.state_dict["WORLD"].cinema_state == "off":
-            game.state_dict["WORLD"].cinema_state = "turning on"
+        world = game.current_state
+        if world.cinema_state == "off":
+            world.cinema_state = "turning on"
 
 
     def stop_cinema_mode(self, game, action):
@@ -88,16 +89,17 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
         :returns: None
         """
 
-        if game.state_dict["WORLD"].cinema_state == "on":
+        world = game.current_state
+        if world.cinema_state == "on":
             logger.info("Turning off cinema mode")
-            game.state_dict["WORLD"].cinema_state = "turning off"
+            world.cinema_state = "turning off"
 
 
     def play_map_animation(self, game, action):
@@ -107,7 +109,7 @@ class Map(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -154,7 +156,7 @@ class Map(object):
             return True
 
         # Loop through our animation resources and find the animation files based on name.
-        scale = game.state_dict["WORLD"].scale
+        scale = game.imports['prepare'].SCALE
         images_and_durations = []
         for animation_frame in os.listdir(directory):
             pattern = animation_name + "\.[0-9].*"
@@ -163,7 +165,7 @@ class Map(object):
                 frame = pygame.transform.scale(frame, (frame.get_width() * scale, frame.get_height() * scale))
                 images_and_durations.append((frame, duration))
 
-        # Scale the animations based on our game's scale: game.state_dict["WORLD"].scale
+        # Scale the animations based on our game's scale: world.scale
 
         # Create an animation object and conductor.
         pyganim = game.imports["pyganim"]

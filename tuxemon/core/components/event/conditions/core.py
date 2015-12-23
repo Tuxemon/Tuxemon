@@ -35,7 +35,7 @@ class Core(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -53,7 +53,7 @@ class Core(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -96,7 +96,7 @@ class Core(object):
         :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean

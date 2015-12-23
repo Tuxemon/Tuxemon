@@ -204,12 +204,46 @@ class Item(object):
         :type game: tuxemon.Game
 
         :rtype: None
-        :returns: None
+        :returns: True or False
 
         """
 
-        # TODO: Make this not work 100% of the time and check to see if this is a trainer battle.
-        game.player1.add_monster(target)
+        print("Attempting to capture")
+
+        # Set up variables for capture equation
+        success_max = 0
+        damage_modifier = 0
+        status_modifier = 0
+        item_power = self.power
+        random_num = random.randint(0,1000)
+
+        # Get percent of damage taken and multiply it by 10
+        if target.current_hp < target.hp:
+            total_damage = target.hp - target.current_hp
+            damage_modifier = int((float(total_damage) / target.hp)*1000)
+
+        # Check if target has any status effects
+        if not target.status == "Normal":
+            status_modifier = 150
+
+        # Calculate the top of success range (random_num must be in range to succeed)
+        success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
+
+        # Debugging Text
+        print("--- Capture Variables ---")
+        print("(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power")
+        print("(0 - (%s * 10)) + %s + %s + %s = %s" % (
+            target.level, damage_modifier, status_modifier, item_power, success_max))
+        print("Success if between: 0 -", success_max)
+        print("Chance of capture: %s / 100" % (success_max / 10))
+        print("Random number:", random_num)
+
+        # If random_num falls between 0 and success_max, capture target
+        if 0 <= random_num <= success_max:
+            game.player1.add_monster(target)
+            return True
+        else:
+            return False
 
 
 if __name__ == "__main__":

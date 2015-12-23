@@ -1,0 +1,14 @@
+{
+    "animation": "watershot",
+    "sfx": "blaster1.ogg",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ], 
+    "id": 3, 
+    "name": "Water Shot", 
+    "power": 50, 
+    "types": [
+        "Water"
+    ]
+}

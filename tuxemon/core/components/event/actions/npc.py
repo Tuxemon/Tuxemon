@@ -33,7 +33,7 @@ class Npc(object):
         :param action: The action (tuple) retrieved from the database that contains the action's
             parameters
 
-        :type game: core.tools.Control
+        :type game: core.control.Control
         :type action: Tuple
 
         :rtype: None
@@ -52,7 +52,9 @@ class Npc(object):
         player = game.imports["player"]
 
         # Get a copy of the world state.
-        world = game.state_dict["WORLD"]
+        world = game.get_world_state()
+        if not world: 
+            return
 
         # Get the npc's parameters from the action
         parameters = action[1].split(",")
@@ -70,24 +72,30 @@ class Npc(object):
         npc.behavior = behavior
         npc.ai = ai.AI()
         npc.scale_sprites(world.scale)
+        npc.walkrate *= world.scale
+        npc.runrate *=world.scale
+        npc.moverate = npc.walkrate
 
         # Set the NPC's pixel position based on its tile position, tile size, and
         # current global_x/global_y variables
         npc.position = [(tile_pos_x * world.tile_size[0]) + world.global_x,
-                        (tile_pos_y * world.tile_size[1]) + world.global_y]
+                        (tile_pos_y * world.tile_size[1]) + (world.global_y - world.tile_size[1])]
 
 
         # Add the NPC to the game's NPC list
         world.npcs.append(npc)
+        return npc
 
     def pathfind(self, game, action):
         '''
         Will move the player / npc to the given location
         '''
         # Get a copy of the world state.
-        world = game.state_dict["WORLD"]
+        world = game.get_world_state()
+        if not world:
+            return
 
-        print "action is " + str(action)
+        print("action is " + str(action))
         parameters = action[1].split(",")
         npc_name = parameters[0]
         dest_x = parameters[1]
@@ -98,7 +106,7 @@ class Npc(object):
         for n in world.npcs:
             if n.name == npc_name:
                 curr_npc = n
-                print "found npc: " +npc_name
+                print("found npc: " +npc_name)
 
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)
 

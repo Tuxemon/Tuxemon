@@ -31,11 +31,10 @@
 
 # Import various python libraries
 import logging
-import pygame
 import math
 
+import pygame
 # Import Tuxemon internal libraries
-import core
 from core import prepare
 from core import state
 from core import tools
@@ -52,6 +51,9 @@ class WORLD(state.State):
 
     def startup(self, params=None):
         from core.components import menu
+
+        # pygame group for animations and tasks
+        self.animations = pygame.sprite.Group()
 
         # Provide access to the screen surface
         self.screen = self.game.screen
@@ -71,9 +73,23 @@ class WORLD(state.State):
         self.native_resolution = prepare.NATIVE_RESOLUTION
         self.scale = prepare.SCALE
 
+        # Set the world's current state. This is used for various functions.
+        self.state = "World"
+
+        ######################################################################
+        #                          Event Engine                              #
+        ######################################################################
+
+        # Get a copy of the event engine from core.control.Control.
+        self.event_engine = self.game.event_engine
+
+        ######################################################################
+        #                              Map                                   #
+        ######################################################################
         # Set the tiles and mapsize variables
         self.tiles = []
         self.map_size = []
+        self.collision_rectmap = []
 
         # Find out how many tiles can fit on the visible screen. We use this
         # so we draw only the tiles that are visible.
@@ -82,44 +98,9 @@ class WORLD(state.State):
             int(math.ceil(self.resolution[1] / self.tile_size[1]) + 1)]
         # self.visible_tiles = [5, 5]
 
-        # Create a new map instance
-        self.current_map = map.Map(prepare.BASEDIR + "resources/maps/%s" % prepare.CONFIG.starting_map)
-        self.tiles, self.collision_map, self.collision_lines_map, self.map_size = \
-            self.current_map.loadfile(self.tile_size)
-
-        # Create an empty collision_rectmap list which contains rectangle
-        # objects that we can test collision with
-        self.collision_rectmap = []
-
-        # Get the events actions and conditions from the current map
-        self.game.events = self.current_map.events
-
-        # Scale the loaded tiles if enabled
-        if prepare.CONFIG.scaling == "1":
-            x_pos = 0   # Here we need to keep track of the x index in list
-
-            # Loop through each row in the map. Each row is a list of Tile
-            # objects in that row.
-            for row in self.tiles:
-                # Here we need to keep track of the y index of the list within
-                # the row
-                y_pos = 0
-
-                # Now loop through each tile in the row and scale it
-                # accordingly.
-                for column in row:
-                    if column:
-                        layer_pos = 0
-                        for tile in column:
-                            tile["surface"] = tools.scale_tile(tile["surface"], self.tile_size)
-                            self.tiles[x_pos][y_pos][layer_pos] = tile
-                            layer_pos += 1
-                    y_pos += 1
-                x_pos += 1
-
-        # Set the world's current state. This is used for various functions.
-        self.state = "World"
-
+        # load the starting map
+        map_name = prepare.BASEDIR + "resources/maps/%s" % prepare.CONFIG.starting_map
+        self.change_map(map_name)
 
         ######################################################################
         #                           Player Details                           #
@@ -348,7 +329,12 @@ class WORLD(state.State):
         self.interaction_menu.interactable = False
         self.interaction_menu.player = None
 
-        # variables for transition
+        ######################################################################
+        #                            Transitions                             #
+        ######################################################################
+
+        # defaults variables for transition
+        self.SAVE_THIS_FUCKING_SCREEN = pygame.Surface(prepare.SCREEN_SIZE)
         self.transition_alpha = 0
         self.start_transition = False
         self.start_transition_back = False
@@ -374,18 +360,6 @@ class WORLD(state.State):
                 (self.tile_size[0], self.tile_size[1]))
             self.collision_tile.set_alpha(128)
             self.collision_tile.fill((255, 0, 0))
-
-        ######################################################################
-        #                          Event Engine                              #
-        ######################################################################
-
-        # Get a copy of the event engine from core.control.Control.
-        self.event_engine = self.game.event_engine
-
-        # Set the currently loaded map. This is needed because the event
-        # engine loads event conditions and event actions from the currently
-        # loaded map. If we change maps, we need to update this.
-        self.event_engine.current_map = self.current_map
 
         ######################################################################
         #                       Fullscreen Animations                        #
@@ -425,12 +399,23 @@ class WORLD(state.State):
         self.cinema_bottom['on_position'] = [
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
-
         # Allow player movement and make all menus invisible.
         self.menu_blocking = False
         for menu in self.menus:
             menu.interactable = False
             menu.visible = False
+
+        # TODO: remove this fade-in hack when proper transition is complete
+        self.trigger_fade_in()
+
+    def trigger_fade_in(self):
+        """ Hack to temp temporarily until proper fade-in is working
+
+        :return: None
+        """
+        self.transition_time = 1
+        self.start_transition_back = True
+        self.transition_alpha = 255
 
     def update(self, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -470,15 +455,17 @@ class WORLD(state.State):
 
 
     def draw(self, surface):
+        self.screen = surface
+
         # Fill the screen background with black
         surface.fill((0, 0, 0))
 
-        self.map_drawing()
+        self.map_drawing(surface)
         self.player_movement()
-        self.high_map_drawing()
-        self.midscreen_animations()
+        self.high_map_drawing(surface)
+        self.midscreen_animations(surface)
         self.draw_menus()
-        self.fullscreen_animations()
+        self.fullscreen_animations(surface)
 
 
     def get_event(self, event):
@@ -599,7 +586,7 @@ class WORLD(state.State):
     ####################################################
     #                   Map Drawing                    #
     ####################################################
-    def map_drawing(self):
+    def map_drawing(self, surface):
         """Draws the map tiles in a layered order.
 
         :param: None
@@ -642,9 +629,9 @@ class WORLD(state.State):
                                         draw_position = (tile["position"][0] + self.global_x,
                                                          tile["position"][1] + self.global_y)
                                         if type(tile["surface"]) is pygame.Surface:
-                                            self.screen.blit(tile["surface"], draw_position)
+                                            surface.blit(tile["surface"], draw_position)
                                         else:
-                                            tile["surface"].blit(self.screen, draw_position)
+                                            tile["surface"].blit(surface, draw_position)
 
                         # If we try drawing a tile that is out of index range, that means we
                         # reached the end of the list, so just break the loop
@@ -769,7 +756,7 @@ class WORLD(state.State):
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
         # Draw the bottom half of the player
-        self.player1.draw()
+        self.player1.draw(self.screen, "bottom")
 
         # Draw the medium level tiles. These tiles will appear above the player's body,
         # but below the player's head.
@@ -797,15 +784,17 @@ class WORLD(state.State):
 
         # Draw the top half of our NPCs above layer 4.
         for npc in self.npcs:
-            npc.draw()
+            npc.draw(self.screen, "top")
 
         # Draw the top half of the player above layer 4.
-        self.player1.draw()
+        self.player1.draw(self.screen, "top")
 
 
-    def high_map_drawing(self):
+    def high_map_drawing(self, surface):
         """Draws map tiles above the players and NPCs
         """
+
+        rect = surface.get_rect()
 
         # Draw the high level tiles
         for tile in self.highlayer_tiles:
@@ -820,40 +809,37 @@ class WORLD(state.State):
                 tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
                                         tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
 
-
-
-            # If any part of the tile overlaps with the screen, then draw it to
-            # the screen
-            if self.screen_rect.colliderect(tile_rect):
+            # If any part of the tile overlaps with the screen, then draw it
+            if rect.colliderect(tile_rect):
                 med_x = tile["position"][0] + self.orig_global_x
                 med_y = tile["position"][1] + self.orig_global_y
                 if type(tile["surface"]) is pygame.Surface:
-                    self.screen.blit(tile["surface"], (med_x, med_y))
+                    surface.blit(tile["surface"], (med_x, med_y))
                 else:
-                    tile["surface"].blit(self.screen, (med_x, med_y))
+                    tile["surface"].blit(surface, (med_x, med_y))
 
         # Draw any map animations over everything.
         for animation_name, animation in self.game.animations.items():
             position = self.get_pos_from_tilepos(animation["position"])
             position = (position[0] + self.global_x_diff, position[1] + self.global_y_diff)
-            animation["animation"].blit(self.screen, position)
+            animation["animation"].blit(surface, position)
 
         # If we want to draw the collision map for debug purposes
         if prepare.CONFIG.collision_map == "1":
             for item in self.collision_rectmap:
-                self.screen.blit(self.collision_tile, (item[0], item[1]))
+                surface.blit(self.collision_tile, (item[0], item[1]))
 
             if self.player1.direction["up"]:
-                self.screen.blit(self.collision_tile, (
+                surface.blit(self.collision_tile, (
                     self.player1.position[0], self.player1.position[1] - self.tile_size[1]))
             elif self.player1.direction["down"]:
-                self.screen.blit(self.collision_tile, (
+                surface.blit(self.collision_tile, (
                     self.player1.position[0], self.player1.position[1] + self.tile_size[1]))
             elif self.player1.direction["left"]:
-                self.screen.blit(self.collision_tile, (
+                surface.blit(self.collision_tile, (
                     self.player1.position[0] - self.tile_size[0], self.player1.position[1]))
             elif self.player1.direction["right"]:
-                self.screen.blit(self.collision_tile, (
+                surface.blit(self.collision_tile, (
                     self.player1.position[0] + self.tile_size[0], self.player1.position[1]))
 
     ####################################################
@@ -986,10 +972,10 @@ class WORLD(state.State):
                 justify="center", align="middle")
 
 
-    def midscreen_animations(self):
+    def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
 
-        :param: None
+        :param surface: surface to draw on
 
         :rtype: None
         :returns: None
@@ -1013,16 +999,16 @@ class WORLD(state.State):
                 self.cinema_state = "on"
 
             # Draw the cinema bars
-            self.screen.blit(
+            surface.blit(
                 self.cinema_top['surface'], self.cinema_top['position'])
-            self.screen.blit(
+            surface.blit(
                 self.cinema_bottom['surface'], self.cinema_bottom['position'])
 
         elif self.cinema_state == "on":
             # Draw the cinema bars
-            self.screen.blit(
+            surface.blit(
                 self.cinema_top['surface'], self.cinema_top['position'])
-            self.screen.blit(
+            surface.blit(
                 self.cinema_bottom['surface'], self.cinema_bottom['position'])
 
         elif self.cinema_state == "turning off":
@@ -1043,35 +1029,38 @@ class WORLD(state.State):
                 self.cinema_state = "off"
 
             # Draw the cinema bars
-            self.screen.blit(
+            surface.blit(
                 self.cinema_top['surface'], self.cinema_top['position'])
-            self.screen.blit(
+            surface.blit(
                 self.cinema_bottom['surface'], self.cinema_bottom['position'])
 
     ####################################################
     #         Full Screen Animations Functions         #
     ####################################################
-    def fullscreen_animations(self):
+    def fullscreen_animations(self, surface):
         """Handles fullscreen animations such as transitions, cutscenes, etc.
 
-        :param: None
+        :param surface: Surface to draw onto
 
         :rtype: None
         :returns: None
 
         """
 
+        # artificially set the time passed to make up for case
+        # when map loads drop fps and causes the fade to be skipped
+        td = 0.016  # 60 fps
+
         # FUCKIN' MATH! 0 = NO ALPHA NOT 255 DAMNIT BILLY!
         # if the value of start_transition event is set to true
         if self.start_transition:
             if self.transition_alpha == 0:
-                self.SAVE_THIS_FUCKING_SCREEN = self.screen.copy()
+                self.SAVE_THIS_FUCKING_SCREEN = surface.copy()
             self.transition_surface = self.SAVE_THIS_FUCKING_SCREEN.copy()
             # fucking dumb ass math wont let me do less than 1 second so I had to speed that shit up so
             # I multiplied time_passed_seconds testing around making the fade faster because Billys'
             # teleport is TOO FUCKING FAST
-            self.transition_alpha += (
-                255 * ((self.time_passed_seconds) / self.transition_time))
+            self.transition_alpha += 255 * (td / self.transition_time)
             if self.transition_alpha >= 255:
                 self.transition_alpha = 255
                 # created a black screen variable so it actually looks like he teleported, gotta figure out
@@ -1081,11 +1070,10 @@ class WORLD(state.State):
                     self.black_screen = 50
                     self.start_transition_back = True
                     self.start_transition = False
-                self.black_screen += (
-                    50 * ((self.time_passed_seconds) / self.transition_time))
+                self.black_screen += 50 * (td / self.transition_time)
             self.transition_surface.set_alpha(self.transition_alpha)
             self.transition_surface.fill((0, 0, 0))
-            self.screen.blit(self.transition_surface, (0, 0))
+            surface.blit(self.transition_surface, (0, 0))
             # print(transition_alpha)
 
         # Perform a delayed teleport if we're also doing a teleport and we've
@@ -1098,41 +1086,10 @@ class WORLD(state.State):
                 self.player1.facing = self.delayed_facing
                 self.delayed_facing = None
 
-            if prepare.BASEDIR + "resources/maps/" + self.delayed_mapname != self.current_map.filename:
-                self.current_map = map.Map(
-                    prepare.BASEDIR + "resources/maps/" + self.delayed_mapname)
-                self.event_engine.current_map = map.Map(
-                    prepare.BASEDIR + "resources/maps/" + self.delayed_mapname)
-                self.tiles, self.collision_map, self.collision_lines_map, self.map_size = self.current_map.loadfile(
-                    self.tile_size)
-                self.game.events = self.current_map.events
-
-                # Clear out any existing NPCs
-                self.npcs = []
-                self.npcs_off_map = []
-
-                # Scale the loaded tiles if enabled
-                if prepare.CONFIG.scaling == "1":
-                    x_pos = 0        # Here we need to keep track of the x index of the list
-                    # Loop through each row in the map. Each row is a list of
-                    # Tile objects in that row.
-                    for row in self.tiles:
-                        y_pos = 0       # Here we need to keep track of the y index of the list within the row
-                        # Now loop through each tile in the row and scale it
-                        # accordingly.
-                        for column in row:
-                            if column:
-                                layer_pos = 0
-                                for tile in column:
-                                    if type(tile["surface"]) is pygame.Surface:
-                                        tile["surface"] = pygame.transform.scale(
-                                            tile["surface"], self.tile_size)
-                                    else:
-                                        tile["surface"].scale(self.tile_size)
-                                    self.tiles[x_pos][y_pos][layer_pos] = tile
-                                    layer_pos += 1
-                            y_pos += 1
-                        x_pos += 1
+            # check if map has changed, and if so, change it
+            map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
+            if map_name != self.current_map.filename:
+                self.change_map(map_name)
 
             self.delayed_teleport = False
 
@@ -1142,16 +1099,14 @@ class WORLD(state.State):
             self.transition_back_surface = self.SAVE_THIS_FUCKING_SCREEN.copy()
             # same shit as above down here as well, except i slowed that shit
             # down
-            self.transition_alpha -= (
-                255 * ((self.time_passed_seconds) / self.transition_time))
+            self.transition_alpha -= 255 * (td / self.transition_time)
             if self.transition_alpha <= 0:
                 self.transition_alpha = 0
                 self.start_transition_back = False
                 self.black_screen = 0
             self.transition_back_surface.set_alpha(self.transition_alpha)
             self.transition_back_surface.fill((0, 0, 0))
-            self.screen.blit(self.transition_back_surface, (0, 0))
-            # print(transition_alpha)
+            surface.blit(self.transition_back_surface, (0, 0))
             self.game.event_data[
                 "transition"] = False    # Set the transition variable in event_data to false when we're done
 
@@ -1162,14 +1117,46 @@ class WORLD(state.State):
 
             # Update the location of the npcs. Doesn't send network data.
             for npc in self.npcs:
-                char_dict ={"tile_pos": npc.tile_pos,
-                            }
+                char_dict = {"tile_pos": npc.tile_pos}
                 networking.update_client(npc, char_dict, self.game)
 
             for npc in self.npcs_off_map:
-                char_dict ={"tile_pos": npc.tile_pos,
-                            }
+                char_dict = {"tile_pos": npc.tile_pos}
                 networking.update_client(npc, char_dict, self.game)
+
+    ####################################################
+    #             Map Change/Load Functions            #
+    ####################################################
+    def change_map(self, map_name):
+        self.current_map = map.Map(map_name)
+
+        # Set the currently loaded map. This is needed because the event
+        # engine loads event conditions and event actions from the currently
+        # loaded map. If we change maps, we need to update this.
+        self.event_engine.current_map = map.Map(map_name)
+
+        self.tiles, self.collision_map, self.collision_lines_map, self.map_size = \
+            self.current_map.loadfile(self.tile_size)
+
+        # Get the events actions and conditions from the current map
+        self.game.events = self.current_map.events
+
+        # Clear out any existing NPCs
+        self.npcs = []
+        self.npcs_off_map = []
+
+        # Scale the loaded tiles if enabled
+        if prepare.CONFIG.scaling == "1":
+            # Loop through each row in the map. Each row is a list of
+            # Tile objects in that row.
+            for x_pos, row in enumerate(self.tiles):
+                # Now loop through each tile in the row and scale it
+                # accordingly.
+                for y_pos, column in enumerate(row):
+                    if column:
+                        for layer_pos, tile in enumerate(column):
+                            tile['surface'] = tools.scale_tile(tile['surface'], self.tile_size)
+                            self.tiles[x_pos][y_pos][layer_pos] = tile
 
 
     def get_pos_from_tilepos(self, tile_position):

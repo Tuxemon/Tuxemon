@@ -20,8 +20,8 @@ class FadeTransitionBase(State):
     def startup(self, params=None):
         logger.info("Initializing fade transition")
         if params:
-            self.state_duration = params.get('state_duration', self.state_duration)
-            self.fade_duration = params.get('fade_duration', self.fade_duration)
+            self.state_duration = params.get("state_duration", self.state_duration)
+            self.fade_duration = params.get("fade_duration", self.fade_duration)
 
     def resume(self):
         self.animations = pygame.sprite.Group()
@@ -37,13 +37,6 @@ class FadeTransitionBase(State):
         pass
 
     def update(self, time_delta):
-        """Update function for state.
-
-        :param surface: The pygame.Surface of the screen to draw to.
-        :type surface: pygame.Surface
-        :rtype: None
-        :returns: None
-        """
         self.animations.update(time_delta)
 
     def draw(self, surface):

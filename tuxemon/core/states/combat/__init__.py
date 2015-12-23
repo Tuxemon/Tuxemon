@@ -488,7 +488,7 @@ class COMBAT(state.State):
         # Update all of our UI elements positions.
         for item in ui:
             if ui[item]:
-                ui[item].update()
+                ui[item].update(time_delta)
 
 
     def draw(self, surface):
@@ -1344,9 +1344,13 @@ class COMBAT(state.State):
         # TODO: End combat differently depending on winning or losing
         event_engine = self.game.event_engine
         event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
+
+        # TODO: remove this fade-in hack when proper transition is complete
+        world = self.game.get_world_state()
+        world.trigger_fade_in()
+
         self.game.pop_state()
-
-
+        self.game.push_state("FADE_OUT_TRANSITION")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import pygame
 from core import prepare
 from core.components.menu import Menu
-from core.components.ui import UserInterface
+
 
 class MonsterMenu(Menu):
     """A class to create monster menu objects. The monster menu allows you to view monsters in
@@ -47,7 +47,6 @@ class MonsterMenu(Menu):
         self.background_surface = pygame.image.load(self.background_image).convert()
         self.background_surface = pygame.transform.scale(self.background_surface,
             (prepare.SCREEN_SIZE[0], prepare.SCREEN_SIZE[1]))
-
 
         # Create the item menu's submenus.
         self.active_monster_menu = Menu(screen, resolution, game)
@@ -149,7 +148,7 @@ class MonsterMenu(Menu):
                 else:
                     monster_slot.border = self.monster_slot_border["filled"]
                     monster_slot.background = self.monster_slot_border["filled"]["bg"]
-                monster_slot.draw()
+                monster_slot.draw(fill_background=True)
                 monster = self.game.player1.monsters[monster_index]
 
                 # Draw the HP bar
@@ -164,7 +163,7 @@ class MonsterMenu(Menu):
                 monster_slot.draw_text("  Lv " + str(monster.level), pos_y=line_spacing)
             else:
                 monster_slot.border = self.monster_slot_border["empty"]
-                monster_slot.draw()
+                monster_slot.draw(fill_background=False)
 
             monster_index += 1
 
@@ -177,7 +176,6 @@ class MonsterMenu(Menu):
             active_monster_y = int(prepare.SCREEN_SIZE[1] / 12)
             active_monster_pos = (active_monster_x, active_monster_y)
             self.screen.blit(active_monster.sprites["front"], active_monster_pos)
-
 
     def get_event(self, event, game):
 
@@ -253,4 +251,3 @@ class MonsterMenu(Menu):
                 else:
                     self.game.player1.switch_monsters(self.selected_monster,self.selected_menu_item)
                     self.selected_monster = None
-

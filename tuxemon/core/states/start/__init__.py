@@ -31,7 +31,7 @@
 import logging
 import pygame
 
-from animation import Task
+from core.components.animation import Task
 from core import prepare
 from core import state
 

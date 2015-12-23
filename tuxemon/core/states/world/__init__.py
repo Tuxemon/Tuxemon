@@ -34,6 +34,7 @@ import logging
 import math
 
 import pygame
+
 # Import Tuxemon internal libraries
 from core import prepare
 from core import state
@@ -409,7 +410,7 @@ class WORLD(state.State):
         self.trigger_fade_in()
 
     def trigger_fade_in(self):
-        """ Hack to temp temporarily until proper fade-in is working
+        """ Hack to fade in temporarily until proper fade-in is working
 
         :return: None
         """
@@ -1128,11 +1129,10 @@ class WORLD(state.State):
     #             Map Change/Load Functions            #
     ####################################################
     def change_map(self, map_name):
-        self.current_map = map.Map(map_name)
-
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
+        self.current_map = map.Map(map_name)
         self.event_engine.current_map = map.Map(map_name)
 
         self.tiles, self.collision_map, self.collision_lines_map, self.map_size = \
@@ -1149,14 +1149,13 @@ class WORLD(state.State):
         if prepare.CONFIG.scaling == "1":
             # Loop through each row in the map. Each row is a list of
             # Tile objects in that row.
-            for x_pos, row in enumerate(self.tiles):
-                # Now loop through each tile in the row and scale it
-                # accordingly.
-                for y_pos, column in enumerate(row):
+            for y_pos, row in enumerate(self.tiles):
+                # Now loop through each tile in the row and scale it accordingly.
+                for x_pos, column in enumerate(row):
                     if column:
                         for layer_pos, tile in enumerate(column):
                             tile['surface'] = tools.scale_tile(tile['surface'], self.tile_size)
-                            self.tiles[x_pos][y_pos][layer_pos] = tile
+                            self.tiles[y_pos][x_pos][layer_pos] = tile
 
 
     def get_pos_from_tilepos(self, tile_position):

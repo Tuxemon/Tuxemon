@@ -92,7 +92,7 @@
   </object>
   <object id="16" type="event" x="160" y="528" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tuxe_mart.tmx,11,4,0.3"/>
+    <property name="act1" value="transition_teleport tuxe_mart.tmx,11,5,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

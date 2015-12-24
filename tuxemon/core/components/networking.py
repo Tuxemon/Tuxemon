@@ -583,7 +583,8 @@ class TuxemonClient():
         if self.wait_broadcast >= self.wait_delay:
             self.update_multiplayer_list()
             self.wait_broadcast = 0
-        else: self.wait_broadcast += time_delta
+        else: 
+            self.wait_broadcast += time_delta
 
 
     def update_multiplayer_list(self):

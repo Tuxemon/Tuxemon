@@ -66,7 +66,6 @@ class TuxemonServer():
 
     def __init__(self, game):
 
-
         self.game = game
         self.network_events = []
         self.listening = False
@@ -144,20 +143,26 @@ class TuxemonServer():
             if event_data["kb_key"] == "SHIFT":
                 self.server.registry[cuuid]["char_dict"]["running"] = True
                 self.notify_client(cuuid, event_data)
-            elif event_data["kb_key"] == "CRTL":
-                pass
+            elif event_data["kb_key"] == "CTRL":
+                self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "ALT":
-                pass
+                self.notify_client(cuuid, event_data)
 
         elif event_data["type"] == "CLIENT_KEYUP":
             if event_data["kb_key"] == "SHIFT":
                 self.server.registry[cuuid]["char_dict"]["running"] = False
                 self.notify_client(cuuid, event_data)
-            elif event_data["kb_key"] == "CRTL":
-                pass
+            elif event_data["kb_key"] == "CTRL":
+                self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "ALT":
-                pass
-
+                self.notify_client(cuuid, event_data)
+        
+        elif event_data["type"] == "CLIENT_START_BATTLE":
+            self.server.registry[cuuid]["char_dict"]["running"] = False
+            self.update_char_dict(cuuid, event_data["char_dict"])
+            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            self.notify_client(cuuid, event_data)
+            
         else:
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
@@ -205,6 +210,7 @@ class TuxemonServer():
             # Notify client of the players new position.
             elif client_id != cuuid:
                 self.server.notify(client_id, event_data)
+                print("NOTIFY!")
 
 
     def notify_populate_client(self, cuuid, event_data):
@@ -510,7 +516,7 @@ class TuxemonClient():
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = True
                     del self.client.event_notifies[euuid]
-                elif event_data["kb_key"] == "CRTL":
+                elif event_data["kb_key"] == "CTRL":
                     del self.client.event_notifies[euuid]
                 elif event_data["kb_key"] == "ALT":
                     del self.client.event_notifies[euuid]
@@ -520,7 +526,7 @@ class TuxemonClient():
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = False
                     del self.client.event_notifies[euuid]
-                elif event_data["kb_key"] == "CRTL":
+                elif event_data["kb_key"] == "CTRL":
                     del self.client.event_notifies[euuid]
                 elif event_data["kb_key"] == "ALT":
                     del self.client.event_notifies[euuid]
@@ -537,6 +543,16 @@ class TuxemonClient():
                     return
                 world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
+            
+            if event_data["type"] == "NOTIFY_CLIENT_START_BATTLE":
+                sprite = self.client.registry[event_data["cuuid"]]["sprite"]
+                sprite.running = False
+                sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
+                for d in sprite.direction:
+                   if sprite.direction[d]: 
+                       sprite.direction[d] = False
+                del self.client.event_notifies[euuid]
+
 
     def join_multiplayer(self, time_delta):
         """Joins the client to the selected server.
@@ -626,8 +642,8 @@ class TuxemonClient():
                                   "tile_pos": pd["tile_pos"],
                                   "name": pd["name"],
                                   "facing": pd["facing"],
-                                  "monsters": pd["monsters"],
-                                  "inventory": pd["inventory"]
+                                  #"monsters": pd["monsters"],
+                                  #"inventory": pd["inventory"]
                                   }
                       }
         self.event_list[event_type] +=1
@@ -676,6 +692,9 @@ class TuxemonClient():
         :returns: None
 
         """
+        if self.game.current_state != self.game.get_world_state():
+            return False
+        
         event_type = None
         kb_key = None
         if event.type == pygame.KEYDOWN:

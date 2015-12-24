@@ -27,6 +27,8 @@
 import logging
 import random
 
+
+
 # from core import prepare
 
 # Create a logger for optional handling of debug messages.
@@ -72,7 +74,11 @@ class Combat(object):
         # Don't start a battle if we don't even have monsters in our party yet.
         if not self.check_battle_legal(game.player1):
             return False
-
+        
+        # Stop movement and keypress on the server.
+        if game.isclient or game.ishost:
+                game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
+                
         # Start combat
         npc_id = int(action[1])
 
@@ -138,7 +144,7 @@ class Combat(object):
             'players': (game.player1, npc),
             'combat_type': "trainer",
             'screen': game.screen})
-
+            
         # Start some music!
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
@@ -165,7 +171,11 @@ class Combat(object):
 
         if not self.check_battle_legal(npc):
             return False
-
+        
+        # Stop movement and keypress on the server.
+        if game.isclient or game.ishost:
+                game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
+                
         # Add our players and start combat
         game.push_state("TRANSITION", params={
             'players': (game.player1, npc),
@@ -212,7 +222,8 @@ class Combat(object):
         # Don't start a battle if we don't even have monsters in our party yet.
         if not self.check_battle_legal(player1):
             return False
-
+         
+        
         # Get the parameters to determine what encounter group we'll look up in the database.
         encounter_id = int(action[1])
 
@@ -238,7 +249,11 @@ class Combat(object):
         # battle.
         if encounter:
             logger.info("Start battle!")
-
+            
+            # Stop movement and keypress on the server.
+            if game.isclient or game.ishost:
+                game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
+            
             # Create a monster object
             current_monster = monster.Monster()
             current_monster.load_from_db(encounter['monster_id'])

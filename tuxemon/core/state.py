@@ -152,7 +152,7 @@ class StateManager(object):
         """ Scan a folder, load states found in it, and register them
         """
         state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
-        exclude_endings = (".py", ".pyc", "__pycache__")
+        exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
                 continue

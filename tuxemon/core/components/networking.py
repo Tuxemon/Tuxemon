@@ -115,6 +115,7 @@ class TuxemonServer():
                     event_data = {"type": "CLIENT_DISCONNECTED"}
                     self.notify_client(cuuid, event_data)
                     del self.server.registry[cuuid]
+                    return False
             
             except KeyError:
                 pass
@@ -509,7 +510,7 @@ class TuxemonClient():
         for euuid, event_data in self.client.event_notifies.items():
             
             if event_data["type"] == "NOTIFY_CLIENT_DISCONNECTED":
-                del self.client[cuuid]
+                del self.client.registry[event_data["cuuid"]]
                 del self.client.event_notifies[euuid]
                 
             if event_data["type"] == "NOTIFY_PUSH_SELF":

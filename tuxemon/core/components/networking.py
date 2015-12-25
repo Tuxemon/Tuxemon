@@ -118,7 +118,7 @@ class TuxemonServer():
                     return False
             
             except KeyError:
-                pass
+                self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
             
             
 
@@ -450,7 +450,7 @@ class TuxemonClient():
         self.populated = False
         self.listening = False
         self.event_list = {}
-        self.ping_time = 0
+        self.ping_time = 2
 
         # Handle users without networking support.
         if not networking:

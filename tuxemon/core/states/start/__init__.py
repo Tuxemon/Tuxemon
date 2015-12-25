@@ -28,10 +28,10 @@
 # core.states.start Handles the splash screen and start menu.
 #
 #
-
 import logging
 import pygame
 
+from core.components.animation import Task
 from core import prepare
 from core import state
 
@@ -44,19 +44,14 @@ logger.debug("states.start successfully imported")
 class START(state.State):
     """ The state responsible for the splash screen and start menu.
     """
+    default_duration = 3
 
     def startup(self, params=None):
-        self.state = "Splash"       # Can be Splash or Menu
-        self.fade = "in"            # Can be "in", "out", "waiting", or None
+        self.animations = pygame.sprite.Group()
 
-        # Create a surface to be used for transitions
-        self.transition = {}
-        self.transition['surface'] = pygame.Surface(prepare.SCREEN_SIZE)
-        self.transition['surface'].fill((0,0,0))
-        self.transition['surface'].set_alpha(255)
-        self.transition['alpha'] = 255
-        self.transition['time'] = 2     # 5 second transition time
-        self.wait_time = 0              # Current time we've waited between splash and start of game
+        # this task will skip the splash screen after some time
+        task = Task(self.game.pop_state, self.default_duration)
+        self.animations.add(task)
 
         # Set up the splash screen logos
         self.splash_pygame = {}
@@ -81,38 +76,11 @@ class START(state.State):
         self.splash_cc['position'] = (prepare.SCREEN_SIZE[0] - splash_border - self.splash_cc['surface'].get_width(),
                                       prepare.SCREEN_SIZE[1] - splash_border - self.splash_cc['surface'].get_height())
 
-
-    def update(self, screen, keys, current_time, time_delta):
-        """Update function for state.
-
-        :param surface: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
-        :type surface: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
-        :rtype: None
-        :returns: None
-
-        **Examples:**
-
-        >>> surface
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
-
-        """
-
-        self.draw()
-
+    def update(self, time_delta):
+        self.animations.update(time_delta)
 
     def get_event(self, event):
         """Processes events that were passed from the main event loop.
-        Must be overridden in children.
 
         :param event: A pygame key event from pygame.event.get()
 
@@ -122,62 +90,22 @@ class START(state.State):
         :returns: None
 
         """
-
         # Skip the splash screen if a key is pressed.
-        if event.type == pygame.KEYDOWN and self.state == "Splash":
-            self.fade = None
-            self.state = None
+        if event.type == pygame.KEYDOWN:
             self.game.pop_state()
 
-
-    def draw(self):
+    def draw(self, surface):
         """Draws the start screen to the screen.
 
-        :param None:
-        :type None:
+        :param surface:
+        :param Surface: Surface to draw to
+
+        :type Surface: pygame.Surface
 
         :rtype: None
         :returns: None
 
         """
-
-        self.game.screen.fill((15, 15, 15))
-
-        # Skip the splash screen if it is disabled in the game configuration
-        if prepare.CONFIG.splash != "1":
-                self.fade = None
-                self.state = None
-                self.game.pop_state()
-
-        if self.state == "Splash":
-            self.game.screen.blit(self.splash_pygame['surface'], self.splash_pygame['position'])
-            self.game.screen.blit(self.splash_cc['surface'], self.splash_cc['position'])
-
-        if self.fade == "in":
-
-            self.transition['alpha'] -= (255 * ((self.game.time_passed_seconds)/self.transition['time']))
-            self.transition['surface'].set_alpha(self.transition['alpha'])
-
-            self.game.screen.blit(self.transition['surface'], (0,0))
-
-            if self.transition['alpha'] < 0:
-                self.fade = "waiting"
-
-        elif self.fade == "out":
-
-            self.transition['alpha'] += (255 * ((self.game.time_passed_seconds)/self.transition['time']))
-            self.transition['surface'].set_alpha(self.transition['alpha'])
-
-            self.game.screen.blit(self.transition['surface'], (0,0))
-
-            if self.transition['alpha'] > 255:
-                self.fade = None
-                self.state = None
-                self.game.pop_state()
-
-        elif self.fade == "waiting":
-            self.wait_time += self.game.time_passed_seconds
-
-            if self.wait_time > self.transition['time']:
-                self.fade = "out"
-
+        surface.fill((15, 15, 15))
+        surface.blit(self.splash_pygame['surface'], self.splash_pygame['position'])
+        surface.blit(self.splash_cc['surface'], self.splash_cc['position'])

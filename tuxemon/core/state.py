@@ -1,9 +1,14 @@
 import inspect
 import os
 import sys
+import logging
 from abc import ABCMeta, abstractmethod
 from importlib import import_module
 from core import prepare
+
+# Create a logger for optional handling of debug messages.
+logger = logging.getLogger(__name__)
+logger.debug("{} successfully imported".format(__name__))
 
 
 class State(object):
@@ -33,12 +38,11 @@ class State(object):
         :param control: State Manager / Control / Game... all the same
         :return: None
         """
-        self.game = control   # TODO: rename 'game' to 'control'
+        self.game = control   # TODO: rename 'game' to 'control'?
         self.start_time = 0.0
         self.current_time = 0.0
         self.menu_blocking = False
 
-    @abstractmethod
     def get_event(self, event):
         """ Processes events that were passed from the main event loop.
         Must be overridden in children.
@@ -54,29 +58,24 @@ class State(object):
         pass
 
     @abstractmethod
-    def update(self, screen, keys, current_time, time_delta):
+    def update(self, time_delta):
         """ Update function for state.  Must be overloaded in children.
 
-        :param screen: The pygame.Surface of the screen to draw to.
-        :param keys: List of keys from pygame.event.get().
-        :param current_time: The amount of time that has passed.
-
-        :type screen: pygame.Surface
-        :type keys: Tuple
-        :type current_time: Integer
-
+        :param time_delta: amount of time in fractional seconds since last update
+        :type time_delta: Float
         :rtype: None
         :returns: None
 
-        **Examples:**
+        """
+        pass
 
-        >>> screen
-        <Surface(1280x720x32 SW)>
-        >>> keys
-        (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ...
-        >>> current_time
-        435
+    @abstractmethod
+    def draw(self, surface):
+        """ Render the state to the surface passed.  Must be overloaded in children
 
+        :param surface: Surface to be rendered onto
+        :type surface: pygame.Surface
+        :return: None
         """
         pass
 
@@ -103,7 +102,7 @@ class State(object):
         * state will begin to accept player input
         * could be called several times over lifetime of state
 
-        Example uses: starting music, playing state transition, open menu
+        Example uses: starting music, open menu, starting animations, timers, etc
         """
         pass
 
@@ -147,6 +146,7 @@ class StateManager(object):
         self.done = False
         self.current_time = 0.0
         self.package = ""
+        self._current_state_requires_resume = False
 
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
@@ -165,7 +165,17 @@ class StateManager(object):
         :param state: any subclass of core.state.State
         """
         name = state.__name__
-        if name in self.state_dict:
+
+        # this tests if a state has already been imported under
+        # the same name.  This will happen if importing states
+        # to be used as a subclass.  Since the name and state
+        # object are the same, just continue without error.
+        previously_reg_state = self.state_dict.get(name, None)
+        if previously_reg_state == state:
+            return
+
+        if previously_reg_state is not None:
+            print self.state_dict
             print('Duplicate state detected: {}'.format(name))
             raise RuntimeError
         self.state_dict[name] = state
@@ -173,11 +183,19 @@ class StateManager(object):
     @staticmethod
     def collect_states_from_module(import_name):
         """ Given a module, return all classes in it that are a game state
+
+        Abstract Base Classes, those whose metaclass is abc.ABCMeta, will
+        not be included in the state dictionary.
         """
+        import abc
         classes = inspect.getmembers(sys.modules[import_name], inspect.isclass)
-        state_classes = [i[1] for i in classes if issubclass(i[1], State)]
-        for state in state_classes:
-            yield state
+
+        for c in classes:
+            c = c[1]
+
+            if issubclass(c, State):
+                print c
+                yield c
 
     def collect_states_from_path(self, folder):
         """ Load a state from disk, but do not register it
@@ -232,7 +250,6 @@ class StateManager(object):
 
         :param state_name: name of state to start
         :param params: dictionary of data used to init the state
-        :param persist: dictionary of data for shared state
         :return: instanced State
         """
         try:
@@ -248,6 +265,8 @@ class StateManager(object):
         instance = state(self)
         instance.controller = self
         instance.startup(params)
+
+        self._current_state_requires_resume = True
 
         self.state_stack.insert(0, instance)
 

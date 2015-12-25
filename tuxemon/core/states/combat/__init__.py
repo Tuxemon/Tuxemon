@@ -271,10 +271,8 @@ class COMBAT(state.State):
 
         # code below was inherited from old Combat.startup
 
-        # Create an alias to our UI dictionary, game, and screen
+        # Create an alias to our UI dictionary and screen size
         ui = self.ui
-        game = game
-        screen = screen
         screen_size = prepare.SCREEN_SIZE
 
         # Load the combat background surface

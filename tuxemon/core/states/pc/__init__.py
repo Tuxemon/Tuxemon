@@ -227,23 +227,21 @@ class PC(state.State):
         if self.multiplayer_menu.visible:
             self.multiplayer_menu.draw()
             self.multiplayer_menu.draw_textItem(
-                ["JOIN", "HOST"])
+                ["HOST A GAME", "SCAN FOR GAMES", "JOIN BY IP"])
 
         if self.multiplayer_join_menu.visible:
             self.multiplayer_join_menu.draw()
+            self.multiplayer_join_menu.draw_text("SELECT GAME:", justify="center")
 
-            # Join by IP option
-            self.multiplayer_join_menu.draw_textItem(["CONNECT TO IP"])
-            
             # The server list below join by IP
-            self.multiplayer_join_menu.draw_textItem(self.game.client.server_list)
+            self.multiplayer_join_menu.draw_textItem(self.game.client.server_list, align="middle", paging=True)
             
             # If no options are selected because there were no items when
             # the menu was populated, and there are items in the list to
             # select, set the selected item to the top of the list.
-            if self.multiplayer_join_menu.selected_menu_item <= 1 and \
-            len(self.multiplayer_join_menu.menu_items) > 1:
-                self.multiplayer_join_menu.selected_menu_item = 0
+            if self.multiplayer_join_menu.selected_menu_item <= 2 and \
+            len(self.multiplayer_join_menu.menu_items) > 2:
+                self.multiplayer_join_menu.selected_menu_item = 1
 
         if self.multiplayer_join_enter_ip_menu.visible:
             self.multiplayer_join_enter_ip_menu.draw()
@@ -254,4 +252,10 @@ class PC(state.State):
 
         if self.multiplayer_host_menu.visible:
             self.multiplayer_host_menu.draw()
-            self.multiplayer_host_menu.draw_textItem(self.multiplayer_host_menu.text)
+            
+            text = "Server Started: \\n"
+            for ip in self.multiplayer_host_menu.ips:
+                text += ip + "\\n"
+            
+            self.multiplayer_host_menu.draw_text(text, justify="center")
+                

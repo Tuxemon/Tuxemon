@@ -51,26 +51,28 @@ class Multiplayer():
         self.server = None
 
     def event_legal(self, cuuid, euuid, event_data):
-        if "KEYDOWN:" in event_data or "KEYUP:" in event_data:
-            return True
         if event_data["type"] == "PUSH_SELF":
             return True
-        elif event_data["type"] == "CLIENT_MOVE_START": 
+        if event_data["type"] == "CLIENT_MOVE_START": 
             return True
-        elif event_data["type"] == "CLIENT_MAP_UPDATE":
+        if event_data["type"] == "CLIENT_MAP_UPDATE":
             return True
-        elif event_data["type"] == "CLIENT_MOVE_COMPLETE":
+        if event_data["type"] == "CLIENT_MOVE_COMPLETE":
             return True
-        elif event_data["type"] == "CLIENT_KEYDOWN":
+        if event_data["type"] == "CLIENT_KEYDOWN":
             return True
-        elif event_data["type"] == "CLIENT_KEYUP":
+        if event_data["type"] == "CLIENT_KEYUP":
             return True
-        elif event_data["type"] == "CLIENT_FACING":
+        if event_data["type"] == "CLIENT_FACING":
             return True
-        elif event_data["type"] == "CLIENT_INTERACTION":
+        if event_data["type"] == "CLIENT_INTERACTION":
             return True
-        elif event_data["type"] == "CLIENT_RESPONSE":
+        if event_data["type"] == "CLIENT_RESPONSE":
             return True
+        if event_data["type"] == "CLIENT_START_BATTLE":
+            return True
+        if event_data["type"] == "PING":
+                return True
         else:
             return False
 

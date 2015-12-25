@@ -33,6 +33,9 @@ from core.components.middleware import Multiplayer, Controller
 from core.components import player
 from core.components.event.actions.npc import Npc
 from core import prepare
+
+from datetime import datetime
+
 import pprint
 import pygame
 
@@ -65,7 +68,6 @@ class TuxemonServer():
     """
 
     def __init__(self, game):
-
 
         self.game = game
         self.network_events = []
@@ -104,7 +106,21 @@ class TuxemonServer():
         :returns: None
 
         """
-        pass
+        self.server_timestamp = datetime.now()
+        for cuuid in self.server.registry:
+            try:
+                difference = self.server_timestamp - self.server.registry[cuuid]["ping_timestamp"]
+                if difference.seconds > 15:
+                    logger.info("Client Disconnected. CUUID: " + str(cuuid))
+                    event_data = {"type": "CLIENT_DISCONNECTED"}
+                    self.notify_client(cuuid, event_data)
+                    del self.server.registry[cuuid]
+                    return False
+            
+            except KeyError:
+                self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
+            
+            
 
 
     def server_event_handler(self, cuuid, event_data):
@@ -135,8 +151,12 @@ class TuxemonServer():
             self.server.registry[cuuid]["sprite_name"] = event_data["sprite_name"]
             self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.server.registry[cuuid]["char_dict"] = event_data["char_dict"]
+            self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
             self.notify_populate_client(cuuid, event_data)
-
+        
+        elif event_data["type"] == "PING":
+            self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
+            
         elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
             self.notify_client_interaction(cuuid, event_data)
 
@@ -144,20 +164,26 @@ class TuxemonServer():
             if event_data["kb_key"] == "SHIFT":
                 self.server.registry[cuuid]["char_dict"]["running"] = True
                 self.notify_client(cuuid, event_data)
-            elif event_data["kb_key"] == "CRTL":
-                pass
+            elif event_data["kb_key"] == "CTRL":
+                self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "ALT":
-                pass
+                self.notify_client(cuuid, event_data)
 
         elif event_data["type"] == "CLIENT_KEYUP":
             if event_data["kb_key"] == "SHIFT":
                 self.server.registry[cuuid]["char_dict"]["running"] = False
                 self.notify_client(cuuid, event_data)
-            elif event_data["kb_key"] == "CRTL":
-                pass
+            elif event_data["kb_key"] == "CTRL":
+                self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "ALT":
-                pass
-
+                self.notify_client(cuuid, event_data)
+        
+        elif event_data["type"] == "CLIENT_START_BATTLE":
+            self.server.registry[cuuid]["char_dict"]["running"] = False
+            self.update_char_dict(cuuid, event_data["char_dict"])
+            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            self.notify_client(cuuid, event_data)
+            
         else:
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
@@ -424,6 +450,7 @@ class TuxemonClient():
         self.populated = False
         self.listening = False
         self.event_list = {}
+        self.ping_time = 2
 
         # Handle users without networking support.
         if not networking:
@@ -460,7 +487,13 @@ class TuxemonClient():
             self.game.isclient = True
             self.game.current_state.multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
-
+        
+        if self.ping_time >= 2:
+            self.ping_time = 0
+            self.client_alive()
+        else: 
+            self.ping_time += time_delta
+            
         self.check_notify()
 
 
@@ -475,7 +508,11 @@ class TuxemonClient():
 
         """
         for euuid, event_data in self.client.event_notifies.items():
-
+            
+            if event_data["type"] == "NOTIFY_CLIENT_DISCONNECTED":
+                del self.client.registry[event_data["cuuid"]]
+                del self.client.event_notifies[euuid]
+                
             if event_data["type"] == "NOTIFY_PUSH_SELF":
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
@@ -510,7 +547,7 @@ class TuxemonClient():
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = True
                     del self.client.event_notifies[euuid]
-                elif event_data["kb_key"] == "CRTL":
+                elif event_data["kb_key"] == "CTRL":
                     del self.client.event_notifies[euuid]
                 elif event_data["kb_key"] == "ALT":
                     del self.client.event_notifies[euuid]
@@ -520,7 +557,7 @@ class TuxemonClient():
                 if event_data["kb_key"] == "SHIFT":
                     sprite.running = False
                     del self.client.event_notifies[euuid]
-                elif event_data["kb_key"] == "CRTL":
+                elif event_data["kb_key"] == "CTRL":
                     del self.client.event_notifies[euuid]
                 elif event_data["kb_key"] == "ALT":
                     del self.client.event_notifies[euuid]
@@ -537,6 +574,16 @@ class TuxemonClient():
                     return
                 world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
+            
+            if event_data["type"] == "NOTIFY_CLIENT_START_BATTLE":
+                sprite = self.client.registry[event_data["cuuid"]]["sprite"]
+                sprite.running = False
+                sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
+                for d in sprite.direction:
+                   if sprite.direction[d]: 
+                       sprite.direction[d] = False
+                del self.client.event_notifies[euuid]
+
 
     def join_multiplayer(self, time_delta):
         """Joins the client to the selected server.
@@ -567,7 +614,8 @@ class TuxemonClient():
         if self.wait_broadcast >= self.wait_delay:
             self.update_multiplayer_list()
             self.wait_broadcast = 0
-        else: self.wait_broadcast += time_delta
+        else: 
+            self.wait_broadcast += time_delta
 
 
     def update_multiplayer_list(self):
@@ -626,8 +674,8 @@ class TuxemonClient():
                                   "tile_pos": pd["tile_pos"],
                                   "name": pd["name"],
                                   "facing": pd["facing"],
-                                  "monsters": pd["monsters"],
-                                  "inventory": pd["inventory"]
+                                  #"monsters": pd["monsters"],
+                                  #"inventory": pd["inventory"]
                                   }
                       }
         self.event_list[event_type] +=1
@@ -676,6 +724,9 @@ class TuxemonClient():
         :returns: None
 
         """
+        if self.game.current_state != self.game.get_world_state():
+            return False
+        
         event_type = None
         kb_key = None
         if event.type == pygame.KEYDOWN:
@@ -787,6 +838,26 @@ class TuxemonClient():
                                     }
                       }
         self.event_list[event_type] +=1
+        self.client.event(event_data)
+    
+    
+    def client_alive(self): 
+        """Sends server a ping to let it know that it is still alive.
+
+        :param: None
+        :rtype: None
+        :returns: None
+
+        """
+        event_type = "PING"
+        if not event_type in self.event_list:
+            self.event_list[event_type] = 1
+        else:
+            self.event_list[event_type] +=1
+        
+        event_data = {"type": event_type,
+                      "event_number": self.event_list[event_type]}
+        
         self.client.event(event_data)
 
 

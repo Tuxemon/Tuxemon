@@ -446,16 +446,7 @@ class COMBAT(state.State):
         pprint.pprint(ui)
 
 
-    def update(self, screen, keys, current_time, time_delta):
-        """The primary game loop that executes all game functions every frame.
-
-        :param: None
-
-        :rtype: None
-        :returns: None
-
-        """
-
+    def update(self, time_delta):
         player_dict =  self.current_players['player']
         opponent_dict = self.current_players['opponent']
         ui = self.ui
@@ -497,13 +488,11 @@ class COMBAT(state.State):
             if ui[item]:
                 ui[item].update(time_delta)
 
-        # Draw ALL OF THE THINGS
-        self.draw()
 
-
-    def draw(self):
+    def draw(self, surface):
         """Draws all combat graphics to the screen including menus, battle sprites, animations, etc.
 
+        :param surface:
         :param game: The main game object that contains all the game's variables.
 
         :type game: core.control.Control
@@ -1353,9 +1342,13 @@ class COMBAT(state.State):
         # TODO: End combat differently depending on winning or losing
         event_engine = self.game.event_engine
         event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
+
+        # TODO: remove this fade-in hack when proper transition is complete
+        world = self.game.get_world_state()
+        world.trigger_fade_in()
+
         self.game.pop_state()
-
-
+        self.game.push_state("FADE_OUT_TRANSITION")
 
 
 if __name__ == "__main__":
@@ -1407,7 +1400,7 @@ if __name__ == "__main__":
                         pygame.quit()
                         sys.exit()
 
-                self.combat.draw(self)
+                self.combat.draw()
                 self.combat.handle_events(self)
 
                 # Calculate the FPS and print it onscreen for debugging purposes

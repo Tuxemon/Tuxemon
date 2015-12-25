@@ -732,7 +732,7 @@ class WORLD(state.State):
                 npc.update_location = False
 
             # Draw the bottom part of the NPC.
-            npc.draw()
+            npc.draw(self.screen, "bottom")
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map:

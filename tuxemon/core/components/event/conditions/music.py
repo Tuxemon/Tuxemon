@@ -60,7 +60,7 @@ class Music(object):
          'y': 0}
 
         """
-        if game.state_name == "TRANSITION" or game.state_name == "COMBAT":
+        if game.state_name == "FLASH_TRANSITION" or game.state_name == "COMBAT":
             return True
 
         if game.current_music["song"] == condition["parameters"] and mixer.music.get_busy():

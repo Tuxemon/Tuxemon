@@ -51,9 +51,7 @@ class Control(StateManager):
         self.package = "core.states"
         self.state_dict = dict()
         self.state_stack = list()
-
-        # TODO: do something about the world state clobbering this attribute
-        self.events = list()
+        self._current_state_requires_resume = True
 
         # Set up our networking for Multiplayer and Controls
         self.server = networking.TuxemonServer(self)
@@ -167,6 +165,8 @@ class Control(StateManager):
         also calls the currently active state's "update" function each
         frame.
 
+        The screen will be drawn here as well.
+
         :param dt: Time delta - Amount of time passed since last frame.
 
         :type dt: Float
@@ -182,7 +182,14 @@ class Control(StateManager):
         """
         self.current_time = pg.time.get_ticks()
         current_state = self.current_state  # deref here is required in cases where state changes during update
-        current_state.update(self.screen, self.keys, self.current_time, dt)
+
+        if self._current_state_requires_resume:
+            self._current_state_requires_resume = False
+            current_state.resume()
+
+        current_state.update(dt)
+        current_state.draw(self.screen)
+
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
 
@@ -659,6 +666,7 @@ class Control(StateManager):
             if state.__module__ == "core.states.world":
                 return state
         return None
+
 
 class PygameControl(Control):
     pass

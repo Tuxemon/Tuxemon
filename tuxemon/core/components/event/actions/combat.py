@@ -23,11 +23,16 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
 import logging
 import random
 
-# from core import prepare
+from core import prepare
+from core.components import ai
+from core.components import db
+from core.components import monster
+from core.components import player
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -63,20 +68,14 @@ class Combat(object):
         ... (u'start_battle', u'1', 1, 9)
 
         """
-        prepare = game.imports["prepare"]
-        ai = game.imports["ai"]
-        db = game.imports["db"]
-        monster = game.imports["monster"]
-        player = game.imports["player"]
-
         # Don't start a battle if we don't even have monsters in our party yet.
         if not self.check_battle_legal(game.player1):
             return False
-        
+
         # Stop movement and keypress on the server.
         if game.isclient or game.ishost:
                 game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
-                
+
         # Start combat
         npc_id = int(action[1])
 
@@ -188,7 +187,6 @@ class Combat(object):
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
 
-        prepare = game.imports['prepare']
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
 
@@ -212,13 +210,6 @@ class Combat(object):
         Valid Parameters: encounter_id
 
         """
-
-        prepare = game.imports["prepare"]
-        ai = game.imports["ai"]
-        db = game.imports["db"]
-        monster = game.imports["monster"]
-        player = game.imports["player"]
-
         player1 = game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
@@ -250,11 +241,11 @@ class Combat(object):
         # battle.
         if encounter:
             logger.info("Start battle!")
-            
+
             # Stop movement and keypress on the server.
             if game.isclient or game.ishost:
                 game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
-            
+
             # Create a monster object
             current_monster = monster.Monster()
             current_monster.load_from_db(encounter['monster_id'])

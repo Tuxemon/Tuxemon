@@ -227,6 +227,8 @@ class StateManager(object):
         try:
             previous = self.state_stack.pop(0)
             previous.shutdown()
+            self.keys = list()
+            self.key_events = list()
 
             if self.state_stack:
                 self.current_state.resume()

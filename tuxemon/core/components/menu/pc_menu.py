@@ -30,7 +30,7 @@
 """This module contains the PC Menu
 """
 from core.components.menu import Menu
-
+import pygame as pg
 
 class PCMenu(Menu):
 
@@ -56,12 +56,16 @@ class PCMenu(Menu):
             self.game.current_state.monster_menu.previous_menu = self
             self.game.current_state.monster_menu.visible = True
             self.game.current_state.monster_menu.interactable = True
+            self.game.current_state.store_monster_menu.visible = True
+            self.game.current_state.store_monster_menu.interactable = False
             self.game.current_state.pc_menu.interactable = False
 
         elif self.menu_items[self.selected_menu_item] == "ITEMS":
             self.game.current_state.item_menu.previous_menu = self
             self.game.current_state.item_menu.visible = True
             self.game.current_state.item_menu.interactable = True
+            self.game.current_state.store_item_menu.visible = True
+            self.game.current_state.store_item_menu.interactable = False
             self.game.current_state.pc_menu.interactable = False
 
         elif self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
@@ -69,37 +73,14 @@ class PCMenu(Menu):
             self.game.current_state.multiplayer_menu.visible = True
             self.game.current_state.multiplayer_menu.interactable = True
             self.game.current_state.pc_menu.interactable = False
+
         elif self.menu_items[self.selected_menu_item] == "LOG OFF":
             self.game.pop_state()
 
 
-class Monster_Menu(Menu):
+class Player_Menu(Menu):
 
-    def __init__(self, screen, resolution, game, name="MONSTERS"):
-
-        # Initialize the parent menu class's default shit
-        Menu.__init__(self, screen, resolution, game, name)
-        self.delay = 0.5
-        self.elapsed_time = self.delay
-
-
-    def get_event(self, event=None):
-        """Run once a menu item has been selected by the core.control.Control
-        get_menu_event() function
-
-        :param None:
-
-        :rtype: None
-        :returns: None
-
-        """
-        print("Penis penis penis -- Derek")
-
-
-
-class Item_Menu(Menu):
-
-    def __init__(self, screen, resolution, game, name="ITEMS"):
+    def __init__(self, screen, resolution, game, name):
 
         # Initialize the parent menu class's default shit
         Menu.__init__(self, screen, resolution, game, name)
@@ -117,8 +98,39 @@ class Item_Menu(Menu):
         :returns: None
 
         """
-        print("Penis penis penis -- Ben")
+        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
+           self.visible = False
+           self.interactable = False
+           for child in self.children:
+               child.visible = False
+               child.interactable = False
 
+           if self.previous_menu:
+                self.previous_menu.interactable = True
+                self.previous_menu.visible = True
+
+
+class Storage_Menu(Menu):
+
+    def __init__(self, screen, resolution, game, name):
+
+        # Initialize the parent menu class's default shit
+        Menu.__init__(self, screen, resolution, game, name)
+        self.delay = 0.5
+        self.elapsed_time = self.delay
+
+
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.control.Control
+        get_menu_event() function
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        pass
 
 
 class Multiplayer_Menu(Menu):

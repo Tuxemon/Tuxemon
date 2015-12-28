@@ -76,22 +76,46 @@ class PC(state.State):
         self.pc_menu.interactable = True
         self.pc_menu.size_ratio = [0.8, 0.3]
 
-
         # Monster menu
-        self.monster_menu = pc_menu.Monster_Menu(self.screen,
-                                                         self.resolution,
-                                                         self.game)
+        self.monster_menu = pc_menu.Player_Menu(self.screen,
+                                                self.resolution,
+                                                self.game,
+                                                "PLAYER_MONS")
         self.monster_menu.visible = False
         self.monster_menu.interactable = False
         self.monster_menu.size_ratio = [0.5, 0.8]
 
         # Item menu
-        self.item_menu = pc_menu.Item_Menu(self.screen,
-                                                         self.resolution,
-                                                         self.game)
+        self.item_menu = pc_menu.Player_Menu(self.screen,
+                                             self.resolution,
+                                             self.game,
+                                             "PLAYER_ITEMS")
         self.item_menu.visible = False
         self.item_menu.interactable = False
         self.item_menu.size_ratio = [0.5, 0.8]
+
+        # Storage Monster menu
+        self.store_monster_menu = pc_menu.Storage_Menu(self.screen,
+                                                       self.resolution,
+                                                       self.game,
+                                                       "STORE_MONS")
+        self.monster_menu.add_child(self.store_monster_menu)
+        self.store_monster_menu.add_child(self.monster_menu)
+        self.store_monster_menu.visible = False
+        self.store_monster_menu.interactable = False
+        self.store_monster_menu.size_ratio = [0.5, 0.8]
+
+        # Storage Item menu
+        self.store_item_menu = pc_menu.Storage_Menu(self.screen,
+                                                    self.resolution,
+                                                    self.game,
+                                                    "STORE_ITEMS")
+        self.item_menu.add_child(self.store_item_menu)
+        self.store_item_menu.add_child(self.item_menu)
+        self.store_item_menu.visible = False
+        self.store_item_menu.interactable = False
+        self.store_item_menu.size_ratio = [0.5, 0.8]
+
 
 
         # Main multiplayer menu.
@@ -137,6 +161,8 @@ class PC(state.State):
         self.menus = [self.pc_menu,
                       self.monster_menu,
                       self.item_menu,
+                      self.store_monster_menu,
+                      self.store_item_menu,
                       self.multiplayer_menu,
                       self.multiplayer_join_menu,
                       self.multiplayer_join_enter_ip_menu,
@@ -166,18 +192,27 @@ class PC(state.State):
 
             # Set the menu size.
 
-            if menu.name not in ["MONSTERS", "ITEMS"]:
-                menu.size_x = int(self.resolution[0] * menu.size_ratio[0])
-                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
-                menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
-                menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
-            else:
+            if menu.name in ["PLAYER_MONS", "PLAYER_ITEMS"]:
                 border_size = menu.border["left-top"].get_width()
                 menu.size_x = int(self.resolution[0] * menu.size_ratio[0]) -\
                     (border_size * 2)
                 menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
                 menu.pos_x = border_size
                 menu.pos_y = border_size + ((self.resolution[1]/9)/2)
+
+            elif menu.name in ["STORE_MONS", "STORE_ITEMS"]:
+                border_size = menu.border["left-top"].get_width()
+                menu.size_x = int(self.resolution[0] * menu.size_ratio[0]) -\
+                    (border_size * 2)
+                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
+                menu.pos_x = border_size + (self.resolution[0] / 2)
+                menu.pos_y = border_size + ((self.resolution[1] / 9) / 2)
+
+            else:
+                menu.size_x = int(self.resolution[0] * menu.size_ratio[0])
+                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
+                menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
+                menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
 
     def update(self, time_delta):
         """Update function for state.
@@ -219,10 +254,16 @@ class PC(state.State):
             self.game.get_menu_event(self.multiplayer_menu, event)
 
         elif self.item_menu.interactable:
-            self.game.get_menu_event(self.item_menu, event)
+            self.item_menu.get_event(event)
 
         elif self.monster_menu.interactable:
-            self.game.get_menu_event(self.monster_menu, event)
+            self.monster_menu.get_event(event)
+
+        elif self.store_item_menu.interactable:
+            self.store_item_menu.get_event(event)
+
+        elif self.store_monster_menu.interactable:
+            self.store_monster_menu.get_event(event)
 
         elif self.pc_menu.interactable:
             self.game.get_menu_event(self.pc_menu, event)
@@ -246,21 +287,32 @@ class PC(state.State):
         if self.monster_menu.visible:
             self.monster_menu.draw()
             monsters = []
-            # self.monster_menu.draw_textItem(monsters)
-            for monster in self.game.player1.storage["monsters"]:
+            for monster in self.game.player1.monsters:
                 monsters.append(monster.name)
-            print(monsters)
-            print self.monster_menu.pos_x
             self.monster_menu.draw_textItem(monsters)
 
         if self.item_menu.visible:
             self.item_menu.draw()
             items = []
-            for item in self.game.player1.storage["items"]:
-                items.append(item.name)
+            print(self.game.player1.inventory)
             print(items)
             self.item_menu.draw_textItem(items)
 
+        if self.store_monster_menu.visible:
+            self.store_monster_menu.draw()
+            monsters = []
+            self.store_monster_menu.draw_text("Storage")
+            for monster in self.game.player1.storage["monsters"]:
+                monsters.append(monster.name)
+            self.store_monster_menu.draw_textItem(monsters)
+
+        if self.store_item_menu.visible:
+            self.store_item_menu.draw()
+            items = []
+            self.store_item_menu.draw_text("Storage")
+            for item in self.game.player1.storage["items"]:
+                items.append(item.name)
+            self.store_item_menu.draw_textItem(items)
 
         if self.multiplayer_menu.visible:
             self.multiplayer_menu.draw()

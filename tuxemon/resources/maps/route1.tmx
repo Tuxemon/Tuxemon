@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="26">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztz7ERABAQAMFPlCOk9W+PmNhgZoPN77JEJMBh9YEGv379+vW7a1Nf3G4CAAAAAACAnwyIrd0Z
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztljEOgkAQAC8IX9FGLfUl6KPspVIeII3GWGlhoS/QwtKHaFwTNiTkOA7uJLtmJ9mQHBQ3DASUoskuqh8bDnDdGWYTKJUFv92zC1WOW4PvAtbWmklgbuB6Z+hr6psY1l7g+ibs2waTb7+n1KDX7X5smET6meb7xrYrzXOb5tfgc73M177v78nyfe+aUajUGCYO9efRNw6LKaPrfIG1K0HnGex/DpNV7A19h2ExZTj5Ivsa36Z9qYI+db5N+z6I3gNb36Z9ufqW0f1fpH/sa4v40qDKF7/LbY/cfPG73Pb4ZObr2pc6R899ueDalUtfxLUrl76+unLp66sr9b6+u1Lv67sr9b6CIAiCIAiCIAiCILjzASVOjnk=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1jEOQEAYROEt9r+N+yo5gULDEejEiZCViESUJDPvS6ZTeMnKSklXHWVz/P0m32jO3kG4txVuU5BzSrGvyu/PVfmamz7uO4zC5/qpVxm92tx6n0ym3fCxGJ3xNcoABW73UxdlLtz+vejV5vTtAgAAAADgZgOjjB8C
+  </data>
+ </layer>
+ <layer name="Above Player" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1iEOgDAQRNEVu/e/SjUnQHIkFGkqMFCSYfpf0hSBmXzTCB+t+vde9//9mesujA4629pqPO7Y6429gLbMiMrnN7TR19PbrvTVNKvrqn1V316zu1636t6vrLYXAAAAAAD4OgGklxmZ
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="672" y="208" width="96" height="160"/>
+  <object id="2" type="collision" x="736" y="64" width="32" height="96"/>
+  <object id="3" type="collision" x="608" y="64" width="16" height="208"/>
+  <object id="4" type="collision" x="640" y="272" width="32" height="96"/>
+  <object id="5" type="collision" x="608" y="304" width="32" height="64"/>
+  <object id="6" type="collision" x="576" y="336" width="32" height="32"/>
+  <object id="7" type="collision" x="576" y="64" width="32" height="48"/>
+  <object id="8" type="collision" x="624" y="64" width="64" height="16"/>
+  <object id="9" type="collision" x="688" y="160" width="80" height="16"/>
+  <object id="10" type="collision" x="688" y="64" width="16" height="112"/>
+  <object id="11" type="collision" x="768" y="208" width="192" height="160"/>
+  <object id="12" type="collision" x="768" y="160" width="16" height="48"/>
+  <object id="13" type="collision" x="0" y="0" width="128" height="640"/>
+  <object id="14" type="collision" x="128" y="576" width="832" height="64"/>
+  <object id="15" type="collision" x="0" y="-48" width="960" height="48"/>
+  <object id="18" type="collision" x="768" y="64" width="64" height="16"/>
+  <object id="19" type="collision" x="832" y="16" height="48"/>
+  <object id="20" type="collision" x="832" y="16" width="64" height="16"/>
+  <object id="21" type="collision" x="896" y="0" height="16"/>
+  <object id="22" type="collision" x="960" y="-48" width="32" height="688"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport map1.tmx,12,11"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="25" name="Teleport to map1 (lower)" type="event" x="752" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport map1.tmx,12,12"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Conditions"/>
+</map>

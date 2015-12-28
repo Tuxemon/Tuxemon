@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<objecttypes>
- <objecttype name="collision" color="#ff0000"/>
- <objecttype name="action" color="#00557f"/>
- <objecttype name="condition" color="#a0a0a4"/>
-</objecttypes>

@@ -30,14 +30,12 @@
 """This module contains the Tuxemon server and client.
 """
 from core.components.middleware import Multiplayer, Controller
-from core.components import player
-from core.components.event.actions.npc import Npc
 from core import prepare
 
 from datetime import datetime
 
 import pprint
-import pygame
+import pygame as pg
 
 # Create a logger for optional handling of debug messages.
 import logging
@@ -116,11 +114,11 @@ class TuxemonServer():
                     self.notify_client(cuuid, event_data)
                     del self.server.registry[cuuid]
                     return False
-            
+
             except KeyError:
                 self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
-            
-            
+
+
 
 
     def server_event_handler(self, cuuid, event_data):
@@ -153,10 +151,10 @@ class TuxemonServer():
             self.server.registry[cuuid]["char_dict"] = event_data["char_dict"]
             self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
             self.notify_populate_client(cuuid, event_data)
-        
+
         elif event_data["type"] == "PING":
             self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
-            
+
         elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
             self.notify_client_interaction(cuuid, event_data)
 
@@ -177,13 +175,13 @@ class TuxemonServer():
                 self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "ALT":
                 self.notify_client(cuuid, event_data)
-        
+
         elif event_data["type"] == "CLIENT_START_BATTLE":
             self.server.registry[cuuid]["char_dict"]["running"] = False
             self.update_char_dict(cuuid, event_data["char_dict"])
             self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.notify_client(cuuid, event_data)
-            
+
         else:
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
@@ -487,13 +485,13 @@ class TuxemonClient():
             self.game.isclient = True
             self.game.current_state.multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
-        
+
         if self.ping_time >= 2:
             self.ping_time = 0
             self.client_alive()
-        else: 
+        else:
             self.ping_time += time_delta
-            
+
         self.check_notify()
 
 
@@ -508,11 +506,11 @@ class TuxemonClient():
 
         """
         for euuid, event_data in self.client.event_notifies.items():
-            
+
             if event_data["type"] == "NOTIFY_CLIENT_DISCONNECTED":
                 del self.client.registry[event_data["cuuid"]]
                 del self.client.event_notifies[euuid]
-                
+
             if event_data["type"] == "NOTIFY_PUSH_SELF":
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
@@ -525,7 +523,7 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
                 for d in sprite.direction:
-                    if sprite.direction[d]: 
+                    if sprite.direction[d]:
                         sprite.direction[d] = False
                 sprite.direction[direction] = True
                 del self.client.event_notifies[euuid]
@@ -534,7 +532,7 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
-                    if sprite.direction[d]: 
+                    if sprite.direction[d]:
                         sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
@@ -574,13 +572,13 @@ class TuxemonClient():
                     return
                 world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
-            
+
             if event_data["type"] == "NOTIFY_CLIENT_START_BATTLE":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.running = False
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
-                   if sprite.direction[d]: 
+                   if sprite.direction[d]:
                        sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
@@ -614,7 +612,7 @@ class TuxemonClient():
         if self.wait_broadcast >= self.wait_delay:
             self.update_multiplayer_list()
             self.wait_broadcast = 0
-        else: 
+        else:
             self.wait_broadcast += time_delta
 
 
@@ -726,43 +724,43 @@ class TuxemonClient():
         """
         if self.game.current_state != self.game.get_world_state():
             return False
-        
+
         event_type = None
         kb_key = None
-        if event.type == pygame.KEYDOWN:
+        if event.type == pg.KEYDOWN:
             event_type = "CLIENT_KEYDOWN"
-            if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+            if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
                 kb_key = "SHIFT"
-            elif  event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+            elif  event.key == pg.K_LCTRL or event.key == pg.K_RCTRL:
                 kb_key = "CTRL"
-            elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
+            elif event.key == pg.K_LALT or event.key == pg.K_RALT:
                 kb_key = "ALT"
 
-            elif event.key == pygame.K_UP:
+            elif event.key == pg.K_UP:
                 kb_key = "up"
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pg.K_DOWN:
                 kb_key = "down"
-            elif event.key == pygame.K_LEFT:
+            elif event.key == pg.K_LEFT:
                 kb_key = "left"
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pg.K_RIGHT:
                 kb_key = "right"
 
-        if event.type == pygame.KEYUP:
+        if event.type == pg.KEYUP:
             event_type = "CLIENT_KEYUP"
-            if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+            if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
                 kb_key = "SHIFT"
-            elif  event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+            elif  event.key == pg.K_LCTRL or event.key == pg.K_RCTRL:
                 kb_key = "CTRL"
-            elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
+            elif event.key == pg.K_LALT or event.key == pg.K_RALT:
                 kb_key = "ALT"
 
-            elif event.key == pygame.K_UP:
+            elif event.key == pg.K_UP:
                 kb_key = "up"
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pg.K_DOWN:
                 kb_key = "down"
-            elif event.key == pygame.K_LEFT:
+            elif event.key == pg.K_LEFT:
                 kb_key = "left"
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pg.K_RIGHT:
                 kb_key = "right"
 
         if kb_key == "up" or kb_key == "down" or kb_key == "left" or kb_key == "right":
@@ -839,9 +837,9 @@ class TuxemonClient():
                       }
         self.event_list[event_type] +=1
         self.client.event(event_data)
-    
-    
-    def client_alive(self): 
+
+
+    def client_alive(self):
         """Sends server a ping to let it know that it is still alive.
 
         :param: None
@@ -854,10 +852,10 @@ class TuxemonClient():
             self.event_list[event_type] = 1
         else:
             self.event_list[event_type] +=1
-        
+
         event_data = {"type": event_type,
                       "event_number": self.event_list[event_type]}
-        
+
         self.client.event(event_data)
 
 
@@ -898,6 +896,9 @@ def populate_client(cuuid, event_data, game, registry):
     :returns: sprite
 
     """
+    # TODO: move NPC from actions make make a common core class
+    from core.components.event.actions.npc import Npc
+
     char_dict = event_data["char_dict"]
     sn = str(event_data["sprite_name"])
     nm = str(char_dict["name"])

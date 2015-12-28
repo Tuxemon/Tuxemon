@@ -29,11 +29,10 @@
 #
 #
 
-from pprint import pformat, pprint
+import importlib
+import inspect
 import logging
 import os
-import inspect
-import importlib
 import sys
 
 # Create a logger for optional handling of debug messages.
@@ -42,6 +41,7 @@ log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
 log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
                                         "%(levelname)s - %(message)s"))
+
 
 class Plugin(object):
     def __init__(self, name, module):
@@ -95,7 +95,6 @@ class PluginManager(object):
                     imported_modules.append(Plugin(module + "." + class_name, class_obj()))
 
         return imported_modules
-
 
     def _getClassesFromModule(self, module):
         members = inspect.getmembers(module, predicate=inspect.isclass)

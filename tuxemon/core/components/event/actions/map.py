@@ -23,11 +23,16 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
 import logging
 import os
-import pygame
 import re
+
+import pygame
+
+from core import prepare
+from core.components import pyganim
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -128,8 +133,6 @@ class Map(object):
 
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
-        prepare = game.imports["prepare"]
-
         parameters = action[1].split(",")
         animation_name = parameters[0]
         duration = float(parameters[1])
@@ -156,7 +159,7 @@ class Map(object):
             return True
 
         # Loop through our animation resources and find the animation files based on name.
-        scale = game.imports['prepare'].SCALE
+        scale = prepare.SCALE
         images_and_durations = []
         for animation_frame in os.listdir(directory):
             pattern = animation_name + "\.[0-9].*"
@@ -168,7 +171,6 @@ class Map(object):
         # Scale the animations based on our game's scale: world.scale
 
         # Create an animation object and conductor.
-        pyganim = game.imports["pyganim"]
         animation = pyganim.PygAnimation(images_and_durations, loop=loop)
         conductor = pyganim.PygConductor({'animation': animation})
         conductor.play()

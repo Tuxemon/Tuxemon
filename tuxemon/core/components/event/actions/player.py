@@ -23,9 +23,15 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
 import logging
-import pygame
+
+from core import prepare
+from core import tools
+from core.components import item
+from core.components import monster
+from core.components.map import Map
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -54,12 +60,6 @@ class Player(object):
         ('teleport', 'pallet_town-room.tmx,5,5', '1', 1)
 
         """
-        prepare = game.imports["prepare"]
-        item = game.imports["item"]
-        monster = game.imports["monster"]
-        tools = game.imports["tools"]
-        Map = game.imports["map"].Map
-
         # Get the player object from the game.
         player = game.player1
         world = game.current_state
@@ -222,9 +222,6 @@ class Player(object):
         ... [<core.components.monster.Monster instance at 0x2d0b3b0>]
 
         """
-
-        monster = game.imports["monster"]
-
         parameters = action[1].split(",")
         monster_name = parameters[0]
         monster_level = parameters[1]
@@ -257,9 +254,6 @@ class Player(object):
         >>>
 
         """
-
-        item = game.imports["item"]
-
         player = game.player1
         item_to_add = item.Item(action[1])
 

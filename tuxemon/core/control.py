@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import time
 
 import pygame as pg
@@ -58,20 +59,6 @@ class Control(StateManager):
         self.client = networking.TuxemonClient(self)
 
         # Set up our game's configuration from the prepare module.
-        from core import prepare
-        self.imports = {
-            "prepare": prepare,
-            "ai": ai,
-            "rumble": rumble,
-            "db": db,
-            "monster": monster,
-            "player": player,
-            "item": item,
-            "map": maps,
-            "networking": networking,
-            "pyganim": pyganim,
-            "tools": tools
-        }
         self.config = prepare.CONFIG
 
         # Set up our game's event engine which executes actions based on
@@ -700,18 +687,6 @@ class HeadlessControl(StateManager):
         self.server.server.listen()
 
         #Set up our game's configuration from the prepare module.
-        from core import prepare
-        self.imports = {
-            "prepare": prepare,
-            "ai": ai,
-            "rumble": rumble,
-            "db": db,
-            "monster": monster,
-            "player": player,
-            "item": item,
-            "map": maps,
-            "pyganim": pyganim
-        }
         self.config = prepare.HEADLESSCONFIG
 
         # Set up the command line. This provides a full python shell for

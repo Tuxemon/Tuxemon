@@ -23,8 +23,11 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
 import logging
+
+from core.components import networking
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -297,7 +300,7 @@ class Core(object):
         # Handle if networking is not supported and the PC is trying to be
         # accessed.
         if action[1] == "PC":
-            if not game.imports["networking"].networking:
+            if not networking.networking:
                 message = "Networking is not supported on your system"
                 self.dialog(game, (action[0], message))
                 return

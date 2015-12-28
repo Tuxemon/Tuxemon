@@ -76,6 +76,24 @@ class PC(state.State):
         self.pc_menu.interactable = True
         self.pc_menu.size_ratio = [0.8, 0.3]
 
+
+        # Monster menu
+        self.monster_menu = pc_menu.Monster_Menu(self.screen,
+                                                         self.resolution,
+                                                         self.game)
+        self.monster_menu.visible = False
+        self.monster_menu.interactable = False
+        self.monster_menu.size_ratio = [0.5, 0.8]
+
+        # Item menu
+        self.item_menu = pc_menu.Item_Menu(self.screen,
+                                                         self.resolution,
+                                                         self.game)
+        self.item_menu.visible = False
+        self.item_menu.interactable = False
+        self.item_menu.size_ratio = [0.5, 0.8]
+
+
         # Main multiplayer menu.
         self.multiplayer_menu = pc_menu.Multiplayer_Menu(self.screen,
                                                          self.resolution,
@@ -117,6 +135,8 @@ class PC(state.State):
         self.multiplayer_host_menu.size_ratio = [0.6, 0.2]
 
         self.menus = [self.pc_menu,
+                      self.monster_menu,
+                      self.item_menu,
                       self.multiplayer_menu,
                       self.multiplayer_join_menu,
                       self.multiplayer_join_enter_ip_menu,
@@ -145,10 +165,19 @@ class PC(state.State):
                      border.get_height() * self.scale))
 
             # Set the menu size.
-            menu.size_x= int(self.resolution[0] * menu.size_ratio[0])
-            menu.size_y= int(self.resolution[1] * menu.size_ratio[1])
-            menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
-            menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
+
+            if menu.name not in ["MONSTERS", "ITEMS"]:
+                menu.size_x = int(self.resolution[0] * menu.size_ratio[0])
+                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
+                menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
+                menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
+            else:
+                border_size = menu.border["left-top"].get_width()
+                menu.size_x = int(self.resolution[0] * menu.size_ratio[0]) -\
+                    (border_size * 2)
+                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
+                menu.pos_x = border_size
+                menu.pos_y = border_size + ((self.resolution[1]/9)/2)
 
     def update(self, time_delta):
         """Update function for state.
@@ -189,6 +218,12 @@ class PC(state.State):
         elif self.multiplayer_menu.interactable:
             self.game.get_menu_event(self.multiplayer_menu, event)
 
+        elif self.item_menu.interactable:
+            self.game.get_menu_event(self.item_menu, event)
+
+        elif self.monster_menu.interactable:
+            self.game.get_menu_event(self.monster_menu, event)
+
         elif self.pc_menu.interactable:
             self.game.get_menu_event(self.pc_menu, event)
 
@@ -206,7 +241,26 @@ class PC(state.State):
 
         self.pc_menu.draw()
         self.pc_menu.draw_textItem(
-                ["MULTIPLAYER", "LOG OFF"])
+                ["MONSTERS", "ITEMS", "MULTIPLAYER", "LOG OFF"])
+
+        if self.monster_menu.visible:
+            self.monster_menu.draw()
+            monsters = []
+            # self.monster_menu.draw_textItem(monsters)
+            for monster in self.game.player1.storage["monsters"]:
+                monsters.append(monster.name)
+            print(monsters)
+            print self.monster_menu.pos_x
+            self.monster_menu.draw_textItem(monsters)
+
+        if self.item_menu.visible:
+            self.item_menu.draw()
+            items = []
+            for item in self.game.player1.storage["items"]:
+                items.append(item.name)
+            print(items)
+            self.item_menu.draw_textItem(items)
+
 
         if self.multiplayer_menu.visible:
             self.multiplayer_menu.draw()

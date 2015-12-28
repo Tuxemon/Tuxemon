@@ -52,13 +52,72 @@ class PCMenu(Menu):
         :returns: None
 
         """
-        if self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
+        if self.menu_items[self.selected_menu_item] == "MONSTERS":
+            self.game.current_state.monster_menu.previous_menu = self
+            self.game.current_state.monster_menu.visible = True
+            self.game.current_state.monster_menu.interactable = True
+            self.game.current_state.pc_menu.interactable = False
+
+        elif self.menu_items[self.selected_menu_item] == "ITEMS":
+            self.game.current_state.item_menu.previous_menu = self
+            self.game.current_state.item_menu.visible = True
+            self.game.current_state.item_menu.interactable = True
+            self.game.current_state.pc_menu.interactable = False
+
+        elif self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
             self.game.current_state.multiplayer_menu.previous_menu = self
             self.game.current_state.multiplayer_menu.visible = True
             self.game.current_state.multiplayer_menu.interactable = True
             self.game.current_state.pc_menu.interactable = False
         elif self.menu_items[self.selected_menu_item] == "LOG OFF":
             self.game.pop_state()
+
+
+class Monster_Menu(Menu):
+
+    def __init__(self, screen, resolution, game, name="MONSTERS"):
+
+        # Initialize the parent menu class's default shit
+        Menu.__init__(self, screen, resolution, game, name)
+        self.delay = 0.5
+        self.elapsed_time = self.delay
+
+
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.control.Control
+        get_menu_event() function
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        print("Penis penis penis -- Derek")
+
+
+
+class Item_Menu(Menu):
+
+    def __init__(self, screen, resolution, game, name="ITEMS"):
+
+        # Initialize the parent menu class's default shit
+        Menu.__init__(self, screen, resolution, game, name)
+        self.delay = 0.5
+        self.elapsed_time = self.delay
+
+
+    def get_event(self, event=None):
+        """Run once a menu item has been selected by the core.control.Control
+        get_menu_event() function
+
+        :param None:
+
+        :rtype: None
+        :returns: None
+
+        """
+        print("Penis penis penis -- Ben")
 
 
 
@@ -105,7 +164,7 @@ class Multiplayer_Menu(Menu):
                                 if ip == self.game.client.interfaces[interface]:
                                     game = (ip, port)
                                     self.game.client.client.register(game)
-        
+
         elif self.menu_items[self.selected_menu_item] == "SCAN FOR GAMES":
             if not self.game.ishost:
                 self.game.current_state.multiplayer_join_menu.previous_menu = self
@@ -117,7 +176,7 @@ class Multiplayer_Menu(Menu):
                 self.game.client.client.listen()
             else:
                 return False
-                
+
         elif self.menu_items[self.selected_menu_item] == "JOIN BY IP":
             if not self.game.ishost:
                 self.game.current_state.multiplayer_join_enter_ip_menu.previous_menu = self
@@ -162,7 +221,7 @@ class Multiplayer_Join_Menu(Menu):
             self.game.current_state.multiplayer_join_success_menu.interactable = True
             self.game.current_state.multiplayer_join_menu.interactable = False
 
-            
+
 
 class Multiplayer_Join_Enter_IP_Menu(Menu):
     """Allows you to enter IP manually.
@@ -187,9 +246,9 @@ class Multiplayer_Join_Enter_IP_Menu(Menu):
 
         """
         return False
-        
 
-            
+
+
 class Multiplayer_Join_Success_Menu(Menu):
 
     def __init__(self, screen, resolution, game, name="SUCCESS"):

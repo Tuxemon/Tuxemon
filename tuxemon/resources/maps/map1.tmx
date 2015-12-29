@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="118">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="120">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -53,7 +53,7 @@
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
@@ -63,7 +63,7 @@
  </layer>
  <layer name="Above Player" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2kkOgjAUxvEHobdRz+HaE7jE4VrO0/GcNr4dUREZmgB9/1/yRRZd+NmGQqNIfWOXXU/d73EhsdITxdKW18EhFjlqTpqz5hK3+30smbj3WEN/+tftf41Ebpq75qF5Rt9jun5vsz7/sCtJRFzy/xP9xrzaxvzbxH3dj89nxLx0ie99vW/9fbPeHxnra4D+tvtbVHa+Q90j6E9/+tvtX/Z9gvdLAADyhbg3ppqZZq5ZaJYFY4fafRRY/yYGhn6LKusEAIBQrGKRtWaj2Wp2mn3H/g9ZVd/PtpoK6ZyvDuv9LeP8Fz6wfoDmXm2qSzo=
+   eJzt2kkOgjAUxvEHobdRz+HaE7jE4VrO092c1r4dUREZmgB9/1/yRRZd+NmGQqNIfWOXXU/d73EhsdITxdKW18EhFjlqTpqz5hK3+30smbj3WEN/+tftf41Ebpq75qF5Rt9jun5vsz7/sCtJRFzy/xP9xrzaxvzbxH3dj89nxLx0ie99vW/9fbPeHxnra4D+tvtbVHa+Q90j6E9/+tvtX/Z9gvdLAADyhbg3ppqZZq5ZaJYFY4fafRRY/yYGhn6LKusEAIBQrGKRtWaj2Wp2mn3H/g9ZVd/PtpoK6ZyvDuv9LeP8Fz6wfoDmXmUXSyE=
   </data>
  </layer>
  <layer name="Above Player" width="64" height="60">
@@ -208,7 +208,7 @@
   </object>
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport maple_house.tmx,7,10,0.5"/>
+    <property name="act1" value="transition_teleport maple_house_downstairs.tmx,8,7,0.5"/>
     <property name="cond1" value="is player_at 33,43"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
@@ -267,20 +267,11 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="78" name="Player's House Sign" type="event" x="624" y="736" width="16" height="16">
+  <object id="79" name="Professor's House Sign" type="event" x="560" y="688" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog ${{name}}'s house"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="79" name="Professor's House Sign" type="event" x="560" y="704" width="16" height="16">
-   <properties>
-    <property name="act1" value="dialog Generic Professor's House"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="dialog Maple's House"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="192" y="176" width="16" height="16">
@@ -309,22 +300,14 @@
     <property name="cond1" value="is player_at 44,52"/>
    </properties>
   </object>
-  <object id="96" name="Professor's Lab Sign" type="event" x="624" y="848" width="16" height="16">
-   <properties>
-    <property name="act1" value="dialog Generic Professor's Lab"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
+  <object id="98" name="Teleport to healing center" type="event" x="480" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport healing_center.tmx,7,12,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
+  <object id="108" name="Enter mart" type="event" x="640" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport tuxe_mart.tmx,7,12,0.3"/>
     <property name="cond1" value="is player_at"/>
@@ -361,6 +344,20 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="118" name="Professor's House Sign" type="event" x="624" y="720" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog ${{name}}'s House"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="119" name="Professor's House Sign" type="event" x="624" y="832" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Generic Professor's Lab"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

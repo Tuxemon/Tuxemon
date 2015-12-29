@@ -35,6 +35,7 @@ import pygame
 from core import prepare
 from core import state
 from core.components.menu import pc_menu
+from core.components import networking
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -99,6 +100,7 @@ class PC(state.State):
                                                        self.resolution,
                                                        self.game,
                                                        "STORE_MONS")
+
         self.monster_menu.add_child(self.store_monster_menu)
         self.store_monster_menu.add_child(self.monster_menu)
         self.store_monster_menu.visible = False
@@ -281,38 +283,44 @@ class PC(state.State):
         surface.fill((15, 15, 15))
 
         self.pc_menu.draw()
-        self.pc_menu.draw_textItem(
-                ["MONSTERS", "ITEMS", "MULTIPLAYER", "LOG OFF"])
+        if not networking.networking:
+            self.pc_menu.draw_textItem(
+                    ["MONSTERS", "ITEMS", "LOG OFF"])
+        else:
+            self.pc_menu.draw_textItem(
+                    ["MONSTERS", "ITEMS", "MULTIPLAYER", "LOG OFF"])
 
         if self.monster_menu.visible:
             self.monster_menu.draw()
-            monsters = []
+            self.monster_menu.menu_items = []
+            self.monster_menu.draw_text("Inventory")
             for monster in self.game.player1.monsters:
-                monsters.append(monster.name)
-            self.monster_menu.draw_textItem(monsters)
+                self.monster_menu.menu_items.append(monster.name)
+            self.monster_menu.draw_textItem(self.monster_menu.menu_items)
 
         if self.item_menu.visible:
             self.item_menu.draw()
-            items = []
-            print(self.game.player1.inventory)
-            print(items)
-            self.item_menu.draw_textItem(items)
+            self.item_menu.menu_items = []
+            self.item_menu.draw_text("Inventory")
+            for item in self.game.player1.inventory:
+                self.item_menu.menu_items.append(item)
+            self.item_menu.draw_textItem(self.item_menu.menu_items)
 
         if self.store_monster_menu.visible:
             self.store_monster_menu.draw()
-            monsters = []
+            self.store_monster_menu.menu_items = []
             self.store_monster_menu.draw_text("Storage")
             for monster in self.game.player1.storage["monsters"]:
-                monsters.append(monster.name)
-            self.store_monster_menu.draw_textItem(monsters)
+                self.store_monster_menu.menu_items.append(monster.name)
+            self.store_monster_menu.draw_textItem(self.store_monster_menu.menu_items)
 
         if self.store_item_menu.visible:
             self.store_item_menu.draw()
-            items = []
+            self.store_item_menu.menu_items = []
             self.store_item_menu.draw_text("Storage")
             for item in self.game.player1.storage["items"]:
-                items.append(item.name)
-            self.store_item_menu.draw_textItem(items)
+                self.store_item_menu.menu_items.append(item)
+            self.store_item_menu.draw_textItem(self.store_item_menu.menu_items)
 
         if self.multiplayer_menu.visible:
             self.multiplayer_menu.draw()

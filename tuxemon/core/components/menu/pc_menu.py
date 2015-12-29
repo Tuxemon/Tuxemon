@@ -52,27 +52,45 @@ class PCMenu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         if self.menu_items[self.selected_menu_item] == "MONSTERS":
-            self.game.current_state.monster_menu.previous_menu = self
-            self.game.current_state.monster_menu.visible = True
-            self.game.current_state.monster_menu.interactable = True
-            self.game.current_state.store_monster_menu.visible = True
-            self.game.current_state.store_monster_menu.interactable = False
-            self.game.current_state.pc_menu.interactable = False
+
+            cs.monster_menu.previous_menu = self
+            cs.monster_menu.visible = True
+            cs.store_monster_menu.previous_menu = self
+            cs.store_monster_menu.visible = True
+            cs.pc_menu.interactable = False
+            if len(self.game.player1.monsters) == 0:
+                cs.monster_menu.interactable = False
+                cs.store_monster_menu.interactable = True
+                if cs.store_monster_menu.menu_items:
+                    cs.store_monster_menu.selected_menu_item = 0
+            else:
+                cs.monster_menu.interactable = True
+                cs.store_monster_menu.interactable = False
+                cs.store_monster_menu.selected_menu_item = -1
 
         elif self.menu_items[self.selected_menu_item] == "ITEMS":
-            self.game.current_state.item_menu.previous_menu = self
-            self.game.current_state.item_menu.visible = True
-            self.game.current_state.item_menu.interactable = True
-            self.game.current_state.store_item_menu.visible = True
-            self.game.current_state.store_item_menu.interactable = False
-            self.game.current_state.pc_menu.interactable = False
+            cs.item_menu.previous_menu = self
+            cs.item_menu.visible = True
+            cs.store_item_menu.previous_menu = self
+            cs.store_item_menu.visible = True
+            cs.pc_menu.interactable = False
+            if len(self.game.player1.inventory) == 0:
+                cs.item_menu.interactable = False
+                cs.store_item_menu.interactable = True
+                if cs.store_item_menu.menu_items:
+                    cs.store_item_menu.selected_menu_item = 0
+            else:
+                cs.item_menu.interactable = True
+                cs.store_item_menu.interactable = False
+                cs.store_item_menu.selected_menu_item = -1
 
         elif self.menu_items[self.selected_menu_item] == "MULTIPLAYER":
-            self.game.current_state.multiplayer_menu.previous_menu = self
-            self.game.current_state.multiplayer_menu.visible = True
-            self.game.current_state.multiplayer_menu.interactable = True
-            self.game.current_state.pc_menu.interactable = False
+            cs.multiplayer_menu.previous_menu = self
+            cs.multiplayer_menu.visible = True
+            cs.multiplayer_menu.interactable = True
+            cs.pc_menu.interactable = False
 
         elif self.menu_items[self.selected_menu_item] == "LOG OFF":
             self.game.pop_state()
@@ -98,6 +116,7 @@ class Player_Menu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         if event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
            self.visible = False
            self.interactable = False
@@ -108,6 +127,41 @@ class Player_Menu(Menu):
            if self.previous_menu:
                 self.previous_menu.interactable = True
                 self.previous_menu.visible = True
+
+        if event.type == pg.KEYUP and event.key == pg.K_RIGHT \
+                or event.type == pg.KEYUP and event.key == pg.K_LEFT:
+            swap_menu(self)
+
+        if event.type == pg.KEYUP and event.key == pg.K_UP:
+            self.selected_menu_item -= 1
+            if self.selected_menu_item < 0:
+                self.selected_menu_item = len(self.menu_items) - 1
+
+        if event.type == pg.KEYUP and event.key == pg.K_DOWN:
+            self.selected_menu_item += 1
+            if self.selected_menu_item > len(self.menu_items) - 1:
+                self.selected_menu_item = 0
+
+        if event.type == pg.KEYUP and event.key == pg.K_RETURN:
+            if not self.menu_items:
+                return False
+            p1 = self.game.player1
+            if self.name == "PLAYER_MONS":
+                item = self.selected_menu_item
+                p1.storage["monsters"].append(p1.monsters.pop(item))
+                if len(p1.monsters) <= 0:
+                    swap_menu(self)
+                return False
+
+            if self.name == "PLAYER_ITEMS":
+                item = self.menu_items[self.selected_menu_item]
+                for p_item in p1.inventory:
+                    if item == p_item:
+                        p1.storage["items"][item] = p1.inventory[p_item]
+                        p1.inventory.pop(p_item, None)
+                        if len(p1.inventory) <= 0:
+                            swap_menu(self)
+                        return False
 
 
 class Storage_Menu(Menu):
@@ -130,7 +184,55 @@ class Storage_Menu(Menu):
         :returns: None
 
         """
-        pass
+        cs = self.game.current_state
+        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
+           self.visible = False
+           self.interactable = False
+           for child in self.children:
+               child.visible = False
+               child.interactable = False
+               child.selected_menu_item = 0
+           self.selected_menu_item = -1
+
+           if self.previous_menu:
+                self.previous_menu.interactable = True
+                self.previous_menu.visible = True
+
+        if event.type == pg.KEYUP and event.key == pg.K_RIGHT \
+                or event.type == pg.KEYUP and event.key == pg.K_LEFT:
+            swap_menu(self)
+
+        if event.type == pg.KEYUP and event.key == pg.K_UP:
+            self.selected_menu_item -= 1
+            if self.selected_menu_item < 0:
+                self.selected_menu_item = len(self.menu_items) - 1
+
+        if event.type == pg.KEYUP and event.key == pg.K_DOWN:
+            self.selected_menu_item += 1
+            if self.selected_menu_item > len(self.menu_items) - 1:
+                self.selected_menu_item = 0
+
+        if event.type == pg.KEYUP and event.key == pg.K_RETURN:
+            if not self.menu_items:
+                return False
+            p1 = self.game.player1
+            if self.name == "STORE_MONS":
+                item = self.selected_menu_item
+                if len(p1.monsters) < p1.party_limit:
+                    p1.monsters.append(p1.storage["monsters"].pop(item))
+                if len(p1.storage["monsters"]) <= 0:
+                    swap_menu(self)
+                    return False
+
+            if self.name == "STORE_ITEMS":
+                item = self.menu_items[self.selected_menu_item]
+                for s_item in p1.storage["items"]:
+                    if item == s_item:
+                        p1.inventory[item] = p1.storage["items"][s_item]
+                        p1.storage["items"].pop(s_item, None)
+                        if len(p1.storage["items"]) <= 0:
+                            swap_menu(self)
+                        return False
 
 
 class Multiplayer_Menu(Menu):
@@ -153,12 +255,13 @@ class Multiplayer_Menu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         if self.menu_items[self.selected_menu_item] == "HOST A GAME":
             if not self.game.isclient:
-                self.game.current_state.multiplayer_host_menu.previous_menu = self
-                self.game.current_state.multiplayer_host_menu.visible = True
-                self.game.current_state.multiplayer_host_menu.interactable = True
-                self.game.current_state.multiplayer_menu.interactable = False
+                cs.multiplayer_host_menu.previous_menu = self
+                cs.multiplayer_host_menu.visible = True
+                cs.multiplayer_host_menu.interactable = True
+                cs.multiplayer_menu.interactable = False
                 self.game.ishost = True
                 self.game.server.server.listen()
                 self.game.server.listening = True
@@ -179,10 +282,10 @@ class Multiplayer_Menu(Menu):
 
         elif self.menu_items[self.selected_menu_item] == "SCAN FOR GAMES":
             if not self.game.ishost:
-                self.game.current_state.multiplayer_join_menu.previous_menu = self
-                self.game.current_state.multiplayer_join_menu.visible = True
-                self.game.current_state.multiplayer_join_menu.interactable = True
-                self.game.current_state.multiplayer_menu.interactable = False
+                cs.multiplayer_join_menu.previous_menu = self
+                cs.multiplayer_join_menu.visible = True
+                cs.multiplayer_join_menu.interactable = True
+                cs.multiplayer_menu.interactable = False
                 self.game.client.enable_join_multiplayer = True
                 self.game.client.listening = True
                 self.game.client.client.listen()
@@ -191,10 +294,10 @@ class Multiplayer_Menu(Menu):
 
         elif self.menu_items[self.selected_menu_item] == "JOIN BY IP":
             if not self.game.ishost:
-                self.game.current_state.multiplayer_join_enter_ip_menu.previous_menu = self
-                self.game.current_state.multiplayer_join_enter_ip_menu.visible = True
-                self.game.current_state.multiplayer_join_enter_ip_menu.interactable = True
-                self.game.current_state.multiplayer_menu.interactable = False
+                cs.multiplayer_join_enter_ip_menu.previous_menu = self
+                cs.multiplayer_join_enter_ip_menu.visible = True
+                cs.multiplayer_join_enter_ip_menu.interactable = True
+                cs.multiplayer_menu.interactable = False
 
         else:
             return False
@@ -221,6 +324,7 @@ class Multiplayer_Join_Menu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         try:
             self.game.client.selected_game = (self.menu_items[self.selected_menu_item],
                                        self.game.client.available_games[self.menu_items[self.selected_menu_item]])
@@ -228,10 +332,10 @@ class Multiplayer_Join_Menu(Menu):
             pass
 
         if self.game.client.selected_game:
-            self.game.current_state.multiplayer_join_success_menu.previous_menu = self
-            self.game.current_state.multiplayer_join_success_menu.visible = True
-            self.game.current_state.multiplayer_join_success_menu.interactable = True
-            self.game.current_state.multiplayer_join_menu.interactable = False
+            cs.multiplayer_join_success_menu.previous_menu = self
+            cs.multiplayer_join_success_menu.visible = True
+            cs.multiplayer_join_success_menu.interactable = True
+            cs.multiplayer_join_menu.interactable = False
 
 
 
@@ -257,6 +361,7 @@ class Multiplayer_Join_Enter_IP_Menu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         return False
 
 
@@ -282,6 +387,7 @@ class Multiplayer_Join_Success_Menu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         return False
 
 
@@ -309,6 +415,16 @@ class Multiplayer_Host_Menu(Menu):
         :returns: None
 
         """
+        cs = self.game.current_state
         return False
 
+def swap_menu(menu):
+    for child in menu.children:
+        if not child.menu_items:
+            return False
+        else:
+            child.interactable = True
+            child.selected_menu_item = 0
+            menu.selected_menu_item = -1
+            menu.interactable = False
 

@@ -87,7 +87,7 @@ class Player(object):
         self.playerWidth, self.playerHeight = self.standing["front"].get_size()    # The player's sprite size in pixels
         self.inventory = {}			# The Player's inventory.
         self.monsters = []			# This is a list of tuxemon the player has
-        self.storage = {"monsters": [], "items": []}
+        self.storage = {"monsters": [], "items": {}}
         self.party_limit = 1        # The maximum number of tuxemon this player can hold 1 for testing
         self.walking = False			# Whether or not the player is walking
         self.running = False			# Whether or not the player is running

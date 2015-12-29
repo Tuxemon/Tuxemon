@@ -296,15 +296,6 @@ class Core(object):
         ('change_state', 'MAIN_MENU')
 
         """
-        # Handle if networking is not supported and the PC is trying to be
-        # accessed.
-        if action[1] == "PC":
-            #if not networking.networking:
-            #    message = "Networking is not supported on your system"
-            #    self.dialog(game, (action[0], message))
-            #return
-            pass
-
         # Don't override previous state if we are still in the state.
         if game.state_name != action[1]:
             game.push_state(action[1])

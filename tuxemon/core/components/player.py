@@ -88,7 +88,7 @@ class Player(object):
         self.inventory = {}			# The Player's inventory.
         self.monsters = []			# This is a list of tuxemon the player has
         self.storage = {"monsters": [], "items": {}}
-        self.party_limit = 1        # The maximum number of tuxemon this player can hold 1 for testing
+        self.party_limit = 6        # The maximum number of tuxemon this player can hold 1 for testing
         self.walking = False			# Whether or not the player is walking
         self.running = False			# Whether or not the player is running
         self.moving = False			# Whether or not the player is moving

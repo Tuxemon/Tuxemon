@@ -55,7 +55,7 @@
   </properties>
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,30,12,0.3"/>
+    <property name="act1" value="transition_teleport map1.tmx,40,4,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>

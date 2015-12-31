@@ -1,0 +1,20 @@
+{
+    "monsters": [
+        {
+            "attack": 27, 
+            "defense": 7, 
+            "name": "Sumobug", 
+            "special_attack": 9, 
+            "level": 5, 
+            "monster_id": 9, 
+            "hp": 35, 
+            "speed": 7, 
+            "special_defense": 7,
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ], 
+    "id": 2, 
+    "name": "Copyright Fanatics"
+}
+

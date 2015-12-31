@@ -1,0 +1,9 @@
+[Core]
+Name = NPC
+Module = npc
+
+[Documentation]
+Author = William Edwards
+Version = 1.0
+Website = http://www.tuxemon.org
+Description = NPC condition plugin.

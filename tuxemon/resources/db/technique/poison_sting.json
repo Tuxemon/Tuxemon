@@ -1,0 +1,15 @@
+{
+    "animation": "greendrip",
+    "sfx": "bite1.ogg",
+    "category": "special",
+    "effects": [
+        "damage",
+        "poison"
+    ], 
+    "id": 2, 
+    "name": "Poison Sting", 
+    "power": 40, 
+    "types": [
+        "Poison"
+    ]
+}

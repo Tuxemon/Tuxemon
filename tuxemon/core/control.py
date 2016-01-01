@@ -67,6 +67,7 @@ class Control(StateManager):
         self.event_conditions = {}
         self.event_actions = {}
         self.event_persist = {}
+        self.events = []
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = {"status": "stopped", "song": None}

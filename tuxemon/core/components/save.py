@@ -61,7 +61,6 @@ def save(player, slot, game):
 
     # Save a screenshot of the current frame
     pygame.image.save(game.save_screenshot, 'saves/slot' + str(slot) + '.png')
-
     saveFile = shelve.open('saves/slot' + str(slot) + '.save')
     saveFile['game_variables'] = game.player1.game_variables
     saveFile['tile_pos'] = game.player1.tile_pos

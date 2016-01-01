@@ -219,13 +219,13 @@ class StateManager(object):
         """
         return self.state_dict.copy()
 
-    def pop_state(self):
+    def pop_state(self, position=0):
         """ Pop the currently running state.  The previously running state will resume.
 
         :return:
         """
         try:
-            previous = self.state_stack.pop(0)
+            previous = self.state_stack.pop(position)
             previous.shutdown()
             self.keys = list()
             self.key_events = list()

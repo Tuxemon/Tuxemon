@@ -123,14 +123,14 @@ class SaveMenu(Menu):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and not self.first_run:
             logger.info("Saving!")
             # Save the game!!
-            try:
-                save.save(self.save_data['player'],
-                          self.selected_menu_item + 1,
-                          self.game)
-                del self.slot_surfaces["slot" + str(self.selected_menu_item + 1)]
-            except Exception as e:
-                logger.error("Unable to save game!!")
-                logger.error(e)
+            #try:
+            save.save(self.save_data['player'],
+                        self.selected_menu_item + 1,
+                        self.game)
+            del self.slot_surfaces["slot" + str(self.selected_menu_item + 1)]
+            #except Exception as e:
+            #    logger.error("Unable to save game!!")
+            #    logger.error(e)
 
             if self.visible:
                 self.visible = False

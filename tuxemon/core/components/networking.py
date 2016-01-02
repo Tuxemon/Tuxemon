@@ -30,7 +30,6 @@
 """This module contains the Tuxemon server and client.
 """
 from core.components.middleware import Multiplayer, Controller
-from core.components import player
 from core.components.event.actions.npc import Npc
 from core import prepare
 
@@ -302,7 +301,6 @@ class ControllerServer():
         self.network_events = []
         self.listening = False
         self.interfaces = {}
-        self.ips = []
 
         # Handle users without networking support
         if not networking:
@@ -310,20 +308,6 @@ class ControllerServer():
             return
         self.server_name = "Default Tuxemon game."
         self.server = NeteriaServer(Controller(self,))
-
-        import netifaces
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
-
-        for interface in self.interfaces:
-            ip = self.interfaces[interface]
-            if ip == "127.0.0.1": continue
-            else: self.ips.append(ip)
-
 
     def update(self):
         """Updates the server state with information sent from the clients
@@ -342,7 +326,6 @@ class ControllerServer():
             for controller_event in controller_events:
                 self.game.key_events.append(controller_event)
                 self.game.current_state.get_event(controller_event)
-
 
     def net_controller_loop(self):
         """Process all network events from controllers and pass them
@@ -433,7 +416,6 @@ class TuxemonClient():
     def __init__(self, game):
 
         self.game = game
-#         self.interfaces = {}
         self.available_games = []
         self.server_list = []
         self.selected_game = None
@@ -453,15 +435,6 @@ class TuxemonClient():
 
         self.client = NeteriaClient(server_port=40081)
         self.client.registry = {}
-
-#         for device in netifaces.interfaces():
-#             interface = netifaces.ifaddresses(device)
-#             try:
-#                 self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-#             except KeyError:
-#                 pass
-
-
 
     def update(self, time_delta):
         """Updates the client and local game state with information sent from the server

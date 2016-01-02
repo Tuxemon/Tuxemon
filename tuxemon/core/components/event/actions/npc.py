@@ -23,6 +23,11 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
+
+from core.components import ai
+from core.components import player
+
 
 class Npc(object):
 
@@ -47,10 +52,6 @@ class Npc(object):
         ('create_npc', 'Oak,1,5,oak,wander', '1', 6)
 
         """
-
-        ai = game.imports["ai"]
-        player = game.imports["player"]
-
         # Get a copy of the world state.
         world = game.get_state_name("world")
         if not world:

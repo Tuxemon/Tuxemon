@@ -81,6 +81,47 @@ class Core(object):
         # Loop through each event
         for event in events:
             # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
+            if event.type == pygame.KEYDOWN and event.key == getattr(pygame, button):
+                return True
+
+        return False
+
+
+    def button_released(self, game, condition):
+        """Checks to see if a particular key was released
+
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type game: core.control.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
+        Valid Parameters: A pygame key (E.g. "K_RETURN")
+
+        **Examples:**
+
+        >>> condition
+        {'action_id': '3',
+         'id': 3,
+         'operator': 'is',
+         'parameters': 'K_RETURN',
+         'type': 'button_released',
+         'x': 1,
+         'y': 3}
+
+        """
+
+        # Get the keys pressed from the game.
+        events = game.key_events
+        button = str(condition["parameters"])
+
+        # Loop through each event
+        for event in events:
+            # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
             if event.type == pygame.KEYUP and event.key == getattr(pygame, button):
                 return True
 

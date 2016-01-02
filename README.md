@@ -20,7 +20,7 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 2.7+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *neteria* - Game networking framework for Python.
+* *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
 
 *Optional*
 

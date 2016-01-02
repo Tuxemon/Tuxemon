@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import time
 
 import pygame as pg
@@ -63,20 +64,6 @@ class Control(StateManager):
 #        self.combat_router = CombatRouter(self, self.combat_engine)
 
         # Set up our game's configuration from the prepare module.
-        from core import prepare
-        self.imports = {
-            "prepare": prepare,
-            "ai": ai,
-            "rumble": rumble,
-            "db": db,
-            "monster": monster,
-            "player": player,
-            "item": item,
-            "map": maps,
-            "networking": networking,
-            "pyganim": pyganim,
-            "tools": tools
-        }
         self.config = prepare.CONFIG
 
         # Set up our game's event engine which executes actions based on
@@ -534,11 +521,11 @@ class Control(StateManager):
         if len(menu.menu_items) > 0:
             menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and not menu.previous_menu:
+        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE and not menu.previous_menu:
             menu.menu_select_sound.play()
             self.pop_state()
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE and menu.previous_menu:
+        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE and menu.previous_menu:
             menu.menu_select_sound.play()
             menu.interactable = False
             menu.visible = False
@@ -546,19 +533,19 @@ class Control(StateManager):
                 menu.previous_menu.interactable = True
                 menu.previous_menu.visible = True
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
+        if event.type == pg.KEYUP and event.key == pg.K_DOWN:
             menu.menu_select_sound.play()
             menu.selected_menu_item += 1
             if menu.selected_menu_item > len(menu.menu_items) - 1:
                 menu.selected_menu_item = 0
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_UP:
+        if event.type == pg.KEYUP and event.key == pg.K_UP:
             menu.menu_select_sound.play()
             menu.selected_menu_item -= 1
             if menu.selected_menu_item < 0:
                 menu.selected_menu_item = len(menu.menu_items) - 1
 
-        if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
+        if event.type == pg.KEYUP and event.key == pg.K_RETURN:
             menu.menu_select_sound.play()
             menu.get_event(event)
 
@@ -706,18 +693,6 @@ class HeadlessControl(StateManager):
         self.server.server.listen()
 
         #Set up our game's configuration from the prepare module.
-        from core import prepare
-        self.imports = {
-            "prepare": prepare,
-            "ai": ai,
-            "rumble": rumble,
-            "db": db,
-            "monster": monster,
-            "player": player,
-            "item": item,
-            "map": maps,
-            "pyganim": pyganim
-        }
         self.config = prepare.HEADLESSCONFIG
 
         # Set up the command line. This provides a full python shell for

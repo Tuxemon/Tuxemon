@@ -23,8 +23,11 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
 import logging
+
+from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -59,8 +62,6 @@ class Sound(object):
         ('play_sound', 'interface/NenadSimic_Click.ogg', '4', 1)
 
         """
-
-        prepare = game.imports["prepare"]
         filename = str(action[1])
         sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
         sound.play()
@@ -87,8 +88,6 @@ class Sound(object):
         ('play_music', '147066_pokemon.ogg', '4', 1)
 
         """
-
-        prepare = game.imports["prepare"]
         filename = str(action[1])
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)

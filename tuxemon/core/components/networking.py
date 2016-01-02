@@ -16,7 +16,7 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
+#
 # You should have received a copy of the GNU General Public License
 # along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
 #
@@ -30,13 +30,12 @@
 """This module contains the Tuxemon server and client.
 """
 from core.components.middleware import Multiplayer, Controller
-from core.components.event.actions.npc import Npc
 from core import prepare
 
 from datetime import datetime
 
 import pprint
-import pygame
+import pygame as pg
 
 # Create a logger for optional handling of debug messages.
 import logging
@@ -83,8 +82,6 @@ class TuxemonServer():
             return
 
         self.server = NeteriaServer(Multiplayer(self), server_port=40081, server_name=self.server_name)
-
-
 
 
     def update(self):
@@ -306,8 +303,7 @@ class ControllerServer():
         if not networking:
             self.server = DummyNetworking()
             return
-        self.server_name = "Default Tuxemon game."
-        self.server = NeteriaServer(Controller(self,))
+        self.server = NeteriaServer(Controller(self))
 
     def update(self):
         """Updates the server state with information sent from the clients
@@ -597,6 +593,7 @@ class TuxemonClient():
 
         """
         self.client.autodiscover(autoregister=False)
+
         # Logic to prevent joining your own game as a client.
         if len(self.client.discovered_servers) > 0:
 
@@ -691,40 +688,40 @@ class TuxemonClient():
 
         event_type = None
         kb_key = None
-        if event.type == pygame.KEYDOWN:
+        if event.type == pg.KEYDOWN:
             event_type = "CLIENT_KEYDOWN"
-            if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+            if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
                 kb_key = "SHIFT"
-            elif  event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+            elif  event.key == pg.K_LCTRL or event.key == pg.K_RCTRL:
                 kb_key = "CTRL"
-            elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
+            elif event.key == pg.K_LALT or event.key == pg.K_RALT:
                 kb_key = "ALT"
 
-            elif event.key == pygame.K_UP:
+            elif event.key == pg.K_UP:
                 kb_key = "up"
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pg.K_DOWN:
                 kb_key = "down"
-            elif event.key == pygame.K_LEFT:
+            elif event.key == pg.K_LEFT:
                 kb_key = "left"
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pg.K_RIGHT:
                 kb_key = "right"
 
-        if event.type == pygame.KEYUP:
+        if event.type == pg.KEYUP:
             event_type = "CLIENT_KEYUP"
-            if event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+            if event.key == pg.K_LSHIFT or event.key == pg.K_RSHIFT:
                 kb_key = "SHIFT"
-            elif  event.key == pygame.K_LCTRL or event.key == pygame.K_RCTRL:
+            elif  event.key == pg.K_LCTRL or event.key == pg.K_RCTRL:
                 kb_key = "CTRL"
-            elif event.key == pygame.K_LALT or event.key == pygame.K_RALT:
+            elif event.key == pg.K_LALT or event.key == pg.K_RALT:
                 kb_key = "ALT"
 
-            elif event.key == pygame.K_UP:
+            elif event.key == pg.K_UP:
                 kb_key = "up"
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pg.K_DOWN:
                 kb_key = "down"
-            elif event.key == pygame.K_LEFT:
+            elif event.key == pg.K_LEFT:
                 kb_key = "left"
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pg.K_RIGHT:
                 kb_key = "right"
 
         if kb_key == "up" or kb_key == "down" or kb_key == "left" or kb_key == "right":
@@ -862,6 +859,9 @@ def populate_client(cuuid, event_data, game, registry):
     :returns: sprite
 
     """
+    # TODO: move NPC from actions make make a common core class
+    from core.components.event.actions.npc import Npc
+
     char_dict = event_data["char_dict"]
     sn = str(event_data["sprite_name"])
     nm = str(char_dict["name"])
@@ -911,5 +911,4 @@ def update_client(sprite, char_dict, game):
             global_y = world.global_y
             abs_position = [position[0] + global_x, position[1] + (global_y-tile_size[1])]
             sprite.__dict__["position"] = abs_position
-
 

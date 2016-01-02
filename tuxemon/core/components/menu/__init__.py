@@ -171,6 +171,7 @@ class Menu(UserInterface):
         self.arrow = pygame.image.load(prepare.BASEDIR + "resources/gfx/arrow.png").convert_alpha()
 
         self.difference = self.border["left-top"].get_width()  # TODO: Rename to "border_size"
+        self.border_size = self.border["left-top"].get_width()
 
         # Set the background image of this menu if one was specified.
         if background:
@@ -259,6 +260,7 @@ class Menu(UserInterface):
                 border,
                 (border.get_width() * prepare.SCALE, border.get_height() * prepare.SCALE))
 
+        self.border_size = scaled_borders["left-top"].get_width()
         return scaled_borders
 
 

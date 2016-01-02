@@ -29,11 +29,10 @@
 #
 #
 
-from pprint import pformat, pprint
+import importlib
+import inspect
 import logging
 import os
-import inspect
-import importlib
 import sys
 
 # Create a logger for optional handling of debug messages.
@@ -42,6 +41,7 @@ log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
 log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
                                         "%(levelname)s - %(message)s"))
+
 
 class Plugin(object):
     def __init__(self, name, module):
@@ -59,6 +59,7 @@ class PluginManager(object):
         self.modules = []
         self.file_extension = ".plugin"
         self.exclude_classes = ["IPlugin"]
+        self.include_patterns = ["core.components.event.actions", "core.components.event.conditions"]
 
     def setPluginPlaces(self, plugin_folders):
         self.folders = plugin_folders
@@ -91,11 +92,14 @@ class PluginManager(object):
             for c in self._getClassesFromModule(m):
                 class_name = c[0]
                 class_obj = c[1]
-                if class_name not in self.exclude_classes:
-                    imported_modules.append(Plugin(module + "." + class_name, class_obj()))
+                for pattern in self.include_patterns:
+                    if class_name in self.exclude_classes:
+                        continue
+                    # Only import modules from the list of parent modules
+                    if pattern in str(class_obj):
+                        imported_modules.append(Plugin(module + "." + class_name, class_obj()))
 
         return imported_modules
-
 
     def _getClassesFromModule(self, module):
         members = inspect.getmembers(module, predicate=inspect.isclass)

@@ -23,8 +23,10 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
 import logging
+
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -294,14 +296,6 @@ class Core(object):
         ('change_state', 'MAIN_MENU')
 
         """
-        # Handle if networking is not supported and the PC is trying to be
-        # accessed.
-        if action[1] == "PC":
-            if not game.imports["networking"].networking:
-                message = "Networking is not supported on your system"
-                self.dialog(game, (action[0], message))
-                return
-
         # Don't override previous state if we are still in the state.
         if game.state_name != action[1]:
             game.push_state(action[1])

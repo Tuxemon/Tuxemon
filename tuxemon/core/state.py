@@ -187,14 +187,10 @@ class StateManager(object):
         Abstract Base Classes, those whose metaclass is abc.ABCMeta, will
         not be included in the state dictionary.
         """
-        import abc
         classes = inspect.getmembers(sys.modules[import_name], inspect.isclass)
 
-        for c in classes:
-            c = c[1]
-
+        for c in [i[1] for i in classes]:
             if issubclass(c, State):
-                print c
                 yield c
 
     def collect_states_from_path(self, folder):
@@ -231,6 +227,8 @@ class StateManager(object):
         try:
             previous = self.state_stack.pop(0)
             previous.shutdown()
+            self.keys = list()
+            self.key_events = list()
 
             if self.state_stack:
                 self.current_state.resume()
@@ -267,7 +265,6 @@ class StateManager(object):
         instance.startup(params)
 
         self._current_state_requires_resume = True
-
         self.state_stack.insert(0, instance)
 
         return instance

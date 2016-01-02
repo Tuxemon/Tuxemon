@@ -16,6 +16,7 @@ from .components import networking
 from .components import player
 from .components import pyganim
 from .components import rumble
+#from .components.combat import CombatEngine, CombatRouter
 from .state import StateManager
 from .tools import android, logger
 
@@ -53,9 +54,13 @@ class Control(StateManager):
         self.state_stack = list()
         self._current_state_requires_resume = True
 
-        # Set up our networking for Multiplayer and Controls
+        # Set up our networking for multiplayer.
         self.server = networking.TuxemonServer(self)
         self.client = networking.TuxemonClient(self)
+
+        # Set up our combat engine and router.
+#        self.combat_engine = CombatEngine(self)
+#        self.combat_router = CombatRouter(self, self.combat_engine)
 
         # Set up our game's configuration from the prepare module.
         from core import prepare
@@ -152,6 +157,7 @@ class Control(StateManager):
                 "b": False
             }
 
+        # Set up our networked controller if enabled.
         if self.config.net_controller_enabled == "1":
             self.controller_server = networking.ControllerServer(self)
 
@@ -484,6 +490,7 @@ class Control(StateManager):
         # Run our event engine which will check to see if game conditions.
         # are met and run an action associated with that condition.
         self.event_loop()
+#        self.combat_router.update()
 
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
@@ -617,7 +624,7 @@ class Control(StateManager):
         :returns: None
 
         """
-        world = self.get_world_state()
+        world = self.get_state_name("world")
         if not world:
             return
 
@@ -652,7 +659,7 @@ class Control(StateManager):
         :returns: map_name
 
         """
-        world = self.get_world_state()
+        world = self.get_state_name("world")
         if not world:
             return
 
@@ -661,12 +668,11 @@ class Control(StateManager):
         map_name = str(map_name.replace("resources/maps/", ""))
         return map_name
 
-    def get_world_state(self):
+    def get_state_name(self, name):
         for state in self.state_stack:
-            if state.__module__ == "core.states.world":
+            if state.__module__ == "core.states." + name:
                 return state
         return None
-
 
 class PygameControl(Control):
     pass

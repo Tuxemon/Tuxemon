@@ -95,7 +95,7 @@ class COMBAT(state.State):
         # Keep track of the combat phases
         self.decision_phase = True     # The decision phase allows each player to select an action.
         self.action_phase = False      # The action phase resolves the actions that each player took.
-        self.state = "decision phase"  # The current state of combat.
+        self.phase = "decision phase"  # The current state of combat.
 
         # Set up our ui.
         self.ui = {}
@@ -443,7 +443,6 @@ class COMBAT(state.State):
             prepare.BASEDIR + "resources/gfx/items/capture_device.png", (500, 500), screen)
         ui["capture"].visible = False
         import pprint
-        pprint.pprint(ui)
 
 
     def update(self, time_delta):
@@ -794,7 +793,7 @@ class COMBAT(state.State):
         # End the action phase and start the decision phase.
         self.action_phase = False
         self.decision_phase = True
-        self.state = "decision phase"
+        self.phase = "decision phase"
 
 
     def start_action_phase(self):
@@ -811,7 +810,7 @@ class COMBAT(state.State):
         # This will be executed when both players have selected an action.
         self.action_phase = True
         self.decision_phase = False
-        self.state = "action phase"
+        self.phase = "action phase"
         players = self.current_players
 
         # Create a list of players ordered by who will go first.
@@ -867,7 +866,7 @@ class COMBAT(state.State):
             self.status_check(self.turn_order[0])
             self.status_check_in_progress = True
             self.status_check_completed = False
-            self.state = "status check in progress"
+            self.phase = "status check in progress"
 
         # We want to perform our action AFTER the status check has completed.
         elif self.status_check_completed:
@@ -962,34 +961,34 @@ class COMBAT(state.State):
                             logger.info("YOU LOST!")
                             self.info_menu.text = "YOU LOST!"
                             self.info_menu.elapsed_time = 0.0
-                            self.state = "lost"
+                            self.phase = "lost"
 
                         elif player_name == "opponent":
                             logger.info("YOU WON!")
                             self.info_menu.text = "YOU WON!"
                             self.info_menu.elapsed_time = 0.0
-                            self.state = "won"
+                            self.phase = "won"
 
             ########################################################
             #                  Creature Capturing                  #
             ########################################################
 
-        if ("capturing" in self.state) and self.info_menu.elapsed_time > self.info_menu.delay:
+        if ("capturing" in self.phase) and self.info_menu.elapsed_time > self.info_menu.delay:
 
-            if self.state == "capturing success":
+            if self.phase == "capturing success":
                 print("Capturing %s!!!" % players['opponent']['monster'].name)
                 self.info_menu.text = "You captured %s!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0
-                self.state = "captured"
-            elif self.state == "capturing fail":
+                self.phase = "captured"
+            elif self.phase == "capturing fail":
                 print("Could not capture %s!" % players['opponent']['monster'].name)
                 self.info_menu.text = "%s broke free!" % players['opponent']['monster'].name
                 self.info_menu.elapsed_time = 0.0
                 ui["capture"].visible = False
-                self.state = "action phase"
+                self.phase = "action phase"
 
         # Handle when all monsters in the player's party have fainted
-        if (self.state == "lost" or self.state == "won" or self.state == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:
+        if (self.phase == "lost" or self.phase == "won" or self.phase == "captured") and self.info_menu.elapsed_time > self.info_menu.delay:
             self.end_combat()
 
 
@@ -1007,7 +1006,7 @@ class COMBAT(state.State):
 
             if self.status_check_in_progress:
                 self.status_check_completed = True
-                self.state = "status check completed"
+                self.phase = "status check completed"
 
             # If this isn't part of a status check, end the turn for the current player.
             else:
@@ -1136,9 +1135,9 @@ class COMBAT(state.State):
                 self.ui["capture"].visible = True
                 self.ui["capture"].move(self.ui["opponent_monster_sprite"].position, 1.)
                 if item_to_use.capture(item_target, game):
-                    self.state = "capturing success"
+                    self.phase = "capturing success"
                 else:
-                    self.state = "capturing fail"
+                    self.phase = "capturing fail"
             else:
                 item_to_use.use(item_target, game)
 
@@ -1344,7 +1343,7 @@ class COMBAT(state.State):
         event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
 
         # TODO: remove this fade-in hack when proper transition is complete
-        world = self.game.get_world_state()
+        world = self.game.get_state_name("world")
         world.trigger_fade_in()
 
         self.game.pop_state()

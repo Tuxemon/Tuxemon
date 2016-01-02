@@ -185,7 +185,7 @@ class PC(state.State):
 
         elif self.multiplayer_join_enter_ip_menu.interactable:
             self.game.get_menu_event(self.multiplayer_join_enter_ip_menu, event)
-            
+
         elif self.multiplayer_menu.interactable:
             self.game.get_menu_event(self.multiplayer_menu, event)
 
@@ -219,7 +219,7 @@ class PC(state.State):
 
             # The server list below join by IP
             self.multiplayer_join_menu.draw_textItem(self.game.client.server_list, align="middle", paging=True)
-            
+
             # If no options are selected because there were no items when
             # the menu was populated, and there are items in the list to
             # select, set the selected item to the top of the list.
@@ -236,10 +236,8 @@ class PC(state.State):
 
         if self.multiplayer_host_menu.visible:
             self.multiplayer_host_menu.draw()
-            
+
             text = "Server Started: \\n"
-            for ip in self.multiplayer_host_menu.ips:
-                text += ip + "\\n"
-            
+            text += str(self.game.server.server.server_name)
+
             self.multiplayer_host_menu.draw_text(text, justify="center")
-                

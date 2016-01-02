@@ -16,7 +16,7 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
+
 # You should have received a copy of the GNU General Public License
 # along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
 #
@@ -47,7 +47,6 @@ pp = pprint.PrettyPrinter(indent=4)
 try:
     from neteria.server import NeteriaServer
     from neteria.client import NeteriaClient
-    import netifaces
     networking = True
 except ImportError:
     logger.info("Neteria networking unavailable")
@@ -67,9 +66,13 @@ class TuxemonServer():
 
     """
 
-    def __init__(self, game):
+    def __init__(self, game, server_name=None):
 
         self.game = game
+        if not server_name:
+            self.server_name = "Default Tuxemon Server"
+        else:
+            self.server_name = server_name
         self.network_events = []
         self.listening = False
         self.interfaces = {}
@@ -80,19 +83,9 @@ class TuxemonServer():
             self.server = DummyNetworking()
             return
 
-        self.server = NeteriaServer(Multiplayer(self), server_port=40081)
+        self.server = NeteriaServer(Multiplayer(self), server_port=40081, server_name=self.server_name)
 
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
 
-        for interface in self.interfaces:
-            ip = self.interfaces[interface]
-            if ip == "127.0.0.1": continue
-            else: self.ips.append(ip)
 
 
     def update(self):
@@ -116,11 +109,11 @@ class TuxemonServer():
                     self.notify_client(cuuid, event_data)
                     del self.server.registry[cuuid]
                     return False
-            
+
             except KeyError:
                 self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
-            
-            
+
+
 
 
     def server_event_handler(self, cuuid, event_data):
@@ -153,10 +146,10 @@ class TuxemonServer():
             self.server.registry[cuuid]["char_dict"] = event_data["char_dict"]
             self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
             self.notify_populate_client(cuuid, event_data)
-        
+
         elif event_data["type"] == "PING":
             self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
-            
+
         elif event_data["type"] == "CLIENT_INTERACTION" or event_data["type"] == "CLIENT_RESPONSE":
             self.notify_client_interaction(cuuid, event_data)
 
@@ -177,13 +170,13 @@ class TuxemonServer():
                 self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "ALT":
                 self.notify_client(cuuid, event_data)
-        
+
         elif event_data["type"] == "CLIENT_START_BATTLE":
             self.server.registry[cuuid]["char_dict"]["running"] = False
             self.update_char_dict(cuuid, event_data["char_dict"])
             self.server.registry[cuuid]["map_name"] = event_data["map_name"]
             self.notify_client(cuuid, event_data)
-            
+
         else:
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
@@ -315,9 +308,10 @@ class ControllerServer():
         if not networking:
             self.server = DummyNetworking()
             return
+        self.server_name = "Default Tuxemon game."
+        self.server = NeteriaServer(Controller(self,))
 
-        self.server = NeteriaServer(Controller(self))
-
+        import netifaces
         for device in netifaces.interfaces():
             interface = netifaces.ifaddresses(device)
             try:
@@ -439,8 +433,8 @@ class TuxemonClient():
     def __init__(self, game):
 
         self.game = game
-        self.interfaces = {}
-        self.available_games = {}
+#         self.interfaces = {}
+        self.available_games = []
         self.server_list = []
         self.selected_game = None
         self.enable_join_multiplayer = False
@@ -460,12 +454,12 @@ class TuxemonClient():
         self.client = NeteriaClient(server_port=40081)
         self.client.registry = {}
 
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
+#         for device in netifaces.interfaces():
+#             interface = netifaces.ifaddresses(device)
+#             try:
+#                 self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
+#             except KeyError:
+#                 pass
 
 
 
@@ -487,13 +481,13 @@ class TuxemonClient():
             self.game.isclient = True
             self.game.current_state.multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
-        
+
         if self.ping_time >= 2:
             self.ping_time = 0
             self.client_alive()
-        else: 
+        else:
             self.ping_time += time_delta
-            
+
         self.check_notify()
 
 
@@ -508,11 +502,11 @@ class TuxemonClient():
 
         """
         for euuid, event_data in self.client.event_notifies.items():
-            
+
             if event_data["type"] == "NOTIFY_CLIENT_DISCONNECTED":
                 del self.client.registry[event_data["cuuid"]]
                 del self.client.event_notifies[euuid]
-                
+
             if event_data["type"] == "NOTIFY_PUSH_SELF":
                 if not event_data["cuuid"] in self.client.registry:
                     self.client.registry[str(event_data["cuuid"])]={}
@@ -525,7 +519,7 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.facing = direction
                 for d in sprite.direction:
-                    if sprite.direction[d]: 
+                    if sprite.direction[d]:
                         sprite.direction[d] = False
                 sprite.direction[direction] = True
                 del self.client.event_notifies[euuid]
@@ -534,7 +528,7 @@ class TuxemonClient():
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
-                    if sprite.direction[d]: 
+                    if sprite.direction[d]:
                         sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
@@ -569,18 +563,18 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_world_state()
+                world = self.game.get_state_name("world")
                 if not world:
                     return
                 world.handle_interaction(event_data, self.client.registry)
                 del self.client.event_notifies[euuid]
-            
+
             if event_data["type"] == "NOTIFY_CLIENT_START_BATTLE":
                 sprite = self.client.registry[event_data["cuuid"]]["sprite"]
                 sprite.running = False
                 sprite.final_move_dest = event_data["char_dict"]["tile_pos"]
                 for d in sprite.direction:
-                   if sprite.direction[d]: 
+                   if sprite.direction[d]:
                        sprite.direction[d] = False
                 del self.client.event_notifies[euuid]
 
@@ -614,7 +608,7 @@ class TuxemonClient():
         if self.wait_broadcast >= self.wait_delay:
             self.update_multiplayer_list()
             self.wait_broadcast = 0
-        else: 
+        else:
             self.wait_broadcast += time_delta
 
 
@@ -630,29 +624,24 @@ class TuxemonClient():
 
         """
         self.client.autodiscover(autoregister=False)
-
         # Logic to prevent joining your own game as a client.
         if len(self.client.discovered_servers) > 0:
+
             for ip, port in self.client.discovered_servers:
+                host = (ip, port)
+                host_name = self.client.discovered_servers[host][1]
                 try:
-                    if self.available_games[ip]:
-                        logger.info('Game already in list, skipping.')
-                        return False
+                    for ipa, porta in self.available_games:
+                        hosta = (ipa, porta)
+                        if hosta == host:
+                            logger.info('Game already in list, skipping.')
+                            return False
                 except KeyError:
                     pass
-                if not self.join_self:
-                    for interface in self.interfaces:
-                        if ip == self.interfaces[interface]:
-                            logger.info('Users server responded to users own broadcast, Deleting entry.')
-                            del self.client.discovered_servers[(ip, port)]
-                            return False
-#
+
                 # Populate list of detected servers
-                self.available_games[ip] = port
-
-        for item in self.available_games.items():
-            self.server_list.append(item[0])
-
+                self.available_games.append(host)
+                self.server_list.append(host_name)
 
     def populate_player(self, event_type="PUSH_SELF"):
         """Sends client character to the server.
@@ -724,9 +713,9 @@ class TuxemonClient():
         :returns: None
 
         """
-        if self.game.current_state != self.game.get_world_state():
+        if self.game.current_state != self.game.get_state_name("world"):
             return False
-        
+
         event_type = None
         kb_key = None
         if event.type == pygame.KEYDOWN:
@@ -839,9 +828,11 @@ class TuxemonClient():
                       }
         self.event_list[event_type] +=1
         self.client.event(event_data)
-    
-    
-    def client_alive(self): 
+
+    def route_combat(self, event):
+        print(event)
+
+    def client_alive(self):
         """Sends server a ping to let it know that it is still alive.
 
         :param: None
@@ -854,10 +845,10 @@ class TuxemonClient():
             self.event_list[event_type] = 1
         else:
             self.event_list[event_type] +=1
-        
+
         event_data = {"type": event_type,
                       "event_number": self.event_list[event_type]}
-        
+
         self.client.event(event_data)
 
 
@@ -930,7 +921,7 @@ def update_client(sprite, char_dict, game):
     :returns: None
 
     """
-    world = game.get_world_state()
+    world = game.get_state_name("world")
     if not world:
         return
 
@@ -947,4 +938,5 @@ def update_client(sprite, char_dict, game):
             global_y = world.global_y
             abs_position = [position[0] + global_x, position[1] + (global_y-tile_size[1])]
             sprite.__dict__["position"] = abs_position
+
 

@@ -53,7 +53,7 @@ class Npc(object):
 
         """
         # Get a copy of the world state.
-        world = game.get_world_state()
+        world = game.get_state_name("world")
         if not world:
             return
 

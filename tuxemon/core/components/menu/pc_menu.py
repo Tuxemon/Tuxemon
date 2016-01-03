@@ -275,10 +275,8 @@ class Multiplayer_Menu(Menu):
                     self.game.client.client.autodiscover(autoregister=False)
                     if len(self.game.client.client.discovered_servers) > 0:
                         for ip, port in self.game.client.client.discovered_servers:
-                            for interface in self.game.client.interfaces:
-                                if ip == self.game.client.interfaces[interface]:
-                                    game = (ip, port)
-                                    self.game.client.client.register(game)
+                            game = (ip, port)
+                            self.game.client.client.register(game)
 
         elif self.menu_items[self.selected_menu_item] == "SCAN FOR GAMES":
             if not self.game.ishost:
@@ -326,8 +324,9 @@ class Multiplayer_Join_Menu(Menu):
         """
         cs = self.game.current_state
         try:
-            self.game.client.selected_game = (self.menu_items[self.selected_menu_item],
-                                       self.game.client.available_games[self.menu_items[self.selected_menu_item]])
+            game = self.game.client.available_games[self.selected_menu_item]
+            self.game.client.selected_game = game
+
         except IndexError:
             pass
 
@@ -365,7 +364,6 @@ class Multiplayer_Join_Enter_IP_Menu(Menu):
         return False
 
 
-
 class Multiplayer_Join_Success_Menu(Menu):
 
     def __init__(self, screen, resolution, game, name="SUCCESS"):
@@ -400,9 +398,6 @@ class Multiplayer_Host_Menu(Menu):
         Menu.__init__(self, screen, resolution, game, name)
         self.delay = 0.5
         self.elapsed_time = self.delay
-        self.ips = []
-        for ip in self.game.server.ips:
-            self.ips.append(ip)
 
 
     def get_event(self, event=None):
@@ -418,6 +413,7 @@ class Multiplayer_Host_Menu(Menu):
         cs = self.game.current_state
         return False
 
+
 def swap_menu(menu):
     for child in menu.children:
         if not child.menu_items:
@@ -427,4 +423,3 @@ def swap_menu(menu):
             child.selected_menu_item = 0
             menu.selected_menu_item = -1
             menu.interactable = False
-

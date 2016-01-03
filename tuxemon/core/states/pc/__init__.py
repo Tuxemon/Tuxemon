@@ -352,8 +352,6 @@ class PC(state.State):
             self.multiplayer_host_menu.draw()
 
             text = "Server Started: \\n"
-            for ip in self.multiplayer_host_menu.ips:
-                text += ip + "\\n"
+            text += str(self.game.server.server.server_name)
 
             self.multiplayer_host_menu.draw_text(text, justify="center")
-

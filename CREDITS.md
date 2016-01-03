@@ -177,6 +177,14 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Fire Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Pound Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 
 **Concept Art**
 

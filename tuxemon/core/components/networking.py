@@ -45,7 +45,6 @@ pp = pprint.PrettyPrinter(indent=4)
 try:
     from neteria.server import NeteriaServer
     from neteria.client import NeteriaClient
-    import netifaces
     networking = True
 except ImportError:
     logger.info("Neteria networking unavailable")
@@ -65,9 +64,13 @@ class TuxemonServer():
 
     """
 
-    def __init__(self, game):
+    def __init__(self, game, server_name=None):
 
         self.game = game
+        if not server_name:
+            self.server_name = "Default Tuxemon Server"
+        else:
+            self.server_name = server_name
         self.network_events = []
         self.listening = False
         self.interfaces = {}
@@ -78,19 +81,7 @@ class TuxemonServer():
             self.server = DummyNetworking()
             return
 
-        self.server = NeteriaServer(Multiplayer(self), server_port=40081)
-
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
-
-        for interface in self.interfaces:
-            ip = self.interfaces[interface]
-            if ip == "127.0.0.1": continue
-            else: self.ips.append(ip)
+        self.server = NeteriaServer(Multiplayer(self), server_port=40081, server_name=self.server_name)
 
 
     def update(self):
@@ -307,27 +298,12 @@ class ControllerServer():
         self.network_events = []
         self.listening = False
         self.interfaces = {}
-        self.ips = []
 
         # Handle users without networking support
         if not networking:
             self.server = DummyNetworking()
             return
-
         self.server = NeteriaServer(Controller(self))
-
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
-
-        for interface in self.interfaces:
-            ip = self.interfaces[interface]
-            if ip == "127.0.0.1": continue
-            else: self.ips.append(ip)
-
 
     def update(self):
         """Updates the server state with information sent from the clients
@@ -346,7 +322,6 @@ class ControllerServer():
             for controller_event in controller_events:
                 self.game.key_events.append(controller_event)
                 self.game.current_state.get_event(controller_event)
-
 
     def net_controller_loop(self):
         """Process all network events from controllers and pass them
@@ -437,8 +412,7 @@ class TuxemonClient():
     def __init__(self, game):
 
         self.game = game
-        self.interfaces = {}
-        self.available_games = {}
+        self.available_games = []
         self.server_list = []
         self.selected_game = None
         self.enable_join_multiplayer = False
@@ -457,15 +431,6 @@ class TuxemonClient():
 
         self.client = NeteriaClient(server_port=40081)
         self.client.registry = {}
-
-        for device in netifaces.interfaces():
-            interface = netifaces.ifaddresses(device)
-            try:
-                self.interfaces[device] = interface[netifaces.AF_INET][0]['addr']
-            except KeyError:
-                pass
-
-
 
     def update(self, time_delta):
         """Updates the client and local game state with information sent from the server
@@ -567,7 +532,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_world_state()
+                world = self.game.get_state_name("world")
                 if not world:
                     return
                 world.handle_interaction(event_data, self.client.registry)
@@ -631,26 +596,22 @@ class TuxemonClient():
 
         # Logic to prevent joining your own game as a client.
         if len(self.client.discovered_servers) > 0:
+
             for ip, port in self.client.discovered_servers:
+                host = (ip, port)
+                host_name = self.client.discovered_servers[host][1]
                 try:
-                    if self.available_games[ip]:
-                        logger.info('Game already in list, skipping.')
-                        return False
+                    for ipa, porta in self.available_games:
+                        hosta = (ipa, porta)
+                        if hosta == host:
+                            logger.info('Game already in list, skipping.')
+                            return False
                 except KeyError:
                     pass
-                if not self.join_self:
-                    for interface in self.interfaces:
-                        if ip == self.interfaces[interface]:
-                            logger.info('Users server responded to users own broadcast, Deleting entry.')
-                            del self.client.discovered_servers[(ip, port)]
-                            return False
-#
+
                 # Populate list of detected servers
-                self.available_games[ip] = port
-
-        for item in self.available_games.items():
-            self.server_list.append(item[0])
-
+                self.available_games.append(host)
+                self.server_list.append(host_name)
 
     def populate_player(self, event_type="PUSH_SELF"):
         """Sends client character to the server.
@@ -722,7 +683,7 @@ class TuxemonClient():
         :returns: None
 
         """
-        if self.game.current_state != self.game.get_world_state():
+        if self.game.current_state != self.game.get_state_name("world"):
             return False
 
         event_type = None
@@ -838,6 +799,8 @@ class TuxemonClient():
         self.event_list[event_type] +=1
         self.client.event(event_data)
 
+    def route_combat(self, event):
+        print(event)
 
     def client_alive(self):
         """Sends server a ping to let it know that it is still alive.
@@ -931,7 +894,7 @@ def update_client(sprite, char_dict, game):
     :returns: None
 
     """
-    world = game.get_world_state()
+    world = game.get_state_name("world")
     if not world:
         return
 

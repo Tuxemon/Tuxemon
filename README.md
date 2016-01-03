@@ -20,7 +20,6 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 2.7+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *python-netifaces* - Cross platform network interface information.
 * *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
 
 *Optional*
@@ -33,7 +32,7 @@ Installation
 **Ubuntu**
 
 ```sh
-sudo apt-get install python python-pygame python-pip python-imaging git python-netifaces
+sudo apt-get install python python-pygame python-pip python-imaging git
 sudo pip install pytmx
 sudo pip install neteria
 git clone https://github.com/Tuxemon/Tuxemon.git
@@ -60,7 +59,6 @@ brew install python
 brew install sdl sdl_image sdl_mixer sdl_ttf portmidi hg git
 pip install pytmx
 pip install pillow
-pip install netifaces
 pip install neteria
 pip install hg+http://bitbucket.org/pygame/pygame
 git clone https://github.com/Tuxemon/Tuxemon.git

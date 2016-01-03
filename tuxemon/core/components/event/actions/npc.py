@@ -87,12 +87,50 @@ class Npc(object):
         world.npcs.append(npc)
         return npc
 
+    def remove_npc(self, game, action):
+        """Removes an NPC object from the list of NPCs.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: name
+
+        **Examples:**
+
+        >>> action
+        ('remove_npc', 'Oak')
+
+        """
+        # Get a copy of the world state.
+        world = game.get_state_name("world")
+        if not world:
+            return
+
+        # Get the npc's parameters from the action
+        parameters = action[1].split(",")
+        name = str(parameters[0])
+
+        # Create a separate list of NPCs to loop through
+        npcs = list(world.npcs)
+
+        # Remove the NPC from our list of NPCs
+        for npc in npcs:
+            if npc.name == name and not npc.isplayer:
+                world.npcs.remove(npc)
+
     def pathfind(self, game, action):
         '''
         Will move the player / npc to the given location
         '''
         # Get a copy of the world state.
-        world = game.get_world_state()
+        world = game.get_state_name("world")
         if not world:
             return
 

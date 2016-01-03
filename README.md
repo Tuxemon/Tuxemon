@@ -35,7 +35,7 @@ Installation
 ```sh
 sudo apt-get install python python-pygame python-pip python-imaging git python-netifaces
 sudo pip install pytmx
-sudo pip install --pre neteria
+sudo pip install neteria
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon
 ./tuxemon.py
@@ -61,7 +61,7 @@ brew install sdl sdl_image sdl_mixer sdl_ttf portmidi hg git
 pip install pytmx
 pip install pillow
 pip install netifaces
-pip install --pre neteria
+pip install neteria
 pip install hg+http://bitbucket.org/pygame/pygame
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon

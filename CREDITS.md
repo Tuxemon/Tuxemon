@@ -185,6 +185,10 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* ["Dune Pincher"](https://forum.tuxemon.org/viewtopic.php?pid=519#p519) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
 
 **Concept Art**
 

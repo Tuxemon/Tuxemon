@@ -515,17 +515,16 @@ class Control(StateManager):
         if len(menu.menu_items) > 0:
             menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
 
-        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE and not menu.previous_menu:
-            menu.menu_select_sound.play()
-            self.pop_state()
-
-        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE and menu.previous_menu:
-            menu.menu_select_sound.play()
-            menu.interactable = False
-            menu.visible = False
+        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
             if menu.previous_menu:
+                menu.menu_select_sound.play()
                 menu.previous_menu.interactable = True
                 menu.previous_menu.visible = True
+                menu.interactable = False
+                menu.visible = False
+            else:
+                menu.menu_select_sound.play()
+                self.pop_state()
 
         if event.type == pg.KEYUP and event.key == pg.K_DOWN:
             menu.menu_select_sound.play()

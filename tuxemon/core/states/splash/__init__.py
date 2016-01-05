@@ -25,7 +25,7 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# core.states.start Handles the splash screen and start menu(Not anymore! - B).
+# core.states.splash Handles the splash screen.
 #
 #
 import logging
@@ -38,11 +38,11 @@ from core import state
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.start successfully imported")
+logger.debug("states.splash successfully imported")
 
 
 class SPLASH(state.State):
-    """ The state responsible for the splash screen and start menu.
+    """ The state responsible for the splash screen.
     """
     default_duration = 3
 
@@ -90,11 +90,11 @@ class SPLASH(state.State):
 
         """
         # Skip the splash screen if a key is pressed.
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYUP:
             self.game.pop_state()
 
     def draw(self, surface):
-        """Draws the start screen to the screen.
+        """Draws the screen to the screen.
 
         :param surface:
         :param Surface: Surface to draw to

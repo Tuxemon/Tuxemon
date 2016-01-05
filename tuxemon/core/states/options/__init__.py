@@ -25,7 +25,7 @@
 # Benjamin Bean <superman2k5@gmail.com>
 #
 #
-# core.states.start Handles the start screen which loads and creates new games
+# core.states.options Handles the Options state.
 #
 """This module contains the Start state.
 """
@@ -34,15 +34,15 @@ import pygame
 
 from core import prepare
 from core import state
-from core.components.menu import start_menu
+from core.components.menu import options_menu
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.start successfully imported")
+logger.debug("states.options successfully imported")
 
 
-class START(state.State):
-    """ The state responsible for the start menu.
+class OPTIONS(state.State):
+    """ The state responsible for the options menu.
     """
 
     def startup(self, params=None):
@@ -69,14 +69,14 @@ class START(state.State):
         self.scale = prepare.SCALE
 
         # Start menu.
-        self.start_menu = start_menu.StartMenu(self.screen,
-                                               self.resolution,
-                                               self.game)
-        self.start_menu.visible = True
-        self.start_menu.interactable = True
-        self.start_menu.size_ratio = [0.5, 0.5]
+        self.options_menu = options_menu.OptionsMenu(self.screen,
+                                                     self.resolution,
+                                                     self.game)
+        self.options_menu.visible = True
+        self.options_menu.interactable = True
+        self.options_menu.size_ratio = [0.5, 0.5]
 
-        self.menus = [self.start_menu]
+        self.menus = [self.options_menu]
 
         for menu in self.menus:
             menu.scale = self.scale    # Set the scale of the menu.
@@ -127,11 +127,11 @@ class START(state.State):
         :returns: None
 
         """
-        if self.start_menu.interactable:
-            self.game.get_menu_event(self.start_menu, event)
+        if self.options_menu.interactable:
+            self.game.get_menu_event(self.options_menu, event)
 
     def draw(self, surface):
-        """Draws the start screen to the screen.
+        """Draws the screen to the screen.
 
         :param surface:
         :param Surface: Surface to draw to
@@ -140,10 +140,8 @@ class START(state.State):
 
         :rtype: None
         :returns: None
-
         """
-        surface.fill((15, 15, 15))
-        if self.start_menu.visible:
-            self.start_menu.draw()
-            self.start_menu.draw_textItem(
-                ["NEW GAME", "LOAD", "OPTIONS", "EXIT"])
+        if self.options_menu.visible:
+            self.options_menu.draw()
+            self.options_menu.draw_textItem(
+                ["NOT IMPLEMENTED", "BACK"])

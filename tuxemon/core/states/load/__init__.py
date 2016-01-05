@@ -22,10 +22,10 @@
 #
 # Contributor(s):
 #
-# Benjamin Bean <superman2k5@gmail.com>
+# William Edwards <shadowapex@gmail.com>
 #
 #
-# core.states.start Handles the start screen which loads and creates new games
+# core.states.start Handles the splash screen and start menu(Not anymore! - B).
 #
 """This module contains the Start state.
 """
@@ -34,15 +34,15 @@ import pygame
 
 from core import prepare
 from core import state
-from core.components.menu import start_menu
+from core.components.menu import load_menu
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("states.start successfully imported")
 
 
-class START(state.State):
-    """ The state responsible for the start menu.
+class LOAD(state.State):
+    """ The state responsible for the and start menu.
     """
 
     def startup(self, params=None):
@@ -68,15 +68,16 @@ class START(state.State):
         self.native_resolution = prepare.NATIVE_RESOLUTION
         self.scale = prepare.SCALE
 
-        # Start menu.
-        self.start_menu = start_menu.StartMenu(self.screen,
-                                               self.resolution,
-                                               self.game)
-        self.start_menu.visible = True
-        self.start_menu.interactable = True
-        self.start_menu.size_ratio = [0.5, 0.5]
+        # Load menu.
+        self.load_menu = load_menu.LoadMenu(self.screen,
+                                            self.resolution,
+                                            self.game,
+                                            "Load_Menu")
+        self.load_menu.visible = True
+        self.load_menu.interactable = True
+        self.load_menu.size_ratio = [0.7, 0.7]
 
-        self.menus = [self.start_menu]
+        self.menus = [self.load_menu]
 
         for menu in self.menus:
             menu.scale = self.scale    # Set the scale of the menu.
@@ -127,8 +128,8 @@ class START(state.State):
         :returns: None
 
         """
-        if self.start_menu.interactable:
-            self.game.get_menu_event(self.start_menu, event)
+        if self.load_menu.interactable:
+            self.load_menu.get_event(event)
 
     def draw(self, surface):
         """Draws the start screen to the screen.
@@ -142,8 +143,5 @@ class START(state.State):
         :returns: None
 
         """
-        surface.fill((15, 15, 15))
-        if self.start_menu.visible:
-            self.start_menu.draw()
-            self.start_menu.draw_textItem(
-                ["NEW GAME", "LOAD", "OPTIONS", "EXIT"])
+        if self.load_menu.visible:
+            self.load_menu.draw()

@@ -9,6 +9,7 @@ from ... import prepare
 logger = logging.getLogger(__name__)
 logger.debug("components.menu.save_menu successfully imported")
 
+
 class SaveMenu(Menu):
 
     def __init__(self, screen, resolution, game, name="Save Menu"):
@@ -20,11 +21,10 @@ class SaveMenu(Menu):
         self.save_data = {}
         self.first_run = True
 
-
     def draw(self):
 
-        # We can call the draw function from our parent "Menu" class, and also draw
-        # some additional stuff specifically for the Save Menu.
+        # We can call the draw function from our parent "Menu" class,
+        # and also draw some additional stuff specifically for the Save Menu.
         Menu.draw(self)
 
         self.slot_size = (self.size_y / self.slots)
@@ -40,12 +40,12 @@ class SaveMenu(Menu):
             slot_name = "slot" + str(slot_num)
 
             # Check to see if a save exists for the current slot
-            if os.path.exists("saves/slot" + str(slot_num) + ".png"):
+            if os.path.exists(".saves/slot" + str(slot_num) + ".png"):
 
-                if not slot_name in self.slot_surfaces:
+                if slot_name not in self.slot_surfaces:
                     # Scale the slot image n shit
                     self.slot_surfaces[slot_name] = pygame.image.load(
-                        "saves/" + slot_name + ".png").convert()
+                        ".saves/" + slot_name + ".png").convert()
                     scale = float(self.slot_size) / float(self.slot_surfaces[slot_name].get_width())
                     width = self.slot_surfaces[slot_name].get_width()
                     height = self.slot_surfaces[slot_name].get_height()
@@ -64,7 +64,7 @@ class SaveMenu(Menu):
                 thumb_x = self.pos_x
                 thumb_y = self.pos_y + slot_pos_y + int(self.font_size * 1.5)
                 self.screen.blit(self.slot_surfaces[slot_name],
-                    (thumb_x, thumb_y))
+                                 (thumb_x, thumb_y))
 
                 # Try and load the save game and draw details about the save
                 try:
@@ -75,17 +75,18 @@ class SaveMenu(Menu):
                     save_data["error"] = "Save file corrupted"
                     logger.error("Failed loading save file.")
 
-                if not "error" in save_data:
+                if "error" not in self.save_data:
                     self.draw_text(save_data['player_name'],
                                    thumb_width + self.padding,
                                    slot_pos_y + int(self.font_size * 1.5))
                     self.draw_text(save_data['time'],
                                    thumb_width + self.padding,
-                                   slot_pos_y + (self.font_size * 3.5) + self.padding )
+                                   slot_pos_y + (self.font_size * 3.5) +
+                                   self.padding)
 
             # If a save game does not exist, show empty slot
             else:
-                self.draw_text("empty slot", self.size_x /3, slot_pos_y + (self.slot_size /2))
+                self.draw_text("empty slot", self.size_x / 3, slot_pos_y + (self.slot_size / 2))
 
             # Draw the slot text
             self.draw_text("Slot " + str(slot_num), slot_pos_x, slot_pos_y)
@@ -98,7 +99,6 @@ class SaveMenu(Menu):
                                                                 self.slot_size), 2)
 
             slot_pos_y += self.slot_size
-
 
     def get_event(self, event):
         # Handle key events when the menu is visible
@@ -119,18 +119,15 @@ class SaveMenu(Menu):
             self.first_run = True
             self.game.main_menu.interactable = True
 
-
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and not self.first_run:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
             logger.info("Saving!")
             # Save the game!!
-            #try:
             save.save(self.save_data['player'],
-                        self.selected_menu_item + 1,
-                        self.game)
-            del self.slot_surfaces["slot" + str(self.selected_menu_item + 1)]
-            #except Exception as e:
-            #    logger.error("Unable to save game!!")
-            #    logger.error(e)
+                      self.selected_menu_item + 1,
+                      self.game)
+            if "error" not in self.save_data:
+                del self.slot_surfaces["slot" + str(self.selected_menu_item +
+                                                    1)]
 
             if self.visible:
                 self.visible = False

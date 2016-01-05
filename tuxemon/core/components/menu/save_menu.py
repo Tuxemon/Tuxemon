@@ -40,12 +40,12 @@ class SaveMenu(Menu):
             slot_name = "slot" + str(slot_num)
 
             # Check to see if a save exists for the current slot
-            if os.path.exists(".saves/slot" + str(slot_num) + ".png"):
+            if os.path.exists(prepare.SAVE_PATH + str(slot_num) + ".png"):
 
                 if slot_name not in self.slot_surfaces:
                     # Scale the slot image n shit
                     self.slot_surfaces[slot_name] = pygame.image.load(
-                        ".saves/" + slot_name + ".png").convert()
+                        prepare.SAVE_PATH + str(slot_num) + ".png").convert()
                     scale = float(self.slot_size) / float(self.slot_surfaces[slot_name].get_width())
                     width = self.slot_surfaces[slot_name].get_width()
                     height = self.slot_surfaces[slot_name].get_height()
@@ -75,7 +75,7 @@ class SaveMenu(Menu):
                     save_data["error"] = "Save file corrupted"
                     logger.error("Failed loading save file.")
 
-                if "error" not in self.save_data:
+                if "error" not in save_data:
                     self.draw_text(save_data['player_name'],
                                    thumb_width + self.padding,
                                    slot_pos_y + int(self.font_size * 1.5))
@@ -102,32 +102,34 @@ class SaveMenu(Menu):
 
     def get_event(self, event):
         # Handle key events when the menu is visible
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        if event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
             self.selected_menu_item += 1
             if self.selected_menu_item > self.slots - 1:
                 self.selected_menu_item = 0
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        if event.type == pygame.KEYUP and event.key == pygame.K_UP:
             self.selected_menu_item -= 1
             if self.selected_menu_item < 0:
                 self.selected_menu_item = self.slots - 1
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
             logger.info("Closing save menu!")
             self.visible = False
             self.interactable = False
             self.first_run = True
             self.game.main_menu.interactable = True
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if event.type == pygame.KEYUP and event.key == pygame.K_RETURN and not self.first_run:
             logger.info("Saving!")
             # Save the game!!
-            save.save(self.save_data['player'],
-                      self.selected_menu_item + 1,
-                      self.game)
-            if "error" not in self.save_data:
-                del self.slot_surfaces["slot" + str(self.selected_menu_item +
-                                                    1)]
+            try:
+                save.save(self.save_data['player'],
+                          self.selected_menu_item + 1,
+                          self.game)
+                del self.slot_surfaces["slot" + str(self.selected_menu_item + 1)]
+            except Exception as e:
+                logger.error("Unable to save game!!")
+                logger.error(e)
 
             if self.visible:
                 self.visible = False

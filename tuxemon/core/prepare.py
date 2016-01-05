@@ -33,6 +33,7 @@ as display resolution, scale, etc.
 """
 
 import os
+from os.path import expanduser
 import pygame as pg
 
 from .components import config
@@ -81,6 +82,13 @@ if CONFIG.scaling == "1":
 else:
     SCALE = 1
 
+# Set up the saves directory
+try:
+    os.makedirs(expanduser("~") + "/.saves/")
+except OSError:
+    if not os.path.isdir(expanduser("~") + "/.saves/"):
+        raise
+SAVE_PATH = expanduser("~") + "/.saves/slot"
 
 # Initialization of PyGame dependent systems.
 def init():

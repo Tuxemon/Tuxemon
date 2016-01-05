@@ -89,7 +89,8 @@ class MainMenu(Menu):
             elif self.menu_items[self.selected_menu_item] == "LOAD":
                 self.game.game.push_state('LOAD')
             elif self.menu_items[self.selected_menu_item] == "OPTIONS":
-                self.game.game.push_state('OPTIONS')
+                self.game.not_implmeneted_menu.visible = True
+                self.game.not_implmeneted_menu.interactable = True
             elif self.menu_items[self.selected_menu_item] == "EXIT":
                 game.exit = True
                 game.game.exit = True

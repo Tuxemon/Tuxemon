@@ -71,7 +71,7 @@ class LoadMenu(SaveMenu):
                 location = save_data['current_map'] + ',' + tele_x + ',' + tele_y
                 action = ('teleport', location, '1', 1)
                 self.game.event_engine.actions['teleport']['method'](self.game, action)
-                self.game.pop_state(1)
+                self.game.pop_state(self)
 
     def draw(self):
         SaveMenu.draw(self)

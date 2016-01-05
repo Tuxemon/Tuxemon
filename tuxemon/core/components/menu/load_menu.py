@@ -57,6 +57,7 @@ class LoadMenu(SaveMenu):
                 save_data["error"] = "Save file corrupted"
                 logger.error("Failed loading save file.")
             if "error" not in save_data:
+                statepoppin = self.game.current_state
                 self.save_data = save.load(self.selected_menu_item + 1)
                 self.game.player1 = prepare.player1
                 self.game.player1.game_variables = save_data['game_variables']
@@ -71,7 +72,7 @@ class LoadMenu(SaveMenu):
                 location = save_data['current_map'] + ',' + tele_x + ',' + tele_y
                 action = ('teleport', location, '1', 1)
                 self.game.event_engine.actions['teleport']['method'](self.game, action)
-                self.game.pop_state(self)
+                self.game.pop_state(statepoppin)
 
     def draw(self):
         SaveMenu.draw(self)

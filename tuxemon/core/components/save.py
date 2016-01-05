@@ -131,7 +131,7 @@ def load(slot):
                 values2.surface = pygame.image.load(prepare.BASEDIR +
                                                     values2.sprite
                                                     ).convert_alpha()
-    saveData['inventory'] = saveFile['inventory']
+    saveData['inventory'] = tempinv
     tempmon = []
     tempmon = saveFile['monsters']
     for mon in tempmon:

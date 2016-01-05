@@ -33,11 +33,12 @@ import logging
 import shelve
 import pygame
 import datetime
-import sys
 from pprint import pformat
+from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
+
 
 def save(player, slot, game):
     """Saves the current game state to a file using shelve.
@@ -58,15 +59,37 @@ def save(player, slot, game):
     >>> core.components.save.save(player1, 2, self)
 
     """
-
     # Save a screenshot of the current frame
-    pygame.image.save(game.save_screenshot, 'saves/slot' + str(slot) + '.png')
-
-    saveFile = shelve.open('saves/slot' + str(slot) + '.save')
+    pygame.image.save(game.save_screenshot, prepare.SAVE_PATH + str(slot) + '.png')
+    saveFile = shelve.open(prepare.SAVE_PATH + str(slot) + '.save')
     saveFile['game_variables'] = game.player1.game_variables
     saveFile['tile_pos'] = game.player1.tile_pos
-    saveFile['inventory'] = game.player1.inventory
-    saveFile['current_map'] = game.event_engine.current_map.filename
+    tempinv1 = {}
+    tempinv1 = dict(game.player1.inventory)
+    for keysinv, valuesinv in tempinv1.items():
+        for keys2inv, values2inv in valuesinv.items():
+            if keys2inv == 'item':
+                values2inv.surface = None
+    saveFile['inventory'] = tempinv1
+    saveFile['current_map'] = game.event_engine.current_map.filename.split("/")[-1]
+    tempmon1 = []
+    tempmon1 = list(game.player1.monsters)
+    for mon1 in tempmon1:
+        if mon1.sprites:
+            mon1.sprites = {}
+    saveFile['monsters'] = tempmon1
+    tempstorage1 = {}
+    tempstorage1 = dict(game.player1.storage)
+    for keysstore, valuesstore in tempstorage1.items():
+        if keysstore == 'items':
+            for keys2store, values2store in valuesstore.items():
+                for keys3store, values3store in values2store.items():
+                    if keys3store == 'item':
+                        values3store.surface = None
+        if keysstore == 'monsters':
+            for monstore in valuesstore:
+                monstore.sprites = {}
+    saveFile['storage'] = tempstorage1
     saveFile['player_name'] = game.player1.name
     saveFile['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     logger.info("Saving data to save file: " + pformat(saveFile))
@@ -88,32 +111,42 @@ def load(slot):
 
     """
 
-    saveFile = shelve.open('saves/slot' + str(slot) + '.save')
+    saveFile = shelve.open(prepare.SAVE_PATH + str(slot) + '.save')
     saveData = {}
 
     saveData['game_variables'] = saveFile['game_variables']
     saveData['tile_pos'] = saveFile['tile_pos']
-    saveData['inventory'] = saveFile['inventory']
+    tempinv = {}
+    tempinv = dict(saveFile['inventory'])
+    for keys, values in tempinv.items():
+        for keys2, values2 in values.items():
+            if keys2 == 'item':
+                values2.surface = pygame.image.load(prepare.BASEDIR +
+                                                    values2.sprite
+                                                    ).convert_alpha()
+    saveData['inventory'] = tempinv
+    tempmon = []
+    tempmon = list(saveFile['monsters'])
+    for mon in tempmon:
+        mon.load_sprites(prepare.SCALE)
+    saveData['monsters'] = tempmon
+    tempstorage = {}
+    # Loop through the storage item keys and re-add the surface.
+    tempstorage = dict(saveFile['storage'])
+    for keys, values in tempstorage.items():
+        if keys == 'items':
+            for keys2, values2 in values.items():
+                for keys3, values3 in values2.items():
+                    if keys3 == 'item':
+                        values3.surface = pygame.image.load(prepare.BASEDIR +
+                                                            values3.sprite
+                                                            ).convert_alpha()
+        if keys == 'monsters':
+            for storemon1 in values:
+                storemon1.load_sprites(prepare.SCALE)
+    saveData['storage'] = tempstorage
     saveData['current_map'] = saveFile['current_map']
     saveData['player_name'] = saveFile['player_name']
     saveData['time'] = saveFile['time']
 
     return saveData
-
-
-if __name__ == "__main__":
-    saveFile = shelve.open('saves/slot2.save')
-
-    # Create save file
-    saveFile['game_variables'] = {"battle_won": "yes"}
-    saveFile['tile_pos'] = (1,2)
-    saveFile['inventory'] = []
-    saveFile['current_map'] = "pallet_town-room.map"
-    saveFile['player_name'] = "Blue"
-    saveFile['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    saveFile.close()
-
-    # Load save file
-    print(load(1))
-
-    #print(player)

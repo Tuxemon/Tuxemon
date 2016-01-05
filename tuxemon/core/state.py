@@ -219,16 +219,31 @@ class StateManager(object):
         """
         return self.state_dict.copy()
 
-    def pop_state(self):
+    def pop_state(self, state=None):
         """ Pop the currently running state.  The previously running state will resume.
 
         :return:
         """
+        if state is None:
+            index = 0
+            # self.reset_controls()
+        elif state in self.state_stack:
+            index = self.state_stack.index(state)
+        else:
+            raise RuntimeError
+
         try:
-            previous = self.state_stack.pop(0)
+            previous = self.state_stack.pop(index)
+            previous.pause()
             previous.shutdown()
-            self.keys = list()
-            self.key_events = list()
+
+            if index == 0 and self.state_stack:
+                self.current_state.resume()
+            elif index and self.state_stack:
+                pass
+            else:
+                self.done = True
+                self.exit = True
 
             if self.state_stack:
                 self.current_state.resume()
@@ -236,6 +251,8 @@ class StateManager(object):
                 # TODO: make API for quiting the app main loop
                 self.done = True
                 self.exit = True
+            # self.keys = list()
+            # self.key_events = list()
 
         except IndexError:
             print("Attempted to pop state when no state was active.")

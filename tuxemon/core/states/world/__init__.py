@@ -484,7 +484,7 @@ class WORLD(state.State):
 
         # If the not implemented window is open, send pygame events to it.
         if self.not_implmeneted_menu.interactable:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            if event.type == pygame.KEYUP and event.key == pygame.K_RETURN:
                 self.not_implmeneted_menu.visible = False
                 self.not_implmeneted_menu.interactable = False
 

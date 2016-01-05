@@ -503,7 +503,7 @@ class WORLD(state.State):
         if self.dialog_window.visible:
             self.dialog_window.get_event(event)
             self.menu_blocking = True
-            if event.type == pygame.KEYUP and event.key == pygame.K_RETURN:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 logger.info("Closing dialog window!")
                 self.dialog_window.state = "closing"
                 self.menu_blocking = False
@@ -525,7 +525,7 @@ class WORLD(state.State):
             self.exit = True
             self.game.exit = True
 
-        if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             if self.main_menu.visible and self.main_menu.interactable:
                 logger.info("Closing main menu!")
                 self.main_menu.state = "closing"

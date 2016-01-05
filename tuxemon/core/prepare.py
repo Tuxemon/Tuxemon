@@ -50,6 +50,14 @@ BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__
 if "library.zip" in BASEDIR:
     BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
 
+# Set up our config directory
+CONFIG_PATH = expanduser("~") + "/.tuxemon/"
+try:
+    os.makedirs(CONFIG_PATH)
+except OSError:
+    if not os.path.isdir(CONFIG_PATH):
+        raise
+
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(BASEDIR + "tuxemon.cfg")
 HEADLESSCONFIG = config.HeadlessConfig(BASEDIR + "tuxemon.cfg")
@@ -84,11 +92,11 @@ else:
 
 # Set up the saves directory
 try:
-    os.makedirs(expanduser("~") + "/.saves/")
+    os.makedirs(CONFIG_PATH + "saves/")
 except OSError:
-    if not os.path.isdir(expanduser("~") + "/.saves/"):
+    if not os.path.isdir(CONFIG_PATH + "saves/"):
         raise
-SAVE_PATH = expanduser("~") + "/.saves/slot"
+SAVE_PATH = CONFIG_PATH + "saves/slot"
 
 # Initialization of PyGame dependent systems.
 def init():

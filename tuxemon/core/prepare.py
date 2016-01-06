@@ -33,6 +33,7 @@ as display resolution, scale, etc.
 """
 
 import os
+import shutil
 from os.path import expanduser
 import pygame as pg
 
@@ -58,9 +59,17 @@ except OSError:
     if not os.path.isdir(CONFIG_PATH):
         raise
 
+# Create a copy of our default config if one does not exist in the home dir.
+CONFIG_FILE_PATH = CONFIG_PATH + "tuxemon.cfg"
+if not os.path.isfile(CONFIG_FILE_PATH):
+    try:
+        shutil.copyfile(BASEDIR + "tuxemon.cfg", CONFIG_FILE_PATH)
+    except OSError:
+        raise
+
 # Read the "tuxemon.cfg" configuration file
-CONFIG = config.Config(BASEDIR + "tuxemon.cfg")
-HEADLESSCONFIG = config.HeadlessConfig(BASEDIR + "tuxemon.cfg")
+CONFIG = config.Config(CONFIG_FILE_PATH)
+HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution

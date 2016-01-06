@@ -37,6 +37,7 @@ import sys
 import pprint
 import time
 
+from collections import namedtuple
 from core import prepare
 from core import state
 from core.components import map
@@ -1340,7 +1341,10 @@ class COMBAT(state.State):
     def end_combat(self):
         # TODO: End combat differently depending on winning or losing
         event_engine = self.game.event_engine
-        event_engine.actions["fadeout_music"]["method"](self.game, [None, 1000])
+        fadeout_action = namedtuple("action", ["type", "parameters"])
+        fadeout_action.type = "fadeout_music"
+        fadeout_action.parameters = [1000]
+        event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action)
 
         # TODO: remove this fade-in hack when proper transition is complete
         world = self.game.get_state_name("world")

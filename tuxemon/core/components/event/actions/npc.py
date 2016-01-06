@@ -48,8 +48,17 @@ class Npc(object):
 
         **Examples:**
 
-        >>> action
-        ('create_npc', 'Oak,1,5,oak,wander', '1', 6)
+        >>> action.__dict__
+        {
+            "type": "create_npc",
+            "parameters": [
+                "Oak",
+                "1",
+                "5",
+                "oak",
+                "wander"
+            ]
+        }
 
         """
         # Get a copy of the world state.
@@ -58,12 +67,11 @@ class Npc(object):
             return
 
         # Get the npc's parameters from the action
-        parameters = action[1].split(",")
-        name = str(parameters[0])
-        tile_pos_x = int(parameters[1])
-        tile_pos_y = int(parameters[2])
-        animations = str(parameters[3])
-        behavior = str(parameters[4])
+        name = str(action.parameters[0])
+        tile_pos_x = int(action.parameters[1])
+        tile_pos_y = int(action.parameters[2])
+        animations = str(action.parameters[3])
+        behavior = str(action.parameters[4])
 
         # Create a new NPC object
         npc = player.Npc(sprite_name=animations, name=name)
@@ -104,8 +112,13 @@ class Npc(object):
 
         **Examples:**
 
-        >>> action
-        ('remove_npc', 'Oak')
+        >>> action.__dict__
+        {
+            "type": "remove_npc",
+            "parameters": [
+                "Oak"
+            ]
+        }
 
         """
         # Get a copy of the world state.
@@ -114,8 +127,7 @@ class Npc(object):
             return
 
         # Get the npc's parameters from the action
-        parameters = action[1].split(",")
-        name = str(parameters[0])
+        name = str(action.parameters[0])
 
         # Create a separate list of NPCs to loop through
         npcs = list(world.npcs)
@@ -134,11 +146,9 @@ class Npc(object):
         if not world:
             return
 
-        print("action is " + str(action))
-        parameters = action[1].split(",")
-        npc_name = parameters[0]
-        dest_x = parameters[1]
-        dest_y = parameters[2]
+        npc_name = action.parameters[0]
+        dest_x = action.parameters[1]
+        dest_y = action.parameters[2]
 
         # get npc object via name
         curr_npc = None
@@ -148,4 +158,3 @@ class Npc(object):
                 print("found npc: " +npc_name)
 
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)
-

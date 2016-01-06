@@ -182,5 +182,21 @@ def scale_tile(surface, tile_size):
         surface = pg.transform.scale(surface, tile_size)
     else:
         surface.scale(tile_size)
-    
+
     return surface
+
+def check_parameters(parameters, required=0, exit=True):
+    """
+    Checks to see if a given list has the required number of items
+    """
+    if len(parameters) < required:
+        import inspect
+        calling_function = inspect.stack()[1][3]
+        print("'" + calling_function + "' requires at least " + str(required) + "parameters.")
+        if exit:
+            import sys
+            sys.exit(1)
+        return False
+
+    else:
+        return True

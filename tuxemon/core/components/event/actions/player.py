@@ -26,6 +26,7 @@
 from __future__ import absolute_import
 
 import logging
+from collections import namedtuple
 
 from core import prepare
 from core import tools
@@ -56,8 +57,15 @@ class Player(object):
 
         **Examples:**
 
-        >>> action
-        ('teleport', 'pallet_town-room.tmx,5,5', '1', 1)
+        >>> action.__dict__
+        {
+            "type": "teleport",
+            "parameters": [
+                "map1.tmx",
+                "5",
+                "5"
+            ]
+        }
 
         """
         # Get the player object from the game.
@@ -65,10 +73,9 @@ class Player(object):
         world = game.current_state
 
         # Get the teleport parameters for the position x,y and the map to load.
-        parameters = action[1].split(",")
-        mapname = str(parameters[0])
-        position_x = int(parameters[1])
-        position_y = int(parameters[2])
+        mapname = str(action.parameters[0])
+        position_x = int(action.parameters[1])
+        position_y = int(action.parameters[2])
 
         # If we're doing a screen transition with this teleport, set the map name that we'll
         # load during the apex of the transition.
@@ -146,25 +153,38 @@ class Player(object):
 
         **Examples:**
 
-        >>> action
-        ('teleport', 'pallet_town-room.tmx,5,5,2,2', '1', 1)
+        >>> action.__dict__
+        {
+            "type": "transition_teleport",
+            "parameters": [
+                "map1.tmx",
+                "5",
+                "5",
+                "2",
+                "2"
+            ]
+        }
 
         """
         # Get the teleport parameters for the position x,y and the map to load.
-        parameters = action[1].split(",")
-        mapname = parameters[0]
-        position_x = parameters[1]
-        position_y = parameters[2]
-        transition_time = parameters[3]
+        mapname = action.parameters[0]
+        position_x = action.parameters[1]
+        position_y = action.parameters[2]
+        transition_time = action.parameters[3]
 
         # Start the screen transition
         screen_transition = game.event_engine.actions["screen_transition"]["method"]
-        transition_action = (action[0], transition_time)
+        transition_action = namedtuple("action", ["type", "parameters"])
+        transition_action.type = action.type
+        transition_action.parameters = [transition_time]
         screen_transition(game, transition_action)
 
         # Start the teleport. The teleport action will notice a screen transition in progress,
         # and wait until it is done before teleporting.
-        teleport_action = (action[0], action[1])
+        teleport_action = namedtuple("action", ["type", "parameters"])
+        teleport_action.type = action.type
+        teleport_action.parameters = action.parameters
+
         self.teleport(game, action)
 
 
@@ -186,9 +206,15 @@ class Player(object):
 
         **Example:**
 
-        >>> action
-        ... (u'add_monster', u'Bulbatux', 1, 9)
-        ...
+        >>> action.__dict__
+        {
+            "type": "add_monster",
+            "parameters": [
+                "Bulbatux",
+                "10"
+            ]
+        }
+
         >>> monster = core.components.monster.Monster()
         >>> monster.load_from_db(action[1])
         ...
@@ -222,9 +248,8 @@ class Player(object):
         ... [<core.components.monster.Monster instance at 0x2d0b3b0>]
 
         """
-        parameters = action[1].split(",")
-        monster_name = parameters[0]
-        monster_level = parameters[1]
+        monster_name = action.parameters[0]
+        monster_level = action.parameters[1]
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_name)
         current_monster.set_level(int(monster_level))
@@ -248,14 +273,17 @@ class Player(object):
 
         **Example:**
 
-        >>> action
-        ... (u'add_item', u'Potion', 1, 9)
-        ...
-        >>>
+        >>> action.__dict__
+        {
+            "type": "add_item",
+            "parameters": [
+                "Potion"
+            ]
+        }
 
         """
         player = game.player1
-        item_to_add = item.Item(action[1])
+        item_to_add = item.Item(action.parameters[0])
 
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.
@@ -284,12 +312,11 @@ class Player(object):
         """
 
         # Get the parameters to determine what direction the player will face.
-        parameters = action[1]
+        direction = action.parameters[0]
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
         if game.current_state.start_transition:
-            game.current_state.delayed_facing = parameters
+            game.current_state.delayed_facing = direction
         else:
-            game.player1.facing = parameters
-
+            game.player1.facing = direction

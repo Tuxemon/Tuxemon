@@ -47,29 +47,30 @@ class Player(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '11',
-         'id': 11,
-         'operator': 'is',
-         'parameters': '6,9',
-         'type': 'player_at',
-         'x': 6,
-         'y': 9,
-         'width': 1,
-         'height': 1}
+        >>> condition.__dict__
+        {
+            "type": "player_at",
+            "parameters": [
+                "6",
+                "9"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 6,
+            "y": 9,
+            ...
+        }
 
         """
 
         # Get the player object from the game.
         player = game.player1
 
-        # Get the condition's coordinates in tuple format
-        coordinates = (condition['x'], condition['y'])
-
         # Get the condition's rectangle area. If we're on a tile in that area, then this condition
         # should return True.
-        area_x = range(condition['x'], condition['x'] + condition['width'])
-        area_y = range(condition['y'], condition['y'] + condition['height'])
+        area_x = range(condition.x, condition.x + condition.width)
+        area_y = range(condition.y, condition.y + condition.height)
 
         # If the player is at the coordinates and the operator is set to true then return true
         if round(player.tile_pos[0]) in area_x and round(player.tile_pos[1]) in area_y:
@@ -97,20 +98,24 @@ class Player(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '3',
-         'id': 3,
-         'operator': 'is',
-         'parameters': 'up',
-         'type': 'player_facing',
-         'x': 1,
-         'y': 3}
+        >>> condition.__dict__
+        {
+            "type": "player_facing",
+            "parameters": [
+                "up"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 6,
+            "y": 9,
+            ...
+        }
 
         """
-
         # Get the player object from the game.
         player = game.player1
-        facing = condition["parameters"]
+        facing = condition.parameters[0]
 
         if player.facing == facing:
             return True
@@ -136,14 +141,17 @@ class Player(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '7',
-         'id': 7,
-         'operator': 'is',
-         'parameters': '',
-         'type': 'player_moved',
-         'x': 0,
-         'y': 0}
+        >>> condition.__dict__
+        {
+            "type": "player_moved",
+            "parameters": [],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 6,
+            "y": 9,
+            ...
+        }
 
         """
 
@@ -192,20 +200,24 @@ class Player(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '7',
-         'id': 7,
-         'type': 'party_size',
-         'operator': 'is',
-         'parameters': 'less_than,2',
-         'x': 0,
-         'y': 0}
+        >>> condition.__dict__
+        {
+            "type": "party_size",
+            "parameters": [
+                "less_than",
+                "2"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 6,
+            "y": 9,
+            ...
+        }
 
         """
-
-        parameters = condition['parameters'].split(',')
-        check = str(parameters[0])
-        number = int(parameters[1])
+        check = str(condition.parameters[0])
+        number = int(condition.parameters[1])
         party_size = len(game.player1.monsters)
 
         # Check to see if the player's party size equals this number.
@@ -251,18 +263,21 @@ class Player(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '7',
-         'id': 7,
-         'operator': 'is',
-         'parameters': '',
-         'type': 'facing_tile',
-         'x': 0,
-         'y': 0}
+        >>> condition.__dict__
+        {
+            "type": "facing_tile",
+            "parameters": [],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 6,
+            "y": 9,
+            ...
+        }
 
         """
 
-        coordinates = (condition['x'], condition['y'])
+        coordinates = (condition.x, condition.y)
         tile_location = None
 
         # Next, we check the player position and see if we're one tile away from
@@ -291,4 +306,3 @@ class Player(object):
             return True
         else:
             return False
-

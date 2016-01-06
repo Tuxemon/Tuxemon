@@ -1,5 +1,6 @@
 import pygame as pg
 import logging
+from collections import namedtuple
 from core import prepare
 from core.components import save
 from core.components.menu import Menu
@@ -69,8 +70,9 @@ class LoadMenu(SaveMenu):
                 self.game.push_state("WORLD")
                 tele_x = str(int(save_data['tile_pos'][0]))
                 tele_y = str(int(save_data['tile_pos'][1]))
-                location = save_data['current_map'] + ',' + tele_x + ',' + tele_y
-                action = ('teleport', location, '1', 1)
+                action = namedtuple("action", ["type", "parameters"])
+                action.type = "teleport"
+                action.parameters = [save_data['current_map'], tele_x, tele_y]
                 self.game.event_engine.actions['teleport']['method'](self.game, action)
                 self.game.pop_state(statepoppin)
 

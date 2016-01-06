@@ -63,20 +63,24 @@ class Core(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '3',
-         'id': 3,
-         'operator': 'is',
-         'parameters': 'K_RETURN',
-         'type': 'button_pressed',
-         'x': 1,
-         'y': 3}
+        >>> condition.__dict__
+        {
+            "type": "button_pressed",
+            "parameters": [
+                "K_RETURN"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 2,
+            "y": 2,
+            ...
+        }
 
         """
-
         # Get the keys pressed from the game.
         events = game.key_events
-        button = str(condition["parameters"])
+        button = str(condition.parameters[0])
 
         # Loop through each event
         for event in events:
@@ -104,20 +108,24 @@ class Core(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '3',
-         'id': 3,
-         'operator': 'is',
-         'parameters': 'K_RETURN',
-         'type': 'button_released',
-         'x': 1,
-         'y': 3}
+        >>> condition.__dict__
+        {
+            "type": "button_released",
+            "parameters": [
+                "K_RETURN"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 2,
+            "y": 2,
+            ...
+        }
 
         """
-
         # Get the keys pressed from the game.
         events = game.key_events
-        button = str(condition["parameters"])
+        button = str(condition.parameters[0])
 
         # Loop through each event
         for event in events:
@@ -147,17 +155,21 @@ class Core(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '20',
-         'id': 2,
-         'operator': 'is',
-         'parameters': 'battle_won:yes',
-         'type': 'variable_set',
-         'x': 0,
-         'y': 0}
+        >>> condition.__dict__
+        {
+            "type": "variable_set",
+            "parameters": [
+                "battle_won:yes"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 2,
+            "y": 2,
+            ...
+        }
 
         """
-
         # Get the player object from the game.
         player = game.player1
 
@@ -165,13 +177,12 @@ class Core(object):
         for key, value in player.game_variables.items():
 
             # Split the string by ":" into a list
-            varlist = condition["parameters"].split(":")
-            varkey = varlist[0]
-            varvalue = varlist[1]
+            var_list = condition.parameters[0].split(":")
+            var_key = var_list[0]
+            var_value = var_list[1]
 
             # If the variable is set in the game variables, then we've met the condition.
-            if (varkey == key) and (varvalue == value):
+            if (var_key == key) and (var_value == value):
                 return True
 
         return False
-

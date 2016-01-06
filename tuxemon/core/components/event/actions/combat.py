@@ -64,8 +64,13 @@ class Combat(object):
 
         **Examples:**
 
-        >>> action
-        ... (u'start_battle', u'1', 1, 9)
+        >>> action.__dict__
+        {
+            "type": "start_battle",
+            "parameters": [
+                "1"
+            ]
+        }
 
         """
         # Don't start a battle if we don't even have monsters in our party yet.
@@ -77,7 +82,7 @@ class Combat(object):
                 game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
 
         # Start combat
-        npc_id = int(action[1])
+        npc_id = int(action.parameters[0])
 
         # Create an NPC object that will be used as our opponent
         npc = player.Npc()
@@ -217,7 +222,7 @@ class Combat(object):
             return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
-        encounter_id = int(action[1])
+        encounter_id = int(action.parameters[0])
 
         # Look up the encounter details
         monsters = db.JSONDatabase()

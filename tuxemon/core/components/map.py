@@ -31,12 +31,12 @@
 
 import logging
 import pygame
-import os
+import re
 import sys
-from pprint import pprint
+from collections import namedtuple
 from core.components.pyganim import PygAnimation
 
-# PyTMX LOVES to change their API without notice. Here we try and handle that.
+# Handle older versions of PyTMX.
 try:
     from pytmx import load_pygame
 except ImportError:
@@ -182,23 +182,55 @@ class Map(object):
                         words = obj.properties[k].split(' ', 2)
 
                         # Conditions have the form 'operator type parameters'.
-                        operator, type = words[0:2]
+                        operator, cond_type = words[0:2]
 
-                        args = ''
+                        # If this condition has parameters, split them into a
+                        # list
                         if len(words) > 2:
-                            args = words[2]
+                            args = self.split_escaped(words[2])
+                        else:
+                            args = list()
 
-                        conds.append({
-                            'type': type,
-                            'parameters': args,
-                            'x': int(obj.x / self.tile_size[0]),
-                            'y': int(obj.y / self.tile_size[1]),
-                            'width': int(obj.width / self.tile_size[0]),
-                            'height': int(obj.height / self.tile_size[1]),
-                            'operator': operator
-                        })
+                        # Create a condition object using named tuples
+                        condition_fields = [
+                            "type",
+                            "parameters",
+                            "x",
+                            "y",
+                            "width",
+                            "height",
+                            "operator"]
+                        condition = namedtuple("condition", condition_fields)
+                        condition.type = cond_type
+                        condition.parameters = args
+                        condition.x = int(obj.x / self.tile_size[0])
+                        condition.y = int(obj.y / self.tile_size[1])
+                        condition.width = int(obj.width / self.tile_size[0])
+                        condition.height = int(obj.height / self.tile_size[1])
+                        condition.operator = operator
+
+                        conds.append(condition)
+
                     elif k.startswith('act'):
-                        acts.append(obj.properties[k].split(' ', 1))
+                        words = obj.properties[k].split(' ', 1)
+
+                        # Actions have the form 'type parameters'.
+                        act_type = words[0]
+
+                        # If this action has parameters, split them into a
+                        # list
+                        if len(words) > 1:
+                            args = self.split_escaped(words[1])
+                        else:
+                            args = list()
+
+                        # Create an action object using named tuples
+                        action_fields = ["type", "parameters"]
+                        action = namedtuple("action", action_fields)
+                        action.type = act_type
+                        action.parameters = args
+
+                        acts.append(action)
 
                 self.events.append({'conds': conds, 'acts': acts, 'id': obj.id})
 
@@ -568,6 +600,28 @@ class Map(object):
 
         """
         return int(base * round(float(x)/base))
+
+    def split_escaped(self, string_to_split, delim=","):
+        """Splits a string by the specified deliminator excluding escaped
+        deliminators.
+
+        :param string_to_split: The string to split.
+        :param delim: The deliminator to split the string by.
+
+        :type string_to_split: Str
+        :type delim: Str
+
+        :rtype: List
+        :returns: A list of the splitted string.
+
+        """
+        # Split by "," unless it is escaped by a "\"
+        split_list = re.split(r'(?<!\\)' + delim, string_to_split)
+
+        # Remove the escape character from the split list
+        split_list = [w.replace('\,', ',') for w in split_list]
+
+        return split_list
 
 
 class Tile(object):

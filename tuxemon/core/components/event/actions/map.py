@@ -57,15 +57,20 @@ class Map(object):
 
         **Examples:**
 
-        >>> action
-        ('screen_transition', '1', '1', 5)
+        >>> action.__dict__
+        {
+            "type": "screen_transition",
+            "parameters": [
+                "1"
+            ]
+        }
 
         """
 
         world = game.current_state
         if not world.start_transition or not world.start_transition_back:
             world.start_transition = True
-            world.transition_time = float(action[1])
+            world.transition_time = float(action.parameters[0])
 
 
     def start_cinema_mode(self, game, action):
@@ -133,23 +138,22 @@ class Map(object):
 
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
-        parameters = action[1].split(",")
-        animation_name = parameters[0]
-        duration = float(parameters[1])
+        animation_name = action.parameters[0]
+        duration = float(action.parameters[1])
         directory = prepare.BASEDIR + "resources/animations/tileset"
 
-        if parameters[2] == "loop":
+        if action.parameters[2] == "loop":
             loop = True
-        elif parameters[2] == "noloop":
+        elif action.parameters[2] == "noloop":
             loop = False
 
         # Determine the screen position where to draw the animation.
-        if parameters[3] == "player":
+        if action.parameters[3] == "player":
             position = (game.player1.tile_pos[0],
                         game.player1.tile_pos[1])
 
         else:
-            position = (int(parameters[3]), int(parameters[4]))
+            position = (int(action.parameters[3]), int(action.parameters[4]))
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation using the animation's conductor.
@@ -179,5 +183,3 @@ class Map(object):
                                            "conductor": conductor,
                                            "position": position,
                                            "layer": 3}
-
-

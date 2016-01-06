@@ -49,24 +49,28 @@ class Npc(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '6',
-         'id': 6,
-         'operator': 'is_not',
-         'parameters': 'Oak',
-         'type': 'npc_exists',
-         'x': 0,
-         'y': 0}
+        >>> condition.__dict__
+        {
+            "type": "npc_exists",
+            "parameters": [
+                "Oak"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is_not",
+            "x": 0,
+            "y": 0,
+            ...
+        }
 
         """
-
         # Loop through the NPC list and see if the name matches any in the list
         world = game.get_state_name("world")
         if not world:
             return
 
         for npc in world.npcs:
-            if npc.name == condition["parameters"]:
+            if npc.name == condition.parameters[0]:
                 return True
 
         return False
@@ -89,18 +93,22 @@ class Npc(object):
 
         **Examples:**
 
-        >>> condition
-        {'action_id': '7',
-         'id': 7,
-         'operator': 'is',
-         'parameters': 'Oak',
-         'type': 'facing_npc',
-         'x': 0,
-         'y': 0}
+        >>> condition.__dict__
+        {
+            "type": "facing_npc",
+            "parameters": [
+                "Oak"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 0,
+            "y": 0,
+            ...
+        }
 
         """
-
-        npc_name = condition["parameters"]
+        npc_name = condition.parameters[0]
         npc_location = None
 
         # First, find the NPC by name
@@ -138,4 +146,3 @@ class Npc(object):
             return True
         else:
             return False
-

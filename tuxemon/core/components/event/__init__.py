@@ -94,8 +94,8 @@ class EventEngine(object):
                     # please change it.
                     if not self.state == "running":
                         return
-                    check_condition = self.conditions[cond['type']]['method']
-                    should_run = (check_condition(game, cond) == (cond['operator'] == 'is'))
+                    check_condition = self.conditions[cond.type]['method']
+                    should_run = (check_condition(game, cond) == (cond.operator == 'is'))
                     if not should_run:
                         break
 
@@ -137,7 +137,7 @@ class EventEngine(object):
         Here is an example of what an action list might look like:
 
         >>> action_list
-        [(u'teleport', u'example.map,1,1', 1, 1), (u'teleport', u'test.map,4,3', 2, 2)]
+        [<class 'core.components.map.action'>, <class 'core.components.map.action'>]
 
         :rtype: None
         :returns: None
@@ -151,51 +151,9 @@ class EventEngine(object):
 
             # Call the method listed and return the modified event data
             try:
-                self.actions[action[0]]["method"](game, action)
-                #getattr( self.action, str(action[0]))(game, action)
+                self.actions[action.type]["method"](game, action)
             except Exception as message:
-                error = 'Error: Action method "%s" not implemented' % str(action[0])
+                error = 'Error: Action method "%s" not implemented' % str(action.type)
                 logger.error(error)
                 logger.error(message)
                 traceback.print_exc()
-
-
-class Condition(object):
-    """Condition object to be created from an imported TMX map file.
-
-    **Example**
-
-    {
-        "y": 3,
-        "parameters": "K_RETURN",
-        "height": 1,
-        "width": 1,
-        "operator": "is",
-        "x": 4,
-        "type": "button_pressed"
-    }
-    """
-
-    def __init__(self, cond_type, operator, parameters, width, height, x, y):
-        self.type = cond_type
-        self.operator = operator
-        self.parameters = parameters.split(',')
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
-
-
-class Action(object):
-    """Action object created from an import imported TMX map file.
-
-    **Example**
-
-    [(u'teleport', u'example.map,1,1', 1, 1), (u'teleport', u'test.map,4,3', 2, 2)]
-    """
-
-    def __init__(self, action_type, parameters, x, y):
-        self.type = action_type
-        self.parameters = parameters.split(',')
-        self.x = x
-        self.y = y

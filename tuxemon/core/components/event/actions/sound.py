@@ -58,11 +58,16 @@ class Sound(object):
 
         **Examples:**
 
-        >>> action
-        ('play_sound', 'interface/NenadSimic_Click.ogg', '4', 1)
+        >>> action.__dict__
+        {
+            "type": "play_sound",
+            "parameters": [
+                "interface/NenadSimic_Click.ogg"
+            ]
+        }
 
         """
-        filename = str(action[1])
+        filename = str(action.parameters[0])
         sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
         sound.play()
 
@@ -84,11 +89,16 @@ class Sound(object):
 
         **Examples:**
 
-        >>> action
-        ('play_music', '147066_pokemon.ogg', '4', 1)
+        >>> action.__dict__
+        {
+            "type": "play_music",
+            "parameters": [
+                "147066_pokemon.ogg"
+            ]
+        }
 
         """
-        filename = str(action[1])
+        filename = str(action.parameters[0])
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
 
@@ -114,8 +124,11 @@ class Sound(object):
 
         **Examples:**
 
-        >>> action
-        ('pause_music', '', '4', 1)
+        >>> action.__dict__
+        {
+            "type": "play_music",
+            "parameters": []
+        }
 
         """
 
@@ -143,16 +156,19 @@ class Sound(object):
 
         **Examples:**
 
-        >>> action
-        ('fadeout_music', '1000', '4', 1)
+        >>> action.__dict__
+        {
+            "type": "fadeout_music",
+            "parameters": [
+                "1000"
+            ]
+        }
 
         """
 
-        time = int(action[1])
+        time = int(action.parameters[0])
         mixer.music.fadeout(time)
         if game.current_music["song"]:
             game.current_music["status"] = "stopped"
         else:
             logger.warning("Music cannot be paused, none is playing.")
-
-

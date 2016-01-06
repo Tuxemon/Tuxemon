@@ -74,8 +74,13 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('set_variable', 'battle_won:yes', '4', 1)
+        >>> action.__dict__
+        {
+            "type": "set_variable",
+            "parameters": [
+                "battle_won:yes"
+            ]
+        }
 
         """
 
@@ -83,12 +88,12 @@ class Core(object):
         player = game.player1
 
         # Split the variable into a key: value pair
-        varlist = action[1].split(":")
-        varkey = str(varlist[0])
-        varvalue = str(varlist[1])
+        var_list = action.parameters[0].split(":")
+        var_key = str(var_list[0])
+        var_value = str(var_list[1])
 
         # Append the game_variables dictionary with the key: value pair
-        player.game_variables[varkey] = varvalue
+        player.game_variables[var_key] = var_value
 
 
     def dialog(self, game, action):
@@ -112,12 +117,17 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('dialog', 'Red:\\n This is some dialog!', '3', 1)
+        >>> action.__dict__
+        {
+            "type": "dialog",
+            "parameters": [
+                "Red:\\n This is some dialog!"
+            ]
+        }
 
         """
 
-        text = str(action[1])
+        text = str(action.parameters[0])
         text = self._replace_text(game, text)
         logger.info("Dialog window opened")
 
@@ -149,12 +159,17 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('dialog_chain', 'Red:\\n This is some dialog!', '3', 1)
+        >>> action.__dict__
+        {
+            "type": "dialog_chain",
+            "parameters": [
+                "Red:\\n This is some dialog!"
+            ]
+        }
 
         """
 
-        text = str(action[1])
+        text = str(action.parameters[0])
         text = self._replace_text(game, text)
         dialog_window = game.current_state.dialog_window
 
@@ -197,13 +212,19 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('rumble', '2,100', '3', 1)
+        >>> action.__dict__
+        {
+            "type": "rumble",
+            "parameters": [
+                "2",
+                "100"
+            ]
+        }
 
         """
 
-        duration = float(action[1].split(',')[0])
-        power = int(action[1].split(',')[1])
+        duration = float(action.parameters[0])
+        power = int(action.parameters[1])
 
         min_power = 0
         max_power = 24576
@@ -236,11 +257,16 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('wait_for_secs', '2.0')
+        >>> action.__dict__
+        {
+            "type": "wait_for_secs",
+            "parameters": [
+                "2.0"
+            ]
+        }
 
         """
-        secs = float(action[1])
+        secs = float(action.parameters[0])
         game.event_engine.state = "waiting"
         game.event_engine.wait = secs
 
@@ -264,11 +290,16 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('wait_for_input', 'K_RETURN')
+        >>> action.__dict__
+        {
+            "type": "wait_for_input",
+            "parameters": [
+                "K_RETURN"
+            ]
+        }
 
         """
-        button = str(action[1])
+        button = str(action.parameters[0])
         game.event_engine.state = "waiting for input"
         game.event_engine.wait = 2
         game.event_engine.button = button
@@ -292,13 +323,18 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('change_state', 'MAIN_MENU')
+        >>> action.__dict__
+        {
+            "type": "change_state",
+            "parameters": [
+                "MAIN_MENU"
+            ]
+        }
 
         """
         # Don't override previous state if we are still in the state.
-        if game.state_name != action[1]:
-            game.push_state(action[1])
+        if game.state_name != action.parameters[0]:
+            game.push_state(action.parameters[0])
 
 
     def call_event(self, game, action):
@@ -320,13 +356,18 @@ class Core(object):
 
         **Examples:**
 
-        >>> action
-        ('call_event', '2')
+        >>> action.__dict__
+        {
+            "type": "call_event",
+            "parameters": [
+                "2"
+            ]
+        }
 
         """
         event_engine = game.event_engine
         events = game.events
 
         for e in events:
-            if e['id'] == int(action[1]):
+            if e['id'] == int(action.parameters[0]):
                 event_engine.execute_action(e['acts'], game)

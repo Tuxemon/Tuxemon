@@ -86,7 +86,7 @@ by [Midi](http://opengameart.org/users/midi)
 
 * ["Grass, Sand, Snow"](https://forum.tuxemon.org/viewtopic.php?pid=280#p280)
 by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) is licensed under
-[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
+[CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
 by [Midi](http://opengameart.org/users/midi)
 
 * ["Trainer Sprite Spree"](http://oniwanbashu.deviantart.com/art/Trainer-Sprite-Spree-124465962)
@@ -102,49 +102,66 @@ by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
 [Calis Projects](http://www.calisprojects.com/) is licensed under
 [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/)
 
-* ["Fruitera"](http://forum.tuxemon.org/viewtopic.php?pid=124#p124) by [Rawng](http://forum.tuxemon.org/profile.php?id=23)
-is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based on
+* ["Fruitera"](http://forum.tuxemon.org/viewtopic.php?pid=124#p124) by 
+[Rawng](http://forum.tuxemon.org/profile.php?id=23) 
+is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) based on
 ["Fruit bat starter"](http://jozzer26.deviantart.com/art/Fruit-bat-starter-504344836) by
 [jozzer26](http://jozzer26.deviantart.com/)
 
-* ["Extended LPC Magic Pack"](http://opengameart.org/content/extended-lpc-magic-pack) by [daneeklu](http://opengameart.org/users/daneeklu)
+* ["Extended LPC Magic Pack"](http://opengameart.org/content/extended-lpc-magic-pack) by 
+[daneeklu](http://opengameart.org/users/daneeklu) 
 is licensed under [CC-BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by [DitzyDM](http://ditzydm.deviantart.com/)
+* ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by 
+[DitzyDM](http://ditzydm.deviantart.com/) 
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
-* ["Pixel Farm and Shack"](http://opengameart.org/content/pixel-farm-and-shack) by [pixel32](http://opengameart.org/users/pixel32)
+* ["Pixel Farm and Shack"](http://opengameart.org/content/pixel-farm-and-shack) by 
+[pixel32](http://opengameart.org/users/pixel32) 
 is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
 
-* ["Bigfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Bigfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by 
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and 
+[rsg167](http://forum.tuxemon.org/profile.php?id=19) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Eyenemy"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Eyenemy"](http://forum.tuxemon.org/viewtopic.php?id=43) by 
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Dollfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Dollfin"](http://forum.tuxemon.org/viewtopic.php?id=43) by 
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Magmaturtle"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Magmaturtle"](http://forum.tuxemon.org/viewtopic.php?id=43) by 
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Axylightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Axylightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by 
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by [Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and [rsg167](http://forum.tuxemon.org/profile.php?id=19)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Djinnbo"](http://forum.tuxemon.org/viewtopic.php?id=43) by 
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and 
+[rsg167](http://forum.tuxemon.org/profile.php?id=19) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by [Kelvin](http://kelvinshadewing.net)
+* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by 
+[Kelvin](http://kelvinshadewing.net) 
 is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
-* ["Nut & Bolt"](https://forum.tuxemon.org/viewtopic.php?id=59) by [TacoBot](https://forum.tuxemon.org/profile.php?id=40)
+* ["Nut & Bolt"](https://forum.tuxemon.org/viewtopic.php?id=59) by 
+[TacoBot](https://forum.tuxemon.org/profile.php?id=40) 
 is licensed under [Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
 
-* ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Bite Animation"](https://forum.tuxemon.org/viewtopic.php?id=70) by 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
+* ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
 
 * ["Kelvin Terrain"](https://forum.tuxemon.org/viewtopic.php?pid=329#p329) by 
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
@@ -155,39 +172,81 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
 * ["Sumobug"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Pigabyte"](https://forum.tuxemon.org/viewtopic.php?id=72) by [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* ["Pigabyte"](https://forum.tuxemon.org/viewtopic.php?id=72) by
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Power Slash"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48)
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Lambert"](https://forum.tuxemon.org/viewtopic.php?pid=406#p406) by
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Propellercat"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Fire Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Pound Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Dune Pincher"](https://forum.tuxemon.org/viewtopic.php?pid=519#p519) by 
-[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
-is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Crushing Ball"](https://forum.tuxemon.org/viewtopic.php?pid=506#p506) by
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cateye"](https://forum.tuxemon.org/viewtopic.php?pid=505#p505) by
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Foxfire"](https://forum.tuxemon.org/viewtopic.php?pid=386#p386) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Eyesore"](https://forum.tuxemon.org/viewtopic.php?pid=366#p366) by
+[Cavalcadeur](http://forum.tuxemon.org/profile.php?id=29) and 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Arthrobolt"](https://forum.tuxemon.org/viewtopic.php?pid=543#p543) by
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tennis Ace Trainer"](https://forum.tuxemon.org/viewtopic.php?pid=401#p401) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cat Lady 01"](https://forum.tuxemon.org/viewtopic.php?pid=494#p494) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cat Lady 02"](https://forum.tuxemon.org/viewtopic.php?pid=500#p500) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cat Lady 02"](https://forum.tuxemon.org/viewtopic.php?pid=500#p500) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Rockitten Overworld Sprites"](https://forum.tuxemon.org/viewtopic.php?pid=539#p539) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 **Concept Art**
@@ -201,11 +260,11 @@ Maps
 ------
 * ["Map1 v1"](http://tuxemon.weebly.com/maps.html)
 by [luke83](http://tuxemon.weebly.com/) is licensed under
-[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+[CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 * ["Healing Center"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrunk](https://github.com/treetrunk)
-is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 * ["Professor's Lab"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrunk](https://github.com/treetrunk)
-is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 
 

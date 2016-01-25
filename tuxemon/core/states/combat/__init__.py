@@ -1341,9 +1341,8 @@ class COMBAT(state.State):
     def end_combat(self):
         # TODO: End combat differently depending on winning or losing
         event_engine = self.game.event_engine
-        fadeout_action = namedtuple("action", ["type", "parameters"])
-        fadeout_action.type = "fadeout_music"
-        fadeout_action.parameters = [1000]
+        Action = namedtuple("action", ["type", "parameters"])
+        fadeout_action = Action("fadeout_music", [1000])
         event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action)
 
         # TODO: remove this fade-in hack when proper transition is complete

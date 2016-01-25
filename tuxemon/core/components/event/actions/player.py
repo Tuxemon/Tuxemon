@@ -174,16 +174,13 @@ class Player(object):
 
         # Start the screen transition
         screen_transition = game.event_engine.actions["screen_transition"]["method"]
-        transition_action = namedtuple("action", ["type", "parameters"])
-        transition_action.type = action.type
-        transition_action.parameters = [transition_time]
+        Action = namedtuple("action", ["type", "parameters"])
+        transition_action = Action(action.type, [transition_time])
         screen_transition(game, transition_action)
 
         # Start the teleport. The teleport action will notice a screen transition in progress,
         # and wait until it is done before teleporting.
-        teleport_action = namedtuple("action", ["type", "parameters"])
-        teleport_action.type = action.type
-        teleport_action.parameters = action.parameters
+        teleport_action = Action(action.type, action.parameters)
 
         self.teleport(game, action)
 

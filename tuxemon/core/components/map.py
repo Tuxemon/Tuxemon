@@ -200,14 +200,14 @@ class Map(object):
                             "width",
                             "height",
                             "operator"]
-                        condition = namedtuple("condition", condition_fields)
-                        condition.type = cond_type
-                        condition.parameters = args
-                        condition.x = int(obj.x / self.tile_size[0])
-                        condition.y = int(obj.y / self.tile_size[1])
-                        condition.width = int(obj.width / self.tile_size[0])
-                        condition.height = int(obj.height / self.tile_size[1])
-                        condition.operator = operator
+                        Condition = namedtuple("condition", condition_fields)
+                        condition = Condition(cond_type,
+                                              args,
+                                              int(obj.x / self.tile_size[0]),
+                                              int(obj.y / self.tile_size[1]),
+                                              int(obj.width / self.tile_size[0]),
+                                              int(obj.height / self.tile_size[1]),
+                                              operator)
 
                         conds.append(condition)
 
@@ -226,9 +226,8 @@ class Map(object):
 
                         # Create an action object using named tuples
                         action_fields = ["type", "parameters"]
-                        action = namedtuple("action", action_fields)
-                        action.type = act_type
-                        action.parameters = args
+                        Action = namedtuple("action", action_fields)
+                        action = Action(act_type, args)
 
                         acts.append(action)
 

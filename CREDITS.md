@@ -177,6 +177,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) is licensed under
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
+* "Tux" by [Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+
 
 **Concept Art**
 
@@ -282,4 +284,8 @@ Sounds
 * ["Kelvin Shadewing's Soundpack Vol. 3"](http://kelvinshadewing.net/sndPack3.php) by
 [Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
 [XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* "Tux Sound" by 
+[Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under 
+[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based upon [magellanic penguin](http://www.freesound.org/people/soundbytez/sounds/111079/) by [soundbytez](http://www.freesound.org/people/soundbytez/)
 

@@ -33,8 +33,9 @@ import logging
 import pygame
 import re
 import sys
-from collections import namedtuple
 from core.components.pyganim import PygAnimation
+from core.components.event import Action
+from core.components.event import Condition
 
 # Handle older versions of PyTMX.
 try:
@@ -192,15 +193,6 @@ class Map(object):
                             args = list()
 
                         # Create a condition object using named tuples
-                        condition_fields = [
-                            "type",
-                            "parameters",
-                            "x",
-                            "y",
-                            "width",
-                            "height",
-                            "operator"]
-                        Condition = namedtuple("condition", condition_fields)
                         condition = Condition(cond_type,
                                               args,
                                               int(obj.x / self.tile_size[0]),
@@ -225,8 +217,6 @@ class Map(object):
                             args = list()
 
                         # Create an action object using named tuples
-                        action_fields = ["type", "parameters"]
-                        Action = namedtuple("action", action_fields)
                         action = Action(act_type, args)
 
                         acts.append(action)

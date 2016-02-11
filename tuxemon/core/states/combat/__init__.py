@@ -37,7 +37,6 @@ import sys
 import pprint
 import time
 
-from collections import namedtuple
 from core import prepare
 from core import state
 from core.components import map
@@ -45,6 +44,7 @@ from core.components import eztext
 from core.components import save
 from core.components.ui import bar
 from core.components.ui import UserInterface
+from core.components.event import Action
 
 # Import the android mixer if on the android platform
 import core.state
@@ -1341,7 +1341,6 @@ class COMBAT(state.State):
     def end_combat(self):
         # TODO: End combat differently depending on winning or losing
         event_engine = self.game.event_engine
-        Action = namedtuple("action", ["type", "parameters"])
         fadeout_action = Action("fadeout_music", [1000])
         event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action)
 

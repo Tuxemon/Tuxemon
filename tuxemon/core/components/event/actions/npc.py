@@ -78,7 +78,7 @@ class Npc(object):
         # Ensure that the NPC doesn't already exist on the map.
         event_engine = game.event_engine
         npc_exists = Condition("npc_exists", [name], 1, 1, "is", 0, 0)
-        if event_engine.conditions["npc_exists"]["method"](self.game, npc_exists):
+        if event_engine.conditions["npc_exists"]["method"](game, npc_exists):
             return
 
         # Create a new NPC object

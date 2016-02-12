@@ -317,3 +317,53 @@ class Player(object):
             game.current_state.delayed_facing = direction
         else:
             game.player1.facing = direction
+
+
+    def player_stop(self, game, action):
+        """Makes the player stop moving.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: None
+
+        """
+        # Get a copy of the world state.
+        world = game.get_state_name("world")
+        if not world:
+            return
+
+        player = game.player1
+        player.moving = False
+        world.menu_blocking = True
+
+
+    def player_resume(self, game, action):
+        """Makes the player resume movement.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: None
+
+        """
+        # Get a copy of the world state.
+        world = game.get_state_name("world")
+        if not world:
+            return
+
+        world.menu_blocking = False

@@ -340,8 +340,6 @@ class Player(object):
         if not world:
             return
 
-        player = game.player1
-        player.moving = False
         world.menu_blocking = True
 
 

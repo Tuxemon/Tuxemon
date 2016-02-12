@@ -223,4 +223,7 @@ class Core(object):
         if not world:
             return False
 
-        return world.dialog_window.visible
+        if world.dialog_window.visible or world.dialog_window.dialog_stack > 0:
+            return True
+        else:
+            return False

@@ -145,6 +145,37 @@ class Npc(object):
             if npc.name == name and not npc.isplayer:
                 world.npcs.remove(npc)
 
+
+    def npc_face(self, game, action):
+        """Makes the NPC face a certain direction.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: npc_name, direction
+
+        Action parameter can be: "left", "right", "up", or "down"
+        """
+
+        # Get the parameters to determine what direction the player will face.
+        name = action.parameters[0]
+        direction = action.parameters[1]
+
+        event_engine = game.event_engine
+        npc = event_engine.conditions["_get_npc"]["method"](game, name)
+        if not npc:
+            return
+
+        npc.facing = direction
+
+
     def pathfind(self, game, action):
         '''
         Will move the player / npc to the given location

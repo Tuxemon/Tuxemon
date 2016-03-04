@@ -30,7 +30,7 @@
             "technique": "Water Shot"
         }
     ], 
-    "name": "Template", 
+    "name": "Tux", 
     "sprites": {
         "battle1": "resources/gfx/sprites/battle/tux-front.png", 
         "battle2": "resources/gfx/sprites/battle/tux-back.png", 

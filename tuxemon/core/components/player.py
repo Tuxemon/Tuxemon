@@ -676,7 +676,12 @@ class Player(object):
         world = game.get_state_name("world")
         if not world:
             return
-        blocked_directions = self.collision_check(curr_loc, world.collision_map, world.collision_lines_map)
+
+        player_tile_x = int(world.player1.tile_pos[0])
+        player_tile_y = int(world.player1.tile_pos[1])
+        collision_map = dict(world.collision_map)
+        collision_map[(player_tile_x, player_tile_y)] = "None"
+        blocked_directions = self.collision_check(curr_loc, collision_map, world.collision_lines_map)
         adj_tiles = []
         curr_loc = (int(round(curr_loc[0])),int(round(curr_loc[1])))
         if "up" not in blocked_directions:

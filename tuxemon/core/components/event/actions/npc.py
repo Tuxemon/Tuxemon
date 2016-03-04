@@ -25,8 +25,10 @@
 #
 from __future__ import absolute_import
 
+from collections import namedtuple
 from core.components import ai
 from core.components import player
+from core.components.event import Condition
 
 
 class Npc(object):
@@ -72,6 +74,12 @@ class Npc(object):
         tile_pos_y = int(action.parameters[2])
         animations = str(action.parameters[3])
         behavior = str(action.parameters[4])
+
+        # Ensure that the NPC doesn't already exist on the map.
+        event_engine = game.event_engine
+        npc_exists = Condition("npc_exists", [name], 1, 1, "is", 0, 0)
+        if event_engine.conditions["npc_exists"]["method"](game, npc_exists):
+            return
 
         # Create a new NPC object
         npc = player.Npc(sprite_name=animations, name=name)
@@ -136,6 +144,37 @@ class Npc(object):
         for npc in npcs:
             if npc.name == name and not npc.isplayer:
                 world.npcs.remove(npc)
+
+
+    def npc_face(self, game, action):
+        """Makes the NPC face a certain direction.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: npc_name, direction
+
+        Action parameter can be: "left", "right", "up", or "down"
+        """
+
+        # Get the parameters to determine what direction the player will face.
+        name = action.parameters[0]
+        direction = action.parameters[1]
+
+        event_engine = game.event_engine
+        npc = event_engine.conditions["_get_npc"]["method"](game, name)
+        if not npc:
+            return
+
+        npc.facing = direction
+
 
     def pathfind(self, game, action):
         '''

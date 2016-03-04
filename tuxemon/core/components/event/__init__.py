@@ -34,6 +34,7 @@ import traceback
 
 import pygame
 
+from collections import namedtuple
 from core import prepare
 from core.components import plugin
 
@@ -41,6 +42,21 @@ from core.components import plugin
 logger = logging.getLogger(__name__)
 logger.debug("components.event successfully imported")
 
+# Set up action and condition objects
+condition_fields = [
+    "type",
+    "parameters",
+    "x",
+    "y",
+    "width",
+    "height",
+    "operator"]
+action_fields = [
+    "type",
+    "parameters"]
+
+Condition = namedtuple("condition", condition_fields)
+Action = namedtuple("action", action_fields)
 
 class EventEngine(object):
     """A class for the event engine. The event engine checks to see if a group of conditions have

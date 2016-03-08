@@ -32,11 +32,12 @@
 import logging
 import pygame
 from . import screen
-from core import prepare
+from core import tools
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("core.controller successfully imported")
+logger.debug("%s successfully imported" % __name__)
+
 
 class Controller(object):
     """Handles the controller overlay functionality for mobile versions of the game. This includes
@@ -55,9 +56,7 @@ class Controller(object):
 
     def load(self):
         from core import prepare
-        self.dpad["surface"] = pygame.image.load(prepare.BASEDIR + "resources/gfx/d-pad.png").convert_alpha()
-        self.dpad["surface"] = pygame.transform.scale(self.dpad["surface"],
-            (self.dpad["surface"].get_width() * prepare.SCALE, self.dpad["surface"].get_height() * prepare.SCALE))
+        self.dpad["surface"] = tools.load_and_scale("gfx/d-pad.png")
         self.dpad["position"] = (0, prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height() )
 
         # Create the collision rectangle objects for the dpad so we can see if we're pressing a button
@@ -81,9 +80,7 @@ class Controller(object):
 
         # Create the buttons
         self.a_button = {}
-        self.a_button["surface"] = pygame.image.load(prepare.BASEDIR + "resources/gfx/a-button.png").convert_alpha()
-        self.a_button["surface"] = pygame.transform.scale(self.a_button["surface"],
-            (self.a_button["surface"].get_width() * prepare.SCALE, self.a_button["surface"].get_height() * prepare.SCALE))
+        self.a_button["surface"] = tools.load_and_scale("gfx/a-button.png")
         self.a_button["position"] = (prepare.SCREEN_SIZE[0] - int( self.a_button["surface"].get_width() * 1.0 ),
             (self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2) - (self.a_button["surface"].get_height() / 2)))
         self.a_button["rect"] = pygame.Rect(
@@ -92,9 +89,7 @@ class Controller(object):
             self.a_button["surface"].get_height())
 
         self.b_button = {}
-        self.b_button["surface"] = pygame.image.load(prepare.BASEDIR + "resources/gfx/b-button.png").convert_alpha()
-        self.b_button["surface"] = pygame.transform.scale(self.b_button["surface"],
-            (self.b_button["surface"].get_width() * prepare.SCALE, self.b_button["surface"].get_height() * prepare.SCALE))
+        self.b_button["surface"] = tools.load_and_scale("gfx/b-button.png")
         self.b_button["position"] = (prepare.SCREEN_SIZE[0] - int( self.b_button["surface"].get_width() * 2.1 ),
             (self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2) - (self.b_button["surface"].get_height() / 2)))
         self.b_button["rect"] = pygame.Rect(
@@ -126,9 +121,3 @@ class Controller(object):
                           self.b_button["surface"],
                           self.b_button["position"],
                           game.config.controller_transparency)
-
-        #game.screen.fill((122,122,122, 22), self.dpad["rect"]["right"], special_flags=pygame.BLEND_RGBA_MIN)
-
-
-
-

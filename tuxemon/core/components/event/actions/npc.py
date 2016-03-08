@@ -64,7 +64,7 @@ class Npc(object):
 
         """
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 
@@ -130,7 +130,7 @@ class Npc(object):
 
         """
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 
@@ -181,7 +181,7 @@ class Npc(object):
         Will move the player / npc to the given location
         '''
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 

@@ -23,12 +23,9 @@
 #
 # William Edwards <shadowapex@gmail.com>
 #
+from __future__ import absolute_import
 
-# Import the android mixer if on the android platform
-try:
-    import pygame.mixer as mixer
-except ImportError:
-    import android.mixer as mixer
+from core.platform import mixer
 
 
 class Music(object):
@@ -67,7 +64,7 @@ class Music(object):
         """
         song = condition.parameters[0]
 
-        if game.state_name == "FLASH_TRANSITION" or game.state_name == "COMBAT":
+        if game.state_name == "FlashTransition" or game.state_name == "CombatState":
             return True
 
         if game.current_music["song"] == song and mixer.music.get_busy():

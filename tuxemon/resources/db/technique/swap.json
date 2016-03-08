@@ -1,0 +1,12 @@
+{
+    "animation": "teeth",
+    "sfx": "blaster1.ogg",
+    "category": "meta",
+    "effects": ["swap"],
+    "id": 8,
+    "name": "Swap",
+    "power": 0,
+    "types": [
+        "Meta"
+    ]
+}

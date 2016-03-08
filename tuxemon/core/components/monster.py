@@ -30,19 +30,18 @@
 #
 
 import logging
-import pygame
 import os
-import sys
 import pprint
 import random
+
 from core import prepare
-from . import pyganim
+from core import tools
 from . import db
 from . import fusion
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("components.monster successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 # Load the monster database
 monsters = db.JSONDatabase()
@@ -102,12 +101,12 @@ class Monster(object):
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
 
-        self.hp_modifier = [0,0,0]
-        self.attack_modifier = [0,0,0]
-        self.defense_modifier = [0,0,0]
-        self.speed_modifier = [0,0,0]
-        self.special_attack_modifier = [0,0,0]
-        self.special_defense_modifier = [0,0,0]
+        self.hp_modifier = [0, 0, 0]
+        self.attack_modifier = [0, 0, 0]
+        self.defense_modifier = [0, 0, 0]
+        self.speed_modifier = [0, 0, 0]
+        self.special_attack_modifier = [0, 0, 0]
+        self.special_defense_modifier = [0, 0, 0]
         self.experience_give_modifier = 0
         self.experience_required_modifier = 0
         self.total_experience = 0
@@ -115,7 +114,7 @@ class Monster(object):
         self.type1 = "Normal"
         self.type2 = None
 
-        self.status = "Normal"
+        self.status = list()
         self.status_damage = 0
         self.status_turn = 0
 
@@ -127,23 +126,20 @@ class Monster(object):
         self.state = ""
 
         # A fusion body object that contains the monster's face and body
-        # sprites, as well as color scheme.
+        # sprites, as well as _color scheme.
         self.body = fusion.Body()
 
         # Set up our sprites.
         self.sprites = {}
         self.front_battle_sprite = ""
-        self.back_battle_sprite  = ""
+        self.back_battle_sprite = ""
         self.menu_sprite = ""
 
-
-    def load_from_db(self, id):
+    def load_from_db(self, name):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.
 
-        :param name: The name of the monster to look up in the monster
-            database.
-
+        :param name: The name of the monster to look up in the monster database.
         :type name: String
 
         :rtype: None
@@ -152,63 +148,63 @@ class Monster(object):
         **Examples:**
 
         >>> bulbatux = Monster()
-        >>> bulbatux.load_from_db(2)
+        >>> bulbatux.load_from_db("Bigfin")
 
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = monsters.lookup(id)
+        results = monsters.lookup(name)
 
-        self.name               = results["name"]
-        self.monster_id         = results["id"]
-        self.hp                 = results["hp_base"]
-        self.current_hp         = results["hp_base"]
-        self.attack             = results["attack_base"]
-        self.defense            = results["defense_base"]
-        self.speed              = results["speed_base"]
-        self.special_attack     = results["special_attack_base"]
-        self.special_defense    = results["special_defense_base"]
+        self.name = results["name"]
+        self.monster_id = results["id"]
+        self.hp = results["hp_base"]
+        self.current_hp = results["hp_base"]
+        self.attack = results["attack_base"]
+        self.defense = results["defense_base"]
+        self.speed = results["speed_base"]
+        self.special_attack = results["special_attack_base"]
+        self.special_defense = results["special_defense_base"]
 
         self.hp_modifier = (
             results["hp_mod"] - 1,
             results["hp_mod"],
             results["hp_mod"] + 1
-            )
+        )
         self.attack_modifier = (
             results["attack_mod"] - 1,
             results["attack_mod"],
             results["attack_mod"] + 1
-            )
+        )
         self.defense_modifier = (
             results["defense_mod"] - 1,
             results["defense_mod"],
             results["defense_mod"] + 1,
-            )
+        )
         self.speed_modifier = (
             results["speed_mod"] - 1,
             results["speed_mod"],
             results["speed_mod"] + 1,
-            )
+        )
         self.special_attack_modifier = (
             results["special_attack_mod"] - 1,
             results["special_attack_mod"],
             results["special_attack_mod"] + 1,
-            )
+        )
         self.special_defense_modifier = (
             results["special_defense_mod"] - 1,
             results["special_defense_mod"],
             results["special_defense_mod"] + 1,
-            )
+        )
         self.experience_give_modifier = results["exp_give_mod"]
         self.experience_required_modifier = results["exp_req_mod"]
 
-        self.type1              = results["types"][0]
+        self.type1 = results["types"][0]
         if len(results["types"]) > 1:
-            self.type2          = results["types"][1]
+            self.type2 = results["types"][1]
         else:
-            self.type2          = None
+            self.type2 = None
 
-        self.weight             = results['weight']
+        self.weight = results['weight']
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         for move in results["moveset"]:
@@ -218,10 +214,9 @@ class Monster(object):
                 self.learn(technique)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = prepare.BASEDIR + results['sprites']['battle1']
-        self.back_battle_sprite = prepare.BASEDIR + results['sprites']['battle2']
-        self.menu_sprite = prepare.BASEDIR + results['sprites']['menu1']
-
+        self.front_battle_sprite = results['sprites']['battle1']
+        self.back_battle_sprite = results['sprites']['battle2']
+        self.menu_sprite = results['sprites']['menu1']
 
     def load_sprite_from_db(self):
         """Looks up the path to the monster's battle sprites so they can be
@@ -240,7 +235,6 @@ class Monster(object):
         self.front_battle_sprite = results["sprite_battle1"]
         self.back_battle_sprite = results["sprite_battle2"]
         self.menu_sprite = results["sprite_menu1"]
-
 
     def learn(self, technique):
         """Adds a technique to this tuxemon's moveset.
@@ -278,7 +272,7 @@ class Monster(object):
         >>> bulbatux.give_experience(20)
         """
         self.total_experience += amount
-        if self.total_experience >= (self.experience_required_modifier * (self.level+1) ** 3):
+        if self.total_experience >= (self.experience_required_modifier * (self.level + 1) ** 3):
             #Level up worthy monsters
             self.level_up()
 
@@ -305,15 +299,15 @@ class Monster(object):
         self.hp += hp_up
 
         self.attack += int(
-            self.attack * 0.1 + random.choice(self.attack_modifier) * (level / 10))
+                self.attack * 0.1 + random.choice(self.attack_modifier) * (level / 10))
         self.defense += int(
-            self.defense * 0.1 + random.choice(self.defense_modifier) * (level / 10))
+                self.defense * 0.1 + random.choice(self.defense_modifier) * (level / 10))
         self.speed += int(
-            self.speed * 0.1 + random.choice(self.speed_modifier) * (level / 10))
+                self.speed * 0.1 + random.choice(self.speed_modifier) * (level / 10))
         self.special_attack += int(
-            self.special_attack * 0.1 + random.choice(self.special_attack_modifier) * (level / 10))
+                self.special_attack * 0.1 + random.choice(self.special_attack_modifier) * (level / 10))
         self.special_defense += int(
-            self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
+                self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
 
         # Display stats each time they are calculated
         """print("---- Level: %s ----" % self.level)
@@ -369,7 +363,7 @@ class Monster(object):
             count += 1
             self.set_stats()
 
-    def load_sprites(self, scale):
+    def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.
 
         :param scale: Amount to scale the sprite when loading the image.
@@ -387,13 +381,9 @@ class Monster(object):
         if len(self.sprites):
             return True
 
-        self.sprites["front"] = pygame.image.load(self.front_battle_sprite).convert_alpha()
-        self.sprites["back"] = pygame.image.load(self.back_battle_sprite).convert_alpha()
-        self.sprites["menu"] = pygame.image.load(self.menu_sprite).convert_alpha()
-
-        for key, value in self.sprites.items():
-            self.sprites[key] = pygame.transform.scale(value, (value.get_width() * scale,
-                                                               value.get_height() * scale))
+        self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
+        self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
+        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
 
         return False
 
@@ -417,7 +407,6 @@ class Technique(object):
     """
 
     def __init__(self, name=None, id=None):
-
         self.name = "Pound"
         self.tech_id = 0
         self.category = "attack"
@@ -429,7 +418,6 @@ class Technique(object):
         # If a name of the technique was provided, autoload it.
         if name or id:
             self.load(name, id)
-
 
     def load(self, name, id):
         """Loads and sets this technique's attributes from the technique
@@ -476,12 +464,11 @@ class Technique(object):
         directory = sorted(os.listdir(animation_dir))
         for image in directory:
             if self.animation and image.startswith(self.animation):
-                self.images.append(animation_dir + image)
+                self.images.append("animations/technique/" + image)
 
         # Load the sound effect for this technique
-        sfx_directory = prepare.BASEDIR + "resources/sounds/technique/"
+        sfx_directory = "sounds/technique/"
         self.sfx = sfx_directory + results["sfx"]
-
 
     def use(self, user, target):
         """Applies this technique's effects as defined in the "effect" column of the technique
@@ -496,8 +483,8 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: None
-        :returns: None
+        :rtype: bool
+        :returns: If technique was successful or not
 
         **Examples:**
 
@@ -505,32 +492,17 @@ class Technique(object):
         >>> bulbatux.learn(poison_tech)
         >>>
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
-
         """
-
         # Loop through all the effects of this technique and execute the effect's function.
+        # TODO: more robust API
+        successful = False
         for effect in self.effect:
-            getattr(self, str(effect))(user, target)
+            if getattr(self, str(effect))(user, target):
+                successful = True
 
+        return successful
 
-
-    def damage(self, user, target):
-        """This effect applies damage to a target monster. Damage calculations are based upon the
-        original Pokemon battle damage formula. This effect will be applied if "damage" is defined
-        in this technique's effect list.
-
-        :param user: The core.components.monster.Monster object that used this technique.
-        :param target: The core.components.monter.Monster object that we are using this
-            technique on.
-
-        :type user: core.components.monster.Monster
-        :type target: core.components.monster.Monster
-
-        :rtype: None
-        :returns: None
-
-        """
-
+    def calculate_damage(self, user, target):
         # Original Pokemon battle damage formula:
         # according to: http://www.math.miami.edu/~jam/azure/compendium/battdam.htm
         # ((2 * user.level / 7) * user.attack * self.power) / target.defense) / 50) +2) * stab_bonus) * type_modifiers/10) * random.randrange(217, 255))/255
@@ -538,19 +510,40 @@ class Technique(object):
         if self.category == "physical":
             level_modifier = ((2 * user.level) / 7.)
             attack_modifier = user.attack * self.power
-
-            damage = ((level_modifier * attack_modifier) / float(target.defense)) / 50.
-            target.current_hp -= int(damage)
+            return int(((level_modifier * attack_modifier) / float(target.defense)) / 50.)
 
         elif self.category == "special":
             level_modifier = ((2 * user.level) / 7.)
             attack_modifier = user.special_attack * self.power
+            return int(((level_modifier * attack_modifier) / float(target.special_defense)) / 50.)
 
-            damage = ((level_modifier * attack_modifier) / float(target.special_defense)) / 50.
-            target.current_hp -= int(damage)
+        elif self.category == "poison":
+            target.status_turn += 1
+            if target.status_turn > 1:
+                return int(self.power)
+            return 0
 
-        print(self.name, "Damage:", int(damage))
+        return 0
 
+    def damage(self, user, target):
+        """This effect applies damage to a target monster. Damage calculations are based upon the
+        original Pokemon battle damage formula. This effect will be applied if "damage" is defined
+        in this technique's effect list.
+
+        :param user: The core.components.monster.Monster object that used this technique.
+        :param target: The core.components.monster.Monster object that we are using this
+            technique on.
+
+        :type user: core.components.monster.Monster
+        :type target: core.components.monster.Monster
+
+        :rtype: bool
+        """
+        damage = self.calculate_damage(user, target)
+        if damage:
+            target.current_hp -= damage
+            return True
+        return False
 
     def poison(self, user, target):
         """This effect has a chance to apply the poison status effect to a target monster.
@@ -563,42 +556,51 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: None
-        :returns: None
-
+        :rtype: bool
         """
+        already_poisoned = any(t for t in target.status if t.name == "Poison")
 
-        if random.randrange(1,2) == 1:
-            target.status = "Poisoned"
-            if target.status != 'Poisoned':
-                target.status_turn = 0
+        if not already_poisoned and random.randrange(1, 2) == 1:
+            poison = Technique("Poison")
+            target.status.append(poison)
+            target.status_turn = 0
             target.status_damage = self.power
+            return True
 
-if __name__ == "__main__":
-    mytuxemon = Monster()
-    mytuxemon.load_from_db("Bulbatux")
-    mytuxemon.level = 5
-    othertux = Monster()
-    othertux.load_from_db("Bulbatux")
-    othertux.level = 5
+        return False
 
-    pound_tech = Technique("Pound")
-    poison_tech = Technique("Poison Sting")
+    def faint(self, user, target):
+        """ Faint this monster.  Typically, called by combat to faint self, not others.
 
-    pprint.pprint(poison_tech.__dict__)
+        :param user: The core.components.monster.Monster object that used this technique.
+        :param target: The core.components.monster.Monster object that we are using this
+            technique on.
 
-    #pound_tech.load("Pound")
+        :type user: core.components.monster.Monster
+        :type target: core.components.monster.Monster
 
-    mytuxemon.learn(pound_tech)
-    othertux.learn(poison_tech)
+        :rtype: bool
+        """
+        already_fainted = any(t for t in target.status if t.name == "Faint")
 
+        if already_fainted:
+            raise RuntimeError
+        else:
+            status = Technique("Faint")
+            target.status.append(status)
+            return True
 
-    mytuxemon.moves[0].use(user=mytuxemon, target=othertux)
-    othertux.moves[0].use(user=othertux, target=mytuxemon)
+    def swap(self, user, target):
+        """ Used just for combat: change order of monsters
 
-    print("")
-    print("MyTux")
-    pprint.pprint(mytuxemon.__dict__)
-    print("")
-    print("OtherTux")
-    pprint.pprint(othertux.__dict__)
+        Position of monster in party will be changed
+
+        :param user: core.components.monster.Monster
+        :param target: core.components.monster.Monster
+        :returns: None
+        """
+        # TODO: relies on setting "other" attribute.  maybe clear it up later
+        index = user.monsters.index(self.other)
+        user.monsters[index] = target
+        user.monsters[0] = self.other
+        return True

@@ -32,7 +32,6 @@ from core import prepare
 from core import tools
 from core.components import item
 from core.components import monster
-from core.components.map import Map
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -95,7 +94,8 @@ class Player(object):
             world.global_x = player.position[0] - (position_x * player.tile_size[0])
             world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
-            ### THIS NEEDS TO BE MOVED IN ITS OWN FUNCTION AND IS DUPLICATED IN THE WORLD STATE ###
+            ### THIS NEEDS TO BE MOVED IN ITS OWN FUNCTION AND IS DUPLICATED IN THE World STATE ###
+            from core.components.map import Map
             if prepare.BASEDIR + "resources/maps/" + mapname != world.current_map.filename:
                 world.current_map = Map(
                     prepare.BASEDIR + "resources/maps/" + mapname)

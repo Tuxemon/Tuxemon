@@ -29,18 +29,15 @@
 #
 #
 
-import logging
 import json
-import pygame
+import logging
 import os
-import random
-import sys
 
-from . import player
 from core import prepare
+
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("core.db successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
 class JSONDatabase(object):
@@ -102,6 +99,7 @@ class JSONDatabase(object):
             if item['id'] not in self.database[directory]:
                 self.database[directory][item['id']] = item
             else:
+                print(item, json)
                 raise Exception("Error: Item with this id was already loaded.")
             file.close()
 
@@ -119,7 +117,6 @@ class JSONDatabase(object):
         :returns: A dictionary from the resulting lookup.
 
         """
-
         if name in self.database[table]:
             return self.database[table][name]
 
@@ -162,23 +159,4 @@ class JSONDatabase(object):
                    'sprite_menu1': self.database['monster'][monster_id]['sprites']['menu1']}
 
         return results
-
-
-
-if __name__ == "__main__":
-
-    import pprint
-
-    # SQLite3 way
-    #monsters = Database()
-    #monsters.load("resources/db/monster.db")
-    #tuxemon = monsters.lookup("Bulbatux")
-    #print(tuxemon)
-
-    # JSON way
-    db = JSONDatabase()
-    db.load()
-
-    pprint.pprint(db.lookup("Bulbatux"))
-    #pprint.pprint(db.lookup(1))
 

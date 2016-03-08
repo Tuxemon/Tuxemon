@@ -55,10 +55,10 @@ class Combat(object):
 
         """
         world = game.current_state
-        if (game.state_name == "COMBAT"
+        if (game.state_name == "CombatState"
             or world.battle_transition_in_progress
             or world.start_battle_transition
-            or world.next == "COMBAT"):
+            or world.next == "CombatState"):
             return True
         else:
             return False

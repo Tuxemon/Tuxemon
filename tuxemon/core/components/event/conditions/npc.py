@@ -88,7 +88,7 @@ class Npc(object):
 
         """
         # Loop through the NPC list and see if the name matches any in the list
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 

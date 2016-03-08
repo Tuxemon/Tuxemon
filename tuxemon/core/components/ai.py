@@ -30,22 +30,21 @@
 #
 
 import logging
-import pprint
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("core.ai successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
 # Class definition for an AI model.
 class AI(object):
-    """A class for an AI model object. This object can be used to make combat decisions during 
+    """A class for an AI model object. This object can be used to make combat decisions during
     battle.
-    
+
     """
     def __init__(self):
         self.name = "Idiot"			# This is the player's name to be used in dialog
-        
+
 
     def make_decision(self, npc, opponent):
         """Examples:
@@ -78,9 +77,9 @@ class AI(object):
 
 
 class PseudoAI(object):
-    """A class to provide networking input to an opponents Npc object. This object can be used to push combat decisions during 
+    """A class to provide networking input to an opponents Npc object. This object can be used to push combat decisions during
     battle from one client to another.
-    
+
     """
     def __init__(self, npc):
         self.name = npc.name            # This is the player's name to be used in dialog

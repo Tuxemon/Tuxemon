@@ -40,7 +40,7 @@ from core.components import plugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("components.event successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 # Set up action and condition objects
 condition_fields = [
@@ -131,15 +131,14 @@ class EventEngine(object):
                 self.state = "running"
                 return
 
-            # Get the keys pressed from the game.
-            events = game.key_events
+    def process_event(self, event):
+        # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
+        if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
+            self.state = "running"
+            self.button = None
+            return None
 
-            # Loop through each event
-            for event in events:
-                # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
-                if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
-                    self.state = "running"
-                    self.button = None
+        return event
 
     def execute_action(self, action_list, game):
         """Executes a particular action in a list of actions.

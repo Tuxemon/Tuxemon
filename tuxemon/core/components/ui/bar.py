@@ -37,7 +37,7 @@ from ... import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("components.ui.bar successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
 class Bar(UserInterface):
@@ -45,8 +45,7 @@ class Bar(UserInterface):
 
     :param size: The [x, y] size of the bar.
     :param position: The [x, y] position to draw the UI element.
-    :param screen: The pygame surface to draw the element on.
-    :param color: The (r,g,b) color value of the bar.
+    :param _color: The (r,g,b) _color value of the bar.
     :param value: Percentage of the bar filled.
 
     :type image: List
@@ -56,35 +55,24 @@ class Bar(UserInterface):
     :type value: Float
 
     """
-    def __init__(self, size, position, screen, color=(112, 248, 168), value=1.0, scale=True):
-        if scale:
-            self.surface = pygame.Surface((size[0] * prepare.SCALE, size[1] * prepare.SCALE))
-        else:
-            self.surface = pygame.Surface((size[0], size[1]))
+    def __init__(self, position, animation_speed=0.2):
+        color = 0, 255, 0
+        self.surface = pygame.Surface((100, 3))
         self.surface.fill(color)
-        UserInterface.__init__(self, self.surface, position, screen, scale=True)
+        UserInterface.__init__(self, self.surface, position)
         self.width_original = self.surface.get_width()
         self.height_original = self.surface.get_height()
-        self.position = position
-        self.screen = screen
         self.color = color
-        self.state = ""
         self.visible = True
+        self.value = 1
 
-        self.width = self.surface.get_width()
-        self.height = self.surface.get_height()
-        self.value = 1.1
-        self.value = value
-
-
-    def draw(self):
+    def draw(self, surface):
         # Don't draw the surface if our width is less than 1 pixel.
-        if int(self.width * (self.value * 0.01)) <= 0:
+        if int(self.rect.width * (self.value * 0.01)) <= 0:
             return
 
         if self.visible and self.value > 0:
-            self.animation.blit(self.screen, self.position)
-
+            self.animation.blit(surface, self.rect)
 
     def __setattr__(self, key, value):
         """Detects changes to the bar class' attributes.
@@ -97,13 +85,12 @@ class Bar(UserInterface):
 
         """
         #print("Changing", key, "to", value)
-
         # If our value changes, scale the bar based on our value.
         if key == "value":
             if value:
-                width = int(self.width * (value * 0.01))
+                width = int(self.rect.width * (value * 0.01))
                 #print("Scaling bar to size: %i * (%f * 0.01) = %i" % (self.width, value, width))
-                height = self.height
+                height = self.rect.height
                 if width <= 0:
                     width = 1
                 self.animation.scale((width, height))

@@ -30,8 +30,7 @@
 #
 
 from pygame.locals import *
-from core import prepare
-import pygame, string
+
 
 class ConfigError(KeyError): pass
 
@@ -49,9 +48,9 @@ class Config:
 class Input:
     """ A text input for pygame apps """
     def __init__(self, **options):
-        """ Options: x, y, font, color, restricted, maxlength, prompt """
+        """ Options: x, y, font, _color, restricted, maxlength, prompt """
         self.options = Config(options, ['x', '0'], ['y', '0'], ['font', 'pygame.font.Font(prepare.BASEDIR + "resources/font/PressStart2P.ttf", 14)'],
-                              ['color', '(0,0,0)'], ['restricted', '\'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\\\'()*+,-./:;<=>?@[\]^_`{|}~\''],
+                              ['_color', '(0,0,0)'], ['restricted', '\'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\\\'()*+,-./:;<=>?@[\]^_`{|}~\''],
                               ['maxlength', '-1'], ['prompt', '\'\''])
         self.x = self.options.x; self.y = self.options.y
         self.font = self.options.font

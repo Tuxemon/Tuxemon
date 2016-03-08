@@ -1,18 +1,18 @@
 {
-    "id": 8, 
+    "id": 8,
 
-    "attack_base":            60, 
-    "defense_base":           7, 
-    "hp_base":                50, 
-    "special_attack_base":    6, 
-    "special_defense_base":   10, 
-    "speed_base":             7, 
+    "attack_base":            60,
+    "defense_base":           7,
+    "hp_base":                50,
+    "special_attack_base":    6,
+    "special_defense_base":   10,
+    "speed_base":             7,
 
     "attack_mod":             1,
     "defense_mod":            1,
     "hp_mod":                 1,
     "special_attack_mod":     1,
-    "special_defense_mod":    1, 
+    "special_defense_mod":    1,
     "speed_mod":              1,
 
     "exp_give_mod":           3,
@@ -20,26 +20,26 @@
 
     "moveset": [
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 1,
             "technique": "Pound"
-        }, 
+        },
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 2,
             "technique": "Poison Sting"
         }
-    ], 
-    "name": "Eyenemy", 
+    ],
+    "name": "Eyenemy",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/eyenemy-front.png", 
-        "battle2": "resources/gfx/sprites/battle/eyenemy-back.png", 
-        "menu1": "resources/gfx/sprites/battle/eyenemy-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/eyenemy-menu02.png"
-    }, 
+        "battle1": "gfx/sprites/battle/eyenemy-front.png",
+        "battle2": "gfx/sprites/battle/eyenemy-back.png",
+        "menu1": "gfx/sprites/battle/eyenemy-menu01.png",
+        "menu2": "gfx/sprites/battle/eyenemy-menu02.png"
+    },
     "types": [
         "wood",
         "poison"
-    ], 
+    ],
     "weight": 25
 }

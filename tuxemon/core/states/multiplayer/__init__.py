@@ -36,14 +36,14 @@ from core.states import world
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.start successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
-class HEADLESS(world.WORLD):
+class HeadlessServerState(world.WorldState):
     """ The state responsible for the headless server world state.
     """
 
-    def startup(self, params=None):
+    def startup(self, **kwargs):
         # Set the native tile size so we know how much to scale
         self.tile_size = prepare.TILE_SIZE
 
@@ -56,7 +56,6 @@ class HEADLESS(world.WORLD):
         # Native resolution is similar to the old gameboy resolution. This is
         # used for scaling.
         self.native_resolution = prepare.NATIVE_RESOLUTION
-        self.scale = prepare.SCALE
 
         # Set the tiles and mapsize variables
         self.tiles = []

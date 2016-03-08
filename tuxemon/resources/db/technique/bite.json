@@ -4,10 +4,10 @@
     "category": "physical",
     "effects": [
         "damage"
-    ], 
-    "id": 4, 
-    "name": "Bite", 
-    "power": 50, 
+    ],
+    "id": 4,
+    "name": "Bite",
+    "power": 50,
     "types": [
         "Normal"
     ]

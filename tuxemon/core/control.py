@@ -1,25 +1,21 @@
 from __future__ import absolute_import
+from __future__ import division
+
 import time
 
 import pygame as pg
 
 from . import prepare
-from . import tools
-from .components import ai
 from .components import cli
 from .components import controller
-from .components import db
 from .components import event
-from .components import item
-from .components import map as maps
-from .components import monster
 from .components import networking
-from .components import player
-from .components import pyganim
 from .components import rumble
-#from .components.combat import CombatEngine, CombatRouter
+from .platform import android
+
+# from .components.combat import CombatEngine, CombatRouter
 from .state import StateManager
-from .tools import android, logger
+from .tools import logger
 
 
 class Control(StateManager):
@@ -44,24 +40,32 @@ class Control(StateManager):
         self.fps = 60.0
         self.show_fps = True
         self.current_time = 0.0
-        self.keys = pg.key.get_pressed()
-        self.key_events = []
         self.ishost = False
         self.isclient = False
 
+        # somehow this value is being patched somewhere
+        self.events = list()
+
         # TODO: move out to state manager
         self.package = "core.states"
-        self.state_dict = dict()
-        self.state_stack = list()
-        self._current_state_requires_resume = True
+        self._state_queue = list()
+        self._state_dict = dict()
+        self._state_stack = list()
+        self._state_resume_set = set()
+        self._remove_queue = list()
+        self._held_keys = list()
+
+        # movie creation
+        self.frame_number = 0
+        self.save_to_disk = False
 
         # Set up our networking for multiplayer.
         self.server = networking.TuxemonServer(self)
         self.client = networking.TuxemonClient(self)
 
         # Set up our combat engine and router.
-#        self.combat_engine = CombatEngine(self)
-#        self.combat_router = CombatRouter(self, self.combat_engine)
+        #        self.combat_engine = CombatEngine(self)
+        #        self.combat_router = CombatRouter(self, self.combat_engine)
 
         # Set up our game's configuration from the prepare module.
         self.config = prepare.CONFIG
@@ -72,7 +76,6 @@ class Control(StateManager):
         self.event_conditions = {}
         self.event_actions = {}
         self.event_persist = {}
-        self.events = []
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = {"status": "stopped", "song": None}
@@ -83,49 +86,51 @@ class Control(StateManager):
         # Create these Pygame event objects to simulate KEYDOWN and KEYUP
         # events for all the directional keys
         self.keyboard_events = {}
+
         self.keyboard_events["KEYDOWN"] = {}
         self.keyboard_events["KEYDOWN"]["up"] = pg.event.Event(
-            pg.KEYDOWN,
-            {'scancode': 111, 'key': 273, 'unicode': u'', 'mod': 4096})
+                pg.KEYDOWN,
+                {'scancode': 111, 'key': 273, 'unicode': u'', 'mod': 4096})
         self.keyboard_events["KEYDOWN"]["down"] = pg.event.Event(
-            pg.KEYDOWN,
-            {'scancode': 116, 'key': 274, 'unicode': u'', 'mod': 4096})
+                pg.KEYDOWN,
+                {'scancode': 116, 'key': 274, 'unicode': u'', 'mod': 4096})
         self.keyboard_events["KEYDOWN"]["left"] = pg.event.Event(
-            pg.KEYDOWN,
-            {'scancode': 113, 'key': 276, 'unicode': u'', 'mod': 4096})
+                pg.KEYDOWN,
+                {'scancode': 113, 'key': 276, 'unicode': u'', 'mod': 4096})
         self.keyboard_events["KEYDOWN"]["right"] = pg.event.Event(
-            pg.KEYDOWN,
-            {'scancode': 114, 'key': 275, 'unicode': u'', 'mod': 4096})
+                pg.KEYDOWN,
+                {'scancode': 114, 'key': 275, 'unicode': u'', 'mod': 4096})
         self.keyboard_events["KEYDOWN"]["enter"] = pg.event.Event(
-            pg.KEYDOWN,
-            {'scancode': 36, 'key': 13, 'unicode': u'\r', 'mod': 4096})
+                pg.KEYDOWN,
+                {'scancode': 36, 'key': 13, 'unicode': u'\r', 'mod': 4096})
         self.keyboard_events["KEYDOWN"]["escape"] = pg.event.Event(
-            pg.KEYDOWN,
-            {'scancode': 9, 'key': 27, 'unicode': u'\x1b', 'mod': 4096})
+                pg.KEYDOWN,
+                {'scancode': 9, 'key': 27, 'unicode': u'\x1b', 'mod': 4096})
+
         self.keyboard_events["KEYUP"] = {}
         self.keyboard_events["KEYUP"]["up"] = pg.event.Event(
-            pg.KEYUP,
-            {'scancode': 111, 'key': 273, 'mod': 4096})
+                pg.KEYUP,
+                {'scancode': 111, 'key': 273, 'mod': 4096})
         self.keyboard_events["KEYUP"]["down"] = pg.event.Event(
-            pg.KEYUP,
-            {'scancode': 116, 'key': 274, 'mod': 4096})
+                pg.KEYUP,
+                {'scancode': 116, 'key': 274, 'mod': 4096})
         self.keyboard_events["KEYUP"]["left"] = pg.event.Event(
-            pg.KEYUP,
-            {'scancode': 113, 'key': 276, 'mod': 4096})
+                pg.KEYUP,
+                {'scancode': 113, 'key': 276, 'mod': 4096})
         self.keyboard_events["KEYUP"]["right"] = pg.event.Event(
-            pg.KEYUP,
-            {'scancode': 114, 'key': 275, 'mod': 4096})
+                pg.KEYUP,
+                {'scancode': 114, 'key': 275, 'mod': 4096})
         self.keyboard_events["KEYUP"]["enter"] = pg.event.Event(
-            pg.KEYUP,
-            {'scancode': 36, 'key': 13, 'mod': 4096})
+                pg.KEYUP,
+                {'scancode': 36, 'key': 13, 'mod': 4096})
         self.keyboard_events["KEYUP"]["escape"] = pg.event.Event(
-            pg.KEYUP,
-            {'scancode': 9, 'key': 27, 'mod': 4096})
+                pg.KEYUP,
+                {'scancode': 9, 'key': 27, 'mod': 4096})
 
         # Set up the command line. This provides a full python shell for
         # troubleshooting. You can view and manipulate any variables in
         # the game.
-        self.exit = False   # Allow exit from the CLI
+        self.exit = False  # Allow exit from the CLI
         if self.config.cli:
             self.cli = cli.CommandLine(self)
 
@@ -174,63 +179,165 @@ class Control(StateManager):
         0.031
 
         """
+        # TODO: phase out use of this attribute
         self.current_time = pg.time.get_ticks()
-        current_state = self.current_state  # deref here is required in cases where state changes during update
 
-        if self._current_state_requires_resume:
-            self._current_state_requires_resume = False
-            current_state.resume()
+        # only the top most state gets updates
+        state = self.current_state
 
-        current_state.update(dt)
-        current_state.draw(self.screen)
+        # handle case where the top state has been dismissed
+        if state is None:
+            self.exit = True
+
+        if state in self._state_resume_set:
+            state.resume()
+            self._state_resume_set.remove(state)
+
+        # iterate through layers and determine optimal drawing strategy
+        # this is a big performance boost for states covering other states
+        # force_draw is used for transitions, mostly
+
+        to_draw = list()
+        full_screen = self.screen.get_rect()
+        for state in self.active_states:
+            state.update(dt)
+            to_draw.append(state)
+            if state.rect == full_screen and not state.force_draw:
+                break
+
+        # draw from bottom up for proper layering
+        for state in reversed(to_draw):
+            # might not be in draw if it has been removed for some reason
+            if state in self.active_states:
+                state.draw(self.screen)
 
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
 
-    def event_loop(self):
-        """Process all events and pass them down to current State.  The F5 key
-        globally turns on/off the display of FPS in the caption
+    def gather_events(self):
+        """ Collect  all events and iterate them.  No logic should be processed here.
 
-        :param None:
-
-        :rtype: None
-        :returns: None
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
 
         """
-        # Loop through our pygame events and pass them to the current state.
-        self.key_events = []
-        self.keys = list(pg.key.get_pressed())
-        for event in pg.event.get():
-            self.key_events.append(event)
-            if event.type == pg.QUIT:
+        for pg_event in pg.event.get():
+            # get system events
+            for game_event in self.get_system_event(pg_event):
+                yield game_event
+
+            # get keyboard events
+            for game_event in self.get_keyboard_event(pg_event):
+                yield game_event
+
+            # Loop through our controller overlay events
+            if self.config.controller_overlay == "1":
+                self.mouse_pos = pg.mouse.get_pos()
+                for game_event in self.get_controller_event(pg_event):
+                    yield game_event
+
+            # Loop through our joystick events
+            for game_event in self.get_joystick_event(pg_event):
+                yield game_event
+
+    def process_events(self, events):
+        """ Process all events for this frame.  This is WIP.
+
+        Events are first sent to the active state.
+        States can choose to swallow the events or return them.
+        If they are swallowed, no other state nor the event engine will get an event.
+        If they are returned, they will be passed to the next state.
+        Eventually, if all states have returned the event, it will go to the event engine.
+        The event engine also can swallow or return the event.
+        All unused events will be added to Control.key_events each frame.
+        Conditions in the the event system can then check that list.
+
+        States can "swallow" events by simply returning None from State.process_event
+
+        :param events: Sequence of pygame events
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
+
+        """
+        for game_event in events:
+            if game_event.type == pg.QUIT:
+                # TODO: API
                 self.done = True
                 self.exit = True
 
-            elif event.type == pg.KEYDOWN:
-                self.toggle_show_fps(event.key)
+            # keep track of held keys
+            # when the state changes, keyup events will be sent to reset the controls
+            elif game_event.type == pg.KEYDOWN:
+                self._held_keys.append(game_event)
+                self.toggle_show_fps(game_event.key)
 
-            # Loop through our controller overlay events and pass them to the current state.
-            if self.config.controller_overlay == "1":
-                self.mouse_pos = pg.mouse.get_pos()
-                contr_events = self.controller_event_loop(event)
-                if contr_events:
-                    for contr_event in contr_events:
-                        self.key_events.append(contr_event)
-                        self.current_state.get_event(contr_event)
+            elif game_event.type == pg.KEYUP:
+                # this will fail when a keypress changes state.
+                match = [i for i in self._held_keys if i.key == game_event.key]
+                if match:
+                    for stale_event in match:
+                        self._held_keys.remove(stale_event)
+                else:
+                    # prevent keyup events from leaking to next state
+                    continue
 
-            # Loop through our joystick events and pass them to the current state.
-            joy_events = self.joystick_event_loop(event)
-            if joy_events:
-                for joy_event in joy_events:
-                    self.key_events.append(joy_event)
-                    self.current_state.get_event(joy_event)
+            if game_event:
+                game_event = self._send_event(game_event)
 
-            self.current_state.get_event(event)
+                if game_event:
+                    yield game_event
 
-        # Remove the remaining events after they have been processed
-        pg.event.pump()
+    def _send_event(self, game_event):
+        """ Send event down processing chain
 
-    def controller_event_loop(self, event):
+        Probably a poorly named method.  Beginning from top state,
+        process event, then as long as a new event is returned from
+        the state, the event will be processed by the next active
+        state in the stack.
+
+        The final destination for the event will be the event engine.
+
+        :returns: Game Event
+        :rtype: pygame.event.Event
+
+        """
+        for state in self.active_states:
+            game_event = state.process_event(game_event)
+            if game_event is None:
+                break
+        else:
+            game_event = self.event_engine.process_event(game_event)
+
+        return game_event
+
+    @staticmethod
+    def get_system_event(game_event):
+        """ Filter system events
+
+        :param game_event: pygame.event.Event
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
+
+        """
+        if game_event.type in [pg.QUIT]:
+            yield game_event
+
+    @staticmethod
+    def get_keyboard_event(game_event):
+        """ Translate a pygame event to an internal game event
+
+        This is a transitional class.  Eventually a more robust
+        events class will be used.
+
+        :param game_event: pygame.event.Event
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
+
+        """
+        if game_event.type in [pg.KEYUP, pg.KEYDOWN]:
+            yield game_event
+
+    def get_controller_event(self, event):
         """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
         events for compatibility. This is primarily used for the mobile version
@@ -239,43 +346,36 @@ class Control(StateManager):
         :param event: A Pygame event object from pg.event.get()
         :type event: pygame.event.Event
 
-        :rtype: None
-        :returns: None
+        :returns: List of events
+        :rtype: List
 
         """
         events = []
-        if (event.type == pg.MOUSEBUTTONDOWN
-            and event.button == 1):
+        if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
 
             if self.controller.dpad["rect"]["up"].collidepoint(self.mouse_pos):
                 events.append(
-                    self.keyboard_events["KEYDOWN"]["up"])
-                self.keys[pg.K_UP] = 1
+                        self.keyboard_events["KEYDOWN"]["up"])
                 self.overlay_pressed["up"] = True
             if self.controller.dpad["rect"]["down"].collidepoint(self.mouse_pos):
                 events.append(
-                    self.keyboard_events["KEYDOWN"]["down"])
-                self.keys[pg.K_DOWN] = 1
+                        self.keyboard_events["KEYDOWN"]["down"])
                 self.overlay_pressed["down"] = True
             if self.controller.dpad["rect"]["left"].collidepoint(self.mouse_pos):
                 events.append(
-                    self.keyboard_events["KEYDOWN"]["left"])
-                self.keys[pg.K_LEFT] = 1
+                        self.keyboard_events["KEYDOWN"]["left"])
                 self.overlay_pressed["left"] = True
             if self.controller.dpad["rect"]["right"].collidepoint(self.mouse_pos):
                 events.append(
-                    self.keyboard_events["KEYDOWN"]["right"])
-                self.keys[pg.K_RIGHT] = 1
+                        self.keyboard_events["KEYDOWN"]["right"])
                 self.overlay_pressed["right"] = True
             if self.controller.a_button["rect"].collidepoint(self.mouse_pos):
                 events.append(
-                    self.keyboard_events["KEYDOWN"]["enter"])
-                self.keys[pg.K_RETURN] = 1
+                        self.keyboard_events["KEYDOWN"]["enter"])
                 self.overlay_pressed["a"] = True
             if self.controller.b_button["rect"].collidepoint(self.mouse_pos):
                 events.append(
-                    self.keyboard_events["KEYDOWN"]["escape"])
-                self.keys[pg.K_ESCAPE] = 1
+                        self.keyboard_events["KEYDOWN"]["escape"])
                 self.overlay_pressed["b"] = True
 
         if (event.type == pg.MOUSEBUTTONUP) and (event.button == 1):
@@ -294,14 +394,13 @@ class Control(StateManager):
             if self.overlay_pressed["a"]:
                 events.append(self.keyboard_events["KEYUP"]["enter"])
                 self.overlay_pressed["a"] = False
-                self.keys[pg.K_RETURN] = 0
             if self.overlay_pressed["b"]:
                 events.append(self.keyboard_events["KEYUP"]["escape"])
                 self.overlay_pressed["b"] = False
 
         return events
 
-    def joystick_event_loop(self, event):
+    def get_joystick_event(self, event):
         """Process all events from a joystick and pass them down to
         current State. All joystick events are converted to keyboard
         events for compatibility.
@@ -309,14 +408,16 @@ class Control(StateManager):
         :param event: A Pygame event object from pg.event.get()
         :type event: pygame.event.Event
 
-        :rtype: None
-        :returns: None
+        :rtype: List
+        :returns: List of events
 
         """
 
         # Handle joystick events if we detected one
         events = []
-        if len(prepare.JOYSTICKS) > 0:
+        append = events.append
+        kbd_event = self.keyboard_events
+        if prepare.JOYSTICKS:
 
             # Xbox 360 Controller buttons:
             # A = 0    Start = 7    D-Up = 13
@@ -326,89 +427,58 @@ class Control(StateManager):
             #
             if event.type == pg.JOYBUTTONDOWN:
                 if event.button == 0:
-                    events.append(
-                        self.keyboard_events["KEYDOWN"]["enter"])
-                    self.keys[pg.K_RETURN] = 1
-                if (event.button == 1
-                    or event.button == 7 or event.button == 6):
-                    events.append(
-                        self.keyboard_events["KEYDOWN"]["escape"])
-                    self.keys[pg.K_ESCAPE] = 1
+                    append(kbd_event["KEYDOWN"]["enter"])
+                if event.button == 1 or event.button == 7 or event.button == 6:
+                    append(kbd_event["KEYDOWN"]["escape"])
 
                 if event.button == 13:
-                    events.append(
-                        self.keyboard_events["KEYDOWN"]["up"])
-                    self.keys[pg.K_UP] = 1
+                    append(kbd_event["KEYDOWN"]["up"])
                 if event.button == 14:
-                    events.append(
-                        self.keyboard_events["KEYDOWN"]["down"])
-                    self.keys[pg.K_DOWN] = 1
+                    append(kbd_event["KEYDOWN"]["down"])
                 if event.button == 11:
-                    events.append(
-                        self.keyboard_events["KEYDOWN"]["left"])
-                    self.keys[pg.K_LEFT] = 1
+                    append(kbd_event["KEYDOWN"]["left"])
                 if event.button == 12:
-                    events.append(
-                        self.keyboard_events["KEYDOWN"]["right"])
-                    self.keys[pg.K_RIGHT] = 1
+                    append(kbd_event["KEYDOWN"]["right"])
 
             elif event.type == pg.JOYBUTTONUP:
                 if event.button == 0:
-                    events.append(
-                        self.keyboard_events["KEYUP"]["enter"])
-                if (event.button == 1
-                    or event.button == 7 or event.button == 6):
-                    events.append(
-                        self.keyboard_events["KEYUP"]["escape"])
+                    append(kbd_event["KEYUP"]["enter"])
+                if event.button == 1 or event.button == 7 or event.button == 6:
+                    append(kbd_event["KEYUP"]["escape"])
 
                 if event.button == 13:
-                    events.append(self.keyboard_events["KEYUP"]["up"])
+                    append(kbd_event["KEYUP"]["up"])
                 if event.button == 14:
-                    events.append(
-                        self.keyboard_events["KEYUP"]["down"])
+                    append(kbd_event["KEYUP"]["down"])
                 if event.button == 11:
-                    events.append(
-                        self.keyboard_events["KEYUP"]["left"])
+                    append(kbd_event["KEYUP"]["left"])
                 if event.button == 12:
-                    events.append(
-                        self.keyboard_events["KEYUP"]["right"])
+                    append(kbd_event["KEYUP"]["right"])
 
             # Handle left joystick movement as well.
             # Axis 1 - up = negative, down = positive
             # Axis 0 - left = negative, right = positive
-            if event.type == pg.JOYAXISMOTION and False:    # Disabled until input manager is implemented
+            if event.type == pg.JOYAXISMOTION and False:  # Disabled until input manager is implemented
 
                 # Handle the left/right axis
                 if event.axis == 0:
                     if event.value >= 0.5:
-                        events.append(
-                            self.keyboard_events["KEYDOWN"]["right"])
-                        self.keys[pg.K_RIGHT] = 1
+                        append(kbd_event["KEYDOWN"]["right"])
                     elif event.value <= -0.5:
-                        events.append(
-                            self.keyboard_events["KEYDOWN"]["left"])
-                        self.keys[pg.K_LEFT] = 1
+                        append(kbd_event["KEYDOWN"]["left"])
                     else:
-                        events.append(
-                            self.keyboard_events["KEYUP"]["left"])
-                        events.append(
-                            self.keyboard_events["KEYUP"]["right"])
+                        append(kbd_event["KEYUP"]["left"])
+                        append(kbd_event["KEYUP"]["right"])
 
                 # Handle the up/down axis
                 if event.axis == 1:
                     if event.value >= 0.5:
-                        events.append(
-                            self.keyboard_events["KEYDOWN"]["down"])
-                        self.keys[pg.K_DOWN] = 1
+                        append(kbd_event["KEYDOWN"]["down"])
                     elif event.value <= -0.5:
-                        events.append(
-                            self.keyboard_events["KEYDOWN"]["up"])
-                        self.keys[pg.K_LEFT] = 1
+                        append(kbd_event["KEYDOWN"]["up"])
                     else:
-                        events.append(
-                            self.keyboard_events["KEYUP"]["up"])
-                        events.append(
-                            self.keyboard_events["KEYUP"]["down"])
+                        append(kbd_event["KEYUP"]["up"])
+                        append(kbd_event["KEYUP"]["down"])
 
         return events
 
@@ -434,8 +504,6 @@ class Control(StateManager):
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
 
-        :param None:
-
         :rtype: None
         :returns: None
 
@@ -449,19 +517,28 @@ class Control(StateManager):
         amount of time that has passed each frame, check game conditions,
         and draw the game to the screen.
 
-        :param None:
-
         :rtype: None
         :returns: None
 
         """
         # Android-specific check for pause
-        if android:
-            if android.check_pause():
-                android.wait_for_resume()
+        if android and android.check_pause():
+            android.wait_for_resume()
 
         # Get the amount of time that has passed since the last frame.
+
+        # DEBUG:
+        # BUG: the following line is required for low resolution
+        # due to integer truncation, low scale movement will never work
+        # and a clock, not limited by fps will never work
         time_delta = self.clock.tick(self.fps) / 1000.0
+
+        # cannot run clock unlimited as movement is broken at low resolution
+        # time_delta = self.clock.tick() / 1000.0
+
+        if self.save_to_disk:
+            time_delta = 1 / self.fps
+
         self.time_passed_seconds = time_delta
 
         # Update our networking.
@@ -475,10 +552,16 @@ class Control(StateManager):
         if self.server.listening:
             self.server.update()
 
-        # Run our event engine which will check to see if game conditions.
-        # are met and run an action associated with that condition.
-        self.event_loop()
-#        self.combat_router.update()
+        # get all the input waiting for use
+        events = self.gather_events()
+
+        # process the events and collect the unused ones
+        events = self.process_events(events)
+
+        # this attribute is used for the event engine __only__
+        self.key_events = list(events)
+
+        # self.combat_router.update()
 
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
@@ -488,114 +571,66 @@ class Control(StateManager):
 
         # Draw and update our display
         self.update(time_delta)
-        pg.display.update()
+        pg.display.flip()
 
-        if self.show_fps:
-            fps = self.clock.get_fps()
-            with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
-            pg.display.set_caption(with_fps)
+        if self.save_to_disk:
+            filename = "snapshot%05d.tga" % self.frame_number
+            self.frame_number += 1
+            pg.image.save(self.screen, filename)
+
+        # if self.show_fps:
+        #     fps = self.clock.get_fps()
+        #     with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
+        #     pg.display.set_caption(with_fps)
+
         if self.exit:
             self.done = True
 
-    def get_menu_event(self, menu, event):
-        """Run this function to process pygame basic menu events (such as keypresses/mouse clicks -
-        up, down, enter, escape).
-
-        :param menu: -- The active menu.
-        :param event: -- A single pygame event from pygame.event.get()
-
-        :type menu: core.components.menu.Menu()
-        :type events: List
-
-        :rtype: None
-        :returns: None
-
-        """
-        # use the default sound if a custom sound is nt specified.
-        try:
-            if menu.menu_select_sound:
-                pass
-        except AttributeError:
-            menu.menu_select_sound = pg.mixer.Sound(
-                prepare.BASEDIR + "resources/sounds/interface/50561__broumbroum__sf3-sfx-menu-select.ogg")
-
-        if len(menu.menu_items) > 0:
-            menu.line_spacing = (menu.size_y / len(menu.menu_items)) - menu.font_size
-
-        if event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
-            if menu.previous_menu:
-                menu.menu_select_sound.play()
-                menu.previous_menu.interactable = True
-                menu.previous_menu.visible = True
-                menu.interactable = False
-                menu.visible = False
-            else:
-                menu.menu_select_sound.play()
-                self.pop_state()
-
-        if event.type == pg.KEYUP and event.key == pg.K_DOWN:
-            menu.menu_select_sound.play()
-            menu.selected_menu_item += 1
-            if menu.selected_menu_item > len(menu.menu_items) - 1:
-                menu.selected_menu_item = 0
-
-        if event.type == pg.KEYUP and event.key == pg.K_UP:
-            menu.menu_select_sound.play()
-            menu.selected_menu_item -= 1
-            if menu.selected_menu_item < 0:
-                menu.selected_menu_item = len(menu.menu_items) - 1
-
-        if event.type == pg.KEYUP and event.key == pg.K_RETURN:
-            menu.menu_select_sound.play()
-            menu.get_event(event)
-
-    def scale_new_player(self, sprite):
-        """Scales a new player to the screen.
-
-        :param sprite: Player sprite from the server registry.
-
-        :type sprite: -- Player or Npc object from core.components.player
-
-        :rtype: None
-        :returns: None
-
-        """
-        SCALE = prepare.SCALE
-        TILE_SIZE = prepare.TILE_SIZE
-        SCREEN_SIZE = prepare.TILE_SIZE
-
-        for key, animation in sprite.sprite.items():
-            animation.scale(
-                tuple(i * SCALE for i in animation.getMaxSize()))
-
-        for key, image in sprite.standing.items():
-            sprite.standing[key] = pg.transform.scale(
-                image, (image.get_width() * SCALE,
-                        image.get_height() * SCALE))
-
-        # Set the player's width and height based on the size of our scaled
-        # sprite.
-        sprite.playerWidth, sprite.playerHeight = \
-            sprite.standing["front"].get_size()
-        sprite.playerWidth = TILE_SIZE[0]
-        sprite.playerHeight = TILE_SIZE[1]
-        sprite.tile_size = TILE_SIZE
-
-        # Put the player right in the middle of our screen.
-        sprite.position = [
-            (SCREEN_SIZE[0] / 2) - (sprite.playerWidth / 2),
-            (SCREEN_SIZE[1] / 2) - (sprite.playerHeight / 2)]
-
-        # Set the player's collision rectangle
-        sprite.rect = pg.Rect(
-            sprite.position[0],
-            sprite.position[1],
-            TILE_SIZE[0],
-            TILE_SIZE[1])
-
-        # Set the walking and running pixels per second based on the scale
-        sprite.walkrate *= SCALE
-        sprite.runrate *= SCALE
+    # def scale_new_player(self, sprite):
+    #     """Scales a new player to the screen.
+    #
+    #     :param sprite: Player sprite from the server registry.
+    #
+    #     :type sprite: -- Player or Npc object from core.components.player
+    #
+    #     :rtype: None
+    #     :returns: None
+    #
+    #     """
+    #     SCALE = prepare.SCALE
+    #     TILE_SIZE = prepare.TILE_SIZE
+    #     SCREEN_SIZE = prepare.TILE_SIZE
+    #
+    #     for key, animation in sprite.sprite.items():
+    #         animation.scale(
+    #                 tuple(i * SCALE for i in animation.getMaxSize()))
+    #
+    #     for key, image in sprite.standing.items():
+    #         sprite.standing[key] = scale_surface(image, SCALE)
+    #
+    #     # Set the player's width and height based on the size of our scaled
+    #     # sprite.
+    #     sprite.playerWidth, sprite.playerHeight = \
+    #         sprite.standing["front"].get_size()
+    #     sprite.playerWidth = TILE_SIZE[0]
+    #     sprite.playerHeight = TILE_SIZE[1]
+    #     sprite.tile_size = TILE_SIZE
+    #
+    #     # Put the player right in the middle of our screen.
+    #     sprite.position = [
+    #         (SCREEN_SIZE[0] / 2) - (sprite.playerWidth / 2),
+    #         (SCREEN_SIZE[1] / 2) - (sprite.playerHeight / 2)]
+    #
+    #     # Set the player's collision rectangle
+    #     sprite.rect = pg.Rect(
+    #             sprite.position[0],
+    #             sprite.position[1],
+    #             TILE_SIZE[0],
+    #             TILE_SIZE[1])
+    #
+    #     # Set the walking and running pixels per second based on the scale
+    #     sprite.walkrate *= SCALE
+    #     sprite.runrate *= SCALE
 
     def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If
@@ -611,7 +646,7 @@ class Control(StateManager):
         :returns: None
 
         """
-        world = self.get_state_name("world")
+        world = self.get_state_name("WorldState")
         if not world:
             return
 
@@ -640,13 +675,11 @@ class Control(StateManager):
     def get_map_name(self):
         """Gets the map of the player.
 
-        :param: None
-
         :rtype: String
         :returns: map_name
 
         """
-        world = self.get_state_name("world")
+        world = self.get_state_name("WorldState")
         if not world:
             return
 
@@ -656,10 +689,11 @@ class Control(StateManager):
         return map_name
 
     def get_state_name(self, name):
-        for state in self.state_stack:
-            if state.__module__ == "core.states." + name:
+        for state in self.active_states:
+            if state.__class__.__name__ == name:
                 return state
         return None
+
 
 class PygameControl(Control):
     pass
@@ -685,20 +719,20 @@ class HeadlessControl(StateManager):
         # TODO: move out to state manager
         self.package = "core.states"
         self.state_dict = dict()
-        self.state_stack = list()
+        self._state_stack = list()
 
         self.server = networking.TuxemonServer(self)
         # self.server_thread = threading.Thread(target=self.server)
         # self.server_thread.start()
         self.server.server.listen()
 
-        #Set up our game's configuration from the prepare module.
+        # Set up our game's configuration from the prepare module.
         self.config = prepare.HEADLESSCONFIG
 
         # Set up the command line. This provides a full python shell for
         # troubleshooting. You can view and manipulate any variables in
         # the game.
-        self.exit = False   # Allow exit from the CLI
+        self.exit = False  # Allow exit from the CLI
         if self.config.cli:
             self.cli = cli.CommandLine(self)
 

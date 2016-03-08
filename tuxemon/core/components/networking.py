@@ -321,7 +321,7 @@ class ControllerServer():
         if controller_events:
             for controller_event in controller_events:
                 self.game.key_events.append(controller_event)
-                self.game.current_state.get_event(controller_event)
+                self.game.current_state.process_event(controller_event)
 
     def net_controller_loop(self):
         """Process all network events from controllers and pass them
@@ -337,51 +337,39 @@ class ControllerServer():
         events = []
         for event_data in self.network_events:
             if event_data == "KEYDOWN:up":
-                self.game.keys[pg.K_UP] = 1
                 event = self.game.keyboard_events["KEYDOWN"]["up"]
 
             elif event_data == "KEYUP:up":
-                self.game.keys[pg.K_UP] = 0
                 event = self.game.keyboard_events["KEYUP"]["up"]
 
             elif event_data == "KEYDOWN:down":
-                self.game.keys[pg.K_DOWN] = 1
                 event = self.game.keyboard_events["KEYDOWN"]["down"]
 
             elif event_data == "KEYUP:down":
-                self.game.keys[pg.K_DOWN] = 0
                 event = self.game.keyboard_events["KEYUP"]["down"]
 
             elif event_data == "KEYDOWN:left":
-                self.game.keys[pg.K_LEFT] = 1
                 event = self.game.keyboard_events["KEYDOWN"]["left"]
 
             elif event_data == "KEYUP:left":
-                self.keys[pg.K_LEFT] = 0
                 event = self.game.keyboard_events["KEYUP"]["left"]
 
             elif event_data == "KEYDOWN:right":
-                self.game.keys[pg.K_RIGHT] = 1
                 event = self.game.keyboard_events["KEYDOWN"]["right"]
 
             elif event_data == "KEYUP:right":
-                self.game.keys[pg.K_RIGHT] = 0
                 event = self.game.keyboard_events["KEYUP"]["right"]
 
             elif event_data == "KEYDOWN:enter":
-                self.game.keys[pg.K_RETURN] = 1
                 event = self.game.keyboard_events["KEYDOWN"]["enter"]
 
             elif event_data == "KEYUP:enter":
-                self.game.keys[pg.K_RETURN] = 0
                 event = self.game.keyboard_events["KEYUP"]["enter"]
 
             elif event_data == "KEYDOWN:esc":
-                self.game.keys[pg.K_ESCAPE] = 1
                 event = self.game.keyboard_events["KEYDOWN"]["escape"]
 
             elif event_data == "KEYUP:esc":
-                self.game.keys[pg.K_ESCAPE] = 0
                 event = self.game.keyboard_events["KEYUP"]["escape"]
 
             else:
@@ -532,7 +520,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_name("world")
+                world = self.game.get_state_name("WorldState")
                 if not world:
                     return
                 world.handle_interaction(event_data, self.client.registry)
@@ -595,7 +583,7 @@ class TuxemonClient():
         self.client.autodiscover(autoregister=False)
 
         # Logic to prevent joining your own game as a client.
-        if len(self.client.discovered_servers) > 0:
+        if self.client.discovered_servers:
 
             for ip, port in self.client.discovered_servers:
                 host = (ip, port)
@@ -683,7 +671,7 @@ class TuxemonClient():
         :returns: None
 
         """
-        if self.game.current_state != self.game.get_state_name("world"):
+        if self.game.current_state != self.game.get_state_name("WorldState"):
             return False
 
         event_type = None
@@ -894,7 +882,7 @@ def update_client(sprite, char_dict, game):
     :returns: None
 
     """
-    world = game.get_state_name("world")
+    world = game.get_state_name("WorldState")
     if not world:
         return
 

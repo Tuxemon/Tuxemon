@@ -27,16 +27,12 @@ from __future__ import absolute_import
 
 import logging
 
+from core import tools
 from core import prepare
+from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-
-# Import the android mixer if on the android platform
-try:
-    import pygame.mixer as mixer
-except ImportError:
-    import android.mixer as mixer
 
 
 class Sound(object):
@@ -68,7 +64,7 @@ class Sound(object):
 
         """
         filename = str(action.parameters[0])
-        sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
+        sound = tools.load_sound("sounds/" + filename)
         sound.play()
 
 

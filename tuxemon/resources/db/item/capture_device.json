@@ -1,15 +1,17 @@
 {
-    "description": "Captures a monster.", 
+    "description": "Captures a monster.",
     "effects": [
         "capture"
-    ], 
-    "id": 3, 
-    "name": "Capture Device", 
-    "power": 100, 
-    "sprite": "resources/gfx/items/capture_device.png", 
-    "target": "opponent",
+    ],
+    "id": 3,
+    "name": "Capture Device",
+    "power": 100,
+    "sprite": "gfx/items/capture_device.png",
+    "target": [
+        "monster"
+    ],
     "type": "Consumable",
     "usable_in": [
-        "combat"
+      "CombatState"
     ]
 }

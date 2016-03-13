@@ -1,39 +1,39 @@
 {
-    "id": 7, 
+    "id": 7,
 
-    "attack_base":            60, 
-    "defense_base":           7, 
-    "hp_base":                50, 
-    "special_attack_base":    6, 
-    "special_defense_base":   10, 
-    "speed_base":             7, 
+    "attack_base":            60,
+    "defense_base":           7,
+    "hp_base":                50,
+    "special_attack_base":    6,
+    "special_defense_base":   10,
+    "speed_base":             7,
 
     "attack_mod":             1,
     "defense_mod":            1,
-    "hp_mod":                 1, 
+    "hp_mod":                 1,
     "special_attack_mod":     1,
-    "special_defense_mod":    1, 
-    "speed_mod":              1, 
+    "special_defense_mod":    1,
+    "speed_mod":              1,
 
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
     "moveset": [
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 1,
             "technique": "Pound"
         }
-    ], 
-    "name": "Bolt", 
+    ],
+    "name": "Bolt",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/bolt-front.png", 
-        "battle2": "resources/gfx/sprites/battle/bolt-back.png", 
-        "menu1": "resources/gfx/sprites/battle/bolt-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/bolt-menu02.png"
-    }, 
+        "battle1": "gfx/sprites/battle/bolt-front.png",
+        "battle2": "gfx/sprites/battle/bolt-back.png",
+        "menu1": "gfx/sprites/battle/bolt-menu01.png",
+        "menu2": "gfx/sprites/battle/bolt-menu02.png"
+    },
     "types": [
         "metal"
-    ], 
+    ],
     "weight": 25
 }

@@ -1,0 +1,12 @@
+{
+    "animation": "greendrip",
+    "sfx": "bite1.ogg",
+    "category": "poison",
+    "effects": ["damage"],
+    "id": 5,
+    "name": "Poison",
+    "power": 10,
+    "types": [
+        "Poison"
+    ]
+}

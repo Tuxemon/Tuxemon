@@ -55,10 +55,10 @@
   </object>
   <object id="10" name="Use Computer" type="event" x="64" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="change_state PC"/>
+    <property name="act1" value="change_state PCState"/>
     <property name="cond1" value="is player_at 4,3"/>
     <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_released K_RETURN"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="11" name="Get Fruitera" type="event" x="144" y="112" width="16" height="16">
@@ -71,7 +71,7 @@
     <property name="act6" value="set_variable got_fruitera:yes"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="not variable_set got_fruitera:yes"/>
-    <property name="cond3" value="is button_released K_RETURN"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="16" name="Lord Lampy" type="event" x="32" y="32" width="16" height="16">
@@ -81,7 +81,7 @@
     <property name="act3" value="dialog_chain Go forth and inact my lampy will."/>
     <property name="act4" value="dialog_chain ${{end}}"/>
     <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_released K_RETURN"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="17" name="Lord or Filth" type="event" x="48" y="32" width="16" height="16">
@@ -91,7 +91,7 @@
     <property name="act3" value="dialog_chain Find me again and I shall grant you grand powers."/>
     <property name="act4" value="dialog_chain ${{end}}"/>
     <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_released K_RETURN"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

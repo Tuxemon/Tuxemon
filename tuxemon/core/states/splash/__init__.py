@@ -25,60 +25,49 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# core.states.splash Handles the splash screen.
+# core.states.start Handles the splash screen and start menu.
 #
 #
 import logging
+
 import pygame
 
-from core.components.animation import Task
 from core import prepare
 from core import state
-
+from core import tools
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.splash successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
-class SPLASH(state.State):
-    """ The state responsible for the splash screen.
+class SplashState(state.State):
+    """ The state responsible for the splash screen
     """
     default_duration = 3
 
-    def startup(self, params=None):
-        self.animations = pygame.sprite.Group()
+    def fade_out(self):
+        self.game.push_state("FadeOutTransition", caller=self)
 
+    def startup(self, **kwargs):
         # this task will skip the splash screen after some time
-        task = Task(self.game.pop_state, self.default_duration)
-        self.animations.add(task)
-        # Set up the splash screen logos
-        self.splash_pygame = {}
-        self.splash_pygame['path'] = prepare.BASEDIR + "resources/gfx/ui/intro/pygame_logo.png"
-        self.splash_pygame['surface'] = pygame.image.load(self.splash_pygame['path'])
-        self.splash_pygame['surface'] = pygame.transform.scale(self.splash_pygame['surface'],
-                                                           (self.splash_pygame['surface'].get_width() * prepare.SCALE,
-                                                            self.splash_pygame['surface'].get_height() * prepare.SCALE
-                                                            ))
+        self.task(self.fade_out, self.default_duration)
 
+        width, height = prepare.SCREEN_SIZE
         splash_border = prepare.SCREEN_SIZE[0] / 20     # The space between the edge of the screen
-        self.splash_pygame['position'] = (splash_border,
-                                          prepare.SCREEN_SIZE[1] - splash_border - self.splash_pygame['surface'].get_height())
 
-        self.splash_cc = {}
-        self.splash_cc['path'] = prepare.BASEDIR + "resources/gfx/ui/intro/creative_commons.png"
-        self.splash_cc['surface'] = pygame.image.load(self.splash_cc['path'])
-        self.splash_cc['surface'] = pygame.transform.scale(self.splash_cc['surface'],
-                                                           (self.splash_cc['surface'].get_width() * prepare.SCALE,
-                                                            self.splash_cc['surface'].get_height() * prepare.SCALE
-                                                            ))
-        self.splash_cc['position'] = (prepare.SCREEN_SIZE[0] - splash_border - self.splash_cc['surface'].get_width(),
-                                      prepare.SCREEN_SIZE[1] - splash_border - self.splash_cc['surface'].get_height())
+        # Set up the splash screen logos
+        logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")
+        logo.rect.topleft = splash_border, height - splash_border - logo.rect.height
 
-    def update(self, time_delta):
-        self.animations.update(time_delta)
+        # Set up the splash screen logos
+        cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
+        cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
 
-    def get_event(self, event):
+        self.ding = tools.load_sound("sounds/ding.wav")
+        self.ding.play()
+
+    def process_event(self, event):
         """Processes events that were passed from the main event loop.
 
         :param event: A pygame key event from pygame.event.get()
@@ -90,11 +79,11 @@ class SPLASH(state.State):
 
         """
         # Skip the splash screen if a key is pressed.
-        if event.type == pygame.KEYUP:
-            self.game.pop_state()
+        if event.type == pygame.KEYDOWN:
+            self.fade_out()
 
     def draw(self, surface):
-        """Draws the screen to the screen.
+        """Draws the start screen to the screen.
 
         :param surface:
         :param Surface: Surface to draw to
@@ -106,5 +95,4 @@ class SPLASH(state.State):
 
         """
         surface.fill((15, 15, 15))
-        surface.blit(self.splash_pygame['surface'], self.splash_pygame['position'])
-        surface.blit(self.splash_cc['surface'], self.splash_cc['position'])
+        self.sprites.draw(surface)

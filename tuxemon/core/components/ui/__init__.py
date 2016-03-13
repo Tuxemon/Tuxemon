@@ -28,18 +28,14 @@
 # core.components.ui User interface handling module.
 #
 #
-
 import logging
-import pygame
-import operator
 
+from core import tools
 from core.components import pyganim
-from core.components import plugin
-from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("components.ui successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
 class UserInterface(object):
@@ -56,49 +52,31 @@ class UserInterface(object):
     :type scale: Boolean
 
     """
-    def __init__(self, images, position, screen, scale=True,
-                 animation_speed=0.2, animation_loop=False):
+
+    def __init__(self, images, position, animation_speed=0.2, animation_loop=False):
 
         # Check to see what kind of image(s) are being loaded.
         images_type = type(images).__name__
 
         # Handle loading a single image, multiple images, or surfaces
         if images_type == 'str' or images_type == 'unicode':
-            if prepare.BASEDIR not in images:
-                images = prepare.BASEDIR + images
-            surface = pygame.image.load(images).convert_alpha()
-            self.original_width = surface.get_width()
-            self.original_height = surface.get_height()
-            if scale:
-                surface = self.scale_surface(surface)
+            surface = tools.load_and_scale(images)
             self.images = [(surface, animation_speed)]
 
         elif images_type == 'list' or images_type == 'tuple':
             self.images = []
+
             for item in images:
                 item_type = type(item).__name__
+
                 if item_type == 'str' or item_type == 'unicode':
-                    surface = pygame.image.load(item).convert_alpha()
-                    self.original_width = surface.get_width()
-                    self.original_height = surface.get_height()
-                    if scale:
-                        surface = self.scale_surface(surface)
+                    surface = tools.load_and_scale(images)
                 else:
-                    self.original_width = surface.get_width()
-                    self.original_height = surface.get_height()
-                    if scale:
-                        surface = self.scale_surface(surface)
-                    else:
-                        surface = item
+                    surface = item
                 self.images.append((surface, animation_speed))
 
         else:
-            self.original_width = images.get_width()
-            self.original_height = images.get_height()
-            if scale:
-                surface = self.scale_surface(images)
-            else:
-                surface = images
+            surface = images
             self.images = [(surface, animation_speed)]
 
         # Create a pyganimation object using our loaded images.
@@ -106,14 +84,11 @@ class UserInterface(object):
         self.animation.play()
         self.animation.pause()
 
-        self.position = position
-        self.last_position = position
-        self.screen = screen
+        self.rect = self.images[0][0].get_rect(topleft=position)
+
         self.visible = True
         self.state = ""
 
-        self.width = self.images[0][0].get_width()
-        self.height = self.images[0][0].get_height()
         self.moving = False
         self.move_destination = (0, 0)
         self.move_delta = [0, 0]
@@ -123,79 +98,25 @@ class UserInterface(object):
         self.fade_duration = 0.
         self.shaking = False
 
-
-    def scale_surface(self, surface):
-        """Scales the interface based on the game's scale.
-
-        :param: None
-        :type: None
-
-        """
-        width = surface.get_width()
-        height = surface.get_height()
-        scaled_surface = pygame.transform.scale(surface,
-                                                (width * prepare.SCALE,
-                                                height * prepare.SCALE))
-
-        return scaled_surface
-
-
-    def update(self, dt):
-        """Updates the object based on its current state.
-
-        :param dt: Amount of time passed in seconds since the last frame.
-        :type dt: Float
-
-        """
-        if self.moving:
-            self.move_time += dt
-            dest = self.move_destination
-            dur = self.move_duration
-            mdt = self.move_delta
-            mt = self.move_time
-            if mt > dur:
-                self.position = dest
-                self.moving = False
-                if self.state == "moving" or self.state == "back":
-                    self.state = ""
-                elif self.state == "forward":
-                    self.move(self.last_position, self.move_duration)
-                    self.state == "back"
-            else:
-                if type(self.position) is tuple:
-                    self.position = list(self.position)
-
-                self.position[0] -= (mdt[0] * dt) / dur
-                self.position[1] -= (mdt[1] * dt) / dur
-
-
-    def draw(self):
+    def draw(self, surface):
         """Draws the UI element to the screen.
 
+        :param surface: Surface to draw onto
         :param: None
         :type: None
 
         """
         if self.visible:
-            if self.shaking:
-                # Do shaking stuff
-                pos = self.position
-            else:
-                pos = self.position
-            self.animation.blit(self.screen, pos)
-
+            self.animation.blit(surface, self.rect)
 
     def play(self):
         self.animation.play()
 
-
     def pause(self):
         self.animation.pause()
 
-
     def stop(self):
         self.animation.stop()
-
 
     def shake(self, intensity, direction="random"):
         """Shakes the object a given severity.
@@ -209,7 +130,6 @@ class UserInterface(object):
         """
         pass
 
-
     def fade_in(self, duration=1.):
         """Fades the object in.
 
@@ -221,7 +141,6 @@ class UserInterface(object):
             self.state = "fading_in"
             self.fading = "in"
             self.fade_duration = duration
-
 
     def fade_out(self, duration=1.):
         """Fades the object out.
@@ -235,7 +154,6 @@ class UserInterface(object):
             self.fading = "out"
             self.fade_duration = duration
 
-
     def move(self, destination, duration=1.):
         """Moves the object to position over n seconds.
 
@@ -246,26 +164,21 @@ class UserInterface(object):
         :type duration: Float
 
         """
-
         if not self.state == "moving":
             self.state = "moving"
             self.moving = True
-            self.last_position = list(self.position)
             self.move_destination = destination
             self.move_time = 0.
-            self.move_delta.append(self.position[1] - destination[1])
-            self.move_delta = list(map(operator.sub, self.position, destination))
-            self.move_duration = float(duration)
-
+            # self.move_delta.append(self.position[1] - destination[1])
+            # self.move_delta = list(map(operator.sub, self.position, destination))
+            # self.move_duration = float(duration)
 
     def shake_once(self, destination, duration=0.3):
         """Moves the object to a position and then back to its original position.
         """
-
         if not self.state == "forward" or not self.state == "back":
             self.move(destination, duration)
             self.state = "forward"
-
 
     def scale(self, width_height):
         self.animation.scale(width_height)

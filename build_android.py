@@ -84,7 +84,7 @@ def install_dependencies():
         import tarfile
         tar = tarfile.open(SIX_ARCHIVE)
         tar.extractall()
-        tar.close()
+        tar.fade_out()
 
         os.rename("six-1.9.0/six.py", "tuxemon/six.py")
     

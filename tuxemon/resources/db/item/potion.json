@@ -1,16 +1,19 @@
 {
-    "description": "Heals a monster by 50 HP.", 
+    "description": "Heals a monster by 50 HP.",
     "effects": [
         "heal"
-    ], 
-    "id": 1, 
-    "name": "Potion", 
-    "power": 50, 
-    "sprite": "resources/gfx/items/potion.png", 
-    "target": "player",
+    ],
+    "id": 1,
+    "name": "Potion",
+    "power": 50,
+    "sprite": "gfx/items/potion.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
     "type": "Consumable",
     "usable_in": [
-        "combat",
-        "world"
+        "CombatState",
+        "WorldState"
     ]
 }

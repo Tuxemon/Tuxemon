@@ -1,9 +1,0 @@
-[Core]
-Name = Dialog Menu
-Module = dialog_menu
-
-[Documentation]
-Author = William Edwards
-Version = 1.0
-Website = http://www.tuxemon.org
-Description = Dialog menu plugin.

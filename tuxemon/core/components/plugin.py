@@ -53,7 +53,9 @@ class PluginManager(object):
     """Yapsy semi-compatible plugin manager.
     """
 
-    def __init__(self, base_folders=["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "tuxemon", "/mnt/Tuxemon"]):
+    def __init__(self, base_folders=None):
+        if base_folders is None:
+            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "tuxemon", "/mnt/Tuxemon"]
         self.folders = []
         self.base_folders = base_folders
         self.modules = []

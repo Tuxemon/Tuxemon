@@ -22,10 +22,12 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import absolute_import
 
 import logging
+from core.tools import open_dialog
 
 
 # Create a logger for optional handling of debug messages.
@@ -33,6 +35,9 @@ logger = logging.getLogger(__name__)
 
 
 class Core(object):
+    def __init__(self):
+        # this is a potentially temporary solution to a problem with dialog chains
+        self._dialog_chain_queue = list()
 
     def _replace_text(self, game, text):
         """Replaces ${{var}} tiled variables with their in-game value.
@@ -53,6 +58,7 @@ class Core(object):
 
         """
         text = text.replace("${{name}}", game.player1.name)
+        text = text.replace(r"\n", "\n")
 
         return text
 
@@ -129,12 +135,10 @@ class Core(object):
 
         text = str(action.parameters[0])
         text = self._replace_text(game, text)
-        logger.info("Dialog window opened")
+        logger.info("Opening dialog window")
 
         # Open a dialog window in the current scene.
-        if not game.current_state.dialog_window.visible:
-            game.current_state.dialog_window.visible = True
-            game.current_state.dialog_window.text = text
+        open_dialog(game, [text])
 
 
     def dialog_chain(self, game, action):
@@ -171,25 +175,14 @@ class Core(object):
 
         text = str(action.parameters[0])
         text = self._replace_text(game, text)
-        dialog_window = game.current_state.dialog_window
+        logger.info("Opening chain dialog window")
 
-        # Do nothing if a dialog is already open
-        if dialog_window.visible:
-            return
-
-        # If this is the end of the dialog chain, display the window.
-        if "${{end}}" in text:
-            logger.info("Dialog window opened")
-            dialog_window.visible = True
-            if len(dialog_window.dialog_stack) > 0:
-                dialog_window.text = dialog_window.dialog_stack.pop(0)
-            return
-
-        # If this text is part of the dialog chain, add it to the dialog stack.
-        if dialog_window.elapsed_time >= dialog_window.delay:
-            logger.debug("Adding text to dialog stack: " + text)
-            logger.debug("Seconds since last dialog: " + str(dialog_window.elapsed_time))
-            dialog_window.dialog_stack.append(text)
+        if text == "${{end}}":
+            # Open a dialog window in the current scene.
+            open_dialog(game, self._dialog_chain_queue)
+            self._dialog_chain_queue = list()
+        else:
+            self._dialog_chain_queue.append(text)
 
 
     def rumble(self, game, action):

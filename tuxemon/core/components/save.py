@@ -33,14 +33,16 @@ import logging
 import shelve
 import pygame
 import datetime
+import os
 from pprint import pformat
+from core import tools
 from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-def save(player, slot, game):
+def save(player, screenshot, slot, game):
     """Saves the current game state to a file using shelve.
 
     :param player: The player object that contains data to save.
@@ -60,26 +62,23 @@ def save(player, slot, game):
 
     """
     # Save a screenshot of the current frame
-    pygame.image.save(game.save_screenshot, prepare.SAVE_PATH + str(slot) + '.png')
+    pygame.image.save(screenshot, prepare.SAVE_PATH + str(slot) + '.png')
     saveFile = shelve.open(prepare.SAVE_PATH + str(slot) + '.save')
-    saveFile['game_variables'] = game.player1.game_variables
-    saveFile['tile_pos'] = game.player1.tile_pos
-    tempinv1 = {}
-    tempinv1 = dict(game.player1.inventory)
+    saveFile['game_variables'] = player.game_variables
+    saveFile['tile_pos'] = player.tile_pos
+    tempinv1 = dict(player.inventory)
     for keysinv, valuesinv in tempinv1.items():
         for keys2inv, values2inv in valuesinv.items():
             if keys2inv == 'item':
                 values2inv.surface = None
     saveFile['inventory'] = tempinv1
     saveFile['current_map'] = game.event_engine.current_map.filename.split("/")[-1]
-    tempmon1 = []
-    tempmon1 = list(game.player1.monsters)
+    tempmon1 = list(player.monsters)
     for mon1 in tempmon1:
         if mon1.sprites:
-            mon1.sprites = {}
+            mon1.sprites = dict()
     saveFile['monsters'] = tempmon1
-    tempstorage1 = {}
-    tempstorage1 = dict(game.player1.storage)
+    tempstorage1 = dict(player.storage)
     for keysstore, valuesstore in tempstorage1.items():
         if keysstore == 'items':
             for keys2store, values2store in valuesstore.items():
@@ -88,12 +87,11 @@ def save(player, slot, game):
                         values3store.surface = None
         if keysstore == 'monsters':
             for monstore in valuesstore:
-                monstore.sprites = {}
+                monstore.sprites = dict()
     saveFile['storage'] = tempstorage1
-    saveFile['player_name'] = game.player1.name
+    saveFile['player_name'] = player.name
     saveFile['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     logger.info("Saving data to save file: " + pformat(saveFile))
-    saveFile.close()
 
 
 def load(slot):
@@ -107,30 +105,39 @@ def load(slot):
 
     **Examples:**
 
-    >>> core.components.save.load(1)
+    >>> core.components.load.load(1)
 
     """
 
-    saveFile = shelve.open(prepare.SAVE_PATH + str(slot) + '.save')
-    saveData = {}
+    # this check is required since opening a shelve will
+    # create the pickle is it doesn't already exist.
+    # this check prevents a bug where saves are not recorded
+    # properly.
+    save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    if not os.path.exists(save_path):
+        return
+
+    saveFile = shelve.open(save_path)
+    saveData = dict()
 
     saveData['game_variables'] = saveFile['game_variables']
     saveData['tile_pos'] = saveFile['tile_pos']
-    tempinv = {}
     tempinv = dict(saveFile['inventory'])
+
     for keys, values in tempinv.items():
+        # TODO: unify loading and game instancing
         for keys2, values2 in values.items():
             if keys2 == 'item':
-                values2.surface = pygame.image.load(prepare.BASEDIR +
-                                                    values2.sprite
-                                                    ).convert_alpha()
+                values2.surface = tools.load_and_scale(values2.sprite)
+
     saveData['inventory'] = tempinv
-    tempmon = []
     tempmon = list(saveFile['monsters'])
     for mon in tempmon:
-        mon.load_sprites(prepare.SCALE)
+        mon.load_sprites()
+
     saveData['monsters'] = tempmon
-    tempstorage = {}
+
+    # TODO: unify loading and game instancing
     # Loop through the storage item keys and re-add the surface.
     tempstorage = dict(saveFile['storage'])
     for keys, values in tempstorage.items():
@@ -138,12 +145,12 @@ def load(slot):
             for keys2, values2 in values.items():
                 for keys3, values3 in values2.items():
                     if keys3 == 'item':
-                        values3.surface = pygame.image.load(prepare.BASEDIR +
-                                                            values3.sprite
-                                                            ).convert_alpha()
+                        values3.surface = tools.load_and_scale(values3.sprite)
+
         if keys == 'monsters':
             for storemon1 in values:
-                storemon1.load_sprites(prepare.SCALE)
+                storemon1.load_sprites()
+
     saveData['storage'] = tempstorage
     saveData['current_map'] = saveFile['current_map']
     saveData['player_name'] = saveFile['player_name']

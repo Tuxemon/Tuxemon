@@ -1,16 +1,16 @@
 {
-    "id": 1, 
+    "id": 1,
 
-    "attack_base":            60, 
-    "defense_base":           7, 
-    "hp_base":                50, 
-    "special_attack_base":    6, 
-    "special_defense_base":   10, 
+    "attack_base":            60,
+    "defense_base":           7,
+    "hp_base":                50,
+    "special_attack_base":    6,
+    "special_defense_base":   10,
     "speed_base":             7,
- 
-    "attack_mod":             1, 
+
+    "attack_mod":             1,
     "defense_mod":            1,
-    "hp_mod":                 1, 
+    "hp_mod":                 1,
     "special_attack_mod":     1,
     "special_defense_mod":    1,
     "speed_mod":              1,
@@ -20,25 +20,25 @@
 
     "moveset": [
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 1,
             "technique": "Pound"
-        }, 
+        },
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 2,
             "technique": "Poison Sting"
         }
-    ], 
-    "name": "Bamboon", 
+    ],
+    "name": "Bamboon",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/bamboon-front.png", 
-        "battle2": "resources/gfx/sprites/battle/bamboon-back.png", 
-        "menu1": "resources/gfx/sprites/battle/bamboon-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/bamboon-menu02.png"
-    }, 
+        "battle1": "gfx/sprites/battle/bamboon-front.png",
+        "battle2": "gfx/sprites/battle/bamboon-back.png",
+        "menu1": "gfx/sprites/battle/bamboon-menu01.png",
+        "menu2": "gfx/sprites/battle/bamboon-menu02.png"
+    },
     "types": [
         "wood"
-    ], 
+    ],
     "weight": 30
 }

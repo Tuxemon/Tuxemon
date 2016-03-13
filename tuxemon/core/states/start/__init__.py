@@ -22,6 +22,7 @@
 #
 # Contributor(s):
 #
+# William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
 #
 #
@@ -30,120 +31,52 @@
 """This module contains the Start state.
 """
 import logging
-import pygame
+from functools import partial
 
 from core import prepare
-from core import state
-from core.components.menu import start_menu
+from core.components.menu.interface import MenuItem
+from core.components.menu.menu import PopUpMenu
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.start successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
-class START(state.State):
+class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
+    def initialize_items(self):
+        def change_state(state, **kwargs):
+            return partial(self.game.push_state, state, **kwargs)
 
-    def startup(self, params=None):
-        # Provide an instance of the scene manager to this scene.
-        self.previous_menu = None
-        self.menu_blocking = True
+        def new_game():
+            self.game.player1 = prepare.player1
+            state = self.game.replace_state("WorldState")
+            self.game.push_state("FadeInTransition")
 
-        # Provide access to the screen surface
-        self.screen = self.game.screen
-        self.screen_rect = prepare.SCREEN_RECT
+        def options():
+            pass
 
-        # Set the native tile size so we know how much to scale
-        self.tile_size = prepare.TILE_SIZE
+        def exit_game():
+            self.game.exit = True
 
-        # Set the status icon size so we know how much to scale
-        self.icon_size = prepare.ICON_SIZE
+        menu_items_map = (
+            ('NEW GAME', new_game),
+            ('LOAD', change_state("LoadMenuState")),
+            ('OPTIONS', options),
+            ('EXIT', exit_game),
+        )
 
-        # Get the screen's resolution
-        self.resolution = prepare.SCREEN_SIZE
+        for label, callback in menu_items_map:
+            image = self.shadow_text(label)
+            yield MenuItem(image, label, None, callback)
 
-        # Native resolution is similar to the old gameboy resolution. This is
-        # used for scaling.
-        self.native_resolution = prepare.NATIVE_RESOLUTION
-        self.scale = prepare.SCALE
+    def on_menu_selection(self, item):
+        item.game_object()
 
-        # Start menu.
-        self.start_menu = start_menu.StartMenu(self.screen,
-                                               self.resolution,
-                                               self.game)
-        self.start_menu.visible = True
-        self.start_menu.interactable = True
-        self.start_menu.size_ratio = [0.5, 0.5]
-
-        self.menus = [self.start_menu]
-
-        for menu in self.menus:
-            menu.scale = self.scale    # Set the scale of the menu.
-            menu.set_font(size=menu.font_size * self.scale,
-                          font=prepare.BASEDIR +
-                          "resources/font/PressStart2P.ttf",
-                          color=(10, 10, 10),
-                          spacing=menu.font_size * self.scale)
-
-            # Scale the selection arrow image based on our game's scale.
-            menu.arrow = pygame.transform.scale(
-                menu.arrow,
-                (menu.arrow.get_width() * self.scale,
-                 menu.arrow.get_height() * self.scale))
-
-            # Scale the border images based on our game's scale.
-            for key, border in menu.border.items():
-                menu.border[key] = pygame.transform.scale(
-                    border,
-                    (border.get_width() * self.scale,
-                     border.get_height() * self.scale))
-
-            # Set the menu size.
-
-            menu.size_x = int(self.resolution[0] * menu.size_ratio[0])
-            menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
-            menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
-            menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
-
-    def update(self, time_delta):
-        """Update function for state.
-
-        :type surface: pygame.Surface
-        :rtype: None
-        :returns: None
-
-        """
-        pass
-
-    def get_event(self, event):
-        """Processes events that were passed from the main event loop.
-
-        :param event: A pygame key event from pygame.event.get()
-
-        :type event: PyGame Event
-
-        :rtype: None
-        :returns: None
-
-        """
-        if self.start_menu.interactable:
-            self.game.get_menu_event(self.start_menu, event)
-
-    def draw(self, surface):
-        """Draws the start screen to the screen.
-
-        :param surface:
-        :param Surface: Surface to draw to
-
-        :type Surface: pygame.Surface
-
-        :rtype: None
-        :returns: None
-
-        """
-        surface.fill((15, 15, 15))
-        if self.start_menu.visible:
-            self.start_menu.draw()
-            self.start_menu.draw_textItem(
-                ["NEW GAME", "LOAD", "OPTIONS", "EXIT"])
+    def calc_final_rect(self):
+        rect = self.rect.copy()
+        rect.width *= .3
+        rect.height *= .5
+        rect.center = self.rect.center
+        return rect

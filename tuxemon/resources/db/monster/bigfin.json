@@ -1,14 +1,14 @@
 {
-    "id": 4, 
+    "id": 4,
 
-    "attack_base":            60, 
-    "defense_base":           7, 
-    "hp_base":                50,   
-    "special_attack_base":    6, 
-    "special_defense_base":   10, 
-    "speed_base":             7, 
+    "attack_base":            60,
+    "defense_base":           7,
+    "hp_base":                50,
+    "special_attack_base":    6,
+    "special_defense_base":   10,
+    "speed_base":             7,
 
-    "attack_mod":             1, 
+    "attack_mod":             1,
     "defense_mod":            1,
     "hp_mod":                 1,
     "special_attack_mod":     1,
@@ -20,26 +20,26 @@
 
     "moveset": [
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 4,
             "technique": "Bite"
-        }, 
+        },
         {
-            "level_learned": 2, 
+            "level_learned": 2,
             "technique_id": 3,
             "technique": "Water Shot"
         }
-    ], 
-    "name": "Bigfin", 
+    ],
+    "name": "Bigfin",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/bigfin-front.png", 
-        "battle2": "resources/gfx/sprites/battle/bigfin-back.png", 
-        "menu1": "resources/gfx/sprites/battle/bigfin-menu01.png", 
-        "menu2": "resources/gfx/sprites/battle/bigfin-menu02.png"
-    }, 
+        "battle1": "gfx/sprites/battle/bigfin-front.png",
+        "battle2": "gfx/sprites/battle/bigfin-back.png",
+        "menu1": "gfx/sprites/battle/bigfin-menu01.png",
+        "menu2": "gfx/sprites/battle/bigfin-menu02.png"
+    },
     "types": [
         "water",
         "wood"
-    ], 
+    ],
     "weight": 50
 }

@@ -29,19 +29,18 @@
 #
 """This module contains the player and npc modules.
 """
+from __future__ import division
+
 import logging
 import pygame
-import pprint
-import time
 from core import prepare
+from core import tools
 
 from . import pyganim
-from . import ai
-from . import config
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("components.player successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
 # Class definition for the player.
@@ -64,6 +63,9 @@ class Player(object):
 
 
     """
+    speed = 100
+    moves = []
+
     def __init__(self, sprite_name="player1", name="Red"):
         self.name = name			# This is the player's name to be used in dialog
         self.ai = None              # Whether or not this player has AI associated with it
@@ -75,7 +77,7 @@ class Player(object):
         self.standing = {}
         standing_types = ["front", "back", "left", "right"]
         for standing_type in standing_types:
-            surface = pygame.image.load(prepare.BASEDIR + 'resources/sprites/%s_%s.png' % (sprite_name, standing_type)).convert_alpha()
+            surface = tools.load_image("sprites/%s_%s.png" % (sprite_name, standing_type))
             surface_top = surface.subsurface((0, 0,
                                               surface.get_width(), int(surface.get_height() / 2)))
             surface_bottom = surface.subsurface((0, int(surface.get_height() / 2),
@@ -113,25 +115,27 @@ class Player(object):
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
-            images_and_durations = [(prepare.BASEDIR + 'resources/sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')),
+            images_and_durations = [('sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')),
                                     prepare.CONFIG.player_animation_speed) for num in range(4)]
 
             # Loop through all of our animations and get the top and bottom subsurfaces.
+            full_frames = []
             top_frames = []
             bottom_frames = []
-            for frame in images_and_durations:
-                # Load the frame image
-                surface = pygame.image.load(frame[0]).convert_alpha()
-                top_surface = surface.subsurface((0, 0,
-                                                  surface.get_width(), surface.get_height() / 2))
-                bottom_surface = surface.subsurface((0, surface.get_height() / 2,
-                                                     surface.get_width(), surface.get_height() / 2))
-                top_frames.append((top_surface, frame[1]))
-                bottom_frames.append((bottom_surface, frame[1]))
+            for image, duration in images_and_durations:
+                surface = tools.load_image(image)
+                w, h = surface.get_size()
+
+                top_surface = surface.subsurface((0, 0, w, h // 2))
+                bottom_surface = surface.subsurface((0, h // 2, w, h // 2))
+
+                full_frames.append((surface, duration))
+                top_frames.append((top_surface, duration))
+                bottom_frames.append((bottom_surface, duration))
 
             # Create an animation set for the top and bottom halfs of our sprite, so we can draw
             # them on different layers.
-            self.sprite[anim_type] = pyganim.PygAnimation(images_and_durations)
+            self.sprite[anim_type] = pyganim.PygAnimation(full_frames)
             self.sprite[anim_type + '-top'] = pyganim.PygAnimation(top_frames)
             self.sprite[anim_type + '-bottom'] = pyganim.PygAnimation(bottom_frames)
 
@@ -353,18 +357,18 @@ class Player(object):
         #print("move_by_path()")
         # TODO maybe this function could be organized better
         if self.path and not self.moving:
-            # get the next step of the plan
+            # get the next step of the _plan
             next_plan_step = self.path[len(self.path)-1]
             # round self.tile_pos
             my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-            #print("my_tile_pos="+str(my_tile_pos)+" next plan step is " + str(next_plan_step))
+            #print("my_tile_pos="+str(my_tile_pos)+" next _plan step is " + str(next_plan_step))
             # make sure it's adjacent to current location
             adj_x = abs(int(round(my_tile_pos[0])) - int(round(next_plan_step[0]))) == 1
             adj_y = abs(int(round(my_tile_pos[1])) - int(round(next_plan_step[1]))) == 1
             # do xor to invalidate diagonal adjacency
             if (adj_x and not adj_y) or (not adj_x and adj_y):
                 #print("tiles are adjacent!!!")
-                # adjacent is true, so execute move to next plan step
+                # adjacent is true, so execute move to next _plan step
                 # get direction we need to move
                 if my_tile_pos[0] > next_plan_step[0]:
                     self.move_one_tile("left")
@@ -376,7 +380,7 @@ class Player(object):
                     self.move_one_tile("up")
                 self.path.pop() # only pop if we have already executed a move
             if my_tile_pos == next_plan_step:
-                # somehow we are already at the next plan step, just pop
+                # somehow we are already at the next _plan step, just pop
                 self.path.pop()
         else:
             print("self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving))
@@ -448,13 +452,13 @@ class Player(object):
         # collisions.
         npc_positions = set()
 
-        # Get all the NPC's tile positions so we can check for collisions.
+        # Get all the NPC's tile monsters_in_play so we can check for collisions.
         for npc in game.npcs:
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add( (npc_pos_x, npc_pos_y) )
 
-        # Combine our map collision tiles with our npc collision positions
+        # Combine our map collision tiles with our npc collision monsters_in_play
         for pos in npc_positions:
             collision_dict[pos] = "None"
 
@@ -543,7 +547,7 @@ class Player(object):
 
     def add_monster(self, monster):
         """Adds a monster to the player's list of monsters. If the player's party is full, it
-        will send the monster to PC archive.
+        will send the monster to PCState archive.
 
         :param monster: The core.components.monster.Monster object to add to the player's party.
 
@@ -555,7 +559,7 @@ class Player(object):
         """
 
         if len(self.monsters) >= self.party_limit:
-            print("Send to PC")
+            print("Send to PCState")
             self.storage["monsters"].append(monster)
         else:
             self.monsters.append(monster)
@@ -628,7 +632,7 @@ class Player(object):
 
                 #print("path is " + str(path))
 
-                # last minute check to remove the top plan step if
+                # last minute check to remove the top _plan step if
                 # it's the same as our location
                 if path[len(path)-1] == self.tile_pos:
                     plan.pop()
@@ -644,7 +648,7 @@ class Player(object):
     def pathfind_r(self, dest, queue, visited, depth, game):
         # recursive breadth first search algorithm
 
-        if len(queue) == 0:
+        if queue:
             # does reaching this case mean we exhausted the search? I think so
             # which means there is no possible path
             return False
@@ -673,7 +677,7 @@ class Player(object):
 
     def get_adjacent_tiles(self, curr_loc, game):
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 
@@ -743,7 +747,7 @@ class Npc(Player):
         npc_positions = set()
         collision_dict = {}
 
-        # Get all the NPC's tile positions so we can check for collisions.
+        # Get all the NPC's tile monsters_in_play so we can check for collisions.
         for npc in game.npcs:
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
@@ -754,7 +758,7 @@ class Npc(Player):
         player_pos_y = int(round(game.player1.tile_pos[1]))
         npc_positions.add((player_pos_x, player_pos_y))
 
-        # Combine our map collision tiles with our npc collision positions
+        # Combine our map collision tiles with our npc collision monsters_in_play
         for pos in npc_positions:
             collision_dict[pos] = "None"
 

@@ -1,16 +1,19 @@
 {
-    "description": "Heals a monster by 150 HP.", 
+    "description": "Heals a monster by 150 HP.",
     "effects": [
         "heal"
-    ], 
+    ],
     "id": 2,
-    "name": "Super Potion", 
-    "power": 150, 
-    "sprite": "resources/gfx/items/super_potion.png",
-    "target": "player",
+    "name": "Super Potion",
+    "power": 150,
+    "sprite": "gfx/items/super_potion.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
     "type": "Consumable",
     "usable_in": [
-        "combat",
-        "world"
+        "CombatState",
+        "WorldState"
     ]
 }

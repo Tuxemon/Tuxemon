@@ -1,10 +1,9 @@
 import logging
-import pygame
 from abc import abstractmethod
 
-from core.components.animation import Animation, Task
-from core.state import State
+import pygame
 
+from core.state import State
 
 logger = logging.getLogger(__name__)
 logger.debug("{} successfully imported".format(__name__))
@@ -13,49 +12,47 @@ logger.debug("{} successfully imported".format(__name__))
 class FadeTransitionBase(State):
     """ The state responsible for the battle transitions.
     """
-    state_duration = 2.5
-    fade_duration = 2
+    force_draw = True
+    state_duration = 1
+    fade_duration = 1.5
     color = (0, 0, 0)
 
-    def startup(self, params=None):
+    def startup(self, **kwargs):
         logger.info("Initializing fade transition")
-        if params:
-            self.state_duration = params.get("state_duration", self.state_duration)
-            self.fade_duration = params.get("fade_duration", self.fade_duration)
+        self.state_duration = kwargs.get("state_duration", self.state_duration)
+        self.fade_duration = kwargs.get("fade_duration", self.fade_duration)
+        self.caller = kwargs.get("caller")
 
     def resume(self):
-        self.animations = pygame.sprite.Group()
         size = self.game.screen.get_size()
-        self.original_surface = self.game.screen.copy()
         self.transition_surface = pygame.Surface(size)
         self.transition_surface.fill(self.color)
-        self.animations.add(Task(self.game.pop_state, self.state_duration))
+        self.task(self.game.pop_state, self.state_duration)
         self.create_fade_animation()
 
-    @abstractmethod
-    def create_fade_animation(self):
+    def process_event(self, event):
         pass
 
     def update(self, time_delta):
         self.animations.update(time_delta)
 
-    def draw(self, surface):
-        # Blit the original surface to the screen.
-        surface.blit(self.original_surface, (0, 0))
+    @abstractmethod
+    def create_fade_animation(self):
+        pass
 
+    def draw(self, surface):
         # Cover the screen with our faded surface
         surface.blit(self.transition_surface, (0, 0))
 
 
-class FADE_OUT_TRANSITION(FadeTransitionBase):
+class FadeOutTransition(FadeTransitionBase):
     def create_fade_animation(self):
-        ani = Animation(set_alpha=255, initial=0, duration=self.fade_duration)
-        ani.start(self.transition_surface)
-        self.animations.add(ani)
+        self.animate(self.transition_surface, set_alpha=255, initial=0, duration=self.fade_duration)
+
+    def shutdown(self):
+        self.game.pop_state(self.caller)
 
 
-class FADE_IN_TRANSITION(FadeTransitionBase):
+class FadeInTransition(FadeTransitionBase):
     def create_fade_animation(self):
-        ani = Animation(set_alpha=0, initial=255, duration=self.fade_duration)
-        ani.start(self.transition_surface)
-        self.animations.add(ani)
+        self.animate(self.transition_surface, set_alpha=0, initial=255, duration=self.fade_duration)

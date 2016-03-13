@@ -30,21 +30,15 @@
 #
 
 import logging
-import pygame
-import os
-import sys
 import pprint
 import random
 
-from core import prepare
-from . import pyganim
+from core import tools
 from . import db
-from . import fusion
-from . import monster
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("core.item successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 # Load the monster database
 items = db.JSONDatabase()
@@ -80,12 +74,11 @@ class Item(object):
         self.power = 0
         self.sprite = ""                    # The path to the sprite to load.
         self.surface = None                 # The pygame.Surface object of the item.
-        self.surface_size_original = (0,0)  # The original size of the image before scaling.
+        self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
         # If a name of the item was provided, autoload it from the item database.
         if name or id:
             self.load(name, id)
-
 
     def load(self, name, id):
         """Loads and sets this items's attributes from the item.db database. The item is looked up
@@ -128,62 +121,55 @@ class Item(object):
         self.sprite = results["sprite"]
         self.target = results["target"]
         self.usable_in = results["usable_in"]
-        self.surface = pygame.image.load(prepare.BASEDIR + self.sprite).convert_alpha()
+        self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
         self.effect = results["effects"]
 
-
-    def use(self, target, game):
+    def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.
         This method will execute a function with the same name as the effect defined in the
         database. If you want to add a new effect, simply create a new function under the Item
         class with the name of the effect you define in item.db.
 
+        :param user: The monster or object that is using this item.
         :param target: The monster or object that we are using this item on.
-        :param game: The main game object that contains all the game's variables.
 
+        :type user: Varies
         :type target: Varies
-        :type game: tuxemon.Game
 
-        :rtype: None
-        :returns: None
-
-        **Examples:**
-
-        >>> potion_item = Item("Potion")
-        >>> potion_item.use(bulbatux, game)
-
+        :rtype: bool
+        :returns: Success
         """
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effect:
-            getattr(self, str(effect))(target, game)
+            result = getattr(self, str(effect))(user, target)
 
         # If this is a consumable item, remove it from the player's inventory.
         if self.type == "Consumable":
-            if game.player1.inventory[self.name]['quantity'] <= 1:
-                del game.player1.inventory[self.name]
+            if user.inventory[self.name]['quantity'] <= 1:
+                del user.inventory[self.name]
             else:
-                game.player1.inventory[self.name]['quantity'] -= 1
+                user.inventory[self.name]['quantity'] -= 1
 
+        return result
 
-    def heal(self, target, game):
+    def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.
 
-        :param target: The monster object we are using this item on.
-        :param game: The main game object that contains all the game's variables.
+        :param user: The monster or object that is using this item.
+        :param target: The monster or object that we are using this item on.
 
-        :type target: core.monster.Monster
-        :type game: tuxemon.Game
+        :type user: Varies
+        :type target: Varies
 
-        :rtype: None
-        :returns: None
+        :rtype: bool
+        :returns: Success
 
         **Examples:**
         >>> potion_item = Item("Potion")
         >>> potion_item.heal(bulbatux, game)
-
         """
 
         # Heal the target monster by "self.power" number of hitpoints.
@@ -193,34 +179,32 @@ class Item(object):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
+        return True
 
-    def capture(self, target, game):
+    def capture(self, user, target):
         """Captures target monster.
 
-        :param target: The monster object that we will capture.
-        :param game: The main game object that contains all the game's variables.
+        :param user: The monster or object that is using this item.
+        :param target: The monster or object that we are using this item on.
 
-        :type target: core.monster.Monster
-        :type game: tuxemon.Game
+        :type user: Varies
+        :type target: Varies
 
-        :rtype: None
-        :returns: True or False
-
+        :rtype: bool
+        :returns: Success
         """
-
-        print("Attempting to capture")
 
         # Set up variables for capture equation
         success_max = 0
         damage_modifier = 0
         status_modifier = 0
         item_power = self.power
-        random_num = random.randint(0,1000)
+        random_num = random.randint(0, 1000)
 
         # Get percent of damage taken and multiply it by 10
         if target.current_hp < target.hp:
             total_damage = target.hp - target.current_hp
-            damage_modifier = int((float(total_damage) / target.hp)*1000)
+            damage_modifier = int((float(total_damage) / target.hp) * 1000)
 
         # Check if target has any status effects
         if not target.status == "Normal":
@@ -240,18 +224,9 @@ class Item(object):
 
         # If random_num falls between 0 and success_max, capture target
         if 0 <= random_num <= success_max:
-            game.player1.add_monster(target)
+            print("It worked!")
+            user.add_monster(target)
             return True
         else:
+            print("It failed!")
             return False
-
-
-if __name__ == "__main__":
-
-    pygame.init()
-
-    # set up the window
-    screen = pygame.display.set_mode((800,600), 1, 32)
-
-    potion_item = Item("Potion")
-    pprint.pprint(potion_item.__dict__)

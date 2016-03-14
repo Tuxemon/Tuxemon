@@ -34,11 +34,12 @@ as display resolution, scale, etc.
 
 import os
 import shutil
-from os.path import expanduser
 
 import pygame as pg
 
 from .components import config
+from .platform import get_config_path
+
 
 # Get the tuxemon base directory
 BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + os.sep
@@ -46,7 +47,7 @@ if "library.zip" in BASEDIR:
     BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
 
 # Set up our config directory
-CONFIG_PATH = expanduser("~") + "/.tuxemon/"
+CONFIG_PATH = get_config_path() + "/.tuxemon/"
 try:
     os.makedirs(CONFIG_PATH)
 except OSError:
@@ -131,7 +132,7 @@ def init():
     from core import platform
     platform.init()
 
-    from core.platform import android
+    from .platform import android
 
     # Initialize PyGame and our screen surface.
     pg.init()

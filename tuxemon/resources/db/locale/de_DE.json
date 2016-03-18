@@ -14,9 +14,9 @@
     "item_capture_device": "Einfang Gerät",
     "item_capture_device_descr": "Fängt ein Monster.",
     "item_potion": "Trank",
-    "item_potion_descr": "Heilt ein Monster um 50 HP.", // HP in German is KP
+    "item_potion_descr": "Heilt ein Monster um 50 KP.", 
     "item_super_potion": "Super Trank",
-    "item_super_potion_descr": "Heilt ein Monster um 150 HP.", // HP in German is KP
+    "item_super_potion_descr": "Heilt ein Monster um 150 KP.",
     "log_off": "Ausloggen",
     "menu_bag": "Tasche",
     "menu_fight": "Kampf",

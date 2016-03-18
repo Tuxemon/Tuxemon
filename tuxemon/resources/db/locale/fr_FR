@@ -14,9 +14,9 @@
     "item_capture_device": "Dispositif de capture",
     "item_capture_device_descr": "Capture un monstre.",
     "item_potion": "Potion",
-    "item_potion_descr": "Restaure le HP d'un monstre à 15 points.", //HP in French is PV
+    "item_potion_descr": "Restaure le PV d'un monstre à 15 points.",
     "item_super_potion": "Super Potion",
-    "item_super_potion_descr": "Restaure le HP d'un monstre à 150 points.", //HP in French is PV
+    "item_super_potion_descr": "Restaure le PV d'un monstre à 150 points.",
     "log_off": "Déconnexion",
     "menu_bag": "Sac",
     "menu_fight": "Attaque",

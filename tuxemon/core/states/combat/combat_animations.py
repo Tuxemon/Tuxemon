@@ -38,7 +38,7 @@ class CombatAnimations(Menu):
     """ Mixin-ish thing until things are sorted out.
         Mostly just a collections of methods to animate the sprites
 
-        These methods should, without [many] exception[s], manipulate
+        These methods should not, without [many] exception[s], manipulate
         game/combat state.  These should just move sprites around
         the screen, with the occasional creation/removal of sprites....
         but never game objects.

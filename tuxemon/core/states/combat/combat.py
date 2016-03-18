@@ -152,6 +152,8 @@ class CombatState(CombatAnimations):
             return "decision phase"
 
         elif phase == "decision phase":
+            # assume each monster executes one action
+            # if number of actions == monsters, then all monsters are ready
             if len(self._action_queue) == len(list(self.active_monsters)):
                 return "pre action phase"
 
@@ -186,23 +188,29 @@ class CombatState(CombatAnimations):
         """
         if phase == "housekeeping phase":
             self._round += 1
+            # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._round > 1)
 
         if phase == "decision phase":
             if not self._decision_queue:
                 for player in self.human_players:
+                    # the decision queue tracks human players who need to choose and action
                     self._decision_queue.extend(self.monsters_in_play[player])
 
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
                         # TODO: real ai...
+                        # randomly do some action against random opponent
                         target = choice(self.monsters_in_play[self.players[0]])
                         self.enqueue_action(monster, choice(monster.moves), target)
 
         elif phase == "action phase":
+            # TODO: more fine grained sort
+            # TODO: make sure certain actions are always first, like run or heal
             self._action_queue.sort(key=attrgetter("user.speed"))
 
         elif phase == "post action phase":
+            # apply status effects to the monsters
             for monster in self.active_monsters:
                 for technique in monster.status:
                     self.enqueue_action(None, technique, monster)
@@ -221,6 +229,7 @@ class CombatState(CombatAnimations):
         :return: None
         """
         if self.phase == "decision phase":
+            # show monster action menu for human players
             if self._decision_queue:
                 monster = self._decision_queue.pop()
                 self.show_monster_action_menu(monster)
@@ -272,6 +281,7 @@ class CombatState(CombatAnimations):
         # TODO: let work for trainer battles
         humans = list(self.human_players)
 
+        # TODO: integrate some values for different match types
         released = False
         for player in self.active_players:
             positions_available = self.max_positions - len(self.monsters_in_play[player])
@@ -288,6 +298,13 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change()
 
     def add_monster_into_play(self, player, monster):
+        """
+
+        :param player:
+        :param monster:
+        :return:
+        """
+        # TODO: refactor some into the combat animations
         feet = list(self._layout[player]['home'][0].center)
         feet[1] += tools.scale(11)
         self.animate_monster_release_bottom(feet, monster)
@@ -337,11 +354,20 @@ class CombatState(CombatAnimations):
 
     def skip_phase_change(self):
         """ Skip phase change animations
+
+        Useful if player wants to skip a battle animation
         """
         for ani in self.animations:
             ani.finish()
 
     def enqueue_action(self, user, technique, target=None):
+        """ Add some technique or status to the action queue
+
+        :param user:
+        :param technique:
+        :param target:
+        :returns: None
+        """
         self._action_queue.append(EnqueuedAction(user, technique, target))
 
     def remove_monster_actions_from_queue(self, monster):
@@ -393,6 +419,7 @@ class CombatState(CombatAnimations):
         # action is performed, so now use sprites to animate it
         target_sprite = self._monster_sprite_map[target]
 
+        # slightly delay the monster shake, so technique animation
         hit_delay = 0
         if user:
             message = "%s used %s!" % (user.name, technique.name)

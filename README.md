@@ -1,5 +1,3 @@
-![build-status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=master)
-
 Tuxemon
 =========
 

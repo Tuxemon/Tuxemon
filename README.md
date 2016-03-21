@@ -90,6 +90,6 @@ Copyright (C) 2015 William Edwards <shadowapex@gmail.com>,
 Benjamin Bean <superman2k5@gmail.com>
 
 This software is distributed under the GNU General Public Licence as published
-by the Free Software Foundation.  See the file LICENCE for the conditions
+by the Free Software Foundation.  See the file LICENSE for the conditions
 under which this software is made available.  Tuxemon also contains code from
 other sources.

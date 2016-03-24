@@ -5,7 +5,7 @@
     "combat_call_tuxemon": "Va ${{name}}!",
     "combat_opponent_call_tuxemon": "${{name}} est envoyé par ${{user}}!",
     "combat_state_poison_damage": "${{name}} souffre du poison!",
-    "combat_victory": "TU AS VINÇU!",
+    "combat_victory": "TU AS VAINCU!",
     "combat_defeat": "TU AS PERDU!",
     "combat_capturing success": "Tu as capturé ${{name}}!",
     "combat_capturing_fail": "${{name}} s'est libéré!",

@@ -266,7 +266,7 @@ class Combat(object):
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
             game.queue_state("CombatState", players=(player1, npc), combat_type="monster")
-
+            print "Current State:", game.current_state
             # flash the screen
             game.push_state("FlashTransition")
 
@@ -276,10 +276,6 @@ class Combat(object):
             mixer.music.play(-1)
             game.current_music["status"] = "playing"
             game.current_music["song"] = filename
-
-            # Stop the player's movement
-            player1.moving = False
-            player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
 
 
     def check_battle_legal(self, player):

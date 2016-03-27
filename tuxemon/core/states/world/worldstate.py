@@ -51,6 +51,8 @@ class WorldState(state.State):
     """ The state responsible for the world game play
     """
 
+    preloaded_maps = {}
+
     def startup(self):
         # Provide access to the screen surface
         self.screen = self.game.screen
@@ -98,6 +100,9 @@ class WorldState(state.State):
         # load the starting map
         map_name = prepare.BASEDIR + "resources/maps/%s" % prepare.CONFIG.starting_map
         self.change_map(map_name)
+
+        # Keep a map of preloaded maps for fast map switching.
+        self.preloaded_maps = {}
 
         ######################################################################
         #                           Player Details                           #
@@ -708,6 +713,13 @@ class WorldState(state.State):
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
+        if map_name not in self.preloaded_maps.keys():
+            print "Map was not preloaded. Loading from disk."
+            map_data = self.load_map(map_name)
+        else:
+            print "%s was found in preloaded maps." % map_name
+            map_data = self.preloaded_maps[map_name]
+            self.clear_preloaded_maps()
 
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of control
@@ -721,30 +733,45 @@ class WorldState(state.State):
         except AttributeError:  # will be raised if this is first map change
             pass
 
-        self.current_map = map.Map(map_name)
-        self.event_engine.current_map = map.Map(map_name)
-
-        self.tiles, self.collision_map, self.collision_lines_map, self.map_size = \
-            self.current_map.loadfile(self.tile_size)
-
-        # Get the events actions and conditions from the current map
-        self.game.events = self.current_map.events
+        self.current_map = map_data["data"]
+        self.tiles = map_data["tiles"]
+        self.collision_map = map_data["collision_map"]
+        self.collision_lines_map = map_data["collision_lines_map"]
+        self.map_size = map_data["map_size"]
+        self.game.events = map_data["events"]
 
         # Clear out any existing NPCs
         self.npcs = []
         self.npcs_off_map = []
 
+    def load_map(self, map_name):
+        """Returns map data as a dictionary to be used for map changing and preloading
+        """
+        map_data = {}
+        map_data["data"] = map.Map(map_name)
+        map_data["events"] = map_data["data"].events
+        map_data["tiles"], map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
+            map_data["data"].loadfile(self.tile_size)
+
         # Scale the loaded tiles if enabled
         if prepare.CONFIG.scaling == "1":
             # Loop through each row in the map. Each row is a list of
             # Tile objects in that row.
-            for y_pos, row in enumerate(self.tiles):
+            for y_pos, row in enumerate(map_data["tiles"]):
                 # Now loop through each tile in the row and scale it accordingly.
                 for x_pos, column in enumerate(row):
                     if column:
                         for layer_pos, tile in enumerate(column):
                             tile['surface'] = tools.scale_tile(tile['surface'], self.tile_size)
-                            self.tiles[y_pos][x_pos][layer_pos] = tile
+                            map_data["tiles"][y_pos][x_pos][layer_pos] = tile
+
+        return map_data
+
+    def preload_map(self, map_name):
+        self.preloaded_maps[map_name] = self.load_map(map_name)
+
+    def clear_preloaded_maps(self):
+        self.preloaded_maps = {}
 
     def get_pos_from_tilepos(self, tile_position):
         """Returns the screen coordinate based on tile position.

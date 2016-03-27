@@ -266,7 +266,7 @@ class Combat(object):
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
             game.queue_state("CombatState", players=(player1, npc), combat_type="monster")
-            print "Current State:", game.current_state
+
             # flash the screen
             game.push_state("FlashTransition")
 

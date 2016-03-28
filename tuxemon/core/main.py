@@ -59,12 +59,12 @@ def main():
     control.push_state("StartState")
 
     # Show the splash screen if it is enabled in the game configuration
-    # if prepare.CONFIG.splash == "1":
-    #     control.push_state("SplashState")
-    #     control.push_state("FadeInTransition")
+    if prepare.CONFIG.splash == "1":
+        control.push_state("SplashState")
+        control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if 1:
+    if 0:
         import random
         from core.components.event.actions.player import Player
         from core.components.technique import Technique

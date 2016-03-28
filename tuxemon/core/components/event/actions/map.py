@@ -66,7 +66,7 @@ class Map(object):
         }
 
         """
-        if game.current_state.state != "WorldState":
+        if not hasattr(game.current_state, 'state') or game.current_state.state != "WorldState":
             return
         world = game.current_state
 

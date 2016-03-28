@@ -51,7 +51,7 @@ class WorldMenuState(Menu):
 
         # Main Menu - Allows users to open the main menu in game.
         self.menu_items_map = OrderedDict((
-            ('JOURNAL', battle),
+            ('JOURNAL', not_implemented_dialog),
             ('TUXEMON', change_state("MonsterMenuState")),
             ('BAG', change_state("ItemMenuState")),
             ('PLAYER', not_implemented_dialog),

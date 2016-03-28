@@ -57,13 +57,20 @@ def main():
     control = PygameControl(prepare.ORIGINAL_CAPTION)
     control.auto_state_discovery()
     control.push_state("StartState")
-    control.push_state("SplashState")
-    control.push_state("FadeInTransition")
+
+    # # Show the splash screen if it is enabled in the game configuration
+    # if prepare.CONFIG.splash == "1":
+    #     control.push_state("SplashState")
+    #     control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if 0:
+    if 1:
         import random
         from core.components.event.actions.player import Player
+        from core.components.technique import Technique
+
+        # TODO: fix this player/player1 issue
+        control.player1 = prepare.player1
 
         add_monster = partial(adapter("add_monster"))
         Player().add_monster(control, add_monster('Bigfin', 10))
@@ -77,25 +84,17 @@ def main():
         Player().add_item(control, add_item(u'Super Potion', 1))
         Player().add_item(control, add_item(u'Capture Device', 1))
 
-        control.push_state("MonsterMenuState")
-
         for monster in control.player1.monsters:
             monster.hp = 100
-            monster.current_hp = random.randint(1, 2)
+            monster.current_hp = 100
+            # monster.current_hp = random.randint(1, 2)
+            monster.apply_status(Technique("Poison"))
 
-    # from core.components.event.actions.combat import Combat
-    # start_battle = partial(adapter("random_encounter"))
-    # Combat().random_encounter(control, start_battle(1))
+        # control.push_state("MonsterMenuState")
 
-    # do not call fade out, the splash screen will do that
-    # control.push_state("SplashState")
-    # control.push_state("FadeInTransition")
-
-    # # Show the splash screen if it is enabled in the game configuration
-    # if prepare.CONFIG.splash == "1":
-    #     control.push_state("FadeOutTransition")
-    #     control.push_state("StartState")
-    #     # control.push_state("FadeInTransition")
+        from core.components.event.actions.combat import Combat
+        start_battle = partial(adapter("random_encounter"))
+        Combat().random_encounter(control, start_battle(1))
 
     control.main()
     pygame.quit()

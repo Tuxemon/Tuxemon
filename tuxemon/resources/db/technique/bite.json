@@ -1,6 +1,7 @@
 {
     "animation": "teeth",
     "sfx": "blaster1.ogg",
+    "icon": "",
     "category": "physical",
     "effects": [
         "damage"

@@ -26,6 +26,10 @@ class FlashTransition(State):
         self.flash_count = 0
         self.game.rumble.rumble(-1, length=1.5)
 
+    def process_event(self, event):
+        # return None so that events don't leak through
+        return None
+
     def resume(self):
         self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
         self.transition_surface.fill((255, 255, 255))

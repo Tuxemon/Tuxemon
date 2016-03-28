@@ -1,6 +1,7 @@
 {
     "animation": "greendrip",
     "sfx": "bite1.ogg",
+    "icon": "gfx/ui/icons/status/poison-icon.png",
     "category": "poison",
     "effects": ["damage"],
     "id": 5,

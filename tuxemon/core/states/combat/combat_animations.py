@@ -237,7 +237,7 @@ class CombatAnimations(Menu):
         :return:
         """
         self._hp_bars[monster] = HpBar(initial)
-        self.task(partial(self.animate_hp, monster), monster_hud_move_in_time * 1.5)
+        self.animate_hp(monster)
 
     def build_hud_text(self, monster):
         """

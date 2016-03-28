@@ -33,16 +33,17 @@ from __future__ import division
 
 import logging
 from collections import namedtuple, defaultdict
+from itertools import chain
 from functools import partial
 from operator import attrgetter
 from random import choice
 
 import pygame
 
-from core import tools
-from core.components.monster import Technique
+from core import tools, state
 from core.components.pyganim import PygAnimation
 from core.components.sprite import Sprite
+from core.components.technique import Technique
 from core.components.ui.draw import GraphicBox
 from core.components.ui.text import TextArea
 from .combat_animations import CombatAnimations
@@ -84,9 +85,29 @@ def defeated(player):
     return fainted_party(player.monsters)
 
 
+class WaitForInputState(state.State):
+    """ Just wait for input blocking everything
+    """
+    def process_event(self, event):
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            self.game.pop_state(self)
+
+
 class CombatState(CombatAnimations):
     """ The state-menu responsible for all combat related tasks and functions.
         .. image:: images/combat/monster_drawing01.png
+
+    General description of this class:
+        * implements a simple state machine
+        * various phases are executed using a queue of actions
+        * "decision queue" is used to queue player interactions/menus
+        * this class holds mostly logic, though some graphical functions exist
+        * most graphical functions are contained in "CombatAnimations" class
+
+    Currently, status icons are implemented as follows:
+       each round, all status icons are destroyed
+       status icons are created for each status on each monster
+       obvs, not ideal, maybe someday make it better? (see transition_phase)
     """
     background_filename = "gfx/ui/combat/battle_bg03.png"
     draw_borders = False
@@ -101,6 +122,7 @@ class CombatState(CombatAnimations):
         self._decision_queue = list()        # queue for monsters that need decisions
         self._position_queue = list()        # queue for asking players to add a monster into play (subject to change)
         self._action_queue = list()          # queue for techniques, items, and status effects
+        self._status_icons = list()          # list of sprites that are status icons
         self._monster_sprite_map = dict()    # monster => sprite
         self._hp_bars = dict()               # monster => hp bar
         self._layout = dict()                # player => home areas on screen
@@ -115,6 +137,13 @@ class CombatState(CombatAnimations):
         self.task(partial(setattr, self, "phase", "ready"), 3)
 
     def update(self, time_delta):
+        """ Update the combat state.  State machine is checked.
+
+        General operation:
+        * determine what phase to execute
+        * if new phase, then run transition into new one
+        * update the new phase, or the current one
+        """
         super(CombatState, self).update(time_delta)
         if not self._animation_in_progress:
             new_phase = self.determine_phase(self.phase)
@@ -141,7 +170,10 @@ class CombatState(CombatAnimations):
     def determine_phase(self, phase):
         """ Determine the next phase and set it
 
-        Only test and set new phase.  Do not execute phase actions.
+        Part of state machine
+        Only test and set new phase.
+        * Do not execute phase actions
+        * Try not to modify any values
 
         :returns: None
         """
@@ -154,11 +186,13 @@ class CombatState(CombatAnimations):
         elif phase == "decision phase":
             # assume each monster executes one action
             # if number of actions == monsters, then all monsters are ready
-            if len(self._action_queue) == len(list(self.active_monsters)):
+            if len(self._action_queue) == len(self.active_monsters):
                 return "pre action phase"
 
+            # TODO: change check so that it doesn't change state
+            # (state is changed because check_match_status will modify _winner)
             # if a player runs, it will be known here
-            self.check_match_status()
+            self.determine_winner()
             if self._winner:
                 return "resolve match"
 
@@ -171,17 +205,22 @@ class CombatState(CombatAnimations):
 
         elif phase == "post action phase":
             if not self._action_queue:
-                return "ready"
+                return "resolve match"
 
         elif phase == "resolve match":
-            if not self._winner:
+            if self._winner:
+                return "end combat"
+            else:
                 return "housekeeping phase"
 
     def transition_phase(self, phase):
         """ Change from one phase from another.
 
-        This will be run just once when phase changes.
-        Do not change phase.  Just runs actions for new phase.
+        Part of state machine
+        * Will be run just -once- when phase changes.
+        * Do not change phase.
+        * Execute code only to change into new phase.
+        * The phase's update will be executed -after- this
 
         :param phase:
         :return:
@@ -192,6 +231,7 @@ class CombatState(CombatAnimations):
             self.fill_battlefield_positions(ask=self._round > 1)
 
         if phase == "decision phase":
+            self.reset_status_icons()
             if not self._decision_queue:
                 for player in self.human_players:
                     # the decision queue tracks human players who need to choose and action
@@ -216,15 +256,30 @@ class CombatState(CombatAnimations):
                     self.enqueue_action(None, technique, monster)
 
         elif phase == "resolve match":
-            self.check_match_status()
+            self.determine_winner()
+
             if self._winner:
-                self.end_combat()
+                # TODO: proper match check, etc
+                if self._winner.name == "Maple":
+                    self.alert("You've been defeated!")
+                else:
+                    self.alert("You have won!")
+
+                # after 3 seconds, push a state that blocks until enter is pressed
+                # after the state is popped, the combat state will clean up and close
+                self.task(partial(self.game.push_state, "WaitForInputState"), 2)
+                self.suppress_phase_change(3)
+
+        elif phase == "end combat":
+            self.end_combat()
 
     def update_phase(self):
         """ Execute/update phase actions
 
-        Do not change phase.  This will be run each iteration phase is active.
-        Do not test conditions to change phase.  Only do actions.
+        Part of state machine
+        * Do not change phase.
+        * Will be run each iteration phase is active.
+        * Do not test conditions to change phase.
 
         :return: None
         """
@@ -316,6 +371,24 @@ class CombatState(CombatAnimations):
             self.alert('Go %s!' % monster.name.upper())
         else:
             self.alert('A wild %s appeared!' % monster.name.upper())
+
+    def reset_status_icons(self):
+        """ Update/reset status icons for monsters
+
+        TODO: caching, etc
+        """
+        # remove all status icons
+        for s in self._status_icons:
+            self.sprites.remove(s)
+
+        # add status icons
+        for monster in self.active_monsters:
+            for status in monster.status:
+                if status.icon:
+                    # get the rect of the monster
+                    rect = self._monster_sprite_map[monster].rect
+                    # load the sprite and add it to the display
+                    self.load_sprite(status.icon, layer=200, center=rect.topleft)
 
     def show_combat_dialog(self):
         """ Create and show the area where battle messages are displayed
@@ -409,6 +482,7 @@ class CombatState(CombatAnimations):
 
         :returns:
         """
+        technique.advance_round()
         result = technique.use(user, target)
 
         try:
@@ -420,6 +494,7 @@ class CombatState(CombatAnimations):
         target_sprite = self._monster_sprite_map[target]
 
         # slightly delay the monster shake, so technique animation
+        # is synchronized with the damage shake motion
         hit_delay = 0
         if user:
             message = "%s used %s!" % (user.name, technique.name)
@@ -497,7 +572,7 @@ class CombatState(CombatAnimations):
 
         TODO: move to some generic animation loading thingy
 
-        :type technique: core.components.monster.Technique
+        :type technique: core.components.technique.Technique
         :rtype: core.components.sprite.Sprite
         """
         try:
@@ -550,13 +625,11 @@ class CombatState(CombatAnimations):
 
     @property
     def active_monsters(self):
-        """ Generator of any non-defeated monsters on battlefield
+        """ List of any non-defeated monsters on battlefield
 
-        :rtype: collections.Iterable[core.components.monster.Monster]
+        :rtype: list
         """
-        for monsters in self.monsters_in_play.values():
-            for monster in monsters:
-                yield monster
+        return list(chain.from_iterable(self.monsters_in_play.values()))
 
     def remove_player(self, player):
         # TODO: non SP things
@@ -564,7 +637,7 @@ class CombatState(CombatAnimations):
         self.suppress_phase_change()
         self.alert("You have run away!")
 
-    def check_match_status(self):
+    def determine_winner(self):
         """ Determine if match should continue or not
 
         :return:
@@ -575,12 +648,6 @@ class CombatState(CombatAnimations):
         players = list(self.active_players)
         if len(players) == 1:
             self._winner = players[0]
-
-            # TODO: proper match check, etc
-            if self._winner.name == "Maple":
-                self.alert("You've been defeated!")
-            else:
-                self.alert("You have won!")
 
     def end_combat(self):
         """ End the combat

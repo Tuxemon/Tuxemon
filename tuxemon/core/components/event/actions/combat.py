@@ -34,6 +34,7 @@ from core.components import ai
 from core.components import db
 from core.components import monster
 from core.components import player
+from core.components import technique
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -129,7 +130,7 @@ class Combat(object):
 
             current_monster.load_sprite_from_db()
 
-            pound = monster.Technique('Pound')
+            pound = technique.Technique('Pound')
 
             current_monster.learn(pound)
 

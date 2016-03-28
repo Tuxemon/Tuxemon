@@ -229,7 +229,7 @@ class Combat(object):
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1, 1000)
+            roll = random.randrange(1, 2)
             if roll <= int(item['encounter_rate']):
                 # Set our encounter details
                 encounter = item
@@ -254,7 +254,7 @@ class Combat(object):
                 level = encounter['level_range'][0]
 
             # Set the monster's level
-            current_monster.level = level
+            current_monster.level = 1
             current_monster.set_level(current_monster.level)
 
             # Create an NPC object which will be this monster's "trainer"

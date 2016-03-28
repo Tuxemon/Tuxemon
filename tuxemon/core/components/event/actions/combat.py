@@ -277,10 +277,6 @@ class Combat(object):
             game.current_music["status"] = "playing"
             game.current_music["song"] = filename
 
-            # Stop the player's movement
-            player1.moving = False
-            player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
-
 
     def check_battle_legal(self, player):
         """Checks to see if the player has any monsters fit for battle.

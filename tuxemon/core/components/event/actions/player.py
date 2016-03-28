@@ -78,6 +78,7 @@ class Player(object):
 
         # If we're doing a screen transition with this teleport, set the map name that we'll
         # load during the apex of the transition.
+        # TODO: This only needs to happen once.
         if world.start_transition:
             world.delayed_mapname = mapname
 
@@ -94,38 +95,9 @@ class Player(object):
             world.global_x = player.position[0] - (position_x * player.tile_size[0])
             world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
-            ### THIS NEEDS TO BE MOVED IN ITS OWN FUNCTION AND IS DUPLICATED IN THE World STATE ###
-            from core.components.map import Map
-            if prepare.BASEDIR + "resources/maps/" + mapname != world.current_map.filename:
-                world.current_map = Map(
-                    prepare.BASEDIR + "resources/maps/" + mapname)
-                world.event_engine.current_map = Map(
-                    prepare.BASEDIR + "resources/maps/" + mapname)
-                world.tiles, world.collision_map, world.collision_lines_map, world.map_size = world.current_map.loadfile(
-                    world.tile_size)
-                world.game.events = world.current_map.events
-
-                # Clear out any existing NPCs
-                world.npcs = []
-
-                # Scale the loaded tiles if enabled
-                if world.scale > 1:
-                    x_pos = 0        # Here we need to keep track of the x index of the list
-                    # Loop through each row in the map. Each row is a list of
-                    # Tile objects in that row.
-                    for row in world.tiles:
-                        y_pos = 0       # Here we need to keep track of the y index of the list within the row
-                        # Now loop through each tile in the row and scale it
-                        # accordingly.
-                        for column in row:
-                            if column:
-                                layer_pos = 0
-                                for tile in column:
-                                    tile["surface"] = tools.scale_tile(tile["surface"], player.tile_size)
-                                    world.tiles[x_pos][y_pos][layer_pos] = tile
-                                    layer_pos += 1
-                            y_pos += 1
-                        x_pos += 1
+            map_path = prepare.BASEDIR + "resources/maps/" + mapname
+            if map_path != world.current_map.filename:
+                world.change_map(map_path)
 
         # Update the server/clients of our new map and populate any other players.
         if game.isclient or game.ishost:

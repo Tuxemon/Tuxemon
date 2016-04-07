@@ -1,0 +1,44 @@
+{
+    "id":   23,
+
+    "attack_base":            53,
+    "defense_base":           6.5,
+    "hp_base":                57,
+    "special_attack_base":    7,
+    "special_defense_base":   9,
+    "speed_base":             8,
+
+    "attack_mod":             1,
+    "defense_mod":            1,
+    "hp_mod":                 1,
+    "special_attack_mod":     1.1,
+    "special_defense_mod":    1,
+    "speed_mod":              1,
+
+    "exp_give_mod":           3,
+    "exp_req_mod":            27,
+
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique_id": 1,
+            "technique": "Pound"
+        },
+        {
+            "level_learned": 2,
+            "technique_id": 3,
+            "technique": "Bite"
+        }
+    ],
+    "name": "Dandylion",
+    "sprites": {
+        "battle1": "resources/gfx/sprites/battle/dandylion-front.png",
+        "battle2": "resources/gfx/sprites/battle/dandylion-back.png",
+        "menu1": "resources/gfx/sprites/battle/dandylion-menu01.png",
+        "menu2": "resources/gfx/sprites/battle/dandylion-menu02.png"
+    },
+    "types": [
+        "wood"
+    ],
+    "weight": 57
+}

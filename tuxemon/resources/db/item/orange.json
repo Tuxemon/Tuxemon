@@ -1,0 +1,19 @@
+{
+    "description": "Heals a monster by 20 HP.",
+    "effects": [
+        "heal"
+    ],
+    "id": 6,
+    "name": "Orange",
+    "power": 20,
+    "sprite": "gfx/items/orange.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
+    "type": "Consumable",
+    "usable_in": [
+        "CombatState",
+        "WorldState"
+    ]
+}

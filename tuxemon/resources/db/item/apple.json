@@ -1,0 +1,19 @@
+{
+    "description": "Heals a monster by 20 HP.",
+    "effects": [
+        "heal"
+    ],
+    "id": 5,
+    "name": "Apple",
+    "power": 20,
+    "sprite": "gfx/items/apple.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
+    "type": "Consumable",
+    "usable_in": [
+        "CombatState",
+        "WorldState"
+    ]
+}

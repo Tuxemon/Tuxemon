@@ -1,0 +1,19 @@
+{
+    "description": "Heals a monster by 10 HP.",
+    "effects": [
+        "heal"
+    ],
+    "id": 7,
+    "name": "Berry",
+    "power": 10,
+    "sprite": "gfx/items/berry.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
+    "type": "Consumable",
+    "usable_in": [
+        "CombatState",
+        "WorldState"
+    ]
+}

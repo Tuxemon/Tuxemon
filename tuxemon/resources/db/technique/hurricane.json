@@ -1,0 +1,15 @@
+{
+    "animation": "whirlwind",
+    "sfx": "blaster1.ogg",
+    "icon": "",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ],
+    "id": 9,
+    "name": "Whirlwind",
+    "power": 70,
+    "types": [
+        "Wood"
+    ]
+}

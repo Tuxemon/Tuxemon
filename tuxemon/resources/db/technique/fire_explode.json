@@ -1,0 +1,15 @@
+{
+    "animation": "fire",
+    "sfx": "blaster1.ogg",
+    "icon": "",
+    "category": "physical",
+    "effects": [
+        "damage"
+    ],
+    "id": 10,
+    "name": "Fire Explosion",
+    "power": 69,
+    "types": [
+        "Fire"
+    ]
+}

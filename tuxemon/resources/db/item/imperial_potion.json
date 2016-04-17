@@ -1,0 +1,19 @@
+{
+    "description": "Heals a monster by 350 HP.",
+    "effects": [
+        "heal"
+    ],
+    "id": 4,
+    "name": "Imperial Potion",
+    "power": 350,
+    "sprite": "gfx/items/imperial_potion.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
+    "type": "Consumable",
+    "usable_in": [
+        "CombatState",
+        "WorldState"
+    ]
+}

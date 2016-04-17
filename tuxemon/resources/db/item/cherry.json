@@ -1,0 +1,19 @@
+{
+    "description": "Heals a monster by 10 HP.",
+    "effects": [
+        "heal"
+    ],
+    "id": 8,
+    "name": "Cherry",
+    "power": 10,
+    "sprite": "gfx/items/cherry.png",
+    "target": [
+        "trainer",
+        "monster"
+    ],
+    "type": "Consumable",
+    "usable_in": [
+        "CombatState",
+        "WorldState"
+    ]
+}

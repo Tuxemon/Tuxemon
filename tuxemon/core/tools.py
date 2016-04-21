@@ -36,7 +36,11 @@ import os.path
 import pygame
 
 import core.components.sprite
-import prepare
+
+#import prepare
+#Changed to this because of a import error
+from core import prepare 
+
 from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.

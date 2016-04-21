@@ -40,7 +40,7 @@ class TextArea(Sprite):
             self._text = value
         self._start_text_animation()
 
-    def next(self):
+    def __next__(self):
         try:
             dirty, dest, scrap = next(self._iter)
             self._image.fill((0, 0, 0, 0), dirty)

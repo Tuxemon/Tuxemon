@@ -254,7 +254,7 @@ class Combat(object):
                 level = encounter['level_range'][0]
 
             # Set the monster's level
-            current_monster.level = level
+            current_monster.level = 1
             current_monster.set_level(current_monster.level)
 
             # Create an NPC object which will be this monster's "trainer"

@@ -75,13 +75,6 @@ class WorldState(state.State):
         self.state = "WorldState"
 
         ######################################################################
-        #                          Event Engine                              #
-        ######################################################################
-
-        # Get a copy of the event engine from core.control.Control.
-        self.event_engine = self.game.event_engine
-
-        ######################################################################
         #                              Map                                   #
         ######################################################################
 
@@ -124,7 +117,7 @@ class WorldState(state.State):
         #                            Transitions                             #
         ######################################################################
 
-        # defaults variables for transition
+        # default variables for transition
         self.SAVE_THIS_FUCKING_SCREEN = pygame.Surface(prepare.SCREEN_SIZE)
         self.transition_alpha = 0
         self.start_transition = False
@@ -739,6 +732,7 @@ class WorldState(state.State):
         self.collision_lines_map = map_data["collision_lines_map"]
         self.map_size = map_data["map_size"]
         self.game.events = map_data["events"]
+        self.game.event_engine.current_map = map_data
 
         # Clear out any existing NPCs
         self.npcs = []

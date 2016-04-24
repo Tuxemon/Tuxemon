@@ -194,7 +194,7 @@ class CombatState(CombatAnimations):
             # if a player runs, it will be known here
             self.determine_winner()
             if self._winner:
-                return "resolve match"
+                return "ran away"
 
         elif phase == "pre action phase":
             return "action phase"
@@ -207,9 +207,15 @@ class CombatState(CombatAnimations):
             if not self._action_queue:
                 return "resolve match"
 
+        elif phase == "ran away":
+            return "end combat"
+
+        elif phase == "has winner":
+            return "end combat"
+
         elif phase == "resolve match":
             if self._winner:
-                return "end combat"
+                return "has winner"
             else:
                 return "housekeeping phase"
 
@@ -258,6 +264,14 @@ class CombatState(CombatAnimations):
         elif phase == "resolve match":
             self.determine_winner()
 
+        elif phase == "ran away":
+            # after 3 seconds, push a state that blocks until enter is pressed
+            # after the state is popped, the combat state will clean up and close
+            # if you run in PvP, you need "defeated message"
+            self.task(partial(self.game.push_state, "WaitForInputState"), 1)
+            self.suppress_phase_change(1)
+
+        elif phase == "has winner":
             if self._winner:
                 # TODO: proper match check, etc
                 if self._winner.name == "Maple":
@@ -267,8 +281,8 @@ class CombatState(CombatAnimations):
 
                 # after 3 seconds, push a state that blocks until enter is pressed
                 # after the state is popped, the combat state will clean up and close
-                self.task(partial(self.game.push_state, "WaitForInputState"), 2)
-                self.suppress_phase_change(3)
+                self.task(partial(self.game.push_state, "WaitForInputState"), 1)
+                self.suppress_phase_change(1)
 
         elif phase == "end combat":
             self.end_combat()

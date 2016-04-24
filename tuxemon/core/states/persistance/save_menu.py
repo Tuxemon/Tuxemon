@@ -83,6 +83,8 @@ class SaveMenuState(PopUpMenu):
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)
+            print(e)
+
             open_dialog(self.game, ["There was a problem saving!"])
             self.game.pop_state(self)
         else:

@@ -34,6 +34,7 @@ import logging
 from functools import partial
 
 from core import prepare
+from core.state import State
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import PopUpMenu
 
@@ -42,16 +43,33 @@ logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
 
 
+class BackgroundState(State):
+    """ background state is used to prevent other states from
+    being required to track dirty screen areas.  for example,
+    in the start state, there is a menu on a blank background,
+    since menus do not clean up dirty areas, the blank,
+    "Background state" will do that.  The alternative is creating
+    a system for states to clean up their dirty screen areas.
+    """
+    def draw(self, surface):
+        surface.fill((0, 0, 0, 0))
+
+    def resume(self):
+        self.game.pop_state()
+
+
 class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
+    shrink_to_items = True
+
     def initialize_items(self):
         def change_state(state, **kwargs):
             return partial(self.game.push_state, state, **kwargs)
 
         def new_game():
             self.game.player1 = prepare.player1
-            state = self.game.replace_state("WorldState")
+            self.game.replace_state("WorldState")
             self.game.push_state("FadeInTransition")
 
         def options():
@@ -74,9 +92,9 @@ class StartState(PopUpMenu):
     def on_menu_selection(self, item):
         item.game_object()
 
-    def calc_final_rect(self):
-        rect = self.rect.copy()
-        rect.width *= .3
-        rect.height *= .5
-        rect.center = self.rect.center
-        return rect
+    # def calc_final_rect(self):
+    #     rect = self.rect.copy()
+    #     rect.width *= .3
+    #     rect.height *= .5
+    #     rect.center = self.rect.center
+    #     return rect

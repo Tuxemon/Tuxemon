@@ -49,6 +49,8 @@ class TextArea(Sprite):
             self.drawing_text = False
             raise
 
+    next = __next__
+
     def _start_text_animation(self):
         self.drawing_text = True
         self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)

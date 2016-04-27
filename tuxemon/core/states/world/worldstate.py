@@ -707,10 +707,10 @@ class WorldState(state.State):
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
         if map_name not in self.preloaded_maps.keys():
-            print "Map was not preloaded. Loading from disk."
+            print ("Map was not preloaded. Loading from disk.")
             map_data = self.load_map(map_name)
         else:
-            print "%s was found in preloaded maps." % map_name
+            print ("%s was found in preloaded maps." % map_name)
             map_data = self.preloaded_maps[map_name]
             self.clear_preloaded_maps()
 

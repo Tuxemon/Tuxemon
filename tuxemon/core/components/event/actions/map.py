@@ -75,7 +75,7 @@ class Map(object):
 
         if mapname not in world.preloaded_maps.keys():
             # TODO: We should do this asyncronously?
-            print "PRELOADING MAP:", mapname
+            print ("PRELOADING MAP:", mapname)
             world.preload_map(mapname)
 
 

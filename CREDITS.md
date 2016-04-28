@@ -10,6 +10,7 @@ Programming
 * [William Edwards](mailto:shadowapex@gmail.com)
 * [Benjamin Bean](mailto:superman2k5@gmail.com)
 * [Derek Clark](mailto:derekjohn.clark@gmail.com)
+* [Leif Theden](https://github.com/bitcraft)
 
 **Contributors**
 
@@ -460,4 +461,25 @@ Sounds
 * "Tux Sound" by 
 [Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under 
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based upon [magellanic penguin](http://www.freesound.org/people/soundbytez/sounds/111079/) by [soundbytez](http://www.freesound.org/people/soundbytez/)
+
+
+Translations
+--------------
+
+### English
+* [William Edwards](https://github.com/ShadowApex)    
+* [tamashihoshi](https://github.com/tamashihoshi) 
+
+### German
+* [tamashihoshi](https://github.com/tamashihoshi) 
+
+### French
+* [HugopGhost](https://github.com/HugopGhost)
+
+### Chzech
+* [Clonewayx](https://github.com/Clonewayx)
+
+### Norwegian
+* Anonymous contributor
+
 

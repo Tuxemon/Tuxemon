@@ -143,7 +143,8 @@ class Core(object):
 
 
     def translated_dialog(self, game, action):
-        """Opens a dialog window with translated text according to the passed translation key
+        """Opens a dialog window with translated text according to the passed translation key. Parameters
+        passed to the translation string will also be checked if a translation key exists.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -178,7 +179,14 @@ class Core(object):
         replace_values = {}
         for param in action.parameters[1:]:
             values = param.split("=")
-            replace_values[values[0]] = self._replace_text(game, values[1])
+            param_key = values[0]
+            param_value = values[1]
+
+            # Check to see if param_value is translatable
+            if translator.has_key(param_value):
+                param_value = trans(param_value)
+
+            replace_values[param_key] = self._replace_text(game, param_value)
 
         text = trans(key, replace_values)
         logger.info("Opening translated dialog window")
@@ -275,7 +283,15 @@ class Core(object):
         replace_values = {}
         for param in action.parameters[1:]:
             values = param.split("=")
-            replace_values[values[0]] = self._replace_text(game, values[1])
+
+            param_key = values[0]
+            param_value = values[1]
+
+            # Check to see if param_value is translatable
+            if translator.has_key(param_value):
+                param_value = trans(param_value)
+
+            replace_values[param_key] = self._replace_text(game, param_value)
 
         text = trans(key, replace_values)
         logger.info("Opening translated chain dialog window")

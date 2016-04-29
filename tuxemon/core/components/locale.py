@@ -103,6 +103,23 @@ class Translator(object):
 
         return translations
 
+    def has_key(self, key):
+        if key in self.translations or key in self.fallback:
+            return True
+        else:
+            return False
+
+    def get_key(self, key):
+        if key in self.translations:
+            return self.translations[key]
+        elif key in self.fallback:
+            return self.fallback[key]
+        else:
+            logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
+            print("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
+            return None
+
+
     def change_locale(self, locale_name):
         """Changes the translator object to the given locale
 

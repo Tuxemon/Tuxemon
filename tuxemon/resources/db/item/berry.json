@@ -1,10 +1,12 @@
 {
     "description": "Heals a monster by 10 HP.",
+    "description_trans": "item_berry_descr",
     "effects": [
         "heal"
     ],
     "id": 7,
     "name": "Berry",
+    "name_trans": "item_berry",
     "power": 10,
     "sprite": "gfx/items/berry.png",
     "target": [

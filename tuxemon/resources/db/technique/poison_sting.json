@@ -9,6 +9,7 @@
     ],
     "id": 2,
     "name": "Poison Sting",
+    "name_trans": "technique_poison_sting",
     "power": 40,
     "types": [
         "Poison"

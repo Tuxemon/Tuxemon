@@ -6,6 +6,7 @@
     "effects": ["swap"],
     "id": 8,
     "name": "Swap",
+    "name_trans": "status_swap",
     "power": 0,
     "types": [
         "Meta"

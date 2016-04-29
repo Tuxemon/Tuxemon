@@ -6,6 +6,7 @@
     "effects": ["damage"],
     "id": 5,
     "name": "Poison",
+    "name_trans": "status_poison",
     "power": 10,
     "types": [
         "Poison"

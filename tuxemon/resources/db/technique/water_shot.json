@@ -8,6 +8,7 @@
     ],
     "id": 3,
     "name": "Water Shot",
+    "name_trans": "technique_water_shot",
     "power": 50,
     "types": [
         "Water"

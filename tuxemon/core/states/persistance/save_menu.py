@@ -11,6 +11,8 @@ from core.components import save
 from core.components.menu import PopUpMenu
 from core.components.menu.interface import MenuItem
 from core.components.ui import text
+from core.components.locale import translator
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -29,7 +31,7 @@ class SaveMenuState(PopUpMenu):
             # Check to see if a save exists for the current slot
             if os.path.exists(prepare.SAVE_PATH + str(i + 1) + ".save"):
                 image = self.render_slot(slot_rect, i + 1)
-                yield MenuItem(image, "SAVE", None, None)
+                yield MenuItem(image, trans('menu_save'), None, None)
             else:
                 if not empty_image:
                     empty_image = self.render_empty_slot(slot_rect)
@@ -38,7 +40,7 @@ class SaveMenuState(PopUpMenu):
     def render_empty_slot(self, rect):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, "Empty Slot", rect, font=self.font)
+        text.draw_text(slot_image, trans('empty_slot').title(), rect, font=self.font)
         return slot_image
 
     def render_slot(self, rect, slot_num):
@@ -54,7 +56,7 @@ class SaveMenuState(PopUpMenu):
 
         # Draw the slot text
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, "Slot " + str(slot_num), rect, font=self.font)
+        text.draw_text(slot_image, trans('slot') + " " + str(slot_num), rect, font=self.font)
 
         # Try and load the save game and draw details about the save
         try:
@@ -85,10 +87,10 @@ class SaveMenuState(PopUpMenu):
             logger.error(e)
             print(e)
 
-            open_dialog(self.game, ["There was a problem saving!"])
+            open_dialog(self.game, [trans('save_failure')])
             self.game.pop_state(self)
         else:
-            open_dialog(self.game, ["Saved!"])
+            open_dialog(self.game, [trans('save_success')])
             self.game.pop_state(self)
 
     def capture_screenshot(self):

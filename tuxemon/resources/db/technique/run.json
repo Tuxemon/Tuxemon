@@ -6,6 +6,7 @@
     "effects": [],
     "id": 6,
     "name": "Run",
+    "name_trans": "menu_run",
     "power": 50,
     "types": []
 }

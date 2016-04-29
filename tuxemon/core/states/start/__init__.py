@@ -37,6 +37,7 @@ from core import prepare
 from core.state import State
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import PopUpMenu
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -78,11 +79,12 @@ class StartState(PopUpMenu):
         def exit_game():
             self.game.exit = True
 
+        trans = translator.translate
         menu_items_map = (
-            ('NEW GAME', new_game),
-            ('LOAD', change_state("LoadMenuState")),
-            ('OPTIONS', options),
-            ('EXIT', exit_game),
+            (trans('menu_new_game').upper(), new_game),
+            (trans('menu_load').upper(), change_state("LoadMenuState")),
+            (trans('menu_options').upper(), options),
+            (trans('exit').upper(), exit_game),
         )
 
         for label, callback in menu_items_map:

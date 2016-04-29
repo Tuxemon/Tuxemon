@@ -566,7 +566,7 @@ class CombatState(CombatAnimations):
         for player in self.monsters_in_play.keys():
             for monster in self.monsters_in_play[player]:
                 if fainted(monster):
-                    self.alert(trans('combat_fainted'))
+                    self.alert(trans('combat_fainted', {"name": monster.name}))
                     self.animate_monster_faint(monster)
                     self.suppress_phase_change(3)
 

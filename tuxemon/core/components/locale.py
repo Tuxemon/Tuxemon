@@ -123,11 +123,10 @@ class Translator(object):
         :returns: The formatted translation string.
 
         """
-        formatted_text = text
         for key, value in parameters.items():
-            formatted_text = text.replace("${{" + key + "}}", value)
+            text = text.replace("${{" + key + "}}", value)
 
-        return formatted_text
+        return text
 
     def translate(self, key, parameters={}):
         """Returns translated text for the given key.

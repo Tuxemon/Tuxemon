@@ -79,12 +79,12 @@ class Player(object):
         # If we're doing a screen transition with this teleport, set the map name that we'll
         # load during the apex of the transition.
         # TODO: This only needs to happen once.
-        if world.start_transition:
+        if world.in_transition:
             world.delayed_mapname = mapname
 
         # Check to see if we're also performing a transition. If we are, wait to perform the
         # teleport at the apex of the transition
-        if world.start_transition:
+        if world.in_transition:
             world.delayed_teleport = True
             # Set the global_x/y variables based on the player's pixel position and the tile size.
             world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
@@ -99,13 +99,41 @@ class Player(object):
             if map_path != world.current_map.filename:
                 world.change_map(map_path)
 
-        # Update the server/clients of our new map and populate any other players.
-        if game.isclient or game.ishost:
-            game.add_clients_to_map(game.client.client.registry)
-            game.client.update_player(player.facing)
-
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False
+
+
+    def delayed_teleport(self, game, action):
+        """ Set teleport information.  Teleport will be triggered during screen transition
+
+        Only use this if followed by a transition
+
+        :param game: core.control.Control
+        :param action: Tuple
+        :return: None
+        """
+        # Get the world object from the game.
+        world = game.current_state
+
+        # give up if there is a teleport in progress
+        if world.delayed_teleport:
+            return
+
+        # Get the teleport parameters for the position x,y and the map to load.
+        mapname = str(action.parameters[0])
+        position_x = int(action.parameters[1])
+        position_y = int(action.parameters[2])
+
+        world.delayed_mapname = mapname
+        world.delayed_teleport = True
+
+        # Get the player object from the game.
+        player = game.player1
+
+        # Set the global_x/y variables based on the player's pixel position and the tile size.
+        world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
+        world.delayed_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
+
 
     def transition_teleport(self, game, action):
         """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
@@ -138,10 +166,7 @@ class Player(object):
         }
 
         """
-        # Get the teleport parameters for the position x,y and the map to load.
-        mapname = action.parameters[0]
-        position_x = action.parameters[1]
-        position_y = action.parameters[2]
+        # Get transition parameters
         transition_time = action.parameters[3]
 
         # Start the screen transition
@@ -150,11 +175,8 @@ class Player(object):
         transition_action = Action(action.type, [transition_time])
         screen_transition(game, transition_action)
 
-        # Start the teleport. The teleport action will notice a screen transition in progress,
-        # and wait until it is done before teleporting.
-        teleport_action = Action(action.type, action.parameters)
-
-        self.teleport(game, action)
+        # set the delayed teleport
+        self.delayed_teleport(game, action)
 
 
     def add_monster(self, game, action):
@@ -285,7 +307,7 @@ class Player(object):
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
-        if game.current_state.start_transition:
+        if game.current_state.in_transition:
             game.current_state.delayed_facing = direction
         else:
             game.player1.facing = direction

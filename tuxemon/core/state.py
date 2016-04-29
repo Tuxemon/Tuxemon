@@ -138,7 +138,7 @@ class State(object):
         :returns: None
         :rtype: None
         """
-        pass
+        self.animations.update(time_delta)
 
     def draw(self, surface):
         """ Render the state to the surface passed.  Must be overloaded in children

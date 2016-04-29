@@ -416,9 +416,6 @@ class Menu(state.State):
         for attribute, value in self._anchors.items():
             setattr(self.rect, attribute, value)
 
-    def update(self, time_delta):
-        self.animations.update(time_delta)
-
     # ============================================================================
     #   The following methods are designed to be monkey patched or overloaded
     # ============================================================================

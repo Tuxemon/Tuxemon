@@ -28,6 +28,7 @@ from __future__ import absolute_import
 
 import logging
 from core.tools import open_dialog
+from core.components.locale import translator
 
 
 # Create a logger for optional handling of debug messages.
@@ -141,6 +142,51 @@ class Core(object):
         open_dialog(game, [text])
 
 
+    def translated_dialog(self, game, action):
+        """Opens a dialog window with translated text according to the passed translation key
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: dialog_key,[var1=value1,var2=value2]
+
+        You may also use special variables in dialog events. Here is a list of available variables:
+
+        * ${{name}} - The current player's name.
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "translated_dialog",
+            "parameters": [
+                "received_x",
+                "name=Potion"
+            ]
+        }
+
+        """
+        trans = translator.translate
+        key = str(action.parameters[0])
+        replace_values = {}
+        for param in action.parameters[1:]:
+            values = param.split("=")
+            replace_values[values[0]] = self._replace_text(game, values[1])
+
+        text = trans(key, replace_values)
+        logger.info("Opening translated dialog window")
+
+        # Open a dialog window in the current scene.
+        open_dialog(game, [text])
+
+
     def dialog_chain(self, game, action):
         """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
 
@@ -183,6 +229,57 @@ class Core(object):
             self._dialog_chain_queue = list()
         else:
             self._dialog_chain_queue.append(text)
+
+
+    def translated_dialog_chain(self, game, action):
+        """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: text_to_display
+
+        You may also use special variables in dialog events. Here is a list of available variables:
+
+        * ${{name}} - The current player's name.
+        * ${{end}} - Ends the dialog chain.
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "translated_dialog_chain",
+            "parameters": [
+                "received_x",
+                "name=Potion"
+            ]
+        }
+
+        """
+
+        trans = translator.translate
+        key = str(action.parameters[0])
+        if key == "${{end}}":
+            # Open a dialog window in the current scene.
+            open_dialog(game, self._dialog_chain_queue)
+            self._dialog_chain_queue = list()
+            return
+
+        replace_values = {}
+        for param in action.parameters[1:]:
+            values = param.split("=")
+            replace_values[values[0]] = self._replace_text(game, values[1])
+
+        text = trans(key, replace_values)
+        logger.info("Opening translated chain dialog window")
+        self._dialog_chain_queue.append(text)
 
 
     def rumble(self, game, action):

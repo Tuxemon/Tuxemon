@@ -33,6 +33,7 @@ class WorldMenuState(Menu):
     """
 
     def initialize_items(self):
+        trans = translator.translate
         def change_state(state, **kwargs):
             return partial(self.game.replace_state, state, **kwargs)
 
@@ -48,10 +49,9 @@ class WorldMenuState(Menu):
             Combat().start_battle(self.game, start_battle(1))
 
         def not_implemented_dialog():
-            open_dialog(self.game, ["This feature is not implemented."])
+            open_dialog(self.game, [trans('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
-        trans = translator.translate
         self.menu_items_map = OrderedDict((
             (trans('menu_journal').upper(), not_implemented_dialog),
             (trans('menu_monster').upper(), change_state("MonsterMenuState")),

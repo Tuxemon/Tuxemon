@@ -47,6 +47,8 @@ from core.components.technique import Technique
 from core.components.ui.draw import GraphicBox
 from core.components.ui.text import TextArea
 from .combat_animations import CombatAnimations
+from core.components.locale import translator
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -275,9 +277,9 @@ class CombatState(CombatAnimations):
             if self._winner:
                 # TODO: proper match check, etc
                 if self._winner.name == "Maple":
-                    self.alert("You've been defeated!")
+                    self.alert(trans('combat_defeat'))
                 else:
-                    self.alert("You have won!")
+                    self.alert(trans('combat_victory'))
 
                 # after 3 seconds, push a state that blocks until enter is pressed
                 # after the state is popped, the combat state will clean up and close
@@ -338,7 +340,7 @@ class CombatState(CombatAnimations):
         state = self.game.push_state("MonsterMenuState")
         # must use a partial because alert relies on a text box that may not exist
         # until after the state hs been startup
-        state.task(partial(state.alert, "Choose a replacement!"), 0)
+        state.task(partial(state.alert, trans("comat_replacement")), 0)
         state.on_menu_selection = add
 
     def fill_battlefield_positions(self, ask=False):
@@ -382,9 +384,9 @@ class CombatState(CombatAnimations):
 
         # TODO: not hardcode
         if player is self.players[0]:
-            self.alert('Go %s!' % monster.name.upper())
+            self.alert(trans('combat_call_tuxemon', {"name": monster.name.upper()}))
         else:
-            self.alert('A wild %s appeared!' % monster.name.upper())
+            self.alert(trans('combat_wild_appeared', {"name": monster.name.upper()}))
 
     def reset_status_icons(self):
         """ Update/reset status icons for monsters
@@ -429,7 +431,7 @@ class CombatState(CombatAnimations):
 
         :returns: None
         """
-        message = 'What will %s do?' % monster.name
+        message = trans('combat_monster_choice', {"name": monster.name})
         self.alert(message)
         x, y, w, h = self.game.screen.get_rect()
         rect = pygame.Rect(0, 0, w // 2.5, h // 4)
@@ -511,7 +513,8 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0
         if user:
-            message = "%s used %s!" % (user.name, technique.name)
+            #message = "%s used %s!" % (user.name, technique.name)
+            message = trans('combat_used_x', {"user": user.name, "name": technique.name})
 
             # TODO: a real check or some params to test if should tackle, etc
             if technique in user.moves:
@@ -523,9 +526,9 @@ class CombatState(CombatAnimations):
 
             else:  # assume this was an item used
                 if result:
-                    message += "\nIt worked!"
+                    message += "\n" + trans('item_success')
                 else:
-                    message += "\nIt failed!"
+                    message += "\n" + trans('item_failure')
 
             self.alert(message)
             self.suppress_phase_change()
@@ -533,7 +536,7 @@ class CombatState(CombatAnimations):
         else:
             if result:
                 self.suppress_phase_change()
-                self.alert("{0.name} took {1.name} damage!".format(target, technique))
+                self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name}))
 
         if result and hasattr(technique, "images"):
             tech_sprite = self.get_technique_animation(technique)
@@ -563,7 +566,7 @@ class CombatState(CombatAnimations):
         for player in self.monsters_in_play.keys():
             for monster in self.monsters_in_play[player]:
                 if fainted(monster):
-                    self.alert("{0.name} fainted!".format(monster))
+                    self.alert(trans('combat_fainted'))
                     self.animate_monster_faint(monster)
                     self.suppress_phase_change(3)
 
@@ -649,7 +652,7 @@ class CombatState(CombatAnimations):
         # TODO: non SP things
         self.players.remove(player)
         self.suppress_phase_change()
-        self.alert("You have run away!")
+        self.alert(trans('combat_player_run'))
 
     def determine_winner(self):
         """ Determine if match should continue or not

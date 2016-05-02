@@ -242,15 +242,15 @@ class CombatState(CombatAnimations):
             self.reset_status_icons()
             if not self._decision_queue:
                 for player in self.human_players:
-                    # the decision queue tracks human players who need to choose and action
+                    # the decision queue tracks human players who need to choose an
+                    # action
                     self._decision_queue.extend(self.monsters_in_play[player])
 
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
-                        # TODO: real ai...
-                        # randomly do some action against random opponent
-                        target = choice(self.monsters_in_play[self.players[0]])
-                        self.enqueue_action(monster, choice(monster.moves), target)
+                        opponents = self.monsters_in_play[self.players[0]]
+                        action, target = monster.ai.make_decision(monster, opponents)
+                        self.enqueue_action(monster, action, target)
 
         elif phase == "action phase":
             # TODO: more fine grained sort
@@ -513,7 +513,7 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0
         if user:
-            #message = "%s used %s!" % (user.name, technique.name)
+            # message = "%s used %s!" % (user.name, technique.name)
             message = trans('combat_used_x', {"user": user.name, "name": technique.name})
 
             # TODO: a real check or some params to test if should tackle, etc

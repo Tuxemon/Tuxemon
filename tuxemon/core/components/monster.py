@@ -33,6 +33,7 @@ import pprint
 import random
 
 from core import tools
+from core.components import ai
 from core.components.technique import Technique
 from . import db
 from . import fusion
@@ -97,6 +98,7 @@ class Monster(object):
         self.special_defense = 0
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
+        self.ai = None
 
         self.hp_modifier = [0, 0, 0]
         self.attack_modifier = [0, 0, 0]
@@ -214,6 +216,15 @@ class Monster(object):
         self.front_battle_sprite = results['sprites']['battle1']
         self.back_battle_sprite = results['sprites']['battle2']
         self.menu_sprite = results['sprites']['menu1']
+
+        # Load the monster AI
+        # TODO: clean up AI 'core' loading and what not
+        ai_result = results['ai']
+        if ai_result == "SimpleAI":
+            self.ai = ai.SimpleAI()
+        elif ai_result == "RandomAI":
+            self.ai = ai.RandomAI()
+
 
     def load_sprite_from_db(self):
         """Looks up the path to the monster's battle sprites so they can be

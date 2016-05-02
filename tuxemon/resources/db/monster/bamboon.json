@@ -18,6 +18,7 @@
     "exp_give_mod":           2,
     "exp_req_mod":            25,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,

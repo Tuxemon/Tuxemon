@@ -698,6 +698,39 @@ class Player(object):
             adj_tiles.append((curr_loc[0]+1,curr_loc[1]))
         return adj_tiles
 
+    def add_item(self, action):
+        """Adds an item to the current player's inventory. The action parameter must contain an
+        item name to look up in the item database.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "add_item",
+            "parameters": [
+                "Potion"
+            ]
+        }
+
+        """
+        item_to_add = item.Item(action.parameters[0])
+
+        # If the item already exists in the player's inventory, add to its quantity, otherwise
+        # just add the item.
+        if item_to_add.name in self.inventory:
+            self.inventory[item_to_add.name]['quantity'] += 1
+        else:
+            self.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
 
 class Npc(Player):
     def __init__(self, sprite_name="maple", name="Maple"):
@@ -974,5 +1007,3 @@ class PathfindNode():
         if self.parent != None:
             s += str(self.parent)
         return s
-
-

@@ -248,41 +248,6 @@ class Player(object):
         game.player1.add_monster(current_monster)
 
 
-    def add_item(self, game, action):
-        """Adds an item to the current player's inventory. The action parameter must contain an
-        item name to look up in the item database.
-
-        :param game: The main game object that contains all the game's variables.
-        :param action: The action (tuple) retrieved from the database that contains the action's
-            parameters
-
-        :type game: core.control.Control
-        :type action: Tuple
-
-        :rtype: None
-        :returns: None
-
-        **Example:**
-
-        >>> action.__dict__
-        {
-            "type": "add_item",
-            "parameters": [
-                "Potion"
-            ]
-        }
-
-        """
-        player = game.player1
-        item_to_add = item.Item(action.parameters[0])
-
-        # If the item already exists in the player's inventory, add to its quantity, otherwise
-        # just add the item.
-        if item_to_add.name in player.inventory:
-            player.inventory[item_to_add.name]['quantity'] += 1
-        else:
-            player.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
-
 
     def player_face(self, game, action):
         """Makes the player face a certain direction.

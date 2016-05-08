@@ -727,8 +727,8 @@ class Player(object):
 
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.
-        if item_to_add.name in self.inventory:
-            self.inventory[item_to_add.name]['quantity'] += 1
+        if item_to_add.name in [i.name for i in self.inventory.keys()]:
+            self.inventory[[i for i in self.inventory.keys() if i.name == item_to_add.name][0]]['quantity'] += 1
         else:
             self.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
 

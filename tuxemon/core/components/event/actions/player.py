@@ -330,3 +330,5 @@ class Player(object):
             return
 
         world.menu_blocking = False
+    def add_item(self,action):
+        game.player1.add_item(action)

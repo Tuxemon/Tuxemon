@@ -321,7 +321,7 @@ class Player(object):
         :rtype: None
         :returns: None
 
-        Action Parameter must be: create_item
+        Valid Parameters: None
 
         """
         # Get a copy of the world state.
@@ -332,13 +332,13 @@ class Player(object):
         world.menu_blocking = False
     def add_item(self,action):
         """Add an item to player1's inventory
-        :param action: The action (Tuple) retrieved from the database that contains the item
+        :param action: The action (Tuple) retrieved from the database that contains the
 
         :type action: Tuple
 
         :rtype: None
         :returns: None
 
-        Valid Parameters: None
+        Valid Action Parameters: create_item
         """
         game.player1.add_item(action)

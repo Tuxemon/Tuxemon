@@ -332,7 +332,8 @@ class Player(object):
         world.menu_blocking = False
     def add_item(self,action):
         """Add an item to player1's inventory
-        :param action: The action (Tuple) retrieved from the database that contains the
+        :param action: The action (Tuple) retrieved from the database that contains the action's
+            parameters
 
         :type action: Tuple
 

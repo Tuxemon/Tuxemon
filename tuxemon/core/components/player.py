@@ -36,6 +36,7 @@ import pygame
 from core import prepare
 from core import tools
 from core.components import item
+from core.components.event import Action
 from . import pyganim
 
 # Create a logger for optional handling of debug messages.
@@ -698,33 +699,22 @@ class Player(object):
             adj_tiles.append((curr_loc[0]+1,curr_loc[1]))
         return adj_tiles
 
-    def add_item(self, action):
-        """Adds an item to the current player's inventory. The action parameter must contain an
-        item name to look up in the item database.
+    def add_item(self, game, gotten_item):
+        """Adds an item to the player's inventory. Can be by name, id or a Action
 
         :param game: The main game object that contains all the game's variables.
-        :param action: The action (tuple) retrieved from the database that contains the action's
-            parameters
-
-        :type game: core.control.Control
-        :type action: Tuple
+        :param gotten_item: The item to add, name,id or action.
 
         :rtype: None
         :returns: None
 
-        **Example:**
-
-        >>> action.__dict__
-        {
-            "type": "add_item",
-            "parameters": [
-                "Potion"
-            ]
-        }
-
+        Valid Action Parameters: create_item
         """
-        item_to_add = item.Item(action.parameters[0])
-
+        if type(gotten_item) is Action:
+            item_to_add = item.Item(gotten_item.parameters[0])
+        else:
+            Item = Action('create_item', parameters=[gotten_item])
+            item_to_add = item.Item(Item.parameters[0])
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.
         if item_to_add.name in self.inventory:

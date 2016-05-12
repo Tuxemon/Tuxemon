@@ -253,19 +253,17 @@ class Player(object):
 
         game.player1.add_monster(current_monster)
 
-    def add_item(self,action):
+    def add_item(self, game, item):
         """Add an item to player1's inventory
-        :param action: The action (Tuple) retrieved from the database that contains the action's
-            parameters
-
-        :type action: Tuple
+        :param game: The main game object that contains all the game's variables.
+        :param item: The item to add name, id, or Action.
 
         :rtype: None
         :returns: None
 
         Valid Action Parameters: create_item
         """
-        game.player1.add_item(action)
+        game.player1.add_item(game, item)
 
     def player_face(self, game, action):
         """Makes the player face a certain direction.

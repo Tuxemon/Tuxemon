@@ -35,7 +35,8 @@ import logging
 import pygame
 from core import prepare
 from core import tools
-
+from core.components import item
+from core.components.event import Action
 from . import pyganim
 
 # Create a logger for optional handling of debug messages.
@@ -698,6 +699,28 @@ class Player(object):
             adj_tiles.append((curr_loc[0]+1,curr_loc[1]))
         return adj_tiles
 
+    def add_item(self, game, gotten_item):
+        """Adds an item to the player's inventory. Can be by name, id or a Action
+
+        :param game: The main game object that contains all the game's variables.
+        :param gotten_item: The item to add, name,id or action.
+
+        :rtype: None
+        :returns: None
+
+        Valid Action Parameters: create_item
+        """
+        if type(gotten_item) is Action:
+            item_to_add = item.Item(gotten_item.parameters[0])
+        else:
+            Item = Action('create_item', parameters=[gotten_item])
+            item_to_add = item.Item(Item.parameters[0])
+        # If the item already exists in the player's inventory, add to its quantity, otherwise
+        # just add the item.
+        if item_to_add.name in self.inventory:
+            self.inventory[[i for i in self.inventory if i == item_to_add.name][0]]['quantity'] += 1
+        else:
+            self.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
 
 class Npc(Player):
     def __init__(self, sprite_name="maple", name="Maple"):
@@ -974,5 +997,3 @@ class PathfindNode():
         if self.parent != None:
             s += str(self.parent)
         return s
-
-

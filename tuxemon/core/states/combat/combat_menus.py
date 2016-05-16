@@ -8,7 +8,7 @@ from core.components.menu import PopUpMenu
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.monster import Technique
-
+from core import tools
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
@@ -67,6 +67,10 @@ class MainCombatMenuState(PopUpMenu):
             monster = menuitem.game_object
             player = self.game.player1
             target = player.monsters[0]
+            #If current monster is selected return
+            if monster is target:
+                tools.open_dialog(self.game, ["That monster is already in play!"])
+                return
             swap = Technique("Swap")
             swap.other = monster
             combat_state = self.game.get_state_name("CombatState")

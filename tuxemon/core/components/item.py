@@ -139,13 +139,16 @@ class Item(object):
         :type target: Varies
 
         :rtype: bool
-        :returns: Success
+        :rtype: string
+        :returns: bool,message
         """
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effect:
-            result = getattr(self, str(effect))(user, target)
-
+            result,message = getattr(self, str(effect))(user, target)
+        #If item use failed, skip inventory block.
+        if result is False:
+            return result,message
         # If this is a consumable item, remove it from the player's inventory.
         if self.type == "Consumable":
             if user.inventory[self.name]['quantity'] <= 1:
@@ -153,7 +156,7 @@ class Item(object):
             else:
                 user.inventory[self.name]['quantity'] -= 1
 
-        return result
+        return result,message
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.
@@ -171,7 +174,9 @@ class Item(object):
         >>> potion_item = Item("Potion")
         >>> potion_item.heal(bulbatux, game)
         """
-
+        # If hp is full, fail.
+        if target.current_hp == target.hp:
+            return False,'Hp is already Full'
         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
 
@@ -179,7 +184,7 @@ class Item(object):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return True
+        return True,None
 
     def capture(self, user, target):
         """Captures target monster.
@@ -191,7 +196,8 @@ class Item(object):
         :type target: Varies
 
         :rtype: bool
-        :returns: Success
+        :rtype: string
+        :returns: bool,message
         """
 
         # Set up variables for capture equation
@@ -226,7 +232,8 @@ class Item(object):
         if 0 <= random_num <= success_max:
             print("It worked!")
             user.add_monster(target)
-            return True
+            # Return a message as well
+            return True,"It worked"
         else:
             print("It failed!")
-            return False
+            return False,"It failed"

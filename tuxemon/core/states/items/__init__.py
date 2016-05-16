@@ -38,7 +38,9 @@ class ItemMenuState(Menu):
         rect.width *= .95
         rect.height *= .25
         rect.center = center
-        rect.top = tools.scale(110)
+        #{#$FINDER$#}
+        #Move text area where it belongs
+        rect.top = tools.scale(110)*1.7
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
@@ -56,20 +58,38 @@ class ItemMenuState(Menu):
         return rect
 
     def determine_state_called_from(self):
-        # hackish way to just get this working...  may come back to this later, idk
-        return self.game.active_states[-1].name
+        #{#$FINDER$#}
+        #This was preventing items from being used
+          # hackish way to just get this working...  may come back to this later, idk
+          # return self.game.active_states[-1].name
+        prev_state = self.game.active_states[1].name
+        # Account for menu states.
+        if 'Combat' in prev_state:
+            return 'CombatState'
+        elif 'World' in prev_state:
+            return 'WorldState'
+        else:
+            return prev_state.name
 
     def on_menu_selection(self, menuitem):
         def use_item(menuitem):
             player = self.game.player1
             monster = menuitem.game_object
             self.game.pop_state()  # close the monster menu
-
+            #{#$FINDER$#}
+            did_it_work,message = item.use(player, monster)
             if state == "CombatState":
-                self.game.get_state_name("CombatState").enqueue_action(player, item, player.monsters[0])
-                self.game.pop_state()   # pop this menu
+                if did_it_work == False:
+                    tools.open_dialog(self.game, ["It failed, "+message])
+                else:
+                    self.game.get_state_name("CombatState").enqueue_action(player, item, player.monsters[0])
+                    self.game.pop_state()   # pop this menu
+                    self.game.pop_state()   # pop Battle Menu, to skip technique selection
             else:
-                item.use(player, monster)
+                if did_it_work == True:
+                    tools.open_dialog(self.game, ["It Worked!"])
+                else:
+                    tools.open_dialog(self.game, ["It failed, "+message+'!'])
                 self._initialize_items()  # re-init, in case one item is gone now
 
         def decide_to_use(menuitem):

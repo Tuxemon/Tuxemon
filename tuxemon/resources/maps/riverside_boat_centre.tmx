@@ -4,7 +4,7 @@
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
  <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1536">
-  <image source="../../../../../Users/Judy/Downloads/tuxemon-unstable-latest/tuxemon-unstable-latest/tuxemon/resources/gfx/tilesets/setPiecesTSR.png" width="769" height="512"/>
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="769" height="512"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">

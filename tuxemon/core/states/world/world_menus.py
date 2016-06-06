@@ -10,6 +10,7 @@ from core import prepare
 from core.tools import open_dialog
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -32,6 +33,7 @@ class WorldMenuState(Menu):
     """
 
     def initialize_items(self):
+        trans = translator.translate
         def change_state(state, **kwargs):
             return partial(self.game.replace_state, state, **kwargs)
 
@@ -47,18 +49,18 @@ class WorldMenuState(Menu):
             Combat().start_battle(self.game, start_battle(1))
 
         def not_implemented_dialog():
-            open_dialog(self.game, ["This feature is not implemented."])
+            open_dialog(self.game, [trans('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
         self.menu_items_map = OrderedDict((
-            ('JOURNAL', not_implemented_dialog),
-            ('TUXEMON', change_state("MonsterMenuState")),
-            ('BAG', change_state("ItemMenuState")),
-            ('PLAYER', not_implemented_dialog),
-            ('SAVE', change_state("SaveMenuState")),
-            ('LOAD', change_state("LoadMenuState")),
-            ('OPTIONS', not_implemented_dialog),
-            ('EXIT', exit_game)
+            (trans('menu_journal').upper(), not_implemented_dialog),
+            (trans('menu_monster').upper(), change_state("MonsterMenuState")),
+            (trans('menu_bag').upper(), change_state("ItemMenuState")),
+            (trans('menu_player').upper(), not_implemented_dialog),
+            (trans('menu_save').upper(), change_state("SaveMenuState")),
+            (trans('menu_load').upper(), change_state("LoadMenuState")),
+            (trans('menu_options').upper(), not_implemented_dialog),
+            (trans('exit').upper(), exit_game)
         ))
 
         for label in self.menu_items_map.keys():

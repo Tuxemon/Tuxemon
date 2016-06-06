@@ -75,7 +75,7 @@ class Map(object):
 
         if mapname not in world.preloaded_maps.keys():
             # TODO: We should do this asyncronously?
-            print "PRELOADING MAP:", mapname
+            print ("PRELOADING MAP:", mapname)
             world.preload_map(mapname)
 
 
@@ -106,10 +106,9 @@ class Map(object):
 
         """
 
-        world = game.current_state
-        if not world.start_transition or not world.start_transition_back:
-            world.start_transition = True
-            world.transition_time = float(action.parameters[0])
+        world = game.get_state_name("WorldState")
+        if not world.in_transition:
+            world.fade_and_teleport(float(action.parameters[0]))
 
 
     def start_cinema_mode(self, game, action):

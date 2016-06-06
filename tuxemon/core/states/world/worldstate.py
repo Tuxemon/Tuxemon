@@ -33,6 +33,7 @@ from __future__ import division
 # Import various python libraries
 import logging
 import math
+from functools import partial
 
 import pygame
 
@@ -42,6 +43,7 @@ from core import state
 from core import tools
 from core.components import map
 from core.components import networking
+from core.components.animation import Task
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -73,13 +75,6 @@ class WorldState(state.State):
 
         # Set the world's current state. This is used for various functions.
         self.state = "WorldState"
-
-        ######################################################################
-        #                          Event Engine                              #
-        ######################################################################
-
-        # Get a copy of the event engine from core.control.Control.
-        self.event_engine = self.game.event_engine
 
         ######################################################################
         #                              Map                                   #
@@ -124,12 +119,10 @@ class WorldState(state.State):
         #                            Transitions                             #
         ######################################################################
 
-        # defaults variables for transition
-        self.SAVE_THIS_FUCKING_SCREEN = pygame.Surface(prepare.SCREEN_SIZE)
+        # default variables for transition
         self.transition_alpha = 0
-        self.start_transition = False
-        self.start_transition_back = False
-        self.black_screen = 0
+        self.transition_surface = None
+        self.in_transition = False
 
         # The delayed teleport variable is used to perform a teleport in the
         # middle of a transition. For example, fading to black, then
@@ -190,14 +183,98 @@ class WorldState(state.State):
         self.cinema_bottom['on_position'] = [
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
-    def trigger_fade_in(self):
+    def fade_and_teleport(self, duration=2):
+        """ Fade out, teleport, fade in
+
+        :return:
+        """
+        def cleanup():
+            self.in_transition = False
+
+        def fade_in():
+            self.trigger_fade_in(duration)
+            self.task(cleanup, duration)
+
+        # stop player movement
+        self.player1.moving = False
+
+        # cancel any fades that may be going one
+        self.remove_animations_of(self)
+        self.remove_animations_of(cleanup)
+
+        self.in_transition = True
+        self.trigger_fade_out(duration)
+
+        task = self.task(self.handle_delayed_teleport, duration)
+        task.chain(fade_in, duration + .5)
+
+    def trigger_fade_in(self, duration=2):
         """ World state has own fade code b/c moving maps doesn't change state
 
         :returns: None
         """
-        self.transition_time = 1
-        self.start_transition_back = True
-        self.transition_alpha = 255
+        self.set_transition_surface()
+        self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
+
+    def trigger_fade_out(self, duration=2):
+        """ World state has own fade code b/c moving maps doesn't change state
+
+        * will cause player to teleport if set somewhere else
+
+        :returns: None
+        """
+        self.set_transition_surface()
+        self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
+
+    def handle_delayed_teleport(self):
+        """ Call to teleport player if delayed_teleport is set
+
+        * load a map
+        * move player
+        * send data to network about teleport
+
+        :return: None
+        """
+        if self.delayed_teleport:
+            self.global_x = self.delayed_x
+            self.global_y = self.delayed_y
+
+            if self.delayed_facing:
+                self.player1.facing = self.delayed_facing
+                self.delayed_facing = None
+
+            # check if map has changed, and if so, change it
+            map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
+            if map_name != self.current_map.filename:
+                self.change_map(map_name)
+
+            self.delayed_teleport = False
+
+    def set_transition_surface(self, color=(0, 0, 0)):
+        self.transition_surface = pygame.Surface(self.game.screen.get_size())
+        self.transition_surface.fill(color)
+
+    def broadcast_player_teleport_change(self):
+        """ Tell clients/host that player has moved or changed map after teleport
+
+        :return:
+        """
+        # Set the transition variable in event_data to false when we're done
+        self.game.event_data["transition"] = False
+
+        # Update the server/clients of our new map and populate any other players.
+        if self.game.isclient or self.game.ishost:
+            self.game.add_clients_to_map(self.game.client.client.registry)
+            self.game.client.update_player(self.player1.facing)
+
+        # Update the location of the npcs. Doesn't send network data.
+        for npc in self.npcs:
+            char_dict = {"tile_pos": npc.tile_pos}
+            networking.update_client(npc, char_dict, self.game)
+
+        for npc in self.npcs_off_map:
+            char_dict = {"tile_pos": npc.tile_pos}
+            networking.update_client(npc, char_dict, self.game)
 
     def update(self, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -210,6 +287,7 @@ class WorldState(state.State):
         :returns: None
 
         """
+        super(WorldState, self).update(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player1.game_variables))
 
@@ -628,83 +706,9 @@ class WorldState(state.State):
         :returns: None
 
         """
-
-        # artificially set the time passed to make up for case
-        # when map loads drop fps and causes the fade to be skipped
-        td = 0.016  # 60 fps
-
-        # FUCKIN' MATH! 0 = NO ALPHA NOT 255 DAMNIT BILLY!
-        # if the value of start_transition event is set to true
-        if self.start_transition:
-            if self.transition_alpha == 0:
-                self.SAVE_THIS_FUCKING_SCREEN = surface.copy()
-            self.transition_surface = self.SAVE_THIS_FUCKING_SCREEN.copy()
-            # fucking dumb ass math wont let me do less than 1 second so I had to speed that shit up so
-            # I multiplied time_passed_seconds testing around making the fade faster because Billys'
-            # teleport is TOO FUCKING FAST
-            self.transition_alpha += 255 * (td / self.transition_time)
-            if self.transition_alpha >= 255:
-                self.transition_alpha = 255
-                # created a black screen variable so it actually looks like he teleported, gotta figure out
-                # how to make the event start earlier, initial testing proves I need sleep. Also billys'
-                # teleport is STILL TOO FUCKING FAST!
-                if self.black_screen >= 50:
-                    self.black_screen = 50
-                    self.start_transition_back = True
-                    self.start_transition = False
-                self.black_screen += 50 * (td / self.transition_time)
+        if self.in_transition:
             self.transition_surface.set_alpha(self.transition_alpha)
-            self.transition_surface.fill((0, 0, 0))
             surface.blit(self.transition_surface, (0, 0))
-            # print(transition_alpha)
-
-        # Perform a delayed teleport if we're also doing a teleport and we've
-        # faded out completely
-        if self.delayed_teleport and self.start_transition_back:
-            self.global_x = self.delayed_x
-            self.global_y = self.delayed_y
-
-            if self.delayed_facing:
-                self.player1.facing = self.delayed_facing
-                self.delayed_facing = None
-
-            # check if map has changed, and if so, change it
-            map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
-            if map_name != self.current_map.filename:
-                self.change_map(map_name)
-
-            self.delayed_teleport = False
-
-        # Replace this SAVE_THIS_FUCKING_SCREEN with the value of the blit of
-        # the new map
-        if self.start_transition_back:
-            self.transition_back_surface = self.SAVE_THIS_FUCKING_SCREEN.copy()
-            # same shit as above down here as well, except i slowed that shit
-            # down
-            self.transition_alpha -= 255 * (td / self.transition_time)
-            if self.transition_alpha <= 0:
-                self.transition_alpha = 0
-                self.start_transition_back = False
-                self.black_screen = 0
-            self.transition_back_surface.set_alpha(self.transition_alpha)
-            self.transition_back_surface.fill((0, 0, 0))
-            surface.blit(self.transition_back_surface, (0, 0))
-            self.game.event_data[
-                "transition"] = False    # Set the transition variable in event_data to false when we're done
-
-            # Update the server/clients of our new map and populate any other players.
-            if self.game.isclient or self.game.ishost:
-                self.game.add_clients_to_map(self.game.client.client.registry)
-                self.game.client.update_player(self.player1.facing)
-
-            # Update the location of the npcs. Doesn't send network data.
-            for npc in self.npcs:
-                char_dict = {"tile_pos": npc.tile_pos}
-                networking.update_client(npc, char_dict, self.game)
-
-            for npc in self.npcs_off_map:
-                char_dict = {"tile_pos": npc.tile_pos}
-                networking.update_client(npc, char_dict, self.game)
 
     ####################################################
     #             Map Change/Load Functions            #
@@ -714,10 +718,10 @@ class WorldState(state.State):
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
         if map_name not in self.preloaded_maps.keys():
-            print "Map was not preloaded. Loading from disk."
+            print ("Map was not preloaded. Loading from disk.")
             map_data = self.load_map(map_name)
         else:
-            print "%s was found in preloaded maps." % map_name
+            print ("%s was found in preloaded maps." % map_name)
             map_data = self.preloaded_maps[map_name]
             self.clear_preloaded_maps()
 
@@ -739,6 +743,7 @@ class WorldState(state.State):
         self.collision_lines_map = map_data["collision_lines_map"]
         self.map_size = map_data["map_size"]
         self.game.events = map_data["events"]
+        self.game.event_engine.current_map = map_data
 
         # Clear out any existing NPCs
         self.npcs = []

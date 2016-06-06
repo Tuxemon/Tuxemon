@@ -6,6 +6,7 @@
   "effects": [],
   "id": 7,
   "name": "Faint",
+  "name_trans": "status_faint",
   "power": 10,
   "types": [
     "Faint"

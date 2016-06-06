@@ -32,5 +32,5 @@ from __future__ import division
 from __future__ import print_function
 
 # convenience imports, do not remove!
-from menu import Menu
+from .menu import Menu
 from core.components.menu.menu import PopUpMenu

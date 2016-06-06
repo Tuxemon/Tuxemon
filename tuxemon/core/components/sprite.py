@@ -266,7 +266,7 @@ class RelativeGroup(SpriteGroup):
         """
         rect = super(RelativeGroup, self).calc_bounding_rect()
         for sprite in self.sprites():
-            print sprite, sprite.rect
+            print(sprite, sprite.rect)
         return rect
         return self.calc_absolute_rect(rect)
 

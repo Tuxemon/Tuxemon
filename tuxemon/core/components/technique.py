@@ -33,6 +33,8 @@ import random
 
 from core import prepare, tools
 from core.components import db
+from core.components.locale import translator
+trans = translator.translate
 
 
 # Load the technique database
@@ -97,7 +99,11 @@ class Technique(object):
         elif id:
             results = techniques.database['technique'][id]
 
-        self.name = results["name"]
+        # Try and get this item's translated name if it exists.
+        if translator.has_key(results["name_trans"]):
+            self.name = trans(results["name_trans"])
+        else:
+            self.name = results["name"]
         self.tech_id = results["id"]
         self.category = results["category"]
         self.icon = results["icon"]

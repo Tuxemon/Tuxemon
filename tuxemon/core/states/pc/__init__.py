@@ -38,6 +38,7 @@ from functools import partial
 from core.tools import open_dialog
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu, PopUpMenu
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -57,11 +58,12 @@ class PCState(PopUpMenu):
             # self.game.replace_state("MultiplayerMenu")
             open_dialog(self.game, ["Multiplayer not supported."])
 
+        trans = translator.translate
         self.menu_items_map = OrderedDict((
-            ('MONSTERS', change_state("MonsterMenuState")),
-            ('ITEMS', change_state("ItemMenuState")),
-            ('MULTIPLAYER', multiplayer_menu),
-            ('LOG OFF', self.game.pop_state),
+            (trans('menu_monsters').upper(), change_state("MonsterMenuState")),
+            (trans('menu_items').upper(), change_state("ItemMenuState")),
+            (trans('menu_multiplayer').upper(), multiplayer_menu),
+            (trans('log_off').upper(), self.game.pop_state),
         ))
 
         for label in self.menu_items_map.keys():

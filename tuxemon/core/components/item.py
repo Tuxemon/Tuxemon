@@ -36,6 +36,8 @@ import random
 
 from core import tools
 from . import db
+from .locale import translator
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -114,8 +116,16 @@ class Item(object):
         elif id:
             results = items.lookup_by_id(id, table="item")
 
-        self.name = results["name"]
-        self.description = results["description"]
+        # Try and get this item's translated name and description if it exists.
+        if translator.has_key(results["name_trans"]):
+            self.name = trans(results["name_trans"])
+        else:
+            self.name = results["name"]
+        if translator.has_key(results["description_trans"]):
+            self.description = trans(results["description_trans"])
+        else:
+            self.description = results["description"]
+
         self.id = results["id"]
         self.type = results["type"]
         self.power = results["power"]

@@ -56,6 +56,16 @@ def main():
     prepare.init()
     control = PygameControl(prepare.ORIGINAL_CAPTION)
     control.auto_state_discovery()
+
+    # background state is used to prevent other states from
+    # being required to track dirty screen areas.  for example,
+    # in the start state, there is a menu on a blank background,
+    # since menus do not clean up dirty areas, the blank,
+    # "Background state" will do that.  The alternative is creating
+    # a system for states to clean up their dirty screen areas.
+    control.push_state("BackgroundState")
+
+    # basically the main menu
     control.push_state("StartState")
 
     # Show the splash screen if it is enabled in the game configuration

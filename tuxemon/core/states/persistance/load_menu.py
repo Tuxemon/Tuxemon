@@ -22,20 +22,6 @@ class LoadMenuState(SaveMenuState):
             logger.error("Failed loading save file.")
 
         if save_data is not None and "error" not in save_data:
-            # self.save_data = save.load(self.selected_index + 1)
-            # self.game.player1 = prepare.player1
-            # self.game.player1.game_variables = save_data['game_variables']
-            # self.game.player1.tile_pos = save_data['tile_pos']
-            # self.game.player1.inventory = save_data['inventory']
-            # self.game.player1.monsters = save_data['monsters']
-            # self.game.player1.storage = save_data['storage']
-            # self.game.player1.name = save_data['player_name']
-            # tele_x = str(int(save_data['tile_pos'][0]))
-            # tele_y = str(int(save_data['tile_pos'][1]))
-            # location = save_data['current_map'] + ',' + tele_x + ',' + tele_y
-            # action = ('teleport', location, '1', 1)
-
-            statepoppin = self.game.current_state
             self.save_data = save.load(self.selected_index + 1)
             self.game.player1 = prepare.player1
             self.game.player1.game_variables = save_data['game_variables']
@@ -44,14 +30,24 @@ class LoadMenuState(SaveMenuState):
             self.game.player1.monsters = save_data['monsters']
             self.game.player1.storage = save_data['storage']
             self.game.player1.name = save_data['player_name']
+
+            old_world = self.game.get_state_name("WorldState")
+            if old_world is None:
+                # when game is loaded from the start menu
+                self.game.pop_state()  # close this menu
+                self.game.pop_state()  # close the start menu
+            else:
+                # when game is loaded from world menu
+                self.game.pop_state(self)
+                self.game.pop_state(old_world)
+
             self.game.push_state("WorldState")
+            # self.game.current_state.change_map(save_data['current_map'])
+
+            # teleport the player to the correct position using an event engine action
             tele_x = str(int(save_data['tile_pos'][0]))
             tele_y = str(int(save_data['tile_pos'][1]))
-
             Action = namedtuple("action", ["type", "parameters"])
             action = Action("teleport", [save_data['current_map'], tele_x, tele_y])
 
-            self.game.event_engine.actions['teleport']['method'](self.game, action)
-            self.game.pop_state(statepoppin)
-            self.game.replace_state("WorldState")
             self.game.event_engine.actions['teleport']['method'](self.game, action)

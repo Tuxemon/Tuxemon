@@ -64,6 +64,10 @@ cd Tuxemon/tuxemon
 ulimit -n 10000; python tuxemon.py
 ```
 
+**Arch Linux**
+
+Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git/).
+
 **Smartphones**
 * [Android](http://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
 

@@ -379,8 +379,9 @@ class Map(object):
                             elif "gid" not in frame:
                                 images_and_durations = [(surface, 1)]
                                 break
-                        surface = PygAnimation(images_and_durations)
-                        surface.play()
+                        if images_and_durations:
+                            surface = PygAnimation(images_and_durations)
+                            surface.play()
 
                     # Create a tile based on the image
                     if surface:

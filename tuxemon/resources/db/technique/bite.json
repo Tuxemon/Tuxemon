@@ -1,12 +1,14 @@
 {
     "animation": "teeth",
     "sfx": "blaster1.ogg",
+    "icon": "",
     "category": "physical",
     "effects": [
         "damage"
     ],
     "id": 4,
     "name": "Bite",
+    "name_trans": "technique_bite",
     "power": 50,
     "types": [
         "Normal"

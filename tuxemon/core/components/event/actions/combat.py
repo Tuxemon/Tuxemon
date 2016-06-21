@@ -34,6 +34,7 @@ from core.components import ai
 from core.components import db
 from core.components import monster
 from core.components import player
+from core.components import technique
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -129,7 +130,7 @@ class Combat(object):
 
             current_monster.load_sprite_from_db()
 
-            pound = monster.Technique('Pound')
+            pound = technique.Technique('Pound')
 
             current_monster.learn(pound)
 
@@ -253,7 +254,7 @@ class Combat(object):
                 level = encounter['level_range'][0]
 
             # Set the monster's level
-            current_monster.level = level
+            current_monster.level = 1
             current_monster.set_level(current_monster.level)
 
             # Create an NPC object which will be this monster's "trainer"
@@ -276,10 +277,6 @@ class Combat(object):
             mixer.music.play(-1)
             game.current_music["status"] = "playing"
             game.current_music["song"] = filename
-
-            # Stop the player's movement
-            player1.moving = False
-            player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
 
 
     def check_battle_legal(self, player):

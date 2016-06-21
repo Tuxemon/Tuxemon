@@ -36,7 +36,11 @@ import os.path
 import pygame
 
 import core.components.sprite
-import prepare
+
+#import prepare
+#Changed to this because of a import error
+from core import prepare 
+
 from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
@@ -218,8 +222,7 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    size = map(int, sprite.rect.size)
-    sprite._original_image = pygame.transform.scale(sprite._original_image, size)
+    sprite._original_image = pygame.transform.scale(sprite._original_image, (sprite.rect.width, sprite.rect.height))
     sprite._needs_update = True
 
 

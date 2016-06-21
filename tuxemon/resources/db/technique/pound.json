@@ -1,13 +1,15 @@
 {
     "animation": "pound",
     "sfx": "blaster1.ogg",
+    "icon": "",
     "category": "physical",
     "effects": [
         "damage"
-    ], 
-    "id": 1, 
-    "name": "Pound", 
-    "power": 50, 
+    ],
+    "id": 1,
+    "name": "Pound",
+    "name_trans": "technique_pound",
+    "power": 50,
     "types": [
         "Normal"
     ]

@@ -46,13 +46,16 @@ class Npc(object):
 
         """
         # Loop through the NPC list and see if the name matches any in the list
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 
         for npc in world.npcs:
             if npc.name == name:
                 return npc
+
+        logger.error("Unable to find NPC: " + name)
+        return
 
 
     def npc_exists(self, game, condition):

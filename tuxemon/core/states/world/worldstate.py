@@ -342,7 +342,11 @@ class WorldState(state.State):
                 self.player1.direction["right"] = True
                 self.player1.facing = "right"
             if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                self.check_interactable_space()
+                # TODO: Check to see if we have network players to interact
+                # with.
+                multiplayer = False
+                if multiplayer:
+                    self.check_interactable_space()
 
         # Handle Key UP events
         if event.type == pygame.KEYUP:
@@ -824,12 +828,8 @@ class WorldState(state.State):
                     for npc in self.npcs:
                         tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
                         if tile_pos == tile:
-                            self.interaction_menu.visible = True
-                            self.interaction_menu.interactable = True
-                            self.interaction_menu.player = npc
-                            self.interaction_menu.menu_items = ["Player Interactions:"]
-                            for menu_item in npc.interactions:
-                                self.interaction_menu.menu_items.append(menu_item)
+                            logger.info("Opening interaction menu!")
+                            self.game.push_state("InteractionMenu")
                             return True
                         else: continue
 

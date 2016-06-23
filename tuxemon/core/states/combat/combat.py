@@ -131,6 +131,7 @@ class CombatState(CombatAnimations):
         self._animation_in_progress = False  # if true, delay phase change
         self._winner = None                  # when set, combat ends
         self._round = 0
+        self._damage_map = dict()
 
         super(CombatState, self).startup(**kwargs)
         self.players = list(self.players)
@@ -523,6 +524,12 @@ class CombatState(CombatAnimations):
                 self.animate_sprite_tackle(user_sprite)
                 self.task(partial(self.animate_sprite_take_damage, target_sprite), hit_delay + .2)
                 self.task(partial(self.blink, target_sprite), hit_delay + .6)
+                #track damage
+                if target and target not in self._damage_map:
+                    self._damage_map.update({target:[user]})
+                else:
+                    if user and user not in self._damage_map[target]:
+                        self._damage_map[target].append(user)
 
             else:  # assume this was an item used
                 if result:
@@ -553,7 +560,12 @@ class CombatState(CombatAnimations):
         """
         monster.current_hp = 0
         monster.status = [faint]
-        # TODO: award experience
+        #Award Experience
+        awarded_exp = monster.total_experience/monster.level/len(self._damage_map[monster])
+        for winners in self._damage_map[monster]:
+            winners.give_experience(awarded_exp)
+        #Remove monster from damage map
+        self._damage_map.__delitem__(monster)
 
     def animate_party_status(self):
         """ Animate monsters that need to be fainted
@@ -632,8 +644,9 @@ class CombatState(CombatAnimations):
 
     @property
     def human_players(self):
-        # TODO: this.
-        yield self.players[0]
+        for player in self.players:
+            if player.isplayer:
+                yield player
 
     @property
     def ai_players(self):

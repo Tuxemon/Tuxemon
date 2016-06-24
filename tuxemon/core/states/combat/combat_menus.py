@@ -9,7 +9,7 @@ from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.technique import Technique
 from core.components.locale import translator
-
+from core import tools
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
@@ -67,6 +67,12 @@ class MainCombatMenuState(PopUpMenu):
     def open_swap_menu(self):
         def swap_it(menuitem):
             monster = menuitem.game_object
+            if monster in self.game.get_state_name('CombatState').active_monsters:
+                tools.open_dialog(self.game, ["Monster is already in play"])
+                return
+            elif monster.current_hp < 1:
+                tools.open_dialog(self.game, ["Monster is fainted"])
+            #import bpython;bpython.embed(locals_=locals())
             player = self.game.player1
             target = player.monsters[0]
             swap = Technique("Swap")

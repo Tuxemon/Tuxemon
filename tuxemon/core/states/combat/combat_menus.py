@@ -72,7 +72,6 @@ class MainCombatMenuState(PopUpMenu):
                 return
             elif monster.current_hp < 1:
                 tools.open_dialog(self.game, ["Monster is fainted"])
-            #import bpython;bpython.embed(locals_=locals())
             player = self.game.player1
             target = player.monsters[0]
             swap = Technique("Swap")

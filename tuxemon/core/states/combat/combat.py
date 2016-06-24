@@ -712,7 +712,7 @@ class CombatState(CombatAnimations):
         event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action)
 
         #Round player movement in case battle started in the middle of a step
-        self.game.player1.tile_pos = (self.game.player1.tile_pos[0],self.game.player1.tile_pos[1])
+        self.game.player1.tile_pos = (round(self.game.player1.tile_pos[0]),round(self.game.player1.tile_pos[1]))
 
         # remove any menus that may be on top of the combat state
         while self.game.current_state is not self:

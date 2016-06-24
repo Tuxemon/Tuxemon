@@ -255,7 +255,7 @@ class Combat(object):
 
             # Set the monster's level
             current_monster.level = 1
-            current_monster.set_level(current_monster.level)
+            current_monster.set_level(level)
 
             # Create an NPC object which will be this monster's "trainer"
             npc = player.Npc()

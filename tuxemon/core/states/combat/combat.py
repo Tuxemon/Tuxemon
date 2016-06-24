@@ -499,7 +499,9 @@ class CombatState(CombatAnimations):
 
         :returns:
         """
-        technique.advance_round()
+        if technique is Technique:
+            technique.advance_round()
+            
         result = technique.use(user, target)
 
         try:

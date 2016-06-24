@@ -5,7 +5,8 @@ from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu, PopUpMenu
 from core.components.sprite import Sprite
 from core.components.ui.text import TextArea
-
+from core.components.locale import translator
+trans = translator.translate
 
 class UseItemConfirmMenuState(PopUpMenu):
     shrink_to_items = True
@@ -38,7 +39,7 @@ class ItemMenuState(Menu):
         rect.width *= .95
         rect.height *= .25
         rect.center = center
-        rect.top = tools.scale(110)
+        rect.top = tools.scale(190)
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
@@ -56,8 +57,10 @@ class ItemMenuState(Menu):
         return rect
 
     def determine_state_called_from(self):
-        # hackish way to just get this working...  may come back to this later, idk
-        return self.game.active_states[-1].name
+        dex = self.game.active_states.index(self.game.current_state)
+        if 'Combat' in self.game.active_states[dex+1].name:
+            return 'CombatState'
+        return self.game.active_states[dex+1].name
 
     def on_menu_selection(self, menuitem):
         def use_item(menuitem):
@@ -69,7 +72,10 @@ class ItemMenuState(Menu):
                 self.game.get_state_name("CombatState").enqueue_action(player, item, player.monsters[0])
                 self.game.pop_state()   # pop this menu
             else:
-                item.use(player, monster)
+                if item.use(player, monster):
+                    tools.open_dialog(self.game, [trans('item_success')])
+                else:
+                    tools.open_dialog(self.game, [trans('item_failure')])
                 self._initialize_items()  # re-init, in case one item is gone now
 
         def decide_to_use(menuitem):

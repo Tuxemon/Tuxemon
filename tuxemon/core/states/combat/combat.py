@@ -257,7 +257,11 @@ class CombatState(CombatAnimations):
 
             self._action_queue.sort(key=attrgetter("user.speed"))
             # TODO: Running happens somewhere else, it should be moved here i think.
-            # TODO: Sort other items not just healing Swap/Run?
+            # TODO: Sort other items not just healing, Swap/Run?
+
+            #Create a new list for items, possibly running/swap
+            #sort items by speed of monster applied to
+            #remove items from action_queue and insert them into their new location
             precedent = []
             for action in self._action_queue:
                 if action.technique.effect == 'heal':

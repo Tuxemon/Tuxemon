@@ -57,10 +57,8 @@ class ItemMenuState(Menu):
         return rect
 
     def determine_state_called_from(self):
-        dex = self.game.active_states.index(self.game.current_state)
-        if 'Combat' in self.game.active_states[dex+1].name:
-            return 'CombatState'
-        return self.game.active_states[dex+1].name
+        # hackish way to just get this working...  may come back to this later, idk
+        return self.game.active_states[1].name
 
     def on_menu_selection(self, menuitem):
         def use_item(menuitem):

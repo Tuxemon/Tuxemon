@@ -213,6 +213,9 @@ class Combat(object):
         if not self.check_battle_legal(player1):
             return False
 
+        #stop player motion
+        player1.moving = False
+        
         # Get the parameters to determine what encounter group we'll look up in the database.
         encounter_id = int(action.parameters[0])
 
@@ -296,4 +299,3 @@ class Combat(object):
                 logger.warning("Cannot start battle, player's monsters are all DEAD")
                 return False
             else: return True
-

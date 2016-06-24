@@ -194,6 +194,9 @@ class Item(object):
             target.current_hp = target.hp
 
         return True
+        
+    def advance_round(self):
+        pass
 
     def capture(self, user, target):
         """Captures target monster.

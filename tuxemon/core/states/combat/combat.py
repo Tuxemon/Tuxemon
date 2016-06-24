@@ -500,6 +500,7 @@ class CombatState(CombatAnimations):
         :returns:
         """
         technique.advance_round()
+
         result = technique.use(user, target)
 
         try:

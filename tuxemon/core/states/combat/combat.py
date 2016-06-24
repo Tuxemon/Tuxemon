@@ -254,9 +254,20 @@ class CombatState(CombatAnimations):
                         self.enqueue_action(monster, action, target)
 
         elif phase == "action phase":
-            # TODO: more fine grained sort
-            # TODO: make sure certain actions are always first, like run or heal
+
             self._action_queue.sort(key=attrgetter("user.speed"))
+            # TODO: Running happens somewhere else, it should be moved here i think.
+            # TODO: Sort other items not just healing Swap/Run?
+            precedent = []
+            for action in self._action_queue:
+                if action.technique.effect == 'heal':
+                    precedent.append(action)
+            #sort items by fastest target
+            precedent.sort(key=attrgetter("target.speed"))
+            for action in precedent:
+                self._action_queue.remove(action)
+                self._action_queue.insert(0,action)
+
 
         elif phase == "post action phase":
             # apply status effects to the monsters

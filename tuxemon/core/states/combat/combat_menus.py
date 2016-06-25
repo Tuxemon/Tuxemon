@@ -67,11 +67,12 @@ class MainCombatMenuState(PopUpMenu):
     def open_swap_menu(self):
         def swap_it(menuitem):
             monster = menuitem.game_object
+            trans = translator.translate
             if monster in self.game.get_state_name('CombatState').active_monsters:
-                tools.open_dialog(self.game, ["Monster is already in play"])
+                tools.open_dialog(self.game, [trans('combat_isactive', {"name":monster.name})])
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(self.game, ["Monster is fainted"])
+                tools.open_dialog(self.game, [trans('combat_fainted', {"name": monster.name})])
             player = self.game.player1
             target = player.monsters[0]
             swap = Technique("Swap")

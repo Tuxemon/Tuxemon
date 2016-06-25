@@ -348,9 +348,9 @@ class CombatState(CombatAnimations):
             monster = menuitem.game_object
             import bpython;bpython.embed(locals_=locals())
             if monster.current_hp == 0:
-                tools.open_dialog(self.game, ["Cannot choose because is fainted"])
+                tools.open_dialog(self.game, [trans("combat_fainted", parameters={"name":monster.name})])
             elif monster in self.active_monsters:
-                tools.open_dialog(self.game, ["Monster is already in play"])
+                tools.open_dialog(self.game, [trans("combat_isactive", parameters={"name":monster.name})])
             else:
                 self.game.pop_state()
                 self.add_monster_into_play(player, monster)

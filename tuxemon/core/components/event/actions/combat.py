@@ -213,9 +213,6 @@ class Combat(object):
         if not self.check_battle_legal(player1):
             return False
 
-        #stop player motion
-        player1.moving = False
-        
         # Get the parameters to determine what encounter group we'll look up in the database.
         encounter_id = int(action.parameters[0])
 
@@ -240,6 +237,9 @@ class Combat(object):
         # If a random encounter was successfully rolled, look up the monster and start the
         # battle.
         if encounter:
+            #stop player motion
+            player1.moving = False
+
             logger.info("Start battle!")
 
             # Stop movement and keypress on the server.

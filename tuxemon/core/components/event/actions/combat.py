@@ -237,8 +237,6 @@ class Combat(object):
         # If a random encounter was successfully rolled, look up the monster and start the
         # battle.
         if encounter:
-            #stop player motion
-            player1.moving = False
 
             logger.info("Start battle!")
 

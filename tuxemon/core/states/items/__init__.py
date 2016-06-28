@@ -1,25 +1,33 @@
 from __future__ import division
 
 from core import tools
+from core.components.locale import translator
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu, PopUpMenu
 from core.components.sprite import Sprite
 from core.components.ui.text import TextArea
-from core.components.locale import translator
+
 trans = translator.translate
+
 
 class UseItemConfirmMenuState(PopUpMenu):
     shrink_to_items = True
 
     def initialize_items(self):
-        menu_items = ('USE', 'CANCEL')
-        for label in menu_items:
+        menu_items_map = (
+            ('item_confirm_use', None),
+            ('item_confirm_cancel', None)
+        )
+
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, None)
+            item = MenuItem(image, label, None, None)
+            self.add(item)
 
 
 class ItemMenuState(Menu):
-    """A class to create item menu objects. The item menu allows you to view and use items in your
+    """ A class to create item menu objects. The item menu allows you to view and use items in your
     inventory.
     """
     background_filename = "gfx/ui/item/item_menu_bg.png"
@@ -31,9 +39,12 @@ class ItemMenuState(Menu):
         self.item_sprite = Sprite()
         self.item_sprite.image = None
         self.sprites.add(self.item_sprite)
+
+        # do not move this line
         super(ItemMenuState, self).startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(5)
 
+        # this is the area where the item description is displayed
         rect = self.game.screen.get_rect()
         center = rect.center
         rect.width *= .95
@@ -49,6 +60,7 @@ class ItemMenuState(Menu):
         self.load_sprite("gfx/ui/item/backpack.png", center=self.backpack_center, layer=100)
 
     def calc_internal_rect(self):
+        # area in the screen where the item list is
         rect = self.rect.copy()
         rect.width *= .58
         rect.left = self.rect.width * .365
@@ -64,17 +76,23 @@ class ItemMenuState(Menu):
         def use_item(menuitem):
             player = self.game.player1
             monster = menuitem.game_object
-            self.game.pop_state()  # close the monster menu
 
-            if state == "CombatState":
-                self.game.get_state_name("CombatState").enqueue_action(player, item, player.monsters[0])
-                self.game.pop_state()   # pop this menu
+            # determine if being called during combat state
+            combat_state = self.game.get_state_name("CombatState")
+            if combat_state is not None:
+                combat_state.enqueue_action(player, item, monster)
+                self.game.pop_state()    # pop the monster screen
+                self.game.pop_state()    # pop this menu, returning to combat
+                self.game.pop_state()    # pop the combat menu, ending turn
             else:
-                if item.use(player, monster):
+                # item must be used before state is popped.
+                # don't try to combine with "if result..." condition below
+                result = item.use(player, monster)
+                self.game.pop_state()    # pop the monster screen
+                if result:
                     tools.open_dialog(self.game, [trans('item_success')])
                 else:
                     tools.open_dialog(self.game, [trans('item_failure')])
-                self._initialize_items()  # re-init, in case one item is gone now
 
         def decide_to_use(menuitem):
             self.game.pop_state()  # close the confirm dialog
@@ -102,17 +120,17 @@ class ItemMenuState(Menu):
             yield MenuItem(image, obj.name, obj.description, obj)
 
     def on_menu_selection_change(self):
-        self.update_item_sprite()
-        item = self.get_selected_item()
-        if item:
-            self.alert(item.description)
+        """ Called when menu selection changes
 
-    def update_item_sprite(self):
+        :return: None
+        """
         item = self.get_selected_item()
         if item:
+            # animate item being pulled from the bag
             image = item.game_object.surface
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.backpack_center)
-
-            # animate item being pulled from the bag
             self.animate(self.item_sprite.rect, centery=self.item_center[1], duration=.2)
+
+            # show item description
+            self.alert(item.description)

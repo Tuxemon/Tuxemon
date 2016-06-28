@@ -52,4 +52,5 @@ class ConfirmMenu(PopUpMenu):
 
         for label, callback in menu_items_map:
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, None, callback)
+            item = MenuItem(image, label, None, None, callback)
+            self.add(item)

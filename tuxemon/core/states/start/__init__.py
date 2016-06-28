@@ -24,6 +24,7 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.states.start Handles the start screen which loads and creates new games
@@ -51,6 +52,8 @@ class BackgroundState(State):
     since menus do not clean up dirty areas, the blank,
     "Background state" will do that.  The alternative is creating
     a system for states to clean up their dirty screen areas.
+
+    eventually the need for this will be phased out
     """
     def draw(self, surface):
         surface.fill((0, 0, 0, 0))
@@ -64,7 +67,9 @@ class StartState(PopUpMenu):
     """
     shrink_to_items = True
 
-    def initialize_items(self):
+    def startup(self, *args, **kwargs):
+        super(StartState, self).startup(*args, **kwargs)
+
         def change_state(state, **kwargs):
             return partial(self.game.push_state, state, **kwargs)
 
@@ -79,24 +84,15 @@ class StartState(PopUpMenu):
         def exit_game():
             self.game.exit = True
 
-        trans = translator.translate
         menu_items_map = (
-            (trans('menu_new_game').upper(), new_game),
-            (trans('menu_load').upper(), change_state("LoadMenuState")),
-            (trans('menu_options').upper(), options),
-            (trans('exit').upper(), exit_game),
+            ('menu_new_game', new_game),
+            ('menu_load', change_state("LoadMenuState")),
+            ('menu_options', options),
+            ('exit', exit_game),
         )
 
-        for label, callback in menu_items_map:
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, callback)
-
-    def on_menu_selection(self, item):
-        item.game_object()
-
-    # def calc_final_rect(self):
-    #     rect = self.rect.copy()
-    #     rect.width *= .3
-    #     rect.height *= .5
-    #     rect.center = self.rect.center
-    #     return rect
+            item = MenuItem(image, label, None, callback)
+            self.add(item)

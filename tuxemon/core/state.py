@@ -40,7 +40,8 @@ class State(object):
     __metaclass__ = ABCMeta
 
     rect = pygame.Rect((0, 0), prepare.SCREEN_SIZE)
-    force_draw = False
+    transparent = False   # ignore all background/borders
+    force_draw = False    # draw even if completely under another state
 
     def __init__(self, control):
         """ Do not override this unless there is a special need.

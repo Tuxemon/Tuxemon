@@ -130,12 +130,26 @@ class Item(object):
         self.type = results["type"]
         self.power = results["power"]
         self.sprite = results["sprite"]
-        self.target = results["target"]
         self.usable_in = results["usable_in"]
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
+        #TODO: maybe break out into own function
+        from operator import itemgetter
+        self.target = map(itemgetter(0), filter(itemgetter(1),
+                          sorted(results["target"].items(), key=itemgetter(1), reverse=True)))
+
         self.effect = results["effects"]
+
+    def advance_round(self):
+        """ Advance round for items that take many rounds to use
+
+        * This currently has no use, and may not stay.  It is added
+          so that the Item class and Technique class are interchangeable.
+
+        :return: None
+        """
+        return
 
     def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.

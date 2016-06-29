@@ -79,4 +79,5 @@ class RandomAI(AI):
         :param opponents: List of possible targets
         :return: Technique, Target
         """
+        # TODO: healing and whatnot
         return choice(npc.moves), choice(opponents)

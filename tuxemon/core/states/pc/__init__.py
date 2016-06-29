@@ -58,20 +58,18 @@ class PCState(PopUpMenu):
             # self.game.replace_state("MultiplayerMenu")
             open_dialog(self.game, ["Multiplayer not supported."])
 
-        trans = translator.translate
-        self.menu_items_map = OrderedDict((
-            (trans('menu_monsters').upper(), change_state("MonsterMenuState")),
-            (trans('menu_items').upper(), change_state("ItemMenuState")),
-            (trans('menu_multiplayer').upper(), multiplayer_menu),
-            (trans('log_off').upper(), self.game.pop_state),
-        ))
+        menu_items_map = (
+            ('menu_monsters', change_state("MonsterMenuState")),
+            ('menu_items', change_state("ItemMenuState")),
+            ('menu_multiplayer', multiplayer_menu),
+            ('log_off', self.game.pop_state),
+        )
 
-        for label in self.menu_items_map.keys():
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, None)
-
-    def on_menu_selection(self, menuitem):
-        self.menu_items_map[menuitem.label]()
+            item = MenuItem(image, label, None, None)
+            self.add(item)
 
 # class Player_Menu(Menu):
 #
@@ -114,13 +112,14 @@ class MultiplayerMenu(PopUpMenu):
         pass
 
     def initialize_items(self):
-        def make_item(label):
+        def make_item(label, callback):
             image = self.shadow_text(label)
-            return MenuItem(image, label, None, None)
+            item = MenuItem(image, label, None, callback)
+            self.add(item)
 
-        yield make_item("HOST GAME", self.host_game)
-        yield make_item("SCAN FOR GAMES", self.scan_for_games)
-        yield make_item("JOIN BY IP", self.join_by_ip)
+        make_item("HOST GAME", self.host_game)
+        make_item("SCAN FOR GAMES", self.scan_for_games)
+        make_item("JOIN BY IP", self.join_by_ip)
 
     def calc_final_rect(self):
         rect = self.rect.copy()

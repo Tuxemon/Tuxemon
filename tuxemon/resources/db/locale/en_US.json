@@ -15,6 +15,7 @@
     "combat_wild_appeared": "A wild ${{name}} appeared!",
     "combat_monster_choice": "What will ${{name}} do?",
     "combat_fainted": "${{name}} fainted!",
+    "combat_isactive": "${{name}} is already in play.",
     "empty_slot": "empty slot",
     "exit": "Exit",
     "item_failure": "It failed!",

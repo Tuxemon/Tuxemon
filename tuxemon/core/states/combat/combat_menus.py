@@ -7,8 +7,9 @@ from functools import partial
 from core.components.menu import PopUpMenu
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
-from core.components.monster import Technique
-
+from core.components.technique import Technique
+from core.components.locale import translator
+from core import tools
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
@@ -48,11 +49,12 @@ class MainCombatMenuState(PopUpMenu):
         # hack for now
         combat_state = self.game.get_state_name("CombatState")
 
+        trans = translator.translate
         self.menu_items_map = OrderedDict((
-            ('FIGHT', self.open_technique_menu),
-            ('TUXEMON', self.open_swap_menu),
-            ('ITEM', change_state("ItemMenuState")),
-            ('RUN', run)
+            (trans('menu_fight').upper(), self.open_technique_menu),
+            (trans('menu_monster').upper(), self.open_swap_menu),
+            (trans('menu_item').upper(), change_state("ItemMenuState")),
+            (trans('menu_run').upper(), run)
         ))
 
         for label in self.menu_items_map.keys():
@@ -65,6 +67,12 @@ class MainCombatMenuState(PopUpMenu):
     def open_swap_menu(self):
         def swap_it(menuitem):
             monster = menuitem.game_object
+            trans = translator.translate
+            if monster in self.game.get_state_name('CombatState').active_monsters:
+                tools.open_dialog(self.game, [trans('combat_isactive', {"name":monster.name})])
+                return
+            elif monster.current_hp < 1:
+                tools.open_dialog(self.game, [trans('combat_fainted', {"name": monster.name})])
             player = self.game.player1
             target = player.monsters[0]
             swap = Technique("Swap")

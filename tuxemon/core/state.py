@@ -138,7 +138,7 @@ class State(object):
         :returns: None
         :rtype: None
         """
-        pass
+        self.animations.update(time_delta)
 
     def draw(self, surface):
         """ Render the state to the surface passed.  Must be overloaded in children
@@ -225,12 +225,12 @@ class StateManager(object):
             function is declared to provide IDE with some info on the class only
             this may change in the future, do not rely on this behaviour
         """
-        self._state_queue = list()
-        self._state_stack = list()
-        self._state_dict = dict()
         self.done = False
         self.current_time = 0.0
         self.package = ""
+        self._state_queue = list()
+        self._state_stack = list()
+        self._state_dict = dict()
         self._held_keys = list()
         self._state_resume_set = set()
         self._remove_queue = list()

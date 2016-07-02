@@ -23,6 +23,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.components.item Item handling module.
@@ -35,6 +36,8 @@ import random
 
 from core import tools
 from . import db
+from .locale import translator
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -113,8 +116,16 @@ class Item(object):
         elif id:
             results = items.lookup_by_id(id, table="item")
 
-        self.name = results["name"]
-        self.description = results["description"]
+        # Try and get this item's translated name and description if it exists.
+        if translator.has_key(results["name_trans"]):
+            self.name = trans(results["name_trans"])
+        else:
+            self.name = results["name"]
+        if translator.has_key(results["description_trans"]):
+            self.description = trans(results["description_trans"])
+        else:
+            self.description = results["description"]
+
         self.id = results["id"]
         self.type = results["type"]
         self.power = results["power"]
@@ -147,11 +158,12 @@ class Item(object):
             result = getattr(self, str(effect))(user, target)
 
         # If this is a consumable item, remove it from the player's inventory.
-        if self.type == "Consumable":
-            if user.inventory[self.name]['quantity'] <= 1:
-                del user.inventory[self.name]
-            else:
-                user.inventory[self.name]['quantity'] -= 1
+        if result:
+            if self.type == "Consumable":
+                if user.inventory[self.name]['quantity'] <= 1:
+                    del user.inventory[self.name]
+                else:
+                    user.inventory[self.name]['quantity'] -= 1
 
         return result
 
@@ -172,7 +184,9 @@ class Item(object):
         >>> potion_item.heal(bulbatux, game)
         """
 
-        # Heal the target monster by "self.power" number of hitpoints.
+        if target.current_hp == target.hp:
+            return False
+         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
 
         # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
@@ -180,6 +194,9 @@ class Item(object):
             target.current_hp = target.hp
 
         return True
+        
+    def advance_round(self):
+        pass
 
     def capture(self, user, target):
         """Captures target monster.

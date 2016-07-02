@@ -117,11 +117,14 @@ class MonsterMenuState(Menu):
     def draw_monster_info(self, surface, monster, rect):
         # position and draw hp bar
         hp_rect = rect.copy()
-        hp_rect.width = rect.width // 2
-        hp_rect.left = rect.centerx - tools.scale(2)
+        left = rect.width * .6
+        right = rect.right - tools.scale(4)
+        hp_rect.width = right - left
+        hp_rect.left = left
         hp_rect.height = tools.scale(8)
         hp_rect.centery = rect.centery
 
+        # draw the hp bar
         self.hp_bar.value = monster.current_hp / monster.hp
         self.hp_bar.draw(surface, hp_rect)
 
@@ -130,8 +133,16 @@ class MonsterMenuState(Menu):
         draw_text(surface, monster.name, text_rect, font=self.font)
 
         # draw the level info
-        text_rect.top = rect.bottom - tools.scale(6)
+        text_rect.top = rect.bottom - tools.scale(7)
         draw_text(surface, "  Lv " + str(monster.level), text_rect, font=self.font)
+
+        # draw any status icons
+        # TODO: caching or something, idk
+        # TODO: not hardcode icon sizes
+        for index, status in enumerate(monster.status):
+            image = tools.load_and_scale(status.icon)
+            pos = (rect.width * .4) + (index * tools.scale(32)), rect.y + tools.scale(5)
+            surface.blit(image, pos)
 
     def determine_border(self, selected, filled):
         if selected:

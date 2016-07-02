@@ -1,0 +1,45 @@
+{
+    "id":   19,
+
+    "attack_base":            70,
+    "defense_base":           8,
+    "hp_base":                70,
+    "special_attack_base":    8,
+    "special_defense_base":   10,
+    "speed_base":             8,
+
+    "attack_mod":             1,
+    "defense_mod":            1,
+    "hp_mod":                 1,
+    "special_attack_mod":     1.1,
+    "special_defense_mod":    1,
+    "speed_mod":              1,
+
+    "exp_give_mod":           3,
+    "exp_req_mod":            27,
+
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique_id": 1,
+            "technique": "Pound"
+        },
+        {
+            "level_learned": 2,
+            "technique_id": 3,
+            "technique": "Bite"
+        }
+    ],
+    "name": "Simba",
+    "sprites": {
+        "battle1": "resources/gfx/sprites/battle/simba-front.png",
+        "battle2": "resources/gfx/sprites/battle/simba-back.png",
+        "menu1": "resources/gfx/sprites/battle/simba-menu01.png",
+        "menu2": "resources/gfx/sprites/battle/simba-menu02.png"
+    },
+    "types": [
+        "poison"
+    ],
+    "weight": 65
+}

@@ -475,7 +475,7 @@ class Menu(state.State):
         """ Hook for adding items to menu when menu is created
 
         Override with a generator
-       
+
         :returns: Generator of MenuItems
         :rtype: collections.Iterable[MenuItem]
         """

@@ -158,11 +158,12 @@ class Item(object):
             result = getattr(self, str(effect))(user, target)
 
         # If this is a consumable item, remove it from the player's inventory.
-        if self.type == "Consumable":
-            if user.inventory[self.name]['quantity'] <= 1:
-                del user.inventory[self.name]
-            else:
-                user.inventory[self.name]['quantity'] -= 1
+        if result:
+            if self.type == "Consumable":
+                if user.inventory[self.name]['quantity'] <= 1:
+                    del user.inventory[self.name]
+                else:
+                    user.inventory[self.name]['quantity'] -= 1
 
         return result
 
@@ -183,7 +184,9 @@ class Item(object):
         >>> potion_item.heal(bulbatux, game)
         """
 
-        # Heal the target monster by "self.power" number of hitpoints.
+        if target.current_hp == target.hp:
+            return False
+         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
 
         # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
@@ -191,6 +194,9 @@ class Item(object):
             target.current_hp = target.hp
 
         return True
+        
+    def advance_round(self):
+        pass
 
     def capture(self, user, target):
         """Captures target monster.

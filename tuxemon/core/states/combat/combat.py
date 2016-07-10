@@ -131,6 +131,7 @@ class CombatState(CombatAnimations):
         self._animation_in_progress = False  # if true, delay phase change
         self._winner = None                  # when set, combat ends
         self._round = 0
+        self._damage_map = dict()
 
         super(CombatState, self).startup(**kwargs)
         self.players = list(self.players)
@@ -253,9 +254,24 @@ class CombatState(CombatAnimations):
                         self.enqueue_action(monster, action, target)
 
         elif phase == "action phase":
-            # TODO: more fine grained sort
-            # TODO: make sure certain actions are always first, like run or heal
+
             self._action_queue.sort(key=attrgetter("user.speed"))
+            # TODO: Running happens somewhere else, it should be moved here i think.
+            # TODO: Sort other items not just healing, Swap/Run?
+
+            #Create a new list for items, possibly running/swap
+            #sort items by speed of monster applied to
+            #remove items from action_queue and insert them into their new location
+            precedent = []
+            for action in self._action_queue:
+                if action.technique.effect == 'heal':
+                    precedent.append(action)
+            #sort items by fastest target
+            precedent.sort(key=attrgetter("target.speed"))
+            for action in precedent:
+                self._action_queue.remove(action)
+                self._action_queue.insert(0,action)
+
 
         elif phase == "post action phase":
             # apply status effects to the monsters
@@ -330,9 +346,10 @@ class CombatState(CombatAnimations):
         """
         def add(menuitem):
             monster = menuitem.game_object
-
             if monster.current_hp == 0:
-                tools.open_dialog(self.game, ["Cannot choose because is fainted"])
+                tools.open_dialog(self.game, [trans("combat_fainted", parameters={"name":monster.name})])
+            elif monster in self.active_monsters:
+                tools.open_dialog(self.game, [trans("combat_isactive", parameters={"name":monster.name})])
             else:
                 self.game.pop_state()
                 self.add_monster_into_play(player, monster)
@@ -499,6 +516,7 @@ class CombatState(CombatAnimations):
         :returns:
         """
         technique.advance_round()
+
         result = technique.use(user, target)
 
         try:
@@ -523,6 +541,12 @@ class CombatState(CombatAnimations):
                 self.animate_sprite_tackle(user_sprite)
                 self.task(partial(self.animate_sprite_take_damage, target_sprite), hit_delay + .2)
                 self.task(partial(self.blink, target_sprite), hit_delay + .6)
+                #track damage
+                if target and target not in self._damage_map:
+                    self._damage_map.update({target:[user]})
+                else:
+                    if user and user not in self._damage_map[target]:
+                        self._damage_map[target].append(user)
 
             else:  # assume this was an item used
                 if result:
@@ -553,7 +577,12 @@ class CombatState(CombatAnimations):
         """
         monster.current_hp = 0
         monster.status = [faint]
-        # TODO: award experience
+        #Award Experience
+        awarded_exp = monster.total_experience/monster.level/len(self._damage_map[monster])
+        for winners in self._damage_map[monster]:
+            winners.give_experience(awarded_exp)
+        #Remove monster from damage map
+        self._damage_map.__delitem__(monster)
 
     def animate_party_status(self):
         """ Animate monsters that need to be fainted
@@ -632,8 +661,9 @@ class CombatState(CombatAnimations):
 
     @property
     def human_players(self):
-        # TODO: this.
-        yield self.players[0]
+        for player in self.players:
+            if player.isplayer:
+                yield player
 
     @property
     def ai_players(self):

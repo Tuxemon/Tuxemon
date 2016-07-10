@@ -482,4 +482,8 @@ Translations
 ### Norwegian
 * Anonymous contributor
 
+### Portuguese
+* [HugopGhost](https://github.com/HugopGhost)
 
+### Italian
+* [Nhoya](https://github.com/Nhoya)

@@ -237,6 +237,7 @@ class Combat(object):
         # If a random encounter was successfully rolled, look up the monster and start the
         # battle.
         if encounter:
+
             logger.info("Start battle!")
 
             # Stop movement and keypress on the server.
@@ -255,7 +256,7 @@ class Combat(object):
 
             # Set the monster's level
             current_monster.level = 1
-            current_monster.set_level(current_monster.level)
+            current_monster.set_level(level)
 
             # Create an NPC object which will be this monster's "trainer"
             npc = player.Npc()
@@ -296,4 +297,3 @@ class Combat(object):
                 logger.warning("Cannot start battle, player's monsters are all DEAD")
                 return False
             else: return True
-

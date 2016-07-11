@@ -91,12 +91,12 @@ class WorldMenuState(Menu):
         # turn off shrink, then adjust size
         self.shrink_to_items = True     # force shrink of menu
         self.menu_items.expand = False  # force shrink of items
-        self._initialize_items()        # re-add items, trigger layout
+        self.initialize_items()         # re-add items, trigger layout
         width = self.rect.width         # store the ideal width
 
         self.shrink_to_items = False    # force shrink of menu
         self.menu_items.expand = True   # force shrink of items
-        self._initialize_items()        # re-add items, trigger layout
+        self.initialize_items()        # re-add items, trigger layout
         self.rect = pygame.Rect(right, 0, width, height)  # set new rect
 
         # animate the menu sliding in

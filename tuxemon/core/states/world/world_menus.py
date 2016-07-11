@@ -1,7 +1,6 @@
 from __future__ import division
 
 import logging
-from collections import OrderedDict
 from functools import partial
 
 import pygame
@@ -32,9 +31,13 @@ class WorldMenuState(Menu):
     Menu for the world state
     """
     shrink_to_items = True    # this menu will shrink, but size is adjusted when opened
+    animate_contents = True
 
-    def initialize_items(self):
+    def startup(self, *args, **kwargs):
+        super(WorldMenuState, self).startup(*args, **kwargs)
+
         trans = translator.translate
+
         def change_state(state, **kwargs):
             return partial(self.game.replace_state, state, **kwargs)
 
@@ -53,43 +56,28 @@ class WorldMenuState(Menu):
             open_dialog(self.game, [trans('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
-        self.menu_items_map = OrderedDict((
-            (trans('menu_journal').upper(), not_implemented_dialog),
-            (trans('menu_monster').upper(), change_state("MonsterMenuState")),
-            (trans('menu_bag').upper(), change_state("ItemMenuState")),
-            (trans('menu_player').upper(), not_implemented_dialog),
-            (trans('menu_save').upper(), change_state("SaveMenuState")),
-            (trans('menu_load').upper(), change_state("LoadMenuState")),
-            (trans('menu_options').upper(), not_implemented_dialog),
-            (trans('exit').upper(), exit_game)
-        ))
+        menu_items_map = (
+            ('menu_journal', not_implemented_dialog),
+            ('menu_monster', change_state("MonsterMenuState")),
+            ('menu_bag', change_state("ItemMenuState")),
+            ('menu_player', not_implemented_dialog),
+            ('menu_save', change_state("SaveMenuState")),
+            ('menu_load', change_state("LoadMenuState")),
+            ('menu_options', not_implemented_dialog),
+            ('exit', exit_game)
+        )
 
-        for label in self.menu_items_map.keys():
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, None)
-
-    def on_menu_selection(self, menuitem):
-        self.menu_items_map[menuitem.label]()
-
-    def draw(self, surface):
-        """ Draws the menu object to a pygame surface.
-
-        :param surface: Surface to draw on
-        :type surface: pygame.Surface
-
-        :rtype: None
-        :returns: None
-
-        """
-        self.window.draw(surface, self.rect)
-
-        if self.menu_items:
-            self.menu_items.draw(surface)
-            self.menu_sprites.draw(surface)
-
-        self.sprites.draw(surface)
+            item = MenuItem(image, label, None, callback)
+            self.add(item)
 
     def animate_open(self):
+        """ Animate the menu sliding in
+
+        :return:
+        """
         self.state = "opening"  # required
 
         # position the menu off screen.  it will be slid into view with an animation
@@ -117,6 +105,9 @@ class WorldMenuState(Menu):
         return ani
 
     def animate_close(self):
-        # animate the menu sliding out
+        """ Animate the menu sliding out
+
+        :return:
+        """
         ani = self.animate(self.rect, x=prepare.SCREEN_SIZE[0], duration=.50)
         return ani

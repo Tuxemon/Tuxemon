@@ -96,7 +96,7 @@ def main():
 
         for monster in control.player1.monsters:
             monster.hp = 100
-            monster.current_hp = 100
+            monster.current_hp = 1
             # monster.current_hp = random.randint(1, 2)
             monster.apply_status(Technique("Poison"))
 

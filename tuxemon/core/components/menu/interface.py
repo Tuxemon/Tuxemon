@@ -69,6 +69,7 @@ class MenuItem(pygame.sprite.Sprite):
         self.description = description
         self.game_object = game_object
 
+        self.enabled = True
         self._in_focus = False
 
     def toggle_focus(self):

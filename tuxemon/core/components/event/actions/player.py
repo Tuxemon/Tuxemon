@@ -361,7 +361,7 @@ class Player(object):
         world.menu_blocking = False
 
     def set_player_attribute(self, game, action):
-        """Sets the given attribute of the player to the given value.
+        """Sets the given attribute of the named character to the given value.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -409,3 +409,107 @@ class Player(object):
         attr = getattr(player, attribute)
         
         setattr(player, attribute, value)
+
+    def change_player_attribute(self, game, action):
+        """Changes the given attribute of the named character by the given value.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: name, attribute, value
+        
+        Action parameter 'value' must be an int (positive or negative)
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "change_player_attribute",
+            "parameters": [
+                "Dr. Redwood"
+                "walkrate",
+                "-15"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        name = str(action.parameters[0])
+
+        npcs = list(world.npcs)
+        for npc in npcs:
+            if npc.name == name:
+                player = npc
+
+        if not player:
+            return
+
+        attribute = action.parameters[1]
+        value = action.parameters[2]
+        
+        # trigger exceptions on bad input
+        attr = getattr(player, attribute)
+        change = int(value)
+        attr = attr + change
+
+        setattr(player, attribute, attr)
+
+    def modify_player_attribute(self, game, action):
+        """Modifies the given attribute of the named player by multiplying it by modifier.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: name, attribute, modifier
+        
+        Action parameter 'modifier' must be an int (positive or negative)
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "change_player_attribute",
+            "parameters": [
+                "Red"
+                "walkrate",
+                "1.50"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        name = str(action.parameters[0])
+
+        npcs = list(world.npcs)
+        for npc in npcs:
+            if npc.name == name:
+                player = npc
+
+        if not player:
+            return
+
+        attribute = action.parameters[1]
+        modifier = action.parameters[2]
+        
+        # trigger exceptions on bad input
+        attr = getattr(player, attribute)
+        change = float(modifier)
+        attr = attr*change
+
+        setattr(player, attribute, attr)

@@ -359,3 +359,53 @@ class Player(object):
             return
 
         world.menu_blocking = False
+
+    def set_player_attribute(self, game, action):
+        """Sets the given attribute of the player to the given value.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: name, attribute, value
+        
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_player_attribute",
+            "parameters": [
+                "Mr. Redwood"
+                "name",
+                "Dr. Redwood"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        name = str(action.parameters[0])
+
+        npcs = list(world.npcs)
+        for npc in npcs:
+            if npc.name == name:
+                player = npc
+
+        if not player:
+            return
+
+        attribute = action.parameters[1]
+        value = action.parameters[2]
+        
+        # check for valid inputs
+        # trigger an ArgumentException if the property doesn't already exist
+        attr = getattr(player, attribute)
+        
+        setattr(player, attribute, value)

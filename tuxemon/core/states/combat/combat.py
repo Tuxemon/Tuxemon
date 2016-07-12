@@ -542,8 +542,7 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0
         if user:
-            # message = "%s used %s!" % (user.name, technique.name)
-            message = trans('combat_used_x', {"user": user.name, "name": technique.name})
+            message = trans('combat_used_x', {"user": user.name, "name": technique.name_trans})
 
             # TODO: a real check or some params to test if should tackle, etc
             if technique in user.moves:
@@ -570,7 +569,7 @@ class CombatState(CombatAnimations):
         else:
             if result:
                 self.suppress_phase_change()
-                self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name}))
+                self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name_trans}))
 
         if result and target_sprite and hasattr(technique, "images"):
             tech_sprite = self.get_technique_animation(technique)

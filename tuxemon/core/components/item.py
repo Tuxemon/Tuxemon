@@ -116,15 +116,10 @@ class Item(object):
         elif id:
             results = items.lookup_by_id(id, table="item")
 
-        # Try and get this item's translated name and description if it exists.
-        if translator.has_key(results["name_trans"]):
-            self.name = trans(results["name_trans"])
-        else:
-            self.name = results["name"]
-        if translator.has_key(results["description_trans"]):
-            self.description = trans(results["description_trans"])
-        else:
-            self.description = results["description"]
+        self.name = results["name"]
+        self.name_trans = trans(results["name_trans"])
+        self.description = results["description"]
+        self.description_trans = trans(results["description_trans"])
 
         self.id = results["id"]
         self.type = results["type"]
@@ -208,7 +203,7 @@ class Item(object):
             target.current_hp = target.hp
 
         return True
-        
+
     def advance_round(self):
         pass
 

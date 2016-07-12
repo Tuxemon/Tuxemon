@@ -3,7 +3,7 @@ from __future__ import division
 from core import tools
 from core.components.locale import translator
 from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu, PopUpMenu
+from core.components.menu.menu import Menu
 from core.components.sprite import Sprite
 from core.components.ui.text import TextArea
 
@@ -32,11 +32,10 @@ class ItemMenuState(Menu):
 
         # this is the area where the item description is displayed
         rect = self.game.screen.get_rect()
-        center = rect.center
-        rect.width *= .95
-        rect.height *= .25
-        rect.center = center
-        rect.top = tools.scale(190)
+        rect.top = tools.scale(106)
+        rect.left = tools.scale(3)
+        rect.width = tools.scale(250)
+        rect.height = tools.scale(32)
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
@@ -72,7 +71,7 @@ class ItemMenuState(Menu):
         if state in item.usable_in:
             self.open_confirm_use_menu(item)
         else:
-            msg = trans('item_cannot_use_here', {'name': item.name})
+            msg = trans('item_cannot_use_here', {'name': item.name_trans})
             tools.open_dialog(self.game, [msg])
 
     def open_confirm_use_menu(self, item):
@@ -142,8 +141,8 @@ class ItemMenuState(Menu):
         """
         for name, properties in self.game.player1.inventory.items():
             obj = properties['item']
-            image = self.shadow_text(obj.name, bg=(128, 128, 128))
-            yield MenuItem(image, obj.name, obj.description, obj)
+            image = self.shadow_text(obj.name_trans, bg=(128, 128, 128))
+            yield MenuItem(image, obj.name_trans, obj.description_trans, obj)
 
     def on_menu_selection_change(self):
         """ Called when menu selection changes

@@ -99,11 +99,8 @@ class Technique(object):
         elif id:
             results = techniques.database['technique'][id]
 
-        # Try and get this item's translated name if it exists.
-        if translator.has_key(results["name_trans"]):
-            self.name = trans(results["name_trans"])
-        else:
-            self.name = results["name"]
+        self.name = results["name"]
+        self.name_trans = trans(results["name_trans"])
         self.tech_id = results["id"]
         self.category = results["category"]
         self.icon = results["icon"]

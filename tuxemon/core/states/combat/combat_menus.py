@@ -88,8 +88,8 @@ class MainCombatMenuState(PopUpMenu):
 
             # add techniques to the menu
             for tech in self.monster.moves:
-                image = self.shadow_text(tech.name)
-                item = MenuItem(image, tech.name, None, tech)
+                image = self.shadow_text(tech.name_trans)
+                item = MenuItem(image, None, None, tech)
                 menu.add(item)
 
             # position the new menu

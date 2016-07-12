@@ -84,19 +84,18 @@ class WorldMenuState(Menu):
         right, height = prepare.SCREEN_SIZE
 
         # TODO: more robust API for sizing (kivy esque?)
-        # TODO: after menu "add" merge, this can be simplified
         # this is highly irregular:
         # shrink to get the final width
         # record the width
         # turn off shrink, then adjust size
         self.shrink_to_items = True     # force shrink of menu
         self.menu_items.expand = False  # force shrink of items
-        self.initialize_items()         # re-add items, trigger layout
+        self.refresh_layout()           # rearrange items
         width = self.rect.width         # store the ideal width
 
         self.shrink_to_items = False    # force shrink of menu
         self.menu_items.expand = True   # force shrink of items
-        self.initialize_items()        # re-add items, trigger layout
+        self.refresh_layout()           # rearrange items
         self.rect = pygame.Rect(right, 0, width, height)  # set new rect
 
         # animate the menu sliding in

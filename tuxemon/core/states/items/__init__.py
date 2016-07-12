@@ -37,7 +37,6 @@ class ItemMenuState(Menu):
         rect.width = tools.scale(250)
         rect.height = tools.scale(32)
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
-        print(rect)
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
 

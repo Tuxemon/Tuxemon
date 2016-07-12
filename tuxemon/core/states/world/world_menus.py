@@ -84,7 +84,6 @@ class WorldMenuState(Menu):
         right, height = prepare.SCREEN_SIZE
 
         # TODO: more robust API for sizing (kivy esque?)
-        # TODO: after menu "add" merge, this can be simplified
         # this is highly irregular:
         # shrink to get the final width
         # record the width

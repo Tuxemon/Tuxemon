@@ -3,7 +3,7 @@ from __future__ import division
 from core import tools
 from core.components.locale import translator
 from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu, PopUpMenu
+from core.components.menu.menu import Menu
 from core.components.sprite import Sprite
 from core.components.ui.text import TextArea
 
@@ -37,6 +37,7 @@ class ItemMenuState(Menu):
         rect.width = tools.scale(250)
         rect.height = tools.scale(32)
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
+        print(rect)
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
 
@@ -71,7 +72,7 @@ class ItemMenuState(Menu):
         if state in item.usable_in:
             self.open_confirm_use_menu(item)
         else:
-            msg = trans('item_cannot_use_here', {'name': item.name})
+            msg = trans('item_cannot_use_here', {'name': item.name_trans})
             tools.open_dialog(self.game, [msg])
 
     def open_confirm_use_menu(self, item):

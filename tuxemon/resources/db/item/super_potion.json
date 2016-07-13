@@ -1,8 +1,7 @@
 {
   "id": 8,
-  "name": "Super Potion",
-  "name_trans": "item_super_potion",
-  "description": "Heals a monster by 150 HP.",
+  "slug": "item_super_potion",
+  "name_trans": "item_super_potion_name",
   "description_trans": "item_super_potion_descr",
   "effects": [
     "heal"

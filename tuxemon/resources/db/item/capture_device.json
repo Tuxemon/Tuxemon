@@ -1,8 +1,7 @@
 {
   "id": 3,
-  "name": "Capture Device",
-  "name_trans": "item_capture_device",
-  "description": "Captures a monster.",
+  "slug": "item_capture_device",
+  "name_trans": "item_capture_device_name",
   "description_trans": "item_capture_device_descr",
   "effects": [
     "capture"

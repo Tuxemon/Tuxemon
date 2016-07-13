@@ -11,11 +11,11 @@
     "combat_capturing_fail": "${{name}} brøt seg løs!",
     "empty_slot": "empty slot",
     "exit": "Avslutt",
-    "item_capture_device": "Capture Device",
+    "item_capture_device_name": "Capture Device",
     "item_capture_device_descr": "Fanger monstre.",
-    "item_potion": "Eliksir",
+    "item_potion_name": "Eliksir",
     "item_potion_descr": "Leger et monster med 50 HP.",
-    "item_super_potion": "Super eliksir",
+    "item_super_potion_name": "Super eliksir",
     "item_super_potion_descr": "Leger et monster med 150 HP.",
     "log_off": "Logg ut",
     "menu_bag": "Inventar",
@@ -35,8 +35,8 @@
     "not_implemented": "Denne funksjonen er ikke tilgjengelig enda.",
     "received_x": "Mottatt ${{name}}!",
     "slot": "Slot",
-    "technique_bite": "Bit",
-    "technique_poison_sting": "Giftig stikk",
-    "technique_pound": "Slag",
-    "technique_water_shot": "Vann sprut"
+    "technique_bite_name": "Bit",
+    "technique_poison_sting_name": "Giftig stikk",
+    "technique_pound_name": "Slag",
+    "technique_water_shot_name": "Vann sprut"
 }

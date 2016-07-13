@@ -98,7 +98,7 @@ def main():
             monster.hp = 100
             monster.current_hp = 1
             # monster.current_hp = random.randint(1, 2)
-            monster.apply_status(Technique("Poison"))
+            monster.apply_status(Technique("status_poison"))
 
         # control.push_state("MonsterMenuState")
 

@@ -1,6 +1,6 @@
 {
   "id": 6,
-  "name": "Run",
+  "slug": "technique_run",
   "name_trans": "menu_run",
   "animation": "",
   "sfx": "blaster1.ogg",

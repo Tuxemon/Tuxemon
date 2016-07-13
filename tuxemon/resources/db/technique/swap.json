@@ -1,7 +1,7 @@
 {
   "id": 9,
-  "name": "Swap",
-  "name_trans": "status_swap",
+  "slug": "technique_swap",
+  "name_trans": "technique_swap_name",
   "animation": "teeth",
   "sfx": "blaster1.ogg",
   "icon": "",

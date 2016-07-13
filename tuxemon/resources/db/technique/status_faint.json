@@ -1,7 +1,7 @@
 {
   "id": 7,
-  "name": "Faint",
-  "name_trans": "status_faint",
+  "slug": "status_faint",
+  "name_trans": "status_faint_name",
   "animation": "",
   "sfx": "faint.ogg",
   "icon": "",

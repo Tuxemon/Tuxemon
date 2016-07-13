@@ -56,15 +56,15 @@ logger.debug("%s successfully imported" % __name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
-faint = Technique("Faint")
+faint = Technique("status_faint")
 
 
 def check_status(monster, status_name):
-    return any(t for t in monster.status if t.name == status_name)
+    return any(t for t in monster.status if t.slug == status_name)
 
 
 def fainted(monster):
-    return check_status(monster, "Faint")
+    return check_status(monster, "status_faint")
 
 
 def get_awake_monsters(player):
@@ -542,7 +542,7 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0
         if user:
-            message = trans('combat_used_x', {"user": user.name, "name": technique.name_trans})
+            message = trans('combat_used_x', {"user": user.name, "name": technique.name})
 
             # TODO: a real check or some params to test if should tackle, etc
             if technique in user.moves:
@@ -569,7 +569,7 @@ class CombatState(CombatAnimations):
         else:
             if result:
                 self.suppress_phase_change()
-                self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name_trans}))
+                self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name}))
 
         if result and target_sprite and hasattr(technique, "images"):
             tech_sprite = self.get_technique_animation(technique)
@@ -626,7 +626,7 @@ class CombatState(CombatAnimations):
         for player in self.monsters_in_play.keys():
             for monster in self.monsters_in_play[player]:
                 self.animate_hp(monster)
-                if monster.current_hp <= 0 and faint not in monster.status:
+                if monster.current_hp <= 0 and not fainted(monster):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)
 

@@ -1,7 +1,7 @@
 {
   "id": 4,
-  "name": "Poison Sting",
-  "name_trans": "technique_poison_sting",
+  "slug": "technique_poison_sting",
+  "name_trans": "technique_poison_sting_name",
   "animation": "greendrip",
   "sfx": "bite1.ogg",
   "icon": "",

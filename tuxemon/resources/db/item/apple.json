@@ -1,8 +1,7 @@
 {
   "id": 1,
-  "name": "Apple",
-  "name_trans": "item_apple",
-  "description": "Heals a monster by 20 HP.",
+  "slug": "item_apple",
+  "name_trans": "item_apple_name",
   "description_trans": "item_apple_descr",
   "effects": [
     "heal"

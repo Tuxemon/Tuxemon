@@ -71,7 +71,7 @@ class ItemMenuState(Menu):
         if state in item.usable_in:
             self.open_confirm_use_menu(item)
         else:
-            msg = trans('item_cannot_use_here', {'name': item.name_trans})
+            msg = trans('item_cannot_use_here', {'name': item.name})
             tools.open_dialog(self.game, [msg])
 
     def open_confirm_use_menu(self, item):
@@ -141,8 +141,8 @@ class ItemMenuState(Menu):
         """
         for name, properties in self.game.player1.inventory.items():
             obj = properties['item']
-            image = self.shadow_text(obj.name_trans, bg=(128, 128, 128))
-            yield MenuItem(image, obj.name_trans, obj.description_trans, obj)
+            image = self.shadow_text(obj.name, bg=(128, 128, 128))
+            yield MenuItem(image, obj.name, obj.description, obj)
 
     def on_menu_selection_change(self):
         """ Called when menu selection changes

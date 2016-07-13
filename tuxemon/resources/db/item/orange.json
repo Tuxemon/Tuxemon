@@ -1,8 +1,7 @@
 {
   "id": 6,
-  "name": "Orange",
-  "name_trans": "item_orange",
-  "description": "Heals a monster by 20 HP.",
+  "slug": "item_orange",
+  "name_trans": "item_orange_name",
   "description_trans": "item_orange_descr",
   "effects": [
     "heal"

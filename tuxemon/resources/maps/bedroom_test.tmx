@@ -65,9 +65,9 @@
    <properties>
     <property name="act1" value="add_monster Fruitera,10"/>
     <property name="act2" value="translated_dialog received_x,name=Fruitera"/>
-    <property name="act3" value="add_item Capture Device"/>
-    <property name="act4" value="add_item Potion"/>
-    <property name="act5" value="add_item Capture Device"/>
+    <property name="act3" value="add_item item_capture_device"/>
+    <property name="act4" value="add_item item_potion"/>
+    <property name="act5" value="add_item item_capture_device"/>
     <property name="act6" value="set_variable got_fruitera:yes"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="not variable_set got_fruitera:yes"/>

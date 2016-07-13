@@ -1,8 +1,7 @@
 {
   "id": 4,
-  "name": "Cherry",
-  "name_trans": "item_cherry",
-  "description": "Heals a monster by 10 HP.",
+  "slug": "item_cherry",
+  "name_trans": "item_cherry_name",
   "description_trans": "item_cherry_descr",
   "effects": [
     "heal"

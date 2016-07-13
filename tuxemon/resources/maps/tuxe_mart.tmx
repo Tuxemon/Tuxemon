@@ -57,11 +57,11 @@
   </object>
   <object id="27" name="Receive capture device" type="event" x="64" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Capture Device"/>
-    <property name="act2" value="add_item Capture Device"/>
-    <property name="act3" value="add_item Capture Device"/>
-    <property name="act4" value="add_item Capture Device"/>
-    <property name="act5" value="add_item Capture Device"/>
+    <property name="act1" value="add_item item_capture_device"/>
+    <property name="act2" value="add_item item_capture_device"/>
+    <property name="act3" value="add_item item_capture_device"/>
+    <property name="act4" value="add_item item_capture_device"/>
+    <property name="act5" value="add_item item_capture_device"/>
     <property name="act6" value="dialog Received capture device (x5)!"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>

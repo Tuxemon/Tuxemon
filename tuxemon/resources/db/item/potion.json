@@ -1,8 +1,7 @@
 {
   "id": 7,
-  "name": "Potion",
-  "name_trans": "item_potion",
-  "description": "Heals a monster by 50 HP.",
+  "slug": "item_potion",
+  "name_trans": "item_potion_name",
   "description_trans": "item_potion_descr",
   "effects": [
     "heal"

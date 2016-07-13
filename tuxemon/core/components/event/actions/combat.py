@@ -130,7 +130,7 @@ class Combat(object):
 
             current_monster.load_sprite_from_db()
 
-            pound = technique.Technique('Pound')
+            pound = technique.Technique('technique_pound')
 
             current_monster.learn(pound)
 

@@ -62,7 +62,7 @@ class MainCombatMenuState(PopUpMenu):
                 tools.open_dialog(self.game, [trans('combat_fainted', {"name": monster.name})])
             player = self.game.player1
             target = player.monsters[0]
-            swap = Technique("Swap")
+            swap = Technique("technique_swap")
             swap.other = monster
             combat_state = self.game.get_state_name("CombatState")
             combat_state.enqueue_action(player, swap, target)
@@ -88,7 +88,7 @@ class MainCombatMenuState(PopUpMenu):
 
             # add techniques to the menu
             for tech in self.monster.moves:
-                image = self.shadow_text(tech.name_trans)
+                image = self.shadow_text(tech.name)
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 

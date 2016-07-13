@@ -53,7 +53,7 @@ class Item(object):
 
     **Example:**
 
-    >>> potion_item = Item("Potion")
+    >>> potion_item = Item("item_potion")
     >>> pprint.pprint(potion_item.__dict__)
     {'description': u'Heals a monster by 50 HP.',
      'effect': [u'heal'],
@@ -67,7 +67,7 @@ class Item(object):
 
     """
 
-    def __init__(self, name=None, id=None):
+    def __init__(self, slug=None, id=None):
 
         self.id = 0
         self.name = "Blank"
@@ -79,18 +79,18 @@ class Item(object):
         self.surface = None                 # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
-        # If a name of the item was provided, autoload it from the item database.
-        if name or id:
-            self.load(name, id)
+        # If a slug of the item was provided, autoload it from the item database.
+        if slug or id:
+            self.load(slug, id)
 
-    def load(self, name, id):
+    def load(self, slug, id):
         """Loads and sets this items's attributes from the item.db database. The item is looked up
         in the database by name or id.
 
-        :param name: The name of the item to look up in the monster.item database.
+        :param slug: The item slug to look up in the monster.item database.
         :param id: The id of the item to look up in the item.db database.
 
-        :type name: String
+        :type slug: String
         :type id: Integer
 
         :rtype: None
@@ -99,7 +99,7 @@ class Item(object):
         **Examples:**
 
         >>> potion_item = Item()
-        >>> potion_item.load("Potion", None)    # Load an item by name.
+        >>> potion_item.load("item_potion", None)    # Load an item by name.
         >>> potion_item.load(None, 1)           # Load an item by id.
         >>> pprint.pprint(potion_item.__dict__)
         {'description': u'Heals a monster by 50 HP.',
@@ -111,15 +111,17 @@ class Item(object):
 
         """
 
-        if name:
-            results = items.lookup(name, table="item")
+        if slug:
+            results = items.lookup(slug, table="item")
         elif id:
             results = items.lookup_by_id(id, table="item")
+        else:
+            # TODO: some kind of useful message here
+            raise RuntimeError
 
-        self.name = results["name"]
-        self.name_trans = trans(results["name_trans"])
-        self.description = results["description"]
-        self.description_trans = trans(results["description_trans"])
+        self.slug = results["slug"]                             # short English identifier
+        self.name = trans(results["name_trans"])                # will be locale string
+        self.description = trans(results["description_trans"])  # will be locale string
 
         self.id = results["id"]
         self.type = results["type"]
@@ -189,7 +191,7 @@ class Item(object):
         :returns: Success
 
         **Examples:**
-        >>> potion_item = Item("Potion")
+        >>> potion_item = Item("item_potion")
         >>> potion_item.heal(bulbatux, game)
         """
 

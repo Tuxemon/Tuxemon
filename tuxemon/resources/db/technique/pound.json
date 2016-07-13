@@ -1,7 +1,7 @@
 {
   "id": 5,
-  "name": "Pound",
-  "name_trans": "technique_pound",
+  "slug": "technique_pound",
+  "name_trans": "technique_pound_name",
   "animation": "pound",
   "sfx": "blaster1.ogg",
   "icon": "",

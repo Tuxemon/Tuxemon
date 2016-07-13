@@ -1,7 +1,7 @@
 {
   "id": 1,
-  "name": "Bite",
-  "name_trans": "technique_bite",
+  "slug": "technique_bite",
+  "name_trans": "technique_bite_name",
   "animation": "teeth",
   "sfx": "blaster1.ogg",
   "icon": "",

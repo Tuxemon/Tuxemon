@@ -1,8 +1,8 @@
 {
-  "id": 10,
-  "slug": "technique_water_shot",
-  "name_trans": "technique_water_shot_name",
-  "animation": "watershot",
+  "id": 2,
+  "slug": "technique_fire_explosion",
+  "name_trans": "technique_fire_explosion_name",
+  "animation": "fire",
   "sfx": "blaster1.ogg",
   "icon": "",
   "category": "physical",
@@ -18,8 +18,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 50,
+  "power": 69,
   "types": [
-    "Water"
+    "Fire"
   ]
 }

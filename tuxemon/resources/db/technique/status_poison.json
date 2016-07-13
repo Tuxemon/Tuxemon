@@ -1,7 +1,7 @@
 {
   "id": 8,
-  "name": "Poison",
-  "name_trans": "status_poison",
+  "slug": "status_poison",
+  "name_trans": "status_poison_name",
   "animation": "greendrip",
   "sfx": "bite1.ogg",
   "icon": "gfx/ui/icons/status/poison-icon.png",

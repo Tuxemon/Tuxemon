@@ -5,6 +5,8 @@ The master locale is the US English locale.
 
 
 This will check all locales and print locales that do not conform.
+
+Output is JSON, suitable to copy/paste into a locale file.
 """
 from __future__ import print_function
 
@@ -28,6 +30,11 @@ def print_list(sequence):
         print("\t", i)
 
 
+def print_json(sequence):
+    for i in sorted(sequence):
+        print('    "{}": "",'.format(i))
+
+
 master_keys = load_keys(locale_folder + master_filename)
 errors = set()
 
@@ -45,13 +52,13 @@ for lc in glob.glob(locale_glob):
         missing = master_keys.difference(keys)
         if missing:
             print(lc, " The following are missing:")
-            print_list(missing)
+            print_json(missing)
             print()
 
         extra = keys.difference(master_keys)
         if extra:
             print(lc, " The following are not define in master:")
-            print_list(extra)
+            print_json(extra)
             print()
 
 if errors:

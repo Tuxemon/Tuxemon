@@ -1,6 +1,11 @@
 {
     "id":   21,
 
+    "slug": "txmn_tumblecoon",
+    "name_trans": "txmn_tumblecoon_name",
+    "description_trans": "txmn_tumblecoon_descr",
+    "category_trans": "txmn_tumblecoon_category",
+
     "attack_base":            50,
     "defense_base":           6,
     "hp_base":                60,
@@ -22,21 +27,18 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         },
         {
             "level_learned": 2,
-            "technique_id": 3,
-            "technique": "Bite"
+            "technique": "technique_bite"
         }
     ],
-    "name": "Tumblecoon",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/tumblecoon-front.png",
-        "battle2": "resources/gfx/sprites/battle/tumblecoon-back.png",
-        "menu1": "resources/gfx/sprites/battle/tumblecoon-menu01.png",
-        "menu2": "resources/gfx/sprites/battle/tumblecoon-menu02.png"
+        "battle1": "gfx/sprites/battle/tumblecoon-front.png",
+        "battle2": "gfx/sprites/battle/tumblecoon-back.png",
+        "menu1": "gfx/sprites/battle/tumblecoon-menu01.png",
+        "menu2": "gfx/sprites/battle/tumblecoon-menu02.png"
     },
     "types": [
         "poison"

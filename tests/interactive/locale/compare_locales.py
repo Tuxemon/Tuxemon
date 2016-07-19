@@ -7,9 +7,10 @@ The master locale is the US English locale.
 This will check all locales and print locales that do not conform.
 """
 from __future__ import print_function
-import os
+
 import glob
 import json
+import os
 
 # assume run from test folder
 locale_folder = '../tuxemon/resources/db/locale/'
@@ -25,6 +26,7 @@ def load_keys(filename):
 def print_list(sequence):
     for i in sorted(sequence):
         print("\t", i)
+
 
 master_keys = load_keys(locale_folder + master_filename)
 errors = set()

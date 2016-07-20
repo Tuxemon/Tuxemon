@@ -149,13 +149,13 @@ class JSONDatabase(object):
         self.lookup(id, table)
 
 
-    def lookup_sprite(self, monster_id, table="sprite"):
+    def lookup_sprite(self, slug, table="sprite"):
         """Looks up a monster's sprite image paths based on monster ID.
         NOTE: This method has been deprecated. Use the following instead:
         JSONDatabase.database['monster'][id]['sprites']
 
-        :param monster_id: The monster ID to look up.
-        :type monster_id: Integer
+        :param slug: The monster ID to look up.
+        :type slug: String
 
         :rtype: List
         :returns: A list of sprites
@@ -163,9 +163,9 @@ class JSONDatabase(object):
         """
 
         logger.warning("lookup_sprite is deprecated. Use JSONDatabase.database")
-        results = {'sprite_battle1': self.database['monster'][monster_id]['sprites']['battle1'],
-                   'sprite_battle2': self.database['monster'][monster_id]['sprites']['battle2'],
-                   'sprite_menu1': self.database['monster'][monster_id]['sprites']['menu1']}
+        results = {'sprite_battle1': self.database['monster'][slug]['sprites']['battle1'],
+                   'sprite_battle2': self.database['monster'][slug]['sprites']['battle2'],
+                   'sprite_menu1': self.database['monster'][slug]['sprites']['menu1']}
 
         return results
 

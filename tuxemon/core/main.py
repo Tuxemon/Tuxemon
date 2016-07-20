@@ -83,16 +83,16 @@ def main():
         control.player1 = prepare.player1
 
         add_monster = partial(adapter("add_monster"))
-        Player().add_monster(control, add_monster('Bigfin', 10))
-        Player().add_monster(control, add_monster('Dollfin', 10))
-        Player().add_monster(control, add_monster('Rockitten', 10))
-        Player().add_monster(control, add_monster('Nut', 10))
-        Player().add_monster(control, add_monster('Sumobug', 10))
+        Player().add_monster(control, add_monster('txmn_bigfin', 10))
+        Player().add_monster(control, add_monster('txmn_dollfin', 10))
+        Player().add_monster(control, add_monster('txmn_rockitten', 10))
+        Player().add_monster(control, add_monster('txmn_nut', 10))
+        Player().add_monster(control, add_monster('txmn_sumobug', 10))
 
         add_item = partial(adapter("add_item"))
-        Player().add_item(control, add_item(u'Potion', 1))
-        Player().add_item(control, add_item(u'Super Potion', 1))
-        Player().add_item(control, add_item(u'Capture Device', 1))
+        Player().add_item(control, add_item('item_potion', 1))
+        Player().add_item(control, add_item('item_super_potion', 1))
+        Player().add_item(control, add_item('item_capture_device', 1))
 
         for monster in control.player1.monsters:
             monster.hp = 100

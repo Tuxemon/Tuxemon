@@ -181,7 +181,7 @@ class Player(object):
 
     def add_monster(self, game, action):
         """Adds a monster to the current player's party if there is room. The action parameter
-        must contain a monster name to look up in the monster database.
+        must contain a monster slug to look up in the monster database.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -193,7 +193,7 @@ class Player(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: monster_name
+        Valid Parameters: monster_slug
 
         **Example:**
 
@@ -221,7 +221,6 @@ class Player(object):
         ...  'hp_modifier': [u'0.9', u'1', u'1.1'],
         ...  'level': 0,
         ...  'menu_sprite': u'resources/gfx/sprites/battle/bulbatux-menu01.png',
-        ...  'monster_id': 1,
         ...  'moves': [],
         ...  'name': u'Bulbatux',
         ...  'special_attack': 9,
@@ -239,10 +238,10 @@ class Player(object):
         ... [<core.components.monster.Monster instance at 0x2d0b3b0>]
 
         """
-        monster_name = action.parameters[0]
+        monster_slug = action.parameters[0]
         monster_level = action.parameters[1]
         current_monster = monster.Monster()
-        current_monster.load_from_db(monster_name)
+        current_monster.load_from_db(monster_slug)
         current_monster.set_level(int(monster_level))
 
         game.player1.add_monster(current_monster)

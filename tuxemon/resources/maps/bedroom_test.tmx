@@ -63,7 +63,7 @@
   </object>
   <object id="11" name="Get Fruitera" type="event" x="144" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster Fruitera,10"/>
+    <property name="act1" value="add_monster txmn_fruitera,10"/>
     <property name="act2" value="translated_dialog received_x,name=Fruitera"/>
     <property name="act3" value="add_item item_capture_device"/>
     <property name="act4" value="add_item item_potion"/>

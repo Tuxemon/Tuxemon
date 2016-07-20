@@ -38,6 +38,9 @@ from core.components.technique import Technique
 from . import db
 from . import fusion
 
+from .locale import translator
+trans = translator.translate
+
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
@@ -68,7 +71,6 @@ class Monster(object):
          'hp': 30,
          'hp_modifier': [u'0.9', u'1', u'1.1'],
          'level': 0,
-         'monster_id': 1,
          'moves': [<__main__.Technique instance at 0x160b4d0>],
          'name': u'Bulbatux',
          'special_attack': 9,
@@ -86,8 +88,9 @@ class Monster(object):
     """
 
     def __init__(self):
+        self.slug = ""
         self.name = ""          # The display name of the Tuxemon
-        self.monster_id = 0
+        self.description = ""
         self.level = 0
         self.hp = 0
         self.current_hp = 0
@@ -134,7 +137,7 @@ class Monster(object):
         self.back_battle_sprite = ""
         self.menu_sprite = ""
 
-    def load_from_db(self, name):
+    def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.
 
@@ -152,10 +155,16 @@ class Monster(object):
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = monsters.lookup(name)
+        results = monsters.lookup(slug)
 
-        self.name = results["name"]
-        self.monster_id = results["id"]
+        if results is None:
+            print("monster {} is not found".format(slug))
+            raise RuntimeError
+
+        self.slug = results["slug"]                             # short English identifier
+        self.name = trans(results["name_trans"])                # will be locale string
+        self.description = trans(results["description_trans"])  # will be locale string
+
         self.hp = results["hp_base"]
         self.current_hp = results["hp_base"]
         self.attack = results["attack_base"]
@@ -209,7 +218,7 @@ class Monster(object):
         for move in results["moveset"]:
             self.moveset.append(move)
             if move['level_learned'] >= self.level:
-                technique = Technique(id=move['technique_id'])
+                technique = Technique(move['technique'])
                 self.learn(technique)
 
         # Look up the monster's sprite image paths
@@ -238,7 +247,7 @@ class Monster(object):
         """
 
         # Look up the monster's sprite image paths
-        results = monsters.lookup_sprite(self.monster_id)
+        results = monsters.lookup_sprite(self.slug)
 
         self.front_battle_sprite = results["sprite_battle1"]
         self.back_battle_sprite = results["sprite_battle2"]

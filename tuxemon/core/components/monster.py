@@ -253,6 +253,43 @@ class Monster(object):
         self.back_battle_sprite = results["sprite_battle2"]
         self.menu_sprite = results["sprite_menu1"]
 
+    def load_from_savefile(self, save_data):
+        """Loads information from saved data
+
+        :param save_data: Dictionary loaded from the json file
+
+        :rtype: None
+        :returns: None
+
+        """
+        for key,value in save_data.items():
+            if key == "moves":
+                self.moves = [Technique(i) for i in value]
+            elif key == "body":
+                self.body.load_from_savefile(value)
+            else:
+                setattr(self, key, value)
+        self.load_sprites()
+
+    def save_to_savefile(self):
+        """Prepares a dictionary to be saved to a file
+
+        :param: None
+
+        :rtype: Dictionary
+        :returns: Dictionary containing all the information about the monster
+
+        """
+        save_data = dict()
+        for key,value in self.__dict__.items():
+            if key == "moves":
+                save_data["moves"] = [i.slug for i in self.moves]
+            elif key == "body":
+                save_data[key] = self.body.save_to_savefile()
+            elif key != "sprites" and key != "moveset" and key != "ai":
+                save_data[key] = value
+        return save_data
+
     def learn(self, technique):
         """Adds a technique to this tuxemon's moveset.
 

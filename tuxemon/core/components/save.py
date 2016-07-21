@@ -29,6 +29,7 @@
 #
 #
 
+import json
 import datetime
 import logging
 import os
@@ -39,6 +40,8 @@ import pygame
 
 from core import prepare
 from core import tools
+from core.components.item import Item
+from core.components.monster import Monster
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -65,39 +68,42 @@ def save(player, screenshot, slot, game):
     """
     # Save a screenshot of the current frame
     pygame.image.save(screenshot, prepare.SAVE_PATH + str(slot) + '.png')
-    save_file = shelve.open(prepare.SAVE_PATH + str(slot) + '.save')
+    save_file = open(prepare.SAVE_PATH + str(slot) + '.save', 'w')
+    json_data = dict()
 
-    tempinv1 = dict(player.inventory)
-    for keysinv, valuesinv in tempinv1.items():
-        for keys2inv, values2inv in valuesinv.items():
-            if keys2inv == 'item':
-                values2inv.surface = None
-    save_file['inventory'] = tempinv1
+    tempinv1 = dict()
+    for name,itm in player.inventory.items():
+        tempinv1[itm['item'].slug] = itm['quantity']
+    json_data["inventory"] = tempinv1
 
-    tempmon1 = list(player.monsters)
-    for mon1 in tempmon1:
-        if mon1.sprites:
-            mon1.sprites = dict()
-    save_file['monsters'] = tempmon1
+    tempmon1 = list()
+    for mon1 in player.monsters:
+        tempmon1.append(mon1.save_to_savefile())
+    json_data["monsters"] = tempmon1
 
-    tempstorage1 = dict(player.storage)
+    tempstorage1 = dict()
     for keysstore, valuesstore in tempstorage1.items():
         if keysstore == 'items':
-            for keys2store, values2store in valuesstore.items():
-                for keys3store, values3store in values2store.items():
-                    if keys3store == 'item':
-                        values3store.surface = None
+            tempinv = dict()
+            for name,itm in valuesstore.items():
+                tempinv[itm['item'].slug] = itm['quantity']
+            tempstorage1[keysstore] = tempinv
         if keysstore == 'monsters':
+            tempmon = list()
             for monstore in valuesstore:
-                monstore.sprites = dict()
-    save_file['storage'] = tempstorage1
+                tempmon.append(monstore.save_to_savefile())
+            tempstorage1[keysstore] = tempmon
+    json_data['storage'] = tempstorage1
 
-    save_file['current_map'] = game.get_map_name()
-    save_file['game_variables'] = player.game_variables
-    save_file['tile_pos'] = player.tile_pos
-    save_file['player_name'] = player.name
-    save_file['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    logger.info("Saving data to save file: " + pformat(save_file))
+    json_data['current_map'] = game.get_map_name()
+    json_data['game_variables'] = player.game_variables
+    json_data['tile_pos'] = player.tile_pos
+    json_data['player_name'] = player.name
+    json_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    json.dump(json_data, save_file)
+    save_file.close()
+    logger.info("Saving data to save file: " + prepare.SAVE_PATH + str(slot) + '.save')
 
 
 def load(slot):
@@ -123,42 +129,96 @@ def load(slot):
     if not os.path.exists(save_path):
         return
 
-    saveFile = shelve.open(save_path)
     saveData = dict()
+    try:
+        with open(save_path, 'r') as save_file:
+            json_data = json.load(save_file)
+            tempinv = dict()
 
-    tempinv = dict(saveFile['inventory'])
+            for slug,quant in json_data['inventory'].items():
+                tempinv1 = dict()
+                tempinv1['item'] = Item(slug)
+                tempinv1['quantity'] = quant
+                tempinv[tempinv1['item'].name] = tempinv1
+            saveData['inventory'] = tempinv
 
-    for keys, values in tempinv.items():
-        # TODO: unify loading and game instancing
-        for keys2, values2 in values.items():
-            if keys2 == 'item':
-                values2.surface = tools.load_and_scale(values2.sprite)
-    saveData['inventory'] = tempinv
+            tempmon = list()
+            for mon in json_data['monsters']:
+                tempmon1 = Monster()
+                tempmon1.load_from_db(mon['slug'])
+                tempmon1.load_from_savefile(mon);
+                tempmon.append(tempmon1)
+            saveData['monsters'] = tempmon
 
-    tempmon = list(saveFile['monsters'])
-    for mon in tempmon:
-        mon.load_sprites()
-    saveData['monsters'] = tempmon
+            # TODO: unify loading and game instancing
+            # Loop through the storage item keys and re-add the surface.
+            tempstorage = dict()
+            for keys, values in json_data['storage'].items():
+                if keys == 'items':
+                    tempinv = dict()
 
-    # TODO: unify loading and game instancing
-    # Loop through the storage item keys and re-add the surface.
-    tempstorage = dict(saveFile['storage'])
-    for keys, values in tempstorage.items():
-        if keys == 'items':
+                    for slug,quant in values.items():
+                        tempinv1 = dict()
+                        tempinv1['item'] = Item(slug)
+                        tempinv1['quantity'] = quant
+                        tempinv[tempinv1['item'].name] = tempinv1
+                    tempstorage[keys] = tempinv
+
+                elif keys == 'monsters':
+                    tempmon = list()
+                    for mon in values:
+                        tempmon1 = Monster()
+                        tempmon1.load_from_db(mon['slug'])
+                        tempmon1.load_from_savefile(mon);
+                        tempmon.append(tempmon1)
+                    tempstorage[keys] = tempmon
+                else:
+                    tempstorage[keys] = values
+            saveData['storage'] = tempstorage
+
+            saveData['game_variables'] = json_data['game_variables']
+            saveData['tile_pos'] = json_data['tile_pos']
+            saveData['current_map'] = json_data['current_map']
+            saveData['player_name'] = json_data['player_name']
+            saveData['time'] = json_data['time']
+    except ValueError as err:
+        #Old save format
+
+        saveFile = shelve.open(save_path)
+
+        tempinv = dict(saveFile['inventory'])
+
+        for keys, values in tempinv.items():
+            # TODO: unify loading and game instancing
             for keys2, values2 in values.items():
-                for keys3, values3 in values2.items():
-                    if keys3 == 'item':
-                        values3.surface = tools.load_and_scale(values3.sprite)
+                if keys2 == 'item':
+                    values2.surface = tools.load_and_scale(values2.sprite)
+        saveData['inventory'] = tempinv
 
-        if keys == 'monsters':
-            for storemon1 in values:
-                storemon1.load_sprites()
-    saveData['storage'] = tempstorage
+        tempmon = list(saveFile['monsters'])
+        for mon in tempmon:
+            mon.load_sprites()
+        saveData['monsters'] = tempmon
 
-    saveData['game_variables'] = saveFile['game_variables']
-    saveData['tile_pos'] = saveFile['tile_pos']
-    saveData['current_map'] = saveFile['current_map']
-    saveData['player_name'] = saveFile['player_name']
-    saveData['time'] = saveFile['time']
+        # TODO: unify loading and game instancing
+        # Loop through the storage item keys and re-add the surface.
+        tempstorage = dict(saveFile['storage'])
+        for keys, values in tempstorage.items():
+            if keys == 'items':
+                for keys2, values2 in values.items():
+                    for keys3, values3 in values2.items():
+                        if keys3 == 'item':
+                            values3.surface = tools.load_and_scale(values3.sprite)
+
+            if keys == 'monsters':
+                for storemon1 in values:
+                    storemon1.load_sprites()
+        saveData['storage'] = tempstorage
+
+        saveData['game_variables'] = saveFile['game_variables']
+        saveData['tile_pos'] = saveFile['tile_pos']
+        saveData['current_map'] = saveFile['current_map']
+        saveData['player_name'] = saveFile['player_name']
+        saveData['time'] = saveFile['time']
 
     return saveData

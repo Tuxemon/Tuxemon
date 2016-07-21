@@ -191,6 +191,30 @@ class Body(object):
         self.body_image = Image.open(self.body_image_path)
         self.face_image = Image.open(self.face_image_path)
 
+    def load_from_savefile(self, save_data):
+        """Loads information from saved data
+
+        :param save_data: Dictionary loaded from the json file
+
+        :rtype: None
+        :returns: None
+
+        """
+        for key,value in save_data.items():
+            setattr(self, key, value)
+
+    def save_to_savefile(self):
+        """Prepares a dictionary to be saved to a file
+
+        :param: None
+
+        :rtype: Dictionary
+        :returns: Dictionary containing all the information about the body
+
+        """
+        save_data = dict(self.__dict__)
+        return save_data
+
 
 
 def replace_color(image, original_color, replacement_color):

@@ -277,10 +277,10 @@ class Player(object):
 
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.
-        if item_to_add.name in player.inventory:
-            player.inventory[item_to_add.name]['quantity'] += 1
+        if item_to_add.slug in player.inventory:
+            player.inventory[item_to_add.slug]['quantity'] += 1
         else:
-            player.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
+            player.inventory[item_to_add.slug] = {'item': item_to_add, 'quantity': 1}
 
 
     def player_face(self, game, action):

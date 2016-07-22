@@ -171,10 +171,10 @@ class Item(object):
         # If this is a consumable item, remove it from the player's inventory.
         if result:
             if self.type == "Consumable":
-                if user.inventory[self.name]['quantity'] <= 1:
-                    del user.inventory[self.name]
+                if user.inventory[self.slug]['quantity'] <= 1:
+                    del user.inventory[self.slug]
                 else:
-                    user.inventory[self.name]['quantity'] -= 1
+                    user.inventory[self.slug]['quantity'] -= 1
 
         return result
 

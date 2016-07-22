@@ -558,8 +558,11 @@ class CombatState(CombatAnimations):
                 self._damage_map[target].add(user)
 
             else:  # assume this was an item used
-                if result:
-                    message += "\n" + trans('item_success')
+                if result.name == "capture":
+                    message += "\n" + trans('attempting_capture')
+                    self.task(partial(self.animate_capture_monster, result.success, result.properties["num_shakes"], target_sprite))
+                if result.success:
+                	message += "\n" + trans('item_success')
                 else:
                     message += "\n" + trans('item_failure')
 
@@ -567,11 +570,11 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change()
 
         else:
-            if result:
+            if result.success:
                 self.suppress_phase_change()
                 self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name}))
 
-        if result and target_sprite and hasattr(technique, "images"):
+        if result.success and target_sprite and hasattr(technique, "images"):
             tech_sprite = self.get_technique_animation(technique)
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.image.play, hit_delay)

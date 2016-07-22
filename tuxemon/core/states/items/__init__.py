@@ -92,7 +92,7 @@ class ItemMenuState(Menu):
                 result = item.use(player, monster)
                 # TODO: in the future, it cannot be assumed that monster screen is up
                 self.game.pop_state()    # pop the monster screen
-                if result:
+                if result.success:
                     tools.open_dialog(self.game, [trans('item_success')])
                 else:
                     tools.open_dialog(self.game, [trans('item_failure')])

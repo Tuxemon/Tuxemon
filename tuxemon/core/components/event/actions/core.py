@@ -477,3 +477,4 @@ class Core(object):
         for e in events:
             if e['id'] == int(action.parameters[0]):
                 event_engine.execute_action(e['acts'], game)
+                

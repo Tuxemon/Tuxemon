@@ -103,13 +103,13 @@ class Combat(object):
 
         # Look up each monster in the NPC's party
         for npc_monster_details in npc_party:
-            results = monsters.database['monster'][npc_monster_details['monster_id']]
+            results = monsters.database['monster'][npc_monster_details['monster']]
 
             # Create a monster object for each monster the NPC has in their party.
+            # TODO: unify save/load of monsters
             current_monster = monster.Monster()
-            current_monster.load_from_db(npc_monster_details['monster_id'])
+            current_monster.load_from_db(npc_monster_details['monster'])
             current_monster.name = npc_monster_details['name']
-            current_monster.monster_id = npc_monster_details['monster_id']
             current_monster.level = npc_monster_details['level']
             current_monster.hp = npc_monster_details['hp']
             current_monster.current_hp = npc_monster_details['hp']
@@ -130,7 +130,7 @@ class Combat(object):
 
             current_monster.load_sprite_from_db()
 
-            pound = technique.Technique('Pound')
+            pound = technique.Technique('technique_pound')
 
             current_monster.learn(pound)
 
@@ -139,9 +139,6 @@ class Combat(object):
 
         # Add our players and setup combat
         game.push_state("CombatState", players=(game.player1, npc), combat_type="trainer")
-
-        # Flash the screen before combat
-        # game.push_state("FlashTransition")
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -246,7 +243,7 @@ class Combat(object):
 
             # Create a monster object
             current_monster = monster.Monster()
-            current_monster.load_from_db(encounter['monster_id'])
+            current_monster.load_from_db(encounter['monster'])
 
             # Set the monster's level based on the specified level range
             if len(encounter['level_range']) > 1:

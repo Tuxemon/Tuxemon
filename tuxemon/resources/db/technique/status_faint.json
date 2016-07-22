@@ -1,11 +1,11 @@
 {
-  "id": 6,
-  "slug": "technique_run",
-  "name_trans": "menu_run",
+  "id": 7,
+  "slug": "status_faint",
+  "name_trans": "status_faint_name",
   "animation": "",
-  "sfx": "blaster1.ogg",
+  "sfx": "faint.ogg",
   "icon": "",
-  "category": "",
+  "category": "faint",
   "effects": [],
   "target": {
     "enemy monster": 0,
@@ -16,6 +16,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 50,
-  "types": []
+  "power": 10,
+  "types": [
+    "Faint"
+  ]
 }

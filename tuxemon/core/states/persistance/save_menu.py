@@ -31,11 +31,13 @@ class SaveMenuState(PopUpMenu):
             # Check to see if a save exists for the current slot
             if os.path.exists(prepare.SAVE_PATH + str(i + 1) + ".save"):
                 image = self.render_slot(slot_rect, i + 1)
-                yield MenuItem(image, trans('menu_save'), None, None)
+                item = MenuItem(image, trans('menu_save'), None, None)
+                self.add(item)
             else:
                 if not empty_image:
                     empty_image = self.render_empty_slot(slot_rect)
-                yield MenuItem(empty_image, "SAVE", None, None)
+                item = MenuItem(empty_image, "SAVE", None, None)
+                self.add(item)
 
     def render_empty_slot(self, rect):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)

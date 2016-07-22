@@ -1,77 +1,221 @@
 {
-    "id": 1, 
-    "monsters": [
+    "id":1,
+    "monsters":[
         {
-            "monster_id": 1, 
-            "encounter_rate": 50, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
-        },
-       {
-            "monster_id": 2, 
-            "encounter_rate": 50, 
-            "level_range": [
-                1, 
-                6
-            ]
+            ],
+            "monster":"txmn_axylightl"
         },
         {
-            "monster_id": 3, 
-            "encounter_rate": 1, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_bamboon"
         },
         {
-            "monster_id": 4, 
-            "encounter_rate": 50, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_bigfin"
         },
         {
-            "monster_id": 5, 
-            "encounter_rate": 5, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_bolt"
         },
         {
-            "monster_id": 6, 
-            "encounter_rate": 1, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_dandylion"
         },
         {
-            "monster_id": 7, 
-            "encounter_rate": 1, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_djinnbo"
         },
         {
-            "monster_id": 8, 
-            "encounter_rate": 1, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_dollfin"
         },
         {
-            "monster_id": 9, 
-            "encounter_rate": 1, 
-            "level_range": [
-                1, 
+            "encounter_rate":1,
+            "level_range":[
+                1,
                 6
-            ]
+            ],
+            "monster":"txmn_dune_pincher"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_eyenemy"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_fruitera"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_hydrone"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_lambert"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_magmaturtle"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_nudiflot"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_nut"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_onaclov"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_pigabyte"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_propellercat"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_rockat"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_rockitten"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_simba"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_sludgehog"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_sumobug"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_tigrock"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_tumblecoon"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_tumbleworm"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_tux"
         }
     ]
 }

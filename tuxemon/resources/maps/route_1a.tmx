@@ -82,7 +82,7 @@
   </object>
   <object id="36" type="event" x="1424" y="960" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion1:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -92,7 +92,7 @@
   </object>
   <object id="42" type="event" x="96" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -163,7 +163,7 @@
   <object id="41" type="collision" x="1424" y="960" width="16" height="16"/>
   <object id="43" type="collision" x="96" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -173,7 +173,7 @@
   </object>
   <object id="46" type="collision" x="80" y="624" width="32" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -183,7 +183,7 @@
   </object>
   <object id="47" type="collision" x="128" y="624" width="48" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -193,7 +193,7 @@
   </object>
   <object id="48" type="collision" x="160" y="576" width="16" height="48">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -203,7 +203,7 @@
   </object>
   <object id="49" type="collision" x="80" y="576" width="80" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -213,7 +213,7 @@
   </object>
   <object id="50" type="collision" x="80" y="592" width="16" height="432">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -223,7 +223,7 @@
   </object>
   <object id="51" type="collision" x="80" y="1056" width="16" height="64">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -233,7 +233,7 @@
   </object>
   <object id="52" type="collision" x="880" y="576" width="32" height="64">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -243,7 +243,7 @@
   </object>
   <object id="53" type="collision" x="912" y="576" width="48" height="48">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -253,7 +253,7 @@
   </object>
   <object id="54" type="collision" x="928" y="624" width="32" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -263,7 +263,7 @@
   </object>
   <object id="55" type="collision" x="960" y="1024" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -273,7 +273,7 @@
   </object>
   <object id="56" type="collision" x="1392" y="672" width="48" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -283,7 +283,7 @@
   </object>
   <object id="57" type="collision" x="1360" y="656" width="32" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -293,7 +293,7 @@
   </object>
   <object id="58" type="collision" x="1344" y="640" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -303,7 +303,7 @@
   </object>
   <object id="59" type="collision" x="1328" y="512" width="16" height="128">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -313,7 +313,7 @@
   </object>
   <object id="60" type="collision" x="1312" y="240" width="16" height="272">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -324,7 +324,7 @@
   <object id="61" type="collision" x="0" y="0" width="608" height="112"/>
   <object id="62" type="collision" x="928" y="224" width="384" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -334,7 +334,7 @@
   </object>
   <object id="63" type="collision" x="832" y="208" width="96" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -344,7 +344,7 @@
   </object>
   <object id="64" type="collision" x="704" y="144" width="128" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -354,7 +354,7 @@
   </object>
   <object id="65" type="collision" x="832" y="160" width="16" height="48">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -364,7 +364,7 @@
   </object>
   <object id="66" type="collision" x="704" y="0" width="16" height="144">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -374,7 +374,7 @@
   </object>
   <object id="67" type="collision" x="1168" y="640" width="32" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -384,7 +384,7 @@
   </object>
   <object id="68" type="collision" x="1232" y="640" width="32" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -394,7 +394,7 @@
   </object>
   <object id="69" type="collision" x="1248" y="320" width="16" height="320">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -404,7 +404,7 @@
   </object>
   <object id="70" type="collision" x="1088" y="320" width="160" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -414,7 +414,7 @@
   </object>
   <object id="71" type="collision" x="1088" y="336" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -424,7 +424,7 @@
   </object>
   <object id="72" type="collision" x="1088" y="416" width="16" height="160">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -434,7 +434,7 @@
   </object>
   <object id="73" type="collision" x="1104" y="560" width="64" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -444,7 +444,7 @@
   </object>
   <object id="74" type="collision" x="1168" y="576" width="16" height="64">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -454,7 +454,7 @@
   </object>
   <object id="75" type="collision" x="464" y="848" width="16" height="32">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -464,7 +464,7 @@
   </object>
   <object id="76" type="collision" x="512" y="864" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -474,7 +474,7 @@
   </object>
   <object id="77" type="collision" x="320" y="832" width="144" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -484,7 +484,7 @@
   </object>
   <object id="78" type="collision" x="304" y="848" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Potion"/>
+    <property name="act1" value="add_item item_potion"/>
     <property name="act2" value="set_variable got_potion2:true"/>
     <property name="act3" value="dialog ${{name}} found a POTION!"/>
     <property name="cond1" value="is player_facing_tile"/>

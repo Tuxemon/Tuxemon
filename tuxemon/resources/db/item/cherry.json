@@ -1,21 +1,25 @@
 {
-    "description": "Heals a monster by 10 HP.",
-    "description_trans": "item_cherry_descr",
-    "effects": [
-        "heal"
-    ],
-    "id": 8,
-    "name": "Cherry",
-    "name_trans": "item_cherry",
-    "power": 10,
-    "sprite": "gfx/items/cherry.png",
-    "target": [
-        "trainer",
-        "monster"
-    ],
-    "type": "Consumable",
-    "usable_in": [
-        "CombatState",
-        "WorldState"
-    ]
+  "id": 4,
+  "slug": "item_cherry",
+  "name_trans": "item_cherry_name",
+  "description_trans": "item_cherry_descr",
+  "effects": [
+    "heal"
+  ],
+  "power": 10,
+  "sprite": "gfx/items/cherry.png",
+  "target": {
+    "enemy monster": 1,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 2,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  },
+  "type": "Consumable",
+  "usable_in": [
+    "MainCombatMenuState",
+    "WorldState"
+  ]
 }

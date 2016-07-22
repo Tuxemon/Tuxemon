@@ -39,7 +39,7 @@ import core.components.sprite
 
 #import prepare
 #Changed to this because of a import error
-from core import prepare 
+from core import prepare
 
 from core.platform import mixer
 
@@ -328,7 +328,7 @@ def open_dialog(game, text):
 
     :param game:
     :param text: list of strings
-    :return:
+    :rtype: State
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    game.push_state("DialogState", text=text, rect=rect)
+    return game.push_state("DialogState", text=text, rect=rect)

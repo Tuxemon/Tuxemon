@@ -265,10 +265,8 @@ class RelativeGroup(SpriteGroup):
         """A rect object that contains all sprites of this group
         """
         rect = super(RelativeGroup, self).calc_bounding_rect()
-        for sprite in self.sprites():
-            print(sprite, sprite.rect)
+        # return self.calc_absolute_rect(rect)
         return rect
-        return self.calc_absolute_rect(rect)
 
     def calc_absolute_rect(self, rect):
         self.update_rect_from_parent()
@@ -311,6 +309,51 @@ class RelativeGroup(SpriteGroup):
         return dirty
 
 
+class MenuSpriteGroup(SpriteGroup):
+    """
+    Sprite Group to be used for menus.
+
+    Includes functions for moving a cursor around the screen
+    """
+
+    def determine_cursor_movement(self, index, event):
+        """ Given an event, determine a new selected item offset
+
+        You must pass the currently selected object
+        The return value will be the newly selected object index
+
+        :param index: Index of the item in the list
+        :param event: pygame.Event
+        :returns: New menu item offset
+        """
+        # TODO: some sort of smart way to pick items based on location on screen
+        if not len(self):
+            return 0
+
+        if event.type == pygame.KEYDOWN:
+            # ignore left/right if there is only one column
+            if event.key == pygame.K_LEFT:
+                index -= 1
+
+            elif event.key == pygame.K_RIGHT:
+                index += 1
+
+            if event.key == pygame.K_DOWN:
+                index += 1
+
+            elif event.key == pygame.K_UP:
+                index -= 1
+
+            # wrap the cursor position
+            items = len(self)
+            if index < 0:
+                index = items - abs(index)
+            if index >= items:
+                index -= items
+
+        return index
+
+
 class VisualSpriteList(RelativeGroup):
     """
     Sprite group which can be configured to arrange the children
@@ -336,7 +379,7 @@ class VisualSpriteList(RelativeGroup):
 
     def calc_bounding_rect(self):
         if self._needs_arrange:
-            self.arrange_menu_items()
+            self._arrange_menu_items()
             self._needs_arrange = False
         return super(VisualSpriteList, self).calc_bounding_rect()
 
@@ -355,11 +398,11 @@ class VisualSpriteList(RelativeGroup):
 
     def draw(self, surface):
         if self._needs_arrange:
-            self.arrange_menu_items()
+            self._arrange_menu_items()
             self._needs_arrange = False
         super(VisualSpriteList, self).draw(surface)
 
-    def arrange_menu_items(self):
+    def _arrange_menu_items(self):
         """ Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
@@ -406,11 +449,11 @@ class VisualSpriteList(RelativeGroup):
         :returns: New menu item offset
         """
         if self.orientation == 'horizontal':
-            return self.determine_cursor_movement_horizontal(*args)
+            return self._determine_cursor_movement_horizontal(*args)
         else:
             raise RuntimeError
 
-    def determine_cursor_movement_horizontal(self, index, event):
+    def _determine_cursor_movement_horizontal(self, index, event):
         """ Given an event, determine a new selected item offset
 
         You must pass the currently selected object
@@ -429,25 +472,34 @@ class VisualSpriteList(RelativeGroup):
 
         if event.type == pygame.KEYDOWN:
 
-            # ignore left/right if there is only one column
-            if self.columns > 1:
-                if event.key == pygame.K_LEFT:
-                    index -= 1
+            # in order to accommodate disabled menu items,
+            # the index incrementer will loop until a suitable
+            # index is found...one that is not disabled.
+            # seeking_index once false, will exit the loop
+            seeking_index = True
+            while seeking_index:
 
-                elif event.key == pygame.K_RIGHT:
-                    index += 1
+                # ignore left/right if there is only one column
+                if self.columns > 1:
+                    if event.key == pygame.K_LEFT:
+                        index -= 1
 
-            if event.key == pygame.K_DOWN:
-                index += self.columns
+                    elif event.key == pygame.K_RIGHT:
+                        index += 1
 
-            elif event.key == pygame.K_UP:
-                index -= self.columns
+                if event.key == pygame.K_DOWN:
+                    index += self.columns
 
-            # wrap the cursor position
-            items = len(self)
-            if index < 0:
-                index = items - abs(index)
-            if index >= items:
-                index -= items
+                elif event.key == pygame.K_UP:
+                    index -= self.columns
+
+                # wrap the cursor position
+                items = len(self)
+                if index < 0:
+                    index = items - abs(index)
+                if index >= items:
+                    index -= items
+
+                seeking_index = not self._spritelist[index].enabled
 
         return index

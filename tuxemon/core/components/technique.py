@@ -48,7 +48,7 @@ class Technique(object):
 
     **Example:**
 
-    >>> poison_tech = Technique("Poison Sting")
+    >>> poison_tech = Technique("technique_poison_sting")
     >>> pprint.pprint(poison_tech.__dict__)
         {'category': u'special',
          'effect': [u'poison', u'damage'],
@@ -60,7 +60,7 @@ class Technique(object):
 
     """
 
-    def __init__(self, name=None, id=None):
+    def __init__(self, slug=None, id=None):
         self.name = "Pound"
         self.tech_id = 0
         self.category = "attack"
@@ -70,19 +70,19 @@ class Technique(object):
         self.power = 1
         self.effect = []
 
-        # If a name of the technique was provided, autoload it.
-        if name or id:
-            self.load(name, id)
+        # If a slug of the technique was provided, autoload it.
+        if slug or id:
+            self.load(slug, id)
 
-    def load(self, name, id):
+    def load(self, slug, id):
         """Loads and sets this technique's attributes from the technique
         database. The technique is looked up in the database by name or id.
 
-        :param name: The name of the technique to look up in the monster
+        :param slug: The slug of the technique to look up in the monster
             database.
         :param id: The id of the technique to look up in the monster database.
 
-        :type name: String
+        :type slug: String
         :type id: Integer
 
         :rtype: None
@@ -94,16 +94,16 @@ class Technique(object):
 
         """
 
-        if name:
-            results = techniques.lookup(name, table="technique")
+        if slug:
+            results = techniques.lookup(slug, table="technique")
         elif id:
             results = techniques.database['technique'][id]
-
-        # Try and get this item's translated name if it exists.
-        if translator.has_key(results["name_trans"]):
-            self.name = trans(results["name_trans"])
         else:
-            self.name = results["name"]
+            # TODO: some kind of useful message here
+            raise RuntimeError
+
+        self.slug = results["slug"]
+        self.name = trans(results["name_trans"])
         self.tech_id = results["id"]
         self.category = results["category"]
         self.icon = results["icon"]
@@ -119,6 +119,11 @@ class Technique(object):
 
         self.power = results["power"]
         self.effect = results["effects"]
+
+        #TODO: maybe break out into own function
+        from operator import itemgetter
+        self.target = map(itemgetter(0), filter(itemgetter(1),
+                          sorted(results["target"].items(), key=itemgetter(1), reverse=True)))
 
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]
@@ -171,7 +176,7 @@ class Technique(object):
 
         **Examples:**
 
-        >>> poison_tech = Technique("Poison Sting")
+        >>> poison_tech = Technique("technique_poison_sting")
         >>> bulbatux.learn(poison_tech)
         >>>
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
@@ -238,10 +243,10 @@ class Technique(object):
 
         :rtype: bool
         """
-        already_poisoned = any(t for t in target.status if t.name == "Poison")
+        already_poisoned = any(t for t in target.status if t.slug == "status_poison")
 
         if not already_poisoned and random.randrange(1, 2) == 1:
-            target.apply_status(Technique("Poison"))
+            target.apply_status(Technique("status_poison"))
             return True
 
         return False
@@ -258,12 +263,12 @@ class Technique(object):
 
         :rtype: bool
         """
-        already_fainted = any(t for t in target.status if t.name == "Faint")
+        already_fainted = any(t for t in target.status if t.name == "status_faint")
 
         if already_fainted:
             raise RuntimeError
         else:
-            target.apply_status(Technique("Faint"))
+            target.apply_status(Technique("status_faint"))
             return True
 
     def swap(self, user, target):

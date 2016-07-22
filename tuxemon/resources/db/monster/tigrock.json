@@ -1,6 +1,11 @@
 {
     "id":   28,
 
+    "slug": "txmn_tigrock",
+    "name_trans": "txmn_tigrock_name",
+    "description_trans": "txmn_tigrock_descr",
+    "category_trans": "txmn_tigrock_category",
+
     "attack_base":            72,
     "defense_base":           11,
     "hp_base":                64,
@@ -21,21 +26,18 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         },
         {
             "level_learned": 2,
-            "technique_id": 3,
-            "technique": "Bite"
+            "technique": "technique_bite"
         }
     ],
-    "name": "Tigrock",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/tigrock-front.png",
-        "battle2": "resources/gfx/sprites/battle/tigrock-back.png",
-        "menu1": "resources/gfx/sprites/battle/tigrock-menu01.png",
-        "menu2": "resources/gfx/sprites/battle/tigrock-menu02.png"
+        "battle1": "gfx/sprites/battle/tigrock-front.png",
+        "battle2": "gfx/sprites/battle/tigrock-back.png",
+        "menu1": "gfx/sprites/battle/tigrock-menu01.png",
+        "menu2": "gfx/sprites/battle/tigrock-menu02.png"
     },
     "types": [
         "earth"

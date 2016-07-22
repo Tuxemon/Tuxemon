@@ -93,9 +93,14 @@ class MonsterMenuState(Menu):
                 monster = None
 
             item = MenuItem(surface, None, None, monster)
-            self.render_monster_slot(surface, rect, monster, item.in_focus)
+            if monster is None:
+                item.enabled = False
 
+            self.render_monster_slot(surface, rect, monster, item.in_focus)
             yield item
+
+    def on_menu_selection(self, menu_item):
+        pass
 
     def render_monster_slot(self, surface, rect, monster, in_focus):
         filled = monster is not None
@@ -140,9 +145,10 @@ class MonsterMenuState(Menu):
         # TODO: caching or something, idk
         # TODO: not hardcode icon sizes
         for index, status in enumerate(monster.status):
-            image = tools.load_and_scale(status.icon)
-            pos = (rect.width * .4) + (index * tools.scale(32)), rect.y + tools.scale(5)
-            surface.blit(image, pos)
+            if status.icon:
+                image = tools.load_and_scale(status.icon)
+                pos = (rect.width * .4) + (index * tools.scale(32)), rect.y + tools.scale(5)
+                surface.blit(image, pos)
 
     def determine_border(self, selected, filled):
         if selected:

@@ -196,18 +196,25 @@ class Control(StateManager):
         # iterate through layers and determine optimal drawing strategy
         # this is a big performance boost for states covering other states
         # force_draw is used for transitions, mostly
-
+        draw = True
         to_draw = list()
         full_screen = self.screen.get_rect()
         for state in self.active_states:
             state.update(dt)
-            to_draw.append(state)
-            if state.rect == full_screen and not state.force_draw:
-                break
+            if draw:
+                to_draw.append(state)
+
+            # if this state covers the screen
+            # break here so lower screens are not drawn
+            if (not state.transparent
+                and state.rect == full_screen
+                and not state.force_draw):
+                draw = False
 
         # draw from bottom up for proper layering
         for state in reversed(to_draw):
             # might not be in draw if it has been removed for some reason
+            # another state have have popped it during an update
             if state in self.active_states:
                 state.draw(self.screen)
 

@@ -1,6 +1,11 @@
 {
     "id":   22,
 
+    "slug": "txmn_onaclov",
+    "name_trans": "txmn_onaclov_name",
+    "description_trans": "txmn_onaclov_descr",
+    "category_trans": "txmn_onaclov_category",
+
     "attack_base":            57,
     "defense_base":           8,
     "hp_base":                67,
@@ -22,21 +27,18 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         },
         {
             "level_learned": 2,
-            "technique_id": 3,
-            "technique": "Bite"
+            "technique": "technique_bite"
         }
     ],
-    "name": "Onaclov",
     "sprites": {
-        "battle1": "resources/gfx/sprites/battle/onaclov-front.png",
-        "battle2": "resources/gfx/sprites/battle/onaclov-back.png",
-        "menu1": "resources/gfx/sprites/battle/onaclov-menu01.png",
-        "menu2": "resources/gfx/sprites/battle/onaclov-menu02.png"
+        "battle1": "gfx/sprites/battle/onaclov-front.png",
+        "battle2": "gfx/sprites/battle/onaclov-back.png",
+        "menu1": "gfx/sprites/battle/onaclov-menu01.png",
+        "menu2": "gfx/sprites/battle/onaclov-menu02.png"
     },
     "types": [
         "metal",

@@ -545,7 +545,7 @@ class CombatState(CombatAnimations):
             message = trans('combat_used_x', {"user": user.name, "name": technique.name})
 
             # TODO: a real check or some params to test if should tackle, etc
-            if technique in user.moves:
+            if result.properties["should_tackle"]:
                 hit_delay += .5
                 user_sprite = self._monster_sprite_map[user]
                 self.animate_sprite_tackle(user_sprite)

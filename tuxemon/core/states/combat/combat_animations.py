@@ -390,5 +390,12 @@ class CombatAnimations(Menu):
         animate(trainer1.rect, front_island.rect, y=y_mod,
                 transition='out_back', relative=True)
 
-    def animate_capture_monster(self, is_captured, num_shakes, monster):
-        print("Capture animation goes here!")
+    def animate_capture_monster(self, is_captured, num_shakes, monster_sprite):
+        capdev = self.load_sprite('gfx/items/capture_device.png')
+        animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)
+        scale_sprite(capdev, .4)
+        capdev.rect.center = scale(0), scale(0)
+        animate(x=monster_sprite.rect.centerx)
+        animate(y=monster_sprite.rect.centery)
+
+

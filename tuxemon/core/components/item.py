@@ -181,7 +181,7 @@ class Item(object):
                     user.inventory[self.name]['quantity'] -= 1
 
         if type(result) == bool:
-            result = (result, {"is_item": True})
+            result = (result, {"should_tackle": False})
         
         return item_use_value(effectString, *result)
 
@@ -230,11 +230,9 @@ class Item(object):
         """
 
         # Set up variables for capture equation
-        success_max = 0
         damage_modifier = 0
         status_modifier = 0
         item_power = self.power
-        random_num = random.randint(0, 1000)
 
         # Get percent of damage taken and multiply it by 10
         if target.current_hp < target.hp:
@@ -245,25 +243,22 @@ class Item(object):
         if not target.status == "Normal":
             status_modifier = 150
 
+        print("--- Capture Variables ---")
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
         catch_check = (3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * float(status_modifier)/100 / (3*target.hp)
         shake_check = 65536 / (255/catch_check)**0.1875
 
-        # Calculate the top of success range (random_num must be in range to succeed)
-        success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
-
-        # Debugging Text
-        print("--- Capture Variables ---")
-        print("(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power")
-        print("(0 - (%s * 10)) + %s + %s + %s = %s" % (
-            target.level, damage_modifier, status_modifier, item_power, success_max))
-        print("Success if between: 0 -", success_max)
-        print("Chance of capture: %s / 100" % (success_max / 10))
-        print("Random number:", random_num)
-        print("a, b:", catch_check, shake_check)
+        print("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * float(status_modifier)/100 / (3*target.hp)")
+        print("(3 * %s - 2 * %s) * %s * %s * float(%s)/100 / (3*%s)" % (
+            str(target.hp), str(target.current_hp), str(target.catch_rate), str(item_power), str(status_modifier), str(target.hp)))
+        print("65536 / (255/catch_check)**0.1875")
+        print("65536 / (255/%s)**0.1875" % str(catch_check))
+        print("Each shake has a %s chance of breaking the creature free. (shake_check = %s)" % (str(round((65536-shake_check)/65536, 2)), str(round(shake_check))))
 
         for i in range(0, 4):
-            if random.randint(0, 65536) > shake_check:
-                return False, {"num_shakes": i+1, "is_item": True}
+            random_num = random.randint(0, 65536)
+            print("shake check %s: random number %s" % (i, random_num))
+            if random_num > round(shake_check):
+                return False, {"num_shakes": i+1, "should_tackle": False}
 
-        return True, {"num_shakes": 4, "is_item": True}
+        return True, {"num_shakes": 4, "is_item": False}

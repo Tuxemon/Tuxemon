@@ -47,41 +47,59 @@ class Common(object):
         :returns: None
         """
 
-        pass
+        # check for valid inputs
+        # trigger an AttributeError if the attribute doesn't already exist
+        attr = None
+        try:
+            attr = getattr(character, attribute)
+        except:
+            logger.warning("Player attribute '{0}' specified does not exist.", attribute)
+            return
 
-    def modify_character_attribute(self, character, attribute, value):
+        val = None
+        try:
+            val = type(attr)(value)
+        except:
+            logger.warning("The value given cannot be parsed into the correct type for '{0}'", attribute)
+            return
+
+        setattr(player, attribute, val)
+
+    def modify_character_attribute(self, character, attribute, modifier):
         """Modifyies a character's (npc or player) attribute. Default behavior is to add
-        the given value to the attribute, but prepending a percent (%) symbol will 
-        cause the value to be used as a multiplier.
+        the given mod to the attribute, but prepending a percent (%) symbol will 
+        cause the mod to be used as a multiplier.
 
         :param character: The Player object to modify.
         :param attribute: The attribute to modify.
-        :param value: The value to modify the attribute by, as a string.
+        :param mod: The modifier to apply the attribute by.
 
         :type character: core.Player
         :type attribute: String
-        :type value: String
+        :type modifier: string
 
         :rtype: None
         :returns: None
         """
 
-        pass
-
-    def get_all_players(self, game):
-    	"""Retrieves a list of all npcs and the player.
-
-        :param game: The game instance.
-
-        :type game: core.control.Control
-
-        :rtype: Dictionary
-        :returns: Dictionary of all Player objects keyed by their slug.
-        """
-
-        # Get a copy of the world state.
-        world = game.get_state_name("WorldState")
-        if not world:
+        # check for valid inputs
+        # trigger an AttributeError if the attribute doesn't already exist
+        attr = None
+        try:
+            attr = getattr(character, attribute)
+        except:
+            logger.warning("Player attribute '{0}' specified does not exist.", attribute)
             return
+
+        type(attr) x = None
+        if '%' in modifier:
+            mod = float(modifier.replace('%',''))
+            attr = attr * mod
+        else:
+            mod = float(modifier)
+            attr = attr + mod
+
+
+        setattr(player, attribute, attr)
 
         

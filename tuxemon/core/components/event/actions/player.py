@@ -32,6 +32,7 @@ from core import prepare
 from core import tools
 from core.components import item
 from core.components import monster
+import Common
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -360,7 +361,7 @@ class Player(object):
         world.menu_blocking = False
 
     def set_player_attribute(self, game, action):
-        """Sets the given attribute of the named character to the given value.
+        """Sets the given attribute of the player character to the given value.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -372,7 +373,7 @@ class Player(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: name, attribute, value
+        Valid Parameters: attribute, value
         
         **Example:**
 
@@ -380,9 +381,8 @@ class Player(object):
         {
             "type": "set_player_attribute",
             "parameters": [
-                "Mr. Redwood"
-                "name",
-                "Dr. Redwood"
+                "party_limit",
+                "8"
             ]
         }
         """
@@ -390,27 +390,15 @@ class Player(object):
         if not world:
             return
 
-        name = str(action.parameters[0])
-
-        npcs = list(world.npcs)
-        for npc in npcs:
-            if npc.name == name:
-                player = npc
-
-        if not player:
-            return
-
-        attribute = action.parameters[1]
-        value = action.parameters[2]
+        attribute = action.parameters[0]
+        value = action.parameters[1]
         
-        # check for valid inputs
-        # trigger an ArgumentException if the property doesn't already exist
-        attr = getattr(player, attribute)
-        
-        setattr(player, attribute, value)
+        set_character_attribute(world.player1, attribute, value)
 
     def modify_player_attribute(self, game, action):
-        """Modifies the given attribute of the named player by multiplying it by modifier.
+        """Modifies the given attribute of the player character by modifier. By default
+        this is achieved via addition, but prepending a '%' will cause it to be 
+        multiplied by the attribute.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -422,7 +410,7 @@ class Player(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: name, attribute, modifier
+        Valid Parameters: attribute, modifier
         
         Action parameter 'modifier' must be an int (positive or negative)
         **Example:**
@@ -431,7 +419,6 @@ class Player(object):
         {
             "type": "change_player_attribute",
             "parameters": [
-                "Red"
                 "walkrate",
                 "1.50"
             ]
@@ -441,22 +428,8 @@ class Player(object):
         if not world:
             return
 
-        name = str(action.parameters[0])
-
-        npcs = list(world.npcs)
-        for npc in npcs:
-            if npc.name == name:
-                player = npc
-
-        if not player:
-            return
-
-        attribute = action.parameters[1]
-        modifier = action.parameters[2]
+        attribute = action.parameters[0]
+        modifier = action.parameters[1]
         
-        # trigger exceptions on bad input
-        attr = getattr(player, attribute)
-        change = float(modifier)
-        attr = attr*change
-
-        setattr(player, attribute, attr)
+        modify_character_attribute(world.player1, attribute, modifier)
+        

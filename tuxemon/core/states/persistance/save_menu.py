@@ -48,7 +48,6 @@ class SaveMenuState(PopUpMenu):
     def render_slot(self, rect, slot_num):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
 
-        # TODO: catch missing file
         thumb_image = None
         try:
             thumb_image = pygame.image.load(prepare.SAVE_PATH + str(slot_num) + ".png").convert()

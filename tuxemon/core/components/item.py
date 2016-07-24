@@ -183,7 +183,7 @@ class Item(object):
         if type(result) == bool:
             result = (result, {"should_tackle": False})
         
-        return item_use_value(effectString, *result)
+        return item_use_value(effect_string, *result)
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.

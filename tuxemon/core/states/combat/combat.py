@@ -566,6 +566,9 @@ class CombatState(CombatAnimations):
                     action_time = result.properties["num_shakes"] + 1.8
                     if not result.success:
                         action_time += 0
+                    else:
+                        self.task(self.end_combat, action_time)
+
                 if result.success:
                 	message += "\n" + trans('item_success')
                 else:

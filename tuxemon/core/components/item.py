@@ -169,8 +169,8 @@ class Item(object):
         # Loop through all the effects of this technique and execute the effect's function.
         effectString = "Empty"
         for effect in self.effect:
-            effectString = str(effect)
-            result = getattr(self, str(effect))(user, target)
+            effect_string = str(effect)
+            result = getattr(self, effect_string)(user, target)
 
         # If this is a consumable item, remove it from the player's inventory.
         if result:

@@ -241,15 +241,15 @@ class Item(object):
 
         # Check if target has any status effects
         if not target.status == "Normal":
-            status_modifier = 150
+            status_modifier = 1.5
 
         print("--- Capture Variables ---")
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * float(status_modifier)/100 / (3*target.hp)
+        catch_check = (3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)
         shake_check = 65536 / (255/catch_check)**0.1875
 
-        print("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * float(status_modifier)/100 / (3*target.hp)")
-        print("(3 * %s - 2 * %s) * %s * %s * float(%s)/100 / (3*%s)" % (
+        print("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
+        print("(3 * %s - 2 * %s) * %s * %s * %s / (3*%s)" % (
             str(target.hp), str(target.current_hp), str(target.catch_rate), str(item_power), str(status_modifier), str(target.hp)))
         print("65536 / (255/catch_check)**0.1875")
         print("65536 / (255/%s)**0.1875" % str(catch_check))
@@ -261,4 +261,4 @@ class Item(object):
             if random_num > round(shake_check):
                 return False, {"num_shakes": i+1, "should_tackle": False}
 
-        return True, {"num_shakes": 4, "is_item": False}
+        return True, {"num_shakes": 4, "should_tackle": False}

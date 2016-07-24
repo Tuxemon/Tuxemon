@@ -174,7 +174,7 @@ class Technique(object):
         :type target: core.components.monster.Monster
 
         :rtype: bool
-        :returns: If technique was successful or not
+        :returns: named dictionary with the members 'name', 'success' and 'properties'. 'success' is the boolean representing if the effect succeeded, 'properties' are the misc
 
         **Examples:**
 

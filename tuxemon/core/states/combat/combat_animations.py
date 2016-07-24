@@ -397,5 +397,6 @@ class CombatAnimations(Menu):
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
+        self.task(partial(toggle_visible, monster_sprite), 1.0) # make the monster go away temporarily
 
-
+        

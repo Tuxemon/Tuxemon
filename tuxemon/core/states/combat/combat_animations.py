@@ -389,3 +389,6 @@ class CombatAnimations(Menu):
         animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
         animate(trainer1.rect, front_island.rect, y=y_mod,
                 transition='out_back', relative=True)
+
+    def animate_capture_monster(self, is_captured, num_shakes, monster):
+        print("Capture animation goes here!")

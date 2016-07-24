@@ -30,6 +30,7 @@
 #
 import os
 import random
+from collections import namedtuple
 
 from core import prepare, tools
 from core.components import db
@@ -41,6 +42,7 @@ trans = translator.translate
 techniques = db.JSONDatabase()
 techniques.load("technique")
 
+tech_ret_value = namedtuple("use", "success properties")
 
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
@@ -188,7 +190,8 @@ class Technique(object):
             if getattr(self, str(effect))(user, target):
                 successful = True
 
-        return successful
+        # the {} here should just be considered a placeholder
+        return tech_ret_value(successful, {})
 
     def calculate_damage(self, user, target):
         # Original Pokemon battle damage formula:

@@ -33,6 +33,7 @@
 import logging
 import pprint
 import random
+from collections import namedtuple
 
 from core import tools
 from . import db
@@ -47,6 +48,7 @@ logger.debug("%s successfully imported" % __name__)
 items = db.JSONDatabase()
 items.load("item")
 
+item_use_value = namedtuple("use", "name success properties")
 
 class Item(object):
     """An item object is an item that can be used either in or out of combat.
@@ -165,7 +167,9 @@ class Item(object):
         """
 
         # Loop through all the effects of this technique and execute the effect's function.
+        effectString = "Empty"
         for effect in self.effect:
+            effectString = str(effect)
             result = getattr(self, str(effect))(user, target)
 
         # If this is a consumable item, remove it from the player's inventory.
@@ -176,7 +180,10 @@ class Item(object):
                 else:
                     user.inventory[self.slug]['quantity'] -= 1
 
-        return result
+        if type(result) == bool:
+            result = (result, {"should_tackle": False})
+        
+        return item_use_value(effectString, *result)
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.
@@ -223,11 +230,9 @@ class Item(object):
         """
 
         # Set up variables for capture equation
-        success_max = 0
         damage_modifier = 0
         status_modifier = 0
         item_power = self.power
-        random_num = random.randint(0, 1000)
 
         # Get percent of damage taken and multiply it by 10
         if target.current_hp < target.hp:
@@ -238,23 +243,22 @@ class Item(object):
         if not target.status == "Normal":
             status_modifier = 150
 
-        # Calculate the top of success range (random_num must be in range to succeed)
-        success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
-
-        # Debugging Text
         print("--- Capture Variables ---")
-        print("(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power")
-        print("(0 - (%s * 10)) + %s + %s + %s = %s" % (
-            target.level, damage_modifier, status_modifier, item_power, success_max))
-        print("Success if between: 0 -", success_max)
-        print("Chance of capture: %s / 100" % (success_max / 10))
-        print("Random number:", random_num)
+        # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
+        catch_check = (3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * float(status_modifier)/100 / (3*target.hp)
+        shake_check = 65536 / (255/catch_check)**0.1875
 
-        # If random_num falls between 0 and success_max, capture target
-        if 0 <= random_num <= success_max:
-            print("It worked!")
-            user.add_monster(target)
-            return True
-        else:
-            print("It failed!")
-            return False
+        print("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * float(status_modifier)/100 / (3*target.hp)")
+        print("(3 * %s - 2 * %s) * %s * %s * float(%s)/100 / (3*%s)" % (
+            str(target.hp), str(target.current_hp), str(target.catch_rate), str(item_power), str(status_modifier), str(target.hp)))
+        print("65536 / (255/catch_check)**0.1875")
+        print("65536 / (255/%s)**0.1875" % str(catch_check))
+        print("Each shake has a %s chance of breaking the creature free. (shake_check = %s)" % (str(round((65536-shake_check)/65536, 2)), str(round(shake_check))))
+
+        for i in range(0, 4):
+            random_num = random.randint(0, 65536)
+            print("shake check %s: random number %s" % (i, random_num))
+            if random_num > round(shake_check):
+                return False, {"num_shakes": i+1, "should_tackle": False}
+
+        return True, {"num_shakes": 4, "is_item": False}

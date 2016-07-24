@@ -487,3 +487,4 @@ Translations
 
 ### Italian
 * [Nhoya](https://github.com/Nhoya)
+* [Airon90](https://github.com/Airon90)

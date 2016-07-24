@@ -527,6 +527,8 @@ class CombatState(CombatAnimations):
         """
         technique.advance_round()
 
+        # This is the time, in seconds, that the animation takes to finish.
+        action_time = 3.0
         result = technique.use(user, target)
 
         try:
@@ -560,14 +562,17 @@ class CombatState(CombatAnimations):
             else:  # assume this was an item used
                 if result.name == "capture":
                     message += "\n" + trans('attempting_capture')
-                    self.task(partial(self.animate_capture_monster, result.success, result.properties["num_shakes"], target_sprite))
+                    self.task(partial(self.animate_capture_monster, result.success, result.properties["num_shakes"], target))
+                    action_time = result.properties["num_shakes"] + 1.8
+                    if not result.success:
+                        action_time += 0
                 if result.success:
                 	message += "\n" + trans('item_success')
                 else:
                     message += "\n" + trans('item_failure')
 
             self.alert(message)
-            self.suppress_phase_change()
+            self.suppress_phase_change(action_time)
 
         else:
             if result.success:

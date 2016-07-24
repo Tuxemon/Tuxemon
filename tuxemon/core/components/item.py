@@ -261,4 +261,5 @@ class Item(object):
             if random_num > round(shake_check):
                 return False, {"num_shakes": i+1, "should_tackle": False}
 
+		user.add_monster(target)
         return True, {"num_shakes": 4, "should_tackle": False}

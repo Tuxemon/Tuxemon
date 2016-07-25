@@ -391,6 +391,13 @@ class CombatAnimations(Menu):
                 transition='out_back', relative=True)
 
     def animate_capture_monster(self, is_captured, num_shakes, monster):
+        """ Animation for capturing monsters.
+
+        :param is_captured: boolean representing success of capture
+        :param num_shakes: number of shakes before animation ends
+        :param monster: the monster
+        :return:
+        """
         monster_sprite = self._monster_sprite_map.get(monster, None)
         capdev = self.load_sprite('gfx/items/capture_device.png')
         animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)

@@ -162,8 +162,8 @@ class Item(object):
         :type user: Varies
         :type target: Varies
 
-        :rtype: bool
-        :returns: Success
+        :rtype: namedtuple
+        :returns: a named tuple with the effect name, success and misc properties
         """
 
         # Loop through all the effects of this technique and execute the effect's function.

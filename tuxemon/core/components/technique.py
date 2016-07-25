@@ -173,8 +173,8 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: bool
-        :returns: named dictionary with the members 'name', 'success' and 'properties'. 'success' is the boolean representing if the effect succeeded, 'properties' are the misc
+        :rtype: namedtuple
+        :returns: a named tuple with the effect name, success and misc properties
 
         **Examples:**
 

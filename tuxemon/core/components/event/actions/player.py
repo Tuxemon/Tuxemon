@@ -378,4 +378,4 @@ class Player(object):
 
         monster = game.player1.find_monster(monster_slug)
         if monster:
-                game.player1.remove_monster(monster)
+            game.player1.remove_monster(monster)

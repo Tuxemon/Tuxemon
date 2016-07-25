@@ -48,8 +48,6 @@ logger.debug("%s successfully imported" % __name__)
 items = db.JSONDatabase()
 items.load("item")
 
-item_use_value = namedtuple("use", "name success properties")
-
 class Item(object):
     """An item object is an item that can be used either in or out of combat.
 
@@ -162,15 +160,14 @@ class Item(object):
         :type user: Varies
         :type target: Varies
 
-        :rtype: namedtuple
-        :returns: a named tuple with the effect name, success and misc properties
+        :rtype: dict
+        :returns: a dictionary with various effect result properties
         """
 
         # Loop through all the effects of this technique and execute the effect's function.
-        effectString = "Empty"
         for effect in self.effect:
-            effect_string = str(effect)
-            result = getattr(self, effect_string)(user, target)
+            last_effect_name = str(effect)
+            result = getattr(self, last_effect_name)(user, target)
 
         # If this is a consumable item, remove it from the player's inventory.
         if result:
@@ -181,9 +178,13 @@ class Item(object):
                     user.inventory[self.name]['quantity'] -= 1
 
         if type(result) == bool:
-            result = (result, {"should_tackle": False})
-        
-        return item_use_value(effect_string, *result)
+            result = {"success": result, "should_tackle": False}
+        else:
+            result[1]["success"] = result[0]
+            result = result[1]
+            result["name"] = last_effect_name
+
+        return result
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.

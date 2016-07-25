@@ -173,8 +173,8 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: namedtuple
-        :returns: a named tuple with the effect name, success and misc properties
+        :rtype: dictionary
+        :returns: a dictionary with the effect name, success and misc properties
 
         **Examples:**
 
@@ -193,10 +193,13 @@ class Technique(object):
             last_effect_name = str(effect)
             result = getattr(self, last_effect_name)(user, target)
 
-        if type(result) is tuple:
-            return tech_ret_value(last_effect_name, *result)
+        if type(result) is bool:
+            return {"name": last_effect_name, "success": result, "should_tackle": result}
 
-        return tech_ret_value(last_effect_name, result, {"should_tackle": True})
+        result[1]["success"] = result[0]
+        result = result[1]
+        result["name"] = last_effect_name
+        return result
 
     def calculate_damage(self, user, target):
         # Original Pokemon battle damage formula:

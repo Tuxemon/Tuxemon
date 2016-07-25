@@ -178,7 +178,7 @@ class Item(object):
                     user.inventory[self.name]['quantity'] -= 1
 
         if type(result) == bool:
-            result = {"success": result, "should_tackle": False}
+            result = {"name": last_effect_name, "success": result, "should_tackle": False}
         else:
             result[1]["success"] = result[0]
             result = result[1]

@@ -572,7 +572,7 @@ class CombatState(CombatAnimations):
                         return
 
                 if result["success"]:
-                	message += "\n" + trans('item_success')
+                    message += "\n" + trans('item_success')
                 else:
                     message += "\n" + trans('item_failure')
 

@@ -157,5 +157,8 @@
     "txmn_tumbleworm_name": "Tumbleworm",
     "txmn_tux_category": "Water",
     "txmn_tux_descr": "",
-    "txmn_tux_name": "Tux"
+    "txmn_tux_name": "Tux",
+
+    "yes": "Yes",
+    "no": "No"
 }

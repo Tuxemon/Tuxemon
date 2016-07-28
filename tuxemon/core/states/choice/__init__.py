@@ -24,8 +24,7 @@ class ChoiceState(PopUpMenu):
         self.menu = kwargs.get("menu", list())
 
     def initialize_items(self):
-        for key, callback in self.menu:
-            label = translator.translate(key).upper()
+        for key, label, callback in self.menu:
             image = self.shadow_text(label)
             item = MenuItem(image, label, None, callback)
             self.add(item)

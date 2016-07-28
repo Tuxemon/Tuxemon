@@ -235,8 +235,9 @@ class Core(object):
 
         if text == "${{end}}":
             # Open a dialog window in the current scene.
-            open_dialog(game, self._dialog_chain_queue)
+            open_dialog(game, self._dialog_chain_queue, self._menu)
             self._dialog_chain_queue = list()
+            self._menu = None
         else:
             self._dialog_chain_queue.append(text)
 
@@ -481,6 +482,35 @@ class Core(object):
             if e['id'] == int(action.parameters[0]):
                 event_engine.execute_action(e['acts'], game)
 
+    def dialog_choice(self, game, action):
+        """Asks the player to make a choice.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: choice1:choice2,var_key
+        """
+        def set_variable(game, player, var_key, var_value):
+            player.game_variables[var_key] = var_value
+            game.pop_state()
+            game.pop_state()
+
+        # Get the player object from the game.
+        player = game.player1
+
+        var_list = action.parameters[0].split(":")
+        var_menu = list()
+        for val in var_list:
+            var_menu.append((val, val, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
+        self._menu = var_menu
+
     def translated_dialog_choice(self, game, action):
         """Asks the player to make a choice.
 
@@ -507,5 +537,6 @@ class Core(object):
         var_list = action.parameters[0].split(":")
         var_menu = list()
         for val in var_list:
-            var_menu.append((val, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
+            label = translator.translate(val).upper()
+            var_menu.append((val, label, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
         self._menu = var_menu

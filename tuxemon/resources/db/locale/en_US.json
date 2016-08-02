@@ -42,6 +42,8 @@
     "item_capture_device_name": "Capture Device",
     "item_capture_device_descr": "Captures a monster.",
     "item_cannot_use_here": "${{name}} cannot be used here!",
+    "monster_menu_info": "Info",
+    "monster_menu_move": "Move",
     "log_off": "Log Off",
     "menu_bag": "Bag",
     "menu_fight": "Fight",

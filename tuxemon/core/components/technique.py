@@ -62,9 +62,9 @@ class Technique(object):
 
     """
 
-    def __init__(self, slug=None, id=None):
+    def __init__(self, slug=None):
+        self.slug = slug
         self.name = "Pound"
-        self.tech_id = 0
         self.category = "attack"
         self.type1 = "Normal"
         self.type2 = None
@@ -73,19 +73,16 @@ class Technique(object):
         self.effect = []
 
         # If a slug of the technique was provided, autoload it.
-        if slug or id:
-            self.load(slug, id)
+        if slug:
+            self.load(slug)
 
-    def load(self, slug, id):
+    def load(self, slug):
         """Loads and sets this technique's attributes from the technique
-        database. The technique is looked up in the database by name or id.
+        database. The technique is looked up in the database by slug.
 
-        :param slug: The slug of the technique to look up in the monster
-            database.
-        :param id: The id of the technique to look up in the monster database.
+        :param slug: The slug of the technique to look up in the database.
 
         :type slug: String
-        :type id: Integer
 
         :rtype: None
         :returns: None
@@ -96,17 +93,9 @@ class Technique(object):
 
         """
 
-        if slug:
-            results = techniques.lookup(slug, table="technique")
-        elif id:
-            results = techniques.database['technique'][id]
-        else:
-            # TODO: some kind of useful message here
-            raise RuntimeError
-
+        results = techniques.lookup(slug, table="technique")
         self.slug = results["slug"]
         self.name = trans(results["name_trans"])
-        self.tech_id = results["id"]
         self.category = results["category"]
         self.icon = results["icon"]
 

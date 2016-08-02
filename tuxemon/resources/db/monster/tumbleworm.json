@@ -1,5 +1,8 @@
 {
-    "id":   20,
+    "slug": "txmn_tumbleworm",
+    "name_trans": "txmn_tumbleworm_name",
+    "description_trans": "txmn_tumbleworm_descr",
+    "category_trans": "txmn_tumbleworm_category",
 
     "slug": "txmn_tumbleworm",
     "name_trans": "txmn_tumbleworm_name",

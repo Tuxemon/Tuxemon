@@ -362,8 +362,8 @@ class Monster(object):
         # Learn New Moves
         for move in self.moveset:
             if move['level_learned'] >= self.level:
-                logger.info("%s learned technique id %i!" % (self.name, move['technique_id']))
-                technique = Technique(id=move['technique_id'])
+                logger.info("%s learned technique %i!" % (self.name, move['slug']))
+                technique = Technique(move['slug'])
                 self.learn(technique)
 
     def set_level(self, level=5):

@@ -57,7 +57,7 @@ class Item(object):
     >>> pprint.pprint(potion_item.__dict__)
     {'description': u'Heals a monster by 50 HP.',
      'effect': [u'heal'],
-     'id': 1,
+     'slug': 'item_potion,
      'name': u'Potion',
      'power': 50,
      'sprite': u'resources/gfx/items/potion.png',
@@ -67,9 +67,9 @@ class Item(object):
 
     """
 
-    def __init__(self, slug=None, id=None):
+    def __init__(self, slug=None):
 
-        self.id = 0
+        self.slug = slug
         self.name = "Blank"
         self.description = "None"
         self.effect = []
@@ -80,18 +80,16 @@ class Item(object):
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
         # If a slug of the item was provided, autoload it from the item database.
-        if slug or id:
-            self.load(slug, id)
+        if slug:
+            self.load(slug)
 
-    def load(self, slug, id):
+    def load(self, slug):
         """Loads and sets this items's attributes from the item.db database. The item is looked up
-        in the database by name or id.
+        in the database by slug.
 
         :param slug: The item slug to look up in the monster.item database.
-        :param id: The id of the item to look up in the item.db database.
 
         :type slug: String
-        :type id: Integer
 
         :rtype: None
         :returns: None
@@ -99,31 +97,22 @@ class Item(object):
         **Examples:**
 
         >>> potion_item = Item()
-        >>> potion_item.load("item_potion", None)    # Load an item by name.
-        >>> potion_item.load(None, 1)           # Load an item by id.
+        >>> potion_item.load("item_potion")    # Load an item by slug.
         >>> pprint.pprint(potion_item.__dict__)
         {'description': u'Heals a monster by 50 HP.',
          'effect': [u'heal'],
-         'id': 1,
+         'slug': 'item_potion',
          'name': u'Potion',
          'power': 50,
          'type': u'Consumable'}
 
         """
 
-        if slug:
-            results = items.lookup(slug, table="item")
-        elif id:
-            results = items.lookup_by_id(id, table="item")
-        else:
-            # TODO: some kind of useful message here
-            raise RuntimeError
-
+        results = items.lookup(slug, table="item")
         self.slug = results["slug"]                             # short English identifier
         self.name = trans(results["name_trans"])                # will be locale string
         self.description = trans(results["description_trans"])  # will be locale string
 
-        self.id = results["id"]
         self.type = results["type"]
         self.power = results["power"]
         self.sprite = results["sprite"]
@@ -213,9 +202,6 @@ class Item(object):
             target.current_hp = target.hp
 
         return True
-
-    def advance_round(self):
-        pass
 
     def capture(self, user, target):
         """Captures target monster.

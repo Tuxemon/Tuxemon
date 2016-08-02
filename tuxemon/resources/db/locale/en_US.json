@@ -23,6 +23,8 @@
     "item_confirm_cancel": "Cancel",
     "item_failure": "It failed!",
     "item_success": "It worked!",
+    "attempting_capture": "Attempting capture...",
+    "gotcha": "Gotcha!",
     "item_apple_name": "Apple",
     "item_apple_descr": "Heals a monster by 10 HP.",
     "item_berry_name": "Berry",

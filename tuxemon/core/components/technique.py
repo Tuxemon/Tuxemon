@@ -30,6 +30,7 @@
 #
 import os
 import random
+from collections import namedtuple
 
 from core import prepare, tools
 from core.components import db
@@ -41,6 +42,7 @@ trans = translator.translate
 techniques = db.JSONDatabase()
 techniques.load("technique")
 
+tech_ret_value = namedtuple("use", "name success properties")
 
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
@@ -171,8 +173,8 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: bool
-        :returns: If technique was successful or not
+        :rtype: dictionary
+        :returns: a dictionary with the effect name, success and misc properties
 
         **Examples:**
 
@@ -183,12 +185,21 @@ class Technique(object):
         """
         # Loop through all the effects of this technique and execute the effect's function.
         # TODO: more robust API
-        successful = False
-        for effect in self.effect:
-            if getattr(self, str(effect))(user, target):
-                successful = True
 
-        return successful
+        # 'result' can either be a tuple or a boolean.
+        result = None
+        last_effect_name = None
+        for effect in self.effect:
+            last_effect_name = str(effect)
+            result = getattr(self, last_effect_name)(user, target)
+
+        if type(result) is bool:
+            return {"name": last_effect_name, "success": result, "should_tackle": result}
+
+        result[1]["success"] = result[0]
+        result = result[1]
+        result["name"] = last_effect_name
+        return result
 
     def calculate_damage(self, user, target):
         # Original Pokemon battle damage formula:

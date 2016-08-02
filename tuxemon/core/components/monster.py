@@ -122,6 +122,9 @@ class Monster(object):
 
         self.weight = 0
 
+		# the multiplier for checks when a monster ball is thrown.
+        self.catch_rate = 1;
+
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
         # to play the animations for those states.

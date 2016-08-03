@@ -1,5 +1,13 @@
 {
-    "id":   13,
+    "slug": "txmn_pigabyte",
+    "name_trans": "txmn_pigabyte_name",
+    "description_trans": "txmn_pigabyte_descr",
+    "category_trans": "txmn_pigabyte_category",
+
+    "slug": "txmn_pigabyte",
+    "name_trans": "txmn_pigabyte_name",
+    "description_trans": "txmn_pigabyte_descr",
+    "category_trans": "txmn_pigabyte_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -18,14 +26,13 @@
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 1,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         }
     ],
-    "name": "Pigabyte",
     "sprites": {
         "battle1": "gfx/sprites/battle/pigabyte-front.png",
         "battle2": "gfx/sprites/battle/pigabyte-back.png",

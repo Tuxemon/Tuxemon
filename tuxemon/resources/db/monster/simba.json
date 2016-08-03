@@ -1,0 +1,50 @@
+{
+    "slug": "txmn_simba",
+    "name_trans": "txmn_simba_name",
+    "description_trans": "txmn_simba_descr",
+    "category_trans": "txmn_simba_category",
+
+    "slug": "txmn_simba",
+    "name_trans": "txmn_simba_name",
+    "description_trans": "txmn_simba_descr",
+    "category_trans": "txmn_simba_category",
+
+    "attack_base":            70,
+    "defense_base":           8,
+    "hp_base":                70,
+    "special_attack_base":    8,
+    "special_defense_base":   10,
+    "speed_base":             8,
+
+    "attack_mod":             1,
+    "defense_mod":            1,
+    "hp_mod":                 1,
+    "special_attack_mod":     1.1,
+    "special_defense_mod":    1,
+    "speed_mod":              1,
+
+    "exp_give_mod":           3,
+    "exp_req_mod":            27,
+
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "technique_pound"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_bite"
+        }
+    ],
+    "sprites": {
+        "battle1": "gfx/sprites/battle/simba-front.png",
+        "battle2": "gfx/sprites/battle/simba-back.png",
+        "menu1": "gfx/sprites/battle/simba-menu01.png",
+        "menu2": "gfx/sprites/battle/simba-menu02.png"
+    },
+    "types": [
+        "poison"
+    ],
+    "weight": 65
+}

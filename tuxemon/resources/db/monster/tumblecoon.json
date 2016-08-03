@@ -1,0 +1,50 @@
+{
+    "slug": "txmn_tumblecoon",
+    "name_trans": "txmn_tumblecoon_name",
+    "description_trans": "txmn_tumblecoon_descr",
+    "category_trans": "txmn_tumblecoon_category",
+
+    "slug": "txmn_tumblecoon",
+    "name_trans": "txmn_tumblecoon_name",
+    "description_trans": "txmn_tumblecoon_descr",
+    "category_trans": "txmn_tumblecoon_category",
+
+    "attack_base":            50,
+    "defense_base":           6,
+    "hp_base":                60,
+    "special_attack_base":    8,
+    "special_defense_base":   10,
+    "speed_base":             7,
+
+    "attack_mod":             1,
+    "defense_mod":            1,
+    "hp_mod":                 1,
+    "special_attack_mod":     1.1,
+    "special_defense_mod":    1,
+    "speed_mod":              1,
+
+    "exp_give_mod":           3,
+    "exp_req_mod":            27,
+
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "technique_pound"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_bite"
+        }
+    ],
+    "sprites": {
+        "battle1": "gfx/sprites/battle/tumblecoon-front.png",
+        "battle2": "gfx/sprites/battle/tumblecoon-back.png",
+        "menu1": "gfx/sprites/battle/tumblecoon-menu01.png",
+        "menu2": "gfx/sprites/battle/tumblecoon-menu02.png"
+    },
+    "types": [
+        "poison"
+    ],
+    "weight": 55
+}

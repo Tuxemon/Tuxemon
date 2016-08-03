@@ -1,0 +1,49 @@
+{
+    "slug": "txmn_tigrock",
+    "name_trans": "txmn_tigrock_name",
+    "description_trans": "txmn_tigrock_descr",
+    "category_trans": "txmn_tigrock_category",
+
+    "slug": "txmn_tigrock",
+    "name_trans": "txmn_tigrock_name",
+    "description_trans": "txmn_tigrock_descr",
+    "category_trans": "txmn_tigrock_category",
+
+    "attack_base":            72,
+    "defense_base":           11,
+    "hp_base":                64,
+    "special_attack_base":    8,
+    "special_defense_base":   12,
+    "speed_base":             9,
+
+    "attack_mod":             1,
+    "defense_mod":            1,
+    "hp_mod":                 1,
+    "special_attack_mod":     1.1,
+    "special_defense_mod":    1,
+    "speed_mod":              1,
+
+    "exp_give_mod":           3,
+    "exp_req_mod":            27,
+
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "technique_pound"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_bite"
+        }
+    ],
+    "sprites": {
+        "battle1": "gfx/sprites/battle/tigrock-front.png",
+        "battle2": "gfx/sprites/battle/tigrock-back.png",
+        "menu1": "gfx/sprites/battle/tigrock-menu01.png",
+        "menu2": "gfx/sprites/battle/tigrock-menu02.png"
+    },
+    "types": [
+        "earth"
+    ],
+    "weight": 55
+}

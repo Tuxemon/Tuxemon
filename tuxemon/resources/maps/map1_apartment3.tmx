@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="11" tilewidth="16" tileheight="16" nextobjectid="24">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="217" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="717" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="18" height="11">
+  <data encoding="base64" compression="zlib">
+   eJxTYmBgUBrFo3iYYEkiMDHqANDQGbQ=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="18" height="11">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfKDEyMCgDsQojqngDibQZUL85EFugmdNDIo0LZABxJpE4iw7mlABxKZG4jIDfRgHpgJUINQDYfBa2
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="18" height="11">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi8IAaIFwNxLAEMUhNHwKzlaPyFQLyIgBpagQYSaVygh0R6FBAPABweDcI=
+  </data>
+ </layer>
+ <layer name="Above Player" width="18" height="11">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUoAMAAxgAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="0" y="-16" width="288" height="16"/>
+  <object id="7" type="collision" x="0" y="160" width="144" height="16"/>
+  <object id="8" type="collision" x="160" y="160" width="128" height="16"/>
+  <object id="9" type="collision" x="288" y="0" width="16" height="160"/>
+  <object id="10" type="collision" x="-16" y="0" width="16" height="160"/>
+  <object id="16" type="collision" x="48" y="32" width="192" height="48"/>
+  <object id="17" type="collision" x="240" y="0" width="48" height="32"/>
+  <object id="20" x="144" y="176" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="11" type="event" x="144" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,63,44,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="12" type="event" x="0" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Student1,3,7,player,stand"/>
+    <property name="cond1" value="not npc_exists Student1"/>
+   </properties>
+  </object>
+  <object id="22" type="event" x="256" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Student2,16,7,player,stand"/>
+    <property name="cond1" value="not npc_exists Student2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

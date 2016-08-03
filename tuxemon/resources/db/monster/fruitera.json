@@ -1,5 +1,13 @@
 {
-    "id": 3,
+    "slug": "txmn_fruitera",
+    "name_trans": "txmn_fruitera_name",
+    "description_trans": "txmn_fruitera_descr",
+    "category_trans": "txmn_fruitera_category",
+
+    "slug": "txmn_fruitera",
+    "name_trans": "txmn_fruitera_name",
+    "description_trans": "txmn_fruitera_descr",
+    "category_trans": "txmn_fruitera_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -18,19 +26,17 @@
     "exp_give_mod": 3,
     "exp_req_mod": 27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique_id": 4,
-            "technique": "Bite"
+            "technique": "technique_bite"
         },
         {
             "level_learned": 2,
-            "technique_id": 2,
-            "technique": "Poison Sting"
+            "technique": "technique_poison_sting"
         }
     ],
-    "name": "Fruitera",
     "sprites": {
         "battle1": "gfx/sprites/battle/fruitera-front.png",
         "battle2": "gfx/sprites/battle/fruitera-back.png",

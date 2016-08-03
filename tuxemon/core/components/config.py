@@ -67,6 +67,10 @@ class Config(object):
                                   int(self.config.get("game", "starting_position_y"))]
         self.cli = int(self.config.get("game", "cli_enabled"))
         self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
+        try:
+            self.locale = self.config.get("game", "locale")
+        except configparser.NoOptionError:
+            self.locale = "en_US"
 
         self.player_animation_speed = float(self.config.get("player", "animation_speed"))
 

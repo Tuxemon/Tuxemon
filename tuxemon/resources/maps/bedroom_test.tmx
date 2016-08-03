@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="19">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+ <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
  <layer name="Tile Layer 1" width="11" height="9">
@@ -63,11 +63,11 @@
   </object>
   <object id="11" name="Get Fruitera" type="event" x="144" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster Fruitera,10"/>
-    <property name="act2" value="dialog Recieved Fruitera!"/>
-    <property name="act3" value="add_item Capture Device"/>
-    <property name="act4" value="add_item Potion"/>
-    <property name="act5" value="add_item Capture Device"/>
+    <property name="act1" value="add_monster txmn_fruitera,10"/>
+    <property name="act2" value="translated_dialog received_x,name=Fruitera"/>
+    <property name="act3" value="add_item item_capture_device"/>
+    <property name="act4" value="add_item item_potion"/>
+    <property name="act5" value="add_item item_capture_device"/>
     <property name="act6" value="set_variable got_fruitera:yes"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="not variable_set got_fruitera:yes"/>

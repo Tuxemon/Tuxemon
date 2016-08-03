@@ -1,5 +1,13 @@
 {
-    "id": 4,
+    "slug": "txmn_bigfin",
+    "name_trans": "txmn_bigfin_name",
+    "description_trans": "txmn_bigfin_descr",
+    "category_trans": "txmn_bigfin_category",
+
+    "slug": "txmn_bigfin",
+    "name_trans": "txmn_bigfin_name",
+    "description_trans": "txmn_bigfin_descr",
+    "category_trans": "txmn_bigfin_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -18,19 +26,17 @@
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique_id": 4,
-            "technique": "Bite"
+            "technique": "technique_bite"
         },
         {
             "level_learned": 2,
-            "technique_id": 3,
-            "technique": "Water Shot"
+            "technique": "technique_water_shot"
         }
     ],
-    "name": "Bigfin",
     "sprites": {
         "battle1": "gfx/sprites/battle/bigfin-front.png",
         "battle2": "gfx/sprites/battle/bigfin-back.png",

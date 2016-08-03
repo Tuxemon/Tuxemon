@@ -1,19 +1,24 @@
 {
-    "description": "Heals a monster by 50 HP.",
-    "effects": [
-        "heal"
-    ],
-    "id": 1,
-    "name": "Potion",
-    "power": 50,
-    "sprite": "gfx/items/potion.png",
-    "target": [
-        "trainer",
-        "monster"
-    ],
-    "type": "Consumable",
-    "usable_in": [
-        "CombatState",
-        "WorldState"
-    ]
+  "slug": "item_potion",
+  "name_trans": "item_potion_name",
+  "description_trans": "item_potion_descr",
+  "effects": [
+    "heal"
+  ],
+  "power": 50,
+  "sprite": "gfx/items/potion.png",
+  "target": {
+    "enemy monster": 1,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  },
+  "type": "Consumable",
+  "usable_in": [
+    "MainCombatMenuState",
+    "WorldState"
+  ]
 }

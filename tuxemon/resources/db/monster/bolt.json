@@ -1,5 +1,13 @@
 {
-    "id": 7,
+    "slug": "txmn_bolt",
+    "name_trans": "txmn_bolt_name",
+    "description_trans": "txmn_bolt_descr",
+    "category_trans": "txmn_bolt_category",
+
+    "slug": "txmn_bolt",
+    "name_trans": "txmn_bolt_name",
+    "description_trans": "txmn_bolt_descr",
+    "category_trans": "txmn_bolt_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -18,14 +26,13 @@
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         }
     ],
-    "name": "Bolt",
     "sprites": {
         "battle1": "gfx/sprites/battle/bolt-front.png",
         "battle2": "gfx/sprites/battle/bolt-back.png",

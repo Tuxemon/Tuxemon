@@ -1,5 +1,13 @@
 {
-    "id": 6,
+    "slug": "txmn_nut",
+    "name_trans": "txmn_nut_name",
+    "description_trans": "txmn_nut_descr",
+    "category_trans": "txmn_nut_category",
+
+    "slug": "txmn_nut",
+    "name_trans": "txmn_nut_name",
+    "description_trans": "txmn_nut_descr",
+    "category_trans": "txmn_nut_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -18,14 +26,13 @@
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         }
     ],
-    "name": "Nut",
     "sprites": {
         "battle1": "gfx/sprites/battle/nut-front.png",
         "battle2": "gfx/sprites/battle/nut-back.png",

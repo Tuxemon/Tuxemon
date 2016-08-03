@@ -1,5 +1,13 @@
 {
-    "id":   11,
+    "slug": "txmn_magmaturtle",
+    "name_trans": "txmn_magmaturtle_name",
+    "description_trans": "txmn_magmaturtle_descr",
+    "category_trans": "txmn_magmaturtle_category",
+
+    "slug": "txmn_magmaturtle",
+    "name_trans": "txmn_magmaturtle_name",
+    "description_trans": "txmn_magmaturtle_descr",
+    "category_trans": "txmn_magmaturtle_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -18,19 +26,17 @@
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique_id": 1,
-            "technique": "Pound"
+            "technique": "technique_pound"
         },
         {
             "level_learned": 2,
-            "technique_id": 2,
-            "technique": "Poison Sting"
+            "technique": "technique_poison_sting"
         }
     ],
-    "name": "Magmaturtle",
     "sprites": {
         "battle1": "gfx/sprites/battle/magmaturtle-front.png",
         "battle2": "gfx/sprites/battle/magmaturtle-back.png",

@@ -306,3 +306,24 @@ class Player(object):
             return True
         else:
             return False
+
+    def has_monster(self, game, condition):
+        """Checks to see the player is has a monster in his party
+
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type game: core.control.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
+        """
+        player = game.player1
+        monster_stud = condition.parameters[0]
+        if None == player.find_monster(monster_stud):
+            return False
+        else:
+            return True

@@ -564,6 +564,21 @@ class Player(object):
         else:
             self.monsters.append(monster)
 
+    def find_monster(self, slug):
+        """Finds a monster in the player's list of monsters.
+
+        :param slug: The stug name of the monster
+
+        :type string: String
+
+        :rtype: core.components.monster.Monster
+        :returns: Monster found
+
+        """
+        for monster in self.monsters:
+            if monster.slug == slug:
+                return monster
+        return None
 
     def remove_monster(self, monster):
         """Removes a monster from this player's party.

@@ -93,19 +93,18 @@ class JSONDatabase(object):
                 continue
 
             # Load our json as a dictionary.
-            file = open(self.path + directory + "/" + json_item, 'r')
-            item = json.load(file)
+            with open(self.path + directory + "/" + json_item) as fp:
+                item = json.load(fp)
 
-            if item['id'] not in self.database[directory]:
-                self.database[directory][item['id']] = item
+            if item['slug'] not in self.database[directory]:
+                self.database[directory][item['slug']] = item
             else:
                 print(item, json)
-                raise Exception("Error: Item with this id was already loaded.")
-            file.close()
+                raise Exception("Error: Item with this slug was already loaded.")
 
 
     def lookup(self, slug, table="monster"):
-        """Looks up a monster, technique, item, or npc based on name or id.
+        """Looks up a monster, technique, item, or npc based on slug.
 
         :param slug: The slug of the monster, technique, item, or npc.  A short English identifier.
         :param table: Which index to do the search in. Can be: "monster",
@@ -117,44 +116,17 @@ class JSONDatabase(object):
         :returns: A dictionary from the resulting lookup.
 
         """
-        if slug in self.database[table]:
-            return self.database[table][slug]
-
-        for id, item in self.database[table].items():
-            # TODO: localize *everything*
-            # the slug lookup will fail for monsters and npc's
-            # eventually, we may want to localize monster names or npc
-            # in that case, all DB objects will have a slug
-            # for now, we silently fail and lookup by name instead
-            try:
-                if item['slug'] == slug:
-                    return item
-            except KeyError:
-                if item['name'] == slug:
-                    return item
-
-
-    def lookup_by_id(self, id, table="monster"):
-        """This is a legacy method from using the sqlite database. You should
-        do this instead by calling JSONDatabase.database["monster"][id]
-
-        :param id: The monster ID or technique ID to look up.
-        :type id: Integer
-
-        :rtype: List
-        :returns: A list of monsters or techniques
-
-        """
-        logger.warning("lookup_by_id is deprecated. Use JSONDatabase.database")
-        self.lookup(id, table)
+        return self.database[table][slug]
 
 
     def lookup_sprite(self, slug, table="sprite"):
-        """Looks up a monster's sprite image paths based on monster ID.
+        """Looks up a monster's sprite image paths based on monster slug.
         NOTE: This method has been deprecated. Use the following instead:
-        JSONDatabase.database['monster'][id]['sprites']
+        JSONDatabase.database['monster'][slug]['sprites']
 
         :param slug: The monster ID to look up.
+        :type slug: String
+        :param slug: The monster slug to look up.
         :type slug: String
 
         :rtype: List

@@ -1,4 +1,6 @@
 {
+    "slug": "npc_maple",
+    "name_trans": "npc_maple_name",
     "monsters": [
         {
             "attack": 50,
@@ -6,7 +8,7 @@
             "name": "Snowball",
             "special_attack": 9,
             "level": 5,
-            "monster": "txmn_fruitera",
+            "monster": "txmn_bamboon",
             "hp": 50,
             "speed": 7,
             "special_defense": 7,
@@ -14,6 +16,4 @@
             "exp_req_mod": 27
         }
     ],
-    "id": 1,
-    "name": "Maple"
 }

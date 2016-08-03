@@ -30,6 +30,7 @@
 #
 import os
 import random
+from collections import namedtuple
 
 from core import prepare, tools
 from core.components import db
@@ -41,6 +42,7 @@ trans = translator.translate
 techniques = db.JSONDatabase()
 techniques.load("technique")
 
+tech_ret_value = namedtuple("use", "name success properties")
 
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
@@ -60,9 +62,9 @@ class Technique(object):
 
     """
 
-    def __init__(self, slug=None, id=None):
+    def __init__(self, slug=None):
+        self.slug = slug
         self.name = "Pound"
-        self.tech_id = 0
         self.category = "attack"
         self.type1 = "Normal"
         self.type2 = None
@@ -71,19 +73,16 @@ class Technique(object):
         self.effect = []
 
         # If a slug of the technique was provided, autoload it.
-        if slug or id:
-            self.load(slug, id)
+        if slug:
+            self.load(slug)
 
-    def load(self, slug, id):
+    def load(self, slug):
         """Loads and sets this technique's attributes from the technique
-        database. The technique is looked up in the database by name or id.
+        database. The technique is looked up in the database by slug.
 
-        :param slug: The slug of the technique to look up in the monster
-            database.
-        :param id: The id of the technique to look up in the monster database.
+        :param slug: The slug of the technique to look up in the database.
 
         :type slug: String
-        :type id: Integer
 
         :rtype: None
         :returns: None
@@ -94,17 +93,9 @@ class Technique(object):
 
         """
 
-        if slug:
-            results = techniques.lookup(slug, table="technique")
-        elif id:
-            results = techniques.database['technique'][id]
-        else:
-            # TODO: some kind of useful message here
-            raise RuntimeError
-
+        results = techniques.lookup(slug, table="technique")
         self.slug = results["slug"]
         self.name = trans(results["name_trans"])
-        self.tech_id = results["id"]
         self.category = results["category"]
         self.icon = results["icon"]
 
@@ -171,8 +162,8 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: bool
-        :returns: If technique was successful or not
+        :rtype: dictionary
+        :returns: a dictionary with the effect name, success and misc properties
 
         **Examples:**
 
@@ -183,12 +174,21 @@ class Technique(object):
         """
         # Loop through all the effects of this technique and execute the effect's function.
         # TODO: more robust API
-        successful = False
-        for effect in self.effect:
-            if getattr(self, str(effect))(user, target):
-                successful = True
 
-        return successful
+        # 'result' can either be a tuple or a boolean.
+        result = None
+        last_effect_name = None
+        for effect in self.effect:
+            last_effect_name = str(effect)
+            result = getattr(self, last_effect_name)(user, target)
+
+        if type(result) is bool:
+            return {"name": last_effect_name, "success": result, "should_tackle": result}
+
+        result[1]["success"] = result[0]
+        result = result[1]
+        result["name"] = last_effect_name
+        return result
 
     def calculate_damage(self, user, target):
         # Original Pokemon battle damage formula:

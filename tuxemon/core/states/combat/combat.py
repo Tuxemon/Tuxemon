@@ -527,6 +527,8 @@ class CombatState(CombatAnimations):
         """
         technique.advance_round()
 
+        # This is the time, in seconds, that the animation takes to finish.
+        action_time = 3.0
         result = technique.use(user, target)
 
         try:
@@ -545,7 +547,7 @@ class CombatState(CombatAnimations):
             message = trans('combat_used_x', {"user": user.name, "name": technique.name})
 
             # TODO: a real check or some params to test if should tackle, etc
-            if technique in user.moves:
+            if result["should_tackle"]:
                 hit_delay += .5
                 user_sprite = self._monster_sprite_map[user]
                 self.animate_sprite_tackle(user_sprite)
@@ -558,20 +560,31 @@ class CombatState(CombatAnimations):
                 self._damage_map[target].add(user)
 
             else:  # assume this was an item used
-                if result:
+                if result["name"] == "capture":
+                    message += "\n" + trans('attempting_capture')
+                    self.task(partial(self.animate_capture_monster, result["success"], result["num_shakes"], target))
+                    action_time = result["num_shakes"] + 1.8
+                    if result["success"]: # end combat right here
+                        self.task(self.end_combat, action_time + 0.5) # Display 'Gotcha!' first.
+                        self.task(partial(self.alert, trans('gotcha')), action_time)
+                        self.alert(message)
+                        self._animation_in_progress = True
+                        return
+
+                if result["success"]:
                     message += "\n" + trans('item_success')
                 else:
                     message += "\n" + trans('item_failure')
 
             self.alert(message)
-            self.suppress_phase_change()
+            self.suppress_phase_change(action_time)
 
         else:
-            if result:
+            if result["success"]:
                 self.suppress_phase_change()
                 self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name}))
 
-        if result and target_sprite and hasattr(technique, "images"):
+        if result["success"] and target_sprite and hasattr(technique, "images"):
             tech_sprite = self.get_technique_animation(technique)
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.image.play, hit_delay)

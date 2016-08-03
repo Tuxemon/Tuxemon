@@ -278,10 +278,10 @@ class Player(object):
 
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.
-        if item_to_add.name in player.inventory:
-            player.inventory[item_to_add.name]['quantity'] += 1
+        if item_to_add.slug in player.inventory:
+            player.inventory[item_to_add.slug]['quantity'] += 1
         else:
-            player.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
+            player.inventory[item_to_add.slug] = {'item': item_to_add, 'quantity': 1}
 
 
     def player_face(self, game, action):
@@ -362,17 +362,6 @@ class Player(object):
 
     def set_player_attribute(self, game, action):
         """Sets the given attribute of the player character to the given value.
-
-        :param game: The main game object that contains all the game's variables.
-        :param action: The action (tuple) retrieved from the database that contains the action's
-            parameters
-
-        :type game: core.control.Control
-        :type action: Tuple
-
-        :rtype: None
-        :returns: None
-
         Valid Parameters: attribute, value
         
         **Example:**
@@ -432,4 +421,24 @@ class Player(object):
         modifier = action.parameters[1]
         
         modify_character_attribute(world.player1, attribute, modifier)
-        
+
+    def remove_monster(self, game, action):
+        """Removes a monster to the current player's party if the monster is there.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: monster_slug
+        """
+        monster_slug = action.parameters[0]
+
+        monster = game.player1.find_monster(monster_slug)
+        if monster:
+            game.player1.remove_monster(monster)

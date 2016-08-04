@@ -104,8 +104,8 @@ class WorldState(state.State):
         ######################################################################
 
         self.player1 = prepare.player1
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs = {}
+        self.npcs_off_map = {}
         self.wants_duel = False
 
         # Set the global coordinates used to pan the screen.
@@ -268,11 +268,11 @@ class WorldState(state.State):
             self.game.client.update_player(self.player1.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs:
+        for slug,npc in self.npcs:
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)
 
-        for npc in self.npcs_off_map:
+        for slug,npc in self.npcs_off_map:
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)
 
@@ -470,7 +470,7 @@ class WorldState(state.State):
 
         # Add any NPC's to the collision rectangle map. We use this to see if
         # the player is colliding or not
-        for npc in self.npcs:
+        for slug,npc in self.npcs:
             self.collision_rectmap.append(
                 pygame.Rect(npc.position[0], npc.position[1], self.tile_size[0], self.tile_size[1]))
 
@@ -483,7 +483,7 @@ class WorldState(state.State):
         self.global_y_diff = self.orig_global_y - self.global_y
 
         # Draw any game NPC's
-        for npc in self.npcs:
+        for slug,npc in self.npcs:
             if npc.running:
                 npc.moverate = npc.runrate
             else:
@@ -520,8 +520,7 @@ class WorldState(state.State):
                 npc.direction["right"] = False
 
             if npc.update_location:
-                char_dict ={"tile_pos": npc.final_move_dest,
-                            }
+                char_dict ={"tile_pos": npc.final_move_dest }
                 networking.update_client(npc, char_dict, self.game)
                 npc.update_location = False
 
@@ -529,7 +528,7 @@ class WorldState(state.State):
             npc.draw(self.screen, "bottom")
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
-        for npc in self.npcs_off_map:
+        for slug,npc in self.npcs_off_map:
             if npc.running:
                 npc.moverate = npc.runrate
             else:
@@ -578,7 +577,7 @@ class WorldState(state.State):
                     tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw the top half of our NPCs above layer 4.
-        for npc in self.npcs:
+        for slug,npc in self.npcs:
             npc.draw(self.screen, "top")
 
         # Draw the top half of the player above layer 4.
@@ -750,8 +749,8 @@ class WorldState(state.State):
         self.game.event_engine.current_map = map_data
 
         # Clear out any existing NPCs
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs = {}
+        self.npcs_off_map = {}
 
     def load_map(self, map_name):
         """Returns map data as a dictionary to be used for map changing and preloading
@@ -825,7 +824,7 @@ class WorldState(state.State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for npc in self.npcs:
+                    for slug,npc in self.npcs:
                         tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
                         if tile_pos == tile:
                             logger.info("Opening interaction menu!")

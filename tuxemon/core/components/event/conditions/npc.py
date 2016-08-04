@@ -32,14 +32,14 @@ logger = logging.getLogger(__name__)
 
 class Npc(object):
 
-    def _get_npc(self, game, name):
-        """Gets an NPC object by name.
+    def _get_npc(self, game, slug):
+        """Gets an NPC object by slug.
 
         :param game: The main game object that contains all the game's variables.
-        :param name: The name of the NPC that exists on the current map.
+        :param name: The slug of the NPC that exists on the current map.
 
         :type game: core.control.Control
-        :type name: Str
+        :type slug: Str
 
         :rtype: core.components.player.Npc
         :returns: The NPC object or None if the NPC is not found.
@@ -50,9 +50,8 @@ class Npc(object):
         if not world:
             return
 
-        for npc in world.npcs:
-            if npc.name == name:
-                return npc
+        if slug in world.npcs:
+            return world.npcs[slug]
 
         logger.error("Unable to find NPC: " + name)
         return
@@ -71,7 +70,7 @@ class Npc(object):
         :rtype: Boolean
         :returns: True or False
 
-        Valid Parameters: npc_name
+        Valid Parameters: npc_slug
 
         **Examples:**
 
@@ -79,7 +78,7 @@ class Npc(object):
         {
             "type": "npc_exists",
             "parameters": [
-                "Oak"
+                "npc_oak"
             ],
             "width": 1,
             "height": 1,
@@ -120,7 +119,7 @@ class Npc(object):
         {
             "type": "npc_at",
             "parameters": [
-                "Maple",
+                "npc_maple",
                 "6",
                 "9"
             ],
@@ -174,7 +173,7 @@ class Npc(object):
         {
             "type": "npc_facing",
             "parameters": [
-                "Maple",
+                "npc_maple",
                 "up"
             ],
             "width": 1,
@@ -216,7 +215,7 @@ class Npc(object):
         >>> condition.__dict__
         {
             "type": "facing_tile",
-            "parameters": ["Maple"],
+            "parameters": ["npc_maple"],
             "width": 1,
             "height": 1,
             "operator": "is",
@@ -283,7 +282,7 @@ class Npc(object):
         {
             "type": "facing_npc",
             "parameters": [
-                "Oak"
+                "npc_oak"
             ],
             "width": 1,
             "height": 1,
@@ -299,13 +298,10 @@ class Npc(object):
 
         # First, find the NPC by name
         world = game.current_state
-        for item in world.npcs:
-            if item.name == npc_name:
-                npc = item      # We found the NPC!
-
-        # If we couldn't find the NPC, return false as we're not next to it :P
-        if not npc:
-            return False
+        if npc_name not in world.npcs
+            return
+        else
+            npc = world.npcs[npc_slug]
 
         # Next, we check the player position and see if we're one tile away from the NPC.
         if npc.tile_pos[1] == game.player1.tile_pos[1]:

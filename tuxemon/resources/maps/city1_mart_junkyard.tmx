@@ -88,7 +88,7 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="15" type="event" x="160" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc Maple,10,6,girl1,wander"/>
+    <property name="act1" value="create_npc npc_maple,Maple,10,6,girl1,wander"/>
     <property name="cond1" value="is variable_set maple_bedroom1:true"/>
    </properties>
   </object>
@@ -135,7 +135,7 @@
   </object>
   <object id="32" type="event" x="80" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind Maple,6,18"/>
+    <property name="act1" value="pathfind npc_maple,6,18"/>
     <property name="act2" value="dialog MAPLE: I got a Bamboon!"/>
     <property name="act3" value="set_variable maple_got_tuxemon1:true"/>
     <property name="cond1" value="is variable_set got_Fruitera:true"/>
@@ -144,7 +144,7 @@
   </object>
   <object id="34" type="event" x="240" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind Maple,14,18"/>
+    <property name="act1" value="pathfind npc_maple,14,18"/>
     <property name="act2" value="dialog MAPLE: I got a Fruitera!"/>
     <property name="act3" value="set_variable maple_got_tuxemon1:true"/>
     <property name="cond1" value="is variable_set got_Bamboon:true"/>

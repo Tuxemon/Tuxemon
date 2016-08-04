@@ -33,6 +33,9 @@ from __future__ import division
 # Import various python libraries
 import logging
 import math
+import itertools
+from six.moves import range
+from six.moves import map as imap
 from functools import partial
 
 import pygame
@@ -83,7 +86,6 @@ class WorldState(state.State):
         # Set the tiles and map size variables
         self.tiles = []
         self.map_size = []
-        self.collision_rectmap = []
 
         # Find out how many tiles can fit on the visible screen. We use this
         # so we draw only the tiles that are visible.
@@ -388,43 +390,43 @@ class WorldState(state.State):
         self.highlayer_tiles = []
         self.medlayer_tiles = []
 
-        starting_tile_x = - \
-            (self.global_x / self.tile_size[0])
-             # How many tiles over we have to draw the first tile
-        starting_tile_y = - \
-            (self.global_y / self.tile_size[1])
-             # How many tiles down we have to draw the first tile
-        self.tile_buffer = 2  # This is how many tiles we should draw past the visible region
+        # What region of tiles should be visible?
+        left   = -int(self.global_x / self.tile_size[0])
+        top    = -int(self.global_y / self.tile_size[1])
+        right  = left + self.visible_tiles[0]
+        bottom = top + self.visible_tiles[1]
 
-        # Loop through the number of visible tiles and draw only the tiles that
-        # are visible
-        for row in list(range(int(starting_tile_x) - self.tile_buffer, int(starting_tile_x) + self.visible_tiles[0])):
-            if row > 0:
+        # Clamp that to the map boundaries.
+        left   = max(left,   0)
+        top    = max(top,    0)
+        right  = min(right,  len(self.tiles))
+        bottom = min(bottom, len(self.tiles[1]))
 
-                for column in list(range(int(starting_tile_y) - self.tile_buffer, int(starting_tile_y) + self.visible_tiles[1])):
-                    if row > 0:
-                        try:
-                            if self.tiles[row][column]:		# Check to see if a tile exists at this coordinates
-                                for tile in self.tiles[row][column]:
-                                    # Append the high level tiles to its own
-                                    # list to be drawn over the player. Tiles on layer 4 will be drawn
-                                    # above the player's body, but below the player's head.
-                                    if tile["layer"] == 4:
-                                        self.medlayer_tiles.append(tile)
-                                    elif tile["layer"] > 4:
-                                        self.highlayer_tiles.append(tile)
-                                    else:
-                                        draw_position = (tile["position"][0] + self.global_x,
-                                                         tile["position"][1] + self.global_y)
-                                        if type(tile["surface"]) is pygame.Surface:
-                                            surface.blit(tile["surface"], draw_position)
-                                        else:
-                                            tile["surface"].blit(surface, draw_position)
+        # These vars will be used in the following loop.
+        # Let's pull them into the current scope to make
+        # access faster.
+        tiles = self.tiles
+        gx = self.global_x
+        gy = self.global_y
 
-                        # If we try drawing a tile that is out of index range, that means we
-                        # reached the end of the list, so just break the loop
-                        except IndexError:
-                            break
+        # Loop through the visible tiles
+        for row in range(top, bottom):
+            for column in range(left, right):
+                for tile in tiles[column][row]:
+                    # Append the high level tiles to its own
+                    # list to be drawn over the player. Tiles on layer 4 will be drawn
+                    # above the player's body, but below the player's head.
+                    if tile["layer"] == 4:
+                        self.medlayer_tiles.append(tile)
+                    elif tile["layer"] > 4:
+                        self.highlayer_tiles.append(tile)
+                    else:
+                        draw_position = (tile["position"][0] + gx,
+                                         tile["position"][1] + gy)
+                        if type(tile["surface"]) is pygame.Surface:
+                            surface.blit(tile["surface"], draw_position)
+                        else:
+                            tile["surface"].blit(surface, draw_position)
 
         # We need to keep track of the global_x/y that we used to draw the bottom tiles so we use
         # the same values for the higher layer tiles. We have to do this because when we draw the
@@ -459,20 +461,6 @@ class WorldState(state.State):
             self.player1.moverate = self.player1.runrate
         else:
             self.player1.moverate = self.player1.walkrate
-
-        # Check to see if the player is colliding with anything
-        self.collision_rectmap = []
-        for item in self.collision_map:
-            self.collision_rectmap.append(
-                pygame.Rect(
-                    (item[0] * self.tile_size[0]) + self.global_x,
-                    (item[1] * self.tile_size[0]) + self.global_y, self.tile_size[0], self.tile_size[1]))
-
-        # Add any NPC's to the collision rectangle map. We use this to see if
-        # the player is colliding or not
-        for npc in self.npcs:
-            self.collision_rectmap.append(
-                pygame.Rect(npc.position[0], npc.position[1], self.tile_size[0], self.tile_size[1]))
 
         # Set the global_x/y when the player moves around
         self.global_x, self.global_y = self.player1.move(
@@ -584,6 +572,30 @@ class WorldState(state.State):
         # Draw the top half of the player above layer 4.
         self.player1.draw(self.screen, "top")
 
+    def _collision_box_to_pgrect(self, box):
+        """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
+        """
+
+        # For readability
+        x = box[0]
+        y = box[1]
+        tw = self.tile_size[0]
+        th = self.tile_size[1]
+
+        return pygame.Rect(x*tw + self.global_x,
+                           y*th + self.global_y,
+                           tw,
+                           th)
+
+    def _npc_to_pgrect(self, npc):
+        """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
+        """
+
+        return pygame.Rect(npc[0],
+                           npc[1],
+                           self.tile_size[0],
+                           self.tile_size[1])
+
     def high_map_drawing(self, surface):
         """Draws map tiles above the players and NPCs
         """
@@ -620,7 +632,14 @@ class WorldState(state.State):
 
         # If we want to draw the collision map for debug purposes
         if prepare.CONFIG.collision_map == "1":
-            for item in self.collision_rectmap:
+            # We need to iterate over all collidable objects.  So, let's start
+            # with the walls/collision boxes.
+            box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
+
+            # Next, deal with solid NPCs.
+            npc_iter = imap(self._npc_to_pgrect, self.npcs)
+
+            for item in itertools.chain(box_iter, npc_iter):
                 surface.blit(self.collision_tile, (item[0], item[1]))
 
             if self.player1.direction["up"]:

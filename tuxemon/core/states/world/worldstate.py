@@ -33,6 +33,7 @@ from __future__ import division
 # Import various python libraries
 import logging
 import math
+import itertools
 
 import pygame
 
@@ -86,7 +87,6 @@ class WorldState(state.State):
         # Set the tiles and map size variables
         self.tiles = []
         self.map_size = []
-        self.collision_rectmap = []
 
         # Find out how many tiles can fit on the visible screen. We use this
         # so we draw only the tiles that are visible.
@@ -373,20 +373,6 @@ class WorldState(state.State):
         else:
             self.player1.moverate = self.player1.walkrate
 
-        # Check to see if the player is colliding with anything
-        self.collision_rectmap = []
-        for item in self.collision_map:
-            self.collision_rectmap.append(
-                pygame.Rect(
-                    (item[0] * self.tile_size[0]) + self.global_x,
-                    (item[1] * self.tile_size[0]) + self.global_y, self.tile_size[0], self.tile_size[1]))
-
-        # Add any NPC's to the collision rectangle map. We use this to see if
-        # the player is colliding or not
-        for npc in self.npcs:
-            self.collision_rectmap.append(
-                pygame.Rect(npc.position[0], npc.position[1], self.tile_size[0], self.tile_size[1]))
-
         # Set the global_x/y when the player moves around
         self.global_x, self.global_y = self.player1.move(
             self.screen, self.tile_size, self.time_passed_seconds, (self.global_x, self.global_y), self)
@@ -497,6 +483,30 @@ class WorldState(state.State):
         # Draw the top half of the player above layer 4.
         self.player1.draw(self.screen, "top")
 
+    def _collision_box_to_pgrect(self, collision_box):
+        """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
+        """
+
+        # For readability
+        x = collision_box[0]
+        y = collision_box[1]
+        tile_width = self.tile_size[0]
+        tile_height = self.tile_size[1]
+
+        return pygame.Rect(x*tile_width + self.global_x,
+                           y*tile_height + self.global_y,
+                           tile_width,
+                           tile_height)
+
+    def _npc_to_pgrect(self, npc):
+        """Returns a pygame.Rect (in screen-coords) of an NPC's bounding box.
+        """
+
+        return pygame.Rect(npc[0],
+                           npc[1],
+                           self.tile_size[0],
+                           self.tile_size[1])
+
     def high_map_drawing(self, surface):
         """Draws map tiles above the players and NPCs
         """
@@ -533,7 +543,18 @@ class WorldState(state.State):
 
         # If we want to draw the collision map for debug purposes
         if prepare.CONFIG.collision_map == "1":
-            for item in self.collision_rectmap:
+            # We want to draw bright-red boxes over solid areas of the map.
+            # First, let's get an iterator for the collision boxes.
+            mapbox_iter = itertools.imap(self._collision_box_to_pgrect,
+                                         self.collision_map)
+
+            # Second, an iterator for NPC bounding boxes.
+            npc_iter = itertools.imap(self._npc_to_pgrect,
+                                      self.npcs)
+
+            # Now draw them!
+            solid_rects = itertools.chain(mapbox_iter, npc_iter)
+            for item in solid_rects:
                 surface.blit(self.collision_tile, (item[0], item[1]))
 
             if self.player1.direction["up"]:

@@ -78,7 +78,7 @@ class Combat(object):
                 game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
 
         # Start combat
-        npc_slug = int(action.parameters[0])
+        npc_slug = action.parameters[0]
 
         # Create an NPC object that will be used as our opponent
         npc = player.Npc()

@@ -440,7 +440,7 @@ class CombatAnimations(Menu):
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):
-			shake_ball(1.8 + i*1.0) # leave a 0.6s wait between each shake
+            shake_ball(1.8 + i*1.0) # leave a 0.6s wait between each shake
 
         if is_captured:
             self.task(kill, 2 + num_shakes)

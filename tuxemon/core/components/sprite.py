@@ -478,6 +478,7 @@ class VisualSpriteList(RelativeGroup):
             # seeking_index once false, will exit the loop
             seeking_index = True
             while seeking_index:
+                items = len(self)
 
                 # ignore left/right if there is only one column
                 if self.columns > 1:
@@ -487,14 +488,16 @@ class VisualSpriteList(RelativeGroup):
                     elif event.key == pygame.K_RIGHT:
                         index += 1
 
+                # calculate the next position if moving up/down
+                col = int(math.ceil(items / self.columns)) * self.columns + items % self.columns
+
                 if event.key == pygame.K_DOWN:
-                    index += self.columns
+                    index += col
 
                 elif event.key == pygame.K_UP:
-                    index -= self.columns
+                    index -= col
 
                 # wrap the cursor position
-                items = len(self)
                 if index < 0:
                     index = items - abs(index)
                 if index >= items:

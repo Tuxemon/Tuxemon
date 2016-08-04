@@ -55,7 +55,8 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew tap Homebrew/python
 brew update
 brew install python
-brew install sdl sdl_image sdl_mixer sdl_ttf portmidi hg git
+brew install sdl sdl_image sdl_ttf portmidi hg git
+brew install sdl_mixer --with-libvorbis
 pip install pytmx
 pip install pillow
 pip install six

@@ -268,11 +268,11 @@ class WorldState(state.State):
             self.game.client.update_player(self.player1.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for slug,npc in self.npcs:
+        for npc in self.npcs.items():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)
 
-        for slug,npc in self.npcs_off_map:
+        for npc in self.npcs_off_map.items():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)
 
@@ -470,7 +470,7 @@ class WorldState(state.State):
 
         # Add any NPC's to the collision rectangle map. We use this to see if
         # the player is colliding or not
-        for slug,npc in self.npcs:
+        for npc in self.npcs.items():
             self.collision_rectmap.append(
                 pygame.Rect(npc.position[0], npc.position[1], self.tile_size[0], self.tile_size[1]))
 
@@ -483,7 +483,7 @@ class WorldState(state.State):
         self.global_y_diff = self.orig_global_y - self.global_y
 
         # Draw any game NPC's
-        for slug,npc in self.npcs:
+        for npc in self.npcs.items():
             if npc.running:
                 npc.moverate = npc.runrate
             else:
@@ -528,7 +528,7 @@ class WorldState(state.State):
             npc.draw(self.screen, "bottom")
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
-        for slug,npc in self.npcs_off_map:
+        for npc in self.npcs_off_map.items():
             if npc.running:
                 npc.moverate = npc.runrate
             else:
@@ -577,7 +577,7 @@ class WorldState(state.State):
                     tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw the top half of our NPCs above layer 4.
-        for slug,npc in self.npcs:
+        for npc in self.npcs.items():
             npc.draw(self.screen, "top")
 
         # Draw the top half of the player above layer 4.
@@ -824,7 +824,7 @@ class WorldState(state.State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for slug,npc in self.npcs:
+                    for npc in self.npcs.items():
                         tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
                         if tile_pos == tile:
                             logger.info("Opening interaction menu!")

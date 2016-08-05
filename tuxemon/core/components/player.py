@@ -453,7 +453,7 @@ class Player(object):
         npc_positions = set()
 
         # Get all the NPC's tile monsters_in_play so we can check for collisions.
-        for slug,npc in game.npcs:
+        for npc in game.npcs.items():
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add( (npc_pos_x, npc_pos_y) )
@@ -763,7 +763,7 @@ class Npc(Player):
         collision_dict = {}
 
         # Get all the NPC's tile monsters_in_play so we can check for collisions.
-        for slug,npc in game.npcs:
+        for npc in game.npcs.items():
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add((npc_pos_x, npc_pos_y))

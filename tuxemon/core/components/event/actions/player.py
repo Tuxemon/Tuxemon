@@ -32,7 +32,7 @@ from core import prepare
 from core import tools
 from core.components import item
 from core.components import monster
-import Common
+from core.components.event.actions.common import Common
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

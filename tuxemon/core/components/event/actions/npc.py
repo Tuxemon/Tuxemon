@@ -30,6 +30,7 @@ from core import prepare
 from core.components import ai
 from core.components import player
 from core.components.event import Condition
+from core.components.event.actions.common import Common
 
 
 class Npc(object):

@@ -92,7 +92,7 @@ class ItemMenuState(Menu):
                 result = item.use(player, monster)
                 # TODO: in the future, it cannot be assumed that monster screen is up
                 self.game.pop_state()    # pop the monster screen
-                if result:
+                if result.success:
                     tools.open_dialog(self.game, [trans('item_success')])
                 else:
                     tools.open_dialog(self.game, [trans('item_failure')])
@@ -102,14 +102,21 @@ class ItemMenuState(Menu):
                 combat_state.enqueue_action(player, item, monster)
                 # TODO: in the future, it cannot be assumed that monster screen is up
                 self.game.pop_state()    # pop the monster screen
-                self.game.pop_state()    # pop this menu, returning to combat
+                # self.game.pop_state()    # pop this menu, returning to combat
                 self.game.pop_state()    # pop the combat menu, ending turn
 
         def confirm():
             self.game.pop_state()  # close the confirm dialog
+            combat_state = self.game.get_state_name("CombatState") # determine if in combat state
             # TODO: allow items to be used on player or "in general"
             # currently, items are only used on monsters
-            menu = self.game.push_state("MonsterMenuState")
+            menu = None
+            if combat_state is None:
+                menu = self.game.push_state("MonsterMenuState")
+            else:
+                self.game.pop_state() # pop the item selection menu
+                menu = self.game.push_state("CombatTargetMenuState")
+
             menu.on_menu_selection = use_item
 
         def cancel():

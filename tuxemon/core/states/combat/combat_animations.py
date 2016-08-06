@@ -389,3 +389,62 @@ class CombatAnimations(Menu):
         animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
         animate(trainer1.rect, front_island.rect, y=y_mod,
                 transition='out_back', relative=True)
+
+    def animate_capture_monster(self, is_captured, num_shakes, monster):
+        """ Animation for capturing monsters.
+
+        :param is_captured: boolean representing success of capture
+        :param num_shakes: number of shakes before animation ends
+        :param monster: the monster
+        :return:
+        """
+        monster_sprite = self._monster_sprite_map.get(monster, None)
+        capdev = self.load_sprite('gfx/items/capture_device.png')
+        animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)
+        scale_sprite(capdev, .4)
+        capdev.rect.center = scale(0), scale(0)
+        animate(x=monster_sprite.rect.centerx)
+        animate(y=monster_sprite.rect.centery)
+        self.task(partial(toggle_visible, monster_sprite), 1.0) # make the monster go away temporarily
+
+        def kill():
+            self._monster_sprite_map[monster].kill()
+            self.hud[monster].kill()
+            del self._monster_sprite_map[monster]
+            del self.hud[monster]
+
+        # TODO: cache this sprite from the first time it's used.
+        # also, should loading animated sprites be more convenient?
+        images = list()
+        for fn in ["capture%02d.png" % i for i in range(1, 10)]:
+            fn = 'animations/technique/' + fn
+            image = tools.load_and_scale(fn)
+            images.append((image, .07))
+
+        tech = PygAnimation(images, False)
+        sprite = Sprite()
+        sprite.image = tech
+        sprite.rect = tech.get_rect()
+        self.task(tech.play, 1.0)
+        self.task(partial(self.sprites.add, sprite), 1.0)
+        sprite.rect.midbottom = monster_sprite.rect.midbottom
+
+        def shake_ball(initial_delay):
+            animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay)
+            animate(capdev.rect, y=scale(3), relative=True)
+
+            animate = partial(self.animate, duration=0.2, transition='linear', delay=initial_delay+0.1)
+            animate(capdev.rect, y= -scale(6), relative=True)
+
+            animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay+0.3)
+            animate(capdev.rect, y=scale(3), relative=True)
+
+        for i in range(0, num_shakes):
+            shake_ball(1.8 + i*1.0) # leave a 0.6s wait between each shake
+
+        if is_captured:
+            self.task(kill, 2 + num_shakes)
+        else:
+            self.task(partial(toggle_visible, monster_sprite), 1.8 + num_shakes*1.0) # make the monster appear again!
+            self.task(tech.play, 1.8 + num_shakes*1.0)
+            self.task(capdev.kill, 1.8 + num_shakes*1.0)

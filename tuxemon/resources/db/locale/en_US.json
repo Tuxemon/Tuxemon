@@ -17,12 +17,16 @@
     "combat_monster_choice": "What will ${{name}} do?",
     "combat_fainted": "${{name}} fainted!",
     "combat_isactive": "${{name}} is already in play.",
+
     "empty_slot": "empty slot",
     "exit": "Exit",
     "item_confirm_use": "Use",
     "item_confirm_cancel": "Cancel",
     "item_failure": "It failed!",
     "item_success": "It worked!",
+    "attempting_capture": "Attempting capture...",
+    "gotcha": "Gotcha!",
+
     "item_apple_name": "Apple",
     "item_apple_descr": "Heals a monster by 10 HP.",
     "item_berry_name": "Berry",
@@ -40,6 +44,10 @@
     "item_capture_device_name": "Capture Device",
     "item_capture_device_descr": "Captures a monster.",
     "item_cannot_use_here": "${{name}} cannot be used here!",
+
+    "monster_menu_info": "Info",
+    "monster_menu_move": "Move",
+
     "log_off": "Log Off",
     "menu_bag": "Bag",
     "menu_fight": "Fight",
@@ -55,10 +63,13 @@
     "menu_player": "Player",
     "menu_run": "Run",
     "menu_save": "Save",
+
     "multiplayer_accept": "Accept",
     "multiplayer_decline": "Decline",
     "multiplayer_duel": "${{name}} would like to Duel!",
+
     "not_implemented": "This feature is not yet implemented.",
+
     "received_x": "Received ${{name}}!",
     "save_success": "Saved!",
     "save_failure": "There was a problem saving!",
@@ -157,5 +168,7 @@
     "txmn_tumbleworm_name": "Tumbleworm",
     "txmn_tux_category": "Water",
     "txmn_tux_descr": "",
-    "txmn_tux_name": "Tux"
+    "txmn_tux_name": "Tux",
+
+    "npc_maple_name": "Maple"
 }

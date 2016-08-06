@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 class Combat(object):
 
     def start_battle(self, game, action):
-        """Start a battle and switch to the combat module. The parameters must contain an NPC id
+        """Start a battle and switch to the combat module. The parameters must contain an NPC slug
         in the NPC database.
 
         :param game: The main game object that contains all the game's variables.
@@ -56,7 +56,7 @@ class Combat(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: npc_id
+        Valid Parameters: npc_slug
 
         **Examples:**
 
@@ -78,7 +78,7 @@ class Combat(object):
                 game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
 
         # Start combat
-        npc_id = int(action.parameters[0])
+        npc_slug = int(action.parameters[0])
 
         # Create an NPC object that will be used as our opponent
         npc = player.Npc()
@@ -86,7 +86,7 @@ class Combat(object):
         # Look up the NPC's details from our NPC database
         npcs = db.JSONDatabase()
         npcs.load("npc")
-        npc_details = npcs.database['npc'][npc_id]
+        npc_details = npcs.database['npc'][npc_slug]
 
         # Set the NPC object with the details fetched from the database.
         npc.name = npc_details['name']
@@ -201,7 +201,7 @@ class Combat(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: encounter_id
+        Valid Parameters: encounter_slug
 
         """
         player1 = game.player1
@@ -211,7 +211,7 @@ class Combat(object):
             return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
-        encounter_id = int(action.parameters[0])
+        encounter_slug = action.parameters[0]
 
         # Look up the encounter details
         monsters = db.JSONDatabase()
@@ -222,7 +222,7 @@ class Combat(object):
         encounter = None
 
         # Get all the monsters associated with this encounter.
-        encounters = monsters.database['encounter'][encounter_id]['monsters']
+        encounters = monsters.database['encounter'][encounter_slug]['monsters']
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.

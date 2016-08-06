@@ -1,5 +1,5 @@
 {
-    "id":1,
+    "slug": "default_encounter",
     "monsters":[
         {
             "encounter_rate":1,

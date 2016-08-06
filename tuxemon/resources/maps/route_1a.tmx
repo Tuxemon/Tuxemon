@@ -44,7 +44,7 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="1" name="Random Battle" type="event" x="96" y="656" width="144" height="352">
    <properties>
-    <property name="act1" value="random_encounter 2"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -52,7 +52,7 @@
   </object>
   <object id="2" name="Random Battle" type="event" x="96" y="1072" width="208" height="48">
    <properties>
-    <property name="act1" value="random_encounter 2"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -60,7 +60,7 @@
   </object>
   <object id="3" name="Random Battle" type="event" x="80" y="448" width="272" height="112">
    <properties>
-    <property name="act1" value="random_encounter 2"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -74,7 +74,7 @@
   </object>
   <object id="27" name="Random Battle" type="event" x="320" y="688" width="80" height="80">
    <properties>
-    <property name="act1" value="random_encounter 2"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>

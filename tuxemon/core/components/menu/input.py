@@ -18,8 +18,7 @@ class InputMenu(Menu):
     background = None
     draw_borders = False
 
-    chars = u"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMLNOPQRSTUVWXYZ0123456789.-_!@#$%&*"
-    chars = u"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMLNOPQRSTUVWXYZ"
+    chars = u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-_!@#$%&*"
     alphabet_length = 26
 
     def startup(self, *items, **kwargs):
@@ -44,7 +43,7 @@ class InputMenu(Menu):
         # prompt
         self.prompt = TextArea(self.font, self.font_color, (96, 96, 96))
         self.prompt.animated = False
-        self.prompt.rect = pygame.Rect(tools.scale_sequence([10, 20, 80, 100]))
+        self.prompt.rect = pygame.Rect(tools.scale_sequence([50, 20, 80, 100]))
         self.sprites.add(self.prompt)
 
         self.prompt.text = kwargs.get("prompt", "")
@@ -53,18 +52,18 @@ class InputMenu(Menu):
         w = self.rect.width - self.rect.width * .8
         h = self.rect.height - self.rect.height * .5
         rect = self.rect.inflate(-w, -h)
-        rect.top = self.rect.centery
+        rect.top = self.rect.centery * .7
         return rect
 
     def initialize_items(self):
-        self.menu_items.columns = self.alphabet_length
+        self.menu_items.columns = self.alphabet_length // 2
 
         # add the keys
         for char in self.chars:
             yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
 
-        yield MenuItem(self.shadow_text("ENTER"), None, None, partial(self.confirm))
-        yield MenuItem(self.shadow_text("BACKSPACE"), None, None, partial(self.backspace))
+        yield MenuItem(self.shadow_text("<="), None, None, partial(self.backspace))
+        yield MenuItem(self.shadow_text("END"), None, None, partial(self.confirm))
 
     def process_event(self, event):
         super(InputMenu, self).process_event(event)

@@ -402,6 +402,30 @@ class Menu(state.State):
                     if not self.selected_index == index:
                         self.change_selection(index)
 
+        # TODO: handling of click/drag, miss-click, etc
+        # TODO: eventually, maybe move some handling into menuitems
+        # TODO: handle screen scaling?
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+
+            # TODO: generalized widget system
+            # menu items is a relative group, so their rect will be relative to their parent
+            # so we need to adjust the point to topleft of the containing rect
+            # eventually, a widget system will do this automatically
+
+            # make sure that the rect's position is current
+            self.menu_items.update_rect_from_parent()
+
+            # move the mouse/touch origin to be relative to the menu_items
+            mouse_pos = [a - b for a, b in zip(event.pos, self.menu_items.rect.topleft)]
+            # TODO: a vector type would be niceeee
+
+            # loop through all the items here and see if they collide
+            # eventually, we should make this more generic...not part of the menu
+            for index, item in enumerate(self.menu_items):
+                if item.rect.collidepoint(mouse_pos):
+                    self.change_selection(index)
+                    self.on_menu_selection(self.get_selected_item())
+
     def change_selection(self, index, animate=True):
         """ Force the menu to be evaluated and move cursor and trigger focus changes
 

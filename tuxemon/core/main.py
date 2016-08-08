@@ -66,8 +66,7 @@ def main():
     control.push_state("BackgroundState")
 
     # basically the main menu
-    control.push_state("InputMenu", prompt="Name?")
-    # control.push_state("StartState")
+    control.push_state("StartState")
 
     # Show the splash screen if it is enabled in the game configuration
     if prepare.CONFIG.splash == "1":

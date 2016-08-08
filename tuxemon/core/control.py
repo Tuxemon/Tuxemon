@@ -243,10 +243,6 @@ class Control(StateManager):
                 for game_event in self.get_controller_event(pg_event):
                     yield game_event
 
-            # Loop through normal mouse events
-            if pg_event.type == pg.MOUSEBUTTONDOWN:
-                yield pg_event
-
             # Loop through our joystick events
             for game_event in self.get_joystick_event(pg_event):
                 yield game_event

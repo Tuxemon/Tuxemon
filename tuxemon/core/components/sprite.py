@@ -476,50 +476,25 @@ class VisualSpriteList(RelativeGroup):
             # the index incrementer will loop until a suitable
             # index is found...one that is not disabled.
             # seeking_index once false, will exit the loop
-            items = len(self)
             seeking_index = True
-
-            # horizontal movement: left and right will inc/dec index by one
-            if self.columns > 1:
-                if event.key == pygame.K_LEFT:
-                    index -= 1
-
-                elif event.key == pygame.K_RIGHT:
-                    index += 1
-
-            # vertical movement: up/down will inc/dec the index by adjusted
-            # value of number of items in a column
-            rows, remainder = divmod(items, self.columns)
-            row, col = divmod(index, self.columns)
-
-            if event.key == pygame.K_DOWN:
-
-                if remainder:
-                    if row == rows:
-                        index += remainder
-
-                    elif col < remainder:
-                        index += self.columns
-                    else:
-                        if row == rows - 1:
-                            index += self.columns + remainder
-                        else:
-                            index += self.columns
-
-            elif event.key == pygame.K_UP:
-                if remainder:
-                    print(rows)
-                    if row == 0:
-                        if col < remainder:
-                            index -= remainder
-                        else:
-                            index -= self.columns * (rows - 1) + remainder
-                    else:
-                        index -= self.columns
-
             while seeking_index:
 
+                # ignore left/right if there is only one column
+                if self.columns > 1:
+                    if event.key == pygame.K_LEFT:
+                        index -= 1
+
+                    elif event.key == pygame.K_RIGHT:
+                        index += 1
+
+                if event.key == pygame.K_DOWN:
+                    index += self.columns
+
+                elif event.key == pygame.K_UP:
+                    index -= self.columns
+
                 # wrap the cursor position
+                items = len(self)
                 if index < 0:
                     index = items - abs(index)
                 if index >= items:

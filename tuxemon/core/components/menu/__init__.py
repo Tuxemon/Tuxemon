@@ -28,11 +28,9 @@
 # core.components.menu Menu handling module.
 #
 #
-from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 # convenience imports, do not remove!
 from .menu import Menu
-from .menu import PopUpMenu
-from .input import InputMenu
+from core.components.menu.menu import PopUpMenu

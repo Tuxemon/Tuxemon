@@ -170,5 +170,8 @@
     "txmn_tux_descr": "",
     "txmn_tux_name": "Tux",
 
-    "npc_maple_name": "Maple"
+    "npc_maple_name": "Maple",
+
+    "yes": "Yes",
+    "no": "No"
 }

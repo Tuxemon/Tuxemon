@@ -29,6 +29,7 @@ from __future__ import absolute_import
 import logging
 from core.tools import open_dialog
 from core.components.locale import translator
+from functools import partial
 
 
 # Create a logger for optional handling of debug messages.
@@ -39,6 +40,7 @@ class Core(object):
     def __init__(self):
         # this is a potentially temporary solution to a problem with dialog chains
         self._dialog_chain_queue = list()
+        self._menu = None
 
     def _replace_text(self, game, text):
         """Replaces ${{var}} tiled variables with their in-game value.
@@ -233,8 +235,9 @@ class Core(object):
 
         if text == "${{end}}":
             # Open a dialog window in the current scene.
-            open_dialog(game, self._dialog_chain_queue)
+            open_dialog(game, self._dialog_chain_queue, self._menu)
             self._dialog_chain_queue = list()
+            self._menu = None
         else:
             self._dialog_chain_queue.append(text)
 
@@ -276,8 +279,9 @@ class Core(object):
         key = str(action.parameters[0])
         if key == "${{end}}":
             # Open a dialog window in the current scene.
-            open_dialog(game, self._dialog_chain_queue)
+            open_dialog(game, self._dialog_chain_queue, self._menu)
             self._dialog_chain_queue = list()
+            self._menu = None
             return
 
         replace_values = {}
@@ -477,3 +481,62 @@ class Core(object):
         for e in events:
             if e['id'] == int(action.parameters[0]):
                 event_engine.execute_action(e['acts'], game)
+
+    def dialog_choice(self, game, action):
+        """Asks the player to make a choice.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: choice1:choice2,var_key
+        """
+        def set_variable(game, player, var_key, var_value):
+            player.game_variables[var_key] = var_value
+            game.pop_state()
+            game.pop_state()
+
+        # Get the player object from the game.
+        player = game.player1
+
+        var_list = action.parameters[0].split(":")
+        var_menu = list()
+        for val in var_list:
+            var_menu.append((val, val, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
+        self._menu = var_menu
+
+    def translated_dialog_choice(self, game, action):
+        """Asks the player to make a choice.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: choice1:choice2,var_key
+        """
+        def set_variable(game, player, var_key, var_value):
+            player.game_variables[var_key] = var_value
+            game.pop_state()
+            game.pop_state()
+
+        # Get the player object from the game.
+        player = game.player1
+
+        var_list = action.parameters[0].split(":")
+        var_menu = list()
+        for val in var_list:
+            label = translator.translate(val).upper()
+            var_menu.append((val, label, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
+        self._menu = var_menu

@@ -663,7 +663,7 @@ class Player(object):
     def pathfind_r(self, dest, queue, visited, depth, game):
         # recursive breadth first search algorithm
 
-        if queue:
+        if not queue:
             # does reaching this case mean we exhausted the search? I think so
             # which means there is no possible path
             return False

@@ -17,6 +17,7 @@ import pygame
 class InputMenu(Menu):
     background = None
     draw_borders = False
+    touch_aware = True
 
     chars = u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
     alphabet_length = 26
@@ -62,8 +63,11 @@ class InputMenu(Menu):
         for char in self.chars:
             yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
 
-        yield MenuItem(self.shadow_text("<="), None, None, partial(self.backspace))
-        yield MenuItem(self.shadow_text("END"), None, None, partial(self.confirm))
+        # backspace key
+        yield MenuItem(self.shadow_text("<="), None, None, self.backspace)
+
+        # button to confirm the input and close the dialog
+        yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
 
     def process_event(self, event):
         super(InputMenu, self).process_event(event)
@@ -88,4 +92,10 @@ class InputMenu(Menu):
         self.text_area.text = self.input_string
 
     def confirm(self):
-        pass
+        """ Confirm the input
+
+        This is called when user selects "End".  Override, maybe?
+
+        :return:
+        """
+        self.game.pop_state(self)

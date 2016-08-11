@@ -650,7 +650,7 @@ class Player(object):
                 # last minute check to remove the top _plan step if
                 # it's the same as our location
                 if path[len(path)-1] == self.tile_pos:
-                    plan.pop()
+                    path.pop()
 
                 # store the path
                 self.path = path

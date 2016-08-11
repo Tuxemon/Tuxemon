@@ -477,8 +477,7 @@ class VisualSpriteList(RelativeGroup):
 
             # in order to accommodate disabled menu items,
             # the mod incrementer will loop until a suitable
-            # mod is found...one that is not disabled.
-            # seeking_mod once false, will exit the loop
+            # index is found...one that is not disabled.
             items = len(self)
             mod = 0
 
@@ -528,6 +527,7 @@ class VisualSpriteList(RelativeGroup):
 
             original_index = index
             seeking_index = True
+            # seeking_index once false, will exit the loop
             while seeking_index and mod:
                 index += mod
 

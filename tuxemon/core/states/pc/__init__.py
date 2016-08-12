@@ -68,7 +68,7 @@ class PCState(PopUpMenu):
         for key, callback in menu_items_map:
             label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            item = MenuItem(image, label, None, None)
+            item = MenuItem(image, label, None, callback)
             self.add(item)
 
 # class Player_Menu(Menu):

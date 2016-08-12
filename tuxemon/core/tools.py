@@ -323,7 +323,7 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text):
+def open_dialog(game, text, menu = None):
     """ Open a dialog with the standard window size
 
     :param game:
@@ -331,4 +331,4 @@ def open_dialog(game, text):
     :rtype: State
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    return game.push_state("DialogState", text=text, rect=rect)
+    return game.push_state("DialogState", text=text, rect=rect, menu=menu)

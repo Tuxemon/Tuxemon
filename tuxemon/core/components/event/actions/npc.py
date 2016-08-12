@@ -47,7 +47,7 @@ class Npc(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: slug,name,tile_pos_x,tile_pos_y,animations,behavior
+        Valid Parameters: slug,tile_pos_x,tile_pos_y,animations,behavior
 
         **Examples:**
 
@@ -56,7 +56,6 @@ class Npc(object):
             "type": "create_npc",
             "parameters": [
                 "npc_oak",
-                "Oak",
                 "1",
                 "5",
                 "oak",
@@ -72,7 +71,6 @@ class Npc(object):
 
         # Get the npc's parameters from the action
         slug = str(action.parameters[0])
-        name = str(action.parameters[1])
         tile_pos_x = int(action.parameters[2])
         tile_pos_y = int(action.parameters[3])
         animations = str(action.parameters[4])
@@ -85,7 +83,7 @@ class Npc(object):
             return
 
         # Create a new NPC object
-        npc = player.Npc(sprite_name=animations, name=name, slug=slug)
+        npc = player.Npc(sprite_name=animations, slug=slug)
 
         # Set the NPC object's variables
         npc.tile_pos = [tile_pos_x, tile_pos_y]
@@ -100,7 +98,6 @@ class Npc(object):
         # current global_x/global_y variables
         npc.position = [(tile_pos_x * world.tile_size[0]) + world.global_x,
                         (tile_pos_y * world.tile_size[1]) + (world.global_y - world.tile_size[1])]
-
 
         # Add the NPC to the game's NPC list
         world.npcs[slug] = npc

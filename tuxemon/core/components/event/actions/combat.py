@@ -64,7 +64,7 @@ class Combat(object):
         {
             "type": "start_battle",
             "parameters": [
-                "1"
+                "npc_hiker1"
             ]
         }
 
@@ -80,8 +80,9 @@ class Combat(object):
         # Start combat
         npc_slug = action.parameters[0]
 
+        # TODO: This should *really* be handled in the Npc initializer
         # Create an NPC object that will be used as our opponent
-        npc = player.Npc()
+        npc = player.Npc(slug = npc_slug)
 
         # Look up the NPC's details from our NPC database
         npcs = db.JSONDatabase()

@@ -274,7 +274,7 @@ class Npc(object):
         :rtype: Boolean
         :returns: True or False
 
-        Valid Parameters: npc_name
+        Valid Parameters: slug
 
         **Examples:**
 
@@ -293,15 +293,15 @@ class Npc(object):
         }
 
         """
-        npc_name = condition.parameters[0]
+        slug = condition.parameters[0]
         npc_location = None
 
         # First, find the NPC by name
         world = game.current_state
-        if npc_name not in world.npcs
+        if slug not in world.npcs.keys()
             return
         else
-            npc = world.npcs[npc_slug]
+            npc = world.npcs[slug]
 
         # Next, we check the player position and see if we're one tile away from the NPC.
         if npc.tile_pos[1] == game.player1.tile_pos[1]:

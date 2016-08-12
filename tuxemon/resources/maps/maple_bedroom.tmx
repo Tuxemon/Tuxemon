@@ -54,7 +54,7 @@
   </object>
   <object id="19" name="Create Maple" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_maple,Maple,3,4,boss,stand"/>
+    <property name="act1" value="create_npc npc_maple,3,4,boss,stand"/>
     <property name="act2" value="set_variable maple_bedroom1:true"/>
     <property name="cond1" value="not variable_set maple_bedroom1:true"/>
     <property name="cond2" value="not npc_exists npc_maple"/>

@@ -37,11 +37,11 @@ from core import prepare
 from core import tools
 
 from . import pyganim
+from core.components import db
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
-
 
 # Class definition for the player.
 class Player(object):
@@ -106,7 +106,6 @@ class Player(object):
         self.tile_size = [16,16]
         self.move_destination = [0,0]		# The player's destination location to move to
         self.final_move_dest = [0,0]        # Stores the final destination sent from a client
-        #self.colliding = False			# To check and see if we're colliding with anything
         self.rect = pygame.Rect(self.position[0], self.position[1], self.playerWidth, self.playerHeight) # Collision rect
         self.game_variables = {}		# Game variables for use with events
 
@@ -453,7 +452,7 @@ class Player(object):
         npc_positions = set()
 
         # Get all the NPC's tile monsters_in_play so we can check for collisions.
-        for npc in game.npcs.items():
+        for npc in game.npcs.values():
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add( (npc_pos_x, npc_pos_y) )
@@ -715,11 +714,16 @@ class Player(object):
 
 
 class Npc(Player):
-    def __init__(self, sprite_name="maple", name="Maple"):
-        # Initialize the parent menu class's default shit
-        Player.__init__(self, sprite_name, name)
+    def __init__(self, sprite_name="maple", slug="npc_maple"):
+        npcs = db.JSONDatabase()
+        npcs.load("npc")
+        npc_data = npcs['npc'][slug]
 
-        self.name = name
+        npc_name = trans(npc_data["name_trans"])
+
+        # Initialize the parent menu class's default shit
+        Player.__init__(self, sprite_name, npc_name)
+            
         self.behavior = "wander"
         self.isplayer = False
         self.update_location = False

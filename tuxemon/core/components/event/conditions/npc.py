@@ -36,7 +36,7 @@ class Npc(object):
         """Gets an NPC object by slug.
 
         :param game: The main game object that contains all the game's variables.
-        :param name: The slug of the NPC that exists on the current map.
+        :param slug: The slug of the NPC that exists on the current map.
 
         :type game: core.control.Control
         :type slug: Str
@@ -45,7 +45,7 @@ class Npc(object):
         :returns: The NPC object or None if the NPC is not found.
 
         """
-        # Loop through the NPC list and see if the name matches any in the list
+        # Loop through the NPC list and see if the slug matches any in the list
         world = game.get_state_name("WorldState")
         if not world:
             return
@@ -53,7 +53,7 @@ class Npc(object):
         if slug in world.npcs:
             return world.npcs[slug]
 
-        logger.error("Unable to find NPC: " + name)
+        logger.error("Unable to find NPC: " + slug)
         return
 
 
@@ -89,7 +89,6 @@ class Npc(object):
         }
 
         """
-        # Loop through the NPC list and see if the name matches any in the list
         world = game.get_state_name("WorldState")
         if not world:
             return
@@ -165,7 +164,7 @@ class Npc(object):
         :rtype: Boolean
         :returns: True or False
 
-        Valid Parameters: npc_name, direction ("up", "down", "left" or "right")
+        Valid Parameters: npc_slug, direction ("up", "down", "left" or "right")
 
         **Examples:**
 
@@ -293,15 +292,12 @@ class Npc(object):
         }
 
         """
-        slug = condition.parameters[0]
         npc_location = None
 
-        # First, find the NPC by name
         world = game.current_state
-        if slug not in world.npcs.keys():
-            return
-        else:
-            npc = world.npcs[slug]
+        npc = self._get_npc(condition.parameters[0])
+        if not npc:
+            return False
 
         # Next, we check the player position and see if we're one tile away from the NPC.
         if npc.tile_pos[1] == game.player1.tile_pos[1]:

@@ -77,9 +77,7 @@ class Npc(object):
         behavior = str(action.parameters[5])
 
         # Ensure that the NPC doesn't already exist on the map.
-        event_engine = game.event_engine
-        npc_exists = Condition("npc_exists", [slug], 1, 1, "is", 0, 0)
-        if event_engine.conditions["npc_exists"]["method"](game, npc_exists):
+        if slug not in world.npcs:
             return
 
         # Create a new NPC object
@@ -116,7 +114,7 @@ class Npc(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: name
+        Valid Parameters: slug
 
         **Examples:**
 

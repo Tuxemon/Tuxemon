@@ -11,7 +11,7 @@ from .components import controller
 from .components import event
 from .components import networking
 from .components import rumble
-from .components.game_event import USER_EVENTS
+from .components.game_event import GAME_EVENT
 from .platform import android
 
 # from .components.combat import CombatEngine, CombatRouter
@@ -507,7 +507,7 @@ class Control(StateManager):
         :rtype: collections.Iterable[pygame.event.Event]
 
         """
-        if game_event.type in USER_EVENTS:
+        if game_event.type in [GAME_EVENT]:
             yield game_event
 
     def toggle_show_fps(self, key):

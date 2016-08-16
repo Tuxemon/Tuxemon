@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import division
 from __future__ import print_function
 
 import pygame
@@ -26,11 +25,10 @@ def input_event(text):
     :type text: str
 
     :rtype: pygame.event.Event
-    :returns: The pygame event added to the event pool.
+    :returns: The pygame event added to the event queue.
 
     """
-    event = pygame.event.Event(INPUT_EVENT, text=text)
+    event = pygame.event.Event(GAME_EVENT, event_type=INPUT_EVENT, text=text)
     _add_event(event)
 
     return event
-

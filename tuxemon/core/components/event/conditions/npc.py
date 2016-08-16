@@ -298,9 +298,9 @@ class Npc(object):
 
         # First, find the NPC by name
         world = game.current_state
-        if slug not in world.npcs.keys()
+        if slug not in world.npcs.keys():
             return
-        else
+        else:
             npc = world.npcs[slug]
 
         # Next, we check the player position and see if we're one tile away from the NPC.

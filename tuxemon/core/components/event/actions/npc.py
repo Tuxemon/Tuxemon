@@ -137,7 +137,7 @@ class Npc(object):
         # Get the npc's parameters from the action
         slug = str(action.parameters[0])
 
-        if slug not in world.npcs
+        if slug not in world.npcs:
             return
 
         # Create a separate list of NPCs to loop through
@@ -198,7 +198,7 @@ class Npc(object):
         dest_y = action.parameters[2]
 
         # get npc object via name
-        if npc_slug not in world.npcs
+        if npc_slug not in world.npcs:
             return
 
         curr_npc = world.npcs[npc_slug]

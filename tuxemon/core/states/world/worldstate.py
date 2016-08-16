@@ -44,6 +44,7 @@ import pygame
 from core import prepare
 from core import state
 from core import tools
+from core.components import game_event
 from core.components import map
 from core.components import networking
 from core.components.animation import Task
@@ -365,6 +366,11 @@ class WorldState(state.State):
 
             if event.key == pygame.K_RIGHT:
                 self.player1.direction["right"] = False
+
+        # Handle text input events
+        if event.type == game_event.INPUT_EVENT:
+            self.player1.name = event.text
+            return None
 
         self.game.client.set_key_condition(event)
 

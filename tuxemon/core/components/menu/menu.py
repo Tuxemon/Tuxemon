@@ -7,7 +7,7 @@ from functools import partial
 import pygame
 
 from core import state, prepare, tools
-from core.components.menu.interface import MenuCursor
+from core.components.menu.interface import MenuCursor, MenuItem
 from core.components.sprite import VisualSpriteList, RelativeGroup
 from core.components.ui.draw import GraphicBox
 from core.components.ui.text import TextArea
@@ -182,6 +182,18 @@ class Menu(state.State):
             number_items = len(self.menu_items)
             if self.menu_items and self.selected_index >= number_items:
                 self.change_selection(number_items - 1)
+
+    def build_item(self, label, callback, icon=None):
+        """ Create a menu item and add it to the menu
+
+        :param label: Some text
+        :param icon: pygame surface (not used yet)
+        :param callback: callback to use when selected
+        :return: Menu Item
+        """
+        image = self.shadow_text(label)
+        item = MenuItem(image, label, None, callback)
+        self.add(item)
 
     def add(self, item):
         """ Add a menu item

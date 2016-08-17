@@ -67,6 +67,9 @@
     "multiplayer_accept": "Accept",
     "multiplayer_decline": "Decline",
     "multiplayer_duel": "${{name}} would like to Duel!",
+    "multiplayer_host_game": "Host Game",
+    "multiplayer_scan_games": "Scan for Games",
+    "multiplayer_join_game": "Join Game",
 
     "not_implemented": "This feature is not yet implemented.",
 

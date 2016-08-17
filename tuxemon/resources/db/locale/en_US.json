@@ -176,5 +176,7 @@
     "npc_maple_name": "Maple",
 
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+
+    "input_name": "Name?"
 }

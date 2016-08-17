@@ -11,6 +11,7 @@ from .components import controller
 from .components import event
 from .components import networking
 from .components import rumble
+from .components.game_event import GAME_EVENT
 from .platform import android
 
 # from .components.combat import CombatEngine, CombatRouter
@@ -249,6 +250,10 @@ class Control(StateManager):
 
             # Loop through our joystick events
             for game_event in self.get_joystick_event(pg_event):
+                yield game_event
+
+            # Loop through our user defined events
+            for game_event in self.get_user_event(pg_event):
                 yield game_event
 
     def process_events(self, events):
@@ -492,6 +497,18 @@ class Control(StateManager):
                         append(kbd_event["KEYUP"]["down"])
 
         return events
+
+    @staticmethod
+    def get_user_event(game_event):
+        """ Filter user defined events
+
+        :param game_event: pygame.event.Event
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
+
+        """
+        if game_event.type in [GAME_EVENT]:
+            yield game_event
 
     def toggle_show_fps(self, key):
         """Press f5 to turn on/off displaying the framerate in the caption.

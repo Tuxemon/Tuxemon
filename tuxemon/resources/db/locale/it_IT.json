@@ -13,16 +13,20 @@
     "combat_capturing_fail": "${{name}} si è liberato!",
     "combat_replacement": "Fai una sostituzione!",
     "combat_replacement_is_fainted": "Questo mostro è K.O.!",
-    "combat_wild_appeared": "${{name}} selvatico appare!",
+    "combat_wild_appeared": "${{name}} selvatico è comparso!",
     "combat_monster_choice": "Cosa deve fare ${{name}}?",
     "combat_fainted": "${{name}} è K.O.!",
     "combat_isactive": "${{name}} è ancora in gioco.",
+    
     "empty_slot": "Slot vuoto",
     "exit": "Esci",
     "item_confirm_use": "Usa",
     "item_confirm_cancel": "Annulla",
     "item_failure": "Ha fallito!",
     "item_success": "Ha funzionato!",
+    "attempting_capture": "Cattura in corso...",
+    "gotcha": "Evvai!",
+    
     "item_apple_name": "Mela",
     "item_apple_descr": "Fa recuperare 10 PV a un mostro.",
     "item_berry_name": "Bacca",
@@ -33,15 +37,18 @@
     "item_orange_descr": "Fa recuperare 20 PV a un mostro.",
     "item_potion_name": "Pozione",
     "item_potion_descr": "Fa recuperare 50 PV a un mostro.",
-    "item_super_potion_name": "Super Pozione",
+    "item_super_potion_name": "Super pozione",
     "item_super_potion_descr": "Fa recuperare 150 PV a un mostro.",
     "item_imperial_potion_name": "Pozione imperiale",
     "item_imperial_potion_descr": "Fa recuperare 350 PV a un mostro.",
     "item_capture_device_name": "Dispositvo di cattura",
     "item_capture_device_descr": "Cattura un mostro.",
     "item_cannot_use_here": "L'oggetto non può essere usato qui!",
-    "log_off": "Disconnetti",
     
+    "monster_menu_info": "Informazioni",
+    "monster_menu_move": "Mosse",
+    
+    "log_off": "Disconnetti",
     "menu_bag": "Borsa",
     "menu_fight": "Combatti",
     "menu_item": "Oggetto",
@@ -56,10 +63,13 @@
     "menu_player": "Giocatore",
     "menu_run": "Avvia",
     "menu_save": "Salva",
+    
     "multiplayer_accept": "Accetta",
     "multiplayer_decline": "Rifiuta",
     "multiplayer_duel": "${{name}} vuole sfidarti!",
+    
     "not_implemented": "Questa funzione non è ancora stata implementata.",
+    
     "received_x": "Hai ricevuto ${{name}}!",
     "save_success": "Salvato!",
     "save_failure": "C'è stato un problema nel salvataggio del file!",
@@ -158,5 +168,12 @@
     "txmn_tumbleworm_name": "Tumbleworm",
     "txmn_tux_category": "Acqua",
     "txmn_tux_descr": "",
-    "txmn_tux_name": "Tux"
+    "txmn_tux_name": "Tux",
+
+    "npc_maple_name": "Maple",
+
+    "yes": "Sì",
+    "no": "No",
+    
+    "input_name": "Qual è il tuo nome?"
 }

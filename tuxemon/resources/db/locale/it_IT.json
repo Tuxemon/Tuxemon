@@ -41,12 +41,12 @@
     "item_super_potion_descr": "Fa recuperare 150 PV a un mostro.",
     "item_imperial_potion_name": "Pozione imperiale",
     "item_imperial_potion_descr": "Fa recuperare 350 PV a un mostro.",
-    "item_capture_device_name": "Dispositvo di cattura",
+    "item_capture_device_name": "Dispositivo di cattura",
     "item_capture_device_descr": "Cattura un mostro.",
     "item_cannot_use_here": "L'oggetto non può essere usato qui!",
     
     "monster_menu_info": "Informazioni",
-    "monster_menu_move": "Mosse",
+    "monster_menu_move": "Sposta",
     
     "log_off": "Disconnetti",
     "menu_bag": "Borsa",
@@ -61,7 +61,7 @@
     "menu_new_game": "Nuovo gioco",
     "menu_options": "Opzioni",
     "menu_player": "Giocatore",
-    "menu_run": "Avvia",
+    "menu_run": "Scappa",
     "menu_save": "Salva",
     
     "multiplayer_accept": "Accetta",

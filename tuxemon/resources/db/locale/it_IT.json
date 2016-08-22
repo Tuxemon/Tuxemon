@@ -16,7 +16,7 @@
     "combat_wild_appeared": "${{name}} selvatico è comparso!",
     "combat_monster_choice": "Cosa deve fare ${{name}}?",
     "combat_fainted": "${{name}} è K.O.!",
-    "combat_isactive": "${{name}} è ancora in gioco.",
+    "combat_isactive": "${{name}} è ancora in campo.",
     
     "empty_slot": "Slot vuoto",
     "exit": "Esci",

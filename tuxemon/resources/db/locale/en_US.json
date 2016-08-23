@@ -73,7 +73,7 @@
     "multiplayer_hosting_ready": "Ready to accept clients!",
     "multiplayer_already_hosting": "Already hosting!",
     "multiplayer_no_servers": "No servers found...",
-    "multiplayer_join_prompt": "Hostname of IP?",
+    "multiplayer_join_prompt": "Hostname or IP?",
 
     "not_implemented": "This feature is not yet implemented.",
 

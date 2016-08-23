@@ -42,7 +42,7 @@ class SaveMenuState(PopUpMenu):
     def render_empty_slot(self, rect):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, trans('empty_slot').title(), rect, font=self.font)
+        text.draw_text(slot_image, trans('empty_slot'), rect, font=self.font)
         return slot_image
 
     def render_slot(self, rect, slot_num):

@@ -60,3 +60,7 @@ tuxemon/saves/
 
 # Windows file
 Thumbs.db
+
+# PyCharm
+*.iml
+.idea/*

@@ -71,13 +71,13 @@ class Npc(object):
 
         # Get the npc's parameters from the action
         slug = str(action.parameters[0])
-        tile_pos_x = int(action.parameters[2])
-        tile_pos_y = int(action.parameters[3])
-        animations = str(action.parameters[4])
-        behavior = str(action.parameters[5])
+        tile_pos_x = int(action.parameters[1])
+        tile_pos_y = int(action.parameters[2])
+        animations = str(action.parameters[3])
+        behavior = str(action.parameters[4])
 
         # Ensure that the NPC doesn't already exist on the map.
-        if slug not in world.npcs:
+        if slug in world.npcs:
             return
 
         # Create a new NPC object

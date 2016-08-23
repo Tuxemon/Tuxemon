@@ -38,6 +38,8 @@ from core import tools
 
 from . import pyganim
 from core.components import db
+from core.components.locale import translator
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -717,7 +719,7 @@ class Npc(Player):
     def __init__(self, sprite_name="maple", slug="npc_maple"):
         npcs = db.JSONDatabase()
         npcs.load("npc")
-        npc_data = npcs['npc'][slug]
+        npc_data = npcs.lookup(slug, table="npc")
 
         npc_name = trans(npc_data["name_trans"])
 
@@ -767,7 +769,7 @@ class Npc(Player):
         collision_dict = {}
 
         # Get all the NPC's tile monsters_in_play so we can check for collisions.
-        for npc in game.npcs.items():
+        for npc in game.npcs.values():
             npc_pos_x = int(round(npc.tile_pos[0]))
             npc_pos_y = int(round(npc.tile_pos[1]))
             npc_positions.add((npc_pos_x, npc_pos_y))

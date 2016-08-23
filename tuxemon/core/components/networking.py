@@ -436,7 +436,6 @@ class TuxemonClient():
 
         if self.client.registered and not self.populated:
             self.game.isclient = True
-            self.game.current_state.multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
 
         if self.ping_time >= 2:

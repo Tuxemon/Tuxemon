@@ -576,15 +576,19 @@ class Menu(state.State):
     def calc_final_rect(self):
         """ Calculate the area in the game window where menu is shown
 
-        This value is the __desired__ location, and should not change
+        This value is the __desired__ location and size, and should not change
         over the lifetime of the menu.  It is used to generate animations
         to open the menu.
 
-        By default, this will be the entire screen
+        The rect represents the size of the menu after all items are added.
 
         :rtype: pygame.Rect
         """
-        return self.rect
+        original = self.rect.copy()    # store the original rect
+        self.refresh_layout()          # arrange the menu
+        rect = self.rect.copy()        # store the final rect
+        self.rect = original           # set the original back
+        return rect
 
     def on_open(self):
         """ Hook is called after opening animation has finished
@@ -600,7 +604,8 @@ class Menu(state.State):
 
         :return:
         """
-        item.game_object()
+        if item.enabled:
+            item.game_object()
 
     def on_menu_selection_change(self):
         """ Hook for things to happen after menu selection changes
@@ -669,11 +674,15 @@ class PopUpMenu(Menu):
 
         # set rect to a small size for the initial values of the animation
         self.rect = self.rect.copy()           # required.  do not remove.
-        self.rect.height = rect.height / 2
-        self.rect.width = rect.width / 2
+        self.rect.height = int(rect.height * .1)
+        self.rect.width = int(rect.width * .1)
         self.rect.center = rect.center
 
+        # if this statement were removed, then the menu would
+        # refresh and the size animation would be lost
+        self._needs_refresh = False
+
         # create animation to open window with
-        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.15)
+        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.20)
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani

@@ -1,4 +1,5 @@
 import sys
+from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
 import pygame
@@ -48,16 +49,48 @@ def remove_animations_of(target, group):
 
 
 class AnimBase(pygame.sprite.Sprite):
+    _valid_schedules = []
+
     def __init__(self):
         super(AnimBase, self).__init__()
-        self._callbacks = list()
+        self._callbacks = defaultdict(list)
 
-    def attach_callback(self, func):
-        self._callbacks.append(func)
+    def schedule(self, func, when=None):
+        """ Schedule a callback during operation of Task or Animation
+
+        The callback is any callable object.  You can specify different
+        times for the callback to be executed, according to the following:
+
+        * "on update": called each time the Task/Animation is updated
+        * "on finish": called when the Task/Animation completes normally
+        * "on abort": called if the Task/Animation is aborted
+
+        If when is not passed, it will be "on finish":
+
+        :type func: callable
+        :type when: basestring
+        :return:
+        """
+        if when is None:
+            when = self._valid_schedules[0]
+
+        if when not in self._valid_schedules:
+            print('invalid time to schedule a callback')
+            print('valid:', self._valid_schedules)
+            raise ValueError
+        self._callbacks[when].append(func)
+
+    def _execute_callbacks(self, when):
+        try:
+            callbacks = self._callbacks[when]
+        except KeyError:
+            return
+        else:
+            [cb() for cb in callbacks]
 
 
-class Task(pygame.sprite.Sprite):
-    """Execute functions at a later time and optionally loop it
+class Task(AnimBase):
+    """ Execute functions at a later time and optionally loop it
 
     This is a silly little class meant to make it easy to create
     delayed or looping events without any complicated hooks into
@@ -66,6 +99,13 @@ class Task(pygame.sprite.Sprite):
     Tasks are created and must be added to a normal pygame group
     in order to function.  This group must be updated, but not
     drawn.
+
+    Setting the interval to 0 cause the callback to be called
+    on the next update.
+
+    Because the pygame clock returns milliseconds, the examples
+    below use milliseconds.  However, you are free to use what-
+    ever time unit you wish, as long as it is used consistently
 
         task_group = pygame.sprite.Group()
 
@@ -81,64 +121,73 @@ class Task(pygame.sprite.Sprite):
         # do something every 2.5 seconds forever
         task = Task(call_later, 2500, -1)
 
-        # pass arguments
-        task = Task(call_later, 1000, args=(1,2,3), kwargs={key: value})
+        # pass arguments using functools.partial
+        from functools import partial
+        task = Task(partial(call_later(1,2,3, key=value)), 1000)
 
-        # chain tasks
+        # a task must have at lease on callback, but others can be added
+        task = Task(call_later, 2500, -1)
+        task.schedule(some_thing_else)
+
+        # chain tasks: when one task finishes, start another one
         task = Task(call_later, 2500)
         task.chain(Task(something_else))
 
         When chaining tasks, do not add the chained tasks to a group.
     """
+    _valid_schedules = ('on interval', 'on finish', 'on abort')
 
-    def __init__(self, callback, interval=0, loops=1, args=None, kwargs=None):
+    def __init__(self, callback, interval=0, times=1):
         if not callable(callback):
             raise ValueError
 
-        if loops < 1:
+        if times == 0:
             raise ValueError
 
         super(Task, self).__init__()
-        self.interval = interval
-        self.loops = loops
-        self.callback = callback
+        self._interval = interval
+        self._loops = times
         self._duration = 0
-        self._args = args if args else list()
-        self._kwargs = kwargs if kwargs else dict()
-        self._loops = loops
         self._chain = list()
         self._state = ANIMATION_RUNNING
+        self.schedule(callback)
 
-    def chain(self, callback, interval=0, loops=1, args=None, kwargs=None):
-        """Schedule something to be called after.  Uses same sig. as Task
+    def chain(self, callback, interval=0, times=1):
+        """ Schedule a callback to execute when this one is finished
 
-        If you attempt to chain a task that will never end (loops=-1),
-        then ValueError will be raised.
+        If you attempt to chain a task to a task that will will
+        never end, RuntimeError will be raised.
 
-        :param others: Task instances
-        :returns: None
+        This is convenience to make a new Task and set to it to
+        be added to the "on_finish" list.
+
+        :param interval: Time between callbacks
+        :param callback: Function to execute each interval
+        :param times: Number of intervals
+        :returns: Task
         """
-        return self.chain_task(Task(callback, interval=0, loops=1, args=None, kwargs=None))
+        task = Task(callback, interval, times)
+        self.chain_task(task)
 
-    def chain_task(self, *tasks):
-        """Schedule Task(s) to execute when this one is finished
+    def chain_task(self, *others):
+        """ Schedule Task(s) to execute when this one is finished
 
-        If you attempt to chain a task that will never end (loops=-1),
-        then ValueError will be raised.
+        If you attempt to chain a task to a task that will will
+        never end, RuntimeError will be raised.
 
         :param others: Task instances
-        :returns: None
+        :returns: Tasks
         """
         if self._loops <= -1:
-            raise ValueError
-        for task in tasks:
+            raise RuntimeError
+        for task in others:
             if not isinstance(task, Task):
                 raise TypeError
             self._chain.append(task)
-        return tasks
+        return others
 
     def update(self, dt):
-        """Update the Task
+        """ Update the Task
 
         The unit of time passed must match the one used in the
         constructor.
@@ -150,37 +199,39 @@ class Task(pygame.sprite.Sprite):
         :param dt: Time passed since last update.
         """
         if self._state is not ANIMATION_RUNNING:
-            return
-            # raise RuntimeError
+            raise RuntimeError
 
         self._duration += dt
-        if self._duration >= self.interval:
-            self._duration -= self.interval
-            if not self._loops == -1:
+        if self._duration >= self._interval:
+            self._duration -= self._interval
+            if self._loops >= 0:
                 self._loops -= 1
-                if self._loops <= 0:
+                if self._loops == 0: # loops counter is zero, finish now
                     self.finish()
-                    return
-
-            self.callback(*self._args, **self._kwargs)
+                else:                # not finished, but still are iterations left
+                    self._execute_callbacks("on interval")
+            else:                    # loops == -1, run forever
+                self._execute_callbacks("on interval")
 
     def finish(self):
         """ Force task to finish, while executing callbacks
         """
         if self._state is ANIMATION_RUNNING:
             self._state = ANIMATION_FINISHED
-            self.callback(*self._args, **self._kwargs)
+            self._execute_callbacks("on interval")
+            self._execute_callbacks("on finish")
             self._execute_chain()
             self._cleanup()
 
     def abort(self):
-        """Force task to finish, without executing callbacks
+        """ Force task to finish, without executing callbacks
         """
         self._state = ANIMATION_FINISHED
-        self.kill()
+        self._cleanup()
 
     def _cleanup(self):
         self._chain = None
+        self.kill()
 
     def _execute_chain(self):
         groups = self.groups()

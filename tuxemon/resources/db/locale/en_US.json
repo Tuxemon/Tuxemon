@@ -70,6 +70,10 @@
     "multiplayer_host_game": "Host Game",
     "multiplayer_scan_games": "Scan for Games",
     "multiplayer_join_game": "Join Game",
+    "multiplayer_hosting_ready": "Ready to accept clients!",
+    "multiplayer_already_hosting": "Already hosting!",
+    "multiplayer_no_servers": "No servers found...",
+    "multiplayer_join_prompt": "Hostname of IP?",
 
     "not_implemented": "This feature is not yet implemented.",
 

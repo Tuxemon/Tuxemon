@@ -678,8 +678,8 @@ class Control(StateManager):
         if not world:
             return
 
-        world.npcs = []
-        world.npcs_off_map = []
+        world.npcs = {}
+        world.npcs_off_map = {}
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
@@ -688,17 +688,17 @@ class Control(StateManager):
 
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
-                    if not sprite in world.npcs:
-                        world.npcs.append(sprite)
-                    if sprite in world.npcs_off_map:
-                        world.npcs_off_map.remove(sprite)
+                    if sprite.slug not in world.npcs:
+                        world.npcs[sprite.slug] = sprite
+                    if sprite.slug in world.npcs_off_map:
+                        del world.npcs_off_map[sprite.slug]
 
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
-                    if not sprite in world.npcs_off_map:
-                        world.npcs_off_map.append(sprite)
-                    if sprite in world.npcs:
-                        world.npcs.remove(sprite)
+                    if sprite.slug not in world.npcs_off_map:
+                        world.npcs_off_map[sprite.slug] = sprite
+                    if sprite.slug in world.npcs:
+                        del world.npcs[sprite]
 
     def get_map_name(self):
         """Gets the map of the player.

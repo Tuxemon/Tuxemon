@@ -107,8 +107,8 @@ class WorldState(state.State):
         ######################################################################
 
         self.player1 = prepare.player1
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs = {}
+        self.npcs_off_map = {}
         self.wants_duel = False
 
         # Set the global coordinates used to pan the screen.
@@ -271,11 +271,11 @@ class WorldState(state.State):
             self.game.client.update_player(self.player1.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs:
+        for npc in self.npcs.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)
 
-        for npc in self.npcs_off_map:
+        for npc in self.npcs_off_map.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)
 
@@ -477,7 +477,7 @@ class WorldState(state.State):
         self.global_y_diff = self.orig_global_y - self.global_y
 
         # Draw any game NPC's
-        for npc in self.npcs:
+        for npc in self.npcs.values():
             if npc.running:
                 npc.moverate = npc.runrate
             else:
@@ -514,8 +514,7 @@ class WorldState(state.State):
                 npc.direction["right"] = False
 
             if npc.update_location:
-                char_dict ={"tile_pos": npc.final_move_dest,
-                            }
+                char_dict ={"tile_pos": npc.final_move_dest }
                 networking.update_client(npc, char_dict, self.game)
                 npc.update_location = False
 
@@ -523,7 +522,7 @@ class WorldState(state.State):
             npc.draw(self.screen, "bottom")
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
-        for npc in self.npcs_off_map:
+        for npc in self.npcs_off_map.values():
             if npc.running:
                 npc.moverate = npc.runrate
             else:
@@ -572,7 +571,7 @@ class WorldState(state.State):
                     tile["surface"].blit(self.screen, (med_x, med_y))
 
         # Draw the top half of our NPCs above layer 4.
-        for npc in self.npcs:
+        for npc in self.npcs.values():
             npc.draw(self.screen, "top")
 
         # Draw the top half of the player above layer 4.
@@ -643,7 +642,7 @@ class WorldState(state.State):
             box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
 
             # Next, deal with solid NPCs.
-            npc_iter = imap(self._npc_to_pgrect, self.npcs)
+            npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
 
             for item in itertools.chain(box_iter, npc_iter):
                 surface.blit(self.collision_tile, (item[0], item[1]))
@@ -775,8 +774,8 @@ class WorldState(state.State):
         self.game.event_engine.current_map = map_data
 
         # Clear out any existing NPCs
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs = {}
+        self.npcs_off_map = {}
 
     def load_map(self, map_name):
         """Returns map data as a dictionary to be used for map changing and preloading
@@ -850,7 +849,7 @@ class WorldState(state.State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for npc in self.npcs:
+                    for npc in self.npcs.values():
                         tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
                         if tile_pos == tile:
                             logger.info("Opening interaction menu!")

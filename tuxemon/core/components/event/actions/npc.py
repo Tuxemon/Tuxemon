@@ -47,7 +47,7 @@ class Npc(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: name,tile_pos_x,tile_pos_y,animations,behavior
+        Valid Parameters: slug,tile_pos_x,tile_pos_y,animations,behavior
 
         **Examples:**
 
@@ -55,7 +55,7 @@ class Npc(object):
         {
             "type": "create_npc",
             "parameters": [
-                "Oak",
+                "npc_oak",
                 "1",
                 "5",
                 "oak",
@@ -70,20 +70,18 @@ class Npc(object):
             return
 
         # Get the npc's parameters from the action
-        name = str(action.parameters[0])
+        slug = str(action.parameters[0])
         tile_pos_x = int(action.parameters[1])
         tile_pos_y = int(action.parameters[2])
         animations = str(action.parameters[3])
         behavior = str(action.parameters[4])
 
         # Ensure that the NPC doesn't already exist on the map.
-        event_engine = game.event_engine
-        npc_exists = Condition("npc_exists", [name], 1, 1, "is", 0, 0)
-        if event_engine.conditions["npc_exists"]["method"](game, npc_exists):
+        if slug in world.npcs:
             return
 
         # Create a new NPC object
-        npc = player.Npc(sprite_name=animations, name=name)
+        npc = player.Npc(sprite_name=animations, slug=slug)
 
         # Set the NPC object's variables
         npc.tile_pos = [tile_pos_x, tile_pos_y]
@@ -99,9 +97,8 @@ class Npc(object):
         npc.position = [(tile_pos_x * world.tile_size[0]) + world.global_x,
                         (tile_pos_y * world.tile_size[1]) + (world.global_y - world.tile_size[1])]
 
-
         # Add the NPC to the game's NPC list
-        world.npcs.append(npc)
+        world.npcs[slug] = npc
         return npc
 
     def remove_npc(self, game, action):
@@ -117,7 +114,7 @@ class Npc(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: name
+        Valid Parameters: slug
 
         **Examples:**
 
@@ -125,7 +122,7 @@ class Npc(object):
         {
             "type": "remove_npc",
             "parameters": [
-                "Oak"
+                "npc_oak"
             ]
         }
 
@@ -136,15 +133,13 @@ class Npc(object):
             return
 
         # Get the npc's parameters from the action
-        name = str(action.parameters[0])
+        slug = str(action.parameters[0])
+
+        if slug not in world.npcs:
+            return
 
         # Create a separate list of NPCs to loop through
-        npcs = list(world.npcs)
-
-        # Remove the NPC from our list of NPCs
-        for npc in npcs:
-            if npc.name == name and not npc.isplayer:
-                world.npcs.remove(npc)
+        del world.npcs[slug]
 
 
     def npc_face(self, game, action):
@@ -160,17 +155,27 @@ class Npc(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: npc_name, direction
+        Valid Parameters: npc_slug, direction
 
         Action parameter can be: "left", "right", "up", or "down"
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "npc_face",
+            "parameters": [
+                "npc_oak",
+                "left"
+            ]
+        }
         """
 
         # Get the parameters to determine what direction the player will face.
-        name = action.parameters[0]
+        slug = action.parameters[0]
         direction = action.parameters[1]
 
         event_engine = game.event_engine
-        npc = event_engine.conditions["_get_npc"]["method"](game, name)
+        npc = event_engine.conditions["_get_npc"]["method"](game, slug)
         if not npc:
             return
 
@@ -186,14 +191,13 @@ class Npc(object):
         if not world:
             return
 
-        npc_name = action.parameters[0]
+        npc_slug = action.parameters[0]
         dest_x = action.parameters[1]
         dest_y = action.parameters[2]
 
         # get npc object via name
-        curr_npc = None
-        for n in world.npcs:
-            if n.name == npc_name:
-                curr_npc = n
+        if npc_slug not in world.npcs:
+            return
 
+        curr_npc = world.npcs[npc_slug]
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)

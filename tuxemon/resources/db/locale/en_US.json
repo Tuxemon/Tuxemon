@@ -18,7 +18,7 @@
     "combat_fainted": "${{name}} fainted!",
     "combat_isactive": "${{name}} is already in play.",
 
-    "empty_slot": "empty slot",
+    "empty_slot": "Empty Slot",
     "exit": "Exit",
     "item_confirm_use": "Use",
     "item_confirm_cancel": "Cancel",

@@ -170,5 +170,10 @@
     "txmn_tux_descr": "",
     "txmn_tux_name": "Tux",
 
-    "npc_maple_name": "Javor"
+    "npc_maple_name": "Javor",
+    
+    "yes": "Ano",
+    "no": "Ne",
+
+    "input_name": "Jméno?"
 }

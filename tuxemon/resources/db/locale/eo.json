@@ -4,7 +4,7 @@
     "combat_used_x": "${{name}} estis uzata de ${{user}}!",
     "combat_used_x_on_y": "${{name}} estis uzata de ${{user}} kontraŭ ${{target}}!",
     "combat_call_tuxemon": "Iru, ${{name}}!",
-    "combat_opponent_call_tuxemon": "${{user}} sendis ${{name}}!",
+    "combat_opponent_call_tuxemon": "${{name}} estis sendata de ${{user}}!",
     "combat_state_poison_damage": "${{name}} veneniĝis!",
     "combat_status_damage": "${{name}} damaĝiĝis pro ${{status}}!",
     "combat_victory": "Vi venkis!",
@@ -15,7 +15,7 @@
     "combat_replacement_is_fainted": "La monstro svenis!",
     "combat_wild_appeared": "Sovaĝa ${{name}} aperis!",
     "combat_monster_choice": "Kion ${{name}} faru?",
-    "combat_fainted": "${{name}} svenas!",
+    "combat_fainted": "${{name}} svenis!",
     "combat_isactive": "${{name}} jam batalas.",
 
     "empty_slot": "Malplena ujo",

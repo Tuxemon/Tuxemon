@@ -27,6 +27,7 @@
 from __future__ import absolute_import
 
 import logging
+from core.components.event.contexts.dialogcontext import DialogContext
 from core.tools import open_dialog
 from core.components.locale import translator
 from functools import partial
@@ -37,11 +38,6 @@ logger = logging.getLogger(__name__)
 
 
 class Core(object):
-    def __init__(self):
-        # this is a potentially temporary solution to a problem with dialog chains
-        self._dialog_chain_queue = list()
-        self._menu = None
-
     def _replace_text(self, game, text):
         """Replaces ${{var}} tiled variables with their in-game value.
 
@@ -66,7 +62,7 @@ class Core(object):
         return text
 
 
-    def set_variable(self, game, action):
+    def set_variable(self, game, action, contexts):
         """Sets the key in the player.game_variables dictionary.
 
         :param game: The main game object that contains all the game's variables.
@@ -105,7 +101,7 @@ class Core(object):
         player.game_variables[var_key] = var_value
 
 
-    def dialog(self, game, action):
+    def dialog(self, game, action, contexts):
         """Opens a dialog window with text
 
         :param game: The main game object that contains all the game's variables.
@@ -136,15 +132,10 @@ class Core(object):
 
         """
 
-        text = str(action.parameters[0])
-        text = self._replace_text(game, text)
-        logger.info("Opening dialog window")
-
-        # Open a dialog window in the current scene.
-        open_dialog(game, [text])
+        self.dialog_chain(game, action, contexts)
 
 
-    def translated_dialog(self, game, action):
+    def translated_dialog(self, game, action, contexts):
         """Opens a dialog window with translated text according to the passed translation key. Parameters
         passed to the translation string will also be checked if a translation key exists.
 
@@ -176,28 +167,10 @@ class Core(object):
         }
 
         """
-        trans = translator.translate
-        key = str(action.parameters[0])
-        replace_values = {}
-        for param in action.parameters[1:]:
-            values = param.split("=")
-            param_key = values[0]
-            param_value = values[1]
-
-            # Check to see if param_value is translatable
-            if translator.has_key(param_value):
-                param_value = trans(param_value)
-
-            replace_values[param_key] = self._replace_text(game, param_value)
-
-        text = trans(key, replace_values)
-        logger.info("Opening translated dialog window")
-
-        # Open a dialog window in the current scene.
-        open_dialog(game, [text])
+        self.translated_dialog_chain(game, action, contexts)
 
 
-    def dialog_chain(self, game, action):
+    def dialog_chain(self, game, action, contexts):
         """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
 
         :param game: The main game object that contains all the game's variables.
@@ -233,16 +206,15 @@ class Core(object):
         text = self._replace_text(game, text)
         logger.info("Opening chain dialog window")
 
-        if text == "${{end}}":
-            # Open a dialog window in the current scene.
-            open_dialog(game, self._dialog_chain_queue, self._menu)
-            self._dialog_chain_queue = list()
-            self._menu = None
-        else:
-            self._dialog_chain_queue.append(text)
+        if text != "${{end}}":
+            dialog_context = contexts.get("dialog", None)
+            if not dialog_context:
+                dialog_context = DialogContext()
+                contexts["dialog"] = dialog_context
+            dialog_context.add_dialog(text)
 
 
-    def translated_dialog_chain(self, game, action):
+    def translated_dialog_chain(self, game, action, contexts):
         """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
 
         :param game: The main game object that contains all the game's variables.
@@ -278,10 +250,6 @@ class Core(object):
         trans = translator.translate
         key = str(action.parameters[0])
         if key == "${{end}}":
-            # Open a dialog window in the current scene.
-            open_dialog(game, self._dialog_chain_queue, self._menu)
-            self._dialog_chain_queue = list()
-            self._menu = None
             return
 
         replace_values = {}
@@ -298,11 +266,15 @@ class Core(object):
             replace_values[param_key] = self._replace_text(game, param_value)
 
         text = trans(key, replace_values)
+        dialog_context = contexts.get("dialog", None)
+        if not dialog_context:
+            dialog_context = DialogContext()
+            contexts["dialog"] = dialog_context
         logger.info("Opening translated chain dialog window")
-        self._dialog_chain_queue.append(text)
+        dialog_context.add_dialog(text)
 
 
-    def rumble(self, game, action):
+    def rumble(self, game, action, contexts):
         """Rumbles available controllers with rumble support
 
         :param game: The main game object that contains all the game's variables.
@@ -348,7 +320,7 @@ class Core(object):
         game.rumble.rumble(-1, length=duration, magnitude=magnitude)
 
 
-    def wait_for_secs(self, game, action):
+    def wait_for_secs(self, game, action, contexts):
         """Pauses the event engine for n number of seconds.
 
         :param game: The main game object that contains all the game's variables.
@@ -381,7 +353,7 @@ class Core(object):
         game.event_engine.wait = secs
 
 
-    def wait_for_input(self, game, action):
+    def wait_for_input(self, game, action, contexts):
         """Pauses the event engine until specified button is pressed
 
         :param game: The main game object that contains all the game's variables.
@@ -414,7 +386,7 @@ class Core(object):
         game.event_engine.wait = 2
         game.event_engine.button = button
 
-    def change_state(self, game, action):
+    def change_state(self, game, action, contexts):
         """Changes to the specified state.
 
         :param game: The main game object that contains all the game's variables.
@@ -447,7 +419,7 @@ class Core(object):
             game.push_state(action.parameters[0])
 
 
-    def call_event(self, game, action):
+    def call_event(self, game, action, contexts):
         """Executes the specified event's actions by id.
 
         :param game: The main game object that contains all the game's variables.
@@ -482,7 +454,7 @@ class Core(object):
             if e['id'] == int(action.parameters[0]):
                 event_engine.execute_action(e['acts'], game)
 
-    def dialog_choice(self, game, action):
+    def dialog_choice(self, game, action, contexts):
         """Asks the player to make a choice.
 
         :param game: The main game object that contains all the game's variables.
@@ -509,9 +481,13 @@ class Core(object):
         var_menu = list()
         for val in var_list:
             var_menu.append((val, val, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
-        self._menu = var_menu
+        dialog_context = contexts.get("dialog", None)
+        if not dialog_context:
+            dialog_context = DialogContext()
+            contexts["dialog"] = dialog_context
+        dialog_context.add_menu(var_menu)
 
-    def translated_dialog_choice(self, game, action):
+    def translated_dialog_choice(self, game, action, contexts):
         """Asks the player to make a choice.
 
         :param game: The main game object that contains all the game's variables.
@@ -539,4 +515,8 @@ class Core(object):
         for val in var_list:
             label = translator.translate(val).upper()
             var_menu.append((val, label, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
-        self._menu = var_menu
+        dialog_context = contexts.get("dialog", None)
+        if not dialog_context:
+            dialog_context = DialogContext()
+            contexts["dialog"] = dialog_context
+        dialog_context.add_menu(var_menu)

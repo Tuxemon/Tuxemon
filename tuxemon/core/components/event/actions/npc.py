@@ -34,7 +34,7 @@ from core.components.event import Condition
 
 class Npc(object):
 
-    def create_npc(self, game, action):
+    def create_npc(self, game, action, contexts):
         """Creates an NPC object and adds it to the game's current list of NPC's.
 
         :param game: The main game object that contains all the game's variables.
@@ -104,7 +104,7 @@ class Npc(object):
         world.npcs.append(npc)
         return npc
 
-    def remove_npc(self, game, action):
+    def remove_npc(self, game, action, contexts):
         """Removes an NPC object from the list of NPCs.
 
         :param game: The main game object that contains all the game's variables.
@@ -147,7 +147,7 @@ class Npc(object):
                 world.npcs.remove(npc)
 
 
-    def npc_face(self, game, action):
+    def npc_face(self, game, action, contexts):
         """Makes the NPC face a certain direction.
 
         :param game: The main game object that contains all the game's variables.
@@ -177,7 +177,7 @@ class Npc(object):
         npc.facing = direction
 
 
-    def pathfind(self, game, action):
+    def pathfind(self, game, action, contexts):
         '''
         Will move the player / npc to the given location
         '''

@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 class Player(object):
 
-    def teleport(self, game, action):
+    def teleport(self, game, action, contexts):
         """Teleport the player to a particular map and coordinates
 
         :param game: The main game object that contains all the game's variables.
@@ -103,7 +103,7 @@ class Player(object):
         player.moving = False
 
 
-    def delayed_teleport(self, game, action):
+    def delayed_teleport(self, game, action, contexts):
         """ Set teleport information.  Teleport will be triggered during screen transition
 
         Only use this if followed by a transition
@@ -135,7 +135,7 @@ class Player(object):
         world.delayed_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
 
-    def transition_teleport(self, game, action):
+    def transition_teleport(self, game, action, contexts):
         """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
         screen transition. Useful for allowing the player to go to different maps.
 
@@ -173,13 +173,13 @@ class Player(object):
         screen_transition = game.event_engine.actions["screen_transition"]["method"]
         Action = namedtuple("action", ["type", "parameters"])
         transition_action = Action(action.type, [transition_time])
-        screen_transition(game, transition_action)
+        screen_transition(game, transition_action, contexts)
 
         # set the delayed teleport
-        self.delayed_teleport(game, action)
+        self.delayed_teleport(game, action, contexts)
 
 
-    def add_monster(self, game, action):
+    def add_monster(self, game, action, contexts):
         """Adds a monster to the current player's party if there is room. The action parameter
         must contain a monster slug to look up in the monster database.
 
@@ -247,7 +247,7 @@ class Player(object):
         game.player1.add_monster(current_monster)
 
 
-    def add_item(self, game, action):
+    def add_item(self, game, action, contexts):
         """Adds an item to the current player's inventory. The action parameter must contain an
         item name to look up in the item database.
 
@@ -283,7 +283,7 @@ class Player(object):
             player.inventory[item_to_add.slug] = {'item': item_to_add, 'quantity': 1}
 
 
-    def player_face(self, game, action):
+    def player_face(self, game, action, contexts):
         """Makes the player face a certain direction.
 
         :param game: The main game object that contains all the game's variables.
@@ -312,7 +312,7 @@ class Player(object):
             game.player1.facing = direction
 
 
-    def player_stop(self, game, action):
+    def player_stop(self, game, action, contexts):
         """Makes the player stop moving.
 
         :param game: The main game object that contains all the game's variables.
@@ -336,7 +336,7 @@ class Player(object):
         world.menu_blocking = True
 
 
-    def player_resume(self, game, action):
+    def player_resume(self, game, action, contexts):
         """Makes the player resume movement.
 
         :param game: The main game object that contains all the game's variables.
@@ -359,7 +359,7 @@ class Player(object):
 
         world.menu_blocking = False
 
-    def remove_monster(self, game, action):
+    def remove_monster(self, game, action, contexts):
         """Removes a monster to the current player's party if the monster is there.
 
         :param game: The main game object that contains all the game's variables.

@@ -160,15 +160,18 @@ class EventEngine(object):
         """
 
         logger.debug("Executing Action")
+        contexts = {}
 
         # Loop through the list of actions and execute them
         for action in action_list:
 
             # Call the method listed and return the modified event data
             try:
-                self.actions[action.type]["method"](game, action)
+                self.actions[action.type]["method"](game, action, contexts)
             except Exception as message:
                 error = 'Error: Action method "%s" not implemented' % str(action.type)
                 logger.error(error)
                 logger.error(message)
                 traceback.print_exc()
+        for key in contexts:
+            contexts[key].execute(game)

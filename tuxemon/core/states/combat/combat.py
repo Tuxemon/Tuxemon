@@ -734,11 +734,14 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue = list()
 
+        contexts = {}
         event_engine = self.game.event_engine
         fadeout_action = namedtuple("action", ["type", "parameters"])
         fadeout_action.type = "fadeout_music"
         fadeout_action.parameters = [1000]
-        event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action)
+        event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action, contexts)
+        for key in contexts:
+            contexts[key].execute(game)
 
         # remove any menus that may be on top of the combat state
         while self.game.current_state is not self:

@@ -64,5 +64,5 @@ class HeadlessServerState(world.WorldState):
         self.global_x = 0
         self.global_y = 0
 
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs = {}
+        self.npcs_off_map = {}

@@ -54,21 +54,21 @@
   </object>
   <object id="19" name="Create Maple" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc Maple,3,4,boss,stand"/>
+    <property name="act1" value="create_npc npc_maple,3,4,boss,stand"/>
     <property name="act2" value="set_variable maple_bedroom1:true"/>
     <property name="cond1" value="not variable_set maple_bedroom1:true"/>
-    <property name="cond2" value="not npc_exists Maple"/>
+    <property name="cond2" value="not npc_exists npc_maple"/>
    </properties>
   </object>
   <object id="22" name="Maple Pathfind to Player" type="event" x="128" y="80" width="16" height="48">
    <properties>
-    <property name="act1" value="pathfind Maple,6,5"/>
+    <property name="act1" value="pathfind npc_maple,6,5"/>
     <property name="act2" value="player_stop"/>
     <property name="act3" value="set_variable maple_bedroom2:true"/>
     <property name="cond1" value="is variable_set maple_bedroom1:true"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="not variable_set maple_bedroom2:true"/>
-    <property name="cond4" value="is npc_exists Maple"/>
+    <property name="cond4" value="is npc_exists npc_maple"/>
    </properties>
   </object>
   <object id="25" name="Maple talk to Player" type="event" x="96" y="80" width="16" height="16">
@@ -79,28 +79,28 @@
     <property name="act4" value="dialog_chain Go to the junkyard behind the Tuxmart. I'll meet you there."/>
     <property name="act5" value="dialog_chain ${{end}}"/>
     <property name="act6" value="set_variable maple_bedroom3:true"/>
-    <property name="act7" value="npc_face Maple,right"/>
+    <property name="act7" value="npc_face npc_maple,right"/>
     <property name="cond1" value="is variable_set maple_bedroom2:true"/>
-    <property name="cond2" value="is npc_at Maple"/>
+    <property name="cond2" value="is npc_at npc_maple"/>
     <property name="cond3" value="not variable_set maple_bedroom3:true"/>
-    <property name="cond4" value="is npc_exists Maple"/>
+    <property name="cond4" value="is npc_exists npc_maple"/>
    </properties>
   </object>
   <object id="28" name="Maple Pathfind to stairs" type="event" x="96" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind Maple,8,3"/>
+    <property name="act1" value="pathfind npc_maple,8,3"/>
     <property name="act2" value="player_stop"/>
     <property name="cond1" value="is variable_set maple_bedroom3:true"/>
     <property name="cond2" value="not dialog_open"/>
-    <property name="cond3" value="is npc_exists Maple"/>
+    <property name="cond3" value="is npc_exists npc_maple"/>
    </properties>
   </object>
   <object id="29" name="Maple go downstairs" type="event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="remove_npc Maple"/>
+    <property name="act1" value="remove_npc npc_maple"/>
     <property name="act2" value="player_resume"/>
     <property name="cond1" value="is variable_set maple_bedroom3:true"/>
-    <property name="cond2" value="is npc_at Maple"/>
+    <property name="cond2" value="is npc_at npc_maple"/>
    </properties>
   </object>
  </objectgroup>

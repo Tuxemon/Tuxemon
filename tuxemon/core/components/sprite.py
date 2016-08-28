@@ -463,6 +463,9 @@ class VisualSpriteList(RelativeGroup):
            [1] [2] [3]
            [4] [5]
 
+        Works pretty well for most menus, but large grids may require
+        handling them differently.
+
         :param index: Index of the item in the list
         :param event: pygame.Event
         :returns: New menu item offset
@@ -473,32 +476,72 @@ class VisualSpriteList(RelativeGroup):
         if event.type == pygame.KEYDOWN:
 
             # in order to accommodate disabled menu items,
-            # the index incrementer will loop until a suitable
+            # the mod incrementer will loop until a suitable
             # index is found...one that is not disabled.
-            # seeking_index once false, will exit the loop
+            items = len(self)
+            mod = 0
+
+            # horizontal movement: left and right will inc/dec mod by one
+            if self.columns > 1:
+                if event.key == pygame.K_LEFT:
+                    mod -= 1
+
+                elif event.key == pygame.K_RIGHT:
+                    mod += 1
+
+            # vertical movement: up/down will inc/dec the mod by adjusted
+            # value of number of items in a column
+            rows, remainder = divmod(items, self.columns)
+            row, col = divmod(index, self.columns)
+
+            # down key pressed
+            if event.key == pygame.K_DOWN:
+                if remainder:
+                    if row == rows:
+                        mod += remainder
+
+                    elif col < remainder:
+                        mod += self.columns
+                    else:
+                        if row == rows - 1:
+                            mod += self.columns + remainder
+                        else:
+                            mod += self.columns
+
+                else:
+                    mod = self.columns
+
+            # up key pressed
+            elif event.key == pygame.K_UP:
+                if remainder:
+                    if row == 0:
+                        if col < remainder:
+                            mod -= remainder
+                        else:
+                            mod += self.columns * (rows - 1)
+                    else:
+                        mod -= self.columns
+
+                else:
+                    mod -= self.columns
+
+            original_index = index
             seeking_index = True
-            while seeking_index:
-
-                # ignore left/right if there is only one column
-                if self.columns > 1:
-                    if event.key == pygame.K_LEFT:
-                        index -= 1
-
-                    elif event.key == pygame.K_RIGHT:
-                        index += 1
-
-                if event.key == pygame.K_DOWN:
-                    index += self.columns
-
-                elif event.key == pygame.K_UP:
-                    index -= self.columns
+            # seeking_index once false, will exit the loop
+            while seeking_index and mod:
+                index += mod
 
                 # wrap the cursor position
-                items = len(self)
                 if index < 0:
                     index = items - abs(index)
                 if index >= items:
                     index -= items
+
+                # while looking for a suitable index, we've looked over all choices
+                # just raise an error for now, instead of infinite looping
+                # TODO: some graceful way to handle situations where cannot find an index
+                if index == original_index:
+                    raise RuntimeError
 
                 seeking_index = not self._spritelist[index].enabled
 

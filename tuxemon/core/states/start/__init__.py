@@ -76,6 +76,7 @@ class StartState(PopUpMenu):
         def new_game():
             self.game.player1 = prepare.player1
             self.game.replace_state("WorldState")
+            self.game.push_state("InputMenu", prompt=translator.translate("input_name"))
             self.game.push_state("FadeInTransition")
 
         def options():

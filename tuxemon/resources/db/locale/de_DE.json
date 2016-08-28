@@ -53,5 +53,7 @@
     "technique_bite_name": "Biss",
     "technique_poison_sting_name": "Gift Stachel",
     "technique_pound_name": "Schlag",
-    "technique_water_shot_name": "Wasser Schuss"
+    "technique_water_shot_name": "Wasser Schuss",
+
+    "input_name": "Name?"
 }

@@ -158,8 +158,8 @@ class WorldMenuState(Menu):
         self.refresh_layout()           # rearrange items
         width = self.rect.width         # store the ideal width
 
-        self.shrink_to_items = False    # force shrink of menu
-        self.menu_items.expand = True   # force shrink of items
+        self.shrink_to_items = False    # force menu to expand
+        self.menu_items.expand = True   # force menu to expand
         self.refresh_layout()           # rearrange items
         self.rect = pygame.Rect(right, 0, width, height)  # set new rect
 

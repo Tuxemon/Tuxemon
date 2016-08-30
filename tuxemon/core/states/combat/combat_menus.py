@@ -229,12 +229,6 @@ class CombatTargetMenuState(Menu):
                 item.rect.inflate_ip(tools.scale(16), tools.scale(16))
                 item.rect.center = center
 
-                # determine who owns the monster
-                if player == self.player:
-                    self.targeting_map["own monster"].append(monster)
-                else:
-                    self.targeting_map["enemy monster"].append(monster)
-
                 yield item
 
     def refresh_layout(self):

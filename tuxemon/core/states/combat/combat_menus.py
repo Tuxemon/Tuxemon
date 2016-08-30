@@ -207,6 +207,20 @@ class CombatTargetMenuState(Menu):
 
         for player, monsters in combat_state.monsters_in_play.items():
             for monster in monsters:
+
+                # TODO: more targeting classes
+                if player == self.player:
+                    targeting_class = "own monster"
+                else:
+                    targeting_class = "enemy monster"
+
+                self.targeting_map[targeting_class].append(monster)
+
+                # TODO: handle odd cases where a situation creates no valid targets
+                # if this target type is not handled by this action, then skip it
+                if targeting_class not in self.action.target:
+                    continue
+
                 # inspect the monster sprite and make a border image for it
                 sprite = combat_state._monster_sprite_map[monster]
                 item = MenuItem(None, None, None, monster)

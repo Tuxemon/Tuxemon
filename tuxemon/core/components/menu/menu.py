@@ -458,6 +458,19 @@ class Menu(state.State):
         self.get_selected_item().in_focus = True   # set focus flag of new item
         self.on_menu_selection_change()            # let subclass know menu has changed
 
+    def search_items(self, game_object):
+        """ Non-optimised search through menu_items for a particular thing
+
+        TODO: address the confusing name "game object"
+
+        :param game_object:
+        :return:
+        """
+        for menu_item in self.menu_items:
+            if game_object == menu_item.game_object:
+                return menu_item
+        return None
+
     def trigger_cursor_update(self, animate=True):
         """ Force the menu cursor to move into the correct position
 

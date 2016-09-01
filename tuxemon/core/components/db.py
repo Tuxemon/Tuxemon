@@ -33,11 +33,25 @@ import json
 import logging
 import os
 
+from operator import itemgetter
+
 from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
+
+
+def process_targets(json_targets):
+    """ Return values in order of preference for targeting things.
+
+    example: ["own monster", "enemy monster"]
+
+    :param json_targets:
+    :return:
+    """
+
+    return list(map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True))))
 
 
 class JSONDatabase(object):

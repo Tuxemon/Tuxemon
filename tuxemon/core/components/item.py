@@ -33,11 +33,11 @@
 import logging
 import pprint
 import random
-from collections import namedtuple
 
 from core import tools
 from . import db
 from .locale import translator
+
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -47,6 +47,7 @@ logger.debug("%s successfully imported" % __name__)
 # Load the monster database
 items = db.JSONDatabase()
 items.load("item")
+
 
 class Item(object):
     """An item object is an item that can be used either in or out of combat.
@@ -117,15 +118,10 @@ class Item(object):
         self.power = results["power"]
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]
+        self.target = db.process_targets(results["target"])
+        self.effect = results["effects"]
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
-
-        #TODO: maybe break out into own function
-        from operator import itemgetter
-        self.target = map(itemgetter(0), filter(itemgetter(1),
-                          sorted(results["target"].items(), key=itemgetter(1), reverse=True)))
-
-        self.effect = results["effects"]
 
     def advance_round(self):
         """ Advance round for items that take many rounds to use
@@ -154,24 +150,24 @@ class Item(object):
         """
 
         # Loop through all the effects of this technique and execute the effect's function.
+        result = True
+        last_effect_name = "no name"
         for effect in self.effect:
             last_effect_name = str(effect)
             result = getattr(self, last_effect_name)(user, target)
 
-        # If this is a consumable item, remove it from the player's inventory.
-        if result:
-            if self.type == "Consumable":
-                if user.inventory[self.slug]['quantity'] <= 1:
-                    del user.inventory[self.slug]
-                else:
-                    user.inventory[self.slug]['quantity'] -= 1
+        # TODO: document how to handle items with multiple effects
 
-        if type(result) == bool:
-            result = {"name": last_effect_name, "success": result, "should_tackle": False}
-        else:
-            result[1]["success"] = result[0]
-            result = result[1]
-            result["name"] = last_effect_name
+        # If this is a consumable item, remove it from the player's inventory.
+        if result["success"] and self.type == "Consumable":
+            if user.inventory[self.slug]['quantity'] <= 1:
+                del user.inventory[self.slug]
+            else:
+                user.inventory[self.slug]['quantity'] -= 1
+
+        # TODO: document how this result thing works
+        # TODO: address this awkward return type
+        result["name"] = last_effect_name
 
         return result
 
@@ -192,16 +188,24 @@ class Item(object):
         >>> potion_item.heal(bulbatux, game)
         """
 
+        # don't heal if already at max health
         if target.current_hp == target.hp:
-            return False
-         # Heal the target monster by "self.power" number of hitpoints.
+            # TODO: address this awkward return type
+            return {"success": False,
+                    "num_shakes": 0,
+                    "should_tackle": False}
+
+        # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
 
         # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return True
+        # TODO: address this awkward return type
+        return {"success": True,
+                "num_shakes": 0,
+                "should_tackle": False}
 
     def capture(self, user, target):
         """Captures target monster.
@@ -232,21 +236,30 @@ class Item(object):
 
         print("--- Capture Variables ---")
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)
-        shake_check = 65536 / (255/catch_check)**0.1875
+        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
+        shake_check = 65536 / (255 / catch_check) ** 0.1875
 
         print("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
-        print("(3 * %s - 2 * %s) * %s * %s * %s / (3*%s)" % (
-            str(target.hp), str(target.current_hp), str(target.catch_rate), str(item_power), str(status_modifier), str(target.hp)))
+        print("(3 * %s - 2 * %s) * %s * %s * %s / (3*%s)" % (str(target.hp), str(target.current_hp), str(target.catch_rate), str(item_power), str(status_modifier), str(target.hp)))
         print("65536 / (255/catch_check)**0.1875")
         print("65536 / (255/%s)**0.1875" % str(catch_check))
-        print("Each shake has a %s chance of breaking the creature free. (shake_check = %s)" % (str(round((65536-shake_check)/65536, 2)), str(round(shake_check))))
+        print("Each shake has a %s chance of breaking the creature free. (shake_check = %s)" % (str(round((65536 - shake_check) / 65536, 2)), str(round(shake_check))))
 
+        # 4 shakes to give monster change to escape
         for i in range(0, 4):
             random_num = random.randint(0, 65536)
             print("shake check %s: random number %s" % (i, random_num))
             if random_num > round(shake_check):
-                return False, {"num_shakes": i+1, "should_tackle": False}
+                # TODO: address this awkward return type
+                return {"success": False,
+                        "num_shakes": i + 1,
+                        "should_tackle": False}
 
+        # add creature to the player's monster list
         user.add_monster(target)
-        return True, {"num_shakes": 4, "should_tackle": False}
+
+        # TODO: remove monster from the other party
+        # TODO: address this awkward return type
+        return {"success": True,
+                "num_shakes": 4,
+                "should_tackle": False}

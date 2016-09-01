@@ -470,7 +470,10 @@ class VisualSpriteList(RelativeGroup):
         :param event: pygame.Event
         :returns: New menu item offset
         """
-        if not len(self):
+        # sanity check:
+        # if there are 0 or 1 enabled items, then ignore movement
+        enabled = len([i for i in self if i.enabled])
+        if enabled < 2:
             return 0
 
         if event.type == pygame.KEYDOWN:

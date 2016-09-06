@@ -75,7 +75,7 @@
     "save_failure": "C'è stato un problema nel salvataggio del file!",
     "slot": "Spazio",
     "status_faint_name": "K.O.",
-    "status_poison_name": "Avvelenato",
+    "status_poison_name": "avvelenamento",
 
     "technique_bite_name": "Morso",
     "technique_fire_explosion_name": "Esplosione di fuoco",

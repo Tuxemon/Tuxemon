@@ -560,21 +560,23 @@ class CombatState(CombatAnimations):
                 self._damage_map[target].add(user)
 
             else:  # assume this was an item used
+                # handle the capture device
                 if result["name"] == "capture":
                     message += "\n" + trans('attempting_capture')
-                    self.task(partial(self.animate_capture_monster, result["success"], result["num_shakes"], target))
                     action_time = result["num_shakes"] + 1.8
+                    self.animate_capture_monster(result["success"], result["num_shakes"], target)
                     if result["success"]: # end combat right here
                         self.task(self.end_combat, action_time + 0.5) # Display 'Gotcha!' first.
                         self.task(partial(self.alert, trans('gotcha')), action_time)
-                        self.alert(message)
                         self._animation_in_progress = True
                         return
 
-                if result["success"]:
-                    message += "\n" + trans('item_success')
+                # generic handling of anything else
                 else:
-                    message += "\n" + trans('item_failure')
+                    if result["success"]:
+                        message += "\n" + trans('item_success')
+                    else:
+                        message += "\n" + trans('item_failure')
 
             self.alert(message)
             self.suppress_phase_change(action_time)

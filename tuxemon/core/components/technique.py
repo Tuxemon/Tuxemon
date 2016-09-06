@@ -110,11 +110,7 @@ class Technique(object):
 
         self.power = results["power"]
         self.effect = results["effects"]
-
-        #TODO: maybe break out into own function
-        from operator import itemgetter
-        self.target = map(itemgetter(0), filter(itemgetter(1),
-                          sorted(results["target"].items(), key=itemgetter(1), reverse=True)))
+        self.target = db.process_targets(results["target"])
 
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]

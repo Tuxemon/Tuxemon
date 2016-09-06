@@ -101,6 +101,34 @@ class Core(object):
         player.game_variables[var_key] = var_value
 
 
+    def quit(self, game, action, contexts):
+        """Completely quit the game
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "quit",
+            "parameters": []
+        }
+
+        """
+        # TODO: API
+        game._wants_to_exit = True
+        game.exit = True
+        game.done = True
+
+
     def dialog(self, game, action, contexts):
         """Opens a dialog window with text
 

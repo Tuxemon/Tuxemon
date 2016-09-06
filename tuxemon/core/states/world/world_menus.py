@@ -7,6 +7,7 @@ import pygame
 
 from core import prepare
 from core.tools import open_dialog
+from core.components.event.actions import core as core_actions
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
 from core.components.locale import translator
@@ -48,9 +49,7 @@ class WorldMenuState(Menu):
             return partial(self.game.replace_state, state, **kwargs)
 
         def exit_game():
-            # TODO: API
-            self.game.done = True
-            self.game.exit = True
+            core_actions.Core().quit(self.game, None)
 
         def not_implemented_dialog():
             open_dialog(self.game, [translator.translate('not_implemented')])
@@ -158,8 +157,8 @@ class WorldMenuState(Menu):
         self.refresh_layout()           # rearrange items
         width = self.rect.width         # store the ideal width
 
-        self.shrink_to_items = False    # force shrink of menu
-        self.menu_items.expand = True   # force shrink of items
+        self.shrink_to_items = False    # force menu to expand
+        self.menu_items.expand = True   # force menu to expand
         self.refresh_layout()           # rearrange items
         self.rect = pygame.Rect(right, 0, width, height)  # set new rect
 

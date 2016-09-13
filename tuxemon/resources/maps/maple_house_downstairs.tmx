@@ -80,7 +80,7 @@
   </object>
   <object id="34" name="create mother" type="event" x="32" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc Maples_Mom,2,5,girl1,stand"/>
+    <property name="act1" value="create_npc npc_maples_mom,2,5,girl1,stand"/>
    </properties>
   </object>
  </objectgroup>

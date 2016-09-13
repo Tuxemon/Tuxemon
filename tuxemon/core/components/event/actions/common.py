@@ -32,7 +32,8 @@ logger = logging.getLogger(__name__)
 
 
 class Common(object):
-    def set_character_attribute(self, character, attribute, value):
+    @staticmethod
+    def set_character_attribute(character, attribute, value):
         """Set's a character's (npc or player) attribute.
 
         :param character: The Player object to modify.
@@ -52,27 +53,27 @@ class Common(object):
         attr = None
         try:
             attr = getattr(character, attribute)
-        except:
+        except AttributeError:
             logger.warning("Player attribute '{0}' specified does not exist.", attribute)
             return
 
-        val = None
         try:
             val = type(attr)(value)
-        except:
+        except TypeError:
             logger.warning("The value given cannot be parsed into the correct type for '{0}'", attribute)
             return
 
-        setattr(player, attribute, val)
+        setattr(character, attribute, val)
 
-    def modify_character_attribute(self, character, attribute, modifier):
-        """Modifyies a character's (npc or player) attribute. Default behavior is to add
+    @staticmethod
+    def modify_character_attribute(character, attribute, modifier):
+        """Modifies a character's (npc or player) attribute. Default behavior is to add
         the given mod to the attribute, but prepending a percent (%) symbol will 
         cause the mod to be used as a multiplier.
 
         :param character: The Player object to modify.
         :param attribute: The attribute to modify.
-        :param mod: The modifier to apply the attribute by.
+        :param modifier: The modifier to apply the attribute by.
 
         :type character: core.Player
         :type attribute: String
@@ -84,22 +85,15 @@ class Common(object):
 
         # check for valid inputs
         # trigger an AttributeError if the attribute doesn't already exist
-        attr = None
         try:
             attr = getattr(character, attribute)
-        except:
+        except AttributeError:
             logger.warning("Player attribute '{0}' specified does not exist.", attribute)
             return
 
-        type(attr) x = None
         if '%' in modifier:
-            mod = float(modifier.replace('%',''))
-            attr = attr * mod
+            attr *= float(modifier.replace('%', ''))
         else:
-            mod = float(modifier)
-            attr = attr + mod
+            attr += float(modifier)
 
-
-        setattr(player, attribute, attr)
-
-        
+        setattr(character, attribute, attr)

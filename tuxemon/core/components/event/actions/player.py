@@ -382,7 +382,7 @@ class Player(object):
         attribute = action.parameters[0]
         value = action.parameters[1]
         
-        set_character_attribute(world.player1, attribute, value)
+        Common.set_character_attribute(world.player1, attribute, value)
 
     def modify_player_attribute(self, game, action):
         """Modifies the given attribute of the player character by modifier. By default
@@ -420,7 +420,7 @@ class Player(object):
         attribute = action.parameters[0]
         modifier = action.parameters[1]
         
-        modify_character_attribute(world.player1, attribute, modifier)
+        Common.modify_character_attribute(world.player1, attribute, modifier)
 
     def remove_monster(self, game, action):
         """Removes a monster to the current player's party if the monster is there.

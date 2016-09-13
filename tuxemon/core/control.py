@@ -11,6 +11,7 @@ from .components import controller
 from .components import event
 from .components import networking
 from .components import rumble
+from .components.game_event import GAME_EVENT
 from .platform import android
 
 # from .components.combat import CombatEngine, CombatRouter
@@ -243,8 +244,16 @@ class Control(StateManager):
                 for game_event in self.get_controller_event(pg_event):
                     yield game_event
 
+            # Loop through normal mouse events
+            if pg_event.type == pg.MOUSEBUTTONDOWN:
+                yield pg_event
+
             # Loop through our joystick events
             for game_event in self.get_joystick_event(pg_event):
+                yield game_event
+
+            # Loop through our user defined events
+            for game_event in self.get_user_event(pg_event):
                 yield game_event
 
     def process_events(self, events):
@@ -489,6 +498,18 @@ class Control(StateManager):
 
         return events
 
+    @staticmethod
+    def get_user_event(game_event):
+        """ Filter user defined events
+
+        :param game_event: pygame.event.Event
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
+
+        """
+        if game_event.type in [GAME_EVENT]:
+            yield game_event
+
     def toggle_show_fps(self, key):
         """Press f5 to turn on/off displaying the framerate in the caption.
 
@@ -657,8 +678,8 @@ class Control(StateManager):
         if not world:
             return
 
-        world.npcs = []
-        world.npcs_off_map = []
+        world.npcs = {}
+        world.npcs_off_map = {}
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
@@ -667,17 +688,17 @@ class Control(StateManager):
 
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
-                    if not sprite in world.npcs:
-                        world.npcs.append(sprite)
-                    if sprite in world.npcs_off_map:
-                        world.npcs_off_map.remove(sprite)
+                    if sprite.slug not in world.npcs:
+                        world.npcs[sprite.slug] = sprite
+                    if sprite.slug in world.npcs_off_map:
+                        del world.npcs_off_map[sprite.slug]
 
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
-                    if not sprite in world.npcs_off_map:
-                        world.npcs_off_map.append(sprite)
-                    if sprite in world.npcs:
-                        world.npcs.remove(sprite)
+                    if sprite.slug not in world.npcs_off_map:
+                        world.npcs_off_map[sprite.slug] = sprite
+                    if sprite.slug in world.npcs:
+                        del world.npcs[sprite]
 
     def get_map_name(self):
         """Gets the map of the player.

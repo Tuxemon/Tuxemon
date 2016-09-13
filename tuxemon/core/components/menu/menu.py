@@ -7,7 +7,7 @@ from functools import partial
 import pygame
 
 from core import state, prepare, tools
-from core.components.menu.interface import MenuCursor
+from core.components.menu.interface import MenuCursor, MenuItem
 from core.components.sprite import VisualSpriteList, RelativeGroup
 from core.components.ui.draw import GraphicBox
 from core.components.ui.text import TextArea
@@ -53,6 +53,7 @@ class Menu(state.State):
     shrink_to_items = False    # fit the border to contents
     escape_key_exits = True    # escape key closes menu
     animate_contents = False   # show contents while window opens
+    touch_aware = False        # if true, then menu items can be selected with the mouse/touch
 
     def startup(self, *items, **kwargs):
         self.rect = self.rect.copy()  # do not remove!
@@ -181,6 +182,18 @@ class Menu(state.State):
             number_items = len(self.menu_items)
             if self.menu_items and self.selected_index >= number_items:
                 self.change_selection(number_items - 1)
+
+    def build_item(self, label, callback, icon=None):
+        """ Create a menu item and add it to the menu
+
+        :param label: Some text
+        :param icon: pygame surface (not used yet)
+        :param callback: callback to use when selected
+        :return: Menu Item
+        """
+        image = self.shadow_text(label)
+        item = MenuItem(image, label, None, callback)
+        self.add(item)
 
     def add(self, item):
         """ Add a menu item
@@ -402,6 +415,35 @@ class Menu(state.State):
                     if not self.selected_index == index:
                         self.change_selection(index)
 
+        # TODO: handling of click/drag, miss-click, etc
+        # TODO: eventually, maybe move some handling into menuitems
+        # TODO: handle screen scaling?
+        # TODO: generalized widget system
+        elif self.touch_aware and event.type == pygame.MOUSEBUTTONDOWN:
+            # menu items is (sometimes) a relative group, so their rect will be relative to their parent
+            # we need to adjust the point to topleft of the containing rect
+            # eventually, a widget system could do this automatically
+
+            # make sure that the rect's position is current
+            # a sprite group may not be a relative group... so an attribute error will be raised
+            # obvi, a wart, but will be fixed sometime (tm)
+            try:
+                self.menu_items.update_rect_from_parent()
+            except AttributeError:
+                # not a relative group, no need to adjust cursor
+                mouse_pos = event.pos
+            else:
+                # move the mouse/touch origin to be relative to the menu_items
+                # TODO: a vector type would be niceeee
+                mouse_pos = [a - b for a, b in zip(event.pos, self.menu_items.rect.topleft)]
+
+            # loop through all the items here and see if they collide
+            # eventually, we should make this more generic...not part of the menu
+            for index, item in enumerate([i for i in self.menu_items if i.enabled]):
+                if item.rect.collidepoint(mouse_pos):
+                    self.change_selection(index)
+                    self.on_menu_selection(self.get_selected_item())
+
     def change_selection(self, index, animate=True):
         """ Force the menu to be evaluated and move cursor and trigger focus changes
 
@@ -415,6 +457,19 @@ class Menu(state.State):
         self.trigger_cursor_update(animate)        # move cursor and [maybe] animate it
         self.get_selected_item().in_focus = True   # set focus flag of new item
         self.on_menu_selection_change()            # let subclass know menu has changed
+
+    def search_items(self, game_object):
+        """ Non-optimised search through menu_items for a particular thing
+
+        TODO: address the confusing name "game object"
+
+        :param game_object:
+        :return:
+        """
+        for menu_item in self.menu_items:
+            if game_object == menu_item.game_object:
+                return menu_item
+        return None
 
     def trigger_cursor_update(self, animate=True):
         """ Force the menu cursor to move into the correct position
@@ -534,15 +589,19 @@ class Menu(state.State):
     def calc_final_rect(self):
         """ Calculate the area in the game window where menu is shown
 
-        This value is the __desired__ location, and should not change
+        This value is the __desired__ location and size, and should not change
         over the lifetime of the menu.  It is used to generate animations
         to open the menu.
 
-        By default, this will be the entire screen
+        The rect represents the size of the menu after all items are added.
 
         :rtype: pygame.Rect
         """
-        return self.rect
+        original = self.rect.copy()    # store the original rect
+        self.refresh_layout()          # arrange the menu
+        rect = self.rect.copy()        # store the final rect
+        self.rect = original           # set the original back
+        return rect
 
     def on_open(self):
         """ Hook is called after opening animation has finished
@@ -558,7 +617,8 @@ class Menu(state.State):
 
         :return:
         """
-        item.game_object()
+        if item.enabled:
+            item.game_object()
 
     def on_menu_selection_change(self):
         """ Hook for things to happen after menu selection changes
@@ -627,11 +687,15 @@ class PopUpMenu(Menu):
 
         # set rect to a small size for the initial values of the animation
         self.rect = self.rect.copy()           # required.  do not remove.
-        self.rect.height = rect.height / 2
-        self.rect.width = rect.width / 2
+        self.rect.height = int(rect.height * .1)
+        self.rect.width = int(rect.width * .1)
         self.rect.center = rect.center
 
+        # if this statement were removed, then the menu would
+        # refresh and the size animation would be lost
+        self._needs_refresh = False
+
         # create animation to open window with
-        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.15)
+        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.20)
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani

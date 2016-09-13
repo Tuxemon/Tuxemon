@@ -7,7 +7,7 @@ from functools import partial
 import pygame
 
 from core import state, prepare, tools
-from core.components.menu.interface import MenuCursor
+from core.components.menu.interface import MenuCursor, MenuItem
 from core.components.sprite import VisualSpriteList, RelativeGroup
 from core.components.ui.draw import GraphicBox
 from core.components.ui.text import TextArea
@@ -182,6 +182,18 @@ class Menu(state.State):
             number_items = len(self.menu_items)
             if self.menu_items and self.selected_index >= number_items:
                 self.change_selection(number_items - 1)
+
+    def build_item(self, label, callback, icon=None):
+        """ Create a menu item and add it to the menu
+
+        :param label: Some text
+        :param icon: pygame surface (not used yet)
+        :param callback: callback to use when selected
+        :return: Menu Item
+        """
+        image = self.shadow_text(label)
+        item = MenuItem(image, label, None, callback)
+        self.add(item)
 
     def add(self, item):
         """ Add a menu item
@@ -446,6 +458,19 @@ class Menu(state.State):
         self.get_selected_item().in_focus = True   # set focus flag of new item
         self.on_menu_selection_change()            # let subclass know menu has changed
 
+    def search_items(self, game_object):
+        """ Non-optimised search through menu_items for a particular thing
+
+        TODO: address the confusing name "game object"
+
+        :param game_object:
+        :return:
+        """
+        for menu_item in self.menu_items:
+            if game_object == menu_item.game_object:
+                return menu_item
+        return None
+
     def trigger_cursor_update(self, animate=True):
         """ Force the menu cursor to move into the correct position
 
@@ -564,15 +589,19 @@ class Menu(state.State):
     def calc_final_rect(self):
         """ Calculate the area in the game window where menu is shown
 
-        This value is the __desired__ location, and should not change
+        This value is the __desired__ location and size, and should not change
         over the lifetime of the menu.  It is used to generate animations
         to open the menu.
 
-        By default, this will be the entire screen
+        The rect represents the size of the menu after all items are added.
 
         :rtype: pygame.Rect
         """
-        return self.rect
+        original = self.rect.copy()    # store the original rect
+        self.refresh_layout()          # arrange the menu
+        rect = self.rect.copy()        # store the final rect
+        self.rect = original           # set the original back
+        return rect
 
     def on_open(self):
         """ Hook is called after opening animation has finished
@@ -588,7 +617,8 @@ class Menu(state.State):
 
         :return:
         """
-        item.game_object()
+        if item.enabled:
+            item.game_object()
 
     def on_menu_selection_change(self):
         """ Hook for things to happen after menu selection changes
@@ -657,11 +687,15 @@ class PopUpMenu(Menu):
 
         # set rect to a small size for the initial values of the animation
         self.rect = self.rect.copy()           # required.  do not remove.
-        self.rect.height = rect.height / 2
-        self.rect.width = rect.width / 2
+        self.rect.height = int(rect.height * .1)
+        self.rect.width = int(rect.width * .1)
         self.rect.center = rect.center
 
+        # if this statement were removed, then the menu would
+        # refresh and the size animation would be lost
+        self._needs_refresh = False
+
         # create animation to open window with
-        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.15)
+        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.20)
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani

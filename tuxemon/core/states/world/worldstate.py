@@ -379,6 +379,18 @@ class WorldState(state.State):
         # the event engine.
         return event
 
+    def get_all_players(self):
+        """Retrieves a list of all npcs and the player.
+
+        :rtype: Dictionary
+        :returns: Dictionary of all Player objects keyed by their slug.
+        """
+
+        players = dict(world.npcs)
+        players[game.player1.slug] = game.player1
+
+        return players
+        
     ####################################################
     #                   Map Drawing                    #
     ####################################################

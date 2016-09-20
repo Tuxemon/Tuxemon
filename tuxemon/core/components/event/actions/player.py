@@ -32,6 +32,7 @@ from core import prepare
 from core import tools
 from core.components import item
 from core.components import monster
+from core.components.event.actions.common import Common
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -358,6 +359,68 @@ class Player(object):
             return
 
         world.menu_blocking = False
+
+    def set_player_attribute(self, game, action):
+        """Sets the given attribute of the player character to the given value.
+        Valid Parameters: attribute, value
+        
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_player_attribute",
+            "parameters": [
+                "party_limit",
+                "8"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        attribute = action.parameters[0]
+        value = action.parameters[1]
+        
+        Common.set_character_attribute(world.player1, attribute, value)
+
+    def modify_player_attribute(self, game, action):
+        """Modifies the given attribute of the player character by modifier. By default
+        this is achieved via addition, but prepending a '%' will cause it to be 
+        multiplied by the attribute.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: attribute, modifier
+        
+        Action parameter 'modifier' must be an int (positive or negative)
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "change_player_attribute",
+            "parameters": [
+                "walkrate",
+                "1.50"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        attribute = action.parameters[0]
+        modifier = action.parameters[1]
+        
+        Common.modify_character_attribute(world.player1, attribute, modifier)
 
     def remove_monster(self, game, action):
         """Removes a monster to the current player's party if the monster is there.

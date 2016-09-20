@@ -30,6 +30,7 @@ from core import prepare
 from core.components import ai
 from core.components import player
 from core.components.event import Condition
+from core.components.event.actions.common import Common
 
 
 class Npc(object):
@@ -201,3 +202,92 @@ class Npc(object):
 
         curr_npc = world.npcs[npc_slug]
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)
+
+
+    def set_npc_attribute(self, game, action):
+        """Sets the given attribute of the npc to the given value.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: slug, attribute, value
+        
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_npc_attribute",
+            "parameters": [
+                "npc_maple"
+                "party_limit",
+                "8"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        npc = world.npcs[action.parameters[0]]
+        attribute = action.parameters[1]
+        value = action.parameters[2]
+        
+        Common.set_character_attribute(npc, attribute, value)
+
+    def modify_npc_attribute(self, game, action):
+        """Modifies the given attribute of the npc by modifier. By default
+        this is achieved via addition, but prepending a '%' will cause it to be 
+        multiplied by the attribute.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: slug, attribute, modifier
+        
+        Action parameter 'modifier' must be a number (positive or negative)
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "change_player_attribute",
+            "parameters": [
+                "npc_maple",
+                "walkrate",
+                "%1.50"
+            ]
+        }
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "change_player_attribute",
+            "parameters": [
+                "npc_maple",
+                "hp",
+                "-15"
+            ]
+        }
+        """
+        world = game.get_state_name("WorldState")
+        if not world:
+            return
+
+        npc = world.npcs[action.parameters[0]]
+        attribute = action.parameters[1]
+        modifier = action.parameters[2]
+        
+        Common.modify_character_attribute(npc, attribute, modifier)

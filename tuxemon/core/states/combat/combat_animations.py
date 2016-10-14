@@ -242,12 +242,12 @@ class CombatAnimations(Menu):
         self.animate_hp(monster)
 
     def build_hud_text(self, monster):
-        """
+        """ Return a string for use on the callout of the monster
 
         :type monster: core.components.monster.Monster
         :return:
         """
-        return self.shadow_text("{0.name: <10} Lv. {0.level: >2}".format(monster))
+        return self.shadow_text("{0.name: <12}Lv.{0.level: >2}".format(monster))
 
     def get_side(self, rect):
         """ [WIP] get 'side' of screen rect is in

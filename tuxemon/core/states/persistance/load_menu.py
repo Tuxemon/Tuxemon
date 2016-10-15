@@ -50,4 +50,7 @@ class LoadMenuState(SaveMenuState):
             Action = namedtuple("action", ["type", "parameters"])
             action = Action("teleport", [save_data['current_map'], tele_x, tele_y])
 
-            self.game.event_engine.actions['teleport']['method'](self.game, action)
+            contexts = {}
+            self.game.event_engine.actions['teleport']['method'](self.game, action, contexts)
+            for key in contexts:
+                contexts[key].execute(game)

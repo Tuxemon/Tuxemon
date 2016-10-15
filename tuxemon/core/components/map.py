@@ -76,6 +76,7 @@ class Map(object):
         self.collision_lines = []
 
         self.events = []
+        self.inits = []
 
         # Initialize the map
         self.load(filename)
@@ -171,58 +172,63 @@ class Map(object):
                 self.collision_lines.append(obj)
 
             elif obj.type == 'event':
-                conds = []
-                acts = []
+                self.events.append(self.loadevent(obj))
 
-                # Conditions & actions are stored as Tiled properties.
-                # We need to sort them by name, so that "act1" comes before "act2" and so on..
-                keys = sorted(obj.properties.keys())
+            elif obj.type == 'init':
+                self.inits.append(self.loadevent(obj))
 
-                for k in keys:
-                    if k.startswith('cond'):
-                        words = obj.properties[k].split(' ', 2)
+    def loadevent(self, obj):
+        conds = []
+        acts = []
 
-                        # Conditions have the form 'operator type parameters'.
-                        operator, cond_type = words[0:2]
+        # Conditions & actions are stored as Tiled properties.
+        # We need to sort them by name, so that "act1" comes before "act2" and so on..
+        keys = sorted(obj.properties.keys())
 
-                        # If this condition has parameters, split them into a
-                        # list
-                        if len(words) > 2:
-                            args = self.split_escaped(words[2])
-                        else:
-                            args = list()
+        for k in keys:
+            if k.startswith('cond'):
+                words = obj.properties[k].split(' ', 2)
 
-                        # Create a condition object using named tuples
-                        condition = Condition(cond_type,
-                                              args,
-                                              int(obj.x / self.tile_size[0]),
-                                              int(obj.y / self.tile_size[1]),
-                                              int(obj.width / self.tile_size[0]),
-                                              int(obj.height / self.tile_size[1]),
-                                              operator)
+                # Conditions have the form 'operator type parameters'.
+                operator, cond_type = words[0:2]
 
-                        conds.append(condition)
+                # If this condition has parameters, split them into a
+                # list
+                if len(words) > 2:
+                    args = self.split_escaped(words[2])
+                else:
+                    args = list()
 
-                    elif k.startswith('act'):
-                        words = obj.properties[k].split(' ', 1)
+                # Create a condition object using named tuples
+                condition = Condition(cond_type,
+                                      args,
+                                      int(obj.x / self.tile_size[0]),
+                                      int(obj.y / self.tile_size[1]),
+                                      int(obj.width / self.tile_size[0]),
+                                      int(obj.height / self.tile_size[1]),
+                                      operator)
 
-                        # Actions have the form 'type parameters'.
-                        act_type = words[0]
+                conds.append(condition)
 
-                        # If this action has parameters, split them into a
-                        # list
-                        if len(words) > 1:
-                            args = self.split_escaped(words[1])
-                        else:
-                            args = list()
+            elif k.startswith('act'):
+                words = obj.properties[k].split(' ', 1)
 
-                        # Create an action object using named tuples
-                        action = Action(act_type, args)
+                # Actions have the form 'type parameters'.
+                act_type = words[0]
 
-                        acts.append(action)
+                # If this action has parameters, split them into a
+                # list
+                if len(words) > 1:
+                    args = self.split_escaped(words[1])
+                else:
+                    args = list()
 
-                self.events.append({'conds': conds, 'acts': acts, 'id': obj.id})
+                # Create an action object using named tuples
+                action = Action(act_type, args)
 
+                acts.append(action)
+
+        return {'conds': conds, 'acts': acts, 'id': obj.id}
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with

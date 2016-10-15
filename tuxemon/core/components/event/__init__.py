@@ -97,6 +97,27 @@ class EventEngine(object):
         """
 
         if self.state == "running":
+            for e in game.inits:
+                should_run = True
+
+                # If any conditions fail, the event should not be run
+                for cond in e['conds']:
+                    # Conditions have so-called "operators".  If a condition's operator == "is" then
+                    # the condition should be processed as usual.
+                    # However, if the condition != "is", the result should be inverted.
+                    # The following line implements this.
+                    # I am not satisfied with the clarity of this line, so if anyone can express this better,
+                    # please change it.
+                    if not self.state == "running":
+                        return
+                    check_condition = self.conditions[cond.type]['method']
+                    should_run = (check_condition(game, cond) == (cond.operator == 'is'))
+                    if not should_run:
+                        break
+
+                if should_run:
+                    self.execute_action(e['acts'], game)
+            game.inits = list()
             for e in game.events:
                 should_run = True
 

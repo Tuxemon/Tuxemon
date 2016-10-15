@@ -46,6 +46,7 @@ class Control(StateManager):
 
         # somehow this value is being patched somewhere
         self.events = list()
+        self.inits = list()
 
         # TODO: move out to state manager
         self.package = "core.states"

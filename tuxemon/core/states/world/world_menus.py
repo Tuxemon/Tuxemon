@@ -49,7 +49,7 @@ class WorldMenuState(Menu):
             return partial(self.game.replace_state, state, **kwargs)
 
         def exit_game():
-            core_actions.Core().quit(self.game, None)
+            core_actions.Core().quit(self.game, None, {})
 
         def not_implemented_dialog():
             open_dialog(self.game, [translator.translate('not_implemented')])

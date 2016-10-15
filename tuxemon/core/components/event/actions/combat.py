@@ -42,7 +42,7 @@ logger = logging.getLogger(__name__)
 
 class Combat(object):
 
-    def start_battle(self, game, action):
+    def start_battle(self, game, action, contexts):
         """Start a battle and switch to the combat module. The parameters must contain an NPC slug
         in the NPC database.
 
@@ -186,7 +186,7 @@ class Combat(object):
         # mixer.music.play(-1)
 
 
-    def random_encounter(self, game, action):
+    def random_encounter(self, game, action, contexts):
         """Randomly starts a battle with a monster defined in the "encounter" table in the
         "monster.db" database. The chance that this will start a battle depends on the
         "encounter_rate" specified in the database. The "encounter_rate" number is the chance

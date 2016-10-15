@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 class Sound(object):
 
-    def play_sound(self, game, action):
+    def play_sound(self, game, action, contexts):
         """Plays a sound from "resources/sounds/"
 
         :param game: The main game object that contains all the game's variables.
@@ -68,7 +68,7 @@ class Sound(object):
         sound.play()
 
 
-    def play_music(self, game, action):
+    def play_music(self, game, action, contexts):
         """Plays a music file from "resources/music/"
 
         :param game: The main game object that contains all the game's variables.
@@ -103,7 +103,7 @@ class Sound(object):
         game.current_music["song"] = filename
 
 
-    def pause_music(self, game, action):
+    def pause_music(self, game, action, contexts):
         """Pauses the current music playback
 
         :param game: The main game object that contains all the game's variables.
@@ -135,7 +135,7 @@ class Sound(object):
             logger.warning("Music cannot be paused, none is playing.")
 
 
-    def fadeout_music(self, game, action):
+    def fadeout_music(self, game, action, contexts):
         """Fades out the music over a set amount of time in milliseconds
 
         :param game: The main game object that contains all the game's variables.

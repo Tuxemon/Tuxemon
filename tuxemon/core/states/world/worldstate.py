@@ -784,6 +784,7 @@ class WorldState(state.State):
         self.map_size = map_data["map_size"]
         self.game.events = map_data["events"]
         self.game.inits = map_data["inits"]
+        self.game.interacts = map_data["interacts"]
         self.game.event_engine.current_map = map_data
 
         # Clear out any existing NPCs
@@ -797,6 +798,7 @@ class WorldState(state.State):
         map_data["data"] = map.Map(map_name)
         map_data["events"] = map_data["data"].events
         map_data["inits"] = map_data["data"].inits
+        map_data["interacts"] = map_data["data"].interacts
         map_data["tiles"], map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
             map_data["data"].loadfile(self.tile_size)
 

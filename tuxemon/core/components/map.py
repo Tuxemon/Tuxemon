@@ -36,6 +36,7 @@ from collections import namedtuple
 from core.components.pyganim import PygAnimation
 from core.components.event import Action
 from core.components.event import Condition
+from core.components.event import EventObject
 
 # Handle older versions of PyTMX.
 try:
@@ -77,6 +78,7 @@ class Map(object):
 
         self.events = []
         self.inits = []
+        self.interacts = []
 
         # Initialize the map
         self.load(filename)
@@ -177,6 +179,9 @@ class Map(object):
             elif obj.type == 'init':
                 self.inits.append(self.loadevent(obj))
 
+            elif obj.type == 'interact':
+                self.interacts.append(self.loadevent(obj))
+
     def loadevent(self, obj):
         conds = []
         acts = []
@@ -228,7 +233,7 @@ class Map(object):
 
                 acts.append(action)
 
-        return {'conds': conds, 'acts': acts, 'id': obj.id}
+        return EventObject(obj.id, int(obj.x / self.tile_size[0]), int(obj.y / self.tile_size[1]), conds, acts)
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with

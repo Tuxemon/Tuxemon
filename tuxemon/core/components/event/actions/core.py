@@ -479,8 +479,8 @@ class Core(object):
         events = game.events
 
         for e in events:
-            if e['id'] == int(action.parameters[0]):
-                event_engine.execute_action(e['acts'], game)
+            if e.id == int(action.parameters[0]):
+                event_engine.execute_action(e.acts, game)
 
     def dialog_choice(self, game, action, contexts):
         """Asks the player to make a choice.

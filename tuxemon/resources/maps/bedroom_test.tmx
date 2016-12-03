@@ -61,7 +61,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="11" name="Get Fruitera" type="event" x="144" y="112" width="16" height="16">
+  <object id="11" name="Get Fruitera" type="interact" x="144" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster txmn_fruitera,10"/>
     <property name="act2" value="translated_dialog received_x,name=Fruitera"/>
@@ -69,19 +69,15 @@
     <property name="act4" value="add_item item_potion"/>
     <property name="act5" value="add_item item_capture_device"/>
     <property name="act6" value="set_variable got_fruitera:yes"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_fruitera:yes"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="not variable_set got_fruitera:yes"/>
    </properties>
   </object>
-  <object id="16" name="Lord Lampy" type="event" x="32" y="32" width="16" height="16">
+  <object id="16" name="Lord Lampy" type="interact" x="32" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="dialog_chain Hello stranger!"/>
     <property name="act2" value="dialog_chain My name is Lampy, lord of all lamps."/>
     <property name="act3" value="dialog_chain Go forth and inact my lampy will."/>
     <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="17" name="Lord or Filth" type="event" x="48" y="32" width="16" height="16">

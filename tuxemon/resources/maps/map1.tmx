@@ -200,7 +200,7 @@
     <property name="cond1" value="is player_at 43,45"/>
    </properties>
   </object>
-  <object id="68" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+  <object id="68" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music 479403_its-a-unix-system.ogg"/>
     <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>

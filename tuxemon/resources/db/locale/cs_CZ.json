@@ -67,6 +67,13 @@
     "multiplayer_accept": "Přijmout",
     "multiplayer_decline": "Odmítnout",
     "multiplayer_duel": "${{name}} by chtěl Duel!",
+    "multiplayer_host_game": "Hostit hru",
+    "multiplayer_scan_games": "Vyhledat hry",
+    "multiplayer_join_game": "Připojit se ke hře",
+    "multiplayer_hosting_ready": "Připraven příjmat klienty!",
+    "multiplayer_already_hosting": "Již hostováno!",
+    "multiplayer_no_servers": "Servery nebyly nalezeny...",
+    "multiplayer_join_prompt": "Hostname nebo IP?",
 
     "not_implemented": "Tato funkce zatím není implementována.",
 

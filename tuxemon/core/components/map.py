@@ -36,6 +36,7 @@ from collections import namedtuple
 from core.components.pyganim import PygAnimation
 from core.components.event import Action
 from core.components.event import Condition
+from core.components.event import EventObject
 
 # Handle older versions of PyTMX.
 try:
@@ -76,6 +77,8 @@ class Map(object):
         self.collision_lines = []
 
         self.events = []
+        self.inits = []
+        self.interacts = []
 
         # Initialize the map
         self.load(filename)
@@ -171,58 +174,66 @@ class Map(object):
                 self.collision_lines.append(obj)
 
             elif obj.type == 'event':
-                conds = []
-                acts = []
+                self.events.append(self.loadevent(obj))
 
-                # Conditions & actions are stored as Tiled properties.
-                # We need to sort them by name, so that "act1" comes before "act2" and so on..
-                keys = sorted(obj.properties.keys())
+            elif obj.type == 'init':
+                self.inits.append(self.loadevent(obj))
 
-                for k in keys:
-                    if k.startswith('cond'):
-                        words = obj.properties[k].split(' ', 2)
+            elif obj.type == 'interact':
+                self.interacts.append(self.loadevent(obj))
 
-                        # Conditions have the form 'operator type parameters'.
-                        operator, cond_type = words[0:2]
+    def loadevent(self, obj):
+        conds = []
+        acts = []
 
-                        # If this condition has parameters, split them into a
-                        # list
-                        if len(words) > 2:
-                            args = self.split_escaped(words[2])
-                        else:
-                            args = list()
+        # Conditions & actions are stored as Tiled properties.
+        # We need to sort them by name, so that "act1" comes before "act2" and so on..
+        keys = sorted(obj.properties.keys())
 
-                        # Create a condition object using named tuples
-                        condition = Condition(cond_type,
-                                              args,
-                                              int(obj.x / self.tile_size[0]),
-                                              int(obj.y / self.tile_size[1]),
-                                              int(obj.width / self.tile_size[0]),
-                                              int(obj.height / self.tile_size[1]),
-                                              operator)
+        for k in keys:
+            if k.startswith('cond'):
+                words = obj.properties[k].split(' ', 2)
 
-                        conds.append(condition)
+                # Conditions have the form 'operator type parameters'.
+                operator, cond_type = words[0:2]
 
-                    elif k.startswith('act'):
-                        words = obj.properties[k].split(' ', 1)
+                # If this condition has parameters, split them into a
+                # list
+                if len(words) > 2:
+                    args = self.split_escaped(words[2])
+                else:
+                    args = list()
 
-                        # Actions have the form 'type parameters'.
-                        act_type = words[0]
+                # Create a condition object using named tuples
+                condition = Condition(cond_type,
+                                      args,
+                                      int(obj.x / self.tile_size[0]),
+                                      int(obj.y / self.tile_size[1]),
+                                      int(obj.width / self.tile_size[0]),
+                                      int(obj.height / self.tile_size[1]),
+                                      operator)
 
-                        # If this action has parameters, split them into a
-                        # list
-                        if len(words) > 1:
-                            args = self.split_escaped(words[1])
-                        else:
-                            args = list()
+                conds.append(condition)
 
-                        # Create an action object using named tuples
-                        action = Action(act_type, args)
+            elif k.startswith('act'):
+                words = obj.properties[k].split(' ', 1)
 
-                        acts.append(action)
+                # Actions have the form 'type parameters'.
+                act_type = words[0]
 
-                self.events.append({'conds': conds, 'acts': acts, 'id': obj.id})
+                # If this action has parameters, split them into a
+                # list
+                if len(words) > 1:
+                    args = self.split_escaped(words[1])
+                else:
+                    args = list()
 
+                # Create an action object using named tuples
+                action = Action(act_type, args)
+
+                acts.append(action)
+
+        return EventObject(obj.id, int(obj.x / self.tile_size[0]), int(obj.y / self.tile_size[1]), conds, acts)
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with

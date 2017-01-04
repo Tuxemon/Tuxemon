@@ -5,15 +5,24 @@
 from lxml import html
 from pprint import pprint
 import requests
+import shutil
 
 user_agent = {'User-agent': 'Mozilla/5.0'}
 tuxepedia = "https://wiki.tuxemon.org"
 monsters_xpath = '//*[@id="mw-content-text"]/table[1]/tr[1]/td[1]/table'
+sprites_path = './tmp/'
 
 def wget(url, params):
     page = requests.get(url, headers=user_agent, params=params)
     tree = html.fromstring(page.content)
     return tree
+
+def download(url, to_path):
+    print("Downloading image: " + url)
+    response = requests.get(url, stream=True)
+    with open(to_path, 'wb') as out_file:
+        shutil.copyfileobj(response.raw, out_file)
+    del response
 
 def get_monsters():
     monsters = {}
@@ -65,6 +74,11 @@ def get_monsters():
                 print("  Fetching blurb...")
                 monsters[name]["blurb"] = get_monster_name(td)
 
+            # The ninth column is the monster's call sound.
+            if monster_i == 8:
+                print("  Fetching blurb...")
+                monsters[name]["call"] = get_monster_url(td)
+
             monster_i += 1
 
     pprint(monsters)
@@ -78,7 +92,10 @@ def get_monster_name(td):
 def get_monster_url(td):
     links = td.findall("a")
     for el in links:
-        return el.get("href")
+        url = el.get("href")
+        if "Missing" in url:
+            return None
+        return url
 
 def get_monster_types(td):
     types = []
@@ -94,6 +111,58 @@ def get_monster_sprite(td):
         image = link.find('img')
         return image.get("src")
 
+def is_valid_monster(name, monster):
+    if "(" in name:
+        return False
+    if not monster["front"]:
+        return False
+    if not monster["back"]:
+        return False
+    if not monster["menu1"]:
+        return False
+    if not monster["menu2"]:
+        return False
+    if not monster["types"]:
+        return False
+
+    return True
+
+def download_sprites(name, monster):
+    # Do nothing if the monster doesn't have a complete sprite set.
+    if not is_valid_monster(name, monster):
+        return
+
+    # Download the front sprite
+    ext = get_extension(monster["front"])
+    filename = name.lower() + "-front." + ext
+    url = tuxepedia + monster["front"]
+    download(url, sprites_path + filename)
+
+    # Download the back sprite
+    ext = get_extension(monster["back"])
+    filename = name.lower() + "-back." + ext
+    url = tuxepedia + monster["back"]
+    download(url, sprites_path + filename)
+
+    # Download the menu1 sprite
+    ext = get_extension(monster["menu1"])
+    filename = name.lower() + "-menu01." + ext
+    url = tuxepedia + monster["menu1"]
+    download(url, sprites_path + filename)
+
+    # Download the menu2 sprite
+    ext = get_extension(monster["menu2"])
+    filename = name.lower() + "-menu02." + ext
+    url = tuxepedia + monster["menu2"]
+    download(url, sprites_path + filename)
+
+def get_extension(name):
+    return name.split(".")[-1].lower()
 
 if __name__ == "__main__":
-    get_monsters()
+    # Fetch all our monster data.
+    monsters = get_monsters()
+
+    # Download all our images.
+    for name, monster in monsters.items():
+        download_sprites(name, monster)

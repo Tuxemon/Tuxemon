@@ -248,6 +248,51 @@ class Player(object):
         game.player1.add_monster(current_monster)
 
 
+    def set_monster_health(self, game, action, contexts):
+        """Changes the hp of a monster in the current player's party. The action parameters
+        may contain a monster slot and the amount of health. If no slot is specified,
+        all monsters are healed. If no health is specified, the hp is maxed out.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: slot,health
+
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_monster_health",
+            "parameters": [
+                "0",
+                "1"
+            ]
+        }
+        """
+        monster_slot = action.parameters[0]
+        monster_health = action.parameters[1]
+
+        if monster_slot:
+            monster = game.player1.monsters[int(monster_slot)]
+            if monster_health:
+                monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
+            else:
+                monster.current_hp = monster.hp
+        else:
+            for monster in game.player1.monsters:
+                if monster_health:
+                    monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
+                else:
+                    monster.current_hp = monster.hp
+
+
     def add_item(self, game, action, contexts):
         """Adds an item to the current player's inventory. The action parameter must contain an
         item name to look up in the item database.

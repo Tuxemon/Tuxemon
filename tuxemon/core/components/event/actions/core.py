@@ -59,6 +59,15 @@ class Core(object):
         text = text.replace("${{name}}", game.player1.name)
         text = text.replace(r"\n", "\n")
 
+        for i in range(len(game.player1.monsters)):
+            monster = game.player1.monsters[i]
+            text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
+            text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
+            text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
+            text = text.replace("${{monster_" + str(i) + "_hp}}", str(monster.current_hp))
+            text = text.replace("${{monster_" + str(i) + "_hp_max}}", str(monster.hp))
+            text = text.replace("${{monster_" + str(i) + "_level}}", str(monster.level))
+
         return text
 
 

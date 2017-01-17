@@ -276,6 +276,9 @@ class Player(object):
             ]
         }
         """
+        if not game.player1.monsters > 0:
+            return
+
         monster_slot = action.parameters[0]
         monster_health = action.parameters[1]
 
@@ -321,6 +324,9 @@ class Player(object):
             ]
         }
         """
+        if not game.player1.monsters > 0:
+            return
+
         monster_slot = action.parameters[0]
         monster_status = action.parameters[1]
 
@@ -366,6 +372,9 @@ class Player(object):
             ]
         }
         """
+        if not game.player1.monsters > 0:
+            return
+
         monster_slot = action.parameters[0]
         monster_level = action.parameters[1]
 

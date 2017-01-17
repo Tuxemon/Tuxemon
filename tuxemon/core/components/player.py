@@ -345,22 +345,26 @@ class Player(object):
                     if game.game.isclient or game.game.ishost:
                         game.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
 
-        # If this collision tile has a continue direction, force the player to walk toward it
+        # If this collision tile has a continue direction, force the player to keep walking
         if not self.moving:
             if player_pos in collision_dict:
-                if collision_dict[player_pos]["continue"] == "up":
+                direction_next = collision_dict[player_pos]["continue"]
+                if not (direction_next == "up" or direction_next == "down" or direction_next == "left" or direction_next == "right"):
+                    direction_next = self.move_direction
+
+                if direction_next == "up":
                     self.move_destination = [int(global_x), int(global_y + tile_size[1])]
                     self.move_direction = "up"
                     self.moving = True
-                elif collision_dict[player_pos]["continue"] == "down":
+                elif direction_next == "down":
                     self.move_destination = [int(global_x), int(global_y - tile_size[1])]
                     self.move_direction = "down"
                     self.moving = True
-                elif collision_dict[player_pos]["continue"] == "left":
+                elif direction_next == "left":
                     self.move_destination = [int(global_x + tile_size[1]), int(global_y)]
                     self.move_direction = "left"
                     self.moving = True
-                elif collision_dict[player_pos]["continue"] == "right":
+                elif direction_next == "right":
                     self.move_destination = [int(global_x - tile_size[1]), int(global_y)]
                     self.move_direction = "right"
                     self.moving = True

@@ -283,6 +283,9 @@ class Player(object):
         monster_health = action.parameters[1]
 
         if monster_slot:
+            if len(game.player1.monsters) < int(monster_slot):
+                return
+
             monster = game.player1.monsters[int(monster_slot)]
             if monster_health:
                 monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
@@ -331,6 +334,9 @@ class Player(object):
         monster_status = action.parameters[1]
 
         if monster_slot:
+            if len(game.player1.monsters) < int(monster_slot):
+                return
+
             monster = game.player1.monsters[int(monster_slot)]
             if monster_status:
                 monster.status.append(monster_status)
@@ -379,6 +385,9 @@ class Player(object):
         monster_level = action.parameters[1]
 
         if monster_slot:
+            if len(game.player1.monsters) < int(monster_slot):
+                return
+
             monster = game.player1.monsters[int(monster_slot)]
             if monster_level:
                 monster.level = max(1, monster.level + int(monster_level))

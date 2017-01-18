@@ -1,7 +1,7 @@
 Tuxemon
 =========
 
-Copyright (C) 2015 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+Copyright (C) 2017 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 
 
 Programming
@@ -488,3 +488,11 @@ Translations
 ### Italian
 * [Nhoya](https://github.com/Nhoya)
 * [Airon90](https://github.com/Airon90)
+
+
+Special Thanks
+---------------
+
+### Patreon Supporters
+* [Chris Sakkas](https://www.patreon.com/user?u=40864)
+* [Kelvin Shadewing](https://www.patreon.com/kelvin)

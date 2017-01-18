@@ -248,6 +248,159 @@ class Player(object):
         game.player1.add_monster(current_monster)
 
 
+    def set_monster_health(self, game, action, contexts):
+        """Changes the hp of a monster in the current player's party. The action parameters
+        may contain a monster slot and the amount of health. If no slot is specified,
+        all monsters are healed. If no health is specified, the hp is maxed out.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: slot,health
+
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_monster_health",
+            "parameters": [
+                "0",
+                "1"
+            ]
+        }
+        """
+        if not game.player1.monsters > 0:
+            return
+
+        monster_slot = action.parameters[0]
+        monster_health = action.parameters[1]
+
+        if monster_slot:
+            if len(game.player1.monsters) < int(monster_slot):
+                return
+
+            monster = game.player1.monsters[int(monster_slot)]
+            if monster_health:
+                monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
+            else:
+                monster.current_hp = monster.hp
+        else:
+            for monster in game.player1.monsters:
+                if monster_health:
+                    monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
+                else:
+                    monster.current_hp = monster.hp
+
+
+    def set_monster_status(self, game, action, contexts):
+        """Changes the status of a monster in the current player's party. The action parameters
+        may contain a monster slot and the new status to be appended. If no slot is specified,
+        all monsters are modified. If no status is specified, the status is cleared.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: slot,status
+
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_monster_status",
+            "parameters": [
+                "0",
+                "status_poison"
+            ]
+        }
+        """
+        if not game.player1.monsters > 0:
+            return
+
+        monster_slot = action.parameters[0]
+        monster_status = action.parameters[1]
+
+        if monster_slot:
+            if len(game.player1.monsters) < int(monster_slot):
+                return
+
+            monster = game.player1.monsters[int(monster_slot)]
+            if monster_status:
+                monster.status.append(monster_status)
+            else:
+                monster.status = []
+        else:
+            for monster in game.player1.monsters:
+                if monster_status:
+                    monster.status.append(monster_status)
+                else:
+                    monster.status = []
+
+
+    def set_monster_level(self, game, action, contexts):
+        """Changes the level of a monster in the current player's party. The action parameters
+        may contain a monster slot and the amount by which to level. If no slot is specified,
+        all monsters are leveled. If no level is specified, the level is reverted to 1.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: slot,level
+
+        **Example:**
+
+        >>> action.__dict__
+        {
+            "type": "set_monster_level",
+            "parameters": [
+                "0",
+                "1"
+            ]
+        }
+        """
+        if not game.player1.monsters > 0:
+            return
+
+        monster_slot = action.parameters[0]
+        monster_level = action.parameters[1]
+
+        if monster_slot:
+            if len(game.player1.monsters) < int(monster_slot):
+                return
+
+            monster = game.player1.monsters[int(monster_slot)]
+            if monster_level:
+                monster.level = max(1, monster.level + int(monster_level))
+            else:
+                monster.level = 1
+        else:
+            for monster in game.player1.monsters:
+                if monster_level:
+                    monster.level = max(1, monster.level + int(monster_level))
+                else:
+                    monster.level = 1
+
+
     def add_item(self, game, action, contexts):
         """Adds an item to the current player's inventory. The action parameter must contain an
         item name to look up in the item database.

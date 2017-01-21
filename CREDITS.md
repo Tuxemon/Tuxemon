@@ -10,6 +10,7 @@ Programming
 * [William Edwards](mailto:shadowapex@gmail.com)
 * [Benjamin Bean](mailto:superman2k5@gmail.com)
 * [Derek Clark](mailto:derekjohn.clark@gmail.com)
+* [Leif Theden](https://github.com/bitcraft)
 
 **Contributors**
 
@@ -248,7 +249,108 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Whirlwind Attack"](https://forum.tuxemon.org/thread.php?pid=765#p765) by
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Apple Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Banana Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Orange Item"](https://forum.tuxemon.org/thread.php?pid=874#p874) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cherry & Berry Item"](https://forum.tuxemon.org/thread.php?pid=882#p882) by 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Gems"](https://forum.tuxemon.org/thread.php?pid=887#p887) by 
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
 * "Tux" by [Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+
+* ["Purple & Red Book Items"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Imperial Potion Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Key Card Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Yellow Key Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Green Phone Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Dandylion"](https://forum.tuxemon.org/thread.php?pid=824#p824) by
+[Leo](https://forum.tuxemon.org/profile.php?id=50),
+[ProfessorGreen](https://forum.tuxemon.org/profile.php?id=37), and
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) is licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Hydrone"](https://forum.tuxemon.org/thread.php?pid=773#p773) by 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Nudiflot"](https://forum.tuxemon.org/thread.php?pid=803#p803) by
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Onaclov"](https://forum.tuxemon.org/thread.php?pid=773#p773) by 
+[Leo](https://forum.tuxemon.org/profile.php?id=50) and 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Simba"](https://forum.tuxemon.org/thread.php?pid=621#p621) by 
+[Leo](https://forum.tuxemon.org/profile.php?id=50) and 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Sludgehog"](https://forum.tuxemon.org/thread.php?pid=899#p899) by 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tumblecoon"](https://forum.tuxemon.org/thread.php?pid=790#p790) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tumbleworm"](https://forum.tuxemon.org/thread.php?pid=771#p771) by 
+[tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Knight Sprite"](https://forum.tuxemon.org/thread.php?pid=620#p620) by 
+[Leo](https://forum.tuxemon.org/profile.php?id=50)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Blonde Professor Sprite"](https://forum.tuxemon.org/thread.php?pid=620#p620) by 
+[Leo](https://forum.tuxemon.org/profile.php?id=50)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Mountain Tileset"]() by 
+[Kelvin](http://kelvinshadewing.net) and 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Boss Sprite"](https://forum.tuxemon.org/thread.php?pid=285#p285) by 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Girl 1 Sprite"](https://forum.tuxemon.org/thread.php?pid=308#p308) by 
+[josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 
 **Concept Art**
@@ -360,3 +462,29 @@ Sounds
 [Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under 
 [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based upon [magellanic penguin](http://www.freesound.org/people/soundbytez/sounds/111079/) by [soundbytez](http://www.freesound.org/people/soundbytez/)
 
+
+Translations
+--------------
+
+### English
+* [William Edwards](https://github.com/ShadowApex)    
+* [tamashihoshi](https://github.com/tamashihoshi) 
+
+### German
+* [tamashihoshi](https://github.com/tamashihoshi) 
+
+### French
+* [HugopGhost](https://github.com/HugopGhost)
+
+### Chzech
+* [Clonewayx](https://github.com/Clonewayx)
+
+### Norwegian
+* Anonymous contributor
+
+### Portuguese
+* [HugopGhost](https://github.com/HugopGhost)
+
+### Italian
+* [Nhoya](https://github.com/Nhoya)
+* [Airon90](https://github.com/Airon90)

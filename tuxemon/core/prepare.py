@@ -62,6 +62,15 @@ if not os.path.isfile(CONFIG_FILE_PATH):
     except OSError:
         raise
 
+# Set up our custom campaign data directory.
+USER_DATA_PATH = CONFIG_PATH + "data/"
+if not os.path.isdir(USER_DATA_PATH):
+    try:
+        os.makedirs(USER_DATA_PATH)
+    except OSError:
+        if not os.path.isdir(USER_DATA_PATH):
+            raise
+
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(CONFIG_FILE_PATH)
 HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)

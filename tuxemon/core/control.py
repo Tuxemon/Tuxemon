@@ -11,6 +11,7 @@ from .components import controller
 from .components import event
 from .components import networking
 from .components import rumble
+from .components.game_event import USER_EVENTS
 from .platform import android
 
 # from .components.combat import CombatEngine, CombatRouter
@@ -196,18 +197,25 @@ class Control(StateManager):
         # iterate through layers and determine optimal drawing strategy
         # this is a big performance boost for states covering other states
         # force_draw is used for transitions, mostly
-
+        draw = True
         to_draw = list()
         full_screen = self.screen.get_rect()
         for state in self.active_states:
             state.update(dt)
-            to_draw.append(state)
-            if state.rect == full_screen and not state.force_draw:
-                break
+            if draw:
+                to_draw.append(state)
+
+            # if this state covers the screen
+            # break here so lower screens are not drawn
+            if (not state.transparent
+                and state.rect == full_screen
+                and not state.force_draw):
+                draw = False
 
         # draw from bottom up for proper layering
         for state in reversed(to_draw):
             # might not be in draw if it has been removed for some reason
+            # another state have have popped it during an update
             if state in self.active_states:
                 state.draw(self.screen)
 
@@ -236,8 +244,16 @@ class Control(StateManager):
                 for game_event in self.get_controller_event(pg_event):
                     yield game_event
 
+            # Loop through normal mouse events
+            if pg_event.type == pg.MOUSEBUTTONDOWN:
+                yield pg_event
+
             # Loop through our joystick events
             for game_event in self.get_joystick_event(pg_event):
+                yield game_event
+
+            # Loop through our user defined events
+            for game_event in self.get_user_event(pg_event):
                 yield game_event
 
     def process_events(self, events):
@@ -481,6 +497,18 @@ class Control(StateManager):
                         append(kbd_event["KEYUP"]["down"])
 
         return events
+
+    @staticmethod
+    def get_user_event(game_event):
+        """ Filter user defined events
+
+        :param game_event: pygame.event.Event
+        :returns: Iterator of game events
+        :rtype: collections.Iterable[pygame.event.Event]
+
+        """
+        if game_event.type in USER_EVENTS:
+            yield game_event
 
     def toggle_show_fps(self, key):
         """Press f5 to turn on/off displaying the framerate in the caption.

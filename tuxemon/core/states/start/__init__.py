@@ -24,6 +24,7 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.states.start Handles the start screen which loads and creates new games
@@ -34,24 +35,48 @@ import logging
 from functools import partial
 
 from core import prepare
+from core.state import State
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import PopUpMenu
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
 
 
+class BackgroundState(State):
+    """ background state is used to prevent other states from
+    being required to track dirty screen areas.  for example,
+    in the start state, there is a menu on a blank background,
+    since menus do not clean up dirty areas, the blank,
+    "Background state" will do that.  The alternative is creating
+    a system for states to clean up their dirty screen areas.
+
+    eventually the need for this will be phased out
+    """
+    def draw(self, surface):
+        surface.fill((0, 0, 0, 0))
+
+    def resume(self):
+        self.game.pop_state()
+
+
 class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
-    def initialize_items(self):
+    shrink_to_items = True
+
+    def startup(self, *args, **kwargs):
+        super(StartState, self).startup(*args, **kwargs)
+
         def change_state(state, **kwargs):
             return partial(self.game.push_state, state, **kwargs)
 
         def new_game():
             self.game.player1 = prepare.player1
-            state = self.game.replace_state("WorldState")
+            self.game.replace_state("WorldState")
+            self.game.push_state("InputMenu", prompt=translator.translate("input_name"))
             self.game.push_state("FadeInTransition")
 
         def options():
@@ -61,22 +86,14 @@ class StartState(PopUpMenu):
             self.game.exit = True
 
         menu_items_map = (
-            ('NEW GAME', new_game),
-            ('LOAD', change_state("LoadMenuState")),
-            ('OPTIONS', options),
-            ('EXIT', exit_game),
+            ('menu_new_game', new_game),
+            ('menu_load', change_state("LoadMenuState")),
+            ('menu_options', options),
+            ('exit', exit_game),
         )
 
-        for label, callback in menu_items_map:
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, callback)
-
-    def on_menu_selection(self, item):
-        item.game_object()
-
-    def calc_final_rect(self):
-        rect = self.rect.copy()
-        rect.width *= .3
-        rect.height *= .5
-        rect.center = self.rect.center
-        return rect
+            item = MenuItem(image, label, None, callback)
+            self.add(item)

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="13" tilewidth="16" tileheight="16" nextobjectid="11">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="105" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="605" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1536">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="769" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKQi5qEyFqcyNhjFo3gYYUk8mBg16BgAQDAmsw==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="2" type="event" x="112" y="192" width="32" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,40,11,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="10" name="Play Music" type="event" x="16" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music 488524_Purple---8-bit.ogg"/>
+    <property name="cond1" value="not music_playing 488524_Purple---8-bit.ogg"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 2" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFwxXED7QDRsGQAwDVXABg
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjAIIAAAEEAAB
+  </data>
+ </layer>
+ <layer name="Above Player" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwVED7QDRsGIBwDo/ABc
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="3" type="collision" x="0" y="192" width="112" height="16"/>
+  <object id="4" type="collision" x="144" y="192" width="176" height="16"/>
+  <object id="5" type="collision" x="0" y="0" width="320" height="48"/>
+  <object id="6" type="collision" x="-16" y="48" width="16" height="144"/>
+  <object id="7" type="collision" x="320" y="48" width="16" height="144"/>
+  <object id="8" type="collision" x="304" y="80" width="16" height="16"/>
+ </objectgroup>
+</map>

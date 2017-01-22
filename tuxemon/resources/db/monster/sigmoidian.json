@@ -30,11 +30,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_classify"
-        },
-        {
-            "level_learned": 2,
-            "technique": "technique_poison_sting"
+            "technique": "technique_log_regression"
         }
     ],
     "sprites": {

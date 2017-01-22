@@ -77,7 +77,10 @@
     "status_faint_name": "Faint",
     "status_poison_name": "Poison",
 
-    "technique_classify_name": "Classify",
+    "technique_max_margin_name": "Max Margin",
+    "technique_info_leaf_name": "Info Leaf",
+    "technique_krowd_name": "Krowd",
+    "technique_log_regression_name": "Log Regression",
     "technique_bite_name": "Bite",
     "technique_fire_explosion_name": "Fire Explosion",
     "technique_poison_sting_name": "Poison Sting",

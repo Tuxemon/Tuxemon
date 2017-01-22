@@ -31,6 +31,7 @@
 import os
 import math
 import random
+import math
 from collections import namedtuple
 
 from core import prepare, tools
@@ -242,7 +243,7 @@ class Technique(object):
         """
         # Set the power based on the accuracy
         # Given the accuracy and the model, get the damage
-        accuracy = user.score_model()
+        accuracy = 0.7 # user.score_model()
         self.power = math.pow(accuracy, 1.5)*100
         print('accuracy is ' + str(accuracy))
 

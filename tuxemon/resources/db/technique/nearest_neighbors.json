@@ -1,6 +1,6 @@
 {
-  "slug": "technique_classify",
-  "name_trans": "technique_classify_name",
+  "slug": "technique_nearest_neighbors",
+  "name_trans": "technique_nearest_neighbors_name",
   "animation": "pound",
   "sfx": "blaster1.ogg",
   "icon": "",

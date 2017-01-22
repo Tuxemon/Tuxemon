@@ -3,3 +3,4 @@ pygame
 six
 numpy
 sklearn
+scipy

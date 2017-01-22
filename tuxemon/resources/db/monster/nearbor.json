@@ -29,12 +29,12 @@
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "technique_bite"
+            "level_learned": 16,
+            "technique": "technique_nearest_neighbors"
         },
         {
-            "level_learned": 2,
-            "technique": "technique_poison_sting"
+            "level_learned": 16,
+            "technique": "technique_krowd"
         }
     ],
     "sprites": {

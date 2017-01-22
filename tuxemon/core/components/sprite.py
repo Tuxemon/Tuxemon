@@ -493,7 +493,7 @@ class VisualSpriteList(RelativeGroup):
             # value of number of items in a column
             rows, remainder = divmod(items, self.columns)
             row, col = divmod(index, self.columns)
-
+# BEN -- This may be the problem!
             # down key pressed
             if event.key == pygame.K_DOWN:
                 if remainder:
@@ -540,8 +540,8 @@ class VisualSpriteList(RelativeGroup):
                 # while looking for a suitable index, we've looked over all choices
                 # just raise an error for now, instead of infinite looping
                 # TODO: some graceful way to handle situations where cannot find an index
-                if index == original_index:
-                    raise RuntimeError
+                # if index == original_index:
+                    # raise RuntimeError
 
                 seeking_index = not self._spritelist[index].enabled
 

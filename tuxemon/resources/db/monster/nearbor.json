@@ -38,10 +38,10 @@
         }
     ],
     "sprites": {
-        "battle1": "gfx/sprites/battle/fruitera-front.png",
-        "battle2": "gfx/sprites/battle/fruitera-back.png",
-        "menu1": "gfx/sprites/battle/fruitera-menu01.png",
-        "menu2": "gfx/sprites/battle/fruitera-menu02.png"
+        "battle1": "gfx/sprites/battle/nearbor-front.png",
+        "battle2": "gfx/sprites/battle/nearbor-back.png",
+        "menu1": "gfx/sprites/battle/nearbor-menu01.png",
+        "menu2": "gfx/sprites/battle/nearbor-menu01.png"
     },
     "types": [
         "wood"

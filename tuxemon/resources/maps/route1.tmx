@@ -66,6 +66,26 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
+  <object id='126' name='create Ninja' type='event' x='42' y='10' width='16' height='16'>
+    <properties>
+     <property name="act1" value="create_npc Ninja,42,10,ninja,stay"/>
+     <property name="cond1" value="not npc_exists Ninja"/>
+    </properties>
+  </object>
+  <object id="128" name='ninja battle' type='event' x='42' y='11' width='16' height='16'>
+    <properties>
+      <property name='act1' value='start_battle npc_ninja'/>
+   <!--    <property name='cond1' value='is player_at'/>
+      <property name='cond2' value='is player_facing up'/>
+      <property name='cond3' value='is button_pressed K_RETURN'/> -->
+    </properties>
+  </object>
+  <object id='127' name='create Knight' type='event' x='35' y='6' width='16' height='16'>
+    <properties>
+     <property name="act1" value="create_npc Knight,35,6,knight,stay"/>
+     <property name="cond1" value="not npc_exists Knight"/>
+    </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Conditions"/>
 </map>

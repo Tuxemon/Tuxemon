@@ -212,12 +212,12 @@
     <property name="cond1" value="not npc_exists Maple"/>
    </properties>
  </object>
-  <object id='120' name='create boss' type='event' x='13' y='12' width='16' height='16'>
+<!--   <object id='120' name='create boss' type='event' x='13' y='12' width='16' height='16'>
    <properties>
     <property name="act1" value="create_npc Boss,13,12,boss,stay"/>
     <property name="cond1" value="not npc_exists Boss"/>
    </properties>
- </object>
+ </object> -->
   <object id='121' name='create girl1' type='event' x='31' y='44' width='16' height='16'>
    <properties>
     <property name="act1" value="create_npc Girl1,31,44,girl1,stay"/>

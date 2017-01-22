@@ -240,9 +240,9 @@ class Technique(object):
         :rtype: bool
         """
         # Set the power based on the accuracy
-        print('accuracy is ' + str(accuracy))
         # Given the accuracy and the model, get the damage
         accuracy = user.score_model()
+        print('accuracy is ' + str(accuracy))
         self.power = math.pow(accuracy, 1.5)*100
 
         damage = self.calculate_damage(user, target)

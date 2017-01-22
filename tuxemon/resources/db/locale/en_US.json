@@ -1,6 +1,6 @@
 {
-    "combat_run": "${{user}} ran away!",
-    "combat_player_run": "You have run away!",
+    "combat_run": "${{user}} is overcome by Data Mistrust!",
+    "combat_player_run": "You lack Confidence in potential predictions!",
     "combat_used_x": "${{user}} used ${{name}}!",
     "combat_used_x_on_y": "${{user}} used ${{name}} on ${{target}}!",
     "combat_call_tuxemon": "Go ${{name}}!",
@@ -11,8 +11,8 @@
     "combat_defeat": "You've been defeated!",
     "combat_capturing success": "You captured ${{name}}!",
     "combat_capturing_fail": "${{name}} broke free!",
-    "combat_replacement": "Choose a replacement!",
-    "combat_replacement_is_fainted": "That monster has fainted!",
+    "combat_replacement": "Choose a different Datamon!",
+    "combat_replacement_is_fainted": "That Datamon has fainted!",
     "combat_wild_appeared": "A wild ${{name}} appeared!",
     "combat_monster_choice": "What will ${{name}} do?",
     "combat_fainted": "${{name}} fainted!",
@@ -46,7 +46,7 @@
     "item_cannot_use_here": "${{name}} cannot be used here!",
 
     "monster_menu_info": "Info",
-    "monster_menu_move": "Move",
+    "monster_menu_move": "Swap Places",
 
     "log_off": "Log Off",
     "menu_bag": "Bag",
@@ -56,7 +56,7 @@
     "menu_journal": "Journal",
     "menu_load": "Load",
     "menu_monster": "Datamon",
-    "menu_monsters": "Monsters",
+    "menu_monsters": "Datamon",
     "menu_multiplayer": "Multiplayer",
     "menu_new_game": "New Game",
     "menu_options": "Options",

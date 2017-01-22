@@ -30,11 +30,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bite"
-        },
-        {
-            "level_learned": 2,
-            "technique": "technique_poison_sting"
+            "technique": "technique_max_margin"
         }
     ],
     "sprites": {

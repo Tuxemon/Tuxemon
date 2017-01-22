@@ -77,6 +77,7 @@
     "status_faint_name": "Faint",
     "status_poison_name": "Poison",
 
+    "technique_classify_name": "Classify",
     "technique_bite_name": "Bite",
     "technique_fire_explosion_name": "Fire Explosion",
     "technique_poison_sting_name": "Poison Sting",

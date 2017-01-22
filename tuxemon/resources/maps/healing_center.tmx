@@ -67,5 +67,11 @@
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
+  <object id='124' name='create joy' type='event' x='7' y='6' width='16' height='16'>
+    <properties>
+     <property name="act1" value="create_npc Joy,7,6,girl1,stay"/>
+     <property name="cond1" value="not npc_exists Joy"/>
+    </properties>
+  </object>
  </objectgroup>
 </map>

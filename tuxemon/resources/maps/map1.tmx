@@ -206,6 +206,36 @@
     <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
    </properties>
   </object>
+  <object id='119' name='create maple' type='event' x='39' y='36' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Maple,39,36,maple,stay"/>
+    <property name="cond1" value="not npc_exists Maple"/>
+   </properties>
+ </object>
+  <object id='120' name='create boss' type='event' x='13' y='12' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Boss,13,12,boss,stay"/>
+    <property name="cond1" value="not npc_exists Boss"/>
+   </properties>
+ </object>
+  <object id='121' name='create girl1' type='event' x='31' y='44' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Girl1,31,44,girl1,stay"/>
+    <property name="cond1" value="not npc_exists Girl1s"/>
+   </properties>
+ </object>
+ <object id='122' name='create oak' type='event' x='25' y='15' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Oak,25,15,bob,stay"/>
+    <property name="cond1" value="not npc_exists Oak"/>
+   </properties>
+ </object>
+ <object id='123' name='create ThatGuy' type='event' x='38' y='4' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc ThatGuy,38,4,player,stay"/>
+    <property name="cond1" value="not npc_exists ThatGuy"/>
+   </properties>
+ </object>
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport maple_house.tmx,7,10,0.5"/>

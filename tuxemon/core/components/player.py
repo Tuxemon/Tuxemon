@@ -719,6 +719,7 @@ class Npc(Player):
         # Initialize the parent menu class's default shit
         Player.__init__(self, sprite_name, name)
 
+        # print('can it get here')
         self.name = name
         self.behavior = "wander"
         self.isplayer = False

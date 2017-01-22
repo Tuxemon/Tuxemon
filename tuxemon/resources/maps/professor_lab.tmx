@@ -53,6 +53,12 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
+   <object id='94' name='create Ng' type='event' x='8' y='7' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Ng,8,7,boss,stay"/>
+    <property name="cond1" value="not npc_exists Ng"/>
+   </properties>
+ </object>
   <object id="69" name="Choose Creature 1" x="192" y="96" width="16" height="16"/>
   <object id="74" name="Choose Creature 2" x="208" y="96" width="16" height="16"/>
   <object id="75" name="Choose Creature 3" x="224" y="96" width="16" height="16"/>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="3">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1536">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="769" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzTY2Bg0BvFo3gUU4QlcWBC8iAMAEgZJ14=
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="2" type="event" x="96" y="224" width="32" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,11,18,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+ <layer name="Above Player" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+</map>

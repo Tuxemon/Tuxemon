@@ -2,6 +2,7 @@ from __future__ import division
 from __future__ import print_function
 
 import math
+from functools import partial
 
 import pygame
 
@@ -23,7 +24,11 @@ layout = layout(prepare.SCALE)
 
 
 class Menu(state.State):
-    """A class to create menu objects.
+    """ A class to create menu objects.
+
+    Menus are a type of game state.  Menus that are the top state
+    will receive player input and respond to it.  They may be
+    stacked, so that menus are nested.
 
     :background: String
 
@@ -36,41 +41,50 @@ class Menu(state.State):
     columns = 1
     min_font_size = 4
     draw_borders = True
-    background = None
-    background_color = 248, 248, 248  # The window's background 	olor
-    background_filename = None
+    background = None                 # Image used to draw the background
+    background_color = 248, 248, 248  # The window's background color
+    background_filename = None        # File to load for image background
     menu_select_sound_filename = "sounds/interface/menu-select.ogg"
     font_filename = "resources/font/PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = .20
     default_character_delay = 0.05
-    shrink_to_items = False
-    escape_key_exits = True
+    shrink_to_items = False    # fit the border to contents
+    escape_key_exits = True    # escape key closes menu
+    animate_contents = False   # show contents while window opens
+    touch_aware = False        # if true, then menu items can be selected with the mouse/touch
 
     def startup(self, *items, **kwargs):
         self.rect = self.rect.copy()  # do not remove!
-
-        self.__dict__.update(kwargs)
-
-        # used to position the menu/state
-        self._anchors = dict()
+        self.selected_index = 0       # track which menu item is selected
+        self.state = "closed"         # closed, opening, normal, disabled, closing
+        self.window = None            # draws borders, background
+        self._show_contents = False   # draw menu items, or not
+        self._needs_refresh = False   # refresh layout on next draw
+        self._anchors = dict()        # used to position the menu/state
+        self.__dict__.update(kwargs)  # may be removed in the future
 
         # holds sprites representing menu items
+        self.create_new_menu_items_group()
+
+        self.set_font()          # load default font
+        self.load_graphics()     # load default graphics
+        self.reload_sounds()     # load default sounds
+
+    def create_new_menu_items_group(self):
+        """ Create a new group for menu items to be contained in
+
+        Override if you need special placement for the menu items.
+
+        :return: None
+        """
+        # contains the selectable elements of the menu
         self.menu_items = VisualSpriteList(parent=self.calc_menu_items_rect)
         self.menu_items.columns = self.columns
-        if self.shrink_to_items:
-            self.menu_items.expand = False
 
         # generally just for the cursor arrow
         self.menu_sprites = RelativeGroup(parent=self.menu_items)
-
-        self.selected_index = 0  # Used to track which menu item is selected
-        self.state = "closed"    # closed, opening, normal, closing
-
-        self.set_font()       # load default font
-        self.load_graphics()  # load default graphics
-        self.reload_sounds()  # load default sounds
 
     def shutdown(self):
         """ Clear objects likely to cause cyclical references
@@ -93,6 +107,7 @@ class Menu(state.State):
         :type text_area: core.components.ui.text.TextArea
         :rtype: None
         """
+
         def next_character():
             try:
                 next(text_area)
@@ -129,6 +144,7 @@ class Menu(state.State):
 
         :returns: None
         """
+
         def find_textarea():
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
@@ -138,41 +154,68 @@ class Menu(state.State):
 
         self.animate_text(find_textarea(), message)
 
-    def _initialize_items(self):
-        """ Internal use only.  Will reset the items in the menu
+    def initialize_items(self):
+        """ Advanced way to fill in menu items
 
-        Reset the menu items and get new updated ones.
+        For menus that change dynamically, use of this method will
+        make changes to the menu easier.
 
-        :rtype: collections.Iterable[MenuItem]
+        :return:
         """
-        self.selected_index = 0
-        self.menu_items.empty()
-        for item in self.initialize_items():
-            self.menu_items.add(item)
-        if self.menu_items:
-            self.show_cursor()
+        pass
 
-        # call item selection change to trigger callback for first time
-        self.on_menu_selection_change()
+    def reload_items(self):
+        """ Empty all items in the menu and re-add them
 
-        if self.shrink_to_items:
-            center = self.rect.center
-            rect1 = self.menu_items.calc_bounding_rect()
-            rect2 = self.menu_sprites.calc_bounding_rect()
-            rect1 = rect1.union(rect2)
+        Only works if initialize_items is used
 
-            # TODO: do not hardcode these values
-            # border is 12, padding is the rest
-            rect1.width += tools.scale(18)
-            rect1.height += tools.scale(19)
-            rect1.topleft = 0, 0
+        :return: None
+        """
+        self._needs_refresh = True
+        items = self.initialize_items()
+        if items:
+            self.menu_items.empty()
 
-            # self.rect = rect1.union(rect2)
-            # self.rect.width += tools.scale(20)
-            # self.rect.topleft = 0, 0
-            self.rect = rect1
-            self.rect.center = center
-            self.position_rect()
+            for item in items:
+                self.add(item)
+
+            number_items = len(self.menu_items)
+            if self.menu_items and self.selected_index >= number_items:
+                self.change_selection(number_items - 1)
+
+    def add(self, item):
+        """ Add a menu item
+
+        :type item: core.components.menu.MenuItem
+        :return: None
+        """
+        self.menu_items.add(item)
+        self._needs_refresh = True
+
+    def fit_border(self):
+        """ Resize the window border to fit the contents of the menu
+
+        :return:
+        """
+        # get bounding box of menu items and the cursor
+        center = self.rect.center
+        rect1 = self.menu_items.calc_bounding_rect()
+        rect2 = self.menu_sprites.calc_bounding_rect()
+        rect1 = rect1.union(rect2)
+
+        # expand the bounding box by the border and some padding
+        # TODO: do not hardcode these values
+        # border is 12, padding is the rest
+        rect1.width += tools.scale(18)
+        rect1.height += tools.scale(19)
+        rect1.topleft = 0, 0
+
+        # set our rect and adjust the centers to match
+        self.rect = rect1
+        self.rect.center = center
+
+        # move the bounding box taking account the anchors
+        self.position_rect()
 
     def reload_sounds(self):
         """ Reload sounds
@@ -203,18 +246,19 @@ class Menu(state.State):
         """ Loads all the graphical elements of the menu
             Will load some elements from disk, so needs to be called at least once.
         """
-        # load and scale the _background
-        background = None
-        if self.background_filename:
-            background = tools.load_image(self.background_filename)
+        if not self.transparent:
+            # load and scale the _background
+            background = None
+            if self.background_filename:
+                background = tools.load_image(self.background_filename)
 
-        # load and scale the menu borders
-        border = None
-        if self.draw_borders:
-            border = tools.load_and_scale(self.borders_filename)
+            # load and scale the menu borders
+            border = None
+            if self.draw_borders:
+                border = tools.load_and_scale(self.borders_filename)
 
-        # set the helper to draw the _background
-        self.window = GraphicBox(border, background, self.background_color)
+            # set the helper to draw the _background
+            self.window = GraphicBox(border, background, self.background_color)
 
         # handle the arrow cursor
         image = tools.load_and_scale(self.cursor_filename)
@@ -235,8 +279,29 @@ class Menu(state.State):
 
         :returns: None
         """
-        self.menu_sprites.remove(self.arrow)
-        self.get_selected_item().in_focus = False
+        if self.arrow in self.menu_sprites:
+            self.menu_sprites.remove(self.arrow)
+            selected = self.get_selected_item()
+            if selected is not None:
+                selected.in_focus = False
+
+    def refresh_layout(self):
+        """ Fit border to contents and hide/show cursor
+
+        :return:
+        """
+        self.menu_items.expand = not self.shrink_to_items
+
+        # check if we have items, but they are all disabled
+        disabled = all(not i.enabled for i in self.menu_items)
+
+        if self.menu_items and not disabled:
+            self.show_cursor()
+        else:
+            self.hide_cursor()
+
+        if self.shrink_to_items:
+            self.fit_border()
 
     def draw(self, surface):
         """ Draws the menu object to a pygame surface.
@@ -248,9 +313,14 @@ class Menu(state.State):
         :returns: None
 
         """
-        self.window.draw(surface, self.rect)
+        if self._needs_refresh:
+            self.refresh_layout()
+            self._needs_refresh = False
 
-        if self.state == "normal" and self.menu_items:
+        if not self.transparent:
+            self.window.draw(surface, self.rect)
+
+        if self._show_contents:
             self.menu_items.draw(surface)
             self.menu_sprites.draw(surface)
 
@@ -313,24 +383,68 @@ class Menu(state.State):
         :returns: None
         """
         if event.type == pygame.KEYDOWN:
+
+            # TODO: remove this check each time
+            # check if we have items, but they are all disabled
+            disabled = all(not i.enabled for i in self.menu_items)
+
             if self.escape_key_exits and event.key == pygame.K_ESCAPE:
                 self.close()
                 return
 
-            elif self.state == "normal" and self.menu_items and event.key == pygame.K_RETURN:
-                self.menu_select_sound.play()
-                self.on_menu_selection(self.get_selected_item())
-                return
+            elif self.state == "normal" and not disabled and self.menu_items:
 
-        # check if cursor has changed
-        index = self.menu_items.determine_cursor_movement(self.selected_index, event)
-        if not self.selected_index == index:
-            self.get_selected_item().in_focus = False  # clear the focus flag of old item
-            self.selected_index = index                # update the selection index
-            self.menu_select_sound.play()
-            self.trigger_cursor_update()               # move cursor and animate it
-            self.get_selected_item().in_focus = True   # set focus flag of new item
-            self.on_menu_selection_change()            # let subclass know menu has changed
+                if event.key == pygame.K_RETURN:
+                    self.menu_select_sound.play()
+                    self.on_menu_selection(self.get_selected_item())
+
+                else:
+                    index = self.menu_items.determine_cursor_movement(self.selected_index, event)
+                    if not self.selected_index == index:
+                        self.change_selection(index)
+
+        # TODO: handling of click/drag, miss-click, etc
+        # TODO: eventually, maybe move some handling into menuitems
+        # TODO: handle screen scaling?
+        # TODO: generalized widget system
+        elif self.touch_aware and event.type == pygame.MOUSEBUTTONDOWN:
+            # menu items is (sometimes) a relative group, so their rect will be relative to their parent
+            # we need to adjust the point to topleft of the containing rect
+            # eventually, a widget system could do this automatically
+
+            # make sure that the rect's position is current
+            # a sprite group may not be a relative group... so an attribute error will be raised
+            # obvi, a wart, but will be fixed sometime (tm)
+            try:
+                self.menu_items.update_rect_from_parent()
+            except AttributeError:
+                # not a relative group, no need to adjust cursor
+                mouse_pos = event.pos
+            else:
+                # move the mouse/touch origin to be relative to the menu_items
+                # TODO: a vector type would be niceeee
+                mouse_pos = [a - b for a, b in zip(event.pos, self.menu_items.rect.topleft)]
+
+            # loop through all the items here and see if they collide
+            # eventually, we should make this more generic...not part of the menu
+            for index, item in enumerate([i for i in self.menu_items if i.enabled]):
+                if item.rect.collidepoint(mouse_pos):
+                    self.change_selection(index)
+                    self.on_menu_selection(self.get_selected_item())
+
+    def change_selection(self, index, animate=True):
+        """ Force the menu to be evaluated and move cursor and trigger focus changes
+
+        :return: None
+        """
+        previous = self.get_selected_item()
+        if previous is not None:
+            previous.in_focus = False              # clear the focus flag of old item, if any
+        self.selected_index = index                # update the selection index
+        self.menu_select_sound.play()              # play a sound
+        self.trigger_cursor_update(animate)        # move cursor and [maybe] animate it
+        self.get_selected_item().in_focus = True   # set focus flag of new item
+        self.on_menu_selection_change()            # let subclass know menu has changed
 
     def trigger_cursor_update(self, animate=True):
         """ Force the menu cursor to move into the correct position
@@ -367,16 +481,30 @@ class Menu(state.State):
         if self.state == "closed":
             def show_items():
                 self.state = "normal"
+                self._show_contents = True
+                self.on_menu_selection_change()
                 self.on_open()
 
-            self._initialize_items()
             self.state = "opening"
-            self.position_rect()
+            self.reload_items()
+            self.refresh_layout()
+
             ani = self.animate_open()
             if ani:
+                if self.animate_contents:
+                    self._show_contents = True
+                    # TODO: make some "dirty" or invalidate layout API
+                    # this will make sure items are arranged as menu opens
+                    ani.update_callback = partial(setattr, self.menu_items, "_needs_arrange", True)
                 ani.callback = show_items
             else:
+                self.state = "normal"
                 show_items()
+
+        elif self.state == "normal":
+            self.reload_items()
+            self.refresh_layout()
+            self.on_menu_selection_change()
 
     def close(self):
         if self.state in ["normal", "opening"]:
@@ -391,15 +519,15 @@ class Menu(state.State):
         """ Set an anchor for the menu window
 
         You can pass any string value that is used in a pygame rect,
-        for example: "center", "topleft", and "right.
+        for example: "center", "topleft", and "right".
 
-        When changes are made to the window, when it is being opened
+        When changes are made to the window or it is being opened
         or sized, then these values passed as anchors will override
         others.  The order of which each anchor is applied is not
         necessarily going to match the order they were set, as the
         implementation relies on a dictionary.
 
-        Take care to make sure values do not overlap,
+        Take care to make sure values do not overlap.
 
         :param attribute:
         :param value:
@@ -415,9 +543,6 @@ class Menu(state.State):
         """
         for attribute, value in self._anchors.items():
             setattr(self.rect, attribute, value)
-
-    def update(self, time_delta):
-        self.animations.update(time_delta)
 
     # ============================================================================
     #   The following methods are designed to be monkey patched or overloaded
@@ -459,11 +584,11 @@ class Menu(state.State):
     def on_menu_selection(self, item):
         """ Hook for things to happen when player selects a menu option
 
-        Override in subclass
+        Override in subclass, if you want to
 
         :return:
         """
-        pass
+        item.game_object()
 
     def on_menu_selection_change(self):
         """ Hook for things to happen after menu selection changes
@@ -473,16 +598,6 @@ class Menu(state.State):
         :returns: None
         """
         pass
-
-    def initialize_items(self):
-        """ Hook for adding items to menu when menu is created
-
-        Override with a generator
-
-        :returns: Generator of MenuItems
-        :rtype: collections.Iterable[MenuItem]
-        """
-        return iter(())
 
     def animate_open(self):
         """ Called when menu is going to open
@@ -550,36 +665,3 @@ class PopUpMenu(Menu):
         ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.15)
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani
-
-    def animate_close(self):
-        """ Called when menu is going to close
-
-        Menu will not receive input during the animation
-        Menu will play animation only once
-        Menu will be popped after animation finished
-
-        Must return either an Animation or Task to attach callback
-        Only modify state of the menu Rect
-        Do not change important state attributes
-
-        :returns: Animation or Task
-        :rtype: core.components.animation.Animation
-        """
-        # TODO: find a nice animation.  this one looks funny
-        # self.menu_items.empty()
-        # self.menu_sprites.empty()
-        # self.animations.empty()
-        #
-        #
-        # # set rect to a small size for the initial values of the animation
-        # rect = self.rect.copy()
-        # rect.height *= .2
-        # rect.width *= .2
-        # rect.center = self.rect.center
-        #
-        # # create animation to open window with
-        # ani = Animation(height=rect.height, width=rect.width, duration=.15)
-        # ani.start(self.rect)
-        # ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
-        #
-        # return ani

@@ -1,2 +1,6 @@
 pytmx>=3.20.14
 pygame
+six
+numpy
+sklearn
+scipy

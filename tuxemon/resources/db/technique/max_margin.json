@@ -1,0 +1,24 @@
+{
+  "slug": "technique_max_margin",
+  "name_trans": "technique_max_margin_name",
+  "animation": "pound",
+  "sfx": "blaster1.ogg",
+  "icon": "",
+  "category": "physical",
+  "effects": [
+    "predict"
+  ],
+  "target": {
+    "enemy monster": 2,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 1,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  },
+  "power": 50,
+  "types": [
+    "Normal"
+  ]
+}

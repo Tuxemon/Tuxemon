@@ -219,7 +219,7 @@ class Core(object):
 
         """
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return False
 

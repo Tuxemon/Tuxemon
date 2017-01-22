@@ -1,0 +1,22 @@
+{
+  "slug": "status_faint",
+  "name_trans": "status_faint_name",
+  "animation": "",
+  "sfx": "faint.ogg",
+  "icon": "",
+  "category": "faint",
+  "effects": [],
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  },
+  "power": 10,
+  "types": [
+    "Faint"
+  ]
+}

@@ -109,7 +109,18 @@ class Task(pygame.sprite.Sprite):
         self._chain = list()
         self._state = ANIMATION_RUNNING
 
-    def chain(self, *others):
+    def chain(self, callback, interval=0, loops=1, args=None, kwargs=None):
+        """Schedule something to be called after.  Uses same sig. as Task
+
+        If you attempt to chain a task that will never end (loops=-1),
+        then ValueError will be raised.
+
+        :param others: Task instances
+        :returns: None
+        """
+        return self.chain_task(Task(callback, interval=0, loops=1, args=None, kwargs=None))
+
+    def chain_task(self, *tasks):
         """Schedule Task(s) to execute when this one is finished
 
         If you attempt to chain a task that will never end (loops=-1),
@@ -120,11 +131,11 @@ class Task(pygame.sprite.Sprite):
         """
         if self._loops <= -1:
             raise ValueError
-        for task in others:
+        for task in tasks:
             if not isinstance(task, Task):
                 raise TypeError
             self._chain.append(task)
-        return others
+        return tasks
 
     def update(self, dt):
         """Update the Task

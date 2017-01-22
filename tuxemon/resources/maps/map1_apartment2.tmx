@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="16" tilewidth="16" tileheight="16" nextobjectid="31">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="217" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="717" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="2029" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="2117" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="2617" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="2633" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="18" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9AB8HKN4FA8fzEoEJkYdAF1GEGw=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="18" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9AI+XAwMvkDsx0WZOSlA/alAnEamOZUU2g8DrVQyBx8Q5mBgEEHDohykmyMH1COPhhWIMMcazY/kmmNPpjlynEA5Tsr81QW02whohjHUnEAgPwiIg5HcpAnUo4WGtckIZ2TwkZ2wGgB0eAzV
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="18" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9ASWXAwMVlyUm9NGBTNGwSgYaAAAMW8BGA==
+  </data>
+ </layer>
+ <layer name="Above Player" width="18" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwXkcg20C0bBKKAuAABVEQB4
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="20" type="collision" x="0" y="64" width="288" height="16"/>
+  <object id="21" type="collision" x="0" y="240" width="144" height="16"/>
+  <object id="22" type="collision" x="160" y="240" width="128" height="16"/>
+  <object id="23" type="collision" x="288" y="80" width="16" height="160"/>
+  <object id="24" type="collision" x="-16" y="80" width="16" height="160"/>
+  <object id="25" type="collision" x="16" y="80" width="48" height="16"/>
+  <object id="26" type="collision" x="16" y="224" width="48" height="16"/>
+  <object id="27" type="collision" x="32" y="176" width="16" height="32"/>
+  <object id="28" type="collision" x="272" y="96" width="16" height="32"/>
+  <object id="29" type="collision" x="240" y="208" width="48" height="16"/>
+  <object id="30" type="collision" x="256" y="192" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="15" name="go outside" type="event" x="144" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,60,44,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="16" name="make dad" type="event" x="208" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Rival_Dad,14,8,boss,stand"/>
+    <property name="cond1" value="not npc_exists Rival_Dad"/>
+   </properties>
+  </object>
+  <object id="18" name="computer" type="event" x="32" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog RIVAL'S DAD's watching a Tuxemon game show!"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="19" type="event" x="32" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog It's an animated Tuxemon movie!"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

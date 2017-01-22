@@ -38,6 +38,7 @@ from functools import partial
 from core.tools import open_dialog
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu, PopUpMenu
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -57,19 +58,18 @@ class PCState(PopUpMenu):
             # self.game.replace_state("MultiplayerMenu")
             open_dialog(self.game, ["Multiplayer not supported."])
 
-        self.menu_items_map = OrderedDict((
-            ('MONSTERS', change_state("MonsterMenuState")),
-            ('ITEMS', change_state("ItemMenuState")),
-            ('MULTIPLAYER', multiplayer_menu),
-            ('LOG OFF', self.game.pop_state),
-        ))
+        menu_items_map = (
+            ('menu_monsters', change_state("MonsterMenuState")),
+            ('menu_items', change_state("ItemMenuState")),
+            ('menu_multiplayer', multiplayer_menu),
+            ('log_off', self.game.pop_state),
+        )
 
-        for label in self.menu_items_map.keys():
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, None)
-
-    def on_menu_selection(self, menuitem):
-        self.menu_items_map[menuitem.label]()
+            item = MenuItem(image, label, None, callback)
+            self.add(item)
 
 # class Player_Menu(Menu):
 #
@@ -112,13 +112,14 @@ class MultiplayerMenu(PopUpMenu):
         pass
 
     def initialize_items(self):
-        def make_item(label):
+        def make_item(label, callback):
             image = self.shadow_text(label)
-            return MenuItem(image, label, None, None)
+            item = MenuItem(image, label, None, callback)
+            self.add(item)
 
-        yield make_item("HOST GAME", self.host_game)
-        yield make_item("SCAN FOR GAMES", self.scan_for_games)
-        yield make_item("JOIN BY IP", self.join_by_ip)
+        make_item("HOST GAME", self.host_game)
+        make_item("SCAN FOR GAMES", self.scan_for_games)
+        make_item("JOIN BY IP", self.join_by_ip)
 
     def calc_final_rect(self):
         rect = self.rect.copy()

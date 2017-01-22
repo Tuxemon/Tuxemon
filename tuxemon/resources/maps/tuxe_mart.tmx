@@ -68,5 +68,11 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
+  <object id='125' name='create clerk' type='event' x='2' y='7' width='16' height='16'>
+    <properties>
+     <property name="act1" value="create_npc Clerk,2,7,player,stay"/>
+     <property name="cond1" value="not npc_exists Clerk"/>
+    </properties>
+  </object>
  </objectgroup>
 </map>

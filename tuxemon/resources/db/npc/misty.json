@@ -1,14 +1,14 @@
 {
-    "slug": "npc_maple",
-    "name_trans": "npc_maple_name",
+    "slug": "npc_misty",
+    "name_trans": "npc_misty_name",
     "monsters": [
         {
             "attack": 50,
             "defense": 7,
-            "name": "Snowball",
+            "name": "WhatCopyWrite",
             "special_attack": 9,
             "level": 5,
-            "monster": "txmn_decitree",
+            "monster": "txmn_sigmoidian",
             "hp": 50,
             "speed": 7,
             "special_defense": 7,

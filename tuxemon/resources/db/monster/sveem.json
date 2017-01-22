@@ -46,5 +46,6 @@
     "types": [
         "wood"
     ],
+    "classifier": "logistic",
     "weight": 25
 }

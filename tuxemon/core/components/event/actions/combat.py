@@ -42,6 +42,7 @@ logger = logging.getLogger(__name__)
 
 class Combat(object):
 
+    # TODO: Add prediction stuff
     def start_battle(self, game, action):
         """Start a battle and switch to the combat module. The parameters must contain an NPC slug
         in the NPC database.
@@ -214,6 +215,7 @@ class Combat(object):
         encounter_slug = action.parameters[0]
 
         # Look up the encounter details
+        print('slug is ' + str(encounter_slug))
         monsters = db.JSONDatabase()
         monsters.load("encounter")
         monsters.load("monster")

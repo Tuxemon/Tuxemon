@@ -30,7 +30,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_classify"
         },
         {
             "level_learned": 2,
@@ -46,5 +46,6 @@
     "types": [
         "wood"
     ],
+    "classifier": "logistic",
     "weight": 25
 }

@@ -35,8 +35,11 @@ import random
 from core import tools
 from core.components import ai
 from core.components.technique import Technique
+from core.components.data import ClassificationData
 from . import db
 from . import fusion
+
+from sklearn.linear_model import LogisticRegression
 
 from .locale import translator
 trans = translator.translate
@@ -237,6 +240,30 @@ class Monster(object):
         elif ai_result == "RandomAI":
             self.ai = ai.RandomAI()
 
+        # Load the monster model
+        self.model = self.load_model_from_db(results['classifier'])
+
+        # Initial training
+        x,y = ClassificationData.sample(50)
+        self.model.fit(x, y)
+
+
+
+    def load_model_from_db(self, type_name):
+        """Load the classifier from the db
+        """
+        # TODO: Add more types
+        print('loading model of type ' + str(type_name))
+        return LogisticRegression(solver='sag', max_iter=10, random_state=42,
+                multi_class='multinomial')
+
+    def score_model(self, proportion=0.01):
+        # Predict on the data and return the accuracy
+        x, y = ClassificationData.sample(1.0)
+        score = self.model.score(x, y)
+        logger.debug("Scored %s: %.3f" % (__name__, score))
+        return score
+
 
     def load_sprite_from_db(self):
         """Looks up the path to the monster's battle sprites so they can be
@@ -291,6 +318,12 @@ class Monster(object):
 
         >>> bulbatux.give_experience(20)
         """
+        # TODO: Train the model?
+        print('gained experience ' + str(amount))
+
+        x,y = ClassificationData.sample(amount)
+        self.model.fit(x, y)
+
         self.total_experience += amount
         if self.total_experience >= (self.experience_required_modifier * (self.level + 1) ** 3):
             #Level up worthy monsters

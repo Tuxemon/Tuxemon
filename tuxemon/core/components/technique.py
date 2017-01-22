@@ -230,6 +230,27 @@ class Technique(object):
             return True
         return False
 
+    def predict(self, user, target):
+        """This effect applies damage corresponding to the current model's ability to
+        predict upon the given data
+
+        :type user: core.components.monster.Monster
+        :type target: core.components.monster.Monster
+
+        :rtype: bool
+        """
+        # Set the power based on the accuracy
+        print('accuracy is ' + str(accuracy))
+        # Given the accuracy and the model, get the damage
+        accuracy = user.score_model()
+        self.power = math.pow(accuracy, 1.5)*100
+
+        damage = self.calculate_damage(user, target)
+        if damage:
+            target.current_hp -= damage
+            return True
+        return False
+
     def poison(self, user, target):
         """This effect has a chance to apply the poison status effect to a target monster.
         Currently there is a 1/10 chance of poison.

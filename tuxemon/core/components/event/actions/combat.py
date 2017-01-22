@@ -34,6 +34,7 @@ from core.components import ai
 from core.components import db
 from core.components import monster
 from core.components import player
+from core.components import technique
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -42,7 +43,7 @@ logger = logging.getLogger(__name__)
 class Combat(object):
 
     def start_battle(self, game, action):
-        """Start a battle and switch to the combat module. The parameters must contain an NPC id
+        """Start a battle and switch to the combat module. The parameters must contain an NPC slug
         in the NPC database.
 
         :param game: The main game object that contains all the game's variables.
@@ -55,7 +56,7 @@ class Combat(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: npc_id
+        Valid Parameters: npc_slug
 
         **Examples:**
 
@@ -77,7 +78,7 @@ class Combat(object):
                 game.client.update_player(game.player1.facing, event_type="CLIENT_START_BATTLE")
 
         # Start combat
-        npc_id = int(action.parameters[0])
+        npc_slug = int(action.parameters[0])
 
         # Create an NPC object that will be used as our opponent
         npc = player.Npc()
@@ -85,7 +86,7 @@ class Combat(object):
         # Look up the NPC's details from our NPC database
         npcs = db.JSONDatabase()
         npcs.load("npc")
-        npc_details = npcs.database['npc'][npc_id]
+        npc_details = npcs.database['npc'][npc_slug]
 
         # Set the NPC object with the details fetched from the database.
         npc.name = npc_details['name']
@@ -102,13 +103,13 @@ class Combat(object):
 
         # Look up each monster in the NPC's party
         for npc_monster_details in npc_party:
-            results = monsters.database['monster'][npc_monster_details['monster_id']]
+            results = monsters.database['monster'][npc_monster_details['monster']]
 
             # Create a monster object for each monster the NPC has in their party.
+            # TODO: unify save/load of monsters
             current_monster = monster.Monster()
-            current_monster.load_from_db(npc_monster_details['monster_id'])
+            current_monster.load_from_db(npc_monster_details['monster'])
             current_monster.name = npc_monster_details['name']
-            current_monster.monster_id = npc_monster_details['monster_id']
             current_monster.level = npc_monster_details['level']
             current_monster.hp = npc_monster_details['hp']
             current_monster.current_hp = npc_monster_details['hp']
@@ -129,7 +130,7 @@ class Combat(object):
 
             current_monster.load_sprite_from_db()
 
-            pound = monster.Technique('Pound')
+            pound = technique.Technique('technique_pound')
 
             current_monster.learn(pound)
 
@@ -138,9 +139,6 @@ class Combat(object):
 
         # Add our players and setup combat
         game.push_state("CombatState", players=(game.player1, npc), combat_type="trainer")
-
-        # Flash the screen before combat
-        # game.push_state("FlashTransition")
 
         # Start some music!
         logger.info("Playing battle music!")
@@ -203,7 +201,7 @@ class Combat(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: encounter_id
+        Valid Parameters: encounter_slug
 
         """
         player1 = game.player1
@@ -213,7 +211,7 @@ class Combat(object):
             return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
-        encounter_id = int(action.parameters[0])
+        encounter_slug = action.parameters[0]
 
         # Look up the encounter details
         monsters = db.JSONDatabase()
@@ -224,7 +222,7 @@ class Combat(object):
         encounter = None
 
         # Get all the monsters associated with this encounter.
-        encounters = monsters.database['encounter'][encounter_id]['monsters']
+        encounters = monsters.database['encounter'][encounter_slug]['monsters']
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
@@ -236,6 +234,7 @@ class Combat(object):
         # If a random encounter was successfully rolled, look up the monster and start the
         # battle.
         if encounter:
+
             logger.info("Start battle!")
 
             # Stop movement and keypress on the server.
@@ -244,7 +243,7 @@ class Combat(object):
 
             # Create a monster object
             current_monster = monster.Monster()
-            current_monster.load_from_db(encounter['monster_id'])
+            current_monster.load_from_db(encounter['monster'])
 
             # Set the monster's level based on the specified level range
             if len(encounter['level_range']) > 1:
@@ -253,8 +252,8 @@ class Combat(object):
                 level = encounter['level_range'][0]
 
             # Set the monster's level
-            current_monster.level = level
-            current_monster.set_level(current_monster.level)
+            current_monster.level = 1
+            current_monster.set_level(level)
 
             # Create an NPC object which will be this monster's "trainer"
             npc = player.Npc()
@@ -277,10 +276,6 @@ class Combat(object):
             game.current_music["status"] = "playing"
             game.current_music["song"] = filename
 
-            # Stop the player's movement
-            player1.moving = False
-            player1.direction = {'down': False, 'left': False, 'right': False, 'up': False}
-
 
     def check_battle_legal(self, player):
         """Checks to see if the player has any monsters fit for battle.
@@ -299,4 +294,3 @@ class Combat(object):
                 logger.warning("Cannot start battle, player's monsters are all DEAD")
                 return False
             else: return True
-

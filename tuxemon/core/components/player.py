@@ -564,6 +564,21 @@ class Player(object):
         else:
             self.monsters.append(monster)
 
+    def find_monster(self, slug):
+        """Finds a monster in the player's list of monsters.
+
+        :param slug: The stug name of the monster
+
+        :type string: String
+
+        :rtype: core.components.monster.Monster
+        :returns: Monster found
+
+        """
+        for monster in self.monsters:
+            if monster.slug == slug:
+                return monster
+        return None
 
     def remove_monster(self, monster):
         """Removes a monster from this player's party.
@@ -635,7 +650,7 @@ class Player(object):
                 # last minute check to remove the top _plan step if
                 # it's the same as our location
                 if path[len(path)-1] == self.tile_pos:
-                    plan.pop()
+                    path.pop()
 
                 # store the path
                 self.path = path
@@ -648,7 +663,7 @@ class Player(object):
     def pathfind_r(self, dest, queue, visited, depth, game):
         # recursive breadth first search algorithm
 
-        if queue:
+        if not queue:
             # does reaching this case mean we exhausted the search? I think so
             # which means there is no possible path
             return False

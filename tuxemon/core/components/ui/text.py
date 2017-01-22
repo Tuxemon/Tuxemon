@@ -11,11 +11,12 @@ min_font_size = 7
 class TextArea(Sprite):
     """ Area of the screen that can draw text
     """
+    animated = True
 
     def __init__(self, font, font_color, bg=(192, 192, 192)):
         super(TextArea, self).__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
-        self.drawing_text = True
+        self.drawing_text = False
         self.font = font
         self.font_color = font_color
         self.font_bg = bg
@@ -38,16 +39,25 @@ class TextArea(Sprite):
     def text(self, value):
         if value != self._text:
             self._text = value
-        self._start_text_animation()
 
-    def next(self):
-        try:
-            dirty, dest, scrap = next(self._iter)
-            self._image.fill((0, 0, 0, 0), dirty)
-            self._image.blit(scrap, dest)
-        except StopIteration:
-            self.drawing_text = False
-            raise
+        if self.animated:
+            self._start_text_animation()
+        else:
+            self.image = draw.shadow_text(self.font, self.font_color, self.font_bg, self._text)
+
+    def __next__(self):
+        if self.animated:
+            try:
+                dirty, dest, scrap = next(self._iter)
+                self._image.fill((0, 0, 0, 0), dirty)
+                self._image.blit(scrap, dest)
+            except StopIteration:
+                self.drawing_text = False
+                raise
+        else:
+            raise StopIteration
+
+    next = __next__
 
     def _start_text_animation(self):
         self.drawing_text = True

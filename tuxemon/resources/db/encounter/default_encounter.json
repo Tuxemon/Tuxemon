@@ -1,0 +1,37 @@
+{
+    "slug": "default_encounter",
+    "monsters":[
+        {
+            "encounter_rate":100,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_sigmoidian"
+        },
+        {
+            "encounter_rate":100,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_nearbor"
+        },
+        {
+            "encounter_rate":300,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_decitree"
+        },
+        {
+            "encounter_rate":50,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_sveem"
+        }
+    ]
+}

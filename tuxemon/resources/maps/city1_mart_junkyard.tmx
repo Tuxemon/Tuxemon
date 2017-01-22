@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="21" height="35" tilewidth="16" tileheight="16" nextobjectid="45">
+ <tileset firstgid="1" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ </tileset>
+ <tileset firstgid="286" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1598" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1686" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="1758" name="items" tilewidth="16" tileheight="16" tilecount="100">
+  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="1858" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="21" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztyzERACAMBMGviJUowiQBLJKWIYOCK7Zcl+QAAAAALr29hknxMdNK2+p/AOw6et8=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="21" height="35">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIxnMY2NwmA/EC4B4oN0CA9vYqW/mKTQza8mwI4gG7hoF5IGbLAwMt1gIq4shIc6YWBkYmIF4KwFzCwiYuZODgWEXEXg3B/FuOwtU+4ANvxqQ/FkSzXxFwMxXRJgZhhQexNpPSF0WhWZOJBBH1HLncDUTVNahq2Nhxa4O2Uxsaki1m1S19DSTlRWBB9rMzSyo6gqBcVGEJ90jq63BU8bhsjuUA4GxqV1KAzPxAXR1+Op0SuNIAwsmBWDTDwBmRTo9
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="21" height="35">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBcMBOHIg8GA2cyQDAItOAbc=
+  </data>
+ </layer>
+ <layer name="Above Player" width="21" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6B9ptT+MWyhDyQgAQDgQlcy9b3g0wKfDQDK
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="32" y="96" width="48" height="16"/>
+  <object id="2" type="collision" x="16" y="144" width="16" height="16"/>
+  <object id="3" type="collision" x="128" y="224" width="48" height="32"/>
+  <object id="4" type="collision" x="224" y="144" width="16" height="16"/>
+  <object id="5" type="collision" x="288" y="112" width="16" height="32"/>
+  <object id="6" type="collision" x="288" y="224" width="16" height="32"/>
+  <object id="7" type="collision" x="288" y="320" width="16" height="16"/>
+  <object id="8" type="collision" x="224" y="384" width="16" height="16"/>
+  <object id="9" type="collision" x="32" y="304" width="16" height="32"/>
+  <object id="10" type="collision" x="48" y="400" width="16" height="16"/>
+  <object id="12" type="collision" x="0" y="448" width="48" height="80"/>
+  <object id="13" type="collision" x="288" y="464" width="32" height="16"/>
+  <object id="14" type="collision" x="304" y="384" width="16" height="16"/>
+  <object id="17" type="collision" x="240" y="256" width="16" height="288"/>
+  <object id="19" type="collision" x="80" y="256" width="16" height="288"/>
+  <object id="20" type="collision" x="96" y="256" width="144" height="16"/>
+  <object id="21" type="collision" x="112" y="400" width="16" height="16"/>
+  <object id="22" type="collision" x="128" y="496" width="16" height="16"/>
+  <object id="23" type="collision" x="96" y="272" width="16" height="16"/>
+  <object id="24" type="collision" x="224" y="272" width="16" height="16"/>
+  <object id="25" type="event" x="224" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster txmn_fruitera,10"/>
+    <property name="act2" value="set_variable got_Fruitera:true"/>
+    <property name="act3" value="dialog ${{name}}: I got a Fruitera!"/>
+    <property name="act4" value="set_variable got_first_tuxemon:true"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set got_first_tuxemon:true"/>
+    <property name="cond4" value="is variable_set maple_bedroom1:true"/>
+   </properties>
+  </object>
+  <object id="26" type="event" x="96" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster txmn_bamboon,10"/>
+    <property name="act2" value="set_variable got_Bamboon:true"/>
+    <property name="act3" value="dialog ${{name}}: I got a Bamboon!"/>
+    <property name="act4" value="set_variable got_first_tuxemon:true"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set got_first_tuxemon:true"/>
+    <property name="cond4" value="is variable_set maple_bedroom1:true"/>
+   </properties>
+  </object>
+  <object id="27" type="collision" x="224" y="464" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="15" type="event" x="160" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Maple,10,6,girl1,wander"/>
+    <property name="cond1" value="is variable_set maple_bedroom1:true"/>
+   </properties>
+  </object>
+  <object id="16" type="event" x="160" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport tuxe_mart.tmx,11,4,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="29" type="event" x="144" y="512" width="48" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Hey, ${{name}}! I found some Tuxballs in this junkyard!"/>
+    <property name="act2" value="dialog_chain You can have one. I'll take the other"/>
+    <property name="act3" value="dialog_chain ${{end}}"/>
+    <property name="act4" value="set_variable talked_to_maple_junkyard:true"/>
+    <property name="cond1" value="is variable_set maple_bedroom1:true"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="not variable_set talked_to_maple_junkyard:true"/>
+   </properties>
+  </object>
+  <object id="30" type="event" x="144" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Hey, ${{name}}! I found some Tuxballs in this junkyard!"/>
+    <property name="act2" value="dialog_chain You can have one. I'll take the other"/>
+    <property name="act3" value="dialog_chain ${{end}}"/>
+    <property name="act4" value="set_variable talked_to_maple_junkyard:true"/>
+    <property name="cond1" value="is variable_set maple_bedroom1:true"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="not variable_set talked_to_maple_junkyard:true"/>
+   </properties>
+  </object>
+  <object id="31" type="event" x="176" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Hey, ${{name}}! I found some Tuxballs in this junkyard!"/>
+    <property name="act2" value="dialog_chain You can have one. I'll take the other"/>
+    <property name="act3" value="dialog_chain ${{end}}"/>
+    <property name="act4" value="set_variable talked_to_maple_junkyard:true"/>
+    <property name="cond1" value="is variable_set maple_bedroom1:true"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="not variable_set talked_to_maple_junkyard:true"/>
+   </properties>
+  </object>
+  <object id="32" type="event" x="80" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind Maple,6,18"/>
+    <property name="act2" value="dialog MAPLE: I got a Bamboon!"/>
+    <property name="act3" value="set_variable maple_got_tuxemon1:true"/>
+    <property name="cond1" value="is variable_set got_Fruitera:true"/>
+    <property name="cond2" value="not variable_set maple_got_tuxemon1:true"/>
+   </properties>
+  </object>
+  <object id="34" type="event" x="240" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind Maple,14,18"/>
+    <property name="act2" value="dialog MAPLE: I got a Fruitera!"/>
+    <property name="act3" value="set_variable maple_got_tuxemon1:true"/>
+    <property name="cond1" value="is variable_set got_Bamboon:true"/>
+    <property name="cond2" value="not variable_set maple_got_tuxemon1:true"/>
+   </properties>
+  </object>
+  <object id="35" type="event" x="256" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc cfanatic1,12,33,player,stand"/>
+    <property name="act2" value="set_variable fanatics_in_junkyard:true"/>
+    <property name="cond1" value="is variable_set maple_got_tuxemon1:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard:true"/>
+   </properties>
+  </object>
+  <object id="36" type="event" x="64" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc cfanatic2,8,33,player,stand"/>
+    <property name="act2" value="set_variable fanatics_in_junkyard:true"/>
+    <property name="cond1" value="is variable_set maple_got_tuxemon1:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard:true"/>
+   </properties>
+  </object>
+  <object id="37" type="event" x="64" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="cfanatic2 pathfind,8,21"/>
+    <property name="act2" value="set_variable fanatics_in_junkyard2:true"/>
+    <property name="cond1" value="is variable_set fanatics_in_junkyard:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard2:true"/>
+   </properties>
+  </object>
+  <object id="38" type="event" x="256" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="cfanatic1 pathfind,11,21"/>
+    <property name="act2" value="set_variable fanatics_in_junkyard2:true"/>
+    <property name="cond1" value="is variable_set fanatics_in_junkyard:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard2:true"/>
+   </properties>
+  </object>
+  <object id="39" type="event" x="256" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain GARY: Well, well, well. Look who we have here!"/>
+    <property name="act2" value="dialog_chain CARY: You know you're stealing those Tuxballs without signing the End User License Agreement, right?"/>
+    <property name="act3" value="dialog_chain MAPLE: These are trash! You don't have to sign the EULA for trash!"/>
+    <property name="act4" value="dialog_chain GARY: That's what you think. But you're gonna have to pay."/>
+    <property name="act5" value="dialog_chain GARY: People like you shouldn't be able to get Tuxemon like this!"/>
+    <property name="act6" value="dialog_chain CARY: It's your own fault. Let's get them, Gary."/>
+    <property name="act7" value="dialog_chain ${{end}}"/>
+    <property name="act8" value="set_variable fanatics_in_junkyard3:true"/>
+    <property name="cond1" value="is variable_set fanatics_in_junkyard2:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard3:true"/>
+   </properties>
+  </object>
+  <object id="40" type="event" x="256" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="start_battle 2"/>
+    <property name="act2" value="set_variable fought_fanatics_in_junkyard:true"/>
+    <property name="cond1" value="is variable_set fanatics_in_junkyard3:true"/>
+   </properties>
+  </object>
+  <object id="41" type="event" x="288" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog CARY: Well, you won this time. But next time, we'll win."/>
+    <property name="act2" value="set_variable fanatics_in_junkyard4:true"/>
+    <property name="cond1" value="is variable_set fought_fanatics_in_junkyard:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard4:true"/>
+   </properties>
+  </object>
+  <object id="42" type="event" x="304" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="cfanatic1 pathfind,11,32"/>
+    <property name="act2" value="set_variable fanatics_in_junkyard5:true"/>
+    <property name="cond1" value="is variable_set fanatics_in_junkyard4:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard5:true"/>
+   </properties>
+  </object>
+  <object id="44" type="event" x="272" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="cfanatic2 pathfind,8,33"/>
+    <property name="act2" value="set_variable fanatics_in_junkyard5:true"/>
+    <property name="cond1" value="is variable_set fought_fanatics_in_junkyard:true"/>
+    <property name="cond2" value="not variable_set fanatics_in_junkyard4:true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

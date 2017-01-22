@@ -78,12 +78,13 @@ class Player(object):
 
         # If we're doing a screen transition with this teleport, set the map name that we'll
         # load during the apex of the transition.
-        if world.start_transition:
+        # TODO: This only needs to happen once.
+        if world.in_transition:
             world.delayed_mapname = mapname
 
         # Check to see if we're also performing a transition. If we are, wait to perform the
         # teleport at the apex of the transition
-        if world.start_transition:
+        if world.in_transition:
             world.delayed_teleport = True
             # Set the global_x/y variables based on the player's pixel position and the tile size.
             world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
@@ -94,46 +95,45 @@ class Player(object):
             world.global_x = player.position[0] - (position_x * player.tile_size[0])
             world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
-            ### THIS NEEDS TO BE MOVED IN ITS OWN FUNCTION AND IS DUPLICATED IN THE World STATE ###
-            from core.components.map import Map
-            if prepare.BASEDIR + "resources/maps/" + mapname != world.current_map.filename:
-                world.current_map = Map(
-                    prepare.BASEDIR + "resources/maps/" + mapname)
-                world.event_engine.current_map = Map(
-                    prepare.BASEDIR + "resources/maps/" + mapname)
-                world.tiles, world.collision_map, world.collision_lines_map, world.map_size = world.current_map.loadfile(
-                    world.tile_size)
-                world.game.events = world.current_map.events
-
-                # Clear out any existing NPCs
-                world.npcs = []
-
-                # Scale the loaded tiles if enabled
-                if world.scale > 1:
-                    x_pos = 0        # Here we need to keep track of the x index of the list
-                    # Loop through each row in the map. Each row is a list of
-                    # Tile objects in that row.
-                    for row in world.tiles:
-                        y_pos = 0       # Here we need to keep track of the y index of the list within the row
-                        # Now loop through each tile in the row and scale it
-                        # accordingly.
-                        for column in row:
-                            if column:
-                                layer_pos = 0
-                                for tile in column:
-                                    tile["surface"] = tools.scale_tile(tile["surface"], player.tile_size)
-                                    world.tiles[x_pos][y_pos][layer_pos] = tile
-                                    layer_pos += 1
-                            y_pos += 1
-                        x_pos += 1
-
-        # Update the server/clients of our new map and populate any other players.
-        if game.isclient or game.ishost:
-            game.add_clients_to_map(game.client.client.registry)
-            game.client.update_player(player.facing)
+            map_path = prepare.BASEDIR + "resources/maps/" + mapname
+            if map_path != world.current_map.filename:
+                world.change_map(map_path)
 
         # Stop the player's movement so they don't continue their move after they teleported.
         player.moving = False
+
+
+    def delayed_teleport(self, game, action):
+        """ Set teleport information.  Teleport will be triggered during screen transition
+
+        Only use this if followed by a transition
+
+        :param game: core.control.Control
+        :param action: Tuple
+        :return: None
+        """
+        # Get the world object from the game.
+        world = game.current_state
+
+        # give up if there is a teleport in progress
+        if world.delayed_teleport:
+            return
+
+        # Get the teleport parameters for the position x,y and the map to load.
+        mapname = str(action.parameters[0])
+        position_x = int(action.parameters[1])
+        position_y = int(action.parameters[2])
+
+        world.delayed_mapname = mapname
+        world.delayed_teleport = True
+
+        # Get the player object from the game.
+        player = game.player1
+
+        # Set the global_x/y variables based on the player's pixel position and the tile size.
+        world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
+        world.delayed_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
+
 
     def transition_teleport(self, game, action):
         """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
@@ -166,10 +166,7 @@ class Player(object):
         }
 
         """
-        # Get the teleport parameters for the position x,y and the map to load.
-        mapname = action.parameters[0]
-        position_x = action.parameters[1]
-        position_y = action.parameters[2]
+        # Get transition parameters
         transition_time = action.parameters[3]
 
         # Start the screen transition
@@ -178,16 +175,13 @@ class Player(object):
         transition_action = Action(action.type, [transition_time])
         screen_transition(game, transition_action)
 
-        # Start the teleport. The teleport action will notice a screen transition in progress,
-        # and wait until it is done before teleporting.
-        teleport_action = Action(action.type, action.parameters)
-
-        self.teleport(game, action)
+        # set the delayed teleport
+        self.delayed_teleport(game, action)
 
 
     def add_monster(self, game, action):
         """Adds a monster to the current player's party if there is room. The action parameter
-        must contain a monster name to look up in the monster database.
+        must contain a monster slug to look up in the monster database.
 
         :param game: The main game object that contains all the game's variables.
         :param action: The action (tuple) retrieved from the database that contains the action's
@@ -199,7 +193,7 @@ class Player(object):
         :rtype: None
         :returns: None
 
-        Valid Parameters: monster_name
+        Valid Parameters: monster_slug
 
         **Example:**
 
@@ -227,7 +221,6 @@ class Player(object):
         ...  'hp_modifier': [u'0.9', u'1', u'1.1'],
         ...  'level': 0,
         ...  'menu_sprite': u'resources/gfx/sprites/battle/bulbatux-menu01.png',
-        ...  'monster_id': 1,
         ...  'moves': [],
         ...  'name': u'Bulbatux',
         ...  'special_attack': 9,
@@ -245,10 +238,10 @@ class Player(object):
         ... [<core.components.monster.Monster instance at 0x2d0b3b0>]
 
         """
-        monster_name = action.parameters[0]
+        monster_slug = action.parameters[0]
         monster_level = action.parameters[1]
         current_monster = monster.Monster()
-        current_monster.load_from_db(monster_name)
+        current_monster.load_from_db(monster_slug)
         current_monster.set_level(int(monster_level))
 
         game.player1.add_monster(current_monster)
@@ -284,10 +277,10 @@ class Player(object):
 
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.
-        if item_to_add.name in player.inventory:
-            player.inventory[item_to_add.name]['quantity'] += 1
+        if item_to_add.slug in player.inventory:
+            player.inventory[item_to_add.slug]['quantity'] += 1
         else:
-            player.inventory[item_to_add.name] = {'item': item_to_add, 'quantity': 1}
+            player.inventory[item_to_add.slug] = {'item': item_to_add, 'quantity': 1}
 
 
     def player_face(self, game, action):
@@ -313,7 +306,7 @@ class Player(object):
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
-        if game.current_state.start_transition:
+        if game.current_state.in_transition:
             game.current_state.delayed_facing = direction
         else:
             game.player1.facing = direction
@@ -336,7 +329,7 @@ class Player(object):
 
         """
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 
@@ -360,8 +353,29 @@ class Player(object):
 
         """
         # Get a copy of the world state.
-        world = game.get_state_name("world")
+        world = game.get_state_name("WorldState")
         if not world:
             return
 
         world.menu_blocking = False
+
+    def remove_monster(self, game, action):
+        """Removes a monster to the current player's party if the monster is there.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: monster_slug
+        """
+        monster_slug = action.parameters[0]
+
+        monster = game.player1.find_monster(monster_slug)
+        if monster:
+            game.player1.remove_monster(monster)

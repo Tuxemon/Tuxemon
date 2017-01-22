@@ -36,7 +36,11 @@ import os.path
 import pygame
 
 import core.components.sprite
-import prepare
+
+#import prepare
+#Changed to this because of a import error
+from core import prepare
+
 from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
@@ -218,8 +222,7 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    size = map(int, sprite.rect.size)
-    sprite._original_image = pygame.transform.scale(sprite._original_image, size)
+    sprite._original_image = pygame.transform.scale(sprite._original_image, (sprite.rect.width, sprite.rect.height))
     sprite._needs_update = True
 
 
@@ -320,12 +323,12 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text):
+def open_dialog(game, text, menu = None):
     """ Open a dialog with the standard window size
 
     :param game:
     :param text: list of strings
-    :return:
+    :rtype: State
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    game.push_state("DialogState", text=text, rect=rect)
+    return game.push_state("DialogState", text=text, rect=rect, menu=menu)

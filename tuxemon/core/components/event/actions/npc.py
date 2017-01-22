@@ -26,6 +26,7 @@
 from __future__ import absolute_import
 
 from collections import namedtuple
+from core import prepare
 from core.components import ai
 from core.components import player
 from core.components.event import Condition
@@ -64,6 +65,7 @@ class Npc(object):
 
         """
         # Get a copy of the world state.
+        # print('trying to create npc')
         world = game.get_state_name("WorldState")
         if not world:
             return
@@ -88,9 +90,9 @@ class Npc(object):
         npc.tile_pos = [tile_pos_x, tile_pos_y]
         npc.behavior = behavior
         npc.ai = ai.AI()
-        npc.scale_sprites(world.scale)
-        npc.walkrate *= world.scale
-        npc.runrate *=world.scale
+        npc.scale_sprites(prepare.SCALE)
+        npc.walkrate *= prepare.SCALE
+        npc.runrate *= prepare.SCALE
         npc.moverate = npc.walkrate
 
         # Set the NPC's pixel position based on its tile position, tile size, and
@@ -194,6 +196,5 @@ class Npc(object):
         for n in world.npcs:
             if n.name == npc_name:
                 curr_npc = n
-                print("found npc: " +npc_name)
 
         curr_npc.pathfind((int(dest_x),int(dest_y)), game)

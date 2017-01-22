@@ -1,12 +1,24 @@
 {
-    "animation": "teeth",
-    "sfx": "blaster1.ogg",
-    "category": "meta",
-    "effects": ["swap"],
-    "id": 8,
-    "name": "Swap",
-    "power": 0,
-    "types": [
-        "Meta"
-    ]
+  "slug": "technique_swap",
+  "name_trans": "technique_swap_name",
+  "animation": "teeth",
+  "sfx": "blaster1.ogg",
+  "icon": "",
+  "category": "meta",
+  "effects": [
+    "swap"
+  ],
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 2,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  },
+  "power": 0,
+  "types": [
+    "Meta"
+  ]
 }

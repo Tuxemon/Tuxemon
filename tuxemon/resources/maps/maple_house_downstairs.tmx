@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="14" height="9" tilewidth="16" tileheight="16" nextobjectid="36">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="201" name="kitchen" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="14" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfMCHhZWh8bBgGJJDwOjQ+NgwDuiTikaJPEgkTCwDtVQ1K
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="14" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAeYCZTHx8V3cAGxOxAzIFFrhEJowNBIBYCYmEc5rYAcS8WcRkglgViOTz6SAX9QDwBiCciibFC6UQgTgLiZBx6exmwuxMdAAB26AfB
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="14" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgc4CQQnwLi00B8hgR9Z4H4HBCfB+ILULHdZLphPw7xciiuJNG8ZihuJdM96OAilcwBAQAo0Aui
+  </data>
+ </layer>
+ <layer name="Above player" width="14" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFwwlIomFcYgAUuADJ
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="2" type="collision" x="80" y="32" width="128" height="16"/>
+  <object id="3" type="collision" x="208" y="48" width="16" height="80"/>
+  <object id="7" type="collision" x="64" y="16" width="16" height="16"/>
+  <object id="8" type="collision" x="16" y="128" width="192" height="16"/>
+  <object id="28" type="collision" x="176" y="64" width="16" height="16"/>
+  <object id="29" type="collision" x="144" y="112" width="16" height="16"/>
+  <object id="30" type="collision" x="64" y="80" width="32" height="32"/>
+  <object id="31" type="collision" x="96" y="48" width="64" height="16"/>
+  <object id="32" type="collision" x="0" y="48" width="16" height="80"/>
+  <object id="33" type="collision" x="16" y="32" width="48" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="23" name="Play Music" type="event" x="192" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music 472452_8-Bit-Ambient.ogg"/>
+    <property name="cond1" value="not music_playing 472452_8-Bit-Ambient.ogg"/>
+   </properties>
+  </object>
+  <object id="25" name="Read Sign" type="event" x="80" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog My Wonderful Home!"/>
+    <property name="cond1" value="is player_at 5,3"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="26" name="Go Upstairs" type="event" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport maple_bedroom.tmx,9,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at 4,2"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="27" name="Go Outside" type="event" x="128" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport map1.tmx,33,43,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at "/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="34" name="create mother" type="event" x="32" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc Maples_Mom,2,5,girl1,stand"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

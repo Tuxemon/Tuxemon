@@ -64,7 +64,13 @@ class Music(object):
         """
         song = condition.parameters[0]
 
-        if game.state_name == "FlashTransition" or game.state_name == "CombatState":
+        # currently no way to query the names of states in the state control stack.
+        # so we find names here.  possibly might make api to do this later.
+        names = {i.name for i in game.active_states}
+        combat_states = {"FlashTransition", "CombatState"}
+
+        # means "if any element of combat_states is in names"
+        if not names.isdisjoint(combat_states):
             return True
 
         if game.current_music["song"] == song and mixer.music.get_busy():

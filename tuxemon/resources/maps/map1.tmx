@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="118">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="119">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -206,6 +206,36 @@
     <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
    </properties>
   </object>
+  <object id='119' name='create maple' type='event' x='39' y='36' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Maple,39,36,maple,stay"/>
+    <property name="cond1" value="not npc_exists Maple"/>
+   </properties>
+ </object>
+  <object id='120' name='create boss' type='event' x='13' y='12' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Boss,13,12,boss,stay"/>
+    <property name="cond1" value="not npc_exists Boss"/>
+   </properties>
+ </object>
+  <object id='121' name='create girl1' type='event' x='31' y='44' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Girl1,31,44,girl1,stay"/>
+    <property name="cond1" value="not npc_exists Girl1s"/>
+   </properties>
+ </object>
+ <object id='122' name='create oak' type='event' x='25' y='15' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc Oak,25,15,bob,stay"/>
+    <property name="cond1" value="not npc_exists Oak"/>
+   </properties>
+ </object>
+ <object id='123' name='create ThatGuy' type='event' x='38' y='4' width='16' height='16'>
+   <properties>
+    <property name="act1" value="create_npc ThatGuy,38,4,player,stay"/>
+    <property name="cond1" value="not npc_exists ThatGuy"/>
+   </properties>
+ </object>
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport maple_house.tmx,7,10,0.5"/>
@@ -215,7 +245,7 @@
   </object>
   <object id="70" name="Random Battle 1" type="event" x="512" y="432" width="128" height="80">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -223,7 +253,7 @@
   </object>
   <object id="71" name="Random Battle 2" type="event" x="352" y="432" width="96" height="80">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -231,7 +261,7 @@
   </object>
   <object id="72" name="Random Battle 3" type="event" x="400" y="368" width="112" height="48">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -239,7 +269,7 @@
   </object>
   <object id="73" name="Random Battle 4" type="event" x="352" y="304" width="144" height="48">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -247,7 +277,7 @@
   </object>
   <object id="74" name="Random Battle 5" type="event" x="208" y="80" width="64" height="80">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -361,6 +391,12 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="118" name="Preload route1" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="preload_map route1.tmx"/>
+    <property name="cond1" value="is true"/>
    </properties>
   </object>
  </objectgroup>

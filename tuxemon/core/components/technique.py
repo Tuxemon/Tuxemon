@@ -29,6 +29,7 @@
 #
 #
 import os
+import math
 import random
 from collections import namedtuple
 
@@ -240,10 +241,10 @@ class Technique(object):
         :rtype: bool
         """
         # Set the power based on the accuracy
-        print('accuracy is ' + str(accuracy))
         # Given the accuracy and the model, get the damage
         accuracy = user.score_model()
         self.power = math.pow(accuracy, 1.5)*100
+        print('accuracy is ' + str(accuracy))
 
         damage = self.calculate_damage(user, target)
         if damage:

@@ -65,6 +65,7 @@ class Npc(object):
 
         """
         # Get a copy of the world state.
+        # print('trying to create npc')
         world = game.get_state_name("WorldState")
         if not world:
             return

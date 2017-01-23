@@ -129,8 +129,17 @@ class ItemMenuState(Menu):
         """
         for name, properties in self.game.player1.inventory.items():
             obj = properties['item']
+            quantity = properties['quantity']
+
+            # temporarily add the quantity to the name
+            old_name = obj.name
+            obj.name += " x " + str(quantity)
+
             image = self.shadow_text(obj.name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
+
+            # restore the original name
+            obj.name = old_name
 
     def on_menu_selection_change(self):
         """ Called when menu selection changes

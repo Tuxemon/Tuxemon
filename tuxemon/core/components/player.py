@@ -399,6 +399,8 @@ class Player(object):
         :returns: None
 
         """
+        # If the player is walking at a different than normal speed, offset the animation rate.
+        rate = self.moverate / self.walkrate
 
         # If this is the bottom half, we need to draw it at a lower position.
         if layer == "bottom":
@@ -408,15 +410,19 @@ class Player(object):
 
         # If the player is moving, draw its movement animation.
         if self.move_direction == "up" and self.moving:
+            self.sprite["back_walk-" + layer].rate = rate
             self.sprite["back_walk-" + layer].blit(screen, (self.position[0],
                                                             self.position[1] + offset))
         elif self.move_direction == "down" and self.moving:
+            self.sprite["front_walk-" + layer].rate = rate
             self.sprite["front_walk-" + layer].blit(screen, (self.position[0],
                                                              self.position[1] + offset))
         elif self.move_direction == "left" and self.moving:
+            self.sprite["left_walk-" + layer].rate = rate
             self.sprite["left_walk-" + layer].blit(screen, (self.position[0],
                                                             self.position[1] + offset))
         elif self.move_direction == "right" and self.moving:
+            self.sprite["right_walk-" + layer].rate = rate
             self.sprite["right_walk-" + layer].blit(screen, (self.position[0],
                                                              self.position[1] + offset))
 

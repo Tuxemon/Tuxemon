@@ -45,6 +45,9 @@
     "item_capture_device_descr": "Fängt ein Monster.",
     "item_cannot_use_here": "${{name}} kann hier nicht benutzt werden!",
     
+    "monster_menu_info": "Info",
+    "monster_menu_move": "Fähigk.",
+    
     "log_off": "Ausloggen",
     "menu_bag": "Tasche",
     "menu_fight": "Kampf",
@@ -64,6 +67,13 @@
     "multiplayer_accept": "Akezeptieren",
     "multiplayer_decline": "Ablehnen",
     "multiplayer_duel": "${{name}} möchte ein Duell!",
+    "multiplayer_host_game": "Spiel hosten",
+    "multiplayer_scan_games": "Suche nach Spielen",
+    "multiplayer_join_game": "Spiel beitreten",
+    "multiplayer_hosting_ready": "Bereit Clients anzunehmen!",
+    "multiplayer_already_hosting": "Bereits am Hosten!",
+    "multiplayer_no_servers": "Keine Server gefunden...",
+    "multiplayer_join_prompt": "Hostname oder IP?",
     
     "not_implemented": "Diese Funktion ist noch nicht verfûgbar.",
     
@@ -98,7 +108,7 @@
     "txmn_dandylion_descr": "Es hat einen Wurf in seinem Leben. Dann wandert es durch die Welt, um sie wieder zu finden.",
     "txmn_dandylion_name": "Dandylion",
     "txmn_djinnbo_category": "Vengeance",
-    "txmn_djinnbo_descr": "Fälschlicherweise glaubt man, dass dies ein Mensch sei, welcher im Feuer starb. Tatsächlich, waren es seine Verwandten.",
+    "txmn_djinnbo_descr": "Fälschlicherweise glaubt man, dass dies ein Mensch sei, welcher im Feuer starb. Eigentlich, waren es seine Verwandten.",
     "txmn_djinnbo_name": "Djinnbo",
     "txmn_dollfin_category": "Joyful",
     "txmn_dollfin_descr": "Jeder einzelne folgt einem Schiff von Ort zu Ort, die Welt entdeckend.",

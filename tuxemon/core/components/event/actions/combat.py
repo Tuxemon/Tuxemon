@@ -147,6 +147,10 @@ class Combat(object):
 
         mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
         mixer.music.play(-1)
+        if game.current_music["song"]:
+            game.current_music["previoussong"] = game.current_music["song"]
+        game.current_music["status"] = "playing"
+        game.current_music["song"] = filename
 
 
     def start_pseudo_battle(self, game, npc):
@@ -274,6 +278,8 @@ class Combat(object):
             filename = "147066_pokemon.ogg"
             mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
             mixer.music.play(-1)
+            if game.current_music["song"]:
+                game.current_music["previoussong"] = game.current_music["song"]
             game.current_music["status"] = "playing"
             game.current_music["song"] = filename
 

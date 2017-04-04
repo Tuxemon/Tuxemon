@@ -74,6 +74,22 @@ class Player(object):
         self.sprite = {}			# The pyganim object that contains the player animations
         self.sprite_name = sprite_name # Hold on the the string so it can be sent over the network
         self.isplayer = True
+        self.path = None
+
+        # reference direction and movement states to animation names
+        # this dictionary is kinda wip, idk
+        self.animation_mapping = {
+            True: {
+                'up': 'back_walk',
+                'down': 'front_walk',
+                'left': 'left_walk',
+                'right': 'right_walk'},
+            False: {
+                'up': 'back',
+                'down': 'front',
+                'left': 'left',
+                'right': 'right'}
+        }
 
         # Get all of the player's standing animation images.
         self.standing = {}
@@ -89,29 +105,27 @@ class Player(object):
             self.standing[standing_type + "-bottom"] = surface_bottom
 
         self.playerWidth, self.playerHeight = self.standing["front"].get_size()    # The player's sprite size in pixels
-        self.inventory = {}			# The Player's inventory.
-        self.monsters = []			# This is a list of tuxemon the player has
+        self.game_variables = {}		# Game variables for use with events
+        self.inventory = {}             # The Player's inventory.
+        self.monsters = []              # This is a list of tuxemon the player has
         self.storage = {"monsters": [], "items": {}}
-        self.party_limit = 6        # The maximum number of tuxemon this player can hold 1 for testing
-        self.walking = False			# Whether or not the player is walking
-        self.running = False			# Whether or not the player is running
-        self.moving = False			# Whether or not the player is moving
-        self.move_direction = "down"		# This is a string of the direction we're moving if we're in the middle of moving
+        self.party_limit = 6            # The maximum number of tuxemon this player can hold 1 for testing
+        self.walking = False		    # Whether or not the player is walking
+        self.running = False		    # Whether or not the player is running
+        self.moving = False			    # Whether or not the player is moving
+        self.move_direction = "down"    # This is a string of the direction we're moving if we're in the middle of moving
         self.direction = {"up": False, "down": False, "left": False, "right": False}	# What direction the player is moving
-        self.facing = "down"	# What direction the player is facing
-        self.walkrate = 60			# The rate in pixels per second the player is walking
-        self.runrate = 118			# The rate in pixels per second the player is running
-        self.moverate = self.walkrate		# The movement rate in pixels per second
+        self.facing = "down"            # What direction the player is facing
+        self.walkrate = 60              # The rate in pixels per second the player is walking
+        self.runrate = 118			    # The rate in pixels per second the player is running
+        self.moverate = self.walkrate   # The movement rate in pixels per second
         self.position = [0,0]			# The player's sprite position on the screen
         self.global_pos = [0,0]			# This is the offset we're going to add to the x,y coordinates of everything on the map
-        self.tile_pos = (0,0)       # This is the position of the player based on tile
+        self.tile_pos = (0,0)           # This is the position of the player based on tile
         self.tile_size = [16,16]
-        self.move_destination = [0,0]		# The player's destination location to move to
-        self.final_move_dest = [0,0]        # Stores the final destination sent from a client
-        self.rect = pygame.Rect(self.position[0], self.position[1], self.playerWidth, self.playerHeight) # Collision rect
-        self.game_variables = {}		# Game variables for use with events
-
-        self.path = None
+        self.move_destination = [0,0]   # The player's destination location to move to
+        self.final_move_dest = [0,0]    # Stores the final destination sent from a client
+        self.rect = pygame.Rect(self.position, (self.playerWidth, self.playerHeight)) # Collision rect
 
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
@@ -425,60 +439,92 @@ class Player(object):
         else:
             print("self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving))
 
-    def draw(self, screen, layer):
-        """Draws the player to the screen depending on whether or not they are moving or
-        standing still.
+    # def draw(self, screen, layer):
+    #     """Draws the player to the screen depending on whether or not they are moving or
+    #     standing still.
+    #
+    #     :param screen: The pygame screen to draw the player to.
+    #     :param layer: Which part of the sprite to draw. Can be "top" or "bottom"
+    #
+    #     :type screen: pygame.Surface
+    #     :type layer: String
+    #
+    #     :returns: None
+    #
+    #     """
+    #     # If the player is walking at a different than normal speed, offset the animation rate.
+    #     rate = self.moverate / self.walkrate
+    #
+    #     # If this is the bottom half, we need to draw it at a lower position.
+    #     if layer == "bottom":
+    #         offset = self.standing["front"].get_height() / 2
+    #     else:
+    #         offset = 0
+    #
+    #     # If the player is moving, draw its movement animation.
+    #     if self.move_direction == "up" and self.moving:
+    #         self.sprite["back_walk-" + layer].rate = rate
+    #         self.sprite["back_walk-" + layer].blit(screen, (self.position[0],
+    #                                                         self.position[1] + offset))
+    #     elif self.move_direction == "down" and self.moving:
+    #         self.sprite["front_walk-" + layer].rate = rate
+    #         self.sprite["front_walk-" + layer].blit(screen, (self.position[0],
+    #                                                          self.position[1] + offset))
+    #     elif self.move_direction == "left" and self.moving:
+    #         self.sprite["left_walk-" + layer].rate = rate
+    #         self.sprite["left_walk-" + layer].blit(screen, (self.position[0],
+    #                                                         self.position[1] + offset))
+    #     elif self.move_direction == "right" and self.moving:
+    #         self.sprite["right_walk-" + layer].rate = rate
+    #         self.sprite["right_walk-" + layer].blit(screen, (self.position[0],
+    #                                                          self.position[1] + offset))
+    #
+    #     # If the player is not moving, draw its standing animation.
+    #     if not self.moving:
+    #         if self.facing == "up":
+    #             screen.blit(self.standing["back-" + layer], (self.position[0],
+    #                                                          self.position[1] + offset))
+    #         if self.facing == "down":
+    #             screen.blit(self.standing["front-" + layer], (self.position[0],
+    #                                                           self.position[1] + offset))
+    #         if self.facing == "left":
+    #             screen.blit(self.standing["left-" + layer], (self.position[0],
+    #                                                          self.position[1] + offset))
+    #         if self.facing == "right":
+    #             screen.blit(self.standing["right-" + layer], (self.position[0],
+    #                                                           self.position[1] + offset))
 
-        :param screen: The pygame screen to draw the player to.
-        :param layer: Which part of the sprite to draw. Can be "top" or "bottom"
+    def get_sprites(self):
+        """ Get the surfaces and layers for the sprite
 
-        :type screen: pygame.Surface
-        :type layer: String
+        Used to render the player
 
-        :returns: None
-
+        :return:
         """
-        # If the player is walking at a different than normal speed, offset the animation rate.
-        rate = self.moverate / self.walkrate
+        def get_frame(d, ani):
+            frame = d[ani]
+            try:
+                surface = frame.getCurrentFrame()
+                frame.rate = self.moverate / self.walkrate
+                return surface
+            except AttributeError:
+                return frame
+
+        state = self.animation_mapping[self.moving][self.move_direction]
+        frame_dict = self.sprite if self.moving else self.standing
+        surfaces = list()
 
         # If this is the bottom half, we need to draw it at a lower position.
-        if layer == "bottom":
-            offset = self.standing["front"].get_height() / 2
-        else:
-            offset = 0
+        offset = self.standing["front"].get_height() / 2
+        bottom_position = self.position[0], self.position[1] + offset
+        surface = get_frame(frame_dict, state + "-bottom")
+        surfaces.append((surface, bottom_position, 2))
 
-        # If the player is moving, draw its movement animation.
-        if self.move_direction == "up" and self.moving:
-            self.sprite["back_walk-" + layer].rate = rate
-            self.sprite["back_walk-" + layer].blit(screen, (self.position[0],
-                                                            self.position[1] + offset))
-        elif self.move_direction == "down" and self.moving:
-            self.sprite["front_walk-" + layer].rate = rate
-            self.sprite["front_walk-" + layer].blit(screen, (self.position[0],
-                                                             self.position[1] + offset))
-        elif self.move_direction == "left" and self.moving:
-            self.sprite["left_walk-" + layer].rate = rate
-            self.sprite["left_walk-" + layer].blit(screen, (self.position[0],
-                                                            self.position[1] + offset))
-        elif self.move_direction == "right" and self.moving:
-            self.sprite["right_walk-" + layer].rate = rate
-            self.sprite["right_walk-" + layer].blit(screen, (self.position[0],
-                                                             self.position[1] + offset))
+        # top surfaces
+        surface = get_frame(frame_dict, state + "-top")
+        surfaces.append((surface, self.position, 3))
 
-        # If the player is not moving, draw its standing animation.
-        if not self.moving:
-            if self.facing == "up":
-                screen.blit(self.standing["back-" + layer], (self.position[0],
-                                                             self.position[1] + offset))
-            if self.facing == "down":
-                screen.blit(self.standing["front-" + layer], (self.position[0],
-                                                              self.position[1] + offset))
-            if self.facing == "left":
-                screen.blit(self.standing["left-" + layer], (self.position[0],
-                                                             self.position[1] + offset))
-            if self.facing == "right":
-                screen.blit(self.standing["right-" + layer], (self.position[0],
-                                                              self.position[1] + offset))
+        return surfaces
 
 
     def get_collision_dict(self, game):

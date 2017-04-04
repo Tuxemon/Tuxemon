@@ -35,13 +35,9 @@ import os.path
 
 import pygame
 
-import core.components.sprite
-
-#import prepare
-#Changed to this because of a import error
 from core import prepare
-
 from core.platform import mixer
+import core.components.sprite
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -97,7 +93,7 @@ def transform_resource_filename(filename):
     :param filename: String
     :rtype: basestring
     """
-    return prepare.BASEDIR + "resources/" + filename
+    return os.path.join(prepare.BASEDIR, 'resources', filename)
 
 
 def load_and_scale(filename):
@@ -222,7 +218,7 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(sprite._original_image, (sprite.rect.width, sprite.rect.height))
+    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.get_size())
     sprite._needs_update = True
 
 
@@ -292,6 +288,7 @@ def load_sound(filename):
     :type filename: basestring
     :rtype: core.platform.mixer.Sound
     """
+
     class DummySound(object):
         def play(self):
             pass
@@ -304,7 +301,7 @@ def load_sound(filename):
         raise ValueError
     try:
         return mixer.Sound(filename)
-    except MemoryError:   # raised on some systems if there is no mixer
+    except MemoryError:  # raised on some systems if there is no mixer
         return DummySound()
     except pygame.error:  # raised on some systems is there is no mixer
         return DummySound()
@@ -323,7 +320,7 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text, menu = None):
+def open_dialog(game, text, menu=None):
     """ Open a dialog with the standard window size
 
     :param game:

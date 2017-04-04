@@ -113,6 +113,10 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None,
 
     # Calculate the number of pixels per letter based on the size
     # of the text and the number of characters in the text
+
+    if not text:
+        return
+
     pixels_per_letter = text_surface.get_width() / len(text)
 
     # Create a list of the lines of text as well as a list of the

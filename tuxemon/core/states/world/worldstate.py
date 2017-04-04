@@ -30,24 +30,20 @@
 #
 from __future__ import division
 
-# Import various python libraries
+import itertools
 import logging
 import math
-import itertools
-from six.moves import range
-from six.moves import map as imap
-from functools import partial
+
+from os.path import join
 
 import pygame
+from six.moves import map as imap
 
-# Import Tuxemon internal libraries
 from core import prepare
 from core import state
-from core import tools
-from core.components.game_event import GAME_EVENT, INPUT_EVENT
 from core.components import map
 from core.components import networking
-from core.components.animation import Task
+from core.components.game_event import GAME_EVENT, INPUT_EVENT
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -58,6 +54,25 @@ class WorldState(state.State):
     """
 
     preloaded_maps = {}
+
+    # def __init__(self):
+    #     self.state = "WorldState"
+    #     self.map_size = []
+    #     self.screen = None
+    #     self.screen_rect = None
+    #     self.tile_size = None
+    #     self.icon_size = None
+    #     self.resolution = None
+    #     self.native_resolution = None
+    #     self.player1 = None
+    #     self.npcs = None
+    #     self.npcs_off_map = None
+    #     self.wants_duel = None
+    #     self.global_x = None
+    #     self.global_x_diff = None
+    #     self.global_y = None
+    #     self.global_y_diff = None
+    #     self.start_position = None
 
     def startup(self):
         # Provide access to the screen surface
@@ -77,26 +92,15 @@ class WorldState(state.State):
         # used for scaling.
         self.native_resolution = prepare.NATIVE_RESOLUTION
 
-        # Set the world's current state. This is used for various functions.
-        self.state = "WorldState"
-
         ######################################################################
         #                              Map                                   #
         ######################################################################
 
         # Set the tiles and map size variables
-        self.tiles = []
         self.map_size = []
 
-        # Find out how many tiles can fit on the visible screen. We use this
-        # so we draw only the tiles that are visible.
-        self.visible_tiles = [
-            int(math.ceil(self.resolution[0] / self.tile_size[0]) + 1),
-            int(math.ceil(self.resolution[1] / self.tile_size[1]) + 1)]
-        # self.visible_tiles = [5, 5]
-
         # load the starting map
-        map_name = prepare.BASEDIR + "resources/maps/%s" % prepare.CONFIG.starting_map
+        map_name = join(prepare.BASEDIR, 'resources', 'maps', prepare.CONFIG.starting_map)
         self.change_map(map_name)
 
         # Keep a map of preloaded maps for fast map switching.
@@ -114,9 +118,9 @@ class WorldState(state.State):
         # Set the global coordinates used to pan the screen.
         self.start_position = prepare.CONFIG.starting_position
         self.global_x = self.player1.position[0] - \
-            (self.start_position[0] * self.tile_size[0])
+                        (self.start_position[0] * self.tile_size[0])
         self.global_y = self.player1.position[1] - \
-            (self.start_position[1] * self.tile_size[1]) + self.tile_size[0]
+                        (self.start_position[1] * self.tile_size[1]) + self.tile_size[0]
 
         ######################################################################
         #                            Transitions                             #
@@ -155,7 +159,7 @@ class WorldState(state.State):
         # The cinema bars are used for cinematic moments.
         # The cinema state can be: "off", "on", "turning on" or "turning off"
         self.cinema_state = "off"
-        self.cinema_speed = 15 * prepare.SCALE    # Pixels per second speed of the animation.
+        self.cinema_speed = 15 * prepare.SCALE  # Pixels per second speed of the animation.
 
         self.cinema_top = {}
         self.cinema_bottom = {}
@@ -191,6 +195,7 @@ class WorldState(state.State):
 
         :return:
         """
+
         def cleanup():
             self.in_transition = False
 
@@ -301,20 +306,22 @@ class WorldState(state.State):
             self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
     def draw(self, surface):
+        """ Draw the game world to the screen
+
+        :param surface:
+        :return:
+        """
         self.screen = surface
-
-        # Fill the screen _background with black
-        surface.fill((0, 0, 0))
-
         self.map_drawing(surface)
         self.player_movement()
-        self.high_map_drawing(surface)
-        self.midscreen_animations(surface)
+        self.move_npcs()
         self.fullscreen_animations(surface)
 
     def process_event(self, event):
         """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
+        player provides input
+
+         such as pressing a key or clicking the mouse.
 
         :param event: A pygame key event from pygame.event.get()
 
@@ -344,9 +351,9 @@ class WorldState(state.State):
             if event.key == pygame.K_RIGHT:
                 self.player1.direction["right"] = True
                 self.player1.facing = "right"
+
             if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                # TODO: Check to see if we have network players to interact
-                # with.
+                # TODO: Check to see if we have network players to interact with.
                 multiplayer = False
                 if multiplayer:
                     self.check_interactable_space()
@@ -390,7 +397,7 @@ class WorldState(state.State):
         players[game.player1.slug] = game.player1
 
         return players
-        
+
     ####################################################
     #                   Map Drawing                    #
     ####################################################
@@ -403,54 +410,23 @@ class WorldState(state.State):
         :returns: None
 
         """
+        # interlace player sprites with tiles surfaces.
+        # eventually, maybe use pygame sprites or something similar
+        surfaces = self.player1.get_sprites()
+        for npc in self.npcs:
+            surfaces.extend(npc.get_sprites())
 
-        # Reset the higher layer tiles so we can draw them over the player
-        self.highlayer_tiles = []
-        self.medlayer_tiles = []
+        # center the camera on the player sprite
+        sx, sy = prepare.SCREEN_SIZE
+        self.current_map.renderer.center((-self.global_x + sx / 2,
+                                          -self.global_y + sy / 2))
 
-        # What region of tiles should be visible?
-        left   = -int(self.global_x / self.tile_size[0])
-        top    = -int(self.global_y / self.tile_size[1])
-        right  = left + self.visible_tiles[0]
-        bottom = top + self.visible_tiles[1]
+        # draw the map and sprites
+        self.current_map.renderer.draw(surface, surface.get_rect(), surfaces)
 
-        # Clamp that to the map boundaries.
-        left   = max(left,   0)
-        top    = max(top,    0)
-        right  = min(right,  len(self.tiles))
-        bottom = min(bottom, len(self.tiles[1]))
-
-        # These vars will be used in the following loop.
-        # Let's pull them into the current scope to make
-        # access faster.
-        tiles = self.tiles
-        gx = self.global_x
-        gy = self.global_y
-
-        # Loop through the visible tiles
-        for row in range(top, bottom):
-            for column in range(left, right):
-                for tile in tiles[column][row]:
-                    # Append the high level tiles to its own
-                    # list to be drawn over the player. Tiles on layer 4 will be drawn
-                    # above the player's body, but below the player's head.
-                    if tile["layer"] == 4:
-                        self.medlayer_tiles.append(tile)
-                    elif tile["layer"] > 4:
-                        self.highlayer_tiles.append(tile)
-                    else:
-                        draw_position = (tile["position"][0] + gx,
-                                         tile["position"][1] + gy)
-                        if type(tile["surface"]) is pygame.Surface:
-                            surface.blit(tile["surface"], draw_position)
-                        else:
-                            tile["surface"].blit(surface, draw_position)
-
-        # We need to keep track of the global_x/y that we used to draw the bottom tiles so we use
-        # the same values for the higher layer tiles. We have to do this because when we draw the
-        # player's movement, we modify the global_x/y values to start moving the map.
-        self.orig_global_x = self.global_x
-        self.orig_global_y = self.global_y
+        # If we want to draw the collision map for debug purposes
+        if prepare.CONFIG.collision_map == "1":
+            self.debug_drawing(surface)
 
     ####################################################
     #                Player Movement                   #
@@ -465,6 +441,12 @@ class WorldState(state.State):
         :returns: None
 
         """
+        # We need to keep track of the global_x/y that we used to draw the bottom tiles so we use
+        # the same values for the higher layer tiles. We have to do this because when we draw the
+        # player's movement, we modify the global_x/y values to start moving the map.
+        self.orig_global_x = self.global_x
+        self.orig_global_y = self.global_y
+
         # Get all the keys pressed for modifiers only!
         pressed = list(pygame.key.get_pressed())
         self.ctrl_held = pressed[pygame.K_LCTRL] or pressed[pygame.K_RCTRL]
@@ -488,29 +470,29 @@ class WorldState(state.State):
         self.global_x_diff = self.orig_global_x - self.global_x
         self.global_y_diff = self.orig_global_y - self.global_y
 
+    def move_npcs(self):
+        """ Move NPCs and Players around according to their state
+        
+        This function may be moved to a server
+        
+        :return: 
+        """
         # Draw any game NPC's
         for npc in self.npcs.values():
             if npc.running:
                 npc.moverate = npc.runrate
             else:
                 npc.moverate = npc.walkrate
+
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.
             npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
                 self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
 
-            # If the NPC is not visible on the screen, don't draw him
-            #if self.screen_rect.colliderect(npc.rect):
-            #    npc.move(self.screen, self.tile_size, self.time_passed_seconds, (     #### Disabled for now
-            #        npc.position[0], npc.position[1]), self)
-
             # Move the NPC with the map as it moves
             npc.position[0] -= self.global_x_diff
             npc.position[1] -= self.global_y_diff
-
-            # debug info
-            #print("npc.tile_pos="+str(npc.tile_pos))
 
             # if the npc has a path, move it along its path
             if npc.path:
@@ -526,12 +508,9 @@ class WorldState(state.State):
                 npc.direction["right"] = False
 
             if npc.update_location:
-                char_dict ={"tile_pos": npc.final_move_dest }
+                char_dict = {"tile_pos": npc.final_move_dest}
                 networking.update_client(npc, char_dict, self.game)
                 npc.update_location = False
-
-            # Draw the bottom part of the NPC.
-            npc.draw(self.screen, "bottom")
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map.values():
@@ -539,6 +518,7 @@ class WorldState(state.State):
                 npc.moverate = npc.runrate
             else:
                 npc.moverate = npc.walkrate
+
             # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
             # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
             # portion of the sprite.
@@ -555,40 +535,6 @@ class WorldState(state.State):
 
             npc.move(self.tile_size, self.time_passed_seconds, self)
 
-        # Draw the bottom half of the player
-        self.player1.draw(self.screen, "bottom")
-
-        # Draw the medium level tiles. These tiles will appear above the player's body,
-        # but below the player's head.
-        for tile in self.medlayer_tiles:
-
-            # Get the rectangle object of the tile that is going to be drawn so
-            # we can see if it is going to be outside the visible screen area
-            # or not
-            if type(tile["surface"]) is pygame.Surface:
-                tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
-                                        "position"][0] + self.global_x, tile["position"][1] + self.global_y)
-            else:
-                tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
-                                        tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
-
-            # If any part of the tile overlaps with the screen, then draw it to
-            # the screen
-            if self.screen_rect.colliderect(tile_rect):
-                med_x = tile["position"][0] + self.orig_global_x
-                med_y = tile["position"][1] + self.orig_global_y
-                if type(tile["surface"]) is pygame.Surface:
-                    self.screen.blit(tile["surface"], (med_x, med_y))
-                else:
-                    tile["surface"].blit(self.screen, (med_x, med_y))
-
-        # Draw the top half of our NPCs above layer 4.
-        for npc in self.npcs.values():
-            npc.draw(self.screen, "top")
-
-        # Draw the top half of the player above layer 4.
-        self.player1.draw(self.screen, "top")
-
     def _collision_box_to_pgrect(self, box):
         """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
         """
@@ -599,8 +545,8 @@ class WorldState(state.State):
         tw = self.tile_size[0]
         th = self.tile_size[1]
 
-        return pygame.Rect(x*tw + self.global_x,
-                           y*th + self.global_y,
+        return pygame.Rect(x * tw + self.global_x,
+                           y * th + self.global_y,
                            tw,
                            th)
 
@@ -608,47 +554,9 @@ class WorldState(state.State):
         """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
         """
 
-        return pygame.Rect(npc[0],
-                           npc[1],
-                           self.tile_size[0],
-                           self.tile_size[1])
+        return pygame.Rect(npc, self.tile_size)
 
-    def high_map_drawing(self, surface):
-        """Draws map tiles above the players and NPCs
-        """
-
-        rect = surface.get_rect()
-
-        # Draw the high level tiles
-        for tile in self.highlayer_tiles:
-
-            # Get the rectangle object of the tile that is going to be drawn so
-            # we can see if it is going to be outside the visible screen area
-            # or not
-            if type(tile["surface"]) is pygame.Surface:
-                tile_rect = pygame.Rect(tile["surface"].get_width(), tile["surface"].get_height(), tile[
-                                        "position"][0] + self.global_x, tile["position"][1] + self.global_y)
-            else:
-                tile_rect = pygame.Rect(tile["surface"].getMaxSize()[0], tile["surface"].getMaxSize()[1],
-                                        tile["position"][0] + self.global_x, tile["position"][1] + self.global_y)
-
-            # If any part of the tile overlaps with the screen, then draw it
-            if rect.colliderect(tile_rect):
-                med_x = tile["position"][0] + self.orig_global_x
-                med_y = tile["position"][1] + self.orig_global_y
-                if type(tile["surface"]) is pygame.Surface:
-                    surface.blit(tile["surface"], (med_x, med_y))
-                else:
-                    tile["surface"].blit(surface, (med_x, med_y))
-
-        # Draw any map animations over everything.
-        for animation_name, animation in self.game.animations.items():
-            position = self.get_pos_from_tilepos(animation["position"])
-            position = (position[0] + self.global_x_diff, position[1] + self.global_y_diff)
-            animation["animation"].blit(surface, position)
-
-        # If we want to draw the collision map for debug purposes
-        if prepare.CONFIG.collision_map == "1":
+    def debug_drawing(self, surface):
             # We need to iterate over all collidable objects.  So, let's start
             # with the walls/collision boxes.
             box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
@@ -720,7 +628,6 @@ class WorldState(state.State):
 
             # If we've reached our target position, stop the animation.
             if self.cinema_top['position'][1] <= self.cinema_top['off_position'][1]:
-
                 self.cinema_top['position'] = list(
                     self.cinema_top['off_position'])
                 self.cinema_bottom['position'] = list(
@@ -758,10 +665,10 @@ class WorldState(state.State):
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
         if map_name not in self.preloaded_maps.keys():
-            print ("Map was not preloaded. Loading from disk.")
+            print("Map was not preloaded. Loading from disk.")
             map_data = self.load_map(map_name)
         else:
-            print ("%s was found in preloaded maps." % map_name)
+            print("%s was found in preloaded maps." % map_name)
             map_data = self.preloaded_maps[map_name]
             self.clear_preloaded_maps()
 
@@ -778,7 +685,6 @@ class WorldState(state.State):
             pass
 
         self.current_map = map_data["data"]
-        self.tiles = map_data["tiles"]
         self.collision_map = map_data["collision_map"]
         self.collision_lines_map = map_data["collision_lines_map"]
         self.map_size = map_data["map_size"]
@@ -799,27 +705,24 @@ class WorldState(state.State):
         map_data["events"] = map_data["data"].events
         map_data["inits"] = map_data["data"].inits
         map_data["interacts"] = map_data["data"].interacts
-        map_data["tiles"], map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
+        map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
             map_data["data"].loadfile(self.tile_size)
-
-        # Scale the loaded tiles if enabled
-        if prepare.CONFIG.scaling == "1":
-            # Loop through each row in the map. Each row is a list of
-            # Tile objects in that row.
-            for y_pos, row in enumerate(map_data["tiles"]):
-                # Now loop through each tile in the row and scale it accordingly.
-                for x_pos, column in enumerate(row):
-                    if column:
-                        for layer_pos, tile in enumerate(column):
-                            tile['surface'] = tools.scale_tile(tile['surface'], self.tile_size)
-                            map_data["tiles"][y_pos][x_pos][layer_pos] = tile
 
         return map_data
 
     def preload_map(self, map_name):
+        """ Preload a map for quicker access
+
+        :param map_name:
+        :return: None
+        """
         self.preloaded_maps[map_name] = self.load_map(map_name)
 
     def clear_preloaded_maps(self):
+        """ Clear the proloaded maps cache
+
+        :return: None
+        """
         self.preloaded_maps = {}
 
     def get_pos_from_tilepos(self, tile_position):
@@ -838,7 +741,6 @@ class WorldState(state.State):
 
         return x, y
 
-
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu
         of possible actions.
@@ -850,7 +752,7 @@ class WorldState(state.State):
 
         """
         collision_dict = self.player1.get_collision_dict(self)
-        player_tile_pos = ( int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])) )
+        player_tile_pos = (int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])))
         collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
         if not collisions:
             pass
@@ -866,12 +768,13 @@ class WorldState(state.State):
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
                     for npc in self.npcs.values():
-                        tile_pos = ( int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])) )
+                        tile_pos = (int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])))
                         if tile_pos == tile:
                             logger.info("Opening interaction menu!")
                             self.game.push_state("InteractionMenu")
                             return True
-                        else: continue
+                        else:
+                            continue
 
     def handle_interaction(self, event_data, registry):
         """Presents options window when another player has interacted with this player.
@@ -895,7 +798,7 @@ class WorldState(state.State):
                 self.interaction_menu.interactable = True
                 self.interaction_menu.player = target
                 self.interaction_menu.interaction = "DUEL"
-                self.interaction_menu.menu_items = [target_name+" would like to Duel!","Accept","Decline"]
+                self.interaction_menu.menu_items = [target_name + " would like to Duel!", "Accept", "Decline"]
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
@@ -911,4 +814,3 @@ class WorldState(state.State):
 
                                       }
                         self.game.server.notify_client_interaction(cuuid, event_data)
-

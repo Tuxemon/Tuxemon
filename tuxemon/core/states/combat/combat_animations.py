@@ -87,7 +87,7 @@ class CombatAnimations(Menu):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            self.animate_party_hud_in(player, layout['party'][0], 6)
+            self.animate_party_hud_in(player, layout['party'][0])
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
@@ -302,7 +302,7 @@ class CombatAnimations(Menu):
         self.hud[monster] = hud
         self.build_animate_hp_bar(monster)
 
-    def animate_party_hud_in(self, player, home, slots):
+    def animate_party_hud_in(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
 
         :param player: the player
@@ -323,7 +323,7 @@ class CombatAnimations(Menu):
             centerx = home.left + scale(13)
             offset = -scale(8)
 
-        for index in range(slots):
+        for index in range(player.party_limit):
             sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
                                       top=tray.rect.top + scale(1),
                                       centerx=centerx - index * offset,

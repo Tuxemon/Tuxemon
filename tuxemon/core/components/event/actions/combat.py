@@ -263,6 +263,7 @@ class Combat(object):
             # Create an NPC object which will be this monster's "trainer"
             npc = player.Npc()
             npc.monsters.append(current_monster)
+            npc.party_limit = 0;
 
             # Set the NPC object's AI model.
             npc.ai = ai.AI()

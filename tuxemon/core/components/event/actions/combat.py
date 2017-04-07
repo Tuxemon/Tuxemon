@@ -89,9 +89,6 @@ class Combat(object):
         npcs.load("npc")
         npc_details = npcs.database['npc'][npc_slug]
 
-        # Set the NPC object with the details fetched from the database.
-        npc.name = npc_details['name']
-
         # Set the NPC object's AI model.
         npc.ai = ai.AI()
 

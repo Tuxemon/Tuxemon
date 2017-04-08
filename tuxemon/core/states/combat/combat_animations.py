@@ -324,10 +324,17 @@ class CombatAnimations(Menu):
             offset = -scale(8)
 
         for index in range(player.party_limit):
-            sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
-                                      top=tray.rect.top + scale(1),
-                                      centerx=centerx - index * offset,
-                                      layer=hud_layer)
+            sprite = None
+            if len(player.monsters) > index:
+                sprite = self.load_sprite('gfx/ui/combat/available_slot_icon.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+            else:
+                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
 
             # convert alpha image to image with a colorkey so we can set_alpha
             sprite.image = tools.convert_alpha_to_colorkey(sprite.image)

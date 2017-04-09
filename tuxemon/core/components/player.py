@@ -523,7 +523,7 @@ class Player(object):
 
         # top surfaces
         surface = get_frame(frame_dict, state + "-top")
-        surfaces.append((surface, self.position, 3))
+        urfaces.append((surface, self.position, 3))
 
         return surfaces
 

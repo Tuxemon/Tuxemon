@@ -1,5 +1,5 @@
 pytmx>=3.20.14
-pyscroll>=2.16.12
+pyscroll>=2.16.13
 pygame
 six
 neteria

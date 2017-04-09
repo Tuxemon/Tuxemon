@@ -326,7 +326,7 @@ class CombatAnimations(Menu):
         for index in range(player.party_limit):
             sprite = None
             if len(player.monsters) > index:
-                sprite = self.load_sprite('gfx/ui/combat/available_slot_icon.png',
+                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)

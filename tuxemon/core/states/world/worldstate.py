@@ -32,17 +32,13 @@ from __future__ import division
 
 import itertools
 import logging
-import math
-
 from os.path import join
 
 import pygame
 from six.moves import map as imap
 
-from core import prepare
-from core import state
-from core.components import map
-from core.components import networking
+from core import prepare, state
+from core.components import map, networking
 from core.components.game_event import GAME_EVENT, INPUT_EVENT
 
 # Create a logger for optional handling of debug messages.
@@ -54,25 +50,6 @@ class WorldState(state.State):
     """
 
     preloaded_maps = {}
-
-    # def __init__(self):
-    #     self.state = "WorldState"
-    #     self.map_size = []
-    #     self.screen = None
-    #     self.screen_rect = None
-    #     self.tile_size = None
-    #     self.icon_size = None
-    #     self.resolution = None
-    #     self.native_resolution = None
-    #     self.player1 = None
-    #     self.npcs = None
-    #     self.npcs_off_map = None
-    #     self.wants_duel = None
-    #     self.global_x = None
-    #     self.global_x_diff = None
-    #     self.global_y = None
-    #     self.global_y_diff = None
-    #     self.start_position = None
 
     def startup(self):
         # Provide access to the screen surface
@@ -557,28 +534,28 @@ class WorldState(state.State):
         return pygame.Rect(npc, self.tile_size)
 
     def debug_drawing(self, surface):
-            # We need to iterate over all collidable objects.  So, let's start
-            # with the walls/collision boxes.
-            box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
+        # We need to iterate over all collidable objects.  So, let's start
+        # with the walls/collision boxes.
+        box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
 
-            # Next, deal with solid NPCs.
-            npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
+        # Next, deal with solid NPCs.
+        npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
 
-            for item in itertools.chain(box_iter, npc_iter):
-                surface.blit(self.collision_tile, (item[0], item[1]))
+        for item in itertools.chain(box_iter, npc_iter):
+            surface.blit(self.collision_tile, (item[0], item[1]))
 
-            if self.player1.direction["up"]:
-                surface.blit(self.collision_tile, (
-                    self.player1.position[0], self.player1.position[1] - self.tile_size[1]))
-            elif self.player1.direction["down"]:
-                surface.blit(self.collision_tile, (
-                    self.player1.position[0], self.player1.position[1] + self.tile_size[1]))
-            elif self.player1.direction["left"]:
-                surface.blit(self.collision_tile, (
-                    self.player1.position[0] - self.tile_size[0], self.player1.position[1]))
-            elif self.player1.direction["right"]:
-                surface.blit(self.collision_tile, (
-                    self.player1.position[0] + self.tile_size[0], self.player1.position[1]))
+        if self.player1.direction["up"]:
+            surface.blit(self.collision_tile, (
+                self.player1.position[0], self.player1.position[1] - self.tile_size[1]))
+        elif self.player1.direction["down"]:
+            surface.blit(self.collision_tile, (
+                self.player1.position[0], self.player1.position[1] + self.tile_size[1]))
+        elif self.player1.direction["left"]:
+            surface.blit(self.collision_tile, (
+                self.player1.position[0] - self.tile_size[0], self.player1.position[1]))
+        elif self.player1.direction["right"]:
+            surface.blit(self.collision_tile, (
+                self.player1.position[0] + self.tile_size[0], self.player1.position[1]))
 
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.

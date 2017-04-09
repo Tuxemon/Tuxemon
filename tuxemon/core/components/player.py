@@ -510,9 +510,10 @@ class Player(object):
             except AttributeError:
                 return frame
 
-        state = self.animation_mapping[self.moving][self.move_direction]
-        frame_dict = self.sprite if self.moving else self.standing
         surfaces = list()
+        direction = self.move_direction if self.moving else self.facing
+        frame_dict = self.sprite if self.moving else self.standing
+        state = self.animation_mapping[self.moving][direction]
 
         # If this is the bottom half, we need to draw it at a lower position.
         offset = self.standing["front"].get_height() / 2

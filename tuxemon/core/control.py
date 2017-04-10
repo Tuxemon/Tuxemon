@@ -616,52 +616,6 @@ class Control(StateManager):
         if self.exit:
             self.done = True
 
-    # def scale_new_player(self, sprite):
-    #     """Scales a new player to the screen.
-    #
-    #     :param sprite: Player sprite from the server registry.
-    #
-    #     :type sprite: -- Player or Npc object from core.components.player
-    #
-    #     :rtype: None
-    #     :returns: None
-    #
-    #     """
-    #     SCALE = prepare.SCALE
-    #     TILE_SIZE = prepare.TILE_SIZE
-    #     SCREEN_SIZE = prepare.TILE_SIZE
-    #
-    #     for key, animation in sprite.sprite.items():
-    #         animation.scale(
-    #                 tuple(i * SCALE for i in animation.getMaxSize()))
-    #
-    #     for key, image in sprite.standing.items():
-    #         sprite.standing[key] = scale_surface(image, SCALE)
-    #
-    #     # Set the player's width and height based on the size of our scaled
-    #     # sprite.
-    #     sprite.playerWidth, sprite.playerHeight = \
-    #         sprite.standing["front"].get_size()
-    #     sprite.playerWidth = TILE_SIZE[0]
-    #     sprite.playerHeight = TILE_SIZE[1]
-    #     sprite.tile_size = TILE_SIZE
-    #
-    #     # Put the player right in the middle of our screen.
-    #     sprite.position = [
-    #         (SCREEN_SIZE[0] / 2) - (sprite.playerWidth / 2),
-    #         (SCREEN_SIZE[1] / 2) - (sprite.playerHeight / 2)]
-    #
-    #     # Set the player's collision rectangle
-    #     sprite.rect = pg.Rect(
-    #             sprite.position[0],
-    #             sprite.position[1],
-    #             TILE_SIZE[0],
-    #             TILE_SIZE[1])
-    #
-    #     # Set the walking and running pixels per second based on the scale
-    #     sprite.walkrate *= SCALE
-    #     sprite.runrate *= SCALE
-
     def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If
         they are on the same map as the host then it will add them to the npc's list.

@@ -9,6 +9,7 @@
     "combat_status_damage": "${{name}} took ${{status}} damage!",
     "combat_victory": "You have won!",
     "combat_defeat": "You've been defeated!",
+    "combat_draw": "All parties have fainted!",
     "combat_capturing success": "You captured ${{name}}!",
     "combat_capturing_fail": "${{name}} broke free!",
     "combat_replacement": "Choose a replacement!",

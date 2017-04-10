@@ -32,14 +32,14 @@
 from __future__ import division
 
 import logging
-from collections import namedtuple, defaultdict
+from collections import defaultdict, namedtuple
 from functools import partial
 from itertools import chain
 from operator import attrgetter
 
 import pygame
 
-from core import tools, state
+from core import state, tools
 from core.components.locale import translator
 from core.components.pyganim import PygAnimation
 from core.components.sprite import Sprite
@@ -129,7 +129,6 @@ class CombatState(CombatAnimations):
         self._hp_bars = dict()               # monster => hp bar
         self._layout = dict()                # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
-        self._winner = None                  # when set, combat ends
         self._round = 0
 
         super(CombatState, self).startup(**kwargs)
@@ -191,20 +190,30 @@ class CombatState(CombatAnimations):
                 if positions_available:
                     return
 
+            # DO NOT REMOVE THIS CODE
+            # enable it to test for draw matches
+            if 0:
+                t = Technique("technique_poison_sting")
+                for p, m in self.monsters_in_play.items():
+                    for m in m:
+                        m.current_hp = min(m.current_hp, 1)
+                        t.use(m, m)
+
+            # enable to test for defeat in matches
+            if 0:
+                [setattr(m, 'current_hp', 1) for m in self.players[0].monsters]
+
             return "decision phase"
 
         elif phase == "decision phase":
+            # TODO: only works for single player and if player runs
+            if len(self.remaining_players) == 1:
+                return "ran away"
+
             # assume each monster executes one action
             # if number of actions == monsters, then all monsters are ready
             if len(self._action_queue) == len(self.active_monsters):
                 return "pre action phase"
-
-            # TODO: change check so that it doesn't change state
-            # (state is changed because check_match_status will modify _winner)
-            # if a player runs, it will be known here
-            self.determine_winner()
-            if self._winner:
-                return "ran away"
 
         elif phase == "pre action phase":
             return "action phase"
@@ -217,17 +226,24 @@ class CombatState(CombatAnimations):
             if not self._action_queue:
                 return "resolve match"
 
+        elif phase == "resolve match":
+            remaining = len(self.remaining_players)
+
+            if remaining == 0:
+                return "draw match"
+            elif remaining == 1:
+                return "has winner"
+            else:
+                return "housekeeping phase"
+
         elif phase == "ran away":
+            return "end combat"
+
+        elif phase == "draw match":
             return "end combat"
 
         elif phase == "has winner":
             return "end combat"
-
-        elif phase == "resolve match":
-            if self._winner:
-                return "has winner"
-            else:
-                return "housekeeping phase"
 
     def transition_phase(self, phase):
         """ Change from one phase from another.
@@ -261,7 +277,6 @@ class CombatState(CombatAnimations):
                         self.enqueue_action(monster, action, target)
 
         elif phase == "action phase":
-
             self._action_queue.sort(key=attrgetter("user.speed"))
             # TODO: Running happens somewhere else, it should be moved here i think.
             # TODO: Sort other items not just healing, Swap/Run?
@@ -277,8 +292,7 @@ class CombatState(CombatAnimations):
             precedent.sort(key=attrgetter("target.speed"))
             for action in precedent:
                 self._action_queue.remove(action)
-                self._action_queue.insert(0,action)
-
+                self._action_queue.insert(0, action)
 
         elif phase == "post action phase":
             # apply status effects to the monsters
@@ -287,27 +301,38 @@ class CombatState(CombatAnimations):
                     self.enqueue_action(None, technique, monster)
 
         elif phase == "resolve match":
-            self.determine_winner()
+            pass
 
         elif phase == "ran away":
+            self.alert(trans('combat_player_run'))
+
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             # if you run in PvP, you need "defeated message"
-            self.task(partial(self.game.push_state, "WaitForInputState"), 1)
-            self.suppress_phase_change(1)
+            self.task(partial(self.game.push_state, "WaitForInputState"), 2)
+            self.suppress_phase_change(3)
+
+        elif phase == "draw match":
+            # it is a draw match; both players were defeated in same round
+            self.alert(trans('combat_draw'))
+
+            # after 3 seconds, push a state that blocks until enter is pressed
+            # after the state is popped, the combat state will clean up and close
+            self.task(partial(self.game.push_state, "WaitForInputState"), 2)
+            self.suppress_phase_change(3)
 
         elif phase == "has winner":
-            if self._winner:
-                # TODO: proper match check, etc
-                if self._winner.name == "Maple":
-                    self.alert(trans('combat_defeat'))
-                else:
-                    self.alert(trans('combat_victory'))
+            # TODO: proper match check, etc
+            # This assumes that player[0] is the human playing in single player
+            if self.remaining_players[0] == self.players[0]:
+                self.alert(trans('combat_victory'))
+            else:
+                self.alert(trans('combat_defeat'))
 
-                # after 3 seconds, push a state that blocks until enter is pressed
-                # after the state is popped, the combat state will clean up and close
-                self.task(partial(self.game.push_state, "WaitForInputState"), 1)
-                self.suppress_phase_change(1)
+            # after 3 seconds, push a state that blocks until enter is pressed
+            # after the state is popped, the combat state will clean up and close
+            self.task(partial(self.game.push_state, "WaitForInputState"), 2)
+            self.suppress_phase_change(3)
 
         elif phase == "end combat":
             self.end_combat()
@@ -355,9 +380,9 @@ class CombatState(CombatAnimations):
         def add(menuitem):
             monster = menuitem.game_object
             if monster.current_hp == 0:
-                tools.open_dialog(self.game, [trans("combat_fainted", parameters={"name":monster.name})])
+                tools.open_dialog(self.game, [trans("combat_fainted", parameters={"name": monster.name})])
             elif monster in self.active_monsters:
-                tools.open_dialog(self.game, [trans("combat_isactive", parameters={"name":monster.name})])
+                tools.open_dialog(self.game, [trans("combat_isactive", parameters={"name": monster.name})])
                 msg = trans("combat_replacement_is_fainted")
                 tools.open_dialog(self.game, [msg])
             else:
@@ -624,8 +649,8 @@ class CombatState(CombatAnimations):
 
         :returns: None
         """
-        for player in self.monsters_in_play.keys():
-            for monster in self.monsters_in_play[player]:
+        for player, party in self.monsters_in_play.items():
+            for monster in party:
                 if fainted(monster):
                     self.alert(trans('combat_fainted', {"name": monster.name}))
                     self.animate_monster_faint(monster)
@@ -638,8 +663,8 @@ class CombatState(CombatAnimations):
 
         :returns: None
         """
-        for player in self.monsters_in_play.keys():
-            for monster in self.monsters_in_play[player]:
+        for player, party in self.monsters_in_play.items():
+            for monster in party:
                 self.animate_hp(monster)
                 if monster.current_hp <= 0 and not fainted(monster):
                     self.remove_monster_actions_from_queue(monster)
@@ -710,23 +735,31 @@ class CombatState(CombatAnimations):
         """
         return list(chain.from_iterable(self.monsters_in_play.values()))
 
-    def remove_player(self, player):
-        # TODO: non SP things
-        self.players.remove(player)
-        self.suppress_phase_change()
-        self.alert(trans('combat_player_run'))
+    @property
+    def remaining_players(self):
+        """ List of non-defeated players/trainers.  WIP
 
-    def determine_winner(self):
-        """ Determine if match should continue or not
+        right now, this is similar to Combat.active_players, but it may change in the future.
+        For implementing teams, this would need to be different than active_players
 
-        :return:
+        Use to check for match winner
+
+        :return: list
         """
-        if self._winner:
-            return
+        # TODO: perhaps change this to remaining "parties", or "teams", instead of player/trainer
+        return [p for p in self.players if not defeated(p)]
 
-        players = list(self.active_players)
-        if len(players) == 1:
-            self._winner = players[0]
+    def trigger_player_run(self, player):
+        """ WIP.  make player run from battle
+
+        This is a temporary fix for now.  Expected to be called by the command menu.
+
+        :param player: 
+        :return: 
+        """
+        # TODO: non SP things
+        del self.monsters_in_play[player]
+        self.players.remove(player)
 
     def end_combat(self):
         """ End the combat

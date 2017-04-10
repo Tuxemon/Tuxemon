@@ -11,7 +11,7 @@ from core.components.locale import translator
 from core.components.menu import PopUpMenu
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
-from core.components.sprite import SpriteGroup, MenuSpriteGroup
+from core.components.sprite import MenuSpriteGroup, SpriteGroup
 from core.components.technique import Technique
 from core.components.ui.draw import GraphicBox
 
@@ -53,7 +53,7 @@ class MainCombatMenuState(PopUpMenu):
         # TODO: only works for player0
         self.game.pop_state(self)
         combat_state = self.game.get_state_name("CombatState")
-        combat_state.remove_player(combat_state.players[0])
+        combat_state.trigger_player_run(combat_state.players[0])
 
     def open_swap_menu(self):
         """ Open menus to swap monsters in party
@@ -148,7 +148,7 @@ class MainCombatMenuState(PopUpMenu):
             # open menu to choose target of technique
             technique = menu_item.game_object
             combat_state = self.game.get_state_name("CombatState")
-            state = self.game.push_state("CombatTargetMenuState",player=combat_state.players[0],
+            state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                          user=self.monster, action=technique)
             state.on_menu_selection = partial(enqueue_technique, technique)
 

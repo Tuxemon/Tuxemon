@@ -15,8 +15,9 @@ from core.components.menu import Menu
 from core.components.menu.interface import HpBar
 from core.components.pyganim import PygAnimation
 from core.components.sprite import Sprite
-from core.tools import scale_sequence, scale_sprite, scale
+from core.tools import scale, scale_sequence, scale_sprite
 from core.components.locale import translator
+
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -440,18 +441,18 @@ class CombatAnimations(Menu):
             animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay)
             animate(capdev.rect, y=scale(3), relative=True)
 
-            animate = partial(self.animate, duration=0.2, transition='linear', delay=initial_delay+0.1)
-            animate(capdev.rect, y= -scale(6), relative=True)
+            animate = partial(self.animate, duration=0.2, transition='linear', delay=initial_delay + 0.1)
+            animate(capdev.rect, y=-scale(6), relative=True)
 
-            animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay+0.3)
+            animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay + 0.3)
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):
-            shake_ball(1.8 + i*1.0) # leave a 0.6s wait between each shake
+            shake_ball(1.8 + i * 1.0) # leave a 0.6s wait between each shake
 
         if is_captured:
             self.task(kill, 2 + num_shakes)
         else:
-            self.task(partial(toggle_visible, monster_sprite), 1.8 + num_shakes*1.0) # make the monster appear again!
-            self.task(tech.play, 1.8 + num_shakes*1.0)
-            self.task(capdev.kill, 1.8 + num_shakes*1.0)
+            self.task(partial(toggle_visible, monster_sprite), 1.8 + num_shakes * 1.0) # make the monster appear again!
+            self.task(tech.play, 1.8 + num_shakes * 1.0)
+            self.task(capdev.kill, 1.8 + num_shakes * 1.0)

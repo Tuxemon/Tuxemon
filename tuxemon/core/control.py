@@ -38,8 +38,8 @@ class Control(StateManager):
         self.caption = caption
         self.done = False
         self.clock = pg.time.Clock()
-        self.fps = 60.0
-        self.show_fps = True
+        self.fps = prepare.CONFIG.fps
+        self.show_fps = prepare.CONFIG.show_fps
         self.current_time = 0.0
         self.ishost = False
         self.isclient = False
@@ -608,10 +608,10 @@ class Control(StateManager):
             self.frame_number += 1
             pg.image.save(self.screen, filename)
 
-        # if self.show_fps:
-        #     fps = self.clock.get_fps()
-        #     with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
-        #     pg.display.set_caption(with_fps)
+        if self.show_fps:
+            fps = self.clock.get_fps()
+            with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
+            pg.display.set_caption(with_fps)
 
         if self.exit:
             self.done = True

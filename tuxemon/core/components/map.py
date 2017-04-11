@@ -48,7 +48,7 @@ logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
 
 
-def tuxemon_image_loader(filename, colorkey, **kwargs):
+def scaled_image_loader(filename, colorkey, **kwargs):
     """ pytmx image loader for pygame
     
     Modified to load images at a scaled size
@@ -203,7 +203,7 @@ class Map(object):
         # Scale the loaded tiles if enabled
         if prepare.CONFIG.scaling == "1":
             self.data = pytmx.TiledMap(filename,
-                                       image_loader=tuxemon_image_loader,
+                                       image_loader=scaled_image_loader,
                                        pixelalpha=True)
             self.data.tilewidth, self.data.tileheight = prepare.TILE_SIZE
         else:

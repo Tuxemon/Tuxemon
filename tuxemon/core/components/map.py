@@ -37,17 +37,58 @@ from core.components.event import Action
 from core.components.event import Condition
 from core.components.event import EventObject
 
-# Handle older versions of PyTMX.
-try:
-    from pytmx import load_pygame
-except ImportError:
-    from pytmx.util_pygame import load_pygame
-
+import pytmx
+from pytmx.util_pygame import handle_transformation, smart_convert, load_pygame
 import pyscroll
+
+import pygame
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 logger.debug("%s successfully imported" % __name__)
+
+
+def scaled_image_loader(filename, colorkey, **kwargs):
+    """ pytmx image loader for pygame
+    
+    Modified to load images at a scaled size
+    
+    :param filename:
+    :param colorkey:
+    :param kwargs:
+    :return:
+    """
+    if colorkey:
+        colorkey = pygame.Color('#{0}'.format(colorkey))
+
+    pixelalpha = kwargs.get('pixelalpha', True)
+
+    # load the tileset image
+    image = pygame.image.load(filename)
+
+    # scale the tileset image to match game scale
+    scaled_size = tools.scale_sequence(image.get_size())
+    image = pygame.transform.scale(image, scaled_size)
+
+    def load_image(rect=None, flags=None):
+        if rect:
+            # scale the rect to match the scaled image
+            rect = tools.scale_rect(rect)
+            try:
+                tile = image.subsurface(rect)
+            except ValueError:
+                logger.error('Tile bounds outside bounds of tileset image')
+                raise
+        else:
+            tile = image.copy()
+
+        if flags:
+            tile = handle_transformation(tile, flags)
+
+        tile = smart_convert(tile, colorkey, pixelalpha)
+        return tile
+
+    return load_image
 
 
 class Map(object):
@@ -158,14 +199,18 @@ class Map(object):
         """
         # Load the tmx map data using the pytmx library.
         self.filename = filename
-        self.data = load_pygame(filename, pixelalpha=True)
 
         # Scale the loaded tiles if enabled
         if prepare.CONFIG.scaling == "1":
-            self.scale_tiles(prepare.TILE_SIZE)
+            self.data = pytmx.TiledMap(filename,
+                                       image_loader=scaled_image_loader,
+                                       pixelalpha=True)
+            self.data.tilewidth, self.data.tileheight = prepare.TILE_SIZE
+        else:
+            self.data = load_pygame(filename, pixelalpha=True)
 
-        # make a scrolling rendererer
-        self.initialize_renderer()
+        # make a scrolling renderer
+        self.renderer = self.initialize_renderer()
 
         # Get the map dimensions
         self.size = self.data.width, self.data.height
@@ -191,31 +236,13 @@ class Map(object):
                 self.interacts.append(self.loadevent(obj))
 
     def initialize_renderer(self):
-        """ Tuxemon uses the pyscroll library to draw the game map
+        """ Initialize the renderer for the map and sprites
 
-        Here it is initialized.  This must be done again if tile size changes.
-
-        :return:
+        :rtype: pyscroll.BufferedRenderer
         """
         visual_data = pyscroll.data.TiledMapData(self.data)
-        self.renderer = pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False)
-        visual_data.convert_surfaces(self.renderer._buffer, True)
-
-    def scale_tiles(self, tile_size):
-        """ Scale the tiles of the map data.
-
-        If you call this, you will have to reinitialize the renderer
-
-        :param tile_size:
-        :return: None
-        """
-        def scale_tile(image):
-            if image:
-                return tools.scale_tile(image, tile_size)
-            return None
-
-        self.data.images = [scale_tile(i) for i in self.data.images]
-        self.data.tilewidth, self.data.tileheight = tile_size
+        # TODO: Tuxemon will not work with clamp_camera=True
+        return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False)
 
     def loadevent(self, obj):
         conds = []

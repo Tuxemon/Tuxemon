@@ -47,11 +47,15 @@ class SplashState(state.State):
     default_duration = 3
 
     def fade_out(self):
+        self.fading_out = True
         self.game.push_state("FadeOutTransition", caller=self)
 
     def startup(self, **kwargs):
         # this task will skip the splash screen after some time
         self.task(self.fade_out, self.default_duration)
+
+        # used to ignore keypresses after fadeout has started
+        self.fading_out = False
 
         width, height = prepare.SCREEN_SIZE
         splash_border = prepare.SCREEN_SIZE[0] / 20     # The space between the edge of the screen
@@ -79,7 +83,8 @@ class SplashState(state.State):
 
         """
         # Skip the splash screen if a key is pressed.
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN and not self.fading_out:
+            self.animations.empty()
             self.fade_out()
 
     def draw(self, surface):

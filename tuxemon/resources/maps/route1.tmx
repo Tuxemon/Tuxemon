@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="26">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
  <layer name="Tile Layer 1" width="60" height="40">

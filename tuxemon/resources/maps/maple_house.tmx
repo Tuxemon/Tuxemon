@@ -1,21 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="10">
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="66">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="28">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="105" name="furniture2" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/furniture2.png" width="192" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="177" name="kitchen2" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/kitchen2.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="193" name="stairs2" tilewidth="16" tileheight="16" tilecount="24" columns="8">
+  <image source="../gfx/tilesets/stairs2.png" width="128" height="48"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eJyTZGBgYCIDS0IxLxkYpleCDAzTq0QGhunVJQOP6h06esnFAJT2Gc0=
+   eJyTZGBgYCIDS0IxLxkYpleCDAzTiw3oEsDU0EtIHS31kuLewaJ3IMKKXAwAN8IXBQ==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="15" height="13">
+ <layer name="Tile Layer 2" width="15" height="13" visible="0">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2DoAFYamg0ABNgABg==
   </data>
  </layer>
  <layer name="Tile Layer 3" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUgAAAAwwAAQ==
+   eJxjYBiaYCMQbwLizUC8BUoTC7YC8TYg3g7EO6D0UACZQJwFxNlk6C0F4jIgLidDbyMQNwFxMxl6hxIAAPvtCzU=
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -32,5 +89,10 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="10" type="collision" x="32" y="118" width="48" height="34"/>
+  <object id="13" x="16" y="48" height="16"/>
+  <object id="16" type="collision" x="16" y="48" width="81" height="32"/>
  </objectgroup>
 </map>

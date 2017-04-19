@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="30">
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="46">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100">
+ <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
   <image source="../gfx/tilesets/items.png" width="160" height="160"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
@@ -46,6 +46,7 @@
   <object id="22" type="collision" x="16" y="144" width="48" height="16"/>
   <object id="24" type="collision" x="144" y="112" width="48" height="16"/>
   <object id="25" type="collision" x="144" y="160" width="48" height="16"/>
+  <object id="30" type="collision" x="112" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
@@ -66,6 +67,26 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="37" name="Talk to the professor" type="event" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Professor: \n Ah yes. The very person I've been wanting to meet. "/>
+    <property name="act2" value="dialog I've heard that you want to learn about Tuxemon."/>
+    <property name="act3" value="dialog Tuxemon are little animals (some may call monsters) that we befriend and use to battle other Tuxemon."/>
+    <property name="act4" value="dialog I just received three new Tuxemon for research. Which one would you like?"/>
+    <property name="act5" value="dialog_choice Hydrone:Rockitten:Fruitera,tuxchoice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is npc_exists npc_professor"/>
+   </properties>
+  </object>
+  <object id="42" name="hello Professor" type="event" x="160" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_professor,7,7,professor,stand"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

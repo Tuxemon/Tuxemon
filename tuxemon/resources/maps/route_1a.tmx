@@ -28,7 +28,7 @@
  </layer>
  <layer name="Tile Layer 2" width="90" height="70">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="90" height="70">
@@ -64,12 +64,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="26" type="event" x="464" y="896" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc Lost_Person1,29,56,boss,stand"/>
-    <property name="cond1" value="not npc_exists Lost_Person1"/>
    </properties>
   </object>
   <object id="27" name="Random Battle" type="event" x="320" y="688" width="80" height="80">
@@ -129,7 +123,7 @@
   </object>
   <object id="106" name="to route1 proper" type="event" x="656" y="1104" width="32" height="16">
    <properties>
-    <property name="act1" value="teleport route_1.tmx,34,0,1.5"/>
+    <property name="act1" value="teleport route1.tmx,34,0,1.5"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -168,337 +162,40 @@
   <object id="39" type="collision" x="416" y="688" width="160" height="96"/>
   <object id="40" type="collision" x="480" y="624" width="96" height="64"/>
   <object id="41" type="collision" x="1424" y="960" width="16" height="16"/>
-  <object id="43" type="collision" x="96" y="592" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="46" type="collision" x="80" y="624" width="32" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="47" type="collision" x="128" y="624" width="48" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="48" type="collision" x="160" y="576" width="16" height="48">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="49" type="collision" x="80" y="576" width="80" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="50" type="collision" x="80" y="592" width="16" height="432">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="51" type="collision" x="80" y="1056" width="16" height="64">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="52" type="collision" x="880" y="576" width="32" height="64">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="53" type="collision" x="912" y="576" width="48" height="48">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="54" type="collision" x="928" y="624" width="32" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="55" type="collision" x="960" y="1024" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="56" type="collision" x="1392" y="672" width="48" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="57" type="collision" x="1360" y="656" width="32" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="58" type="collision" x="1344" y="640" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="59" type="collision" x="1328" y="512" width="16" height="128">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="60" type="collision" x="1312" y="240" width="16" height="272">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
+  <object id="43" type="collision" x="96" y="592" width="16" height="16"/>
+  <object id="46" type="collision" x="80" y="624" width="32" height="16"/>
+  <object id="47" type="collision" x="128" y="624" width="48" height="16"/>
+  <object id="48" type="collision" x="160" y="576" width="16" height="48"/>
+  <object id="49" type="collision" x="80" y="576" width="80" height="16"/>
+  <object id="50" type="collision" x="80" y="592" width="16" height="432"/>
+  <object id="51" type="collision" x="80" y="1056" width="16" height="64"/>
+  <object id="52" type="collision" x="880" y="576" width="32" height="64"/>
+  <object id="53" type="collision" x="912" y="576" width="48" height="48"/>
+  <object id="54" type="collision" x="928" y="624" width="32" height="16"/>
+  <object id="55" type="collision" x="960" y="1024" width="16" height="16"/>
+  <object id="56" type="collision" x="1392" y="672" width="48" height="16"/>
+  <object id="57" type="collision" x="1360" y="656" width="32" height="16"/>
+  <object id="58" type="collision" x="1344" y="640" width="16" height="16"/>
+  <object id="59" type="collision" x="1328" y="512" width="16" height="128"/>
+  <object id="60" type="collision" x="1312" y="240" width="16" height="272"/>
   <object id="61" type="collision" x="0" y="0" width="608" height="112"/>
-  <object id="62" type="collision" x="928" y="224" width="384" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="63" type="collision" x="832" y="208" width="96" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="64" type="collision" x="704" y="144" width="128" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="65" type="collision" x="832" y="160" width="16" height="48">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="66" type="collision" x="704" y="0" width="16" height="144">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="67" type="collision" x="1168" y="640" width="32" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="68" type="collision" x="1232" y="640" width="32" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="69" type="collision" x="1248" y="320" width="16" height="320">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="70" type="collision" x="1088" y="320" width="160" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="71" type="collision" x="1088" y="336" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="72" type="collision" x="1088" y="416" width="16" height="160">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="73" type="collision" x="1104" y="560" width="64" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="74" type="collision" x="1168" y="576" width="16" height="64">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="75" type="collision" x="464" y="848" width="16" height="32">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="76" type="collision" x="512" y="864" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="77" type="collision" x="320" y="832" width="144" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="78" type="collision" x="304" y="848" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_item item_potion"/>
-    <property name="act2" value="set_variable got_potion2:true"/>
-    <property name="act3" value="dialog ${{name}} found a POTION!"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="not variable_set got_potion2:true"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
+  <object id="62" type="collision" x="928" y="224" width="384" height="16"/>
+  <object id="63" type="collision" x="832" y="208" width="96" height="16"/>
+  <object id="64" type="collision" x="704" y="144" width="128" height="16"/>
+  <object id="65" type="collision" x="832" y="160" width="16" height="48"/>
+  <object id="66" type="collision" x="704" y="0" width="16" height="144"/>
+  <object id="67" type="collision" x="1168" y="640" width="32" height="16"/>
+  <object id="68" type="collision" x="1232" y="640" width="32" height="16"/>
+  <object id="69" type="collision" x="1248" y="320" width="16" height="320"/>
+  <object id="70" type="collision" x="1088" y="320" width="160" height="16"/>
+  <object id="71" type="collision" x="1088" y="336" width="16" height="16"/>
+  <object id="72" type="collision" x="1088" y="416" width="16" height="160"/>
+  <object id="73" type="collision" x="1104" y="560" width="64" height="16"/>
+  <object id="74" type="collision" x="1168" y="576" width="16" height="64"/>
+  <object id="75" type="collision" x="464" y="848" width="16" height="32"/>
+  <object id="76" type="collision" x="512" y="864" width="16" height="16"/>
+  <object id="77" type="collision" x="320" y="832" width="144" height="16"/>
+  <object id="78" type="collision" x="304" y="848" width="16" height="16"/>
   <object id="81" type="collision" x="944" y="880" width="16" height="16"/>
   <object id="82" type="collision" x="976" y="880" width="16" height="16"/>
   <object id="83" type="collision" x="976" y="848" width="16" height="16"/>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="26">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="33">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
  <layer name="Tile Layer 1" width="60" height="40">
@@ -16,7 +16,7 @@
  </layer>
  <layer name="Tile Layer 2" width="60" height="40">
   <data encoding="base64" compression="zlib">
-   eJztljEOgkAQAC8IX9FGLfUl6KPspVIeII3GWGlhoS/QwtKHaFwTNiTkOA7uJLtmJ9mQHBQ3DASUoskuqh8bDnDdGWYTKJUFv92zC1WOW4PvAtbWmklgbuB6Z+hr6psY1l7g+ibs2waTb7+n1KDX7X5smET6meb7xrYrzXOb5tfgc73M177v78nyfe+aUajUGCYO9efRNw6LKaPrfIG1K0HnGex/DpNV7A19h2ExZTj5Ivsa36Z9qYI+db5N+z6I3gNb36Z9ufqW0f1fpH/sa4v40qDKF7/LbY/cfPG73Pb4ZObr2pc6R899ueDalUtfxLUrl76+unLp66sr9b6+u1Lv67sr9b6CIAiCIAiCIAiCILjzASVOjnk=
+   eJztmEFOwzAQRa0mgZvABljCSQqHYk9X0APQDaiwggULOAEsumilHgTEWMpXhXEc2x1NHZgnjaxYluyvl0naGLMb5iNjHqiO6p/z9trWfdNfMTzSuheqW9prNuLP0QXyYVxSrajGTl57PQ7kvQvkvaS5G09NqN5prw/BvMiHEbm7yPE7Ccx90l5fgnn3KmP2q82I3JyE8h7QnocV734hYv2eNv46a88Nt9ee+3barsF9fdXO2f59jux3LmL9HlPvntS/+xogL/rct87n+ZXm3gQzx/o9p/NfUM06zoa8eI67z3dLCXlT+3fekzfVrzSxfpGnL2+q30Wh/RubN9WvdF4uvy6+3xfTAvJy+c3lr/iNRTov8uX6xXs5dxyaX7yXc8f1P/MrTer/oydmv9LE+nXZ1utQ/IJtvQ7FL5fX0vzWdJam3oyAy+uu/brfr7g9lu6X22MpfiW+X5UMciuKoiiKoiiKoiiKBN/8l+uL
   </data>
  </layer>
  <layer name="Tile Layer 3" width="60" height="40">
@@ -50,6 +50,9 @@
   <object id="20" type="collision" x="832" y="16" width="64" height="16"/>
   <object id="21" type="collision" x="896" y="0" height="16"/>
   <object id="22" type="collision" x="960" y="-48" width="32" height="688"/>
+  <object id="28" type="collision" x="416" y="16" width="96" height="368"/>
+  <object id="29" type="collision" x="512" y="336" width="64" height="32"/>
+  <object id="30" type="collision" x="480" y="0" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="176" width="16" height="16">
@@ -64,6 +67,13 @@
     <property name="act1" value="teleport map1.tmx,12,12"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="32" name="Teleport to route1a" type="event" x="528" y="0" width="48" height="16">
+   <properties>
+    <property name="act1" value="teleport route_1a.tmx,41,69,1.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

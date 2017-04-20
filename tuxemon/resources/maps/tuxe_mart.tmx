@@ -112,6 +112,9 @@
     <property name="act1" value="dialog Professor: A superb choice! Rockitten is an earth tuxemon"/>
     <property name="act2" value="add_monster txmn_rockitten,5"/>
     <property name="act3" value="set_variable tuxchoice:end"/>
+    <property name="act4" value="dialog Professor: I hope to see you around sometime ${{name}}! I'm about to head on a journey, maybe we'll meet up sometime."/>
+    <property name="act5" value="screen_transition 3"/>
+    <property name="act6" value="remove_npc Professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Rockitten"/>
    </properties>
   </object>
@@ -120,6 +123,9 @@
     <property name="act1" value="dialog Professor: a great choice! Fruitera is a wood tuxemon"/>
     <property name="act2" value="add_monster txmn_fruitera,5"/>
     <property name="act3" value="set_variable tuxchoice:end"/>
+    <property name="act4" value="dialog Professor: I hope to see you around sometime ${{name}}! I'm about to head on a journey, maybe we'll meet up sometime."/>
+    <property name="act5" value="screen_transition 3"/>
+    <property name="act6" value="remove_npc Professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Fruitera"/>
    </properties>
   </object>

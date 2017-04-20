@@ -391,7 +391,7 @@ class WorldState(state.State):
         # eventually, maybe use pygame sprites or something similar
         surfaces = self.player1.get_sprites()
         for npc in self.npcs:
-            surfaces.extend(npc.get_sprites())
+            surfaces.extend(self.npcs[npc].get_sprites())
 
         # center the camera on the player sprite
         sx, sy = prepare.SCREEN_SIZE
@@ -449,10 +449,10 @@ class WorldState(state.State):
 
     def move_npcs(self):
         """ Move NPCs and Players around according to their state
-        
+
         This function may be moved to a server
-        
-        :return: 
+
+        :return:
         """
         # Draw any game NPC's
         for npc in self.npcs.values():

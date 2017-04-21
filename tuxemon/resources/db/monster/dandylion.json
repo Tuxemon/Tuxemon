@@ -4,11 +4,6 @@
     "description_trans": "txmn_dandylion_descr",
     "category_trans": "txmn_dandylion_category",
 
-    "slug": "txmn_dandylion",
-    "name_trans": "txmn_dandylion_name",
-    "description_trans": "txmn_dandylion_descr",
-    "category_trans": "txmn_dandylion_category",
-
     "attack_base":            53,
     "defense_base":           6.5,
     "hp_base":                57,

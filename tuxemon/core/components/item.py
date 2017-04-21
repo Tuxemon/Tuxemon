@@ -76,8 +76,8 @@ class Item(object):
         self.effect = []
         self.type = None
         self.power = 0
-        self.sprite = ""                    # The path to the sprite to load.
-        self.surface = None                 # The pygame.Surface object of the item.
+        self.sprite = ""  # The path to the sprite to load.
+        self.surface = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
         # If a slug of the item was provided, autoload it from the item database.
@@ -110,10 +110,16 @@ class Item(object):
         """
 
         results = items.lookup(slug, table="item")
-        self.slug = results["slug"]                             # short English identifier
-        self.name = trans(results["name_trans"])                # will be locale string
+        self.slug = results["slug"]               # short English identifier
+        self.name = trans(results["name_trans"])  # will be locale string
         self.description = trans(results["description_trans"])  # will be locale string
 
+        # must be translated before displaying
+        self.execute_trans = results['execute_trans']
+        self.success_trans = results['success_trans']
+        self.failure_trans = results['failure_trans']
+
+        self.sort = results['sort']
         self.type = results["type"]
         self.power = results["power"]
         self.sprite = results["sprite"]
@@ -149,27 +155,30 @@ class Item(object):
         :returns: a dictionary with various effect result properties
         """
 
+        # defaults for the return. items can override these values in their return.
+        meta_result = {
+            'name': self.name,
+            'num_shakes': 0,
+            'should_tackle': False,
+            'success': False
+        }
+
         # Loop through all the effects of this technique and execute the effect's function.
-        result = True
-        last_effect_name = "no name"
         for effect in self.effect:
             last_effect_name = str(effect)
             result = getattr(self, last_effect_name)(user, target)
+            meta_result.update(result)
 
         # TODO: document how to handle items with multiple effects
 
         # If this is a consumable item, remove it from the player's inventory.
-        if result["success"] and self.type == "Consumable":
+        if meta_result["success"] and self.type == "Consumable":
             if user.inventory[self.slug]['quantity'] <= 1:
                 del user.inventory[self.slug]
             else:
                 user.inventory[self.slug]['quantity'] -= 1
 
-        # TODO: document how this result thing works
-        # TODO: address this awkward return type
-        result["name"] = last_effect_name
-
-        return result
+        return meta_result
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.
@@ -190,10 +199,7 @@ class Item(object):
 
         # don't heal if already at max health
         if target.current_hp == target.hp:
-            # TODO: address this awkward return type
-            return {"success": False,
-                    "num_shakes": 0,
-                    "should_tackle": False}
+            return {"success": False}
 
         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
@@ -202,10 +208,7 @@ class Item(object):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        # TODO: address this awkward return type
-        return {"success": True,
-                "num_shakes": 0,
-                "should_tackle": False}
+        return {"success": True}
 
     def capture(self, user, target):
         """Captures target monster.
@@ -234,32 +237,38 @@ class Item(object):
         if not target.status == "Normal":
             status_modifier = 1.5
 
-        print("--- Capture Variables ---")
+        # TODO: debug logging this info
+
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
         catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         shake_check = 65536 / (255 / catch_check) ** 0.1875
 
+        print("--- Capture Variables ---")
         print("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
-        print("(3 * %s - 2 * %s) * %s * %s * %s / (3*%s)" % (str(target.hp), str(target.current_hp), str(target.catch_rate), str(item_power), str(status_modifier), str(target.hp)))
-        print("65536 / (255/catch_check)**0.1875")
-        print("65536 / (255/%s)**0.1875" % str(catch_check))
-        print("Each shake has a %s chance of breaking the creature free. (shake_check = %s)" % (str(round((65536 - shake_check) / 65536, 2)), str(round(shake_check))))
+
+        msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
+        print(msg.format(target, item_power, status_modifier))
+
+        print("65536 / (255 / catch_check) ** 0.1875")
+        print("65536 / (255 / {}) ** 0.1875".format(catch_check))
+
+        msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
+        print(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
 
         # 4 shakes to give monster change to escape
         for i in range(0, 4):
             random_num = random.randint(0, 65536)
-            print("shake check %s: random number %s" % (i, random_num))
+            print("shake check {}: random number {}".format(i, random_num))
             if random_num > round(shake_check):
-                # TODO: address this awkward return type
+
                 return {"success": False,
-                        "num_shakes": i + 1,
-                        "should_tackle": False}
+                        "capture": True,
+                        "num_shakes": i + 1}
 
         # add creature to the player's monster list
         user.add_monster(target)
 
         # TODO: remove monster from the other party
-        # TODO: address this awkward return type
         return {"success": True,
-                "num_shakes": 4,
-                "should_tackle": False}
+                "capture": True,
+                "num_shakes": 4}

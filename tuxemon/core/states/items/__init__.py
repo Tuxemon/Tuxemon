@@ -88,10 +88,12 @@ class ItemMenuState(Menu):
             result = item.use(player, monster)
             self.game.pop_state()    # pop the monster screen
             self.game.pop_state()    # pop the item screen
-            if result["success"]:
-                tools.open_dialog(self.game, [trans('item_success')])
-            else:
-                tools.open_dialog(self.game, [trans('item_failure')])
+
+            msg_type = 'success_trans' if result['success'] else 'failure_trans'
+            template = getattr(item, msg_type)
+            if template:
+                message = trans(template)
+                tools.open_dialog(self.game, [message])
 
         def confirm():
             self.game.pop_state()  # close the confirm dialog

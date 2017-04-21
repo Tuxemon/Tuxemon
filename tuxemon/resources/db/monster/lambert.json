@@ -4,11 +4,6 @@
     "description_trans": "txmn_lambert_descr",
     "category_trans": "txmn_lambert_category",
 
-    "slug": "txmn_lambert",
-    "name_trans": "txmn_lambert_name",
-    "description_trans": "txmn_lambert_descr",
-    "category_trans": "txmn_lambert_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

@@ -74,37 +74,19 @@ def main():
         control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if 0:
-        import random
+    if 1:
         from core.components.event.actions.player import Player
-        from core.components.technique import Technique
 
         # TODO: fix this player/player1 issue
         control.player1 = prepare.player1
 
         add_monster = partial(adapter("add_monster"))
-        Player().add_monster(control, add_monster('txmn_bigfin', 10))
-        Player().add_monster(control, add_monster('txmn_dollfin', 10))
-        Player().add_monster(control, add_monster('txmn_rockitten', 10))
-        Player().add_monster(control, add_monster('txmn_nut', 10))
-        Player().add_monster(control, add_monster('txmn_sumobug', 10))
+        Player().add_monster(control, add_monster('txmn_bigfin', 10), None)
+        Player().add_monster(control, add_monster('txmn_dandylion', 10), None)
 
         add_item = partial(adapter("add_item"))
-        Player().add_item(control, add_item('item_potion', 1))
-        Player().add_item(control, add_item('item_super_potion', 1))
-        Player().add_item(control, add_item('item_capture_device', 1))
+        Player().add_item(control, add_item('item_potion', 1), None)
 
-        for monster in control.player1.monsters:
-            monster.hp = 100
-            monster.current_hp = 1
-            # monster.current_hp = random.randint(1, 2)
-            monster.apply_status(Technique("status_poison"))
-
-        # control.push_state("MonsterMenuState")
-
-        from core.components.event.actions.combat import Combat
-        start_battle = partial(adapter("random_encounter"))
-        Combat().random_encounter(control, start_battle(1))
 
     control.main()
     pygame.quit()

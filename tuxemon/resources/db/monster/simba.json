@@ -4,11 +4,6 @@
     "description_trans": "txmn_simba_descr",
     "category_trans": "txmn_simba_category",
 
-    "slug": "txmn_simba",
-    "name_trans": "txmn_simba_name",
-    "description_trans": "txmn_simba_descr",
-    "category_trans": "txmn_simba_category",
-
     "attack_base":            70,
     "defense_base":           8,
     "hp_base":                70,

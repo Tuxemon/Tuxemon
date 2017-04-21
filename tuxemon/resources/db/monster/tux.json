@@ -4,11 +4,6 @@
     "description_trans": "txmn_tux_descr",
     "category_trans": "txmn_tux_category",
 
-    "slug": "txmn_tux",
-    "name_trans": "txmn_tux_name",
-    "description_trans": "txmn_tux_descr",
-    "category_trans": "txmn_tux_category",
-
     "attack_base":            55,
     "defense_base":           7,
     "hp_base":                70,

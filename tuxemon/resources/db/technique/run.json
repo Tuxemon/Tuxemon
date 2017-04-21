@@ -1,11 +1,17 @@
 {
   "slug": "technique_run",
   "name_trans": "menu_run",
-  "animation": "",
+  "execute_trans": "combat_used_x",
+  "success_trans": "generic_thing_success",
+  "failure_trans": "generic_thing_failure",
+  "animation": null,
   "sfx": "blaster1.ogg",
   "icon": "",
   "category": "",
-  "effects": [],
+  "sort": "meta",
+  "effects": [
+    "meta"
+  ],
   "target": {
     "enemy monster": 0,
     "enemy team": 0,

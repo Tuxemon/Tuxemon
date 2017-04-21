@@ -4,11 +4,6 @@
     "description_trans": "txmn_tigrock_descr",
     "category_trans": "txmn_tigrock_category",
 
-    "slug": "txmn_tigrock",
-    "name_trans": "txmn_tigrock_name",
-    "description_trans": "txmn_tigrock_descr",
-    "category_trans": "txmn_tigrock_category",
-
     "attack_base":            72,
     "defense_base":           11,
     "hp_base":                64,
@@ -26,6 +21,7 @@
     "exp_give_mod":           3,
     "exp_req_mod":            27,
 
+    "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 1,

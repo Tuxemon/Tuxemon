@@ -4,11 +4,6 @@
     "description_trans": "txmn_onaclov_descr",
     "category_trans": "txmn_onaclov_category",
 
-    "slug": "txmn_onaclov",
-    "name_trans": "txmn_onaclov_name",
-    "description_trans": "txmn_onaclov_descr",
-    "category_trans": "txmn_onaclov_category",
-
     "attack_base":            57,
     "defense_base":           8,
     "hp_base":                67,

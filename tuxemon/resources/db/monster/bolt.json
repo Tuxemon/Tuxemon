@@ -4,11 +4,6 @@
     "description_trans": "txmn_bolt_descr",
     "category_trans": "txmn_bolt_category",
 
-    "slug": "txmn_bolt",
-    "name_trans": "txmn_bolt_name",
-    "description_trans": "txmn_bolt_descr",
-    "category_trans": "txmn_bolt_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

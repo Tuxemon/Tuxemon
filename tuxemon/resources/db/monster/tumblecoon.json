@@ -4,11 +4,6 @@
     "description_trans": "txmn_tumblecoon_descr",
     "category_trans": "txmn_tumblecoon_category",
 
-    "slug": "txmn_tumblecoon",
-    "name_trans": "txmn_tumblecoon_name",
-    "description_trans": "txmn_tumblecoon_descr",
-    "category_trans": "txmn_tumblecoon_category",
-
     "attack_base":            50,
     "defense_base":           6,
     "hp_base":                60,

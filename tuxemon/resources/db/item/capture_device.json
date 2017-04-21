@@ -2,10 +2,14 @@
   "slug": "item_capture_device",
   "name_trans": "item_capture_device_name",
   "description_trans": "item_capture_device_descr",
+  "execute_trans": "combat_used_x",
+  "success_trans": "generic_thing_success",
+  "failure_trans": "generic_thing_failure",
   "effects": [
     "capture"
   ],
   "power": 100,
+  "sort": "item",
   "sprite": "gfx/items/capture_device.png",
   "target": {
     "enemy monster": 2,

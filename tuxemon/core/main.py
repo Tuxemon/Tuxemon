@@ -74,8 +74,10 @@ def main():
         control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if 1:
+    if 0:
         from core.components.event.actions.player import Player
+
+        print("DEBUG OPTIONS ENABLED")
 
         # TODO: fix this player/player1 issue
         control.player1 = prepare.player1

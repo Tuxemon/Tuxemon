@@ -159,6 +159,7 @@ class Item(object):
         meta_result = {
             'name': self.name,
             'num_shakes': 0,
+            'capture': False,
             'should_tackle': False,
             'success': False
         }
@@ -240,7 +241,8 @@ class Item(object):
         # TODO: debug logging this info
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
+        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (
+        3 * target.hp)
         shake_check = 65536 / (255 / catch_check) ** 0.1875
 
         print("--- Capture Variables ---")
@@ -260,7 +262,6 @@ class Item(object):
             random_num = random.randint(0, 65536)
             print("shake check {}: random number {}".format(i, random_num))
             if random_num > round(shake_check):
-
                 return {"success": False,
                         "capture": True,
                         "num_shakes": i + 1}

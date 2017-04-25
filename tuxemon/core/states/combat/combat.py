@@ -344,25 +344,22 @@ class CombatState(CombatAnimations):
 
         def rank_action(action):
             sort = action.technique.sort
-            primary_order = sort_order.index(sort)
+            try:
+                primary_order = sort_order.index(sort)
+            except IndexError:
+                print("unsortable action: ", action)
+                primary_order = -1
 
             if sort == 'meta':
                 # all meta items sorted together
                 # use of 0 leads to undefined sort/probably random
                 return primary_order, 0
 
-            if sort == 'item':
-                # should be trainer speed in this case
+            else:
+                # TODO: determine the secondary sort element, monster speed, trainer speed, etc
                 return primary_order, action.user.speed
 
-            if sort == 'damage':
-                # should be monster speed in this case
-                return primary_order, action.user.speed
-
-            print('cannot sort action', action)
-            raise RuntimeError
-
-        sort_order = ['meta', 'item', 'heal', 'damage']
+        sort_order = ['meta', 'item', 'utility', 'potion', 'food', 'heal', 'damage']
 
         # TODO: Running happens somewhere else, it should be moved here i think.
         # TODO: Eventually make an action queue class?

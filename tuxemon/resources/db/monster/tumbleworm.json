@@ -4,11 +4,6 @@
     "description_trans": "txmn_tumbleworm_descr",
     "category_trans": "txmn_tumbleworm_category",
 
-    "slug": "txmn_tumbleworm",
-    "name_trans": "txmn_tumbleworm_name",
-    "description_trans": "txmn_tumbleworm_descr",
-    "category_trans": "txmn_tumbleworm_category",
-
     "attack_base":            45,
     "defense_base":           5,
     "hp_base":                50,

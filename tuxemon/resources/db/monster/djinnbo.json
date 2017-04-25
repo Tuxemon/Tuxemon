@@ -4,11 +4,6 @@
     "description_trans": "txmn_djinnbo_descr",
     "category_trans": "txmn_djinnbo_category",
 
-    "slug": "txmn_djinnbo",
-    "name_trans": "txmn_djinnbo_name",
-    "description_trans": "txmn_djinnbo_descr",
-    "category_trans": "txmn_djinnbo_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

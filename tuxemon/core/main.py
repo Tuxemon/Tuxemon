@@ -74,7 +74,7 @@ def main():
         control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if 0:
+    if 1:
         from core.components.event.actions.player import Player
 
         print("DEBUG OPTIONS ENABLED")
@@ -87,8 +87,13 @@ def main():
         Player().add_monster(control, add_monster('txmn_dandylion', 10), None)
 
         add_item = partial(adapter("add_item"))
-        Player().add_item(control, add_item('item_potion', 1), None)
-
+        Player().add_item(control, add_item('item_potion'), None)
+        Player().add_item(control, add_item('item_cherry'), None)
+        Player().add_item(control, add_item('item_capture_device'), None)
+        for i in range(10):
+            Player().add_item(control, add_item('item_super_potion'), None)
+        for i in range(100):
+            Player().add_item(control, add_item('item_apple'), None)
 
     control.main()
     pygame.quit()

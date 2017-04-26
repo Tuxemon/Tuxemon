@@ -9,7 +9,7 @@
     "capture"
   ],
   "power": 100,
-  "sort": "item",
+  "sort": "utility",
   "sprite": "gfx/items/capture_device.png",
   "target": {
     "enemy monster": 2,

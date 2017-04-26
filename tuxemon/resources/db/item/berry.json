@@ -9,7 +9,7 @@
     "heal"
   ],
   "power": 10,
-  "sort": "item",
+  "sort": "food",
   "sprite": "gfx/items/berry.png",
   "target": {
     "enemy monster": 1,

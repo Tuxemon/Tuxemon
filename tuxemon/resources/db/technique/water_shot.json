@@ -1,10 +1,14 @@
 {
   "slug": "technique_water_shot",
   "name_trans": "technique_water_shot_name",
+  "execute_trans": "combat_used_x",
+  "success_trans": "generic_thing_success",
+  "failure_trans": "generic_thing_failure",
   "animation": "watershot",
   "sfx": "blaster1.ogg",
   "icon": "",
   "category": "physical",
+  "sort": "damage",
   "effects": [
     "damage"
   ],

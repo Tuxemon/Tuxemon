@@ -2,10 +2,14 @@
   "slug": "item_berry",
   "name_trans": "item_berry_name",
   "description_trans": "item_berry_descr",
+  "execute_trans": "combat_used_x",
+  "success_trans": "generic_thing_success",
+  "failure_trans": "generic_thing_failure",
   "effects": [
     "heal"
   ],
   "power": 10,
+  "sort": "food",
   "sprite": "gfx/items/berry.png",
   "target": {
     "enemy monster": 1,

@@ -193,6 +193,7 @@ class CombatAnimations(Menu):
         self.animate(sprite.rect, x=original_x, duration=duration, transition='in_out_circ', delay=.35)
 
     def animate_monster_faint(self, monster):
+        # TODO: rename to distinguish fainting/leaving
         def kill():
             self._monster_sprite_map[monster].kill()
             self.hud[monster].kill()

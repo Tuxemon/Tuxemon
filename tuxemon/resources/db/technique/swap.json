@@ -1,10 +1,14 @@
 {
   "slug": "technique_swap",
   "name_trans": "technique_swap_name",
-  "animation": "teeth",
+  "execute_trans": "combat_swap",
+  "success_trans": null,
+  "failure_trans": null,
+  "animation": null,
   "sfx": "blaster1.ogg",
   "icon": "",
   "category": "meta",
+  "sort": "meta",
   "effects": [
     "swap"
   ],
@@ -18,7 +22,5 @@
     "item": 0
   },
   "power": 0,
-  "types": [
-    "Meta"
-  ]
+  "types": []
 }

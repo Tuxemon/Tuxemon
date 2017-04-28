@@ -4,11 +4,6 @@
     "description_trans": "txmn_magmaturtle_descr",
     "category_trans": "txmn_magmaturtle_category",
 
-    "slug": "txmn_magmaturtle",
-    "name_trans": "txmn_magmaturtle_name",
-    "description_trans": "txmn_magmaturtle_descr",
-    "category_trans": "txmn_magmaturtle_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

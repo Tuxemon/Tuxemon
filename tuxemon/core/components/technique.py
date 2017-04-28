@@ -32,17 +32,18 @@ import os
 import random
 from collections import namedtuple
 
-from core import prepare, tools
+from core import prepare
 from core.components import db
 from core.components.locale import translator
-trans = translator.translate
 
+trans = translator.translate
 
 # Load the technique database
 techniques = db.JSONDatabase()
 techniques.load("technique")
 
 tech_ret_value = namedtuple("use", "name success properties")
+
 
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
@@ -68,7 +69,7 @@ class Technique(object):
         self.category = "attack"
         self.type1 = "Normal"
         self.type2 = None
-        self._combat_counter = 0     # number of turns that this technique has been active
+        self._combat_counter = 0  # number of turns that this technique has been active
         self.power = 1
         self.effect = []
 
@@ -94,19 +95,29 @@ class Technique(object):
         """
 
         results = techniques.lookup(slug, table="technique")
-        self.slug = results["slug"]
-        self.name = trans(results["name_trans"])
+        self.slug = results["slug"]  # a short English identifier
+        self.name = trans(results["name_trans"])  # locale-specific string
+
+        self.sort = results['sort']
+
+        # must be translated before displaying
+        self.execute_trans = results['execute_trans']
+        self.success_trans = results['success_trans']
+        self.failure_trans = results['failure_trans']
+
         self.category = results["category"]
         self.icon = results["icon"]
-
         self._combat_counter = 0
         self._life_counter = 0
 
-        self.type1 = results["types"][0]
-        if len(results['types']) > 1:
-            self.type2 = results["types"][1]
+        if results['types']:
+            self.type1 = results["types"][0]
+            if len(results['types']) > 1:
+                self.type2 = results["types"][1]
+            else:
+                self.type2 = None
         else:
-            self.type2 = None
+            self.type1 = self.type2 = None
 
         self.power = results["power"]
         self.effect = results["effects"]
@@ -114,12 +125,13 @@ class Technique(object):
 
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]
-        self.images = []
-        animation_dir = prepare.BASEDIR + "resources/animations/technique/"
-        directory = sorted(os.listdir(animation_dir))
-        for image in directory:
-            if self.animation and image.startswith(self.animation):
-                self.images.append("animations/technique/" + image)
+        if self.animation:
+            self.images = []
+            animation_dir = prepare.BASEDIR + "resources/animations/technique/"
+            directory = sorted(os.listdir(animation_dir))
+            for image in directory:
+                if self.animation and image.startswith(self.animation):
+                    self.images.append("animations/technique/" + image)
 
         # Load the sound effect for this technique
         sfx_directory = "sounds/technique/"
@@ -151,9 +163,8 @@ class Technique(object):
         the database. If you want to add a new effect, simply create a new function under the
         Technique class with the name of the effect you define in monster.db.
 
-        :param user: The core.components.monster.Monster object that used this technique.
-        :param target: The core.components.monter.Monster object that we are using this
-            technique on.
+        :param user: The Monster object that used this technique.
+        :param target: Monster object that we are using this technique on.
 
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
@@ -170,23 +181,36 @@ class Technique(object):
         """
         # Loop through all the effects of this technique and execute the effect's function.
         # TODO: more robust API
+        # TODO: separate classes for each Technique
+        # TODO: consider moving message templates to the JSON DB
 
-        # 'result' can either be a tuple or a boolean.
-        result = None
-        last_effect_name = None
+        # defaults for the return. items can override these values in their return.
+        meta_result = {
+            'name': self.name,
+            'success': False,
+            'should_tackle': False,
+            'capture': False,
+        }
+
+        # TODO: handle conflicting values from multiple technique actions
+        # TODO: for example, how to handle one saying success, and another not?
         for effect in self.effect:
-            last_effect_name = str(effect)
-            result = getattr(self, last_effect_name)(user, target)
+            result = getattr(self, str(effect))(user, target)
+            meta_result.update(result)
 
-        if type(result) is bool:
-            return {"name": last_effect_name, "success": result, "should_tackle": result}
-
-        result[1]["success"] = result[0]
-        result = result[1]
-        result["name"] = last_effect_name
-        return result
+        return meta_result
 
     def calculate_damage(self, user, target):
+        """ Calc. damage for the damage technique
+        
+        :param user: The Monster object that used this technique.
+        :param target: The Monster object that we are using this technique on.
+        
+        :type user: core.components.monster.Monster
+        :type target: core.components.monster.Monster
+        
+        :rtype: int
+        """
         # Original Pokemon battle damage formula:
         # according to: http://www.math.miami.edu/~jam/azure/compendium/battdam.htm
         # ((2 * user.level / 7) * user.attack * self.power) / target.defense) / 50) +2) * stab_bonus) * type_modifiers/10) * random.randrange(217, 255))/255
@@ -204,68 +228,81 @@ class Technique(object):
         elif self.category == "poison":
             return int(self.power)
 
-        return 0
+        print('unhandled damage category')
+        raise RuntimeError
 
     def damage(self, user, target):
-        """This effect applies damage to a target monster. Damage calculations are based upon the
+        """ This effect applies damage to a target monster. Damage calculations are based upon the
         original Pokemon battle damage formula. This effect will be applied if "damage" is defined
         in this technique's effect list.
 
-        :param user: The core.components.monster.Monster object that used this technique.
-        :param target: The core.components.monster.Monster object that we are using this
-            technique on.
+        :param user: The Monster object that used this technique.
+        :param target: The Monster object that we are using this technique on.
 
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: bool
+        :rtype: dict
         """
         damage = self.calculate_damage(user, target)
         if damage:
             target.current_hp -= damage
-            return True
-        return False
+
+        return {
+            'damage': damage,
+            'should_tackle': bool(damage),
+            'success': bool(damage),
+        }
 
     def poison(self, user, target):
-        """This effect has a chance to apply the poison status effect to a target monster.
+        """ This effect has a chance to apply the poison status effect to a target monster.
         Currently there is a 1/10 chance of poison.
 
-        :param user: The core.components.monster.Monster object that used this technique.
-        :param target: The core.components.monster.Monster object that we are using this
-            technique on.
+        :param user: The Monster object that used this technique.
+        :param target: The Monster object that we are using this technique on.
 
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: bool
+        :rtype: dict
         """
         already_poisoned = any(t for t in target.status if t.slug == "status_poison")
 
         if not already_poisoned and random.randrange(1, 2) == 1:
             target.apply_status(Technique("status_poison"))
-            return True
+            success = True
+        else:
+            success = False
 
-        return False
+        return {
+            'should_tackle': success,
+            'success': success,
+        }
 
     def faint(self, user, target):
         """ Faint this monster.  Typically, called by combat to faint self, not others.
 
-        :param user: The core.components.monster.Monster object that used this technique.
-        :param target: The core.components.monster.Monster object that we are using this
-            technique on.
+        :param user: The Monster object that used this technique.
+        :param target: The Monster object that we are using this technique on.
 
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: bool
+        :rtype: dict
         """
+        # TODO: implement into the combat state, currently not used
+
         already_fainted = any(t for t in target.status if t.name == "status_faint")
 
         if already_fainted:
             raise RuntimeError
-        else:
-            target.apply_status(Technique("status_faint"))
-            return True
+
+        target.apply_status(Technique("status_faint"))
+
+        return {
+            'should_tackle': False,
+            'success': True,
+        }
 
     def swap(self, user, target):
         """ Used just for combat: change order of monsters
@@ -274,10 +311,41 @@ class Technique(object):
 
         :param user: core.components.monster.Monster
         :param target: core.components.monster.Monster
-        :returns: None
+        
+        :rtype: dict
         """
-        # TODO: relies on setting "other" attribute.  maybe clear it up later
-        index = user.monsters.index(self.other)
-        user.monsters[index] = target
-        user.monsters[0] = self.other
-        return True
+        # TODO: implement actions as events, so that combat state can find them
+        # TODO: relies on setting "combat_state" attribute.  maybe clear it up later
+        # TODO: these values are set in combat_menus.py
+
+        def swap_add():
+            # rearrange the trainer's monster list
+            monster_list = user.monsters
+            original_index = monster_list.index(original_monster)
+            target_index = monster_list.index(target)
+            monster_list[original_index] = target
+            monster_list[target_index] = original_monster
+
+            # TODO: make accommodations for battlefield positions
+            # add the monster into play
+            combat_state.add_monster_into_play(user, target)
+
+        # TODO: find a way to pass values. this will only work for SP games with one monster party
+        # get the original monster to be swapped out
+        original_monster = user.monsters[0]
+        combat_state = self.combat_state
+
+        # rewrite actions to target the new monster.  must be done before original is removed
+        combat_state.rewrite_action_queue_target(original_monster, target)
+
+        # remove the old monster and all their actions
+        combat_state.remove_monster_from_play(user, original_monster)
+
+        # give a slight delay
+        combat_state.task(swap_add, .75)
+        combat_state.suppress_phase_change(.75)
+
+        return {
+            'success': True,
+            'should_tackle': False,
+        }

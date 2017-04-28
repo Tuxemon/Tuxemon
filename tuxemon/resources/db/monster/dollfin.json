@@ -4,11 +4,6 @@
     "description_trans": "txmn_dollfin_descr",
     "category_trans": "txmn_dollfin_category",
 
-    "slug": "txmn_dollfin",
-    "name_trans": "txmn_dollfin_name",
-    "description_trans": "txmn_dollfin_descr",
-    "category_trans": "txmn_dollfin_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

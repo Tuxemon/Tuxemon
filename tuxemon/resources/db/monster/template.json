@@ -4,11 +4,6 @@
     "description_trans": "txmn_template_descr",
     "category_trans": "txmn_template_category",
 
-    "slug": "txmn_template",
-    "name_trans": "txmn_template_name",
-    "description_trans": "txmn_template_descr",
-    "category_trans": "txmn_template_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

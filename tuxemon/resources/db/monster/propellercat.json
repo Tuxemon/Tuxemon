@@ -4,11 +4,6 @@
     "description_trans": "txmn_propellercat_descr",
     "category_trans": "txmn_propellercat_category",
 
-    "slug": "txmn_propellercat",
-    "name_trans": "txmn_propellercat_name",
-    "description_trans": "txmn_propellercat_descr",
-    "category_trans": "txmn_propellercat_category",
-
     "attack_base":            60,
     "defense_base":           7,
     "hp_base":                50,

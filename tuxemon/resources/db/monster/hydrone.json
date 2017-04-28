@@ -4,11 +4,6 @@
     "description_trans": "txmn_hydrone_descr",
     "category_trans": "txmn_hydrone_category",
 
-    "slug": "txmn_hydrone",
-    "name_trans": "txmn_hydrone_name",
-    "description_trans": "txmn_hydrone_descr",
-    "category_trans": "txmn_hydrone_category",
-
     "attack_base":            59,
     "defense_base":           9,
     "hp_base":                60,

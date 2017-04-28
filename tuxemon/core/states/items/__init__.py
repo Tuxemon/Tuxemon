@@ -28,7 +28,7 @@ class ItemMenuState(Menu):
 
         # do not move this line
         super(ItemMenuState, self).startup(**kwargs)
-        self.menu_items.line_spacing = tools.scale(5)
+        self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed
         rect = self.game.screen.get_rect()
@@ -79,6 +79,7 @@ class ItemMenuState(Menu):
 
         :return: None
         """
+
         def use_item(menu_item):
             player = self.game.player1
             monster = menu_item.game_object
@@ -88,10 +89,12 @@ class ItemMenuState(Menu):
             result = item.use(player, monster)
             self.game.pop_state()    # pop the monster screen
             self.game.pop_state()    # pop the item screen
-            if result["success"]:
-                tools.open_dialog(self.game, [trans('item_success')])
-            else:
-                tools.open_dialog(self.game, [trans('item_failure')])
+
+            msg_type = 'success_trans' if result['success'] else 'failure_trans'
+            template = getattr(item, msg_type)
+            if template:
+                message = trans(template)
+                tools.open_dialog(self.game, [message])
 
         def confirm():
             self.game.pop_state()  # close the confirm dialog
@@ -122,24 +125,49 @@ class ItemMenuState(Menu):
 
         open_choice_menu()
 
+    def sort_inventory(self, inventory):
+        """ Sort inventory in a usable way.  Expects a list of inventory properties.
+        
+        * Group items by category
+        * Sort in groups by power
+        * Group order: Potions, Food, Utility Items, Quest/Game Items
+        
+        :return: Sorted copy of the inventory
+        """
+
+        def rank_item(properties):
+            item = properties['item']
+            primary_order = sort_order.index(item.sort)
+            return primary_order, item.power
+
+        # the two reversals are used to let power dort dec, but class sort inc
+        sort_order = ['potion', 'food', 'utility', 'quest']
+        sort_order.reverse()
+        return sorted(inventory, key=rank_item, reverse=True)
+
     def initialize_items(self):
         """ Get all player inventory items and add them to menu
 
         :return:
         """
-        for name, properties in self.game.player1.inventory.items():
+        inventory = self.game.player1.inventory.values()
+
+        # required because the max() below will fail if inv empty
+        if not inventory:
+            return
+
+        name_len = 17  # TODO: dynamically get this value, maybe?
+        count_len = max(len(str(p['quantity'])) for p in inventory)
+
+        # TODO: move this and other format strings to a locale or config file
+        label_format = "{:<{name_len}} x {:>{count_len}}".format
+
+        for properties in self.sort_inventory(inventory):
             obj = properties['item']
-            quantity = properties['quantity']
-
-            # temporarily add the quantity to the name
-            old_name = obj.name
-            obj.name += " x " + str(quantity)
-
-            image = self.shadow_text(obj.name, bg=(128, 128, 128))
+            formatted_name = label_format(obj.name, properties['quantity'],
+                                          name_len=name_len, count_len=count_len)
+            image = self.shadow_text(formatted_name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
-
-            # restore the original name
-            obj.name = old_name
 
     def on_menu_selection_change(self):
         """ Called when menu selection changes

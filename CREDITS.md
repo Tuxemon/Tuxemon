@@ -357,7 +357,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Professor Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
-["ZhongQian TiaoGong"](https://github.com/Qiangong2/)
+[ZhongQian TiaoGong](https://github.com/Qiangong2/)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 **Concept Art**

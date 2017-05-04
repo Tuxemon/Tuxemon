@@ -218,7 +218,6 @@ class Core(object):
         }
 
         """
-        # Get a copy of the world state.
         for state in game.active_states:
             if state.name == "DialogState":
                 return True

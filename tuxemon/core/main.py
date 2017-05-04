@@ -74,26 +74,26 @@ def main():
         control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if 1:
-        from core.components.event.actions.player import Player
+    #if 1:
+    #    from core.components.event.actions.player import Player
 
-        print("DEBUG OPTIONS ENABLED")
+    #    print("DEBUG OPTIONS ENABLED")
 
         # TODO: fix this player/player1 issue
-        control.player1 = prepare.player1
+    #    control.player1 = prepare.player1
 
-        add_monster = partial(adapter("add_monster"))
-        Player().add_monster(control, add_monster('txmn_bigfin', 10), None)
-        Player().add_monster(control, add_monster('txmn_dandylion', 10), None)
+    #    add_monster = partial(adapter("add_monster"))
+    #    Player().add_monster(control, add_monster('txmn_bigfin', 10), None)
+    #    Player().add_monster(control, add_monster('txmn_dandylion', 10), None)
 
-        add_item = partial(adapter("add_item"))
-        Player().add_item(control, add_item('item_potion'), None)
-        Player().add_item(control, add_item('item_cherry'), None)
-        Player().add_item(control, add_item('item_capture_device'), None)
-        for i in range(10):
-            Player().add_item(control, add_item('item_super_potion'), None)
-        for i in range(100):
-            Player().add_item(control, add_item('item_apple'), None)
+    #    add_item = partial(adapter("add_item"))
+    #    Player().add_item(control, add_item('item_potion'), None)
+    #    Player().add_item(control, add_item('item_cherry'), None)
+    #    Player().add_item(control, add_item('item_capture_device'), None)
+    #    for i in range(10):
+    #        Player().add_item(control, add_item('item_super_potion'), None)
+    #    for i in range(100):
+    #        Player().add_item(control, add_item('item_apple'), None)
 
     control.main()
     pygame.quit()

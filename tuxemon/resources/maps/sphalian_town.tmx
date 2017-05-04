@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="25" tilewidth="16" tileheight="16" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="25" tilewidth="16" tileheight="16" nextobjectid="23">
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
@@ -9,6 +9,12 @@
  <tileset firstgid="605" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
+ <tileset firstgid="1917" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ </tileset>
+ <tileset firstgid="2202" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
  <layer name="Tile Layer 1" width="23" height="25">
   <data encoding="base64" compression="zlib">
    eJztzLERgCAURMGboT5KM0ClGUGbUcc2eEV8h+SCTTdLymZmZva7kqQVG3bUFHcfXA0dJ67A++Z68GLBF3jPMABC0rNJ
@@ -16,7 +22,7 @@
  </layer>
  <layer name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eJzt1TkKwkAUgOEBwcPZaOG+BNQobpdxu4xRjxIQt94T+BdTDJKZvAgDKebB1/7vkSKTKqVSTz4emXsWFaWWWGGNDWxT9O4trR32OODoaEvuNudEK8EZF1wdbcnt5txpPfDEC++cdt7dTbQE2u41mTPESCAK7dD+UUfDU7uDbka7h5o2+LNt+yahXY627U0p+93mxMY/v2i7r0nujjETmGOMiTbFrSpY4Gm+aBuzqg==
+   eJzl1clOwlAUgOGLNFDlFYRHkiFOCyAR0Ai6d3oKB/aCPAWDewZfoYmIujcmuvRvwqIl97aXoQngSb5Vm78nt01qCSGsgHwFyPmc07AQZVRwhnMMQ0I60+59S+sO93hAFd+Ktn3/jiFEEimkkTHcPec0abXQRgfPHm17Lmhd4grXuDHcezvnjdYI7/jAJ7Y21O1HWjXU8YTGxN672NOwL2l3afXQxwAvhvt6FjkNefX6yvkP7U2TdzsWM9ezXTfl7SRSPm3bT1TtNypvH+BQo+0lpthb50xscQ+JOdqznveyfyeLasv+Kauwt3NK4dna2xPfmN+UcKzhBEcojBXxGvHvBzV/gBq3Xw==
   </data>
  </layer>
  <objectgroup color="#ffff00" name="Events">
@@ -34,8 +40,24 @@
     <property name="cond1" value="not music_playing Digital_Native.ogg"/>
    </properties>
   </object>
+  <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
+   <properties>
+    <property name="act1" value="teleport BuddhaMountain.tmx,3,89,1.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="22" name="sphalian care" type="event" x="272" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collision">
   <object id="7" type="collision" x="3" y="96" width="166" height="276"/>
+  <object id="12" type="collision" x="272" y="320" width="48" height="48"/>
+  <object id="14" type="collision" x="240" y="368" width="16" height="16"/>
+  <object id="15" type="collision" x="336" y="320" width="16" height="48"/>
+  <object id="16" type="collision" x="320" y="320" width="16" height="32"/>
+  <object id="17" type="collision" x="0" y="0" width="368" height="32"/>
+  <object id="18" type="collision" x="48" y="32" width="96" height="64"/>
+  <object id="19" type="collision" x="224" y="32" width="16" height="32"/>
+  <object id="20" type="collision" x="240" y="64" width="128" height="32"/>
  </objectgroup>
 </map>

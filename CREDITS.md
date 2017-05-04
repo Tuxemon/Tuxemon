@@ -437,6 +437,9 @@ Music
 [fredhalv](http://fredhalv.newgrounds.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
+* ["Digital Native"](http://ericskiff.com/music/) by
+[Eric Skiff](http://ericskiff.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 Sounds
 --------

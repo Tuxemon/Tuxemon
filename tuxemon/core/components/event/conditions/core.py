@@ -218,12 +218,8 @@ class Core(object):
         }
 
         """
-        # Get a copy of the world state.
-        world = game.get_state_name("WorldState")
-        if not world:
-            return False
+        for state in game.active_states:
+            if state.name == "DialogState":
+                return True
 
-        if world.dialog_window.visible or len(world.dialog_window.dialog_stack) > 0:
-            return True
-        else:
-            return False
+        return False

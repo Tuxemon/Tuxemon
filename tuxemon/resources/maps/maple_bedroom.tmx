@@ -62,7 +62,7 @@
   </object>
   <object id="22" name="Maple Pathfind to Player" type="event" x="128" y="80" width="16" height="48">
    <properties>
-    <property name="act1" value="pathfind npc_maple,6,5"/>
+    <property name="act1" value="remove_npc npc_maple"/>
     <property name="act2" value="player_stop"/>
     <property name="act3" value="set_variable maple_bedroom2:true"/>
     <property name="cond1" value="is variable_set maple_bedroom1:true"/>

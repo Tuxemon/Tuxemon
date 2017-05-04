@@ -12,6 +12,9 @@
  <tileset firstgid="131" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
+ <tileset firstgid="235" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ </tileset>
  <layer name="Layer1 Mountain Terrain" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztm7uOEzEUhi0RoNlki+UiBEKioWG1Ha+YlhJeBrqljZaCWwFTLTwGYxEr5uTY5/gyY4f5i0/JJtloxl/+Y/tkcmGMed4ZD0auFsqrDo6BctnBMbT2cWH6yQV89JGTS3K7RKiPFjmhuYCPtjmhHuCjTU5CuYCPNjkJeYCPeXMi5QI+5s2J5AE+5smJNhfwMU9OtB7gAz56YU4fLxJvlwh89AXqVV/AR19oPTwdeRnhyZ7Ya57BRzUfNYGPfB9SLlLykZqTJYJ+Yl+U5iInH9qcLBF8H9UXpbkoyYeUkyWC6xn6ojQXNfIRyskS6SEXlCX7KM1FzXzQnIA+OO/gGAB89MrSfXxpwFf4YPkx8rMB3yJe4KMdA3yofNyM/CJ8go/J+Z4wTrcZbm6E19u6RWvWkn2Exu+38H+3SifW687E6+IAH0EfdGwkJ1JW3LwdyiF8hH3YbEi5CHkpmVvg49hHrgtHyToNPg64+bnEhaUkI/AxDbnrL/pZgI8Dn01+nyPkJoZ1sYOPINI8MGS+704APmQf783fz/CHCj4kJ/Ah+xjM8V6O+pDqm6bPCx86H9f7MfvoPeb2d47YPk+7toIPnY8SuH5kaD6nxwAfB0r32n7/6+7IPYb7wjHAx7GT3B77sH+P1yPrzPGGjzC0fkl1yK8/8DGtj9Qe18ORRwyP4SMbv3aV9rh87gRcaXwtGX9/oe2VaDzYMUcOeGL9qdheMIdzQutz7w06X9PrcGr6sNlwuYAPnQ/qxd9/l/qg2YCPsA+ud1irtwsf6T7sWKdeBwIf0/ngeod0/1e63oUPvY+pMgEfaUj9w9h1z/AxnRPpOl3/e49cN/AhQ3sVKyPXsNzMwEc6a4WP3LkFPmRcD3bl+eCu1QnVsJSMwIeeNbml32mH5v2UeQU+0n3YvKwCr9HMK9LvAuEjzQe9n+JDmlPgI9/H25F3HlvD1yy3f3d9L/iYxkfoeZoRO/5+3ws+5vVBM+L6Xq4vDx/1fdA1MH0+1mOBjzpw6yrOkWW7h3MCH9M5Ca2z7ONvDL9vjPXk4aPMCXf91Mrw6y8f//Ub8+91PPBR5oSyNuHcaICPuk6ojy18zOrEr1POh7/+4upWqF5xNav1OZ4qtN9I76cAH/V8+NmgPrS1Cz7K4dbC1Idfu0L1yj7n16zW53XK0FrFzS9a4KMcbm/iz/Pw0daJ78HPysYc7yPpGgy/N6hHjTXWFXxM4oPrqWyYx7g9Cn4HVd8HaI/GR+i35ym0Ps9TIVajctdbYBq4vgqYF782ncFHc9zYc15AOx/IRB/AR1/ARx+4+eJsfx9zRnsP7m+4aOOArp3goi7a3oWrSdzjrc/hf+IP9qitCQ==
@@ -22,9 +25,9 @@
    eJztnEFygzAMRblOeooue5feIWfvMLQThxqMbUlfQv/NMO0CguVnGdmkXRbijSe6AQWe2kJICXJsMi9IFCzHKvOCREVz7DIvyF2QHMvMC3JXno2fV88hhJA78mF4ED9EdHL353k0HxmI4KQ1tmv5MfpZaCL4yIRnH1fHck9+9J5njWcfGfFYZ/WO3ZH8GD3fAm8+suPFx+hYncmP2es08OKDbKB9zI5NifyQul4CtA/yAl1fWe6fRthn9XB/bwcK9P3LNng6EHhwgcabD7KB9sHceMeDD/IC6SNSblj2E9JHFKRqoCtrbvo4x7oupY9jEOsF+qiDWsPRx3+Qa2rWVxuzextS/Yhef3hxMtKnGm6QPsr7o9HygZz7RkHfv2wDfWyg29Dqi9paTrrvPPlY8TBvZm9DDWS9Rx91rNuE7AuPz48jrNqm0R+P4vezv8uJ5GPFon3IWieajz802zniQ6pmjepjRau9vf0aYQ1hiXbtL+UjmyfNGOljHG0vZ/eji2OsYqaP61jETR99zMTd+z0Q+mijHTt99CMd+2xNRR96n0sffXiuszJiHTd9HIOImT7qIOOlj/+MxvtY3t8flZ830pf0MRevtI/atRl9jHLkY4bMPmZjpQ85JOKU8LHf98roQyrGHh893uhiDI35auXuPrTi0/JxZzTH2GPRcxLpf1NfwSLfv34P5sk5VvPu50InLSyfgV+7Q9LJHeYr61pk74N58gJRG9Z8lE4yu0HU6Zo+Is9XqDXTkY+9k0wg17BnPjI6Qe8nSPuIPkeh93ZaPjLlCNrFSq+PlhPmxxxXfGTLEc/Pj4zrRM/11RUfkeeoM7y/w/lGNwBItvfP0dBy0zNfZX2etJB0Qx/yzHxvdtYFffTRcjXrgj7kGPGxd0EfsjAvfEEPvqjNP5yTCNn4Ac727SQ=
   </data>
  </layer>
- <layer name="Layer3 Extra Mountain" width="100" height="100" visible="0">
+ <layer name="Layer3 Extra Mountain" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6D1T2oMG+zUBxKQAAAAAAAAAAAAAAAAAAAAAADNfAcAAAAAAAAAAAAAAAAAAAAAAAAAAACAUwvuUADp
+   eJzt27ENg0AUBUHOLRj3354T5BYgB5zeSsxIL/+6jW9ZAAAAAAAAAAAAAAAAAAAAAIB/vrMPAAAAAE62Y+u43m/2cU90vPu42WvMPu6B9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1S3uP+f9RHDwAAAADI2AHJagX7
   </data>
  </layer>
  <objectgroup color="#ffff00" name="Events">

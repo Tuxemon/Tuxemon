@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="33">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="46">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -9,71 +9,95 @@
  <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="40">
+ <tileset firstgid="1521" name="Route_1a" tilewidth="16" tileheight="16" tilecount="800" columns="40">
+  <image source="../gfx/tilesets/Route_1a.png" width="640" height="320"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztz7ERABAQAMFPlCOk9W+PmNhgZoPN77JEJMBh9YEGv379+vW7a1Nf3G4CAAAAAACAnwyIrd0Z
+   eJztzzEOgCAQAMELCc+xxIdT4Peg1l70MsX0u71EdEhiVMjjAnjB8YEGv379+vX71JbzZncTAAAAAAAA/MkEhrnfNA==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="60" height="40">
+ <layer name="Tile Layer 2" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztmEFOwzAQRa0mgZvABljCSQqHYk9X0APQDaiwggULOAEsumilHgTEWMpXhXEc2x1NHZgnjaxYluyvl0naGLMb5iNjHqiO6p/z9trWfdNfMTzSuheqW9prNuLP0QXyYVxSrajGTl57PQ7kvQvkvaS5G09NqN5prw/BvMiHEbm7yPE7Ccx90l5fgnn3KmP2q82I3JyE8h7QnocV734hYv2eNv46a88Nt9ee+3barsF9fdXO2f59jux3LmL9HlPvntS/+xogL/rct87n+ZXm3gQzx/o9p/NfUM06zoa8eI67z3dLCXlT+3fekzfVrzSxfpGnL2+q30Wh/RubN9WvdF4uvy6+3xfTAvJy+c3lr/iNRTov8uX6xXs5dxyaX7yXc8f1P/MrTer/oydmv9LE+nXZ1utQ/IJtvQ7FL5fX0vzWdJam3oyAy+uu/brfr7g9lu6X22MpfiW+X5UMciuKoiiKoiiKoiiKBN/8l+uL
+   eJzdWkuPDUEYrfSddu+Sf+A9FlgSfgQShj07Oyw8xoqNZKzNion3axKPDCsWFiQe8ZghiJCIX8DG+3E6+sutfF3V/VXX415OcvLlVmq66vSpOt1dGaVkmMmUupFV65WuUle7zZX6n+wpdQpcOaLUfdQHvepYo2hbAb7E373q+tc2eIu5vsuqVTom9SeNY9D7EfWTQe9GtG0CfxdzDVDbYF5HqW6nWqVjUn/SWOfvXrTt6/V99q0ctrVKtZjbBOrRrFqlY1J/ib/cZ9/KYVurVIu52e6FdEyX/ct99q3StUq1mJvtXkjHdNm/sWFbq1SLuW0Ft3lUvn83g1tKn3UUvwtez5spwU30uwNeho7p7G9b0/4NAboW+TsOHix91lH8HqvRe61G7wTaThg4CT7H2C9KLU37tw1WYc6rR/qVrkX+ngbP1KzlNv5O1rT9xNi/Si201ubj94KsX6m9DWzrmepDaH0UeO/W6V2OMUdLLeugbX1mrqHA1wzlNMea3My15bzJ2+OGdTtV9qF1faxsK/bvbe1ebMf4OzJzbQu+nrm/tmcR9ef7mkB6aZ+b+pl8vou2e3Q/avK5Lfh6lvpL/act+Ut6Kcd5vkv01uVzKEj9Jcw06HX1V0ddPoeC1F/S06TX1d/XWpstn0M+f6X+SvW6+qvrteWzz/OXI5S/HKb3i6kGvbZ89nn+coTyty10vTHymSOWv1LoelPkM12zrb/8ee5adb3/Qj77fp+9T5zPg/ZXxzDlM+FWYH91pMhnqb8cvr6a/B2mfObw9dXkb8rzDam/oXw1+RvjfIPD1d9Qvpr8jXG+wcHXTNP3b0x/h+l8I7SvLvnsc77B4fr92xazuZ1zEc83OLi/pvseCmdx/XPgefACeBG8BL4RnG+Eymfb+tqFOezWuIe9Z0jOZfnZ7GPM+Qn4FHwGzoJzmt4U+WzDfsxhp8bxAHo/Y85fwK/gN/A7+EPTmyKfU+pdiDkvAheDS8Cl4LJOX2+KfE6p1wbSa8vnkPvXhkHoteWz7/7Vc8jGIwPQGyufD+RybiiZQm+sfB5WvbHy2VVrKr2x8vlQ7s7DCfSmeH8eBjTlM9VY32ip6wdhPsf6RktdCYN8fx4Emv7/6n/CH23GzqI=
   </data>
  </layer>
- <layer name="Tile Layer 3" width="60" height="40">
+ <layer name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOQEAYROEt9r+N+yo5gULDEejEiZCViESUJDPvS6ZTeMnKSklXHWVz/P0m32jO3kG4txVuU5BzSrGvyu/PVfmamz7uO4zC5/qpVxm92tx6n0ym3fCxGJ3xNcoABW73UxdlLtz+vejV5vTtAgAAAADgZgOjjB8C
+   eJztmcFKAzEQhtO6YXP1PXrw7Gvo0VsvvoM+Qu8eK+i5YEH0EZR6KL3poS/RPoAJ21AqpJlsZ5OZdT4YhkAp+dnMP5NdpQShW2516R3k5aY6XL/USs1rvEydb7vHnxovp3A+7EZTCHe2B0apocHLKVxm1ovJg27iM8Efxoz1Tnd63xL0TpjpfTzR61+Z6T2VdWa9le1N2saoOv67UbUPTOoz3P/rgrk+DMd7y3N9wVRvW3L33zZg6uXQfzH1cui/mHq59V/PR0vd0n9p4fv133xl7wnXiXcFBxV/vrN7vzfhDGEJOONU/PnJano24RxjpZuIQcWfF1bTlwlnLKj488Zq2ppwxqJ0/frn5+s0tI4B7U+l69c/P1+noXWMmW4iRqn6jflxqj9DZ69S9Rvz41R/huotNV/F/DjVn6F6qc9XUCC16yjtz7kp7c+5oTJf5YLKfJULuf/2G/HnfiP+3G/En/uN+z4YeufJLUPg8H1QEP4rvz3kkx4=
   </data>
  </layer>
- <layer name="Above Player" width="60" height="40">
+ <layer name="Above Player" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1iEOgDAQRNEVu/e/SjUnQHIkFGkqMFCSYfpf0hSBmXzTCB+t+vde9//9mesujA4629pqPO7Y6429gLbMiMrnN7TR19PbrvTVNKvrqn1V316zu1636t6vrLYXAAAAAAD4OgGklxmZ
+   eJzt1jEKwCAMheEMyf2v0rkn6NgjORVpoUOp0ZD8H0gcXB5PUBEAAHxt1veHvZ/zoCpi2qeX2bmwxrm451n3uaLd7is78uZGXiC253v+dSI2+s3pb6/0G9OoXqv2G/XvNbrXa0bN66VaXgAAAAAAkFcD6D4Z3Q==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
-  <object id="1" type="collision" x="672" y="208" width="96" height="160"/>
-  <object id="2" type="collision" x="736" y="64" width="32" height="96"/>
-  <object id="3" type="collision" x="608" y="64" width="16" height="208"/>
-  <object id="4" type="collision" x="640" y="272" width="32" height="96"/>
-  <object id="5" type="collision" x="608" y="304" width="32" height="64"/>
-  <object id="6" type="collision" x="576" y="336" width="32" height="32"/>
-  <object id="7" type="collision" x="576" y="64" width="32" height="48"/>
-  <object id="8" type="collision" x="624" y="64" width="64" height="16"/>
-  <object id="9" type="collision" x="688" y="160" width="80" height="16"/>
-  <object id="10" type="collision" x="688" y="64" width="16" height="112"/>
-  <object id="11" type="collision" x="768" y="208" width="192" height="160"/>
-  <object id="12" type="collision" x="768" y="160" width="16" height="48"/>
-  <object id="13" type="collision" x="0" y="0" width="128" height="640"/>
-  <object id="14" type="collision" x="128" y="576" width="832" height="64"/>
-  <object id="15" type="collision" x="0" y="-48" width="960" height="48"/>
-  <object id="18" type="collision" x="768" y="64" width="64" height="16"/>
-  <object id="19" type="collision" x="832" y="16" height="48"/>
-  <object id="20" type="collision" x="832" y="16" width="64" height="16"/>
-  <object id="21" type="collision" x="896" y="0" height="16"/>
-  <object id="22" type="collision" x="960" y="-48" width="32" height="688"/>
-  <object id="28" type="collision" x="416" y="16" width="96" height="368"/>
-  <object id="29" type="collision" x="512" y="336" width="64" height="32"/>
-  <object id="30" type="collision" x="480" y="0" width="32" height="16"/>
+  <object id="1" type="collision" x="672" y="304" width="96" height="160"/>
+  <object id="2" type="collision" x="736" y="160" width="32" height="96"/>
+  <object id="3" type="collision" x="608" y="160" width="16" height="208"/>
+  <object id="4" type="collision" x="640" y="368" width="32" height="96"/>
+  <object id="5" type="collision" x="608" y="400" width="32" height="64"/>
+  <object id="6" type="collision" x="576" y="432" width="32" height="32"/>
+  <object id="7" type="collision" x="576" y="176" width="32" height="48"/>
+  <object id="8" type="collision" x="624" y="160" width="64" height="16"/>
+  <object id="9" type="collision" x="688" y="256" width="80" height="16"/>
+  <object id="10" type="collision" x="688" y="160" width="16" height="112"/>
+  <object id="11" type="collision" x="768" y="304" width="192" height="160"/>
+  <object id="12" type="collision" x="768" y="256" width="16" height="48"/>
+  <object id="13" type="collision" x="0" y="96" width="128" height="640"/>
+  <object id="14" type="collision" x="128" y="672" width="832" height="64"/>
+  <object id="15" type="collision" x="0" y="48" width="960" height="48"/>
+  <object id="18" type="collision" x="768" y="160" width="64" height="16"/>
+  <object id="19" type="collision" x="832" y="112" height="48"/>
+  <object id="20" type="collision" x="832" y="112" width="64" height="16"/>
+  <object id="21" type="collision" x="896" y="96" height="16"/>
+  <object id="22" type="collision" x="960" y="0" width="32" height="688"/>
+  <object id="28" type="collision" x="416" y="112" width="96" height="384"/>
+  <object id="30" type="collision" x="480" y="96" width="32" height="16"/>
+  <object id="33" type="collision" x="416" y="496" width="64" height="16"/>
+  <object id="34" type="collision" x="832" y="464" width="128" height="16"/>
+  <object id="35" type="collision" x="944" y="480" width="16" height="192"/>
+  <object id="39" type="collision" x="128" y="96" width="352" height="16"/>
+  <object id="41" type="collision" x="352" y="176" width="64" height="32"/>
+  <object id="42" type="collision" x="352" y="128" width="64" height="32"/>
+  <object id="43" type="collision" x="576" y="96" width="32" height="32"/>
+  <object id="44" type="collision" x="512" y="96" width="16" height="32"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
-  <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="176" width="16" height="16">
+ <objectgroup color="#ffff00" name="Events" visible="0">
+  <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,11"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="25" name="Teleport to map1 (lower)" type="event" x="752" y="192" width="16" height="16">
+  <object id="25" name="Teleport to map1 (lower)" type="event" x="752" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,12"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="32" name="Teleport to route1a" type="event" x="528" y="0" width="48" height="16">
+  <object id="32" name="Teleport to route1a" type="event" x="528" y="96" width="48" height="16">
    <properties>
-    <property name="act1" value="teleport route_1a.tmx,41,69,1.5"/>
+    <property name="act1" value="teleport route_1a.tmx,25,19"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="36" name="random battle" type="event" x="640" y="496" width="160" height="160">
+   <properties>
+    <property name="act1" value="random_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+    <property name="cond3" value="is party_size greater_than,0"/>
+   </properties>
+  </object>
+  <object id="45" name="Music" type="event" x="160" y="720" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music 479403_its-a-unix-system.ogg"/>
+    <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
    </properties>
   </object>
  </objectgroup>

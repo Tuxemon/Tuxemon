@@ -61,17 +61,6 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="11" name="Get Fruitera" type="interact" x="144" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="add_monster txmn_fruitera,10"/>
-    <property name="act2" value="translated_dialog received_x,name=Fruitera"/>
-    <property name="act3" value="add_item item_capture_device"/>
-    <property name="act4" value="add_item item_potion"/>
-    <property name="act5" value="add_item item_capture_device"/>
-    <property name="act6" value="set_variable got_fruitera:yes"/>
-    <property name="cond1" value="not variable_set got_fruitera:yes"/>
-   </properties>
-  </object>
   <object id="16" name="Lord Lampy" type="interact" x="32" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="dialog_chain Hello stranger!"/>

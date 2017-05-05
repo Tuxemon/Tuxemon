@@ -352,6 +352,13 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Female Trainer"](https://wiki.tuxemon.org/index.php?title=Female_Trainer) by
+[Leo](https://forum.tuxemon.org/viewtopic.php?id=76)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Professor Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
+[ZhongQian TiaoGong](https://github.com/Qiangong2/)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 **Concept Art**
 
@@ -430,6 +437,9 @@ Music
 [fredhalv](http://fredhalv.newgrounds.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
+* ["Digital Native"](http://ericskiff.com/music/) by
+[Eric Skiff](http://ericskiff.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 Sounds
 --------

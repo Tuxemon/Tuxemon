@@ -186,5 +186,17 @@
     "yes": "Yes",
     "no": "No",
 
+    "route_2": "Route 2",
+
+    "professor_dialog1": "Professor: \n Ah, yes. The very person I've been wanting to meet.",
+    "professor_dialog2": "I've heard that you want to learn about Tuxemon.",
+    "professor_dialog3": "Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.",
+    "professor_dialog4": "I was wondering, I just received three new Tuxemon for research and I would like to give you one.",
+    "professor_dialog5": "Which one would you like?",
+    "professor_dialog6.1": "Professor: An excellent choice! Hydrone is a water tuxemon",
+    "professor_dialog6.2": "Professor: A superb choice! Rockitten is an earth tuxemon",
+    "professor_dialog6.3": "Professor: a great choice! Fruitera is a wood tuxemon",
+    "professor_dialog7": "Professor: I hope to see you around! I'm about to head on a journey, so maybe we'll meet up sometime.",
+
     "input_name": "Name?"
 }

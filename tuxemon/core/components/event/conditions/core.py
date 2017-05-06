@@ -186,3 +186,40 @@ class Core(object):
                 return True
 
         return False
+
+
+    def dialog_open(self, game, condition):
+        """Checks to see if a dialog window is open.
+
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type game: core.control.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
+        Valid Parameters: None
+
+        **Examples:**
+
+        >>> condition.__dict__
+        {
+            "type": "dialog_open",
+            "parameters": []
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 2,
+            "y": 2,
+            ...
+        }
+
+        """
+        for state in game.active_states:
+            if state.name == "DialogState":
+                return True
+
+        return False

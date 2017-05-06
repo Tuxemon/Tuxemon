@@ -28,11 +28,11 @@
 # core.states.transition Handles the all graphical transitions.
 #
 #
-from .fade import FADE_IN_TRANSITION, FADE_OUT_TRANSITION
-from .flash import FLASH_TRANSITION
-
+from .fade import FadeInTransition, FadeOutTransition
+from .flash import FlashTransition
 
 # Create a logger for optional handling of debug messages.
 import logging
+
 logger = logging.getLogger(__name__)
-logger.debug("states.transition successfully imported")
+logger.debug("%s successfully imported" % __name__)

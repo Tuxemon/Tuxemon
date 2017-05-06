@@ -22,7 +22,9 @@
 #
 # Contributor(s):
 #
+# William Edwards <shadowapex@gmail.com>
 # Benjamin Bean <superman2k5@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.states.start Handles the start screen which loads and creates new games
@@ -30,120 +32,68 @@
 """This module contains the Start state.
 """
 import logging
-import pygame
+from functools import partial
 
 from core import prepare
-from core import state
-from core.components.menu import start_menu
+from core.state import State
+from core.components.menu.interface import MenuItem
+from core.components.menu.menu import PopUpMenu
+from core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.start successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
-class START(state.State):
+class BackgroundState(State):
+    """ background state is used to prevent other states from
+    being required to track dirty screen areas.  for example,
+    in the start state, there is a menu on a blank background,
+    since menus do not clean up dirty areas, the blank,
+    "Background state" will do that.  The alternative is creating
+    a system for states to clean up their dirty screen areas.
+
+    eventually the need for this will be phased out
+    """
+    def draw(self, surface):
+        surface.fill((0, 0, 0, 0))
+
+    def resume(self):
+        self.game.pop_state()
+
+
+class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
+    shrink_to_items = True
 
-    def startup(self, params=None):
-        # Provide an instance of the scene manager to this scene.
-        self.previous_menu = None
-        self.menu_blocking = True
+    def startup(self, *args, **kwargs):
+        super(StartState, self).startup(*args, **kwargs)
 
-        # Provide access to the screen surface
-        self.screen = self.game.screen
-        self.screen_rect = prepare.SCREEN_RECT
+        def change_state(state, **kwargs):
+            return partial(self.game.push_state, state, **kwargs)
 
-        # Set the native tile size so we know how much to scale
-        self.tile_size = prepare.TILE_SIZE
+        def new_game():
+            self.game.player1 = prepare.player1
+            self.game.replace_state("WorldState")
+            self.game.push_state("InputMenu", prompt=translator.translate("input_name"))
+            self.game.push_state("FadeInTransition")
 
-        # Set the status icon size so we know how much to scale
-        self.icon_size = prepare.ICON_SIZE
+        def options():
+            pass
 
-        # Get the screen's resolution
-        self.resolution = prepare.SCREEN_SIZE
+        def exit_game():
+            self.game.exit = True
 
-        # Native resolution is similar to the old gameboy resolution. This is
-        # used for scaling.
-        self.native_resolution = prepare.NATIVE_RESOLUTION
-        self.scale = prepare.SCALE
+        menu_items_map = (
+            ('menu_new_game', new_game),
+            ('menu_load', change_state("LoadMenuState")),
+            ('menu_options', options),
+            ('exit', exit_game),
+        )
 
-        # Start menu.
-        self.start_menu = start_menu.StartMenu(self.screen,
-                                               self.resolution,
-                                               self.game)
-        self.start_menu.visible = True
-        self.start_menu.interactable = True
-        self.start_menu.size_ratio = [0.5, 0.5]
-
-        self.menus = [self.start_menu]
-
-        for menu in self.menus:
-            menu.scale = self.scale    # Set the scale of the menu.
-            menu.set_font(size=menu.font_size * self.scale,
-                          font=prepare.BASEDIR +
-                          "resources/font/PressStart2P.ttf",
-                          color=(10, 10, 10),
-                          spacing=menu.font_size * self.scale)
-
-            # Scale the selection arrow image based on our game's scale.
-            menu.arrow = pygame.transform.scale(
-                menu.arrow,
-                (menu.arrow.get_width() * self.scale,
-                 menu.arrow.get_height() * self.scale))
-
-            # Scale the border images based on our game's scale.
-            for key, border in menu.border.items():
-                menu.border[key] = pygame.transform.scale(
-                    border,
-                    (border.get_width() * self.scale,
-                     border.get_height() * self.scale))
-
-            # Set the menu size.
-
-            menu.size_x = int(self.resolution[0] * menu.size_ratio[0])
-            menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
-            menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
-            menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
-
-    def update(self, time_delta):
-        """Update function for state.
-
-        :type surface: pygame.Surface
-        :rtype: None
-        :returns: None
-
-        """
-        pass
-
-    def get_event(self, event):
-        """Processes events that were passed from the main event loop.
-
-        :param event: A pygame key event from pygame.event.get()
-
-        :type event: PyGame Event
-
-        :rtype: None
-        :returns: None
-
-        """
-        if self.start_menu.interactable:
-            self.game.get_menu_event(self.start_menu, event)
-
-    def draw(self, surface):
-        """Draws the start screen to the screen.
-
-        :param surface:
-        :param Surface: Surface to draw to
-
-        :type Surface: pygame.Surface
-
-        :rtype: None
-        :returns: None
-
-        """
-        surface.fill((15, 15, 15))
-        if self.start_menu.visible:
-            self.start_menu.draw()
-            self.start_menu.draw_textItem(
-                ["NEW GAME", "LOAD", "OPTIONS", "EXIT"])
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
+            image = self.shadow_text(label)
+            item = MenuItem(image, label, None, callback)
+            self.add(item)

@@ -1,9 +1,0 @@
-[Core]
-Name = Monster Menu
-Module = monster_menu
-
-[Documentation]
-Author = William Edwards
-Version = 1.0
-Website = http://www.tuxemon.org
-Description = Monster menu plugin.

@@ -22,10 +22,15 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import absolute_import
 
 import logging
+from core.components.event.contexts.dialogcontext import DialogContext
+from core.tools import open_dialog
+from core.components.locale import translator
+from functools import partial
 
 
 # Create a logger for optional handling of debug messages.
@@ -33,7 +38,6 @@ logger = logging.getLogger(__name__)
 
 
 class Core(object):
-
     def _replace_text(self, game, text):
         """Replaces ${{var}} tiled variables with their in-game value.
 
@@ -53,11 +57,21 @@ class Core(object):
 
         """
         text = text.replace("${{name}}", game.player1.name)
+        text = text.replace(r"\n", "\n")
+
+        for i in range(len(game.player1.monsters)):
+            monster = game.player1.monsters[i]
+            text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
+            text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
+            text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
+            text = text.replace("${{monster_" + str(i) + "_hp}}", str(monster.current_hp))
+            text = text.replace("${{monster_" + str(i) + "_hp_max}}", str(monster.hp))
+            text = text.replace("${{monster_" + str(i) + "_level}}", str(monster.level))
 
         return text
 
 
-    def set_variable(self, game, action):
+    def set_variable(self, game, action, contexts):
         """Sets the key in the player.game_variables dictionary.
 
         :param game: The main game object that contains all the game's variables.
@@ -96,7 +110,35 @@ class Core(object):
         player.game_variables[var_key] = var_value
 
 
-    def dialog(self, game, action):
+    def quit(self, game, action, contexts):
+        """Completely quit the game
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "quit",
+            "parameters": []
+        }
+
+        """
+        # TODO: API
+        game._wants_to_exit = True
+        game.exit = True
+        game.done = True
+
+
+    def dialog(self, game, action, contexts):
         """Opens a dialog window with text
 
         :param game: The main game object that contains all the game's variables.
@@ -127,17 +169,45 @@ class Core(object):
 
         """
 
-        text = str(action.parameters[0])
-        text = self._replace_text(game, text)
-        logger.info("Dialog window opened")
-
-        # Open a dialog window in the current scene.
-        if not game.current_state.dialog_window.visible:
-            game.current_state.dialog_window.visible = True
-            game.current_state.dialog_window.text = text
+        self.dialog_chain(game, action, contexts)
 
 
-    def dialog_chain(self, game, action):
+    def translated_dialog(self, game, action, contexts):
+        """Opens a dialog window with translated text according to the passed translation key. Parameters
+        passed to the translation string will also be checked if a translation key exists.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: dialog_key,[var1=value1,var2=value2]
+
+        You may also use special variables in dialog events. Here is a list of available variables:
+
+        * ${{name}} - The current player's name.
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "translated_dialog",
+            "parameters": [
+                "received_x",
+                "name=Potion"
+            ]
+        }
+
+        """
+        self.translated_dialog_chain(game, action, contexts)
+
+
+    def dialog_chain(self, game, action, contexts):
         """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
 
         :param game: The main game object that contains all the game's variables.
@@ -171,28 +241,77 @@ class Core(object):
 
         text = str(action.parameters[0])
         text = self._replace_text(game, text)
-        dialog_window = game.current_state.dialog_window
+        logger.info("Opening chain dialog window")
 
-        # Do nothing if a dialog is already open
-        if dialog_window.visible:
+        if text != "${{end}}":
+            dialog_context = contexts.get("dialog", None)
+            if not dialog_context:
+                dialog_context = DialogContext()
+                contexts["dialog"] = dialog_context
+            dialog_context.add_dialog(text)
+
+
+    def translated_dialog_chain(self, game, action, contexts):
+        """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: text_to_display
+
+        You may also use special variables in dialog events. Here is a list of available variables:
+
+        * ${{name}} - The current player's name.
+        * ${{end}} - Ends the dialog chain.
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "translated_dialog_chain",
+            "parameters": [
+                "received_x",
+                "name=Potion"
+            ]
+        }
+
+        """
+
+        trans = translator.translate
+        key = str(action.parameters[0])
+        if key == "${{end}}":
             return
 
-        # If this is the end of the dialog chain, display the window.
-        if "${{end}}" in text:
-            logger.info("Dialog window opened")
-            dialog_window.visible = True
-            if len(dialog_window.dialog_stack) > 0:
-                dialog_window.text = dialog_window.dialog_stack.pop(0)
-            return
+        replace_values = {}
+        for param in action.parameters[1:]:
+            values = param.split("=")
 
-        # If this text is part of the dialog chain, add it to the dialog stack.
-        if dialog_window.elapsed_time >= dialog_window.delay:
-            logger.debug("Adding text to dialog stack: " + text)
-            logger.debug("Seconds since last dialog: " + str(dialog_window.elapsed_time))
-            dialog_window.dialog_stack.append(text)
+            param_key = values[0]
+            param_value = values[1]
+
+            # Check to see if param_value is translatable
+            if translator.has_key(param_value):
+                param_value = trans(param_value)
+
+            replace_values[param_key] = self._replace_text(game, param_value)
+
+        text = trans(key, replace_values)
+        dialog_context = contexts.get("dialog", None)
+        if not dialog_context:
+            dialog_context = DialogContext()
+            contexts["dialog"] = dialog_context
+        logger.info("Opening translated chain dialog window")
+        dialog_context.add_dialog(text)
 
 
-    def rumble(self, game, action):
+    def rumble(self, game, action, contexts):
         """Rumbles available controllers with rumble support
 
         :param game: The main game object that contains all the game's variables.
@@ -238,7 +357,7 @@ class Core(object):
         game.rumble.rumble(-1, length=duration, magnitude=magnitude)
 
 
-    def wait_for_secs(self, game, action):
+    def wait_for_secs(self, game, action, contexts):
         """Pauses the event engine for n number of seconds.
 
         :param game: The main game object that contains all the game's variables.
@@ -271,7 +390,7 @@ class Core(object):
         game.event_engine.wait = secs
 
 
-    def wait_for_input(self, game, action):
+    def wait_for_input(self, game, action, contexts):
         """Pauses the event engine until specified button is pressed
 
         :param game: The main game object that contains all the game's variables.
@@ -304,7 +423,7 @@ class Core(object):
         game.event_engine.wait = 2
         game.event_engine.button = button
 
-    def change_state(self, game, action):
+    def change_state(self, game, action, contexts):
         """Changes to the specified state.
 
         :param game: The main game object that contains all the game's variables.
@@ -337,7 +456,7 @@ class Core(object):
             game.push_state(action.parameters[0])
 
 
-    def call_event(self, game, action):
+    def call_event(self, game, action, contexts):
         """Executes the specified event's actions by id.
 
         :param game: The main game object that contains all the game's variables.
@@ -369,5 +488,72 @@ class Core(object):
         events = game.events
 
         for e in events:
-            if e['id'] == int(action.parameters[0]):
-                event_engine.execute_action(e['acts'], game)
+            if e.id == int(action.parameters[0]):
+                event_engine.execute_action(e.acts, game)
+
+    def dialog_choice(self, game, action, contexts):
+        """Asks the player to make a choice.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: choice1:choice2,var_key
+        """
+        def set_variable(game, player, var_key, var_value):
+            player.game_variables[var_key] = var_value
+            game.pop_state()
+            game.pop_state()
+
+        # Get the player object from the game.
+        player = game.player1
+
+        var_list = action.parameters[0].split(":")
+        var_menu = list()
+        for val in var_list:
+            var_menu.append((val, val, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
+        dialog_context = contexts.get("dialog", None)
+        if not dialog_context:
+            dialog_context = DialogContext()
+            contexts["dialog"] = dialog_context
+        dialog_context.add_menu(var_menu)
+
+    def translated_dialog_choice(self, game, action, contexts):
+        """Asks the player to make a choice.
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: choice1:choice2,var_key
+        """
+        def set_variable(game, player, var_key, var_value):
+            player.game_variables[var_key] = var_value
+            game.pop_state()
+            game.pop_state()
+
+        # Get the player object from the game.
+        player = game.player1
+
+        var_list = action.parameters[0].split(":")
+        var_menu = list()
+        for val in var_list:
+            label = translator.translate(val).upper()
+            var_menu.append((val, label, partial(set_variable, game=game, player=player, var_key=action.parameters[1], var_value=val)))
+        dialog_context = contexts.get("dialog", None)
+        if not dialog_context:
+            dialog_context = DialogContext()
+            contexts["dialog"] = dialog_context
+        dialog_context.add_menu(var_menu)

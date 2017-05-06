@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="226">
- <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="105" name="signs" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="105" name="signs" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/signs.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="121" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10">
+ <tileset firstgid="121" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
- <tileset firstgid="131" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="131" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="235" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
  </tileset>
  <layer name="Layer1 Mountain Terrain" width="100" height="100">
   <data encoding="base64" compression="zlib">
@@ -22,9 +25,9 @@
    eJztnEFygzAMRblOeooue5feIWfvMLQThxqMbUlfQv/NMO0CguVnGdmkXRbijSe6AQWe2kJICXJsMi9IFCzHKvOCREVz7DIvyF2QHMvMC3JXno2fV88hhJA78mF4ED9EdHL353k0HxmI4KQ1tmv5MfpZaCL4yIRnH1fHck9+9J5njWcfGfFYZ/WO3ZH8GD3fAm8+suPFx+hYncmP2es08OKDbKB9zI5NifyQul4CtA/yAl1fWe6fRthn9XB/bwcK9P3LNng6EHhwgcabD7KB9sHceMeDD/IC6SNSblj2E9JHFKRqoCtrbvo4x7oupY9jEOsF+qiDWsPRx3+Qa2rWVxuzextS/Yhef3hxMtKnGm6QPsr7o9HygZz7RkHfv2wDfWyg29Dqi9paTrrvPPlY8TBvZm9DDWS9Rx91rNuE7AuPz48jrNqm0R+P4vezv8uJ5GPFon3IWieajz802zniQ6pmjepjRau9vf0aYQ1hiXbtL+UjmyfNGOljHG0vZ/eji2OsYqaP61jETR99zMTd+z0Q+mijHTt99CMd+2xNRR96n0sffXiuszJiHTd9HIOImT7qIOOlj/+MxvtY3t8flZ830pf0MRevtI/atRl9jHLkY4bMPmZjpQ85JOKU8LHf98roQyrGHh893uhiDI35auXuPrTi0/JxZzTH2GPRcxLpf1NfwSLfv34P5sk5VvPu50InLSyfgV+7Q9LJHeYr61pk74N58gJRG9Z8lE4yu0HU6Zo+Is9XqDXTkY+9k0wg17BnPjI6Qe8nSPuIPkeh93ZaPjLlCNrFSq+PlhPmxxxXfGTLEc/Pj4zrRM/11RUfkeeoM7y/w/lGNwBItvfP0dBy0zNfZX2etJB0Qx/yzHxvdtYFffTRcjXrgj7kGPGxd0EfsjAvfEEPvqjNP5yTCNn4Ac727SQ=
   </data>
  </layer>
- <layer name="Layer3 Extra Mountain" width="100" height="100" visible="0">
+ <layer name="Layer3 Extra Mountain" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6D1T2oMG+zUBxKQAAAAAAAAAAAAAAAAAAAAAADNfAcAAAAAAAAAAAAAAAAAAAAAAAAAAACAUwvuUADp
+   eJzt27ENg0AUBUHOLRj3354T5BYgB5zeSsxIL/+6jW9ZAAAAAAAAAAAAAAAAAAAAAIB/vrMPAAAAAE62Y+u43m/2cU90vPu42WvMPu6B9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPFj1S3uP+f9RHDwAAAADI2AHJagX7
   </data>
  </layer>
  <objectgroup color="#ffff00" name="Events">
@@ -44,7 +47,7 @@
   </object>
   <object id="225" name="Teleport to map1" type="event" x="32" y="1424" width="16" height="32">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,23,16,0.5"/>
+    <property name="act1" value="transition_teleport sphalian_town.tmx,22,14,1.5"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>

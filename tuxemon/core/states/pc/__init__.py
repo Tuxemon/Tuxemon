@@ -24,334 +24,154 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Derek Clark <derekjohn.clark@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
-# core.components.states
 #
-"""This module contains the PC state.
+# core.components.states.pc
+#
+""" This module contains the PCState state.
 """
-import logging
-import pygame
+from __future__ import absolute_import
+from __future__ import print_function
 
-from core import prepare
-from core import state
-from core.components.menu import pc_menu
-from core.components import networking
+import logging
+from functools import partial
+
+from core.tools import open_dialog
+from core.components.game_event import GAME_EVENT, INPUT_EVENT
+from core.components.locale import translator
+from core.components.menu.menu import PopUpMenu
+from core.components.menu.interface import MenuItem
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("states.successfully imported")
+logger.debug('%s imported' % __name__)
+
+# global translator
+trans = translator.translate
 
 
-class PC(state.State):
+def add_menu_items(state, items):
+    for key, callback in items:
+        label = trans(key).upper()
+        state.build_item(label, callback)
+
+
+class PCState(PopUpMenu):
     """ The state responsible in game settings.
     """
+    shrink_to_items = True
 
-    def startup(self, params=None):
-        # Provide an instance of the scene manager to this scene.
-        self.previous_menu = None
-        self.menu_blocking = True
+    def startup(self, *items, **kwargs):
+        super(PCState, self).startup(*items, **kwargs)
 
-        # Provide access to the screen surface
-        self.screen = self.game.screen
-        self.screen_rect = prepare.SCREEN_RECT
+        def change_state(state, **kwargs):
+            return partial(self.game.replace_state, state, **kwargs)
 
-        # Set the native tile size so we know how much to scale
-        self.tile_size = prepare.TILE_SIZE
-
-        # Set the status icon size so we know how much to scale
-        self.icon_size = prepare.ICON_SIZE
-
-        # Get the screen's resolution
-        self.resolution = prepare.SCREEN_SIZE
-
-        # Native resolution is similar to the old gameboy resolution. This is
-        # used for scaling.
-        self.native_resolution = prepare.NATIVE_RESOLUTION
-        self.scale = prepare.SCALE
-
-        # Main PC menu.
-        self.pc_menu = pc_menu.PCMenu(self.screen,
-                                      self.resolution,
-                                      self.game)
-
-        self.pc_menu.interactable = True
-        self.pc_menu.size_ratio = [0.8, 0.3]
-
-        # Monster menu
-        self.monster_menu = pc_menu.Player_Menu(self.screen,
-                                                self.resolution,
-                                                self.game,
-                                                "PLAYER_MONS")
-        self.monster_menu.visible = False
-        self.monster_menu.interactable = False
-        self.monster_menu.size_ratio = [0.5, 0.8]
-
-        # Item menu
-        self.item_menu = pc_menu.Player_Menu(self.screen,
-                                             self.resolution,
-                                             self.game,
-                                             "PLAYER_ITEMS")
-        self.item_menu.visible = False
-        self.item_menu.interactable = False
-        self.item_menu.size_ratio = [0.5, 0.8]
-
-        # Storage Monster menu
-        self.store_monster_menu = pc_menu.Storage_Menu(self.screen,
-                                                       self.resolution,
-                                                       self.game,
-                                                       "STORE_MONS")
-
-        self.monster_menu.add_child(self.store_monster_menu)
-        self.store_monster_menu.add_child(self.monster_menu)
-        self.store_monster_menu.visible = False
-        self.store_monster_menu.interactable = False
-        self.store_monster_menu.size_ratio = [0.5, 0.8]
-
-        # Storage Item menu
-        self.store_item_menu = pc_menu.Storage_Menu(self.screen,
-                                                    self.resolution,
-                                                    self.game,
-                                                    "STORE_ITEMS")
-        self.item_menu.add_child(self.store_item_menu)
-        self.store_item_menu.add_child(self.item_menu)
-        self.store_item_menu.visible = False
-        self.store_item_menu.interactable = False
-        self.store_item_menu.size_ratio = [0.5, 0.8]
+        add_menu_items(self, (('menu_monsters', change_state('MonsterMenuState')),
+                              ('menu_items', change_state('ItemMenuState')),
+                              ('menu_multiplayer', change_state('MultiplayerMenu')),
+                              ('log_off', self.game.pop_state)))
 
 
+class MultiplayerMenu(PopUpMenu):
+    """ MP Menu
 
-        # Main multiplayer menu.
-        self.multiplayer_menu = pc_menu.Multiplayer_Menu(self.screen,
-                                                         self.resolution,
-                                                         self.game)
-        self.multiplayer_menu.visible = False
-        self.multiplayer_menu.interactable = False
-        self.multiplayer_menu.size_ratio = [0.7, 0.25]
+    code salvaged from commit 6fa20da714c7b794cbe1e8a22168fa66cda13a9e
+    """
+    shrink_to_items = True
 
-        # Join a multiplayer game menu.
-        self.multiplayer_join_menu = pc_menu.Multiplayer_Join_Menu(self.screen,
-                                                                   self.resolution,
-                                                                   self.game)
-        self.multiplayer_join_menu.visible = False
-        self.multiplayer_join_menu.interactable = False
-        self.multiplayer_join_menu.size_ratio = [0.6, 0.2]
+    def startup(self, *items, **kwargs):
+        super(MultiplayerMenu, self).startup(*items, **kwargs)
 
-        # Enter IP adress "menu"
-        self.multiplayer_join_enter_ip_menu = pc_menu.Multiplayer_Join_Enter_IP_Menu(self.screen,
-                                                                   self.resolution,
-                                                                   self.game)
-        self.multiplayer_join_enter_ip_menu.visible = False
-        self.multiplayer_join_enter_ip_menu.interactable = False
-        self.multiplayer_join_enter_ip_menu.size_ratio = [0.6, 0.2]
-
-        # Successfully joined a multiplayer game menu.
-        self.multiplayer_join_success_menu = pc_menu.Multiplayer_Join_Success_Menu(self.screen,
-                                                                                   self.resolution,
-                                                                                   self.game)
-        self.multiplayer_join_success_menu.visible = False
-        self.multiplayer_join_success_menu.interactable = False
-        self.multiplayer_join_success_menu.size_ratio = [0.6, 0.2]
-
-        # Successfully host a game menu.
-        self.multiplayer_host_menu = pc_menu.Multiplayer_Host_Menu(self.screen,
-                                                                   self.resolution,
-                                                                   self.game)
-        self.multiplayer_host_menu.visible = False
-        self.multiplayer_host_menu.interactable = False
-        self.multiplayer_host_menu.size_ratio = [0.6, 0.2]
-
-        self.menus = [self.pc_menu,
-                      self.monster_menu,
-                      self.item_menu,
-                      self.store_monster_menu,
-                      self.store_item_menu,
-                      self.multiplayer_menu,
-                      self.multiplayer_join_menu,
-                      self.multiplayer_join_enter_ip_menu,
-                      self.multiplayer_join_success_menu,
-                      self.multiplayer_host_menu
-                      ]
-
-        for menu in self.menus:
-            menu.scale = self.scale    # Set the scale of the menu.
-            menu.set_font(size=menu.font_size * self.scale,
-                          font=prepare.BASEDIR + "resources/font/PressStart2P.ttf",
-                          color=(10, 10, 10),
-                          spacing=menu.font_size * self.scale)
-
-            # Scale the selection arrow image based on our game's scale.
-            menu.arrow = pygame.transform.scale(
-                menu.arrow,
-                (menu.arrow.get_width() * self.scale,
-                 menu.arrow.get_height() * self.scale))
-
-            # Scale the border images based on our game's scale.
-            for key, border in menu.border.items():
-                menu.border[key] = pygame.transform.scale(
-                    border,
-                    (border.get_width() * self.scale,
-                     border.get_height() * self.scale))
-
-            # Set the menu size.
-
-            if menu.name in ["PLAYER_MONS", "PLAYER_ITEMS"]:
-                border_size = menu.border["left-top"].get_width()
-                menu.size_x = int(self.resolution[0] * menu.size_ratio[0]) -\
-                    (border_size * 2)
-                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
-                menu.pos_x = border_size
-                menu.pos_y = border_size + ((self.resolution[1]/9)/2)
-
-            elif menu.name in ["STORE_MONS", "STORE_ITEMS"]:
-                border_size = menu.border["left-top"].get_width()
-                menu.size_x = int(self.resolution[0] * menu.size_ratio[0]) -\
-                    (border_size * 2)
-                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
-                menu.pos_x = border_size + (self.resolution[0] / 2)
-                menu.pos_y = border_size + ((self.resolution[1] / 9) / 2)
-
-            else:
-                menu.size_x = int(self.resolution[0] * menu.size_ratio[0])
-                menu.size_y = int(self.resolution[1] * menu.size_ratio[1])
-                menu.pos_x = (self.resolution[0] / 2) - (menu.size_x/2)
-                menu.pos_y = (self.resolution[1] / 2) - (menu.size_y/2)
-
-    def update(self, time_delta):
-        """Update function for state.
-
-        :type surface: pygame.Surface
-        :rtype: None
-        :returns: None
-
-        """
-        pass
-
-    def get_event(self, event):
-        """Processes events that were passed from the main event loop.
-        Must be overridden in children.
-
-        :param event: A pygame key event from pygame.event.get()
-
-        :type event: PyGame Event
-
-        :rtype: None
-        :returns: None
-
-        """
-        if self.multiplayer_join_success_menu.interactable:
-            if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
-                self.game.get_menu_event(self.multiplayer_join_success_menu, event)
-
-        elif self.multiplayer_host_menu.interactable:
-            if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
-                self.game.get_menu_event(self.multiplayer_host_menu, event)
-
-        elif self.multiplayer_join_menu.interactable:
-            self.game.get_menu_event(self.multiplayer_join_menu, event)
-
-        elif self.multiplayer_join_enter_ip_menu.interactable:
-            self.game.get_menu_event(self.multiplayer_join_enter_ip_menu, event)
-
-        elif self.multiplayer_menu.interactable:
-            self.game.get_menu_event(self.multiplayer_menu, event)
-
-        elif self.item_menu.interactable:
-            self.item_menu.get_event(event)
-
-        elif self.monster_menu.interactable:
-            self.monster_menu.get_event(event)
-
-        elif self.store_item_menu.interactable:
-            self.store_item_menu.get_event(event)
-
-        elif self.store_monster_menu.interactable:
-            self.store_monster_menu.get_event(event)
-
-        elif self.pc_menu.interactable:
-            self.game.get_menu_event(self.pc_menu, event)
+        add_menu_items(self, (('multiplayer_host_game', self.host_game),
+                              ('multiplayer_scan_games', self.scan_for_games),
+                              ('multiplayer_join_game', self.join_by_ip)))
 
     def draw(self, surface):
-        """Draws the start screen to the screen.
+        # method used here only for debugging
+        super(MultiplayerMenu, self).draw(surface)
 
-        :param surface: Surface to be drawn onto
-        :type surface: pygame.Surface
+    def process_event(self, event):
+        super(MultiplayerMenu, self).process_event(event)
 
-        :rtype: None
-        :returns: None
+        # Handle text input events.
+        # If a input menu is pushed, it will be for the hostname or ip
+        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
+            self.game.pop_state(self)
 
-        """
-        surface.fill((15, 15, 15))
+    def host_game(self):
 
-        self.pc_menu.draw()
-        if not networking.networking:
-            self.pc_menu.draw_textItem(
-                    ["MONSTERS", "ITEMS", "LOG OFF"])
+        # check if server is already hosting a game
+        if self.game.server.listening:
+            self.game.pop_state(self)
+            open_dialog(self.game, [trans('multiplayer_already_hosting')])
+
+        # not hosting, so start the process
+        elif not self.game.isclient:
+            # Configure this game to host
+            self.game.ishost = True
+            self.game.server.server.listen()
+            self.game.server.listening = True
+
+            # Enable the client, so we can connect to self
+            self.game.client.enable_join_multiplayer = True
+            self.game.client.client.listen()
+            self.game.client.listening = True
+
+            # connect to self
+            while not self.game.client.client.registered:
+                self.game.client.client.autodiscover(autoregister=False)
+                for game in self.game.client.client.discovered_servers:
+                    self.game.client.client.register(game)
+
+            # close this menu
+            self.game.pop_state(self)
+
+            # inform player that hosting is ready
+            open_dialog(self.game, [trans('multiplayer_hosting_ready')])
+
+    def scan_for_games(self):
+        # start the game scanner
+        if not self.game.ishost:
+            self.game.client.enable_join_multiplayer = True
+            self.game.client.listening = True
+            self.game.client.client.listen()
+
+        # open menu to select games
+        self.game.push_state("MultiplayerSelect")
+
+    def join_by_ip(self):
+        self.game.push_state("InputMenu", prompt=trans("multiplayer_join_prompt"))
+
+    def join(self):
+        if self.game.ishost:
+            return
         else:
-            self.pc_menu.draw_textItem(
-                    ["MONSTERS", "ITEMS", "MULTIPLAYER", "LOG OFF"])
+            self.game.client.enable_join_multiplayer = True
+            self.game.client.listening = True
+            self.game.client.client.listen()
 
-        if self.monster_menu.visible:
-            self.monster_menu.draw()
-            self.monster_menu.menu_items = []
-            self.monster_menu.draw_text("Inventory")
-            for monster in self.game.player1.monsters:
-                self.monster_menu.menu_items.append(monster.name)
-            self.monster_menu.draw_textItem(self.monster_menu.menu_items)
 
-        if self.item_menu.visible:
-            self.item_menu.draw()
-            self.item_menu.menu_items = []
-            self.item_menu.draw_text("Inventory")
-            for item in self.game.player1.inventory:
-                self.item_menu.menu_items.append(item)
-            self.item_menu.draw_textItem(self.item_menu.menu_items)
+class MultiplayerSelect(PopUpMenu):
+    """ Menu to show games found by the network game scanner
+    """
+    shrink_to_items = True
 
-        if self.store_monster_menu.visible:
-            self.store_monster_menu.draw()
-            self.store_monster_menu.menu_items = []
-            self.store_monster_menu.draw_text("Storage")
-            for monster in self.game.player1.storage["monsters"]:
-                self.store_monster_menu.menu_items.append(monster.name)
-            self.store_monster_menu.draw_textItem(self.store_monster_menu.menu_items)
+    def startup(self, *items, **kwargs):
+        super(MultiplayerSelect, self).startup(*items, **kwargs)
 
-        if self.store_item_menu.visible:
-            self.store_item_menu.draw()
-            self.store_item_menu.menu_items = []
-            self.store_item_menu.draw_text("Storage")
-            for item in self.game.player1.storage["items"]:
-                self.store_item_menu.menu_items.append(item)
-            self.store_item_menu.draw_textItem(self.store_item_menu.menu_items)
+        # make a timer to refresh the menu items every second
+        self.task(self.reload_items, 1, -1)
 
-        if self.multiplayer_menu.visible:
-            self.multiplayer_menu.draw()
-            self.multiplayer_menu.draw_textItem(
-                ["HOST A GAME", "SCAN FOR GAMES", "JOIN BY IP"])
-
-        if self.multiplayer_join_menu.visible:
-            self.multiplayer_join_menu.draw()
-            self.multiplayer_join_menu.draw_text("SELECT GAME:", justify="center")
-
-            # The server list below join by IP
-            self.multiplayer_join_menu.draw_textItem(self.game.client.server_list, align="middle", paging=True)
-
-            # If no options are selected because there were no items when
-            # the menu was populated, and there are items in the list to
-            # select, set the selected item to the top of the list.
-            if self.multiplayer_join_menu.selected_menu_item <= 2 and \
-            len(self.multiplayer_join_menu.menu_items) > 2:
-                self.multiplayer_join_menu.selected_menu_item = 1
-
-        if self.multiplayer_join_enter_ip_menu.visible:
-            self.multiplayer_join_enter_ip_menu.draw()
-
-        if self.multiplayer_join_success_menu.visible:
-            self.multiplayer_join_success_menu.draw()
-            self.multiplayer_join_success_menu.draw_textItem(self.multiplayer_join_success_menu.text)
-
-        if self.multiplayer_host_menu.visible:
-            self.multiplayer_host_menu.draw()
-
-            text = "Server Started: \\n"
-            text += str(self.game.server.server.server_name)
-
-            self.multiplayer_host_menu.draw_text(text, justify="center")
+    def initialize_items(self):
+        servers = self.game.client.server_list
+        if servers:
+            for server in servers:
+                label = self.shadow_text(server)
+                yield MenuItem(label, None, None, None)
+        else:
+            label = self.shadow_text(trans('multiplayer_no_servers'))
+            item = MenuItem(label, None, None, None)
+            item.enabled = False
+            yield item

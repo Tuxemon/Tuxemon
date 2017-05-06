@@ -27,21 +27,17 @@ from __future__ import absolute_import
 
 import logging
 
+from core import tools
 from core import prepare
+from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-# Import the android mixer if on the android platform
-try:
-    import pygame.mixer as mixer
-except ImportError:
-    import android.mixer as mixer
-
 
 class Sound(object):
 
-    def play_sound(self, game, action):
+    def play_sound(self, game, action, contexts):
         """Plays a sound from "resources/sounds/"
 
         :param game: The main game object that contains all the game's variables.
@@ -68,11 +64,11 @@ class Sound(object):
 
         """
         filename = str(action.parameters[0])
-        sound = mixer.Sound(prepare.BASEDIR + "resources/sounds/" + filename)
+        sound = tools.load_sound("sounds/" + filename)
         sound.play()
 
 
-    def play_music(self, game, action):
+    def play_music(self, game, action, contexts):
         """Plays a music file from "resources/music/"
 
         :param game: The main game object that contains all the game's variables.
@@ -107,7 +103,7 @@ class Sound(object):
         game.current_music["song"] = filename
 
 
-    def pause_music(self, game, action):
+    def pause_music(self, game, action, contexts):
         """Pauses the current music playback
 
         :param game: The main game object that contains all the game's variables.
@@ -139,7 +135,7 @@ class Sound(object):
             logger.warning("Music cannot be paused, none is playing.")
 
 
-    def fadeout_music(self, game, action):
+    def fadeout_music(self, game, action, contexts):
         """Fades out the music over a set amount of time in milliseconds
 
         :param game: The main game object that contains all the game's variables.

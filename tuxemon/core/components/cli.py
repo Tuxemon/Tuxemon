@@ -30,7 +30,6 @@
 #
 
 import cmd
-import types
 import code
 
 class CommandLine(cmd.Cmd):

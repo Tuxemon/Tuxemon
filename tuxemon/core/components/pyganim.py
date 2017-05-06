@@ -28,7 +28,7 @@
 # core.components.pyganim A sprite animation module for Pygame.
 #
 # Pyganim (pyganim.py, ver 1)
-# 
+#
 #
 # By Al Sweigart al@inventwithpython.com
 # http://inventwithpython.com/pyganim
@@ -44,6 +44,7 @@
 
 # TODO: Feature idea: if the same image file is specified, re-use the Surface object.
 # (Make this optional though.)
+from __future__ import division
 
 import pygame, time
 
@@ -365,7 +366,7 @@ class PygAnimation(object):
         return (maxWidth, maxHeight)
 
 
-    def getRect(self):
+    def get_rect(self):
         # Returns a pygame.Rect object for this animation object.
         # The top and left will be set to 0, 0, and the width and height
         # will be set to what is returned by getMaxSize().
@@ -855,7 +856,7 @@ def findStartTime(startTimes, target):
     ub = len(startTimes) - 1 # "ub" is upper bound
 
     # handle special cases:
-    if len(startTimes) == 0:
+    if not startTimes:
         return 0
     if target >= startTimes[-1]:
         return ub - 1

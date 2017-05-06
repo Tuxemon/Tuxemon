@@ -1,9 +1,0 @@
-[Core]
-Name = Main Menu
-Module = main_menu
-
-[Documentation]
-Author = William Edwards
-Version = 1.0
-Website = http://www.tuxemon.org
-Description = Main menu plugin.

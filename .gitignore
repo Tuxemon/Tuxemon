@@ -57,3 +57,10 @@ docs/_build/
 
 # Save games
 tuxemon/saves/
+
+# Windows file
+Thumbs.db
+
+# PyCharm
+*.iml
+.idea/*

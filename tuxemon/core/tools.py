@@ -24,92 +24,23 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Derek Clark <derekjohn.clark@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
+from __future__ import division
+
 import logging
-import os
-import pprint
+import operator
+import os.path
 
-import pygame as pg
+import pygame
 
-# Import the android module and android specific components. If we can't import, set to None - this
-# lets us test it, and check to see if we want android-specific behavior.
-try:
-    import android
-except ImportError:
-    android = None
+from core import prepare
+from core.platform import mixer
+import core.components.sprite
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-
-# Create a pretty printer for debugging
-pp = pprint.PrettyPrinter(indent=4)
-
-
-# Resource loading functions.
-def load_all_gfx(directory, colorkey=(255, 0, 255), accept=(".png", ".jpg", ".bmp")):
-    """Load all graphics with extensions in the accept argument.  If alpha
-    transparency is found in the image the image will be converted using
-    convert_alpha().  If no alpha transparency is detected image will be
-    converted using convert() and colorkey will be set to colorkey."""
-    graphics = {}
-
-    for root, directories, filenames in os.walk(directory):
-        for filename in filenames:
-            name, ext = os.path.splitext(filename)
-            if ext.lower() in accept:
-                img = pg.image.load(os.path.join(root, filename))
-                if img.get_alpha():
-                    img = img.convert_alpha()
-                else:
-                    img = img.convert()
-                    img.set_colorkey(colorkey)
-                graphics[name] = img
-
-    return graphics
-
-
-def load_all_music(directory, accept=(".ogg", ".mdi")):
-    """Create a dictionary of paths to music files in given directory
-    if their extensions are in accept."""
-    songs = {}
-    for root, directories, filenames in os.walk(directory):
-        for filename in filenames:
-            name, ext = os.path.splitext(filename)
-            if ext.lower() in accept:
-                song = os.path.join(root, filename)
-                songs[name] = song
-    return songs
-
-
-def load_all_fonts(directory, accept=(".ttf",)):
-    """Create a dictionary of paths to font files in given directory
-    if their extensions are in accept."""
-    return load_all_music(directory, accept)
-
-
-def load_all_movies(directory, accept=(".mpg",)):
-    """Create a dictionary of paths to movie files in given directory
-    if their extensions are in accept."""
-    return load_all_music(directory, accept)
-
-
-def load_all_sfx(directory, accept=(".ogg", ".mdi")):
-    """Load all sfx of extensions found in accept.  Unfortunately it is
-    common to need to set sfx volume on a one-by-one basis.  This must be done
-    manually if necessary in the setup module."""
-    effects = {}
-    for root, directories, filenames in os.walk(directory):
-        for filename in filenames:
-            name, ext = os.path.splitext(filename)
-            if ext.lower() in accept:
-                effects[name] = pg.mixer.Sound(os.path.join(root, filename))
-
-    return effects
-
-
-def load_all_maps(directory, accept=(".tmx")):
-    pass
 
 
 def strip_from_sheet(sheet, start, size, columns, rows=1):
@@ -119,7 +50,7 @@ def strip_from_sheet(sheet, start, size, columns, rows=1):
     for j in range(rows):
         for i in range(columns):
             location = (start[0] + size[0] * i, start[1] + size[1] * j)
-            frames.append(sheet.subsurface(pg.Rect(location, size)))
+            frames.append(sheet.subsurface(pygame.Rect(location, size)))
     return frames
 
 
@@ -128,7 +59,7 @@ def strip_coords_from_sheet(sheet, coords, size):
     frames = []
     for coord in coords:
         location = (coord[0] * size[0], coord[1] * size[1])
-        frames.append(sheet.subsurface(pg.Rect(location, size)))
+        frames.append(sheet.subsurface(pygame.Rect(location, size)))
     return frames
 
 
@@ -156,34 +87,180 @@ def cursor_from_image(image):
     return icon_string
 
 
-def explore(rootdir):
-    """
-    Creates a nested dictionary that represents the folder structure of rootdir
-    """
-    dir = {}
-    rootdir = rootdir.rstrip(os.sep)
-    start = rootdir.rfind(os.sep) + 1
-    for path, dirs, files in os.walk(rootdir):
-        folders = path[start:].split(os.sep)
-        subdir = dict.fromkeys(files)
-        parent = reduce(dict.get, folders[:-1], dir)
-        parent[folders[-1]] = subdir
+def transform_resource_filename(filename):
+    """ Appends the resource folder name to a filename
 
-    for key, value in dir.items():
-        for k, v in value.items():
-            return v
+    :param filename: String
+    :rtype: basestring
+    """
+    return os.path.join(prepare.BASEDIR, 'resources', filename)
+
+
+def load_and_scale(filename):
+    """ Load an image and scale it according to game settings
+
+    * Filename will be transformed to be loaded from game resource folder
+    * Will be converted if needed.
+    * Scale factor will match game setting.
+
+    :param filename:
+    :rtype: pygame.Surface
+    """
+    return scale_surface(load_image(filename), prepare.SCALE)
+
+
+def smart_convert(image):
+    """ Given an unconverted file, determine if it has transparent pixels
+    and return a converted image, with per-pixel alpha if needed.
+
+    :param image: pygame.Surface
+    :rtype: pygame.Surface
+    """
+    # get number of opaque pixels in the image
+    px = pygame.mask.from_surface(image, 127).count()
+
+    # there are no transparent pixels in the image because
+    # the number of pixels matches the number of opaque pixels
+    if px == operator.mul(*image.get_size()):
+        return image.convert()
+
+    return image.convert_alpha()
+
+
+def load_image(filename):
+    """ Load image from the resources folder
+
+    * Filename will be transformed to be loaded from game resource folder
+    * Will be converted if needed.
+
+    This is a "smart" loader, and will convert files in the best way,
+    but is slightly slower than just loading.  Its important that
+    this is not called too often (like once per draw!)
+
+    :param filename: String
+    :rtype: pygame.Surface
+    """
+    filename = transform_resource_filename(filename)
+    return smart_convert(pygame.image.load(filename))
+
+
+def load_sprite(filename, **rect_kwargs):
+    """ Load an image from disk and return a pygame sprite
+
+    Image name will be transformed and converted
+    Rect attribute will be set
+
+    Any keyword arguments will be passed to the get_rect method
+    of the image for positioning the rect.
+
+    :param filename: Filename to load
+    :rtype: core.components.sprite.Sprite
+    """
+    sprite = core.components.sprite.Sprite()
+    sprite.image = load_and_scale(filename)
+    sprite.rect = sprite.image.get_rect(**rect_kwargs)
+    return sprite
+
+
+def new_scaled_rect(*args, **kwargs):
+    """ Create a new rect and scale it
+
+    :param args: Normal args for a Rect
+    :param kwargs: Normal kwargs for a Rect
+    :rtype: pygame.rect.Rect
+    """
+    rect = pygame.Rect(*args, **kwargs)
+    return scale_rect(rect)
+
+
+def scale_rect(rect, factor=prepare.SCALE):
+    """ Scale a rect.  Returns a new object.
+
+    :param rect: pygame Rect
+    :param factor: int
+    :rtype: pygame.rect.Rect
+    """
+    return pygame.Rect([i * factor for i in list(rect)])
+
+
+def scale_surface(surface, factor):
+    """ Scale a surface.  Just a shortcut.
+
+    :returns: Scaled surface
+    :rtype: pygame.Surface
+    """
+    return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
 
 
 def scale_tile(surface, tile_size):
+    """ Scales a map tile based on resolution.
+
+    :type surface: pygame.Surface
+    :type tile_size: int
+    :rtype: pygame.Surface
     """
-    Scales a map tile based on resolution.
-    """
-    if type(surface) is pg.Surface:
-        surface = pg.transform.scale(surface, tile_size)
+    if type(surface) is pygame.Surface:
+        surface = pygame.transform.scale(surface, tile_size)
     else:
         surface.scale(tile_size)
 
     return surface
+
+
+def scale_sprite(sprite, ratio):
+    """ Scale a sprite's image in place
+
+    :type sprite: pygame.Sprite
+    :param ratio: amount to scale by
+    :rtype: core.components.sprite.Sprite
+    """
+    center = sprite.rect.center
+    sprite.rect.width *= ratio
+    sprite.rect.height *= ratio
+    sprite.rect.center = center
+    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
+    sprite._needs_update = True
+
+
+def scale_sequence(sequence):
+    """ Scale the thing
+
+    :param sequence:
+    :rtype: list
+    """
+    return [i * prepare.SCALE for i in sequence]
+
+
+def scale(number):
+    """ Scale the thing
+
+    :param number: int
+    :rtype: int
+    """
+    return prepare.SCALE * number
+
+
+def convert_alpha_to_colorkey(surface, colorkey=(255, 0, 255)):
+    """ Convert image with perpixel alpha to normal surface with colorkey
+
+    This is a crude hack that only works well with images that do not
+    have alpha blended antialiased edges.  Using this function on such
+    images will result in discoloration of edges.
+
+    :param surface: Some image to change
+    :type surface: pygame.Surface
+    :param colorkey: Colorkey to use for transparency
+    :type colorkey: Sequence or pygame.Color
+
+    :returns: Modified surface
+    :rtype: pygame.Surface
+    """
+    image = pygame.Surface(surface.get_size())
+    image.fill(colorkey)
+    image.set_colorkey(colorkey)
+    image.blit(surface, (0, 0))
+    return image
+
 
 def check_parameters(parameters, required=0, exit=True):
     """
@@ -200,3 +277,55 @@ def check_parameters(parameters, required=0, exit=True):
 
     else:
         return True
+
+
+def load_sound(filename):
+    """ Load a sound from disk
+
+    The required path will be appended to the filename
+
+    :param filename: filename to load
+    :type filename: basestring
+    :rtype: core.platform.mixer.Sound
+    """
+
+    class DummySound(object):
+        def play(self):
+            pass
+
+    filename = transform_resource_filename(filename)
+    # on some platforms, pygame will silently fail loading
+    # a sound if the filename is incorrect so we check here
+    if not os.path.exists(filename):
+        print(filename)
+        raise ValueError
+    try:
+        return mixer.Sound(filename)
+    except MemoryError:  # raised on some systems if there is no mixer
+        return DummySound()
+    except pygame.error:  # raised on some systems is there is no mixer
+        return DummySound()
+
+
+def calc_dialog_rect(screen_rect):
+    """ Return a rect that is the area for a dialog box on the screen
+
+    :param screen_rect:
+    :return:
+    """
+    rect = screen_rect.copy()
+    rect.height *= .25
+    rect.width *= .8
+    rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
+    return rect
+
+
+def open_dialog(game, text, menu=None):
+    """ Open a dialog with the standard window size
+
+    :param game:
+    :param text: list of strings
+    :rtype: State
+    """
+    rect = calc_dialog_rect(game.screen.get_rect())
+    return game.push_state("DialogState", text=text, rect=rect, menu=menu)

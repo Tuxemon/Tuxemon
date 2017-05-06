@@ -34,13 +34,36 @@ import traceback
 
 import pygame
 
+from collections import namedtuple
 from core import prepare
 from core.components import plugin
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("components.event successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
+# Set up action and condition objects
+condition_fields = [
+    "type",
+    "parameters",
+    "x",
+    "y",
+    "width",
+    "height",
+    "operator"]
+action_fields = [
+    "type",
+    "parameters"]
+event_fields = [
+    "id",
+    "x",
+    "y",
+    "conds",
+    "acts"]
+
+Condition = namedtuple("condition", condition_fields)
+Action = namedtuple("action", action_fields)
+EventObject = namedtuple("eventobject", event_fields)
 
 class EventEngine(object):
     """A class for the event engine. The event engine checks to see if a group of conditions have
@@ -81,11 +104,11 @@ class EventEngine(object):
         """
 
         if self.state == "running":
-            for e in game.events:
+            for e in game.inits:
                 should_run = True
 
                 # If any conditions fail, the event should not be run
-                for cond in e['conds']:
+                for cond in e.conds:
                     # Conditions have so-called "operators".  If a condition's operator == "is" then
                     # the condition should be processed as usual.
                     # However, if the condition != "is", the result should be inverted.
@@ -100,7 +123,54 @@ class EventEngine(object):
                         break
 
                 if should_run:
-                    self.execute_action(e['acts'], game)
+                    self.execute_action(e.acts, game)
+            game.inits = list()
+            for e in game.events:
+                should_run = True
+
+                # If any conditions fail, the event should not be run
+                for cond in e.conds:
+                    # Conditions have so-called "operators".  If a condition's operator == "is" then
+                    # the condition should be processed as usual.
+                    # However, if the condition != "is", the result should be inverted.
+                    # The following line implements this.
+                    # I am not satisfied with the clarity of this line, so if anyone can express this better,
+                    # please change it.
+                    if not self.state == "running":
+                        return
+                    check_condition = self.conditions[cond.type]['method']
+                    should_run = (check_condition(game, cond) == (cond.operator == 'is'))
+                    if not should_run:
+                        break
+
+                if should_run:
+                    self.execute_action(e.acts, game)
+            if game.interacts:
+                for event in game.key_events:
+                    if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                        for e in game.interacts:
+                            check_condition = self.conditions['player_facing_tile']['method']
+                            should_run = check_condition(game, e)
+
+                            # If any conditions fail, the event should not be run
+                            if should_run:
+                                for cond in e.conds:
+                                    # Conditions have so-called "operators".  If a condition's operator == "is" then
+                                    # the condition should be processed as usual.
+                                    # However, if the condition != "is", the result should be inverted.
+                                    # The following line implements this.
+                                    # I am not satisfied with the clarity of this line, so if anyone can express this better,
+                                    # please change it.
+                                    if not self.state == "running":
+                                        return
+                                    check_condition = self.conditions[cond.type]['method']
+                                    should_run = (check_condition(game, cond) == (cond.operator == 'is'))
+                                    if not should_run:
+                                        break
+
+                            if should_run:
+                                self.execute_action(e.acts, game)
+                        break
 
         elif self.state == "waiting":
             if self.timer >= self.wait:
@@ -115,15 +185,14 @@ class EventEngine(object):
                 self.state = "running"
                 return
 
-            # Get the keys pressed from the game.
-            events = game.key_events
+    def process_event(self, event):
+        # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
+        if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
+            self.state = "running"
+            self.button = None
+            return None
 
-            # Loop through each event
-            for event in events:
-                # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
-                if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
-                    self.state = "running"
-                    self.button = None
+        return event
 
     def execute_action(self, action_list, game):
         """Executes a particular action in a list of actions.
@@ -145,15 +214,18 @@ class EventEngine(object):
         """
 
         logger.debug("Executing Action")
+        contexts = {}
 
         # Loop through the list of actions and execute them
         for action in action_list:
 
             # Call the method listed and return the modified event data
             try:
-                self.actions[action.type]["method"](game, action)
+                self.actions[action.type]["method"](game, action, contexts)
             except Exception as message:
                 error = 'Error: Action method "%s" not implemented' % str(action.type)
                 logger.error(error)
                 logger.error(message)
                 traceback.print_exc()
+        for key in contexts:
+            contexts[key].execute(game)

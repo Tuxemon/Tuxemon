@@ -5,6 +5,10 @@ import shutil
 import subprocess
 import urllib2
 import os
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
 sys.argv = [sys.argv[0]]
 RAPT_ARCHIVE = "renpy-6.18.3-rapt.zip"
@@ -58,8 +62,6 @@ def modify_rapt():
         os.rename("build/rapt/buildlib/rapt/build.py.fixed", "build/rapt/buildlib/rapt/build.py")
 
 def install_dependencies():
-
-
     if not os.path.exists("tuxemon/neteria"):
         print "WARNING: Neteria module not found. Networking will be disabled."
         print "Copy neteria module to project directory before continuing."
@@ -87,8 +89,16 @@ def install_dependencies():
         tar.close()
 
         os.rename("six-1.9.0/six.py", "tuxemon/six.py")
-    
-    
+
+def set_default_config(file_name):
+    config = configparser.ConfigParser()
+    config.read(file_name)
+    config.set("display", "controller_overlay", "1")
+
+    # Writing our configuration file to 'example.cfg'
+    with open(file_name, 'wb') as configfile:
+        config.write(configfile)
+
 if __name__ == "__main__":
 
     if not os.path.exists("build"):
@@ -114,6 +124,9 @@ if __name__ == "__main__":
     print "Copying icon and splash images..."
     shutil.copyfile("tuxemon/resources/gfx/icon.png", "build/rapt/templates/pygame-icon.png")
     #shutil.copyfile("tuxemon/resources/gfx/presplash.jpg", "build/rapt/templates/pygame-presplash.jpg")
+
+    # Set default config for Android devices.
+    set_default_config("tuxemon/tuxemon.cfg")
 
     print "Executing build..."
     os.chdir("build/rapt")

@@ -35,6 +35,11 @@ except ImportError:
 
 import pygame
 
+# set default animation to 'out_quint'
+from core.components.animation import Animation
+Animation.default_transition = 'out_quint'
+
+
 class Config(object):
     """Handles loading of the configuration file for the primary game and map editor.
 
@@ -51,18 +56,25 @@ class Config(object):
 
         self.fullscreen = self.fullscreen_check()
         self.scaling = self.config.get("display", "scaling")
-        self.fps = int(self.config.get("display", "fps"))
+        self.fps = float(self.config.get("display", "fps"))
         self.collision_map = self.config.get("display", "collision_map")
 
         self.controller_overlay = self.config.get("display", "controller_overlay")
         self.controller_transparency = int(self.config.get("display", "controller_transparency"))
-
 
         self.starting_map = self.config.get("game", "starting_map")
         self.starting_position = [int(self.config.get("game", "starting_position_x")),
                                   int(self.config.get("game", "starting_position_y"))]
         self.cli = int(self.config.get("game", "cli_enabled"))
         self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
+        try:
+            self.locale = self.config.get("game", "locale")
+        except configparser.NoOptionError:
+            self.locale = "en_US"
+        try:
+            self.show_fps = int(self.config.get("display", "show_fps"))
+        except configparser.NoOptionError:
+            self.show_fps = 0
 
         self.player_animation_speed = float(self.config.get("player", "animation_speed"))
 
@@ -70,7 +82,6 @@ class Config(object):
         self.debug_level = str(self.config.get("logging", "debug_level")).lower()
         self.loggers = self.config.get("logging", "loggers")
         self.loggers = self.loggers.replace(" ", "").split(",")
-
 
     def fullscreen_check(self):
         """If the fullscreen option is set in our configuration option, return a

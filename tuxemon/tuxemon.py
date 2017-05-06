@@ -30,9 +30,6 @@
 """Starts the core.main.main() function which, in turn, initializes
 pygame and starts the game, unless headless is specified.
 
-The scene manager was implemented based on Mek's scene manager:
-https://github.com/Mekire/pygame-mutiscene-template-with-movie
-
 To run an individual component (e.g. core/prepare.py):
 
 `python -m core.prepare`
@@ -40,7 +37,6 @@ To run an individual component (e.g. core/prepare.py):
 """
 import sys
 import getopt
-import core.components.log
 
 
 if __name__ == '__main__':

@@ -12,7 +12,7 @@ import os
 from cx_Freeze import setup, Executable
 
 BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "tuxemon")) + os.sep
-print "BASEDIR:", BASEDIR
+print ("BASEDIR:", BASEDIR)
 
 sys.path.insert(0, os.getcwd() + os.sep + "tuxemon")
 os.chdir(os.getcwd() + os.sep + "tuxemon")

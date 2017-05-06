@@ -40,7 +40,46 @@ logger = logging.getLogger(__name__)
 
 class Map(object):
 
-    def screen_transition(self, game, action):
+    def preload_map(self, game, action, contexts):
+        """Preloads a map into memory for quick map switching
+
+        :param game: The main game object that contains all the game's variables.
+        :param action: The action (tuple) retrieved from the database that contains the action's
+            parameters
+
+        :type game: core.control.Control
+        :type action: Tuple
+
+        :rtype: None
+        :returns: None
+
+        Valid Parameters: map_name
+
+        **Examples:**
+
+        >>> action.__dict__
+        {
+            "type": "preload_map",
+            "parameters": [
+                "map1.tmx"
+            ]
+        }
+
+        """
+        if not hasattr(game.current_state, 'state') or game.current_state.state != "WorldState":
+            return
+        world = game.current_state
+
+        # Get the map name to preload
+        mapname = prepare.BASEDIR + "resources/maps/" + str(action.parameters[0])
+
+        if mapname not in world.preloaded_maps.keys():
+            # TODO: We should do this asyncronously?
+            print ("PRELOADING MAP:", mapname)
+            world.preload_map(mapname)
+
+
+    def screen_transition(self, game, action, contexts):
         """Initiates a screen transition
 
         :param game: The main game object that contains all the game's variables.
@@ -67,13 +106,12 @@ class Map(object):
 
         """
 
-        world = game.current_state
-        if not world.start_transition or not world.start_transition_back:
-            world.start_transition = True
-            world.transition_time = float(action.parameters[0])
+        world = game.get_state_name("WorldState")
+        if not world.in_transition:
+            world.fade_and_teleport(float(action.parameters[0]))
 
 
-    def start_cinema_mode(self, game, action):
+    def start_cinema_mode(self, game, action, contexts):
         """Starts cinema mode by animating moving black bars to narrow the aspect ratio.
 
         :param game: The main game object that contains all the game's variables.
@@ -92,7 +130,7 @@ class Map(object):
             world.cinema_state = "turning on"
 
 
-    def stop_cinema_mode(self, game, action):
+    def stop_cinema_mode(self, game, action, contexts):
         """Stops cinema mode by animating moving black bars to back to the normal aspect ratio.
 
         :param game: The main game object that contains all the game's variables.
@@ -112,7 +150,7 @@ class Map(object):
             world.cinema_state = "turning off"
 
 
-    def play_map_animation(self, game, action):
+    def play_map_animation(self, game, action, contexts):
         """Plays a map animation at a given position in the world map.
 
         :param game: The main game object that contains all the game's variables.

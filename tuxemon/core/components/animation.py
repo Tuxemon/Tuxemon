@@ -1,13 +1,15 @@
 import sys
+from collections import defaultdict
 from math import sqrt, cos, sin, pi
-import pygame
 
+import pygame
 
 __all__ = ('Task', 'Animation', 'remove_animations_of')
 
 ANIMATION_NOT_STARTED = 0
 ANIMATION_RUNNING = 1
-ANIMATION_FINISHED = 2
+ANIMATION_DELAYED = 2
+ANIMATION_FINISHED = 3
 
 PY2 = sys.version_info[0] == 2
 string_types = None
@@ -22,7 +24,7 @@ else:
 def is_number(value):
     """Test if an object is a number.
     :param value: some object
-    :return: True
+    :returns: True
     :raises: ValueError
     """
     try:
@@ -33,12 +35,12 @@ def is_number(value):
     return True
 
 
-def remove_animations_of(group, target):
+def remove_animations_of(target, group):
     """Find animations that target objects and remove those animations
 
-    :param group: pygame.sprite.Group
     :param target: any
-    :return: None
+    :param group: pygame.sprite.Group
+    :returns: None
     """
     animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
     to_remove = [ani for ani in animations
@@ -46,8 +48,49 @@ def remove_animations_of(group, target):
     group.remove(*to_remove)
 
 
-class Task(pygame.sprite.Sprite):
-    """Execute functions at a later time and optionally loop it
+class AnimBase(pygame.sprite.Sprite):
+    _valid_schedules = []
+
+    def __init__(self):
+        super(AnimBase, self).__init__()
+        self._callbacks = defaultdict(list)
+
+    def schedule(self, func, when=None):
+        """ Schedule a callback during operation of Task or Animation
+
+        The callback is any callable object.  You can specify different
+        times for the callback to be executed, according to the following:
+
+        * "on update": called each time the Task/Animation is updated
+        * "on finish": called when the Task/Animation completes normally
+        * "on abort": called if the Task/Animation is aborted
+
+        If when is not passed, it will be "on finish":
+
+        :type func: callable
+        :type when: basestring
+        :return:
+        """
+        if when is None:
+            when = self._valid_schedules[0]
+
+        if when not in self._valid_schedules:
+            print('invalid time to schedule a callback')
+            print('valid:', self._valid_schedules)
+            raise ValueError
+        self._callbacks[when].append(func)
+
+    def _execute_callbacks(self, when):
+        try:
+            callbacks = self._callbacks[when]
+        except KeyError:
+            return
+        else:
+            [cb() for cb in callbacks]
+
+
+class Task(AnimBase):
+    """ Execute functions at a later time and optionally loop it
 
     This is a silly little class meant to make it easy to create
     delayed or looping events without any complicated hooks into
@@ -56,6 +99,13 @@ class Task(pygame.sprite.Sprite):
     Tasks are created and must be added to a normal pygame group
     in order to function.  This group must be updated, but not
     drawn.
+
+    Setting the interval to 0 cause the callback to be called
+    on the next update.
+
+    Because the pygame clock returns milliseconds, the examples
+    below use milliseconds.  However, you are free to use what-
+    ever time unit you wish, as long as it is used consistently
 
         task_group = pygame.sprite.Group()
 
@@ -71,45 +121,65 @@ class Task(pygame.sprite.Sprite):
         # do something every 2.5 seconds forever
         task = Task(call_later, 2500, -1)
 
-        # pass arguments
-        task = Task(call_later, 1000, args=(1,2,3), kwargs={key: value})
+        # pass arguments using functools.partial
+        from functools import partial
+        task = Task(partial(call_later(1,2,3, key=value)), 1000)
 
-        # chain tasks
+        # a task must have at lease on callback, but others can be added
+        task = Task(call_later, 2500, -1)
+        task.schedule(some_thing_else)
+
+        # chain tasks: when one task finishes, start another one
         task = Task(call_later, 2500)
         task.chain(Task(something_else))
 
         When chaining tasks, do not add the chained tasks to a group.
     """
+    _valid_schedules = ('on interval', 'on finish', 'on abort')
 
-    def __init__(self, callback, interval=0, loops=1, args=None, kwargs=None):
+    def __init__(self, callback, interval=0, times=1):
         if not callable(callback):
             raise ValueError
 
-        if loops < 1:
+        if times == 0:
             raise ValueError
 
         super(Task, self).__init__()
-        self.interval = interval
-        self.loops = loops
-        self.callback = callback
-        self._timer = 0
-        self._args = args if args else list()
-        self._kwargs = kwargs if kwargs else dict()
-        self._loops = loops
+        self._interval = interval
+        self._loops = times
+        self._duration = 0
         self._chain = list()
         self._state = ANIMATION_RUNNING
+        self.schedule(callback)
 
-    def chain(self, *others):
-        """Schedule Task(s) to execute when this one is finished
+    def chain(self, callback, interval=0, times=1):
+        """ Schedule a callback to execute when this one is finished
 
-        If you attempt to chain a task that will never end (loops=-1),
-        then ValueError will be raised.
+        If you attempt to chain a task to a task that will will
+        never end, RuntimeError will be raised.
+
+        This is convenience to make a new Task and set to it to
+        be added to the "on_finish" list.
+
+        :param interval: Time between callbacks
+        :param callback: Function to execute each interval
+        :param times: Number of intervals
+        :returns: Task
+        """
+        task = Task(callback, interval, times)
+        self.chain_task(task)
+
+    def chain_task(self, *others):
+        """ Schedule Task(s) to execute when this one is finished
+
+        If you attempt to chain a task to a task that will will
+        never end, RuntimeError will be raised.
 
         :param others: Task instances
-        :return: None
+        :returns: Tasks
         """
         if self._loops <= -1:
-            raise ValueError
+            raise RuntimeError
         for task in others:
             if not isinstance(task, Task):
                 raise TypeError
@@ -117,7 +187,7 @@ class Task(pygame.sprite.Sprite):
         return others
 
     def update(self, dt):
-        """Update the Task
+        """ Update the Task
 
         The unit of time passed must match the one used in the
         constructor.
@@ -131,20 +201,35 @@ class Task(pygame.sprite.Sprite):
         if self._state is not ANIMATION_RUNNING:
             raise RuntimeError
 
-        self._timer += dt
-        if self._timer >= self.interval:
-            self._timer -= self.interval
-            self.callback(*self._args, **self._kwargs)
-            if not self._loops == -1:
+        self._duration += dt
+        if self._duration >= self._interval:
+            self._duration -= self._interval
+            if self._loops >= 0:
                 self._loops -= 1
-                if self._loops <= 0:
-                    self._execute_chain()
-                    self.abort()
+                if self._loops == 0: # loops counter is zero, finish now
+                    self.finish()
+                else:                # not finished, but still are iterations left
+                    self._execute_callbacks("on interval")
+            else:                    # loops == -1, run forever
+                self._execute_callbacks("on interval")
+
+    def finish(self):
+        """ Force task to finish, while executing callbacks
+        """
+        if self._state is ANIMATION_RUNNING:
+            self._state = ANIMATION_FINISHED
+            self._execute_callbacks("on interval")
+            self._execute_callbacks("on finish")
+            self._execute_chain()
+            self._cleanup()
 
     def abort(self):
-        """Force task to finish, without executing callbacks
+        """ Force task to finish, without executing callbacks
         """
         self._state = ANIMATION_FINISHED
+        self._cleanup()
+
+    def _cleanup(self):
         self._chain = None
         self.kill()
 
@@ -163,6 +248,10 @@ class Animation(pygame.sprite.Sprite):
     target as the only parameter.
         ani = Animation(x=100, y=100, duration=1000)
         ani.start(sprite)
+
+    The shorthand method of starting animations is to pass the
+    targets as positional arguments in the constructor.
+        ani = Animation(sprite.rect, x=100, y=0)
 
     If you would rather specify relative values, then pass the
     relative keyword and the values will be adjusted for you:
@@ -210,38 +299,42 @@ class Animation(pygame.sprite.Sprite):
     Pygame Rects
     ============
 
-    If you are using pygame rects are a target, you should pass
-    'round_values=True' to the constructor to avoid jitter caused
-    by integer truncation.
+    The 'round_values' paramenter will be set to True automatically
+    if pygame rects are used as an animation target.
     """
     default_duration = 1000.
     default_transition = 'linear'
 
-    def __init__(self, **kwargs):
+    def __init__(self, *targets, **kwargs):
         super(Animation, self).__init__()
         self.targets = list()
+        self._targets = list()      #  used when there is a delay
         self.delay = kwargs.get('delay', 0)
         self._state = ANIMATION_NOT_STARTED
         self._round_values = kwargs.get('round_values', False)
         self._duration = float(kwargs.get('duration', self.default_duration))
         self._transition = kwargs.get('transition', self.default_transition)
         self._initial = kwargs.get('initial', None)
+        self._relative = kwargs.get('relative', False)
         if isinstance(self._transition, string_types):
             self._transition = getattr(AnimationTransition, self._transition)
         self._elapsed = 0.
         for key in ('duration', 'transition', 'round_values', 'delay',
-                    'initial'):
+                    'initial', 'relative'):
             kwargs.pop(key, None)
         if not kwargs:
             raise ValueError
         self.props = kwargs
 
+        if targets:
+            self.start(*targets)
+
     def _get_value(self, target, name):
-        """Get value of name, even if it is callable
+        """Get value of an attribute, even if it is callable
 
         :param target: object than contains attribute
         :param name: name of attribute to get value from
-        :return: Any
+        :returns: Any
         """
         if self._initial is None:
             value = getattr(target, name)
@@ -269,7 +362,7 @@ class Animation(pygame.sprite.Sprite):
         :param target: object to be modified
         :param name: name of attribute to be modified
         :param value: value
-        :return: None
+        :returns: None
         """
         if self._round_values:
             value = int(round(value, 0))
@@ -296,7 +389,8 @@ class Animation(pygame.sprite.Sprite):
         :raises: RuntimeError
         """
         if self._state is ANIMATION_FINISHED:
-            raise RuntimeError
+            return
+            # raise RuntimeError
 
         if self._state is not ANIMATION_RUNNING:
             return
@@ -305,6 +399,7 @@ class Animation(pygame.sprite.Sprite):
         if self.delay > 0:
             if self._elapsed > self.delay:
                 self._elapsed -= self.delay
+                self._gather_initial_values()
                 self.delay = 0
             return
 
@@ -332,11 +427,11 @@ class Animation(pygame.sprite.Sprite):
 
         Will raise RuntimeError if animation has not been started
 
-        :return: None
+        :returns: None
         :raises: RuntimeError
         """
-        if self._state is not ANIMATION_RUNNING:
-            raise RuntimeError
+        # if self._state is not ANIMATION_RUNNING:
+        #     raise RuntimeError
 
         if self.targets is not None:
             for target, props in self.targets:
@@ -359,11 +454,11 @@ class Animation(pygame.sprite.Sprite):
 
         Will raise RuntimeError if animation has not been started
 
-        :return: None
+        :returns: None
         :raises: RuntimeError
         """
-        if self._state is not ANIMATION_RUNNING:
-            raise RuntimeError
+        # if self._state is not ANIMATION_RUNNING:
+        #     raise RuntimeError
 
         self._state = ANIMATION_FINISHED
         self.targets = None
@@ -371,31 +466,41 @@ class Animation(pygame.sprite.Sprite):
         if hasattr(self, 'callback'):
             self.callback()
 
-    def start(self, target, **kwargs):
+    def start(self, *targets, **kwargs):
         """Start the animation on a target sprite/object
 
         Targets must have the attributes that were set when
         this animation was created.
 
-        :param target: Any valid python object
+        :param targets: Any valid python object
         :raises: RuntimeError
         """
-        # TODO: multiple targets
         # TODO: weakref the targets
         if self._state is not ANIMATION_NOT_STARTED:
             raise RuntimeError
 
         self._state = ANIMATION_RUNNING
-        self.targets = [(target, dict())]
-        for target, props in self.targets:
-            relative = kwargs.get('relative', False)
+        self._targets = targets
+
+        if self.delay == 0:
+            self._gather_initial_values()
+
+    def _gather_initial_values(self):
+        self.targets = list()
+        for target in self._targets:
+            props = dict()
+            if isinstance(target, pygame.Rect):
+                self._round_values = True
             for name, value in self.props.items():
                 initial = self._get_value(target, name)
                 is_number(initial)
                 is_number(value)
-                if relative:
+                if self._relative:
                     value += initial
                 props[name] = initial, value
+            self.targets.append((target, props))
+
+        self.update(0)
 
 
 class AnimationTransition(object):
@@ -405,6 +510,7 @@ class AnimationTransition(object):
 
     The `progress` parameter in each animation function is in the range 0-1.
     """
+
     @staticmethod
     def linear(progress):
         return progress

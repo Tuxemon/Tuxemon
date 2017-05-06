@@ -24,94 +24,60 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Derek Clark <derekjohn.clark@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 # core.components.ai Artificial intelligence module.
 #
 #
-
 import logging
-import pprint
+from random import choice
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("core.ai successfully imported")
+logger.debug("%s successfully imported" % __name__)
 
 
 # Class definition for an AI model.
+# TODO: use ABC meta.  impl. depends on six/future decision
+# TODO: allow AI to target self or own team
 class AI(object):
-    """A class for an AI model object. This object can be used to make combat decisions during 
-    battle.
-    
+    """ Base class for an AI model object.
     """
-    def __init__(self):
-        self.name = "Idiot"			# This is the player's name to be used in dialog
-        
 
-    def make_decision(self, npc, opponent):
-        """Examples:
+    def make_decision(self, npc, opponents):
+        """ Given a npc, and list of opponents, decide an action to take
 
-        >>> npc
-        {'action': None,
-         'monster': <core.monster.Monster instance at 0x7f9d80733680>,
-         'monster_last_hp': 50,
-         'monster_sprite': {'position': (960, 0), 'surface': <Surface(320x320x32 SW)>},
-         'player': <core.player.Npc instance at 0x7f9d807338c0>}
-        >>> opponent
-        {'action': None,
-         'monster': <core.monster.Monster instance at 0x7f9d80733a70>,
-         'monster_last_hp': 30,
-         'monster_level_text': {'font': <pygame.font.Font object at 0x7f9d8094b290>,
-                                'position': (1210, 385),
-                                'surface': <Surface(35x36x32 SW)>},
-         'monster_sprite': {'position': (0, 280), 'surface': <Surface(320x320x32 SW)>},
-         'player': <core.player.Player instance at 0x7f9d80977c20>}
-
-
+        :param npc: The monster whose decision is being decided
+        :param opponents: List of possible targets
+        :return: Technique, Target
         """
-        logger.info("Making descision")
-
-        #pprint.pprint(npc['monster'].__dict__)
-        #pprint.pprint(opponent)
-
-        return {'technique': 0}
+        raise NotImplementedError
 
 
-
-class PseudoAI(object):
-    """A class to provide networking input to an opponents Npc object. This object can be used to push combat decisions during 
-    battle from one client to another.
-    
+class SimpleAI(AI):
+    """ Very simple AI.  Always uses first technique against first opponent.
     """
-    def __init__(self, npc):
-        self.name = npc.name            # This is the player's name to be used in dialog
 
-    def make_decision(self, npc, opponent):
-        """Examples:
+    def make_decision(self, npc, opponents):
+        """ Given a npc, and list of opponents, decide an action to take
 
-        >>> npc
-        {'action': None,
-         'monster': <core.monster.Monster instance at 0x7f9d80733680>,
-         'monster_last_hp': 50,
-         'monster_sprite': {'position': (960, 0), 'surface': <Surface(320x320x32 SW)>},
-         'player': <core.player.Npc instance at 0x7f9d807338c0>}
-        >>> opponent
-        {'action': None,
-         'monster': <core.monster.Monster instance at 0x7f9d80733a70>,
-         'monster_last_hp': 30,
-         'monster_level_text': {'font': <pygame.font.Font object at 0x7f9d8094b290>,
-                                'position': (1210, 385),
-                                'surface': <Surface(35x36x32 SW)>},
-         'monster_sprite': {'position': (0, 280), 'surface': <Surface(320x320x32 SW)>},
-         'player': <core.player.Player instance at 0x7f9d80977c20>}
-
-
+        :param npc: The monster whose decision is being decided
+        :param opponents: List of possible targets
+        :return: Technique, Target
         """
+        return npc.moves[0], opponents[0]
 
 
-        logger.info("Opponent has made a move.")
+class RandomAI(AI):
+    """ AI will use random technique against random opponent
+    """
 
-        #pprint.pprint(npc['monster'].__dict__)
-        #pprint.pprint(opponent)
+    def make_decision(self, npc, opponents):
+        """ Given a npc, and list of opponents, decide an action to take
 
-        return {'technique': 0}
-
+        :param npc: The monster whose decision is being decided
+        :param opponents: List of possible targets
+        :return: Technique, Target
+        """
+        # TODO: healing and whatnot
+        return choice(npc.moves), choice(opponents)

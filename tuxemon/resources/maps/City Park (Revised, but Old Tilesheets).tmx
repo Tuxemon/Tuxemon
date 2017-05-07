@@ -37,7 +37,7 @@
   <image source="../Old Tiled/Other tilesheets/KelvinShadewing_Buildings.png" width="320" height="400"/>
  </tileset>
  <tileset firstgid="3840" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="gfx/boxfont.png" width="208" height="192"/>
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="csv">

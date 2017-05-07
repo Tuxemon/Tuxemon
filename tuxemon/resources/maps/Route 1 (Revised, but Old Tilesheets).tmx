@@ -53,7 +53,7 @@
   <image source="../Old Tiled/Other tilesheets/city tiles.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="2081" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="gfx/boxfont.png" width="208" height="192"/>
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">

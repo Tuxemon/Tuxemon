@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="118">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../Old Tiled/Other tilesheets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../Old Tiled/Other tilesheets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../Old Tiled/Other tilesheets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../Old Tiled/gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../Old Tiled/gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../Old Tiled/Other tilesheets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1979" name="Tiles_packed" tilewidth="16" tileheight="16" tilecount="184" columns="23">
+  <image source="../Old Tiled/Other tilesheets/Tiles_packed.png" width="368" height="128"/>
+ </tileset>
+ <tileset firstgid="2163" name="city tiles" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../Old Tiled/Other tilesheets/city tiles.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="2179" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="3619" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="3729" name="boxfont" tilewidth="16" tileheight="16" tilecount="78" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl0sOwiAQQHFRegU9lHRVu1DbhdVeV0+hHsIoTUoyGobyKxDD4mWa8MnrAEPLCkIqDssxR89xpObsAA1oi+03uvWcLeAEHGP6ydwE3dQnpt8RcRM5FOudol8LSNFvz7lMwHF3SsjDM0+Kex4QP2z/vflcpPTLqsT9sBx2SP/QfmewjpBBw+/Fn9elOxuFn2mEfp2H+XzHcT+Ic/0PfkxzXltC+VUOYH7wjolBo/DD6npI4PrBO6eNjMxvjFeK18tQVMBR5nej33GunRmM1z2vMf106oDMzxXb+ierJ0v4ubxX9gvjp6rlKfgtVW9T9+sKd7+5e+N3Xp3c2OSvV+TPBBM/2zs4ZT+xL5b00z2/2J4aEvHT+X6WUSfgp5snm9rm4gxjTFT/QtnPj98HynIqag==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzNmGdPFEEYx/eOWw6DMVHxlZUiogIClhhbfGGhKGL0qBILoMbEQlWIXfSFsX0Ju+h7P4QV0A9iB8TfxJ0wd8zc3u6txH/yy9zu7Mw8999nn5s9y7Ks+VHLyon6b4VCEIYMiIANmSC6s2AWlNBRCvXQEDEfqxpjkvHM9NtVzLUaikUcUAproAzKocKaikMq2bGMNV3vZHuAOQ9CTKwDDdAITdAMLZbeH5NkrBvt9L0TugiX4DJcgatwDa7DDRjU+JVM6ncJIv8ewiN4DE/gKTyD5/AChnz6p/PCj97AW3gH7+EDfIRhGIFRy59/Oi/86Dv8gJ/wC8ZgHCbgN0xa/vwTStc7oWUUmFzIg3wogOVQCCugKOTNP1XpeidUxfrVUAN7YC/Uwj6og/0hb/5JBZF/a1mzi/W7oQd6oQ/OwwXohwGP/gWdf0FLfpcjdjD5l4qkJ5V26tcKzZR3bvc3Qp8dib82qPqXTInPhTw2teo1M5F/0gvpjzw2tZFI8PUvmdz8MrUizu32v88/N79MbckM5Z9f1f/H9U/3WxNlg54Fs+AFZIfj++fyGzAP5kMOLAh5G+9F8h4XOzFumMNenPnKoQJGYF3473nZv4l4NsMW2ArbQvH9ycanokNK3Zb+xRQPm5ivGVrgN7SG4/OyjXjaoQOOwwnHv9eZ5vFSWdn4mp08vlYlvkT/hK4z3w0YhBW8iN0Kx+flHeK5C/fgPjxIuL+68VJlxFbuIT7Vv+dOvgzBS3gFTfYUyfpVfSHer/AtFD9ep9uaWmHyb9jJl1H4BJ8T8tqtfyHHi2AxLIGlPp8Lk38TTr5MOi/YoYz4cW79Ozi/E3bBbqiE2T72ySb/CjP+5ksRrIRVCeu79Z8mnjNwFs5BJ6z3EF84Oj0+1b+Yy36s3vZPQwp7PSmdf4nng9Zhn/Gpvx//Mj4vcqt/Jh23p1BrfIsd36e7ps1DLrQb8u+Cz3tgundB3A/Vv07DfMt4DnMhD/KhIDw9Pl1tDCI+1T9dfKJ+VbFWNdTAHtiriU9XGzsM912Hae/s5p+oX12s2Q090At9mvjcaqNOtc4cYi7T3lnK5J+QWw57qR06tdrT96FlnKtT5jX5l0oOpRufkOrXSWW+Ruez8K9fs04qOXSTscdoB3xwSuGos776v8J257Osf42aGL3K6/ujTuL/liIllpjhOj/y+v6Yiv4AQCgckQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl8lPE1Ecx1+XSReSJrhc9EJIPGApQSmJQcuBxoMXAxYsWFCMGzFR9A8gIS6cWDwhcCeg8X9wO5IYhfg/uPSEB8V48NP0TZhp2pnpzNQZTL/JJ7O89r3PvJn59VUI/2Uk7LWBcTp97tecP2cxmr97cB+m4QE81LRFgkJEIQZxaAm65/RL2d83mr9leA4rsAprmrZufE7BaeiBtIt+2hjN32t4A2/hHbyHrWi5bQyfK1CAcZhwwe+Hoj/eVap/Ts0X+Arf4DsUS33gl04I8Qifx/AEnsJcg+bPb+/Hnpyz33LbrC/O8r/M3zrP/4ZkE17AS/lOtAaEOASH4QgcDZTPa2vkK5s10ur8faDvj5JPsA07crw+fM7COchAv/TT1sjPDayRpfyk72HYk+ThjxzvBj434RbchjvSrxE1slbaQkLM0H97qMws+yfY9lIL5/FZgEVYgmeB8vl/VSObsZZczGsD75OMUNMskIp445c1GfcY9/A4nPep3wBu2Tr9wtRwxaXfwUq/QFyIIITi+vP1+KVw64LJGuvFM4r5NXQr1f068DoJSQd+lxk3D6M1/Epjq9dglkq/IbwuQc6Bn5Wo12AWs+dPjR/ej56Evk177Ae/TIVfxgd+BcYdh6s1xr8m2yc88nMzF0z+fzbT+Bz0e3BR0W/dTDHkXl9mftr2KZvXMmjhe3b71uauoue6jT7V9YLdrd+iri+srjOcxM47q64vjNYZfwF7S1Ti
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl1EKwjAQRLdlexw9jr2ZHkJrj6fWH+cnIMpiy6YxbOfBEDaUZvMCoRUpj6pIp3ZtzZXqa4fs1a7/RerjgPRq1+97Kcnnmqkvq66ZGvyRZUTyF2kvuVjihP580J9NcvNrJHHhGfugPx9b8ndsRU5t3nduyd8a0J8P+vMRwd+tEbkjD2RCns33M2fcexdkQK7ImOkerMUfv50JiUvpf+W566XxBd7REQw=
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKgEAMBMDAxbepvzn9f2FqvUoERWZgCemWdIkAAP4oM2LK636ejLkPAAB8z9wilsra3m4y1qvXVtkf7Oc3gfsOahwCpA==
+  </data>
+ </layer>
+ <layer name="Numbers" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1skNwCAMRFEqSO9IKKIUtlAbDXABKfZh/qvAnvHBIQCw9j3eE2iZm7ybQAevwI4AAAB/GfxSpjJ5u6t0IK9zA0cSecmL3MCVYpzbAiLjCAs=
+  </data>
+ </layer>
+</map>

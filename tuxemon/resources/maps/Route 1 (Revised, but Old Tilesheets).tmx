@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="118">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../Old Tiled/Other tilesheets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../Old Tiled/Other tilesheets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../Old Tiled/Other tilesheets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="0" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="1521" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="0" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1521" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../Old Tiled/Other tilesheets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1881" name="Tiles_packed" tilewidth="16" tileheight="16" tilecount="184" columns="23">
+  <image source="../Old Tiled/Other tilesheets/Tiles_packed.png" width="368" height="128"/>
+ </tileset>
+ <tileset firstgid="2065" name="city tiles" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../Old Tiled/Other tilesheets/city tiles.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="2081" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzzY2Vg8Bvi2JWKZrkPAv+M4qGFYenPHYnvRqZZo+lvFJOKSS3/8KkfTX+jeKRi/0HghlE8ikcSBgCx2AMg
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzTZWFg0ANiXQI0tQAhe9DpMCAOJ4ImBrixIrA7K3Y5Yu2D0cT6g1gQygLB2IAF68CGHyH3gcBgDj8QGCzhh5wWkfFAhp8nK8J9GazY1QyW8MMFBnP68xhE+Xcwpj9iwECHHyEwGn6UgdHwowzQKvzIpdHrEVqFH7n0YA8/eqU/aoRfBhn1BwAhfZSX
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlkEOgCAMBDm0v/EboPEVfsZ/exATQkQWWAkHJml6Kel2laoxGIeChWREjFHJZ6fvsXrd1udF7gixWt7vySi75iOlrwV0Dpa+Uv9QH0f3z0X3I/U+sv2r4ctDVB9KzRwMfWz/tuD5tugrpXX/hTuQ2Y+1/9C6VD1rHpa+6d/0r8Y/Fj2+Hz2p/Z9A8ymcfvH5Ufjbv9Z+FycyOC4=
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9ABBrITxqPuGrvuGEhjsYTjqvuEHiA2vgcrjo+4bdd9Auo+FhYGBlYV0ehSMgqEMABT5KJI=
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+ </layer>
+ <layer name="Numbers" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAceHJQwZBRMApGwSgYBaNgFIyCUTAK6AQUR9uvFAEPCsIPADs8AMs=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision" visible="0">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object id="1" type="collision" x="0" y="-128" width="160" height="400"/>
+  <object id="2" type="collision" x="160" y="192" width="224" height="96"/>
+  <object id="3" type="collision" x="272" y="288" width="128" height="16"/>
+  <object id="4" type="collision" x="160" y="288" width="112" height="336"/>
+  <object id="12" type="collision" x="544" y="304" width="96" height="320"/>
+  <object id="14" type="collision" x="448" y="-96" width="192" height="400"/>
+  <object id="22" type="collision" x="320" y="-48" width="32" height="144"/>
+  <object id="37" type="collision" x="288" y="320" width="80" height="32"/>
+  <object id="47" type="collision" x="464" y="320" width="32" height="16"/>
+  <object id="53" type="collision" x="432" y="288" width="16" height="32"/>
+  <object id="54" type="collision" x="160" y="80" width="128" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="55" type="collision" x="352" y="80" width="96" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="56" type="collision" x="352" y="16" width="96" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="57" type="collision" x="208" y="16" width="112" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="58" type="collision" x="160" y="16" width="32" height="16">
+   <properties>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="113" type="collision" x="384" y="208" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events" visible="0">
+  <object id="70" name="Random Battle 1" type="event" x="320" y="96" width="128" height="80">
+   <properties>
+    <property name="act1" value="random_encounter 1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="71" name="Random Battle 2" type="event" x="160" y="96" width="96" height="80">
+   <properties>
+    <property name="act1" value="random_encounter 1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="72" name="Random Battle 3" type="event" x="208" y="32" width="112" height="48">
+   <properties>
+    <property name="act1" value="random_encounter 1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="73" name="Random Battle 4" type="event" x="160" y="-32" width="144" height="48">
+   <properties>
+    <property name="act1" value="random_encounter 1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="112" name="Startup Town Sign" type="event" x="432" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Startup Town - Colors of your journey await!"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="115" name="Route 0 Sign" type="event" x="384" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Route 0"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

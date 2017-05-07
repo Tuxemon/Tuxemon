@@ -126,6 +126,8 @@
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is variable_set karrianna_battle_won:started"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="not variable_set karrianna_battle_won:yes"/>
+    <property name="cond6" value="not variable_set karrianna_battle_won:notyet"/>
    </properties>
   </object>
   <object id="49" name="Karrianna's end" type="event" x="288" y="608" width="16" height="16">

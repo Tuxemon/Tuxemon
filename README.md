@@ -50,10 +50,10 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew tap Homebrew/python
 brew update
 brew install python
-brew install sdl sdl_image sdl_ttf portmidi hg git
+brew install sdl sdl_image sdl_ttf portmidi git
 brew install sdl_mixer --with-libvorbis
+sudo pip install git+https://github.com/pygame/pygame.git
 sudo pip install -U -r requirements.txt 
-sudo pip install hg+http://bitbucket.org/pygame/pygame
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon
 ulimit -n 10000; python tuxemon.py

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="51">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="53">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -19,12 +19,12 @@
  </layer>
  <layer name="Tile Layer 2" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztmcFKAzEQhtO6YXP1PXrw7Gvo0VsvvoM+Qu8eK+i5YEH0EZR6KL3poS/RPoAJ21AqpJlsZ5OZdT4YhkAp+dnMP5NdpQShW2516R3k5aY6XL/USs1rvEydb7vHnxovp3A+7EZTCHe2B0apocHLKVxm1ovJg27iM8Efxoz1Tnd63xL0TpjpfTzR61+Z6T2VdWa9le1N2saoOv67UbUPTOoz3P/rgrk+DMd7y3N9wVRvW3L33zZg6uXQfzH1cui/mHq59V/PR0vd0n9p4fv133xl7wnXiXcFBxV/vrN7vzfhDGEJOONU/PnJano24RxjpZuIQcWfF1bTlwlnLKj488Zq2ppwxqJ0/frn5+s0tI4B7U+l69c/P1+noXWMmW4iRqn6jflxqj9DZ69S9Rvz41R/huotNV/F/DjVn6F6qc9XUCC16yjtz7kp7c+5oTJf5YLKfJULuf/2G/HnfiP+3G/En/uN+z4YeufJLUPg8H1QEP4rvz3kkx4=
+   eJztmbFKBDEQhuOZsGl9j1OsfQ3lbOxsfAd9BHtLBa0FD0Qf4UQLsdPCl9AHMGENcsJcJnuzyUzIB8MQWJb8bOafZKNUozEuJ6b0DPJypJfHd51S844uc+fdzfGjo8spbE3G0QTh1/aGVWpi6XIKe5n1UnJh+nhK8IdjwXovf/U+JOg9F6b3ak2vvxemd10+M+vVrjcZF1O9+rmp/gtKuk3a943B3CyH53Hgut4VqncoufvvECj1Sui/lHol9F9KvdL6b2AxUHfrv7wI/fp/3nfnhIPEs4KHiz+furmfWThjeEWscS7+fO003Vg4x3gzfcTg4s/PTtOLhTMVXPz5y2n6tnCmonT9hu8X6hQax8D2p9L1G75fqFNoHOPW9BGjVP3G/DjVn7F7r1L1G/PjVH/G6i21v4r5cao/Y/Vy319hwdSup7Q/56a0P+eGy/4qF1z2V7lo59+6af5cN82f66b5c934+0Hon6e0jEHC/WBge4WmHeJ7Yg7MnKZDDedG/fwA6KqWVQ==
   </data>
  </layer>
  <layer name="Above Player" width="60" height="46">
@@ -63,6 +63,8 @@
   <object id="42" type="collision" x="352" y="128" width="64" height="32"/>
   <object id="43" type="collision" x="576" y="96" width="32" height="32"/>
   <object id="44" type="collision" x="512" y="96" width="16" height="32"/>
+  <object id="51" x="816" y="464" width="16" height="16"/>
+  <object id="52" type="collision" x="816" y="480" width="16" height="192"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="272" width="16" height="16">
@@ -115,6 +117,7 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="not variable_set karrianna_battle_won:started"/>
+    <property name="cond4" value="not battle_started"/>
    </properties>
   </object>
   <object id="48" name="start battle" type="event" x="288" y="608" width="32" height="16">

@@ -673,6 +673,11 @@ class Control(StateManager):
         return map_name
 
     def get_state_name(self, name):
+        """ Query the state stack for a state by the name supplied
+        
+        :str name: str
+        :rtype: State, None
+        """
         for state in self.active_states:
             if state.__class__.__name__ == name:
                 return state

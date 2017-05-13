@@ -59,6 +59,7 @@
     <property name="cond1" value="is player_at 4,3"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is combat_started"/>
    </properties>
   </object>
   <object id="16" name="Lord Lampy" type="interact" x="32" y="32" width="16" height="16">

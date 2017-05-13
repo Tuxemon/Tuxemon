@@ -56,7 +56,4 @@ class Combat(object):
          'y': 11}
 
         """
-        if game.current_state.name == "CombatState":
-            return True
-        else:
-            return False
+        return game.current_state.name == "CombatState"

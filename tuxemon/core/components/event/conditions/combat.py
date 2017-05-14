@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -26,6 +25,9 @@
 
 
 class Combat(object):
+    """ Actions related to the combat state
+    
+    """
 
     def combat_started(self, game, condition):
         """Checks to see if combat has been started or not.
@@ -54,14 +56,4 @@ class Combat(object):
          'y': 11}
 
         """
-        world = game.current_state
-        if (game.state_name == "CombatState"
-            or world.battle_transition_in_progress
-            or world.start_battle_transition
-            or world.next == "CombatState"):
-            return True
-        else:
-            return False
-
-
-
+        return game.current_state.name == "CombatState"

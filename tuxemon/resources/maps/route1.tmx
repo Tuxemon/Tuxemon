@@ -19,17 +19,17 @@
  </layer>
  <layer name="Tile Layer 2" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztmbFKBDEQhuOZsGl9j1OsfQ3lbOxsfAd9BHtLBa0FD0Qf4UQLsdPCl9AHMGENcsJcJnuzyUzIB8MQWJb8bOafZKNUozEuJ6b0DPJypJfHd51S844uc+fdzfGjo8spbE3G0QTh1/aGVWpi6XIKe5n1UnJh+nhK8IdjwXovf/U+JOg9F6b3ak2vvxemd10+M+vVrjcZF1O9+rmp/gtKuk3a943B3CyH53Hgut4VqncoufvvECj1Sui/lHol9F9KvdL6b2AxUHfrv7wI/fp/3nfnhIPEs4KHiz+furmfWThjeEWscS7+fO003Vg4x3gzfcTg4s/PTtOLhTMVXPz5y2n6tnCmonT9hu8X6hQax8D2p9L1G75fqFNoHOPW9BGjVP3G/DjVn7F7r1L1G/PjVH/G6i21v4r5cao/Y/Vy319hwdSup7Q/56a0P+eGy/4qF1z2V7lo59+6af5cN82f66b5c934+0Hon6e0jEHC/WBge4WmHeJ7Yg7MnKZDDedG/fwA6KqWVQ==
+   eJztmcFKAzEQhmObsLn6HlU8+xpKvXjz4jvoI3j3qKBnwYLoI1TaQ/GmB19CH8As6yAV0ky2s8lMyAfDEFiW/Gzmn2SjVKUyLOcm9wzScqrXx4+NUrOGLnPn3c3xo6HLMeyOhtHko13bO1apkaXLMRwm1kvJteniNcIfzgTrvfnV+xyh90qY3tstvf5JmN5t+UysV7veZFxM9ObnJvovKGnGtO8bgplZj5aXnuv6QKjevqTuv32g1Cuh/1LqldB/KfVK67/AvKfu2n95Af36fz5y54TjyLNCCxd/vnBzv7T+jGGFWONc/PnOabq3/hzizXQRgos/L5ympfVnKrj485fT9G39mYrc9QvfD+rUNw6B7U+56xe+H9SpbxziwXQRIlf9hvw41p+xe69c9Rvy41h/xurNtb8K+XGsP2P1ct9fYcHUbktuf05Nbn9ODZf9VSq47K9SUc+/ZVP9uWyqP5dN9eeykXA/CPj+zULGIOF+ENjboGmf+J6YA1On6UT7c6V8fgAET5Tw
   </data>
  </layer>
  <layer name="Above Player" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1jEKwCAMheEMyf2v0rkn6NgjORVpoUOp0ZD8H0gcXB5PUBEAAHxt1veHvZ/zoCpi2qeX2bmwxrm451n3uaLd7is78uZGXiC253v+dSI2+s3pb6/0G9OoXqv2G/XvNbrXa0bN66VaXgAAAAAAkFcD6D4Z3Q==
+   eJzt1zEKgDAMheEMyf2v4uwJHD2SkxQFh2LThuT/QOLg8niFGhEAAHxt1t4P+/7Og6qIaZteZufCGufinmed54p2ez7ZkTc38gKxve/z3onY6Denv73Sb0yjeq3ab9R/r9G93jNqXi/V8gIAAADw4bWjsdMD6HEBzKgbQg==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -110,27 +110,17 @@
     <property name="cond1" value="not npc_exists npc_karrianna"/>
    </properties>
   </object>
-  <object id="47" name="battle?" type="event" x="288" y="608" width="32" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog karrianna_dialog1"/>
-    <property name="act2" value="set_variable karrianna_battle_won:started"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="not variable_set karrianna_battle_won:started"/>
-    <property name="cond4" value="not battle_started"/>
-   </properties>
-  </object>
   <object id="48" name="start battle" type="event" x="288" y="608" width="32" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
-    <property name="act2" value="start_battle npc_karrianna"/>
-    <property name="act3" value="set_variable karrianna_battle_won:yes"/>
+    <property name="act1" value="translated_dialog karrianna_dialog1"/>
+    <property name="act2" value="wait_for_input K_RETURN"/>
+    <property name="act3" value="start_battle npc_karrianna"/>
+    <property name="act4" value="set_variable karrianna_battle_won:yes"/>
     <property name="cond1" value="is player_facing left"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is variable_set karrianna_battle_won:started"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
-    <property name="cond5" value="not variable_set karrianna_battle_won:yes"/>
-    <property name="cond6" value="not variable_set karrianna_battle_won:notyet"/>
+    <property name="cond4" value="not variable_set karrianna_battle_won:yes"/>
+    <property name="cond5" value="not variable_set karrianna_battle_won:notyet"/>
    </properties>
   </object>
   <object id="49" name="Karrianna's end" type="event" x="288" y="608" width="16" height="16">

@@ -83,9 +83,6 @@ class Control(StateManager):
         # Set up a variable that will keep track of currently playing music.
         self.current_music = {"status": "stopped", "song": None, "previoussong": None}
 
-        # Keep track of animations that we will play.
-        self.animations = {}
-
         # Create these Pygame event objects to simulate KEYDOWN and KEYUP
         # events for all the directional keys
         self.keyboard_events = {}

@@ -26,20 +26,15 @@
 from __future__ import absolute_import
 
 import logging
-import os
-import re
-
-import pygame
 
 from core import prepare
-from core.components import pyganim
+from core import tools
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
 class Map(object):
-
     def preload_map(self, game, action, contexts):
         """Preloads a map into memory for quick map switching
 
@@ -75,9 +70,8 @@ class Map(object):
 
         if mapname not in world.preloaded_maps.keys():
             # TODO: We should do this asyncronously?
-            print ("PRELOADING MAP:", mapname)
+            print("PRELOADING MAP:", mapname)
             world.preload_map(mapname)
-
 
     def screen_transition(self, game, action, contexts):
         """Initiates a screen transition
@@ -110,7 +104,6 @@ class Map(object):
         if not world.in_transition:
             world.fade_and_teleport(float(action.parameters[0]))
 
-
     def start_cinema_mode(self, game, action, contexts):
         """Starts cinema mode by animating moving black bars to narrow the aspect ratio.
 
@@ -128,7 +121,6 @@ class Map(object):
         world = game.current_state
         if world.cinema_state == "off":
             world.cinema_state = "turning on"
-
 
     def stop_cinema_mode(self, game, action, contexts):
         """Stops cinema mode by animating moving black bars to back to the normal aspect ratio.
@@ -148,7 +140,6 @@ class Map(object):
         if world.cinema_state == "on":
             logger.info("Turning off cinema mode")
             world.cinema_state = "turning off"
-
 
     def play_map_animation(self, game, action, contexts):
         """Plays a map animation at a given position in the world map.
@@ -173,7 +164,6 @@ class Map(object):
             player's location.
 
         """
-
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
         animation_name = action.parameters[0]
@@ -182,42 +172,44 @@ class Map(object):
 
         if action.parameters[2] == "loop":
             loop = True
+
         elif action.parameters[2] == "noloop":
             loop = False
 
-        # Determine the screen position where to draw the animation.
-        if action.parameters[3] == "player":
-            position = (game.player1.tile_pos[0],
-                        game.player1.tile_pos[1])
-
         else:
-            position = (int(action.parameters[3]), int(action.parameters[4]))
+            logger.critical('no loop specified')
+            raise ValueError
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation using the animation's conductor.
-        if animation_name in game.animations:
-            game.animations[animation_name]["position"] = position
-            game.animations[animation_name]["conductor"].play()
-            return True
+        world_state = game.get_state_name("WorldState")
 
-        # Loop through our animation resources and find the animation files based on name.
-        scale = prepare.SCALE
-        images_and_durations = []
-        for animation_frame in os.listdir(directory):
-            pattern = animation_name + "\.[0-9].*"
-            if re.findall(pattern, animation_frame):
-                frame = pygame.image.load(directory + "/" + animation_frame).convert_alpha()
-                frame = pygame.transform.scale(frame, (frame.get_width() * scale, frame.get_height() * scale))
-                images_and_durations.append((frame, duration))
+        # Determine the screen position where to draw the animation.
+        # TODO: unify npc/player sprites and map animations
+        if action.parameters[3] == "player":
+            x, y = [int(round(i, 0)) for i in game.player1.tile_pos]
+        else:
+            x, y = action.parameters[3:5]
 
-        # Scale the animations based on our game's scale: world.scale
+        # convert tile position to screen position
+        tw, th = world_state.tile_size
+        position = x * tw, y * th
 
-        # Create an animation object and conductor.
-        animation = pyganim.PygAnimation(images_and_durations, loop=loop)
-        conductor = pyganim.PygConductor({'animation': animation})
-        conductor.play()
+        if animation_name in world_state.map_animations:
+            world_state.map_animations[animation_name]["position"] = position
+            world_state.map_animations[animation_name]["conductor"].play()
+            return
 
-        game.animations[animation_name] = {"animation": animation,
-                                           "conductor": conductor,
-                                           "position": position,
-                                           "layer": 3}
+        else:
+            # Not loaded already, so load it...
+            animation, conductor = tools.load_animation_from_frames(directory,
+                                                                    animation_name,
+                                                                    duration,
+                                                                    loop)
+
+            world_state.map_animations[animation_name] = {"animation": animation,
+                                                          "conductor": conductor,
+                                                          "position": position,
+                                                          "layer": 3}
+
+            animation.play()

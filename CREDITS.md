@@ -86,6 +86,10 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+*["Team Xero Grunt Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
+[ZhongQian TiaoGong](https://github.com/Qiangong2/)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Tilesets
 
 * ["Electronics Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/electronics.png)

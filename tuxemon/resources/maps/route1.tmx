@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="58">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="59">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -19,7 +19,7 @@
  </layer>
  <layer name="Tile Layer 2" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="60" height="46">
@@ -142,6 +142,16 @@
   <object id="57" name="Establish hideout" type="event" x="256" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog xero_hideout1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="58" name="ask grunt" type="event" x="224" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog xero_grunt1"/>
+    <property name="act2" value="npc_face npc_mark,left"/>
+    <property name="act3" value="create_npc npc_misa,13,16,misa,stand"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

@@ -1,0 +1,19 @@
+{
+    "slug": "npc_misa",
+    "name_trans": "npc_misa",
+    "monsters": [
+        {
+            "attack": 280,
+            "defense": 186,
+            "name": "Axylightl",
+            "special_attack": 186,
+            "level": 52,
+            "monster": "txmn_axylightl",
+            "hp": 282,
+            "speed": 140,
+            "special_defense": 150,
+            "exp_give_mod": 10,
+            "exp_req_mod": 70,
+        }
+    ]
+}

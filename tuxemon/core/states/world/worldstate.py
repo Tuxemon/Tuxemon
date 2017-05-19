@@ -167,6 +167,8 @@ class WorldState(state.State):
         self.cinema_bottom['on_position'] = [
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
+        self.map_animations = dict()
+
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
 
@@ -387,16 +389,29 @@ class WorldState(state.State):
         :returns: None
 
         """
-        # interlace player sprites with tiles surfaces.
-        # eventually, maybe use pygame sprites or something similar
-        surfaces = self.player1.get_sprites()
-        for npc in self.npcs:
-            surfaces.extend(self.npcs[npc].get_sprites())
-
         # center the camera on the player sprite
         sx, sy = prepare.SCREEN_SIZE
         self.current_map.renderer.center((-self.global_x + sx / 2,
                                           -self.global_y + sy / 2))
+
+        # interlace player sprites with tiles surfaces.
+        # eventually, maybe use pygame sprites or something similar
+        surfaces = self.player1.get_sprites()
+
+        # get npc surfaces/sprites
+        for npc in self.npcs:
+            surfaces.extend(self.npcs[npc].get_sprites())
+
+        # get map_animation
+        ox, oy = self.current_map.renderer.get_center_offset()
+        for anim_data in self.map_animations.values():
+            anim = anim_data['animation']
+            if not anim.isFinished() and anim.visibility:
+                x, y = anim_data["position"]
+                x += ox
+                y += oy
+                frame = (anim.getCurrentFrame(), (x, y), anim_data['layer'])
+                surfaces.append(frame)
 
         # draw the map and sprites
         self.current_map.renderer.draw(surface, surface.get_rect(), surfaces)
@@ -707,7 +722,7 @@ class WorldState(state.State):
 
         :param tile_position: An [x, y] tile position.
 
-        :type event: List
+        :type tile_position: List
 
         :rtype: List
         :returns: The pixel coordinates to draw at the given tile position.

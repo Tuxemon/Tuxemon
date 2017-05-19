@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="53">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="58">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -24,7 +24,7 @@
  </layer>
  <layer name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztmcFKAzEQhmObsLn6HlU8+xpKvXjz4jvoI3j3qKBnwYLoI1TaQ/GmB19CH8As6yAV0ky2s8lMyAfDEFiW/Gzmn2SjVKUyLOcm9wzScqrXx4+NUrOGLnPn3c3xo6HLMeyOhtHko13bO1apkaXLMRwm1kvJteniNcIfzgTrvfnV+xyh90qY3tstvf5JmN5t+UysV7veZFxM9ObnJvovKGnGtO8bgplZj5aXnuv6QKjevqTuv32g1Cuh/1LqldB/KfVK67/AvKfu2n95Af36fz5y54TjyLNCCxd/vnBzv7T+jGGFWONc/PnOabq3/hzizXQRgos/L5ympfVnKrj485fT9G39mYrc9QvfD+rUNw6B7U+56xe+H9SpbxziwXQRIlf9hvw41p+xe69c9Rvy41h/xurNtb8K+XGsP2P1ct9fYcHUbktuf05Nbn9ODZf9VSq47K9SUc+/ZVP9uWyqP5dN9eeykXA/CPj+zULGIOF+ENjboGmf+J6YA1On6UT7c6V8fgAET5Tw
+   eJztmb9KBDEQxuO5YdP6Hndi7Wso2tjZ+A7a2tlbKmgt3IHoIyhaiJ0WvoQ+gBPWQW5hLpO9yb8lPxiGhbDMxybfJBulKpWwnOjUFcTlqFl+nrdKLVq5nDsfUONnK5d92JqE0URh5/aGUWpi5LIPu5H1SnKpu3j28IfjgvVe/el98NB7UZje6zW9/r4wvevyFVlvA71JQ0yb1eOmzX9I0m7Kvi8EC70clseB83qnUL1Dsf0X5xgHHNvPIZHUa/vvDOrdZtaMY/s5JJJ6bf89gHoPmTXj2H4OiaTe0vov8jRQd+2/eUH54x6cE/Y9zwqW2OcjilOo/czQmcMbY467zkfngb0IuQFNt4bOLt51Fy5yOR+9gKZXQ2cpcvHnb9D0Y+gsRer1i98P1yn17ILbn1L/38Dvh+uUenZxp7twkWr9uvzY15+5e69U69flx77+zNWban/l8mNff+bqzX1/xYWzdi2p/Tk2qf05Nrnsr2KRy/4qFvX8O26qP4+b6s/jpvrzuCnhfhCh/s363GGVcD+IzFZoCn2HlQLq7irGHVYlD34BYUuaHQ==
   </data>
  </layer>
  <layer name="Above Player" width="60" height="46">
@@ -65,6 +65,8 @@
   <object id="44" type="collision" x="512" y="96" width="16" height="32"/>
   <object id="51" x="816" y="464" width="16" height="16"/>
   <object id="52" type="collision" x="816" y="480" width="16" height="192"/>
+  <object id="55" type="collision" x="144" y="208" width="272" height="48"/>
+  <object id="56" type="collision" x="256" y="320" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="272" width="16" height="16">
@@ -102,12 +104,15 @@
     <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
    </properties>
   </object>
-  <object id="46" name="create Karrianna" type="event" x="512" y="448" width="64" height="16">
+  <object id="46" name="create Karrianna and grunts" type="event" x="512" y="448" width="64" height="16">
    <properties>
     <property name="act1" value="create_npc npc_karrianna,17,38,femaletrainer,stand"/>
     <property name="act2" value="npc_face npc_karrianna,right"/>
     <property name="act3" value="set_variable karrianna_battle_won:notyet"/>
+    <property name="act4" value="create_npc npc_mark,14,16,teamxerogrunt1,stand"/>
+    <property name="act5" value="npc_face npc_mark,down"/>
     <property name="cond1" value="not npc_exists npc_karrianna"/>
+    <property name="cond2" value="not npc_exists npc_mark"/>
    </properties>
   </object>
   <object id="48" name="start battle" type="event" x="288" y="608" width="32" height="16">
@@ -132,6 +137,14 @@
     <property name="cond4" value="is button_pressed K_RETURN"/>
     <property name="cond5" value="not variable_set karrianna_battle_won:started"/>
     <property name="cond6" value="not variable_set karrianna_battle_won:notyet"/>
+   </properties>
+  </object>
+  <object id="57" name="Establish hideout" type="event" x="256" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog xero_hideout1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

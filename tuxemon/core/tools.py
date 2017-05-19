@@ -32,12 +32,15 @@ from __future__ import division
 import logging
 import operator
 import os.path
+import re
 
 import pygame
+from six.moves import zip_longest
 
-from core import prepare
-from core.platform import mixer
 import core.components.sprite
+from core import prepare
+from core.components import pyganim
+from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -192,6 +195,53 @@ def scale_surface(surface, factor):
     return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
 
 
+def load_frames_files(directory, name):
+    """ Load animation that is a collection of frames
+    
+    For example, water00.png, water01.png, water03.png
+    
+    :type directory: str
+    :type name: str 
+    
+    :rtype: generator
+    """
+    scale = prepare.SCALE
+    for animation_frame in os.listdir(directory):
+        pattern = name + "\.[0-9].*"
+        if re.findall(pattern, animation_frame):
+            frame = pygame.image.load(directory + "/" + animation_frame).convert_alpha()
+            frame = pygame.transform.scale(frame, (frame.get_width() * scale, frame.get_height() * scale))
+            yield frame
+
+
+def create_animation(frames, duration, loop):
+    """ Create animation from frames, a list of surfaces
+    
+    :param frames: 
+    :param duration: 
+    :param loop: 
+    :return: 
+    """
+    data = [(f, duration) for f in frames]
+    animation = pyganim.PygAnimation(data, loop=loop)
+    conductor = pyganim.PygConductor({'animation': animation})
+    return animation, conductor
+
+
+def load_animation_from_frames(directory, name, duration, loop=False):
+    """ Load animation from a collection of frame files
+    
+    :param directory: 
+    :param name: 
+    :param duration: 
+    :param loop: 
+    
+    :return: 
+    """
+    frames = load_frames_files(directory, name)
+    return create_animation(frames, duration, loop)
+
+
 def scale_tile(surface, tile_size):
     """ Scales a map tile based on resolution.
 
@@ -294,16 +344,20 @@ def load_sound(filename):
             pass
 
     filename = transform_resource_filename(filename)
+
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
     if not os.path.exists(filename):
-        print(filename)
+        msg = 'cannot open audio file: {}'.format(filename)
+        logger.critical(msg)
         raise ValueError
     try:
         return mixer.Sound(filename)
     except MemoryError:  # raised on some systems if there is no mixer
+        logger.debug('cannot open mixer, unable to load sound')
         return DummySound()
     except pygame.error:  # raised on some systems is there is no mixer
+        logger.debug('cannot open mixer, unable to load sound')
         return DummySound()
 
 

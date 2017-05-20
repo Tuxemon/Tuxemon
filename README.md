@@ -27,18 +27,17 @@ Installation
 **Ubuntu**
 
 ```sh
-sudo apt-get install python python-pygame python-pip python-imaging python-six git
+sudo apt install python python-pygame python-pip python-imaging python-six git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-cd tuxemon
-./tuxemon.py
+tuxemon/tuxemon.py
 ```
 
 *Optional rumble support*
 
 ```sh
-sudo apt-get install build-essential
+sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
 make BACKEND=LINUX; sudo make install BACKEND=LINUX

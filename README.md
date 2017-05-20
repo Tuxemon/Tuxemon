@@ -28,9 +28,10 @@ Installation
 
 ```sh
 sudo apt-get install python python-pygame python-pip python-imaging python-six git
-sudo pip install -U -r requirements.txt
 git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon/tuxemon
+cd Tuxemon
+sudo pip install -U -r requirements.txt
+cd tuxemon
 ./tuxemon.py
 ```
 

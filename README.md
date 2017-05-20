@@ -41,7 +41,7 @@ cd tuxemon
 sudo apt-get install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
-make; sudo make install
+make BACKEND=LINUX; sudo make install BACKEND=LINUX
 ```
 
 **Mac OS X (Yosemite)**

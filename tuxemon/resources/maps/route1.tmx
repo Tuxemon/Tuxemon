@@ -111,6 +111,8 @@
     <property name="act3" value="set_variable karrianna_battle_won:notyet"/>
     <property name="act4" value="create_npc npc_mark,14,16,teamxerogrunt1,stand"/>
     <property name="act5" value="npc_face npc_mark,down"/>
+    <property name="act6" value="create_npc npc_misa,13,16,misa,stand"/>
+    <property name="act7" value="npc_face npc_misa,left"/>
     <property name="cond1" value="not npc_exists npc_karrianna"/>
     <property name="cond2" value="not npc_exists npc_mark"/>
     <property name="cond3" value="not npc_exists npc_misa"/>

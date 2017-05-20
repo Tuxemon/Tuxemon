@@ -15,5 +15,7 @@
             "exp_give_mod": 10,
             "exp_req_mod": 70,
         }
-    ]
+    ],
+    "id": 2,
+    "name": "Misa"
 }

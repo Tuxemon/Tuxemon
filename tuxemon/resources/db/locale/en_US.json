@@ -202,6 +202,10 @@
     "karrianna_dialog2": "Well... You were the first trainer I've faced...",
     "xero_hideout1": "Xero institute for Tuxemon Research and Advancement ahead.",
     "xero_grunt1": "Hello, welcome to the Xero institute for Tuxemon Research and Advancement, we are currently closed for a remodel.",
+    "xero_grunt2": "I'd be willing to let you in if you have a cherry, My tuxemon love them!",
+    "xero_grunt3": "Usually they can be found at the bottom of trees",
+    "cherry": "You found a cherry",
+    "xero_grunt4": "I see you have a cherry, I'll take that... Now, i'll escort you in."
 
     "input_name": "Name?"
 }

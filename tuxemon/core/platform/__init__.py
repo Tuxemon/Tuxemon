@@ -31,7 +31,7 @@ def init():
     # reduce sound latency.  the pygame defaults were ok for 2001,
     # but these values are more acceptable for faster computers
     if _pygame:
-        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512)
+        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
 
 def get_config_path():
     if android:

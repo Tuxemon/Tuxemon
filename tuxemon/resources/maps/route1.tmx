@@ -107,11 +107,17 @@
   <object id="46" name="create Karrianna and grunts" type="event" x="512" y="448" width="64" height="16">
    <properties>
     <property name="act1" value="create_npc npc_karrianna,17,38,femaletrainer,stand"/>
+    <property name="act10" value="npc_face npc_xerogrunt2,right"/>
+    <property name="act11" value="create_npc npc_xerogrunt3,27,34,stand"/>
+    <property name="act12" value="npc_face npc_xerogrunt3,right"/>
     <property name="act2" value="npc_face npc_karrianna,right"/>
     <property name="act3" value="set_variable karrianna_battle_won:notyet"/>
     <property name="act4" value="create_npc npc_mark,14,16,teamxerogrunt1,stand"/>
     <property name="act5" value="npc_face npc_mark,down"/>
     <property name="act6" value="set_variable hereismisa:welcome"/>
+    <property name="act7" value="create_npc npc_xerogrunt1,27,32,stand"/>
+    <property name="act8" value="npc_face npc_xerogrunt1,right"/>
+    <property name="act9" value="create_npc npc_xerogrunt2,27,33,stand"/>
     <property name="cond1" value="not npc_exists npc_karrianna"/>
     <property name="cond2" value="not npc_exists npc_mark"/>
     <property name="cond3" value="not npc_exists npc_misa"/>

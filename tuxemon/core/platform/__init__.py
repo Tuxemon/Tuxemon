@@ -7,6 +7,8 @@ from os.path import expanduser
 
 _pygame = False
 
+from xdg import (XDG_CACHE_HOME, XDG_CONFIG_HOME, XDG_DATA_HOME)
+
 # Import the android module and android specific components. If we can't import, set to None - this
 # lets us test it, and check to see if we want android-specific behavior.
 android = None
@@ -33,9 +35,20 @@ def init():
     if _pygame:
         mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
 
-def get_config_path():
+def get_config_directory():
     if android:
-        return "/sdcard/org.tuxemon"
+        return "/sdcard/org.tuxemon/config/"
     else:
-        return expanduser("~")
+        return XDG_CONFIG_HOME + "/tuxemon/"
 
+def get_data_directory():
+    if android:
+        return "/sdcard/org.tuxemon/data/"
+    else:
+        return XDG_DATA_HOME + "/tuxemon/"
+
+def get_cache_directory():
+    if android:
+        return "/sdcard/org.tuxemon/cache/"
+    else:
+        return XDG_CACHE_HOME + "/tuxemon/"

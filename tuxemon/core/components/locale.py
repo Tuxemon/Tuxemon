@@ -59,8 +59,8 @@ class Translator(object):
         directories = [prepare.BASEDIR + LOCALE_PATH]
         for item in os.listdir(prepare.USER_DATA_PATH):
             item = prepare.USER_DATA_PATH + "/" + item
-            if os.path.isdir(item):
-                locale_directory = item + LOCALE_PATH
+            locale_directory = item + "/" + LOCALE_PATH
+            if os.path.isdir(locale_directory):
                 directories.append(locale_directory)
 
         return directories

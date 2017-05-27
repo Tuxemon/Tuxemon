@@ -4,3 +4,4 @@ pillow
 pygame
 six
 neteria
+xdg

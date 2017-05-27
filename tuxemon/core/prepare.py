@@ -38,7 +38,7 @@ import shutil
 import pygame as pg
 
 from .components import config
-from .platform import get_config_path
+from .platform import get_config_directory, get_data_directory, get_cache_directory
 
 
 # Get the tuxemon base directory
@@ -47,11 +47,25 @@ if "library.zip" in BASEDIR:
     BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
 
 # Set up our config directory
-CONFIG_PATH = get_config_path() + "/.tuxemon/"
+CONFIG_PATH = get_config_directory()
 try:
     os.makedirs(CONFIG_PATH)
 except OSError:
     if not os.path.isdir(CONFIG_PATH):
+        raise
+
+DATA_PATH = get_data_directory()
+try:
+    os.makedirs(DATA_PATH)
+except OSError:
+    if not os.path.isdir(DATA_PATH):
+        raise
+
+CACHE_PATH = get_cache_directory()
+try:
+    os.makedirs(CACHE_PATH)
+except OSError:
+    if not os.path.isdir(CACHE_PATH):
         raise
 
 # Create a copy of our default config if one does not exist in the home dir.
@@ -63,13 +77,7 @@ if not os.path.isfile(CONFIG_FILE_PATH):
         raise
 
 # Set up our custom campaign data directory.
-USER_DATA_PATH = CONFIG_PATH + "data/"
-if not os.path.isdir(USER_DATA_PATH):
-    try:
-        os.makedirs(USER_DATA_PATH)
-    except OSError:
-        if not os.path.isdir(USER_DATA_PATH):
-            raise
+USER_DATA_PATH = DATA_PATH
 
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(CONFIG_FILE_PATH)
@@ -105,12 +113,12 @@ else:
 
 # Set up the saves directory
 try:
-    os.makedirs(CONFIG_PATH + "saves/")
+    os.makedirs(DATA_PATH + "saves/")
 except OSError:
-    if not os.path.isdir(CONFIG_PATH + "saves/"):
+    if not os.path.isdir(DATA_PATH + "saves/"):
         raise
-SAVE_PATH = CONFIG_PATH + "saves/slot"
 
+SAVE_PATH = DATA_PATH + "saves/slot"
 
 # Initialization of PyGame dependent systems.
 def init():

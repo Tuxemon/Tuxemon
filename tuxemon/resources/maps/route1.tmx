@@ -85,7 +85,7 @@
   </object>
   <object id="32" name="Teleport to route1a" type="event" x="528" y="96" width="48" height="16">
    <properties>
-    <property name="act1" value="teleport route_1a.tmx,25,19"/>
+    <property name="act1" value="teleport route_1a.tmx,25,26"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>

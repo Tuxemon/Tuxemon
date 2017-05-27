@@ -206,6 +206,7 @@
     "xero_grunt3": "Usually they can be found at the bottom of trees",
     "cherry": "You found a cherry",
     "xero_grunt4": "I see you have a cherry, I'll take that... Now, i'll escort you in.",
+    "xero_grunts_block": "This area is under construction, it should be done soon.",
 
     "input_name": "Name?"
 }

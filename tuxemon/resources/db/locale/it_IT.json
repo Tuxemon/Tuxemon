@@ -3,7 +3,7 @@
     "combat_player_run": "Sei fuggito!",
     "combat_used_x": "${{user}} ha usato ${{name}}!",
     "combat_used_x_on_y": "${{user}} ha usato ${{name}} su ${{target}}!",
-    "combat_swap": "${{user}} sent out ${{target}}!",
+    "combat_swap": "${{user}} manda ${{target}} in combattimento!",
     "combat_call_tuxemon": "Vai, ${{name}}!",
     "combat_opponent_call_tuxemon": "${{user}} ha scelto ${{name}}!",
     "combat_state_poison_damage": "${{name}} ha subito danno da avvelenamento!",

@@ -25,7 +25,7 @@
  </layer>
  <layer name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eJzl1TlOw0AUxvEHsWSH3IDtSElAbAVQBcTWh+UUbD0EGq4AhJ7tCilYQkeBEEnJf4SRxmbGngSNhMSTfnIK6/OXp5GmJSItT9480r+zUhBZxRrWsYGHATFOXufXYvI7u2TtYR8HOMS7JVu9Xw5EKqhiApNBMk+fc7IucIkmrjKy1dTJ2sQWtrETJLvr80jWE57RxguGBu3ZR2Qdo4ETnKZ6T2HawYwh+5qsG9ziDvep3vNYcLCIj1CkE+uG5v+i9+4luxixo1gpsu+qn96qr0u2z97f3X1l++zdiMzZFVQt2SGiOL8T2qlzZMqexZwlexgjWn+bkqW3y06UsQzjv8jud9//5Qya7pS/3PvMkFkrfD177T2aOmPNnN41LDlYzl7Bj0nfaXmj7m7Tb9Oo3p8KgtAO
+   eJzl1TlOw0AUxvEHsWSH3IDtSCQgtgKoAgKSPgFOwdZD4BRA6NmukIKwdBQIEUr+I4w0NjP2JGgKxJN+cgrr85enkaYjIh1PXj3Sv7NeENnAJmqo435IjJPX+aWY/M4uWXvYxwEO8WbJVu9PBSJlVDCNmSCZp88ZWee4QBuXGdlqGmQ1sYVt7ATJ7vp0yXrAI57wjJFhe/YRWcdo4QSnqd6zmHMwb8i+IusaN7jFXar3EpYdrOA9FOnFPkLzf9F795NdjNhRrBTZdzVIb9XXJdtn7+/uvrJ99m5F5uwyKpbsEFGc3wvt1DkyZS9g0ZI9ijGtv03J0ttlJ8pEhslfZA+67/9yBk13yl/orU+18PXst/d46oy1c3pXsepgLXsFPyZ9p+WNurtNv02jen8CPx/PZQ==
   </data>
  </layer>
  <objectgroup color="#ffff00" name="Events">
@@ -36,7 +36,13 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="10" name="Go into the house" type="event" x="320" y="368" width="16" height="16"/>
+  <object id="10" name="Go into the house" type="event" x="320" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport sphalian_town_house.tmx,5,7,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
   <object id="11" name="Music playing" type="init" x="32" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="play_music Digital_Native.ogg"/>
@@ -73,6 +79,11 @@
    </properties>
   </object>
  </objectgroup>
+ <layer name="Above Player" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAFKwfaAUMQAADUUACq
+  </data>
+ </layer>
  <objectgroup color="#ff0000" name="Collision">
   <object id="7" type="collision" x="3" y="96" width="166" height="276"/>
   <object id="12" type="collision" x="272" y="320" width="48" height="48"/>

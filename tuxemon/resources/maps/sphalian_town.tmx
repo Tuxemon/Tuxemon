@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="25" tilewidth="16" tileheight="16" nextobjectid="36">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="25" tilewidth="16" tileheight="16" nextobjectid="37">
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
@@ -15,6 +15,9 @@
  <tileset firstgid="2202" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
+ <tileset firstgid="2212" name="Route_1a" tilewidth="16" tileheight="16" tilecount="800" columns="40">
+  <image source="../gfx/tilesets/Route_1a.png" width="640" height="320"/>
+ </tileset>
  <layer name="Tile Layer 1" width="23" height="25">
   <data encoding="base64" compression="zlib">
    eJztzLERgCAURMGboT5KM0ClGUGbUcc2eEV8h+SCTTdLymZmZva7kqQVG3bUFHcfXA0dJ67A++Z68GLBF3jPMABC0rNJ
@@ -22,18 +25,24 @@
  </layer>
  <layer name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
-   eJzl1UlOAkEYhuFf6aRbuYHTkQSN00JdoVF0L8opnPaKbryCinunK7BwwD0hwpK3YpsUbVVbjVZiYiVP2JCXj0on3RCRhictj/Tf2ciJbKKMLWzjaUiMJ+vufVoHOMQRjtG2tNX3pwORAoqYwWzQ39PPJa0rXKOOm5S2Oju0KtjFHqpB/279PNN6wSuaeMPosL19QusUNZzhPLF7DvMOFgztW1p3uMcDHhO7l7HiYBXvoUgn1g3N/0XfnaU9EnFHsXxkv6tBdqu9Lm2fuz+3+2r73F2LzO0CipZ2iCjud0I79RyZ2otYsrTHMK7tt8lbdrvciTKZYuoH7UHv+788g6Z3yl/efWFolnIfn1l3TySesfo3u0tYc7CefgVfTvKd9ptH7e4B82fOBw==
+   eJzl1TlOw0AUxvEHsWSH3IDtSCQgtgKoAgKSPgFOwdZD4BRA6NmukIKwdBQIEUr+I4w0NjP2JGgKxJN+cgrr85enkaYjIh1PXj3Sv7NeENnAJmqo435IjJPX+aWY/M4uWXvYxwEO8WbJVu9PBSJlVDCNmSCZp88ZWee4QBuXGdlqGmQ1sYVt7ATJ7vp0yXrAI57wjJFhe/YRWcdo4QSnqd6zmHMwb8i+IusaN7jFXar3EpYdrOA9FOnFPkLzf9F795NdjNhRrBTZdzVIb9XXJdtn7+/uvrJ99m5F5uwyKpbsEFGc3wvt1DkyZS9g0ZI9ijGtv03J0ttlJ8pEhslfZA+67/9yBk13yl/orU+18PXst/d46oy1c3pXsepgLXsFPyZ9p+WNurtNv02jen8CPx/PZQ==
   </data>
  </layer>
  <objectgroup color="#ffff00" name="Events">
-  <object id="9" name="Go to route 1a" type="event" x="192" y="384" width="32" height="16">
+  <object id="9" name="Go to route 1a" type="event" x="192" y="384" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route_1a.tmx,39,0,1.5"/>
+    <property name="act1" value="teleport route_1a.tmx,18,6,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="10" name="Go into the house" type="event" x="320" y="368" width="16" height="16"/>
+  <object id="10" name="Go into the house" type="event" x="320" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport sphalian_town_house.tmx,5,7,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
   <object id="11" name="Music playing" type="init" x="32" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="play_music Digital_Native.ogg"/>
@@ -62,7 +71,19 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
+  <object id="36" name="go to route1a right" type="event" x="208" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route_1a.tmx,19,6,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
  </objectgroup>
+ <layer name="Above Player" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAFKwfaAUMQAADUUACq
+  </data>
+ </layer>
  <objectgroup color="#ff0000" name="Collision">
   <object id="7" type="collision" x="3" y="96" width="166" height="276"/>
   <object id="12" type="collision" x="272" y="320" width="48" height="48"/>

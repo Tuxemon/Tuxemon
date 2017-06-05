@@ -3,6 +3,7 @@
     "combat_player_run": "Sei fuggito!",
     "combat_used_x": "${{user}} ha usato ${{name}}!",
     "combat_used_x_on_y": "${{user}} ha usato ${{name}} su ${{target}}!",
+    "combat_swap": "${{user}} manda ${{target}} in combattimento!",
     "combat_call_tuxemon": "Vai, ${{name}}!",
     "combat_opponent_call_tuxemon": "${{user}} ha scelto ${{name}}!",
     "combat_state_poison_damage": "${{name}} ha subito danno da avvelenamento!",
@@ -24,6 +25,8 @@
     "item_confirm_cancel": "Annulla",
     "item_failure": "Ha fallito!",
     "item_success": "Ha funzionato!",
+    "generic_thing_success": "Ha funzionato!",
+    "generic_thing_failure": "Ha fallito!",
     "attempting_capture": "Cattura in corso...",
     "gotcha": "Evvai!",
     
@@ -67,7 +70,14 @@
     "multiplayer_accept": "Accetta",
     "multiplayer_decline": "Rifiuta",
     "multiplayer_duel": "${{name}} vuole sfidarti!",
-    
+    "multiplayer_host_game": "Ospita gioco",
+    "multiplayer_scan_games": "Cerca giochi",
+    "multiplayer_join_game": "Inserisciti nel gioco",
+    "multiplayer_hosting_ready": "Pronto per accettare ospiti!",
+    "multiplayer_already_hosting": "Stai già ospitando!",
+    "multiplayer_no_servers": "Nessun server trovato...",
+    "multiplayer_join_prompt": "Hostname o IP?",
+
     "not_implemented": "Questa funzione non è ancora stata implementata.",
     
     "received_x": "Hai ricevuto ${{name}}!",

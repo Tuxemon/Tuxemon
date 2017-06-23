@@ -65,8 +65,7 @@ class RunningEvent(object):
 
         None will be returned if the MapEvent is finished
 
-        :param event:
-        :rtype:
+        :rtype: core.components.event.MapAction
         """
         # if None, then make a new one
         try:
@@ -225,22 +224,18 @@ class EventEngine(object):
         # logger.debug('map condition "{}": {}'.format(map_condition.name, result))
         return result
 
-    def execute_action(self, action_name, parameters=None, contexts=None):
+    def execute_action(self, action_name, parameters=None):
         """ Load and execute an action
 
         This will cause the game to hang if an action waits on game changes
 
-        :param action_name:
-        :param parameters:
-        :param contexts:
+        :type action_name: str
+        :type parameters: tuple
 
         :rtype: bool
         """
         if parameters is None:
             parameters = list()
-
-        if contexts is None:
-            contexts = dict()
 
         action = self.get_action(action_name, parameters)
         if action is None:
@@ -263,6 +258,9 @@ class EventEngine(object):
         :returns: None
 
         """
+        # the event id is used to make sure multiple copies of the same event are not
+        # started.  If not checked, then the game would freeze while it tries to run
+        # unlimited copies of the same event, forever.
         if map_event.id not in self.running_events:
             logger.debug("Executing action list")
             logger.debug(map_event)
@@ -278,7 +276,7 @@ class EventEngine(object):
         :return: None
         """
         # If any conditions fail, the event's actions should not be run
-        if all(self.check_condition(cond) for cond in map_event.conds):
+        if all(map(self.check_condition, map_event.conds)):
             logger.debug("starting map event: {}".format(map_event))
             self.start_event(map_event)
 
@@ -296,8 +294,10 @@ class EventEngine(object):
     def update(self, dt):
         """ Check all the MapEvents and start their actions if conditions are OK
 
-        :param dt:
-        :return:
+        :param dt: Amount of time passed in seconds since last frame.
+        :type dt: float
+        
+        :rtype: None
         """
         self.check_conditions()
         self.update_running_events(dt)
@@ -309,7 +309,6 @@ class EventEngine(object):
 
         :param game.event_conditions: The multi-dimensional list of conditions to check for. See
             :py:func:`core.components.map.Map.loadevents` to see the format of the list.
-        :param dt: Amount of time passed in seconds since last frame.
 
         :rtype: None
         :returns: None
@@ -328,9 +327,10 @@ class EventEngine(object):
     def update_running_events(self, dt):
         """ Update the events that are running
 
-        :param dt:
+        :param dt: Amount of time passed in seconds since last frame.
+        :type dt: float
 
-        :return: None
+        :rtype: None
         """
         to_remove = set()
 
@@ -338,18 +338,16 @@ class EventEngine(object):
         for i, e in self.running_events.items():
             while 1:
                 """
-                * if RunningEvent is currently running one actions, then continue to do so
+                * if RunningEvent is currently running an action, then continue to do so
                 * if not, attempt to get the next queued action
-                * if no action, do not check the RunningEvent next frame
+                * if no queued action, do not check the RunningEvent next frame
                 * if there is an action, then update it
-                * if action is finished, then clear the pointer to the action and inc. the index
+                * if action is finished, then clear the pointer to the action and inc. the index, cleanup
                 * RunningEvent will be checked next frame
                 
-                This loop will block if there are events that don't stop
                 This loop will execute as many actions as possible for every MapEvent
-                
                 For example, some actions like set_variable do not require several frames,
-                so many of them (or all) will be processed this frame.
+                so all of them will be processed this frame.
                 
                 If an action is not finished, then this loop breaks and will check another
                 RunningEvent, but the position in the action list is remembered and will be restored.
@@ -375,7 +373,10 @@ class EventEngine(object):
                             break
 
                         else:
+                            # start the action
                             action.start()
+
+                            # save the action that is running
                             e.current_action = action
 
                 # update the action
@@ -390,7 +391,7 @@ class EventEngine(object):
                     logger.debug("action finished: {}".format(action))
 
                 else:
-                    # action didn't finish, so move on
+                    # action didn't finish, so move on to next RunningEvent
                     break
 
         for i in to_remove:
@@ -399,8 +400,8 @@ class EventEngine(object):
     def process_event(self, event):
         """ Process a pygame event
 
-        :param event: pygame.Event
-        :return:
+        :type event: pygame.Event
+        :rtype: pygame.Ecent
         """
         # TODO: getattr on pygame is a little dangerous. We should sanitize input.
         if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):

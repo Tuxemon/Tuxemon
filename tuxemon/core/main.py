@@ -29,23 +29,13 @@
 from __future__ import absolute_import
 
 import logging
-from collections import namedtuple
+
+from . import prepare
 
 logger = logging.getLogger(__name__)
 
 # TODO: move to config
-debug = True
-
-from . import prepare
-
-
-def adapter(name, *args):
-    nt = namedtuple(name, "parameters")
-
-    def func(*args):
-        return nt(args)
-
-    return func
+debug = False
 
 
 def main():

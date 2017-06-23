@@ -41,13 +41,13 @@ class PathfindAction(EventAction):
         if not world:
             return
 
-        npc_slug = self.parameters[0]
-        dest_x = self.parameters[1]
-        dest_y = self.parameters[2]
+        npc_slug = self.parameters.npc_slug
+        dest_x = self.parameters.tile_pos_x
+        dest_y = self.parameters.tile_pos_y
 
         # get npc object via name
         if npc_slug not in world.npcs:
             return
 
         curr_npc = world.npcs[npc_slug]
-        curr_npc.pathfind((int(dest_x), int(dest_y)), game)
+        curr_npc.pathfind((dest_x, dest_y), self.game)

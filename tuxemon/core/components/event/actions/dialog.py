@@ -52,7 +52,9 @@ class DialogAction(EventAction):
 
     """
     name = "dialog"
-    valid_parameters = [(str, "text")]
+    valid_parameters = [
+        (str, "text")
+    ]
 
     def start(self):
         text = replace_text(self.game, self.parameters.text)

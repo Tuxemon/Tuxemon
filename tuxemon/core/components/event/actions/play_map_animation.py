@@ -59,9 +59,9 @@ class PlayMapAnimationAction(EventAction):
         duration = self.parameters.duration
         directory = prepare.BASEDIR + "resources/animations/tileset"
 
-        if self.parameters[2] == "loop":
+        if self.parameters.loop == "loop":
             loop = True
-        elif self.parameters[2] == "noloop":
+        elif self.parameters.loop == "noloop":
             loop = False
         else:
             logger.error("animation loop value must be \"loop\" or \"noloop\"")
@@ -80,7 +80,7 @@ class PlayMapAnimationAction(EventAction):
         if self.parameters[3] == "player":
             x, y = [int(round(i, 0)) for i in self.game.player1.tile_pos]
         else:
-            x, y = self.parameters[3:5]
+            x, y = self.parameters.x, self.parameters.y
 
         # convert tile position to screen position
         tw, th = world_state.tile_size

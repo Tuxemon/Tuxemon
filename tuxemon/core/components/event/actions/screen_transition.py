@@ -31,7 +31,7 @@ class ScreenTransitionAction(EventAction):
     """
     name = "screen_transition"
     valid_parameters = [
-        (float, "duration")
+        (float, "transition_time")
     ]
 
     def start(self):
@@ -39,4 +39,4 @@ class ScreenTransitionAction(EventAction):
 
         if world is not None:
             if not world.in_transition:
-                world.fade_and_teleport(float(self.parameters.duration))
+                world.fade_and_teleport(self.parameters.transition_time)

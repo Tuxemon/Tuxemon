@@ -38,7 +38,7 @@ class PlayerFaceAction(EventAction):
 
     def start(self):
         # Get the parameters to determine what direction the player will face.
-        direction = self.parameters[0]
+        direction = self.parameters.direction
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.

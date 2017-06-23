@@ -64,7 +64,7 @@ class StartBattleAction(EventAction):
             self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
 
         # Start combat
-        npc_slug = self.parameters[0]
+        npc_slug = self.parameters.npc_slug
 
         # TODO: This should *really* be handled in the Npc initializer
         # Create an NPC object that will be used as our opponent

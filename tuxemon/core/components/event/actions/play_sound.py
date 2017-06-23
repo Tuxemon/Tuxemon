@@ -36,6 +36,6 @@ class PlaySoundAction(EventAction):
     ]
 
     def start(self):
-        filename = str(self.parameters[0])
+        filename = self.parameters.filename
         sound = tools.load_sound("sounds/" + filename)
         sound.play()

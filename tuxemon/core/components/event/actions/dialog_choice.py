@@ -38,7 +38,7 @@ class DialogChoiceAction(EventAction):
     """
     name = "dialog_choice"
     valid_parameters = [
-        (str, "text"),
+        (str, "choices"),
         (str, "variable")
     ]
 
@@ -51,10 +51,10 @@ class DialogChoiceAction(EventAction):
         player = self.game.player1
 
         # perform text substitutions
-        text = replace_text(self.game, self.parameters.text)
+        choices = replace_text(self.game, self.parameters.choices)
 
         # make menu options for each string between the colons
-        var_list = text.split(":")
+        var_list = choices.split(":")
         var_menu = list()
         for val in var_list:
             var_menu.append((val, val, partial(set_variable, val)))

@@ -41,7 +41,7 @@ class RemoveNpcAction(EventAction):
             return
 
         # Get the npc's parameters from the action
-        slug = str(self.parameters[0])
+        slug = self.parameters.npc_slug
 
         if slug not in world.npcs:
             return

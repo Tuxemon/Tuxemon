@@ -54,7 +54,7 @@ class RandomEncounterAction(EventAction):
             return False
 
         # Get the parameters to determine what encounter group we'll look up in the database.
-        encounter_slug = self.parameters[0]
+        encounter_slug = self.parameters.encounter_slug
 
         # Look up the encounter details
         monsters = db.JSONDatabase()

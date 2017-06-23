@@ -33,7 +33,7 @@ class CreateNpcAction(EventAction):
     """
     name = "create_npc"
     valid_parameters = [
-        (str, "npc_oak"),
+        (str, "npc_slug"),
         (int, "tile_pos_x"),
         (int, "tile_pos_y"),
         (str, "animations"),
@@ -47,11 +47,11 @@ class CreateNpcAction(EventAction):
             return
 
         # Get the npc's parameters from the action
-        slug = str(self.parameters[0])
-        tile_pos_x = int(self.parameters[1])
-        tile_pos_y = int(self.parameters[2])
-        animations = str(self.parameters[3])
-        behavior = str(self.parameters[4])
+        slug = self.parameters.npc_slug
+        tile_pos_x = self.parameters.tile_pos_x
+        tile_pos_y = self.parameters.tile_pos_y
+        animations = self.parameters.animations
+        behavior = self.parameters.behavior
 
         # Ensure that the NPC doesn't already exist on the map.
         if slug in world.npcs:

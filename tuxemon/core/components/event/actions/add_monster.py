@@ -34,12 +34,13 @@ class AddMonsterAction(EventAction):
     """
     name = "add_monster"
     valid_parameters = [
-        (str, "slug"),
-        (int, "level")
+        (str, "monster_slug"),
+        (int, "monster_level")
     ]
 
     def start(self):
         monster_slug, monster_level = self.parameters
+
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(monster_level)

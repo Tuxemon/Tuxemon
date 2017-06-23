@@ -44,10 +44,10 @@ class WaitForSecsAction(EventAction):
     """
     name = "wait_for_secs"
     valid_parameters = [
-        (float, 'duration')
+        (float, 'seconds')
     ]
 
     def start(self):
-        secs = self.parameters.duration
+        secs = self.parameters.seconds
         self.game.event_engine.state = "waiting"
         self.game.event_engine.wait = secs

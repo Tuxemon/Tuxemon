@@ -48,14 +48,14 @@ class TransitionTeleportAction(EventAction):
     name = "transition_teleport"
     valid_parameters = [
         (str, "map_name"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y"),
-        (float, "duration"),
+        (int, "x"),
+        (int, "y"),
+        (float, "transition_time"),
     ]
 
     def start(self):
         # Get transition parameters
-        transition_time = self.parameters.duration
+        transition_time = self.parameters.transition_time
 
         # Start the screen transition
         self.game.event_engine.execute_action("screen_transition", [transition_time])

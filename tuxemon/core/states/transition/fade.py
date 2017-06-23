@@ -8,7 +8,6 @@ from core.state import State
 from core.platform import mixer
 
 logger = logging.getLogger(__name__)
-logger.debug("{} successfully imported".format(__name__))
 
 
 class FadeTransitionBase(State):
@@ -20,7 +19,7 @@ class FadeTransitionBase(State):
     color = (0, 0, 0)
 
     def startup(self, **kwargs):
-        logger.info("Initializing fade transition")
+        logger.debug("Initializing fade transition")
         self.state_duration = kwargs.get("state_duration", self.state_duration)
         self.fade_duration = kwargs.get("fade_duration", self.fade_duration)
         self.caller = kwargs.get("caller")

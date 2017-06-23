@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -787,7 +786,7 @@ class TuxemonClient():
         self.client.event(event_data)
 
     def route_combat(self, event):
-        print(event)
+        logger.debug(event)
 
     def client_alive(self):
         """Sends server a ping to let it know that it is still alive.

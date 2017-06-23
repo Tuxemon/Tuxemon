@@ -1,5 +1,4 @@
 import logging
-from collections import namedtuple
 
 from core import prepare
 from core.components import save
@@ -7,7 +6,6 @@ from .save_menu import SaveMenuState
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 class LoadMenuState(SaveMenuState):
@@ -47,10 +45,5 @@ class LoadMenuState(SaveMenuState):
             # teleport the player to the correct position using an event engine action
             tele_x = str(int(save_data['tile_pos'][0]))
             tele_y = str(int(save_data['tile_pos'][1]))
-            Action = namedtuple("action", ["type", "parameters"])
-            action = Action("teleport", [save_data['current_map'], tele_x, tele_y])
 
-            contexts = {}
-            self.game.event_engine.actions['teleport']['method'](self.game, action, contexts)
-            for key in contexts:
-                contexts[key].execute(game)
+            self.game.event_engine.execute_action('teleport', [save_data['current_map'], tele_x, tele_y])

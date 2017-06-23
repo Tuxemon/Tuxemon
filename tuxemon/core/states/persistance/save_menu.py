@@ -16,7 +16,6 @@ trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 class SaveMenuState(PopUpMenu):
@@ -94,7 +93,6 @@ class SaveMenuState(PopUpMenu):
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)
-            print(e)
 
             open_dialog(self.game, [trans('save_failure')])
             self.game.pop_state(self)

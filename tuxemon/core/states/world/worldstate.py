@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -23,7 +22,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-#
+# Leif Theden <leif.theden@gmail.com>
 #
 # core.states.world Handles the world map and player movement.
 #
@@ -657,16 +656,17 @@ class WorldState(state.State):
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
         if map_name not in self.preloaded_maps.keys():
-            print("Map was not preloaded. Loading from disk.")
+            logger.debug("Map was not preloaded. Loading from disk.")
             map_data = self.load_map(map_name)
         else:
-            print("%s was found in preloaded maps." % map_name)
+            logger.debug("%s was found in preloaded maps." % map_name)
             map_data = self.preloaded_maps[map_name]
             self.clear_preloaded_maps()
 
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of control
         self.game.reset_controls()
+
         try:
             self.player1.direction['up'] = False
             self.player1.direction['down'] = False
@@ -680,6 +680,8 @@ class WorldState(state.State):
         self.collision_map = map_data["collision_map"]
         self.collision_lines_map = map_data["collision_lines_map"]
         self.map_size = map_data["map_size"]
+
+        # TODO: remove this monkey [patching!] business for the main control/game
         self.game.events = map_data["events"]
         self.game.inits = map_data["inits"]
         self.game.interacts = map_data["interacts"]
@@ -780,7 +782,6 @@ class WorldState(state.State):
         :rtype: None
         :returns: None
         """
-        print(event_data)
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
         networking.update_client(target, event_data["char_dict"], self.game)

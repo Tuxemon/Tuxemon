@@ -1,16 +1,18 @@
-from __future__ import division
-from __future__ import print_function
+from __future__ import division, print_function
 
+import logging
 import math
 from functools import partial
 
 import pygame
 
-from core import state, prepare, tools
+from core import prepare, state, tools
 from core.components.menu.interface import MenuCursor, MenuItem
-from core.components.sprite import VisualSpriteList, RelativeGroup
+from core.components.sprite import RelativeGroup, VisualSpriteList
 from core.components.ui.draw import GraphicBox
 from core.components.ui.text import TextArea
+
+logger = logging.getLogger(__name__)
 
 
 def layout(scale):
@@ -149,7 +151,7 @@ class Menu(state.State):
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
                     return sprite
-            print("attempted to use 'alert' on state without a TextArea", message)
+            logger.error("attempted to use 'alert' on state without a TextArea", message)
             raise RuntimeError
 
         self.animate_text(find_textarea(), message)

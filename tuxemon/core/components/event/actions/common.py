@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -22,7 +21,8 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
-# 
+# Leif Theden <leif.theden@gmail.com>
+#
 from __future__ import absolute_import
 
 import logging
@@ -30,8 +30,22 @@ import logging
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
+"""
+[Core]
+Name = Common
+Module = Common
 
-class Common(object):
+[Documentation]
+Author = Adam Chevalier
+Version = 1.0
+Website = http://www.tuxemon.org
+Description = Plugin containing utility functions common to multiple action plugins.
+"""
+
+
+class CommonAction(object):
+    name = "Common"
+
     @staticmethod
     def set_character_attribute(character, attribute, value):
         """Set's a character's (npc or player) attribute.
@@ -68,7 +82,7 @@ class Common(object):
     @staticmethod
     def modify_character_attribute(character, attribute, modifier):
         """Modifies a character's (npc or player) attribute. Default behavior is to add
-        the given mod to the attribute, but prepending a percent (%) symbol will 
+        the given mod to the attribute, but prepending a percent (%) symbol will
         cause the mod to be used as a multiplier.
 
         :param character: The Player object to modify.

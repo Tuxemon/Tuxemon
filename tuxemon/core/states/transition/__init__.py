@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -35,4 +34,3 @@ from .flash import FlashTransition
 import logging
 
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)

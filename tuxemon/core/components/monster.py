@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -35,15 +34,13 @@ import random
 from core import tools
 from core.components import ai
 from core.components.technique import Technique
-from . import db
-from . import fusion
-
+from . import db, fusion
 from .locale import translator
+
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 # Load the monster database
 monsters = db.JSONDatabase()
@@ -122,7 +119,7 @@ class Monster(object):
 
         self.weight = 0
 
-		# the multiplier for checks when a monster ball is thrown.
+        # the multiplier for checks when a monster ball is thrown.
         self.catch_rate = 1;
 
         # The tuxemon's state is used for various animations, etc. For example
@@ -161,7 +158,7 @@ class Monster(object):
         results = monsters.lookup(slug)
 
         if results is None:
-            print("monster {} is not found".format(slug))
+            logger.error("monster {} is not found".format(slug))
             raise RuntimeError
 
         self.slug = results["slug"]                             # short English identifier
@@ -236,7 +233,6 @@ class Monster(object):
             self.ai = ai.SimpleAI()
         elif ai_result == "RandomAI":
             self.ai = ai.RandomAI()
-
 
     def load_sprite_from_db(self):
         """Looks up the path to the monster's battle sprites so they can be

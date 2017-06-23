@@ -46,8 +46,8 @@ class TeleportAction(EventAction):
     name = "teleport"
     valid_parameters = [
         (str, "map_name"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y")
+        (int, "x"),
+        (int, "y")
     ]
 
     def start(self):
@@ -56,15 +56,15 @@ class TeleportAction(EventAction):
         world = self.game.current_state
 
         # Get the teleport parameters for the position x,y and the map to load.
-        mapname = str(self.parameters[0])
-        position_x = int(self.parameters[1])
-        position_y = int(self.parameters[2])
+        map_name = self.parameters.map_name
+        position_x = self.parameters.x
+        position_y = self.parameters.y
 
         # If we're doing a screen transition with this teleport, set the map name that we'll
         # load during the apex of the transition.
         # TODO: This only needs to happen once.
         if world.in_transition:
-            world.delayed_mapname = mapname
+            world.delayed_mapname = map_name
 
         # Check to see if we're also performing a transition. If we are, wait to perform the
         # teleport at the apex of the transition
@@ -79,7 +79,7 @@ class TeleportAction(EventAction):
             world.global_x = player.position[0] - (position_x * player.tile_size[0])
             world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
-            map_path = prepare.BASEDIR + "resources/maps/" + mapname
+            map_path = prepare.BASEDIR + "resources/maps/" + map_name
             if map_path != world.current_map.filename:
                 world.change_map(map_path)
 

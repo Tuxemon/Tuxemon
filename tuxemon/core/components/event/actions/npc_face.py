@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.eventaction import EventAction
 from core.components.event.conditions import get_npc
+from core.components.event.eventaction import EventAction
 
 
 class NpcFaceAction(EventAction):

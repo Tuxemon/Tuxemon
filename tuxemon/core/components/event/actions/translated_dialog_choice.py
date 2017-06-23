@@ -27,7 +27,6 @@ from functools import partial
 from core.components.event.actions import replace_text
 from core.components.event.eventaction import EventAction
 from core.components.locale import translator
-from core.tools import open_dialog
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -42,37 +41,30 @@ class TranslatedDialogChoiceAction(EventAction):
     name = "translated_dialog_choice"
 
     def start(self):
-        def set_variable(game, player, var_key, var_value):
-            player.game_variables[var_key] = var_value
-            self.game.pop_state()
+        def set_variable(var_value):
+            player.game_variables[self.parameters.variable] = var_value
             self.game.pop_state()
 
         # Get the player object from the self.game.
         player = self.game.player1
 
         # perform text substitutions
-        text = str(self.parameters[0])
-        text = replace_text(game, text)
+        choices = replace_text(self.game, self.parameters.choices)
 
-        var_list = text.split(":")
+        # make menu options for each string between the colons
+        trans = translator.translate
+        var_list = choices.split(":")
         var_menu = list()
-
         for val in var_list:
-            label = translator.translate(val).upper()
-            var_menu.append((val, label, partial(set_variable, game, player, self.parameters[1], val)))
+            text = trans(val)
+            var_menu.append((text, text, partial(set_variable, val)))
 
-        # Open a dialog window in the current scene.
-        if text == "${{end}}":
-            self._done = self.game.get_state_name("DialogState") is None
-        else:
-            # is a dialog already open?
-            dialog = self.game.get_state_name("DialogState")
+        self.open_choice_dialog(self.game, var_menu)
 
-            if dialog:
-                dialog.text_queue.append(text)
-            else:
-                self.open_dialog(game, None, var_menu)
+    def update(self):
+        if self.game.get_state_name("ChoiceState") is None:
+            self.stop()
 
-    def open_dialog(self, game, initial_text, menu=None):
-        logger.info("Opening chain dialog window")
-        open_dialog(game, None, menu)
+    def open_choice_dialog(self, game, menu):
+        logger.info("Opening choice window")
+        return game.push_state("ChoiceState", menu=menu)

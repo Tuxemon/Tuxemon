@@ -57,7 +57,7 @@ class StartBattleAction(EventAction):
     def start(self):
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(self.game.player1):
-            logger.debug("battle is not legal, wont' start")
+            logger.debug("battle is not legal, won't start")
             return False
 
         # Stop movement and keypress on the server.

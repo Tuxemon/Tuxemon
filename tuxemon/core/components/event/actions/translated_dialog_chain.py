@@ -23,9 +23,8 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.actions import replace_text
 from core.components.event.eventaction import EventAction
-from core.components.locale import translator
+from core.components.event.actions import process_translate_text
 from core.tools import open_dialog
 
 # Create a logger for optional handling of debug messages.
@@ -64,7 +63,8 @@ class TranslatedDialogChainAction(EventAction):
         if not key == "${{end}}":
             self.stop()
 
-            text = self.process_text(key, self.raw_parameters[1:])
+            text = process_translate_text(self.game, key,
+                                          self.raw_parameters[1:])
 
             # is a dialog already open?
             dialog = self.game.get_state_name("DialogState")
@@ -75,21 +75,6 @@ class TranslatedDialogChainAction(EventAction):
             else:
                 # no, so create new dialog with this line
                 self.open_dialog(text)
-
-    def process_text(self, text_slug, parameters):
-        trans = translator.translate
-        replace_values = {}
-
-        for param in parameters:
-            key, value = param.split("=")
-
-            # Check to see if param_value is translatable
-            if value in translator:
-                value = trans(value)
-
-            replace_values[key] = replace_text(self.game, value)
-
-        return trans(text_slug, replace_values)
 
     def update(self):
         if self.parameters.key == "${{end}}":

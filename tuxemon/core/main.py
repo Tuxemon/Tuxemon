@@ -34,9 +34,6 @@ from . import prepare
 
 logger = logging.getLogger(__name__)
 
-# TODO: move to config
-debug = False
-
 
 def main():
     """Add all available states to our scene manager (tools.Control)
@@ -73,7 +70,7 @@ def main():
         control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if debug:
+    if prepare.CONFIG.collision_map == "1":
         logger.info("********* DEBUG OPTIONS ENABLED *********")
 
         # TODO: fix this player/player1 issue

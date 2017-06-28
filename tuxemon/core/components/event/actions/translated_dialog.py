@@ -21,7 +21,14 @@
 #
 from __future__ import absolute_import
 
+import logging
+
+from core.components.event.actions import process_translate_text
 from core.components.event.eventaction import EventAction
+from core.tools import open_dialog
+
+# Create a logger for optional handling of debug messages.
+logger = logging.getLogger(__name__)
 
 
 class TranslatedDialogAction(EventAction):
@@ -48,6 +55,19 @@ class TranslatedDialogAction(EventAction):
     """
     name = "translated_dialog"
 
+    valid_parameters = [
+        (str, "key")
+    ]
+
     def start(self):
-        return self.game.event_engine.execute_action("translated_dialog_chain",
-                                                     self.raw_parameters)
+        text = process_translate_text(self.game, self.parameters.key,
+                                      self.raw_parameters[1:])
+        self.open_dialog(text)
+
+    def update(self):
+        if self.game.get_state_name("DialogState") is None:
+            self.stop()
+
+    def open_dialog(self, initial_text):
+        logger.info("Opening dialog window")
+        open_dialog(self.game, [initial_text])

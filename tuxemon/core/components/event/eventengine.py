@@ -103,6 +103,9 @@ class EventEngine(object):
         self.wait = 0.0
         self.button = None
 
+        # debug
+        self.partial_events = list()
+
         # TODO: maybe move the stuff below to the game/control class?
 
         # Load all the available conditions
@@ -221,7 +224,7 @@ class EventEngine(object):
             return False
 
         result = map_condition.test(self.game, cond_data) == (cond_data.operator == 'is')
-        # logger.debug('map condition "{}": {}'.format(map_condition.name, result))
+        logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
         return result
 
     def execute_action(self, action_name, parameters=None):
@@ -262,6 +265,7 @@ class EventEngine(object):
         # started.  If not checked, then the game would freeze while it tries to run
         # unlimited copies of the same event, forever.
         if map_event.id not in self.running_events:
+            logger.debug("starting map event: {}".format(map_event))
             logger.debug("Executing action list")
             logger.debug(map_event)
             token = RunningEvent(map_event)
@@ -275,10 +279,27 @@ class EventEngine(object):
         :type map_event: core.components.event.EventObject
         :return: None
         """
-        # If any conditions fail, the event's actions should not be run
-        if all(map(self.check_condition, map_event.conds)):
-            logger.debug("starting map event: {}".format(map_event))
-            self.start_event(map_event)
+        # debugging mode is slower and will check all conditions
+        if prepare.CONFIG.collision_map == "1":
+            # less optimal, debug
+            started = 0
+            conds = list()
+            for cond in map_event.conds:
+                if self.check_condition(cond):
+                    conds.append((True, cond))
+                    started += 1
+                else:
+                    conds.append((False, cond))
+
+            if started == len(map_event.conds):
+                self.start_event(map_event)
+
+            self.partial_events.append(conds)
+
+        else:
+            # optimal, less debug
+            if all(map(self.check_condition, map_event.conds)):
+                self.start_event(map_event)
 
     def process_map_events(self, events):
         """ Check conditions in a list or sequence.  Start actions
@@ -296,9 +317,11 @@ class EventEngine(object):
 
         :param dt: Amount of time passed in seconds since last frame.
         :type dt: float
-        
+
         :rtype: None
         """
+        # debug
+        self.partial_events = list()
         self.check_conditions()
         self.update_running_events(dt)
 

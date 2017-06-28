@@ -68,16 +68,10 @@ class VariableSetCondition(EventCondition):
         # Get the player object from the game.
         player = game.player1
 
-        # Loop through the player's game variables to see if they have a value that is set.
-        for key, value in player.game_variables.items():
+        # Split the string by ":" into a list
+        key, value = condition.parameters[0].split(":")
 
-            # Split the string by ":" into a list
-            var_list = condition.parameters[0].split(":")
-            var_key = var_list[0]
-            var_value = var_list[1]
-
-            # If the variable is set in the game variables, then we've met the condition.
-            if (var_key == key) and (var_value == value):
-                return True
-
-        return False
+        try:
+            return player.game_variables[key] == value
+        except KeyError:
+            return False

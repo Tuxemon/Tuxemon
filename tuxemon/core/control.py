@@ -24,8 +24,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
+from __future__ import absolute_import, division
 
 import logging
 import time
@@ -34,10 +33,7 @@ import pygame as pg
 
 import core.components.event.eventengine
 from . import prepare
-from .components import cli
-from .components import controller
-from .components import networking
-from .components import rumble
+from .components import cli, controller, networking, rumble
 from .components.game_event import GAME_EVENT
 from .platform import android
 # from .components.combat import CombatEngine, CombatRouter
@@ -185,6 +181,37 @@ class Control(StateManager):
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
+    def draw_event_debug(self):
+        y = 20
+        x = 4
+
+        yy = y
+        xx = x
+
+        font = pg.font.Font(pg.font.get_default_font(), 12)
+        for event in self.event_engine.partial_events:
+            w = 0
+            for valid, item in event:
+                p = ' '.join(item.parameters)
+                text = "{} {}: {}".format(item.operator, item.type, p)
+                if valid:
+                    color = (0, 255, 0)
+                else:
+                    color = (255, 0, 0)
+                image = font.render(text, 1, color)
+                self.screen.blit(image, (xx, yy))
+                ww, hh = image.get_size()
+                yy += hh
+                w = max(w, ww)
+
+            xx += w + 20
+
+            if xx > 1000:
+                xx = x
+                y += 200
+
+            yy = y
+
     def update(self, dt):
         """Checks if a state is done or has called for a game quit.
         State is flipped if neccessary and State.update is called. This
@@ -247,6 +274,9 @@ class Control(StateManager):
 
         if self.config.controller_overlay == "1":
             self.controller.draw(self)
+
+        if prepare.CONFIG.collision_map == "1":
+            self.draw_event_debug()
 
     def gather_events(self):
         """ Collect all platform input events and iterate them.

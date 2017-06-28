@@ -544,8 +544,7 @@ class WorldState(state.State):
     def _npc_to_pgrect(self, npc):
         """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
         """
-
-        return pygame.Rect(npc, self.tile_size)
+        return pygame.Rect(npc.position, self.tile_size)
 
     def debug_drawing(self, surface):
         # We need to iterate over all collidable objects.  So, let's start
@@ -555,18 +554,28 @@ class WorldState(state.State):
         # Next, deal with solid NPCs.
         npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
 
+        # draw noc and wall collision tiles
         for item in itertools.chain(box_iter, npc_iter):
             surface.blit(self.collision_tile, (item[0], item[1]))
 
+        # draw events
+        for event in self.game.events:
+            rect = self._collision_box_to_pgrect((event.x, event.y))
+            surface.fill((0, 255, 255, 128), rect)
+
+        # draw collision check boxes
         if self.player1.direction["up"]:
             surface.blit(self.collision_tile, (
                 self.player1.position[0], self.player1.position[1] - self.tile_size[1]))
+
         elif self.player1.direction["down"]:
             surface.blit(self.collision_tile, (
                 self.player1.position[0], self.player1.position[1] + self.tile_size[1]))
+
         elif self.player1.direction["left"]:
             surface.blit(self.collision_tile, (
                 self.player1.position[0] - self.tile_size[0], self.player1.position[1]))
+
         elif self.player1.direction["right"]:
             surface.blit(self.collision_tile, (
                 self.player1.position[0] + self.tile_size[0], self.player1.position[1]))

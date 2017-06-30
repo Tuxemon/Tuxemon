@@ -11,11 +11,12 @@ min_font_size = 7
 class TextArea(Sprite):
     """ Area of the screen that can draw text
     """
+    animated = True
 
     def __init__(self, font, font_color, bg=(192, 192, 192)):
         super(TextArea, self).__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
-        self.drawing_text = True
+        self.drawing_text = False
         self.font = font
         self.font_color = font_color
         self.font_bg = bg
@@ -38,16 +39,25 @@ class TextArea(Sprite):
     def text(self, value):
         if value != self._text:
             self._text = value
-        self._start_text_animation()
 
-    def next(self):
-        try:
-            dirty, dest, scrap = next(self._iter)
-            self._image.fill((0, 0, 0, 0), dirty)
-            self._image.blit(scrap, dest)
-        except StopIteration:
-            self.drawing_text = False
-            raise
+        if self.animated:
+            self._start_text_animation()
+        else:
+            self.image = draw.shadow_text(self.font, self.font_color, self.font_bg, self._text)
+
+    def __next__(self):
+        if self.animated:
+            try:
+                dirty, dest, scrap = next(self._iter)
+                self._image.fill((0, 0, 0, 0), dirty)
+                self._image.blit(scrap, dest)
+            except StopIteration:
+                self.drawing_text = False
+                raise
+        else:
+            raise StopIteration
+
+    next = __next__
 
     def _start_text_animation(self):
         self.drawing_text = True
@@ -103,6 +113,10 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None,
 
     # Calculate the number of pixels per letter based on the size
     # of the text and the number of characters in the text
+
+    if not text:
+        return
+
     pixels_per_letter = text_surface.get_width() / len(text)
 
     # Create a list of the lines of text as well as a list of the

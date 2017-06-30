@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="30">
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="57">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100">
+ <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
   <image source="../gfx/tilesets/items.png" width="160" height="160"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
@@ -57,15 +57,82 @@
   </object>
   <object id="27" name="Receive capture device" type="event" x="64" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item Capture Device"/>
-    <property name="act2" value="add_item Capture Device"/>
-    <property name="act3" value="add_item Capture Device"/>
-    <property name="act4" value="add_item Capture Device"/>
-    <property name="act5" value="add_item Capture Device"/>
+    <property name="act1" value="add_item item_capture_device"/>
+    <property name="act2" value="add_item item_capture_device"/>
+    <property name="act3" value="add_item item_capture_device"/>
+    <property name="act4" value="add_item item_capture_device"/>
+    <property name="act5" value="add_item item_capture_device"/>
     <property name="act6" value="dialog Received capture device (x5)!"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="37" name="Talk to the professor" type="event" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog_chain professor_dialog1"/>
+    <property name="act2" value="translated_dialog_chain professor_dialog2"/>
+    <property name="act3" value="translated_dialog_chain professor_dialog3"/>
+    <property name="act4" value="translated_dialog_chain professor_dialog4"/>
+    <property name="act5" value="translated_dialog_chain professor_dialog5"/>
+    <property name="act6" value="translated_dialog_chain ${{end}}"/>
+    <property name="act7" value="dialog_choice Hydrone:Rockitten:Fruitera,tuxchoice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is npc_exists npc_professor"/>
+    <property name="cond5" value="is variable_set tuxchoice:welcome"/>
+   </properties>
+  </object>
+  <object id="42" name="hello Professor" type="event" x="144" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_professor,7,7,professor,stand"/>
+    <property name="act2" value="set_variable tuxchoice:welcome"/>
+    <property name="cond1" value="not variable_set tuxchoice:end"/>
+    <property name="cond2" value="not npc_exists npc_professor"/>
+    <property name="cond3" value="not variable_set tuxchoice:Hydrone"/>
+    <property name="cond4" value="not variable_set tuxchoice:Rockitten"/>
+    <property name="cond5" value="not variable_set tuxchoice:Fruitera"/>
+   </properties>
+  </object>
+  <object id="46" name="choiceHydrone" type="event" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog professor_dialog6.1"/>
+    <property name="act2" value="add_monster txmn_hydrone,5"/>
+    <property name="act3" value="set_variable tuxchoice:end"/>
+    <property name="act4" value="translated_dialog professor_dialog7"/>
+    <property name="act5" value="screen_transition 3"/>
+    <property name="act6" value="remove_npc npc_professor"/>
+    <property name="cond1" value="is variable_set tuxchoice:Hydrone"/>
+   </properties>
+  </object>
+  <object id="47" name="choiceRockitten" type="event" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog professor_dialog6.2"/>
+    <property name="act2" value="add_monster txmn_rockitten,5"/>
+    <property name="act3" value="set_variable tuxchoice:end"/>
+    <property name="act4" value="translated_dialog professor_dialog7"/>
+    <property name="act5" value="screen_transition 3"/>
+    <property name="act6" value="remove_npc npc_professor"/>
+    <property name="cond1" value="is variable_set tuxchoice:Rockitten"/>
+   </properties>
+  </object>
+  <object id="51" name="choiceFruitera" type="event" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog professor_dialog6.3"/>
+    <property name="act2" value="add_monster txmn_fruitera,5"/>
+    <property name="act3" value="set_variable tuxchoice:end"/>
+    <property name="act4" value="translated_dialog professor_dialog7"/>
+    <property name="act5" value="screen_transition 3"/>
+    <property name="act6" value="remove_npc npc_professor"/>
+    <property name="cond1" value="is variable_set tuxchoice:Fruitera"/>
+   </properties>
+  </object>
+  <object id="56" name="employee" type="event" x="48" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_tuxemart,2,7,tuxemartemployee,stand"/>
+    <property name="act2" value="npc_face npc_tuxemart,right"/>
+    <property name="cond1" value="not npc_exists npc_tuxemart"/>
    </properties>
   </object>
  </objectgroup>

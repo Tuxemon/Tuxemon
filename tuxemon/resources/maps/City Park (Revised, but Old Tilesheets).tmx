@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="45">
+ <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="105" name="Tiles_packed" tilewidth="16" tileheight="16" tilecount="0" columns="23">
+  <image source="../Old Tiled/Other tilesheets/Tiles_packed.png" width="368" height="128"/>
+ </tileset>
+ <tileset firstgid="105" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+ </tileset>
+ <tileset firstgid="465" name="9Wf6HwQ" tilewidth="16" tileheight="16" tilecount="0" columns="42">
+  <image source="../Old Tiled/Other tilesheets/9Wf6HwQ.png" width="684" height="500"/>
+ </tileset>
+ <tileset firstgid="465" name="couch" tilewidth="16" tileheight="16" tilecount="0" columns="4">
+  <image source="../Old Tiled/Other tilesheets/couch.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="465" name="shaft hq" tilewidth="16" tileheight="16" tilecount="0" columns="5">
+  <image source="../Old Tiled/Other tilesheets/shaft hq.png" width="80" height="64"/>
+ </tileset>
+ <tileset firstgid="465" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="569" name="buildings" tilewidth="16" tileheight="16" tilecount="805" columns="35">
+  <image source="../gfx/tilesets/buildings.png" width="575" height="381"/>
+ </tileset>
+ <tileset firstgid="1374" name="crate opening" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../Old Tiled/Other tilesheets/crate opening.gif" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="1375" name="ladders" tilewidth="16" tileheight="16" tilecount="0" columns="2">
+  <image source="../Old Tiled/Other tilesheets/ladders.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="1375" name="Tileset" tilewidth="16" tileheight="16" tilecount="14" columns="28">
+  <image source="../Old Tiled/Other tilesheets/Tileset.png" width="448" height="640"/>
+ </tileset>
+ <tileset firstgid="1614" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="2114" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzrENgDAQBMGXayGEDHqkUtMGLxETIr/MBKcJb3tEXLlO/tQ++H92l1aj4801+7Y2vkPfN+7ZdhTuI0mSJEmSj2eRDs7lDWjMmhw=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztlE0KwjAQheNsXdU7VDGou3oR/+6h6En0IOo5rFfyCS3VYFMVmkzhffAxkFnk8QJJesYMYBJxLsSYJVzBNdxItR9DG3lukWcHn+wxD1Lty5xaOCLb6UN/sTkj0wVeix619ldS198N5oEcOZnS4vxudPZnX6bbXyrNDiVcVvddJ7h72uCs5XzWs/Pl68MMzgP290u+tnv7hkzqjdkbISHx/TGxsc7USBeydSGjRtjf+z2aeyCEEEIIIeQfHimrNHE=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzlWEtKBEEMrRZG17qaKzggeAX/juABRJDZi+IHvYL2+LtCg+heV95BFK/gCOId3JiSDsZMkqruKT9oIKQN1anXb/JiVzv3t200c24s+569Xsh+sXEcvFVhPY9VDfeLjd7WGtXvw7g8nJTif2dTwOE0+MwgPfyF/b8CtQ8hrpJeqWt1NWBpw+Pzz4/4esqeE0NhfHU1YGnL42sSfIiRzwcLH12fkjvENynwx+dWCN9XcIf4/Nz1+HpkP/6b9ZztsRaq4/ufcrgNcQd8N9B/qSzmOTmH9F6OUVtrGT5TO0Ef8vkX4k+blzSPz9RO0Id0vlD+uH7R/Pot91nvVh7ttuK1N9+LWl2uX4rjUFiv5dGeyvhMrp1xjZYrdS3+CohHAr7CwPdK8L0KeX79jm3EFXvgfXUzm78biPsjrtMF53mO77T8ex7iHPiC4YvsXqhfwD6FVNfi7wEiPFcnZ/gehDpr2Ud8dLZ3BO67Sl2LPz/Pj4XfF+e8hi80+yR8Wl3OXzP7WI96v2F16HuGhK8Of7lQ179TW/zx9wkrr/F3BbPjumHzh/qQ6lr9N6ngk/Iaf3eA7b5h84f6kOqG9Cvhk/KI74Tx1yrjEsmfKfqoo19p/ln69Ua5Gi+x0ZxkWt2QfqX5Z+nXW4g/yXJSl549LP68nqT5J+l3P4ufx33YSn1IdUP6leafpDPLpHlCDfVB6+JMS6XfQfC9Y1Tqavzx920pr/2fnWX3xODT9tP4Q1uHXt0A3xzgvGzhC51zNP7QDgBXDt5NgO8lEhvFGOLvHHBdgF9K+CJ7UJrHMfiaWT9/nMfU5/G6UTs3pz6P141Vv2f+Fv40+2n+Qt9zfpq/0Pec7+bvDe0zI/Y=
+  </data>
+ </layer>
+ <layer name="Numbers" width="40" height="40" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt09sRgCAMRFE+LdAmlGZE7UUU6A3HChhm5JV7Kkh2E6WQSk+1JyhvE7gz8hhu5XczGSdbC2e10w0acXCLHy8shyBs3xY8ZI5BuM5v+ex8fuS76R4YxvX+s+WnxVgqdB0BuKsKAw==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
+  <object id="2" type="collision" x="32" y="0" width="496" height="32"/>
+  <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
+  <object id="5" type="collision" x="256" y="32" width="32" height="16"/>
+  <object id="6" type="collision" x="288" y="32" width="224" height="32"/>
+  <object id="7" type="collision" x="512" y="80" width="48" height="112"/>
+  <object id="8" type="collision" x="64" y="224" width="48" height="272"/>
+  <object id="9" type="collision" x="160" y="224" width="48" height="272"/>
+  <object id="10" type="collision" x="208" y="480" width="112" height="16"/>
+  <object id="11" type="collision" x="192" y="544" width="448" height="96"/>
+  <object id="12" type="collision" x="608" y="224" width="32" height="320"/>
+  <object id="13" type="collision" x="32" y="608" width="128" height="32"/>
+  <object id="14" type="collision" x="96" y="544" width="96" height="32"/>
+  <object id="15" type="collision" x="512" y="208" width="48" height="288"/>
+  <object id="16" type="collision" x="256" y="432" width="128" height="16"/>
+  <object id="17" type="collision" x="208" y="208" width="304" height="32"/>
+  <object id="18" type="collision" x="160" y="144" width="320" height="32"/>
+  <object id="19" type="collision" x="32" y="128" width="464" height="16"/>
+  <object id="20" type="collision" x="176" y="112" width="320" height="16"/>
+  <object id="21" type="collision" x="448" y="288" height="112"/>
+  <object id="22" type="collision" x="288" y="288" width="160" height="16"/>
+  <object id="24" type="collision" x="256" y="288" height="144"/>
+  <object id="26" type="collision" x="288" y="304" height="96"/>
+  <object id="28" type="collision" x="384" y="448" height="96"/>
+  <object id="30" type="collision" x="464" y="176" width="32" height="32"/>
+  <object id="31" type="collision" x="32" y="144" width="112" height="32"/>
+  <object id="32" type="collision" x="608" y="0" width="32" height="160"/>
+  <object id="39" type="collision" x="384" y="384" width="16" height="16"/>
+  <object id="40" type="collision" x="368" y="400" width="16" height="16"/>
+  <object id="41" type="collision" x="384" y="416" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="33" name="random encounter 1" type="event" x="320" y="176" width="128" height="32">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="34" name="encounter 2" type="event" x="144" y="144" width="16" height="48">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="35" name="encounter 3" type="event" x="32" y="176" width="112" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="36" name="encounter 4" type="event" x="480" y="496" width="96" height="48">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="37" name="encounter 5" type="event" x="304" y="320" width="128" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="38" name="encounter 6" type="event" x="304" y="352" width="128" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="43" name="encounter 7" type="event" x="304" y="384" width="80" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="44" name="encounter 8" type="event" x="304" y="416" width="80" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

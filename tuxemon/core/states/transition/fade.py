@@ -3,10 +3,11 @@ from abc import abstractmethod
 
 import pygame
 
+from core import prepare
 from core.state import State
+from core.platform import mixer
 
 logger = logging.getLogger(__name__)
-logger.debug("{} successfully imported".format(__name__))
 
 
 class FadeTransitionBase(State):
@@ -18,7 +19,7 @@ class FadeTransitionBase(State):
     color = (0, 0, 0)
 
     def startup(self, **kwargs):
-        logger.info("Initializing fade transition")
+        logger.debug("Initializing fade transition")
         self.state_duration = kwargs.get("state_duration", self.state_duration)
         self.fade_duration = kwargs.get("fade_duration", self.fade_duration)
         self.caller = kwargs.get("caller")
@@ -50,6 +51,12 @@ class FadeOutTransition(FadeTransitionBase):
         self.animate(self.transition_surface, set_alpha=255, initial=0, duration=self.fade_duration)
 
     def shutdown(self):
+        if self.game.current_music["previoussong"]:
+            mixer.music.load(prepare.BASEDIR + "resources/music/" + self.game.current_music["previoussong"])
+            mixer.music.play(-1)
+            self.game.current_music["status"] = "playing"
+            self.game.current_music["song"] = self.game.current_music["previoussong"]
+            self.game.current_music["previoussong"] = None
         self.game.pop_state(self.caller)
 
 

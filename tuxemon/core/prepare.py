@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -31,7 +30,9 @@
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
+from __future__ import absolute_import
 
+import logging
 import os
 import shutil
 
@@ -40,6 +41,7 @@ import pygame as pg
 from .components import config
 from .platform import get_config_path
 
+logger = logging.getLogger(__name__)
 
 # Get the tuxemon base directory
 BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + os.sep
@@ -61,6 +63,15 @@ if not os.path.isfile(CONFIG_FILE_PATH):
         shutil.copyfile(BASEDIR + "tuxemon.cfg", CONFIG_FILE_PATH)
     except OSError:
         raise
+
+# Set up our custom campaign data directory.
+USER_DATA_PATH = CONFIG_PATH + "data/"
+if not os.path.isdir(USER_DATA_PATH):
+    try:
+        os.makedirs(USER_DATA_PATH)
+    except OSError:
+        if not os.path.isdir(USER_DATA_PATH):
+            raise
 
 # Read the "tuxemon.cfg" configuration file
 CONFIG = config.Config(CONFIG_FILE_PATH)
@@ -135,6 +146,7 @@ def init():
     from .platform import android
 
     # Initialize PyGame and our screen surface.
+    logger.debug("pygame init")
     pg.init()
     pg.display.set_caption(ORIGINAL_CAPTION)
     SCREEN = pg.display.set_mode(SCREEN_SIZE, CONFIG.fullscreen, 32)
@@ -166,12 +178,12 @@ def init():
     # Scale the sprite and its animations
     for key, animation in player1.sprite.items():
         animation.scale(
-                tuple(i * SCALE for i in animation.getMaxSize()))
+            tuple(i * SCALE for i in animation.getMaxSize()))
 
     for key, image in player1.standing.items():
         player1.standing[key] = pg.transform.scale(
-                image, (image.get_width() * SCALE,
-                        image.get_height() * SCALE))
+            image, (image.get_width() * SCALE,
+                    image.get_height() * SCALE))
 
     # Set the player's width and height based on the size of our scaled
     # sprite.
@@ -188,10 +200,10 @@ def init():
 
     # Set the player's collision rectangle
     player1.rect = pg.Rect(
-            player1.position[0],
-            player1.position[1],
-            TILE_SIZE[0],
-            TILE_SIZE[1])
+        player1.position[0],
+        player1.position[1],
+        TILE_SIZE[0],
+        TILE_SIZE[1])
 
     # Set the walking and running pixels per second based on the scale
     player1.walkrate *= SCALE

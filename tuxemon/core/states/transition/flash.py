@@ -9,7 +9,6 @@ from core.state import State
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("{} successfully imported".format(__name__))
 
 
 class FlashTransition(State):
@@ -73,3 +72,19 @@ class FlashTransition(State):
         # that alpha level.
         self.transition_surface.set_alpha(self.transition_alpha)
         surface.blit(self.transition_surface, (0, 0))
+
+    def process_event(self, game_event):
+        """ Processes events that were passed from the main event loop.
+
+        By returning "None" here, we prevent input events from reaching the
+        world state, which would have allowed the player to continue moving
+        around during a transition.
+
+        :param event: A pygame key event from pygame.event.get()
+        :type event: PyGame Event
+        :returns: Pygame Event or None
+        :rtype: pygame Event
+
+        """
+
+        return None

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -44,6 +43,8 @@ log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
 
 
 class Plugin(object):
+    __slots__ = ['name', 'plugin_object']
+
     def __init__(self, name, module):
         self.name = name
         self.plugin_object = module
@@ -59,7 +60,7 @@ class PluginManager(object):
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
-        self.file_extension = ".plugin"
+        self.file_extension = ".py"
         self.exclude_classes = ["IPlugin"]
         self.include_patterns = ["core.components.event.actions", "core.components.event.conditions"]
 
@@ -89,17 +90,20 @@ class PluginManager(object):
     def getAllPlugins(self):
         imported_modules = []
         for module in self.modules:
-            logger.debug("Importing module: " + str(module))
+            logger.debug("Searching module: " + str(module))
             m = importlib.import_module(module)
             for c in self._getClassesFromModule(m):
                 class_name = c[0]
                 class_obj = c[1]
                 for pattern in self.include_patterns:
                     if class_name in self.exclude_classes:
+                        logger.debug("Skipping " + str(module))
                         continue
+
                     # Only import modules from the list of parent modules
                     if pattern in str(class_obj):
-                        imported_modules.append(Plugin(module + "." + class_name, class_obj()))
+                        logger.debug("Importing: " + str(class_name))
+                        imported_modules.append(Plugin(module + "." + class_name, class_obj))
 
         return imported_modules
 
@@ -151,3 +155,19 @@ def get_available_methods(plugin_manager):
             methods[method[0]] = {"method": method[1], "module": plugin.name}
 
     return methods
+
+
+def get_available_classes(plugin_manager):
+    """Gets the available methods in a dictionary of plugins.
+
+    :param plugin_manager: A dictionary of modules.
+    :type plugin_manager: yapsy.PluginManager
+
+    :rtype: list
+    :returns: A list containing the classes from loaded plugins.
+    """
+    classes = []
+    for plugin in plugin_manager.getAllPlugins():
+        classes.append(plugin.plugin_object)
+
+    return classes

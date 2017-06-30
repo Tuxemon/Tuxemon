@@ -1,69 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="16" tileheight="16" nextobjectid="26">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="63">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
- <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1313" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="40">
+ <tileset firstgid="1521" name="Route_1a" tilewidth="16" tileheight="16" tilecount="800" columns="40">
+  <image source="../gfx/tilesets/Route_1a.png" width="640" height="320"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztz7ERABAQAMFPlCOk9W+PmNhgZoPN77JEJMBh9YEGv379+vW7a1Nf3G4CAAAAAACAnwyIrd0Z
+   eJztzzEOgCAQAMELCc+xxIdT4Peg1l70MsX0u71EdEhiVMjjAnjB8YEGv379+vX71JbzZncTAAAAAAAA/MkEhrnfNA==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="60" height="40">
+ <layer name="Tile Layer 2" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztljEOgkAQAC8IX9FGLfUl6KPspVIeII3GWGlhoS/QwtKHaFwTNiTkOA7uJLtmJ9mQHBQ3DASUoskuqh8bDnDdGWYTKJUFv92zC1WOW4PvAtbWmklgbuB6Z+hr6psY1l7g+ibs2waTb7+n1KDX7X5smET6meb7xrYrzXOb5tfgc73M177v78nyfe+aUajUGCYO9efRNw6LKaPrfIG1K0HnGex/DpNV7A19h2ExZTj5Ivsa36Z9qYI+db5N+z6I3gNb36Z9ufqW0f1fpH/sa4v40qDKF7/LbY/cfPG73Pb4ZObr2pc6R899ueDalUtfxLUrl76+unLp66sr9b6+u1Lv67sr9b6CIAiCIAiCIAiCILjzASVOjnk=
+   eJzdWjlvFDEYNbMJuxWEhqPjDgVQgqAB8QMCEgR6aDgqoAASGqBBChVXKoi4r0gcCjQkSBQgcQhIAgKEQOKuOBvu41nMpzVe2+NrZglPevp2HO/Yb97nb3Y8YcwOPQlj55PaeLrM2JlydqT+ByqMHQSnNzB2DfF6pXasZrRNA+/jew/K4dEHjzHXJ0lttB2T+pPGVuj9gPhRoXch2haBv/hcI0QfDC8xVi7VRtsxqT9pNPm7AW0bK1WfQ6MMXa5S5HPrQNyR1EbbMam/jb+yz6FRhi5XKfK56a6F7Zgu61f2OTTa5ipFPjfdtbAd02X95g1drlLkc1sKLguI8vpdDC5JfRbBjznPNWbTBhfQ7zJ4Cjq6kz9tWes3Buhc5G87uDn1WQQ/bjXoPWvQ24G2/Qp2gncx9r1US9b69cEMzHlmQzXSucjfQ+BhQy77+NtpaPuBsX+mWijXmnA8KqlGaveBLp8p3oDWm5HXrknvVIzZnGqZA21zE3WMBTlnqE7LmNWo5ux03uTtPkXedqV9KK/3pm18/fYJ12I5xl+RqKMv5HyW/dXdi6i/vK4JpJfWuaqfyucraLtK18NQn0W8GcbYW/Ad+D7lTvTZBe4G9wj95Xy29Zf6d2vqL+mlOi7Xdxu9pvosYjSOx4BjwXHp54tgL9gHXjLkg62/hJ4Mva7+ijDVZxHzcDwffAkuAF+BL9LI+dqg19Zf0pOl19Xfh0Kbrj7L99+V+LwKHIG+axBHlv5mk6GW2/prq9fVX1Gvrj6H3H9lxPJXhur3RVeGXl19Drn/yojlry9Evbb1mWMtvrdO4HrLeeXlry1Evbb1mWMTvtcmsN1yXnROX3/l+7lrFPXa1ucQvaH+hj6fPfWozyF66+2vCJf6nLe/hN7I/opwqc95+ysj1FeVvy71uSh/CaG+qvx12d8oyt9Yvqr8ddnfKMrfWL6q/HXZ3wj1V97HkhHbV5f6rNrfyNvf2L661GfV/oavXtfnXx/0Yy4DBg467m9wxPJXdd1DQb8Zj+D8R8Fj4HHwBHgSfGSxvxGrPuvyK+v5w2ZflvZmSe8tzPk2eAfsBwfAQUFvEfVZB36+1QLl8/no/YQ5fwa/gF/Bb+B3QW8R9blIveMx5wngRHASOBmcUqrqLaI+F6lXB9Krq88x1++/pFdXn1Xrdwu+s1XgNmkMuf5kcXsd9MZ8Pyj61ebAlpRF6I35fnAo6I35ftBHb0vBemO+H5TXtyvlelBkfQ55P1gPhNZnink9o8WOXK/u76LerPqc1zNa7Mj3XJ8Z+DyH+jwUkPX/V/8TfgPIRyg7
   </data>
  </layer>
- <layer name="Tile Layer 3" width="60" height="40">
+ <layer name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOQEAYROEt9r+N+yo5gULDEejEiZCViESUJDPvS6ZTeMnKSklXHWVz/P0m32jO3kG4txVuU5BzSrGvyu/PVfmamz7uO4zC5/qpVxm92tx6n0ym3fCxGJ3xNcoABW73UxdlLtz+vejV5vTtAgAAAADgZgOjjB8C
+   eJztmbFKBDEQhuO5YdP6Hndi7Wso2tjZ+A7a2tlbKmgt3IHoIyhaiJ0WvoQ+gAnrILcwl8neJJks+SAMgXDMz2b+SS5KVSpxOdG5M0jLUbM8n7dKLVq+KJ0Pm+NnyxdD2JrE0YTh9vaGUWpi+GIIu4n1cnKpu/Ec4A/HBeu9+tP7EKD3ojC912t6/X1hetflK7HexvYmbce0Wb1u2vwPTtpN3t+LwUIvD8fjwH29U6jeobj+C3uMAqztx5hw6nX9d2bz3SbmDGv7MSacel3/PbD5HhJzhrX9GBNOvaX1X+BpoO7af2WB+eOevSfsB94VHKnvRxinNvczg0cKb4Q9LuV+dGM13Ro8+njX3fAh5X70YjW9GjxyIcWfv62mH4NHLnz1ex65t8L3gzrF5j6o/Sl3/cL3gzrF5j7udDd85Kpfnx+H+jP17JWrfn1+HOrPVL25zlc+Pw71Z6pe6ecrKpTadUg5X6Uitz+nRsr5KhVSzlepqPffcVP9edxUfx431Z/HTQnvgwD232zIG1YJ74PAbIWm2G9YOcDerlK8YVVk8Avf3Zod
   </data>
  </layer>
- <layer name="Above Player" width="60" height="40">
+ <layer name="Above Player" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1iEOgDAQRNEVu/e/SjUnQHIkFGkqMFCSYfpf0hSBmXzTCB+t+vde9//9mesujA4629pqPO7Y6429gLbMiMrnN7TR19PbrvTVNKvrqn1V316zu1636t6vrLYXAAAAAAD4OgGklxmZ
+   eJzt1zEKgDAMheEMyf2v4uwJHD2SkxQFh2LThuT/QOLg8niFGhEAAHxt1t4P+/7Og6qIaZteZufCGufinmed54p2ez7ZkTc38gKxve/z3onY6Denv73Sb0yjeq3ab9R/r9G93jNqXi/V8gIAAADw4bWjsdMD6HEBzKgbQg==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
-  <object id="1" type="collision" x="672" y="208" width="96" height="160"/>
-  <object id="2" type="collision" x="736" y="64" width="32" height="96"/>
-  <object id="3" type="collision" x="608" y="64" width="16" height="208"/>
-  <object id="4" type="collision" x="640" y="272" width="32" height="96"/>
-  <object id="5" type="collision" x="608" y="304" width="32" height="64"/>
-  <object id="6" type="collision" x="576" y="336" width="32" height="32"/>
-  <object id="7" type="collision" x="576" y="64" width="32" height="48"/>
-  <object id="8" type="collision" x="624" y="64" width="64" height="16"/>
-  <object id="9" type="collision" x="688" y="160" width="80" height="16"/>
-  <object id="10" type="collision" x="688" y="64" width="16" height="112"/>
-  <object id="11" type="collision" x="768" y="208" width="192" height="160"/>
-  <object id="12" type="collision" x="768" y="160" width="16" height="48"/>
-  <object id="13" type="collision" x="0" y="0" width="128" height="640"/>
-  <object id="14" type="collision" x="128" y="576" width="832" height="64"/>
-  <object id="15" type="collision" x="0" y="-48" width="960" height="48"/>
-  <object id="18" type="collision" x="768" y="64" width="64" height="16"/>
-  <object id="19" type="collision" x="832" y="16" height="48"/>
-  <object id="20" type="collision" x="832" y="16" width="64" height="16"/>
-  <object id="21" type="collision" x="896" y="0" height="16"/>
-  <object id="22" type="collision" x="960" y="-48" width="32" height="688"/>
+  <object id="1" type="collision" x="672" y="304" width="96" height="160"/>
+  <object id="2" type="collision" x="736" y="160" width="32" height="96"/>
+  <object id="3" type="collision" x="608" y="160" width="16" height="208"/>
+  <object id="4" type="collision" x="640" y="368" width="32" height="96"/>
+  <object id="5" type="collision" x="608" y="400" width="32" height="64"/>
+  <object id="6" type="collision" x="576" y="432" width="32" height="32"/>
+  <object id="7" type="collision" x="576" y="176" width="32" height="48"/>
+  <object id="8" type="collision" x="624" y="160" width="64" height="16"/>
+  <object id="9" type="collision" x="688" y="256" width="80" height="16"/>
+  <object id="10" type="collision" x="688" y="160" width="16" height="112"/>
+  <object id="11" type="collision" x="768" y="304" width="192" height="160"/>
+  <object id="12" type="collision" x="768" y="256" width="16" height="48"/>
+  <object id="13" type="collision" x="0" y="96" width="144" height="640"/>
+  <object id="14" type="collision" x="144" y="672" width="816" height="64"/>
+  <object id="15" type="collision" x="0" y="48" width="960" height="48"/>
+  <object id="18" type="collision" x="768" y="160" width="64" height="16"/>
+  <object id="19" type="collision" x="832" y="112" height="48"/>
+  <object id="20" type="collision" x="832" y="112" width="64" height="16"/>
+  <object id="21" type="collision" x="896" y="96" height="16"/>
+  <object id="22" type="collision" x="960" y="0" width="32" height="688"/>
+  <object id="28" type="collision" x="416" y="112" width="96" height="384"/>
+  <object id="30" type="collision" x="480" y="96" width="32" height="16"/>
+  <object id="33" type="collision" x="416" y="496" width="64" height="16"/>
+  <object id="34" type="collision" x="832" y="464" width="128" height="16"/>
+  <object id="35" type="collision" x="944" y="480" width="16" height="192"/>
+  <object id="39" type="collision" x="128" y="96" width="352" height="16"/>
+  <object id="41" type="collision" x="352" y="176" width="64" height="32"/>
+  <object id="42" type="collision" x="352" y="128" width="64" height="32"/>
+  <object id="43" type="collision" x="576" y="96" width="32" height="32"/>
+  <object id="44" type="collision" x="512" y="96" width="16" height="32"/>
+  <object id="51" x="816" y="464" width="16" height="16"/>
+  <object id="52" type="collision" x="816" y="480" width="16" height="192"/>
+  <object id="55" type="collision" x="144" y="208" width="272" height="48"/>
+  <object id="56" type="collision" x="256" y="368" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="176" width="16" height="16">
+  <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,11"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="25" name="Teleport to map1 (lower)" type="event" x="752" y="192" width="16" height="16">
+  <object id="25" name="Teleport to map1 (lower)" type="event" x="752" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,12"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="32" name="Teleport to route1a" type="event" x="528" y="96" width="48" height="16">
+   <properties>
+    <property name="act1" value="teleport route_1a.tmx,25,26"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="36" name="random battle" type="event" x="640" y="496" width="160" height="160">
+   <properties>
+    <property name="act1" value="random_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+    <property name="cond3" value="is party_size greater_than,0"/>
+   </properties>
+  </object>
+  <object id="45" name="Music" type="event" x="160" y="720" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music 479403_its-a-unix-system.ogg"/>
+    <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
+   </properties>
+  </object>
+  <object id="46" name="create Karrianna and grunts" type="event" x="512" y="448" width="64" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_karrianna,17,38,femaletrainer,stand"/>
+    <property name="act10" value="create_npc npc_xerogrunt3,27,34,teamxerogrunt1,stand"/>
+    <property name="act11" value="npc_face npc_xerogrunt3,right"/>
+    <property name="act12" value="create_npc npc_xerogrunt4,27,35,teamxerogrunt1,stand"/>
+    <property name="act13" value="npc_face npc_xerogrunt4,right"/>
+    <property name="act14" value="create_npc npc_xerogrunt5,27,36,teamxerogrunt1,stand"/>
+    <property name="act15" value="npc_face npc_xerogrunt5,right"/>
+    <property name="act16" value="create_npc npc_xerogrunt6,27,37,teamxerogrunt1,stand"/>
+    <property name="act17" value="npc_face npc_xerogrunt6,right"/>
+    <property name="act18" value="create_npc npc_xerogrunt7,27,38,teamxerogrunt1,stand"/>
+    <property name="act19" value="npc_face npc_xerogrunt7,right"/>
+    <property name="act2" value="npc_face npc_karrianna,right"/>
+    <property name="act20" value="create_npc npc_xerogrunt8,27,39,teamxerogrunt1,stand"/>
+    <property name="act21" value="npc_face npc_xerogrunt8,right"/>
+    <property name="act22" value="create_npc npc_xerogrunt9,27,40,teamxerogrunt1,stand"/>
+    <property name="act23" value="npc_face npc_xerogrunt9,right"/>
+    <property name="act24" value="create_npc npc_xerogrunt10,27,41,teamxerogrunt1,stand"/>
+    <property name="act25" value="npc_face npc_xerogrunt10,right"/>
+    <property name="act3" value="set_variable karrianna_battle_won:notyet"/>
+    <property name="act4" value="create_npc npc_mark,14,16,teamxerogrunt1,stand"/>
+    <property name="act5" value="npc_face npc_mark,down"/>
+    <property name="act6" value="set_variable hereismisa:welcome"/>
+    <property name="act7" value="create_npc npc_xerogrunt1,27,32,teamxerogrunt1,stand"/>
+    <property name="act8" value="npc_face npc_xerogrunt1,right"/>
+    <property name="act9" value="create_npc npc_xerogrunt2,27,33,teamxerogrunt1,stand"/>
+    <property name="act91" value="npc_face npc_xerogrunt2,right"/>
+    <property name="cond1" value="not npc_exists npc_karrianna"/>
+    <property name="cond2" value="not npc_exists npc_mark"/>
+    <property name="cond3" value="not npc_exists npc_misa"/>
+   </properties>
+  </object>
+  <object id="48" name="start battle" type="event" x="288" y="608" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog karrianna_dialog1"/>
+    <property name="act2" value="wait_for_input K_RETURN"/>
+    <property name="act3" value="start_battle npc_karrianna"/>
+    <property name="act4" value="set_variable karrianna_battle_won:yes"/>
+    <property name="cond1" value="is player_facing left"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is variable_set karrianna_battle_won:started"/>
+    <property name="cond4" value="not variable_set karrianna_battle_won:yes"/>
+    <property name="cond5" value="not variable_set karrianna_battle_won:notyet"/>
+   </properties>
+  </object>
+  <object id="49" name="Karrianna's end" type="event" x="288" y="608" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog karrianna_dialog2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is variable_set karrianna_battle_won:yes"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="not variable_set karrianna_battle_won:started"/>
+    <property name="cond6" value="not variable_set karrianna_battle_won:notyet"/>
+   </properties>
+  </object>
+  <object id="57" name="Establish hideout" type="event" x="256" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog xero_hideout1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="58" name="ask grunt" type="event" x="224" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog xero_grunt1"/>
+    <property name="act2" value="translated_dialog xero_grunt2"/>
+    <property name="act3" value="translated_dialog xero_grunt3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not inventory_contains cherry"/>
+   </properties>
+  </object>
+  <object id="60" name="i want to enter" type="event" x="224" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog xero_grunt1"/>
+    <property name="act2" value="translated_dialog xero_grunt4"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is inventory_contains cherry"/>
+   </properties>
+  </object>
+  <object id="61" name="a cherry" type="event" x="480" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cherry"/>
+    <property name="act2" value="add_item item_cherry"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set cherrypicked:yes"/>
+   </properties>
+  </object>
+  <object id="62" name="blocking the way" type="event" x="448" y="512" width="16" height="160">
+   <properties>
+    <property name="act1" value="translated_dialog xero_grunts_block"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

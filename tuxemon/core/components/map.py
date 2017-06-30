@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -23,29 +22,74 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.components.map Game map module.
 #
 #
+from __future__ import absolute_import
+from __future__ import division
 
 import logging
 import re
-from collections import namedtuple
 
-from core.components.pyganim import PygAnimation
-from core.components.event import Action
-from core.components.event import Condition
+from core import prepare, tools
+from core.components.event import MapAction
+from core.components.event import MapCondition
+from core.components.event import EventObject
 
-# Handle older versions of PyTMX.
-try:
-    from pytmx import load_pygame
-except ImportError:
-    from pytmx.util_pygame import load_pygame
+import pytmx
+from pytmx.util_pygame import handle_transformation, smart_convert, load_pygame
+import pyscroll
+
+import pygame
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
+
+
+def scaled_image_loader(filename, colorkey, **kwargs):
+    """ pytmx image loader for pygame
+
+    Modified to load images at a scaled size
+
+    :param filename:
+    :param colorkey:
+    :param kwargs:
+    :return:
+    """
+    if colorkey:
+        colorkey = pygame.Color('#{0}'.format(colorkey))
+
+    pixelalpha = kwargs.get('pixelalpha', True)
+
+    # load the tileset image
+    image = pygame.image.load(filename)
+
+    # scale the tileset image to match game scale
+    scaled_size = tools.scale_sequence(image.get_size())
+    image = pygame.transform.scale(image, scaled_size)
+
+    def load_image(rect=None, flags=None):
+        if rect:
+            # scale the rect to match the scaled image
+            rect = tools.scale_rect(rect)
+            try:
+                tile = image.subsurface(rect)
+            except ValueError:
+                logger.error('Tile bounds outside bounds of tileset image')
+                raise
+        else:
+            tile = image.copy()
+
+        if flags:
+            tile = handle_transformation(tile, flags)
+
+        tile = smart_convert(tile, colorkey, pixelalpha)
+        return tile
+
+    return load_image
 
 
 class Map(object):
@@ -56,9 +100,12 @@ class Map(object):
     **Tiled:** http://www.mapeditor.org/
 
     """
+
     def __init__(self, filename):
         self.filename = None
         self.data = None
+        self.size = None
+        self.renderer = None
 
         # Get the tile size from a tileset in our map. This is used to calculate the number of tiles
         # in a collision region.
@@ -76,10 +123,11 @@ class Map(object):
         self.collision_lines = []
 
         self.events = []
+        self.inits = []
+        self.interacts = []
 
         # Initialize the map
         self.load(filename)
-
 
     def load(self, filename):
         """Load map data from a tmx map file and get all the map's events and collision areas.
@@ -150,17 +198,26 @@ class Map(object):
          'y': 0}
 
         """
-
         # Load the tmx map data using the pytmx library.
         self.filename = filename
-        #self.data = pytmx.TiledMap(filename)
-        self.data = load_pygame(filename, pixelalpha=True)
+
+        # Scale the loaded tiles if enabled
+        if prepare.CONFIG.scaling == "1":
+            self.data = pytmx.TiledMap(filename,
+                                       image_loader=scaled_image_loader,
+                                       pixelalpha=True)
+            self.data.tilewidth, self.data.tileheight = prepare.TILE_SIZE
+        else:
+            self.data = load_pygame(filename, pixelalpha=True)
+
+        # make a scrolling renderer
+        self.renderer = self.initialize_renderer()
 
         # Get the map dimensions
-        self.size = (self.data.width, self.data.height)
+        self.size = self.data.width, self.data.height
 
         # Get the tile size of the map
-        self.tile_size = (self.data.tilesets[0].tilewidth, self.data.tilesets[0].tileheight)
+        self.tile_size = self.data.tilesets[0].tilewidth, self.data.tilesets[0].tileheight
 
         # Load all objects from the map file and sort them by their type.
         for obj in self.data.objects:
@@ -171,58 +228,79 @@ class Map(object):
                 self.collision_lines.append(obj)
 
             elif obj.type == 'event':
-                conds = []
-                acts = []
+                self.events.append(self.loadevent(obj))
 
-                # Conditions & actions are stored as Tiled properties.
-                # We need to sort them by name, so that "act1" comes before "act2" and so on..
-                keys = sorted(obj.properties.keys())
+            elif obj.type == 'init':
+                self.inits.append(self.loadevent(obj))
 
-                for k in keys:
-                    if k.startswith('cond'):
-                        words = obj.properties[k].split(' ', 2)
+            elif obj.type == 'interact':
+                self.interacts.append(self.loadevent(obj))
 
-                        # Conditions have the form 'operator type parameters'.
-                        operator, cond_type = words[0:2]
+    def initialize_renderer(self):
+        """ Initialize the renderer for the map and sprites
 
-                        # If this condition has parameters, split them into a
-                        # list
-                        if len(words) > 2:
-                            args = self.split_escaped(words[2])
-                        else:
-                            args = list()
+        :rtype: pyscroll.BufferedRenderer
+        """
+        visual_data = pyscroll.data.TiledMapData(self.data)
+        # TODO: Tuxemon will not work with clamp_camera=True
+        return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False)
 
-                        # Create a condition object using named tuples
-                        condition = Condition(cond_type,
-                                              args,
-                                              int(obj.x / self.tile_size[0]),
-                                              int(obj.y / self.tile_size[1]),
-                                              int(obj.width / self.tile_size[0]),
-                                              int(obj.height / self.tile_size[1]),
-                                              operator)
+    def loadevent(self, obj):
+        conds = []
+        acts = []
 
-                        conds.append(condition)
+        # Conditions & actions are stored as Tiled properties.
+        # We need to sort them by name, so that "act1" comes before "act2" and so on..
+        keys = sorted(obj.properties.keys())
 
-                    elif k.startswith('act'):
-                        words = obj.properties[k].split(' ', 1)
+        x = int(obj.x / self.tile_size[0])
+        y = int(obj.y / self.tile_size[1])
+        w = int(obj.width / self.tile_size[0])
+        h = int(obj.height / self.tile_size[1])
 
-                        # Actions have the form 'type parameters'.
-                        act_type = words[0]
+        for k in keys:
+            if k.startswith('cond'):
+                words = obj.properties[k].split(' ', 2)
 
-                        # If this action has parameters, split them into a
-                        # list
-                        if len(words) > 1:
-                            args = self.split_escaped(words[1])
-                        else:
-                            args = list()
+                # Conditions have the form 'operator type parameters'.
+                operator, cond_type = words[0:2]
 
-                        # Create an action object using named tuples
-                        action = Action(act_type, args)
+                # If this condition has parameters, split them into a
+                # list
+                if len(words) > 2:
+                    args = self.split_escaped(words[2])
+                else:
+                    args = list()
 
-                        acts.append(action)
+                # Create a condition object using named tuples
+                condition = MapCondition(cond_type, args, x, y, w, h, operator)
+                conds.append(condition)
 
-                self.events.append({'conds': conds, 'acts': acts, 'id': obj.id})
+            elif k.startswith('act'):
+                words = obj.properties[k].split(' ', 1)
 
+                # Actions have the form 'type parameters'.
+                act_type = words[0]
+
+                # If this action has parameters, split them into a
+                # list
+                if len(words) > 1:
+                    args = self.split_escaped(words[1])
+                else:
+                    args = list()
+
+                # Create an action object using named tuples
+                action = MapAction(act_type, args)
+                acts.append(action)
+
+        # TODO: move this to some post-creation function, as more may be needed
+        # add a player_facing_tile condition automatically
+        if obj.type == "interact":
+            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is")
+            logger.debug(cond_data)
+            conds.append(cond_data)
+
+        return EventObject(obj.id, x, y, conds, acts)
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with
@@ -323,80 +401,6 @@ class Map(object):
              (0, 6)])
 
         """
-
-        # Create a list of all of the tiles in the map
-        tiles = []
-
-        # Loop through all tiles in our map file and get the pygame surface associated with it.
-        for x in range(0, int(self.data.width)):
-
-            # Create a list of tile for the y-axis
-            y_list = []
-
-            for y in range(0, int(self.data.height)):
-
-                layer_list = []
-
-                # Get the number of tile layers.
-                num_of_layers = 0
-
-                # PyTMX recently changed some of their attribute names.
-                # This ensures we get the number of layers regardless of
-                # the version of PyTMX.
-                try:
-                    for layer in self.data.layers:
-                        if hasattr(layer, 'data'):
-                            num_of_layers += 1
-                except AttributeError:
-                    for layer in self.data.tilelayers:
-                        num_of_layers += 1
-
-                # Get all the map tiles for each layer
-                for layer in range(0, num_of_layers):
-
-                    # PyTMX recently changed their method names. This
-                    # ensures the map will load regardless of the PyTMX
-                    # version.
-                    try:
-                        surface = self.data.getTileImage(x, y, layer)
-                    except AttributeError:
-                        surface = self.data.get_tile_image(x, y, layer)
-
-                    # Check to see if this tile has an animation
-                    tile_properties = self.data.get_tile_properties(x, y, layer)
-                    if tile_properties and "frames" in tile_properties:
-                        images_and_durations = []
-                        for frame in tile_properties["frames"]:
-                            # bitcraft/PyTMX 3.20.14+ support
-                            if hasattr(frame, 'gid'):
-                                anim_surface = self.data.get_tile_image_by_gid(frame.gid)
-                                images_and_durations.append((anim_surface, float(frame.duration) / 1000))
-                            # ShadowApex/PyTMX 3.20.13 fork support
-                            elif "gid" in frame:
-                                anim_surface = self.data.get_tile_image_by_gid(frame["gid"])
-                                images_and_durations.append((anim_surface, float(frame["duration"]) / 1000))
-                            # bitcraft/PyTMX 3.20.13 support
-                            elif "gid" not in frame:
-                                images_and_durations = [(surface, 1)]
-                                break
-                        surface = PygAnimation(images_and_durations)
-                        surface.play()
-
-                    # Create a tile based on the image
-                    if surface:
-                        tile = {'tile_pos': (x, y),
-                                'position': (x * tile_size[0], y * tile_size[1]),
-                                'layer': layer + 1,
-                                'name': str(x) + "," + str(y),
-                                'surface': surface
-                                }
-
-                        layer_list.append(tile)
-
-                y_list.append(layer_list)
-
-            tiles.append(y_list)
-
         # Get the dimensions of the map
         mapsize = self.size
 
@@ -417,7 +421,7 @@ class Map(object):
         for collision_region in self.collisions:
 
             # >>> collision_region.__dict__
-            #{'gid': 0,
+            # {'gid': 0,
             # 'height': 16,
             # 'name': None,
             # 'parent': <TiledMap: "resources/maps/pallet_town-room.tmx">,
@@ -464,6 +468,8 @@ class Map(object):
                                 tile_conditions['enter'] = enters
                             if "exit" in key:
                                 tile_conditions['exit'] = exits
+                            if "continue" in key:
+                                tile_conditions['continue'] = collision_region.properties[key]
                         collision_map[collision_tile] = tile_conditions
 
         # Similar to collisions, except we need to identify the tiles
@@ -512,21 +518,21 @@ class Map(object):
 
             if line_type is 'vertical':
                 # get all tile coordinates on either side
-                x = point1[0] / self.tile_size[0] # same as point2[0] b/c vertical
+                x = point1[0] / self.tile_size[0]  # same as point2[0] b/c vertical
                 line_start = point1[1]
                 line_end = point2[1]
-                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1] # [1] b/c vertical
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[1]  # [1] b/c vertical
                 curr_y = line_start / self.tile_size[1]
                 for i in range(int(num_tiles_in_line)):
-                    if line_start > line_end: # slightly different
-                                              # behavior depending on
-                                              # direction
-                        left_side_tile = (x-1,curr_y-1)
-                        right_side_tile = (x,curr_y-1)
+                    if line_start > line_end:  # slightly different
+                        # behavior depending on
+                        # direction
+                        left_side_tile = (x - 1, curr_y - 1)
+                        right_side_tile = (x, curr_y - 1)
                         curr_y -= 1
                     else:
-                        left_side_tile = (x-1,curr_y)
-                        right_side_tile = (x,curr_y)
+                        left_side_tile = (x - 1, curr_y)
+                        right_side_tile = (x, curr_y)
                         curr_y += 1
 
                     # TODO - if we want to enable single-direction
@@ -539,20 +545,20 @@ class Map(object):
 
             elif line_type is 'horizontal':
                 # get all tile coordinates on either side
-                y = point1[1] / self.tile_size[1] # same as point2[1] b/c horizontal
+                y = point1[1] / self.tile_size[1]  # same as point2[1] b/c horizontal
                 line_start = point1[0]
                 line_end = point2[0]
-                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0] # [0] b/c horizontal
+                num_tiles_in_line = abs(line_start - line_end) / self.tile_size[0]  # [0] b/c horizontal
                 curr_x = line_start / self.tile_size[0]
                 for i in range(int(num_tiles_in_line)):
-                    if line_start > line_end: # slightly different
-                                              # behavior depending on
-                                              # direction
-                        top_side_tile = (curr_x-1,y-1)
-                        bottom_side_tile = (curr_x-1,y)
+                    if line_start > line_end:  # slightly different
+                        # behavior depending on
+                        # direction
+                        top_side_tile = (curr_x - 1, y - 1)
+                        bottom_side_tile = (curr_x - 1, y)
                         curr_x -= 1
                     else:
-                        top_side_tile = (curr_x, y-1)
+                        top_side_tile = (curr_x, y - 1)
                         bottom_side_tile = (curr_x, y)
                         curr_x += 1
 
@@ -564,9 +570,10 @@ class Map(object):
                     collision_lines_map.add((top_side_tile, "down"))
                     collision_lines_map.add((bottom_side_tile, "up"))
 
-        return tiles, collision_map, collision_lines_map, mapsize
+        return collision_map, collision_lines_map, mapsize
 
-    def round_to_divisible(self, x, base=16):
+    @staticmethod
+    def round_to_divisible(x, base=16):
         """Rounds a number to a divisible base. This is used to round collision areas that aren't
         defined well. This function assists in making sure collisions work if the map creator
         didn't set the collision areas to round numbers.
@@ -588,9 +595,10 @@ class Map(object):
         16
 
         """
-        return int(base * round(float(x)/base))
+        return int(base * round(float(x) / base))
 
-    def split_escaped(self, string_to_split, delim=","):
+    @staticmethod
+    def split_escaped(string_to_split, delim=","):
         """Splits a string by the specified deliminator excluding escaped
         deliminators.
 
@@ -618,10 +626,10 @@ class Tile(object):
     as the layer it's on, its position, surface, and other properties.
 
     """
+
     def __init__(self, name, surface, tileset):
         self.name = name
         self.surface = surface
         self.layer = None
         self.type = None
         self.tileset = tileset
-

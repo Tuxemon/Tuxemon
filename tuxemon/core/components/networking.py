@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -436,7 +435,6 @@ class TuxemonClient():
 
         if self.client.registered and not self.populated:
             self.game.isclient = True
-            self.game.current_state.multiplayer_join_success_menu.text = ["Success!"]
             self.populate_player()
 
         if self.ping_time >= 2:
@@ -788,7 +786,7 @@ class TuxemonClient():
         self.client.event(event_data)
 
     def route_combat(self, event):
-        print(event)
+        logger.debug(event)
 
     def client_alive(self):
         """Sends server a ping to let it know that it is still alive.

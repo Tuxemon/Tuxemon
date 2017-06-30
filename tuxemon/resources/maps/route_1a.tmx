@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="31" tilewidth="16" tileheight="16" nextobjectid="21">
+ <tileset firstgid="1" name="Route_1a" tilewidth="16" tileheight="16" tilecount="800" columns="40">
+  <image source="../gfx/tilesets/Route_1a.png" width="640" height="320"/>
+ </tileset>
+ <tileset firstgid="801" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="2113" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="2217" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="2321" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="2821" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="31">
+  <data encoding="base64" compression="zlib">
+   eJzt11PMGNgWBtDatm3btm23Y3Wmdqe2bdu2bdu27d7VTOZ5kvunb31Y2U8n2fmSvc85HwMFCvTxm2+++eYrCEwQghKM4IQgJKEITRjCEo7wRCAikYhMFKISjejEICaxiE0c4hKP+CQgIYlITBKSkozkpCAlqUhNGtKSjvRkICOZyEwWspKN7OQgJ7nITR7yko/8FKAghShMEYpSjOKUoCSlKE0ZylKO8lSgIpWoTBWqUo3q1KAmtahNHepSj/o0oCGNaEwTvuN7fuBHfuJnfuFXfuN3/qApf/IXzWhOC1rSita0oS3taE8HOtKJzvxNF7rSje70oCe96E0f+tKP/gxgIIMYzBCGMozhjGAkoxjNGMYyjvFMYCKTmMwUpjKN6cxgJrOYzRzmMo/5LGAhi1jMEpayjOWsYCWrWM0a1rKO9WxgI5vYzBa2so3t7GAnu9jNHvayj/0c4CCHOMwRjnKM45zgJKc4zRnOco7zXOAil7jMFa5yjevc4Ca3uM0d7nKP+zzgIY94zBOe8oznvOAlr3jNG97yjvd8CPTPzH/iM1+GPzBBCEowghOCkIQiNGEISzjCE4GIRCIyUYhKNKITg5jEIjZxiEs84pOAhCQiMUlISjKSk4KUpCI1aUhLOtKTgYxkIjNZyEo2spODnOQiN3nISz7yU4CCFKIwRShKMYpTgpKUojRlKEs5ylOBilSiMlWoSjWqU4Oa1KI2dahLPerTgIY0ojFN+I7v+YEf+Ymf+YVf+Y3f+YOm/MlfNKM5LWhJK1rThra0oz0d6EgnOvM3XehKN7rTg570ojd96Es/+jOAgQxiMEMYyjCGM4KRjGI0YxjLOMYzgYlMYjJTmMo0pjODmcxiNnOYyzzms4CFLGIxS1jKMpazgpWsYjVrWMs61rOBjWxiM1vYyja2s4Od7GI3e9jLPvZzgIMc4jBHOMoxjnOCk5ziNGc4yznOc4GLXOIyV7jKNa5zg5vc4jZ3uMs97vOAhzziMU94yjOe84KXvOI1b3jLO97zgY984jNfLv7ABCEowQhOCEISitCEISzhCE8EIhKJyEQhKtGITgxiEovYxCEu8YhPAhKSiMQkISnJSE4KUpKK1KQhLelITwYykonMZCEr2chODnKSi9zkIS/5yE8BClKIwhShKMUoTglKUorSlKEs5ShPBSpSicpUoSrVqE4NalKL2tShLvWoTwMa0ojGNAnyz977fzRztjktaEkrWtOGtrSjPR3oSCc68zdd6Eo3utODnvSiN33oSz/6M4CBDGIwQxjKMIYzgpGMYjRjGMs4xjOBiUxiMlOYyjSmM4OZzGI2c5jLPOazgIUsYjFLWMoylrOClaxiNWtYyzrWs4GNbGIzW9jKNrazg53sYjd72Ms+9nOAgxziMEc4yjGOc4KTnOI0ZzjLOc5zgYtc4jJXuMo1rnODm9ziNne4yz3u84CHPOIxT3jKM57zgpe84jVveMs73vOBj3ziM18e/YEJQlCCEZwQhCQUoQlDWMIRnghEJBKRiUJUohGdGMQkFrGJQ1ziEZ8EJCRR0P/OJ6D5Bvh/9B/5BDTfgPb37377WrVpqID5d799rRrQ/v4Hq/fuTg==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztmDluAkEQRatHLIPA5Ga4DWSQEJgLYAKW1CGIHI7BYotjEOHbsDj3R0OpxyW1mDYIhFRPevrqVsP8HlUCkSGqwuicWyL6hpkCUTaFOTgvEi3OLmEXez9h7CpD9Am/YAuuoQ81dKobmzvs7WEJz3hJYTnRJa0+DNBpaGy+wgrsBETvgU3fDrfqd4DHRPL7m6LTLLDpopmPlWu5/18iMX/8/ngOOeU9ON9wtm3s9/GaU573xTV/MuU9OEdwnOjHa0553hfX/MmU9+A80Ug8tyE6yPNyrl157T04fT+nKIqiKIqiKIpyD/g38cZc9hF85GNdnXrh334Tz/8abkU/vOyz8AttV3Y9
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="40" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20Hb6AAAAAAgNcAE2AAAQ==
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztxTERADAIBLDfMFL8W0QDHblkSQIAAMAlr5Ku/QD8GdhCAmI=
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="2" name="go to route 1" type="event" x="384" y="416" width="48" height="16">
+   <properties>
+    <property name="act1" value="teleport route1.tmx,34,6"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="10" name="Route 2 sign" type="event" x="384" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog route_2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="19" name="go to sphalian town" type="event" x="304" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport sphalian_town.tmx,13,24,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="20" name="go to sphalian town left" type="event" x="288" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport sphalian_town.tmx,12,24,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="3" type="collision" x="448" y="112" width="192" height="320"/>
+  <object id="4" type="collision" x="0" y="112" width="160" height="352"/>
+  <object id="5" type="collision" x="160" y="368" width="224" height="96"/>
+  <object id="7" type="collision" x="320" y="128" width="32" height="144"/>
+  <object id="8" type="collision" x="384" y="432" width="64" height="16"/>
+  <object id="9" type="collision" x="384" y="384" width="16" height="16"/>
+  <object id="13" x="64" y="0" width="96" height="112"/>
+  <object id="14" type="collision" x="160" y="64" width="336" height="32"/>
+  <object id="15" x="448" y="96" width="144" height="16"/>
+  <object id="16" x="160" y="96" width="96" height="32"/>
+  <object id="17" x="384" y="96" width="64" height="32"/>
+ </objectgroup>
+</map>

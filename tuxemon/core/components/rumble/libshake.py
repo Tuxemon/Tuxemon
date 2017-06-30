@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from ctypes import *
 from time import sleep
 from threading import Thread

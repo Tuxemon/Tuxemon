@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -265,10 +264,8 @@ class RelativeGroup(SpriteGroup):
         """A rect object that contains all sprites of this group
         """
         rect = super(RelativeGroup, self).calc_bounding_rect()
-        for sprite in self.sprites():
-            print sprite, sprite.rect
+        # return self.calc_absolute_rect(rect)
         return rect
-        return self.calc_absolute_rect(rect)
 
     def calc_absolute_rect(self, rect):
         self.update_rect_from_parent()
@@ -311,6 +308,51 @@ class RelativeGroup(SpriteGroup):
         return dirty
 
 
+class MenuSpriteGroup(SpriteGroup):
+    """
+    Sprite Group to be used for menus.
+
+    Includes functions for moving a cursor around the screen
+    """
+
+    def determine_cursor_movement(self, index, event):
+        """ Given an event, determine a new selected item offset
+
+        You must pass the currently selected object
+        The return value will be the newly selected object index
+
+        :param index: Index of the item in the list
+        :param event: pygame.Event
+        :returns: New menu item offset
+        """
+        # TODO: some sort of smart way to pick items based on location on screen
+        if not len(self):
+            return 0
+
+        if event.type == pygame.KEYDOWN:
+            # ignore left/right if there is only one column
+            if event.key == pygame.K_LEFT:
+                index -= 1
+
+            elif event.key == pygame.K_RIGHT:
+                index += 1
+
+            if event.key == pygame.K_DOWN:
+                index += 1
+
+            elif event.key == pygame.K_UP:
+                index -= 1
+
+            # wrap the cursor position
+            items = len(self)
+            if index < 0:
+                index = items - abs(index)
+            if index >= items:
+                index -= items
+
+        return index
+
+
 class VisualSpriteList(RelativeGroup):
     """
     Sprite group which can be configured to arrange the children
@@ -336,7 +378,7 @@ class VisualSpriteList(RelativeGroup):
 
     def calc_bounding_rect(self):
         if self._needs_arrange:
-            self.arrange_menu_items()
+            self._arrange_menu_items()
             self._needs_arrange = False
         return super(VisualSpriteList, self).calc_bounding_rect()
 
@@ -355,11 +397,11 @@ class VisualSpriteList(RelativeGroup):
 
     def draw(self, surface):
         if self._needs_arrange:
-            self.arrange_menu_items()
+            self._arrange_menu_items()
             self._needs_arrange = False
         super(VisualSpriteList, self).draw(surface)
 
-    def arrange_menu_items(self):
+    def _arrange_menu_items(self):
         """ Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
@@ -406,11 +448,11 @@ class VisualSpriteList(RelativeGroup):
         :returns: New menu item offset
         """
         if self.orientation == 'horizontal':
-            return self.determine_cursor_movement_horizontal(*args)
+            return self._determine_cursor_movement_horizontal(*args)
         else:
             raise RuntimeError
 
-    def determine_cursor_movement_horizontal(self, index, event):
+    def _determine_cursor_movement_horizontal(self, index, event):
         """ Given an event, determine a new selected item offset
 
         You must pass the currently selected object
@@ -420,34 +462,89 @@ class VisualSpriteList(RelativeGroup):
            [1] [2] [3]
            [4] [5]
 
+        Works pretty well for most menus, but large grids may require
+        handling them differently.
+
         :param index: Index of the item in the list
         :param event: pygame.Event
         :returns: New menu item offset
         """
-        if not len(self):
+        # sanity check:
+        # if there are 0 or 1 enabled items, then ignore movement
+        enabled = len([i for i in self if i.enabled])
+        if enabled < 2:
             return 0
 
         if event.type == pygame.KEYDOWN:
 
-            # ignore left/right if there is only one column
+            # in order to accommodate disabled menu items,
+            # the mod incrementer will loop until a suitable
+            # index is found...one that is not disabled.
+            items = len(self)
+            mod = 0
+
+            # horizontal movement: left and right will inc/dec mod by one
             if self.columns > 1:
                 if event.key == pygame.K_LEFT:
-                    index -= 1
+                    mod -= 1
 
                 elif event.key == pygame.K_RIGHT:
-                    index += 1
+                    mod += 1
 
+            # vertical movement: up/down will inc/dec the mod by adjusted
+            # value of number of items in a column
+            rows, remainder = divmod(items, self.columns)
+            row, col = divmod(index, self.columns)
+
+            # down key pressed
             if event.key == pygame.K_DOWN:
-                index += self.columns
+                if remainder:
+                    if row == rows:
+                        mod += remainder
 
+                    elif col < remainder:
+                        mod += self.columns
+                    else:
+                        if row == rows - 1:
+                            mod += self.columns + remainder
+                        else:
+                            mod += self.columns
+
+                else:
+                    mod = self.columns
+
+            # up key pressed
             elif event.key == pygame.K_UP:
-                index -= self.columns
+                if remainder:
+                    if row == 0:
+                        if col < remainder:
+                            mod -= remainder
+                        else:
+                            mod += self.columns * (rows - 1)
+                    else:
+                        mod -= self.columns
 
-            # wrap the cursor position
-            items = len(self)
-            if index < 0:
-                index = items - abs(index)
-            if index >= items:
-                index -= items
+                else:
+                    mod -= self.columns
+
+            original_index = index
+            seeking_index = True
+            # seeking_index once false, will exit the loop
+            while seeking_index and mod:
+                index += mod
+
+                # wrap the cursor position
+                if index < 0:
+                    index = items - abs(index)
+                if index >= items:
+                    index -= items
+
+                # while looking for a suitable index, we've looked over all choices
+                # just raise an error for now, instead of infinite looping
+                # TODO: some graceful way to handle situations where cannot find an index
+                if index == original_index:
+                    raise RuntimeError
+
+                seeking_index = not self._spritelist[index].enabled
 
         return index

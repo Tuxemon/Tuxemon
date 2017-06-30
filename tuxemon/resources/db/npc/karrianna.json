@@ -1,0 +1,21 @@
+{
+    "slug": "npc_karrianna",
+    "name_trans": "npc_karrianna",
+    "monsters": [
+        {
+            "attack": 39,
+            "defense": 9,
+            "name": "Propellercat",
+            "special_attack": 9,
+            "level": 3,
+            "monster": "txmn_propellercat",
+            "hp": 36,
+            "speed": 11,
+            "special_defense": 12,
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ],
+    "id": 1,
+    "name": "Karrianna"
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -23,6 +22,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.components.item Item handling module.
@@ -35,10 +35,12 @@ import random
 
 from core import tools
 from . import db
+from .locale import translator
+
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 # Load the monster database
 items = db.JSONDatabase()
@@ -50,11 +52,11 @@ class Item(object):
 
     **Example:**
 
-    >>> potion_item = Item("Potion")
+    >>> potion_item = Item("item_potion")
     >>> pprint.pprint(potion_item.__dict__)
     {'description': u'Heals a monster by 50 HP.',
      'effect': [u'heal'],
-     'id': 1,
+     'slug': 'item_potion,
      'name': u'Potion',
      'power': 50,
      'sprite': u'resources/gfx/items/potion.png',
@@ -64,31 +66,29 @@ class Item(object):
 
     """
 
-    def __init__(self, name=None, id=None):
+    def __init__(self, slug=None):
 
-        self.id = 0
+        self.slug = slug
         self.name = "Blank"
         self.description = "None"
         self.effect = []
         self.type = None
         self.power = 0
-        self.sprite = ""                    # The path to the sprite to load.
-        self.surface = None                 # The pygame.Surface object of the item.
+        self.sprite = ""  # The path to the sprite to load.
+        self.surface = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
-        # If a name of the item was provided, autoload it from the item database.
-        if name or id:
-            self.load(name, id)
+        # If a slug of the item was provided, autoload it from the item database.
+        if slug:
+            self.load(slug)
 
-    def load(self, name, id):
+    def load(self, slug):
         """Loads and sets this items's attributes from the item.db database. The item is looked up
-        in the database by name or id.
+        in the database by slug.
 
-        :param name: The name of the item to look up in the monster.item database.
-        :param id: The id of the item to look up in the item.db database.
+        :param slug: The item slug to look up in the monster.item database.
 
-        :type name: String
-        :type id: Integer
+        :type slug: String
 
         :rtype: None
         :returns: None
@@ -96,35 +96,46 @@ class Item(object):
         **Examples:**
 
         >>> potion_item = Item()
-        >>> potion_item.load("Potion", None)    # Load an item by name.
-        >>> potion_item.load(None, 1)           # Load an item by id.
+        >>> potion_item.load("item_potion")    # Load an item by slug.
         >>> pprint.pprint(potion_item.__dict__)
         {'description': u'Heals a monster by 50 HP.',
          'effect': [u'heal'],
-         'id': 1,
+         'slug': 'item_potion',
          'name': u'Potion',
          'power': 50,
          'type': u'Consumable'}
 
         """
 
-        if name:
-            results = items.lookup(name, table="item")
-        elif id:
-            results = items.lookup_by_id(id, table="item")
+        results = items.lookup(slug, table="item")
+        self.slug = results["slug"]               # short English identifier
+        self.name = trans(results["name_trans"])  # will be locale string
+        self.description = trans(results["description_trans"])  # will be locale string
 
-        self.name = results["name"]
-        self.description = results["description"]
-        self.id = results["id"]
+        # must be translated before displaying
+        self.execute_trans = results['execute_trans']
+        self.success_trans = results['success_trans']
+        self.failure_trans = results['failure_trans']
+
+        self.sort = results['sort']
         self.type = results["type"]
         self.power = results["power"]
         self.sprite = results["sprite"]
-        self.target = results["target"]
         self.usable_in = results["usable_in"]
+        self.target = db.process_targets(results["target"])
+        self.effect = results["effects"]
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
-        self.effect = results["effects"]
+    def advance_round(self):
+        """ Advance round for items that take many rounds to use
+
+        * This currently has no use, and may not stay.  It is added
+          so that the Item class and Technique class are interchangeable.
+
+        :return: None
+        """
+        return
 
     def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.
@@ -138,22 +149,35 @@ class Item(object):
         :type user: Varies
         :type target: Varies
 
-        :rtype: bool
-        :returns: Success
+        :rtype: dict
+        :returns: a dictionary with various effect result properties
         """
+
+        # defaults for the return. items can override these values in their return.
+        meta_result = {
+            'name': self.name,
+            'num_shakes': 0,
+            'capture': False,
+            'should_tackle': False,
+            'success': False
+        }
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effect:
-            result = getattr(self, str(effect))(user, target)
+            last_effect_name = str(effect)
+            result = getattr(self, last_effect_name)(user, target)
+            meta_result.update(result)
+
+        # TODO: document how to handle items with multiple effects
 
         # If this is a consumable item, remove it from the player's inventory.
-        if self.type == "Consumable":
-            if user.inventory[self.name]['quantity'] <= 1:
-                del user.inventory[self.name]
+        if meta_result["success"] and self.type == "Consumable":
+            if user.inventory[self.slug]['quantity'] <= 1:
+                del user.inventory[self.slug]
             else:
-                user.inventory[self.name]['quantity'] -= 1
+                user.inventory[self.slug]['quantity'] -= 1
 
-        return result
+        return meta_result
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.
@@ -168,9 +192,13 @@ class Item(object):
         :returns: Success
 
         **Examples:**
-        >>> potion_item = Item("Potion")
+        >>> potion_item = Item("item_potion")
         >>> potion_item.heal(bulbatux, game)
         """
+
+        # don't heal if already at max health
+        if target.current_hp == target.hp:
+            return {"success": False}
 
         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
@@ -179,7 +207,7 @@ class Item(object):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return True
+        return {"success": True}
 
     def capture(self, user, target):
         """Captures target monster.
@@ -195,11 +223,9 @@ class Item(object):
         """
 
         # Set up variables for capture equation
-        success_max = 0
         damage_modifier = 0
         status_modifier = 0
         item_power = self.power
-        random_num = random.randint(0, 1000)
 
         # Get percent of damage taken and multiply it by 10
         if target.current_hp < target.hp:
@@ -208,25 +234,40 @@ class Item(object):
 
         # Check if target has any status effects
         if not target.status == "Normal":
-            status_modifier = 150
+            status_modifier = 1.5
 
-        # Calculate the top of success range (random_num must be in range to succeed)
-        success_max = (success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power
+        # TODO: debug logging this info
 
-        # Debugging Text
-        print("--- Capture Variables ---")
-        print("(success_max - (target.level * 10)) + damage_modifier + status_modifier + item_power")
-        print("(0 - (%s * 10)) + %s + %s + %s = %s" % (
-            target.level, damage_modifier, status_modifier, item_power, success_max))
-        print("Success if between: 0 -", success_max)
-        print("Chance of capture: %s / 100" % (success_max / 10))
-        print("Random number:", random_num)
+        # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
+        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (
+        3 * target.hp)
+        shake_check = 65536 / (255 / catch_check) ** 0.1875
 
-        # If random_num falls between 0 and success_max, capture target
-        if 0 <= random_num <= success_max:
-            print("It worked!")
-            user.add_monster(target)
-            return True
-        else:
-            print("It failed!")
-            return False
+        logger.debug("--- Capture Variables ---")
+        logger.debug("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
+
+        msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
+        logger.debug(msg.format(target, item_power, status_modifier))
+
+        logger.debug("65536 / (255 / catch_check) ** 0.1875")
+        logger.debug("65536 / (255 / {}) ** 0.1875".format(catch_check))
+
+        msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
+        logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
+
+        # 4 shakes to give monster change to escape
+        for i in range(0, 4):
+            random_num = random.randint(0, 65536)
+            logger.debug("shake check {}: random number {}".format(i, random_num))
+            if random_num > round(shake_check):
+                return {"success": False,
+                        "capture": True,
+                        "num_shakes": i + 1}
+
+        # add creature to the player's monster list
+        user.add_monster(target)
+
+        # TODO: remove monster from the other party
+        return {"success": True,
+                "capture": True,
+                "num_shakes": 4}

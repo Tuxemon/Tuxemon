@@ -15,11 +15,13 @@ from core.components.menu import Menu
 from core.components.menu.interface import HpBar
 from core.components.pyganim import PygAnimation
 from core.components.sprite import Sprite
-from core.tools import scale_sequence, scale_sprite, scale
+from core.tools import scale, scale_sequence, scale_sprite
+from core.components.locale import translator
+
+trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 sprite_layer = 0
 hud_layer = 100
@@ -38,7 +40,7 @@ class CombatAnimations(Menu):
     """ Mixin-ish thing until things are sorted out.
         Mostly just a collections of methods to animate the sprites
 
-        These methods should, without [many] exception[s], manipulate
+        These methods should not, without [many] exception[s], manipulate
         game/combat state.  These should just move sprites around
         the screen, with the occasional creation/removal of sprites....
         but never game objects.
@@ -85,7 +87,7 @@ class CombatAnimations(Menu):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            self.animate_party_hud_in(player, layout['party'][0], 6)
+            self.animate_party_hud_in(player, layout['party'][0])
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
@@ -190,6 +192,7 @@ class CombatAnimations(Menu):
         self.animate(sprite.rect, x=original_x, duration=duration, transition='in_out_circ', delay=.35)
 
     def animate_monster_faint(self, monster):
+        # TODO: rename to distinguish fainting/leaving
         def kill():
             self._monster_sprite_map[monster].kill()
             self.hud[monster].kill()
@@ -237,15 +240,15 @@ class CombatAnimations(Menu):
         :return:
         """
         self._hp_bars[monster] = HpBar(initial)
-        self.task(partial(self.animate_hp, monster), monster_hud_move_in_time * 1.5)
+        self.animate_hp(monster)
 
     def build_hud_text(self, monster):
-        """
+        """ Return a string for use on the callout of the monster
 
         :type monster: core.components.monster.Monster
         :return:
         """
-        return self.shadow_text("{0.name: <10} Lv. {0.level: >2}".format(monster))
+        return self.shadow_text("{0.name: <12}Lv.{0.level: >2}".format(monster))
 
     def get_side(self, rect):
         """ [WIP] get 'side' of screen rect is in
@@ -300,7 +303,7 @@ class CombatAnimations(Menu):
         self.hud[monster] = hud
         self.build_animate_hp_bar(monster)
 
-    def animate_party_hud_in(self, player, home, slots):
+    def animate_party_hud_in(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
 
         :param player: the player
@@ -321,11 +324,18 @@ class CombatAnimations(Menu):
             centerx = home.left + scale(13)
             offset = -scale(8)
 
-        for index in range(slots):
-            sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
-                                      top=tray.rect.top + scale(1),
-                                      centerx=centerx - index * offset,
-                                      layer=hud_layer)
+        for index in range(player.party_limit):
+            sprite = None
+            if len(player.monsters) > index:
+                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+            else:
+                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
 
             # convert alpha image to image with a colorkey so we can set_alpha
             sprite.image = tools.convert_alpha_to_colorkey(sprite.image)
@@ -359,7 +369,7 @@ class CombatAnimations(Menu):
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
         self.monsters_in_play[self.players[1]].append(right_monster)
         self._monster_sprite_map[right_monster] = monster1
-        self.alert('A wild %s appeared!' % right_monster.name.upper())
+        self.alert(trans('combat_wild_appeared', {"name": right_monster.name.upper()}))
 
         front_island = self.load_sprite('gfx/ui/combat/front_island.png',
                                         bottom=player_home.bottom - y_mod, left=w)
@@ -387,3 +397,62 @@ class CombatAnimations(Menu):
         animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
         animate(trainer1.rect, front_island.rect, y=y_mod,
                 transition='out_back', relative=True)
+
+    def animate_capture_monster(self, is_captured, num_shakes, monster):
+        """ Animation for capturing monsters.
+
+        :param is_captured: boolean representing success of capture
+        :param num_shakes: number of shakes before animation ends
+        :param monster: the monster
+        :return:
+        """
+        monster_sprite = self._monster_sprite_map.get(monster, None)
+        capdev = self.load_sprite('gfx/items/capture_device.png')
+        animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)
+        scale_sprite(capdev, .4)
+        capdev.rect.center = scale(0), scale(0)
+        animate(x=monster_sprite.rect.centerx)
+        animate(y=monster_sprite.rect.centery)
+        self.task(partial(toggle_visible, monster_sprite), 1.0) # make the monster go away temporarily
+
+        def kill():
+            self._monster_sprite_map[monster].kill()
+            self.hud[monster].kill()
+            del self._monster_sprite_map[monster]
+            del self.hud[monster]
+
+        # TODO: cache this sprite from the first time it's used.
+        # also, should loading animated sprites be more convenient?
+        images = list()
+        for fn in ["capture%02d.png" % i for i in range(1, 10)]:
+            fn = 'animations/technique/' + fn
+            image = tools.load_and_scale(fn)
+            images.append((image, .07))
+
+        tech = PygAnimation(images, False)
+        sprite = Sprite()
+        sprite.image = tech
+        sprite.rect = tech.get_rect()
+        self.task(tech.play, 1.0)
+        self.task(partial(self.sprites.add, sprite), 1.0)
+        sprite.rect.midbottom = monster_sprite.rect.midbottom
+
+        def shake_ball(initial_delay):
+            animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay)
+            animate(capdev.rect, y=scale(3), relative=True)
+
+            animate = partial(self.animate, duration=0.2, transition='linear', delay=initial_delay + 0.1)
+            animate(capdev.rect, y=-scale(6), relative=True)
+
+            animate = partial(self.animate, duration=0.1, transition='linear', delay=initial_delay + 0.3)
+            animate(capdev.rect, y=scale(3), relative=True)
+
+        for i in range(0, num_shakes):
+            shake_ball(1.8 + i * 1.0) # leave a 0.6s wait between each shake
+
+        if is_captured:
+            self.task(kill, 2 + num_shakes)
+        else:
+            self.task(partial(toggle_visible, monster_sprite), 1.8 + num_shakes * 1.0) # make the monster appear again!
+            self.task(tech.play, 1.8 + num_shakes * 1.0)
+            self.task(capdev.kill, 1.8 + num_shakes * 1.0)

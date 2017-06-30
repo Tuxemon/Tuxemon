@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="25" tilewidth="16" tileheight="16" nextobjectid="37">
+ <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="105" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="605" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1917" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
+ </tileset>
+ <tileset firstgid="2202" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="2212" name="Route_1a" tilewidth="16" tileheight="16" tilecount="800" columns="40">
+  <image source="../gfx/tilesets/Route_1a.png" width="640" height="320"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztzLERgCAURMGboT5KM0ClGUGbUcc2eEV8h+SCTTdLymZmZva7kqQVG3bUFHcfXA0dJ67A++Z68GLBF3jPMABC0rNJ
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzl1TlOw0AUxvEHsWSH3IDtSCQgtgKoAgKSPgFOwdZD4BRA6NmukIKwdBQIEUr+I4w0NjP2JGgKxJN+cgrr85enkaYjIh1PXj3Sv7NeENnAJmqo435IjJPX+aWY/M4uWXvYxwEO8WbJVu9PBSJlVDCNmSCZp88ZWee4QBuXGdlqGmQ1sYVt7ATJ7vp0yXrAI57wjJFhe/YRWcdo4QSnqd6zmHMwb8i+IusaN7jFXar3EpYdrOA9FOnFPkLzf9F795NdjNhRrBTZdzVIb9XXJdtn7+/uvrJ99m5F5uwyKpbsEFGc3wvt1DkyZS9g0ZI9ijGtv03J0ttlJ8pEhslfZA+67/9yBk13yl/orU+18PXst/d46oy1c3pXsepgLXsFPyZ9p+WNurtNv02jen8CPx/PZQ==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="9" name="Go to route 1a" type="event" x="192" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route_1a.tmx,18,6,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="10" name="Go into the house" type="event" x="320" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport sphalian_town_house.tmx,5,7,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="11" name="Music playing" type="init" x="32" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music Digital_Native.ogg"/>
+    <property name="cond1" value="not music_playing Digital_Native.ogg"/>
+   </properties>
+  </object>
+  <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">
+   <properties>
+    <property name="act1" value="teleport BuddhaMountain.tmx,3,89,1.5"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="22" name="sphalian care" type="event" x="272" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport healing_center_sphalian.tmx,7,12,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="27" name="Sphalian Town sign" type="event" x="240" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Sphalian Town - a quiet\, peaceful place"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="36" name="go to route1a right" type="event" x="208" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route_1a.tmx,19,6,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Above Player" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAFKwfaAUMQAADUUACq
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="7" type="collision" x="3" y="96" width="166" height="276"/>
+  <object id="12" type="collision" x="272" y="320" width="48" height="48"/>
+  <object id="14" type="collision" x="240" y="352" width="16" height="16"/>
+  <object id="15" type="collision" x="336" y="320" width="16" height="48"/>
+  <object id="16" type="collision" x="320" y="320" width="16" height="32"/>
+  <object id="17" type="collision" x="0" y="0" width="368" height="32"/>
+  <object id="18" type="collision" x="48" y="32" width="96" height="64"/>
+  <object id="19" type="collision" x="224" y="32" width="16" height="32"/>
+  <object id="20" type="collision" x="240" y="64" width="128" height="32"/>
+  <object id="23" type="collision" x="240" y="96" width="32" height="16"/>
+  <object id="24" type="collision" x="288" y="96" width="32" height="16"/>
+  <object id="25" type="collision" x="352" y="256" width="16" height="16"/>
+  <object id="26" type="collision" x="352" y="192" width="16" height="16"/>
+  <object id="28" type="collision" x="0" y="368" height="48"/>
+  <object id="30" type="collision" x="0" y="400" width="368" height="16"/>
+  <object id="31" type="collision" x="352" y="272" width="16" height="128"/>
+  <object id="32" type="collision" x="320" y="96" width="48" height="32"/>
+  <object id="33" type="collision" x="336" y="128" width="32" height="32"/>
+  <object id="34" type="collision" x="352" y="160" width="16" height="32"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="9" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
+  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="448" height="640"/>
+ </tileset>
+ <tileset firstgid="1121" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="2433" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="3873" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
+  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
+ </tileset>
+ <tileset firstgid="3923" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="4033" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
+ </tileset>
+ <tileset firstgid="4318" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
+  <image source="../gfx/tilesets/Stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="4342" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/Plants.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="4358" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="4858" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
+ </tileset>
+ <tileset firstgid="5518" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/Kitchen.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="5534" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="5622" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="6622" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
+ </tileset>
+ <tileset firstgid="6832" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ </tileset>
+ <tileset firstgid="6886" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/Furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="6958" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/Electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="6974" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+  <image source="../Old Tiled/gfx/tilesets/items.png" width="160" height="160"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="12" height="9">
+  <data encoding="csv">
+5535,5535,5535,5535,5535,5535,5535,5535,5535,5535,5535,5535,
+5546,5546,5546,5546,5546,5546,5546,5546,5546,5546,5546,5546,
+5557,5557,5557,5557,5557,5557,5557,5557,5557,5557,5557,5557,
+5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,
+5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,
+5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,
+5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,
+5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,
+5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662
+</data>
+ </layer>
+ <layer name="Tile Layer 3" width="12" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+6832,6833,6833,6833,6833,6833,6833,6833,6833,6833,6833,6834,
+6841,6842,6842,6842,6842,6842,6842,6842,6842,6842,6842,6843,
+6841,6842,6842,6842,6842,6842,6842,6842,6842,6842,6842,6843,
+6841,6842,6842,6842,6842,6842,6842,6842,6842,6842,6842,6843,
+6841,6842,6842,6842,6842,6842,6842,6842,6842,6842,6842,6843,
+6850,6851,6851,6851,6851,6851,6851,6851,6851,6851,6851,6852
+</data>
+ </layer>
+ <layer name="Tile Layer 5" width="12" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,5797,5797,0,0,0,
+0,0,0,0,0,0,0,5837,5837,0,0,0,
+0,0,0,0,0,0,0,5877,5873,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="12" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,5791,5792,0,
+0,0,6102,6104,0,0,0,0,0,5831,5832,0,
+0,0,6105,6107,0,0,0,0,0,0,0,0,
+0,0,6145,6147,0,0,0,0,0,0,0,0,
+0,0,0,0,0,5798,5675,5676,5676,5677,5800,0,
+0,0,0,0,0,5838,5715,5716,5716,5717,5840,0,
+0,0,0,0,0,5878,5755,5756,5756,5757,5880,0,
+0,6862,6863,6863,6864,0,0,0,0,0,0,0,
+0,6871,6872,6872,6873,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Tile Layer 6" width="12" height="9" opacity="0.97">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,5873,0,0,0,
+0,0,0,0,0,0,0,5876,4873,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+6033,0,0,0,0,6073,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

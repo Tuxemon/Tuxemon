@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="118">
- <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="122">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
    <animation>
@@ -19,19 +19,19 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10">
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
   <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
  </tileset>
- <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360">
+ <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
   <tile id="255">
    <animation>
@@ -53,7 +53,7 @@
  </layer>
  <layer name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="64" height="60">
@@ -128,54 +128,63 @@
   <object id="53" type="collision" x="624" y="624" width="16" height="32"/>
   <object id="54" type="collision" x="352" y="416" width="128" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter_from" value="up"/>
     <property name="exit_to" value="down"/>
    </properties>
   </object>
   <object id="55" type="collision" x="544" y="416" width="96" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter_from" value="up"/>
     <property name="exit_to" value="down"/>
    </properties>
   </object>
   <object id="56" type="collision" x="544" y="352" width="96" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter_from" value="up"/>
     <property name="exit_to" value="down"/>
    </properties>
   </object>
   <object id="57" type="collision" x="400" y="352" width="112" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter_from" value="up"/>
     <property name="exit_to" value="down"/>
    </properties>
   </object>
   <object id="58" type="collision" x="352" y="352" width="32" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter_from" value="up"/>
     <property name="exit_to" value="down"/>
    </properties>
   </object>
   <object id="59" type="collision" x="352" y="288" width="112" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter" value="up"/>
     <property name="exit" value="down"/>
    </properties>
   </object>
   <object id="60" type="collision" x="480" y="288" width="32" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter" value="up"/>
     <property name="exit" value="down"/>
    </properties>
   </object>
   <object id="61" type="collision" x="544" y="288" width="16" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter" value="up"/>
     <property name="exit" value="down"/>
    </properties>
   </object>
   <object id="62" type="collision" x="592" y="288" width="48" height="16">
    <properties>
+    <property name="continue" value="down"/>
     <property name="enter" value="up"/>
     <property name="exit" value="down"/>
    </properties>
@@ -186,8 +195,6 @@
   <object id="66" type="collision-line" x="288" y="64">
    <polyline points="0,0 0,96"/>
   </object>
-  <object id="88" type="collision" x="384" y="240" width="16" height="16"/>
-  <object id="90" type="collision" x="352" y="240" width="16" height="16"/>
   <object id="104" type="collision" x="304" y="-16" width="48" height="16"/>
   <object id="105" type="collision" x="176" y="160" width="16" height="64"/>
   <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
@@ -200,7 +207,7 @@
     <property name="cond1" value="is player_at 43,45"/>
    </properties>
   </object>
-  <object id="68" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+  <object id="68" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music 479403_its-a-unix-system.ogg"/>
     <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
@@ -215,39 +222,43 @@
   </object>
   <object id="70" name="Random Battle 1" type="event" x="512" y="432" width="128" height="80">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="71" name="Random Battle 2" type="event" x="352" y="432" width="96" height="80">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="72" name="Random Battle 3" type="event" x="400" y="368" width="112" height="48">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="73" name="Random Battle 4" type="event" x="352" y="304" width="144" height="48">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="74" name="Random Battle 5" type="event" x="208" y="80" width="64" height="80">
    <properties>
-    <property name="act1" value="random_encounter 1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -285,22 +296,16 @@
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="192" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route1.tmx,47,11"/>
+    <property name="act1" value="teleport route1.tmx,47,17"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="192" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route1.tmx,47,12"/>
+    <property name="act1" value="teleport route1.tmx,47,18"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="82" name="Go to Buddha Mountain" type="event" x="368" y="240" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport BuddhaMountain.tmx,3,90,0.5"/>
-    <property name="cond1" value="is player_at"/>
    </properties>
   </object>
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
@@ -311,7 +316,7 @@
   </object>
   <object id="96" name="Professor's Lab Sign" type="event" x="624" y="848" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Generic Professor's Lab"/>
+    <property name="act1" value="dialog Tuxemon Professor's Lab"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
@@ -357,10 +362,16 @@
   </object>
   <object id="115" name="Route 0 Sign" type="event" x="576" y="560" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Route 0"/>
+    <property name="act1" value="dialog Route 20"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="118" name="Preload route1" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="preload_map route1.tmx"/>
+    <property name="cond1" value="is true"/>
    </properties>
   </object>
  </objectgroup>

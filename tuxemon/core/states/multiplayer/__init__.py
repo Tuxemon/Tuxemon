@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -36,7 +35,6 @@ from core.states import world
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 class HeadlessServerState(world.WorldState):
@@ -64,5 +62,5 @@ class HeadlessServerState(world.WorldState):
         self.global_x = 0
         self.global_y = 0
 
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs = {}
+        self.npcs_off_map = {}

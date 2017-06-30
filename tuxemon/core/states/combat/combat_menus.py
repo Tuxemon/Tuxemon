@@ -1,98 +1,267 @@
 from __future__ import division
 
 import logging
-from collections import OrderedDict
+from collections import defaultdict
 from functools import partial
 
+import pygame
+
+from core import tools
+from core.components.locale import translator
 from core.components.menu import PopUpMenu
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
-from core.components.monster import Technique
+from core.components.sprite import MenuSpriteGroup, SpriteGroup
+from core.components.technique import Technique
+from core.components.ui.draw import GraphicBox
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
-
-
-class TechniqueMenuState(Menu):
-    """
-    Menu for the world state
-
-    only suitable for single player ATM
-
-    """
-    shrink_to_items = True
-
-    def initialize_items(self):
-        for tech in self.monster.moves:
-            image = self.shadow_text(tech.name)
-            yield MenuItem(image, tech.name, None, tech)
 
 
 class MainCombatMenuState(PopUpMenu):
     """
-    Menu for the world state
+    Main menu for combat: Fight, Item, Swap, Run
+
+    TODO: there needs to be more general use registers in the combat state to query
+          what player is doing what.  there's lots of spaghetti right now.
     """
     escape_key_exits = False
 
     def initialize_items(self):
-        self.monster = self.monster  # hack: to quiet pycharm warnings
+        menu_items_map = (
+            ('menu_fight', self.open_technique_menu),
+            ('menu_monster', self.open_swap_menu),
+            ('menu_item', self.open_item_menu),
+            ('menu_run', self.run)
+        )
 
-        def change_state(state, **kwargs):
-            return partial(self.game.push_state, state, **kwargs)
-
-        def run():
-            self.game.pop_state(self)
-            combat_state.remove_player(combat_state.players[0])
-
-        # hack for now
-        combat_state = self.game.get_state_name("CombatState")
-
-        self.menu_items_map = OrderedDict((
-            ('FIGHT', self.open_technique_menu),
-            ('TUXEMON', self.open_swap_menu),
-            ('ITEM', change_state("ItemMenuState")),
-            ('RUN', run)
-        ))
-
-        for label in self.menu_items_map.keys():
+        for key, callback in menu_items_map:
+            label = translator.translate(key).upper()
             image = self.shadow_text(label)
-            yield MenuItem(image, label, None, None)
+            yield MenuItem(image, label, None, callback)
 
-    def on_menu_selection(self, menuitem):
-        self.menu_items_map[menuitem.label]()
+    def run(self):
+        """ Cause player to run from the battle
+
+        TODO: only works for player0
+
+        :return: None
+        """
+
+        # TODO: only works for player0
+        self.game.pop_state(self)
+        combat_state = self.game.get_state_name("CombatState")
+        combat_state.trigger_player_run(combat_state.players[0])
 
     def open_swap_menu(self):
+        """ Open menus to swap monsters in party
+
+        :return: None
+        """
+
         def swap_it(menuitem):
             monster = menuitem.game_object
-            player = self.game.player1
-            target = player.monsters[0]
-            swap = Technique("Swap")
-            swap.other = monster
+            trans = translator.translate
+            if monster in self.game.get_state_name('CombatState').active_monsters:
+                tools.open_dialog(self.game, [trans('combat_isactive', {"name": monster.name})])
+                return
+            elif monster.current_hp < 1:
+                tools.open_dialog(self.game, [trans('combat_fainted', {"name": monster.name})])
             combat_state = self.game.get_state_name("CombatState")
+            swap = Technique("technique_swap")
+            swap.combat_state = combat_state
+            player = self.game.player1
+            target = monster
             combat_state.enqueue_action(player, swap, target)
             self.game.pop_state()  # close technique menu
             self.game.pop_state()  # close the monster action menu
 
-        state = self.game.push_state("MonsterMenuState")
-        state.on_menu_selection = swap_it
-        state.anchor("bottom", self.rect.top)
-        state.anchor("right", self.game.screen.get_rect().right)
-        state.monster = self.monster
+        menu = self.game.push_state("MonsterMenuState")
+        menu.on_menu_selection = swap_it
+        menu.anchor("bottom", self.rect.top)
+        menu.anchor("right", self.game.screen.get_rect().right)
+        menu.monster = self.monster
+
+    def open_item_menu(self):
+        """ Open menu to choose item to use
+
+        :return:
+        """
+
+        def choose_item():
+            # open menu to choose item
+            menu = self.game.push_state("ItemMenuState")
+
+            # set next menu after after selection is made
+            menu.on_menu_selection = choose_target
+
+        def choose_target(menu_item):
+            # open menu to choose target of item
+            item = menu_item.game_object
+            self.game.pop_state()   # close the item menu
+            # TODO: don't hardcode to player0
+            combat_state = self.game.get_state_name("CombatState")
+            state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
+                                         user=combat_state.players[0], action=item)
+            state.on_menu_selection = partial(enqueue_item, item)
+
+        def enqueue_item(item, menu_item):
+            # enqueue the item
+            target = menu_item.game_object
+            combat_state = self.game.get_state_name("CombatState")
+            # TODO: don't hardcode to player0
+            combat_state.enqueue_action(combat_state.players[0], item, target)
+
+            # close all the open menus
+            self.game.pop_state()  # close target chooser
+            self.game.pop_state()  # close the monster action menu
+
+        choose_item()
 
     def open_technique_menu(self):
-        def do_the_thing(menuitem):
-            technique = menuitem.game_object
-            combat_state = self.game.get_state_name("CombatState")
+        """ Open menus to choose a Technique to use
 
-            # TODO: select target
-            target = combat_state.players[1].monsters[0]
+        :return: None
+        """
+
+        def choose_technique():
+            # open menu to choose technique
+            menu = self.game.push_state("Menu")
+            menu.shrink_to_items = True
+
+            # add techniques to the menu
+            for tech in self.monster.moves:
+                image = self.shadow_text(tech.name)
+                item = MenuItem(image, None, None, tech)
+                menu.add(item)
+
+            # position the new menu
+            menu.anchor("bottom", self.rect.top)
+            menu.anchor("right", self.game.screen.get_rect().right)
+
+            # set next menu after after selection is made
+            menu.on_menu_selection = choose_target
+
+        def choose_target(menu_item):
+            # open menu to choose target of technique
+            technique = menu_item.game_object
+            combat_state = self.game.get_state_name("CombatState")
+            state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
+                                         user=self.monster, action=technique)
+            state.on_menu_selection = partial(enqueue_technique, technique)
+
+        def enqueue_technique(technique, menu_item):
+            # enqueue the technique
+            target = menu_item.game_object
+            combat_state = self.game.get_state_name("CombatState")
             combat_state.enqueue_action(self.monster, technique, target)
+
+            # close all the open menus
+            self.game.pop_state()  # close target chooser
             self.game.pop_state()  # close technique menu
             self.game.pop_state()  # close the monster action menu
 
-        state = self.game.push_state("TechniqueMenuState")
-        state.on_menu_selection = do_the_thing
-        state.anchor("bottom", self.rect.top)
-        state.anchor("right", self.game.screen.get_rect().right)
-        state.monster = self.monster
+        choose_technique()
+
+
+class CombatTargetMenuState(Menu):
+    """
+    Menu for selecting targets of techniques and items
+
+    This special menu draws over the combat screen
+    """
+    transparent = True
+
+    def create_new_menu_items_group(self):
+        # these groups will not automatically position the sprites
+        self.menu_items = MenuSpriteGroup()
+        self.menu_sprites = SpriteGroup()
+
+    def startup(self, *args, **kwargs):
+        super(CombatTargetMenuState, self).startup(*args, **kwargs)
+
+        # used to determine how player can target techniques
+        self.user = kwargs.get("user")
+        self.action = kwargs.get("action")
+        self.player = kwargs.get("player")
+
+        # load and scale the menu borders
+        border = tools.load_and_scale(self.borders_filename)
+        self.border = GraphicBox(border, None, None)
+
+    def initialize_items(self):
+        # get a ref to the combat state
+        combat_state = self.game.get_state_name("CombatState")
+
+        # TODO: trainer targeting
+        # TODO: cleanup how monster sprites and whatnot are managed
+        # TODO: This is going to work fine for simple matches, but controls will be wonky for parties
+        # TODO: (cont.) Need better handling of cursor keys for 2d layouts of menu items
+        # get all the monster positions
+
+        # this is used to determine who owns what monsters and what not
+        # TODO: make less duplication of game data in memory, let combat state have more registers, etc
+        self.targeting_map = defaultdict(list)
+
+        for player, monsters in combat_state.monsters_in_play.items():
+            for monster in monsters:
+
+                # TODO: more targeting classes
+                if player == self.player:
+                    targeting_class = "own monster"
+                else:
+                    targeting_class = "enemy monster"
+
+                self.targeting_map[targeting_class].append(monster)
+
+                # TODO: handle odd cases where a situation creates no valid targets
+                # if this target type is not handled by this action, then skip it
+                if targeting_class not in self.action.target:
+                    continue
+
+                # inspect the monster sprite and make a border image for it
+                sprite = combat_state._monster_sprite_map[monster]
+                item = MenuItem(None, None, None, monster)
+                item.rect = sprite.rect.copy()
+                center = item.rect.center
+                item.rect.inflate_ip(tools.scale(16), tools.scale(16))
+                item.rect.center = center
+
+                yield item
+
+    def refresh_layout(self):
+        """ Before refreshing the layout, determine the optimal target
+
+        :return:
+        """
+
+        def determine_target():
+            for tag in self.action.target:
+                for target in self.targeting_map[tag]:
+                    menu_item = self.search_items(target)
+                    if menu_item.enabled:
+                        # TODO: some API for this mess
+                        # get the index of the menu_item
+                        # change it
+                        index = self.menu_items._spritelist.index(menu_item)
+                        self.selected_index = index
+                        return
+
+        determine_target()
+        super(CombatTargetMenuState, self).refresh_layout()
+
+    def on_menu_selection_change(self):
+        """ Draw borders around sprites when selection changes
+
+        :return:
+        """
+        # clear out the old borders
+        for sprite in self.menu_items:
+            sprite.image = None
+
+        # find the selected item and make a border for it
+        item = self.get_selected_item()
+        if item:
+            item.image = pygame.Surface(item.rect.size, pygame.SRCALPHA)
+            self.border.draw(item.image)

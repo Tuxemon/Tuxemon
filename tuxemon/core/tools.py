@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -32,11 +31,13 @@ from __future__ import division
 import logging
 import operator
 import os.path
+import re
 
 import pygame
 
 import core.components.sprite
-import prepare
+from core import prepare
+from core.components import pyganim
 from core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
@@ -93,7 +94,7 @@ def transform_resource_filename(filename):
     :param filename: String
     :rtype: basestring
     """
-    return prepare.BASEDIR + "resources/" + filename
+    return os.path.join(prepare.BASEDIR, 'resources', filename)
 
 
 def load_and_scale(filename):
@@ -192,6 +193,53 @@ def scale_surface(surface, factor):
     return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
 
 
+def load_frames_files(directory, name):
+    """ Load animation that is a collection of frames
+
+    For example, water00.png, water01.png, water03.png
+
+    :type directory: str
+    :type name: str
+
+    :rtype: generator
+    """
+    scale = prepare.SCALE
+    for animation_frame in os.listdir(directory):
+        pattern = name + "\.[0-9].*"
+        if re.findall(pattern, animation_frame):
+            frame = pygame.image.load(directory + "/" + animation_frame).convert_alpha()
+            frame = pygame.transform.scale(frame, (frame.get_width() * scale, frame.get_height() * scale))
+            yield frame
+
+
+def create_animation(frames, duration, loop):
+    """ Create animation from frames, a list of surfaces
+
+    :param frames:
+    :param duration:
+    :param loop:
+    :return:
+    """
+    data = [(f, duration) for f in frames]
+    animation = pyganim.PygAnimation(data, loop=loop)
+    conductor = pyganim.PygConductor({'animation': animation})
+    return animation, conductor
+
+
+def load_animation_from_frames(directory, name, duration, loop=False):
+    """ Load animation from a collection of frame files
+
+    :param directory:
+    :param name:
+    :param duration:
+    :param loop:
+
+    :return:
+    """
+    frames = load_frames_files(directory, name)
+    return create_animation(frames, duration, loop)
+
+
 def scale_tile(surface, tile_size):
     """ Scales a map tile based on resolution.
 
@@ -218,8 +266,7 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    size = map(int, sprite.rect.size)
-    sprite._original_image = pygame.transform.scale(sprite._original_image, size)
+    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
     sprite._needs_update = True
 
 
@@ -270,7 +317,7 @@ def check_parameters(parameters, required=0, exit=True):
     if len(parameters) < required:
         import inspect
         calling_function = inspect.stack()[1][3]
-        print("'" + calling_function + "' requires at least " + str(required) + "parameters.")
+        logger.error("'" + calling_function + "' requires at least " + str(required) + "parameters.")
         if exit:
             import sys
             sys.exit(1)
@@ -289,21 +336,33 @@ def load_sound(filename):
     :type filename: basestring
     :rtype: core.platform.mixer.Sound
     """
+
     class DummySound(object):
         def play(self):
             pass
 
     filename = transform_resource_filename(filename)
+
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
     if not os.path.exists(filename):
-        print(filename)
-        raise ValueError
+        msg = 'audio file does not exist: {}'.format(filename)
+        logger.error(msg)
+        return DummySound()
+
     try:
         return mixer.Sound(filename)
-    except MemoryError:   # raised on some systems if there is no mixer
+    except MemoryError:
+        # raised on some systems if there is no mixer
+        logger.error('memoryerror, unable to load sound')
         return DummySound()
-    except pygame.error:  # raised on some systems is there is no mixer
+    except pygame.error as e:
+        # pick one:
+        # * there is no mixer
+        # * sound has invalid path
+        # * mixer has no output (device ok, no speakers)
+        logger.error(e)
+        logger.error('unable to load sound')
         return DummySound()
 
 
@@ -320,12 +379,13 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text):
+def open_dialog(game, text, menu=None):
     """ Open a dialog with the standard window size
 
     :param game:
     :param text: list of strings
-    :return:
+
+    :rtype: core.states.dialog.DialogState
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    game.push_state("DialogState", text=text, rect=rect)
+    return game.push_state("DialogState", text=text, rect=rect, menu=menu)

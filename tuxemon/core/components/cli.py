@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -40,11 +39,11 @@ class CommandLine(cmd.Cmd):
 
     :type app: tuxemon.Game
 
-    To include the command line in the game, simply add the following line under the 
+    To include the command line in the game, simply add the following line under the
     initialization of the main game:
 
     >>> def __init__(self):
-    ...     self.cli = core.cli.CommandLine(self) 
+    ...     self.cli = core.cli.CommandLine(self)
 
     """
 
@@ -85,7 +84,7 @@ class CommandLine(cmd.Cmd):
     def do_exit(self, line):
         """If "exit" was typed on the command line, set the app's exit variable to True.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None
@@ -97,9 +96,9 @@ class CommandLine(cmd.Cmd):
 
 
     def do_quit(self, line):
-        """If "quit" was typed on the command line, set the app's exit variable to True.                           
+        """If "quit" was typed on the command line, set the app's exit variable to True.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None
@@ -111,9 +110,9 @@ class CommandLine(cmd.Cmd):
 
 
     def do_EOF(self, line):
-        """If you press CTRL-D on the command line, set the app's exit variable to True.                           
+        """If you press CTRL-D on the command line, set the app's exit variable to True.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None
@@ -127,7 +126,7 @@ class CommandLine(cmd.Cmd):
     def do_copyright(self, line):
         """Print the copyright information if "copyright" was entered.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None
@@ -140,7 +139,7 @@ class CommandLine(cmd.Cmd):
     def do_credits(self, line):
         """Print the copyright information if "credits" was entered.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None
@@ -155,7 +154,7 @@ class CommandLine(cmd.Cmd):
         look at and manipulate any variables in the application. This can be used to look at this
         instance's "self.app" variable which contains the game object.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None
@@ -171,7 +170,7 @@ class CommandLine(cmd.Cmd):
     def postcmd(self, stop, line):
         """If the application has exited, exit here as well.
 
-        :param None:  
+        :param None:
 
         :rtype: None
         :returns: None

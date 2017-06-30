@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -26,9 +25,11 @@
 #
 from __future__ import absolute_import
 
+from core.components.event.eventcontext import EventContext
 from core.tools import open_dialog
 
-class DialogContext(object):
+
+class DialogContext(EventContext):
     def __init__(self):
         # this is a potentially temporary solution to a problem with dialog chains
         self._dialog_chain_queue = list()

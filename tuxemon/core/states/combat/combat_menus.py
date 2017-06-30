@@ -17,7 +17,6 @@ from core.components.ui.draw import GraphicBox
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 class MainCombatMenuState(PopUpMenu):

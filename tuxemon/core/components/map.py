@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -29,12 +28,15 @@
 # core.components.map Game map module.
 #
 #
+from __future__ import absolute_import
+from __future__ import division
+
 import logging
 import re
 
 from core import prepare, tools
-from core.components.event import Action
-from core.components.event import Condition
+from core.components.event import MapAction
+from core.components.event import MapCondition
 from core.components.event import EventObject
 
 import pytmx
@@ -45,14 +47,13 @@ import pygame
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 def scaled_image_loader(filename, colorkey, **kwargs):
     """ pytmx image loader for pygame
-    
+
     Modified to load images at a scaled size
-    
+
     :param filename:
     :param colorkey:
     :param kwargs:
@@ -252,6 +253,11 @@ class Map(object):
         # We need to sort them by name, so that "act1" comes before "act2" and so on..
         keys = sorted(obj.properties.keys())
 
+        x = int(obj.x / self.tile_size[0])
+        y = int(obj.y / self.tile_size[1])
+        w = int(obj.width / self.tile_size[0])
+        h = int(obj.height / self.tile_size[1])
+
         for k in keys:
             if k.startswith('cond'):
                 words = obj.properties[k].split(' ', 2)
@@ -267,14 +273,7 @@ class Map(object):
                     args = list()
 
                 # Create a condition object using named tuples
-                condition = Condition(cond_type,
-                                      args,
-                                      int(obj.x / self.tile_size[0]),
-                                      int(obj.y / self.tile_size[1]),
-                                      int(obj.width / self.tile_size[0]),
-                                      int(obj.height / self.tile_size[1]),
-                                      operator)
-
+                condition = MapCondition(cond_type, args, x, y, w, h, operator)
                 conds.append(condition)
 
             elif k.startswith('act'):
@@ -291,11 +290,17 @@ class Map(object):
                     args = list()
 
                 # Create an action object using named tuples
-                action = Action(act_type, args)
-
+                action = MapAction(act_type, args)
                 acts.append(action)
 
-        return EventObject(obj.id, int(obj.x / self.tile_size[0]), int(obj.y / self.tile_size[1]), conds, acts)
+        # TODO: move this to some post-creation function, as more may be needed
+        # add a player_facing_tile condition automatically
+        if obj.type == "interact":
+            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is")
+            logger.debug(cond_data)
+            conds.append(cond_data)
+
+        return EventObject(obj.id, x, y, conds, acts)
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with

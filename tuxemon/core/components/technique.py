@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -28,6 +27,7 @@
 #
 #
 #
+import logging
 import os
 import random
 from collections import namedtuple
@@ -35,6 +35,8 @@ from collections import namedtuple
 from core import prepare
 from core.components import db
 from core.components.locale import translator
+
+logger = logging.getLogger(__name__)
 
 trans = translator.translate
 
@@ -202,13 +204,13 @@ class Technique(object):
 
     def calculate_damage(self, user, target):
         """ Calc. damage for the damage technique
-        
+
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
-        
+
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
-        
+
         :rtype: int
         """
         # Original Pokemon battle damage formula:
@@ -228,7 +230,7 @@ class Technique(object):
         elif self.category == "poison":
             return int(self.power)
 
-        print('unhandled damage category')
+        logger.error('unhandled damage category')
         raise RuntimeError
 
     def damage(self, user, target):
@@ -311,7 +313,7 @@ class Technique(object):
 
         :param user: core.components.monster.Monster
         :param target: core.components.monster.Monster
-        
+
         :rtype: dict
         """
         # TODO: implement actions as events, so that combat state can find them

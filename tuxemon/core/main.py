@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -27,19 +26,13 @@
 #
 # core.main Sets up the states and main game loop.
 #
-from collections import namedtuple
-from functools import partial
+from __future__ import absolute_import
+
+import logging
 
 from . import prepare
 
-
-def adapter(name, *args):
-    nt = namedtuple(name, "parameters")
-
-    def func(*args):
-        return nt(args)
-
-    return func
+logger = logging.getLogger(__name__)
 
 
 def main():
@@ -50,6 +43,9 @@ def main():
     :returns: None
 
     """
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+
     import pygame
     from .control import PygameControl
 
@@ -74,26 +70,25 @@ def main():
         control.push_state("FadeInTransition")
 
     # block of code useful for testing
-    #if 1:
-    #    from core.components.event.actions.player import Player
-
-    #    print("DEBUG OPTIONS ENABLED")
+    if prepare.CONFIG.collision_map == "1":
+        logger.info("********* DEBUG OPTIONS ENABLED *********")
 
         # TODO: fix this player/player1 issue
-    #    control.player1 = prepare.player1
+        control.player1 = prepare.player1
+        action = control.event_engine.execute_action
 
-    #    add_monster = partial(adapter("add_monster"))
-    #    Player().add_monster(control, add_monster('txmn_bigfin', 10), None)
-    #    Player().add_monster(control, add_monster('txmn_dandylion', 10), None)
+        action("add_monster", ("txmn_bigfin", 10))
+        action("add_monster", ("txmn_dandylion", 10))
 
-    #    add_item = partial(adapter("add_item"))
-    #    Player().add_item(control, add_item('item_potion'), None)
-    #    Player().add_item(control, add_item('item_cherry'), None)
-    #    Player().add_item(control, add_item('item_capture_device'), None)
-    #    for i in range(10):
-    #        Player().add_item(control, add_item('item_super_potion'), None)
-    #    for i in range(100):
-    #        Player().add_item(control, add_item('item_apple'), None)
+        action("add_item", ("item_potion",))
+        action("add_item", ("item_cherry",))
+        action("add_item", ("item_capture_device",))
+
+        for i in range(10):
+            action("add_item", ("item_super_potion",))
+
+        for i in range(100):
+            action("add_item", ("item_apple",))
 
     control.main()
     pygame.quit()

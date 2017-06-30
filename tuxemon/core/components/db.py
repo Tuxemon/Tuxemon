@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -39,7 +38,6 @@ from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 def process_targets(json_targets):
@@ -113,7 +111,7 @@ class JSONDatabase(object):
             if item['slug'] not in self.database[directory]:
                 self.database[directory][item['slug']] = item
             else:
-                print(item, json)
+                logger.error(item, json)
                 raise Exception("Error: Item with this slug was already loaded.")
 
 

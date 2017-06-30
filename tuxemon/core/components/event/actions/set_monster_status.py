@@ -47,11 +47,8 @@ class SetMonsterStatusAction(EventAction):
         if value is None:
             monster.status = list()
         else:
-            if not 0 <= value <= 1:
-                logger.error("monster health must between 0 and 1")
-                raise ValueError
-
             # TODO: own class for status effect
+            # TODO: handle invalid statues
             status = Technique(value)
             monster.apply_status(status)
 

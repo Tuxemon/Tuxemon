@@ -21,7 +21,11 @@
 #
 from __future__ import absolute_import
 
+import logging
+
 from core.components.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 class SetMonsterHealthAction(EventAction):
@@ -29,33 +33,41 @@ class SetMonsterHealthAction(EventAction):
     may contain a monster slot and the amount of health. If no slot is specified,
     all monsters are healed. If no health is specified, the hp is maxed out.
 
+    health is a float value between 0 and 1, which is the percent of max hp to be restored to
+
     Valid Parameters: slot, health
     """
     name = "set_monster_health"
     valid_parameters = [
         (int, "slot"),
-        (int, "health")
+        (float, "health")
     ]
 
+    @staticmethod
+    def set_health(monster, value):
+        if value is None:
+            monster.current_hp = monster.hp
+        else:
+            if not 0 <= value <= 1:
+                logger.error("monster health must between 0 and 1")
+                raise ValueError
+
+            monster.current_hp = int(monster.hp * value)
+
     def start(self):
-        if not self.game.player1.monsters > 0:
+        if not self.game.player1.monsters:
             return
 
         monster_slot = self.parameters[0]
         monster_health = self.parameters[1]
 
-        if monster_slot:
-            if len(self.game.player1.monsters) < int(monster_slot):
-                return
-
-            monster = self.game.player1.monsters[int(monster_slot)]
-            if monster_health:
-                monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
-            else:
-                monster.current_hp = monster.hp
-        else:
+        if monster_slot is None:
             for monster in self.game.player1.monsters:
-                if monster_health:
-                    monster.current_hp = int(monster.hp * min(1, max(0, float(monster_health))))
-                else:
-                    monster.current_hp = monster.hp
+                self.set_health(monster, monster_health)
+        else:
+            try:
+                monster = self.game.player1.monsters[monster_slot]
+            except IndexError:
+                logger.error("invalid monster slot")
+            else:
+                self.set_health(monster, monster_health)

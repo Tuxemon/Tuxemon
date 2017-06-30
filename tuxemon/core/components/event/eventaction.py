@@ -62,33 +62,33 @@ class EventAction(object):
     also use them outside of the EventEngine, but can only be run
     in a blocking manner.  Do not execute EventActions outside the Engine
     if the action will block forever, as it will freeze the game.
-    
-    
+
+
     Parameters
     ==========
-    
+
     ** this is a work-in-progress feature, that may change in time **
-    
+
     Tuxemon supports type-checking of the parameters defined in the maps.
-    
+
     valid_parameters may be the following format (may change):
-    
+
     (type, name)
-    
+
     * the type may be any valid python type, or even a python class or function
     * type may be a single type, or a tuple of types
     * type, if a tuple, may include None is indicate the parameter is optional
     * name must be a valid python string
-    
+
     After parsing the parameters of the MapAction, the parameter's value
-    will be passed to the type.    
-    
+    will be passed to the type.
+
     For example: str, int, float, Monster, Item
-   
+
     (int, "duration")                => duration must be an int
     ((int, float), "duration")       => can be an int or float
     ((int, float, None), "duration") => is optional
-    
+
     (Monster, "monster_slug")   => a Monster instance will be created
     """
     name = "GenericAction"
@@ -158,6 +158,9 @@ class EventAction(object):
                 if v is None:
                     return None
 
+                if v == '':
+                    return None
+
                 return t[0](v)
 
             if ve:
@@ -214,7 +217,7 @@ class EventAction(object):
         It is better to use EventAction.execute()
 
         This may cause the game to hang if an action is waiting on game changes
-        
+
         :return:
         """
         while not self.done:
@@ -224,8 +227,8 @@ class EventAction(object):
     def done(self):
         """ Will be true when action is finished.  If you need the
             action to stop, call EventAction.stop()
-        
-        :return: 
+
+        :return:
         """
         return self._done
 
@@ -233,7 +236,7 @@ class EventAction(object):
         """ Called only once, when the action is started
 
         For all actions, you will need to override this method.
-        
+
         For actions that only need to run one frame you can simply
         put all the code here.  If the action will need to run over
         several frames, you can init your action here, then override
@@ -251,7 +254,7 @@ class EventAction(object):
         started, and live for only one frame.
 
         If you do override this, then this method will be run every frame
-        until EventAction.stop() is called.  If you do not ever call stop(), 
+        until EventAction.stop() is called.  If you do not ever call stop(),
         then this action will block all others in the list and will continue
         to run until the parent EventEngine is stopped.
 

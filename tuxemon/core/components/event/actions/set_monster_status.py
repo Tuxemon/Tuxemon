@@ -21,7 +21,12 @@
 #
 from __future__ import absolute_import
 
+import logging
+
+from core.components.technique import Technique
 from core.components.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 class SetMonsterStatusAction(EventAction):
@@ -37,25 +42,33 @@ class SetMonsterStatusAction(EventAction):
         (str, "status")
     ]
 
+    @staticmethod
+    def set_status(monster, value):
+        if value is None:
+            monster.status = list()
+        else:
+            if not 0 <= value <= 1:
+                logger.error("monster health must between 0 and 1")
+                raise ValueError
+
+            # TODO: own class for status effect
+            status = Technique(value)
+            monster.apply_status(status)
+
     def start(self):
-        if not self.game.player1.monsters > 0:
+        if not self.game.player1.monsters:
             return
 
         monster_slot = self.parameters[0]
         monster_status = self.parameters[1]
 
-        if monster_slot:
-            if len(self.game.player1.monsters) < int(monster_slot):
-                return
-
-            monster = self.game.player1.monsters[int(monster_slot)]
-            if monster_status:
-                monster.status.append(monster_status)
-            else:
-                monster.status = []
-        else:
+        if monster_slot is None:
             for monster in self.game.player1.monsters:
-                if monster_status:
-                    monster.status.append(monster_status)
-                else:
-                    monster.status = []
+                self.set_status(monster, monster_status)
+        else:
+            try:
+                monster = self.game.player1.monsters[monster_slot]
+            except IndexError:
+                logger.error("invalid monster slot")
+            else:
+                self.set_status(monster, monster_status)

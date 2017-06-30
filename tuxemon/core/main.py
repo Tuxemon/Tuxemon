@@ -31,6 +31,7 @@ from __future__ import absolute_import
 import logging
 
 from . import prepare
+from .components import log
 
 logger = logging.getLogger(__name__)
 
@@ -43,8 +44,7 @@ def main():
     :returns: None
 
     """
-    import logging
-    logging.basicConfig(level=logging.DEBUG)
+    log.configure()
 
     import pygame
     from .control import PygameControl

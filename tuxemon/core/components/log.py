@@ -28,9 +28,13 @@
 #
 #
 
+from __future__ import print_function
+
 import sys
 import logging
+
 from core import prepare
+
 
 def configure():
     """Configure logging based on the settings in the config file.
@@ -48,7 +52,7 @@ def configure():
         log_level = LOG_LEVELS[config.debug_level]
     else:
         log_level = logging.INFO
-    print("BOO")
+
     # Set up logging if the configuration has it enabled
     if config.debug_logging == "1":
 
@@ -71,6 +75,3 @@ def configure():
             logger.addHandler(log_hdlr)
 
             loggers[logger_name] = logger
-
-
-

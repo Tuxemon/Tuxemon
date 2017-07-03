@@ -27,6 +27,7 @@
 # core.components.plugin Plugin architecture module.
 #
 #
+from __future__ import absolute_import
 
 import importlib
 import inspect

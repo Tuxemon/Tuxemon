@@ -27,9 +27,14 @@
 # core.components.cli Command line module used for debugging.
 #
 #
+from __future__ import print_function
 
+import logging
 import cmd
 import code
+
+logger = logging.getLogger(__name__)
+
 
 class CommandLine(cmd.Cmd):
     """A class to enable an interactive debug command line. Provides a full python shell to review
@@ -46,9 +51,7 @@ class CommandLine(cmd.Cmd):
     ...     self.cli = core.cli.CommandLine(self)
 
     """
-
     def __init__(self, app):
-
         # Initiate the parent class
         cmd.Cmd.__init__(self)
 
@@ -68,7 +71,6 @@ class CommandLine(cmd.Cmd):
         self.cmd_thread.daemon = True
         self.cmd_thread.start()
 
-
     def emptyline(self):
         """If an empty line was entered at the command line, do nothing.
 
@@ -80,7 +82,6 @@ class CommandLine(cmd.Cmd):
         """
         pass
 
-
     def do_exit(self, line):
         """If "exit" was typed on the command line, set the app's exit variable to True.
 
@@ -90,10 +91,8 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         self.app.exit = True
         return True
-
 
     def do_quit(self, line):
         """If "quit" was typed on the command line, set the app's exit variable to True.
@@ -104,10 +103,8 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         self.app.exit = True
         return True
-
 
     def do_EOF(self, line):
         """If you press CTRL-D on the command line, set the app's exit variable to True.
@@ -118,10 +115,8 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         self.do_quit(line)
         return True
-
 
     def do_copyright(self, line):
         """Print the copyright information if "copyright" was entered.
@@ -132,9 +127,7 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         print("Tuxemon\nCopyright (C) 2014, William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>")
-
 
     def do_credits(self, line):
         """Print the copyright information if "credits" was entered.
@@ -145,9 +138,7 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         self.do_copyright(line)
-
 
     def do_python(self, line):
         """Open a full python shell if "python" was typed in the command line. From here, you can
@@ -160,12 +151,10 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         print("Available variables:")
         print("self.pp.pprint(self.__dict__)")
         self.pp.pprint(self.__dict__)
         code.interact(local=locals())
-
 
     def postcmd(self, stop, line):
         """If the application has exited, exit here as well.
@@ -176,9 +165,6 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-
         # Check to see if we have exited
         if self.app.exit:
             return True
-
-

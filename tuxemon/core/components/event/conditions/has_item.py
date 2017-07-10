@@ -21,15 +21,17 @@
 #
 from __future__ import absolute_import
 
-from operator import eq, gt, lt
+from operator import eq, gt, lt, ge, le
 
 from core.components.event.conditions import get_npc
 from core.components.event.eventcondition import EventCondition
 
-cmp = {
-    None: gt,
+cmp_dict = {
+    None: ge,
     "less_than": lt,
+    "less_or_equal": le,
     "greater_than": gt,
+    "greater_or_equal": ge,
     "equals": eq
 }
 
@@ -37,55 +39,54 @@ cmp = {
 class HasItemCondition(EventCondition):
     """ Checks to see if a NPC inventory contains something
 
-    inventory_contains [npc or player] [item slug] [operator] [quantity]
+    inventory_contains [npc_slug or player] [item slug] [operator] [quantity]
 
     npc or player: "player" or npc slug name; "npc_maple"
     item slug: the item slug name; item_cherry, etc
-    operator: numeric comparison operators: less_than, greater_than, equals
+    operator: numeric comparison operators: less_than, greater_than, equals, less_or_equal, greater_or_equal
     quantity: integer value, non-negative
 
-    operator can be optional; it will default to greater_than
-    quantity can be optional; it will default to 0
+    operator can be optional; it will default to greater_or_equal
+    quantity can be optional; it will default to 1
 
-    if quantity is None, then any number of items over 0 will return True ( quantity > 0 )
-    None is not valid input for quantity, but may be used internally
+    if quantity is None, then any number of items over 0 will return True ( quantity >= 1 )
     """
     name = "has_item"
 
     def test(self, game, condition):
-        """Checks to see the player is has a monster in his party
-
-        :param game: The main game object that contains all the game's variables.
-        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
-            for the format of the dictionary.
+        """ Checks to see the player is has a monster in his party
 
         :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean
-        :returns: True or False
-
         """
         owner_slug, item_slug = condition.parameters[:2]
 
         try:
-            op = cmp[condition.parameters[2]]
-        except IndexError:
-            op = cmp[None]
+            raw_op = condition.parameters[2].lower()
+            if raw_op == '':
+                raw_op = None
+        except (IndexError, AttributeError):
+            raw_op = None
+
+        try:
+            op = cmp_dict[raw_op]
+        except KeyError:
+            raise ValueError
 
         try:
             q_test = int(condition.parameters[3])
             if q_test < 0:
                 raise ValueError
         except IndexError:
-            q_test = 0
+            q_test = 1
 
         npc = get_npc(game, owner_slug)
         item_info = npc.inventory.get(item_slug)
-        if item_info is None:
+        if item_info is None:  # not found in inventory
             item_quantity = 0
         else:
             item_quantity = item_info['quantity']
 
         return op(item_quantity, q_test)
-

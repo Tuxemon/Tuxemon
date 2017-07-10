@@ -57,3 +57,9 @@ class HasItemConditionTest(unittest.TestCase):
         inventory = {'item_potion': {'quantity': 5}}
         result = self.make_test(parameters, inventory)
         self.assertFalse(result)
+
+    def test_valid_q(self):
+        parameters = ('player', 'item_potion', 'greater_than', -1)
+        inventory = {'item_potion': {'quantity': 5}}
+        with self.assertRaises(ValueError):
+            self.make_test(parameters, inventory)

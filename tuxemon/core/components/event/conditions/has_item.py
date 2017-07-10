@@ -75,7 +75,8 @@ class HasItemCondition(EventCondition):
 
         try:
             q_test = int(condition.parameters[3])
-            assert q_test >= 0
+            if q_test < 0:
+                raise ValueError
         except IndexError:
             q_test = 0
 

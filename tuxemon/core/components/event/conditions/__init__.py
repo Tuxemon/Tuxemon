@@ -37,14 +37,16 @@ def get_npc(game, slug):
     :returns: The NPC object or None if the NPC is not found.
 
     """
+    if slug == "player":
+        return game.player1
+
     # Loop through the NPC list and see if the slug matches any in the list
     world = game.get_state_name("WorldState")
-    if not world:
+    if world is None:
         logger.error("Cannot search for NPC if  world doesn't exist: " + slug)
         return
 
-    if slug in world.npcs:
+    elif slug in world.npcs:
         return world.npcs[slug]
 
     logger.error("Unable to find NPC: " + slug)
-    return

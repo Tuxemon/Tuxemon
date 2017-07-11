@@ -61,8 +61,6 @@ class HasItemCondition(EventCondition):
 
         :rtype: Boolean
         """
-        owner_slug, item_slug = condition.parameters[:2]
-
         try:
             raw_op = condition.parameters[2].lower()
             if raw_op == '':
@@ -82,6 +80,8 @@ class HasItemCondition(EventCondition):
         except IndexError:
             q_test = 1
 
+        # TODO: handle missing npc, etc
+        owner_slug, item_slug = condition.parameters[:2]
         npc = get_npc(game, owner_slug)
         item_info = npc.inventory.get(item_slug)
         if item_info is None:  # not found in inventory

@@ -181,6 +181,23 @@ class Control(StateManager):
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
+        # TODO: moar players
+        self.player1 = None
+
+    def add_player(self, player):
+        """ Add a player to the game
+        
+        Only one human player is supported ATM
+        
+        :type player: core.components.player.Player
+        :return: 
+        """
+        # TODO: moar players
+        self.player1 = player
+
+    def get_player(self):
+        return self.player1
+
     def draw_event_debug(self):
         y = 20
         x = 4

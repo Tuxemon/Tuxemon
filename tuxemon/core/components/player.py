@@ -29,16 +29,21 @@
 #
 """This module contains the player and npc modules.
 """
+from __future__ import absolute_import
 from __future__ import division
 
 import logging
-import pygame
-from core import prepare
-from core import tools
+import os
 
-from . import pyganim
+import pygame
+
+from core import prepare
 from core.components import db
+from core.components import pyganim
+from core.components.euclid import Vector3, Vector2
 from core.components.locale import translator
+from core.tools import load_and_scale, nearest
+
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -50,6 +55,27 @@ dirs = {
     "left": [-1, 0],
     "right": [1, 0],
 }
+
+facing = "front", "back", "left", "right"
+
+# reference direction and movement states to animation names
+# this dictionary is kinda wip, idk
+animation_mapping = {
+    True: {
+        'up': 'back_walk',
+        'down': 'front_walk',
+        'left': 'left_walk',
+        'right': 'right_walk'},
+    False: {
+        'up': 'back',
+        'down': 'front',
+        'left': 'left',
+        'right': 'right'}
+}
+
+
+def proj(vector):
+    return Vector2(vector.x, vector.y)
 
 
 # Class definition for the player.
@@ -69,100 +95,90 @@ class Player(object):
     >>> # Set the walking and running pixels per second based on the scale
     >>> player1.walkrate *= scale
     >>> player1.runrate *= scale
-
-
     """
     speed = 100
     moves = []
 
-    def __init__(self, sprite_name="player1", name="Red"):
-        self.name = name			   # This is the player's name to be used in dialog
-        self.ai = None                 # Whether or not this player has AI associated with it
-        self.sprite = {}			   # The pyganim object that contains the player animations
-        self.sprite_name = sprite_name # Hold on the the string so it can be sent over the network
+    def __init__(self, npc_slug):
+        npcs = db.JSONDatabase()
+        npcs.load("npc")
+        npc_data = npcs.lookup(npc_slug, table="npc")
+
+        self.name = trans(npc_data["name_trans"])  # This is the player's name to be used in dialog
+        self.sprite_name = npc_data["sprite_name"]  # Hold on the the string so it can be sent over the network
+
+        self.ai = None  # Whether or not this player has AI associated with it
+        self.sprite = {}  # The pyganim object that contains the player animations
+
+        # TODO: move out so class can be used headless
+        self.standing = {}
+        self.load_sprites()
+
         self.isplayer = True
         self.path = None
-
-        # reference direction and movement states to animation names
-        # this dictionary is kinda wip, idk
-        self.animation_mapping = {
-            True: {
-                'up': 'back_walk',
-                'down': 'front_walk',
-                'left': 'left_walk',
-                'right': 'right_walk'},
-            False: {
-                'up': 'back',
-                'down': 'front',
-                'left': 'left',
-                'right': 'right'}
-        }
-
-        # Get all of the player's standing animation images.
-        self.standing = {}
-        standing_types = ["front", "back", "left", "right"]
-        for standing_type in standing_types:
-            surface = tools.load_image("sprites/%s_%s.png" % (sprite_name, standing_type))
-            surface_top = surface.subsurface((0, 0,
-                                              surface.get_width(), int(surface.get_height() / 2)))
-            surface_bottom = surface.subsurface((0, int(surface.get_height() / 2),
-                                                 surface.get_width(), int(surface.get_height() / 2)))
-            self.standing[standing_type] = surface
-            self.standing[standing_type + "-top"] = surface_top
-            self.standing[standing_type + "-bottom"] = surface_bottom
-
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()    # The player's sprite size in pixels
-        self.game_variables = {}		# Game variables for use with events
-        self.inventory = {}             # The Player's inventory.
-        self.monsters = []              # This is a list of tuxemon the player has
+        self.game_variables = {}  # Game variables for use with events
+        self.inventory = {}  # The Player's inventory.
+        self.monsters = []  # This is a list of tuxemon the player has
         self.storage = {"monsters": [], "items": {}}
-        self.party_limit = 6            # The maximum number of tuxemon this player can hold 1 for testing
-        self.walking = False		    # Whether or not the player is walking
-        self.running = False		    # Whether or not the player is running
-        self.moving = False			    # Whether or not the player is moving
-        self.move_direction = "down"    # This is a string of the direction we're moving if we're in the middle of moving
-        self.direction = {"up": False, "down": False, "left": False, "right": False}	# What direction the player is moving
-        self.facing = "down"            # What direction the player is facing
-        self.walkrate = 60              # The rate in pixels per second the player is walking
-        self.runrate = 118			    # The rate in pixels per second the player is running
-        self.moverate = self.walkrate   # The movement rate in pixels per second
-        self.position = [0, 0]			# The player's sprite position on the screen
-        self.tile_pos = [0, 0]          # This is the position of the player based on tile
+        self.party_limit = 6  # The maximum number of tuxemon this player can hold 1 for testing
+        self.walking = False  # Whether or not the player is walking
+        self.running = False  # Whether or not the player is running
+        self.move_direction = "down"  # This is a string of the direction we're moving if we're in the middle of moving
+        self.direction = {"up": False,
+                          "down": False,
+                          "left": False,
+                          "right": False}  # What direction the player is moving
+        self.facing = "down"  # What direction the player is facing
+
+        self.walkrate = 60  # The rate in pixels per second the player is walking
+        self.runrate = 118  # The rate in pixels per second the player is running
+        self.moverate = self.walkrate  # The movement rate in pixels per second
+        self.position = [0, 0]  # The player's sprite position on the screen
+        self.tile_pos = [0, 0]  # This is the position of the player based on tile
         self.tile_size = [16, 16]
         self.move_destination = [0, 0]  # The player's destination location to move to
-        self.final_move_dest = [0, 0]   # Stores the final destination sent from a client
-        self.rect = pygame.Rect(self.position, (self.playerWidth, self.playerHeight)) # Collision rect
+        self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
+        self.rect = pygame.Rect(self.position, (self.playerWidth, self.playerHeight))  # Collision rect
 
-        # physics
-        self.acceleration = [0, 0, 0]
-        self.velocity = [0, 0, 0]
+        # physics.  eventually move to a mixin/component
+        self.position2 = Vector2(0, 0)
+        self.position3 = Vector3(0, 0, 0)
+        self.acceleration3 = Vector3(0, 0, 0)
+        self.velocity3 = Vector3(0, 0, 0)
+        # end physics
+
+        self.walkrate *= prepare.SCALE
+        self.runrate *= prepare.SCALE
+
+    def load_sprites(self):
+        """ Load sprite graphics
+        
+        :return: 
+        """
+        # Get all of the player's standing animation images.
+        self.standing = {}
+        for standing_type in facing:
+            filename = "{}_{}.png".format(self.sprite_name, standing_type)
+            path = os.path.join("sprites", filename)
+            self.standing[standing_type] = load_and_scale(path)
+
+        self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
 
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
-            images_and_durations = [('sprites/%s_%s.%s.png' % (sprite_name, anim_type, str(num).rjust(3, '0')),
-                                    prepare.CONFIG.player_animation_speed) for num in range(4)]
+            images_and_durations = [('sprites/%s_%s.%s.png' % (self.sprite_name, anim_type, str(num).rjust(3, '0')),
+                                     prepare.CONFIG.player_animation_speed) for num in range(4)]
 
             # Loop through all of our animations and get the top and bottom subsurfaces.
             full_frames = []
-            top_frames = []
-            bottom_frames = []
             for image, duration in images_and_durations:
-                surface = tools.load_image(image)
-                w, h = surface.get_size()
-
-                top_surface = surface.subsurface((0, 0, w, h // 2))
-                bottom_surface = surface.subsurface((0, h // 2, w, h // 2))
-
+                surface = load_and_scale(image)
                 full_frames.append((surface, duration))
-                top_frames.append((top_surface, duration))
-                bottom_frames.append((bottom_surface, duration))
 
             # Create an animation set for the top and bottom halfs of our sprite, so we can draw
             # them on different layers.
             self.sprite[anim_type] = pyganim.PygAnimation(full_frames)
-            self.sprite[anim_type + '-top'] = pyganim.PygAnimation(top_frames)
-            self.sprite[anim_type + '-bottom'] = pyganim.PygAnimation(bottom_frames)
 
         # Have the animation objects managed by a conductor.
         # With the conductor, we can call play() and stop() on all the animtion
@@ -171,6 +187,18 @@ class Player(object):
         self.moveConductor = pyganim.PygConductor(self.sprite)
         self.moveConductor.play()
         self.anim_playing = True
+
+    def meta_move(self, tile_size, time_passed_seconds, game):
+        if self.running:
+            self.moverate = self.runrate
+        else:
+            self.moverate = self.walkrate
+
+        # if the self has a path, move it along its path
+        if self.path:
+            self.move_by_path()
+
+        self.move(tile_size, time_passed_seconds, game)
 
     def move(self, tile_size, time_passed_seconds, game):
         """ Draws text to the current menu object
@@ -194,43 +222,36 @@ class Player(object):
         self._start_move(collision_dict, game)
 
         # Handle where we're forced to continue moving.
-        # self._force_continue_move(collision_dict, game)
-
-    def _force_continue_move(self, collision_dict, game):
-        # Round the player's tile position to an integer value. We test for collisions based on
-        # an integer value.
-        player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-
-        # If this collision tile has a continue direction, force the player to keep walking
         if not self.moving:
-            if player_pos in collision_dict:
-                direction_next = collision_dict[player_pos]["continue"]
-                if direction_next not in ["up", "down", "left", "right"]:
-                    direction_next = self.move_direction
+            self._force_continue_move(collision_dict, game)
 
-                # If the move direction is collidable, don't move.
-                if direction_next in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                    return
+        self.update_physics(time_passed_seconds)
+        self.tile_pos = self.position2.x / self.tile_size[0], self.position2.y / self.tile_size[1]
 
-                if direction_next == "up":
-                    self.move_destination = [int(global_x), int(global_y + prepare.TILE_SIZE[1])]
-                    self.move_direction = "up"
-                    self.moving = True
-                elif direction_next == "down":
-                    self.move_destination = [int(global_x), int(global_y - prepare.TILE_SIZE[1])]
-                    self.move_direction = "down"
-                    self.moving = True
-                elif direction_next == "left":
-                    self.move_destination = [int(global_x + prepare.TILE_SIZE[1]), int(global_y)]
-                    self.move_direction = "left"
-                    self.moving = True
-                elif direction_next == "right":
-                    self.move_destination = [int(global_x - prepare.TILE_SIZE[1]), int(global_y)]
-                    self.move_direction = "right"
-                    self.moving = True
+    # === PHYSICS START ================================================================
+
+    def update_physics(self, td):
+        # no accel yet
+        self.position3 += self.velocity3 * td
+        self.position2 = proj(self.position3)
+
+    @property
+    def moving(self):
+        return not self.velocity3 == (0, 0, 0)
+
+    def stop(self):
+        self.direction['up'] = False
+        self.direction['down'] = False
+        self.direction['left'] = False
+        self.direction['right'] = False
+        self.velocity3.x = 0
+        self.velocity3.y = 0
+        self.velocity3.z = 0
+
+    # === PHYSICS END ==================================================================
 
     def _start_move(self, collision_dict, game):
-        """  Play the animation and setting a new destination if we currently don't have one
+        """ Play the animation and setting a new destination if we currently don't have one
 
         player.direction is set when a key is pressed. player.moving is set when we're still in
         the middle of a move
@@ -239,37 +260,29 @@ class Player(object):
         :param game:
         :return:
         """
-        pos = int(round(self.tile_pos[0])), int(round(self.tile_pos[1]))
-        is_player = game.player1 is self
-
-        for direction, moving in self.direction.items():
-            if moving:
+        pos = nearest(self.tile_pos)
+        for direction, held in self.direction.items():
+            if held:
                 # If we've pressed any arrow key, play the move animations
                 self.moveConductor.play()
                 self.anim_playing = True
 
-                diff = dirs[direction]
-                self.move_destination[0] = pos[0] + diff[0]
-                self.move_destination[1] = pos[1] + diff[1]
-
                 # If the destination tile won't collide with anything, then proceed with moving.
                 if direction not in self.collision_check(pos, collision_dict, game.collision_lines_map):
-                    self.moving = True
-                    self.move_direction = direction
+                    self.move_one_tile(direction)
 
-                    if is_player and (game.game.isclient or game.game.ishost):
+                    if self.isplayer and (game.game.isclient or game.game.ishost):
                         game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
 
-                    break
+                break
 
-        # If we're not holding down an arrow key and the player is not moving, stop the animation
-        # and draw the standing gfx
-        if not self.moving:
-            if self.anim_playing:
-                self.anim_playing = False
-                self.moveConductor.stop()
-                if self.isplayer and self.tile_pos != self.final_move_dest:
-                    self.update_location = True
+        # # If we're not holding down an arrow key and the player is not moving, stop the animation
+        # # and draw the standing gfx
+        # if not self.moving:
+        #     self.anim_playing = False
+        #     self.moveConductor.stop()
+        #     if self.isplayer and self.tile_pos != self.final_move_dest:
+        #         self.update_location = True
 
     def _continue_move(self, collision_dict, time_passed_seconds, game):
         """ Here we're continuing a move it we're in the middle of one already
@@ -277,40 +290,66 @@ class Player(object):
         If the player is in the middle of moving and facing a certain direction, move in that
         direction
         """
-        pos = int(round(self.tile_pos[0])), int(round(self.tile_pos[1]))
+        pos = nearest(self.tile_pos)
 
-        if self.moving:
-            # If we've reached our destination and are no longer holding an arrow key, set moving
-            # to false and set the position to the destination
-            if pos == self.move_destination and not self.direction[self.move_direction]:
-                self.moving = False
+        # If we've reached our destination and are no longer holding an arrow key, set moving
+        # to false and set the position to the destination
+        if pos == self.move_destination:
+            print(pos, self.direction)
+            self.stop()
+            return
 
-            # If we're already in the middle of walking and we haven't reached the tile, THEN
-            # KEEP WALKING DAMNIT
-            else:
-                v = dirs[self.move_direction]
-                self.position[0] += v[0] * self.moverate * time_passed_seconds
-                self.position[1] += v[1] * self.moverate * time_passed_seconds
+        # If we're already in the middle of walking and we haven't reached the tile, THEN
+        # KEEP WALKING DAMNIT
+        else:
+            v = dirs[self.move_direction]
+            # self.position[0] += v[0] * self.moverate * time_passed_seconds
+            # self.position[1] += v[1] * self.moverate * time_passed_seconds
 
-                # # If we're holding down the arrow key and we overshoot our original destination,
-                # # set our next destination tile and see if we'll collide with it or not.
-                # if global_y >= self.move_destination[1] and self.direction["up"]:
-                #
-                #     # If the destination tile won't collide with anything, then proceed with moving.
-                #     if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                #         self.moving = True
-                #         self.move_direction = "up"
-                #
-                #         # Set the destination position we'd wish to reach if we just started walking.
-                #         self.move_destination = [int(self.move_destination[0]), int(self.move_destination[1] + prepare.TILE_SIZE[1])]
-                #
-                #     # If we are going to collide with something, set our position to the original
-                #     # move destination and stop moving
-                #     else:
-                #         self.moving = False
-                #         self.tile_pos = self.move_destination
+            # # If we're holding down the arrow key and we overshoot our original destination,
+            # # set our next destination tile and see if we'll collide with it or not.
+            # if global_y >= self.move_destination[1] and self.direction["up"]:
+            #
+            #     # If the destination tile won't collide with anything, then proceed with moving.
+            #     if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
+            #         self.moving = True
+            #         self.move_direction = "up"
+            #
+            #         # Set the destination position we'd wish to reach if we just started walking.
+            #         self.move_destination = [int(self.move_destination[0]), int(self.move_destination[1] + prepare.TILE_SIZE[1])]
+            #
+            #     # If we are going to collide with something, set our position to the original
+            #     # move destination and stop moving
+            #     else:
+            #         self.moving = False
+            #         self.tile_pos = self.move_destination
+
+    def _force_continue_move(self, collision_dict, game):
+        # Round the player's tile position to an integer value. We test for collisions based on
+        # an integer value.
+        pos = nearest(self.tile_pos)
+
+        if pos in collision_dict:
+            direction_next = collision_dict[pos]["continue"]
+            if direction_next not in ["up", "down", "left", "right"]:
+                direction_next = self.move_direction
+
+            # If the move direction is collidable, don't move.
+            if direction_next in self.collision_check(pos, collision_dict, game.collision_lines_map):
+                return
+
+            v = dirs[self.move_direction]
+            self.move_destination[0] = pos[0] + v[0]
+            self.move_destination[1] = pos[1] + v[1]
 
     def move_one_tile(self, direction):
+        pos = nearest(self.tile_pos)
+        v = dirs[direction]
+        self.velocity3.x = v[0] * self.moverate
+        self.velocity3.y = v[1] * self.moverate
+        self.move_destination[0] = pos[0] + v[0]
+        self.move_destination[1] = pos[1] + v[1]
+        self.move_direction = direction
         self.direction[direction] = True
 
     def move_to(self, tile_pos, speed):
@@ -328,24 +367,21 @@ class Player(object):
         pass
 
     def move_by_path(self):
-        '''
+        """
         This method will ensure movement will happen until the player
         reaches its destination
-        '''
-        #print("move_by_path()")
+        """
         # TODO maybe this function could be organized better
         if self.path and not self.moving:
             # get the next step of the _plan
-            next_plan_step = self.path[len(self.path)-1]
+            next_plan_step = self.path[len(self.path) - 1]
             # round self.tile_pos
-            my_tile_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-            #print("my_tile_pos="+str(my_tile_pos)+" next _plan step is " + str(next_plan_step))
+            my_tile_pos = nearest(self.tile_pos)
             # make sure it's adjacent to current location
             adj_x = abs(int(round(my_tile_pos[0])) - int(round(next_plan_step[0]))) == 1
             adj_y = abs(int(round(my_tile_pos[1])) - int(round(next_plan_step[1]))) == 1
             # do xor to invalidate diagonal adjacency
             if (adj_x and not adj_y) or (not adj_x and adj_y):
-                #print("tiles are adjacent!!!")
                 # adjacent is true, so execute move to next _plan step
                 # get direction we need to move
                 if my_tile_pos[0] > next_plan_step[0]:
@@ -356,12 +392,12 @@ class Player(object):
                     self.move_one_tile("down")
                 elif my_tile_pos[1] > next_plan_step[1]:
                     self.move_one_tile("up")
-                self.path.pop() # only pop if we have already executed a move
+                self.path.pop()  # only pop if we have already executed a move
             if my_tile_pos == next_plan_step:
                 # somehow we are already at the next _plan step, just pop
                 self.path.pop()
         else:
-            logger.debug("self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving))
+            logger.debug("self.path=" + str(len(self.path)) + ", self.moving=" + str(self.moving))
 
     def get_sprites(self):
         """ Get the surfaces and layers for the sprite
@@ -370,6 +406,7 @@ class Player(object):
 
         :return:
         """
+
         def get_frame(d, ani):
             frame = d[ani]
             try:
@@ -379,22 +416,11 @@ class Player(object):
             except AttributeError:
                 return frame
 
-        surfaces = list()
         direction = self.move_direction if self.moving else self.facing
         frame_dict = self.sprite if self.moving else self.standing
-        state = self.animation_mapping[self.moving][direction]
+        state = animation_mapping[self.moving][direction]
 
-        # If this is the bottom half, we need to draw it at a lower position.
-        offset = self.standing["front"].get_height() / 2
-        bottom_position = self.position[0], self.position[1] + offset
-        surface = get_frame(frame_dict, state + "-bottom")
-        surfaces.append((surface, bottom_position, 2))
-
-        # top surfaces
-        surface = get_frame(frame_dict, state + "-top")
-        surfaces.append((surface, self.position, 3))
-
-        return surfaces
+        return [(get_frame(frame_dict, state), self.position2, 2)]
 
     def get_collision_dict(self, game):
         """Checks for collision tiles around the player.
@@ -413,13 +439,11 @@ class Player(object):
         # collisions.
         npc_positions = set()
 
-        # Get all the NPC's tile monsters_in_play so we can check for collisions.
+        # Get all the NPC's tile positions so we can check for collisions
         for npc in game.npcs.values():
-            npc_pos_x = int(round(npc.tile_pos[0]))
-            npc_pos_y = int(round(npc.tile_pos[1]))
-            npc_positions.add( (npc_pos_x, npc_pos_y) )
+            npc_positions.add(nearest(npc.tile_pos))
 
-        # Combine our map collision tiles with our npc collision monsters_in_play
+        # Combine our map collision tiles with our npc collision
         for pos in npc_positions:
             collision_dict[pos] = "None"
 
@@ -443,7 +467,6 @@ class Player(object):
             e.g. ["down", "up"]
 
         """
-
         collisions = []
 
         current_pos = (player_tile_pos[0], player_tile_pos[1])
@@ -465,7 +488,7 @@ class Player(object):
 
         # Check to see if the tile below the player is a collision tile.
         if down_tile in collision_dict:
-            if collision_dict[down_tile] != "None": # Used for conditional collision zones
+            if collision_dict[down_tile] != "None":  # Used for conditional collision zones
                 if not "up" in collision_dict[down_tile]['enter']:
                     collisions.append("down")
             else:
@@ -473,7 +496,7 @@ class Player(object):
 
         # Check to see if the tile above the player is a collision tile.
         if up_tile in collision_dict:
-            if collision_dict[up_tile] != "None": # Used for conditional collision zones
+            if collision_dict[up_tile] != "None":  # Used for conditional collision zones
                 if not "down" in collision_dict[up_tile]['enter']:
                     collisions.append("up")
             else:
@@ -481,7 +504,7 @@ class Player(object):
 
         # Check to see if the tile to the left of the player is a collision tile.
         if left_tile in collision_dict:
-            if collision_dict[left_tile] != "None": # Used for conditional collision zones
+            if collision_dict[left_tile] != "None":  # Used for conditional collision zones
                 if not "right" in collision_dict[left_tile]['enter']:
                     collisions.append("left")
             else:
@@ -489,7 +512,7 @@ class Player(object):
 
         # Check to see if the tile to the right of the player is a collision tile.
         if right_tile in collision_dict:
-            if collision_dict[right_tile] != "None": # Used for conditional collision zones
+            if collision_dict[right_tile] != "None":  # Used for conditional collision zones
                 if not "left" in collision_dict[right_tile]['enter']:
                     collisions.append("right")
             else:
@@ -516,30 +539,27 @@ class Player(object):
         :returns: None
 
         """
-
         if len(self.monsters) >= self.party_limit:
             self.storage["monsters"].append(monster)
         else:
             self.monsters.append(monster)
 
-    def find_monster(self, slug):
+    def find_monster(self, monster_slug):
         """Finds a monster in the player's list of monsters.
 
-        :param slug: The stug name of the monster
-
-        :type string: String
+        :param monster_slug: The slug name of the monster
+        :type monster_slug: str 
 
         :rtype: core.components.monster.Monster
         :returns: Monster found
-
         """
         for monster in self.monsters:
-            if monster.slug == slug:
+            if monster.slug == monster_slug:
                 return monster
         return None
 
     def remove_monster(self, monster):
-        """Removes a monster from this player's party.
+        """ Removes a monster from this player's party.
 
         :param monster: Monster to remove from the player's party.
 
@@ -548,53 +568,35 @@ class Player(object):
         :rtype: None
         :returns: None
         """
-
         # Remove the tuxemon if they are in this player's party
         if monster in self.monsters:
             self.monsters.remove(monster)
 
-    def switch_monsters(self, index_monster_1, index_monster_2):
-        """Swap two monsters in this player's party
+    def switch_monsters(self, index_1, index_2):
+        """ Swap two monsters in this player's party
 
-        :param index_monster_1/index_monster_2: The indexes of the monsters to switch in the player's party.
+        :param index_1/index_2: The indexes of the monsters to switch in the player's party.
 
-        :type index_monster_1: int
-        :type index_monster_2: int
+        :type index_1: int
+        :type index_2: int
 
         :rtype: None
         :returns: None
-
         """
-
-        # Swap the tuxemons if they are in the player's party
-        if index_monster_1 < len(self.monsters) and index_monster_2 < len(self.monsters):
-            self.monsters[index_monster_1], self.monsters[index_monster_2] = self.monsters[index_monster_2], self.monsters[index_monster_1]
-
-    def scale_sprites(self, scale):
-        # Scale the sprite and its animations
-        for key, animation in self.sprite.items():
-            animation.scale(
-                tuple(i * scale for i in animation.getMaxSize()))
-
-        for key, image in self.standing.items():
-            self.standing[key] = pygame.transform.scale(
-                image, (image.get_width() * scale,
-                        image.get_height() * scale))
+        self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
 
     def pathfind(self, dest, game):
         # first check npc doesn't already have a path
         if not self.path:
-
             # will generate a path and store it in
             # player.path
-            starting_loc = (int(round(self.tile_pos[0])),
-                            int(round(self.tile_pos[1])))
+            starting_loc = nearest(self.tile_pos)
 
             pathnode = self.pathfind_r(dest,
-                                   [PathfindNode(starting_loc)], # queue
-                                   [], # visited
-                                   0,  # depth (not a limit, just a counter)
-                                   game)
+                                       [PathfindNode(starting_loc)],  # queue
+                                       [],  # visited
+                                       0,  # depth (not a limit, just a counter)
+                                       game)
             if pathnode:
                 # traverse the node to get the path
                 path = []
@@ -602,11 +604,9 @@ class Player(object):
                     path.append(pathnode.get_value())
                     pathnode = pathnode.get_parent()
 
-                #print("path is " + str(path))
-
                 # last minute check to remove the top _plan step if
                 # it's the same as our location
-                if path[len(path)-1] == self.tile_pos:
+                if path[len(path) - 1] == self.tile_pos:
                     path.pop()
 
                 # store the path
@@ -639,73 +639,53 @@ class Player(object):
             # if we haven't checked them already
             for adj_pos in self.get_adjacent_tiles(next_node.get_value(), game):
                 if adj_pos not in visited and adj_pos not in map(lambda x: x.get_value(), queue):
-                    queue = [PathfindNode(adj_pos,next_node)]+queue
-                    visited = [next_node.get_value()]+visited
+                    queue = [PathfindNode(adj_pos, next_node)] + queue
+                    visited = [next_node.get_value()] + visited
 
             # recur
-            path = self.pathfind_r(dest,queue,visited,depth+1,game)
-            ##print("path is: " + str(path))
+            path = self.pathfind_r(dest, queue, visited, depth + 1, game)
             return path
 
     def get_adjacent_tiles(self, curr_loc, game):
-        # Get a copy of the world state.
-        world = game.get_state_name("WorldState")
-        if not world:
-            return
-
-        player_tile_x = int(world.player1.tile_pos[0])
-        player_tile_y = int(world.player1.tile_pos[1])
+        player_tile_x, player_tile_y = nearest(game.player1.tile_pos)
         collision_map = dict(world.collision_map)
         collision_map[(player_tile_x, player_tile_y)] = "None"
         blocked_directions = self.collision_check(curr_loc, collision_map, world.collision_lines_map)
         adj_tiles = []
-        curr_loc = (int(round(curr_loc[0])),int(round(curr_loc[1])))
+        curr_loc = (int(round(curr_loc[0])), int(round(curr_loc[1])))
         if "up" not in blocked_directions:
-            adj_tiles.append((curr_loc[0],curr_loc[1]-1))
+            adj_tiles.append((curr_loc[0], curr_loc[1] - 1))
         if "down" not in blocked_directions:
-            adj_tiles.append((curr_loc[0],curr_loc[1]+1))
+            adj_tiles.append((curr_loc[0], curr_loc[1] + 1))
         if "left" not in blocked_directions:
-            adj_tiles.append((curr_loc[0]-1,curr_loc[1]))
+            adj_tiles.append((curr_loc[0] - 1, curr_loc[1]))
         if "right" not in blocked_directions:
-            adj_tiles.append((curr_loc[0]+1,curr_loc[1]))
+            adj_tiles.append((curr_loc[0] + 1, curr_loc[1]))
         return adj_tiles
 
 
 class Npc(Player):
-    def __init__(self, sprite_name="maple", slug="npc_maple"):
-        npcs = db.JSONDatabase()
-        npcs.load("npc")
-        npc_data = npcs.lookup(slug, table="npc")
-
-        npc_name = trans(npc_data["name_trans"])
-
-        # Initialize the parent menu class's default shit
-        Player.__init__(self, sprite_name, npc_name)
+    def __init__(self, *args, **kwargs):
+        super(Npc, self).__init__(*args, **kwargs)
 
         self.behavior = "wander"
         self.isplayer = False
         self.update_location = False
 
         # These attributes are used with the new movement system
-        self.walkrate = .635                 # Tiles per second walk rate
-        self.runrate = 1.41                  # Tiles per second run rate
+        self.walkrate = .635  # Tiles per second walk rate
+        self.runrate = 1.41  # Tiles per second run rate
         self.moverate = self.walkrate
+
+        # scale them?
+        self.walkrate *= prepare.SCALE
+        self.runrate *= prepare.SCALE
+        self.moverate = self.walkrate
+
         self.tile_destination = [0, 0]
         self.current_tile = [0.0, 0.0]
         self.running = False
-        self.interactions = []               # List of ways player can interact with the Npc
-
-    def meta_move(self, tile_size, time_passed_seconds, game):
-        if self.running:
-            self.moverate = self.runrate
-        else:
-            self.moverate = self.walkrate
-
-        # if the self has a path, move it along its path
-        if self.path:
-            self.move_by_path()
-
-        self.move(tile_size, time_passed_seconds, game)
+        self.interactions = []  # List of ways player can interact with the Npc
 
     def move(self, tile_size, time_passed_seconds, game):
 
@@ -716,9 +696,8 @@ class Npc(Player):
 
         # Get all the NPC's tile monsters_in_play so we can check for collisions.
         for npc in game.npcs.values():
-            npc_pos_x = int(round(npc.tile_pos[0]))
-            npc_pos_y = int(round(npc.tile_pos[1]))
-            npc_positions.add((npc_pos_x, npc_pos_y))
+            npc_pos = nearest(npc.tile_pos)
+            npc_positions.add(npc_pos)
 
         # Make sure the NPC doesn't collide with the player too.
         player_pos_x = int(round(game.player1.tile_pos[0]))
@@ -735,185 +714,16 @@ class Npc(Player):
         self._continue_move(collision_dict, time_passed_seconds, game)
         self._start_move(collision_dict, game)
 
-    def _start_move(self, collision_dict, game):
 
-        # Round the player's tile position to an integer value. We test for collisions based on
-        # an integer value.
-        player_pos = ( int(round(self.tile_pos[0])), int(round(self.tile_pos[1])) )
+class PathfindNode(object):
+    """ Used in path finding search
+    """
 
-        # *** Here we're playing the animation and setting a new destination if we currently don't have one. *** #
-        # player.direction is set when a key is pressed. player.moving is set when we're still in
-        # the middle of a move
-        if self.direction["up"] or self.direction["down"] or self.direction["left"] or self.direction["right"]:
-            # If we've pressed any arrow key, play the move animations
-            self.anim_playing = True
-            self.moveConductor.play()
-            if not self.moving:
-                self.current_tile = [player_pos[0], player_pos[1]]
-
-            # If we pressed an arrow key and we're not currently moving, set a new tile destination
-            if self.direction["up"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    #self.move_destination = [int(global_x), int(global_y + tile_size[1])]
-                    self.tile_destination = [player_pos[0], player_pos[1] - 1]
-
-                    # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "up"
-
-            elif self.direction["down"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    #self.move_destination = [int(global_x), int(global_y - prepare.TILE_SIZE[1])]
-                    self.tile_destination = [player_pos[0], player_pos[1] + 1]
-
-                    if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "down"
-
-            elif self.direction["left"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    #self.move_destination = [int(global_x + prepare.TILE_SIZE[1]), int(global_y)]
-                    self.tile_destination = [player_pos[0] - 1, player_pos[1]]
-
-                    if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "left"
-
-            elif self.direction["right"]:
-                if not self.moving:
-                    # Set the destination position we'd wish to reach if we just started walking.
-                    #self.move_destination = [int(global_x - prepare.TILE_SIZE[1]), int(global_y)]
-                    self.tile_destination = [player_pos[0] + 1, player_pos[1]]
-
-                    if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "right"
-
-        # If we're not holding down an arrow key and the player is not moving, stop the animation
-        # and draw the standing gfx
-        else:
-            if not self.moving:
-                if self.anim_playing:
-                    self.anim_playing = False
-                    self.moveConductor.stop()
-                    if self.isplayer and self.tile_pos != self.final_move_dest:
-                        self.update_location = True
-
-    def _continue_move(self, collision_dict, time_passed_seconds, game):
-        # Round the player's tile position to an integer value. We test for collisions based on
-        # an integer value.
-        player_pos = (int(round(self.tile_pos[0])), int(round(self.tile_pos[1])))
-
-        # *** Here we're continuing a move if we're in the middle of one already *** #
-        # If the player is in the middle of moving and facing a certain direction, move in that
-        # direction
-        if self.move_direction == "up" and self.moving:
-            # If we've reached our destination and are no longer holding an arrow key, set moving
-            # to false and set the position to the destination
-            if self.current_tile[1] <= self.tile_destination[1] and not self.direction["up"]:  # self.direction means that arrow key is being held
-                self.moving = False
-                self.current_tile[1] = self.move_destination[1]	# Set it to the destination so we don't overshoot it
-
-            # If we're already in the middle of walking and we haven't reached the tile, THEN
-            # KEEP WALKING DAMNIT
-            else:
-                self.current_tile[1] -= (self.moverate * time_passed_seconds)
-                #global_y += int((self.moverate * time_passed_seconds))
-
-                # If we're holding down the arrow key and we overshoot our original destination,
-                # set our next destination tile and see if we'll collide with it or not.
-                if self.current_tile[1] <= self.tile_destination[1] and self.direction["up"]:
-
-                    # If the destination tile won't collide with anything, then proceed with moving.
-                    if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "up"
-
-                        # Set the destination position we'd wish to reach if we just started walking.
-                        self.tile_destination = [self.tile_destination[0], self.tile_destination[1] + 1]
-
-                    # If we are going to collide with something, set our position to the original
-                    # move destination and stop moving
-                    else:
-                        self.moving = False
-                        self.current_tile[1] = self.tile_destination[1]
-
-        if self.move_direction == "down" and self.moving:
-            if self.current_tile[1] >= self.tile_destination[1] and not self.direction["down"]:
-                self.moving = False
-                self.current_tile[1] = self.tile_destination[1]	# Set it to the destination so we don't overshoot it
-
-            else:
-                self.current_tile[1] += (self.moverate * time_passed_seconds)
-
-            if self.current_tile[1] >= self.tile_destination[1] and self.direction["down"]:
-
-                    if not "down" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "down"
-
-                        self.tile_destination = [self.tile_destination[0], self.tile_destination[1] - 1]
-
-                    else:
-                        self.moving = False
-                        self.current_tile[1] = self.tile_destination[1]
-
-        if self.move_direction == "left" and self.moving:
-            if self.current_tile[0] <= self.tile_destination[0] and not self.direction["left"]:
-                self.moving = False
-                self.current_tile[0] = self.tile_destination[0]	# Set it to the destination so we don't overshoot it
-            else:
-                self.current_tile[0] -= (self.moverate * time_passed_seconds)
-
-                if self.current_tile[0] <= self.tile_destination[0] and self.direction["left"]:
-
-                    if not "left" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                         self.moving = True
-                         self.move_direction = "left"
-
-                         self.tile_destination = [self.tile_destination[0] + 1, self.tile_destination[0]]
-
-                    else:
-                         self.moving = False
-                         self.current_tile[0] = self.tile_destination[0]
-
-        if self.move_direction == "right" and self.moving:
-            if self.current_tile[0] >= self.tile_destination[0] and not self.direction["right"]:
-                self.moving = False
-                self.current_tile[0] = self.tile_destination[0]	# Set it to the destination so we don't overshoot it
-            else:
-                self.current_tile[0] += (self.moverate * time_passed_seconds)
-
-                if self.current_tile[0] >= self.tile_destination[0] and self.direction["right"]:
-
-                    if not "right" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-                        self.moving = True
-                        self.move_direction = "right"
-
-                        self.tile_destination = [self.tile_destination[0] - 1, self.move_destination[0]]
-
-                    else:
-                        self.moving = False
-                        self.current_tile[0] = self.tile_destination[0]
-
-        if self.moving:
-            x, y = game.get_pos_from_tilepos(self.current_tile)
-            self.position = [x, y - prepare.TILE_SIZE[1]]   # TODO: Figure out why I need to subtract a tile size.
-
-
-class PathfindNode():
-    '''
-    Used in path finding search
-    '''
     def __init__(self, value, parent=None):
         self.parent = parent
         self.value = value
         if self.parent:
-            self.depth = self.parent.depth+1
+            self.depth = self.parent.depth + 1
         else:
             self.depth = 0
 
@@ -922,7 +732,7 @@ class PathfindNode():
 
     def set_parent(self, parent):
         self.parent = parent
-        self.depth = parent.depth+1
+        self.depth = parent.depth + 1
 
     def get_value(self):
         return self.value
@@ -932,8 +742,6 @@ class PathfindNode():
 
     def __str__(self):
         s = str(self.value)
-        if self.parent != None:
+        if self.parent is not None:
             s += str(self.parent)
         return s
-
-

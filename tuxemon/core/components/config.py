@@ -51,6 +51,8 @@ class Config(object):
         self.resolution_y = self.config.get("display", "resolution_y")
         self.resolution = (int(self.resolution_x), int(self.resolution_y))
 
+        self.player_npc = self.config.get("player", "player_npc")
+
         self.splash = self.config.get("display", "splash")
 
         self.fullscreen = self.fullscreen_check()

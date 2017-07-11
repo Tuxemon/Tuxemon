@@ -22,7 +22,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-#
+# Leif Theden <leif.theden@gmail.com>
 #
 # core.main Sets up the states and main game loop.
 #
@@ -32,6 +32,7 @@ import logging
 
 from . import prepare
 from .components import log
+from .components.player import Player
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +53,10 @@ def main():
     prepare.init()
     control = PygameControl(prepare.ORIGINAL_CAPTION)
     control.auto_state_discovery()
+
+    # load the player npc
+    new_player = Player(prepare.CONFIG.player_npc)
+    control.add_player(new_player)
 
     # background state is used to prevent other states from
     # being required to track dirty screen areas.  for example,
@@ -74,7 +79,6 @@ def main():
         logger.info("********* DEBUG OPTIONS ENABLED *********")
 
         # TODO: fix this player/player1 issue
-        control.player1 = prepare.player1
         action = control.event_engine.execute_action
 
         action("add_monster", ("txmn_bigfin", 10))

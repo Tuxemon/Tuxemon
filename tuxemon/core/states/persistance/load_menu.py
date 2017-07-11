@@ -1,7 +1,7 @@
 import logging
 
-from core import prepare
 from core.components import save
+from core.components.player import Player
 from .save_menu import SaveMenuState
 
 # Create a logger for optional handling of debug messages.
@@ -21,7 +21,6 @@ class LoadMenuState(SaveMenuState):
 
         if save_data is not None and "error" not in save_data:
             self.save_data = save.load(self.selected_index + 1)
-            self.game.player1 = prepare.player1
             self.game.player1.game_variables = save_data['game_variables']
             self.game.player1.tile_pos = save_data['tile_pos']
             self.game.player1.inventory = save_data['inventory']

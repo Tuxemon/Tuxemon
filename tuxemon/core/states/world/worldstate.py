@@ -86,7 +86,7 @@ class WorldState(state.State):
         #                           Player Details                           #
         ######################################################################
 
-        self.player1 = prepare.player1
+        self.player1 = self.game.player1
         self.npcs = {}
         self.npcs_off_map = {}
         self.wants_duel = False
@@ -175,7 +175,7 @@ class WorldState(state.State):
             self.task(cleanup, duration)
 
         # stop player movement
-        self.player1.moving = False
+        self.player1.stop()
 
         # cancel any fades that may be going one
         self.remove_animations_of(self)
@@ -390,7 +390,7 @@ class WorldState(state.State):
                 world_surfaces.append(frame)
 
         # center the map
-        self.current_map.renderer.center(self.player1.position)
+        self.current_map.renderer.center(self.player1.position2)
 
         # position the surfaces correctly
         # pyscroll expects surfaces in screen coords, so they are
@@ -614,11 +614,7 @@ class WorldState(state.State):
         self.game.reset_controls()
 
         try:
-            self.player1.direction['up'] = False
-            self.player1.direction['down'] = False
-            self.player1.direction['left'] = False
-            self.player1.direction['right'] = False
-            self.player1.moving = False
+            self.player1.stop()
         except AttributeError:  # will be raised if this is first map change
             pass
 

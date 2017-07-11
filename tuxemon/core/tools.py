@@ -389,3 +389,7 @@ def open_dialog(game, text, menu=None):
     """
     rect = calc_dialog_rect(game.screen.get_rect())
     return game.push_state("DialogState", text=text, rect=rect, menu=menu)
+
+
+def nearest(l):
+    return tuple(int(round(i)) for i in l)

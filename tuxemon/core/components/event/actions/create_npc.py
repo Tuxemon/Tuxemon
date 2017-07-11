@@ -66,10 +66,6 @@ class CreateNpcAction(EventAction):
         npc.tile_pos = [tile_pos_x, tile_pos_y]
         npc.behavior = behavior
         npc.ai = ai.AI()
-        npc.scale_sprites(prepare.SCALE)
-        npc.walkrate *= prepare.SCALE
-        npc.runrate *= prepare.SCALE
-        npc.moverate = npc.walkrate
 
         # Add the NPC to the game's NPC list
         world.npcs[slug] = npc

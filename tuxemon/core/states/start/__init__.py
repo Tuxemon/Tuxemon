@@ -33,8 +33,8 @@
 import logging
 from functools import partial
 
-from core import prepare
 from core.state import State
+from core.components.player import Player
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import PopUpMenu
 from core.components.locale import translator
@@ -72,7 +72,6 @@ class StartState(PopUpMenu):
             return partial(self.game.push_state, state, **kwargs)
 
         def new_game():
-            self.game.player1 = prepare.player1
             self.game.replace_state("WorldState")
             self.game.push_state("InputMenu", prompt=translator.translate("input_name"))
             self.game.push_state("FadeInTransition")

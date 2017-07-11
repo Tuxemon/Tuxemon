@@ -48,14 +48,16 @@ class CreateNpcAction(EventAction):
 
         # Get the npc's parameters from the action
         slug = self.parameters.npc_slug
-        tile_pos_x = self.parameters.tile_pos_x
-        tile_pos_y = self.parameters.tile_pos_y
-        animations = self.parameters.animations
-        behavior = self.parameters.behavior
 
         # Ensure that the NPC doesn't already exist on the map.
         if slug in world.npcs:
             return
+
+        # Get the npc's parameters from the action
+        tile_pos_x = self.parameters.tile_pos_x
+        tile_pos_y = self.parameters.tile_pos_y
+        animations = self.parameters.animations
+        behavior = self.parameters.behavior
 
         # Create a new NPC object
         npc = player.Npc(sprite_name=animations, slug=slug)
@@ -68,11 +70,6 @@ class CreateNpcAction(EventAction):
         npc.walkrate *= prepare.SCALE
         npc.runrate *= prepare.SCALE
         npc.moverate = npc.walkrate
-
-        # Set the NPC's pixel position based on its tile position, tile size, and
-        # current global_x/global_y variables
-        npc.position = [(tile_pos_x * world.tile_size[0]) + world.global_x,
-                        (tile_pos_y * world.tile_size[1]) + (world.global_y - world.tile_size[1])]
 
         # Add the NPC to the game's NPC list
         world.npcs[slug] = npc

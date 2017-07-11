@@ -91,13 +91,6 @@ class WorldState(state.State):
         self.npcs_off_map = {}
         self.wants_duel = False
 
-        # Set the global coordinates used to pan the screen.
-        self.start_position = prepare.CONFIG.starting_position
-        self.global_x = self.player1.position[0] - \
-                        (self.start_position[0] * self.tile_size[0])
-        self.global_y = self.player1.position[1] - \
-                        (self.start_position[1] * self.tile_size[1]) + self.tile_size[0]
-
         ######################################################################
         #                            Transitions                             #
         ######################################################################
@@ -277,12 +270,6 @@ class WorldState(state.State):
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player1.game_variables))
 
-        # Get the player's tile position based on the global_x/y variables. Since the player's sprite is 1 x 2
-        # tiles in size, we add 1 to the 'y' position so the player's actual position will be on the bottom
-        # portion of the sprite.
-        self.player1.tile_pos = (float((self.player1.position[0] - self.global_x)) / float(
-            self.tile_size[0]), (float((self.player1.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
-
     def draw(self, surface):
         """ Draw the game world to the screen
 
@@ -370,10 +357,8 @@ class WorldState(state.State):
         :rtype: Dictionary
         :returns: Dictionary of all Player objects keyed by their slug.
         """
-
-        players = dict(world.npcs)
-        players[game.player1.slug] = game.player1
-
+        players = dict(self.npcs)
+        players[self.game.player1.slug] = self.game.player1
         return players
 
     ####################################################
@@ -388,32 +373,37 @@ class WorldState(state.State):
         :returns: None
 
         """
-        # center the camera on the player sprite
-        sx, sy = prepare.SCREEN_SIZE
-        self.current_map.renderer.center((-self.global_x + sx / 2,
-                                          -self.global_y + sy / 2))
-
         # interlace player sprites with tiles surfaces.
         # eventually, maybe use pygame sprites or something similar
-        surfaces = self.player1.get_sprites()
+        world_surfaces = self.player1.get_sprites()
 
         # get npc surfaces/sprites
         for npc in self.npcs:
-            surfaces.extend(self.npcs[npc].get_sprites())
+            world_surfaces.extend(self.npcs[npc].get_sprites())
 
-        # get map_animation
-        ox, oy = self.current_map.renderer.get_center_offset()
+        # get map_animations
         for anim_data in self.map_animations.values():
             anim = anim_data['animation']
             if not anim.isFinished() and anim.visibility:
                 x, y = anim_data["position"]
-                x += ox
-                y += oy
                 frame = (anim.getCurrentFrame(), (x, y), anim_data['layer'])
-                surfaces.append(frame)
+                world_surfaces.append(frame)
+
+        # center the map
+        self.current_map.renderer.center(self.player1.position)
+
+        # position the surfaces correctly
+        # pyscroll expects surfaces in screen coords, so they are
+        # converted from world to screen coords here
+        ox, oy = self.current_map.renderer.get_center_offset()
+        screen_surfaces = list()
+        for frame in world_surfaces:
+            s, c, l = frame
+            c = c[0] + ox, c[1] + oy
+            screen_surfaces.append((s, c, l))
 
         # draw the map and sprites
-        self.current_map.renderer.draw(surface, surface.get_rect(), surfaces)
+        self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
 
         # If we want to draw the collision map for debug purposes
         if prepare.CONFIG.collision_map == "1":
@@ -432,12 +422,6 @@ class WorldState(state.State):
         :returns: None
 
         """
-        # We need to keep track of the global_x/y that we used to draw the bottom tiles so we use
-        # the same values for the higher layer tiles. We have to do this because when we draw the
-        # player's movement, we modify the global_x/y values to start moving the map.
-        self.orig_global_x = self.global_x
-        self.orig_global_y = self.global_y
-
         # Get all the keys pressed for modifiers only!
         pressed = list(pygame.key.get_pressed())
         self.ctrl_held = pressed[pygame.K_LCTRL] or pressed[pygame.K_RCTRL]
@@ -454,12 +438,7 @@ class WorldState(state.State):
             self.player1.moverate = self.player1.walkrate
 
         # Set the global_x/y when the player moves around
-        self.global_x, self.global_y = self.player1.move(
-            self.screen, self.tile_size, self.time_passed_seconds, (self.global_x, self.global_y), self)
-
-        # Find out how many pixels we've moved since we started moving
-        self.global_x_diff = self.orig_global_x - self.global_x
-        self.global_y_diff = self.orig_global_y - self.global_y
+        self.player1.move(self.tile_size, self.time_passed_seconds, self)
 
     def move_npcs(self):
         """ Move NPCs and Players around according to their state
@@ -470,26 +449,7 @@ class WorldState(state.State):
         """
         # Draw any game NPC's
         for npc in self.npcs.values():
-            if npc.running:
-                npc.moverate = npc.runrate
-            else:
-                npc.moverate = npc.walkrate
-
-            # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
-            # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
-            # portion of the sprite.
-            npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
-                self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
-
-            # Move the NPC with the map as it moves
-            npc.position[0] -= self.global_x_diff
-            npc.position[1] -= self.global_y_diff
-
-            # if the npc has a path, move it along its path
-            if npc.path:
-                npc.move_by_path()
-
-            npc.move(self.tile_size, self.time_passed_seconds, self)
+            npc.meta_move(self.tile_size, self.time_passed_seconds, self)
 
             # Reset our directions after moving.
             if not npc.isplayer:
@@ -505,26 +465,7 @@ class WorldState(state.State):
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map.values():
-            if npc.running:
-                npc.moverate = npc.runrate
-            else:
-                npc.moverate = npc.walkrate
-
-            # Get the NPC's tile position based on his pixel position. Since the NPC's sprite is 1 x 2
-            # tiles in size, we add 1 to the 'y' position so the NPC's actual position will be on the bottom
-            # portion of the sprite.
-            npc.tile_pos = (float((npc.position[0] - self.global_x)) / float(
-                self.tile_size[0]), (float((npc.position[1] - self.global_y)) / float(self.tile_size[1])) + 1)
-
-            # Move the NPC with the map as it moves
-            npc.position[0] -= self.global_x_diff
-            npc.position[1] -= self.global_y_diff
-
-            # if the npc has a path, move it along its path
-            if npc.path:
-                npc.move_by_path()
-
-            npc.move(self.tile_size, self.time_passed_seconds, self)
+            npc.meta_move(self.tile_size, self.time_passed_seconds, self)
 
     def _collision_box_to_pgrect(self, box):
         """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
@@ -533,13 +474,9 @@ class WorldState(state.State):
         # For readability
         x = box[0]
         y = box[1]
-        tw = self.tile_size[0]
-        th = self.tile_size[1]
+        tw, th = self.tile_size
 
-        return pygame.Rect(x * tw + self.global_x,
-                           y * th + self.global_y,
-                           tw,
-                           th)
+        return pygame.Rect(x * tw, y * th, tw, th)
 
     def _npc_to_pgrect(self, npc):
         """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
@@ -739,9 +676,9 @@ class WorldState(state.State):
         :returns: The pixel coordinates to draw at the given tile position.
 
         """
-        x = (self.tile_size[0] * tile_position[0]) + self.global_x
-        y = (self.tile_size[1] * tile_position[1]) + self.global_y
-
+        cx, cy = self.current_map.renderer.get_center_offset()
+        x = (self.tile_size[0] * tile_position[0]) + cx
+        y = (self.tile_size[1] * tile_position[1]) + cy
         return x, y
 
     def check_interactable_space(self):

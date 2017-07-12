@@ -21,7 +21,6 @@
 #
 from __future__ import absolute_import
 
-from core import prepare
 from core.components import ai, player
 from core.components.event.eventaction import EventAction
 

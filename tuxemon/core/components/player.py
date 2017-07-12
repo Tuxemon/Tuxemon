@@ -40,7 +40,7 @@ import pygame
 from core import prepare
 from core.components import db
 from core.components import pyganim
-from core.components.euclid import Vector3, Vector2
+from core.components.euclid import Vector3, Vector2, Point2, Point3
 from core.components.locale import translator
 from core.tools import load_and_scale, nearest
 
@@ -50,10 +50,10 @@ trans = translator.translate
 logger = logging.getLogger(__name__)
 
 dirs = {
-    "up": [0, -1],
-    "down": [0, 1],
-    "left": [-1, 0],
-    "right": [1, 0],
+    "up": Vector3(0, -1, 0),
+    "down": Vector3(0, 1, 0),
+    "left": Vector3(-1, 0, 0),
+    "right": Vector3(1, 0, 0),
 }
 
 facing = "front", "back", "left", "right"
@@ -75,30 +75,13 @@ animation_mapping = {
 
 
 def proj(vector):
-    return Vector2(vector.x, vector.y)
+    return Point2(vector.x, vector.y)
 
 
 # Class definition for the player.
 class Player(object):
-    """A class for a player object. This object can be used for NPCs as well as the player:
-
-    Example:
-
-    >>> player1 = core.components.player.Player()
-    >>> # Scale the sprite and its animations
-    >>> for key, animation in player1.sprite.items():
-    ...     animation.scale(tuple(i * scale for i in animation.getMaxSize()))
-    ...
-    >>> for key, image in player1.standing.items():
-    ...     player1.standing[key] = pygame.transform.scale(image, (image.get_width() * scale, image.get_height() * scale))
-    ...
-    >>> # Set the walking and running pixels per second based on the scale
-    >>> player1.walkrate *= scale
-    >>> player1.runrate *= scale
+    """ This object can be used for NPCs as well as the player
     """
-    speed = 100
-    moves = []
-
     def __init__(self, npc_slug):
         npcs = db.JSONDatabase()
         npcs.load("npc")
@@ -114,35 +97,35 @@ class Player(object):
         self.standing = {}
         self.load_sprites()
 
-        self.isplayer = True
-        self.path = None
         self.game_variables = {}  # Game variables for use with events
         self.inventory = {}  # The Player's inventory.
         self.monsters = []  # This is a list of tuxemon the player has
         self.storage = {"monsters": [], "items": {}}
         self.party_limit = 6  # The maximum number of tuxemon this player can hold 1 for testing
+        self.tile_pos = [0, 0]  # This is the position of the player based on tile
+
+        self.isplayer = True
+        self.path = None
         self.walking = False  # Whether or not the player is walking
         self.running = False  # Whether or not the player is running
         self.move_direction = "down"  # This is a string of the direction we're moving if we're in the middle of moving
         self.direction = {"up": False,
                           "down": False,
                           "left": False,
-                          "right": False}  # What direction the player is moving
+                          "right": False}  # What direction the player wants to move
         self.facing = "down"  # What direction the player is facing
-
         self.walkrate = 60  # The rate in pixels per second the player is walking
         self.runrate = 118  # The rate in pixels per second the player is running
         self.moverate = self.walkrate  # The movement rate in pixels per second
         self.position = [0, 0]  # The player's sprite position on the screen
-        self.tile_pos = [0, 0]  # This is the position of the player based on tile
-        self.tile_size = [16, 16]
-        self.move_destination = [0, 0]  # The player's destination location to move to
+        self.tile_size = prepare.TILE_SIZE
+        self.move_destination = Point2(0, 0)  # The player's destination location to move to
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
         self.rect = pygame.Rect(self.position, (self.playerWidth, self.playerHeight))  # Collision rect
 
         # physics.  eventually move to a mixin/component
-        self.position2 = Vector2(0, 0)
-        self.position3 = Vector3(0, 0, 0)
+        self.position2 = Point2(0, 0)
+        self.position3 = Point3(0, 0, 0)
         self.acceleration3 = Vector3(0, 0, 0)
         self.velocity3 = Vector3(0, 0, 0)
         # end physics
@@ -152,8 +135,8 @@ class Player(object):
 
     def load_sprites(self):
         """ Load sprite graphics
-        
-        :return: 
+
+        :return:
         """
         # Get all of the player's standing animation images.
         self.standing = {}
@@ -171,14 +154,14 @@ class Player(object):
                                      prepare.CONFIG.player_animation_speed) for num in range(4)]
 
             # Loop through all of our animations and get the top and bottom subsurfaces.
-            full_frames = []
+            frames = []
             for image, duration in images_and_durations:
                 surface = load_and_scale(image)
-                full_frames.append((surface, duration))
+                frames.append((surface, duration))
 
             # Create an animation set for the top and bottom halfs of our sprite, so we can draw
             # them on different layers.
-            self.sprite[anim_type] = pyganim.PygAnimation(full_frames)
+            self.sprite[anim_type] = pyganim.PygAnimation(frames)
 
         # Have the animation objects managed by a conductor.
         # With the conductor, we can call play() and stop() on all the animtion
@@ -186,7 +169,6 @@ class Player(object):
         # other.
         self.moveConductor = pyganim.PygConductor(self.sprite)
         self.moveConductor.play()
-        self.anim_playing = True
 
     def meta_move(self, tile_size, time_passed_seconds, game):
         if self.running:
@@ -215,18 +197,19 @@ class Player(object):
         """
         collision_dict = self.get_collision_dict(game)
 
+        # Handle where we're just starting to move in a direction.
+        self._check_move(collision_dict, game)
+
         # Handle where we're in the middle of moving in a direction.
         self._continue_move(collision_dict, time_passed_seconds, game)
-
-        # Handle where we're just starting to move in a direction.
-        self._start_move(collision_dict, game)
 
         # Handle where we're forced to continue moving.
         if not self.moving:
             self._force_continue_move(collision_dict, game)
 
         self.update_physics(time_passed_seconds)
-        self.tile_pos = self.position2.x / self.tile_size[0], self.position2.y / self.tile_size[1]
+        self.tile_pos = Point2(self.position2.x / self.tile_size[0],
+                               self.position2.y / self.tile_size[1])
 
     # === PHYSICS START ================================================================
 
@@ -248,9 +231,18 @@ class Player(object):
         self.velocity3.y = 0
         self.velocity3.z = 0
 
+    def set_position(self, pos):
+        self.position3.x = pos[0]
+        self.position3.y = pos[1]
+
+    def set_tile_position(self, pos):
+        x = pos[0] * self.tile_size[0]
+        y = pos[1] * self.tile_size[1]
+        self.set_position((x, y))
+
     # === PHYSICS END ==================================================================
 
-    def _start_move(self, collision_dict, game):
+    def _check_move(self, collision_dict, game):
         """ Play the animation and setting a new destination if we currently don't have one
 
         player.direction is set when a key is pressed. player.moving is set when we're still in
@@ -260,26 +252,26 @@ class Player(object):
         :param game:
         :return:
         """
-        pos = nearest(self.tile_pos)
-        for direction, held in self.direction.items():
-            if held:
-                # If we've pressed any arrow key, play the move animations
-                self.moveConductor.play()
-                self.anim_playing = True
+        if not self.moving:
+            pos = nearest(self.tile_pos)
+            for direction, held in self.direction.items():
+                if held:
+                    # If we've pressed any arrow key, play the move animations
+                    self.moveConductor.play()
 
-                # If the destination tile won't collide with anything, then proceed with moving.
-                if direction not in self.collision_check(pos, collision_dict, game.collision_lines_map):
-                    self.move_one_tile(direction)
+                    # If the destination tile won't collide with anything, then proceed with moving.
+                    c = self.collision_check(pos, collision_dict, game.collision_lines_map)
+                    if direction not in c:
+                        self.move_one_tile(direction)
 
-                    if self.isplayer and (game.game.isclient or game.game.ishost):
-                        game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
+                        if self.isplayer and (game.game.isclient or game.game.ishost):
+                            game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
 
-                break
+                    break
 
         # # If we're not holding down an arrow key and the player is not moving, stop the animation
         # # and draw the standing gfx
         # if not self.moving:
-        #     self.anim_playing = False
         #     self.moveConductor.stop()
         #     if self.isplayer and self.tile_pos != self.final_move_dest:
         #         self.update_location = True
@@ -290,12 +282,13 @@ class Player(object):
         If the player is in the middle of moving and facing a certain direction, move in that
         direction
         """
-        pos = nearest(self.tile_pos)
+        if not self.moving:
+            return
 
         # If we've reached our destination and are no longer holding an arrow key, set moving
         # to false and set the position to the destination
-        if pos == self.move_destination:
-            print(pos, self.direction)
+        if self.move_destination.distance(self.tile_pos) < .1:
+            self.set_tile_position(self.move_destination)
             self.stop()
             return
 
@@ -343,12 +336,10 @@ class Player(object):
             self.move_destination[1] = pos[1] + v[1]
 
     def move_one_tile(self, direction):
-        pos = nearest(self.tile_pos)
+        pos = Point2(*nearest(self.tile_pos))
         v = dirs[direction]
-        self.velocity3.x = v[0] * self.moverate
-        self.velocity3.y = v[1] * self.moverate
-        self.move_destination[0] = pos[0] + v[0]
-        self.move_destination[1] = pos[1] + v[1]
+        self.velocity3 = v * self.moverate
+        self.move_destination = pos + (v.x, v.y)
         self.move_direction = direction
         self.direction[direction] = True
 
@@ -406,7 +397,6 @@ class Player(object):
 
         :return:
         """
-
         def get_frame(d, ani):
             frame = d[ani]
             try:
@@ -420,7 +410,9 @@ class Player(object):
         frame_dict = self.sprite if self.moving else self.standing
         state = animation_mapping[self.moving][direction]
 
-        return [(get_frame(frame_dict, state), self.position2, 2)]
+        position = self.position2 - (0, self.playerHeight // 2)
+
+        return [(get_frame(frame_dict, state), position, 2)]
 
     def get_collision_dict(self, game):
         """Checks for collision tiles around the player.
@@ -548,7 +540,7 @@ class Player(object):
         """Finds a monster in the player's list of monsters.
 
         :param monster_slug: The slug name of the monster
-        :type monster_slug: str 
+        :type monster_slug: str
 
         :rtype: core.components.monster.Monster
         :returns: Monster found
@@ -712,7 +704,7 @@ class Npc(Player):
             collision_dict[tile] = game.collision_map[tile]
 
         self._continue_move(collision_dict, time_passed_seconds, game)
-        self._start_move(collision_dict, game)
+        self._check_move(collision_dict, game)
 
 
 class PathfindNode(object):

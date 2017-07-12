@@ -54,5 +54,5 @@ class DelayedTeleportAction(EventAction):
         player = self.game.player1
 
         # Set the global_x/y variables based on the player's pixel position and the tile size.
-        world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
-        world.delayed_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
+        world.delayed_x = position_x * player.tile_size[0]
+        world.delayed_y = position_y * player.tile_size[1]

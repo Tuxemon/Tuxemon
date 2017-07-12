@@ -54,19 +54,20 @@ class WorldState(state.State):
         # Provide access to the screen surface
         self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
+        self.resolution = prepare.SCREEN_SIZE
 
         # Set the native tile size so we know how much to scale
         self.tile_size = prepare.TILE_SIZE
 
-        # Set the status icon size so we know how much to scale
-        self.icon_size = prepare.ICON_SIZE
+        #####################################################################
+        #                           Player Details                           #
+        ######################################################################
 
-        # Get the screen's resolution
-        self.resolution = prepare.SCREEN_SIZE
-
-        # Native resolution is similar to the old gameboy resolution. This is
-        # used for scaling.
-        self.native_resolution = prepare.NATIVE_RESOLUTION
+        self.player1 = self.game.player1
+        self.npcs = {}
+        self.npcs_off_map = {}
+        self.wants_duel = False
+        self.player1.set_tile_position(prepare.CONFIG.starting_position)
 
         ######################################################################
         #                              Map                                   #
@@ -81,15 +82,6 @@ class WorldState(state.State):
 
         # Keep a map of preloaded maps for fast map switching.
         self.preloaded_maps = {}
-
-        ######################################################################
-        #                           Player Details                           #
-        ######################################################################
-
-        self.player1 = self.game.player1
-        self.npcs = {}
-        self.npcs_off_map = {}
-        self.wants_duel = False
 
         ######################################################################
         #                            Transitions                             #
@@ -215,8 +207,7 @@ class WorldState(state.State):
         :return: None
         """
         if self.delayed_teleport:
-            self.global_x = self.delayed_x
-            self.global_y = self.delayed_y
+            self.player1.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
                 self.player1.facing = self.delayed_facing
@@ -612,11 +603,7 @@ class WorldState(state.State):
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of control
         self.game.reset_controls()
-
-        try:
-            self.player1.stop()
-        except AttributeError:  # will be raised if this is first map change
-            pass
+        self.player1.stop()
 
         self.current_map = map_data["data"]
         self.collision_map = map_data["collision_map"]
@@ -634,7 +621,7 @@ class WorldState(state.State):
         self.npcs_off_map = {}
 
     def load_map(self, map_name):
-        """Returns map data as a dictionary to be used for map changing and preloading
+        """ Returns map data as a dictionary to be used for map changing and preloading
         """
         map_data = {}
         map_data["data"] = map.Map(map_name)

@@ -171,8 +171,8 @@ class Vector2:
                           self.y + other.y)
         else:
             assert hasattr(other, '__len__') and len(other) == 2
-            return Vector2(self.x + other[0],
-                           self.y + other[1])
+            return self.__class__(self.x + other[0],
+                                  self.y + other[1])
 
     __radd__ = __add__
 
@@ -198,8 +198,8 @@ class Vector2:
                           self.y - other.y)
         else:
             assert hasattr(other, '__len__') and len(other) == 2
-            return Vector2(self.x - other[0],
-                           self.y - other[1])
+            return self.__class__(self.x - other[0],
+                                  self.y - other[1])
 
     def __rsub__(self, other):
         if isinstance(other, Vector2):
@@ -207,8 +207,8 @@ class Vector2:
                            other.y - self.y)
         else:
             assert hasattr(other, '__len__') and len(other) == 2
-            return Vector2(other.x - self[0],
-                           other.y - self[1])
+            return self.__class__(other.x - self[0],
+                                  other.y - self[1])
 
     def __mul__(self, other):
         assert type(other) in (int, long, float)

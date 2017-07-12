@@ -98,7 +98,7 @@ class RandomEncounterAction(EventAction):
             current_monster.set_level(level)
 
             # Create an NPC object which will be this monster's "trainer"
-            npc = player.Npc()
+            npc = player.Npc("npc_maple")
             npc.monsters.append(current_monster)
             npc.party_limit = 0
 

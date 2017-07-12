@@ -197,15 +197,19 @@ class Player(object):
         """
         collision_dict = self.get_collision_dict(game)
 
-        # Handle where we're just starting to move in a direction.
-        self._check_move(collision_dict, game)
+        # If the destination tile won't collide with anything, then proceed with moving.
+        pos = nearest(self.tile_pos)
+        c = self.collision_check(pos, collision_dict, game.collision_lines_map)
 
-        # Handle where we're in the middle of moving in a direction.
-        self._continue_move(collision_dict, time_passed_seconds, game)
+        if self.moving:
+            # Handle where we're in the middle of moving in a direction.
+            self._continue_move(c)
+            # self._force_continue_move(collision_dict, game)
 
-        # Handle where we're forced to continue moving.
-        if not self.moving:
-            self._force_continue_move(collision_dict, game)
+        else:
+            print(c)
+            # Handle where we're just starting to move in a direction.
+            self._check_move(c, game)
 
         self.update_physics(time_passed_seconds)
         self.tile_pos = Point2(self.position2.x / self.tile_size[0],
@@ -242,32 +246,26 @@ class Player(object):
 
     # === PHYSICS END ==================================================================
 
-    def _check_move(self, collision_dict, game):
+    def _check_move(self, blocked_directions, game):
         """ Play the animation and setting a new destination if we currently don't have one
 
-        player.direction is set when a key is pressed. player.moving is set when we're still in
-        the middle of a move
+        player.direction is set when a key is pressed.
+        player.moving is set when we're still in the middle of a move
 
-        :param collision_dict:
+        :param blocked_directions: list of directions that cannot be traveled
         :param game:
         :return:
         """
-        if not self.moving:
-            pos = nearest(self.tile_pos)
-            for direction, held in self.direction.items():
-                if held:
-                    # If we've pressed any arrow key, play the move animations
-                    self.moveConductor.play()
+        for direction, pressed in self.direction.items():
+            print(pressed, direction, blocked_directions)
+            if pressed and direction not in blocked_directions:
+                self.move_one_tile(direction)
 
-                    # If the destination tile won't collide with anything, then proceed with moving.
-                    c = self.collision_check(pos, collision_dict, game.collision_lines_map)
-                    if direction not in c:
-                        self.move_one_tile(direction)
+                if self.isplayer and (game.game.isclient or game.game.ishost):
+                    game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
 
-                        if self.isplayer and (game.game.isclient or game.game.ishost):
-                            game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
-
-                    break
+                # break to ensure only one direction is processed
+                break
 
         # # If we're not holding down an arrow key and the player is not moving, stop the animation
         # # and draw the standing gfx
@@ -276,46 +274,22 @@ class Player(object):
         #     if self.isplayer and self.tile_pos != self.final_move_dest:
         #         self.update_location = True
 
-    def _continue_move(self, collision_dict, time_passed_seconds, game):
+    def _continue_move(self, blocked_directions):
         """ Here we're continuing a move it we're in the middle of one already
 
         If the player is in the middle of moving and facing a certain direction, move in that
         direction
         """
-        if not self.moving:
-            return
+        reached = self.move_destination.distance(self.tile_pos) < .1
 
-        # If we've reached our destination and are no longer holding an arrow key, set moving
-        # to false and set the position to the destination
-        if self.move_destination.distance(self.tile_pos) < .1:
+        if reached:
             self.set_tile_position(self.move_destination)
-            self.stop()
-            return
-
-        # If we're already in the middle of walking and we haven't reached the tile, THEN
-        # KEEP WALKING DAMNIT
-        else:
-            v = dirs[self.move_direction]
-            # self.position[0] += v[0] * self.moverate * time_passed_seconds
-            # self.position[1] += v[1] * self.moverate * time_passed_seconds
-
-            # # If we're holding down the arrow key and we overshoot our original destination,
-            # # set our next destination tile and see if we'll collide with it or not.
-            # if global_y >= self.move_destination[1] and self.direction["up"]:
-            #
-            #     # If the destination tile won't collide with anything, then proceed with moving.
-            #     if not "up" in self.collision_check(player_pos, collision_dict, game.collision_lines_map):
-            #         self.moving = True
-            #         self.move_direction = "up"
-            #
-            #         # Set the destination position we'd wish to reach if we just started walking.
-            #         self.move_destination = [int(self.move_destination[0]), int(self.move_destination[1] + prepare.TILE_SIZE[1])]
-            #
-            #     # If we are going to collide with something, set our position to the original
-            #     # move destination and stop moving
-            #     else:
-            #         self.moving = False
-            #         self.tile_pos = self.move_destination
+            for direction, held in self.direction.items():
+                if held and direction not in blocked_directions:
+                    self.move_one_tile(direction)
+                    break
+            else:
+                self.stop()
 
     def _force_continue_move(self, collision_dict, game):
         # Round the player's tile position to an integer value. We test for collisions based on
@@ -336,8 +310,14 @@ class Player(object):
             self.move_destination[1] = pos[1] + v[1]
 
     def move_one_tile(self, direction):
+        """ Force player to move one tile in 
+        
+        :param direction: 
+        :return: 
+        """
         pos = Point2(*nearest(self.tile_pos))
         v = dirs[direction]
+        self.moveConductor.play()
         self.velocity3 = v * self.moverate
         self.move_destination = pos + (v.x, v.y)
         self.move_direction = direction
@@ -703,7 +683,7 @@ class Npc(Player):
         for tile in game.collision_map:
             collision_dict[tile] = game.collision_map[tile]
 
-        self._continue_move(collision_dict, time_passed_seconds, game)
+        self._continue_move()
         self._check_move(collision_dict, game)
 
 

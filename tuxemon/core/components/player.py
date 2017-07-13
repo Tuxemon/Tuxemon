@@ -29,8 +29,7 @@
 #
 """This module contains the player and npc modules.
 """
-from __future__ import absolute_import
-from __future__ import division
+from __future__ import absolute_import, division
 
 import logging
 import os
@@ -38,9 +37,8 @@ import os
 import pygame
 
 from core import prepare
-from core.components import db
-from core.components import pyganim
-from core.components.euclid import Vector3, Vector2, Point2, Point3
+from core.components import db, pyganim
+from core.components.euclid import Point2, Point3, Vector3
 from core.components.locale import translator
 from core.tools import load_and_scale, nearest
 
@@ -82,6 +80,7 @@ def proj(vector):
 class Player(object):
     """ This object can be used for NPCs as well as the player
     """
+
     def __init__(self, npc_slug):
         npcs = db.JSONDatabase()
         npcs.load("npc")
@@ -104,6 +103,7 @@ class Player(object):
         self.party_limit = 6  # The maximum number of tuxemon this player can hold 1 for testing
         self.tile_pos = [0, 0]  # This is the position of the player based on tile
 
+        self.game = None
         self.isplayer = True
         self.path = None
         self.walking = False  # Whether or not the player is walking
@@ -197,19 +197,17 @@ class Player(object):
         """
         collision_dict = self.get_collision_dict(game)
 
+        self.game = game
+
         # If the destination tile won't collide with anything, then proceed with moving.
         pos = nearest(self.tile_pos)
         c = self.collision_check(pos, collision_dict, game.collision_lines_map)
 
         if self.moving:
-            # Handle where we're in the middle of moving in a direction.
             self._continue_move(c)
-            # self._force_continue_move(collision_dict, game)
-
+            self._force_continue_move(collision_dict)
         else:
-            print(c)
-            # Handle where we're just starting to move in a direction.
-            self._check_move(c, game)
+            self._check_move(c)
 
         self.update_physics(time_passed_seconds)
         self.tile_pos = Point2(self.position2.x / self.tile_size[0],
@@ -246,7 +244,7 @@ class Player(object):
 
     # === PHYSICS END ==================================================================
 
-    def _check_move(self, blocked_directions, game):
+    def _check_move(self, blocked_directions):
         """ Play the animation and setting a new destination if we currently don't have one
 
         player.direction is set when a key is pressed.
@@ -257,22 +255,18 @@ class Player(object):
         :return:
         """
         for direction, pressed in self.direction.items():
-            print(pressed, direction, blocked_directions)
             if pressed and direction not in blocked_directions:
                 self.move_one_tile(direction)
-
-                if self.isplayer and (game.game.isclient or game.game.ishost):
-                    game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
 
                 # break to ensure only one direction is processed
                 break
 
-        # # If we're not holding down an arrow key and the player is not moving, stop the animation
-        # # and draw the standing gfx
-        # if not self.moving:
-        #     self.moveConductor.stop()
-        #     if self.isplayer and self.tile_pos != self.final_move_dest:
-        #         self.update_location = True
+                # # If we're not holding down an arrow key and the player is not moving, stop the animation
+                # # and draw the standing gfx
+                # if not self.moving:
+                #     self.moveConductor.stop()
+                #     if self.isplayer and self.tile_pos != self.final_move_dest:
+                #         self.update_location = True
 
     def _continue_move(self, blocked_directions):
         """ Here we're continuing a move it we're in the middle of one already
@@ -291,37 +285,29 @@ class Player(object):
             else:
                 self.stop()
 
-    def _force_continue_move(self, collision_dict, game):
-        # Round the player's tile position to an integer value. We test for collisions based on
-        # an integer value.
+    def _force_continue_move(self, collision_dict):
         pos = nearest(self.tile_pos)
 
         if pos in collision_dict:
             direction_next = collision_dict[pos]["continue"]
-            if direction_next not in ["up", "down", "left", "right"]:
-                direction_next = self.move_direction
-
-            # If the move direction is collidable, don't move.
-            if direction_next in self.collision_check(pos, collision_dict, game.collision_lines_map):
-                return
-
-            v = dirs[self.move_direction]
-            self.move_destination[0] = pos[0] + v[0]
-            self.move_destination[1] = pos[1] + v[1]
+            self.move_one_tile(direction_next)
 
     def move_one_tile(self, direction):
-        """ Force player to move one tile in 
-        
-        :param direction: 
-        :return: 
+        """ Force player to move one tile in
+
+        :param direction:
+        :return:
         """
+        if not self.moving:
+            if self.isplayer and (self.game.game.isclient or self.game.game.ishost):
+                self.game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
+
         pos = Point2(*nearest(self.tile_pos))
         v = dirs[direction]
         self.moveConductor.play()
         self.velocity3 = v * self.moverate
         self.move_destination = pos + (v.x, v.y)
         self.move_direction = direction
-        self.direction[direction] = True
 
     def move_to(self, tile_pos, speed):
         """ Trigger NPC movement to the destination `tile_pos`
@@ -377,6 +363,7 @@ class Player(object):
 
         :return:
         """
+
         def get_frame(d, ani):
             frame = d[ani]
             try:
@@ -565,9 +552,9 @@ class Player(object):
             starting_loc = nearest(self.tile_pos)
 
             pathnode = self.pathfind_r(dest,
-                                       [PathfindNode(starting_loc)],  # queue
-                                       [],  # visited
-                                       0,  # depth (not a limit, just a counter)
+                                       [PathfindNode(starting_loc)], # queue
+                                       [], # visited
+                                       0, # depth (not a limit, just a counter)
                                        game)
             if pathnode:
                 # traverse the node to get the path

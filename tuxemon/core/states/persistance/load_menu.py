@@ -39,10 +39,7 @@ class LoadMenuState(SaveMenuState):
                 self.game.pop_state(old_world)
 
             self.game.push_state("WorldState")
-            # self.game.current_state.change_map(save_data['current_map'])
 
             # teleport the player to the correct position using an event engine action
-            tele_x = str(int(save_data['tile_pos'][0]))
-            tele_y = str(int(save_data['tile_pos'][1]))
-
+            tele_x, tele_y = save_data['tile_pos']
             self.game.event_engine.execute_action('teleport', [save_data['current_map'], tele_x, tele_y])

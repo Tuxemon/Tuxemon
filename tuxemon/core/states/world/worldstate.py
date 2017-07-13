@@ -207,7 +207,7 @@ class WorldState(state.State):
         :return: None
         """
         if self.delayed_teleport:
-            self.player1.set_position((self.delayed_x, self.delayed_y))
+            self.player1.set_tile_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
                 self.player1.facing = self.delayed_facing

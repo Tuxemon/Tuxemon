@@ -101,7 +101,6 @@ class Player(object):
         self.monsters = []  # This is a list of tuxemon the player has
         self.storage = {"monsters": [], "items": {}}
         self.party_limit = 6  # The maximum number of tuxemon this player can hold 1 for testing
-        self.tile_pos = [0, 0]  # This is the position of the player based on tile
 
         self.game = None
         self.isplayer = True
@@ -114,24 +113,27 @@ class Player(object):
                           "left": False,
                           "right": False}  # What direction the player wants to move
         self.facing = "down"  # What direction the player is facing
-        self.walkrate = 60  # The rate in pixels per second the player is walking
-        self.runrate = 118  # The rate in pixels per second the player is running
-        self.moverate = self.walkrate  # The movement rate in pixels per second
-        self.position = [0, 0]  # The player's sprite position on the screen
         self.tile_size = prepare.TILE_SIZE
         self.move_destination = Point2(0, 0)  # The player's destination location to move to
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
-        self.rect = pygame.Rect(self.position, (self.playerWidth, self.playerHeight))  # Collision rect
+
+        self.tile_pos = [0, 0]  # This is the position of the player based on tile position
+        self.walkrate = 3.75  # The rate in tiles per second the player is walking
+        self.runrate = 7.375  # The rate in tiles per second the player is running
 
         # physics.  eventually move to a mixin/component
+        # these positions are derived from the tile position.
+        # setting these will not change the world position of the npc
         self.position2 = Point2(0, 0)
         self.position3 = Point3(0, 0, 0)
         self.acceleration3 = Vector3(0, 0, 0)
         self.velocity3 = Vector3(0, 0, 0)
         # end physics
 
+        self.rect = pygame.Rect(self.position2, (self.playerWidth, self.playerHeight))  # Collision rect
         self.walkrate *= prepare.SCALE
         self.runrate *= prepare.SCALE
+        self.moverate = self.walkrate  # The movement rate in pixels per second
 
     def load_sprites(self):
         """ Load sprite graphics
@@ -274,7 +276,8 @@ class Player(object):
         If the player is in the middle of moving and facing a certain direction, move in that
         direction
         """
-        reached = self.move_destination.distance(self.tile_pos) < .1
+        dist = self.move_destination.distance(self.tile_pos)
+        reached = self.move_destination == self.tile_size or dist < .01
 
         if reached:
             self.set_tile_position(self.move_destination)

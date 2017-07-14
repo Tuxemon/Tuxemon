@@ -118,8 +118,8 @@ class Player(object):
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
 
         self.tile_pos = [0, 0]  # This is the position of the player based on tile position
-        self.walkrate = 3.75  # The rate in tiles per second the player is walking
-        self.runrate = 7.375  # The rate in tiles per second the player is running
+        self.walkrate = 3.75 * 10  # The rate in tiles per second the player is walking
+        self.runrate = 7.375 * 10  # The rate in tiles per second the player is running
 
         # physics.  eventually move to a mixin/component
         # these positions are derived from the tile position.
@@ -276,8 +276,9 @@ class Player(object):
         If the player is in the middle of moving and facing a certain direction, move in that
         direction
         """
-        dist = self.move_destination.distance(self.tile_pos)
-        reached = self.move_destination == self.tile_size or dist < .01
+        dest_dist = self.start_tile_position.distance(self.move_destination)
+        remaining = self.start_tile_position.distance(self.tile_pos)
+        reached = dest_dist <= remaining
 
         if reached:
             self.set_tile_position(self.move_destination)
@@ -307,6 +308,7 @@ class Player(object):
 
         pos = Point2(*nearest(self.tile_pos))
         v = dirs[direction]
+        self.start_tile_position = pos
         self.moveConductor.play()
         self.velocity3 = v * self.moverate
         self.move_destination = pos + (v.x, v.y)
@@ -555,9 +557,9 @@ class Player(object):
             starting_loc = nearest(self.tile_pos)
 
             pathnode = self.pathfind_r(dest,
-                                       [PathfindNode(starting_loc)], # queue
-                                       [], # visited
-                                       0, # depth (not a limit, just a counter)
+                                       [PathfindNode(starting_loc)],  # queue
+                                       [],  # visited
+                                       0,  # depth (not a limit, just a counter)
                                        game)
             if pathnode:
                 # traverse the node to get the path

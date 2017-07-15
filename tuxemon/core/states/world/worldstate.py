@@ -67,7 +67,7 @@ class WorldState(state.State):
         self.npcs = {}
         self.npcs_off_map = {}
         self.wants_duel = False
-        self.player1.set_tile_position(prepare.CONFIG.starting_position)
+        self.player1.set_position(prepare.CONFIG.starting_position)
 
         ######################################################################
         #                              Map                                   #
@@ -207,7 +207,7 @@ class WorldState(state.State):
         :return: None
         """
         if self.delayed_teleport:
-            self.player1.set_tile_position((self.delayed_x, self.delayed_y))
+            self.player1.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
                 self.player1.facing = self.delayed_facing
@@ -342,15 +342,14 @@ class WorldState(state.State):
         # the event engine.
         return event
 
-    def get_all_players(self):
-        """Retrieves a list of all npcs and the player.
+    def get_all_entities(self):
+        """ List of players and NPCs, for collision checking
 
-        :rtype: Dictionary
-        :returns: Dictionary of all Player objects keyed by their slug.
+        :return:
         """
-        players = dict(self.npcs)
-        players[self.game.player1.slug] = self.game.player1
-        return players
+        yield self.player1
+        for npc in self.npcs.values():
+            yield npc
 
     ####################################################
     #                   Map Drawing                    #
@@ -381,16 +380,19 @@ class WorldState(state.State):
                 world_surfaces.append(frame)
 
         # center the map
-        self.current_map.renderer.center(self.player1.position2)
+        center = self.project(self.player1.tile_pos)
+        self.current_map.renderer.center(center)
 
         # position the surfaces correctly
         # pyscroll expects surfaces in screen coords, so they are
         # converted from world to screen coords here
-        ox, oy = self.current_map.renderer.get_center_offset()
         screen_surfaces = list()
         for frame in world_surfaces:
             s, c, l = frame
-            c = c[0] + ox, c[1] + oy
+            # project to pixel/screen coords
+            c = self.get_pos_from_tilepos(c)
+            # offset for center and image height
+            c = c[0], c[1] - s.get_height() // 2
             screen_surfaces.append((s, c, l))
 
         # draw the map and sprites
@@ -429,7 +431,26 @@ class WorldState(state.State):
             self.player1.moverate = self.player1.walkrate
 
         # Set the global_x/y when the player moves around
-        self.player1.move(self.tile_size, self.time_passed_seconds, self)
+        self.player1.move(self.time_passed_seconds, self)
+
+    def get_pos_from_tilepos(self, tile_position):
+        """ Returns the map pixel coordinate based on tile position.
+
+        :param tile_position: An [x, y] tile position.
+
+        :type tile_position: List
+
+        :rtype: List
+        :returns: The pixel coordinates to draw at the given tile position.
+        """
+        cx, cy = self.current_map.renderer.get_center_offset()
+        px, py = self.project(tile_position)
+        x = px + cx
+        y = py + cy
+        return x, y
+
+    def project(self, position):
+        return position[0] * self.tile_size[0], position[1] * self.tile_size[1]
 
     def move_npcs(self):
         """ Move NPCs and Players around according to their state
@@ -440,7 +461,7 @@ class WorldState(state.State):
         """
         # Draw any game NPC's
         for npc in self.npcs.values():
-            npc.meta_move(self.tile_size, self.time_passed_seconds, self)
+            npc.meta_move(self.time_passed_seconds, self)
 
             # Reset our directions after moving.
             if not npc.isplayer:
@@ -456,7 +477,7 @@ class WorldState(state.State):
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map.values():
-            npc.meta_move(self.tile_size, self.time_passed_seconds, self)
+            npc.meta_move(self.time_passed_seconds, self)
 
     def _collision_box_to_pgrect(self, box):
         """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
@@ -491,22 +512,20 @@ class WorldState(state.State):
             rect = self._collision_box_to_pgrect((event.x, event.y))
             surface.fill((0, 255, 255, 128), rect)
 
+        x, y = self.get_pos_from_tilepos(self.player1.tile_pos)
+
         # draw collision check boxes
         if self.player1.direction["up"]:
-            surface.blit(self.collision_tile, (
-                self.player1.position[0], self.player1.position[1] - self.tile_size[1]))
+            surface.blit(self.collision_tile, (x, y - self.tile_size[1]))
 
         elif self.player1.direction["down"]:
-            surface.blit(self.collision_tile, (
-                self.player1.position[0], self.player1.position[1] + self.tile_size[1]))
+            surface.blit(self.collision_tile, (x, y + self.tile_size[1]))
 
         elif self.player1.direction["left"]:
-            surface.blit(self.collision_tile, (
-                self.player1.position[0] - self.tile_size[0], self.player1.position[1]))
+            surface.blit(self.collision_tile, (x - self.tile_size[0], y))
 
         elif self.player1.direction["right"]:
-            surface.blit(self.collision_tile, (
-                self.player1.position[0] + self.tile_size[0], self.player1.position[1]))
+            surface.blit(self.collision_tile, (x + self.tile_size[0], y))
 
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
@@ -647,22 +666,6 @@ class WorldState(state.State):
         :return: None
         """
         self.preloaded_maps = {}
-
-    def get_pos_from_tilepos(self, tile_position):
-        """Returns the screen coordinate based on tile position.
-
-        :param tile_position: An [x, y] tile position.
-
-        :type tile_position: List
-
-        :rtype: List
-        :returns: The pixel coordinates to draw at the given tile position.
-
-        """
-        cx, cy = self.current_map.renderer.get_center_offset()
-        x = (self.tile_size[0] * tile_position[0]) + cx
-        y = (self.tile_size[1] * tile_position[1]) + cy
-        return x, y
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu

@@ -73,7 +73,7 @@ def get_npc(game, slug):
     :type game: core.control.Control
     :type slug: str
 
-    :rtype: core.components.player.Npc
+    :rtype: core.components.player.Player
     :returns: The NPC object or None if the NPC is not found.
     """
     if slug == "player":

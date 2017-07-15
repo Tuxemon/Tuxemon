@@ -33,8 +33,8 @@ class CreateNpcAction(EventAction):
     name = "create_npc"
     valid_parameters = [
         (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y"),
+        (int, "pos_x"),
+        (int, "pos_y"),
         (str, "animations"),
         (str, "behavior")
     ]
@@ -53,8 +53,8 @@ class CreateNpcAction(EventAction):
             return
 
         # Get the npc's parameters from the action
-        tile_pos_x = self.parameters.tile_pos_x
-        tile_pos_y = self.parameters.tile_pos_y
+        pos_x = self.parameters.pos_x
+        pos_y = self.parameters.pos_y
         animations = self.parameters.animations
         behavior = self.parameters.behavior
 
@@ -62,7 +62,7 @@ class CreateNpcAction(EventAction):
         npc = player.Npc(sprite_name=animations, slug=slug)
 
         # Set the NPC object's variables
-        npc.tile_pos = [tile_pos_x, tile_pos_y]
+        npc.set_position((pos_x, pos_y))
         npc.behavior = behavior
         npc.ai = ai.AI()
 

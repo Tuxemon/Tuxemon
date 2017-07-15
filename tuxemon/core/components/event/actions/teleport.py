@@ -70,7 +70,7 @@ class TeleportAction(EventAction):
             world.delayed_y = self.parameters.y
         else:
             # If we're not doing a transition, then just do the teleport
-            player.set_tile_position((self.parameters.x, self.parameters.y))
+            player.set_position((self.parameters.x, self.parameters.y))
             map_path = prepare.BASEDIR + "resources/maps/" + map_name
             if map_path != world.current_map.filename:
                 world.change_map(map_path)

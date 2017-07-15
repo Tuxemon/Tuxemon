@@ -31,8 +31,8 @@ class PathfindAction(EventAction):
     name = "pathfind"
     valid_parameters = [
         (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y")
+        (int, "pos_x"),
+        (int, "pos_y")
     ]
 
     def start(self):
@@ -42,8 +42,8 @@ class PathfindAction(EventAction):
             return
 
         npc_slug = self.parameters.npc_slug
-        dest_x = self.parameters.tile_pos_x
-        dest_y = self.parameters.tile_pos_y
+        dest_x = self.parameters.pos_x
+        dest_y = self.parameters.pos_y
 
         # get npc object via name
         if npc_slug not in world.npcs:

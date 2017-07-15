@@ -48,8 +48,8 @@ class PlayMapAnimationAction(EventAction):
         (str, "animation_name"),
         (float, "duration"),
         (str, "loop"),
-        ((int, str), "tile_pos_x"),
-        ((int, None), "tile_pos_y")
+        ((int, str), "pos_x"),
+        ((int, None), "pos_y")
     ]
 
     def start(self):
@@ -78,7 +78,7 @@ class PlayMapAnimationAction(EventAction):
         # Determine the screen position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
         if self.parameters[3] == "player":
-            x, y = [int(round(i, 0)) for i in self.game.player1.tile_pos]
+            x, y = [int(round(i, 0)) for i in self.game.player1.position]
         else:
             x, y = self.parameters.x, self.parameters.y
 

@@ -242,7 +242,6 @@ class Map(object):
         :rtype: pyscroll.BufferedRenderer
         """
         visual_data = pyscroll.data.TiledMapData(self.data)
-        # TODO: Tuxemon will not work with clamp_camera=True
         return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False)
 
     def loadevent(self, obj):

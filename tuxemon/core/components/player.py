@@ -101,6 +101,10 @@ class Player(object):
         self.ai = None  # Whether or not this player has AI associated with it
         self.sprite = {}  # The pyganim object that contains the player animations
 
+        self.walkrate = 3.75 # The rate in tiles per second the player is walking
+        self.runrate = 7.35 # The rate in tiles per second the player is running
+        self.moverate = self.walkrate  # The movement rate in pixels per second
+
         # TODO: move out so class can be used headless
         self.standing = {}
         self.load_sprites()
@@ -117,15 +121,11 @@ class Player(object):
         self.walking = False  # Whether or not the player is walking
         self.running = False  # Whether or not the player is running
         self.move_direction = "down"  # This is a string of the direction we're moving if we're in the middle of moving
-        self.direction = {"up": False,
-                          "down": False,
-                          "left": False,
-                          "right": False}  # What direction the player wants to move
+        self.direction = {} # What direction the player wants to move
         self.facing = "down"  # What direction the player is facing
+
         self.move_destination = Point2(0, 0)  # The player's destination location to move to
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
-        self.walkrate = 3.75 # The rate in tiles per second the player is walking
-        self.runrate = 7.35 # The rate in tiles per second the player is running
         self.tile_pos = Point2(0, 0)
 
         # physics.  eventually move to a mixin/component
@@ -136,7 +136,9 @@ class Player(object):
         # end physics
 
         self.rect = pygame.Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
-        self.moverate = self.walkrate  # The movement rate in pixels per second
+
+        # required to initialize everything
+        self.stop()
 
     def load_sprites(self):
         """ Load sprite graphics
@@ -152,11 +154,15 @@ class Player(object):
 
         self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
 
+        # avoid cutoff frames when steps don't line up with tile movement
+        frames = 3
+        frame_duration = (1000/self.walkrate) / frames / 1000 * 2
+
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
             images_and_durations = [('sprites/%s_%s.%s.png' % (self.sprite_name, anim_type, str(num).rjust(3, '0')),
-                                     prepare.CONFIG.player_animation_speed) for num in range(4)]
+                                     frame_duration) for num in range(4)]
 
             # Loop through all of our animations and get the top and bottom subsurfaces.
             frames = []
@@ -166,14 +172,13 @@ class Player(object):
 
             # Create an animation set for the top and bottom halfs of our sprite, so we can draw
             # them on different layers.
-            self.sprite[anim_type] = pyganim.PygAnimation(frames)
+            self.sprite[anim_type] = pyganim.PygAnimation(frames, loop=True)
 
         # Have the animation objects managed by a conductor.
         # With the conductor, we can call play() and stop() on all the animtion
         # objects at the same time, so that way they'll always be in sync with each
         # other.
         self.moveConductor = pyganim.PygConductor(self.sprite)
-        self.moveConductor.play()
 
     def move(self, time_passed_seconds, game):
         """ Draws text to the current menu object
@@ -204,6 +209,11 @@ class Player(object):
             if self.moving:
                 self._continue_move(c)
                 self._force_continue_move(collision_dict)
+
+                # test again, since may have stopped above
+                if self.moving:
+                    v = dirs[self.move_direction]
+                    self.velocity3 = self.moverate * v
             else:
                 self._check_move(c)
 
@@ -226,6 +236,8 @@ class Player(object):
         return not self.velocity3 == (0, 0, 0)
 
     def stop(self):
+        self.moveConductor.stop()
+        self.move_direction = None
         self.direction['up'] = False
         self.direction['down'] = False
         self.direction['left'] = False
@@ -270,14 +282,23 @@ class Player(object):
         remaining = self.start_position.distance(self.tile_pos)
         reached = dest_dist <= remaining
 
+        # prevent issues when changing facing while walking
+        self.facing = self.move_direction
+
         if reached:
             self.set_position(self.move_destination)
-            for direction, held in self.direction.items():
-                if held and direction not in blocked_directions:
-                    self.move_one_tile(direction)
-                    break
+            if self.direction[self.move_direction]:
+                if self.move_direction in blocked_directions:
+                    self.stop()
+                else:
+                    self.move_one_tile(self.move_direction)
             else:
-                self.stop()
+                for direction, held in self.direction.items():
+                    if held and direction not in blocked_directions:
+                        self.move_one_tile(direction)
+                        break
+                else:
+                    self.stop()
 
     def _force_continue_move(self, collision_dict):
         pos = nearest(self.tile_pos)
@@ -299,10 +320,12 @@ class Player(object):
         pos = Point2(*nearest(self.tile_pos))
         v = dirs[direction]
         self.start_position = pos
-        self.moveConductor.play()
+        if self.moveConductor.isStopped():
+            self.moveConductor.play()
         self.velocity3 = self.moverate * v
         self.move_destination = pos + (v.x, v.y)
         self.move_direction = direction
+        self.facing = direction
         self.pos_update()
 
     def move_to(self, position, speed):
@@ -404,11 +427,10 @@ class Player(object):
     def collision_check(self, position, collision_dict, collision_lines_map):
         """Checks collision tiles around the player.
 
-        :param player_pos: An (x, y) list of the player's current tile position. Must be an
-            integer.
+        :param position: An (x, y) list of the player's current tile position.
         :param collision_dict: A dictionary object of (x, y) coordinates that are collidable.
 
-        :type player_pos: List
+        :type position: List
         :type collision_dict: Dictionary
 
         :rtype: List

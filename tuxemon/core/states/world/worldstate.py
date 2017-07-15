@@ -429,9 +429,11 @@ class WorldState(state.State):
 
         # Handle tile based movement for the player
         if self.shift_held:
-            self.player1.moverate = self.player1.runrate
+            self.player1.running = True
+            self.player1.walking = False
         else:
-            self.player1.moverate = self.player1.walkrate
+            self.player1.running = False
+            self.player1.walking = True
 
         # Set the global_x/y when the player moves around
         self.player1.move(self.time_passed_seconds, self)

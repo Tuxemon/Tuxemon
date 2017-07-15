@@ -36,7 +36,6 @@ import os
 
 import pygame
 
-from core import prepare
 from core.components import db, pyganim
 from core.components.euclid import Point2, Point3, Vector3
 from core.components.locale import translator
@@ -100,6 +99,7 @@ class Player(object):
 
         self.ai = None  # Whether or not this player has AI associated with it
         self.sprite = {}  # The pyganim object that contains the player animations
+        self.update_location = False
 
         self.walkrate = 3.75 # The rate in tiles per second the player is walking
         self.runrate = 7.35 # The rate in tiles per second the player is running
@@ -156,7 +156,7 @@ class Player(object):
 
         # avoid cutoff frames when steps don't line up with tile movement
         frames = 3
-        frame_duration = (1000/self.walkrate) / frames / 1000 * 2
+        frame_duration = (1000 / self.walkrate) / frames / 1000 * 2
 
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
@@ -217,6 +217,17 @@ class Player(object):
             else:
                 self._check_move(c)
 
+                # if not self.moving:
+                #     if self.isplayer and self.tile_pos != self.final_move_dest:
+                #         self.update_location = True
+
+                # # Reset our directions after moving.
+                # if not self.isplayer:
+                #     self.direction["up"] = False
+                #     self.direction["down"] = False
+                #     self.direction["left"] = False
+                #     self.direction["right"] = False
+
     # === PHYSICS START ================================================================
 
     def update_physics(self, td):
@@ -235,7 +246,20 @@ class Player(object):
     def moving(self):
         return not self.velocity3 == (0, 0, 0)
 
+    def suppress_movement(self):
+        """ Stop movement, while keeping track of keys
+
+        :return:
+        """
+        self.velocity3.x = 0
+        self.velocity3.y = 0
+        self.velocity3.z = 0
+
     def stop(self):
+        """ Completely stop all movement, reset keys
+
+        :return:
+        """
         self.moveConductor.stop()
         self.set_position(nearest(self.position3))
         self.move_direction = None
@@ -262,16 +286,7 @@ class Player(object):
         for direction, pressed in self.direction.items():
             if pressed and direction not in blocked_directions:
                 self.move_one_tile(direction)
-
-                # break to ensure only one direction is processed
-                break
-
-                # # If we're not holding down an arrow key and the player is not moving, stop the animation
-                # # and draw the standing gfx
-                # if not self.moving:
-                #     self.moveConductor.stop()
-                #     if self.isplayer and self.tile_pos != self.final_move_dest:
-                #         self.update_location = True
+                break # break to ensure only one direction is processed
 
     def _continue_move(self, blocked_directions):
         """ Here we're continuing a move it we're in the middle of one already
@@ -303,7 +318,6 @@ class Player(object):
 
     def _force_continue_move(self, collision_dict):
         pos = nearest(self.tile_pos)
-
         if pos in collision_dict:
             direction_next = collision_dict[pos]["continue"]
             self.move_one_tile(direction_next)
@@ -413,6 +427,8 @@ class Player(object):
 
         # Get all the NPC's tile positions so we can check for collisions
         for npc in world.get_all_entities():
+
+            # don't check collisions with self
             if npc is self:
                 continue
 
@@ -641,7 +657,6 @@ class Npc(Player):
         super(Npc, self).__init__(*args, **kwargs)
         self.behavior = "wander"
         self.isplayer = False
-        self.update_location = False
         self.interactions = []  # List of ways player can interact with the Npc
 
     def move(self, time_passed_seconds, game):

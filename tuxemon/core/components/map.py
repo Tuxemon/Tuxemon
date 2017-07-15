@@ -299,7 +299,7 @@ class Map(object):
             logger.debug(cond_data)
             conds.append(cond_data)
 
-        return EventObject(obj.id, x, y, conds, acts)
+        return EventObject(obj.id, x, y, w, h, conds, acts)
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with

@@ -50,6 +50,8 @@ event_fields = [
     "id",
     "x",
     "y",
+    "w",
+    "h",
     "conds",
     "acts"]
 

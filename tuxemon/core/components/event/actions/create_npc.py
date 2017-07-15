@@ -59,7 +59,7 @@ class CreateNpcAction(EventAction):
         behavior = self.parameters.behavior
 
         # Create a new NPC object
-        npc = player.Npc(sprite_name=animations, slug=slug)
+        npc = player.Npc(slug)
 
         # Set the NPC object's variables
         npc.set_position((pos_x, pos_y))

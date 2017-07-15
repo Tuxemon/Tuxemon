@@ -44,6 +44,14 @@ from core.components.game_event import GAME_EVENT, INPUT_EVENT
 logger = logging.getLogger(__name__)
 
 
+keymap = {
+    pygame.K_UP: "up",
+    pygame.K_DOWN: "down",
+    pygame.K_LEFT: "left",
+    pygame.K_RIGHT: "right",
+
+}
+
 class WorldState(state.State):
     """ The state responsible for the world game play
     """
@@ -100,13 +108,6 @@ class WorldState(state.State):
         self.delayed_facing = None
 
         ######################################################################
-        #                          Collision Map                             #
-        ######################################################################
-
-        # If we want to display the collision map for debug purposes
-        self.collision_tile = None
-
-        ######################################################################
         #                       Fullscreen Animations                        #
         ######################################################################
 
@@ -146,16 +147,6 @@ class WorldState(state.State):
 
         self.map_animations = dict()
 
-    def setup_collision_map_debug(self):
-        """ Call after changing maps
-
-        :return:
-        """
-        self.collision_tile = pygame.Surface(
-            (self.tile_size[0], self.tile_size[1]))
-        self.collision_tile.set_alpha(128)
-        self.collision_tile.fill((255, 0, 0))
-
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
 
@@ -168,9 +159,6 @@ class WorldState(state.State):
         def fade_in():
             self.trigger_fade_in(duration)
             self.task(cleanup, duration)
-
-        # stop player movement
-        self.player1.stop()
 
         # cancel any fades that may be going one
         self.remove_animations_of(self)
@@ -210,6 +198,7 @@ class WorldState(state.State):
         :return: None
         """
         if self.delayed_teleport:
+            self.player1.stop()
             self.player1.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
@@ -298,18 +287,10 @@ class WorldState(state.State):
 
             # If we receive an arrow key press, set the facing and
             # moving direction to that direction
-            if event.key == pygame.K_UP:
-                self.player1.direction["up"] = True
-                self.player1.facing = "up"
-            if event.key == pygame.K_DOWN:
-                self.player1.direction["down"] = True
-                self.player1.facing = "down"
-            if event.key == pygame.K_LEFT:
-                self.player1.direction["left"] = True
-                self.player1.facing = "left"
-            if event.key == pygame.K_RIGHT:
-                self.player1.direction["right"] = True
-                self.player1.facing = "right"
+            for key, direction in keymap.items():
+                if event.key == key:
+                    self.player1.direction[direction] = True
+                    self.player1.facing = direction
 
             if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
                 # TODO: Check to see if we have network players to interact with.
@@ -321,17 +302,9 @@ class WorldState(state.State):
         if event.type == pygame.KEYUP:
             # If the player lets go of the key, set the moving
             # direction to false
-            if event.key == pygame.K_UP:
-                self.player1.direction["up"] = False
-
-            if event.key == pygame.K_DOWN:
-                self.player1.direction["down"] = False
-
-            if event.key == pygame.K_LEFT:
-                self.player1.direction["left"] = False
-
-            if event.key == pygame.K_RIGHT:
-                self.player1.direction["right"] = False
+            for key, direction in keymap.items():
+                if event.key == key:
+                    self.player1.direction[direction] = False
 
         # Handle text input events
         if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
@@ -383,7 +356,8 @@ class WorldState(state.State):
                 world_surfaces.append(frame)
 
         # center the map
-        center = self.project(self.player1.tile_pos)
+        from core.tools import nearest
+        center = nearest(self.project(self.player1.tile_pos))
         self.current_map.renderer.center(center)
 
         # position the surfaces correctly
@@ -395,7 +369,7 @@ class WorldState(state.State):
             # project to pixel/screen coords
             c = self.get_pos_from_tilepos(c)
             # offset for center and image height
-            c = c[0], c[1] - s.get_height() // 2
+            c = nearest((c[0], c[1] - s.get_height() // 2))
             screen_surfaces.append((s, c, l))
 
         # draw the map and sprites
@@ -435,9 +409,6 @@ class WorldState(state.State):
             self.player1.running = False
             self.player1.walking = True
 
-        # Set the global_x/y when the player moves around
-        self.player1.move(self.time_passed_seconds, self)
-
     def get_pos_from_tilepos(self, tile_position):
         """ Returns the map pixel coordinate based on tile position.
 
@@ -465,15 +436,8 @@ class WorldState(state.State):
         :return:
         """
         # Draw any game NPC's
-        for npc in self.npcs.values():
+        for npc in self.get_all_entities():
             npc.move(self.time_passed_seconds, self)
-
-            # Reset our directions after moving.
-            if not npc.isplayer:
-                npc.direction["up"] = False
-                npc.direction["down"] = False
-                npc.direction["left"] = False
-                npc.direction["right"] = False
 
             if npc.update_location:
                 char_dict = {"tile_pos": npc.final_move_dest}
@@ -489,18 +453,29 @@ class WorldState(state.State):
         """
 
         # For readability
-        x = box[0]
-        y = box[1]
+        x, y = self.get_pos_from_tilepos(box)
         tw, th = self.tile_size
 
-        return pygame.Rect(x * tw, y * th, tw, th)
+        return pygame.Rect(x, y, tw, th)
 
     def _npc_to_pgrect(self, npc):
         """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
         """
         return pygame.Rect(npc.position, self.tile_size)
 
+    ####################################################
+    #                Debug Drawing                     #
+    ####################################################
     def debug_drawing(self, surface):
+        from pygame.gfxdraw import box
+
+        # draw events
+        for event in self.game.events:
+            topleft = self.get_pos_from_tilepos((event.x, event.y))
+            size = self.project((event.w, event.h))
+            rect = topleft, size
+            box(surface, rect, (0, 255, 0, 128))
+
         # We need to iterate over all collidable objects.  So, let's start
         # with the walls/collision boxes.
         box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
@@ -509,28 +484,23 @@ class WorldState(state.State):
         npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
 
         # draw noc and wall collision tiles
+        red = (255, 0, 0, 128)
         for item in itertools.chain(box_iter, npc_iter):
-            surface.blit(self.collision_tile, (item[0], item[1]))
-
-        # draw events
-        for event in self.game.events:
-            rect = self._collision_box_to_pgrect((event.x, event.y))
-            surface.fill((0, 255, 255, 128), rect)
-
-        x, y = self.get_pos_from_tilepos(self.player1.tile_pos)
+            box(surface, item, red)
 
         # draw collision check boxes
+        x, y = self.get_pos_from_tilepos(self.player1.tile_pos)
         if self.player1.direction["up"]:
-            surface.blit(self.collision_tile, (x, y - self.tile_size[1]))
+            box(surface, ((x, y - self.tile_size[1]), self.tile_size), red)
 
         if self.player1.direction["down"]:
-            surface.blit(self.collision_tile, (x, y + self.tile_size[1]))
+            box(surface, ((x, y + self.tile_size[1]), self.tile_size), red)
 
         if self.player1.direction["left"]:
-            surface.blit(self.collision_tile, (x - self.tile_size[0], y))
+            box(surface, ((x - self.tile_size[0], y), self.tile_size), red)
 
         if self.player1.direction["right"]:
-            surface.blit(self.collision_tile, (x + self.tile_size[0], y))
+            box(surface, ((x + self.tile_size[0], y), self.tile_size), red)
 
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
@@ -608,6 +578,7 @@ class WorldState(state.State):
         if self.in_transition:
             self.transition_surface.set_alpha(self.transition_alpha)
             surface.blit(self.transition_surface, (0, 0))
+            self.player1.suppress_movement()
 
     ####################################################
     #             Map Change/Load Functions            #
@@ -643,10 +614,6 @@ class WorldState(state.State):
         # Clear out any existing NPCs
         self.npcs = {}
         self.npcs_off_map = {}
-
-        # For drawing the collision map
-        if prepare.CONFIG.collision_map == "1":
-            self.setup_collision_map_debug()
 
     def load_map(self, map_name):
         """ Returns map data as a dictionary to be used for map changing and preloading

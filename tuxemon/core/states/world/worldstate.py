@@ -521,13 +521,13 @@ class WorldState(state.State):
         if self.player1.direction["up"]:
             surface.blit(self.collision_tile, (x, y - self.tile_size[1]))
 
-        elif self.player1.direction["down"]:
+        if self.player1.direction["down"]:
             surface.blit(self.collision_tile, (x, y + self.tile_size[1]))
 
-        elif self.player1.direction["left"]:
+        if self.player1.direction["left"]:
             surface.blit(self.collision_tile, (x - self.tile_size[0], y))
 
-        elif self.player1.direction["right"]:
+        if self.player1.direction["right"]:
             surface.blit(self.collision_tile, (x + self.tile_size[0], y))
 
     def midscreen_animations(self, surface):

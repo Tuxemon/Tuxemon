@@ -747,7 +747,7 @@ class PygameControl(Control):
     pass
 
 
-class HeadlessControl(StateManager):
+class HeadlessControl(Control, StateManager):
     """Control class for headless server. Contains the game loop, and contains
     the event_loop which passes events to States as needed.
 

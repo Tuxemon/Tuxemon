@@ -237,6 +237,7 @@ class Player(object):
 
     def stop(self):
         self.moveConductor.stop()
+        self.set_position(nearest(self.position3))
         self.move_direction = None
         self.direction['up'] = False
         self.direction['down'] = False

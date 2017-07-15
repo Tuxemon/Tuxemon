@@ -47,11 +47,20 @@ trans = translator.translate
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
+# direction => vector
 dirs = {
     "up": Vector3(0, -1, 0),
     "down": Vector3(0, 1, 0),
     "left": Vector3(-1, 0, 0),
     "right": Vector3(1, 0, 0),
+}
+
+# complimentary directions
+pairs = {
+    "up": "down",
+    "down": "up",
+    "left": "right",
+    "right": "left"
 }
 
 facing = "front", "back", "left", "right"
@@ -166,15 +175,6 @@ class Player(object):
         self.moveConductor = pyganim.PygConductor(self.sprite)
         self.moveConductor.play()
 
-    def meta_move(self, time_passed_seconds, game):
-        self.moverate = self.runrate if self.running else self.walkrate
-
-        # if the self has a path, move it along its path
-        if self.path:
-            self.move_by_path()
-
-        self.move(time_passed_seconds, game)
-
     def move(self, time_passed_seconds, game):
         """ Draws text to the current menu object
 
@@ -183,21 +183,29 @@ class Player(object):
         :param game: The Tuxemon game instance itself.
 
         :type time_passed_seconds: Float
-        :type game: core.control.Control
+        :type game: core.states.world.worldstate.WorldState
         """
         self.game = game
+        self.moverate = self.runrate if self.running else self.walkrate
+
         self.update_physics(time_passed_seconds)
-        collision_dict = self.get_collision_dict(game)
 
-        # If the destination tile won't collide with anything, then proceed with moving.
-        pos = nearest(self.tile_pos)
-        c = self.collision_check(pos, collision_dict, game.collision_lines_map)
+        # if the self has a path, move it along its path
+        if self.path:
+            self.move_by_path()
 
-        if self.moving:
-            self._continue_move(c)
-            self._force_continue_move(collision_dict)
         else:
-            self._check_move(c)
+            collision_dict = self.get_collision_dict(game)
+
+            # If the destination tile won't collide with anything, then proceed with moving.
+            pos = nearest(self.tile_pos)
+            c = self.collision_check(pos, collision_dict, game.collision_lines_map)
+
+            if self.moving:
+                self._continue_move(c)
+                self._force_continue_move(collision_dict)
+            else:
+                self._check_move(c)
 
     # === PHYSICS START ================================================================
 

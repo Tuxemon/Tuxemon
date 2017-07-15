@@ -55,8 +55,6 @@ class WorldState(state.State):
         self.screen = self.game.screen
         self.screen_rect = prepare.SCREEN_RECT
         self.resolution = prepare.SCREEN_SIZE
-
-        # Set the native tile size so we know how much to scale
         self.tile_size = prepare.TILE_SIZE
 
         #####################################################################
@@ -106,12 +104,7 @@ class WorldState(state.State):
         ######################################################################
 
         # If we want to display the collision map for debug purposes
-        if prepare.CONFIG.collision_map == "1":
-            # For drawing the collision map
-            self.collision_tile = pygame.Surface(
-                (self.tile_size[0], self.tile_size[1]))
-            self.collision_tile.set_alpha(128)
-            self.collision_tile.fill((255, 0, 0))
+        self.collision_tile = None
 
         ######################################################################
         #                       Fullscreen Animations                        #
@@ -152,6 +145,16 @@ class WorldState(state.State):
             0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
 
         self.map_animations = dict()
+
+    def setup_collision_map_debug(self):
+        """ Call after changing maps
+
+        :return:
+        """
+        self.collision_tile = pygame.Surface(
+            (self.tile_size[0], self.tile_size[1]))
+        self.collision_tile.set_alpha(128)
+        self.collision_tile.fill((255, 0, 0))
 
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
@@ -461,7 +464,7 @@ class WorldState(state.State):
         """
         # Draw any game NPC's
         for npc in self.npcs.values():
-            npc.meta_move(self.time_passed_seconds, self)
+            npc.move(self.time_passed_seconds, self)
 
             # Reset our directions after moving.
             if not npc.isplayer:
@@ -477,7 +480,7 @@ class WorldState(state.State):
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for npc in self.npcs_off_map.values():
-            npc.meta_move(self.time_passed_seconds, self)
+            npc.move(self.time_passed_seconds, self)
 
     def _collision_box_to_pgrect(self, box):
         """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
@@ -638,6 +641,10 @@ class WorldState(state.State):
         # Clear out any existing NPCs
         self.npcs = {}
         self.npcs_off_map = {}
+
+        # For drawing the collision map
+        if prepare.CONFIG.collision_map == "1":
+            self.setup_collision_map_debug()
 
     def load_map(self, map_name):
         """ Returns map data as a dictionary to be used for map changing and preloading

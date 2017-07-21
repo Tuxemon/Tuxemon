@@ -88,6 +88,7 @@
    <properties>
     <property name="act1" value="create_npc npc_professor,7,7,professor,stand"/>
     <property name="act2" value="set_variable tuxchoice:welcome"/>
+    <property name="act3" value="npc_move npc_professor,10,12,1"/>
     <property name="cond1" value="not variable_set tuxchoice:end"/>
     <property name="cond2" value="not npc_exists npc_professor"/>
     <property name="cond3" value="not variable_set tuxchoice:Hydrone"/>

@@ -635,7 +635,7 @@ class Control(StateManager):
         # BUG: the following line is required for low resolution
         # due to integer truncation, low scale movement will never work
         # and a clock, not limited by fps will never work
-        time_delta = self.clock.tick(self.fps * 2) / 1000.0
+        time_delta = self.clock.tick(self.fps) / 1000.0
         max_frame_time = 1./self.fps
 
         # prevent odd behavior if game lags

@@ -34,7 +34,7 @@ class NpcMoveAction(EventAction):
 
     Direction parameter can be: "left", "right", "up", or "down"
     """
-    name = "npc_face"
+    name = "npc_move"
     valid_parameters = [
         (str, "npc_slug"),
         (int, "pos_x"),
@@ -44,7 +44,5 @@ class NpcMoveAction(EventAction):
 
     def start(self):
         self.npc = get_npc(self.game, self.parameters.npc_slug)
-        self.npc.move_to((self.parameters.pos_x, self.parameters.pos_y), self.parameters.speed)
-
-    def update(self):
-        pass
+        # self.npc.move_to((self.parameters.pos_x, self.parameters.pos_y), self.parameters.speed)
+        self.npc.pathfind((self.parameters.pos_x, self.parameters.pos_y), self.game)

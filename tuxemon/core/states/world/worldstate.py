@@ -39,6 +39,7 @@ from six.moves import map as imap
 from core import prepare, state
 from core.components import map, networking
 from core.components.game_event import GAME_EVENT, INPUT_EVENT
+from core.tools import nearest
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -356,7 +357,6 @@ class WorldState(state.State):
                 world_surfaces.append(frame)
 
         # center the map
-        from core.tools import nearest
         center = nearest(self.project(self.player1.tile_pos))
         self.current_map.renderer.center(center)
 
@@ -380,6 +380,17 @@ class WorldState(state.State):
             self.debug_drawing(surface)
 
     ####################################################
+    #            Pathfinding and Collisions            #
+    ####################################################
+    def get_exits(self, position):
+        """ Return directions that can be moved into
+        
+        
+        
+        :return: 
+        """
+
+    ####################################################
     #                Player Movement                   #
     ####################################################
     def player_movement(self):
@@ -390,7 +401,6 @@ class WorldState(state.State):
 
         :rtype: None
         :returns: None
-
         """
         # Get all the keys pressed for modifiers only!
         pressed = list(pygame.key.get_pressed())
@@ -654,7 +664,7 @@ class WorldState(state.State):
 
         """
         collision_dict = self.player1.get_collision_dict(self)
-        player_tile_pos = (int(round(self.player1.tile_pos[0])), int(round(self.player1.tile_pos[1])))
+        player_tile_pos = nearest(self.player1.tile_pos)
         collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
         if not collisions:
             pass

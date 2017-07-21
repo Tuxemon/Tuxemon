@@ -55,7 +55,6 @@ class CreateNpcAction(EventAction):
         # Get the npc's parameters from the action
         pos_x = self.parameters.pos_x
         pos_y = self.parameters.pos_y
-        animations = self.parameters.animations
         behavior = self.parameters.behavior
 
         # Create a new NPC object

@@ -81,7 +81,10 @@ animation_mapping = {
 
 
 def proj(point):
-    return Point2(point.x, point.y)
+    try:
+        return Point2(point.x, point.y)
+    except AttributeError:
+        return point[0], point[1]
 
 
 # Class definition for the player.
@@ -94,6 +97,8 @@ class Player(object):
         npcs.load("npc")
         npc_data = npcs.lookup(npc_slug, table="npc")
 
+        print(npc_data)
+
         self.name = trans(npc_data["name_trans"])  # This is the player's name to be used in dialog
         self.sprite_name = npc_data["sprite_name"]  # Hold on the the string so it can be sent over the network
 
@@ -101,8 +106,8 @@ class Player(object):
         self.sprite = {}  # The pyganim object that contains the player animations
         self.update_location = False
 
-        self.walkrate = 3.75 # The rate in tiles per second the player is walking
-        self.runrate = 7.35 # The rate in tiles per second the player is running
+        self.walkrate = 3.75  # The rate in tiles per second the player is walking
+        self.runrate = 7.35  # The rate in tiles per second the player is running
         self.moverate = self.walkrate  # The movement rate in pixels per second
 
         # TODO: move out so class can be used headless
@@ -116,13 +121,13 @@ class Player(object):
         self.party_limit = 6  # The maximum number of tuxemon this player can hold 1 for testing
 
         self.game = None
-        self.isplayer = True
         self.path = None
+        self.direction = {}  # What direction the player wants to move
+        self.isplayer = True
+        self.facing = "down"  # What direction the player is facing
         self.walking = False  # Whether or not the player is walking
         self.running = False  # Whether or not the player is running
         self.move_direction = "down"  # This is a string of the direction we're moving if we're in the middle of moving
-        self.direction = {} # What direction the player wants to move
-        self.facing = "down"  # What direction the player is facing
 
         self.move_destination = Point2(0, 0)  # The player's destination location to move to
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
@@ -203,8 +208,7 @@ class Player(object):
             collision_dict = self.get_collision_dict(game)
 
             # If the destination tile won't collide with anything, then proceed with moving.
-            pos = nearest(self.tile_pos)
-            c = self.collision_check(pos, collision_dict, game.collision_lines_map)
+            c = self.collision_check(collision_dict, game.collision_lines_map)
 
             if self.moving:
                 self._continue_move(c)
@@ -286,7 +290,7 @@ class Player(object):
         for direction, pressed in self.direction.items():
             if pressed and direction not in blocked_directions:
                 self.move_one_tile(direction)
-                break # break to ensure only one direction is processed
+                break  # break to ensure only one direction is processed
 
     def _continue_move(self, blocked_directions):
         """ Here we're continuing a move it we're in the middle of one already
@@ -342,20 +346,6 @@ class Player(object):
         self.move_direction = direction
         self.facing = direction
         self.pos_update()
-
-    def move_to(self, position, speed):
-        """ Trigger NPC movement to the destination
-
-        * Only cardinal directions are guaranteed to work: left, right, up, down; no diagonals
-        * Probably won't work on Player
-
-        WIP
-
-        :param position: Destination
-        :type speed: int
-        :return:
-        """
-        pass
 
     def move_by_path(self):
         """
@@ -413,7 +403,9 @@ class Player(object):
         return [(get_frame(frame_dict, state), self.tile_pos, 2)]
 
     def get_collision_dict(self, world):
-        """Checks for collision tiles around the player.
+        """ Checks for collision tiles around the player.
+        
+        Slow operation.  Cache if possible.
 
         :type world: core.states.world.worldstate.WorldState
 
@@ -427,11 +419,6 @@ class Player(object):
 
         # Get all the NPC's tile positions so we can check for collisions
         for npc in world.get_all_entities():
-
-            # don't check collisions with self
-            if npc is self:
-                continue
-
             pos = nearest(npc.tile_pos)
             collision_dict[pos] = npc
 
@@ -441,8 +428,10 @@ class Player(object):
 
         return collision_dict
 
-    def collision_check(self, position, collision_dict, collision_lines_map):
-        """Checks collision tiles around the player.
+    def collision_check(self, collision_dict, collision_lines_map):
+        """ Checks collision tiles and NPCs' around the player.
+        
+        Slow operation.  Be sure to cache results.
 
         :param position: An (x, y) list of the player's current tile position.
         :param collision_dict: A dictionary object of (x, y) coordinates that are collidable.
@@ -455,62 +444,39 @@ class Player(object):
             e.g. ["down", "up"]
 
         """
+        # TODO: eventually move to Map Class (core/components/map.py)
         collisions = []
+        position = nearest(self.tile_pos)
 
-        current_pos = (position[0], position[1])
-        down_tile = (position[0], position[1] + 1)
-        up_tile = (position[0], position[1] - 1)
-        left_tile = (position[0] - 1, position[1])
-        right_tile = (position[0] + 1, position[1])
+        # don't check collisions with self
+        if npc is self:
+            continue
 
         # Check if the players current position has any limitations.
-        if current_pos in collision_dict and collision_dict[current_pos] != "None":
-            if not "down" in collision_dict[current_pos]["exit"]:
-                collisions.append("down")
-            if not "up" in collision_dict[current_pos]["exit"]:
-                collisions.append("up")
-            if not "left" in collision_dict[current_pos]["exit"]:
-                collisions.append("left")
-            if not "right" in collision_dict[current_pos]["exit"]:
-                collisions.append("right")
+        tile = collision_dict.get(position)
+        if tile is not None:
 
-        # Check to see if the tile below the player is a collision tile.
-        if down_tile in collision_dict:
-            if collision_dict[down_tile] != "None":  # Used for conditional collision zones
-                if not "up" in collision_dict[down_tile]['enter']:
-                    collisions.append("down")
-            else:
-                collisions.append("down")
+            try:
+                exits = tile["exit"]
+            except:
+                collisions.append(direction)
 
-        # Check to see if the tile above the player is a collision tile.
-        if up_tile in collision_dict:
-            if collision_dict[up_tile] != "None":  # Used for conditional collision zones
-                if not "down" in collision_dict[up_tile]['enter']:
-                    collisions.append("up")
             else:
-                collisions.append("up")
+                for direction in dirs:
+                    if direction not in exits:
+                        collisions.append(direction)
 
-        # Check to see if the tile to the left of the player is a collision tile.
-        if left_tile in collision_dict:
-            if collision_dict[left_tile] != "None":  # Used for conditional collision zones
-                if not "right" in collision_dict[left_tile]['enter']:
-                    collisions.append("left")
-            else:
-                collisions.append("left")
-
-        # Check to see if the tile to the right of the player is a collision tile.
-        if right_tile in collision_dict:
-            if collision_dict[right_tile] != "None":  # Used for conditional collision zones
-                if not "left" in collision_dict[right_tile]['enter']:
-                    collisions.append("right")
-            else:
-                collisions.append("right")
+        for direction, offset in dirs.items():
+            tile = proj(nearest(self.position3 + offset))
+            blocker = collision_dict.get(tile)
+            if blocker is not None:
+                collisions.append(direction)
 
         # From the players current tile, check to see if any nearby tile
         # is separated by a wall
-        for tile, direction in collision_lines_map:
-            if position == tile:
-                collisions.append(direction)
+        # for tile, direction in collision_lines_map:
+        #     if position == tile:
+        #         collisions.append(direction)
 
         # Return a list of all the collision tiles around the player.
         return collisions
@@ -581,9 +547,9 @@ class Player(object):
             starting_loc = nearest(self.tile_pos)
 
             pathnode = self.pathfind_r(dest,
-                                       [PathfindNode(starting_loc)], # queue
-                                       [], # visited
-                                       0, # depth (not a limit, just a counter)
+                                       [PathfindNode(starting_loc)],  # queue
+                                       [],  # visited
+                                       0,  # depth (not a limit, just a counter)
                                        game)
             if pathnode:
                 # traverse the node to get the path
@@ -605,12 +571,16 @@ class Player(object):
                              str(starting_loc) + " to " + str(dest) +
                              ". Are you sure that an obstacle-free path exists?")
 
+        print(self.path)
+
     def pathfind_r(self, dest, queue, visited, depth, game):
         # recursive breadth first search algorithm
 
+        print(dest, queue, visited, depth, game)
+
         if not queue:
-            # does reaching this case mean we exhausted the search? I think so
-            # which means there is no possible path
+            # does reaching this case mean we exhausted the search?
+            # I think so which means there is no possible path
             return False
 
         elif queue[0].get_value() == dest:
@@ -620,6 +590,7 @@ class Player(object):
         else:
             # sort the queue by node depth
             queue = sorted(queue, key=lambda x: x.get_depth())
+
             # pop next tile off queue
             next_node = queue.pop(0)
 
@@ -634,21 +605,28 @@ class Player(object):
             path = self.pathfind_r(dest, queue, visited, depth + 1, game)
             return path
 
-    def get_adjacent_tiles(self, curr_loc, game):
-        player_tile_x, player_tile_y = nearest(game.player1.tile_pos)
+    def get_adjacent_tiles(self, position, world):
+        """
+        
+        :param position: 
+        :type world: core.states.world.worldstate.WorldState 
+        :rtype: list 
+        """
+
+
+        player_tile_x, player_tile_y = nearest(world.player1.tile_pos)
         collision_map = dict(world.collision_map)
         collision_map[(player_tile_x, player_tile_y)] = "None"
-        blocked_directions = self.collision_check(curr_loc, collision_map, world.collision_lines_map)
+        blocked_directions = self.collision_check(position, collision_map, world.collision_lines_map)
         adj_tiles = []
-        curr_loc = (int(round(curr_loc[0])), int(round(curr_loc[1])))
         if "up" not in blocked_directions:
-            adj_tiles.append((curr_loc[0], curr_loc[1] - 1))
+            adj_tiles.append((position[0], position[1] - 1))
         if "down" not in blocked_directions:
-            adj_tiles.append((curr_loc[0], curr_loc[1] + 1))
+            adj_tiles.append((position[0], position[1] + 1))
         if "left" not in blocked_directions:
-            adj_tiles.append((curr_loc[0] - 1, curr_loc[1]))
+            adj_tiles.append((position[0] - 1, position[1]))
         if "right" not in blocked_directions:
-            adj_tiles.append((curr_loc[0] + 1, curr_loc[1]))
+            adj_tiles.append((position[0] + 1, position[1]))
         return adj_tiles
 
 
@@ -659,32 +637,32 @@ class Npc(Player):
         self.isplayer = False
         self.interactions = []  # List of ways player can interact with the Npc
 
-    def move(self, time_passed_seconds, game):
-
-        # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
-        # collisions.
-        npc_positions = set()
-        collision_dict = {}
-
-        # Get all the NPC's tile monsters_in_play so we can check for collisions.
-        for npc in game.npcs.values():
-            npc_pos = nearest(npc.tile_pos)
-            npc_positions.add(npc_pos)
-
-        # Make sure the NPC doesn't collide with the player too.
-        player_pos_x = int(round(game.player1.tile_pos[0]))
-        player_pos_y = int(round(game.player1.tile_pos[1]))
-        npc_positions.add((player_pos_x, player_pos_y))
-
-        # Combine our map collision tiles with our npc collision monsters_in_play
-        for pos in npc_positions:
-            collision_dict[pos] = "None"
-
-        for tile in game.collision_map:
-            collision_dict[tile] = game.collision_map[tile]
-
-        self._continue_move()
-        self._check_move(collision_dict, game)
+        # def move(self, time_passed_seconds, game):
+        #
+        #     # Create a temporary set of tile coordinates for NPCs. We'll use this to check for
+        #     # collisions.
+        #     npc_positions = set()
+        #     collision_dict = {}
+        #
+        #     # Get all the NPC's tile monsters_in_play so we can check for collisions.
+        #     for npc in game.npcs.values():
+        #         npc_pos = nearest(npc.tile_pos)
+        #         npc_positions.add(npc_pos)
+        #
+        #     # Make sure the NPC doesn't collide with the player too.
+        #     player_pos_x = int(round(game.player1.tile_pos[0]))
+        #     player_pos_y = int(round(game.player1.tile_pos[1]))
+        #     npc_positions.add((player_pos_x, player_pos_y))
+        #
+        #     # Combine our map collision tiles with our npc collision monsters_in_play
+        #     for pos in npc_positions:
+        #         collision_dict[pos] = "None"
+        #
+        #     for tile in game.collision_map:
+        #         collision_dict[tile] = game.collision_map[tile]
+        #
+        #     self._continue_move()
+        #     self._check_move(collision_dict, game)
 
 
 class PathfindNode(object):

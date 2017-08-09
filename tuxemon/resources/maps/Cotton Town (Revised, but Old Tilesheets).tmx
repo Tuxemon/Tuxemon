@@ -53,13 +53,13 @@
   <image source="../Old Tiled/Other tilesheets/city tiles.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="2179" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="gfx/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
  <tileset firstgid="3619" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
-  <image source="gfx/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
  </tileset>
  <tileset firstgid="3729" name="boxfont" tilewidth="16" tileheight="16" tilecount="78" columns="13">
-  <image source="gfx/boxfont.png" width="208" height="96"/>
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="96"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">

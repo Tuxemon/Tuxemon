@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -43,7 +42,6 @@ trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 # Class definition for the player.
 class Player(object):
@@ -437,7 +435,7 @@ class Player(object):
                 # somehow we are already at the next _plan step, just pop
                 self.path.pop()
         else:
-            print("self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving))
+            logger.debug("self.path=" + str(len(self.path)) + ", self.moving="+str(self.moving))
 
     # def draw(self, screen, layer):
     #     """Draws the player to the screen depending on whether or not they are moving or
@@ -652,7 +650,6 @@ class Player(object):
         """
 
         if len(self.monsters) >= self.party_limit:
-            print("Send to PCState")
             self.storage["monsters"].append(monster)
         else:
             self.monsters.append(monster)

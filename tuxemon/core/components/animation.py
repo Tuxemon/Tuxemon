@@ -1,3 +1,4 @@
+import logging
 import sys
 from collections import defaultdict
 from math import sqrt, cos, sin, pi
@@ -5,6 +6,8 @@ from math import sqrt, cos, sin, pi
 import pygame
 
 __all__ = ('Task', 'Animation', 'remove_animations_of')
+
+logger = logging.getLogger(__name__)
 
 ANIMATION_NOT_STARTED = 0
 ANIMATION_RUNNING = 1
@@ -75,8 +78,8 @@ class AnimBase(pygame.sprite.Sprite):
             when = self._valid_schedules[0]
 
         if when not in self._valid_schedules:
-            print('invalid time to schedule a callback')
-            print('valid:', self._valid_schedules)
+            logger.critical('invalid time to schedule a callback')
+            logger.critical('valid:', self._valid_schedules)
             raise ValueError
         self._callbacks[when].append(func)
 

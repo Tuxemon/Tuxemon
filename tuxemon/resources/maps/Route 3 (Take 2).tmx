@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="gfx/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
  <tileset firstgid="449" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="gfx/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
  <tileset firstgid="1889" name="Cave_Tiles_by_George_" tilewidth="16" tileheight="16" tilecount="154" columns="14">
-  <image source="gfx/Cave_Tiles_by_George_.png" width="224" height="181"/>
+  <image source="../gfx/tilesets/Cave_Tiles_by_George_.png" width="224" height="181"/>
  </tileset>
  <tileset firstgid="2043" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="gfx/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
  </tileset>
  <tileset firstgid="3043" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
-  <image source="gfx/Terrain_by_George.png" width="240" height="384"/>
+  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
  </tileset>
  <tileset firstgid="3403" name="Fancy_House" tilewidth="16" tileheight="16" tilecount="20" columns="5">
-  <image source="gfx/Fancy_House.png" width="80" height="72"/>
+  <image source="../gfx/tilesets/Fancy_House.png" width="80" height="72"/>
  </tileset>
  <tileset firstgid="3423" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
-  <image source="gfx/Superpowers_Tilesheet.png" width="448" height="640"/>
+  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="448" height="640"/>
  </tileset>
  <tileset firstgid="4543" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="gfx/Truck-red-all.png" width="96" height="96"/>
+  <image source="../gfx/tilesets/Truck-red-all.png" width="96" height="96"/>
  </tileset>
  <tileset firstgid="4579" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="gfx/boxfont.png" width="208" height="192"/>
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <tileset firstgid="4735" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
-  <image source="gfx/Interiors 2 by Redshrike.PNG" width="112" height="64"/>
+  <image source="../gfx/tilesets/Interiors 2 by Redshrike.PNG" width="112" height="64"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="csv">

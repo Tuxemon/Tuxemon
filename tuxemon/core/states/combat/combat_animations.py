@@ -22,7 +22,6 @@ trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 sprite_layer = 0
 hud_layer = 100

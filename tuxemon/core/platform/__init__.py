@@ -1,9 +1,14 @@
 """
 Put platform specific fixes here
 """
+from __future__ import absolute_import
+
+import logging
+from os.path import expanduser
+
 __all__ = ('android', 'init', 'mixer')
 
-from os.path import expanduser
+logger = logging.getLogger(__name__)
 
 _pygame = False
 
@@ -19,11 +24,12 @@ except ImportError:
 try:
     import pygame.mixer as mixer
 
-    global _pygame
     _pygame = True
+
 except ImportError:
     import android
     import android.mixer as mixer
+
 
 def init():
     """ Must be called before pygame.init() to enable low latency sound
@@ -31,11 +37,12 @@ def init():
     # reduce sound latency.  the pygame defaults were ok for 2001,
     # but these values are more acceptable for faster computers
     if _pygame:
-        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512)
+        logger.debug("pre-init pygame mixer")
+        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
+
 
 def get_config_path():
     if android:
         return "/sdcard/org.tuxemon"
     else:
         return expanduser("~")
-

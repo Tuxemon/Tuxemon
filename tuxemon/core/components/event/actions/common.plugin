@@ -1,9 +1,0 @@
-[Core]
-Name = Common
-Module = Common
-
-[Documentation]
-Author = Adam Chevalier
-Version = 1.0
-Website = http://www.tuxemon.org
-Description = Plugin containing utility functions common to multiple action plugins.

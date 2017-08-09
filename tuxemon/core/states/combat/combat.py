@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -51,7 +50,6 @@ trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
@@ -140,7 +138,7 @@ class CombatState(CombatAnimations):
         """ Update the combat state.  State machine is checked.
 
         General operation:
-        * determine what phase to execute
+        * determine what phase to update
         * if new phase, then run transition into new one
         * update the new phase, or the current one
         """
@@ -172,7 +170,7 @@ class CombatState(CombatAnimations):
 
         Part of state machine
         Only test and set new phase.
-        * Do not execute phase actions
+        * Do not update phase actions
         * Try not to modify any values
         * Return a phase name and phase will change
         * Return None and phase will not change
@@ -322,10 +320,10 @@ class CombatState(CombatAnimations):
 
     def get_combat_decision_from_ai(self, monster):
         """ Get ai action from a monster and enqueue it
-        
-        :param monster: 
-        :param opponents: 
-        :return: 
+
+        :param monster:
+        :param opponents:
+        :return:
         """
         # TODO: parties/teams/etc to choose opponents
         opponents = self.monsters_in_play[self.players[0]]
@@ -334,12 +332,12 @@ class CombatState(CombatAnimations):
 
     def sort_action_queue(self):
         """ Sort actions in the queue according to game rules
-        
+
         * Swap actions are always first
         * Techniques that damage are sorted by monster speed
         * Items are sorted by trainer speed
-        
-        :return: 
+
+        :return:
         """
 
         def rank_action(action):
@@ -347,7 +345,7 @@ class CombatState(CombatAnimations):
             try:
                 primary_order = sort_order.index(sort)
             except IndexError:
-                print("unsortable action: ", action)
+                logger.error("unsortable action: ", action)
                 primary_order = -1
 
             if sort == 'meta':
@@ -541,10 +539,10 @@ class CombatState(CombatAnimations):
 
     def rewrite_action_queue_target(self, original, new):
         """ Used for swapping monsters
-        
-        :param original: 
-        :param new: 
-        :return: 
+
+        :param original:
+        :param new:
+        :return:
         """
         # rewrite actions in the queue to target the new monster
         for index, action in enumerate(self._action_queue):
@@ -554,13 +552,13 @@ class CombatState(CombatAnimations):
 
     def remove_monster_from_play(self, trainer, monster):
         """ Remove monster from play without fainting it
-        
+
         * If another monster has targeted this monster, it can change action
         * Will remove actions as well
         * currently for 'swap' technique
-        
-        :param monster: 
-        :return: 
+
+        :param monster:
+        :return:
         """
         self.remove_monster_actions_from_queue(monster)
         self.animate_monster_faint(monster)
@@ -821,8 +819,8 @@ class CombatState(CombatAnimations):
 
         This is a temporary fix for now.  Expected to be called by the command menu.
 
-        :param player: 
-        :return: 
+        :param player:
+        :return:
         """
         # TODO: non SP things
         del self.monsters_in_play[player]
@@ -836,14 +834,8 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue = list()
 
-        contexts = {}
-        event_engine = self.game.event_engine
-        fadeout_action = namedtuple("action", ["type", "parameters"])
-        fadeout_action.type = "fadeout_music"
-        fadeout_action.parameters = [1000]
-        event_engine.actions["fadeout_music"]["method"](self.game, fadeout_action, contexts)
-        for key in contexts:
-            contexts[key].execute(game)
+        # fade music out
+        self.game.event_engine.execute_action("fadeout_music", [1000])
 
         # remove any menus that may be on top of the combat state
         while self.game.current_state is not self:

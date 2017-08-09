@@ -9,7 +9,6 @@ from core.state import State
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("{} successfully imported".format(__name__))
 
 
 class FlashTransition(State):

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="16" tilewidth="16" tileheight="16" nextobjectid="39">
+ <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
+  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="448" height="640"/>
+ </tileset>
+ <tileset firstgid="1121" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="2433" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="3873" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
+  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
+ </tileset>
+ <tileset firstgid="3923" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="4033" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
+ </tileset>
+ <tileset firstgid="4318" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
+  <image source="../gfx/tilesets/Stairs.png" width="128" height="48"/>
+ </tileset>
+ <tileset firstgid="4342" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/Plants.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="4358" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="4858" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+  <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
+ </tileset>
+ <tileset firstgid="5518" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/Kitchen.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="5534" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="5622" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="6622" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
+ </tileset>
+ <tileset firstgid="6832" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ </tileset>
+ <tileset firstgid="6886" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/Furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="6958" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/Electronics.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="6974" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ </tileset>
+ <tileset firstgid="7074" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
+ </tileset>
+ <tileset firstgid="7158" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="16">
+  <data encoding="csv">
+6622,6628,6628,0,6668,6656,6668,6668,6668,6661,6628,6628,6628,6628,6624,
+6637,6643,6643,0,6683,6671,6683,6683,6683,6680,6643,6643,6643,6643,6639,
+6637,6845,6845,6845,6845,6686,6869,6869,6869,6680,6869,6869,6869,6869,6639,
+6637,5581,5581,5581,5581,5581,6869,6869,6869,6680,6869,6869,6869,6869,6639,
+6637,6845,6698,6668,6668,6668,6668,6656,6668,6685,6668,6668,6668,6668,6699,
+6637,6845,6682,6683,6683,6683,6683,6670,6683,6683,6683,6683,6683,6683,6639,
+6637,6845,6845,6845,0,6845,6845,6670,6845,6845,6845,6845,6845,6845,6639,
+6637,6845,6655,6845,0,0,6845,6670,6845,6845,6845,6845,6845,6845,6639,
+6637,6845,6741,6668,6668,6668,6668,2147490389,6845,6845,6845,6845,6845,6845,6639,
+6637,6845,6682,6683,6683,6683,6683,6684,6845,6845,6845,6845,6845,6845,6639,
+6637,6845,6845,6845,6845,6845,6845,6845,6845,6845,6845,6845,6845,6845,6639,
+6652,6845,6698,6668,6668,6668,6668,6624,0,0,0,0,0,0,0,
+6652,6845,6682,6683,6683,6683,6683,6639,0,0,0,0,0,0,0,
+6652,6845,6845,6845,6845,6845,6845,6639,0,0,0,0,0,0,0,
+6652,6845,6845,6845,6845,6845,6845,6639,0,0,0,0,0,0,0,
+6652,6845,6845,6845,6845,6845,6845,6654,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Tile Layer 4" width="15" height="16">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,3941,0,0,0,0,
+0,0,0,0,0,6868,0,0,0,0,0,0,0,0,0,
+0,0,0,0,6226,0,0,0,0,6226,0,0,0,0,0,
+0,0,0,0,6266,0,0,0,0,6266,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6832,6833,6833,6833,6833,6834,0,
+0,0,0,0,0,0,0,0,6841,6842,6842,6842,6842,6843,0,
+0,0,0,6226,0,0,6226,0,6841,6842,6842,6842,6842,6843,0,
+0,0,0,6266,0,0,6266,0,6841,6842,6842,6842,6842,6843,0,
+0,0,0,0,0,0,0,0,6850,6851,6851,6851,6851,6852,0,
+0,0,0,0,6226,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,6266,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="16">
+  <data encoding="csv">
+0,6668,6668,6668,0,0,0,0,0,0,0,5870,5871,0,0,
+0,6683,6683,6683,2147490755,0,5519,0,4384,0,0,5910,5911,0,0,
+0,0,0,0,2147490762,0,5523,4416,4404,0,7107,0,0,0,0,
+0,6845,6845,6845,6845,6846,0,0,0,0,7114,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,6927,5681,0,0,0,7130,5634,5635,7134,0,
+0,0,6844,7091,6845,6939,5721,0,0,0,7137,0,0,7141,0,
+0,0,0,7098,6845,6845,5761,0,0,0,7151,7152,7154,7155,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,7074,7075,7076,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,6862,6863,6863,6863,6864,0,0,0,0,0,0,0,0,
+0,0,6871,6872,6872,6872,6873,0,0,0,0,0,0,0,0,
+0,0,6880,6881,6881,6881,6882,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Tile Layer 5" width="15" height="16">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,5862,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,4872,0,5995,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,7119,7120,0,5682,5683,0,0,0,0,0,0,0,0,
+0,0,7126,7127,0,5722,5723,0,0,0,0,0,0,0,0,
+0,0,0,0,0,5762,5763,0,0,0,0,0,0,0,0,
+0,0,6073,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Label" width="15" height="16" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,7199,0,0,0,0,0,0,0,7198,0,7279,0,
+0,0,0,7280,0,0,0,0,0,0,0,7200,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,7276,0,0,0,0,0,0,0,0,7275,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,7281,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,7197,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,7278,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,7277,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="1" type="collision" x="0" y="0" width="16" height="256"/>
+  <object id="5" type="collision" x="16" y="0" width="160" height="32"/>
+  <object id="8" type="collision" x="32" y="176" width="96" height="16"/>
+  <object id="9" type="collision" x="32" y="192" width="32" height="32"/>
+  <object id="10" type="collision" x="112" y="192" width="16" height="64"/>
+  <object id="11" type="collision" x="16" y="256" width="96" height="16"/>
+  <object id="12" type="collision" x="128" y="176" width="112" height="16"/>
+  <object id="13" type="collision" x="224" y="0" width="16" height="176"/>
+  <object id="14" type="collision" x="176" y="0" width="32" height="16"/>
+  <object id="15" type="collision" x="208" y="0" width="16" height="32"/>
+  <object id="20" type="collision" x="112" y="64" width="16" height="96"/>
+  <object id="21" type="collision" x="32" y="128" width="80" height="32"/>
+  <object id="22" type="collision" x="32" y="112" width="16" height="16"/>
+  <object id="23" type="collision" x="32" y="64" width="64" height="32"/>
+  <object id="24" type="collision" x="96" y="64" width="16" height="48"/>
+  <object id="25" type="collision" x="80" y="32" width="16" height="16"/>
+  <object id="26" type="collision" x="144" y="32" width="16" height="32"/>
+  <object id="27" type="collision" x="128" y="64" width="96" height="32"/>
+  <object id="28" type="collision" x="208" y="96" width="16" height="32"/>
+  <object id="29" type="collision" x="160" y="96" width="16" height="32"/>
+  <object id="30" type="collision" x="176" y="112" width="32" height="16"/>
+  <object id="31" type="collision" x="128" y="96" width="16" height="16"/>
+  <object id="32" type="collision" x="32" y="240" width="16" height="16"/>
+  <object id="36" type="collision" x="64" y="32" width="16" height="16"/>
+  <object id="37" type="collision" x="160" y="48" width="16" height="16"/>
+  <object id="38" type="collision" x="160" y="32" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="34" name="Go upstairs" type="event" x="48" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport wayfarer_inn2.tmx,5,2,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="35" name="Go to the other upstairs" type="event" x="176" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport wayfarer_inn2.tmx,9,3,0.3"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

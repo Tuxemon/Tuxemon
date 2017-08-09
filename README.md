@@ -1,4 +1,4 @@
-Tuxemon 0.3.2
+Tuxemon 0.4.0
 =========
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -27,22 +27,20 @@ Installation
 **Ubuntu**
 
 ```sh
-sudo apt-get install python python-pygame python-pip python-imaging python-six git
-sudo pip install pytmx
-sudo pip install neteria
-sudo pip install pyscroll
+sudo apt install python python-pygame python-pip python-imaging python-six git
 git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon/tuxemon
-./tuxemon.py
+cd Tuxemon
+sudo pip install -U -r requirements.txt
+tuxemon/tuxemon.py
 ```
 
 *Optional rumble support*
 
 ```sh
-sudo apt-get install build-essential
+sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
-make; make install
+make BACKEND=LINUX; sudo make install BACKEND=LINUX
 ```
 
 **Mac OS X (Yosemite)**
@@ -52,14 +50,10 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew tap Homebrew/python
 brew update
 brew install python
-brew install sdl sdl_image sdl_ttf portmidi hg git
+brew install sdl sdl_image sdl_ttf portmidi git
 brew install sdl_mixer --with-libvorbis
-pip install pytmx
-pip install pillow
-pip install six
-pip install neteria
-pip install pyscroll
-pip install hg+http://bitbucket.org/pygame/pygame
+sudo pip install git+https://github.com/pygame/pygame.git
+sudo pip install -U -r requirements.txt 
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon
 ulimit -n 10000; python tuxemon.py

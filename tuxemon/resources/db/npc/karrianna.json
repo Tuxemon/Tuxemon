@@ -3,15 +3,15 @@
     "name_trans": "npc_karrianna",
     "monsters": [
         {
-            "attack": 66,
-            "defense": 13,
+            "attack": 39,
+            "defense": 9,
             "name": "Propellercat",
-            "special_attack": 12,
-            "level": 6,
+            "special_attack": 9,
+            "level": 3,
             "monster": "txmn_propellercat",
-            "hp": 56,
-            "speed": 13,
-            "special_defense": 16,
+            "hp": 36,
+            "speed": 11,
+            "special_defense": 12,
             "exp_give_mod": 3,
             "exp_req_mod": 27
         }

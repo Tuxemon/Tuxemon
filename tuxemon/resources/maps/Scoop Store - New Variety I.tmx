@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" nextobjectid="10">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="448" height="640"/>
  </tileset>
@@ -52,9 +52,9 @@
   <image source="../gfx/tilesets/Electronics.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="6974" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../Old Tiled/gfx/tilesets/items.png" width="160" height="160"/>
+  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
  </tileset>
- <layer name="Tile Layer 4" width="13" height="11">
+ <layer name="Layer 1" width="13" height="11">
   <data encoding="csv">
 5590,5590,5590,5590,5590,5590,5590,5590,5590,5590,5590,5590,5590,
 5601,5601,5601,5601,5601,5601,5601,5601,5601,5601,5601,5601,5601,
@@ -69,7 +69,7 @@
 5579,5579,5579,5579,5579,5579,5579,5579,5579,5579,5579,5579,5579
 </data>
  </layer>
- <layer name="Tile Layer 2" width="13" height="11">
+ <layer name="Layer 2" width="13" height="11">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,4004,0,0,0,4004,0,0,0,4004,0,0,
@@ -84,7 +84,7 @@
 2506,2506,2506,4871,6871,6872,6872,6873,2508,0,0,0,0
 </data>
  </layer>
- <layer name="Tile Layer 3" width="13" height="11">
+ <layer name="Layer 3" width="13" height="11">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -99,7 +99,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Tile Layer 4" width="13" height="11">
+ <layer name="Above Player" width="13" height="11">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -114,4 +114,33 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="1" type="collision" x="0" y="128">
+   <polygon points="0,0 48,0 48,-80 64,-80 64,-64 160,-64 160,-80 176,-80 176,-64 208,-64 208,-128 0,-128"/>
+  </object>
+  <object id="2" type="collision" x="0" y="144">
+   <polygon points="0,0 48,0 48,16 64,16 64,32 0,32"/>
+  </object>
+  <object id="3" type="collision" x="80" y="112">
+   <polygon points="0,0 0,32 32,32 32,0"/>
+  </object>
+  <object id="4" type="collision" x="144" y="80">
+   <polygon points="0,0 0,32 32,32 32,0"/>
+  </object>
+  <object id="5" type="collision" x="160" y="128">
+   <polygon points="0,0 0,32 32,32 32,0"/>
+  </object>
+  <object id="6" type="collision" x="144" y="176">
+   <polygon points="0,0 0,-16 -16,-16 -16,0"/>
+  </object>
+  <object id="7" type="collision" x="208" y="64">
+   <polygon points="0,0 0,112 -96,112 -96,128 16,128 16,16 16,0"/>
+  </object>
+  <object id="8" type="collision" x="64" y="176">
+   <polygon points="0,0 16,0 16,16 0,16"/>
+  </object>
+  <object id="9" type="collision" x="0" y="128">
+   <polygon points="0,0 0,16 -16,16 -16,0"/>
+  </object>
+ </objectgroup>
 </map>

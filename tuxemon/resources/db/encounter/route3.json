@@ -1,0 +1,17 @@
+{"id": "route3","monsters": [
+
+
+
+
+{ "monster_slug": "txmn_cardiling","encounter_rate":10,"level_range": [7,10]},
+{ "monster_slug": "txmn_elofly","encounter_rate":10,"level_range": [7,10]},
+{ "monster_slug": "txmn_squabbit","encounter_rate":5,"level_range": [8,11]},
+{ "monster_slug": "txmn_shybulb","encounter_rate":10,"level_range": [7,10]}
+
+
+
+
+
+
+
+] }

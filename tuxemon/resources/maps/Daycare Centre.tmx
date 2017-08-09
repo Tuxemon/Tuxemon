@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="9" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="12" height="9" tilewidth="16" tileheight="16" nextobjectid="8">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="448" height="640"/>
  </tileset>
@@ -52,9 +52,9 @@
   <image source="../gfx/tilesets/Electronics.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="6974" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../Old Tiled/gfx/tilesets/items.png" width="160" height="160"/>
+  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
  </tileset>
- <layer name="Tile Layer 1" width="12" height="9">
+ <layer name="Layer 1" width="12" height="9">
   <data encoding="csv">
 5535,5535,5535,5535,5535,5535,5535,5535,5535,5535,5535,5535,
 5546,5546,5546,5546,5546,5546,5546,5546,5546,5546,5546,5546,
@@ -67,7 +67,7 @@
 5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662,5662
 </data>
  </layer>
- <layer name="Tile Layer 3" width="12" height="9">
+ <layer name="Layer 2" width="12" height="9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -80,7 +80,7 @@
 6850,6851,6851,6851,6851,6851,6851,6851,6851,6851,6851,6852
 </data>
  </layer>
- <layer name="Tile Layer 5" width="12" height="9">
+ <layer name="Layer 3" width="12" height="9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -93,7 +93,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Tile Layer 2" width="12" height="9">
+ <layer name="Above Player" width="12" height="9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,5791,5792,0,
 0,0,6102,6104,0,0,0,0,0,5831,5832,0,
@@ -106,7 +106,7 @@
 0,6871,6872,6872,6873,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Tile Layer 6" width="12" height="9" opacity="0.97">
+ <layer name="Above Player" width="12" height="9" opacity="0.97">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -119,4 +119,27 @@
 6033,0,0,0,0,6073,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="1" type="collision" x="0" y="48">
+   <polygon points="0,0 32,0 32,16 64,16 64,0 112,0 192,0 192,-48 0,-48"/>
+  </object>
+  <object id="2" type="collision" x="96" y="64">
+   <polygon points="0,0 0,48 64,48 64,0"/>
+  </object>
+  <object id="3" type="collision" x="80" y="144">
+   <polygon points="0,0 0,-16 16,-16 16,0"/>
+  </object>
+  <object id="4" type="collision" x="16" y="144">
+   <polygon points="0,0 0,-16 -16,-16 -16,0 0,0"/>
+  </object>
+  <object id="5" type="collision" x="0" y="48">
+   <polygon points="0,0 0,96 -16,96 -16,0"/>
+  </object>
+  <object id="6" type="collision" x="192" y="48">
+   <polygon points="0,0 0,96 -128,96 -128,112 16,112 16,0"/>
+  </object>
+  <object id="7" type="collision" x="32" y="144">
+   <polygon points="0,0 0,16 -16,16 -16,0 0,0"/>
+  </object>
+ </objectgroup>
 </map>

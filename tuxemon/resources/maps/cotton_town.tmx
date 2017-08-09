@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="160">
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="0" columns="11">
+  <image source="../Old Tiled/gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1531" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1891" name="Tiles_packed" tilewidth="16" tileheight="16" tilecount="0" columns="23">
+  <image source="../Old Tiled/Other tilesheets/Tiles_packed.png" width="368" height="128"/>
+ </tileset>
+ <tileset firstgid="1891" name="city tiles" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="3331" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="4771" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="4881" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl0sOwiAQQLspt5OutAu1LKz2CnoK9RBGvYXeTEhKMhqG8isQw+JlFgXyOgxDS+uqaji0xBIDR8GSswK04FlqP+HWcxaAHXBM6adyk7BxTEq/LeImcyj3O0e/DpCj35pzGIHzzqSqLoG5Etxzg/hh9Xfnaz0C89T4YTlkyPjYfnuwj5DBwO/GeQXgrfGzjdCPBVgvdBT1IM/1P/hRw3VdieXXeID5wTsmBa3GD+vrMYH7B++cLjEqPxGPBO+XsWiAo8rvRL7j1HNqMd/0vKb0M+kDKj9fXPufqp/M4efzXsUvjp+ul+fgN1e/zd2P1f5+U/fG77omuXHJX6/Jnw02fq53cM5+si7m9DM9v1hNDZn4mXw/q1hm4GeaJ5fe5uMMY0p0/0LFL4zfB3CEQDo=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzNmGdPFEEYx/eO2xOjibG9smEDREFFTYwtvrABihilS1RANCY2mkCsoEYT23ewUyxvfKOfwS76QeyK+pu4E2aPmdvbvZX4T36Z252dmef+++xzs2dZlvU0blnP4sFboQhEIQNiYIPoGgOZMBby6SiACqiMmY9V3WSSW/H02zzmWgiLRBxQAIthCSyFQms4DqlkxzLWdL2T7U7m3AXlYh2ohCqohhqotfT+mCRjXWmn753QSTgFp+EMnIVz0A09cF7jVzKp3yWM/LsNd+Au3IP70At90A8DAf3TeRFEz+EFvIRX8BrewFt4B4NWMP90XgTRF/gK3+A7/ICfMAS/4LcVzD+hdL0TyqLAzIY5MBfmwXzIhhzIjfjzT1W63gkVsX4xlMBW2AalsB3KYEfEn39SYeTfMtZsZv0WaIU2aIcT0AGd0OXTv7DzL2zJ77LXDif/UpH0ZIud+rVCo+Wd1/2N0WfH3NeGVf+SKfG5kMemVr1mNPJPeiH9kcemNhYLv/4lk5dfplbEud7+9/nn5ZepzR+l/Auqiv+4/ul+a8awQc+EsdAP46Lu/on8BkyCyTAFpkb8jfcjeY8XOTE+mcRenPmWQiG8g+XRv+dl/yriWQ1rYC2si7j7k41PRbuVui39K1c8rGa+GqiFX1AXdedlA/E0wn5oggOOf/Vx83ipSxMs6/KE5PHVKfEl+ifUzXw9cB5yeBG7GHXn5RXiuQrX4DrcSLi/uvFSj4jtsY/4VP/6nHwZgAfwEKrtYZL1q/pIvJ/gc8Q9XqdCzbNo8u+tky+D8B4+JOS1V/80jqfDDJgJswI+Fyb/hpx8+e28YEcy3OO8+jdwfiNsgs2wBcYH2Ceb/MvO+JsvubAA8hLW9+o/TDxH4Cgcg+Owwkd8vfGR8an+lXvsxyrs4FSmsNeT0vmXeD5s7QkYn/r78S/j8yOv+mdSkz2MWuNrbXef7poGH7nQaMi/joD3wHTvwrgfqn/HDfNl8RzOhjkwF+ZFR8anq41hxKf6p4tP1K8i1iqGEtgK2zTx6WrjfsN912HaO3v5J+pXM2u2QCu0QbsmPq/aqFOpM4eYy7R3ljL5J+SVw35qh0519sh96BLOlSnzmvxLJYfSjU9I9eugMl+V81n416lZJ5UcusDYetquABxS2Oesr/6vsN75LOtflSZGv/L7/qiT+L8lV4ml3HBdEPl9f0xFfwCOqj4G
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl8tLG0EcxyfGSayi0FjvpeBNxT4OxdddBPHQ1moVFB8tgrXiWfB90upJrT2XVtubehSt3kWN/g++erGHVunBj2QWd0Oyu+5uzFryhQ+b3UlmPjub+WUihP/yMjvdBuYp8blfZv7cxWz+euE99MEH6Ne1hbOEyIF7kAt5Wd45/ZXXr83mbxbmYB4+wYKurRyfx/AEnsIzD/30MZu/ddiAn7AJW1CXH2trwqcZ3kALtHrg91saz89k4vdpOYQjOIYTOIUB/FYiQozgMwpjMA4TKZo/v62PczVnF+qYqS/u8r/M3xe+/18V32ARltSauB8QIgKF8ACKArHr+hr5w2GNtDt/2/S9o9iFPYiq8SrwqYQqqIYa5aevkQcprJFX+UPfL+Bc0Qj/1Hgd+HRCF3TDW+WXihqZLA+DQgzS/6NgjCFeF3NcpRZO4jMFH2EaZgKx67dVIzOxl2h+ug3Sn2hIiH0bHITS43diMe4Cz/Az/PKp3yZuWzf0y6aGS49+B+P9hguoQzBaYLx+E79S3MqgLcl+8bm0vodymdhvEa8l+O7C7xXjNsLrJH5XY2v3YJV4v1289iDqws9OtHuwitX3T4sf1sdyxNimP/eD31qc35oP/IJh1hKEwonbw6pdJmm/S6m1+P+ZSepz159BvTQevcxp0Lu+rPz07e8c3kuDjc857VufHmmk3UGf2n7B6dFv0fYXdvcZbuJkzWr7C7N9xiXawG5N
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="118" type="collision" x="304" y="640">
+   <polygon points="0,0 0,-32 -64,-32 -64,-48 208,-48 208,-112 304,-112 304,-352 320,-352 320,-368 80,-368 80,-384 64,-384 64,-368 -112,-368 -112,-384 -128,-384 -128,-368 -192,-368 -192,-416 -96,-416 -96,-384 -80,-384 -80,-416 0,-416 0,-384 16,-384 16,-416 96,-416 128,-432 128,-464 160,-464 160,-432 288,-432 288,-512 304,-512 304,-496 336,-496 336,0"/>
+  </object>
+  <object id="120" type="collision" x="0" y="480">
+   <polygon points="0,0 0,160 16,160 16,128 112,128 112,112 16,112 16,0"/>
+  </object>
+  <object id="122" type="collision" x="0" y="448">
+   <polygon points="0,0 16,0 16,-16 96,-16 96,-32 128,-32 128,-64 144,-64 144,-16 224,-16 224,-64 256,-64 256,-112 272,-112 272,-128 160,-128 160,-112 176,-112 176,-64 144,-64 144,-80 160,-80 160,-112 144,-112 144,-128 32,-128 32,-112 48,-112 48,-80 96,-80 96,-64 16,-64 16,-144 64,-144 64,-176 48,-176 48,-208 64,-208 64,-240 48,-240 48,-272 64,-272 64,-304 112,-304 112,-320 128,-320 128,-304 224,-304 224,-320 240,-320 240,-304 256,-304 256,-352 176,-352 176,-320 64,-320 64,-368 272,-368 272,-400 288,-400 288,-304 272,-304 272,-288 352,-288 352,-304 368,-304 368,-288 464,-288 464,-400 496,-400 496,-384 528,-384 528,-400 560,-400 560,-384 576,-384 592,-384 592,-336 640,-336 640,-448 0,-448 0,0"/>
+  </object>
+  <object id="123" type="collision" x="112" y="512">
+   <polygon points="0,0 0,32 -16,32 -16,48 32,48 32,32 48,32 48,48 80,48 80,64 96,64 96,48 80,48 80,0"/>
+  </object>
+  <object id="124" type="collision" x="256" y="512">
+   <polygon points="0,0 0,48 80,48 80,0"/>
+  </object>
+  <object id="125" type="collision" x="240" y="400">
+   <polygon points="0,0 0,32 64,32 64,16 80,16 80,32 128,32 128,16 112,16 112,-16 160,-16 160,80 208,80 208,64 160,64 160,-32 144,-32 144,-64 336,-64 336,-80 144,-80 48,-80 48,-64 64,-64 64,-32 32,-32 32,0"/>
+  </object>
+  <object id="126" type="collision-line" x="400" y="336">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object id="127" type="collision-line" x="576" y="336">
+   <polyline points="0,0 0,144"/>
+  </object>
+  <object id="128" type="collision" x="528" y="464" width="48" height="16"/>
+  <object id="129" type="collision" x="528" y="464">
+   <polyline points="0,0 -16,0 -16,-16 0,-16 0,0"/>
+  </object>
+  <object id="130" type="collision" x="448" y="448">
+   <polyline points="0,0 0,16 16,16 16,0 0,0"/>
+  </object>
+  <object id="131" type="collision" x="464" y="368">
+   <polyline points="0,0 0,48 48,48 48,0 0,0"/>
+  </object>
+  <object id="132" type="collision" x="464" y="368">
+   <polygon points="0,0 48,0 48,48 0,48 0,0"/>
+  </object>
+  <object id="133" type="collision" x="448" y="448">
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="134" type="collision" x="512" y="448">
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="135" type="collision" x="416" y="336">
+   <polygon points="0,0 0,32 32,32 32,16 32,0"/>
+  </object>
+  <object id="136" type="collision" x="528" y="336">
+   <polygon points="0,0 0,32 32,32 32,0"/>
+  </object>
+  <object id="137" type="collision" x="400" y="208" width="32" height="16"/>
+  <object id="138" type="collision" x="64" y="96" width="80" height="32"/>
+  <object id="151" type="collision" x="544" y="80" width="16" height="16"/>
+  <object id="153" type="collision" x="512" y="112" width="16" height="16"/>
+  <object id="154" type="collision" x="528" y="144" width="16" height="16"/>
+  <object id="155" type="collision" x="560" y="144" width="16" height="16"/>
+  <object id="156" type="collision" x="576" y="112" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="Events">
+  <object id="139" name="Mart Sign" x="192" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="144" name="Teleport to Route 2" x="0" y="448" width="16" height="32">
+   <properties>
+    <property name="act1" value="teleport route2.tmx"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="145" name="Teleport to Route 1" x="160" y="624" width="144" height="16"/>
+  <object id="146" name="Teleport to Cotton Cathedral" x="304" y="416" width="16" height="16"/>
+  <object id="147" name="Teleport to Cotton Mart" x="144" y="544" width="16" height="16"/>
+  <object id="148" name="Teleport to Omnichannel HQ" x="352" y="144" width="16" height="16"/>
+  <object id="149" name="Teleport to Dryad's Grove" x="624" y="112" width="16" height="32"/>
+  <object id="158" name="Cathedral Sign" x="352" y="432" width="16" height="16"/>
+  <object id="159" name="Omnichannel Sign" x="272" y="160" width="16" height="16"/>
+ </objectgroup>
+ <layer name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl1EKwjAQRLdlexw9jr2ZHkJrj6fWH+cnIMpiy6YxbOfBEDaUZvMCoRUpj6pIp3ZtzZXqa4fs1a7/RerjgPRq1+97Kcnnmqkvq66ZGvyRZUTyF2kvuVjihP580J9NcvNrJHHhGfugPx9b8ndsRU5t3nduyd8a0J8P+vMRwd+tEbkjD2RCns33M2fcexdkQK7ImOkerMUfv50JiUvpf+W566XxBd7REQw=
+  </data>
+ </layer>
+ <layer name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKgEAMBMDAxbepvzn9f2FqvUoERWZgCemWdIkAAP4oM2LK636ejLkPAAB8z9wilsra3m4y1qvXVtkf7Oc3gfsOahwCpA==
+  </data>
+ </layer>
+ <layer name="Numbers" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1skNwCAMRFFaiEARpbCF/suiAS4gxT7MfxXYMz44BADWvug9gZa5ybsJdPAK7AgAAPCXwS9lKpO3u0oH8jo3cCSRl7yHG7hSjHNbJ9ACwg==
+  </data>
+ </layer>
+</map>

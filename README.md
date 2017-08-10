@@ -24,6 +24,10 @@ Tuxemon uses a number of open source projects to work properly:
 Installation
 --------------
 
+**Windows**
+
+[Detailed here](https://www.tuxemon.org/windows-install.html)
+
 **Ubuntu**
 
 ```sh

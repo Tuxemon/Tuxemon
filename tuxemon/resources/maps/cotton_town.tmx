@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="239">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="242">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -60,7 +60,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztl0sOgjAQQNnA8coKWSiy8MMVdKWeQD2EUW+hN3OaYBwMLVM6tI2yeJkmA82jn2kRcRSlgBjjGJmjJAMmiBzlfPtJtyVwSKJoB+yBBXL06fd2k07YT7bL+hmffkXcdMLtBZrvEP3m8YcQ/aaQW9fg946QOzFzTtSeM8P1d4XcjZm7xq/Q+LU9T/XDfdn4rdA8YiqC3wV4MPDU+JlG7Fcy9Mcd8Z76BT9B7LcvrvxSC1R++IzxQa7xU9V1l208f5Qzx1W7zU/GTaKul66QHjq/bdKMXXlh8D51v/r0o9QB1frjrFPUcWurJ0P42XzX6OfGT1fLQ/AbquaG7lcy+HWdG9/9Usamz/jh/3Wb/WHix3U/+Dc/6v5VrakqED/K/bmNLAA/6jj1qW02zoLoNzS6f6HRj8fvBWDEZQY=
+   eJztl0sOgjAQQNnA8coKWShh4Ycr6Eo9gXoIo95Cb+Y0wWQwbZnSKW2Uxcs0GWge/UyLSJMkB8QUp8gcJQUwQ5QoF9pPuq2AY5Yke+AALJFjSL+Pm3TCfrJdt8+E9KvSrhNuL9F8x+iH2zH6zSG3acHvnSB3ZuaS6T0XluvvBrk7Mw+DX2XwUz1P9cN9ufit0TxiGoLfFXgy8DL42UbsVzP0xx3xnvoFP0Hsdyhj+eUO6PzwGROC0uBHOXd8t/H82Z6JPtsqPxm3mb5ejoX0MPntsm7sywuL96n7NaQfpQ7o1h9nnaKOm6qe+PBz+a7Jbxw/Uy2Pwc9XzY3dr2bw6zs3vvuljM2Q8cP/6y77w8aP637wb37U/atbU00kfpT7s4oiAj/qOA2pbS7OgujnG9O/0OTH4/cGmHllbw==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
@@ -70,7 +70,7 @@
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztl89PE0EcR6eUaUUCCVXuxMSbEBQOBJA7ISEcVFAggQhoSPgVziYCwgnEkyKcDbRw1CNB4G6Ewv+gghc4IMYDj3Q27JJ2d7u7dRfST/Ky3Z125u1s59upEMHL40K/DcxzL+B++flzF7P5G4JhGIFRGNO1RQuEuAFFcBOKC7xz+iMvXpvN33v4AAvwERZ1bdX43IcHUAO1HvrpYzZ/G/AVNmELtqGlJNX2FJ9n0Ald0O2B37E0nh/J9O/T8gN+wi84gEMYx+9zTIhJfKbgDUzDTI7mL2jr41TN2V91zNcXd7ku8/eJ7/+yYgXikFBroiwkRAxuwW0oD6Wu62vkmsMaaXf+vtH3d8UO7EJSjVePTwM0wkNoUn76Grmfwxp5nhP6fgSninb4p8Z7jk8f9MMAvFB+uaiRmVIRFuIV/d8Jp3jN67scv1ALZ/GZg7cwD+9Cqev/q0bmYy/JEr8N/E8yIsSeDfYj/vgdWIy7yDNcgt8B9dvCbTtLv0JquPTod/Cy30QpdQimSo3Xs/GrxK0KejLsF+uk9T1Uy/R+cbwSsOrC7wnjtkNHBr/zsbV7sMplvx28diHpws9OtHuwitX3T0tQ14eWIPitx4xt+nO//MJR1hJEounbo6pdZmi/Smm2+P+ZT+5z1Z9BqzQevcxh2Lu+rPz07S8d3kubjc857VufQWmk10Gf2n7B6TFo0fYXdvcZbuJkzWr7C7N9xhkRr2zD
+   eJztlstPE0Ecx6eUFZWUxKJ3Q+JNCKAHgo+7MSEceAhCIoogEhTjSY2JinLi4QkVzoTnUY4EhTuxbfwfwJYLHBTjgU/T2bhL2Ef3wW5Jv8kns7u/7cx3fp357QgRPrWWBu3AXJdD7q+YP3cyy98QPIGnMAzPNLGyEiFOwxk4C+Ul3nn6o/y/NsvfFHyCz/AFpjWxWvzUQT1cgase+tPKLH9r8A2+wzpswO1YLtaBn064C13Q7YG/PUV/v6sc/Z6qLdiGX5CGDDzH39e4EO/wMwLv4QOM+pS/sO2PfZmzv7It1hd3Oin5m2X9z0nmYQEW5Z44FxEiDpVwHi5Ecs+1NXLZYY20m79N+v4hSUASUnK8Rvxcg+twA25Kf9oa+dPHGpnVb/pugX1JO/yT4z3ATy88hD7ol/78qJFGuhgV4jX9V0VzvOH6Eu0KtXAMP+MwAZPwMZJ7flw1sih7SsWCdhC8BvhuvbTBoMXZwC+lT5nHp/kPZ2DH4j2/ZOVvHW8beforpYYrHn0HD/t7W0EdgpEK/fN8/FXjrQbuGayJBsV6DrXK0f4W8LUISy78tTFuO9wx8JcdW52DlQ77S+ArCSkX/uxInYOVrNafqrDuD1Vh8Lca18e090H5eyHrb4/BWr4v468Cqs9e6tYJmEOhq9D/gyZF33qpTNS7vqz8aeOPHM6l2cbvnPat1WNFj1GtMpN6XnDahk3q+cLuOcONnOxZ9Xxhds44AJRfazw=
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -171,16 +171,9 @@
    <polyline points="0,0 144,0"/>
   </object>
   <object id="238" type="collision" x="512" y="448" width="16" height="16"/>
+  <object id="241" type="collision" x="608" y="144" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <object id="139" name="Mart Sign" x="192" y="576" width="16" height="16">
-   <properties>
-    <property name="act1" value="dialog"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
   <object id="144" name="Teleport to Route 2" type="event" x="0" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport route2.tmx,39,9,0.3"/>
@@ -197,12 +190,31 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="146" name="Teleport to Cotton Cathedral" x="304" y="416" width="16" height="16"/>
-  <object id="147" name="Teleport to Cotton Mart" x="144" y="544" width="16" height="16"/>
-  <object id="148" name="Teleport to Omnichannel HQ" x="352" y="144" width="16" height="16"/>
-  <object id="149" name="Teleport to Dryad's Grove" x="624" y="112" width="16" height="32"/>
-  <object id="158" name="Cathedral Sign" x="352" y="432" width="16" height="16"/>
-  <object id="159" name="Omnichannel Sign" x="272" y="160" width="16" height="16"/>
+  <object id="146" name="Teleport to Cotton Cathedral" type="event" x="304" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_catheral.tmx,5,10,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="147" name="Teleport to Cotton Mart" type="event" x="144" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_scoop.tmx,5,10,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="148" name="Teleport to Omnichannel HQ" type="event" x="352" y="144" width="16" height="16"/>
+  <object id="149" name="Teleport to Dryad's Grove" type="event" x="624" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,7,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
   <object id="160" name="Teleport to Route 1" type="event" x="176" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport route1_sanglorian.tmx,11,0,0.3"/>
@@ -279,6 +291,22 @@
    <properties>
     <property name="act1" value="play_music JRPG_town_loop.ogg"/>
     <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+   </properties>
+  </object>
+  <object id="239" name="Teleport to Dryad's Grove" type="event" x="624" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,8,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="240" name="Teleport to Dryad's Grove" type="event" x="576" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,8,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>

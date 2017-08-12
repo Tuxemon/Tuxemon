@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="180">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="181">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -141,6 +141,14 @@
    <properties>
     <property name="act1" value="play_music JRPG_town_loop.ogg"/>
     <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+   </properties>
+  </object>
+  <object id="180" name="Teleport to Scoop" type="event" x="160" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport scoop1.tmx,0,3,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

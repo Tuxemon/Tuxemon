@@ -132,7 +132,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzzY2Vg8BsmOA4HNmDDrScUiMOgOHyA3BeHR08skpr4UfcNaveRgweL+2D5IAXqlmQ0/kC7DzmccGGYm/FhWuXxVCBOw4Jj8Lh3MKRH5HCNxuEHGB5o9w2G8Bp1H/kYua6FYUrKlw946nVKwwpXfvUnwW3Udh+uMgaG06HuuwPEd9EwzD3omNZxDgJ+UHfB8BM87qGn+7CFEwg/GCTuIyWchqr7AG8IOzE=
+   eJzzY2Vg8BsmuJQNOzZgw60nFIjDoDh8gNxXisd9sUj64kfdN6jdRw4eLO6D5YMUqHuS0fgD7T7kcMKFYW7Gh2mVx1OBOA0LjsHj7sGQHpHDNRqHH2B4oN03GMJr1H3kY+S6FoYpKV8+4Cn3KQ0rXPnVnwS3Udt9uMoYGE6Huu8OEN9FwzD3oGNaxzkI+EHdBcNP8LiHnu7DFk4g/GCQuI+UcBqq7gMAN21BqQ==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="40" height="20">
@@ -152,10 +152,10 @@
  </layer>
  <layer name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzrsNgCAAhOFLiD0Vpeuotc8x0B187ekgXm0oiMFgcV/yN4TAAWn4ItFDIiLyylWGz1cLbGxnBztt+F7rgI71bGAjm9z3+54qA9SsMen+jhG7z3PXzJaf7stF+0Qk1g1x6Q43
+   eJxjYKAOKGClkkGjYMgAPpaBdsHwAqPhOQooBU/ksIu3CjAwtAFxOxB3AHGnAHZ1wWIMDCFAHArEYUAcDsQRYrR3HzpwZ2Zg8ABiT2bq2U0MINZ9BUB3FQJxEZL7eOmQf4l130CBUfeNglEwCogFACRfDmw=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" name="Collision" visible="0">
   <properties>
    <property name="Collision" value=""/>
   </properties>
@@ -209,7 +209,7 @@
   <object id="195" type="collision" x="352" y="64" width="32" height="16"/>
   <object id="196" type="collision" x="336" y="32" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" name="Events" visible="0">
   <object id="167" name="Sign for Mart" type="event" x="368" y="192">
    <properties>
     <property name="act1" value="dialog_chain Buy things here."/>
@@ -265,8 +265,8 @@
   </object>
   <object id="191" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_docks_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_docks_loop.ogg"/>
+    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
+    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
    </properties>
   </object>
   <object id="197" name="Teleport to Daycare" type="event" x="336" y="64" width="16" height="16">

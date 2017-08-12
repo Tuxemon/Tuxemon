@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="237">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="239">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -60,7 +60,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztl0sOwiAQQLspt5OutAu1LKz2CnoK9RBGvYXeTEhKMhqG8isQw+JlFgXyOgxDS+uqaji0xBIDR8GSswK04FlqP+HWcxaAHXBM6adyk7BxTEq/LeImcyj3O0e/DpCj35pzGIHzzqSqLoG5Etxzg/hh9Xfnaz0C89T4YTlkyPjYfnuwj5DBwO/GeQXgrfGzjdCPBVgvdBT1IM/1P/hRw3VdieXXeID5wTsmBa3GD+vrMYH7B++cLjEqPxGPBO+XsWiAo8rvRL7j1HNqMd/0vKb0M+kDKj9fXPufqp/M4efzXsUvjp+ul+fgN1e/zd2P1f5+U/fG77omuXHJX6/Jnw02fq53cM5+si7m9DM9v1hNDZn4mXw/q1hm4GeaJ5fe5uMMY0p0/0LFL4zfB3CEQDo=
+   eJztl0sOgjAQQNnA8coKWSiy8MMVdKWeQD2EUW+hN3OaYBwMLVM6tI2yeJkmA82jn2kRcRSlgBjjGJmjJAMmiBzlfPtJtyVwSKJoB+yBBXL06fd2k07YT7bL+hmffkXcdMLtBZrvEP3m8YcQ/aaQW9fg946QOzFzTtSeM8P1d4XcjZm7xq/Q+LU9T/XDfdn4rdA8YiqC3wV4MPDU+JlG7Fcy9Mcd8Z76BT9B7LcvrvxSC1R++IzxQa7xU9V1l208f5Qzx1W7zU/GTaKul66QHjq/bdKMXXlh8D51v/r0o9QB1frjrFPUcWurJ0P42XzX6OfGT1fLQ/AbquaG7lcy+HWdG9/9Usamz/jh/3Wb/WHix3U/+Dc/6v5VrakqED/K/bmNLAA/6jj1qW02zoLoNzS6f6HRj8fvBWDEZQY=
   </data>
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
@@ -70,7 +70,7 @@
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztl8tLG0EcxyfGSayi0FjvpeBNxT4OxdddBPHQ1moVFB8tgrXiWfB90upJrT2XVtubehSt3kWN/g++erGHVunBj2QWd0Oyu+5uzFryhQ+b3UlmPjub+WUihP/yMjvdBuYp8blfZv7cxWz+euE99MEH6Ne1hbOEyIF7kAt5Wd45/ZXXr83mbxbmYB4+wYKurRyfx/AEnsIzD/30MZu/ddiAn7AJW1CXH2trwqcZ3kALtHrg91saz89k4vdpOYQjOIYTOIUB/FYiQozgMwpjMA4TKZo/v62PczVnF+qYqS/u8r/M3xe+/18V32ARltSauB8QIgKF8ACKArHr+hr5w2GNtDt/2/S9o9iFPYiq8SrwqYQqqIYa5aevkQcprJFX+UPfL+Bc0Qj/1Hgd+HRCF3TDW+WXihqZLA+DQgzS/6NgjCFeF3NcpRZO4jMFH2EaZgKx67dVIzOxl2h+ug3Sn2hIiH0bHITS43diMe4Cz/Az/PKp3yZuWzf0y6aGS49+B+P9hguoQzBaYLx+E79S3MqgLcl+8bm0vodymdhvEa8l+O7C7xXjNsLrJH5XY2v3YJV4v1289iDqws9OtHuwitX3T4sf1sdyxNimP/eD31qc35oP/IJh1hKEwonbw6pdJmm/S6m1+P+ZSepz159BvTQevcxp0Lu+rPz07e8c3kuDjc857VufHmmk3UGf2n7B6dFv0fYXdvcZbuJkzWr7C7N9xiXawG5N
+   eJztl89PE0EcR6eUaUUCCVXuxMSbEBQOBJA7ISEcVFAggQhoSPgVziYCwgnEkyKcDbRw1CNB4G6Ewv+gghc4IMYDj3Q27JJ2d7u7dRfST/Ky3Z125u1s59upEMHL40K/DcxzL+B++flzF7P5G4JhGIFRGNO1RQuEuAFFcBOKC7xz+iMvXpvN33v4AAvwERZ1bdX43IcHUAO1HvrpYzZ/G/AVNmELtqGlJNX2FJ9n0Ald0O2B37E0nh/J9O/T8gN+wi84gEMYx+9zTIhJfKbgDUzDTI7mL2jr41TN2V91zNcXd7ku8/eJ7/+yYgXikFBroiwkRAxuwW0oD6Wu62vkmsMaaXf+vtH3d8UO7EJSjVePTwM0wkNoUn76Grmfwxp5nhP6fgSninb4p8Z7jk8f9MMAvFB+uaiRmVIRFuIV/d8Jp3jN67scv1ALZ/GZg7cwD+9Cqev/q0bmYy/JEr8N/E8yIsSeDfYj/vgdWIy7yDNcgt8B9dvCbTtLv0JquPTod/Cy30QpdQimSo3Xs/GrxK0KejLsF+uk9T1Uy/R+cbwSsOrC7wnjtkNHBr/zsbV7sMplvx28diHpws9OtHuwitX3T0tQ14eWIPitx4xt+nO//MJR1hJEounbo6pdZmi/Smm2+P+ZT+5z1Z9BqzQevcxh2Lu+rPz07S8d3kubjc857VufQWmk10Gf2n7B6TFo0fYXdvcZbuJkzWr7C7N9xhkRr2zD
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -84,14 +84,11 @@
    <polyline points="0,0 0,144"/>
   </object>
   <object id="128" type="collision" x="528" y="464" width="48" height="16"/>
-  <object id="129" type="collision" x="528" y="464">
-   <polyline points="0,0 -16,0 -16,-16 0,-16 0,0"/>
-  </object>
   <object id="130" type="collision" x="448" y="448">
    <polyline points="0,0 0,16 16,16 16,0 0,0"/>
   </object>
   <object id="132" type="collision" x="464" y="368">
-   <polygon points="0,0 48,0 48,48 0,48 0,0"/>
+   <polygon points="0,0 48,0 48,32 0,32 0,0"/>
   </object>
   <object id="135" type="collision" x="416" y="336">
    <polygon points="0,0 0,32 32,32 32,16 32,0"/>
@@ -170,8 +167,12 @@
   <object id="228" type="collision" x="560" y="48" width="32" height="16"/>
   <object id="234" type="collision" x="32" y="304" width="16" height="16"/>
   <object id="235" type="collision" x="48" y="272" width="16" height="16"/>
+  <object id="237" type="collision-line" x="16" y="640">
+   <polyline points="0,0 144,0"/>
+  </object>
+  <object id="238" type="collision" x="512" y="448" width="16" height="16"/>
  </objectgroup>
- <objectgroup name="Events">
+ <objectgroup color="#ffff00" name="Events">
   <object id="139" name="Mart Sign" x="192" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="dialog"/>
@@ -288,7 +289,7 @@
  </layer>
  <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt19sKgkAUheGlTlR21cFnqt6mevQOXre6CsycITQp/g8WgwwDG9mOMxKAVMtMWjlrZ+NU2XNumkszZ+6UziIfr04AeAhBmoTX5+bYp3f75C/ukUO8H+DbYt9e19kmZT3QJtY3sfmz+/DiXJ2bUzf6EgD+Ef/cdNtC2jn7YuxK2h1c19E59VgfdxPgc3dTOQoa
+   eJzt1lsOgjAQheEp1Hh7EnVNwm7UrbkzvDx7fNJAhWLQxuT/khPSEMKkGaaYAYi1cmaFslY2ytY9700zs5kyVxbKMktXJwA8eG828e118zqmd3PyH2fkN/YH+LW+b6/r3ybmeSAk1DevM7Wvr2r14Vm5KFfl5trvSIFzAU2nonsNDMGZG2+Xm5VKlaeuJGyvug7KccT6OIOAz90BdRwLxg==
   </data>
  </layer>
 </map>

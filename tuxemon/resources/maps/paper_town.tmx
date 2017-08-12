@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="194">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="202">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -142,7 +142,7 @@
  </layer>
  <layer name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzN1jlOw0AUxvFRsIPScAZIqFg7OENYKrBNwVIBFUJiq1hvQAJUbPdgq1glEGdAbA1rCUKIf5AiiD32eCQ78if95GRi+728jOQIET4XaSE+Jb5whQnTa9L8u77OUJ/jjsE1pqE+lnKT1vgyJJepfN9p6Pehk6D+CihiDevYCLiPTV0nZO2o5reHfRzgEEfhyv/GUtQNm4+A/XfL53e4xwMehfz33MQWtrGDXUXNsPMrH7MZ7z3y//a3xWsbjs+eP8YJTnGGc0U/1Uxpns8cX/CKN7wrrtGdX7XiV7eafQybXiOufZGU+Q26+ou6Xn1KiAZkkUNjSn5eE+vNaEEr2tCOoZjnl6dGF7rRg16f/vpY74cFGw4GAvqLKlPUmMYMZjGHp5rKczr4fvOsL2ARS1jGiqS/8rMxKftvlL7GMB7T/KLIaq13TXd+3zzLrjVcavznKUj6S1Jk/enOL879Wkz4/GRJ0vxk+QFPjVfh
+   eJzN1jlOw0AUgOFRsIPS+AyQULF2cIawVOCYgqUCKoTEVrHegASo2O7BVrFKIM6A2BrWEoQQf5Ai4nji8UjY+EmfJpnM+L08j2QLETzOk0J8SHziEuOm14T5u98y1Gsqw2CPaajHYlwnNf4MkUm5v3cY+nXohF99eRSwijWs+1wnR14nYO6/6t8u9rCPAxwGS/8TtiJv0Hj3OX83/H6LO9zjQcjv5wY2sYVt7ChyBu1faUynvNfIlp1vm885OFXO/BGOcYJTnCnqiTKK/XxifMYLXvGm2KPbvyjC8skbZR1Dptew6T63cenfQFl9Vgj56hJC1CONDBoS8nWNzDehGS1oRRsGQ+5flhyd6EI3eqrU18t8H2zk4KC/oj4rhPs0SY4pTGMGs3isca9pJ+8c8/NYwCKWsCzpX+nZGJfzN0JdoxjzeVf471ip9c7p9u+LZ9mVhguNd568pL44haw+3f6FeV4LMe+fLOLUP1l8A4+0WMg=
   </data>
  </layer>
  <layer name="Above Player" width="40" height="20">
@@ -175,7 +175,6 @@
   <object id="135" type="collision" x="496" y="256" width="48" height="16"/>
   <object id="136" type="collision" x="480" y="256" width="16" height="32"/>
   <object id="137" type="collision" x="448" y="288" width="32" height="16"/>
-  <object id="138" type="collision" x="288" y="32" width="80" height="48"/>
   <object id="139" type="collision" x="432" y="96" width="16" height="16"/>
   <object id="140" type="collision" x="544" y="0" width="96" height="32"/>
   <object id="141" type="collision" x="608" y="128" width="32" height="64"/>
@@ -206,6 +205,9 @@
   <object id="193" type="collision-line" x="400" y="0">
    <polyline points="0,0 32,0"/>
   </object>
+  <object id="194" type="collision" x="288" y="32" width="48" height="48"/>
+  <object id="195" type="collision" x="352" y="64" width="32" height="16"/>
+  <object id="196" type="collision" x="336" y="32" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="167" name="Sign for Mart" type="event" x="368" y="192">
@@ -266,6 +268,46 @@
     <property name="act1" value="play_music JRPG_docks_loop.ogg"/>
     <property name="cond1" value="not music_playing JRPG_docks_loop.ogg"/>
    </properties>
+  </object>
+  <object id="197" name="Teleport to Daycare" type="event" x="336" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport daycare.tmx,3,8,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="198" name="Teleport to Leather Town" type="event" x="592" y="144">
+   <properties>
+    <property name="act1" value="transition_teleport leather_town.tmx,20,21,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="199" name="Sign for Leather" type="event" x="592" y="128">
+   <properties>
+    <property name="act1" value="dialog_chain Teleport to Leather Town below"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="200" name="Teleport to Flower City" type="event" x="592" y="176">
+   <properties>
+    <property name="act1" value="transition_teleport flower_city.tmx,20,24,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="201" name="Teleport to Candy Town" type="event" x="592" y="208">
+   <properties>
+    <property name="act1" value="transition_teleport candy_town.tmx,9,36,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
  </objectgroup>
 </map>

@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="60">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="101">
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
  <tileset firstgid="105" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
  </tileset>
- <tileset firstgid="465" name="9Wf6HwQ" tilewidth="16" tileheight="16" tilecount="0" columns="42">
-  <image source="../Old Tiled/Other tilesheets/9Wf6HwQ.png" width="684" height="500"/>
- </tileset>
  <tileset firstgid="465" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <tileset firstgid="569" name="buildings" tilewidth="16" tileheight="16" tilecount="805" columns="35">
-  <image source="../gfx/tilesets/buildings.png" width="575" height="381"/>
+ <tileset firstgid="569" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1374" name="crate opening" tilewidth="16" tileheight="16" tilecount="0" columns="1">
-  <image source="../Old Tiled/Other tilesheets/crate opening.gif" width="16" height="16"/>
- </tileset>
- <tileset firstgid="1374" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="448" height="640"/>
- </tileset>
- <tileset firstgid="2494" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+ <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
  </tileset>
- <tileset firstgid="2994" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="2669" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <tileset firstgid="2825" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../../../../../Tuxemon - dev branch/Tuxemon/tuxemon/resources/gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
@@ -34,20 +28,20 @@
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlEsKwjAURWOGcVT3UMWgzurS/C3B3xL8dAn+dqFuyTtQqqFNVWiSwj1weJA3yOUGEjWEaMHI4xwpIcZwAqdwprJ9F2rPc448C7iEK7hW2f6V0ycb5NnCHdzDNKc/nxyQ5whP8AwvgfWXR1F/V3hzZMfIFD/P7yLM/vTbNPuLZblt6S6r+a493N0vcVBxPm3Z2fI1YQKHDvv7JV/VvX1DIov12RshLrH9Mb7RxgyROmSrQ8YQYX+f94TcAyGEEEIIIf/wAIyzOh0=
+   eJztlEkKAjEURGN2wVV7h1YMKjjEGzgdwekITgdVr2QtlNbQnVahkzTUg8eH/EWKCiRpCNGCScA5VEKM4BhOoFHZvgt14DlDnjlcwCVcqWz/yhmSNfJs4Bbu4D6nv5AckOcIT/AML5H1l0dRf1d482THypQ+z+8izv7027T7S2W5bekvq/2uPdzdL3FQcT7t2LnyNaGBU4/9/ZKv6t6+wchiQ/ZGiE9cf0xotDVjpA7Z6pAxRtjf5z0x90AIIYQQQsg/PADrWDSl
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzlWEtKA0EQ7RHiwp2ucgUDglfwb8QLiCBZi4If8AiS+L3CILrXXe6gglcwouQKmo3VMIVlpaq6M3ZU9EFRk6an+s2bfpWZce5vYzxzbiL7nrW6ZL3YPAlRG2A+z4MC14vNZc/DvDqaTN5/iRnQcBZi7it7eIj7fw1qNyGvJ1ijrAcsb3h+/vqRX0dZc2okzK+sByxveX7V7LN+HdffHyx+dH5K7ZDftKAf71shfsPQDvn5vuv5dch6/J51nB2xiKlDNdyFvAexH9h/qRDDj2tIz+UctbkW8JrqCfYh738h/bR+ScfxmuoJ9iHtL1Q/7l+En7/j+vulNo64HfA4VJf7l86X+nmozz8V+YUcO+MY0VLqWvrlkI8FfrnBr0f49YRxfuzxOubyZ4i+upmtX9uvM+YabxB8nPM7K34vQl6AWDJimZ0L9XNYJ5fqWvo9QIbrarwyfg9CnY3sIz86OxqC9kdKXUs/389PhPuLfV7jF+p9Ej+tLtevmn3MR7+3WR36nCHxK6NfS6jrn6kt/fjzhDWu6Xddce6mYuuH/pDqWvtvWuEnjWv63QG3+4qtH/pDqhvyr8RPGkd+p0y/WpFXyPi54o8y/pX6n+VfD6rVZMGNjknQ6ob8K/U/y78eIf0ktCL9S3l4P0n9T/LvQRbfjznQH1LdkH+l/if5zILUTyjQH7Qu9rRU/v0KP48jpa6mH3/elsa1/9l5dk4MP209TT/EJvSuLYjtSngNDRa/0HuOph/iEHg1IVoJ+HUjuUnvUJp+F8DrEuJK4he5B6V+HMOvmvXrx3VM/T5eNqf+npc6D/o987fop+Gn9Qt9z/lp/Yb1nblsfgcC1Sr0
+   eJzlWMtOFFEQrR5XZFa6ml+AxISfMCKouAXUDGFN5C9gRuPO6LKJfAIm/AMs2PlaOSSEf2BDVaQy1TVVdW8/RoyepFI9N3fqnj59T/UD4N/G/QLgQfFn1roS6+XmRYylGvN1rgteLzc3/R/n/Xudyftf4gnGJsZamyJz3P8bWPsA81YHazT1QOQN4kfnz/wmzpoPe2l+TT0QeYv4DYqqfhOY7Q8RPzm/S+2Y37Khn+5bKX7z0I75Ud8lfhOxnr5mE4hDYikIPddCZf/Bb/9uGdz03Fy05ac1ZET61QGf049++31I/W8Vpv0vpZ/XL+U4n9O3fvt9KPuL1E/7l0Hz92C2X3rjjNOax6m62r9yvtXPU33+4jZfimMIjhkjp26kX4n5rcGvDPhdC37Xxrg+JhwvQFlS6LpFrN8J5sMFGH7B0OOa3/vb308xnmG8CuK54of1S1yntOpG+p1jxvMaHit+50ad18U0/4I4hob2Y6dupB/183fG9eU+7/FL9XiLn1dX6zcopvPZ7yeqjnzOsPg10W9k1KVn6kg//TwRjXv6fcb7+VEv1o/9YdWN9t+yw88a9/Q7RW5nvVg/9odVN+Vfi581zvy2oaoV34t/9qdjOzCLsVM35V+r/0X+JUitFjG+9qtjFry6Kf9a/S/yL8HS77vQz8Io07+SB/nJ6n+Wf19Cfj/WYH9YdVP+tfqf5bMIVj+RYH/IutzTuvJvG36EsVPX1Q+qz9vW+Auwr+d6A37eep5+BNrTj7B3PcZYyXjv9BDxS73nePoxdpHXG4y9DvhdZXKTHCP9CB+Q10eMTxa/zD1o9eMcfoNiVj+tY9fv401z19/zus51v2f+Lfp5uGv9Ut9z7lq/eX1nbppvAIuEHvU=
   </data>
  </layer>
- <layer name="Numbers" width="40" height="40">
+ <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt2MERgCAMRFFUbtqHitp/AzaBNqNjBU5mNIT8V0FYNhwIAW+dvfYECgbtAWBFQ1c+t3t8g4SOn7Nq6T8K0dHFx+osh83ZeUuQyByVWIx3ORqfH3Izdw9UY7z3eWKn3cgKf1sX6/YFPw==
+   eJztzsEJACAMBMEjvRnsvyItQvCRGdj/JgAAAADAa6uSvu36fQIw0wHGDgDa
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" name="Collision" visible="0">
   <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
   <object id="2" type="collision" x="32" y="0" width="496" height="32"/>
   <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
@@ -81,14 +75,11 @@
   <object id="45" type="collision" x="528" y="0">
    <polygon points="0,0 0,64 48,64 48,48 64,48 64,64 80,64 80,0"/>
   </object>
-  <object id="46" type="collision" x="96" y="496">
-   <polygon points="0,0 0,48 48,48 48,0"/>
+  <object id="46" type="collision" x="96" y="512">
+   <polygon points="0,0 0,32 48,32 48,0"/>
   </object>
   <object id="50" type="collision" x="352" y="352">
    <polygon points="0,0 0,32 32,32 32,0"/>
-  </object>
-  <object id="51" type="collision" x="32" y="560">
-   <polygon points="0,0 0,-16 32,-16 32,48 0,48"/>
   </object>
   <object id="53" type="collision" x="64" y="80">
    <polygon points="0,0 0,16 448,16 448,0"/>
@@ -108,9 +99,18 @@
   <object id="59" type="collision" x="432" y="240">
    <polygon points="0,0 0,48 16,48 16,0"/>
   </object>
+  <object id="92" type="collision" x="112" y="288" width="16" height="32"/>
+  <object id="93" type="collision" x="112" y="416" width="16" height="32"/>
+  <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
+  <object id="95" type="collision" x="496" y="272" width="16" height="32"/>
+  <object id="96" type="collision" x="496" y="432" width="16" height="32"/>
+  <object id="97" type="collision" x="592" y="336" width="16" height="16"/>
+  <object id="98" type="collision" x="512" y="48" width="16" height="16"/>
+  <object id="99" type="collision" x="80" y="496" width="16" height="16"/>
+  <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
-  <object id="33" name="random encounter 1" type="event" x="320" y="176" width="128" height="32">
+ <objectgroup color="#ffff00" name="Events" visible="0">
+  <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
    <properties>
     <property name="act1" value="random_encounter default_encounter"/>
     <property name="cond1" value="is player_at"/>
@@ -131,15 +131,7 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="47" name="encounter 4" x="464" y="544">
-   <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
-   </properties>
-   <polygon points="0,0 128,0 128,-32 112,-32 112,-48 16,-48 16,-32 0,-32"/>
-  </object>
-  <object id="48" name="encounter 5" x="304" y="304">
+  <object id="48" name="encounter 5" type="event" x="304" y="304">
    <properties>
     <property name="act1" value="random_encounter default_encounter"/>
     <property name="cond1" value="is player_at"/>
@@ -147,8 +139,233 @@
    </properties>
    <polygon points="0,0 0,128 128,128 128,0"/>
   </object>
-  <object id="55" name="encounter 6" x="608" y="96">
-   <polygon points="0,0 -16,0 -16,16 -32,16 -32,0 -48,0 -48,16 0,16 -32,16 -32,32 -48,32 -48,48 -32,48 -32,64 -48,64 -48,80 -32,80 -32,96 -48,96 -48,112 -32,112 -32,128 -48,128 -48,144 -32,144 -32,160 -48,160 -48,176 -32,176 -32,192 -48,192 -48,208 -32,208 -32,224 -48,224 -48,240 -32,240 -32,256 -16,256 -16,240 -32,240 -32,224 -16,224 -16,240 0,240 0,224 -16,224 -16,208 0,208 0,192 -16,192 -16,208 -32,208 -32,192 -16,192 -16,176 -32,176 -32,160 -16,160 -16,176 0,176 0,160 -16,160 -16,144 -32,144 -32,128 -16,128 -16,144 0,144 0,128 -16,128 -16,112 -32,112 -32,96 -16,96 -16,112 0,112 0,96 -16,96 -16,80 -32,80 -32,64 -16,64 -16,80 0,80 0,64 -16,64 -16,48 -32,48 -32,32 -16,32 -16,48 0,48 -16,32 0,48 0,32 -16,32 -16,16 0,16"/>
+  <object id="60" name="encounter" type="event" x="480" y="496" width="96" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="61" name="encounter" type="event" x="464" y="512" width="128" height="32">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="62" name="encounter" type="event" x="560" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="63" name="encounter" type="event" x="592" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="64" name="encounter" type="event" x="576" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="65" name="encounter" type="event" x="560" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="66" name="encounter" type="event" x="592" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="67" name="encounter" type="event" x="576" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="68" name="encounter" type="event" x="576" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="69" name="encounter" type="event" x="592" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="70" name="encounter" type="event" x="560" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="71" name="encounter" type="event" x="576" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="72" name="encounter" type="event" x="592" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="73" name="encounter" type="event" x="560" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="74" name="encounter" type="event" x="576" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="75" name="encounter" type="event" x="592" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="76" name="encounter" type="event" x="560" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="77" name="encounter" type="event" x="576" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="78" name="encounter" type="event" x="592" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="79" name="encounter" type="event" x="560" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="80" name="encounter" type="event" x="576" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="81" name="encounter" type="event" x="592" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="82" name="encounter" type="event" x="560" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="83" name="encounter" type="event" x="576" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="84" name="encounter" type="event" x="592" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="85" name="encounter" type="event" x="560" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="86" name="Teleport to Route 2" type="event" x="176" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport route2.tmx,11,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="87" name="Teleport to Route 2" type="event" x="160" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport route2.tmx,10,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="88" name="Teleport to Leather Town" type="event" x="624" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport leather_town.tmx,0,31,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="89" name="Teleport to Leather Town" type="event" x="624" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport leather_town.tmx,0,32,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="90" name="Teleport to Leather Town" type="event" x="624" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport leather_town.tmx,0,33,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="91" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music back34.mp3"/>
+    <property name="cond1" value="not music_playing back34.mp3"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

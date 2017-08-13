@@ -6,15 +6,13 @@ from functools import partial
 import pygame
 
 from core import prepare
-from core.tools import open_dialog
-from core.components.event.actions import core as core_actions
+from core.components.locale import translator
 from core.components.menu.interface import MenuItem
 from core.components.menu.menu import Menu
-from core.components.locale import translator
+from core.tools import open_dialog
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 
 def adapter(name, *args):
@@ -39,7 +37,7 @@ class WorldMenuState(Menu):
     """
     Menu for the world state
     """
-    shrink_to_items = True    # this menu will shrink, but size is adjusted when opened
+    shrink_to_items = True  # this menu will shrink, but size is adjusted when opened
     animate_contents = True
 
     def startup(self, *args, **kwargs):
@@ -49,7 +47,7 @@ class WorldMenuState(Menu):
             return partial(self.game.replace_state, state, **kwargs)
 
         def exit_game():
-            core_actions.Core().quit(self.game, None, {})
+            self.game.event_engine.execute_action("quit")
 
         def not_implemented_dialog():
             open_dialog(self.game, [translator.translate('not_implemented')])
@@ -132,7 +130,7 @@ class WorldMenuState(Menu):
             else:
                 open_monster_submenu(menu_item)
 
-        context = dict()    # dict passed around to hold info between menus/callbacks
+        context = dict()  # dict passed around to hold info between menus/callbacks
         monster_menu = self.game.replace_state("MonsterMenuState")
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook
@@ -157,9 +155,9 @@ class WorldMenuState(Menu):
         self.refresh_layout()           # rearrange items
         width = self.rect.width         # store the ideal width
 
-        self.shrink_to_items = False    # force menu to expand
-        self.menu_items.expand = True   # force menu to expand
-        self.refresh_layout()           # rearrange items
+        self.shrink_to_items = False   # force menu to expand
+        self.menu_items.expand = True  # force menu to expand
+        self.refresh_layout()          # rearrange items
         self.rect = pygame.Rect(right, 0, width, height)  # set new rect
 
         # animate the menu sliding in

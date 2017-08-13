@@ -1,3 +1,28 @@
+# -*- coding: utf-8 -*-
+#
+# Tuxemon
+# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
+#                     Benjamin Bean <superman2k5@gmail.com>
+#
+# This file is part of Tuxemon.
+#
+# Tuxemon is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Tuxemon is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contributor(s):
+#
+# Leif Theden <leif.theden@gmail.com>
+#
 import inspect
 import logging
 import os
@@ -16,7 +41,6 @@ from core.components.sprite import SpriteGroup
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("{} successfully imported".format(__name__))
 
 
 class State(object):
@@ -255,6 +279,7 @@ class StateManager(object):
         """
         state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
+        logger.debug("loading game states from {}".format(state_folder))
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
                 continue
@@ -268,6 +293,7 @@ class StateManager(object):
         :returns: None
         """
         name = state.__name__
+        logger.debug("loading state: {}".format(state.__name__))
         self._state_dict[name] = state
 
     @staticmethod
@@ -300,8 +326,8 @@ class StateManager(object):
                 yield state
         except Exception as e:
             template = "{} failed to load or is not a valid game package"
-            print(e)
-            print(template.format(folder))
+            logger.error(e)
+            logger.error(template.format(folder))
             raise
 
     def query_all_states(self):
@@ -346,7 +372,7 @@ class StateManager(object):
         elif state in self._state_stack:
             index = self._state_stack.index(state)
         else:
-            print("Attempted to pop state when state was not active.")
+            logger.critical("Attempted to pop state when state was not active.")
             raise RuntimeError
 
         if index == 0:
@@ -355,19 +381,20 @@ class StateManager(object):
         try:
             previous = self._state_stack.pop(index)
         except IndexError:
-            print("Attempted to pop state when no state was active.")
+            logger.critical("Attempted to pop state when no state was active.")
             raise RuntimeError
 
         previous.pause()
         previous.shutdown()
 
         #  DEBUGGING =========================================================
-        import gc
-        import inspect
-        gc.collect()
+        # import gc
+        # import inspect
+        # gc.collect()
+        #
+        # if not all(map(inspect.isframe, gc.get_referrers(previous))):
+        #     logger.debug("State was not able to be GC'd %s" % previous)
 
-        if not all(map(inspect.isframe, gc.get_referrers(previous))):
-            print("State was not able to be GC'd %s" % previous)
         # DEBUGGING =========================================================
 
         if index == 0 and self._state_stack:
@@ -389,7 +416,7 @@ class StateManager(object):
         try:
             state = self._state_dict[state_name]
         except KeyError:
-            print('Cannot find state: {}'.format(state_name))
+            logger.critical('Cannot find state: {}'.format(state_name))
             raise RuntimeError
 
         previous = self.current_state

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -29,46 +28,50 @@
 #
 #
 
-import os
+from __future__ import print_function
+
 import sys
 import logging
-from . import config as Config
 
-# read the configuration file
-BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".." + os.sep + "..")) + os.sep
-if "library.zip" in BASEDIR:
-    BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
-
-# Set our logging levels
-LOG_LEVELS = {"debug": logging.DEBUG,
-              "info": logging.INFO,
-              "warning": logging.WARNING,
-              "error": logging.ERROR,
-              "critical": logging.CRITICAL}
-config_path = BASEDIR + "tuxemon.cfg"
-config = Config.Config(config_path)
-loggers = {}
-
-if config.debug_level in LOG_LEVELS:
-    log_level = LOG_LEVELS[config.debug_level]
-else:
-    log_level = logging.INFO
-
-# Set up logging if the configuration has it enabled
-if config.debug_logging == "1":
-
-    for logger_name in config.loggers:
-
-        # Enable logging
-        logger = logging.getLogger(logger_name)
-        logger.setLevel(log_level)
-        log_hdlr = logging.StreamHandler(sys.stdout)
-        log_hdlr.setLevel(logging.DEBUG)
-        log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
-                                                "%(levelname)s - %(message)s"))
-        logger.addHandler(log_hdlr)
-
-        loggers[logger_name] = logger
+from core import prepare
 
 
+def configure():
+    """Configure logging based on the settings in the config file.
+    """
+    # Set our logging levels
+    LOG_LEVELS = {"debug": logging.DEBUG,
+                  "info": logging.INFO,
+                  "warning": logging.WARNING,
+                  "error": logging.ERROR,
+                  "critical": logging.CRITICAL}
+    config = prepare.CONFIG
+    loggers = {}
 
+    if config.debug_level in LOG_LEVELS:
+        log_level = LOG_LEVELS[config.debug_level]
+    else:
+        log_level = logging.INFO
+
+    # Set up logging if the configuration has it enabled
+    if config.debug_logging == "1":
+
+        for logger_name in config.loggers:
+
+            # Enable logging for all modules if specified.
+            if logger_name == "all":
+                print("Enabling logging of all modules.")
+                logger = logging.getLogger()
+            else:
+                print("Enabling logging for module: %s" % logger_name)
+                logger = logging.getLogger(logger_name)
+
+            # Enable logging
+            logger.setLevel(log_level)
+            log_hdlr = logging.StreamHandler(sys.stdout)
+            log_hdlr.setLevel(log_level)
+            log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
+                                                    "%(levelname)s - %(message)s"))
+            logger.addHandler(log_hdlr)
+
+            loggers[logger_name] = logger

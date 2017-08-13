@@ -1,4 +1,4 @@
-#!/usr/bin/python
+from __future__ import print_function
 from ctypes import *
 from time import sleep
 from threading import Thread

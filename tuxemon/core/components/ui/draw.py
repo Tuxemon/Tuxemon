@@ -11,7 +11,6 @@ from core.components.sprite import Sprite
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 __all__ = ('GraphicBox', 'draw_text')
 
@@ -179,7 +178,7 @@ def constrain_width(text, font, width):
             token_width = font.size(test)[0]
             if token_width >= width:
                 if scrap is None:
-                    print('message is too large for width', text)
+                    logger.error('message is too large for width', text)
                     raise RuntimeError
                 yield scrap
                 scrap = word

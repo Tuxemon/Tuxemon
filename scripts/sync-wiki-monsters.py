@@ -2,6 +2,7 @@
 # Downloads all the monsters from the wiki and
 # creates monsters and their sprites.
 
+from __future__ import print_function
 from lxml import html
 from pprint import pprint
 import requests

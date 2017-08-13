@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -30,6 +29,7 @@
 """Executes the main game. Primarily used for Android builds
 of the game.
 """
+from __future__ import absolute_import
 
 import sys
 from core.main import main

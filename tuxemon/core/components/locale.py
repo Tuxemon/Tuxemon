@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -34,7 +33,6 @@ from core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-logger.debug("%s successfully imported" % __name__)
 
 LOCALE_PATH = "resources/db/locale"
 FALLBACK_LOCALE = "en_US"
@@ -99,7 +97,7 @@ class Translator(object):
                 f.close()
                 translations = dict(data, **translations)
             except Exception as e:
-                print("Unable to load translation:", e)
+                logger.error("Unable to load translation:", e)
 
         return translations
 
@@ -116,7 +114,6 @@ class Translator(object):
             return self.fallback[key]
         else:
             logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
-            print("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
             return None
 
 
@@ -159,12 +156,9 @@ class Translator(object):
         elif key in self.fallback:
             logger.warning("Key '%s' does not exist in '%s' locale file. Falling back to '%s'." %
                            (key, self.locale, FALLBACK_LOCALE))
-            print("Key '%s' does not exist in '%s' locale file. Falling back to '%s'." %
-                  (key, self.locale, FALLBACK_LOCALE))
             translation_text = self.fallback[key]
         else:
             logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
-            print("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
             translation_text = "Locale Error"
 
         return self.format(translation_text, parameters)

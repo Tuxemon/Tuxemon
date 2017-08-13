@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -35,9 +34,10 @@ To run an individual component (e.g. core/prepare.py):
 `python -m core.prepare`
 
 """
+from __future__ import absolute_import
+from __future__ import print_function
 import sys
 import getopt
-
 
 if __name__ == '__main__':
     server = False
@@ -53,10 +53,12 @@ if __name__ == '__main__':
 
     if server:
         from core.main import headless
+
         headless()
 
     else:
         from core.main import main
+
         main()
 
     sys.exit()

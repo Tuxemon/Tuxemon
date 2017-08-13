@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="202">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="213">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -132,17 +132,17 @@
  </tileset>
  <layer name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzzY2Vg8BsmuJQNOzZgw60nFIjDoDh8gNxXisd9sUj64kfdN6jdRw4eLO6D5YMUqHuS0fgD7T7kcMKFYW7Gh2mVx1OBOA0LjsHj7sGQHpHDNRqHH2B4oN03GMJr1H3kY+S6FoYpKV8+4Cn3KQ0rXPnVnwS3Udt9uMoYGE6Huu8OEN9FwzD3oGNaxzkI+EHdBcNP8LiHnu7DFk4g/GCQuI+UcBqq7gMAN21BqQ==
+   eJzzY2Vg8BsmuJQNOzZgw60nFIjDoDh8gNxXisd9sUj64kfdN6jdRw4eLO6D5YMUqHuS0fgD7T7kcMKFYW7Gh2mVx1OBOA0LjiHC3cSkY3qEazQOP8DwQLuPUPobdd/gdh9yXQvDlJQvH6jsXkJlDMh9/iS4jdruw1XGwHA61H13gPguGoa5Bx3TOv2BgB/UXTD8BI976Ok+bOEEwg8GiftICaeh6j4Ak/hDAA==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzTZWFg0ANiXQJ0KxsDQxse3A7EhEABK245XPaGAXE4EfRcPPYbAOXm45DPQHNTAA434rKXULjBaHzuAwFc7iMW0DL8qOG+4R5+W4H2b8ODt1PgPgtWysMPRtMakBt+MJrWgNLwywHGRS4WnI+nbCMHUBJ+yhwMDCocCLPUoGwLKrqRmunPgAO7OCWAkvBTRXOPGg3cR0n46aO5hxbhdweYVh7gKXeIyb/o6ZDabnvPOTjKP5B77iLhB9B89pGT9uXffzYEvoCjjnmAI99/ICP8SKWR21MvSKwD35ERfpSEtzg7ae77SIfwQwYLgPYt5CTsrjKgmnKoOnqG3wmgnSc5IekKFDag+HsP5b+H8kHi84B4PtR9AJz6kUQ=
+   eJzTZWFg0ANiXQJ0KxsDQxse3A7EhEABK245XPaGAXE4EfRcPPYbAOXm45DPQHNTAA434rKXULjBaHzuAwFc7iMW0DL8qOG+4R5+W4H2b8ODt1PgPgtWysMPRtMakBt+MJrWgNLwywHGRS4WnIenbCMHUBJ+yhwMDCocCLPUgOwyVkg6ohagZvoz4MAuTgmgJPxU0dyjRgP3URJ++mjuoUX43QGmlQd4yh1i8i96OqS2295zDo7yD+Seu0j4ATSffeSkffm3WJ6BoZYVgnGVQQ9wiH8gI/xIpZHbUy9IrAPfkRF+lIS3ODtp7vtIh/BDBguA9i3kJOyuMqCacqg6eobfCaCdJzkh6QoUNqD4ew/lv4fyQeLzgHg+1H0AMmiQEg==
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzN1jlOw0AUgOFRsIPS+AyQULF2cIawVOCYgqUCKoTEVrHegASo2O7BVrFKIM6A2BrWEoQQf5Ai4nji8UjY+EmfJpnM+L08j2QLETzOk0J8SHziEuOm14T5u98y1Gsqw2CPaajHYlwnNf4MkUm5v3cY+nXohF99eRSwijWs+1wnR14nYO6/6t8u9rCPAxwGS/8TtiJv0Hj3OX83/H6LO9zjQcjv5wY2sYVt7ChyBu1faUynvNfIlp1vm885OFXO/BGOcYJTnCnqiTKK/XxifMYLXvGm2KPbvyjC8skbZR1Dptew6T63cenfQFl9Vgj56hJC1CONDBoS8nWNzDehGS1oRRsGQ+5flhyd6EI3eqrU18t8H2zk4KC/oj4rhPs0SY4pTGMGs3isca9pJ+8c8/NYwCKWsCzpX+nZGJfzN0JdoxjzeVf471ip9c7p9u+LZ9mVhguNd568pL44haw+3f6FeV4LMe+fLOLUP1l8A4+0WMg=
+   eJzN1jlOw0AUxvFRsIPS+ApAQsXawRnCUoFtChAVUCEktiphuQEJULEV3IKtYi04BGJrWEsQBf8gRbHjie2RcOJP+snJxPZ7fhkpESJ8bpJCfEv84BazutecXrne0ILPqY7GNboWfCzlLqnwMCSTcr/v19T7UIlffwUUsYktbPvcx6KuHbL2f83vCMc4wSnOwpX/ixlQN2y+fPbfPZ8/4BFPeBby73MHu9jDPg4CaoadX/mYTnnvkXXsb5PXFuwae/4cF7jEFa4D+qlnSvN85fiGd3zgM+Aa1fnVI4ZP3UbM1ZlJ3b1v4zK/cb3SnxFBvdaEEG1II4P2hPy8DtY70YVu9KAXE47+ophflhoDGMQQhmv0N8L6KExYsDFW1Z8Rwfc0T40FLGIJy3hpcp/TR90c63msYBVrWJfMr/zbGJf9N0Vf05jx+a/Q6Gw0e9dU55fj+fIKDlvC91eQ9BenyPpTnV+U+7UY8/nJEqf5yfIL5LpRKQ==
   </data>
  </layer>
  <layer name="Above Player" width="40" height="20">
@@ -155,7 +155,7 @@
    eJxjYKAOKGClkkGjYMgAPpaBdsHwAqPhOQooBU/ksIu3CjAwtAFxOxB3AHGnAHZ1wWIMDCFAHArEYUAcDsQRYrR3HzpwZ2Zg8ABiT2bq2U0MINZ9BUB3FQJxEZL7eOmQf4l130CBUfeNglEwCogFACRfDmw=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision" visible="0">
+ <objectgroup color="#ff0000" name="Collision">
   <properties>
    <property name="Collision" value=""/>
   </properties>
@@ -187,7 +187,7 @@
   <object id="148" type="collision" x="448" y="256" height="32"/>
   <object id="149" type="collision" x="192" y="240" width="256" height="16"/>
   <object id="150" type="collision" x="464" y="16" width="32" height="32"/>
-  <object id="152" type="collision" x="288" y="160" width="80" height="48"/>
+  <object id="152" type="collision" x="336" y="160" width="32" height="48"/>
   <object id="153" type="collision" x="448" y="160" width="96" height="48"/>
   <object id="154" type="collision" x="192" y="128" width="112" height="16"/>
   <object id="155" type="collision" x="432" y="0" width="112" height="16"/>
@@ -208,11 +208,18 @@
   <object id="194" type="collision" x="288" y="32" width="48" height="48"/>
   <object id="195" type="collision" x="352" y="64" width="32" height="16"/>
   <object id="196" type="collision" x="336" y="32" width="32" height="32"/>
+  <object id="204" type="collision" x="592" y="192" width="16" height="16"/>
+  <object id="205" type="collision" x="592" y="192" width="16" height="16"/>
+  <object id="206" type="collision" x="592" y="192" width="16" height="16"/>
+  <object id="207" type="collision" x="592" y="160" width="16" height="16"/>
+  <object id="208" type="collision" x="592" y="128" width="16" height="16"/>
+  <object id="210" type="collision" x="288" y="160" width="32" height="48"/>
+  <object id="211" type="collision" x="320" y="160" width="16" height="32"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events" visible="0">
+ <objectgroup color="#ffff00" name="Events">
   <object id="167" name="Sign for Mart" type="event" x="368" y="192">
    <properties>
-    <property name="act1" value="dialog_chain Buy things here."/>
+    <property name="act1" value="dialog_chain Buy things here"/>
     <property name="act4" value="dialog_chain ${{end}}"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
@@ -229,7 +236,7 @@
   </object>
   <object id="171" name="Sign for Protagonist House" type="event" x="432" y="96">
    <properties>
-    <property name="act1" value="dialog_chain Home sweet home."/>
+    <property name="act1" value="dialog_chain Home sweet home"/>
     <property name="act4" value="dialog_chain ${{end}}"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
@@ -244,9 +251,30 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="177" name="Sign for Route 1" type="event" x="432" y="16" width="16" height="16"/>
-  <object id="178" name="Sign for ???" type="event" x="432" y="192" width="16" height="16"/>
-  <object id="179" name="Sign for Daycare" type="event" x="368" y="64" width="16" height="16"/>
+  <object id="177" name="Sign for Route 1" type="event" x="432" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain ^ Route 1 --- Paper Town v"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="178" name="Sign for Sunnyside Manor" type="event" x="432" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Sunnyside Manor: If we are not home leave a message with our housekeeper"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="179" name="Sign for Daycare" type="event" x="368" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Daycare Centre: Under construction"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
   <object id="180" name="Teleport to Route 1" type="event" x="416" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport route1_sanglorian.tmx,26,19,0.3"/>
@@ -304,6 +332,32 @@
   <object id="201" name="Teleport to Candy Town" type="event" x="592" y="208">
    <properties>
     <property name="act1" value="transition_teleport candy_town.tmx,9,36,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="202" name="Sign for Flower" type="event" x="592" y="160">
+   <properties>
+    <property name="act1" value="dialog_chain Teleport to Flower City below"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="203" name="Sign for Candy" type="event" x="592" y="192">
+   <properties>
+    <property name="act1" value="dialog_chain Teleport to Candy Town below"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+   <polygon points="0,0 0,16 16,16 16,0"/>
+  </object>
+  <object id="212" name="Teleport to Mart" type="event" x="320" y="192">
+   <properties>
+    <property name="act1" value="transition_teleport paper_scoop.tmx,7,12,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>

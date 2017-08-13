@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="90">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="92">
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
@@ -200,6 +200,79 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1576,1577,0,0,1576,1577,0,0,1576,1577,1576,1577,0
 </data>
  </layer>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="1" type="collision" x="0" y="336" width="32" height="160"/>
+  <object id="2" type="collision" x="272" y="608" width="192" height="32"/>
+  <object id="3" type="collision" x="80" y="400" width="96" height="48"/>
+  <object id="4" type="collision" x="192" y="400" width="80" height="48"/>
+  <object id="5" type="collision" x="176" y="432" width="16" height="16"/>
+  <object id="6" type="collision" x="144" y="512" width="80" height="48"/>
+  <object id="7" type="collision" x="224" y="528" width="32" height="32"/>
+  <object id="9" type="collision" x="368" y="512" width="80" height="48"/>
+  <object id="10" type="collision" x="320" y="432" width="48" height="16"/>
+  <object id="11" type="collision" x="368" y="368" width="32" height="32"/>
+  <object id="12" type="collision" x="336" y="544" width="128" height="16"/>
+  <object id="13" type="collision" x="272" y="544" width="48" height="16"/>
+  <object id="14" type="collision" x="272" y="512" width="80" height="32"/>
+  <object id="15" type="collision" x="16" y="624" width="624" height="16"/>
+  <object id="16" type="collision" x="0" y="544" width="32" height="64"/>
+  <object id="19" type="collision" x="32" y="592" width="32" height="32"/>
+  <object id="20" type="collision" x="192" y="288" width="80" height="48"/>
+  <object id="21" type="collision" x="160" y="304" width="32" height="32"/>
+  <object id="22" type="collision" x="608" y="96" width="32" height="528"/>
+  <object id="23" type="collision" x="448" y="0" width="32" height="32"/>
+  <object id="24" type="collision" x="480" y="384" width="16" height="16"/>
+  <object id="25" type="collision" x="224" y="112" width="80" height="32"/>
+  <object id="26" type="collision" x="224" y="144" width="32" height="16"/>
+  <object id="27" type="collision" x="272" y="144" width="32" height="16"/>
+  <object id="28" type="collision" x="160" y="192" width="96" height="32"/>
+  <object id="29" type="collision" x="160" y="224" width="64" height="16"/>
+  <object id="31" type="collision" x="240" y="208" width="48" height="32"/>
+  <object id="32" type="collision" x="32" y="336" width="16" height="16"/>
+  <object id="33" type="collision" x="48" y="304" width="16" height="32"/>
+  <object id="34" type="collision" x="64" y="288" width="16" height="32"/>
+  <object id="35" type="collision" x="96" y="336" width="16" height="16"/>
+  <object id="36" type="collision" x="16" y="16" width="112" height="272"/>
+  <object id="37" type="collision" x="128" y="16" width="80" height="112"/>
+  <object id="38" type="collision" x="352" y="112" width="80" height="32"/>
+  <object id="39" type="collision" x="208" y="0" width="240" height="48"/>
+  <object id="40" type="collision" x="208" y="48" width="32" height="16"/>
+  <object id="41" type="collision" x="256" y="48" width="96" height="16"/>
+  <object id="42" type="collision" x="368" y="48" width="80" height="16"/>
+  <object id="43" type="collision" x="352" y="144" width="32" height="16"/>
+  <object id="44" type="collision" x="400" y="144" width="32" height="16"/>
+  <object id="45" type="collision" x="528" y="304" width="32" height="16"/>
+  <object id="46" type="collision" x="576" y="304" width="32" height="16"/>
+  <object id="47" type="collision" x="528" y="384" width="32" height="16"/>
+  <object id="48" type="collision" x="576" y="384" width="32" height="16"/>
+  <object id="49" type="collision-line" x="528" y="320">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="50" type="collision" x="496" y="144" width="80" height="48"/>
+  <object id="51" type="collision" x="48" y="480" width="16" height="16"/>
+  <object id="52" type="collision" x="560" y="0" width="64" height="32"/>
+  <object id="53" type="collision" x="544" y="16" width="16" height="16"/>
+  <object id="54" type="collision" x="608" y="32" width="32" height="32"/>
+  <object id="55" type="collision" x="576" y="64" width="32" height="32"/>
+  <object id="56" type="collision" x="592" y="512" width="16" height="16"/>
+  <object id="57" type="collision" x="464" y="112" width="128" height="32"/>
+  <object id="58" type="collision" x="464" y="144" width="32" height="96"/>
+  <object id="59" type="collision" x="368" y="208" width="96" height="32"/>
+  <object id="60" type="collision" x="528" y="512" width="80" height="32"/>
+  <object id="61" type="collision" x="480" y="432" width="80" height="32"/>
+  <object id="62" type="collision" x="528" y="464" width="32" height="48"/>
+  <object id="63" type="collision" x="416" y="240" width="32" height="224"/>
+  <object id="64" type="collision" x="448" y="432" width="16" height="32"/>
+  <object id="65" type="collision" x="368" y="240" width="48" height="64"/>
+  <object id="66" type="collision" x="368" y="320" width="48" height="16"/>
+  <object id="67" type="collision" x="400" y="304" width="16" height="16"/>
+  <object id="68" type="collision" x="496" y="608" width="32" height="16"/>
+  <object id="69" type="collision" x="560" y="608" width="48" height="16"/>
+  <object id="85" type="collision" x="336" y="176" width="16" height="16"/>
+  <object id="86" type="collision" x="464" y="256" width="48" height="16"/>
+  <object id="87" type="collision" x="592" y="240" width="16" height="32"/>
+  <object id="88" type="collision" x="272" y="320" width="16" height="16"/>
+ </objectgroup>
  <objectgroup color="#ffff00" name="Event">
   <object id="75" name="Teleport to City Park" type="event" x="0" y="512" width="16" height="16">
    <properties>
@@ -279,78 +352,22 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" name="Collisions">
-  <object id="1" type="collision" x="0" y="336" width="32" height="160"/>
-  <object id="2" type="collision" x="272" y="608" width="192" height="32"/>
-  <object id="3" type="collision" x="80" y="400" width="96" height="48"/>
-  <object id="4" type="collision" x="192" y="400" width="80" height="48"/>
-  <object id="5" type="collision" x="176" y="432" width="16" height="16"/>
-  <object id="6" type="collision" x="144" y="512" width="80" height="48"/>
-  <object id="7" type="collision" x="224" y="528" width="32" height="32"/>
-  <object id="9" type="collision" x="368" y="512" width="80" height="48"/>
-  <object id="10" type="collision" x="320" y="432" width="48" height="16"/>
-  <object id="11" type="collision" x="368" y="368" width="32" height="32"/>
-  <object id="12" type="collision" x="336" y="544" width="128" height="16"/>
-  <object id="13" type="collision" x="272" y="544" width="48" height="16"/>
-  <object id="14" type="collision" x="272" y="512" width="80" height="32"/>
-  <object id="15" type="collision" x="16" y="624" width="624" height="16"/>
-  <object id="16" type="collision" x="0" y="544" width="32" height="64"/>
-  <object id="19" type="collision" x="32" y="592" width="32" height="32"/>
-  <object id="20" type="collision" x="192" y="288" width="80" height="48"/>
-  <object id="21" type="collision" x="160" y="304" width="32" height="32"/>
-  <object id="22" type="collision" x="608" y="96" width="32" height="528"/>
-  <object id="23" type="collision" x="448" y="0" width="32" height="32"/>
-  <object id="24" type="collision" x="480" y="384" width="16" height="16"/>
-  <object id="25" type="collision" x="224" y="112" width="80" height="32"/>
-  <object id="26" type="collision" x="224" y="144" width="32" height="16"/>
-  <object id="27" type="collision" x="272" y="144" width="32" height="16"/>
-  <object id="28" type="collision" x="160" y="192" width="96" height="32"/>
-  <object id="29" type="collision" x="160" y="224" width="64" height="16"/>
-  <object id="31" type="collision" x="240" y="208" width="48" height="32"/>
-  <object id="32" type="collision" x="32" y="336" width="16" height="16"/>
-  <object id="33" type="collision" x="48" y="304" width="16" height="32"/>
-  <object id="34" type="collision" x="64" y="288" width="16" height="32"/>
-  <object id="35" type="collision" x="96" y="336" width="16" height="16"/>
-  <object id="36" type="collision" x="16" y="16" width="112" height="272"/>
-  <object id="37" type="collision" x="128" y="16" width="80" height="112"/>
-  <object id="38" type="collision" x="352" y="112" width="80" height="32"/>
-  <object id="39" type="collision" x="208" y="0" width="240" height="48"/>
-  <object id="40" type="collision" x="208" y="48" width="32" height="16"/>
-  <object id="41" type="collision" x="256" y="48" width="96" height="16"/>
-  <object id="42" type="collision" x="368" y="48" width="80" height="16"/>
-  <object id="43" type="collision" x="352" y="144" width="32" height="16"/>
-  <object id="44" type="collision" x="400" y="144" width="32" height="16"/>
-  <object id="45" type="collision" x="528" y="304" width="32" height="16"/>
-  <object id="46" type="collision" x="576" y="304" width="32" height="16"/>
-  <object id="47" type="collision" x="528" y="384" width="32" height="16"/>
-  <object id="48" type="collision" x="576" y="384" width="32" height="16"/>
-  <object id="49" type="collision-line" x="528" y="320">
-   <polyline points="0,0 0,64"/>
+  <object id="90" name="Sign: Route 3" type="event" x="544" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Route 3: Rehabilitation will begin as soon as possible. Please stop nagging us."/>
+    <property name="act2" value="dialog_chain v Leather Town --- Route 3 ^"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
   </object>
-  <object id="50" type="collision" x="496" y="144" width="80" height="48"/>
-  <object id="51" type="collision" x="48" y="480" width="16" height="16"/>
-  <object id="52" type="collision" x="560" y="0" width="64" height="32"/>
-  <object id="53" type="collision" x="544" y="16" width="16" height="16"/>
-  <object id="54" type="collision" x="608" y="32" width="32" height="32"/>
-  <object id="55" type="collision" x="576" y="64" width="32" height="32"/>
-  <object id="56" type="collision" x="592" y="512" width="16" height="16"/>
-  <object id="57" type="collision" x="464" y="112" width="128" height="32"/>
-  <object id="58" type="collision" x="464" y="144" width="32" height="96"/>
-  <object id="59" type="collision" x="368" y="208" width="96" height="32"/>
-  <object id="60" type="collision" x="528" y="512" width="80" height="32"/>
-  <object id="61" type="collision" x="480" y="432" width="80" height="32"/>
-  <object id="62" type="collision" x="528" y="464" width="32" height="48"/>
-  <object id="63" type="collision" x="416" y="240" width="32" height="224"/>
-  <object id="64" type="collision" x="448" y="432" width="16" height="32"/>
-  <object id="65" type="collision" x="368" y="240" width="48" height="64"/>
-  <object id="66" type="collision" x="368" y="320" width="48" height="16"/>
-  <object id="67" type="collision" x="400" y="304" width="16" height="16"/>
-  <object id="68" type="collision" x="496" y="608" width="32" height="16"/>
-  <object id="69" type="collision" x="560" y="608" width="48" height="16"/>
-  <object id="85" type="collision" x="336" y="176" width="16" height="16"/>
-  <object id="86" type="collision" x="464" y="256" width="48" height="16"/>
-  <object id="87" type="collision" x="592" y="240" width="16" height="32"/>
-  <object id="88" type="collision" x="272" y="320" width="16" height="16"/>
+  <object id="91" name="Sign: Route 3" type="event" x="480" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Open Air Cafe and Marketplace"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

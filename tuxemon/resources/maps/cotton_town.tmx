@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="242">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="252">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -65,12 +65,12 @@
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   eJzNmGdPFEEcxveO21MTExJ9aUNAQAUF1MTY4gsLXY3SJSpgiYmFKhAroNHE9h3sLdE3vtEXfgI76DexIv4m3ITZY+a23II+yS9zu7M789yz/53bPcuyrFdxy3odD94KRSAKGRADG0TXLJgNc6CIjlVQB/Ux87aqOwxyN55+u4KxVkKh8AGrYDUUQwmUWpM+pFJtS6/pZifbvYy5D2rFPFAPDdAITdBs6fMxSXpdb6efndBZOAfn4QJchEswCEMwrMkrldTvEkb93YP78AAewiN4DE/gKTwLmJ8uiyB6C+/gPXyAj/AJPsMIjFrB8tNlEUTf4Dv8gJ/wC37DGPyBcStYfkLpZieUxQKzFLIhB3JhGeRBPhRE/OWnKt3shMqZvwIqoQqqoQZ2wW7YE/GXn1QY9beGOTuZvwu6oQd64Qz0QT8M+Mwv7PoLW/K7HLTDqT8vkpmU2d6PFZqp7Nyub4w+O+Y8Nqz1L5WS7wu5bWrVY2ai/mQWMh+5bWpjsfDXP6Gthrpyy8vUCp9izOmuP7e8TG3RDNVfUNX9x+tf8j31Zv6/86KTvMaFisdiXiBKoBRGYC28nDfRJ9oN/EZthE2wGbZEnP2pzvei/cr9JfOrVfw1Ml4TNMMfaIk667INP+1wGI7A0cjE/ta4+Xypq5mWdS0ztb8WxZ8uv0HGG4JhyOdF7ErUWZfX8XMDbsItuB1xjq87X+o53l748KfLT1WjPUmqfpPczi/V3Ium/D4n6mUUvsDXqPM8t/4FbC+ERbAYliT1e5Upv7FEvYwnXrAjGc7z3Pq3sX877ICdUAZzAzwnm/LLy5iolwJYDiuS5nfrP4Gfk3AKTkMHrPPh73F8qj81v1qX57E6Ozj1Hp71pHT5Je8PWwcC+lN/P6bTnx+5rX8mHbEnUdf4ZtvZpzumzUcttBvqry/gNTBduzCuh5pfh2G8LO7DpZANOZAbnepPtzaG4U/Nz+SvnLkqoBKqoFrjT7c2HjZcdx2mZ2cv+XUyZxd0Qw/0avy5rY061STGEGOZnp2lUuXnVsN+1g6dWuypz6HF7NutjGvKz0sNpetPSM3rmDJeQ+KzyK9fM4+XGrrMua20AwE4rnAoMb/6v4J8F5TrX4PGo1/5fX/USfzfUqB4MT3/BZHf90cv+gsV/DI/
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlstPE0Ecx6eUFZWUxKJ3Q+JNCKAHgo+7MSEceAhCIoogEhTjSY2JinLi4QkVzoTnUY4EhTuxbfwfwJYLHBTjgU/T2bhL2Ef3wW5Jv8kns7u/7cx3fp357QgRPrWWBu3AXJdD7q+YP3cyy98QPIGnMAzPNLGyEiFOwxk4C+Ul3nn6o/y/NsvfFHyCz/AFpjWxWvzUQT1cgase+tPKLH9r8A2+wzpswO1YLtaBn064C13Q7YG/PUV/v6sc/Z6qLdiGX5CGDDzH39e4EO/wMwLv4QOM+pS/sO2PfZmzv7It1hd3Oin5m2X9z0nmYQEW5Z44FxEiDpVwHi5Ecs+1NXLZYY20m79N+v4hSUASUnK8Rvxcg+twA25Kf9oa+dPHGpnVb/pugX1JO/yT4z3ATy88hD7ol/78qJFGuhgV4jX9V0VzvOH6Eu0KtXAMP+MwAZPwMZJ7flw1sih7SsWCdhC8BvhuvbTBoMXZwC+lT5nHp/kPZ2DH4j2/ZOVvHW8beforpYYrHn0HD/t7W0EdgpEK/fN8/FXjrQbuGayJBsV6DrXK0f4W8LUISy78tTFuO9wx8JcdW52DlQ77S+ArCSkX/uxInYOVrNafqrDuD1Vh8Lca18e090H5eyHrb4/BWr4v468Cqs9e6tYJmEOhq9D/gyZF33qpTNS7vqz8aeOPHM6l2cbvnPat1WNFj1GtMpN6XnDahk3q+cLuOcONnOxZ9Xxhds44AJRfazw=
+   eJztljlLA0EYhicmY5cU+QUi2KnEoxCvXgSxUOMJ3mdppSKoUSuvyiP+ArXVUtSkF5Pgf1ATGy00YuEbMoO7IXtkD3cieeFhdnd2Z9/5dr5vhxDx1Otx2oG6qgX3V4qfOYkYv0/6e6wWv0NwBI7BCQhL+gJlhNSBetAAGstssaoavxtwC+5ABERBpzfbNwA/g2AIDIMRC/y9U/n5G81/H9cTeAYvIAlSYBH+Lv2EbMBPCGyCLbBtU/xEy480i9kXa0XMD6lEi1+uSvEzJ73xu0d+PjBiIA4SLGebXYS0gFbQBtpd2evSGvloY43M6ANj94A0Iwi+2fsm4GcSTIFpMMP82VEjlVThJmQV41e6s6zhuArtFWrhDvzsgj2wDw6Yv7+qkSXpU8LrtAPnNYf/1rIOFjT2BnYpWa7eH8Y3PAWvGvfZJS1/EXiLFujPgxpOLfrP5Ppb96EOgZBPfr0QfzXwVgtGFdZEE9WeQ4Dm93cGX+fgwoS/Prw3CPoV/GXezeegpVx/MfiKg4QJf3rE56AlrfXHJWp+cIng79ov75OeO+VvidXfMYW1PM76Vxyqz1aq4x/ModhV7N+gi8pbK5VyWzeWlj9p/6zBuXTreM7o2FLNUzlKtUpNfL9gtBVNfH+hd59hRkZylu8v1PYZPztQYtw=
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -114,7 +114,7 @@
   <object id="176" type="collision" x="128" y="128" width="96" height="16"/>
   <object id="177" type="collision" x="240" y="128" width="16" height="16"/>
   <object id="178" type="collision" x="176" y="96" width="80" height="32"/>
-  <object id="179" type="collision" x="288" y="16" width="176" height="144"/>
+  <object id="179" type="collision" x="288" y="16" width="64" height="144"/>
   <object id="180" type="collision" x="272" y="144" width="16" height="16"/>
   <object id="181" type="collision" x="0" y="304" width="16" height="144"/>
   <object id="182" type="collision" x="48" y="320" width="96" height="48"/>
@@ -151,12 +151,12 @@
   <object id="212" type="collision" x="112" y="224" width="96" height="32"/>
   <object id="213" type="collision" x="112" y="256" width="64" height="16"/>
   <object id="214" type="collision" x="224" y="224" width="80" height="32"/>
-  <object id="215" type="collision" x="192" y="256" width="176" height="16"/>
+  <object id="215" type="collision" x="192" y="256" width="112" height="16"/>
   <object id="216" type="collision" x="320" y="224" width="80" height="32"/>
   <object id="217" type="collision" x="384" y="256" width="16" height="16"/>
   <object id="218" type="collision" x="144" y="336" width="16" height="32"/>
   <object id="219" type="collision" x="112" y="512" width="80" height="32"/>
-  <object id="220" type="collision" x="96" y="544" width="48" height="16"/>
+  <object id="220" type="collision" x="112" y="544" width="32" height="16"/>
   <object id="221" type="collision" x="160" y="544" width="32" height="16"/>
   <object id="222" type="collision" x="0" y="480" width="16" height="160"/>
   <object id="223" type="collision" x="16" y="592" width="96" height="16"/>
@@ -172,6 +172,9 @@
   </object>
   <object id="238" type="collision" x="512" y="448" width="16" height="16"/>
   <object id="241" type="collision" x="608" y="144" width="32" height="16"/>
+  <object id="242" type="collision" x="368" y="16" width="96" height="144"/>
+  <object id="243" type="collision" x="352" y="16" width="16" height="128"/>
+  <object id="250" type="collision" x="320" y="256" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="144" name="Teleport to Route 2" type="event" x="0" y="464" width="16" height="16">
@@ -192,7 +195,7 @@
   </object>
   <object id="146" name="Teleport to Cotton Cathedral" type="event" x="304" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_catheral.tmx,5,10,0.3"/>
+    <property name="act1" value="transition_teleport cotton_cathedral.tmx,7,12,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -206,7 +209,14 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="148" name="Teleport to Omnichannel HQ" type="event" x="352" y="144" width="16" height="16"/>
+  <object id="148" name="Teleport to Omnichannel HQ" type="event" x="352" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport omnichannel1.tmx,1,12,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
   <object id="149" name="Teleport to Dryad's Grove" type="event" x="624" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport dryadsgrove.tmx,0,7,0.3"/>
@@ -309,15 +319,56 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
+  <object id="245" name="Sign: Cotton Town" type="event" x="240" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Welcome to Cotton Town: A Growing Force"/>
+    <property name="act2" value="dialog_chain ^ Cotton Town --- Route 1 v"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="246" name="Sign: Cotton Scoop" type="event" x="192" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Get the scoop at the Scoop Store!"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="247" name="Sign: Omnichannel HQ" type="event" x="272" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Omnichannel HQ: We Make Headlines"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Cathedral Centre: We Live to Serve"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="249" name="Teleport to Cafe" type="event" x="176" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_cafe.tmx,8,11,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="Above Player" width="40" height="40">
+ <layer name="Above Player" width="40" height="40" visible="0">
   <data encoding="base64" compression="zlib">
    eJztl1EKwjAQRLdlexw9jr2ZHkJrj6fWH+cnIMpiy6YxbOfBEDaUZvMCoRUpj6pIp3ZtzZXqa4fs1a7/RerjgPRq1+97Kcnnmqkvq66ZGvyRZUTyF2kvuVjihP580J9NcvNrJHHhGfugPx9b8ndsRU5t3nduyd8a0J8P+vMRwd+tEbkjD2RCns33M2fcexdkQK7ImOkerMUfv50JiUvpf+W566XxBd7REQw=
   </data>
  </layer>
  <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1lsOgjAQheEp1Hh7EnVNwm7UrbkzvDx7fNJAhWLQxuT/khPSEMKkGaaYAYi1cmaFslY2ytY9700zs5kyVxbKMktXJwA8eG828e118zqmd3PyH2fkN/YH+LW+b6/r3ybmeSAk1DevM7Wvr2r14Vm5KFfl5trvSIFzAU2nonsNDMGZG2+Xm5VKlaeuJGyvug7KccT6OIOAz90BdRwLxg==
+   eJzt1lkKwjAUheGToY5PVl2Tuht1a+7MeXjxCIrSxjYWIQrngx8pRQwlvREQkVgDA+RsyEZsbJ732hbosC7rsb5Nt04RkRvvgcyXr4ufnzKcb5Y55lnGWveZ925O/uOMbPp8RH5J3btX9d8m5vsiIaF98zpT6/bVmvtww7Zsx/am/Bsp6FyQolVefS3ycOAcO7ITO7NLYK7pzI03ccCUzVzqlYTNua4FW35xfTqDRJq7AmXCEMk=
   </data>
  </layer>
 </map>

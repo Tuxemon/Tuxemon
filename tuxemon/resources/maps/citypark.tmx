@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="101">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="103">
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
@@ -28,20 +28,20 @@
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlEkKAjEURGN2wVV7h1YMKjjEGzgdwekITgdVr2QtlNbQnVahkzTUg8eH/EWKCiRpCNGCScA5VEKM4BhOoFHZvgt14DlDnjlcwCVcqWz/yhmSNfJs4Bbu4D6nv5AckOcIT/AML5H1l0dRf1d482THypQ+z+8izv7027T7S2W5bekvq/2uPdzdL3FQcT7t2LnyNaGBU4/9/ZKv6t6+wchiQ/ZGiE9cf0xotDVjpA7Z6pAxRtjf5z0x90AIIYQQQsg/PADrWDSl
+   eJztlFkKwjAURZ/9svhV91DFoIJD3IHTEpyW4LRQ7Za8H0o1dFChSQr3wOFB3kcuN5CoIdKGkcM5CkXGcAKnUIfpvgeV4zlHngVcwhVch+n+ldMlG+TZwh3cw0NGf65ImiJH5DnBM7zAq2f9ZZHX3w3eLdk1MsXP80T87E+9TbO/OCi3E9jLar5rH3cPShxWnE8V7IrytaCGM4v9/ZKv6t6+QQf5uuyNEJsU/TGuUcb0kTpkq0NGH2F/n/f43AMhhBBCCCH/8ADszTV8
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzlWMtOFFEQrR5XZFa6ml+AxISfMCKouAXUDGFN5C9gRuPO6LKJfAIm/AMs2PlaOSSEf2BDVaQy1TVVdW8/RoyepFI9N3fqnj59T/UD4N/G/QLgQfFn1roS6+XmRYylGvN1rgteLzc3/R/n/Xudyftf4gnGJsZamyJz3P8bWPsA81YHazT1QOQN4kfnz/wmzpoPe2l+TT0QeYv4DYqqfhOY7Q8RPzm/S+2Y37Khn+5bKX7z0I75Ud8lfhOxnr5mE4hDYikIPddCZf/Bb/9uGdz03Fy05ac1ZET61QGf049++31I/W8Vpv0vpZ/XL+U4n9O3fvt9KPuL1E/7l0Hz92C2X3rjjNOax6m62r9yvtXPU33+4jZfimMIjhkjp26kX4n5rcGvDPhdC37Xxrg+JhwvQFlS6LpFrN8J5sMFGH7B0OOa3/vb308xnmG8CuK54of1S1yntOpG+p1jxvMaHit+50ad18U0/4I4hob2Y6dupB/183fG9eU+7/FL9XiLn1dX6zcopvPZ7yeqjnzOsPg10W9k1KVn6kg//TwRjXv6fcb7+VEv1o/9YdWN9t+yw88a9/Q7RW5nvVg/9odVN+Vfi581zvy2oaoV34t/9qdjOzCLsVM35V+r/0X+JUitFjG+9qtjFry6Kf9a/S/yL8HS77vQz8Io07+SB/nJ6n+Wf19Cfj/WYH9YdVP+tfqf5bMIVj+RYH/IutzTuvJvG36EsVPX1Q+qz9vW+Auwr+d6A37eep5+BNrTj7B3PcZYyXjv9BDxS73nePoxdpHXG4y9DvhdZXKTHCP9CB+Q10eMTxa/zD1o9eMcfoNiVj+tY9fv401z19/zus51v2f+Lfp5uGv9Ut9z7lq/eX1nbppvAIuEHvU=
+   eJztWM1qFEEQrtlTwp70tK+QgJCXEDWJP1eNyopnMY+RXSU30eMEfYQIeYcI5ubfyQlI3iEXqzDF1tRWVff2zBqRfFDUbNNT/c03Xd/ODMD/jWsVwPXq76x1JtbLzWsY6wvM13lR8Hq5ufQ8ff4VynAH4xHGVpciS7wPD7H2HuadHtYo7YGoN4gfXT/za5w1bwzS/Ep7IOoN4jeq2vo1MO8PET85v0/tmN+GoZ/2rRS/ZWjH/Mh3iV8j1vu80ubZQBwS60HouRZa+w/+9O+O4ObNzUVXfp43NypHcyPwNX0fdt+H5H+bMPO/lH6eX8pxvqavw+77UPqL1E/3L4Pm78K8X3rjjOMFj1N1df/K+Zafp3z+9CL/EscQHDMmTt1IvxrzK4NfHfA7F/zOjXF9TDhchbqm0HWrWL8jzAerMP6Iocc1v/2L39sYdzGeBHFP8cP6Na5TW3Uj/U4w43WNDxW/E6PO02qWf0IcY0P7qVM30o/8/LVxf9nnPX4pj7f4eXW1fqNqNp/7/UjVkc8ZFr8S/SZO3Ug//TwRjXv6vcf/8w+DWD/uD6tutP82HH7WuKffMXL7NIj14/6w6qb61+JnjTO/Z9DWiv+LfwxnY89hHlOnbqp/Lf+L+pcgtVrD+DJsj1nw6qb61/K/qH8Jln7fhH4WJpn9K3lQP1n+Z/XZY8j3Yw3uj5L+tfzP6rMIlp9IcH/IuuxpffVvF36EqVPX1Q/az9vW+AOw7+f9An7eep5+BNrTN9G7bmHcznjv9BDxS73nePoxXiCvlxi7PfA7y+QmOUb6Ed4gr7cY7yx+mXvQ8uMcfqNqXj+tY9/v46W57+95fedFv2f+K/p5uGz9Ut9zLlu/ZX1nLs2/AYG1Hrg=
   </data>
  </layer>
  <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAMBMEjvRnsvyItQvCRGdj/JgAAAADAa6uSvu36fQIw0wHGDgDa
+   eJzt1LEJACAQBMHnIxtT7NnmtASzR5yByze6CF62WnUB8Bu/AwAAcKdnxDibWV0C8KcNy/YCYA==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision" visible="0">
+ <objectgroup color="#ff0000" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
   <object id="2" type="collision" x="32" y="0" width="496" height="32"/>
   <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
@@ -104,12 +104,12 @@
   <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
   <object id="95" type="collision" x="496" y="272" width="16" height="32"/>
   <object id="96" type="collision" x="496" y="432" width="16" height="32"/>
-  <object id="97" type="collision" x="592" y="336" width="16" height="16"/>
+  <object id="97" type="collision" x="608" y="160" width="16" height="16"/>
   <object id="98" type="collision" x="512" y="48" width="16" height="16"/>
   <object id="99" type="collision" x="80" y="496" width="16" height="16"/>
   <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events" visible="0">
+ <objectgroup color="#ffff00" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
    <properties>
     <property name="act1" value="random_encounter default_encounter"/>
@@ -365,6 +365,23 @@
    <properties>
     <property name="act1" value="play_music back34.mp3"/>
     <property name="cond1" value="not music_playing back34.mp3"/>
+   </properties>
+  </object>
+  <object id="101" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Achievement Maniac's House: Closed"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="102" name="Sign: Leather Town" type="event" x="608" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog_chain Leather Town: Proof Beauty and Mining Can Coexist"/>
+    <property name="act2" value="dialog_chain &lt;- City Park ---- Leather Town ---&gt;"/>
+    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

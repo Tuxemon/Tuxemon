@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="57">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="58">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -50,7 +50,7 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,30,12,0.3"/>
+    <property name="act1" value="transition_teleport paper_town.tmx,20,13,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -133,6 +133,12 @@
     <property name="act1" value="create_npc npc_tuxemart,2,7,tuxemartemployee,stand"/>
     <property name="act2" value="npc_face npc_tuxemart,right"/>
     <property name="cond1" value="not npc_exists npc_tuxemart"/>
+   </properties>
+  </object>
+  <object id="57" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music JRPG_royalCourt_loop.ogg"/>
+    <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
    </properties>
   </object>
  </objectgroup>

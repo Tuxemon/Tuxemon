@@ -181,6 +181,29 @@
     
     "yes": "Ano",
     "no": "Ne",
+    
+    "route_2": "Cesta 2",
+
+    "professor_dialog1": "Profesor: \n Hurá. Přesně ten člověk se kterým jsme se chtěl setkat.",
+    "professor_dialog2": "Slyšel jsem že se chceš učit o Tuxemonech.",
+    "professor_dialog3": "Tuxemoni jsou malá zvířata, někteří je nazývají monstry, se kterími se přátelíme a používáme je k boji s dalšími Tuxemony.",
+    "professor_dialog4": "Napadlo mě, že jsem zrovna získal tři nové Tuxemony pro svůj výzkum. Jednoho bych ti rád dal.",
+    "professor_dialog5": "Který by se ti líbil?",
+    "professor_dialog6.1": "Profesor: Skvělá volba! Hydrone je vodní tuxemon",
+    "professor_dialog6.2": "Profesor: Vynikající volba! Rockitten je zemní tuxemon",
+    "professor_dialog6.3": "Profesor: Výborná volba! Fruitera je dřevní tuxemon",
+    "professor_dialog7": "Profesor: Doufám, že se uvidíme! Jdu se vydat na cestu, takže se možná někdy setkáme.",
+
+    "karrianna_dialog1": "Karrianna: Trénovala jsem celí měsíc! Zatím mě nikdo neporazil!",
+    "karrianna_dialog2": "No... Byl jsi první trenér, kterému jsem čelila ...",
+    "xero_hideout1": "Institut Xero pro výzkum a vývoj v oblasti Tuxemonů.",
+    "xero_grunt1": "Dobrý den, vítejte v Institut Xero pro výzkum a vývoj v oblasti Tuxemonů, v současné době je zavřeno z důvodu remodelace.",
+    "xero_grunt2": "Byl bych ochoten vás nechat, pokud máte třešeň, Můj tuxemon je miluje!",
+    "xero_grunt3": "Obvykle se nacházejí na stromech",
+    "cherry": "Našel jsi třešeň",
+    "xero_grunt4": "Vidím, že máte třešeň, vezmu si ji... Teď, vás doprovodím dovnitř.",
+    "xero_grunts_block": "Tato oblast je ve výstavbě, mělo by to být brzy hotovo.",
+
 
     "input_name": "Jméno?"
 }

@@ -73,13 +73,9 @@
   <image source="../gfx/tilesets/Land_bird.gif" width="16" height="16"/>
  </tileset>
  <layer name="Tile Layer 1" width="8" height="5">
-  <data encoding="csv">
-0,0,6496,6497,6498,0,0,0,
-6497,6498,6536,6537,6538,6496,6497,6497,
-6537,6538,6576,6577,6578,6536,6537,6537,
-6577,6578,7498,7498,7498,6576,6577,6577,
-7498,7498,7498,7498,7498,7498,7498,7498
-</data>
+  <data encoding="base64" compression="zlib">
+   eJxjYICABEkGhkQgTpJkQAEwsQ4g7gTiLkmE2kQksQ1AvBGINyGp7UQS85JFYJjajWji2DAAucATng==
+  </data>
  </layer>
  <objectgroup color="#ffff00" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -132,12 +128,8 @@
   </object>
  </objectgroup>
  <layer name="Tile Layer 2" width="8" height="5">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,
-0,0,0,6165,0,0,0,0,
-0,0,0,6176,2147491284,0,6165,0,
-0,0,0,0,2147491291,0,6176,6336,
-6167,0,0,0,0,0,0,0
-</data>
+  <data encoding="base64" compression="zlib">
+   eJxjYCAeiErgl1cAyl+RZWjAp/Y2VB6k9gAQixMwEwAXIQS7
+  </data>
  </layer>
 </map>

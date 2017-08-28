@@ -34,6 +34,10 @@ Graphics
 
 ### Character Sprites
 
+* ["Player Sprite"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/sprites/player_front.png)
+by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under 
+[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tennis Ace Trainer"](https://forum.tuxemon.org/viewtopic.php?pid=401#p401) by
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -510,3 +514,66 @@ Special Thanks
 ### Patreon Supporters
 * [Chris Sakkas](https://www.patreon.com/user?u=40864)
 * [Kelvin Shadewing](https://www.patreon.com/kelvin)
+
+Formerly used 
+-------------
+* ["Trainer Sprite Spree"](http://oniwanbashu.deviantart.com/art/Trainer-Sprite-Spree-124465962)
+by [Oniwanbashu](http://oniwanbashu.deviantart.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by 
+[Kelvin](http://kelvinshadewing.net) 
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Calis Overworld Template"](http://minorthreat0987.deviantart.com/art/Calis-Overworld-Template-193004763)
+by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
+[Calis Projects](http://www.calisprojects.com/) is licensed under
+[CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/)
+
+* ["Fake Pokemon Battle Song"](http://www.newgrounds.com/audio/listen/147066) by
+[HLG](http://hlg.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Original Pokemon Battle"](http://www.newgrounds.com/audio/listen/270958) by
+[levusbevus](http://levusbevus.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["RPG Battle Theme"](http://www.newgrounds.com/audio/listen/469688) by
+[Tainlorr](http://tainlorr.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["8-bit Ambient"](http://www.newgrounds.com/audio/listen/472452) by
+[masl123](http://masl123.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Green Bubbles (8bit)"](http://www.newgrounds.com/audio/listen/472916) by 
+[Andersson187](http://andersson187.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["it's a unix system!"](http://www.newgrounds.com/audio/listen/479403) by
+[tilman](http://tilman.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Purple - [8-bit]"](http://www.newgrounds.com/audio/listen/488524) by
+[Coffee-Break](http://coffee-break.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Ectso - Cosmonauts"](http://www.newgrounds.com/audio/listen/490215) by
+[ectsoman](http://ectsoman.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Ending Song"](http://www.newgrounds.com/audio/listen/491313) by
+[Abixvatoz](http://abixvatoz.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Up, Up and Away!"](http://www.newgrounds.com/audio/listen/492666) by
+[Troisnyx](http://troisnyx.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Crybits"](http://www.newgrounds.com/audio/listen/498444) by
+[fredhalv](http://fredhalv.newgrounds.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Digital Native"](http://ericskiff.com/music/) by
+[Eric Skiff](http://ericskiff.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)

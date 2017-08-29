@@ -354,7 +354,7 @@
   </object>
   <object id="112" name="Startup Town Sign" type="event" x="624" y="656" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Startup Town - Colors of your journey await!"/>
+    <property name="act1" value="dialog Taba Town - A peaceful refuge"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

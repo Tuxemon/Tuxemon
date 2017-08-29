@@ -10,6 +10,7 @@
     "combat_status_damage": "${{name}} ha subito danno da ${{status}}!",
     "combat_victory": "Hai vinto!",
     "combat_defeat": "Hai perso!",
+    "combat_draw": "Tutti sono K.O.!",
     "combat_capturing success": "Hai catturato ${{name}}!",
     "combat_capturing_fail": "${{name}} si è liberato!",
     "combat_replacement": "Fai una sostituzione!",
@@ -23,8 +24,8 @@
     "exit": "Esci",
     "item_confirm_use": "Usa",
     "item_confirm_cancel": "Annulla",
-    "item_failure": "Ha fallito!",
     "item_success": "Ha funzionato!",
+    "item_failure": "Ha fallito!",
     "generic_thing_success": "Ha funzionato!",
     "generic_thing_failure": "Ha fallito!",
     "attempting_capture": "Cattura in corso...",
@@ -185,5 +186,27 @@
     "yes": "Sì",
     "no": "No",
     
+    "route_2": "Percorso 2",
+
+    "professor_dialog1": "Professore: \n Oh sì. Ecco la persona che volevo incontrare.",
+    "professor_dialog2": "Ho sentito che vuoi imparare di più sui Tuxemon.",
+    "professor_dialog3": "I Tuxemon sono piccoli animali, che alcuni definiscono come mostri, con cui diventiamo amici e che usiamo nei combattimenti contro altri Tuxemon.",
+    "professor_dialog4": "Ho appena ricevuto tre nuovi Tuxemon per ricerca e mi piacerebbe dartene uno.",
+    "professor_dialog5": "Quale desideri?",
+    "professor_dialog6.1": "Professore: Scelta eccellente! Hydrone è un Tuxemon di tipo acqua",
+    "professor_dialog6.2": "Professore: Scelta saggia! Rockitten è un Tuxemon di tipo terra",
+    "professor_dialog6.3": "Professore: Gran scelta! Fruitera è un Tuxemon di tipo foresta",
+    "professor_dialog7": "Professore: Spero di vederti ancora! Sto per iniziare un viaggio quindi forse ci incontreremo di nuovo.",
+
+    "karrianna_dialog1": "Karrianna: Mi sto allenando da mesi! Nessuno mi ha mai battuta!",
+    "karrianna_dialog2": "Mh... Eri il primo allenatore che ho incontrato...",
+    "xero_hideout1": "Istituto Xero per la Ricerca e il Progresso sui Tuxemon più avanti.",
+    "xero_grunt1": "Ciao, benvenuto all'istituto Xero per la Ricerca e il Progresso sui Tuxemon. Attualmente siamo chiusi per ristrutturazione.",
+    "xero_grunt2": "Ti farò entrare se hai una ciliegia. I miei Tuxemon ne vanno matti!",
+    "xero_grunt3": "Solitamente si trovano ai piedi degli alberi",
+    "cherry": "Hai trovato una ciliegia",
+    "xero_grunt4": "Vedo che tu hai una ciliegia. Te la prendo... Ora ti scorto dentro.",
+    "xero_grunts_block": "Questa area è in costruzione. Dovrebbe essere pronta a breve.",
+
     "input_name": "Qual è il tuo nome?"
 }

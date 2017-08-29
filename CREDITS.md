@@ -528,7 +528,7 @@ Translations
 ### French
 * [HugopGhost](https://github.com/HugopGhost)
 
-### Chzech
+### Czech
 * [Clonewayx](https://github.com/Clonewayx)
 
 ### Norwegian

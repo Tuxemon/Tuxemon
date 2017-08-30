@@ -3,12 +3,14 @@
     "combat_player_run": "Vi forkuris!",
     "combat_used_x": "${{name}} estis uzata de ${{user}}!",
     "combat_used_x_on_y": "${{name}} estis uzata de ${{user}} kontraŭ ${{target}}!",
+    "combat_swap": "${{user}} sendas ${{target}}!",
     "combat_call_tuxemon": "Iru, ${{name}}!",
     "combat_opponent_call_tuxemon": "${{name}} estis sendata de ${{user}}!",
     "combat_state_poison_damage": "${{name}} veneniĝis!",
     "combat_status_damage": "${{name}} damaĝiĝis pro ${{status}}!",
     "combat_victory": "Vi venkis!",
     "combat_defeat": "Vi malvenkis!",
+    "combat_draw": "Ĉiuj svenis!",
     "combat_capturing success": "${{name}} estas kaptita!",
     "combat_capturing_fail": "${{name}} liberiĝis!",
     "combat_replacement": "Elektu anstataŭon!",
@@ -22,8 +24,10 @@
     "exit": "Eliri",
     "item_confirm_use": "Uzi",
     "item_confirm_cancel": "Nuligi",
-    "item_failure": "Ĝi fiaskis!",
     "item_success": "Ĝi funkciis!",
+    "item_failure": "Ĝi fiaskis!",
+    "generic_thing_success": "Ĝi funkciis!",
+    "generic_thing_failure": "Ĝi fiaskis!",
     "attempting_capture": "Kaptado...",
     "gotcha": "Bone!",
 
@@ -67,7 +71,14 @@
     "multiplayer_accept": "Akcepti",
     "multiplayer_decline": "Malakcepti",
     "multiplayer_duel": "${{name}} deziras dueli kun vi!",
-
+    "multiplayer_host_game": "Gastigi ludon",
+    "multiplayer_scan_games": "Serĉi por ludoj",
+    "multiplayer_join_game": "Aliĝi la ludon",
+    "multiplayer_hosting_ready": "Preta por gastigi!",
+    "multiplayer_already_hosting": "Vi jam gastigas!",
+    "multiplayer_no_servers": "Neniu servilo trovata...",
+    "multiplayer_join_prompt": "Ĉu gastignomo aŭ IP-adreso?",
+    
     "not_implemented": "Ĉi tiu trajto ne estas jam realigita.",
 
     "received_x": "Vi ricevis ${{name}}!",
@@ -170,10 +181,32 @@
     "txmn_tux_descr": "",
     "txmn_tux_name": "Tukso",
 
-    "npc_maple_name": "Maple",
+    "npc_maple_name": "Klara",
 
     "yes": "Jes",
     "no": "Ne",
+
+    "route_2": "Vojo 2",
+
+    "professor_dialog1": "Profesoro: \n Ah, jes. Vi estas la persono, kiun mi antendas por renkontiĝi.",
+    "professor_dialog2": "Mi aŭdis, ke vi volas lerni pri Tuksemonoj.",
+    "professor_dialog3": "Tuksemonoj estas etaj bestoj, kelkaj personoj nomas ilin monstrojn, kiuj ni amikiĝas kaj uzas por batali kontraŭ aliaj Tuksemonoj.",
+    "professor_dialog4": "Mi ĵus ricevis tri novajn Tuksemonojn por serĉado kaj mi dezirus doni unu el ili al vi.",
+    "professor_dialog5": "Kiun vi deziras?",
+    "professor_dialog6.1": "Profesoro: Kia bonega elekto! Hidrono estas akvo-tipa Tuksemono",
+    "professor_dialog6.2": "Profesoro: Kia superba elekto! Rokato estas tero-tipa Tuksemono",
+    "professor_dialog6.3": "Profesoro: Kia saĝa elekto! Fruktero estas ligno-tipa Tuksemono",
+    "professor_dialog7": "Profesoro: Mi esperas, ke ni renkontiĝos denove! Mi ekvojaĝos, do eble ni renkontiĝos kelkfoje.",
+
+    "karrianna_dialog1": "Lidja: Mi trejnas ekde la lastaj monatoj! Neniuj ankoraŭ malvenkigas min!",
+    "karrianna_dialog2": "Nu... Vi estas la unua trejnisto, kiun mi renkontis...",
+    "xero_hideout1": "Xero instituto por la Tuksemona Serĉado kaj Progreso antaŭen.",
+    "xero_grunt1": "Saluton, bonvenon al la Xero instituto por la Tuksemona Serĉado kaj Progreso, nune ni estas malfermitaj pro restrukturado.",
+    "xero_grunt2": "Mi lasos vin eniri se vi havas ĉerizon. Miaj Tuksemonoj adoras tion!",
+    "xero_grunt3": "Kutime ĝi troviĝas ĉe la bazo de arboj",
+    "cherry": "Vi trovis unu ĉerizon",
+    "xero_grunt4": "Mi notis, ke vi havas ĉerizon. Mi prenas tion... Nun mi eskortos vin ene.",
+    "xero_grunts_block": "Ĉi tiu areo estas konstruata. Baldaŭ estos preta.",
 
     "input_name": "Kiel vi nomiĝas?"
 }

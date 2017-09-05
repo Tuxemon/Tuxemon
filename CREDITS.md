@@ -1,8 +1,7 @@
-Tuxemon
+﻿Tuxemon
 =========
 
 Copyright (C) 2017 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-
 
 Programming
 ------------
@@ -494,7 +493,7 @@ Translations
 ### French
 * [HugopGhost](https://github.com/HugopGhost)
 
-### Chzech
+### Czech
 * [Clonewayx](https://github.com/Clonewayx)
 
 ### Norwegian

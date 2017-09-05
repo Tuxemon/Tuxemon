@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="3">
- <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="3">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1536">
-  <image source="../gfx/tilesets/setPiecesTSR.png" width="769" height="512"/>
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">

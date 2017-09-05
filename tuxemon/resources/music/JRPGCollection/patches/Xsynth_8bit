@@ -1,0 +1,994 @@
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name strings
+osc1 0.996955 2 0.5
+osc2 1.00305 2 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.0002 0.1 1 0.0001 0 14.5722
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 11.4258 0.388616 1
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name A-ha
+osc1 1 2 0.5
+osc2 2.00277 2 0
+sync 0
+balance 0.53
+lfo 0.18197 0 0 0
+eg1 0.057544 0.000912 0.65 0.000132 0 0
+eg2 0.075858 0.005248 0.59 0.000331 0 31
+vcf 11 0.37905 0
+glide 1
+volume 0.6296
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name A-ha%20VS
+osc1 1 2 0.5
+osc2 2.00277 6 0.0859207
+sync 0
+balance 0.53
+lfo 0.18197 0 0 0
+eg1 0.057544 0.000912 0.65 0.000128351 0.234944 0 0
+eg2 0.075858 0.005248 0.59 0.000331 0.774276 0 22.9056
+vcf 4.91945 0.37905 0
+glide 1
+volume 0.682958
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Brass
+osc1 0.997923 2 0.21
+osc2 1.00208 2 0.25
+sync 0
+balance 0.56
+lfo 2.51189 0 0 0.05
+eg1 0.083176 5.1e-05 0.67 0.000191 0 0
+eg2 0.000912 0.000398 0.73 6.9e-05 0 14.5
+vcf 0 0.89775 1
+glide 0.984375
+volume 0.530111
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Xylophone
+osc1 1 0 0.5
+osc2 4 0 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.069183 0.000275 0 0.000275 0 0
+eg2 0.091201 2.8e-05 0 2.3e-05 0 50
+vcf 0 1.98303 0
+glide 0.984375
+volume 0.49
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Shimmer%20Pad
+osc1 1 6 0.0682776
+osc2 1.00069 6 0.08875
+sync 0
+balance 0.440943
+lfo 0.70426 0 0 0.193056
+eg1 0.000215443 0.1 1 0.000163263 0.333333 0 0
+eg2 0.000533199 0.1 1 0.000168958 0.774276 0 37.3706
+vcf 4.91945 0.748568 2
+glide 0.984375
+volume 0.84622
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Sun%20Dog
+osc1 0.998615 3 0.5
+osc2 1.00139 5 0.598389
+sync 0
+balance 0.5
+lfo 0.382727 1 0 0
+eg1 0.0168958 0.0215443 1 0.000267462 0 0
+eg2 0.037116 0.1 1 0.000250322 0 25
+vcf 0 0.861286 2
+glide 0.0539244
+volume 0.663001
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Organ%202
+osc1 1 0 0.5
+osc2 2.00277 4 0.5
+sync 0
+balance 0.41
+lfo 6.62217 0 0 0.071
+eg1 0.047863 0.1 1 0.013183 0 1e-06
+eg2 0.063096 0.1 1 0.015849 0 1e-06
+vcf 6.5 0.05985 1
+glide 1
+volume 0.51
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name French%20Horn
+osc1 1 5 0.21
+osc2 1 2 0.25
+sync 0
+balance 0.56
+lfo 3.98107 0 0 0.17
+eg1 0.043652 5.1e-05 0 0.000142 0 0
+eg2 0.0001 4.4e-05 0 8.3e-05 0 12.5
+vcf 0 1.197 1
+glide 0.984375
+volume 0.7
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name plucked
+osc1 0.996955 2 0.5
+osc2 1.00305 2 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.013347 0.000198 0 0.000215 0 1e-06
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 10.9326 1.39007 1
+glide 0.984375
+volume 0.509221
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name bell
+osc1 1 1 0.5
+osc2 4 1 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.1 5.1e-05 0 0.000142 0 1e-06
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 15.4926 1.79871 1
+glide 0.984375
+volume 0.505
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name bell%20VS
+osc1 1 1 0.5
+osc2 4 1 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.1 5.1e-05 0 0.000142 0.314095 0 1e-06
+eg2 0.1 0.1 1 1e-05 0.708555 0 20.0805
+vcf 3.325 1.6625 1
+glide 0.984375
+volume 0.5155
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name sync_bass
+osc1 1 4 0.5
+osc2 2.01737 2 0.507856
+sync 1
+balance 0.5
+lfo 0.1 1 0 0
+eg1 0.1 4.6e-05 0 0.00011 0.275399 50
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 1e-06 1.37958 1
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name sync_sweep
+osc1 1 2 0.5
+osc2 1 2 0.5
+sync 1
+balance 0.5
+lfo 0.1 1 0 0
+eg1 0.002475 0.1 1 8.3e-05 0 1e-06
+eg2 2.6e-05 0.1 1 2.4e-05 1 1e-06
+vcf 50 0.1 1
+glide 0.984375
+volume 0.531011
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Gramma's%20Organ
+osc1 1 1 0.5
+osc2 2 1 0.5
+sync 0
+balance 0.43
+lfo 7.58577 0 0.003 0
+eg1 0.047863 0.1 1 0.013183 0 1e-06
+eg2 0.063096 0.1 1 0.015849 0 1e-06
+vcf 15 0.09975 1
+glide 1
+volume 0.640712
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Long%20Portamento
+osc1 1 1 0.5
+osc2 1.62366 2 0.5
+sync 1
+balance 0.5
+lfo 0.1 0 0.714795 0
+eg1 0.017378 0.1 1 0.000275 0 1e-06
+eg2 0.052481 0.000331 0 0.000331 0 0
+vcf 10 1.3566 1
+glide 0.002509
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Owww!
+osc1 1 1 0.5
+osc2 1.41929 2 0.791445
+sync 1
+balance 0.488842
+lfo 0.247489 0 0 0
+eg1 0.1 0.000146 0.885319 0.000174 0.295167 1e-06
+eg2 0.1 7.1e-05 0 0.000102 0 50
+vcf 1e-06 1.50141 1
+glide 0.984375
+volume 0.36
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Tube%20Growl
+osc1 1 2 0.5
+osc2 1.81938 5 0.5
+sync 1
+balance 0.5
+lfo 0.1 1 0 0
+eg1 0.012188 0.1 1 5.8e-05 0 17.4812
+eg2 2.1e-05 2.2e-05 0.631621 2.4e-05 1 1e-06
+vcf 1e-06 1.59258 1
+glide 0.984375
+volume 0.3325
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name squelchy_bass
+osc1 1 2 0.516291
+osc2 1 2 0.492144
+sync 1
+balance 0.5
+lfo 0.1 0 0.114681 0.800101
+eg1 0.1 4.6e-05 0 0.0001 0.154198 50
+eg2 0.1 5.4e-05 0 4.6e-05 0 50
+vcf 1e-06 1.6625 1
+glide 0.984375
+volume 0.45
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name reso_sweep
+osc1 1 2 0.5
+osc2 2.00967 2 0.482832
+sync 0
+balance 0.505304
+lfo 0.1 1 0 0
+eg1 0.002475 0.1 1 8.3e-05 0 1e-06
+eg2 0.005541 2.3e-05 0 2.4e-05 0 50
+vcf 11.9333 1.83391 1
+glide 0.984375
+volume 0.2108
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name theremin
+osc1 1 0 0.5
+osc2 4 0 0.5
+sync 0
+balance 1
+lfo 10 0 0.050261 0
+eg1 4.6e-05 0.1 1 1e-05 0 1e-06
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0 0
+glide 0.009709
+volume 0.5146
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Twub
+osc1 1 3 0.5
+osc2 1.53656 5 0.255417
+sync 1
+balance 0.488842
+lfo 0.247489 0 0.193056 0
+eg1 0.1 5.1e-05 0 0.000142 0 1e-06
+eg2 0.006125 0.040406 0.610166 0.00018 0 7.01389
+vcf 0.623417 1.50141 1
+glide 0.984375
+volume 0.289927
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Wavey
+osc1 1 2 0.5
+osc2 1.81938 5 0.5
+sync 1
+balance 0.5
+lfo 0.256842 1 0 0.76999
+eg1 0.012188 0.1 1 4e-05 0 17.4812
+eg2 2.1e-05 7.3e-05 0.631621 2.4e-05 1 1e-06
+vcf 10.6535 1.51061 1
+glide 0.087247
+volume 0.339089
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name heart_beat
+osc1 1 0 0.5
+osc2 2.01737 0 0.5
+sync 0
+balance 1
+lfo 0.932825 0 0.923867 0
+eg1 0.1 0.1 1 2.3e-05 0 1e-06
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 0.539044 1.70088 1
+glide 0.984375
+volume 0.18
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name voice
+osc1 1 2 0.5
+osc2 1.63237 5 0.931722
+sync 0
+balance 1
+lfo 0.1 0 0 0
+eg1 0.000317 0.000342 0.794001 0.000317 0 1e-06
+eg2 0.000236 0.1 1 1e-05 0.225724 1e-06
+vcf 15.3472 1.35487 1
+glide 0.984375
+volume 0.291445
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name VS%20Bass%201
+osc1 0.997231 2 0.5
+osc2 1.00264 2 0.261538
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.045595 0.000464 0.651163 0.023997 0.166255 0 0
+eg2 0.048661 0.000287 0.226667 0.001226 0.758072 0 41.2564
+vcf 5.38461 0.736615 1
+glide 1
+volume 0.586264
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name VS%20Bass%202
+osc1 0.5 1 0.24
+osc2 1.5874 5 0.856816
+sync 1
+balance 0.303222
+lfo 0.215443 0 0 0
+eg1 0.0330328 1e-05 0 0.000475353 0.276833 0 0
+eg2 0.0347758 0.000565723 0 0.000185425 0.614681 0 37.6294
+vcf 8.33333 0.561288 2
+glide 1
+volume 0.80025
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Klaxon
+osc1 1 2 0.5
+osc2 4 2 0.21
+sync 1
+balance 1
+lfo 1.97177 2 0.89239 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5082
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name =======%20Contributed%20by%20Silvan:
+osc1 1 0 0.5
+osc2 1 0 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Hammond%20pedals
+osc1 1 5 0.49
+osc2 1 0 0
+sync 0
+balance 0
+lfo 6.139 0 0 0
+eg1 0.030007 1e-05 0.01 0.039006 0 0
+eg2 0.1 1e-05 0.01 0.093001 0 0
+vcf 8.5 0 1
+glide 1
+volume 0.51
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name space%20race
+osc1 2 5 0.64
+osc2 4 2 0.55
+sync 1
+balance 0.76
+lfo 2.575 5 0.3 0.17
+eg1 0.031653 0.016008 0.66 0.027139 0.01 14
+eg2 0.017008 4.4e-05 0.28 0.024008 1 16.5
+vcf 15.5 1.197 1
+glide 0.28144
+volume 0.53
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Night%20Sweats
+osc1 1 0 0.25
+osc2 1 2 0
+sync 0
+balance 0.17
+lfo 10 3 0.26 0.08
+eg1 3.3e-05 0.039811 0 0.017378 0 32.5
+eg2 1e-05 0.00631 0.15 0.000174 0.29 49.5
+vcf 3.5 1.995 1
+glide 1
+volume 0.0327776
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Night%20Sweats%202
+osc1 1 0 0.25
+osc2 1 2 0
+sync 0
+balance 0.17
+lfo 10 3 0.26 0.08
+eg1 3.3e-05 0.039811 0 0.017378 0 32.5
+eg2 1e-05 0.00631 0.15 0.000174 0.29 49.5
+vcf 3.5 1.90622 1
+glide 1
+volume 0.302555
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Chalk%20Board
+osc1 1 0 0.25
+osc2 1 2 0
+sync 0
+balance 0.17
+lfo 10 3 0.26 0.08
+eg1 0.1 0.039811 0.84 0.017378 0 32.5
+eg2 0.1 0.001096 0.87 0.000174 0.29 38.5
+vcf 3.5 1.995 1
+glide 1
+volume 0.0268887
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Tweetie
+osc1 1 0 0.25
+osc2 1 2 0
+sync 0
+balance 0.17
+lfo 10 3 0.26 0.08
+eg1 0.1 0.000912 0 0.017378 0 32.5
+eg2 0.1 0.036308 0.22 0.000174 0.29 38.5
+vcf 3.5 1.995 1
+glide 1
+volume 0.080246
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Centipede
+osc1 1 0 0.25
+osc2 1 2 0
+sync 0
+balance 0.17
+lfo 10 3 0.26 0.08
+eg1 0.1 0.019055 0.17 0.000251 0.42 32.5
+eg2 0.1 0.1 0 0.000174 0.21 38.5
+vcf 3.5 1.995 1
+glide 1
+volume 0.0663
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name Vitreous%20Humor
+osc1 1 0 0
+osc2 4 0 0.45
+sync 1
+balance 0.3
+lfo 0.158489 1 0.2 0.75
+eg1 7.6e-05 0.1 1 3.6e-05 0.58 16.5
+eg2 0.003311 6.9e-05 0.81 4.4e-05 0.44 19
+vcf 27 0 1
+glide 1
+volume 0.535501
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Vibrothingie
+osc1 1 2 0.35
+osc2 1 0 0.21
+sync 1
+balance 0.8
+lfo 0.630957 0 0.74 0.36
+eg1 0.1 1e-05 0.65 0.00912011 1 0.02 23
+eg2 0.0057544 1e-05 0 0.000120226 0.66 0.44 24
+vcf 33.5 1.596 1
+glide 0.002
+volume 0.414116
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Vibrato%20Hammond
+osc1 4 1 0.5
+osc2 2 5 0.5
+sync 1
+balance 0.3
+lfo 7.58578 0 0.02 0.6
+eg1 0.047863 0.1 1 0.013183 0.6 0.21 18.5
+eg2 0.063096 0.1 1 0.015849 1 1 1e-06
+vcf 10 0.01995 1
+glide 1
+volume 0.615634
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Music%20Box
+osc1 4 0 0.12
+osc2 1 5 0
+sync 0
+balance 0
+lfo 0.288403 0 0.36 0.02
+eg1 0.1 0.000190546 0.18 4.36516e-05 1 0.69 39.5
+eg2 0.1 0.1 0 0.1 0.25 0.08 0
+vcf 50 1.9551 1
+glide 1
+volume 0.298288
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Ploink%20Box
+osc1 4 1 0.12
+osc2 2 0 0.15
+sync 1
+balance 0.39
+lfo 0.275423 0 0 0
+eg1 0.1 0.000436516 0.18 4.36516e-05 0.72 1 39.5
+eg2 0.0047863 0.0001 0.67 0.00057544 0.4 0.5 12.5
+vcf 30 1.7955 0
+glide 1
+volume 0.504388
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Polkenstein
+osc1 1 0 0.46
+osc2 2 0 0.17
+sync 1
+balance 0.16
+lfo 6.60694 3 0 0.09
+eg1 0.000912011 0.0047863 0.68 3.98107e-05 0.58 0.56 0
+eg2 1.09648e-05 0.000251189 1 1e-05 0.82 0.49 40.5
+vcf 4.5 1.05735 0
+glide 1
+volume 0.580002
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name ================%20Test%20Patches:
+osc1 1 0 0.5
+osc2 1 0 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name sweep%20alias%20test%20(key=100)
+osc1 1 2 0.5
+osc2 2.09957 1 0.21
+sync 0
+balance 1
+lfo 0.424805 0 0.863445 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name sweep%20alias%20test%202%20(key=108)
+osc1 1 2 0.5
+osc2 1 1 0.21
+sync 0
+balance 1
+lfo 0.1 0 0.57 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name sync%20alias%20test%20(key=108)
+osc1 1 2 0.5
+osc2 2.09957 1 0.21
+sync 1
+balance 1
+lfo 0.424805 0 0.863445 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name mod%20discontinuity%20test
+osc1 1 2 0.5
+osc2 2.09957 1 0.21
+sync 0
+balance 1
+lfo 2.73719 2 0.8634 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name subsample%20alias%20test%20(key=94)
+osc1 1 2 0.5
+osc2 2.0144 1 0.21
+sync 1
+balance 1
+lfo 0.136948 0 0.431722 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name subsample%20alias%202%20(key=60)
+osc1 1 2 0.5
+osc2 2.00139 6 0.5
+sync 1
+balance 1
+lfo 0.247489 0 0.166667 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5185
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name subsample%20alias%203%20(key=96)
+osc1 1.02285 2 0.5
+osc2 1.00628 6 0.0682776
+sync 1
+balance 1
+lfo 0.164142 0 0.791445 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.103712 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name startup%20thump%20test%20(key=108)
+osc1 1 2 0.5
+osc2 1.47427 5 0.06
+sync 1
+balance 1
+lfo 0.1 0 0 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name tri%20sync%20thump%20test%20(key=77)
+osc1 1 2 0.5
+osc2 2.20381 6 0.08
+sync 1
+balance 1
+lfo 0.416869 0 0.57 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name pulse%20click!%20(key=106)
+osc1 1 5 0.5
+osc2 2.09957 5 0.21
+sync 0
+balance 1
+lfo 0.424805 0 0.863445 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name pulse%20click!%20(key=103)
+osc1 1 5 0.5
+osc2 2.09957 5 0.21
+sync 0
+balance 1
+lfo 0.424805 0 0.863445 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 1e-06
+vcf 50 0.0399 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 0 begin
+name =============%20New%20after%200.9.0:
+osc1 1 0 0.5
+osc2 1 0 0.5
+sync 0
+balance 0.5
+lfo 0.1 0 0 0
+eg1 0.1 0.1 1 0.1 0 0
+eg2 0.1 0.1 1 0.1 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Quick%20Strings
+osc1 0.997923 3 0.5
+osc2 1.00208 0 0.114681
+sync 0
+balance 0.5
+lfo 0.533199 0 0 0.0350456
+eg1 0.000533199 0.1 1 0.0001 0.291445 0 0
+eg2 0.00287556 0.1 1 0.000267462 0.401611 0 7.15922
+vcf 8.33333 0 2
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name SquarePiano
+osc1 1 4 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 3.98107e-05 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse30Piano
+osc1 1 5 0.3
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 3.98107e-05 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name TriPiano
+osc1 1 1 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 3.98107e-05 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.8
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name SquareSustain
+osc1 1 4 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 1e-05 0.7 0.000398107 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse30Sustain
+osc1 1 5 0.3
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 1e-05 0.7 0.000398107 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name TriSustain
+osc1 1 1 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 1e-05 0.7 0.000398107 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.8
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse10Piano
+osc1 1 5 0.1
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 3.98107e-05 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse10Sustain
+osc1 1 5 0.1
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 1e-05 0.7 0.000398107 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name SquareSlowAttack
+osc1 1 4 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.000158489 1e-05 0.3 0.000158489 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse30SlowAttack
+osc1 1 5 0.3
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.000158489 1e-05 0.3 0.000158489 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse10SlowAttack
+osc1 1 5 0.1
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.000158489 1e-05 0.3 0.000158489 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name SquarePlink
+osc1 1 4 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 0.000398107 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse30Plink
+osc1 1 5 0.3
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 0.000398107 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name Pulse10Plink
+osc1 1 5 0.1
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 0.000398107 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.5
+xsynth-dssi patch end
+# Xsynth-dssi patch
+xsynth-dssi patch format 1 begin
+name TriPlink
+osc1 1 1 0.5
+osc2 1 0 0.5
+sync 0
+balance 0
+lfo 0.1 0 0 0
+eg1 0.00251189 0.000398107 0 0.00251189 0.5 0 0
+eg2 0.1 0.1 1 0.1 0 0 0
+vcf 50 0 0
+glide 0.984375
+volume 0.8
+xsynth-dssi patch end

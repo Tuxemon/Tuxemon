@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="54">
+ <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+ </tileset>
+ <tileset firstgid="361" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="861" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="965" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="2405" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer name="Layer 1" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eJyrY2BgqAfiulF6lB6lB4xm4WBgYOWgzJwNzAwMG6FYB2iWLgeCv4mZdPN2APXshOJdzJj8UfPoa94BoJ6DUHyIGZM/GNLxKD1Kj9Kj9Cg9ShNDAwAUbZbx
+  </data>
+ </layer>
+ <layer name="Layer 2" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzFlr9OAkEQxjfhIPcSKL3Q+wgqpdppqfbS4Z9YaI+K0aidf97BUioLRXv1NYyls2FHPiczsCsX/ZIv4djZ393uzM6dc/+nhYpzTXK/7Nyz8Es5nXdBrEvyhzL3U/nvteTcm+F38iaxWgm8UuZcZrhMXiGvZgNe2/30b3j75ANytVIMz4tzUhSPc9IOc/6SN0Nz6oYbgicleccUv0heMrycyPPaojnbwVlOa8yH1zvk3WxYgzG8K4q/Dq4Tq5EPr2/It1CDMTyvx0z3E7kPNWjxZnXst+5KA/M6uf40Xg7XVhzzeDw2H9Y+y+dLyW+MUvI7iVJ4ewXzYlQUT+sHWv/W1BV1jL3Q4p3CmfLx58E8jxk+DmtH43EsnylfG73gVuBhvYzjYa+0fAJrZvZZJK9Dcw/BR2L/sNdoPKv2LWGvkTx+JinMCeaGx5rG/nWMdfk9uIe89BLyweoKHr7PvB7E2CiefF9rPHmvUTzOCfLmYd+w1ufG8DgW603WtKx1vrfG41iuWyvnqHH9gMdxHyfhsXgf5RnhelqjmPXgjQiepZrxP/Km6DmmI4zf3P6bHMdqCeeUVa3ov1FfGxfNPQ==
+  </data>
+ </layer>
+ <layer name="Layer 3" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztkrkNgDAQBE+ykUwJPB0A1QDV8DTD0wxPA0AvbEB0oQ8ibqQJd2TLJvqWwxCdzMv494wlsszA+vcybHNmIeiV2FbMWtBrsG2ZHew9mwN2I3OCs2dvwW5lbnAX3PmPWId/7N7r5WgVwt7yvGEUEsUwgWkoP5uiKIqiKP/mBq0JGEg=
+  </data>
+ </layer>
+ <layer name="Above Player" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh54BwrA4MbG/XM+8ZKPbOwmafHgp1NrnlhQDOWcjAwLOOAsCk1DwTOAs06x4Ff31cc4YTNvK9As74RMO8HCeYRA4g1byHQXYuAeDEQL8HjRmLMYwbqP4lkxhkOiBi55mkD9X5E0v+FAyJGqnlewPzhjSePYJPHZ14RUG0xiXluoOKXGua1AXE7iebiMy8OiOOHgHmuwDiWJxIr4EgPIPPWAfF6Kpero2AUjIJRMAoGDwAAwjM1Xg==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="44" name="Teleport to Flower City" type="event" x="192" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport flower_city.tmx,11,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="45" name="Teleport to Flower City" type="event" x="208" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport flower_city.tmx,12,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="46" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music peasant_kingdom.ogg"/>
+    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+   </properties>
+  </object>
+  <object id="52" name="Teleport to Mansion" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport mansion.tmx,10,17,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="53" name="Teleport to Mansion" type="event" x="96" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport mansion.tmx,10,17,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="Collisions">
+  <object id="2" type="collision" x="128" y="208" width="32" height="80"/>
+  <object id="3" type="collision" x="64" y="208" width="32" height="80"/>
+  <object id="5" type="collision" x="128" y="448" width="32" height="96"/>
+  <object id="6" type="collision" x="160" y="448" width="64" height="32"/>
+  <object id="7" type="collision" x="160" y="512" width="112" height="32"/>
+  <object id="8" type="collision" x="240" y="352" width="32" height="160"/>
+  <object id="9" type="collision" x="48" y="384" width="32" height="64"/>
+  <object id="10" type="collision" x="112" y="368" width="64" height="32"/>
+  <object id="11" type="collision" x="64" y="320" width="192" height="16"/>
+  <object id="12" type="collision" x="240" y="112" width="16" height="208"/>
+  <object id="13" type="collision" x="192" y="16" width="32" height="272"/>
+  <object id="14" type="collision" x="224" y="16" width="80" height="16"/>
+  <object id="16" type="collision" x="288" y="32" width="16" height="592"/>
+  <object id="17" type="collision" x="16" y="48" width="16" height="576"/>
+  <object id="18" type="collision" x="32" y="608" width="160" height="16"/>
+  <object id="19" type="collision" x="224" y="608" width="64" height="16"/>
+  <object id="20" type="collision" x="176" y="624" width="16" height="16"/>
+  <object id="21" type="collision" x="224" y="624" width="16" height="16"/>
+  <object id="22" type="collision" x="32" y="48" width="160" height="16"/>
+  <object id="23" type="collision" x="48" y="64" width="128" height="112"/>
+  <object id="24" type="collision" x="64" y="16" width="96" height="32"/>
+  <object id="25" type="collision" x="32" y="272" width="32" height="80"/>
+  <object id="26" type="collision" x="112" y="416" width="80" height="16"/>
+  <object id="27" type="collision" x="32" y="464" width="64" height="16"/>
+  <object id="28" type="collision" x="128" y="576" width="96" height="16"/>
+  <object id="30" type="collision" x="64" y="496" width="32" height="32"/>
+  <object id="31" type="collision" x="80" y="368" width="32" height="32"/>
+  <object id="32" type="collision" x="160" y="208" width="32" height="64"/>
+  <object id="34" type="collision" x="192" y="368" width="32" height="32"/>
+  <object id="35" type="collision" x="96" y="560" width="32" height="32"/>
+  <object id="36" type="collision" x="48" y="528" width="32" height="32"/>
+  <object id="37" type="collision" x="80" y="480" width="16" height="16"/>
+  <object id="38" type="collision" x="96" y="544" width="16" height="16"/>
+  <object id="39" type="collision" x="192" y="400" width="16" height="16"/>
+  <object id="40" type="collision" x="176" y="352" width="16" height="16"/>
+  <object id="41" type="collision" x="224" y="368" width="16" height="16"/>
+  <object id="42" type="collision" x="64" y="368" width="16" height="16"/>
+  <object id="48" type="collision" x="224" y="576" width="64" height="16"/>
+  <object id="49" type="collision" x="32" y="208" width="32" height="64"/>
+  <object id="50" type="collision" x="48" y="176" width="48" height="32"/>
+  <object id="51" type="collision" x="128" y="176" width="48" height="32"/>
+ </objectgroup>
+</map>

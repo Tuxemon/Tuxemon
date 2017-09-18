@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="25">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="1473" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg4wEQGhgFeMjAMSJCBYcCADDyqd+joHQgAAK/YFXw=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjZgJmVgYEXiPlYMcW5WBgYuFlw670LlDMDqjNH0lvLAhE3BmITPHrxAXMi9NUC7bzNgsD1rIT1kAtA7tkGxNtZiHMbut77QPyADL3kgovs2MVxBREu9fQCAM0+DTc=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF5IJwVtLEkYEODjW4xEfB8AUAYq4BGw==
+  </data>
+ </layer>
+ <layer name="Above player" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgcIIuNgSGbjbAYNjAJqGYyG2GxwQY2sjAwbELCm1kG2kWDB6xkp636wQQA3n8JEw==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="Collision">
+  <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
+  <object id="5" type="collision" x="48" y="144" width="32" height="32"/>
+  <object id="6" type="collision" x="176" y="80" width="32" height="16"/>
+  <object id="7" type="collision" x="160" y="80" width="16" height="32"/>
+  <object id="8" type="collision" x="80" y="96" width="80" height="32"/>
+  <object id="9" type="collision" x="64" y="80" width="16" height="32"/>
+  <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
+  <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
+  <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
+  <object id="22" type="collision" x="16" y="192" width="16" height="16"/>
+  <object id="23" type="collision" x="208" y="192" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="Events">
+  <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,19,27,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="24" name="Play Music" type="event" x="16" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music JRPG_royalCourt_loop.ogg"/>
+    <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -50,7 +50,7 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport paper_town.tmx,20,13,0.3"/>
+    <property name="act1" value="transition_teleport map1.tmx,30,12,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -103,7 +103,7 @@
     <property name="act2" value="add_monster txmn_hydrone,5"/>
     <property name="act3" value="set_variable tuxchoice:end"/>
     <property name="act4" value="translated_dialog professor_dialog7"/>
-    <property name="act5" value="screen_transition 3"/>
+    <property name="act5" value="screen_transition 2"/>
     <property name="act6" value="remove_npc npc_professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Hydrone"/>
    </properties>
@@ -114,7 +114,7 @@
     <property name="act2" value="add_monster txmn_rockitten,5"/>
     <property name="act3" value="set_variable tuxchoice:end"/>
     <property name="act4" value="translated_dialog professor_dialog7"/>
-    <property name="act5" value="screen_transition 3"/>
+    <property name="act5" value="screen_transition 2"/>
     <property name="act6" value="remove_npc npc_professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Rockitten"/>
    </properties>
@@ -125,7 +125,7 @@
     <property name="act2" value="add_monster txmn_fruitera,5"/>
     <property name="act3" value="set_variable tuxchoice:end"/>
     <property name="act4" value="translated_dialog professor_dialog7"/>
-    <property name="act5" value="screen_transition 3"/>
+    <property name="act5" value="screen_transition 2"/>
     <property name="act6" value="remove_npc npc_professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Fruitera"/>
    </properties>

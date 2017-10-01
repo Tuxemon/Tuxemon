@@ -36,7 +36,7 @@
   <object id="4" type="collision" x="640" y="368" width="32" height="96"/>
   <object id="5" type="collision" x="608" y="400" width="32" height="64"/>
   <object id="6" type="collision" x="576" y="432" width="32" height="32"/>
-  <object id="7" type="collision" x="576" y="176" width="32" height="48"/>
+  <object id="7" type="collision" x="576" y="160" width="32" height="48"/>
   <object id="8" type="collision" x="624" y="160" width="64" height="16"/>
   <object id="9" type="collision" x="688" y="256" width="80" height="16"/>
   <object id="10" type="collision" x="688" y="160" width="16" height="112"/>
@@ -119,14 +119,10 @@
     <property name="act23" value="npc_face npc_xerogrunt9,right"/>
     <property name="act24" value="create_npc npc_xerogrunt10,27,41,teamxerogrunt1,stand"/>
     <property name="act25" value="npc_face npc_xerogrunt10,right"/>
-    <property name="act4" value="create_npc npc_mark,14,16,teamxerogrunt1,stand"/>
-    <property name="act5" value="npc_face npc_mark,down"/>
     <property name="act7" value="create_npc npc_xerogrunt1,27,32,teamxerogrunt1,stand"/>
     <property name="act8" value="npc_face npc_xerogrunt1,right"/>
     <property name="act9" value="create_npc npc_xerogrunt2,27,33,teamxerogrunt1,stand"/>
     <property name="act91" value="npc_face npc_xerogrunt2,right"/>
-    <property name="act92" value="set_variable cherrypicked:no"/>
-    <property name="cond1" value="not npc_exists npc_mark"/>
    </properties>
   </object>
   <object id="57" name="Establish hideout" type="event" x="256" y="384" width="16" height="16">
@@ -137,73 +133,9 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="58" name="ask grunt" type="event" x="224" y="272" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog xero_grunt1"/>
-    <property name="act2" value="translated_dialog xero_grunt2"/>
-    <property name="act3" value="translated_dialog xero_grunt3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="has_item player,item_cherry,equals,0"/>
-   </properties>
-  </object>
-  <object id="60" name="i want to enter" type="event" x="224" y="272" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog xero_grunt1"/>
-    <property name="act2" value="translated_dialog xero_grunt4"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="has_item player,item_cherry"/>
-   </properties>
-  </object>
-  <object id="61" name="a cherry" type="event" x="480" y="496" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog cherry"/>
-    <property name="act2" value="add_item item_cherry"/>
-    <property name="act3" value="set_variable cherrypicked:yes"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set cherrypicked:yes"/>
-   </properties>
-  </object>
-  <object id="62" name="blocking the way" type="event" x="448" y="528" width="16" height="144">
+  <object id="62" name="blocking the way" type="event" x="448" y="512" width="16" height="160">
    <properties>
     <property name="act1" value="translated_dialog xero_grunts_block"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="64" name="create time to talk" type="event" x="512" y="240" width="64" height="16">
-   <properties>
-    <property name="act1" value="create_npc npc_xerogrunt11,32,11,teamxerogrunt1,stand"/>
-    <property name="act2" value="create_npc npc_xerogrunt12,33,11,teamxerogrunt1,stand"/>
-    <property name="act3" value="create_npc npc_xerogrunt13,34,11,teamxerogrunt1,stand"/>
-    <property name="act4" value="create_npc npc_xerogrunt14,35,11,teamxerogrunt1,stand"/>
-    <property name="cond1" value="not npc_exists npc_xerogrunt11"/>
-    <property name="cond2" value="not npc_exists npc_xerogrunt12"/>
-    <property name="cond3" value="not npc_exists npc_xerogrunt13"/>
-    <property name="cond4" value="not npc_exists npc_xerogrunt14"/>
-   </properties>
-  </object>
-  <object id="66" name="time to talk now" type="event" x="512" y="192" width="64" height="16">
-   <properties>
-    <property name="act1" value="dialog Xero Grunt: Our leader would like to speak with you, we cannot let you through until you do."/>
-    <property name="act2" value="dialog There may not be someone who will let you through though. You should check."/>
-    <property name="cond1" value="npc_exists npc_xerogrunt11"/>
-    <property name="cond2" value="npc_exists npc_xerogrunt12"/>
-    <property name="cond3" value="npc_exists npc_xerogrunt13"/>
-    <property name="cond4" value="npc_exists npc_xerogrunt14"/>
-    <property name="cond5" value="is player_at"/>
-    <property name="cond6" value="is player_facing up"/>
-    <property name="cond7" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="67" name="convince me" type="event" x="448" y="512" width="16" height="16">
-   <properties>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

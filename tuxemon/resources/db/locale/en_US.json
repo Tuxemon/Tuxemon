@@ -208,6 +208,10 @@
     "teleport?": "Are you ready to meet our leader?",
     "ouch": "Sorry, but this may hurt a bit...",
     "maybe_sometime_again?": "Okay, I'll be here when you are ready.",
+    "youcantleave": "The doors are locked from the outside... Is there a key somewhere?",
+    "discovered_a_person": "You found me! Haha!",
+    "a_serious_discussion": "???: I have been observing you for a while now ${{user}}, I'm glad my followers managed to grab you without harm.",
+    "a_serious_discussion2": "Oh, where are my manners! I am Misa, premier of the Xero Institute for Tuxemon Research and Advancement.",
 
     "input_name": "Name?"
 }

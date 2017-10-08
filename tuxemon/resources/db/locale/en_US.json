@@ -204,6 +204,9 @@
     "xero_hideout1": "Xero Institute for Tuxemon Research and Advancement ahead.",
     "cherry": "You found a cherry",
     "xero_grunts_block": "This area is under construction, it should be done soon.",
+    "waiting_for_misa": "Our leader would like to talk with you. When you are ready, talk to my friend on my left.",
+    "teleport?": "Are you ready to meet our leader?",
+    "ouch": "Sorry, but this may hurt a bit...",
 
     "input_name": "Name?"
 }

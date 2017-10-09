@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="41">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="44">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -94,7 +94,6 @@
   <object id="40" name="let's speak" type="event" x="48" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog backstory"/>
-    <property name="act10" value="set_variable oopsie:whoops"/>
     <property name="act2" value="translated_dialog backstory2"/>
     <property name="act3" value="translated_dialog backstory3"/>
     <property name="act4" value="translated_dialog backstory4"/>
@@ -102,10 +101,29 @@
     <property name="act6" value="translated_dialog backstory6"/>
     <property name="act7" value="translated_dialog backstory7"/>
     <property name="act8" value="translated_dialog backstory8"/>
-    <property name="act9" value="translated_dialog backstory9"/>
+    <property name="act9" value="set_variable oopsie:whoops"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set oopsie:yes"/>
+   </properties>
+  </object>
+  <object id="41" name="choose m' boi" type="event" x="48" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog backstory9"/>
+    <property name="act2" value="dialog_choice Yes,questioning"/>
+    <property name="act3" value="set_variable oopsie:eh"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is variable_set oopsie:whoops"/>
+   </properties>
+  </object>
+  <object id="42" name="yeeeee buddy" type="event" x="48" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog sorryfurthis"/>
+    <property name="act2" value="transition_teleport route1.tmx,33,12,0.7"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is variable_set questioning:Yes"/>
    </properties>
   </object>
  </objectgroup>

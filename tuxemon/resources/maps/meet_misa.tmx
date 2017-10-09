@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="39">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="41">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -60,6 +60,7 @@
     <property name="act1" value="teleport meet_misa.tmx,3,4"/>
     <property name="act2" value="create_npc npc_misa,3,3,misa,stand"/>
     <property name="act3" value="set_variable surprisemf:yes"/>
+    <property name="act4" value="set_variable jumpinback:frakyeah"/>
     <property name="cond1" value="not npc_exists npc_misa"/>
     <property name="cond2" value="is variable_set youarejumanji:yes"/>
     <property name="cond3" value="not variable_set surprisemf:yes"/>
@@ -70,9 +71,41 @@
     <property name="act1" value="set_variable surprisemf:notanymore"/>
     <property name="act2" value="translated_dialog a_serious_discussion"/>
     <property name="act3" value="translated_dialog a_serious_discussion2"/>
+    <property name="act4" value="translated_dialog a_serious_discussion3"/>
+    <property name="act5" value="dialog ${{name}}?"/>
+    <property name="act6" value="translated_dialog a_serious_discussion4"/>
+    <property name="act7" value="set_variable jumpinback:yes"/>
     <property name="cond1" value="is variable_set surprisemf:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing up"/>
+    <property name="cond4" value="is variable_set jumpinback:frakyeah"/>
+   </properties>
+  </object>
+  <object id="39" name="jumpback" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport meet_misa.tmx,3,5"/>
+    <property name="act2" value="set_variable jumpinback:no"/>
+    <property name="act4" value="translated_dialog oops"/>
+    <property name="act5" value="translated_dialog oops2"/>
+    <property name="act6" value="set_variable oopsie:yes"/>
+    <property name="cond1" value="is variable_set jumpinback:yes"/>
+   </properties>
+  </object>
+  <object id="40" name="let's speak" type="event" x="48" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog backstory"/>
+    <property name="act10" value="set_variable oopsie:whoops"/>
+    <property name="act2" value="translated_dialog backstory2"/>
+    <property name="act3" value="translated_dialog backstory3"/>
+    <property name="act4" value="translated_dialog backstory4"/>
+    <property name="act5" value="translated_dialog backstory5"/>
+    <property name="act6" value="translated_dialog backstory6"/>
+    <property name="act7" value="translated_dialog backstory7"/>
+    <property name="act8" value="translated_dialog backstory8"/>
+    <property name="act9" value="translated_dialog backstory9"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is variable_set oopsie:yes"/>
    </properties>
   </object>
  </objectgroup>

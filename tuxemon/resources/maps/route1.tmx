@@ -106,8 +106,8 @@
   </object>
   <object id="45" name="Music" type="event" x="160" y="720" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music 479403_its-a-unix-system.ogg"/>
-    <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
+    <property name="act1" value="play_music TheAdventureBegins8bitRemix.ogg"/>
+    <property name="cond1" value="not music_playing TheAdventureBegins8bitRemix.ogg"/>
    </properties>
   </object>
   <object id="46" name="create Karrianna and grunts" type="event" x="512" y="448" width="64" height="16">

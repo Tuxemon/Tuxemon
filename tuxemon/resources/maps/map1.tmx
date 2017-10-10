@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="122">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="64" height="60" tilewidth="16" tileheight="16" nextobjectid="122">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -209,8 +209,8 @@
   </object>
   <object id="68" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music 479403_its-a-unix-system.ogg"/>
-    <property name="cond1" value="not music_playing 479403_its-a-unix-system.ogg"/>
+    <property name="act1" value="play_music TheAdventureBegins8bitRemix.ogg"/>
+    <property name="cond1" value="not music_playing TheAdventureBegins8bitRemix.ogg"/>
    </properties>
   </object>
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">

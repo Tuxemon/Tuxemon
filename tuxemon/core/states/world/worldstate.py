@@ -199,7 +199,7 @@ class WorldState(state.State):
         :return: None
         """
         if self.delayed_teleport:
-            self.player1.stop()
+            self.player1.stop_moving()
             self.player1.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
@@ -385,10 +385,51 @@ class WorldState(state.State):
     def get_exits(self, position):
         """ Return directions that can be moved into
         
-        
-        
-        :return: 
+        :return:
         """
+        pass
+
+    def get_collision_dict(self, ignore=None):
+        """ Checks for collision tiles.
+
+        Returns a dictionary where keys are (x, y) tile tuples
+        and the values are tiles or npcs.
+
+        Pass a single NPC/Player or list for them to be removed from results
+
+        Slow operation.  Cache if possible.
+
+        # NOTE:
+        This will not respect map changes to collisions
+        after the map has been loaded!
+
+        :rtype: dict
+        :returns: A dictionary of collision tiles
+
+        """
+        to_ignore = set()
+        if ignore is not None:
+            try:
+                for i in ignore:
+                    to_ignore.add(i)
+            except TypeError:
+                to_ignore.add(ignore)
+
+        # Create a temporary set of tile coordinates for NPCs.
+        # add world geometry
+        collision_dict = dict(self.collision_map)
+
+        # Get all the NPC's tile positions so we can check for collisions
+        for npc in self.get_all_entities():
+
+            # do not add ignored npc
+            if npc in to_ignore:
+                continue
+
+            pos = nearest(npc.tile_pos)
+            collision_dict[pos] = npc
+
+        return collision_dict
 
     ####################################################
     #                Player Movement                   #
@@ -608,7 +649,7 @@ class WorldState(state.State):
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of control
         self.game.reset_controls()
-        self.player1.stop()
+        self.player1.stop_moving()
 
         self.current_map = map_data["data"]
         self.collision_map = map_data["collision_map"]

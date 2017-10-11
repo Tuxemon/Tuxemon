@@ -60,6 +60,7 @@ class PlayerMovedCondition(EventCondition):
         }
 
         """
+        return
 
         # Create a dictionary that will hold our move destinations.
         if 'move_destination' not in game.event_persist:
@@ -70,7 +71,6 @@ class PlayerMovedCondition(EventCondition):
 
         # Check to see if the player's "move destination" has changed since the last
         # frame. If it has, WE'RE MOVING!
-        moved = False
         if game.player1.move_destination == game.event_persist['move_destination'][str(condition)]:
             moved = False
         else:

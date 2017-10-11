@@ -403,7 +403,7 @@ class Map(object):
         # Get the dimensions of the map
         mapsize = self.size
 
-        # Create a list of all tile monsters_in_play that we cannot walk through
+        # Create a list of all tiles that we cannot walk through
         collision_map = {}
 
         # Create a dictionary of coordinates that have conditional collisions

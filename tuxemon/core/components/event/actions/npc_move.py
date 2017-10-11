@@ -43,6 +43,8 @@ class NpcMoveAction(EventAction):
     ]
 
     def start(self):
-        self.npc = get_npc(self.game, self.parameters.npc_slug)
-        # self.npc.move_to((self.parameters.pos_x, self.parameters.pos_y), self.parameters.speed)
-        self.npc.pathfind((self.parameters.pos_x, self.parameters.pos_y), self.game)
+        print(self.parameters)
+        npc = get_npc(self.game, self.parameters.npc_slug)
+        # npc.move_to((self.parameters.pos_x, self.parameters.pos_y), self.parameters.speed)
+        world_map = self.game.get_state_name("WorldState")
+        npc.pathfind((self.parameters.pos_x, self.parameters.pos_y), world_map)

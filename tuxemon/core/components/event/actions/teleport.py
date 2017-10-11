@@ -76,4 +76,4 @@ class TeleportAction(EventAction):
                 world.change_map(map_path)
 
         # Stop the player's movement so they don't continue their move after they teleported.
-        player.stop()
+        player.stop_moving()

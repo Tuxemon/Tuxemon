@@ -21,6 +21,7 @@
 #
 from __future__ import absolute_import
 
+import core.components.npc
 from core.components import ai, player
 from core.components.event.eventaction import EventAction
 
@@ -58,7 +59,7 @@ class CreateNpcAction(EventAction):
         behavior = self.parameters.behavior
 
         # Create a new NPC object
-        npc = player.Npc(slug)
+        npc = core.components.npc.Npc(slug)
 
         # Set the NPC object's variables
         npc.set_position((pos_x, pos_y))

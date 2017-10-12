@@ -37,13 +37,13 @@ import pygame
 from six.moves import map as imap
 
 from core import prepare, state
-from core.components import map, networking
+from core.components import networking
 from core.components.game_event import GAME_EVENT, INPUT_EVENT
+from core.components.map import PathfindNode, Map, proj, dirs2
 from core.tools import nearest
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-
 
 keymap = {
     pygame.K_UP: "up",
@@ -52,6 +52,7 @@ keymap = {
     pygame.K_RIGHT: "right",
 
 }
+
 
 class WorldState(state.State):
     """ The state responsible for the world game play
@@ -290,8 +291,9 @@ class WorldState(state.State):
             # moving direction to that direction
             for key, direction in keymap.items():
                 if event.key == key:
-                    self.player1.direction[direction] = True
                     self.player1.facing = direction
+                    self.player1.move_direction = direction
+                    break
 
             if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
                 # TODO: Check to see if we have network players to interact with.
@@ -303,30 +305,13 @@ class WorldState(state.State):
         if event.type == pygame.KEYUP:
             # If the player lets go of the key, set the moving
             # direction to false
-            for key, direction in keymap.items():
-                if event.key == key:
-                    self.player1.direction[direction] = False
+            if keymap[event.key] == self.player1.move_direction:
+                self.player1.move_direction = None
 
         # Handle text input events
         if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
             self.player1.name = event.text
-            return None
-
-        self.game.client.set_key_condition(event)
-
-        # by default, just pass every event down, since we assume
-        # that the world state will be the last running state, before
-        # the event engine.
-        return event
-
-    def get_all_entities(self):
-        """ List of players and NPCs, for collision checking
-
-        :return:
-        """
-        yield self.player1
-        for npc in self.npcs.values():
-            yield npc
+            return
 
     ####################################################
     #                   Map Drawing                    #
@@ -382,20 +367,25 @@ class WorldState(state.State):
     ####################################################
     #            Pathfinding and Collisions            #
     ####################################################
-    def get_exits(self, position):
-        """ Return directions that can be moved into
-        
+    """
+    eventually refactor pathing/collisions into a more generic class
+    so it doesn't rely on a running game, players, or a screen
+    """
+
+    def get_all_entities(self):
+        """ List of players and NPCs, for collision checking
+
         :return:
         """
-        pass
+        yield self.player1
+        for npc in self.npcs.values():
+            yield npc
 
-    def get_collision_dict(self, ignore=None):
+    def get_collision_map(self):
         """ Checks for collision tiles.
 
         Returns a dictionary where keys are (x, y) tile tuples
-        and the values are tiles or npcs.
-
-        Pass a single NPC/Player or list for them to be removed from results
+        and the values are tiles or NPCs.
 
         Slow operation.  Cache if possible.
 
@@ -405,31 +395,156 @@ class WorldState(state.State):
 
         :rtype: dict
         :returns: A dictionary of collision tiles
-
         """
-        to_ignore = set()
-        if ignore is not None:
-            try:
-                for i in ignore:
-                    to_ignore.add(i)
-            except TypeError:
-                to_ignore.add(ignore)
-
-        # Create a temporary set of tile coordinates for NPCs.
         # add world geometry
         collision_dict = dict(self.collision_map)
 
-        # Get all the NPC's tile positions so we can check for collisions
+        # Get all the NPCs' tile positions
         for npc in self.get_all_entities():
-
-            # do not add ignored npc
-            if npc in to_ignore:
-                continue
-
             pos = nearest(npc.tile_pos)
             collision_dict[pos] = npc
 
         return collision_dict
+
+    def pathfind(self, start, dest):
+        """ Pathfind
+
+        :param start:
+        :type dest: tuple
+
+        :return:
+        """
+        pathnode = self.pathfind_r(dest,
+                                   [PathfindNode(start)],  # queue
+                                   [],  # visited
+                                   0)  # depth (not a limit, just a counter)
+
+        if pathnode:
+            # traverse the node to get the path
+            path = []
+            while pathnode:
+                path.append(pathnode.get_value())
+                pathnode = pathnode.get_parent()
+
+            return path
+
+        else:
+            # TODO: get current map name for a more useful error
+            logger.error("Pathfinding failed to find a path from " +
+                         str(start) + " to " + str(dest) +
+                         ". Are you sure that an obstacle-free path exists?")
+
+    def pathfind_r(self, dest, queue, visited, depth):
+        """ Recursive breadth first search algorithm
+
+        :type dest: tuple
+        :type queue: list
+        :type visited: list
+        :type depth: int
+
+        :rtype: list
+        """
+        if not queue:
+            # does reaching this case mean we exhausted the search?
+            # I think so which means there is no possible path
+            return False
+
+        elif queue[0].get_value() == dest:
+            # done
+            return queue[0]
+
+        else:
+            # sort the queue by node depth
+            queue = sorted(queue, key=lambda x: x.get_depth())
+
+            # pop next tile off queue
+            next_node = queue.pop(0)
+
+            # add neighbors of current tile to queue
+            # if we haven't checked them already
+            for adj_pos in self.get_exits(next_node.get_value()):
+                if adj_pos not in visited and adj_pos not in map(lambda x: x.get_value(), queue):
+                    queue = [PathfindNode(adj_pos, next_node)] + queue
+                    visited = [next_node.get_value()] + visited
+
+            # recur
+            path = self.pathfind_r(dest, queue, visited, depth + 1)
+            return path
+
+    def get_exits(self, position):
+        """ Return list of tiles which can be moved into
+
+        This checks for adjacent tiles between walls, npcs, and collision lines
+
+        :param position: tuple
+
+        :rtype: list
+        """
+        adjacent_tiles = []
+
+        # get tile-level and npc/entity blockers
+        collision_map = self.get_collision_map()
+
+        # get starting tile
+        tile = collision_map.get(position)
+
+        # Check if the players current position has any limitations.
+        # this check is for tiles which define the only way to exit.
+        # for instance, one-way tiles.
+        if tile is not None:
+
+            # does the tile define adjacent_tiles?
+            try:
+                adjacent_tiles = tile["exit"]
+
+            # no it doesn't
+            except KeyError:
+                pass
+
+            # NPC objects will raise a type error
+            except TypeError:
+                pass
+
+            # yes it defines adjacent_tiles
+            else:
+                for direction in adjacent_tiles:
+                    exit_tile = dirs2[direction] + position
+                    adjacent_tiles.append(exit_tile)
+
+        # check for blocking tiles using the tile grid
+        for direction, offset in dirs2.items():
+            tile = tuple(position + offset)
+            blocker = collision_map.get(tile)
+            if blocker is None:
+                adjacent_tiles.append(tile)
+
+        return adjacent_tiles
+
+    def get_tile_exits(self, position):
+        """ Get exits with just the level geometry
+
+        :param position:
+        :return:
+        """
+
+    def collision_check(self, position):
+        """ Collision check exits collision lines
+
+        Slow operation.  Be sure to cache results.
+
+        :param position:
+        :type position: tuple
+        :rtype: list
+        """
+
+        # From the players current tile, check to see if any nearby tile
+        # is separated by a wall
+        for tile, direction in self.collision_lines_map:
+            if position == tile:
+                collisions.append(direction)
+
+        # Return a list of all the collision tiles around the player.
+        return collisions
 
     ####################################################
     #                Player Movement                   #
@@ -482,22 +597,22 @@ class WorldState(state.State):
     def move_npcs(self):
         """ Move NPCs and Players around according to their state
 
-        This function may be moved to a server
-
         :return:
         """
-        # Draw any game NPC's
-        for npc in self.get_all_entities():
-            npc.move(self.time_passed_seconds, self)
+        # TODO: This function may be moved to a server
 
-            if npc.update_location:
-                char_dict = {"tile_pos": npc.final_move_dest}
-                networking.update_client(npc, char_dict, self.game)
-                npc.update_location = False
+        # Draw any game NPC's
+        for entity in self.get_all_entities():
+            entity.move(self.time_passed_seconds, self)
+
+            if entity.update_location:
+                char_dict = {"tile_pos": entity.final_move_dest}
+                networking.update_client(entity, char_dict, self.game)
+                entity.update_location = False
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
-        for npc in self.npcs_off_map.values():
-            npc.move(self.time_passed_seconds, self)
+        for entity in self.npcs_off_map.values():
+            entity.move(self.time_passed_seconds, self)
 
     def _collision_box_to_pgrect(self, box):
         """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
@@ -541,17 +656,19 @@ class WorldState(state.State):
 
         # draw collision check boxes
         x, y = self.get_pos_from_tilepos(self.player1.tile_pos)
-        if self.player1.direction["up"]:
-            box(surface, ((x, y - self.tile_size[1]), self.tile_size), red)
 
-        if self.player1.direction["down"]:
-            box(surface, ((x, y + self.tile_size[1]), self.tile_size), red)
-
-        if self.player1.direction["left"]:
-            box(surface, ((x - self.tile_size[0], y), self.tile_size), red)
-
-        if self.player1.direction["right"]:
-            box(surface, ((x + self.tile_size[0], y), self.tile_size), red)
+        # TODO: collision boxen
+        # if self.player1.direction["up"]:
+        #     box(surface, ((x, y - self.tile_size[1]), self.tile_size), red)
+        #
+        # if self.player1.direction["down"]:
+        #     box(surface, ((x, y + self.tile_size[1]), self.tile_size), red)
+        #
+        # if self.player1.direction["left"]:
+        #     box(surface, ((x - self.tile_size[0], y), self.tile_size), red)
+        #
+        # if self.player1.direction["right"]:
+        #     box(surface, ((x + self.tile_size[0], y), self.tile_size), red)
 
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
@@ -670,7 +787,7 @@ class WorldState(state.State):
         """ Returns map data as a dictionary to be used for map changing and preloading
         """
         map_data = {}
-        map_data["data"] = map.Map(map_name)
+        map_data["data"] = Map(map_name)
         map_data["events"] = map_data["data"].events
         map_data["inits"] = map_data["data"].inits
         map_data["interacts"] = map_data["data"].interacts
@@ -704,7 +821,7 @@ class WorldState(state.State):
         :returns: True if there is an Npc to interact with.
 
         """
-        collision_dict = self.player1.get_collision_dict(self)
+        collision_dict = self.player1.get_collision_map(self)
         player_tile_pos = nearest(self.player1.tile_pos)
         collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
         if not collisions:

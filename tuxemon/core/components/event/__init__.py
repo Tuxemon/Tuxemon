@@ -48,6 +48,7 @@ action_fields = [
 
 event_fields = [
     "id",
+    "name",
     "x",
     "y",
     "w",

@@ -41,8 +41,6 @@ logger = logging.getLogger(__name__)
 class Player(Npc):
     """ Object for Players.  WIP
     """
-    # The maximum number of tuxemon this player can hold
-    party_limit = 6
     isplayer = True
 
     def __init__(self, npc_slug):
@@ -51,63 +49,3 @@ class Player(Npc):
         # Game variables for use with events
         self.game_variables = {}
 
-        # This is a list of tuxemon the player has
-        self.monsters = []
-        self.storage = {"monsters": [], "items": {}}
-
-    def add_monster(self, monster):
-        """Adds a monster to the player's list of monsters. If the player's party is full, it
-        will send the monster to PCState archive.
-
-        :param monster: The core.components.monster.Monster object to add to the player's party.
-
-        :type monster: core.components.monster.Monster
-
-        :rtype: None
-        :returns: None
-
-        """
-        if len(self.monsters) >= self.party_limit:
-            self.storage["monsters"].append(monster)
-        else:
-            self.monsters.append(monster)
-
-    def find_monster(self, monster_slug):
-        """Finds a monster in the player's list of monsters.
-
-        :param monster_slug: The slug name of the monster
-        :type monster_slug: str
-
-        :rtype: core.components.monster.Monster
-        :returns: Monster found
-        """
-        for monster in self.monsters:
-            if monster.slug == monster_slug:
-                return monster
-        return None
-
-    def remove_monster(self, monster):
-        """ Removes a monster from this player's party.
-
-        :param monster: Monster to remove from the player's party.
-
-        :type monster: core.components.monster.Monster
-
-        :rtype: None
-        :returns: None
-        """
-        if monster in self.monsters:
-            self.monsters.remove(monster)
-
-    def switch_monsters(self, index_1, index_2):
-        """ Swap two monsters in this player's party
-
-        :param index_1/index_2: The indexes of the monsters to switch in the player's party.
-
-        :type index_1: int
-        :type index_2: int
-
-        :rtype: None
-        :returns: None
-        """
-        self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]

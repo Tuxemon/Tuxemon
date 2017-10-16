@@ -31,7 +31,6 @@ from __future__ import division
 
 import itertools
 import logging
-from os.path import join
 
 import pygame
 from six.moves import map as imap
@@ -39,7 +38,7 @@ from six.moves import map as imap
 from core import prepare, state
 from core.components import networking
 from core.components.game_event import GAME_EVENT, INPUT_EVENT
-from core.components.map import PathfindNode, Map, proj, dirs2
+from core.components.map import PathfindNode, Map, dirs2
 from core.tools import nearest
 
 # Create a logger for optional handling of debug messages.
@@ -73,24 +72,15 @@ class WorldState(state.State):
 
         self.npcs = {}
         self.npcs_off_map = {}
-        self.wants_duel = False
-        self.player1 = self.game.player1
-        self.player1.set_position(prepare.CONFIG.starting_position)
-        self.add_entity(self.player1)
+        self.player1 = None
 
         ######################################################################
         #                              Map                                   #
         ######################################################################
 
-        # Set the tiles and map size variables
-        self.map_size = []
-
-        # load the starting map
-        map_name = join(prepare.BASEDIR, 'resources', 'maps', prepare.CONFIG.starting_map)
-        self.change_map(map_name)
-
         # Keep a map of preloaded maps for fast map switching.
         self.preloaded_maps = {}
+        self.current_map = None
 
         ######################################################################
         #                            Transitions                             #
@@ -202,16 +192,17 @@ class WorldState(state.State):
         """
         if self.delayed_teleport:
             self.player1.stop_moving()
-            self.player1.set_position((self.delayed_x, self.delayed_y))
-
-            if self.delayed_facing:
-                self.player1.facing = self.delayed_facing
-                self.delayed_facing = None
 
             # check if map has changed, and if so, change it
             map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
+
+            self.player1.set_position((self.delayed_x, self.delayed_y))
+
+            if self.delayed_facing:
+                self.player1.facing = self.delayed_facing
+                self.delayed_facing = None
 
             self.delayed_teleport = False
 
@@ -263,9 +254,9 @@ class WorldState(state.State):
         :return:
         """
         self.screen = surface
-        self.map_drawing(surface)
         self.player_movement()
         self.move_npcs()
+        self.map_drawing(surface)
         self.fullscreen_animations(surface)
 
     def process_event(self, event):
@@ -378,6 +369,14 @@ class WorldState(state.State):
     eventually refactor pathing/collisions into a more generic class
     so it doesn't rely on a running game, players, or a screen
     """
+    def add_player(self, player):
+        """ WIP.  Eventually handle players coming and going (for server)
+
+        :param player:
+        :return:
+        """
+        self.player1 = player
+        self.add_entity(player)
 
     def add_entity(self, entity):
         """
@@ -597,12 +596,13 @@ class WorldState(state.State):
         self.time_passed_seconds = self.game.time_passed_seconds
 
         # Handle tile based movement for the player
-        if self.shift_held:
-            self.player1.running = True
-            self.player1.walking = False
-        else:
-            self.player1.running = False
-            self.player1.walking = True
+        if self.player1:
+            if self.shift_held:
+                self.player1.running = True
+                self.player1.walking = False
+            else:
+                self.player1.running = False
+                self.player1.walking = True
 
     def get_pos_from_tilepos(self, tile_position):
         """ Returns the map pixel coordinate based on tile position.
@@ -631,7 +631,6 @@ class WorldState(state.State):
         # TODO: This function may be moved to a server
         # Draw any game NPC's
         for entity in self.get_all_entities():
-            print(entity)
             entity.move(self.time_passed_seconds)
 
             if entity.update_location:
@@ -791,15 +790,9 @@ class WorldState(state.State):
             map_data = self.preloaded_maps[map_name]
             self.clear_preloaded_maps()
 
-        # reset controls and stop moving to prevent player from
-        # moving after the teleport and being out of control
-        self.game.reset_controls()
-        self.player1.stop_moving()
-
         self.current_map = map_data["data"]
         self.collision_map = map_data["collision_map"]
         self.collision_lines_map = map_data["collision_lines_map"]
-        self.map_size = map_data["map_size"]
 
         # TODO: remove this monkey [patching!] business for the main control/game
         self.game.events = map_data["events"]
@@ -810,6 +803,17 @@ class WorldState(state.State):
         # Clear out any existing NPCs
         self.npcs = {}
         self.npcs_off_map = {}
+        self.add_player(self.game.player1)
+
+        # reset controls and stop moving to prevent player from
+        # moving after the teleport and being out of control
+        self.game.reset_controls()
+        self.player1.stop_moving()
+
+        # move to spawn position, if any
+        for eo in self.game.events:
+            if eo.name.lower() == "player spawn":
+                self.player1.set_position((eo.x, eo.y))
 
     def load_map(self, map_name):
         """ Returns map data as a dictionary to be used for map changing and preloading
@@ -833,7 +837,7 @@ class WorldState(state.State):
         self.preloaded_maps[map_name] = self.load_map(map_name)
 
     def clear_preloaded_maps(self):
-        """ Clear the proloaded maps cache
+        """ Clear the preloaded maps cache
 
         :return: None
         """

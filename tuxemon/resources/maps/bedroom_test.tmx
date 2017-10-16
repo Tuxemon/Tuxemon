@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="23">
+ <properties>
+  <property name="starting_position_x" value="4"/>
+  <property name="starting_position_y" value="5"/>
+ </properties>
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -79,5 +83,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
+  <object id="19" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -656,10 +656,9 @@ class PygAnimation(object):
 
 class PygConductor(object):
     def __init__(self, *animations):
-        assert len(animations) > 0, 'at least one PygAnimation object is required'
-
         self._animations = []
-        self.add(*animations)
+        if animations:
+            self.add(*animations)
         self._state = STOPPED
 
     def add(self, *animations):

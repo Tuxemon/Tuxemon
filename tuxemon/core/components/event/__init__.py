@@ -84,10 +84,8 @@ def get_npc(game, slug):
     # Loop through the NPC list and see if the slug matches any in the list
     world = game.get_state_name("WorldState")
     if world is None:
-        logger.error("Cannot search for NPC if  world doesn't exist: " + slug)
+        logger.error("Cannot search for NPC if world doesn't exist: " + slug)
         return
 
-    elif slug in world.npcs:
-        return world.npcs[slug]
-
-    logger.error("Unable to find NPC: " + slug)
+    # logger.error("Unable to find NPC: " + slug)
+    return world.get_entity(slug)

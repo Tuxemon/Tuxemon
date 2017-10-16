@@ -71,11 +71,12 @@ class WorldState(state.State):
         #                           Player Details                           #
         ######################################################################
 
-        self.player1 = self.game.player1
         self.npcs = {}
         self.npcs_off_map = {}
         self.wants_duel = False
+        self.player1 = self.game.player1
         self.player1.set_position(prepare.CONFIG.starting_position)
+        self.add_entity(self.player1)
 
         ######################################################################
         #                              Map                                   #
@@ -291,7 +292,12 @@ class WorldState(state.State):
             # moving direction to that direction
             for key, direction in keymap.items():
                 if event.key == key:
-                    self.player1.facing = direction
+
+                    # don't change facing while moving
+                    if not self.player1.moving:
+                        self.player1.facing = direction
+
+                    # tell the npc we want to change directions
                     self.player1.move_direction = direction
                     break
 
@@ -304,8 +310,9 @@ class WorldState(state.State):
         # Handle Key UP events
         if event.type == pygame.KEYUP:
             # If the player lets go of the key, set the moving
-            # direction to false
-            if keymap[event.key] == self.player1.move_direction:
+            # direction to false to stop movement
+            direction = keymap.get(event.key)
+            if direction == self.player1.move_direction:
                 self.player1.move_direction = None
 
         # Handle text input events
@@ -372,22 +379,43 @@ class WorldState(state.State):
     so it doesn't rely on a running game, players, or a screen
     """
 
+    def add_entity(self, entity):
+        """
+
+        :type entity: core.components.entity.Entity
+        :return:
+        """
+        entity.world = self
+        self.npcs[entity.slug] = entity
+
+    def get_entity(self, slug):
+        """
+
+        :type slug: str
+        :return:
+        """
+        return self.npcs.get(slug)
+
+    def remove_entity(self, slug):
+        """
+
+        :type slug: str
+        :return:
+        """
+        del self.npcs[slug]
+
     def get_all_entities(self):
         """ List of players and NPCs, for collision checking
 
         :return:
         """
-        yield self.player1
-        for npc in self.npcs.values():
-            yield npc
+        return self.npcs.values()
 
     def get_collision_map(self):
-        """ Checks for collision tiles.
+        """ Return dictionary for collision testing
 
         Returns a dictionary where keys are (x, y) tile tuples
         and the values are tiles or NPCs.
-
-        Slow operation.  Cache if possible.
 
         # NOTE:
         This will not respect map changes to collisions
@@ -474,7 +502,8 @@ class WorldState(state.State):
     def get_exits(self, position):
         """ Return list of tiles which can be moved into
 
-        This checks for adjacent tiles between walls, npcs, and collision lines
+        This checks for adjacent tiles while checking for walls,
+        npcs, and collision lines
 
         :param position: tuple
 
@@ -488,7 +517,7 @@ class WorldState(state.State):
         # get starting tile
         tile = collision_map.get(position)
 
-        # Check if the players current position has any limitations.
+        # Check if the players current position has any exit limitations.
         # this check is for tiles which define the only way to exit.
         # for instance, one-way tiles.
         if tile is not None:
@@ -600,10 +629,10 @@ class WorldState(state.State):
         :return:
         """
         # TODO: This function may be moved to a server
-
         # Draw any game NPC's
         for entity in self.get_all_entities():
-            entity.move(self.time_passed_seconds, self)
+            print(entity)
+            entity.move(self.time_passed_seconds)
 
             if entity.update_location:
                 char_dict = {"tile_pos": entity.final_move_dest}
@@ -746,7 +775,6 @@ class WorldState(state.State):
         if self.in_transition:
             self.transition_surface.set_alpha(self.transition_alpha)
             surface.blit(self.transition_surface, (0, 0))
-            self.player1.suppress_movement()
 
     ####################################################
     #             Map Change/Load Functions            #

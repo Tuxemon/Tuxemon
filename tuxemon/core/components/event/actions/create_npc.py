@@ -49,10 +49,6 @@ class CreateNpcAction(EventAction):
         # Get the npc's parameters from the action
         slug = self.parameters.npc_slug
 
-        # Ensure that the NPC doesn't already exist on the map.
-        if slug in world.npcs:
-            return
-
         # Get the npc's parameters from the action
         pos_x = self.parameters.pos_x
         pos_y = self.parameters.pos_y
@@ -67,4 +63,4 @@ class CreateNpcAction(EventAction):
         npc.ai = ai.AI()
 
         # Add the NPC to the game's NPC list
-        world.npcs[slug] = npc
+        world.add_entity(npc)

@@ -45,9 +45,5 @@ class PathfindAction(EventAction):
         dest_x = self.parameters.pos_x
         dest_y = self.parameters.pos_y
 
-        # get npc object via name
-        if npc_slug not in world.npcs:
-            return
-
-        curr_npc = world.npcs[npc_slug]
+        curr_npc = world.get_npc(npc_slug)
         curr_npc.pathfind((dest_x, dest_y), self.game)

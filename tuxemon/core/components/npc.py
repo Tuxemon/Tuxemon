@@ -109,7 +109,7 @@ class Npc(Entity):
         self.start_position = None
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
         self.waypoint_distance = 0
-        self.waypoint_destination = None
+        self.waypoint_position = None
 
         self.inventory = {}  # The Player's inventory.
         self.interactions = []  # List of ways player can interact with the Npc
@@ -230,13 +230,6 @@ class Npc(Entity):
         """
         self.moverate = self.runrate if self.running else self.walkrate
 
-
-        """
-        has waypoint?
-        
-        
-        """
-        # loop these two
         self.check_waypoint()
 
         # does the npc want to move?
@@ -247,13 +240,18 @@ class Npc(Entity):
                 self.move_one_tile(self.move_direction)
                 self.moveConductor.play()
 
+        else:
+            # doesn't want to move, there is no waypoint, so stop
+            if not self.waypoint_position:
+                self.stop_moving()
+
         # update physics.  eventually move to another class
         self.update_physics(time_passed_seconds)
 
         if not self.moveConductor.isStopped() and not self.moving:
             self.moveConductor.stop()
 
-        print (self.move_direction, self.moving, self.path)
+        # print (self.move_direction, self.moving, self.path)
 
         # if not self.moving:
         #     if self.isplayer and (self.game.game.isclient or self.game.game.ishost):
@@ -277,8 +275,11 @@ class Npc(Entity):
         destination = nearest(self.tile_pos + dirs2[direction])
 
         # check if it is possible to move to destination
-        if destination in self.world.get_exits(nearest(self.tile_pos)):
+        if self.valid_movement(destination):
             self.path.append(destination)
+
+    def valid_movement(self, tile):
+        return tile in self.world.get_exits(nearest(self.tile_pos))
 
     def check_waypoint(self):
         """ Move towards next waypoint, stop if reached it
@@ -295,46 +296,58 @@ class Npc(Entity):
             return False
 
         # move towards next point on path, if needed
-        # happens on start and between waypointso
-        needs_waypoint = self.waypoint_destination is None
+        # happens on start and between waypoints
+        needs_waypoint = self.waypoint_position is None
 
         # loop in case there are several waypoints on the same spot
         while self.path and needs_waypoint:
             self.next_waypoint()
             needs_waypoint = czech()
-            print('next>?', self.path, self.waypoint_destination)
 
-        # continue checking
-        if self.start_position and self.waypoint_destination:
+        # check if the destination is reached
+        if self.start_position and self.waypoint_position:
             reached = czech()
             if reached:
                 print('done!')
                 # make sure wayfinding doesn't continue
-                self.set_position(self.waypoint_destination)
-                self.waypoint_destination = None
-                self.stop_moving()
+                self.set_position(self.waypoint_position)
+                self.waypoint_position = None
 
     def next_waypoint(self):
         """ Take the next step of the path and set the next waypoint
         """
         start_position = Point2(*nearest(self.tile_pos))
-        move_destination = Point2(*self.path.pop())
+        end_position = Point2(*self.path.pop())
 
         # path may be for the tile currently on
         # if so, just give up!
-        if start_position == move_destination:
+        if start_position == end_position:
             print('reached?')
             return
 
+        valid = self.\
+
+
+
+            valid_movement(tuple(end_position))
+        if not valid:
+            raise Exception
+
         # store information about next waypoint
-        move_direction = get_direction(start_position, move_destination)
-        self.start_position = start_position
-        self.waypoint_destination = move_destination
-        self.waypoint_distance = start_position.distance(move_destination)
+        direction = get_direction(start_position, end_position)
+        self.start_position\
+
+
+
+
+
+
+            .waypoint_position = end_position
+        self.waypoint_distance = start_position.distance(end_position)
 
         # start moving
-        self.facing = move_direction
-        self.velocity3 = self.moverate * dirs3[move_direction]
+        self.facing = direction
+        self.velocity3 = self.moverate * dirs3[direction]
 
     ####################################################
     #                   Monsters                       #

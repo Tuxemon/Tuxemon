@@ -392,7 +392,16 @@ def open_dialog(game, text, menu=None):
 
 
 def nearest(l):
+    """ Use rounding to find nearest tile
+
+    :param l:
+    :return:
+    """
     return tuple(int(round(i)) for i in l)
+
+
+def trunc(l):
+    return tuple(int(i) for i in l)
 
 
 def scaled_image_loader(filename, colorkey, **kwargs):

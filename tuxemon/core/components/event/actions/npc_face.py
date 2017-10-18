@@ -39,10 +39,5 @@ class NpcFaceAction(EventAction):
     ]
 
     def start(self):
-        # TODO: get_npc
         npc = get_npc(self.game, self.parameters.npc_slug)
-
-        if not npc:
-            return
-
         npc.facing = self.parameters.direction

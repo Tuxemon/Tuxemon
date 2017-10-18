@@ -202,7 +202,6 @@ class Npc(Entity):
 
         :return: None
         """
-        # stop velocity
         self.velocity3.x = 0
         self.velocity3.y = 0
         self.velocity3.z = 0
@@ -243,17 +242,14 @@ class Npc(Entity):
             self.stop_moving()
             self.moveConductor.stop()
 
-        pass
-        # print (self.move_direction, self.moving, self.path)
+            # TODO: enable and test this network code
+            # if not self.moving:
+            #     if self.isplayer and (self.game.game.isclient or self.game.game.ishost):
+            #         self.game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
 
-        # TODO: enable and test this network code
-        # if not self.moving:
-        #     if self.isplayer and (self.game.game.isclient or self.game.game.ishost):
-        #         self.game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
-
-        # if not self.moving:
-        #     if self.isplayer and self.tile_pos != self.final_move_dest:
-        #         self.update_location = True
+            # if not self.moving:
+            #     if self.isplayer and self.tile_pos != self.final_move_dest:
+            #         self.update_location = True
 
     def move_one_tile(self, direction):
         """ Ask entity to move one tile

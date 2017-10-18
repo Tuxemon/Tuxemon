@@ -1,8 +1,8 @@
 {
-		"slug": "txmn_gectile",
-		"name_trans": "txmn_gectile_name",
-		"description_trans": "txmn_gectile_descr",
-		"category_trans": "txmn_gectile_category",
+		"slug": "txmn_anoleaf",
+		"name_trans": "txmn_anoleaf_name",
+		"description_trans": "txmn_anoleaf_descr",
+		"category_trans": "txmn_anoleaf_category",
 
 		"attack_base":            60,
 		"defense_base":           7,
@@ -33,10 +33,10 @@
 				}
 		],
 		"sprites": {
-				"battle1": "gfx/sprites/battle/gectile-front.png",
-				"battle2": "gfx/sprites/battle/gectile-back.png",
-				"menu1": "gfx/sprites/battle/gectile-menu01.png",
-				"menu2": "gfx/sprites/battle/gectile-menu02.png"
+				"battle1": "gfx/sprites/battle/anoleaf-front.png",
+				"battle2": "gfx/sprites/battle/anoleaf-back.png",
+				"menu1": "gfx/sprites/battle/anoleaf-menu01.png",
+				"menu2": "gfx/sprites/battle/anoleaf-menu02.png"
 		},
 		"types": [
 				"wood"

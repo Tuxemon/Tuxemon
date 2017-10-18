@@ -21,12 +21,12 @@
  </layer>
  <layer name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztmb0NwjAQhSOIRc0eCaJmEGjoaFiEjp4SJqBAQjACdIgBmAVbwQIihbw4/skd/qSTGwvuRb53/kmSSMQtSxE6A7/M09AZ/C/Dnt//C722J5712mQjirg2+IYLwnq3L72nBnrXxPTuWtbDkZjetjw8601lbxIyspoelaXvsMmgb/f3XHAQ36E4G67rMVG9pqj+q9cYgp5bHl1iU6/qv7nMdwTmrOeWR5fY1Kv671TmOwNz1nPLo0ts6qXWfzUXQ92x/3YL2/7o+3zkkhuwximfjz65iyLqoHw+MoGqP5tSV78rIndPaH/iUr97UUQdXOoX3XtxqV9UL5f9Faq36/srFKR2FZz2Vwhc/BmFiz+jcPFnFC7+jMLFn1GiP/Mm+jNvoj/zhsL7oKbqbrbJHS2F90FN/kOT6zesEFS9Xfl4w4p0gyfXJzkQ
+   eJztmkFuwjAQRaPUFuvcA6KuexB6AM7Cjj1LegIWlar2CLCreoCepVjBIlCDv51x4hn5SaMREor5if1ngl1VhVuUqiqt0uWh46XSuzhFq/5/Hpq/9fV4VNd15RC9uT7f5SlewYyQ8n63jt8w5fNt6rD7F5P7mLmdcjwfLzU2B3Jkq7s4av93LSvGendnvZ8BejfM9L4FaHPxwUzvUH5H1mtrzNzjLXN1CUpmT7TXS8G7vg7DV+S8fmaqNxZTf0P61LF63D6Uek39vdcHuUB7KEoo9a5qdx90D6SHooZSL7f6azlE6i71Ny+o/bHJXG8It/8ruOD8ftTnR3fhg/P7UQxc/TkW3/pdJ66tVKD1Scr63esufEhZv2jvJWX9onql9Feo3tz7KxRk7Rok9VcIUvwZRYo/o0jxZxQp/owixZ9Rij/LpvizbIo/y4bD/qCF4pwWh/1By6PzN6n3sKYg5BxQQSZ/ihBh7A==
   </data>
  </layer>
  <layer name="Above Player" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1z0OgCAMhuEO9P5XcfYEjh7JyaAmRg2UFnyfxNTBgfrVH0QAALA1aT5f9P46CymJaMrVSuu+4GN1zvlpnq3nfGSzno/R9dBvzXnuod+a6Dce3s84un7Pv1ZvUdYRVe/5/s3b+16aK/nGVCvXKPm2XkfUf6/aue41ar9WPPtNgZ4rAAAAAGWs9mij7ekB2NoA2+wbwQ==
+   eJzt2kEOgyAQhWEWcBx7nPaarnuCLnuk2kUTJTXRzDwG2v9LCBsJPkFUYkr4yDmlkvW1tV/vvNNSLsL6Wbb9nm3vnfe6lJuwrlnbW6nH19qft5bj+57b0eM7inm1DjzK/nEKqjW01joXYtTPtNaOvlPgvHvZll83Ql7P+TxCXk/k7Q/rM9a89xSizh/fjT6+/+bodVftCSKWes83Kk8rvb57qfb0e82rEpk3d3RfAQAAALBp9R/W6N/0ALReDYdGMA==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -89,7 +89,7 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="32" name="Teleport to route1a" type="event" x="528" y="96" width="48" height="16">
+  <object id="32" name="Teleport to route1a" type="event" x="544" y="96" width="32" height="16">
    <properties>
     <property name="act1" value="teleport route1_sanglorian.tmx,25,19"/>
     <property name="cond1" value="is player_at"/>

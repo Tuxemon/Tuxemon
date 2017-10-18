@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="252">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="257">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -65,12 +65,12 @@
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztljlLA0EYhicmY5cU+QUi2KnEoxCvXgSxUOMJ3mdppSKoUSuvyiP+ArXVUtSkF5Pgf1ATGy00YuEbMoO7IXtkD3cieeFhdnd2Z9/5dr5vhxDx1Otx2oG6qgX3V4qfOYkYv0/6e6wWv0NwBI7BCQhL+gJlhNSBetAAGstssaoavxtwC+5ABERBpzfbNwA/g2AIDIMRC/y9U/n5G81/H9cTeAYvIAlSYBH+Lv2EbMBPCGyCLbBtU/xEy480i9kXa0XMD6lEi1+uSvEzJ73xu0d+PjBiIA4SLGebXYS0gFbQBtpd2evSGvloY43M6ANj94A0Iwi+2fsm4GcSTIFpMMP82VEjlVThJmQV41e6s6zhuArtFWrhDvzsgj2wDw6Yv7+qkSXpU8LrtAPnNYf/1rIOFjT2BnYpWa7eH8Y3PAWvGvfZJS1/EXiLFujPgxpOLfrP5Ppb96EOgZBPfr0QfzXwVgtGFdZEE9WeQ4Dm93cGX+fgwoS/Prw3CPoV/GXezeegpVx/MfiKg4QJf3rE56AlrfXHJWp+cIng79ov75OeO+VvidXfMYW1PM76Vxyqz1aq4x/ModhV7N+gi8pbK5VyWzeWlj9p/6zBuXTreM7o2FLNUzlKtUpNfL9gtBVNfH+hd59hRkZylu8v1PYZPztQYtw=
+   eJztljlPwzAYht20YWuH/gKExIAEqBwD4toREmIAyilxnyMTICSgwMQ1cZRfAKwwIo7uiLbiP3CUBQYoYuCtaoukauI0h2JQX+mR7ThxXn+xv5gQ8dTtc9uBvioF91eMnzWJGL9P+beuF799cAAOwRGIKvpCEiE1oBbUgXrJEau68bsC1+CGtmOg3Z+t98FPPxjI+PISMmSDv3dZ3X6T89/H9AiewDNtp8A8/J0HCVmDnwhYBxXwt+lQ/ETbH2kasy9airg/lBItfrkqxs+ajMbvDvvznhIHCZCke7bRQ0gTaAYtoNWTva7MkQ8O5siMPjB2F0hTwuCbvm8MfsbBBJgEU9SfMkcOSvbkSC2VIsctY/wyb5YV1MtRXiAXbsHPNtgBu2CP+lPmyA3JuRxZlDEl/W47cF8z+G8tGmCOczZwSi8l+v1RfMNj8Mq5zynx/N3CW6xAfz7kcNmm/0yuv9UA8hCIBNTXC/FXBW/VYFhjTTTI/DmE5Pz+TuDrFJxZ8NeD94ZBr4a/zLvZHHjK9ReHrwRIWvBnRGwOPPHWH5Oo+4NJBH+XQXWfsu2WvwWaf0c01vIo7V9yKT/bqbZ/MIe/rr/+DTpkdWmnUl77xuL5U/ZPm5xLp4HnzI6t1KysRitX6YmdF8yWoomdL4yeM6zIzJ5l5wu9c8YPIRpgeQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -111,7 +111,7 @@
   <object id="173" type="collision" x="64" y="48" width="208" height="32"/>
   <object id="174" type="collision" x="272" y="16" width="16" height="32"/>
   <object id="175" type="collision" x="64" y="128" width="48" height="16"/>
-  <object id="176" type="collision" x="128" y="128" width="96" height="16"/>
+  <object id="176" type="collision" x="112" y="128" width="128" height="16"/>
   <object id="177" type="collision" x="240" y="128" width="16" height="16"/>
   <object id="178" type="collision" x="176" y="96" width="80" height="32"/>
   <object id="179" type="collision" x="288" y="16" width="64" height="144"/>
@@ -211,10 +211,10 @@
   </object>
   <object id="148" name="Teleport to Omnichannel HQ" type="event" x="352" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport omnichannel1.tmx,1,12,0.3"/>
-    <property name="act2" value="player_face up"/>
+    <property name="act1" value="translated_dialog itslockedboi"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="149" name="Teleport to Dryad's Grove" type="event" x="624" y="112" width="16" height="16">
@@ -344,7 +344,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="416" width="16" height="16">
+  <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="dialog_chain Cathedral Centre: We Live to Serve"/>
     <property name="act4" value="dialog_chain ${{end}}"/>
@@ -360,8 +360,50 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="252" name="create NPCs" type="event" x="0" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_allie,22,10,omnichannelfemale,stand"/>
+    <property name="cond1" value="not npc_exists npc_allie"/>
+    <property name="cond2" value="not variable_set npcs_are_created:yes"/>
+   </properties>
+  </object>
+  <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog mwah"/>
+    <property name="act11" value="set_variable npcs_are_created:yes"/>
+    <property name="act2" value="translated_dialog mwah2"/>
+    <property name="act3" value="translated_dialog mwah3"/>
+    <property name="act4" value="dialog ${{name}}..."/>
+    <property name="act7" value="translated_dialog mwah4"/>
+    <property name="act8" value="translated_dialog mwah5"/>
+    <property name="act9" value="npc_face npc_allie,up"/>
+    <property name="act91" value="translated_dialog mwah6"/>
+    <property name="act92" value="remove_npc npc_allie"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="254" name="come on over" type="event" x="336" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog dontmakemeturn"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is npc_exists npc_allie"/>
+   </properties>
+  </object>
+  <object id="255" name="come to me2" type="event" x="368" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog dontmakemeturn2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is npc_exists npc_allie"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="Above Player" width="40" height="40" visible="0">
+ <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztl1EKwjAQRLdlexw9jr2ZHkJrj6fWH+cnIMpiy6YxbOfBEDaUZvMCoRUpj6pIp3ZtzZXqa4fs1a7/RerjgPRq1+97Kcnnmqkvq66ZGvyRZUTyF2kvuVjihP580J9NcvNrJHHhGfugPx9b8ndsRU5t3nduyd8a0J8P+vMRwd+tEbkjD2RCns33M2fcexdkQK7ImOkerMUfv50JiUvpf+W566XxBd7REQw=
   </data>

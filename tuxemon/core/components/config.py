@@ -51,8 +51,8 @@ class Config(object):
         self.resolution_y = self.config.get("display", "resolution_y")
         self.resolution = (int(self.resolution_x), int(self.resolution_y))
 
-        self.sound_volume = self.config.get("sound", "sound_volume")
-        self.music_volume = self.config.get("sound", "music_volume")
+        self.sound_volume = float(self.config.get("sound", "sound_volume"))
+        self.music_volume = float(self.config.get("sound", "music_volume"))
 
         self.player_npc = self.config.get("player", "player_npc")
 

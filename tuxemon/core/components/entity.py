@@ -45,6 +45,15 @@ class Entity(object):
         self.update_location = False
 
     # === PHYSICS START ================================================================
+    def stop_moving(self):
+        """ Completely stop all movement
+
+        :return: None
+        """
+        self.velocity3.x = 0
+        self.velocity3.y = 0
+        self.velocity3.z = 0
+
     def pos_update(self):
         """ WIP.  Required to be called after position changes
 
@@ -80,4 +89,3 @@ class Entity(object):
         :rtype: bool
         """
         return not self.velocity3 == (0, 0, 0)
-

@@ -23,27 +23,54 @@ from __future__ import absolute_import
 
 from core.components.event import get_npc
 from core.components.event.eventaction import EventAction
+from core.components.map import dirs2
+
+
+def simple_path(origin, direction, tiles):
+    origin = tuple(origin)  # make copy to prevent modifying the npc
+    for i in range(tiles):
+        origin += dirs2[direction]
+        yield tuple(int(i) for i in origin)
+
+
+def parse_path_parameters(origin, move_list):
+    for move in move_list:
+        try:
+            direction, tiles = move.strip().split()
+        except ValueError:
+            direction, tiles = move.strip(), 1
+        for point in simple_path(origin, direction, int(tiles)):
+            yield point
+        origin = point
 
 
 class NpcMoveAction(EventAction):
-    """ Makes the move to a tile location
+    """ Relative tile movement for NPC
 
     This action blocks until the destination is reached.
 
-    Valid Parameters: npc_slug,
+    npc_move npc_slug, direction, amount_of_tiles, ...
+
+    number of tiles is optional, defaults to 1 if omitted
+
+    for example: up 10, down 5, left 5
 
     Direction parameter can be: "left", "right", "up", or "down"
+
+    Valid Parameters: npc_slug, movement pairs
     """
     name = "npc_move"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (int, "pos_x"),
-        (int, "pos_y"),
-        (int, "speed")
-    ]
+
+    # parameter checking not supported due to undefined number of parameters
 
     def start(self):
-        print(self.parameters)
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        # npc.move_to((self.parameters.pos_x, self.parameters.pos_y), self.parameters.speed)
-        npc.pathfind((self.parameters.pos_x, self.parameters.pos_y))
+        npc_slug = self.raw_parameters[0]
+        self.npc = get_npc(self.game, npc_slug)
+        path = list(parse_path_parameters(self.npc.tile_pos, self.raw_parameters[1:]))
+        path.reverse()
+        self.npc.path = path
+        self.npc.next_waypoint()
+
+    def update(self):
+        if not self.npc.moving and not self.npc.path:
+            self.stop()

@@ -56,11 +56,12 @@ class CreateNpcAction(EventAction):
 
         # Create a new NPC object
         npc = core.components.npc.Npc(slug)
+        npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables
-        npc.set_position((pos_x, pos_y))
         npc.behavior = behavior
         npc.ai = ai.AI()
 
+        print('new!!!', npc, pos_x, pos_y, npc.tile_pos)
         # Add the NPC to the game's NPC list
         world.add_entity(npc)

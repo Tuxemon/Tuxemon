@@ -81,9 +81,9 @@ class EventAction(object):
     * name must be a valid python string
 
     After parsing the parameters of the MapAction, the parameter's value
-    will be passed to the type.
+    will be passed to the type constructor.
 
-    For example: str, int, float, Monster, Item
+    Example types: str, int, float, Monster, Item
 
     (int, "duration")                => duration must be an int
     ((int, float), "duration")       => can be an int or float
@@ -127,8 +127,8 @@ class EventAction(object):
             logger.error("error while parsing for {}".format(self.name))
             logger.error("cannot parse parameters: {}".format(parameters))
             logger.error(self.valid_parameters)
+            logger.error("please check the parameters and verify they are correct")
             self.parameters = None
-            raise
 
         self._done = False
 

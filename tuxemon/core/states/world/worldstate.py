@@ -453,7 +453,7 @@ class WorldState(state.State):
                 path.append(pathnode.get_value())
                 pathnode = pathnode.get_parent()
 
-            return path
+            return path[:-1]
 
         else:
             # TODO: get current map name for a more useful error

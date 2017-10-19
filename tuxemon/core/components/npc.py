@@ -33,6 +33,7 @@ import os
 
 import pygame
 
+from core.prepare import CONFIG
 from core.components import db, pyganim
 from core.components.entity import Entity
 from core.components.locale import translator
@@ -60,6 +61,12 @@ animation_mapping = {
 }
 
 
+def tile_distance(tile0, tile1):
+    x0, y0 = tile0
+    x1, y1 = tile1
+    return hypot(x1 - x0, y1 - y0)
+
+
 class Npc(Entity):
     """ Class for humanoid type game objects, NPC, Players, etc
     """
@@ -82,17 +89,24 @@ class Npc(Entity):
         # Hold on the the string so it can be sent over the network
         self.sprite_name = npc_data["sprite_name"]
 
-        # Whether or not this player has AI associated with it
-        self.ai = None
+        self.ai = None  # Whether or not this player has AI associated with it
         self.behavior = "wander"
         self.interactions = []  # List of ways player can interact with the Npc
 
-        # used for various tests, idk
-        self.isplayer = False
+        self.isplayer = False  # used for various tests, idk
+        self.monsters = []  # This is a list of tuxemon the npc has
+        self.inventory = {}  # The Player's inventory.
+        self.storage = {"monsters": [], "items": {}}
 
         # pathfinding and waypoint related
         self.path = []
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
+
+        # This is used to 'set back' when lost, and make movement robust.
+        # If entity falls off of map due to a bug, it can be returned to this value.
+        # When moving to a waypoint, this is used to detect if movement has overshot
+        # the destination due to spped issues or framerate jitters.
+        self.path_origin = None
 
         self.move_direction = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
@@ -105,7 +119,7 @@ class Npc(Entity):
         # What is "move_direction"?
         # Move direction allows other functions to move the npc in a controlled way.
         # To move the npc, change the value to one of four directions: left, right, up or down.
-        # The npc will then move one tile in that direction.
+        # The npc will then move one tile in that direction until it is set to None.
         # This will not change facing, that must be changed as well.
         # The facing and movement values are separate to allow advanced movement, like strafing.
 
@@ -117,10 +131,6 @@ class Npc(Entity):
         self.moveConductor = pyganim.PygConductor()
         self.load_sprites()
         self.rect = pygame.Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
-
-        self.monsters = []  # This is a list of tuxemon the npc has
-        self.inventory = {}  # The Player's inventory.
-        self.storage = {"monsters": [], "items": {}}
 
     def load_sprites(self):
         """ Load sprite graphics
@@ -189,22 +199,19 @@ class Npc(Entity):
         return [(get_frame(frame_dict, state), self.tile_pos, 2)]
 
     def pathfind(self, destination):
+        """ Find a path and also start it
+
+        :param destination:
+        :return:
+        """
         self.path = self.world.pathfind(tuple(self.tile_pos), destination)
+        self.next_waypoint()
 
     def _force_continue_move(self, collision_dict):
         pos = nearest(self.tile_pos)
         if pos in collision_dict:
             direction_next = collision_dict[pos]["continue"]
             self.move_one_tile(direction_next)
-
-    def stop_moving(self):
-        """ Completely stop all movement
-
-        :return: None
-        """
-        self.velocity3.x = 0
-        self.velocity3.y = 0
-        self.velocity3.z = 0
 
     def move(self, time_passed_seconds):
         """ Move the entity around the game world
@@ -220,20 +227,18 @@ class Npc(Entity):
 
         :type time_passed_seconds: Float
         """
-        self.moverate = self.runrate if self.running else self.walkrate
-
         # update physics.  eventually move to another class
+        self.moverate = self.runrate if self.running else self.walkrate
         self.update_physics(time_passed_seconds)
 
         if self.path:
             self.check_waypoint()
 
         # does the npc want to move?
-        if self.move_direction:
-            if not self.path:
-                self.move_one_tile(self.move_direction)
-                self.moveConductor.play()
-                self.next_waypoint()
+        if self.move_direction and not self.path:
+            self.move_one_tile(self.move_direction)
+            self.moveConductor.play()
+            self.next_waypoint()
 
         # TODO: determine way to tell if another force is moving the entity
         # TODO: basically, this simple check will only allow player movement
@@ -246,15 +251,11 @@ class Npc(Entity):
             # if not self.moving:
             #     if self.isplayer and (self.game.game.isclient or self.game.game.ishost):
             #         self.game.game.client.update_player("up", event_type="CLIENT_MOVE_START")
-
-            # if not self.moving:
             #     if self.isplayer and self.tile_pos != self.final_move_dest:
             #         self.update_location = True
 
     def move_one_tile(self, direction):
         """ Ask entity to move one tile
-
-        Internally just sets a path for an adjacent tile.
 
         :type direction: str
         :param direction: up, down, left right
@@ -264,18 +265,30 @@ class Npc(Entity):
         self.path.append(trunc(self.tile_pos + dirs2[direction]))
 
     def valid_movement(self, tile):
+        """ Check the game map to determine if a tile can be moved into
+
+        * Only checks adjacent tiles
+        * Uses all advanced tile movements, like continue tiles
+
+        :param tile:
+        :return:
+        """
         return tile in self.world.get_exits(trunc(self.tile_pos))
 
     def check_waypoint(self):
-        """ Check if the waypoint is reached
+        """ Check if the waypoint is reached and sets new waypoint if so
 
-        :return:
+        * For most accurate speed, tests distance traveled.
+        * Doesn't verify the target position, just distance
+        * Assumes once waypoint is set, direction doesn't change
+
+        :return: None
         """
         target = self.path[-1]
-        x0, y0 = self.tile_pos
-        x1, y1 = target
-        distance = hypot(x1 - x0, y1 - y0)
-        if distance < .05:
+        expected = tile_distance(self.path_origin, target)
+        traveled = tile_distance(self.tile_pos, self.path_origin)
+        print(self, expected, traveled, self.path)
+        if traveled >= expected:
             self.set_position(target)
             self.path.pop()
             if self.path:
@@ -283,13 +296,19 @@ class Npc(Entity):
 
     def next_waypoint(self):
         """ Take the next step of the path, stop if way is blocked
+
+        * call this if starting a new path
+
+        :return: None
         """
         target = self.path[-1]
         if self.valid_movement(target):
             direction = get_direction(self.tile_pos, target)
             self.facing = direction
+            self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:
+            print('fuck', self, self.tile_pos, target)
             self.path.pop()
 
     ####################################################
@@ -324,7 +343,6 @@ class Npc(Entity):
         for monster in self.monsters:
             if monster.slug == monster_slug:
                 return monster
-        return None
 
     def remove_monster(self, monster):
         """ Removes a monster from this player's party.

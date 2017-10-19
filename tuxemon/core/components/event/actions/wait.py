@@ -21,29 +21,27 @@
 #
 from __future__ import absolute_import
 
-from core.components.event import get_npc
+import time
 from core.components.event.eventaction import EventAction
 
 
-class PathfindAction(EventAction):
-    """ Pathfind the player / npc to the given location
+class WaitAction(EventAction):
+    """Pauses the event chain
 
-    This action blocks until the destination is reached.
+    Valid Parameters: duration
 
-    Valid Parameters: npc_slug, pos_x, pos_y
+    * duration (float): time in seconds to wait for
     """
-    name = "pathfind"
+    name = "wait"
     valid_parameters = [
-        (str, "npc_slug"),
-        (int, "pos_x"),
-        (int, "pos_y"),
+        (float, 'seconds')
     ]
 
+    # TODO: use event loop time, not wall clock
     def start(self):
-        destination = self.parameters.pos_x, self.parameters.pos_y
-        self.npc = get_npc(self.game, self.parameters.npc_slug)
-        self.npc.pathfind(destination)
+        self.start_time = time.time()
+        self.finish_time = self.start_time + self.parameters.seconds
 
     def update(self):
-        if not self.npc.moving and not self.npc.path:
+        if time.time() >= self.finish_time:
             self.stop()

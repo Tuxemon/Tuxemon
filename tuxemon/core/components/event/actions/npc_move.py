@@ -70,7 +70,9 @@ class NpcMoveAction(EventAction):
         path.reverse()
         self.npc.path = path
         self.npc.next_waypoint()
+        self.npc.moveConductor.play()
 
     def update(self):
         if not self.npc.moving and not self.npc.path:
             self.stop()
+            self.npc.moveConductor.stop()

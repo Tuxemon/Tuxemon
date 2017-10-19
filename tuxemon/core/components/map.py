@@ -697,5 +697,8 @@ class Map(object):
         # Remove the escape character from the split list
         split_list = [w.replace('\,', ',') for w in split_list]
 
+        # strip whitespace around each
+        split_list = [i.strip() for i in split_list]
+
         return split_list
 

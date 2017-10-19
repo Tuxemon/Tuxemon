@@ -105,8 +105,6 @@ if CONFIG.scaling == "1":
 else:
     SCALE = 1
 
-print(TILE_SIZE)
-
 # Set up the saves directory
 try:
     os.makedirs(CONFIG_PATH + "saves/")

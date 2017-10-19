@@ -287,7 +287,6 @@ class Npc(Entity):
         target = self.path[-1]
         expected = tile_distance(self.path_origin, target)
         traveled = tile_distance(self.tile_pos, self.path_origin)
-        print(self, expected, traveled, self.path)
         if traveled >= expected:
             self.set_position(target)
             self.path.pop()
@@ -308,7 +307,6 @@ class Npc(Entity):
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:
-            print('fuck', self, self.tile_pos, target)
             self.path.pop()
 
     ####################################################

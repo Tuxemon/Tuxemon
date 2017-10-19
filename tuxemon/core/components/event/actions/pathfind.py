@@ -43,7 +43,9 @@ class PathfindAction(EventAction):
         destination = self.parameters.pos_x, self.parameters.pos_y
         self.npc = get_npc(self.game, self.parameters.npc_slug)
         self.npc.pathfind(destination)
+        self.npc.moveConductor.play()
 
     def update(self):
         if not self.npc.moving and not self.npc.path:
             self.stop()
+            self.npc.moveConductor.stop()

@@ -18,7 +18,7 @@ Programming
 * [Arsène Thieffry](https://github.com/druz320) for menu sorting and bug fixes
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
-* [treetrunk](https://github.com/treetrunk) for creature catching variability and bug fixes
+* [treetrnk](https://github.com/treetrnk) for creature catching variability, bug fixes, and adding monster resources 
 
 
 Graphics
@@ -300,6 +300,76 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Wrougon"](https://wiki.tuxemon.org/index.php?title=Wrougon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Allagon"](https://wiki.tuxemon.org/index.php?title=Allagon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Ferricran"](https://wiki.tuxemon.org/index.php?title=Ferricran) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Anoleaf"](https://wiki.tuxemon.org/index.php?title=Anoleaf) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Gectile"](https://wiki.tuxemon.org/index.php?title=Gectile) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Velocitile"](https://wiki.tuxemon.org/index.php?title=Velocitile) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Chloragon"](https://wiki.tuxemon.org/index.php?title=Chloragon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Sapragon"](https://wiki.tuxemon.org/index.php?title=Sapragon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Dragarbor"](https://wiki.tuxemon.org/index.php?title=Dragarbor) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tweesher"](https://wiki.tuxemon.org/index.php?title=Tweesher) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Heronquak"](https://wiki.tuxemon.org/index.php?title=Heronquak) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Eaglace"](https://wiki.tuxemon.org/index.php?title=Eaglace) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Merlicun"](https://wiki.tuxemon.org/index.php?title=Merlicun) by 
+[Princess-pheonix](https://wiki.tuxemon.org/index.php?title=Princess-phoenix) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Firomenis"](https://wiki.tuxemon.org/index.php?title=Firomenis) by 
+[Princess-pheonix](https://wiki.tuxemon.org/index.php?title=Princess-phoenix) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Legko"](https://wiki.tuxemon.org/index.php?title=Legko) by 
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Moloch"](https://wiki.tuxemon.org/index.php?title=Moloch) by 
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)
@@ -362,7 +432,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrnk](https://github.com/treetrnk)
 
 * ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
@@ -400,9 +470,9 @@ Maps
 * ["Map1 v1"](http://tuxemon.weebly.com/maps.html)
 by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-* ["Healing Center"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrunk](https://github.com/treetrunk)
+* ["Healing Center"](https://github.com/treetrnk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrnk](https://github.com/treetrnk)
 is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-* ["Professor's Lab"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrunk](https://github.com/treetrunk)
+* ["Professor's Lab"](https://github.com/treetrnk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrnk](https://github.com/treetrnk)
 is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 

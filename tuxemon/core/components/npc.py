@@ -207,11 +207,13 @@ class Npc(Entity):
         self.path = self.world.pathfind(tuple(self.tile_pos), destination)
         self.next_waypoint()
 
-    def _force_continue_move(self, collision_dict):
-        pos = nearest(self.tile_pos)
-        if pos in collision_dict:
-            direction_next = collision_dict[pos]["continue"]
+    def check_continue(self):
+        try:
+            pos = tuple(int(i) for i in self.tile_pos)
+            direction_next = self.world.collision_map[pos]["continue"]
             self.move_one_tile(direction_next)
+        except KeyError:
+            pass
 
     def move(self, time_passed_seconds):
         """ Move the entity around the game world
@@ -290,6 +292,7 @@ class Npc(Entity):
         if traveled >= expected:
             self.set_position(target)
             self.path.pop()
+            self.check_continue()
             if self.path:
                 self.next_waypoint()
 

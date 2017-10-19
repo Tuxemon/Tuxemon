@@ -536,7 +536,7 @@ class Map(object):
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y)
-                    collision_map[collision_tile] = "None"
+                    collision_map[collision_tile] = None
 
                     # Check if collision region has properties, and is therefore a conditional zone
                     # then add the location and conditions to semi_collision_map

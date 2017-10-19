@@ -38,7 +38,7 @@ from six.moves import map as imap
 from core import prepare, state
 from core.components import networking
 from core.components.game_event import GAME_EVENT, INPUT_EVENT
-from core.components.map import PathfindNode, Map, dirs2
+from core.components.map import PathfindNode, Map, dirs2, pairs
 from core.tools import nearest
 
 # Create a logger for optional handling of debug messages.
@@ -369,6 +369,7 @@ class WorldState(state.State):
     eventually refactor pathing/collisions into a more generic class
     so it doesn't rely on a running game, players, or a screen
     """
+
     def add_player(self, player):
         """ WIP.  Eventually handle players coming and going (for server)
 
@@ -423,13 +424,16 @@ class WorldState(state.State):
         :rtype: dict
         :returns: A dictionary of collision tiles
         """
-        # add world geometry
-        collision_dict = dict(self.collision_map)
+        # TODO: overlapping tiles/objects by returning a list
+        collision_dict = dict()
 
         # Get all the NPCs' tile positions
         for npc in self.get_all_entities():
             pos = nearest(npc.tile_pos)
             collision_dict[pos] = npc
+
+        # tile layout takes precedence
+        collision_dict.update(self.collision_map)
 
         return collision_dict
 
@@ -502,7 +506,7 @@ class WorldState(state.State):
         """ Return list of tiles which can be moved into
 
         This checks for adjacent tiles while checking for walls,
-        npcs, and collision lines
+        npcs, and collision lines, one-way tiles, etc
 
         :param position: tuple
 
@@ -520,31 +524,45 @@ class WorldState(state.State):
         # this check is for tiles which define the only way to exit.
         # for instance, one-way tiles.
         if tile is not None:
+            # does the tile define continue movements?
+            try:
+                direction = tile['continue']
+                return [tuple(dirs2[direction] + position)]
+
+            # no it doesn't
+            except (KeyError, TypeError):
+                pass
 
             # does the tile define adjacent_tiles?
             try:
-                adjacent_tiles = tile["exit"]
-
-            # no it doesn't
-            except KeyError:
-                pass
-
-            # NPC objects will raise a type error
-            except TypeError:
-                pass
-
-            # yes it defines adjacent_tiles
-            else:
-                for direction in adjacent_tiles:
-                    exit_tile = dirs2[direction] + position
+                for direction in tile["exit"]:
+                    exit_tile = tuple(dirs2[direction] + position)
                     adjacent_tiles.append(exit_tile)
 
-        # check for blocking tiles using the tile grid
+                # don't process further, use only these exits
+                return adjacent_tiles
+
+            # no it doesn't
+            except (KeyError, TypeError):
+                pass
+
+        # check for collision tiles and special data
         for direction, offset in dirs2.items():
             tile = tuple(position + offset)
-            blocker = collision_map.get(tile)
-            if blocker is None:
+
+            # test if this tile has special movement handling
+            try:
+                tile_data = collision_map[tile]
+            except KeyError:
                 adjacent_tiles.append(tile)
+                continue
+
+            if tile_data:
+                try:
+                    if pairs[direction] in tile_data['enter']:
+                        adjacent_tiles.append(tile)
+                except TypeError:
+                    pass
 
         return adjacent_tiles
 

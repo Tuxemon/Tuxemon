@@ -1,0 +1,50 @@
+# WhySynth patch
+WhySynth patch format 0 begin
+name WhiteNoiseDrum
+oscY 1 7 0 0 0 0 0 0 0 0 0 0 0 2 0
+oscY 2 0 3 13 -0.158873 7 0.863445 0 0.5 0 0 0 0 1.4 0
+oscY 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5
+oscY 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5
+vcfY 1 0 0 50 0 0 0.02 0
+vcfY 2 0 0 50 0 0 0 0
+mix 2 0.5 0 0.5 0 0.5 0 0.5
+volume 0.833333
+effects 0 0 0 0 0 0 1 0.82649
+glide 0.984375
+bend 2
+lfoY g 0.97087 0 0 0 0
+lfoY v 1 0 0 0 0
+lfoY m 1.04328 0 0 0 0
+mlfo 90 0
+egY o 1 0 0.001044 1 3 0.000999998 1 2 0.575044 0 0 0.002349 0 0 0 4 0.471779
+egY 1 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+egY 2 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+egY 3 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+egY 4 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+modmix 1 0 0 0 0
+WhySynth patch end
+# WhySynth patch
+WhySynth patch format 0 begin
+name WhiteNoiseDrumShort
+oscY 1 7 0 0 0 0 0 0 0 0 0 0 0 2 0
+oscY 2 0 3 13 -0.158873 7 0.863445 0 0.5 0 0 0 0 1.4 0
+oscY 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5
+oscY 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5
+vcfY 1 0 0 50 0 0 0.02 0
+vcfY 2 0 0 50 0 0 0 0
+mix 2 0.5 0 0.5 0 0.5 0 0.5
+volume 0.833333
+effects 0 0 0 0 0 0 1 0.82649
+glide 0.984375
+bend 2
+lfoY g 0.97087 0 0 0 0
+lfoY v 1 0 0 0 0
+lfoY m 1.04328 0 0 0 0
+mlfo 90 0
+egY o 1 0 0.001044 1 3 0.000999998 1 2 0.321252 0 0 0.002349 0 0 0 4 0.471779
+egY 1 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+egY 2 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+egY 3 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+egY 4 0 3 0.1 1 3 0.1 1 3 0.1 1 3 0.2 0 0 0 0 0
+modmix 1 0 0 0 0
+WhySynth patch end

@@ -1,8 +1,7 @@
-Tuxemon
+﻿Tuxemon
 =========
 
 Copyright (C) 2017 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-
 
 Programming
 ------------
@@ -19,7 +18,7 @@ Programming
 * [Arsène Thieffry](https://github.com/druz320) for menu sorting and bug fixes
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
-* [treetrunk](https://github.com/treetrunk) for creature catching variability and bug fixes
+* [treetrnk](https://github.com/treetrnk) for creature catching variability, bug fixes, and adding monster resources 
 
 
 Graphics
@@ -37,14 +36,6 @@ Graphics
 * ["Player Sprite"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/sprites/player_front.png)
 by [Mike Bramson](mailto:mnbramson@gmail.com) is licensed under 
 [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Trainer Sprite Spree"](http://oniwanbashu.deviantart.com/art/Trainer-Sprite-Spree-124465962)
-by [Oniwanbashu](http://oniwanbashu.deviantart.com/) is licensed under
-[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
-* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by 
-[Kelvin](http://kelvinshadewing.net) 
-is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
 
 * ["Tennis Ace Trainer"](https://forum.tuxemon.org/viewtopic.php?pid=401#p401) by
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
@@ -82,15 +73,15 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [ZhongQian TiaoGong](https://github.com/Qiangong2/)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-*["Misa Sprite"](https://wiki.tuxemon.org/index.php?title=File:FT_Trainer.gif)
+* ["Misa Sprite"](https://wiki.tuxemon.org/index.php?title=File:FT_Trainer.gif)
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-*["Team Xero Grunt Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
+* ["Team Xero Grunt Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
 [ZhongQian TiaoGong](https://github.com/Qiangong2/)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-*["Tuxemart Employee sprite"](https://wiki.tuxemon.org/index.php?title=Shop_Assistant) by
+* ["Tuxemart Employee sprite"](https://wiki.tuxemon.org/index.php?title=Shop_Assistant) by
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -145,11 +136,6 @@ by [Midi](http://opengameart.org/users/midi)
 by [PastTheFuture](https://forum.tuxemon.org/profile.php?id=43) is licensed under
 [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) based on ["Kyrodian Legends Overworld Tileset"](http://opengameart.org/content/kyrodian-legends-overworld-props)
 by [Midi](http://opengameart.org/users/midi)
-
-* ["Calis Overworld Template"](http://minorthreat0987.deviantart.com/art/Calis-Overworld-Template-193004763)
-by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
-[Calis Projects](http://www.calisprojects.com/) is licensed under
-[CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/)
 
 * ["Pixel Farm and Shack"](http://opengameart.org/content/pixel-farm-and-shack) by 
 [pixel32](http://opengameart.org/users/pixel32) 
@@ -314,6 +300,76 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Wrougon"](https://wiki.tuxemon.org/index.php?title=Wrougon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Allagon"](https://wiki.tuxemon.org/index.php?title=Allagon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Ferricran"](https://wiki.tuxemon.org/index.php?title=Ferricran) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Anoleaf"](https://wiki.tuxemon.org/index.php?title=Anoleaf) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Gectile"](https://wiki.tuxemon.org/index.php?title=Gectile) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Velocitile"](https://wiki.tuxemon.org/index.php?title=Velocitile) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Chloragon"](https://wiki.tuxemon.org/index.php?title=Chloragon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Sapragon"](https://wiki.tuxemon.org/index.php?title=Sapragon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Dragarbor"](https://wiki.tuxemon.org/index.php?title=Dragarbor) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tweesher"](https://wiki.tuxemon.org/index.php?title=Tweesher) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Heronquak"](https://wiki.tuxemon.org/index.php?title=Heronquak) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Eaglace"](https://wiki.tuxemon.org/index.php?title=Eaglace) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Merlicun"](https://wiki.tuxemon.org/index.php?title=Merlicun) by 
+[Princess-pheonix](https://wiki.tuxemon.org/index.php?title=Princess-phoenix) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Firomenis"](https://wiki.tuxemon.org/index.php?title=Firomenis) by 
+[Princess-pheonix](https://wiki.tuxemon.org/index.php?title=Princess-phoenix) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Legko"](https://wiki.tuxemon.org/index.php?title=Legko) by 
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Moloch"](https://wiki.tuxemon.org/index.php?title=Moloch) by 
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)
@@ -376,7 +432,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrnk](https://github.com/treetrnk)
 
 * ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
@@ -414,9 +470,9 @@ Maps
 * ["Map1 v1"](http://tuxemon.weebly.com/maps.html)
 by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-* ["Healing Center"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrunk](https://github.com/treetrunk)
+* ["Healing Center"](https://github.com/treetrnk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrnk](https://github.com/treetrnk)
 is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-* ["Professor's Lab"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrunk](https://github.com/treetrunk)
+* ["Professor's Lab"](https://github.com/treetrnk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrnk](https://github.com/treetrnk)
 is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 
@@ -434,6 +490,114 @@ Fonts
 
 Music
 ------
+* [The Adventure Begins 8-bit Remix](opengameart.org/content/the-adventure-begins-8-bit-remix) by bart is licensed under CC BY 3.0
+* [Through Pixelated Clouds](https://opengameart.org/content/through-pixelated-clouds-8-bit-airship-remix) by bart is licensed under CC BY 3.0
+* [Stand With Us](https://opengameart.org/content/stand-with-us) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [Peasant Kingdom](https://opengameart.org/content/peasant-kingdom) by Spring is licensed under CC BY 3.0
+* [Lunar Joyride](https://opengameart.org/content/lunar-joyride-8-bit) by FoxSynergy is licensed under CC BY 3.0
+* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by t4ngr4m is licensed under CC BY 3.0
+  * Why do the nations so furiously rage together
+* [Melody Eternal](https://opengameart.org/content/melody-eternal) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [Taking Poison](https://opengameart.org/content/taking-poison) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [back34](https://opengameart.org/content/8bit-style-music) by Tom Peter is licensed under CC BY-SA 3.0
+* [Boss Introduction](https://opengameart.org/content/boss-introduction) by Spring is licensed under CC BY 3.0
+* [Valor of Heroes](https://opengameart.org/content/valor-of-heroes) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [We Persist](https://opengameart.org/content/we-persist) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [Unending Strike](https://opengameart.org/content/8bit-style-music) by Trevor Lentz is licensed under CC BY-SA 3.0
+* Songs from the [JRPG Collection](https://opengameart.org/content/jrpg-collection) and [JRPG Collection 2](https://opengameart.org/content/jrpg-collection-2) by Yubatake are licensed under CC BY 3.0:
+  * princess
+  * winBattle
+  * winBattleBig
+  * goodMorning
+  * goodNight
+  * winBattleFinal 
+  * docks_loop
+  * town_loop
+  * battleBoss_loop
+  * mysticIsle
+  * battle
+  * battleFinal
+
+Sounds
+--------
+
+* ["Alien Animal Sounds"](http://opengameart.org/content/alien-animal-sounds) by
+[wubitog](http://opengameart.org/users/wubitog) has been dedicated to
+[Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["sf3-sfx-menu-select"](https://www.freesound.org/people/broumbroum/sounds/50561/) by
+[broumbroum](https://www.freesound.org/people/broumbroum/) is licensed under
+[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+
+* ["Click"](https://www.freesound.org/people/NenadSimic/sounds/157539/) by
+[NenadSimic](https://www.freesound.org/people/NenadSimic/) has been dedicated to
+[Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/sndPack1.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* ["Kelvin Shadewing's Soundpack Vol. 2"](http://kelvinshadewing.net/sndPack2.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* ["Kelvin Shadewing's Soundpack Vol. 3"](http://kelvinshadewing.net/sndPack3.php) by
+[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
+[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+
+* "Tux Sound" by 
+[Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under 
+[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based upon [magellanic penguin](http://www.freesound.org/people/soundbytez/sounds/111079/) by [soundbytez](http://www.freesound.org/people/soundbytez/)
+
+
+Translations
+--------------
+
+### English
+* [William Edwards](https://github.com/ShadowApex)    
+* [tamashihoshi](https://github.com/tamashihoshi) 
+
+### German
+* [tamashihoshi](https://github.com/tamashihoshi) 
+
+### French
+* [HugopGhost](https://github.com/HugopGhost)
+
+### Czech
+* [Clonewayx](https://github.com/Clonewayx)
+
+### Norwegian
+* Anonymous contributor
+
+### Portuguese
+* [HugopGhost](https://github.com/HugopGhost)
+
+### Italian
+* [Nhoya](https://github.com/Nhoya)
+* [Airon90](https://github.com/Airon90)
+
+
+Special Thanks
+---------------
+
+### Patreon Supporters
+* [Chris Sakkas](https://www.patreon.com/user?u=40864)
+* [Kelvin Shadewing](https://www.patreon.com/kelvin)
+
+Formerly used 
+-------------
+* ["Trainer Sprite Spree"](http://oniwanbashu.deviantart.com/art/Trainer-Sprite-Spree-124465962)
+by [Oniwanbashu](http://oniwanbashu.deviantart.com/) is licensed under
+[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+* ["Player Sprite"](https://forum.tuxemon.org/viewtopic.php?id=54) by 
+[Kelvin](http://kelvinshadewing.net) 
+is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=license).
+
+* ["Calis Overworld Template"](http://minorthreat0987.deviantart.com/art/Calis-Overworld-Template-193004763)
+by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
+[Calis Projects](http://www.calisprojects.com/) is licensed under
+[CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/)
 
 * ["Fake Pokemon Battle Song"](http://www.newgrounds.com/audio/listen/147066) by
 [HLG](http://hlg.newgrounds.com/) is licensed under
@@ -482,69 +646,3 @@ Music
 * ["Digital Native"](http://ericskiff.com/music/) by
 [Eric Skiff](http://ericskiff.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
-Sounds
---------
-
-* ["Alien Animal Sounds"](http://opengameart.org/content/alien-animal-sounds) by
-[wubitog](http://opengameart.org/users/wubitog) has been dedicated to
-[Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
-
-* ["sf3-sfx-menu-select"](https://www.freesound.org/people/broumbroum/sounds/50561/) by
-[broumbroum](https://www.freesound.org/people/broumbroum/) is licensed under
-[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
-
-* ["Click"](https://www.freesound.org/people/NenadSimic/sounds/157539/) by
-[NenadSimic](https://www.freesound.org/people/NenadSimic/) has been dedicated to
-[Public Domain](http://creativecommons.org/publicdomain/zero/1.0/)
-
-* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/sndPack1.php) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
-
-* ["Kelvin Shadewing's Soundpack Vol. 2"](http://kelvinshadewing.net/sndPack2.php) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
-
-* ["Kelvin Shadewing's Soundpack Vol. 3"](http://kelvinshadewing.net/sndPack3.php) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
-
-* "Tux Sound" by 
-[Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under 
-[CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) based upon [magellanic penguin](http://www.freesound.org/people/soundbytez/sounds/111079/) by [soundbytez](http://www.freesound.org/people/soundbytez/)
-
-
-Translations
---------------
-
-### English
-* [William Edwards](https://github.com/ShadowApex)    
-* [tamashihoshi](https://github.com/tamashihoshi) 
-
-### German
-* [tamashihoshi](https://github.com/tamashihoshi) 
-
-### French
-* [HugopGhost](https://github.com/HugopGhost)
-
-### Chzech
-* [Clonewayx](https://github.com/Clonewayx)
-
-### Norwegian
-* Anonymous contributor
-
-### Portuguese
-* [HugopGhost](https://github.com/HugopGhost)
-
-### Italian
-* [Nhoya](https://github.com/Nhoya)
-* [Airon90](https://github.com/Airon90)
-
-
-Special Thanks
----------------
-
-### Patreon Supporters
-* [Chris Sakkas](https://www.patreon.com/user?u=40864)
-* [Kelvin Shadewing](https://www.patreon.com/kelvin)

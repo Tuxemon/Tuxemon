@@ -42,6 +42,10 @@ Tuxemon uses a number of open source projects to work properly:
 Installation
 --------------
 
+**Windows**
+
+[Detailed here](https://www.tuxemon.org/windows-install.html)
+
 **Ubuntu**
 
 ```sh
@@ -59,6 +63,18 @@ sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
 make BACKEND=LINUX; sudo make install BACKEND=LINUX
+```
+
+**Debian**
+
+```sh
+sudo apt-get install python python-pygame python-pip python-imaging git
+sudo pip install neteria
+git clone https://github.com/bitcraft/PyTMX
+cd PyTMX; python setup.py install
+git clone https://github.com/Tuxemon/Tuxemon.git
+cd Tuxemon/tuxemon
+./tuxemon.py
 ```
 
 **Mac OS X (Yosemite)**

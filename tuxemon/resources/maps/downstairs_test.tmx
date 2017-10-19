@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="28">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="66">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="96"/>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="28">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="67" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="139" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+ <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
- <tileset firstgid="163" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="179" name="kitchen" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="201" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
  <layer name="Tile Layer 1" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCANTABiRgIYBmYAsTgBDAMqRGAY0CeAB5taYgEA6DYJnQ==
+   eJxjYCANLANiRgIYBtYBsTgBDAMqRGAY0CeAB5taYgEAIE0JyQ==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCAdMJOglg+IPYHYC8rfBsRbgHgrEG/Goj4UiMOAeDcQ7wLiHUC8E4i3I6lRB2ININZE09sAxcjACIiNgdgESawZid2ExLYFYjsgtkczoxKIq7G4FRmwEpAnBgAAoooMiA==
+   eJxjYCAdMJOglg+I44E4Aco/A8SngPg0EJ/Eoj4biHOA+CIQXwDic0B8HojPIqlRB2ININZE0zsNipGBERAbA7EJkthMJPYMJLYtENsBsT2aGf1APBGLW5EBKwF5YgAAEGgOKg==
   </data>
  </layer>
  <layer name="Tile Layer 3" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYBj+YCUWsUQgTiZSfwMU0xoAAEZHAm4=
+   eJxjYBj+YD8WsXIgriRS/zQopjUAAH9XAtw=
   </data>
  </layer>
  <layer name="Above player" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYBiaYOkA2+8NxD5A7EuEWkk0jEsMAOQoAlI=
+   eJxjYBiaYPcA258IxElAnEyEWkk0jEsMAAsPAqo=
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -46,10 +46,10 @@
   <object id="8" type="collision" x="16" y="128" width="144" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <object id="23" name="Play Music" type="init" x="144" y="16" width="16" height="16">
+  <object id="23" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music 472452_8-Bit-Ambient.ogg"/>
-    <property name="cond1" value="not music_playing 472452_8-Bit-Ambient.ogg"/>
+    <property name="act1" value="play_music JRPG_royalCourt_loop.ogg"/>
+    <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
    </properties>
   </object>
   <object id="24" name="Watch TV" type="event" x="32" y="96" width="16" height="16">

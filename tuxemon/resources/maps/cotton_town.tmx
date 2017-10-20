@@ -220,6 +220,7 @@
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="not npc_exists npc_aeble"/>
+    <property name="cond5" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
   <object id="149" name="Teleport to Dryad's Grove" type="event" x="624" y="112" width="16" height="16">

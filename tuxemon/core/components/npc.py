@@ -33,7 +33,6 @@ import os
 
 import pygame
 
-from core.prepare import CONFIG
 from core.components import db, pyganim
 from core.components.entity import Entity
 from core.components.locale import translator
@@ -283,6 +282,7 @@ class Npc(Entity):
         * For most accurate speed, tests distance traveled.
         * Doesn't verify the target position, just distance
         * Assumes once waypoint is set, direction doesn't change
+        * Honors continue tiles
 
         :return: None
         """
@@ -299,7 +299,9 @@ class Npc(Entity):
     def next_waypoint(self):
         """ Take the next step of the path, stop if way is blocked
 
-        * call this if starting a new path
+        * This must be called after a path is set
+        * Not needed to be called if existing path is modified
+        * If the next waypoint is blocked, the waypoint will be removed
 
         :return: None
         """

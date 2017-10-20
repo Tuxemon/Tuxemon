@@ -181,6 +181,23 @@ class Control(StateManager):
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
+        # TODO: moar players
+        self.player1 = None
+
+    def add_player(self, player):
+        """ Add a player to the game
+
+        Only one human player is supported ATM
+
+        :type player: core.components.player.Player
+        :return:
+        """
+        # TODO: moar players
+        self.player1 = player
+
+    def get_player(self):
+        return self.player1
+
     def draw_event_debug(self):
         y = 20
         x = 4
@@ -619,6 +636,10 @@ class Control(StateManager):
         # due to integer truncation, low scale movement will never work
         # and a clock, not limited by fps will never work
         time_delta = self.clock.tick(self.fps) / 1000.0
+        max_frame_time = 1./self.fps
+
+        # prevent odd behavior if game lags
+        time_delta = min(time_delta, max_frame_time)
 
         # cannot run clock unlimited as movement is broken at low resolution
         # time_delta = self.clock.tick() / 1000.0

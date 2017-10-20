@@ -1,3 +1,21 @@
+branch notes:
+
+new entity class for game objects on the map (WIP)
+refactor npcs and players into entities
+refactor player class
+internal 3d physics for game objects
+all game entities use tile/second movement
+move pathfinding into world state (needs to be in map)
+add starting position option in map map data (configure in tiled)
+remove starting position option in configuration
+fix maps being loaded twice
+new npc_move command
+new npc_look command
+new npc_speed command
+various other changes in effort to remove pygame dependencies
+remove pygame deps for use in a headless/server environment
+
+
 Tuxemon 0.4.0
 =========
 

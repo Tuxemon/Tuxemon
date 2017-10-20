@@ -21,7 +21,7 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.conditions import get_npc
+from core.components.event import get_npc
 from core.components.event.eventaction import EventAction
 
 
@@ -39,10 +39,5 @@ class NpcFaceAction(EventAction):
     ]
 
     def start(self):
-        # TODO: get_npc
         npc = get_npc(self.game, self.parameters.npc_slug)
-
-        if not npc:
-            return
-
         npc.facing = self.parameters.direction

@@ -34,62 +34,142 @@ from __future__ import division
 import logging
 import re
 
-from core import prepare, tools
+import pyscroll
+import pytmx
+from pytmx.util_pygame import load_pygame
+
+from core import prepare
+from core.tools import scaled_image_loader
+from core.components.euclid import Vector2, Vector3, Point2
+from core.components.event import EventObject
 from core.components.event import MapAction
 from core.components.event import MapCondition
-from core.components.event import EventObject
-
-import pytmx
-from pytmx.util_pygame import handle_transformation, smart_convert, load_pygame
-import pyscroll
-
-import pygame
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
+# direction => vector
+dirs3 = {
+    "up": Vector3(0, -1, 0),
+    "down": Vector3(0, 1, 0),
+    "left": Vector3(-1, 0, 0),
+    "right": Vector3(1, 0, 0),
+}
+dirs2 = {
+    "up": Vector2(0, -1),
+    "down": Vector2(0, 1),
+    "left": Vector2(-1, 0),
+    "right": Vector2(1, 0),
+}
+# just the first letter of the direction => vector
+short_dirs = {d[0]: dirs2[d] for d in dirs2}
 
-def scaled_image_loader(filename, colorkey, **kwargs):
-    """ pytmx image loader for pygame
+# complimentary directions
+pairs = {
+    "up": "down",
+    "down": "up",
+    "left": "right",
+    "right": "left"
+}
 
-    Modified to load images at a scaled size
+# what directions entities can face
+facing = "front", "back", "left", "right"
 
-    :param filename:
-    :param colorkey:
-    :param kwargs:
+
+def translate_short_path(path, position=(0, 0)):
+    """ Translate condensed path strings into coordinate pairs
+
+    Uses a string of U D L R characters; Up Down Left Right.
+    Passing a position will make the path relative to that point.
+
+    :param path: string of path directions; ie "uldr"
+    :type path: str
+    :param position: starting point of the path
+
+    :return: list
+    """
+    position = Point2(*position)
+    for char in path.lower():
+        position += short_dirs[char]
+        yield position
+
+
+def get_direction(start, end):
+    """ Get direction name from two points
+
+    :param start:
+    :param end:
     :return:
     """
-    if colorkey:
-        colorkey = pygame.Color('#{0}'.format(colorkey))
+    if start[0] > end[0]:
+        return "left"
+    elif start[0] < end[0]:
+        return "right"
+    elif start[1] < end[1]:
+        return "down"
+    elif start[1] > end[1]:
+        return "up"
 
-    pixelalpha = kwargs.get('pixelalpha', True)
 
-    # load the tileset image
-    image = pygame.image.load(filename)
+def proj(point):
+    """ Project 3d coordinates to 2d.
 
-    # scale the tileset image to match game scale
-    scaled_size = tools.scale_sequence(image.get_size())
-    image = pygame.transform.scale(image, scaled_size)
+    Not necessarily for use on a screen.
 
-    def load_image(rect=None, flags=None):
-        if rect:
-            # scale the rect to match the scaled image
-            rect = tools.scale_rect(rect)
-            try:
-                tile = image.subsurface(rect)
-            except ValueError:
-                logger.error('Tile bounds outside bounds of tileset image')
-                raise
+    :param point:
+
+    :return: tuple
+    """
+    try:
+        return Point2(point.x, point.y)
+    except AttributeError:
+        return point[0], point[1]
+
+
+class PathfindNode(object):
+    """ Used in path finding search
+    """
+
+    def __init__(self, value, parent=None):
+        self.parent = parent
+        self.value = value
+        if self.parent:
+            self.depth = self.parent.depth + 1
         else:
-            tile = image.copy()
+            self.depth = 0
 
-        if flags:
-            tile = handle_transformation(tile, flags)
+    def get_parent(self):
+        return self.parent
 
-        tile = smart_convert(tile, colorkey, pixelalpha)
-        return tile
+    def set_parent(self, parent):
+        self.parent = parent
+        self.depth = parent.depth + 1
 
-    return load_image
+    def get_value(self):
+        return self.value
+
+    def get_depth(self):
+        return self.depth
+
+    def __str__(self):
+        s = str(self.value)
+        if self.parent is not None:
+            s += str(self.parent)
+        return s
+
+
+class Tile(object):
+    """A class to create tile objects. Tile objects are used to keep track of tile properties such
+    as the layer it's on, its position, surface, and other properties.
+
+    """
+
+    def __init__(self, name, surface, tileset):
+        self.name = name
+        self.surface = surface
+        self.layer = None
+        self.type = None
+        self.tileset = tileset
 
 
 class Map(object):
@@ -242,7 +322,6 @@ class Map(object):
         :rtype: pyscroll.BufferedRenderer
         """
         visual_data = pyscroll.data.TiledMapData(self.data)
-        # TODO: Tuxemon will not work with clamp_camera=True
         return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False)
 
     def loadevent(self, obj):
@@ -300,7 +379,7 @@ class Map(object):
             logger.debug(cond_data)
             conds.append(cond_data)
 
-        return EventObject(obj.id, x, y, conds, acts)
+        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)
 
     def loadfile(self, tile_size):
         """Loads the tile and collision data from the map file and returns a list of tiles with
@@ -404,7 +483,7 @@ class Map(object):
         # Get the dimensions of the map
         mapsize = self.size
 
-        # Create a list of all tile monsters_in_play that we cannot walk through
+        # Create a list of all tiles that we cannot walk through
         collision_map = {}
 
         # Create a dictionary of coordinates that have conditional collisions
@@ -457,7 +536,7 @@ class Map(object):
             for a in range(0, int(width)):
                 for b in range(0, int(height)):
                     collision_tile = (a + x, b + y)
-                    collision_map[collision_tile] = "None"
+                    collision_map[collision_tile] = None
 
                     # Check if collision region has properties, and is therefore a conditional zone
                     # then add the location and conditions to semi_collision_map
@@ -618,18 +697,8 @@ class Map(object):
         # Remove the escape character from the split list
         split_list = [w.replace('\,', ',') for w in split_list]
 
+        # strip whitespace around each
+        split_list = [i.strip() for i in split_list]
+
         return split_list
 
-
-class Tile(object):
-    """A class to create tile objects. Tile objects are used to keep track of tile properties such
-    as the layer it's on, its position, surface, and other properties.
-
-    """
-
-    def __init__(self, name, surface, tileset):
-        self.name = name
-        self.surface = surface
-        self.layer = None
-        self.type = None
-        self.tileset = tileset

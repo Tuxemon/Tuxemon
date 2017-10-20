@@ -24,29 +24,3 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def get_npc(game, slug):
-    """ Gets an NPC object by slug.
-
-    :param game: The main game object that contains all the game's variables.
-    :param slug: The slug of the NPC that exists on the current map.
-
-    :type game: core.control.Control
-    :type slug: Str
-
-    :rtype: core.components.player.Npc
-    :returns: The NPC object or None if the NPC is not found.
-
-    """
-    if slug == "player":
-        return game.player1
-
-    # Loop through the NPC list and see if the slug matches any in the list
-    world = game.get_state_name("WorldState")
-    if world is None:
-        logger.error("Cannot search for NPC if  world doesn't exist: " + slug)
-        return
-
-    elif slug in world.npcs:
-        return world.npcs[slug]
-
-    logger.error("Unable to find NPC: " + slug)

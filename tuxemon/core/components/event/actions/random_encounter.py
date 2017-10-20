@@ -24,6 +24,7 @@ from __future__ import absolute_import
 import logging
 import random
 
+import core.components.npc
 from core import prepare
 from core.components import ai, db, monster, player
 from core.components.event.actions import check_battle_legal
@@ -98,7 +99,7 @@ class RandomEncounterAction(EventAction):
             current_monster.set_level(level)
 
             # Create an NPC object which will be this monster's "trainer"
-            npc = player.Npc()
+            npc = core.components.npc.Npc("npc_maple")
             npc.monsters.append(current_monster)
             npc.party_limit = 0
 

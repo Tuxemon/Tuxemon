@@ -21,33 +21,31 @@
 #
 from __future__ import absolute_import
 
+from core.components.event import get_npc
 from core.components.event.eventaction import EventAction
 
 
 class PathfindAction(EventAction):
-    """
-    Will move the player / npc to the given location
+    """ Pathfind the player / npc to the given location
+
+    This action blocks until the destination is reached.
+
+    Valid Parameters: npc_slug, pos_x, pos_y
     """
     name = "pathfind"
     valid_parameters = [
         (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y")
+        (int, "pos_x"),
+        (int, "pos_y"),
     ]
 
     def start(self):
-        # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
-        if not world:
-            return
+        destination = self.parameters.pos_x, self.parameters.pos_y
+        self.npc = get_npc(self.game, self.parameters.npc_slug)
+        self.npc.pathfind(destination)
+        self.npc.moveConductor.play()
 
-        npc_slug = self.parameters.npc_slug
-        dest_x = self.parameters.tile_pos_x
-        dest_y = self.parameters.tile_pos_y
-
-        # get npc object via name
-        if npc_slug not in world.npcs:
-            return
-
-        curr_npc = world.npcs[npc_slug]
-        curr_npc.pathfind((dest_x, dest_y), self.game)
+    def update(self):
+        if not self.npc.moving and not self.npc.path:
+            self.stop()
+            self.npc.moveConductor.stop()

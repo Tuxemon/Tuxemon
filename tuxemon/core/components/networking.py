@@ -846,6 +846,8 @@ def populate_client(cuuid, event_data, game, registry):
 
     """
     # TODO: move NPC from actions make make a common core class
+    # needs to use actions, or update classes
+    raise NotImplementedError
     from core.components.event.actions.npc import Npc
 
     char_dict = event_data["char_dict"]

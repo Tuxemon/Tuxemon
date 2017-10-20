@@ -89,7 +89,11 @@
   <object id="42" name="hello Professor" type="event" x="144" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_professor,7,7,professor,stand"/>
-    <property name="act2" value="set_variable tuxchoice:welcome"/>
+    <property name="act2" value="wait 3"/>
+    <property name="act3" value="set_variable tuxchoice:welcome"/>
+    <property name="act4" value="npc_move npc_professor, down 1, left 1, right, up 4"/>
+    <property name="act5" value="pathfind npc_professor, 11, 8"/>
+    <property name="act6" value="npc_face npc_professor, up"/>
     <property name="cond1" value="not variable_set tuxchoice:end"/>
     <property name="cond2" value="not npc_exists npc_professor"/>
     <property name="cond3" value="not variable_set tuxchoice:Hydrone"/>

@@ -47,7 +47,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_firomeis"
+            "monster":"txmn_aardorn"
         },
         {
             "encounter_rate":1,
@@ -55,7 +55,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_legko"
+            "monster":"txmn_agnite"
         },
         {
             "encounter_rate":1,
@@ -63,7 +63,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_moloch"
+            "monster":"txmn_cairfrey"
         },
         {
             "encounter_rate":1,
@@ -71,7 +71,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_heronquak"
+            "monster":"txmn_capiti"
         },
         {
             "encounter_rate":1,
@@ -79,7 +79,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_eaglace"
+            "monster":"txmn_cardiling"
         },
         {
             "encounter_rate":1,
@@ -87,7 +87,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_sapragon"
+            "monster":"txmn_chillimp"
         },
         {
             "encounter_rate":1,
@@ -95,7 +95,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_dragarbor"
+            "monster":"txmn_falcono"
         },
         {
             "encounter_rate":1,
@@ -103,7 +103,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_gectile"
+            "monster":"txmn_noctula"
         },
         {
             "encounter_rate":1,
@@ -111,7 +111,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_velocitile"
+            "monster":"txmn_nostray"
         },
         {
             "encounter_rate":1,
@@ -119,7 +119,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_allagon"
+            "monster":"txmn_seltek"
         },
         {
             "encounter_rate":1,
@@ -127,7 +127,23 @@
                 1,
                 6
             ],
-            "monster":"txmn_ferricran"
+            "monster":"txmn_spycozeus"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_vamporm"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
+            "monster":"txmn_zunna"
         }
     ]
 }

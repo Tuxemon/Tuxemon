@@ -478,6 +478,11 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Conifrost"](https://wiki.tuxemon.org/index.php?title=Conifrost) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[treetrnk](https://wiki.tuxemon.org/index.php?title=Treetrnk&action=edit&redlink=1) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)

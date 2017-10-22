@@ -135,6 +135,14 @@
                 1,
                 6
             ],
+            "monster":"txmn_conifrost"
+        },
+        {
+            "encounter_rate":1,
+            "level_range":[
+                1,
+                6
+            ],
             "monster":"txmn_vamporm"
         },
         {

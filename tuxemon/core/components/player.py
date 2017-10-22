@@ -805,7 +805,7 @@ class Player(object):
 
 
 class Npc(Player):
-    def __init__(self, sprite_name="tuxemartemployee", slug="npc_tuxemartemployee"):
+    def __init__(self, sprite_name="tuxemartemployee", slug="npc_tuxemart"):
         npcs = db.JSONDatabase()
         npcs.load("npc")
         npc_data = npcs.lookup(slug, table="npc")

@@ -150,6 +150,9 @@
     "txmn_chloragon_category": "Dragon",
     "txmn_chloragon_descr": "It hatches when an ancient egg is planted in fertile soil. When the eggs run out, there will be no more CHLORAGON.",
     "txmn_chloragon_name": "Chloragon",
+    "txmn_conifrost_category": "Taiga",
+    "txmn_conifrost_descr": "If it sneezes, an avalanche occurs. It has a permanent sniffle.",
+    "txmn_conifrost_name": "Conifrost",
     "txmn_corvix_category": "Horned Raptor",
     "txmn_corvix_descr": "It arms its wings with bone shards from its victims.",
     "txmn_corvix_name": "Corvix",
@@ -309,8 +312,8 @@
 
     "npc_maple_name": "Maple",
     "npc_wife": "npc_wife",
-    "npc_tuxemartemployee": "npc_tuxemartemployee",
-    "npc_tuxemartemployee_name": "Tuxemart Employee",
+    "npc_tuxemart": "npc_tuxemart",
+    "npc_tuxemart_name": "Tuxemart Employee",
 
     "yes": "Yes",
     "no": "No",

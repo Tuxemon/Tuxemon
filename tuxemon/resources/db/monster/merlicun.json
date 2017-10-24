@@ -29,7 +29,7 @@
 				},
 				{
 						"level_learned": 2,
-						"technique": "technique_poison_sting"
+						"technique": "technique_fire_explosion"
 				}
 		],
 		"sprites": {
@@ -39,7 +39,7 @@
 				"menu2": "gfx/sprites/battle/merlicun-menu02.png"
 		},
 		"types": [
-				"earth"
+				"fire"
 		],
 		"weight": 25
 }

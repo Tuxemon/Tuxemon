@@ -142,6 +142,10 @@ def load_image(filename):
     :rtype: pygame.Surface
     """
     filename = transform_resource_filename(filename)
+
+    if not os.path.isfile(filename):
+        filename = "tuxemon/resources/gfx/sprites/battle/missing.png"
+
     return smart_convert(pygame.image.load(filename))
 
 

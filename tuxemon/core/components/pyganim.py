@@ -45,7 +45,8 @@
 # (Make this optional though.)
 from __future__ import division
 
-import pygame, time
+import pygame
+import time
 
 # setting up constants
 PLAYING = 'playing'
@@ -109,14 +110,14 @@ class PygAnimation(object):
                 # load each frame of animation into _images
                 frame = frames[i]
                 assert type(frame) in (list, tuple) and len(frame) == 2, 'Frame %s has incorrect format.' % (i)
-                assert type(frame[0]) in (str, pygame.Surface), 'Frame %s image must be a string filename or a pygame.Surface' % (i)
+                assert type(frame[0]) in (
+                str, pygame.Surface), 'Frame %s image must be a string filename or a pygame.Surface' % (i)
                 assert frame[1] > 0, 'Frame %s duration must be greater than zero.' % (i)
                 if type(frame[0]) == str:
                     frame = (pygame.image.load(frame[0]), frame[1])
                 self._images.append(frame[0])
                 self._durations.append(frame[1])
             self._startTimes = self._getStartTimes()
-
 
     def _getStartTimes(self):
         # Internal method to get the start times based off of the _durations list.
@@ -126,14 +127,12 @@ class PygAnimation(object):
             startTimes.append(startTimes[-1] + self._durations[i])
         return startTimes
 
-
     def reverse(self):
         # Reverses the order of the animations.
         self.elapsed = self._startTimes[-1] - self.elapsed
         self._images.reverse()
         self._transformedImages.reverse()
         self._durations.reverse()
-
 
     def getCopy(self):
         # Returns a copy of this PygAnimation object, but one that refers to the
@@ -143,7 +142,6 @@ class PygAnimation(object):
         # the copies. If you want to modify the Surface objects, then just make
         # copies using constructor function instead.
         return self.getCopies(1)[0]
-
 
     def getCopies(self, numCopies=1):
         # Returns a list of copies of this PygAnimation object, but one that refers to the
@@ -162,7 +160,6 @@ class PygAnimation(object):
             newAnim.numFrames = self.numFrames
             retval.append(newAnim)
         return retval
-
 
     def blit(self, destSurface, dest):
         # Draws the appropriate frame of the animation to the destination Surface
@@ -183,7 +180,6 @@ class PygAnimation(object):
         frameNum = findStartTime(self._startTimes, self.elapsed)
         destSurface.blit(self.getFrame(frameNum), dest)
 
-
     def getFrame(self, frameNum):
         # Returns the pygame.Surface object of the frameNum-th frame in this
         # animation object. If there is a transformed version of the frame,
@@ -193,13 +189,11 @@ class PygAnimation(object):
         else:
             return self._transformedImages[frameNum]
 
-
     def getCurrentFrame(self):
         # Returns the pygame.Surface object of the frame that would be drawn
         # if the blit() method were called right now. If there is a transformed
         # version of the frame, it will return that one.
         return self.getFrame(self.currentFrameNum)
-
 
     def clearTransforms(self):
         # Deletes all the transformed frames so that the animation object
@@ -214,7 +208,7 @@ class PygAnimation(object):
     def makeTransformsPermanent(self):
         self._images = [pygame.Surface(surfObj.get_size(), 0, surfObj) for surfObj in self._transformedImages]
         for i in range(len(self._transformedImages)):
-            self._images[i].blit(self._transformedImages[i], (0,0))
+            self._images[i].blit(self._transformedImages[i], (0, 0))
 
     def blitFrameNum(self, frameNum, destSurface, dest):
         # Draws the specified frame of the animation object. This ignores the
@@ -235,7 +229,6 @@ class PygAnimation(object):
         if not self.visibility or self.state == STOPPED:
             return
         destSurface.blit(self.getFrame(frameNum), dest)
-
 
     def blitFrameAtTime(self, elapsed, destSurface, dest):
         # Draws the frame the is "elapsed" number of seconds into the animation,
@@ -260,12 +253,10 @@ class PygAnimation(object):
         frameNum = findStartTime(self._startTimes, elapsed)
         destSurface.blit(self.getFrame(frameNum), dest)
 
-
     def isFinished(self):
         # Returns True if this animation doesn't loop and has finished playing
         # all the frames it has.
         return not self.loop and self.elapsed >= self._startTimes[-1]
-
 
     def play(self, startTime=None):
         # Start playing the animation.
@@ -289,7 +280,6 @@ class PygAnimation(object):
             self._playingStartTime = startTime - (self._pausedStartTime - self._playingStartTime)
         self._state = PLAYING
 
-
     def pause(self, startTime=None):
         # Stop having the animation progress, and keep it at the current frame.
 
@@ -309,7 +299,6 @@ class PygAnimation(object):
             self._pausedStartTime = rightNow
         self._state = PAUSED
 
-
     def stop(self):
         # Reset the animation to the beginning frame, and do not continue playing
 
@@ -318,7 +307,6 @@ class PygAnimation(object):
         if self._state == STOPPED:
             return # do nothing
         self._state = STOPPED
-
 
     def togglePause(self):
         # If paused, start playing. If playing, then pause.
@@ -338,7 +326,6 @@ class PygAnimation(object):
         elif self._state in (PAUSED, STOPPED):
             self.play()
 
-
     def areFramesSameSize(self):
         # Returns True if all the Surface objects in this animation object
         # have the same width and height. Otherwise, returns False
@@ -347,7 +334,6 @@ class PygAnimation(object):
             if self.getFrame(i).get_size() != (width, height):
                 return False
         return True
-
 
     def getMaxSize(self):
         # Goes through all the Surface objects in this animation object
@@ -364,14 +350,12 @@ class PygAnimation(object):
 
         return (maxWidth, maxHeight)
 
-
     def get_rect(self):
         # Returns a pygame.Rect object for this animation object.
         # The top and left will be set to 0, 0, and the width and height
         # will be set to what is returned by getMaxSize().
         maxWidth, maxHeight = self.getMaxSize()
         return pygame.Rect(0, 0, maxWidth, maxHeight)
-
 
     def anchor(self, anchorPoint=NORTHWEST):
         # If the Surface objects are of different sizes, align them all to a
@@ -393,11 +377,12 @@ class PygAnimation(object):
         for i in range(len(self._images)):
             # go through and copy all frames to a max-sized Surface object
             # NOTE: This makes changes to the original images in self._images, not the transformed images in self._transformedImages
-            newSurf = pygame.Surface((maxWidth, maxHeight)) # TODO: this is probably going to have errors since I'm using the default depth.
+            newSurf = pygame.Surface(
+                (maxWidth, maxHeight)) # TODO: this is probably going to have errors since I'm using the default depth.
 
             # set the expanded areas to be transparent
             newSurf = newSurf.convert_alpha()
-            newSurf.fill((0,0,0,0))
+            newSurf.fill((0, 0, 0, 0))
 
             frameWidth, frameHeight = self._images[i].get_size()
             halfFrameWidth = int(frameWidth / 2)
@@ -424,14 +409,12 @@ class PygAnimation(object):
                 newSurf.blit(self._images[i], (maxWidth - frameWidth, maxHeight - frameHeight))
             self._images[i] = newSurf
 
-
     def nextFrame(self, jump=1):
         # Set the elapsed time to the beginning of the next frame.
         # You can jump ahead by multiple frames by specifying a different
         # argument for jump.
         # Negative values have the same effect as calling prevFrame()
         self.currentFrameNum += int(jump)
-
 
     def prevFrame(self, jump=1):
         # Set the elapsed time to the beginning of the previous frame.
@@ -440,14 +423,12 @@ class PygAnimation(object):
         # Negative values have the same effect as calling nextFrame()
         self.currentFrameNum -= int(jump)
 
-
     def rewind(self, seconds=None):
         # Set the elapsed time back relative to the current elapsed time.
         if seconds is None:
             self.elapsed = 0.0
         else:
             self.elapsed -= seconds
-
 
     def fastForward(self, seconds=None):
         # Set the elapsed time forward relative to the current elapsed time.
@@ -462,7 +443,6 @@ class PygAnimation(object):
         if self._transformedImages == []:
             self._transformedImages = [surf.copy() for surf in self._images]
 
-
     # Transformation methods.
     # (These are analogous to the pygame.transform.* functions, except they
     # are applied to all frames of the animation object.
@@ -473,7 +453,6 @@ class PygAnimation(object):
         for i in range(len(self._images)):
             self._transformedImages[i] = pygame.transform.flip(self.getFrame(i), xbool, ybool)
 
-
     def scale(self, width_height):
         # NOTE: Does not support the DestSurface parameter
         # Increases or decreases the size of the images.
@@ -482,7 +461,6 @@ class PygAnimation(object):
         for i in range(len(self._images)):
             self._transformedImages[i] = pygame.transform.scale(self.getFrame(i), width_height)
 
-
     def rotate(self, angle):
         # Rotates the image.
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.rotate
@@ -490,14 +468,12 @@ class PygAnimation(object):
         for i in range(len(self._images)):
             self._transformedImages[i] = pygame.transform.rotate(self.getFrame(i), angle)
 
-
     def rotozoom(self, angle, scale):
         # Rotates and scales the image simultaneously.
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.rotozoom
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
             self._transformedImages[i] = pygame.transform.rotozoom(self.getFrame(i), angle, scale)
-
 
     def scale2x(self):
         # NOTE: Does not support the DestSurface parameter
@@ -507,7 +483,6 @@ class PygAnimation(object):
         for i in range(len(self._images)):
             self._transformedImages[i] = pygame.transform.scale2x(self.getFrame(i))
 
-
     def smoothscale(self, width_height):
         # NOTE: Does not support the DestSurface parameter
         # Scales the image smoothly. (Computationally more expensive and
@@ -516,8 +491,6 @@ class PygAnimation(object):
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
             self._transformedImages[i] = pygame.transform.smoothscale(self.getFrame(i), width_height)
-
-
 
     # pygame.Surface method wrappers
     # These wrappers call their analogous pygame.Surface methods on all Surface objects in this animation.
@@ -537,42 +510,33 @@ class PygAnimation(object):
         # See http://pygame.org/docs/ref/surface.html#Surface.convert
         self._surfaceMethodWrapper('convert', *args, **kwargs)
 
-
     def convert_alpha(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.convert_alpha
         self._surfaceMethodWrapper('convert_alpha', *args, **kwargs)
-
 
     def set_alpha(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.set_alpha
         self._surfaceMethodWrapper('set_alpha', *args, **kwargs)
 
-
     def scroll(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.scroll
         self._surfaceMethodWrapper('scroll', *args, **kwargs)
-
 
     def set_clip(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.set_clip
         self._surfaceMethodWrapper('set_clip', *args, **kwargs)
 
-
     def set_colorkey(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.set_colorkey
         self._surfaceMethodWrapper('set_colorkey', *args, **kwargs)
-
 
     def lock(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.unlock
         self._surfaceMethodWrapper('lock', *args, **kwargs)
 
-
     def unlock(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.lock
         self._surfaceMethodWrapper('unlock', *args, **kwargs)
-
-
 
     # Getter and setter methods for properties
     def _propGetRate(self):
@@ -585,7 +549,6 @@ class PygAnimation(object):
         self._rate = rate
 
     rate = property(_propGetRate, _propSetRate)
-
 
     def _propGetLoop(self):
         return self._loop
@@ -600,7 +563,6 @@ class PygAnimation(object):
         self._loop = bool(loop)
 
     loop = property(_propGetLoop, _propSetLoop)
-
 
     def _propGetState(self):
         if self.isFinished():
@@ -620,7 +582,6 @@ class PygAnimation(object):
 
     state = property(_propGetState, _propSetState)
 
-
     def _propGetVisibility(self):
         return self._visibility
 
@@ -628,7 +589,6 @@ class PygAnimation(object):
         self._visibility = bool(visibility)
 
     visibility = property(_propGetVisibility, _propSetVisibility)
-
 
     def _propSetElapsed(self, elapsed):
         # NOTE: Do to floating point rounding errors, this doesn't work precisely.
@@ -647,7 +607,6 @@ class PygAnimation(object):
         if self.state in (PAUSED, STOPPED):
             self.state = PAUSED # if stopped, then set to paused
             self._pausedStartTime = rightNow
-
 
     def _propGetElapsed(self):
         # NOTE: Do to floating point rounding errors, this doesn't work precisely.
@@ -679,32 +638,28 @@ class PygAnimation(object):
 
     elapsed = property(_propGetElapsed, _propSetElapsed)
 
-
     def _propGetCurrentFrameNum(self):
         # Return the frame number of the frame that will be currently
         # displayed if the animation object were drawn right now.
         return findStartTime(self._startTimes, self.elapsed)
-
 
     def _propSetCurrentFrameNum(self, frameNum):
         # Change the elapsed time to the beginning of a specific frame.
         if self.loop:
             frameNum = frameNum % len(self._images)
         else:
-            frameNum = getInBetweenValue(0, frameNum, len(self._images)-1)
+            frameNum = getInBetweenValue(0, frameNum, len(self._images) - 1)
         self.elapsed = self._startTimes[frameNum]
 
     currentFrameNum = property(_propGetCurrentFrameNum, _propSetCurrentFrameNum)
 
 
-
 class PygConductor(object):
     def __init__(self, *animations):
-        assert len(animations) > 0, 'at least one PygAnimation object is required'
-
         self._animations = []
-        self.add(*animations)
-
+        if animations:
+            self.add(*animations)
+        self._state = STOPPED
 
     def add(self, *animations):
         if type(animations[0]) == dict:
@@ -725,12 +680,29 @@ class PygConductor(object):
 
     animations = property(_propGetAnimations, _propSetAnimations)
 
+    def _propGetState(self):
+        if self.isFinished():
+            self._state = STOPPED
+
+        return self._state
+
+    def isFinished(self):
+        result = all(a.isFinished() for a in self._animations)
+        return result
+
+    def isStopped(self):
+        return self._state == STOPPED
+
+    state = property(_propGetState)
+
     def play(self, startTime=None):
         if startTime is None:
             startTime = time.time()
 
         for animObj in self._animations:
             animObj.play(startTime)
+
+        self._state = PLAYING
 
     def pause(self, startTime=None):
         if startTime is None:
@@ -739,9 +711,12 @@ class PygConductor(object):
         for animObj in self._animations:
             animObj.pause(startTime)
 
+        self._state = PAUSED
+
     def stop(self):
         for animObj in self._animations:
             animObj.stop()
+        self._state = STOPPED
 
     def reverse(self):
         for animObj in self._animations:
@@ -864,7 +839,7 @@ def findStartTime(startTimes, target):
     while True:
         i = int((ub - lb) / 2) + lb
 
-        if startTimes[i] == target or (startTimes[i] < target and startTimes[i+1] > target):
+        if startTimes[i] == target or (startTimes[i] < target and startTimes[i + 1] > target):
             if i == len(startTimes):
                 return i - 1
             else:

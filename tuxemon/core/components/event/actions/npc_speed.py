@@ -28,16 +28,25 @@ from core.components.event.eventaction import EventAction
 class NpcFaceAction(EventAction):
     """ Makes the NPC face a certain direction.
 
-    Valid Parameters: npc_slug, direction
+    Valid Parameters: npc_slug, speed
 
-    Direction parameter can be: "left", "right", "up", or "down"
+    Currently not working, limited to walking or running
+
+    Values less than or greater to zero will walk
+    Values great than zero will run
     """
-    name = "npc_face"
+    name = "npc_speed"
     valid_parameters = [
         (str, "npc_slug"),
-        (str, "direction")
+        (float, "speed")
     ]
 
     def start(self):
+        # TODO: finalize how speed values are handled
         npc = get_npc(self.game, self.parameters.npc_slug)
-        npc.facing = self.parameters.direction
+        if self.parameters.speed:
+            npc.walking = False
+            npc.running = True
+        else:
+            npc.walking = True
+            npc.running = False

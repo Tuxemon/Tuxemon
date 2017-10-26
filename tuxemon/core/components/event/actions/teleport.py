@@ -26,7 +26,7 @@ from core.components.event.eventaction import EventAction
 
 
 class TeleportAction(EventAction):
-    """Teleport the player to a particular map and coordinates
+    """Teleport the player to a particular map and tile coordinates
 
     Valid Parameters: map_name, coordinate_x, coordinate_y
 
@@ -51,14 +51,10 @@ class TeleportAction(EventAction):
     ]
 
     def start(self):
-        # Get the player object from the self.game.
+        # Get the player and map from the game
         player = self.game.player1
         world = self.game.current_state
-
-        # Get the teleport parameters for the position x,y and the map to load.
         map_name = self.parameters.map_name
-        position_x = self.parameters.x
-        position_y = self.parameters.y
 
         # If we're doing a screen transition with this teleport, set the map name that we'll
         # load during the apex of the transition.
@@ -70,18 +66,19 @@ class TeleportAction(EventAction):
         # teleport at the apex of the transition
         if world.in_transition:
             world.delayed_teleport = True
-            # Set the global_x/y variables based on the player's pixel position and the tile size.
-            world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
-            world.delayed_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
-        # If we're not doing a transition, then just do the teleport
-        else:
-            # Set the global_x/y variables based on the player's pixel position and the tile size.
-            world.global_x = player.position[0] - (position_x * player.tile_size[0])
-            world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
+            world.delayed_x = self.parameters.x
+            world.delayed_y = self.parameters.y
 
+        else:
+            # If we're not doing a transition, then just do the teleport
+            player.set_position((self.parameters.x, self.parameters.y))
             map_path = prepare.BASEDIR + "resources/maps/" + map_name
-            if map_path != world.current_map.filename:
+
+            if world.current_map is None:
+                world.change_map(map_path)
+
+            elif map_path != world.current_map.filename:
                 world.change_map(map_path)
 
         # Stop the player's movement so they don't continue their move after they teleported.
-        player.moving = False
+        player.cancel_movement()

@@ -116,6 +116,17 @@ class EventEngine(object):
         path = prepare.BASEDIR + "core/components/event/actions"
         self.load_plugins(path, "actions")
 
+    def reset(self):
+        """ Clear out running events.  Use when changing maps.
+
+        :return:
+        """
+        self.running_events = dict()
+        self.current_map = None
+        self.timer = 0.0
+        self.wait = 0.0
+        self.button = None
+
     def load_plugins(self, path, category):
         """ Load classes and store for use later
 
@@ -326,12 +337,9 @@ class EventEngine(object):
         self.update_running_events(dt)
 
     def check_conditions(self):
-        """ Checks a list of conditions.  If any are satisfied, start the MapActions
+        """ Checks conditions.  If any are satisfied, start the MapActions
 
         Actions may be started during this function
-
-        :param game.event_conditions: The multi-dimensional list of conditions to check for. See
-            :py:func:`core.components.map.Map.loadevents` to see the format of the list.
 
         :rtype: None
         :returns: None
@@ -339,7 +347,7 @@ class EventEngine(object):
         """
         # do the "init" events.  this will be done just once
         # TODO: find solution that doesn't nuke the init list
-        # TODO: make event engine generic, so can be used in global scope, not just maps`
+        # TODO: make event engine generic, so can be used in global scope, not just maps
         if self.game.inits:
             self.process_map_events(self.game.inits)
             self.game.inits = list()

@@ -81,9 +81,9 @@ class EventAction(object):
     * name must be a valid python string
 
     After parsing the parameters of the MapAction, the parameter's value
-    will be passed to the type.
+    will be passed to the type constructor.
 
-    For example: str, int, float, Monster, Item
+    Example types: str, int, float, Monster, Item
 
     (int, "duration")                => duration must be an int
     ((int, float), "duration")       => can be an int or float
@@ -127,8 +127,8 @@ class EventAction(object):
             logger.error("error while parsing for {}".format(self.name))
             logger.error("cannot parse parameters: {}".format(parameters))
             logger.error(self.valid_parameters)
+            logger.error("please check the parameters and verify they are correct")
             self.parameters = None
-            raise
 
         self._done = False
 
@@ -140,31 +140,38 @@ class EventAction(object):
         :param parameters:
         :return:
         """
+
         # TODO: stability/testing
         def cast(i):
-            ve = False
-            t, v = i
             try:
-                for tt in t[0]:
-                    if tt is None:
+                ve = False
+                t, v = i
+                try:
+                    for tt in t[0]:
+                        if tt is None:
+                            return None
+
+                        try:
+                            return tt(v)
+                        except ValueError:
+                            ve = True
+
+                except TypeError:
+                    if v is None:
                         return None
 
-                    try:
-                        return tt(v)
-                    except ValueError:
-                        ve = True
+                    if v == '':
+                        return None
 
-            except TypeError:
-                if v is None:
-                    return None
+                    return t[0](v)
 
-                if v == '':
-                    return None
+                if ve:
+                    raise ValueError
 
-                return t[0](v)
-
-            if ve:
-                raise ValueError
+            except ValueError:
+                logger.error("Invalid parameters passed:")
+                logger.error("expected: {}".format(self.valid_parameters))
+                logger.error("got: {}".format(self.raw_parameters))
 
         try:
             return list(map(cast, zip_longest(self.valid_parameters, parameters)))

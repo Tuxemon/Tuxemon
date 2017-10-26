@@ -23,8 +23,8 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.eventaction import EventAction
 from core.components.event.actions import process_translate_text
+from core.components.event.eventaction import EventAction
 from core.tools import open_dialog
 
 # Create a logger for optional handling of debug messages.

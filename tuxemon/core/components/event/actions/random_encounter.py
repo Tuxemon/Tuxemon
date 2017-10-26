@@ -70,7 +70,7 @@ class RandomEncounterAction(EventAction):
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1, 2)
+            roll = random.randrange(1, 1000)
             if roll <= int(item['encounter_rate']):
                 # Set our encounter details
                 encounter = item

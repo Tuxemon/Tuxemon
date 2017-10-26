@@ -57,7 +57,9 @@ class DialogChainAction(EventAction):
     valid_parameters = [(str, "text")]
 
     def start(self):
-        text = replace_text(self.game, self.parameters.text)
+        # hack to allow unescaped commas in the dialog string
+        text = ', '.join(self.raw_parameters)
+        text = replace_text(self.game, text)
 
         # If text is "${{end}}, then close the current dialog
         if not text == "${{end}}":
@@ -74,7 +76,9 @@ class DialogChainAction(EventAction):
                 self.open_dialog(text)
 
     def update(self):
-        if self.parameters.text == "${{end}}":
+        # hack to allow unescaped commas in the dialog string
+        text = ', '.join(self.raw_parameters)
+        if text == "${{end}}":
             if self.game.get_state_name("DialogState") is None:
                 self.stop()
 

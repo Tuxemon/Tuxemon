@@ -41,11 +41,10 @@ logger = logging.getLogger(__name__)
 class Player(Npc):
     """ Object for Players.  WIP
     """
-    isplayer = True
 
     def __init__(self, npc_slug):
         super(Player, self).__init__(npc_slug)
+        self.isplayer = True
 
         # Game variables for use with events
         self.game_variables = {}
-

@@ -79,7 +79,7 @@ class Npc(Entity):
     """
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
-    def __init__(self, npc_slug):
+    def __init__(self, npc_slug, sprite_name=None):
         super(Npc, self).__init__()
 
         # load initial data from the npc database
@@ -92,8 +92,14 @@ class Npc(Entity):
         # This is the player's name to be used in dialog
         self.name = trans(npc_data["name_trans"])
 
-        # Hold on the the string so it can be sent over the network
-        self.sprite_name = npc_data["sprite_name"]
+        # use 'animations' passed in
+        self.sprite_name = sprite_name
+        if self.sprite_name is None:
+            # Try to use the sprites defined in the JSON data
+            try:
+                self.sprite_name = npc_data["sprite_name"]
+            except KeyError:
+                logger.error('Cannot find sprite for {}'.format(npc_slug))
 
         self.ai = None  # Whether or not this player has AI associated with it
         self.behavior = "wander"

@@ -59,7 +59,7 @@ class CreateNpcAction(EventAction):
             return
 
         # Create a new NPC object
-        npc = core.components.npc.Npc(slug)
+        npc = core.components.npc.Npc(slug, sprite_name=self.parameters.animations)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables

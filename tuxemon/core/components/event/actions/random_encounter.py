@@ -70,7 +70,7 @@ class RandomEncounterAction(EventAction):
 
         for item in encounters:
             # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1, 1000)
+            roll = random.randrange(1, 2)
             if roll <= int(item['encounter_rate']):
                 # Set our encounter details
                 encounter = item
@@ -79,6 +79,9 @@ class RandomEncounterAction(EventAction):
         # battle.
         if encounter:
             logger.info("Starting random encounter!")
+
+            player1.stop_moving()
+            player1.cancel_path()
 
             # Stop movement and keypress on the server.
             if self.game.isclient or self.game.ishost:

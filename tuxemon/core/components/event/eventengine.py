@@ -426,7 +426,11 @@ class EventEngine(object):
                     break
 
         for i in to_remove:
-            del self.running_events[i]
+            try:
+                del self.running_events[i]
+            except KeyError:
+                # map changes or engine resets may cause this error
+                pass
 
     def process_event(self, event):
         """ Process a pygame event

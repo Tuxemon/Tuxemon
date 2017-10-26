@@ -65,13 +65,13 @@ class TeleportAction(EventAction):
         # Check to see if we're also performing a transition. If we are, wait to perform the
         # teleport at the apex of the transition
         if world.in_transition:
+            # the world state will handle the teleport/transition, hopefully
             world.delayed_teleport = True
             world.delayed_x = self.parameters.x
             world.delayed_y = self.parameters.y
 
         else:
             # If we're not doing a transition, then just do the teleport
-            player.set_position((self.parameters.x, self.parameters.y))
             map_path = prepare.BASEDIR + "resources/maps/" + map_name
 
             if world.current_map is None:
@@ -80,5 +80,12 @@ class TeleportAction(EventAction):
             elif map_path != world.current_map.filename:
                 world.change_map(map_path)
 
-        # Stop the player's movement so they don't continue their move after they teleported.
-        player.cancel_movement()
+            # Stop the player's movement so they don't continue their move after they teleported.
+            player.cancel_path()
+
+            # must change position after the map is loaded
+            player.set_position((self.parameters.x, self.parameters.y))
+
+            # unlock_controls will reset controls, but start moving if keys are pressed
+            world.unlock_controls()
+

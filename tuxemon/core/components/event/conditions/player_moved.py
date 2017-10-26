@@ -88,18 +88,22 @@ class PlayerMovedCondition(EventCondition):
 
         :rtype: bool
         """
+        # check where the npc is going, not where it is
+        move_destination = npc.move_destination
+
         # a hash/id of sorts for the condition
         condition_str = str(condition)
 
-        # check where the npc is going, not where it is
-        move_destination = npc.move_destination
+        stopped = move_destination is None
+        collide_next = False if stopped else collide(condition, move_destination)
 
         # persist is data shared for all player_moved EventConditions
         persist = self.get_persist(game)
 
+        # only test if tile was moved into
         # get previous destination for this particular condition
         last_destination = persist.get(condition_str)
-        if last_destination is None:
+        if last_destination is None and (stopped or collide_next):
             persist[condition_str] = move_destination
 
         # has the npc moved onto or away from the event?
@@ -115,4 +119,7 @@ class PlayerMovedCondition(EventCondition):
         persist[condition_str] = move_destination
 
         # determine if the tile has truly changed
-        return collided and moved and last_destination is not None
+        if collided and moved and last_destination is not None:
+            persist[condition_str] = None
+            return True
+        return False

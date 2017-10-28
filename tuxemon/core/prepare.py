@@ -77,6 +77,9 @@ if not os.path.isdir(USER_DATA_PATH):
 CONFIG = config.Config(CONFIG_FILE_PATH)
 HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)
 
+# Set up our data directory.
+DATADIR = CONFIG.data
+
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
 ORIGINAL_CAPTION = "Tuxemon"

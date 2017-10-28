@@ -47,7 +47,7 @@ class Menu(state.State):
     background_color = 248, 248, 248  # The window's background color
     background_filename = None        # File to load for image background
     menu_select_sound_filename = "sounds/interface/menu-select.ogg"
-    font_filename = "resources/font/PressStart2P.ttf"
+    font_filename = prepare.DATADIR + "/font/PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = .20

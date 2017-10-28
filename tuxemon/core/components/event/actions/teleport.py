@@ -79,7 +79,7 @@ class TeleportAction(EventAction):
             world.global_x = player.position[0] - (position_x * player.tile_size[0])
             world.global_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]
 
-            map_path = prepare.BASEDIR + "resources/maps/" + map_name
+            map_path = prepare.BASEDIR + prepare.DATADIR + "/maps/" + map_name
             if map_path != world.current_map.filename:
                 world.change_map(map_path)
 

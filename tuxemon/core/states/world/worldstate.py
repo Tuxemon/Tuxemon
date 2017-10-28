@@ -76,7 +76,7 @@ class WorldState(state.State):
         self.map_size = []
 
         # load the starting map
-        map_name = join(prepare.BASEDIR, 'resources', 'maps', prepare.CONFIG.starting_map)
+        map_name = join(prepare.BASEDIR, prepare.DATADIR, 'maps', prepare.CONFIG.starting_map)
         self.change_map(map_name)
 
         # Keep a map of preloaded maps for fast map switching.
@@ -230,7 +230,7 @@ class WorldState(state.State):
                 self.delayed_facing = None
 
             # check if map has changed, and if so, change it
-            map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
+            map_name = prepare.BASEDIR + prepare.DATADIR + "/maps/" + self.delayed_mapname
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 

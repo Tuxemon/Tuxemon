@@ -113,8 +113,8 @@ class RandomEncounterAction(EventAction):
             self.game.push_state("FlashTransition")
 
             # Start some music!
-            filename = "147066_pokemon.ogg"
-            mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+            filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+            mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
             mixer.music.play(-1)
             if self.game.current_music["song"]:
                 self.game.current_music["previoussong"] = self.game.current_music["song"]

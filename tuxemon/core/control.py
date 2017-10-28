@@ -728,7 +728,7 @@ class Control(StateManager):
 
         map_path = world.current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
-        map_name = str(map_name.replace("resources/maps/", ""))
+        map_name = str(map_name.replace(prepare.DATADIR + "/maps/", ""))
         return map_name
 
     def get_state_name(self, name):
@@ -747,7 +747,7 @@ class PygameControl(Control):
     pass
 
 
-class HeadlessControl(StateManager):
+class HeadlessControl(Control, StateManager):
     """Control class for headless server. Contains the game loop, and contains
     the event_loop which passes events to States as needed.
 

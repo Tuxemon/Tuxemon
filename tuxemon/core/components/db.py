@@ -59,7 +59,7 @@ class JSONDatabase(object):
     """
 
     def __init__(self):
-        self.path = prepare.BASEDIR + "resources/db/"
+        self.path = prepare.BASEDIR + prepare.DATADIR + "/db/"
         self.database = {"item": {},
                          "monster": {},
                          "npc": {},

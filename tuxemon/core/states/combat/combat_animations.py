@@ -374,7 +374,7 @@ class CombatAnimations(Menu):
         front_island = self.load_sprite('gfx/ui/combat/front_island.png',
                                         bottom=player_home.bottom - y_mod, left=w)
 
-        trainer1 = self.load_sprite('gfx/sprites/player/player_front.png',
+        trainer1 = self.load_sprite('gfx/sprites/player/player_back.png',
                                     bottom=front_island.rect.centery + scale(6),
                                     centerx=front_island.rect.centerx)
         self._monster_sprite_map[left_trainer] = trainer1

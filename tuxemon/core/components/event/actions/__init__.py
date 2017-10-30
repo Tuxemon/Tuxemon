@@ -41,7 +41,7 @@ def process_translate_text(game, text_slug, parameters):
 
         replace_values[key] = replace_text(game, value)
 
-    return trans(text_slug, replace_values)
+    return replace_text(game, trans(text_slug, replace_values))
 
 
 def check_battle_legal(player):

@@ -23,8 +23,8 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.eventaction import EventAction
 from core.components.technique import Technique
+from core.components.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 

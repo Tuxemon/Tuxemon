@@ -50,10 +50,11 @@ class SetNpcAttributeAction(EventAction):
 
     def start(self):
         world = self.game.get_state_name("WorldState")
+
         if not world:
             return
 
-        npc = world.get_npc(self.parameters[0])
+        npc = world.npcs[self.parameters[0]]
         attribute = self.parameters[1]
         value = self.parameters[2]
 

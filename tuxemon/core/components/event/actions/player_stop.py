@@ -38,4 +38,4 @@ class PlayerStopAction(EventAction):
         if not world:
             return
 
-        world.player1.cancel_movement()
+        world.menu_blocking = True

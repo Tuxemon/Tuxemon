@@ -44,7 +44,15 @@ class DelayedTeleportAction(EventAction):
         if world.delayed_teleport:
             return
 
+        # Get the teleport parameters for the position x,y and the map to load.
+        mapname, position_x, position_y = self.parameters
+
+        world.delayed_mapname = mapname
         world.delayed_teleport = True
-        world.delayed_mapname = self.parameters.map_name
-        world.delayed_x = self.parameters.position_x
-        world.delayed_y = self.parameters.position_y
+
+        # Get the player object from the self.game.
+        player = self.game.player1
+
+        # Set the global_x/y variables based on the player's pixel position and the tile size.
+        world.delayed_x = player.position[0] - (position_x * player.tile_size[0])
+        world.delayed_y = player.position[1] - (position_y * player.tile_size[1]) + player.tile_size[1]

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="37">
- <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="31">
+ <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15" visible="0">
@@ -74,16 +74,15 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="26" name="Test Pathfinding" type="event" x="112" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind npc_maple,3,11"/>
+    <property name="act1" value="pathfind npc_maple,3,10"/>
     <property name="cond1" value="is player_at 7,7 "/>
    </properties>
   </object>
-  <object id="29" name="Create Maple" type="event" x="144" y="96" width="16" height="16">
+  <object id="29" name="Create Maple" type="event" x="144" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_maple,9,6,maple,stay"/>
     <property name="cond1" value="not npc_exists npc_maple"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="112" y="96" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -29,7 +29,7 @@
 				},
 				{
 						"level_learned": 2,
-						"technique": "technique_fire_explosion"
+						"technique": "technique_poison_sting"
 				}
 		],
 		"sprites": {
@@ -39,7 +39,7 @@
 				"menu2": "gfx/sprites/battle/firomenis-menu02.png"
 		},
 		"types": [
-				"fire"
+				"earth"
 		],
 		"weight": 25
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" nextobjectid="29">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" nextobjectid="28">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -46,7 +46,7 @@
    eJxjYKAPyGVHpYmVm8fBwDAfiBdw4DZ7KjsqTUiuEWrWQiB9HIgX4zH7MxsDwxcg/sqGXQ4EsMmdBJr5HohP4zF7FNAPLKNhPJwb5HE8Uv3eMIjdRgkA+esnljKHWkARSzlKLeBJQ7NhAAB1/hXu
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" name="Events" visible="0">
   <object id="25" name="Teleport to Middle" type="event" x="16" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport mansion.tmx,1,2,0.3"/>
@@ -69,7 +69,6 @@
     <property name="cond1" value="not music_playing melody_eternal.ogg"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="32" y="224" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collision" visible="0">
   <object id="1" type="collision" x="0" y="0" width="16" height="304"/>

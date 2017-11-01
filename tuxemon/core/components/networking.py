@@ -846,8 +846,6 @@ def populate_client(cuuid, event_data, game, registry):
 
     """
     # TODO: move NPC from actions make make a common core class
-    # needs to use actions, or update classes
-    raise NotImplementedError
     from core.components.event.actions.npc import Npc
 
     char_dict = event_data["char_dict"]
@@ -882,10 +880,6 @@ def update_client(sprite, char_dict, game):
     :returns: None
 
     """
-
-    # broken, b/c no global x/y
-    return
-
     world = game.get_state_name("WorldState")
     if not world:
         return

@@ -23,7 +23,7 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.actions import process_translate_text, replace_text
+from core.components.event.actions import process_translate_text
 from core.components.event.eventaction import EventAction
 from core.tools import open_dialog
 
@@ -62,7 +62,6 @@ class TranslatedDialogAction(EventAction):
     def start(self):
         text = process_translate_text(self.game, self.parameters.key,
                                       self.raw_parameters[1:])
-        text = replace_text(self.game, text)
         self.open_dialog(text)
 
     def update(self):

@@ -45,7 +45,6 @@ class PlayMusicAction(EventAction):
 
         try:
             mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
-            mixer.music.set_volume(prepare.CONFIG.music_volume)
             mixer.music.play(-1)
         except Exception as e:
             logger.error(e)

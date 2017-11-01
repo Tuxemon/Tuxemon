@@ -44,23 +44,6 @@ class EventCondition(object):
         """
         pass
 
-    def get_persist(self, game):
-        """ Return dictionary for this event class's data
-
-        * This dictionary will be shared across all conditions
-        * This dictionary will be saved when game is saved
-
-        :return:
-        """
-        # Create a dictionary that will track movement
-
-        try:
-            return game.event_persist[self.name]
-        except KeyError:
-            persist = dict()
-            game.event_persist[self.name] = persist
-            return persist
-
     @property
     def done(self):
         return True

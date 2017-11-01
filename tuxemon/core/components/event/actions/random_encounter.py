@@ -25,10 +25,9 @@ import logging
 import random
 
 from core import prepare
-from core.components import ai, db, monster
+from core.components import ai, db, monster, player
 from core.components.event.actions import check_battle_legal
 from core.components.event.eventaction import EventAction
-from core.components.npc import Npc
 from core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -80,9 +79,6 @@ class RandomEncounterAction(EventAction):
         if encounter:
             logger.info("Starting random encounter!")
 
-            player1.stop_moving()
-            player1.cancel_path()
-
             # Stop movement and keypress on the server.
             if self.game.isclient or self.game.ishost:
                 self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
@@ -102,7 +98,7 @@ class RandomEncounterAction(EventAction):
             current_monster.set_level(level)
 
             # Create an NPC object which will be this monster's "trainer"
-            npc = Npc("npc_maple")
+            npc = player.Npc()
             npc.monsters.append(current_monster)
             npc.party_limit = 0
 

@@ -30,9 +30,7 @@
 #
 """This module contains the Start state.
 """
-
 import logging
-from os.path import join
 from functools import partial
 
 from core import prepare
@@ -55,7 +53,6 @@ class BackgroundState(State):
 
     eventually the need for this will be phased out
     """
-
     def draw(self, surface):
         surface.fill((0, 0, 0, 0))
 
@@ -75,10 +72,8 @@ class StartState(PopUpMenu):
             return partial(self.game.push_state, state, **kwargs)
 
         def new_game():
-            # load the starting map
-            state = self.game.replace_state("WorldState")
-            map_name = join(prepare.BASEDIR, 'resources', 'maps', prepare.CONFIG.starting_map)
-            state.change_map(map_name)
+            self.game.player1 = prepare.player1
+            self.game.replace_state("WorldState")
             self.game.push_state("InputMenu", prompt=translator.translate("input_name"))
             self.game.push_state("FadeInTransition")
 

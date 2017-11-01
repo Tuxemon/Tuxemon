@@ -24,10 +24,9 @@ from __future__ import absolute_import
 import logging
 
 from core import prepare
-from core.components import ai, db, monster, technique
+from core.components import ai, db, monster, player, technique
 from core.components.event.actions import check_battle_legal
 from core.components.event.eventaction import EventAction
-from core.components.npc import Npc
 from core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -70,7 +69,7 @@ class StartBattleAction(EventAction):
 
         # TODO: This should *really* be handled in the Npc initializer
         # Create an NPC object that will be used as our opponent
-        npc = Npc(slug=npc_slug)
+        npc = player.Npc(slug=npc_slug)
 
         # Look up the NPC's details from our NPC database
         npcs = db.JSONDatabase()

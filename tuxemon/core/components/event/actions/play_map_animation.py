@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 class PlayMapAnimationAction(EventAction):
     """Plays a map animation at a given position in the world map.
 
-    Valid Parameters: animation_name, duration, loop, tile_pos_x, tile_pos_y
+    Valid Parameters: animation_name, duration, loop, pos_x, pos_y
 
     * animation_name - The name of the animation stored under resources/animations/tileset.
         For example, an animation called "grass" will load frames called "grass.xxx.png".
@@ -75,17 +75,22 @@ class PlayMapAnimationAction(EventAction):
             logger.error("Cannot run MapAnimation outside of world state")
             raise RuntimeError
 
-        # Determine the tile position where to draw the animation.
+        # Determine the screen position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
         if self.parameters[3] == "player":
-            position = self.game.player1.tile_pos
+            x, y = [int(round(i, 0)) for i in self.game.player1.tile_pos]
         else:
-            position = int(self.parameters.tile_pos_x), int(self.parameters.tile_pos_y)
+            x, y = self.parameters.x, self.parameters.y
+
+        # convert tile position to screen position
+        tw, th = world_state.tile_size
+        position = x * tw, y * th
 
         animations = world_state.map_animations
         if animation_name in animations:
             animations[animation_name]["position"] = position
             animations[animation_name]["conductor"].play()
+            return True
 
         else:
             # Not loaded already, so load it...
@@ -97,6 +102,6 @@ class PlayMapAnimationAction(EventAction):
             animations[animation_name] = {"animation": animation,
                                           "conductor": conductor,
                                           "position": position,
-                                          "layer": 4}
+                                          "layer": 3}
 
             conductor.play()

@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-import core.components.npc
-from core.components import ai
+from core import prepare
+from core.components import ai, player
 from core.components.event.eventaction import EventAction
 
 
@@ -48,10 +48,9 @@ class CreateNpcAction(EventAction):
 
         # Get the npc's parameters from the action
         slug = self.parameters.npc_slug
-
-        # Get the npc's parameters from the action
-        pos_x = self.parameters.tile_pos_x
-        pos_y = self.parameters.tile_pos_y
+        tile_pos_x = self.parameters.tile_pos_x
+        tile_pos_y = self.parameters.tile_pos_y
+        animations = self.parameters.animations
         behavior = self.parameters.behavior
 
         # Ensure that the NPC doesn't already exist on the map.
@@ -59,12 +58,21 @@ class CreateNpcAction(EventAction):
             return
 
         # Create a new NPC object
-        npc = core.components.npc.Npc(slug, sprite_name=self.parameters.animations)
-        npc.set_position((pos_x, pos_y))
+        npc = player.Npc(sprite_name=animations, slug=slug)
 
         # Set the NPC object's variables
+        npc.tile_pos = [tile_pos_x, tile_pos_y]
         npc.behavior = behavior
         npc.ai = ai.AI()
+        npc.scale_sprites(prepare.SCALE)
+        npc.walkrate *= prepare.SCALE
+        npc.runrate *= prepare.SCALE
+        npc.moverate = npc.walkrate
+
+        # Set the NPC's pixel position based on its tile position, tile size, and
+        # current global_x/global_y variables
+        npc.position = [(tile_pos_x * world.tile_size[0]) + world.global_x,
+                        (tile_pos_y * world.tile_size[1]) + (world.global_y - world.tile_size[1])]
 
         # Add the NPC to the game's NPC list
-        world.add_entity(npc)
+        world.npcs[slug] = npc

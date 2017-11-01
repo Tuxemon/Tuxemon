@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="42">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="41">
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
@@ -41,7 +41,7 @@
    eJzdllsOgyAQRf11O21Xg67Guhq7G9xQIXGSiWWeYEtKcmMicHKReTiNwzAptCU9kV7KfdT+NQmPxciNx/57ej5OLDyC0WfWzPCsPiWex2fvvCjciZWn8fhrnnTmvWEcemKa8+jlUR5reJDX2GcNr+TzH3lUfc31sVXs9RQnPfO28bO/5QG9w9I/KJbHK8W6He+sOSfVJ2tMf4OXz7o35AVinuNBrpbuIqA1q5LH9bLSt7uCtzAx7eFxHjW8Uq+r4QET/29SvPM6ycMs8Kw1SssDn1ilXhGZuVq9AcFK8eU=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" name="Collisions" visible="0">
   <object id="2" type="collision" x="112" y="544" width="112" height="32"/>
   <object id="3" type="collision" x="208" y="464" width="16" height="176"/>
   <object id="4" type="collision" x="224" y="416" width="16" height="80"/>
@@ -81,7 +81,7 @@
   <object id="36" type="collision" x="288" y="176" width="16" height="208"/>
   <object id="37" type="collision" x="256" y="304" width="32" height="80"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" name="Events" visible="0">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music stand_with_us.ogg"/>
@@ -112,6 +112,5 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="41" name="Player Spawn" type="event" x="160" y="32" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -24,30 +24,8 @@ from __future__ import absolute_import
 from core.components.event.eventcondition import EventCondition
 
 
-# TODO: move to some other place?
-def collide(condition, tile_position):
-    """
-    :type condition: core.components.event.MapCondition
-    :param tile_position: tuple
-    :rtype: bool
-    """
-    return condition.x < tile_position[0] + 1 \
-           and condition.y < tile_position[1] + 1 \
-           and condition.x + condition.width > tile_position[0] \
-           and condition.y + condition.height > tile_position[1]
-
-
 class PlayerMovedCondition(EventCondition):
-    """Checks to see the player has just moved into this tile. Using this condition will
-    prevent a condition like "player_at" from constantly being true every single frame.
-
-    * Check if player destination collides with event
-    * If it collides, wait until destination changes
-    * Become True after collides and destination has changed
-
-    These rules ensure that the event is true once player in in the tile
-    and is only true once.  Could possibly be better, IDK.
-
+    """ Checks to see where an NPC is facing
     """
     name = "player_moved"
 
@@ -55,10 +33,15 @@ class PlayerMovedCondition(EventCondition):
         """Checks to see the player has just moved into this tile. Using this condition will
         prevent a condition like "player_at" from constantly being true every single frame.
 
-        :type game: core.control.Control
-        :type condition: core.components.event.MapCondition
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
 
-        :rtype: bool
+        :type game: core.control.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
 
         Valid Parameters: None
 
@@ -77,49 +60,27 @@ class PlayerMovedCondition(EventCondition):
         }
 
         """
-        # TODO: Eventually generalize command for checking players and npcs
-        return self.generic_test(game, condition, game.player1)
 
-    def generic_test(self, game, condition, npc):
-        """ Eventually, this can be made into own condition or something
+        # Create a dictionary that will hold our move destinations.
+        if 'move_destination' not in game.event_persist:
+            game.event_persist['move_destination'] = {}
 
-        :type game: core.control.Control
-        :type condition: core.components.event.MapCondition
+        if str(condition) not in game.event_persist['move_destination']:
+            game.event_persist['move_destination'][str(condition)] = game.player1.move_destination
 
-        :rtype: bool
-        """
-        # check where the npc is going, not where it is
-        move_destination = npc.move_destination
+        # Check to see if the player's "move destination" has changed since the last
+        # frame. If it has, WE'RE MOVING!
+        moved = False
+        if game.player1.move_destination == game.event_persist['move_destination'][str(condition)]:
+            moved = False
+        else:
+            moved = True
 
-        # a hash/id of sorts for the condition
-        condition_str = str(condition)
+        # Update the current player's last move destination.
+        game.event_persist['move_destination'][str(condition)] = game.player1.move_destination
 
-        stopped = move_destination is None
-        collide_next = False if stopped else collide(condition, move_destination)
-
-        # persist is data shared for all player_moved EventConditions
-        persist = self.get_persist(game)
-
-        # only test if tile was moved into
-        # get previous destination for this particular condition
-        last_destination = persist.get(condition_str)
-        if last_destination is None and (stopped or collide_next):
-            persist[condition_str] = move_destination
-
-        # has the npc moved onto or away from the event?
-        # Check to see if the npc's "move destination" has changed since the last
-        # frame. If it has, WE'RE MOVING!!!
-        moved = move_destination != last_destination
-
-        # is the npc colliding with the condition boundaries?
-        collided = collide(condition, npc.tile_pos)
-
-        # Update the current npc's last move destination
-        # TODO: some sort of global tracking of player instead of recording it in conditions
-        persist[condition_str] = move_destination
-
-        # determine if the tile has truly changed
-        if collided and moved and last_destination is not None:
-            persist[condition_str] = None
+        # Check for "is" or "is_not" in the condition.
+        if moved:
             return True
-        return False
+        else:
+            return False

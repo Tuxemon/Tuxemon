@@ -32,11 +32,13 @@ import json
 import datetime
 import logging
 import os
+import shelve
+from pprint import pformat
 
 import pygame
 
 from core import prepare
-from core.tools import nearest
+from core import tools
 from core.components.item import Item
 from core.components.monster import Monster
 from core.components.technique import Technique
@@ -70,7 +72,7 @@ def save(player, screenshot, slot, game):
     json_data = dict()
 
     tempinv1 = dict()
-    for name, itm in player.inventory.items():
+    for name,itm in player.inventory.items():
         tempinv1[itm['item'].slug] = itm['quantity']
     json_data["inventory"] = tempinv1
 
@@ -83,7 +85,7 @@ def save(player, screenshot, slot, game):
     for keysstore, valuesstore in tempstorage1.items():
         if keysstore == 'items':
             tempinv = dict()
-            for name, itm in valuesstore.items():
+            for name,itm in valuesstore.items():
                 tempinv[itm['item'].slug] = itm['quantity']
             tempstorage1[keysstore] = tempinv
         if keysstore == 'monsters':
@@ -95,14 +97,13 @@ def save(player, screenshot, slot, game):
 
     json_data['current_map'] = game.get_map_name()
     json_data['game_variables'] = player.game_variables
-    json_data['tile_pos'] = nearest(player.tile_pos)
+    json_data['tile_pos'] = player.tile_pos
     json_data['player_name'] = player.name
     json_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
     json.dump(json_data, save_file)
     save_file.close()
     logger.info("Saving data to save file: " + prepare.SAVE_PATH + str(slot) + '.save')
-
 
 def save_monster(mon):
     """Prepares a dictionary of the monster to be saved to a file
@@ -114,7 +115,7 @@ def save_monster(mon):
 
     """
     save_data = dict()
-    for key, value in mon.__dict__.items():
+    for key,value in mon.__dict__.items():
         if key == "moves":
             save_data["moves"] = [i.slug for i in mon.moves]
         elif key == "body":
@@ -122,7 +123,6 @@ def save_monster(mon):
         elif key != "sprites" and key != "moveset" and key != "ai":
             save_data[key] = value
     return save_data
-
 
 def save_body(body):
     """Prepares a dictionary of the body to be saved to a file
@@ -135,7 +135,6 @@ def save_body(body):
     """
     save_data = dict(body.__dict__)
     return save_data
-
 
 def load(slot):
     """Loads game state data from a shelved save file.
@@ -165,7 +164,7 @@ def load(slot):
         json_data = json.load(save_file)
         tempinv = dict()
 
-        for slug, quant in json_data['inventory'].items():
+        for slug,quant in json_data['inventory'].items():
             tempinv1 = dict()
             tempinv1['item'] = Item(slug)
             tempinv1['quantity'] = quant
@@ -187,7 +186,7 @@ def load(slot):
             if keys == 'items':
                 tempinv = dict()
 
-                for slug, quant in values.items():
+                for slug,quant in values.items():
                     tempinv1 = dict()
                     tempinv1['item'] = Item(slug)
                     tempinv1['quantity'] = quant
@@ -214,7 +213,6 @@ def load(slot):
 
     return saveData
 
-
 def load_monster(mon, save_data):
     """Loads information from saved data
 
@@ -224,7 +222,7 @@ def load_monster(mon, save_data):
     :returns: None
 
     """
-    for key, value in save_data.items():
+    for key,value in save_data.items():
         if key == "moves":
             mon.moves = [Technique(i) for i in value]
         elif key == "body":
@@ -232,7 +230,6 @@ def load_monster(mon, save_data):
         else:
             setattr(mon, key, value)
     mon.load_sprites()
-
 
 def load_body(body, save_data):
     """Loads information from saved data
@@ -243,5 +240,5 @@ def load_body(body, save_data):
     :returns: None
 
     """
-    for key, value in save_data.items():
+    for key,value in save_data.items():
         setattr(body, key, value)

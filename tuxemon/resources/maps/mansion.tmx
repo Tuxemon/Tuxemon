@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="16" tileheight="16" nextobjectid="37">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="16" tileheight="16" nextobjectid="36">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -159,6 +159,5 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="160" y="160" width="16" height="16"/>
  </objectgroup>
 </map>

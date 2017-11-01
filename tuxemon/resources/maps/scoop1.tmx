@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="21" height="15" tilewidth="16" tileheight="16" nextobjectid="17">
+<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="21" height="15" tilewidth="16" tileheight="16" nextobjectid="16">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -115,7 +115,7 @@
    <polyline points="0,0 0,192"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Event">
+ <objectgroup color="#ffff00" name="Event" visible="0">
   <object id="10" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music JRPG_docks_loop.ogg"/>
@@ -138,6 +138,5 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="16" name="Player Spawn" type="event" x="304" y="64" width="16" height="16"/>
  </objectgroup>
 </map>

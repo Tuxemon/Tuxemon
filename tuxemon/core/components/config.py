@@ -51,6 +51,11 @@ class Config(object):
         self.resolution_y = self.config.get("display", "resolution_y")
         self.resolution = (int(self.resolution_x), int(self.resolution_y))
 
+        self.sound_volume = float(self.config.get("sound", "sound_volume"))
+        self.music_volume = float(self.config.get("sound", "music_volume"))
+
+        self.player_npc = self.config.get("player", "player_npc")
+
         self.splash = self.config.get("display", "splash")
 
         self.fullscreen = self.fullscreen_check()
@@ -62,8 +67,6 @@ class Config(object):
         self.controller_transparency = int(self.config.get("display", "controller_transparency"))
 
         self.starting_map = self.config.get("game", "starting_map")
-        self.starting_position = [int(self.config.get("game", "starting_position_x")),
-                                  int(self.config.get("game", "starting_position_y"))]
         self.cli = int(self.config.get("game", "cli_enabled"))
         self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
         try:

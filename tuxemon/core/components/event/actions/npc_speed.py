@@ -21,36 +21,32 @@
 #
 from __future__ import absolute_import
 
-import logging
-
-from core import prepare
+from core.components.event import get_npc
 from core.components.event.eventaction import EventAction
-from core.platform import mixer
-
-logger = logging.getLogger(__name__)
 
 
-class PlayMusicAction(EventAction):
-    """Plays a music file from "resources/music/"
+class NpcFaceAction(EventAction):
+    """ Makes the NPC face a certain direction.
 
-    Valid Parameters: filename
+    Valid Parameters: npc_slug, speed
+
+    Currently not working, limited to walking or running
+
+    Values less than or greater to zero will walk
+    Values great than zero will run
     """
-    name = "play_music"
+    name = "npc_speed"
     valid_parameters = [
-        (str, "filename"),
+        (str, "npc_slug"),
+        (float, "speed")
     ]
 
     def start(self):
-        filename = self.parameters.filename
-
-        try:
-            mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
-            mixer.music.set_volume(prepare.CONFIG.music_volume)
-            mixer.music.play(-1)
-        except Exception as e:
-            logger.error(e)
-            logger.error('unable to play music')
-
-        # Keep track of what song we're currently playing
-        self.game.current_music["status"] = "playing"
-        self.game.current_music["song"] = filename
+        # TODO: finalize how speed values are handled
+        npc = get_npc(self.game, self.parameters.npc_slug)
+        if self.parameters.speed:
+            npc.walking = False
+            npc.running = True
+        else:
+            npc.walking = True
+            npc.running = False

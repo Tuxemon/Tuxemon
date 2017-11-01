@@ -21,7 +21,7 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.conditions import get_npc
+from core.components.event import get_npc
 from core.components.event.eventcondition import EventCondition
 
 

@@ -389,3 +389,61 @@ def open_dialog(game, text, menu=None):
     """
     rect = calc_dialog_rect(game.screen.get_rect())
     return game.push_state("DialogState", text=text, rect=rect, menu=menu)
+
+
+def nearest(l):
+    """ Use rounding to find nearest tile
+
+    :param l:
+    :return:
+    """
+    return tuple(int(round(i)) for i in l)
+
+
+def trunc(l):
+    return tuple(int(i) for i in l)
+
+
+def scaled_image_loader(filename, colorkey, **kwargs):
+    """ pytmx image loader for pygame
+
+    Modified to load images at a scaled size
+
+    :param filename:
+    :param colorkey:
+    :param kwargs:
+    :return:
+    """
+    from pytmx.util_pygame import smart_convert, handle_transformation
+
+    if colorkey:
+        colorkey = pygame.Color('#{0}'.format(colorkey))
+
+    pixelalpha = kwargs.get('pixelalpha', True)
+
+    # load the tileset image
+    image = pygame.image.load(filename)
+
+    # scale the tileset image to match game scale
+    scaled_size = scale_sequence(image.get_size())
+    image = pygame.transform.scale(image, scaled_size)
+
+    def load_image(rect=None, flags=None):
+        if rect:
+            # scale the rect to match the scaled image
+            rect = scale_rect(rect)
+            try:
+                tile = image.subsurface(rect)
+            except ValueError:
+                logger.error('Tile bounds outside bounds of tileset image')
+                raise
+        else:
+            tile = image.copy()
+
+        if flags:
+            tile = handle_transformation(tile, flags)
+
+        tile = smart_convert(tile, colorkey, pixelalpha)
+        return tile
+
+    return load_image

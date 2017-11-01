@@ -21,36 +21,27 @@
 #
 from __future__ import absolute_import
 
-import logging
+import time
 
-from core import prepare
 from core.components.event.eventaction import EventAction
-from core.platform import mixer
-
-logger = logging.getLogger(__name__)
 
 
-class PlayMusicAction(EventAction):
-    """Plays a music file from "resources/music/"
+class WaitAction(EventAction):
+    """ Blocks event chain for some time
 
-    Valid Parameters: filename
+    Valid Parameters: duration
+
+    * duration (float): time in seconds to wait for
     """
-    name = "play_music"
+    name = "wait"
     valid_parameters = [
-        (str, "filename"),
+        (float, 'seconds')
     ]
 
+    # TODO: use event loop time, not wall clock
     def start(self):
-        filename = self.parameters.filename
+        self.finish_time = time.time() + self.parameters.seconds
 
-        try:
-            mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
-            mixer.music.set_volume(prepare.CONFIG.music_volume)
-            mixer.music.play(-1)
-        except Exception as e:
-            logger.error(e)
-            logger.error('unable to play music')
-
-        # Keep track of what song we're currently playing
-        self.game.current_music["status"] = "playing"
-        self.game.current_music["song"] = filename
+    def update(self):
+        if time.time() >= self.finish_time:
+            self.stop()

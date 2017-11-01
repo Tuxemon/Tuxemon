@@ -1,4 +1,5 @@
 {
     "slug": "npc_wife",
-    "name_trans": "npc_wife"
+    "name_trans": "npc_wife",
+    "sprite_name": "girl1"
 }

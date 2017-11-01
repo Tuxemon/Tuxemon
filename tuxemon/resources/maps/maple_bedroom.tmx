@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="30">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" nextobjectid="31">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="161" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="177" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+ <tileset firstgid="193" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
  <layer name="Tile Layer 1" width="11" height="9">
@@ -103,5 +103,6 @@
     <property name="cond2" value="is npc_at npc_maple"/>
    </properties>
   </object>
+  <object id="30" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -41,10 +41,4 @@ class RemoveNpcAction(EventAction):
             return
 
         # Get the npc's parameters from the action
-        slug = self.parameters.npc_slug
-
-        if slug not in world.npcs:
-            return
-
-        # Create a separate list of NPCs to loop through
-        del world.npcs[slug]
+        world.remove_entity(self.parameters.npc_slug)

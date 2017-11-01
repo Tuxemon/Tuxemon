@@ -21,23 +21,27 @@
 #
 from __future__ import absolute_import
 
-from core.components.event import get_npc
+import time
+
 from core.components.event.eventaction import EventAction
 
 
-class NpcFaceAction(EventAction):
-    """ Makes the NPC face a certain direction.
+class WaitAction(EventAction):
+    """ Blocks event chain for some time
 
-    Valid Parameters: npc_slug, direction
+    Valid Parameters: duration
 
-    Direction parameter can be: "left", "right", "up", or "down"
+    * duration (float): time in seconds to wait for
     """
-    name = "npc_face"
+    name = "wait"
     valid_parameters = [
-        (str, "npc_slug"),
-        (str, "direction")
+        (float, 'seconds')
     ]
 
+    # TODO: use event loop time, not wall clock
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        npc.facing = self.parameters.direction
+        self.finish_time = time.time() + self.parameters.seconds
+
+    def update(self):
+        if time.time() >= self.finish_time:
+            self.stop()

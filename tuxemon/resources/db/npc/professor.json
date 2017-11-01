@@ -1,4 +1,5 @@
 {
     "slug": "npc_professor",
-    "name_trans": "npc_professor_name"
+    "name_trans": "npc_professor_name",
+    "sprite_name": "professor"
 }

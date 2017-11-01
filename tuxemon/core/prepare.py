@@ -133,7 +133,6 @@ def init():
     global SCREEN
     global SCREEN_RECT
     global JOYSTICKS
-    global player1
     global FONTS
     global MUSIC
     global SFX
@@ -170,41 +169,3 @@ def init():
     if android:
         android.init()
         android.map_key(android.KEYCODE_MENU, pg.K_ESCAPE)
-
-    # Create an instance of the player and list of NPCs
-    from .components import player
-    player1 = player.Player()
-
-    # Scale the sprite and its animations
-    for key, animation in player1.sprite.items():
-        animation.scale(
-            tuple(i * SCALE for i in animation.getMaxSize()))
-
-    for key, image in player1.standing.items():
-        player1.standing[key] = pg.transform.scale(
-            image, (image.get_width() * SCALE,
-                    image.get_height() * SCALE))
-
-    # Set the player's width and height based on the size of our scaled
-    # sprite.
-    player1.playerWidth, player1.playerHeight = \
-        player1.standing["front"].get_size()
-    player1.playerWidth = TILE_SIZE[0]
-    player1.playerHeight = TILE_SIZE[1]
-    player1.tile_size = TILE_SIZE
-
-    # Put the player right in the middle of our screen.
-    player1.position = [
-        (SCREEN_SIZE[0] / 2) - (player1.playerWidth / 2),
-        (SCREEN_SIZE[1] / 2) - (player1.playerHeight / 2)]
-
-    # Set the player's collision rectangle
-    player1.rect = pg.Rect(
-        player1.position[0],
-        player1.position[1],
-        TILE_SIZE[0],
-        TILE_SIZE[1])
-
-    # Set the walking and running pixels per second based on the scale
-    player1.walkrate *= SCALE
-    player1.runrate *= SCALE

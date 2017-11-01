@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="93">
- <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="94">
+ <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="73" name="electronics" tilewidth="16" tileheight="16">
+ <tileset firstgid="73" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16">
+ <tileset firstgid="89" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="1042">
    <properties>
@@ -15,13 +15,13 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16">
+ <tileset firstgid="1401" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="1489" name="stairs_down" tilewidth="16" tileheight="16">
+ <tileset firstgid="1489" name="stairs_down" tilewidth="16" tileheight="16" tilecount="12" columns="4">
   <image source="../gfx/tilesets/stairs_down.png" width="64" height="48"/>
  </tileset>
- <tileset firstgid="1501" name="plants" tilewidth="16" tileheight="16">
+ <tileset firstgid="1501" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
  <layer name="Tile Layer 1" width="20" height="20">
@@ -56,6 +56,7 @@
   <object id="69" name="Choose Creature 1" x="192" y="96" width="16" height="16"/>
   <object id="74" name="Choose Creature 2" x="208" y="96" width="16" height="16"/>
   <object id="75" name="Choose Creature 3" x="224" y="96" width="16" height="16"/>
+  <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collision">
   <object id="43" type="collision" x="192" y="112" width="48" height="32"/>

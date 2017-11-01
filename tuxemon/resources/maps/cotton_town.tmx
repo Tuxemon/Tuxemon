@@ -369,8 +369,10 @@
   <object id="252" name="create NPCs" type="event" x="0" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_allie,22,10,omnichannelfemale,stand"/>
+    <property name="act2" value="create_npc npc_liela,38,17,femaletrainer,stand"/>
     <property name="cond1" value="not npc_exists npc_allie"/>
     <property name="cond2" value="not variable_set npcs_are_created:yes"/>
+    <property name="cond3" value="not npc_exists npc_liela"/>
    </properties>
   </object>
   <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
@@ -442,7 +444,7 @@
  </objectgroup>
  <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztl1EKwjAQRLdlexw9jr2ZHkJrj6fWH+cnIMpiy6YxbOfBEDaUZvMCoRUpj6pIp3ZtzZXqa4fs1a7/RerjgPRq1+97Kcnnmqkvq66ZGvyRZUTyF2kvuVjihP580J9NcvNrJHHhGfugPx9b8ndsRU5t3nduyd8a0J8P+vMRwd+tEbkjD2RCns33M2fcexdkQK7ImOkerMUfv50JiUvpf+W566XxBd7REQw=
+   eJztl1sKgzAQRUeZLscup92ZXYS2Ls8+frw/gdIyFJk0hvEeuMhI0MkJhESkPKoiB7Vr612pvjrkqHa9FamPE3JWu36fS0k+/5n6suqaqcEfWUckf5Hmkos1TujPB/3ZJDe/niQuXGMf9OdjT/76VuTS5v3mnvz9A/rzQX8+IvibG5E78kCeyKv5HjNg3xuRK3JDpkz7YC3+eHYmJC6135UX1LEQpg==
   </data>
  </layer>
  <layer name="Above Player" width="40" height="40">

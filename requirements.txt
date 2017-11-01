@@ -1,5 +1,5 @@
 pytmx>=3.20.17
-pyscroll>=2.16.14
+pyscroll>=2.17
 pillow
 pygame
 six

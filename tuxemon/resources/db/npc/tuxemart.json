@@ -1,4 +1,5 @@
 {
     "slug": "npc_tuxemart",
-    "name_trans": "npc_tuxemart"
+    "name_trans": "npc_tuxemart",
+    "sprite_name": "tuxemartemployee"
 }

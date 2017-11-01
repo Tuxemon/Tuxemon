@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="84">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="85">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
  </tileset>
@@ -198,6 +198,7 @@
     <property name="cond3" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="84" name="Player Spawn" type="event" x="540" y="127" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="Conditions"/>
 </map>

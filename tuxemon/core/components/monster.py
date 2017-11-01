@@ -30,6 +30,7 @@
 import logging
 import pprint
 import random
+import os.path
 
 from core import tools
 from core.components import ai
@@ -387,6 +388,20 @@ class Monster(object):
             count += 1
             self.set_stats()
 
+
+    def verify_or_replace_sprite(self, sprite):
+        '''Checks if the sprite exists and replaces it if it does not.
+
+        rtype: String
+        returns: Returns path to sprite if it exists or replaces it with
+        placeholder image
+        '''
+        if not os.path.isfile(tools.transform_resource_filename(sprite)):
+            sprite = "gfx/sprites/battle/missing.png"
+
+        return sprite
+        
+
     def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.
 
@@ -402,8 +417,11 @@ class Monster(object):
         if len(self.sprites):
             return True
 
+        self.front_battle_sprite = self.verify_or_replace_sprite(self.front_battle_sprite)
+        self.back_battle_sprite = self.verify_or_replace_sprite(self.back_battle_sprite)
+        self.menu_sprite = self.verify_or_replace_sprite(self.menu_sprite)
+
         self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
         self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
-
         return False

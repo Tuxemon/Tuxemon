@@ -1,4 +1,5 @@
 {
     "slug": "npc_misa",
-    "name_trans": "npc_misa"
+    "name_trans": "npc_misa",
+    "sprite_name": "misa"
 }

@@ -45,7 +45,7 @@ class ModifyNpcAttributeAction(EventAction):
         if not world:
             return
 
-        npc = world.npcs[self.parameters[0]]
+        npc = world.get_entity(self.parameters[0])
         attribute = self.parameters[1]
         modifier = self.parameters[2]
 

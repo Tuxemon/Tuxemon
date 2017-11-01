@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="14" height="9" tilewidth="16" tileheight="16" nextobjectid="36">
- <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="14" height="9" tilewidth="16" tileheight="16" nextobjectid="37">
+ <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72">
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24">
+ <tileset firstgid="161" name="stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
- <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="185" name="electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="201" name="kitchen" tilewidth="16" tileheight="16" tilecount="16">
+ <tileset firstgid="201" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
  <layer name="Tile Layer 1" width="14" height="9">
@@ -83,5 +83,6 @@
     <property name="act1" value="create_npc npc_maples_mom,2,5,girl1,stand"/>
    </properties>
   </object>
+  <object id="36" name="Player Spawn" type="event" x="128" y="80" width="16" height="16"/>
  </objectgroup>
 </map>

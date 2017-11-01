@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="226">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="227">
  <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
@@ -52,6 +52,7 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
+  <object id="226" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collisions">
   <object id="4" type="collision" x="400" y="1296" width="80" height="16"/>

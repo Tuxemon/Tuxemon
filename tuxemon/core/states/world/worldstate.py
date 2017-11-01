@@ -383,13 +383,6 @@ class WorldState(state.State):
 
             screen_surfaces.append((s, c, l))
 
-        # sort based on the layer first, then the y coordinate value
-        def sprite_sort(i):
-            return i[2], i[1][1]
-
-        # presort the screen sprites for somewhat correct rendering
-        screen_surfaces.sort(key=sprite_sort)
-
         # draw the map and sprites
         self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
 

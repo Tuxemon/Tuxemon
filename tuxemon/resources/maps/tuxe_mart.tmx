@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="58">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="59">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -88,8 +88,8 @@
   </object>
   <object id="42" name="hello Professor" type="event" x="144" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_professor,7,7,professor,stand"/>
-    <property name="act2" value="set_variable tuxchoice:welcome"/>
+    <property name="act10" value="create_npc npc_professor,7,7,professor,stand"/>
+    <property name="act30" value="set_variable tuxchoice:welcome"/>
     <property name="cond1" value="not variable_set tuxchoice:end"/>
     <property name="cond2" value="not npc_exists npc_professor"/>
     <property name="cond3" value="not variable_set tuxchoice:Hydrone"/>
@@ -143,5 +143,6 @@
     <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
    </properties>
   </object>
+  <object id="58" name="Player Spawn" type="event" x="112" y="160" width="16" height="16"/>
  </objectgroup>
 </map>

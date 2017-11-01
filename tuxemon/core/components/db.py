@@ -106,7 +106,11 @@ class JSONDatabase(object):
 
             # Load our json as a dictionary.
             with open(self.path + directory + "/" + json_item) as fp:
-                item = json.load(fp)
+                try:
+                    item = json.load(fp)
+                except ValueError:
+                    logger.error("invalid JSON {}".format(json_item))
+                    raise
 
             if item['slug'] not in self.database[directory]:
                 self.database[directory][item['slug']] = item

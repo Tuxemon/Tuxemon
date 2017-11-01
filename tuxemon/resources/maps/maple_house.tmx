@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="33">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="34">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -56,6 +56,7 @@
     <property name="cond1" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="33" name="Player Spawn" type="event" x="112" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collision">
   <object id="10" type="collision" x="32" y="118" width="48" height="34"/>

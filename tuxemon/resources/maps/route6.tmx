@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.07.25" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="70">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="71">
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
@@ -25,7 +25,7 @@
    eJy9VlEKwjAMfToYOO/kdbyV+u0BPIJ6Dv3SD/UIBqQQQtK06eqD0IV13ctr2gQAVgtgInvQ85PstgTuZDmkudKXa9X61gg2dxqA9ZDn1crD8q1R6mEhzff8I35WOp/HzkfJX2I3Anuyw+hzT2sdhdXGzkeLV8KZeF3IrgX8pHZe7CWQORjlp2mn7V0tJkfDUn6eRvL9xrkfEry4avY3ilyOe3G/6Js32acjP08DTcNTo/48D1v5tZwv7QzI+8XjmOMXPVfaGtb9wjlq/9P4WXUmAktDzjd3F2o57tWdKKx6H1mf17dabJ3zI2tVBLy+zZGHcyDFPYf+PRHtr/4Jrb+y+mKtn0VnX8u/0r62dx+d/C+WJbB/
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Events" visible="0">
+ <objectgroup color="#ffff00" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music peasant_kingdom.ogg"/>
@@ -128,6 +128,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="70" name="Player Spawn" type="event" x="144" y="32" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" name="Collision">
   <object id="2" type="collision" x="0" y="304" width="640" height="16"/>

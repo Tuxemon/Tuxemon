@@ -1,7 +1,7 @@
 import logging
 
-from core import prepare
 from core.components import save
+from core.components.player import Player
 from .save_menu import SaveMenuState
 
 # Create a logger for optional handling of debug messages.
@@ -21,7 +21,6 @@ class LoadMenuState(SaveMenuState):
 
         if save_data is not None and "error" not in save_data:
             self.save_data = save.load(self.selected_index + 1)
-            self.game.player1 = prepare.player1
             self.game.player1.game_variables = save_data['game_variables']
             self.game.player1.tile_pos = save_data['tile_pos']
             self.game.player1.inventory = save_data['inventory']
@@ -40,10 +39,7 @@ class LoadMenuState(SaveMenuState):
                 self.game.pop_state(old_world)
 
             self.game.push_state("WorldState")
-            # self.game.current_state.change_map(save_data['current_map'])
 
             # teleport the player to the correct position using an event engine action
-            tele_x = str(int(save_data['tile_pos'][0]))
-            tele_y = str(int(save_data['tile_pos'][1]))
-
+            tele_x, tele_y = save_data['tile_pos']
             self.game.event_engine.execute_action('teleport', [save_data['current_map'], tele_x, tele_y])

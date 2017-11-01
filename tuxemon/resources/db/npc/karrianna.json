@@ -1,6 +1,7 @@
 {
     "slug": "npc_karrianna",
     "name_trans": "npc_karrianna",
+    "sprite_name": "maple",
     "monsters": [
         {
             "attack": 39,
@@ -15,7 +16,5 @@
             "exp_give_mod": 3,
             "exp_req_mod": 27
         }
-    ],
-    "id": 1,
-    "name": "Karrianna"
+    ]
 }

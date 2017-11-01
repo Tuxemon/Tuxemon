@@ -1,6 +1,7 @@
 {
     "slug": "npc_maple",
     "name_trans": "npc_maple_name",
+    "sprite_name": "girl1",
     "monsters": [
         {
             "attack": 50,

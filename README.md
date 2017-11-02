@@ -3,7 +3,7 @@ Tuxemon 0.4.0
 
 Tuxemon is a free, open source monster-fighting RPG.
 
-![screenshot](http://www.tuxemon.org/images/featurette-01.png)
+![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
 Requirements
 ------------
@@ -80,7 +80,7 @@ ulimit -n 10000; python tuxemon.py
 Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git/).
 
 **Smartphones**
-* [Android](http://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
+* [Android](https://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
 
 Controls
 --------
@@ -111,8 +111,8 @@ other sources.
 External links
 --------------
 
-* Official website: [tuxemon.org](http://www.tuxemon.org)
-* Official forum: [forum.tuxemon.org](http://forum.tuxemon.org/)
+* Official website: [tuxemon.org](https://www.tuxemon.org)
+* Official forum: [forum.tuxemon.org](https://forum.tuxemon.org/)
 * IRC: [#tuxemon](ircs://chat.freenode.net/#tuxemon) on freenode ([webchat](https://webchat.freenode.net/?channels=%23tuxemon))
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
 * YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)

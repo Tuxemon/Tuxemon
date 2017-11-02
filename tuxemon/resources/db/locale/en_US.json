@@ -320,6 +320,11 @@
     "yes": "Yes",
     "no": "No",
 
+    "door_problems": "The door is stuck and won't open...",
+    "empty_pot": "It's an empty pot, maybe someone will plant something here",
+    "purple_flowers": "Somebody planted some sweet smelling purple flowers!",
+    "orange_flowers": "Someone planted some beautiful orange flowers!",
+
     "route_2": "Route 2",
     
     "professor_dialog1": "Professor: \n Ah, yes. The very person I've been wanting to meet.",
@@ -389,6 +394,7 @@
     "theinfo15": "The birthrate is at an all time high, and approval of the Omnichannel has not fallen since the year before the restriction",
     "theinfo16": "Tuxemon are a perversive curse that destroys humanity. Omnichannel has fixed that and imposed order.",
     "theinfo17": "Tuxemon destroy and anyone who says otherwise is lying. Sorry, I must head to work.",
+    "liela_goes_to_battle": "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!",
 
     "input_name": "Name?"
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="259">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="271">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -65,12 +65,12 @@
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztljlPwzAYht20YWuH/gKExIAEqBwD4toREmIAyilxnyMTICSgwMQ1cZRfAKwwIo7uiLbiP3CUBQYoYuCtaoukauI0h2JQX+mR7ThxXn+xv5gQ8dTtc9uBvioF91eMnzWJGL9P+beuF799cAAOwRGIKvpCEiE1oBbUgXrJEau68bsC1+CGtmOg3Z+t98FPPxjI+PISMmSDv3dZ3X6T89/H9AiewDNtp8A8/J0HCVmDnwhYBxXwt+lQ/ETbH2kasy9airg/lBItfrkqxs+ajMbvDvvznhIHCZCke7bRQ0gTaAYtoNWTva7MkQ8O5siMPjB2F0hTwuCbvm8MfsbBBJgEU9SfMkcOSvbkSC2VIsctY/wyb5YV1MtRXiAXbsHPNtgBu2CP+lPmyA3JuRxZlDEl/W47cF8z+G8tGmCOczZwSi8l+v1RfMNj8Mq5zynx/N3CW6xAfz7kcNmm/0yuv9UA8hCIBNTXC/FXBW/VYFhjTTTI/DmE5Pz+TuDrFJxZ8NeD94ZBr4a/zLvZHHjK9ReHrwRIWvBnRGwOPPHWH5Oo+4NJBH+XQXWfsu2WvwWaf0c01vIo7V9yKT/bqbZ/MIe/rr/+DTpkdWmnUl77xuL5U/ZPm5xLp4HnzI6t1KysRitX6YmdF8yWoomdL4yeM6zIzJ5l5wu9c8YPIRpgeQ==
+   eJztlklLw0AYhqdN46099BeI4IpKXQ7idhdBPKh1QXBfj55UBLXiye3kUn+BetWjuPQutsX/4FIvetCK21s6waS0mTQLmUpfeJhMJsm88yXz5SOEP3W77HagrkrO/eXjZ0w8xu9d/DtWi98u2AP74AAEZWM+JyE1oBbUgXqnJVZV43cBLsEV7YdAuzt53Ac//WAg4UsgZNAEf6+isv8ipr9O0j14AI+0HwNz8HfqJWQVfgJgDZTD37pF8eNtf8RpzD5oy+P+kIu3+KUqHz9j0hq/G+zPW0oYRECU7tlGByFNoBm0gFZH8rw8R95ZmCMTesOzu0Cc4gefdL5R+BkD42ACTFJ/Xxj/Bj80RzoE6/wV4tlLmKdISLKM42K0Z8iFG/CzCbbANtih/kowXgrKhGSOrLDQX15sRd12O7Bf0/hvLWhgllEbWKWnAvXxIN7hIXhmXGeVWP6u4S2UpT8Xcrho0n8m1d+KB7UaCHiU57PxVwVv1WAowzfRILLX4BPT+zuCr2NwYsBfD+b1g94M/hJzS2tgKdVfGL4iIGrAnxZJa2CJ9f1J4nV/SOLB37lXOSbv2+Vvnubf4Qzf8ggdX7QpP5uptn+whlxXrr+DDlHZmqmYifU6y598fErnWjo13Kf32XLNiEoy5So1SfWC3pY3SfWF1jrDiPTsWam+UKszfgGhJ1/o
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -174,7 +174,8 @@
   <object id="241" type="collision" x="608" y="144" width="32" height="16"/>
   <object id="242" type="collision" x="368" y="16" width="96" height="144"/>
   <object id="243" type="collision" x="352" y="16" width="16" height="128"/>
-  <object id="250" type="collision" x="320" y="256" width="48" height="16"/>
+  <object id="250" type="collision" x="320" y="256" width="64" height="16"/>
+  <object id="261" type="collision" x="288" y="320" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="144" name="Teleport to Route 2" type="event" x="0" y="464" width="16" height="16">
@@ -366,13 +367,11 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="252" name="create NPCs" type="event" x="0" y="352" width="16" height="16">
+  <object id="252" name="create allie" type="event" x="0" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_allie,22,10,omnichannelfemale,stand"/>
-    <property name="act2" value="create_npc npc_liela,38,17,femaletrainer,stand"/>
     <property name="cond1" value="not npc_exists npc_allie"/>
     <property name="cond2" value="not variable_set npcs_are_created:yes"/>
-    <property name="cond3" value="not npc_exists npc_liela"/>
    </properties>
   </object>
   <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
@@ -439,6 +438,86 @@
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="not variable_set donewithyou:yes"/>
+   </properties>
+  </object>
+  <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_liela,38,17,femaletrainer,stand"/>
+    <property name="act2" value="npc_face npc_liela,up"/>
+    <property name="cond1" value="not npc_exists npc_liela"/>
+   </properties>
+  </object>
+  <object id="260" name="door problems" type="event" x="112" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog door_problems"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="262" name="it's an empty pot" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog empty_pot"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="263" name="purple flowers1" type="event" x="128" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="264" name="purple flowers2" type="event" x="160" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="265" name="purple flowers3" type="event" x="256" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="266" name="purple flowers4" type="event" x="288" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="267" name="purple flowers5" type="event" x="384" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="269" name="orange flowers" type="event" x="208" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog orange_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="270" name="talk to liela" type="event" x="592" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog liela_goes_to_battle"/>
+    <property name="act2" value="start_battle npc_liela"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,12 +1,12 @@
 Tuxemon 0.4.0
-=========
+=============
 
 Tuxemon is a free, open source monster-fighting RPG.
 
 ![screenshot](http://www.tuxemon.org/images/featurette-01.png)
 
 Requirements
------------
+------------
 
 Tuxemon uses a number of open source projects to work properly:
 
@@ -22,7 +22,7 @@ Tuxemon uses a number of open source projects to work properly:
 * *libShake* - rumble library for Linux.
 
 Installation
---------------
+------------
 
 **Windows**
 
@@ -95,7 +95,7 @@ Controls
 Use *Tiled* map editor: http://www.mapeditor.org/
 
 License
-----
+-------
 
 GPL v3
 
@@ -108,7 +108,7 @@ under which this software is made available.  Tuxemon also contains code from
 other sources.
 
 External links
-----
+--------------
 
 * Official website: [tuxemon.org](http://www.tuxemon.org)
 * Official forum: [forum.tuxemon.org](http://forum.tuxemon.org/)

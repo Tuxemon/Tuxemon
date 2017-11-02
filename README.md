@@ -113,7 +113,7 @@ External links
 
 * Official website: [tuxemon.org](http://www.tuxemon.org)
 * Official forum: [forum.tuxemon.org](http://forum.tuxemon.org/)
-* IRC: [#tuxemon](ircs://chat.freenode.net/#tuxemon)
+* IRC: [#tuxemon](ircs://chat.freenode.net/#tuxemon) on freenode ([webchat](https://webchat.freenode.net/?channels=%23tuxemon))
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
 * YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
 * Google Plus: [+TuxemonOrg](https://plus.google.com/u/0/+TuxemonOrg)

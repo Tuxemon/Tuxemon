@@ -24,7 +24,7 @@ from __future__ import absolute_import
 import logging
 import random
 
-from core import prepare
+from core import tools
 from core.components import ai, db, monster
 from core.components.event.actions import check_battle_legal
 from core.components.event.eventaction import EventAction
@@ -118,7 +118,7 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
-            mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+            mixer.music.load(tools.transform_resource_filename('music', filename))
             mixer.music.play(-1)
             if self.game.current_music["song"]:
                 self.game.current_music["previoussong"] = self.game.current_music["song"]

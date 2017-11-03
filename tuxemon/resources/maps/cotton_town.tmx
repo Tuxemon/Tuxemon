@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="271">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="274">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -326,21 +326,20 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="245" name="Sign: Cotton Town" type="event" x="240" y="592" width="16" height="16">
+  <object id="245" name="Sign: Cotton Town" type="event" x="240" y="608" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Welcome to Cotton Town: A Growing Force"/>
-    <property name="act2" value="dialog_chain ^ Cotton Town --- Route 1 v"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog Cotton_Town_Sign"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="246" name="Sign: Cotton Scoop" type="event" x="192" y="560" width="16" height="16">
+  <object id="246" name="Sign: Cotton Scoop" type="event" x="192" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Get the scoop at the Scoop Store!"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog Cotton_Mart"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
   <object id="247" name="Sign: Omnichannel HQ" type="event" x="272" y="144" width="16" height="16">
@@ -353,10 +352,10 @@
   </object>
   <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="432" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Cathedral Centre: We Live to Serve"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog Cathedral_Center"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
   <object id="249" name="Teleport to Cafe" type="event" x="176" y="256" width="16" height="16">
@@ -517,6 +516,30 @@
     <property name="act2" value="start_battle npc_liela"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="271" name="statue1" type="event" x="448" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog famous_statue"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="272" name="statue2" type="event" x="512" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog famous_statue2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="273" name="fountain" type="event" x="464" y="400" width="48" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cotton_town_fountain"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

@@ -324,6 +324,10 @@
     "empty_pot": "It's an empty pot, maybe someone will plant something here",
     "purple_flowers": "Somebody planted some sweet smelling purple flowers!",
     "orange_flowers": "Someone planted some beautiful orange flowers!",
+    "famous_statue": "It's a statue of a former Tuxemon master. The name is weathered away...",
+    "famous_statue2": "It says: For our beloved friends and heroes of all, the wywen",
+    "cotton_town_fountain": "It's a fountain. A lot of coins are at the bottom",
+    "tree": "This tree looks happy and healthy!",
 
     "route_2": "Route 2",
     
@@ -362,7 +366,7 @@
     "backstory6": "You shouldn't have to worry too much about them. They aren't too active around here.",
     "backstory7": "Now, we'll send you back on your journey. Only if you agree to help us against Omnichannel.",
     "backstory8": "Otherwise, we will report you to Omnichannel ourselves. And you will lose everything.",
-    "backstory9": "what do you say? Will you help us?",
+    "backstory9": "What do you say? Will you help us?",
     "sorryfurthis": "Good Choice. Sorry, this will only sting a little",
 
     "mwah": "???: What do you want? ... ... ... Well too bad. You're not getting in here even though your clothes are tastefully done.",
@@ -395,6 +399,9 @@
     "theinfo16": "Tuxemon are a perversive curse that destroys humanity. Omnichannel has fixed that and imposed order.",
     "theinfo17": "Tuxemon destroy and anyone who says otherwise is lying. Sorry, I must head to work.",
     "liela_goes_to_battle": "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!",
+    "Cathedral_Center": "Cathedral Center: We Live to Serve",
+    "Cotton_Mart": "Get the scoop at the Scoop Store!",
+    "Cotton_Town_Sign": "Welcome to Cotton Town: A Growing Force \n \n^ Cotton Town --- Route 1 v",
 
     "input_name": "Name?"
 }

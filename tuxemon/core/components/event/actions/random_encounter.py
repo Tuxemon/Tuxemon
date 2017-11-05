@@ -118,7 +118,7 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
-            mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+            mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
             mixer.music.play(-1)
             if self.game.current_music["song"]:
                 self.game.current_music["previoussong"] = self.game.current_music["song"]

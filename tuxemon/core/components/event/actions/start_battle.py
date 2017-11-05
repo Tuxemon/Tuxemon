@@ -131,7 +131,7 @@ class StartBattleAction(EventAction):
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
 
-        mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+        mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
         mixer.music.play(-1)
 
         if self.game.current_music["song"]:

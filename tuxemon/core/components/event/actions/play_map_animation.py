@@ -57,7 +57,7 @@ class PlayMapAnimationAction(EventAction):
         # "position" can be either a (x, y) tile coordinate or "player"
         animation_name = self.parameters.animation_name
         duration = self.parameters.duration
-        directory = prepare.BASEDIR + "resources/animations/tileset"
+        directory = prepare.BASEDIR + prepare.DATADIR + "/animations/tileset"
 
         if self.parameters.loop == "loop":
             loop = True

@@ -72,7 +72,7 @@ class TeleportAction(EventAction):
 
         else:
             # If we're not doing a transition, then just do the teleport
-            map_path = prepare.BASEDIR + "resources/maps/" + map_name
+            map_path = prepare.BASEDIR + prepare.DATADIR + "/maps/" + map_name
 
             if world.current_map is None:
                 world.change_map(map_path)

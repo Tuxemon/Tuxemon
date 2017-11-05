@@ -94,8 +94,7 @@ def transform_resource_filename(*filename):
     :param filename: String
     :rtype: basestring
     """
-    return os.path.join(prepare.BASEDIR, 'resources', *filename)
-    return os.path.join(prepare.BASEDIR, prepare.DATADIR, filename)
+    return os.path.join(prepare.BASEDIR, prepare.DATADIR, *filename)
 
 
 def load_and_scale(filename):

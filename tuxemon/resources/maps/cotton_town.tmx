@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="253">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="275">
  <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
@@ -65,12 +65,12 @@
  </layer>
  <layer name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztljlLA0EYhicmY5cU+QUi2KnEoxCvXgSxUOMJ3mdppSKoUSuvyiP+ArXVUtSkF5Pgf1ATGy00YuEbMoO7IXtkD3cieeFhdnd2Z9/5dr5vhxDx1Otx2oG6qgX3V4qfOYkYv0/6e6wWv0NwBI7BCQhL+gJlhNSBetAAGstssaoavxtwC+5ABERBpzfbNwA/g2AIDIMRC/y9U/n5G81/H9cTeAYvIAlSYBH+Lv2EbMBPCGyCLbBtU/xEy480i9kXa0XMD6lEi1+uSvEzJ73xu0d+PjBiIA4SLGebXYS0gFbQBtpd2evSGvloY43M6ANj94A0Iwi+2fsm4GcSTIFpMMP82VEjlVThJmQV41e6s6zhuArtFWrhDvzsgj2wDw6Yv7+qkSXpU8LrtAPnNYf/1rIOFjT2BnYpWa7eH8Y3PAWvGvfZJS1/EXiLFujPgxpOLfrP5Ppb96EOgZBPfr0QfzXwVgtGFdZEE9WeQ4Dm93cGX+fgwoS/Prw3CPoV/GXezeegpVx/MfiKg4QJf3rE56AlrfXHJWp+cIng79ov75OeO+VvidXfMYW1PM76Vxyqz1aq4x/ModhV7N+gi8pbK5VyWzeWlj9p/6zBuXTreM7o2FLNUzlKtUpNfL9gtBVNfH+hd59hRkZylu8v1PYZPztQYtw=
+   eJztlklLw0AYhqdN46099BeI4IpKXQ7idhdBPKh1QXBfj55UBLXiye3kUn+BetWjuPQutsX/4FIvetCK21s6waS0mTQLmUpfeJhMJsm88yXz5SOEP3W77HagrkrO/eXjZ0w8xu9d/DtWi98u2AP74AAEZWM+JyE1oBbUgXqnJVZV43cBLsEV7YdAuzt53Ac//WAg4UsgZNAEf6+isv8ipr9O0j14AI+0HwNz8HfqJWQVfgJgDZTD37pF8eNtf8RpzD5oy+P+kIu3+KUqHz9j0hq/G+zPW0oYRECU7tlGByFNoBm0gFZH8rw8R95ZmCMTesOzu0Cc4gefdL5R+BkD42ACTFJ/Xxj/Bj80RzoE6/wV4tlLmKdISLKM42K0Z8iFG/CzCbbANtih/kowXgrKhGSOrLDQX15sRd12O7Bf0/hvLWhgllEbWKWnAvXxIN7hIXhmXGeVWP6u4S2UpT8Xcrho0n8m1d+KB7UaCHiU57PxVwVv1WAowzfRILLX4BPT+zuCr2NwYsBfD+b1g94M/hJzS2tgKdVfGL4iIGrAnxZJa2CJ9f1J4nV/SOLB37lXOSbv2+Vvnubf4Qzf8ggdX7QpP5uptn+whlxXrr+DDlHZmqmYifU6y598fErnWjo13Kf32XLNiEoy5So1SfWC3pY3SfWF1jrDiPTsWam+UKszfgGhJ1/o
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collisions">
@@ -111,7 +111,7 @@
   <object id="173" type="collision" x="64" y="48" width="208" height="32"/>
   <object id="174" type="collision" x="272" y="16" width="16" height="32"/>
   <object id="175" type="collision" x="64" y="128" width="48" height="16"/>
-  <object id="176" type="collision" x="128" y="128" width="96" height="16"/>
+  <object id="176" type="collision" x="112" y="128" width="128" height="16"/>
   <object id="177" type="collision" x="240" y="128" width="16" height="16"/>
   <object id="178" type="collision" x="176" y="96" width="80" height="32"/>
   <object id="179" type="collision" x="288" y="16" width="64" height="144"/>
@@ -174,7 +174,8 @@
   <object id="241" type="collision" x="608" y="144" width="32" height="16"/>
   <object id="242" type="collision" x="368" y="16" width="96" height="144"/>
   <object id="243" type="collision" x="352" y="16" width="16" height="128"/>
-  <object id="250" type="collision" x="320" y="256" width="48" height="16"/>
+  <object id="250" type="collision" x="320" y="256" width="64" height="16"/>
+  <object id="261" type="collision" x="288" y="320" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="144" name="Teleport to Route 2" type="event" x="0" y="464" width="16" height="16">
@@ -209,12 +210,18 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="148" name="Teleport to Omnichannel HQ" type="event" x="352" y="144" width="16" height="16">
+  <object id="148" name="Teleport to Omnichannel HQ almost" type="event" x="352" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport omnichannel1.tmx,1,12,0.3"/>
-    <property name="act2" value="player_face up"/>
+    <property name="act1" value="translated_dialog itslockedboi"/>
+    <property name="act2" value="translated_dialog hellothere"/>
+    <property name="act3" value="create_npc npc_aeble,14,10,omnichannelceo,stand"/>
+    <property name="act4" value="npc_face npc_aeble,right"/>
+    <property name="act5" value="translated_dialog kmere"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not npc_exists npc_aeble"/>
+    <property name="cond5" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
   <object id="149" name="Teleport to Dryad's Grove" type="event" x="624" y="112" width="16" height="16">
@@ -319,21 +326,20 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="245" name="Sign: Cotton Town" type="event" x="240" y="592" width="16" height="16">
+  <object id="245" name="Sign: Cotton Town" type="event" x="240" y="608" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Welcome to Cotton Town: A Growing Force"/>
-    <property name="act2" value="dialog_chain ^ Cotton Town --- Route 1 v"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog Cotton_Town_Sign"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="246" name="Sign: Cotton Scoop" type="event" x="192" y="560" width="16" height="16">
+  <object id="246" name="Sign: Cotton Scoop" type="event" x="192" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Get the scoop at the Scoop Store!"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog Cotton_Mart"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
   <object id="247" name="Sign: Omnichannel HQ" type="event" x="272" y="144" width="16" height="16">
@@ -344,12 +350,12 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="416" width="16" height="16">
+  <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="432" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Cathedral Centre: We Live to Serve"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog Cathedral_Center"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
   <object id="249" name="Teleport to Cafe" type="event" x="176" y="256" width="16" height="16">
@@ -360,11 +366,195 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="252" name="Player Spawn" type="event" x="480" y="448" width="16" height="16"/>
+  <object id="252" name="create allie" type="event" x="0" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_allie,22,10,omnichannelfemale,stand"/>
+    <property name="cond1" value="not npc_exists npc_allie"/>
+    <property name="cond2" value="not variable_set npcs_are_created:yes"/>
+   </properties>
+  </object>
+  <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog mwah"/>
+    <property name="act11" value="set_variable npcs_are_created:yes"/>
+    <property name="act2" value="translated_dialog mwah2"/>
+    <property name="act3" value="translated_dialog mwah3"/>
+    <property name="act4" value="dialog ${{name}}..."/>
+    <property name="act7" value="translated_dialog mwah4"/>
+    <property name="act8" value="translated_dialog mwah5"/>
+    <property name="act9" value="npc_face npc_allie,up"/>
+    <property name="act91" value="translated_dialog mwah6"/>
+    <property name="act92" value="remove_npc npc_allie"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="254" name="come on over" type="event" x="336" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog dontmakemeturn"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is npc_exists npc_allie"/>
+   </properties>
+  </object>
+  <object id="255" name="come to me2" type="event" x="368" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog dontmakemeturn2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is npc_exists npc_allie"/>
+   </properties>
+  </object>
+  <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog theinfo"/>
+    <property name="act2" value="translated_dialog theinfo2"/>
+    <property name="act3" value="translated_dialog theinfo2.5"/>
+    <property name="act4" value="translated_dialog theinfo3"/>
+    <property name="act5" value="translated_dialog theinfo4"/>
+    <property name="act6" value="translated_dialog theinfo5"/>
+    <property name="act7" value="translated_dialog theinfo6"/>
+    <property name="act8" value="translated_dialog theinfo7"/>
+    <property name="act81" value="translated_dialog theinfo8"/>
+    <property name="act83" value="translated_dialog theinfo9"/>
+    <property name="act84" value="translated_dialog theinfo10"/>
+    <property name="act85" value="translated_dialog theinfo11"/>
+    <property name="act86" value="translated_dialog theinfo12"/>
+    <property name="act87" value="translated_dialog theinfo13"/>
+    <property name="act89" value="translated_dialog theinfo14"/>
+    <property name="act90" value="translated_dialog theinfo15"/>
+    <property name="act91" value="translated_dialog theinfo16"/>
+    <property name="act92" value="translated_dialog theinfo17"/>
+    <property name="act93" value="npc_move npc_aeble, down 1, right 8, up 1"/>
+    <property name="act94" value="npc_speed npc_aeble, 0.5"/>
+    <property name="act95" value="pathfind npc_aeble, 22, 10"/>
+    <property name="act96" value="remove_npc npc_aeble"/>
+    <property name="act97" value="set_variable donewithyou:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set donewithyou:yes"/>
+   </properties>
+  </object>
+  <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_liela,38,17,femaletrainer,stand"/>
+    <property name="act2" value="npc_face npc_liela,up"/>
+    <property name="cond1" value="not npc_exists npc_liela"/>
+   </properties>
+  </object>
+  <object id="260" name="door problems" type="event" x="112" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog door_problems"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="262" name="it's an empty pot" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog empty_pot"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="263" name="purple flowers1" type="event" x="128" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="264" name="purple flowers2" type="event" x="160" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="265" name="purple flowers3" type="event" x="256" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="266" name="purple flowers4" type="event" x="288" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="267" name="purple flowers5" type="event" x="384" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog purple_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="269" name="orange flowers" type="event" x="208" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog orange_flowers"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="270" name="talk to liela" type="event" x="592" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog liela_goes_to_battle"/>
+    <property name="act2" value="start_battle npc_liela"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="271" name="statue1" type="event" x="448" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog famous_statue"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="272" name="statue2" type="event" x="512" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog famous_statue2"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="273" name="fountain" type="event" x="464" y="400" width="48" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cotton_town_fountain"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="274" name="tree" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tree"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="Above Player" width="40" height="40" visible="0">
+ <layer name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztl1EKwjAQRLdlexw9jr2ZHkJrj6fWH+cnIMpiy6YxbOfBEDaUZvMCoRUpj6pIp3ZtzZXqa4fs1a7/RerjgPRq1+97Kcnnmqkvq66ZGvyRZUTyF2kvuVjihP580J9NcvNrJHHhGfugPx9b8ndsRU5t3nduyd8a0J8P+vMRwd+tEbkjD2RCns33M2fcexdkQK7ImOkerMUfv50JiUvpf+W566XxBd7REQw=
+   eJztl1sKgzAQRUeZLscup92ZXYS2Ls8+frw/gdIyFJk0hvEeuMhI0MkJhESkPKoiB7Vr612pvjrkqHa9FamPE3JWu36fS0k+/5n6suqaqcEfWUckf5Hmkos1TujPB/3ZJDe/niQuXGMf9OdjT/76VuTS5v3mnvz9A/rzQX8+IvibG5E78kCeyKv5HjNg3xuRK3JDpkz7YC3+eHYmJC6135UX1LEQpg==
   </data>
  </layer>
  <layer name="Above Player" width="40" height="40">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="87">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="87">
  <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
@@ -215,29 +215,29 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="83" name="Sign: City Park" x="144" y="32" width="16" height="16">
+  <object id="83" name="Sign: City Park" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Welcome to City Park: A Taste of the Wild"/>
-    <property name="act2" value="dialog_chain ^ City Park --- Route 2 v"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="act1" value="translated_dialog cityparksign"/>
+    <property name="act2" value="translated_dialog cityparksign2"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="84" name="Sign: Column 1" x="176" y="112" width="16" height="16">
+  <object id="84" name="Sign: Column 1" type="event" x="176" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain A rare and ancient column. This was once part of a temple building."/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog column1"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="85" name="Sign: Column 2" x="240" y="80" width="16" height="16">
+  <object id="85" name="Sign: Column 2" type="event" x="240" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain A rare and ancient column. Other ruins from the same culture can be found in Route 3. "/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="act1" value="translated_dialog column2"/>
+    <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is player_at"/>
    </properties>
   </object>
   <object id="86" name="Player Spawn" type="event" x="176" y="48" width="16" height="16"/>

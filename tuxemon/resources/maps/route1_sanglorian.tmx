@@ -89,7 +89,7 @@
     <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
    </properties>
   </object>
-  <object id="129" name="Teleport to Paper Town" type="event" x="416" y="304" width="16" height="16">
+  <object id="129" name="Teleport to Route1" type="event" x="416" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport paper_town.tmx,34,7,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -97,7 +97,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="130" name="Teleport to Paper Town" type="event" x="400" y="304" width="16" height="16">
+  <object id="130" name="Teleport to Route1" type="event" x="400" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport route1.tmx,34,6,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -179,7 +179,7 @@
   </object>
   <object id="152" name="Encounters" type="event" x="160" y="160" width="96" height="80">
    <properties>
-    <property name="act1" value="random_encounter route1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -188,7 +188,7 @@
   </object>
   <object id="153" name="Encounters" type="event" x="208" y="96" width="112" height="48">
    <properties>
-    <property name="act1" value="random_encounter route1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -197,7 +197,7 @@
   </object>
   <object id="154" name="Encounters" type="event" x="160" y="32" width="144" height="48">
    <properties>
-    <property name="act1" value="random_encounter route1"/>
+    <property name="act1" value="random_encounter default_encounter"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
@@ -284,5 +284,6 @@
     <property name="exit" value="down"/>
    </properties>
   </object>
+  <object id="160" type="collision" x="0" y="0" width="160" height="320"/>
  </objectgroup>
 </map>

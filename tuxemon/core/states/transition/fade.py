@@ -52,7 +52,7 @@ class FadeOutTransition(FadeTransitionBase):
 
     def shutdown(self):
         if self.game.current_music["previoussong"]:
-            mixer.music.load(prepare.BASEDIR + "resources/music/" + self.game.current_music["previoussong"])
+            mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + self.game.current_music["previoussong"])
             mixer.music.play(-1)
             self.game.current_music["status"] = "playing"
             self.game.current_music["song"] = self.game.current_music["previoussong"]

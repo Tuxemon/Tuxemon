@@ -201,7 +201,7 @@ class WorldState(state.State):
             self.player1.cancel_movement()
 
             # check if map has changed, and if so, change it
-            map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
+            map_name = prepare.BASEDIR + prepare.DATADIR + "/maps/" + self.delayed_mapname
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 

@@ -1,0 +1,21 @@
+{
+    "slug": "npc_liela",
+    "name_trans": "npc_liela",
+    "monsters": [
+        {
+            "attack": 60,
+            "defense": 14,
+            "name": "Capiti",
+            "special_attack": 12,
+            "level": 6,
+            "monster": "txmn_capiti",
+            "hp": 55,
+            "speed": 14,
+            "special_defense": 20,
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ],
+    "id": 2,
+    "name": "Liela"
+}

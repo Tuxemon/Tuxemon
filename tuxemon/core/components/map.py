@@ -322,7 +322,8 @@ class Map(object):
         :rtype: pyscroll.BufferedRenderer
         """
         visual_data = pyscroll.data.TiledMapData(self.data)
-        return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False)
+        clamp = (prepare.CONFIG.clamp_camera == "1")
+        return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera = clamp)
 
     def loadevent(self, obj):
         """

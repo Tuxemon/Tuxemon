@@ -67,6 +67,7 @@ class Config(object):
         self.controller_transparency = int(self.config.get("display", "controller_transparency"))
 
         self.starting_map = self.config.get("game", "starting_map")
+        self.clamp_camera = self.config.get("game", "clamp_camera")
         self.cli = int(self.config.get("game", "cli_enabled"))
         self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
         try:

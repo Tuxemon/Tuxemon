@@ -88,13 +88,13 @@ def cursor_from_image(image):
     return icon_string
 
 
-def transform_resource_filename(filename):
+def transform_resource_filename(*filename):
     """ Appends the resource folder name to a filename
 
     :param filename: String
     :rtype: basestring
     """
-    return os.path.join(prepare.BASEDIR, 'resources', filename)
+    return os.path.join(prepare.BASEDIR, prepare.DATADIR, *filename)
 
 
 def load_and_scale(filename):

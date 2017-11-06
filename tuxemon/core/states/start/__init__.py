@@ -77,7 +77,7 @@ class StartState(PopUpMenu):
         def new_game():
             # load the starting map
             state = self.game.replace_state("WorldState")
-            map_name = join(prepare.BASEDIR, 'resources', 'maps', prepare.CONFIG.starting_map)
+            map_name = join(prepare.BASEDIR, prepare.DATADIR, 'maps', prepare.CONFIG.starting_map)
             state.change_map(map_name)
             self.game.push_state("InputMenu", prompt=translator.translate("input_name"))
             self.game.push_state("FadeInTransition")

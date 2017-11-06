@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="59">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="59">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -14,7 +14,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBg4YEkGhgEXMjAM+JOBYUCPDDyqd+joHQgAADE2HQ0=
+   eJxjYBg4YEkGhgEXMjAM+JOBYUCPDDxY9JJizmBxM731DgQAAOfXHN8=
   </data>
  </layer>
  <layer name="Tile Layer 2" width="15" height="15">
@@ -62,7 +62,7 @@
     <property name="act3" value="add_item item_capture_device"/>
     <property name="act4" value="add_item item_capture_device"/>
     <property name="act5" value="add_item item_capture_device"/>
-    <property name="act6" value="dialog Received capture device (x5)!"/>
+    <property name="act6" value="translated_dialog received_happiness"/>
     <property name="act7" value="set_variable donegot:yes"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -130,7 +130,7 @@
     <property name="cond1" value="is variable_set tuxchoice:Fruitera"/>
    </properties>
   </object>
-  <object id="56" name="employee" type="event" x="48" y="176" width="16" height="16">
+  <object id="56" name="employee" type="event" x="32" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_tuxemart,2,7,tuxemartemployee,stand"/>
     <property name="act2" value="npc_face npc_tuxemart,right"/>
@@ -143,6 +143,5 @@
     <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
    </properties>
   </object>
-  <object id="58" name="Player Spawn" type="event" x="112" y="160" width="16" height="16"/>
  </objectgroup>
 </map>

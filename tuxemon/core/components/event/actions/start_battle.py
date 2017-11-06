@@ -23,7 +23,7 @@ from __future__ import absolute_import
 
 import logging
 
-from core import prepare
+from core import tools
 from core.components import ai, db, monster, technique
 from core.components.event.actions import check_battle_legal
 from core.components.event.eventaction import EventAction
@@ -70,7 +70,7 @@ class StartBattleAction(EventAction):
 
         # TODO: This should *really* be handled in the Npc initializer
         # Create an NPC object that will be used as our opponent
-        npc = Npc(slug=npc_slug)
+        npc = Npc(npc_slug)
 
         # Look up the NPC's details from our NPC database
         npcs = db.JSONDatabase()
@@ -128,12 +128,9 @@ class StartBattleAction(EventAction):
         self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer")
 
         # Start some music!
-        logger.info("Playing battle music!")
-        filename = "147066_pokemon.ogg"
-
-        mixer.music.load(prepare.BASEDIR + "resources/music/" + filename)
+        filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+        mixer.music.load(tools.transform_resource_filename('music', filename))
         mixer.music.play(-1)
-
         if self.game.current_music["song"]:
             self.game.current_music["previoussong"] = self.game.current_music["song"]
         self.game.current_music["status"] = "playing"

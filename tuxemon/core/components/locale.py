@@ -34,7 +34,7 @@ from core import prepare
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-LOCALE_PATH = "resources/db/locale"
+LOCALE_PATH = prepare.DATADIR + "/db/locale"
 FALLBACK_LOCALE = "en_US"
 
 class Translator(object):

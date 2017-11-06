@@ -201,7 +201,7 @@ class WorldState(state.State):
             self.player1.cancel_movement()
 
             # check if map has changed, and if so, change it
-            map_name = prepare.BASEDIR + "resources/maps/" + self.delayed_mapname
+            map_name = prepare.BASEDIR + prepare.DATADIR + "/maps/" + self.delayed_mapname
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 
@@ -382,13 +382,6 @@ class WorldState(state.State):
                 c = nearest((c[0], c[1] - h // 2))
 
             screen_surfaces.append((s, c, l))
-
-        # sort based on the layer first, then the y coordinate value
-        def sprite_sort(i):
-            return i[2], i[1][1]
-
-        # presort the screen sprites for somewhat correct rendering
-        screen_surfaces.sort(key=sprite_sort)
 
         # draw the map and sprites
         self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)

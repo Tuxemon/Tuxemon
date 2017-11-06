@@ -129,7 +129,7 @@ class Technique(object):
         self.animation = results["animation"]
         if self.animation:
             self.images = []
-            animation_dir = prepare.BASEDIR + "resources/animations/technique/"
+            animation_dir = prepare.BASEDIR + prepare.DATADIR + "/animations/technique/"
             directory = sorted(os.listdir(animation_dir))
             for image in directory:
                 if self.animation and image.startswith(self.animation):

@@ -1,12 +1,12 @@
 Tuxemon 0.4.0
-=========
+=============
 
 Tuxemon is a free, open source monster-fighting RPG.
 
-![screenshot](http://www.tuxemon.org/images/featurette-01.png)
+![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
 Requirements
------------
+------------
 
 Tuxemon uses a number of open source projects to work properly:
 
@@ -22,7 +22,7 @@ Tuxemon uses a number of open source projects to work properly:
 * *libShake* - rumble library for Linux.
 
 Installation
---------------
+------------
 
 **Windows**
 
@@ -80,10 +80,10 @@ ulimit -n 10000; python tuxemon.py
 Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git/).
 
 **Smartphones**
-* [Android](http://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
+* [Android](https://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
 
 Controls
---------------
+--------
 
 ##### Tuxemon
 * *Arrow Keys* - Movement
@@ -95,24 +95,26 @@ Controls
 Use *Tiled* map editor: http://www.mapeditor.org/
 
 License
-----
+-------
 
-GPL v3
+GPL v3+
 
-Copyright (C) 2016 William Edwards <shadowapex@gmail.com>,     
+Copyright (C) 2017 William Edwards <shadowapex@gmail.com>,     
 Benjamin Bean <superman2k5@gmail.com>
 
 This software is distributed under the GNU General Public Licence as published
-by the Free Software Foundation.  See the file [LICENSE](LICENSE) for the conditions
+by the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.  See the file [LICENSE](LICENSE) for the conditions
 under which this software is made available.  Tuxemon also contains code from
 other sources.
 
 External links
-----
+--------------
 
-* Official website: [tuxemon.org](http://www.tuxemon.org)
-* Official forum: [forum.tuxemon.org](http://forum.tuxemon.org/)
-* IRC: [#tuxemon](ircs://chat.freenode.net/#tuxemon)
+* Official website: [tuxemon.org](https://www.tuxemon.org)
+* Official forum: [forum.tuxemon.org](https://forum.tuxemon.org/)
+* IRC: [#tuxemon](ircs://chat.freenode.net/#tuxemon) on freenode ([webchat](https://webchat.freenode.net/?channels=%23tuxemon))
+* Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
 * YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
 * Google Plus: [+TuxemonOrg](https://plus.google.com/u/0/+TuxemonOrg)

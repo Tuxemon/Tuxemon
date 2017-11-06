@@ -753,7 +753,7 @@ class Control(StateManager):
 
         map_path = world.current_map.filename
         map_name = str(map_path.replace(prepare.BASEDIR, ""))
-        map_name = str(map_name.replace("resources/maps/", ""))
+        map_name = str(map_name.replace(prepare.DATADIR + "/maps/", ""))
         return map_name
 
     def get_state_name(self, name):

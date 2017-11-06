@@ -70,6 +70,10 @@ class Config(object):
         self.cli = int(self.config.get("game", "cli_enabled"))
         self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
         try:
+            self.data = self.config.get("game", "data")
+        except configparser.NoOptionError:
+            self.data = "resources"
+        try:
             self.locale = self.config.get("game", "locale")
         except configparser.NoOptionError:
             self.locale = "en_US"

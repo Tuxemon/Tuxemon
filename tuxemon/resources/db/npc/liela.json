@@ -1,6 +1,7 @@
 {
     "slug": "npc_liela",
     "name_trans": "npc_liela",
+    "sprite_name": "femaletrainer",
     "monsters": [
         {
             "attack": 60,

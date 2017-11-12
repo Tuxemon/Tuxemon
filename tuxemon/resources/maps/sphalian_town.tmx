@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="25" tilewidth="16" tileheight="16" nextobjectid="38">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>

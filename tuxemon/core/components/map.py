@@ -187,6 +187,9 @@ class Map(object):
         self.size = None
         self.renderer = None
 
+        # Initiate the properties of the map at their default values
+        self.edges = ""
+
         # Get the tile size from a tileset in our map. This is used to calculate the number of tiles
         # in a collision region.
         self.tile_size = (0, 0)
@@ -290,6 +293,12 @@ class Map(object):
         else:
             self.data = load_pygame(filename, pixelalpha=True)
 
+        # Get the properties of the map
+        if type(self.data.properties) == dict:
+            # Get the edge type of the map
+            if "edges" in self.data.properties:
+                self.edges = self.data.properties["edges"]
+
         # make a scrolling renderer
         self.renderer = self.initialize_renderer()
 
@@ -321,8 +330,10 @@ class Map(object):
 
         :rtype: pyscroll.BufferedRenderer
         """
+        # TODO: Use self.edges == "stitched" here when implementing seamless maps
         visual_data = pyscroll.data.TiledMapData(self.data)
-        return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=False, tall_sprites=2)
+        clamp = (self.edges == "clamped")
+        return pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera = clamp, tall_sprites = 2)
 
     def loadevent(self, obj):
         """

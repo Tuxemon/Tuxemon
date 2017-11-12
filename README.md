@@ -35,7 +35,7 @@ sudo apt install python python-pygame python-pip python-imaging python-six git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-tuxemon/tuxemon.py
+python tuxemon/tuxemon.py
 ```
 
 *Optional rumble support*
@@ -56,7 +56,7 @@ git clone https://github.com/bitcraft/PyTMX
 cd PyTMX; python setup.py install
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon/tuxemon
-./tuxemon.py
+python tuxemon.py
 ```
 
 **Mac OS X (Yosemite)**

@@ -24,6 +24,7 @@ from __future__ import absolute_import
 import logging
 from functools import partial
 
+from core.components.event import get_npc
 from core.components.event.actions import replace_text
 from core.components.event.eventaction import EventAction
 from core.components.locale import translator
@@ -40,16 +41,21 @@ class TranslatedDialogChoiceAction(EventAction):
 
     name = "translated_dialog_choice"
 
+    valid_parameters = [
+        (str, "choices"),
+        (str, "variable")
+    ]
+
     def start(self):
         def set_variable(var_value):
             player.game_variables[self.parameters.variable] = var_value
             self.game.pop_state()
 
-        # Get the player object from the self.game.
-        player = self.game.player1
-
         # perform text substitutions
         choices = replace_text(self.game, self.parameters.choices)
+
+        # Get the player object from the game
+        player = get_npc(self.game, "player")
 
         # make menu options for each string between the colons
         trans = translator.translate

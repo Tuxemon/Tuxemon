@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="87">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="94">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -31,7 +31,7 @@
  </layer>
  <layer name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlW0KgDAIQPe/r4NUdJLWTTtjCQUmsunSIuiBf0bTV0sXws+XaVGkaMizEJ2izrnfA8g9MOt9kDuOdjqq3JMwx7xHbeDCQf2qPeIRiyLPamZ0hfpJv5kHkVkr9fPsCUypn2dPpOpA30pmTYmf5x7qzM0kDzxngxVP/Uul9bV+eEZagOtz/ak5Y3DTzG0Kd2/m/ACJ4123EzojcK+l5tucyat1iyQkZ/Tm/ZV7f8DifJ5iA3N/Di4=
+   eJztlVEKgzAMQPvvdAeZ4kmsNxXcCWdAIcbSJjFxCD7Ij7XNqzVpCA93pkGRoybvQrwFebb5HsxrUD6B79jZ6Rz4ZsZ65hrDEi8DlxR079UScY1RsM5kZrSH+nG/mQcx8Uzr51kTGK2fZ03k8kDdcnqNxs9zDnVuFbk0ePYGK676l7T5pX64R1qA86fqU3LG4Cbp25TUvVnyAziOZ902aI/AtZbrb0NhXalbJME5o3/eX6X9AxbncxU/5IMP3A==
   </data>
  </layer>
  <layer name="Layer 3" width="40" height="20">
@@ -148,6 +148,8 @@
   <object id="81" type="collision-line" x="144" y="64">
    <polyline points="0,0 0,32"/>
   </object>
+  <object id="91" type="collision" x="16" y="64" width="16" height="32"/>
+  <object id="92" type="collision" x="32" y="64" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="23" name="Encounters" x="448" y="160">
@@ -244,5 +246,70 @@
    </properties>
   </object>
   <object id="86" name="Player Spawn" type="event" x="176" y="48" width="16" height="16"/>
+  <object id="87" name="create npc" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_misa,2,3,misa,stand"/>
+    <property name="act2" value="npc_face npc_misa,up"/>
+    <property name="act3" value="set_variable skadoosh:yes"/>
+    <property name="act4" value="set_variable yahoo:no"/>
+    <property name="cond1" value="not npc_exists npc_misa"/>
+   </properties>
+  </object>
+  <object id="88" name="talk to misa" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog route2speech"/>
+    <property name="act2" value="npc_face npc_misa,right"/>
+    <property name="act3" value="translated_dialog route2speech2"/>
+    <property name="act4" value="translated_dialog route2speech3"/>
+    <property name="act5" value="npc_face npc_misa,up"/>
+    <property name="act6" value="translated_dialog route2speech4"/>
+    <property name="act61" value="translated_dialog route2speech5"/>
+    <property name="act62" value="translated_dialog route2speech6"/>
+    <property name="act63" value="set_variable skadoosh:no"/>
+    <property name="act7" value="dialog_choice Sure I do:Not really,route2choice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set skadoosh:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="yes to talk" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog yestalk"/>
+    <property name="act2" value="set_variable yahoo:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set route2choice:Sure I do"/>
+    <property name="cond5" value="not variable_set yahoo:yes"/>
+   </properties>
+  </object>
+  <object id="90" name="no to talk" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face npc_misa,right"/>
+    <property name="act2" value="translated_dialog notalk"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set route2choice:Not really"/>
+    <property name="cond5" value="not variable_set yahoo:yes"/>
+   </properties>
+  </object>
+  <object id="93" name="spill the beans" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face npc_misa,right"/>
+    <property name="act2" value="translated_dialog spillit"/>
+    <property name="act21" value="translated_dialog spillit2"/>
+    <property name="act22" value="npc_face npc_misa,up"/>
+    <property name="act23" value="translated_dialog spillit3"/>
+    <property name="act24" value="translated_dialog spillit4"/>
+    <property name="act25" value="npc_face npc_misa,left"/>
+    <property name="act26" value="translated_dialog spillit5"/>
+    <property name="act4" value="set_variable yahoo:western"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond4" value="is variable_set yahoo:yes"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

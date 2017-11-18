@@ -306,7 +306,7 @@
     <property name="act25" value="npc_face npc_misa,left"/>
     <property name="act26" value="wait 1"/>
     <property name="act27" value="translated_dialog spillit5"/>
-    <property name="act3" value="set_variable yahoo:western"/>
+    <property name="act3" value="set_variable yahoo:maybe"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond4" value="is variable_set yahoo:yes"/>

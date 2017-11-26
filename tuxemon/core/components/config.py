@@ -38,56 +38,59 @@ import pygame
 from core.components.animation import Animation
 Animation.default_transition = 'out_quint'
 
+# read by Config and HeadlessConfig
+FILE_DEFAULT = configparser.ConfigParser()
+FILE_CONFIG = configparser.ConfigParser()
+
+# customized version of config.get
+# tries the user config first, uses the default config if the setting is missing
+def config_get(section, setting):
+    try:
+        return FILE_CONFIG.get(section, setting)
+    except configparser.NoOptionError:
+        return FILE_DEFAULT.get(section, setting)
 
 class Config(object):
     """Handles loading of the configuration file for the primary game and map editor.
 
     """
-    def __init__(self, file="tuxemon.cfg"):
-        self.config = configparser.ConfigParser()
-        self.config.read(file)
+    def __init__(self, file_default = "tuxemon.cfg", file_config = "tuxemon.cfg"):
+        FILE_DEFAULT.read(file_default)
+        FILE_CONFIG.read(file_config)
 
-        self.resolution_x = self.config.get("display", "resolution_x")
-        self.resolution_y = self.config.get("display", "resolution_y")
+        # [display]
+        self.resolution_x = config_get("display", "resolution_x")
+        self.resolution_y = config_get("display", "resolution_y")
         self.resolution = (int(self.resolution_x), int(self.resolution_y))
-
-        self.sound_volume = float(self.config.get("sound", "sound_volume"))
-        self.music_volume = float(self.config.get("sound", "music_volume"))
-
-        self.player_npc = self.config.get("player", "player_npc")
-
-        self.splash = self.config.get("display", "splash")
-
+        self.splash = config_get("display", "splash")
         self.fullscreen = self.fullscreen_check()
-        self.scaling = self.config.get("display", "scaling")
-        self.fps = float(self.config.get("display", "fps"))
-        self.collision_map = self.config.get("display", "collision_map")
+        self.fps = float(config_get("display", "fps"))
+        self.show_fps = int(config_get("display", "show_fps"))
+        self.scaling = config_get("display", "scaling")
+        self.collision_map = config_get("display", "collision_map")
+        self.controller_overlay = config_get("display", "controller_overlay")
+        self.controller_transparency = int(config_get("display", "controller_transparency"))
 
-        self.controller_overlay = self.config.get("display", "controller_overlay")
-        self.controller_transparency = int(self.config.get("display", "controller_transparency"))
+        # [sound]
+        self.sound_volume = float(config_get("sound", "sound_volume"))
+        self.music_volume = float(config_get("sound", "music_volume"))
 
-        self.starting_map = self.config.get("game", "starting_map")
-        self.cli = int(self.config.get("game", "cli_enabled"))
-        self.net_controller_enabled = self.config.get("game", "net_controller_enabled")
-        try:
-            self.data = self.config.get("game", "data")
-        except configparser.NoOptionError:
-            self.data = "resources"
-        try:
-            self.locale = self.config.get("game", "locale")
-        except configparser.NoOptionError:
-            self.locale = "en_US"
-        try:
-            self.show_fps = int(self.config.get("display", "show_fps"))
-        except configparser.NoOptionError:
-            self.show_fps = 0
+        # [game]
+        self.data = config_get("game", "data")
+        self.starting_map = config_get("game", "starting_map")
+        self.cli = int(config_get("game", "cli_enabled"))
+        self.net_controller_enabled = config_get("game", "net_controller_enabled")
+        self.locale = config_get("game", "locale")
 
-        self.player_animation_speed = float(self.config.get("player", "animation_speed"))
+        # [player]
+        self.player_animation_speed = float(config_get("player", "animation_speed"))
+        self.player_npc = config_get("player", "player_npc")
 
-        self.debug_logging = self.config.get("logging", "debug_logging")
-        self.debug_level = str(self.config.get("logging", "debug_level")).lower()
-        self.loggers = self.config.get("logging", "loggers")
+        # [logging]
+        self.loggers = config_get("logging", "loggers")
         self.loggers = self.loggers.replace(" ", "").split(",")
+        self.debug_logging = config_get("logging", "debug_logging")
+        self.debug_level = str(config_get("logging", "debug_level")).lower()
 
     def fullscreen_check(self):
         """If the fullscreen option is set in our configuration option, return a
@@ -99,24 +102,25 @@ class Config(object):
         :returns: pygame.FULLSCREEN object or 0
 
         """
-        if self.config.get("display", "fullscreen") == "1":
+        if config_get("display", "fullscreen") == "1":
             return pygame.FULLSCREEN
         else:
             return 0
 
-
 class HeadlessConfig(object):
     """Handles loading of the configuration file for the headless server.
     """
-    def __init__(self, file="tuxemon.cfg"):
-        self.config = configparser.ConfigParser()
-        self.config.read(file)
+    def __init__(self, file_default = "tuxemon.cfg", file_config = "tuxemon.cfg"):
+        FILE_DEFAULT.read(file_default)
+        FILE_CONFIG.read(file_config)
 
-        self.cli = int(self.config.get("game", "cli_enabled"))
+        # [game]
+        self.cli = int(config_get("game", "cli_enabled"))
 
-        self.debug_logging = self.config.get("logging", "debug_logging")
-        self.debug_level = self.config.get("logging", "debug_level")
-        self.loggers = self.config.get("logging", "loggers")
+        # [logging]
+        self.loggers = config_get("logging", "loggers")
         self.loggers = self.loggers.replace(" ", "").split(",")
+        self.debug_logging = config_get("logging", "debug_logging")
+        self.debug_level = config_get("logging", "debug_level")
 
 

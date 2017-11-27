@@ -57,10 +57,11 @@ except OSError:
         raise
 
 # Create a copy of our default config if one does not exist in the home dir.
+DEFAULT_FILE_PATH = BASEDIR + "tuxemon.cfg"
 CONFIG_FILE_PATH = CONFIG_PATH + "tuxemon.cfg"
 if not os.path.isfile(CONFIG_FILE_PATH):
     try:
-        shutil.copyfile(BASEDIR + "tuxemon.cfg", CONFIG_FILE_PATH)
+        shutil.copyfile(DEFAULT_FILE_PATH, CONFIG_FILE_PATH)
     except OSError:
         raise
 
@@ -74,8 +75,8 @@ if not os.path.isdir(USER_DATA_PATH):
             raise
 
 # Read the "tuxemon.cfg" configuration file
-CONFIG = config.Config(CONFIG_FILE_PATH)
-HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)
+CONFIG = config.Config(DEFAULT_FILE_PATH, CONFIG_FILE_PATH)
+HEADLESSCONFIG = config.HeadlessConfig(DEFAULT_FILE_PATH, CONFIG_FILE_PATH)
 
 # Set up our data directory.
 DATADIR = CONFIG.data

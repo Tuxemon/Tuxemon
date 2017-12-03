@@ -297,6 +297,7 @@
   <object id="93" name="spill the beans" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="npc_face npc_misa,right"/>
+    <property name="act11" value="set_variable yahoo:maybe"/>
     <property name="act2" value="translated_dialog spillit"/>
     <property name="act21" value="translated_dialog spillit2"/>
     <property name="act22" value="npc_face npc_misa,up"/>
@@ -306,9 +307,9 @@
     <property name="act25" value="npc_face npc_misa,left"/>
     <property name="act26" value="wait 1"/>
     <property name="act27" value="translated_dialog spillit5"/>
-    <property name="act3" value="set_variable yahoo:maybe"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="not variable_set yahoo:maybe"/>
     <property name="cond4" value="is variable_set yahoo:yes"/>
    </properties>
   </object>

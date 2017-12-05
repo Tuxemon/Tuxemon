@@ -1,12 +1,16 @@
 language: python
 python:
   - '2.7'
-install:
+before_install:
   - pip install -r requirements.txt
-  - sudo apt-get install -y git curl squashfs-tools
-sudo: required
+  - sudo apt-get install -y git curl squashfs-tools sed
 script:
-  - exec bash build_opk.sh
+  - mkdir -p ./build
+  - sed -i 's/resolution_x.*/resolution_x = 320/g' tuxemon/tuxemon.cfg
+  - sed -i 's/resolution_y.*/resolution_y = 240/g' tuxemon/tuxemon.cfg
+  - sed -i 's/fullscreen.*/fullscreen = 1/g' tuxemon/tuxemon.cfg
+  - cp tuxemon/resources/gfx/icon_32.png tuxemon/resources/gfx/icon.png
+  - mksquashfs tuxemon ./build/tuxemon-unstable-latest.opk -all-root -noappend -no-exports -no-xattrs
 deploy:
   provider: s3
   access_key_id: AKIAJCO54X2SZSP2HYCA

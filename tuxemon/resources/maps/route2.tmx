@@ -524,7 +524,7 @@
     <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
-  <object id="130" name="random battle20" type="event" x="128" y="128" width="16" height="16">
+  <object id="130" name="random battle30" type="event" x="128" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="random_battle default_encounter"/>
     <property name="cond1" value="is player_at"/>

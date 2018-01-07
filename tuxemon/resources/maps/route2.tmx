@@ -255,22 +255,20 @@
   <object id="89" name="yes to talk" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog yestalk"/>
-    <property name="act2" value="set_variable yahoo:yes"/>
+    <property name="act2" value="set_variable route2choice:again"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond4" value="is variable_set route2choice:sure_i_do"/>
-    <property name="cond5" value="not variable_set yahoo:yes"/>
    </properties>
   </object>
   <object id="90" name="no to talk" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="npc_face npc_misa,right"/>
     <property name="act2" value="translated_dialog notalk"/>
-    <property name="act3" value="set_variable yahoo:yes"/>
+    <property name="act3" value="set_variable route2choice:again"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond4" value="is variable_set route2choice:not_really"/>
-    <property name="cond5" value="not variable_set yahoo:yes"/>
    </properties>
   </object>
   <object id="93" name="spill the beans" type="event" x="48" y="48" width="16" height="16">
@@ -289,7 +287,7 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="not variable_set yahoo:maybe"/>
-    <property name="cond4" value="is variable_set yahoo:yes"/>
+    <property name="cond4" value="is variable_set route2choice:again"/>
    </properties>
   </object>
   <object id="97" name="random battle" type="event" x="160" y="192" width="16" height="48">

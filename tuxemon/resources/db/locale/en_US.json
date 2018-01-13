@@ -317,6 +317,9 @@
     "npc_tuxemart": "npc_tuxemart",
     "npc_tuxemart_name": "Tuxemart Employee",
 
+    "healmytuxemon": "Do you want to heal your Tuxemon?",
+    "haveagoodday": "Have a nice day!",
+
     "yes": "Yes",
     "no": "No",
 
@@ -424,6 +427,8 @@
     "spillit3": "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ.",
     "spillit4": "It may not seem like a bad thing, but it is. Do you know what they do to them? DO YOU!?",
     "spillit5": "Because neither do I... All I know is that no one has ever left Omnichannel after being recruited.",
+
+    "cottonnurse": "Welcome to the Cotton Town Tuxecenter!",
 
     "input_name": "Name?"
 }

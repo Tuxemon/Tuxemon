@@ -230,7 +230,6 @@
     <property name="act1" value="create_npc npc_misa,2,3,misa,stand"/>
     <property name="act2" value="npc_face npc_misa,up"/>
     <property name="act3" value="set_variable skadoosh:yes"/>
-    <property name="act4" value="set_variable yahoo:no"/>
     <property name="cond1" value="not npc_exists npc_misa"/>
    </properties>
   </object>

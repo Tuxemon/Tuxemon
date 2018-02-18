@@ -15,6 +15,7 @@
     "combat_wild_appeared": "Un ${{name}} sauvage apparait !",
     "combat_monster_choice": "Que doit faire ${{name}}?",
     "combat_fainted": "${{name}} est K.O. !",
+    
     "empty_slot": "emplacement vide",
     "exit": "Retour",
     "item_failure": "Cela fonctionne !",
@@ -25,6 +26,7 @@
     "item_potion_descr": "Restaure 50 PV d'un monstre.",
     "item_super_potion_name": "Super Potion",
     "item_super_potion_descr": "Restaure 150 PV d'un monstre.",
+    
     "log_off": "Déconnexion",
     "menu_bag": "Sac",
     "menu_fight": "Attaque",
@@ -40,6 +42,7 @@
     "menu_player": "Joueur",
     "menu_run": "Fuite",
     "menu_save": "Sauvegarder",
+    
     "multiplayer_accept": "Accepter",
     "multiplayer_decline": "Décliner",
     "multiplayer_duel": "${{name}} veut un duel !",
@@ -55,4 +58,11 @@
     "technique_poison_sting_name": "Dard-Venin",
     "technique_pound_name": "Écras'Face",
     "technique_water_shot_name": "Tir d'eau"
+    
+    "yes": "Oui",
+    "no": "Non",
+
+    "route_2": "Route 2",
+    
+    "input_name": "Nom?"
 }

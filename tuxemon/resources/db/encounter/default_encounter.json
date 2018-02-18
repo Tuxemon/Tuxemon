@@ -79,22 +79,6 @@
                 1,
                 6
             ],
-            "monster":"txmn_fruitera"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
-            "monster":"txmn_hydrone"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
             "monster":"txmn_lambert"
         },
         {
@@ -152,14 +136,6 @@
                 6
             ],
             "monster":"txmn_rockat"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
-            "monster":"txmn_rockitten"
         },
         {
             "encounter_rate":1,

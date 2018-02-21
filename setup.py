@@ -30,9 +30,23 @@ setup(name='Tuxemon',
       url='https://www.tuxemon.org',
       include_package_data=True,
       packages=modules,
+      license="GPLv3",
+      long_description='https://github.com/Tuxemon/Tuxemon',
       entry_points={
           'gui_scripts': [
               'tuxemon = tuxemon.__main__:main'
           ]
       },
+      classifiers=[
+          "Intended Audience :: End Users/Desktop",
+          "Development Status :: 3 - Alpha",
+          "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3.3",
+          "Programming Language :: Python :: 3.4",
+          "Programming Language :: Python :: 3.5",
+          "Programming Language :: Python :: 3.6",
+          "Topic :: Games/Entertainment",
+          "Topic :: Games/Entertainment :: Role-Playing",
+      ]
       )

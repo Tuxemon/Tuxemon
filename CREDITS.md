@@ -603,20 +603,64 @@ Fonts
 
 Music
 ------
-* [The Adventure Begins 8-bit Remix](opengameart.org/content/the-adventure-begins-8-bit-remix) by bart is licensed under CC BY 3.0
-* [Through Pixelated Clouds](https://opengameart.org/content/through-pixelated-clouds-8-bit-airship-remix) by bart is licensed under CC BY 3.0
-* [Stand With Us](https://opengameart.org/content/stand-with-us) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [Peasant Kingdom](https://opengameart.org/content/peasant-kingdom) by Spring is licensed under CC BY 3.0
-* [Lunar Joyride](https://opengameart.org/content/lunar-joyride-8-bit) by FoxSynergy is licensed under CC BY 3.0
-* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by t4ngr4m is licensed under CC BY 3.0
-  * Why do the nations so furiously rage together
-* [Melody Eternal](https://opengameart.org/content/melody-eternal) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [Taking Poison](https://opengameart.org/content/taking-poison) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [back34](https://opengameart.org/content/8bit-style-music) by Tom Peter is licensed under CC BY-SA 3.0
-* [Boss Introduction](https://opengameart.org/content/boss-introduction) by Spring is licensed under CC BY 3.0
-* [Valor of Heroes](https://opengameart.org/content/valor-of-heroes) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [We Persist](https://opengameart.org/content/we-persist) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [Unending Strike](https://opengameart.org/content/8bit-style-music) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [A Night Of Dizzy Spells](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [All of Us](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Arpanauts](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Ascending](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Boss Introduction](https://opengameart.org/content/boss-introduction) by Spring 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Chibi Ninja](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Come and Find Me](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Come and Find Me - B mix](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Digital Native](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by t4ngr4m 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)    * Why do the nations so furiously rage together
+* [HHavok-intro](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [HHavok-main](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Jumpshot](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Lunar Joyride](https://opengameart.org/content/lunar-joyride-8-bit) by FoxSynergy 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Melody Eternal](https://opengameart.org/content/melody-eternal) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Peasant Kingdom](https://opengameart.org/content/peasant-kingdom) by Spring 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Prologue](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Searching](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Stand With Us](https://opengameart.org/content/stand-with-us) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Taking Poison](https://opengameart.org/content/taking-poison) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [The Adventure Begins 8-bit Remix](opengameart.org/content/the-adventure-begins-8-bit-remix) by bart 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Through Pixelated Clouds](https://opengameart.org/content/through-pixelated-clouds-8-bit-airship-remix) by bart 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Underclocked](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Unending Strike](https://opengameart.org/content/8bit-style-music) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Valor of Heroes](https://opengameart.org/content/valor-of-heroes) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [We Persist](https://opengameart.org/content/we-persist) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [We're all under the stars](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [We're the Resistors](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [back34](https://opengameart.org/content/8bit-style-music) by Tom Peter 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 * Songs from the [JRPG Collection](https://opengameart.org/content/jrpg-collection) and [JRPG Collection 2](https://opengameart.org/content/jrpg-collection-2) by Yubatake are licensed under CC BY 3.0:
   * princess
   * winBattle

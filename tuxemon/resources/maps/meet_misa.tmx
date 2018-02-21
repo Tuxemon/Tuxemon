@@ -33,8 +33,8 @@
  <objectgroup color="#ffff00" name="Event">
   <object id="33" name="music!" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music 16-Enter_the_Emperor.ogg"/>
-    <property name="cond1" value="not music_playing 16-Enter_the_Emperor.ogg"/>
+    <property name="act1" value="play_music Enter_the_Emperor.ogg"/>
+    <property name="cond1" value="not music_playing Enter_the_Emperor.ogg"/>
    </properties>
   </object>
   <object id="34" name="doors galores" type="event" x="112" y="48" width="32" height="16">

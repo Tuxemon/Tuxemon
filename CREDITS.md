@@ -739,6 +739,7 @@ Special Thanks
 
 ### Patreon Supporters
 * [Chris Sakkas](https://www.patreon.com/user?u=40864)
+* [IronCladLion](https://www.patreon.com/user?u=369077)
 * [Kelvin Shadewing](https://www.patreon.com/kelvin)
 
 Formerly used 
@@ -798,8 +799,4 @@ by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
 
 * ["Crybits"](http://www.newgrounds.com/audio/listen/498444) by
 [fredhalv](http://fredhalv.newgrounds.com/) is licensed under
-[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
-* ["Digital Native"](http://ericskiff.com/music/) by
-[Eric Skiff](http://ericskiff.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)

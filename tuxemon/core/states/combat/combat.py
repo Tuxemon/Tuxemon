@@ -37,13 +37,13 @@ from itertools import chain
 
 import pygame
 
-from core import state, tools
-from core.components.locale import translator
-from core.components.pyganim import PygAnimation
-from core.components.sprite import Sprite
-from core.components.technique import Technique
-from core.components.ui.draw import GraphicBox
-from core.components.ui.text import TextArea
+from tuxemon.core import state, tools
+from tuxemon.core.components.locale import translator
+from tuxemon.core.components.pyganim import PygAnimation
+from tuxemon.core.components.sprite import Sprite
+from tuxemon.core.components.technique import Technique
+from tuxemon.core.components.ui.draw import GraphicBox
+from tuxemon.core.components.ui.text import TextArea
 from .combat_animations import CombatAnimations
 
 trans = translator.translate

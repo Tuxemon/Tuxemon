@@ -1,11 +1,11 @@
 from __future__ import division
 
-from core import tools
-from core.components.locale import translator
-from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu
-from core.components.sprite import Sprite
-from core.components.ui.text import TextArea
+from tuxemon.core import tools
+from tuxemon.core.components.locale import translator
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.components.sprite import Sprite
+from tuxemon.core.components.ui.text import TextArea
 
 trans = translator.translate
 

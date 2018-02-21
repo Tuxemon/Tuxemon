@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -24,16 +25,46 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# main.py Main game
+# __main__.py Main game
 #
-"""Executes the main game. Primarily used for Android builds
-of the game.
+"""Starts the core.main.main() function which, in turn, initializes
+pygame and starts the game, unless headless is specified.
+
+To run an individual component (e.g. core/prepare.py):
+
+`python -m core.prepare`
+
 """
 from __future__ import absolute_import
-
+from __future__ import print_function
 import sys
-from tuxemon.core.main import main
+import getopt
 
-if __name__ == '__main__':
-    main()
+
+def main(args=None):
+    server = False
+    opts, args = getopt.getopt(sys.argv[1:], "hs", ["help", "server"])
+    for opt, arg in opts:
+        if opt == '-h':
+            print(sys.argv[0], '[--server]')
+            print("  -h              Display this help message")
+            print("  -s, --headless  Start a headless server")
+            sys.exit()
+        elif opt in ("-s", "--server"):
+            server = True
+
+    if server:
+        from tuxemon.core.main import headless
+
+        headless()
+
+    else:
+        from tuxemon.core.main import main
+
+        main()
+
     sys.exit()
+
+
+if __name__ == "__main__":
+    main()

@@ -32,9 +32,9 @@ import os
 import random
 from collections import namedtuple
 
-from core import prepare
-from core.components import db
-from core.components.locale import translator
+from tuxemon.core import prepare
+from tuxemon.core.components import db
+from tuxemon.core.components.locale import translator
 
 logger = logging.getLogger(__name__)
 

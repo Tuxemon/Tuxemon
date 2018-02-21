@@ -23,8 +23,8 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.eventaction import EventAction
-from core.platform import mixer
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

@@ -5,13 +5,13 @@ import os
 
 import pygame
 
-from core import prepare
-from core.tools import open_dialog
-from core.components import save
-from core.components.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
-from core.components.ui import text
-from core.components.locale import translator
+from tuxemon.core import prepare
+from tuxemon.core.tools import open_dialog
+from tuxemon.core.components import save
+from tuxemon.core.components.menu import PopUpMenu
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.ui import text
+from tuxemon.core.components.locale import translator
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.

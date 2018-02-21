@@ -23,9 +23,9 @@ from __future__ import absolute_import
 
 import logging
 
-from core import prepare
-from core.components.event.eventaction import EventAction
-from core.platform import mixer
+from tuxemon.core import prepare
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
 

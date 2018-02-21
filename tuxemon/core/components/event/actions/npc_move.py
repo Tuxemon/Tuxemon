@@ -21,9 +21,9 @@
 #
 from __future__ import absolute_import
 
-from core.components.event import get_npc
-from core.components.event.eventaction import EventAction
-from core.components.map import dirs2
+from tuxemon.core.components.event import get_npc
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.map import dirs2
 
 
 def simple_path(origin, direction, tiles):

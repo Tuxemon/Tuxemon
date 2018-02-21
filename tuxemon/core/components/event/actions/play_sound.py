@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core import tools
-from core.components.event.eventaction import EventAction
+from tuxemon.core import tools
+from tuxemon.core.components.event.eventaction import EventAction
 
 
 class PlaySoundAction(EventAction):

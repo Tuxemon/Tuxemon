@@ -31,7 +31,7 @@
 import logging
 import pygame
 from . import screen
-from core import tools
+from tuxemon.core import tools
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -53,7 +53,7 @@ class Controller(object):
         self.dpad = {}
 
     def load(self):
-        from core import prepare
+        from tuxemon.core import prepare
         self.dpad["surface"] = tools.load_and_scale("gfx/d-pad.png")
         self.dpad["position"] = (0, prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height() )
 

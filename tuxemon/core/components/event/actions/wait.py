@@ -23,7 +23,7 @@ from __future__ import absolute_import
 
 import time
 
-from core.components.event.eventaction import EventAction
+from tuxemon.core.components.event.eventaction import EventAction
 
 
 class WaitAction(EventAction):

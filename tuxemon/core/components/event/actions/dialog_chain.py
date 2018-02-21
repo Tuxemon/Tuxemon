@@ -23,9 +23,9 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.actions import replace_text
-from core.components.event.eventaction import EventAction
-from core.tools import open_dialog
+from tuxemon.core.components.event.actions import replace_text
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.tools import open_dialog
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

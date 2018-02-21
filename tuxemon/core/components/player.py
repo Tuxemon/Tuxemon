@@ -31,7 +31,7 @@ from __future__ import absolute_import, division
 
 import logging
 
-from core.components.npc import Npc
+from tuxemon.core.components.npc import Npc
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

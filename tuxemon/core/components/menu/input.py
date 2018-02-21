@@ -6,11 +6,11 @@ from __future__ import absolute_import
 
 from functools import partial
 
-from core import tools
-from core.components.menu import Menu
-from core.components.menu.interface import MenuItem
-from core.components.ui.text import TextArea
-from core.components.game_event import input_event
+from tuxemon.core import tools
+from tuxemon.core.components.menu import Menu
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.components.game_event import input_event
 
 import pygame
 

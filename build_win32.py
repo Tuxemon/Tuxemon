@@ -55,6 +55,6 @@ if __name__ == "__main__":
         version = "0.3",
         options = {"build_exe": build_exe_options},
         description = "Open source RPG",
-        executables = [Executable("tuxemon.py", base=base, icon="resources/gfx/icon.ico")],
+        executables = [Executable("txmn.py", base=base, icon="resources/gfx/icon.ico")],
         )
 

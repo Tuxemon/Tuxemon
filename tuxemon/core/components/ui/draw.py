@@ -6,8 +6,8 @@ from itertools import product
 
 import pygame
 
-from core import prepare
-from core.components.sprite import Sprite
+from tuxemon.core import prepare
+from tuxemon.core.components.sprite import Sprite
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

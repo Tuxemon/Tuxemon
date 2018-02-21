@@ -2,12 +2,12 @@ from __future__ import division
 
 import pygame
 
-from core import prepare
-from core import tools
-from core.components.menu.menu import Menu
-from core.components.menu.interface import HpBar, MenuItem
-from core.components.ui.draw import GraphicBox
-from core.components.ui.text import draw_text, TextArea
+from tuxemon.core import prepare
+from tuxemon.core import tools
+from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.components.menu.interface import HpBar, MenuItem
+from tuxemon.core.components.ui.draw import GraphicBox
+from tuxemon.core.components.ui.text import draw_text, TextArea
 
 
 class MonsterMenuState(Menu):

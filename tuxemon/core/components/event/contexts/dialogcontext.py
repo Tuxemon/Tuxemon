@@ -25,8 +25,8 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.eventcontext import EventContext
-from core.tools import open_dialog
+from tuxemon.core.components.event.eventcontext import EventContext
+from tuxemon.core.tools import open_dialog
 
 
 class DialogContext(EventContext):

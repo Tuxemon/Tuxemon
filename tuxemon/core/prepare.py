@@ -143,7 +143,7 @@ def init():
     global GFX
 
     # initialize any platform-specific workarounds before pygame
-    from core import platform
+    from tuxemon.core import platform
     platform.init()
 
     from .platform import android

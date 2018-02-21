@@ -23,7 +23,7 @@ from __future__ import absolute_import
 
 import pygame
 
-from core.components.event.eventcondition import EventCondition
+from tuxemon.core.components.event.eventcondition import EventCondition
 
 
 class ButtonPressedCondition(EventCondition):

@@ -35,10 +35,10 @@ import re
 
 import pygame
 
-import core.components.sprite
-from core import prepare
-from core.components import pyganim
-from core.platform import mixer
+import tuxemon.core.components.sprite
+from tuxemon.core import prepare
+from tuxemon.core.components import pyganim
+from tuxemon.core.platform import mixer
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -157,7 +157,7 @@ def load_sprite(filename, **rect_kwargs):
     :param filename: Filename to load
     :rtype: core.components.sprite.Sprite
     """
-    sprite = core.components.sprite.Sprite()
+    sprite = tuxemon.core.components.sprite.Sprite()
     sprite.image = load_and_scale(filename)
     sprite.rect = sprite.image.get_rect(**rect_kwargs)
     return sprite

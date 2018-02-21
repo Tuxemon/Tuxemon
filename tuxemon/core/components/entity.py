@@ -23,8 +23,8 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
-from core.components.euclid import Point2, Vector3, Point3
-from core.components.map import proj
+from tuxemon.core.components.euclid import Point2, Vector3, Point3
+from tuxemon.core.components.map import proj
 
 
 class Entity(object):

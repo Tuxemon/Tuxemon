@@ -35,11 +35,11 @@ import os
 
 import pygame
 
-from core import prepare
-from core.tools import nearest
-from core.components.item import Item
-from core.components.monster import Monster
-from core.components.technique import Technique
+from tuxemon.core import prepare
+from tuxemon.core.tools import nearest
+from tuxemon.core.components.item import Item
+from tuxemon.core.components.monster import Monster
+from tuxemon.core.components.technique import Technique
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

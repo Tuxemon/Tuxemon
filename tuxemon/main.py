@@ -32,7 +32,7 @@ of the game.
 from __future__ import absolute_import
 
 import sys
-from core.main import main
+from tuxemon.core.main import main
 
 if __name__ == '__main__':
     main()

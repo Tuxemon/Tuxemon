@@ -34,7 +34,7 @@ import os
 
 from operator import itemgetter
 
-from core import prepare
+from tuxemon.core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

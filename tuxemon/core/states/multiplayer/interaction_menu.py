@@ -1,5 +1,5 @@
-from core.components.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu import PopUpMenu
+from tuxemon.core.components.menu.interface import MenuItem
 
 
 class InteractionMenu(PopUpMenu):

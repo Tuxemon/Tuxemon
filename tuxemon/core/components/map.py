@@ -38,12 +38,12 @@ import pyscroll
 import pytmx
 from pytmx.util_pygame import load_pygame
 
-from core import prepare
-from core.tools import scaled_image_loader
-from core.components.euclid import Vector2, Vector3, Point2
-from core.components.event import EventObject
-from core.components.event import MapAction
-from core.components.event import MapCondition
+from tuxemon.core import prepare
+from tuxemon.core.tools import scaled_image_loader
+from tuxemon.core.components.euclid import Vector2, Vector3, Point2
+from tuxemon.core.components.event import EventObject
+from tuxemon.core.components.event import MapAction
+from tuxemon.core.components.event import MapCondition
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

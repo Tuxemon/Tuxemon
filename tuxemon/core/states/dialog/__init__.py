@@ -2,8 +2,8 @@ from __future__ import division
 
 import pygame
 
-from core.components.menu.menu import PopUpMenu
-from core.components.ui.text import TextArea
+from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.components.ui.text import TextArea
 
 
 class DialogState(PopUpMenu):

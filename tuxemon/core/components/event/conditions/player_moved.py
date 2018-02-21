@@ -21,7 +21,7 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.eventcondition import EventCondition
+from tuxemon.core.components.event.eventcondition import EventCondition
 
 
 # TODO: move to some other place?

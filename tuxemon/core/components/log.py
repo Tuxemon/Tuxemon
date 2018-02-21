@@ -33,7 +33,7 @@ from __future__ import print_function
 import sys
 import logging
 
-from core import prepare
+from tuxemon.core import prepare
 
 
 def configure():

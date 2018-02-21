@@ -36,11 +36,11 @@ from __future__ import print_function
 import logging
 from functools import partial
 
-from core.tools import open_dialog
-from core.components.game_event import GAME_EVENT, INPUT_EVENT
-from core.components.locale import translator
-from core.components.menu.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
+from tuxemon.core.tools import open_dialog
+from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
+from tuxemon.core.components.locale import translator
+from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.components.menu.interface import MenuItem
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

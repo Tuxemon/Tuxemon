@@ -35,11 +35,11 @@ import logging
 from os.path import join
 from functools import partial
 
-from core import prepare
-from core.state import State
-from core.components.menu.interface import MenuItem
-from core.components.menu.menu import PopUpMenu
-from core.components.locale import translator
+from tuxemon.core import prepare
+from tuxemon.core.state import State
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.components.locale import translator
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

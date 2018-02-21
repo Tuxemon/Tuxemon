@@ -33,7 +33,7 @@ import logging
 import pprint
 import random
 
-from core import tools
+from tuxemon.core import tools
 from . import db
 from .locale import translator
 

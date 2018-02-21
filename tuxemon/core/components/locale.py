@@ -29,7 +29,7 @@
 import logging
 import json
 import os
-from core import prepare
+from tuxemon.core import prepare
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

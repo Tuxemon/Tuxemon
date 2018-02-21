@@ -28,8 +28,8 @@
 #
 """This module contains the Tuxemon server and client.
 """
-from core.components.middleware import Multiplayer, Controller
-from core import prepare
+from tuxemon.core.components.middleware import Multiplayer, Controller
+from tuxemon.core import prepare
 
 from datetime import datetime
 
@@ -848,7 +848,7 @@ def populate_client(cuuid, event_data, game, registry):
     # TODO: move NPC from actions make make a common core class
     # needs to use actions, or update classes
     raise NotImplementedError
-    from core.components.event.actions.npc import Npc
+    from tuxemon.core.components.event.actions.npc import Npc
 
     char_dict = event_data["char_dict"]
     sn = str(event_data["sprite_name"])
@@ -874,7 +874,7 @@ def update_client(sprite, char_dict, game):
     :param char_dict: sprite's updated variable values.
     :param game: Server or client Control object.
 
-    :type sprite: Player or Npc object from core.components.player
+    :type sprite: Player or Npc object from tuxemon.core.components.player
     :type event_data: Dictionary
     :type game: core.control.Control() object
 

@@ -30,8 +30,8 @@ import logging
 
 import pygame
 
-from core import prepare
-from core.components import plugin
+from tuxemon.core import prepare
+from tuxemon.core.components import plugin
 
 logger = logging.getLogger(__name__)
 

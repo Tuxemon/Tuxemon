@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core import prepare
-from core.components.event.eventaction import EventAction
+from tuxemon.core import prepare
+from tuxemon.core.components.event.eventaction import EventAction
 
 
 class TeleportAction(EventAction):

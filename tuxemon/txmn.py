@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Tuxemon
@@ -24,7 +25,7 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# tuxemon.py Main game
+# txmn.py Main game
 #
 """Starts the core.main.main() function which, in turn, initializes
 pygame and starts the game, unless headless is specified.
@@ -36,29 +37,11 @@ To run an individual component (e.g. core/prepare.py):
 """
 from __future__ import absolute_import
 from __future__ import print_function
-import sys
-import getopt
+from os import path
+from os import sys
+
 
 if __name__ == '__main__':
-    server = False
-    opts, args = getopt.getopt(sys.argv[1:], "hs", ["help", "server"])
-    for opt, arg in opts:
-        if opt == '-h':
-            print(sys.argv[0], '[--server]')
-            print("  -h              Display this help message")
-            print("  -s, --headless  Start a headless server")
-            sys.exit()
-        elif opt in ("-s", "--server"):
-            server = True
-
-    if server:
-        from core.main import headless
-
-        headless()
-
-    else:
-        from core.main import main
-
-        main()
-
-    sys.exit()
+    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+    import tuxemon.core.main
+    tuxemon.core.main.main()

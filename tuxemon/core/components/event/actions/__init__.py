@@ -23,7 +23,7 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.locale import translator
+from tuxemon.core.components.locale import translator
 
 logger = logging.getLogger(__name__)
 

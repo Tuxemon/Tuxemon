@@ -1,7 +1,7 @@
 from __future__ import division
 
-from core.components.menu.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.components.menu.interface import MenuItem
 
 
 class ChoiceState(PopUpMenu):

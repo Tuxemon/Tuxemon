@@ -21,9 +21,9 @@
 #
 from __future__ import absolute_import
 
-import core.components.npc
-from core.components import ai
-from core.components.event.eventaction import EventAction
+import tuxemon.core.components.npc
+from tuxemon.core.components import ai
+from tuxemon.core.components.event.eventaction import EventAction
 
 
 class CreateNpcAction(EventAction):
@@ -59,7 +59,7 @@ class CreateNpcAction(EventAction):
             return
 
         # Create a new NPC object
-        npc = core.components.npc.Npc(slug, sprite_name=self.parameters.animations)
+        npc = tuxemon.core.components.npc.Npc(slug, sprite_name=self.parameters.animations)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables

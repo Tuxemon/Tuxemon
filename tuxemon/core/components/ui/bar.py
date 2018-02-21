@@ -32,7 +32,7 @@ import logging
 
 import pygame
 
-from core.components.ui import UserInterface
+from tuxemon.core.components.ui import UserInterface
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

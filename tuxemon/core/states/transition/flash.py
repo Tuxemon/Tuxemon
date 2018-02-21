@@ -4,8 +4,8 @@ import logging
 
 import pygame
 
-from core import prepare
-from core.state import State
+from tuxemon.core import prepare
+from tuxemon.core.state import State
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

@@ -3,9 +3,9 @@ from abc import abstractmethod
 
 import pygame
 
-from core import prepare
-from core.state import State
-from core.platform import mixer
+from tuxemon.core import prepare
+from tuxemon.core.state import State
+from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
 

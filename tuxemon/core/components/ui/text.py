@@ -2,8 +2,8 @@ from __future__ import division
 
 import pygame
 
-from core.components.ui import draw
-from core.components.sprite import Sprite
+from tuxemon.core.components.ui import draw
+from tuxemon.core.components.sprite import Sprite
 
 min_font_size = 7
 

@@ -32,9 +32,9 @@ import pprint
 import random
 import os.path
 
-from core import tools
-from core.components import ai
-from core.components.technique import Technique
+from tuxemon.core import tools
+from tuxemon.core.components import ai
+from tuxemon.core.components.technique import Technique
 from . import db, fusion
 from .locale import translator
 

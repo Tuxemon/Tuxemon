@@ -33,6 +33,7 @@ import importlib
 import inspect
 import logging
 import os
+import re
 import sys
 
 # Create a logger for optional handling of debug messages.
@@ -57,7 +58,7 @@ class PluginManager(object):
 
     def __init__(self, base_folders=None):
         if base_folders is None:
-            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "tuxemon", "/mnt/Tuxemon"]
+            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "Tuxemon", "/mnt/Tuxemon"]
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
@@ -72,12 +73,11 @@ class PluginManager(object):
         for folder in self.folders:
             folder = folder.replace('\\', '/')
             # Take the plugin folder and create a base module path based on it.
-            for base_folder in self.base_folders:
-                if base_folder in folder:
-                    module_path = '.'.join(folder.split(base_folder + '/')[-1].split('/'))
-                    break
-            logger.debug("Plugin folder: " + folder)
-            logger.debug("Module path: " + module_path)
+            pattern = re.compile('tuxemon' + os.sep + 'core.*$')
+            matches = pattern.findall(folder)
+            if len(matches) == 0:
+                logger.exception("Unable to determine plugin module path for: ", folder)
+            module_path = matches[0].replace(os.sep, '.')
 
             # Look for a ".plugin" in the plugin folder to create a list of modules
             # to import.

@@ -6,11 +6,11 @@ from functools import partial
 
 import pygame
 
-from core import prepare, state, tools
-from core.components.menu.interface import MenuCursor, MenuItem
-from core.components.sprite import RelativeGroup, VisualSpriteList
-from core.components.ui.draw import GraphicBox
-from core.components.ui.text import TextArea
+from tuxemon.core import prepare, state, tools
+from tuxemon.core.components.menu.interface import MenuCursor, MenuItem
+from tuxemon.core.components.sprite import RelativeGroup, VisualSpriteList
+from tuxemon.core.components.ui.draw import GraphicBox
+from tuxemon.core.components.ui.text import TextArea
 
 logger = logging.getLogger(__name__)
 

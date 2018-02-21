@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core.components import monster
-from core.components.event.eventaction import EventAction
+from tuxemon.core.components import monster
+from tuxemon.core.components.event.eventaction import EventAction
 
 
 class AddMonsterAction(EventAction):

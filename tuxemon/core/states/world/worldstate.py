@@ -35,11 +35,11 @@ import logging
 import pygame
 from six.moves import map as imap
 
-from core import prepare, state
-from core.components import networking
-from core.components.game_event import GAME_EVENT, INPUT_EVENT
-from core.components.map import PathfindNode, Map, dirs2, pairs
-from core.tools import nearest
+from tuxemon.core import prepare, state
+from tuxemon.core.components import networking
+from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
+from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core.tools import nearest
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

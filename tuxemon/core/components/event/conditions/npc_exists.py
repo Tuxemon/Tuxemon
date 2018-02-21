@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core.components.event import get_npc
-from core.components.event.eventcondition import EventCondition
+from tuxemon.core.components.event import get_npc
+from tuxemon.core.components.event.eventcondition import EventCondition
 
 
 class NPCExistsCondition(EventCondition):

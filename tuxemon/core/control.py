@@ -31,7 +31,7 @@ import time
 
 import pygame as pg
 
-import core.components.event.eventengine
+import tuxemon.core.components.event.eventengine
 from . import prepare
 from .components import cli, controller, networking, rumble
 from .components.game_event import GAME_EVENT
@@ -73,7 +73,7 @@ class Control(StateManager):
         self.interacts = list()
 
         # TODO: move out to state manager
-        self.package = "core.states"
+        self.package = "tuxemon.core.states"
         self._state_queue = list()
         self._state_dict = dict()
         self._state_stack = list()
@@ -98,7 +98,7 @@ class Control(StateManager):
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
-        self.event_engine = core.components.event.eventengine.EventEngine(self)
+        self.event_engine = tuxemon.core.components.event.eventengine.EventEngine(self)
         self.event_conditions = {}
         self.event_actions = {}
         self.event_persist = {}
@@ -790,7 +790,7 @@ class HeadlessControl(Control, StateManager):
         self.current_time = 0.0
 
         # TODO: move out to state manager
-        self.package = "core.states"
+        self.package = "tuxemon.core.states"
         self.state_dict = dict()
         self._state_stack = list()
 

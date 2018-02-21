@@ -10,13 +10,13 @@ from functools import partial
 
 import pygame
 
-from core import tools
-from core.components.menu import Menu
-from core.components.menu.interface import HpBar
-from core.components.pyganim import PygAnimation
-from core.components.sprite import Sprite
-from core.tools import scale, scale_sequence, scale_sprite
-from core.components.locale import translator
+from tuxemon.core import tools
+from tuxemon.core.components.menu import Menu
+from tuxemon.core.components.menu.interface import HpBar
+from tuxemon.core.components.pyganim import PygAnimation
+from tuxemon.core.components.sprite import Sprite
+from tuxemon.core.tools import scale, scale_sequence, scale_sprite
+from tuxemon.core.components.locale import translator
 
 trans = translator.translate
 

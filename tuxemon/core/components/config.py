@@ -35,7 +35,7 @@ except ImportError:
 import pygame
 
 # set default animation to 'out_quint'
-from core.components.animation import Animation
+from tuxemon.core.components.animation import Animation
 Animation.default_transition = 'out_quint'
 
 # read by Config and HeadlessConfig

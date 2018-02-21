@@ -1,7 +1,7 @@
 import logging
 
-from core.components import save
-from core.components.player import Player
+from tuxemon.core.components import save
+from tuxemon.core.components.player import Player
 from .save_menu import SaveMenuState
 
 # Create a logger for optional handling of debug messages.

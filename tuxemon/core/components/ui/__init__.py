@@ -29,8 +29,8 @@
 #
 import logging
 
-from core import tools
-from core.components import pyganim
+from tuxemon.core import tools
+from tuxemon.core.components import pyganim
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -182,4 +182,4 @@ class UserInterface(object):
         self.animation.scale(width_height)
 
 
-import core.components.ui.bar
+import tuxemon.core.components.ui.bar

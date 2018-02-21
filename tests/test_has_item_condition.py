@@ -5,8 +5,8 @@ from collections import namedtuple
 
 # for some test runners that cannot find the tuxemon core
 sys.path.insert(0, os.path.join('tuxemon', ))
-from core.control import HeadlessControl
-from core.components.event.conditions.has_item import HasItemCondition
+from tuxemon.core.control import HeadlessControl
+from tuxemon.core.components.event.conditions.has_item import HasItemCondition
 
 # mocks and defaults
 cond_nt = namedtuple("condition", ("parameters",))

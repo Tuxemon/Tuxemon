@@ -23,8 +23,8 @@ from __future__ import absolute_import
 
 from operator import eq, gt, lt, ge, le
 
-from core.components.event import get_npc
-from core.components.event.eventcondition import EventCondition
+from tuxemon.core.components.event import get_npc
+from tuxemon.core.components.event.eventcondition import EventCondition
 
 cmp_dict = {
     None: ge,

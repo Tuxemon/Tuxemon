@@ -24,12 +24,12 @@ from __future__ import absolute_import
 import logging
 import random
 
-from core import tools
-from core.components import ai, db, monster
-from core.components.event.actions import check_battle_legal
-from core.components.event.eventaction import EventAction
-from core.components.npc import Npc
-from core.platform import mixer
+from tuxemon.core import tools
+from tuxemon.core.components import ai, db, monster
+from tuxemon.core.components.event.actions import check_battle_legal
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.npc import Npc
+from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
 

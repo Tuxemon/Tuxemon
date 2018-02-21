@@ -23,8 +23,8 @@ from __future__ import absolute_import
 
 import logging
 
-from core.components.event.actions import check_battle_legal
-from core.components.event.eventaction import EventAction
+from tuxemon.core.components.event.actions import check_battle_legal
+from tuxemon.core.components.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 

@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.eventaction import EventAction
-from core.components.item import Item
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.item import Item
 
 
 class AddItemAction(EventAction):

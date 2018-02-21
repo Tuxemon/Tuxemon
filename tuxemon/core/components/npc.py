@@ -33,11 +33,11 @@ import os
 
 import pygame
 
-from core.components import db, pyganim
-from core.components.entity import Entity
-from core.components.locale import translator
-from core.components.map import proj, facing, dirs3, dirs2, get_direction
-from core.tools import load_and_scale, trunc
+from tuxemon.core.components import db, pyganim
+from tuxemon.core.components.entity import Entity
+from tuxemon.core.components.locale import translator
+from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
+from tuxemon.core.tools import load_and_scale, trunc
 
 trans = translator.translate
 

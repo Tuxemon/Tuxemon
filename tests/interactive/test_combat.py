@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
     print("Runs as standalone")
 
-    from core.components import config
+    from tuxemon.core.components import config
 
 
     class Game(object):

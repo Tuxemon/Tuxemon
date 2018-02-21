@@ -6,14 +6,14 @@ from functools import partial
 
 import pygame
 
-from core import tools
-from core.components.locale import translator
-from core.components.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu
-from core.components.sprite import MenuSpriteGroup, SpriteGroup
-from core.components.technique import Technique
-from core.components.ui.draw import GraphicBox
+from tuxemon.core import tools
+from tuxemon.core.components.locale import translator
+from tuxemon.core.components.menu import PopUpMenu
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.components.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.core.components.technique import Technique
+from tuxemon.core.components.ui.draw import GraphicBox
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)

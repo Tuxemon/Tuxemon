@@ -1,7 +1,7 @@
 import pygame
 
-from core import tools
-from core.components.ui.draw import GraphicBox
+from tuxemon.core import tools
+from tuxemon.core.components.ui.draw import GraphicBox
 
 
 class HpBar(object):

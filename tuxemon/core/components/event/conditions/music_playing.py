@@ -21,8 +21,8 @@
 #
 from __future__ import absolute_import
 
-from core.components.event.eventcondition import EventCondition
-from core.platform import mixer
+from tuxemon.core.components.event.eventcondition import EventCondition
+from tuxemon.core.platform import mixer
 
 
 class MusicPlayingCondition(EventCondition):

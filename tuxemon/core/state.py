@@ -32,12 +32,12 @@ from importlib import import_module
 
 import pygame
 
-from core import prepare
-from core import tools
-from core.components.animation import Animation
-from core.components.animation import Task
-from core.components.animation import remove_animations_of
-from core.components.sprite import SpriteGroup
+from tuxemon.core import prepare
+from tuxemon.core import tools
+from tuxemon.core.components.animation import Animation
+from tuxemon.core.components.animation import Task
+from tuxemon.core.components.animation import remove_animations_of
+from tuxemon.core.components.sprite import SpriteGroup
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -277,7 +277,7 @@ class StateManager(object):
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
+        state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.')[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug("loading game states from {}".format(state_folder))
         for folder in os.listdir(state_folder):

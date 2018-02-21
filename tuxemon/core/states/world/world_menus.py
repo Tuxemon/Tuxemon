@@ -5,11 +5,11 @@ from functools import partial
 
 import pygame
 
-from core import prepare
-from core.components.locale import translator
-from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu
-from core.tools import open_dialog
+from tuxemon.core import prepare
+from tuxemon.core.components.locale import translator
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.tools import open_dialog
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -66,7 +66,7 @@ class WorldMenuState(Menu):
         add_menu_items(self, menu_items_map)
 
     def open_monster_menu(self):
-        from core.states.monster import MonsterMenuState
+        from tuxemon.core.states.monster import MonsterMenuState
 
         def monster_menu_hook():
             """ Used to rearrange monsters interactively

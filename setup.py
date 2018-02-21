@@ -17,9 +17,12 @@ for match in matches:
     modules.append(match)
 
 # Get the version from the README file.
-f = open("README.md", "r")
-VERSION = f.readline().split(" ")[-1].replace("\n", "")
-f.close()
+with open("README.md", "r") as f:
+    VERSION = f.readline().split(" ")[-1].replace("\n", "")
+
+# Get the dependencies from requirements.text
+with open("requirements.txt", "r") as f:
+    REQUIREMENTS = f.read().splitlines()
 
 # Configure the setuptools
 setup(name='Tuxemon',
@@ -32,6 +35,7 @@ setup(name='Tuxemon',
       packages=modules,
       license="GPLv3",
       long_description='https://github.com/Tuxemon/Tuxemon',
+      install_requires=REQUIREMENTS,
       entry_points={
           'gui_scripts': [
               'tuxemon = tuxemon.__main__:main'

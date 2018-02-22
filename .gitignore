@@ -64,3 +64,6 @@ Thumbs.db
 # PyCharm
 *.iml
 .idea/*
+
+# Mac OS
+*.DS_Store

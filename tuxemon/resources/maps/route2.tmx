@@ -249,6 +249,7 @@
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="is variable_set skadoosh:yes"/>
+    <property name="cond5" value="not variable_set leavemealone:yes"/>
    </properties>
   </object>
   <object id="89" name="yes to talk" type="event" x="48" y="48" width="16" height="16">
@@ -563,8 +564,10 @@
   </object>
   <object id="134" name="spilledthebeans" type="event" x="48" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="wait 1"/>
-    <property name="act2" value="translated_dialog leavemealone"/>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="wait 1"/>
+    <property name="act3" value="translated_dialog leavemealone"/>
+    <property name="act4" value="player_resume"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

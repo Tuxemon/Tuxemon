@@ -37,11 +37,8 @@ To run an individual component (e.g. core/prepare.py):
 """
 from __future__ import absolute_import
 from __future__ import print_function
-from os import path
-from os import sys
+import tuxemon.core.main
 
 
 if __name__ == '__main__':
-    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-    import tuxemon.core.main
     tuxemon.core.main.main()

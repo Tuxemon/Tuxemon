@@ -35,7 +35,7 @@ sudo apt install python python-pygame python-pip python-imaging python-six git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-python tuxemon/txmn.py
+python tuxemon.py
 ```
 
 *Optional rumble support*
@@ -55,8 +55,7 @@ sudo pip install neteria
 git clone https://github.com/bitcraft/PyTMX
 cd PyTMX; python setup.py install
 git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon/tuxemon
-python txmn.py
+python tuxemon.py
 ```
 
 **Mac OS X (Yosemite)**
@@ -71,8 +70,7 @@ brew install sdl_mixer --with-libvorbis
 sudo pip install git+https://github.com/pygame/pygame.git
 sudo pip install -U -r requirements.txt 
 git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon/tuxemon
-ulimit -n 10000; python txmn.py
+ulimit -n 10000; python tuxemon.py
 ```
 
 **Arch Linux**

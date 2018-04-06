@@ -385,10 +385,18 @@
    </properties>
   </object>
   <object id="103" name="Player Spawn" type="event" x="80" y="592" width="16" height="16"/>
-  <object id="105" name="explanation" type="event" x="48" y="400" width="16" height="16"/>
+  <object id="105" name="explanation" type="event" x="48" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog iamknight"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
   <object id="107" name="make npcs" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_knight1,3,24,knight,stand"/>
+    <property name="act2" value="create_npc npc_knight2,2,24,knight,stand"/>
     <property name="cond1" value="not npc_exists npc_knight1"/>
    </properties>
   </object>

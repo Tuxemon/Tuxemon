@@ -38,7 +38,7 @@ from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.locale import translator
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.tools import load_and_scale, trunc
-
+from .inventory import Inventory
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -107,7 +107,7 @@ class Npc(Entity):
 
         self.isplayer = False  # used for various tests, idk
         self.monsters = []  # This is a list of tuxemon the npc has
-        self.inventory = {}  # The Player's inventory.
+        self.inventory = Inventory()  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
 
         # pathfinding and waypoint related

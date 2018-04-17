@@ -40,6 +40,7 @@ from tuxemon.core.tools import nearest
 from tuxemon.core.components.item import Item
 from tuxemon.core.components.monster import Monster
 from tuxemon.core.components.technique import Technique
+from .inventory import Inventory
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -70,7 +71,7 @@ def save(player, screenshot, slot, game):
     json_data = dict()
 
     tempinv1 = dict()
-    for name, itm in player.inventory.items():
+    for name, itm in player.inventory.get_all().items():
         tempinv1[itm['item'].slug] = itm['quantity']
     json_data["inventory"] = tempinv1
 
@@ -163,13 +164,10 @@ def load(slot):
     saveData = dict()
     with open(save_path, 'r') as save_file:
         json_data = json.load(save_file)
-        tempinv = dict()
+        tempinv = Inventory()
 
         for slug, quant in json_data['inventory'].items():
-            tempinv1 = dict()
-            tempinv1['item'] = Item(slug)
-            tempinv1['quantity'] = quant
-            tempinv[tempinv1['item'].slug] = tempinv1
+            tempinv.add_item_slug(slug, quantity=quant)
         saveData['inventory'] = tempinv
 
         tempmon = list()
@@ -185,13 +183,10 @@ def load(slot):
         tempstorage = dict()
         for keys, values in json_data['storage'].items():
             if keys == 'items':
-                tempinv = dict()
+                tempinv = Inventory()
 
                 for slug, quant in values.items():
-                    tempinv1 = dict()
-                    tempinv1['item'] = Item(slug)
-                    tempinv1['quantity'] = quant
-                    tempinv[tempinv1['item'].slug] = tempinv1
+                    tempinv.add_item(Item(slug), quantity=quant)
                 tempstorage[keys] = tempinv
 
             elif keys == 'monsters':

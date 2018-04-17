@@ -78,7 +78,7 @@ class Npc(Entity):
     To move one tile, simply set a path of one item.
     """
     party_limit = 6  # The maximum number of tuxemon this npc can hold
-
+    speed = 1 # TODO: NPC ( and player ) speed
     def __init__(self, npc_slug, sprite_name=None):
         super(Npc, self).__init__()
 

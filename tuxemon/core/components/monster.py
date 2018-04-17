@@ -400,7 +400,7 @@ class Monster(object):
             sprite = "gfx/sprites/battle/missing.png"
 
         return sprite
-        
+
 
     def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.
@@ -425,3 +425,18 @@ class Monster(object):
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
         self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
         return False
+
+    def is_healed(self):
+        return self.current_hp == self.hp
+
+    def heal(self, hp_healed):
+        if self.is_healed():
+            return False
+
+        self.current_hp += hp_healed
+
+        # if max pv is exceeded :
+        if self.current_hp > self.hp:
+            self.current_hp = self.hp
+
+        return True

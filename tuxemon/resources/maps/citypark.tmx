@@ -388,6 +388,9 @@
   <object id="105" name="explanation" type="event" x="48" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog iamknight"/>
+    <property name="act2" value="translated_dialog iamknight2"/>
+    <property name="act3" value="translated_dialog iamknight3"/>
+    <property name="act4" value="translated_dialog iamknight4"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

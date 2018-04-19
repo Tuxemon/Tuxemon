@@ -76,7 +76,7 @@ class MonsterMenuState(Menu):
 
         # position and animate the monster portrait
         width, height = prepare.SCREEN_SIZE
-        self.monster_portrait.rect = image.get_rect(centerx=width // 4, top=height // 12)
+        self.monster_portrait.rect = image.image.get_rect(centerx=width // 4, top=height // 12)
         self.sprites.add(self.monster_portrait)
         self.animations.empty()
         self.animate_monster_down()

@@ -184,6 +184,10 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         dirty_append = dirty.append
 
         for s in self.sprites():
+
+            if type(s.image) == Sprite: # draw if it a sprite
+                s.image = s.image.image
+
             if getattr(s, "image", None) is None:
                 continue
 
@@ -195,6 +199,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
                 continue
 
             r = spritedict[s]
+
             newrect = surface_blit(s.image, s.rect)
             if r:
                 if newrect.colliderect(r):

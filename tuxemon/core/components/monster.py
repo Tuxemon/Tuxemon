@@ -421,9 +421,9 @@ class Monster(object):
         self.back_battle_sprite = self.verify_or_replace_sprite(self.back_battle_sprite)
         self.menu_sprite = self.verify_or_replace_sprite(self.menu_sprite)
 
-        self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
-        self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
-        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
+        self.sprites["front"] = tools.load_sprite(self.front_battle_sprite)
+        self.sprites["back"] = tools.load_sprite(self.back_battle_sprite)
+        self.sprites["menu"] = tools.load_sprite(self.menu_sprite)
         return False
 
     def is_healed(self):

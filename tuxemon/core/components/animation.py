@@ -91,6 +91,22 @@ class AnimBase(pygame.sprite.Sprite):
         else:
             [cb() for cb in callbacks]
 
+import tuxemon.core.components.sprite as sprite
+
+class PermisiveAnimation(sprite.Sprite):
+    def _init(self):
+        self.frames = {}
+        self.actual_animation = "main"
+        self.actual_frame = 1 # for test
+
+    @property
+    def image(self):
+        # for test
+        if self.actual_frame == 1:
+            self.actual_frame = 0
+        else:
+            self.actual_frame = 1
+        return self.frames[self.actual_animation]["frames"][self.actual_frame]
 
 class Task(AnimBase):
     """ Execute functions at a later time and optionally loop it

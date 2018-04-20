@@ -33,6 +33,7 @@ from pygame.transform import rotozoom
 from pygame.transform import scale
 
 from tuxemon.core.components.pyganim import PygAnimation
+from tuxemon.core.components.animation import PermisiveAnimation
 
 
 class Sprite(pygame.sprite.DirtySprite):
@@ -182,11 +183,12 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         dirty = self.lostsprites
         self.lostsprites = []
         dirty_append = dirty.append
-
         for s in self.sprites():
-
-            if type(s.image) == Sprite: # draw if it a sprite
-                s.image = s.image.image
+            if type(s.image) == Sprite or type(s.image) == PermisiveAnimation: # draw if it a sprite
+                print("sprite is drawn")
+                image_temp = s.image.image
+            else:
+                image_temp = s.image
 
             if getattr(s, "image", None) is None:
                 continue
@@ -194,13 +196,13 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             if not getattr(s, 'visible', True):
                 continue
 
-            if isinstance(s.image, PygAnimation):
-                s.image.blit(surface, s.rect)
+            if isinstance(image_temp, PygAnimation):
+                image_temp.blit(surface, s.rect)
                 continue
 
             r = spritedict[s]
 
-            newrect = surface_blit(s.image, s.rect)
+            newrect = surface_blit(image_temp, s.rect)
             if r:
                 if newrect.colliderect(r):
                     dirty_append(newrect.union(r))

@@ -178,18 +178,24 @@ def load_asprt(filename):
     slug = data["slug"]
     animations = {}
     for animation in data["animation"]:
-        temp_anim = {"slug" : animation,
-            "frames" : []}
         animation_d = data["animation"][animation]
+        temp_anim = {"slug" : animation,
+            "lenght" : 0,
+            "loopable" : animation_d["loop"],
+            "frames" : [],
+            "time" : []}
 
         for image in animation_d["images"]:
             image_filename = image["frame"]
             #load the image
             temp_anim["frames"].append(load_and_scale(image_filename))
+            temp_anim["time"].append(image["time"])
 
+
+        temp_anim["lenght"] = len(temp_anim["frames"])
         animations[animation] = temp_anim
 
-    anim.frames = animations
+    anim.set_frames(animations)
     return anim
 
 def new_scaled_rect(*args, **kwargs):

@@ -195,6 +195,7 @@ class Technique(object):
             'success': False,
             'should_tackle': False,
             'capture': False,
+            'toPlay' : None
         }
 
         # TODO: handle conflicting values from multiple technique actions

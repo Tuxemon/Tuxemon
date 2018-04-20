@@ -24,7 +24,6 @@ class Inventory(object):
 
     def add_item_slug(self, slug, quantity=1):
         """add an item in the inventory based on his slug"""
-        print("add slug" + slug)
         item_to_add = Item(slug)
         self.add_item(item_to_add, quantity=quantity)
 

@@ -645,6 +645,11 @@ class CombatState(CombatAnimations):
                 # Track damage
                 self._damage_map[target].add(user)
 
+                # animate the atacker
+                if result["success"]:
+                    user_sprite.set_animation("attack","main")
+
+
             else:  # assume this was an item used
 
                 # handle the capture device

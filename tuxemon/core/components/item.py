@@ -174,7 +174,6 @@ class Item(object):
 
         # If this is a consumable item, remove it from the player's inventory.
         if meta_result["success"] and self.type == "Consumable":
-            print(user.inventory)
             user.inventory.delete_item_slug(self.slug)
 
         return meta_result

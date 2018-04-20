@@ -13,7 +13,6 @@ class effect(object):
     name = "undefined_effect_name"
 
     def __init__(self, param={"power" : 0, "technique" : None}):
-        print(param)
         self.param = param
 
     def execute(self, user, target):
@@ -125,7 +124,6 @@ class damage(effect):
         # according to: http://www.math.miami.edu/~jam/azure/compendium/battdam.htm
         # ((2 * user.level / 7) * user.attack * self.power) / target.defense) / 50) +2) * stab_bonus) * type_modifiers/10) * random.randrange(217, 255))/255
 
-        print(self.param)
         tech = self.param["technique"]
         power = tech.power
 
@@ -168,7 +166,9 @@ class damage(effect):
             'damage': damage,
             'should_tackle': bool(damage),
             'success': bool(damage),
+            'toPlay' : "attack"
         }
+
 ##########
 # poison #
 ##########

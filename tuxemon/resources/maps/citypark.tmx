@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="108">
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="110">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -388,19 +388,33 @@
   <object id="105" name="explanation" type="event" x="48" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog iamknight"/>
+    <property name="act10" value="set_variable choice:maybe"/>
     <property name="act2" value="translated_dialog iamknight2"/>
     <property name="act3" value="translated_dialog iamknight3"/>
     <property name="act4" value="translated_dialog iamknight4"/>
+    <property name="act5" value="translated_dialog_choice yes:no,choice"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set choice:yes"/>
+    <property name="cond5" value="not variable_set choice:no"/>
    </properties>
   </object>
   <object id="107" name="make npcs" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc npc_knight1,3,24,knight,stand"/>
     <property name="act2" value="create_npc npc_knight2,2,24,knight,stand"/>
+    <property name="act3" value="npc_face npc_knight2,up"/>
     <property name="cond1" value="not npc_exists npc_knight1"/>
+   </properties>
+  </object>
+  <object id="108" name="no, sorry" type="event" x="48" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog sorry"/>
+    <property name="act2" value="set_variable choice:maybe"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond4" value="is variable_set choice:no"/>
    </properties>
   </object>
  </objectgroup>

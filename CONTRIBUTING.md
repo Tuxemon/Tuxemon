@@ -29,6 +29,14 @@ repository by the project maintainer. This model reduces the amount of friction 
 contributors and is popular with open source projects because it allows people to work
 independently without upfront coordination.
 
+## How do I contribute artistic content?
+Artistic content is defined as image files or sound files.  This includes sprites, tilesets,
+window decorations, fonts, sound effects, music, and anything similar.  All content must
+be under a free license, such as CC0.  For questions about the license, open a github issue.
+
+PLEASE NOTE!  All contributions must be submitted with LOWER CASE FILENAMES only!  PRs which
+do not follow this format may be rejected until filenames are renamed.
+
 ## Making a Pull Request
 **When you're ready to make a pull request, submit your pull to the "development" branch.**
 The "master" branch is used for releases.

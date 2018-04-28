@@ -73,11 +73,11 @@ class PluginManager(object):
         for folder in self.folders:
             folder = folder.replace('\\', '/')
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile('tuxemon' + os.sep + 'core.*$')
+            pattern = re.compile('tuxemon/core.*$')
             matches = pattern.findall(folder)
             if len(matches) == 0:
                 logger.exception("Unable to determine plugin module path for: ", folder)
-            module_path = matches[0].replace(os.sep, '.')
+            module_path = matches[0].replace('/', '.')
 
             # Look for a ".plugin" in the plugin folder to create a list of modules
             # to import.

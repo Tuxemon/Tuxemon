@@ -1,6 +1,6 @@
 pytmx>=3.20.17
 pyscroll>=2.17
 pillow
-pygame
+pygame>=1.9.3
 six
 neteria

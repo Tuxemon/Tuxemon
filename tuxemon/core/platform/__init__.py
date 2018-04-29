@@ -4,7 +4,6 @@ Put platform specific fixes here
 from __future__ import absolute_import
 
 import logging
-from os.path import expanduser
 
 __all__ = ('android', 'init', 'mixer')
 
@@ -45,4 +44,11 @@ def get_config_path():
     if android:
         return "/sdcard/org.tuxemon"
     else:
-        return expanduser("~")
+        try:
+            # python 2.7
+            from os.path import expanduser
+            return expanduser("~")
+        except ImportError:
+            # python 3.5+
+            from pathlib import Path
+            return str(Path.home())

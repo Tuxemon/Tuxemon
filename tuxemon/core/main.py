@@ -78,6 +78,8 @@ def main():
     if prepare.CONFIG.collision_map == "1":
         logger.info("********* DEBUG OPTIONS ENABLED *********")
 
+        logging.basicConfig(level=logging.DEBUG)
+
         action = control.event_engine.execute_action
 
         action("add_monster", ("txmn_bigfin", 10))

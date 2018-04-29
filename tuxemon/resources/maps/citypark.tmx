@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="110">
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="111">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -415,6 +415,17 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond4" value="is variable_set choice:no"/>
+   </properties>
+  </object>
+  <object id="110" name="Yes" type="event" x="48" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog splendid"/>
+    <property name="act2" value="translated_dialog splendid2"/>
+    <property name="act3" value="npc_face npc_knight1,left"/>
+    <property name="act4" value="npc_face npc_knight2,right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is variable_set choice:yes"/>
    </properties>
   </object>
  </objectgroup>

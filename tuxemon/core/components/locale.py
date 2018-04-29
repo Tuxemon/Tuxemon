@@ -29,6 +29,7 @@
 import logging
 import json
 import os
+import io
 from tuxemon.core import prepare
 
 # Create a logger for optional handling of debug messages.
@@ -92,7 +93,7 @@ class Translator(object):
             if not filename.startswith(locale_name):
                 continue
             try:
-                f = open(locale_file, "r")
+                f = io.open(locale_file, "r", encoding='utf-8')
                 data = json.load(f)
                 f.close()
                 translations = dict(data, **translations)

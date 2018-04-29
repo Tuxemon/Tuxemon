@@ -62,7 +62,7 @@ class PluginManager(object):
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
-        self.file_extension = ".py"
+        self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
         self.include_patterns = ["core.components.event.actions", "core.components.event.conditions"]
 
@@ -71,20 +71,21 @@ class PluginManager(object):
 
     def collectPlugins(self):
         for folder in self.folders:
+            logger.debug("searching for plugins: %s", folder)
             folder = folder.replace('\\', '/')
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile('tuxemon' + os.sep + 'core.*$')
+            pattern = re.compile('tuxemon/core.*$')
             matches = pattern.findall(folder)
             if len(matches) == 0:
                 logger.exception("Unable to determine plugin module path for: ", folder)
-            module_path = matches[0].replace(os.sep, '.')
+            module_path = matches[0].replace('/', '.')
 
             # Look for a ".plugin" in the plugin folder to create a list of modules
             # to import.
             modules = []
             for f in os.listdir(folder):
                 if f.endswith(self.file_extension):
-                    modules.append(module_path + "." + f.split(self.file_extension)[0])
+                    modules.append(module_path + "." + os.path.splitext(f)[0])
             self.modules += modules
         logger.debug("Modules to load: " + str(self.modules))
 

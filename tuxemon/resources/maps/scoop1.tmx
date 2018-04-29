@@ -22,10 +22,10 @@
   <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
  </tileset>
  <tileset firstgid="4947" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
-  <image source="../gfx/tilesets/Stairs.png" width="128" height="48"/>
+  <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
  <tileset firstgid="4971" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/Plants.png" width="64" height="64"/>
+  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="4987" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
@@ -34,7 +34,7 @@
   <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
  </tileset>
  <tileset firstgid="6147" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/Kitchen.png" width="64" height="64"/>
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="6163" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
@@ -49,10 +49,10 @@
   <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
  <tileset firstgid="7515" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
-  <image source="../gfx/tilesets/Furniture.png" width="192" height="96"/>
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
  <tileset firstgid="7587" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/Electronics.png" width="64" height="64"/>
+  <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="7603" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
   <image source="../gfx/tilesets/items.png" width="160" height="160"/>

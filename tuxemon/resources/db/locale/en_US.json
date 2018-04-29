@@ -440,6 +440,10 @@
     "splendid2": "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...",
 
     "cottonnurse": "Welcome to the Cotton Town Tuxecenter!",
+    "tabanurse": "Welcome to the Taba Town Tuxecenter!",
+    "tabanurse2": "Do you want to heal your Tuxemon?",
+    "okaythen": "Okay! Just give me a second and I will heal your Tuxemon!",
+    "okaythen2": "Well, it looks like your Tuxemon are full of energy! Here they are!",
 
     "input_name": "Name?"
 }

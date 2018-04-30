@@ -25,11 +25,13 @@ with open("requirements.txt", "r") as f:
     REQUIREMENTS = f.read().splitlines()
 
 # Configure the setuptools
-setup(name='Tuxemon',
+setup(name='tuxemon',
       version=VERSION,
       description='Open source monster-fighting RPG',
       author='William Edwards',
       author_email='shadowapex@gmail.com',
+      maintainer='Tuxemon',
+      maintainer_email='info@tuxemon.org',
       url='https://www.tuxemon.org',
       include_package_data=True,
       packages=modules,

@@ -3,9 +3,19 @@ python:
   - '2.7'
 before_install:
   - pip install -r requirements.txt
-  - sudo apt-get install -y git curl squashfs-tools sed
-script:
+  - sudo apt-get install -y git curl squashfs-tools sed debmake python3-all
   - mkdir -p ./build
+script:
+  # Debian
+  - python setup.py sdist
+  - cd dist
+  - tar xvfz tuxemon*.tar.gz
+  - cd tuxemon*
+  - debmake -b':py2'
+  - dpkg-buildpackage -us -uc
+  - cd ..
+  - mv ./dist/tuxemon*.deb ./build/tuxemon-unstable-latest.deb
+  # GCW-Zero
   - sed -i 's/resolution_x.*/resolution_x = 320/g' tuxemon/tuxemon.cfg
   - sed -i 's/resolution_y.*/resolution_y = 240/g' tuxemon/tuxemon.cfg
   - sed -i 's/fullscreen.*/fullscreen = 1/g' tuxemon/tuxemon.cfg

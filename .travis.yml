@@ -13,7 +13,7 @@ script:
   - cd tuxemon*
   - debmake -b':py2'
   - dpkg-buildpackage -us -uc
-  - cd ..
+  - cd ../..
   - mv ./dist/tuxemon*.deb ./build/tuxemon-unstable-latest.deb
   # GCW-Zero
   - sed -i 's/resolution_x.*/resolution_x = 320/g' tuxemon/tuxemon.cfg

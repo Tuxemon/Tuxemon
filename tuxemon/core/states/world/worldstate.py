@@ -175,7 +175,7 @@ class WorldState(state.State):
         """
         self.set_transition_surface()
         self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
-        self.task(self.unlock_controls, duration * .30)  # unlock controls before fade ends
+        self.task(self.unlock_controls, duration - .5)  # unlock controls before fade ends
 
     def trigger_fade_out(self, duration=2):
         """ World state has own fade code b/c moving maps doesn't change state
@@ -199,6 +199,7 @@ class WorldState(state.State):
         """
         if self.delayed_teleport:
             self.player1.cancel_movement()
+            self.lock_controls()
 
             # check if map has changed, and if so, change it
             map_name = prepare.BASEDIR + prepare.DATADIR + "/maps/" + self.delayed_mapname
@@ -812,7 +813,7 @@ class WorldState(state.State):
         elif self.cinema_state == "turning off":
 
             self.cinema_top['position'][1] -= (
-                self.cinema_speed * self.time_passed_seconds)
+                    self.cinema_speed * self.time_passed_seconds)
             self.cinema_bottom['position'][
                 1] += self.cinema_speed * self.time_passed_seconds
 

@@ -93,6 +93,7 @@ class Npc(Entity):
         self.name = trans(npc_data["name_trans"])
 
         # use 'animations' passed in
+        # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
         if self.sprite_name is None:
             # Try to use the sprites defined in the JSON data
@@ -101,14 +102,18 @@ class Npc(Entity):
             except KeyError:
                 logger.error('Cannot find sprite for {}'.format(npc_slug))
 
-        self.ai = None  # Whether or not this player has AI associated with it
-        self.behavior = "wander"
+        # general
+        self.behavior = "wander"  # not used for now
         self.interactions = []  # List of ways player can interact with the Npc
-
         self.isplayer = False  # used for various tests, idk
         self.monsters = []  # This is a list of tuxemon the npc has
         self.inventory = {}  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
+
+        # combat related
+        self.ai = None  # Whether or not this player has AI associated with it
+        self.speed = 10  # To determine combat order (not related to movement!)
+        self.moves = []  # list of techniques
 
         # pathfinding and waypoint related
         self.pathfinding = None
@@ -121,6 +126,7 @@ class Npc(Entity):
         # the destination due to speed issues or framerate jitters.
         self.path_origin = None
 
+        # movement related
         self.move_direction = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
         self.walking = False  # Whether or not the player is walking

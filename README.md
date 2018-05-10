@@ -1,4 +1,4 @@
-Tuxemon 0.4.0
+Tuxemon 0.4.1
 =============
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -10,7 +10,7 @@ Requirements
 
 Tuxemon uses a number of open source projects to work properly:
 
-* *python* - version 2.7+
+* *python* - version 2.7, 3.5+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
 * *python-six* - python 2 and 3 compatibility library
@@ -27,6 +27,8 @@ Installation
 **Windows**
 
 [Detailed here](https://www.tuxemon.org/windows-install.html)
+
+Windows binaries are also available in the releases.
 
 **Ubuntu**
 
@@ -51,10 +53,9 @@ make BACKEND=LINUX; sudo make install BACKEND=LINUX
 
 ```sh
 sudo apt-get install python python-pygame python-pip python-imaging git
-sudo pip install neteria
-git clone https://github.com/bitcraft/PyTMX
-cd PyTMX; python setup.py install
 git clone https://github.com/Tuxemon/Tuxemon.git
+cd Tuxemon
+sudo pip install -U -r requirements.txt
 python tuxemon.py
 ```
 

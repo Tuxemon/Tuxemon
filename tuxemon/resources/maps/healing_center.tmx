@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="25">
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextobjectid="27">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -16,7 +16,7 @@
  </layer>
  <layer name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBi6gJkCvXwwM1gZGHiBmI8VzWwgn4uFgYGbBbcZd4FyZkB15kh6a1kg4sZAbIJHLz5gToS+WqCdt1kQuJ6VsB5ywBXaGAsGIH9uA+LtLMT5GV3vfSB+QIJeGgURxQAAsc0MbA==
+   eJxjYBi6gJkCvXwwM1gZGHiBmI8VzWwgn4uFgYGbBbcZd4FyZkB15kh6a1kg4sZAbIJHLz5gToS+WqCdt1kQuJ6VsJ7BBkD+3AbE21mI8zO63vtA/IAEvYM1iACK7guY
   </data>
  </layer>
  <layer name="Tile Layer 3" width="15" height="15">
@@ -26,7 +26,7 @@
  </layer>
  <layer name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFAwU2sjAwbELCm1loY89q2hg7CqgEADW4BDo=
+   eJxjYBgFAwU2sjAwbELCm1kG2kWjYCAAAB/JA48=
   </data>
  </layer>
  <objectgroup color="#ff0000" name="Collision">
@@ -39,22 +39,21 @@
   <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
   <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
   <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
-  <object id="21" type="collision" x="16" y="144" width="16" height="16">
-   <properties>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="right"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
-  <object id="16" name="Heal Tuxemon" type="event" x="112" y="128" width="16" height="16">
+  <object id="16" name="Heal Tuxemon" type="event" x="96" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health ,"/>
     <property name="act2" value="set_monster_status ,"/>
-    <property name="act3" value="dialog Your tuxemon are now at full health!"/>
+    <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act3" value="npc_face npc_tabanurse,up"/>
+    <property name="act4" value="wait 1"/>
+    <property name="act5" value="npc_face npc_tabanurse,down"/>
+    <property name="act6" value="translated_dialog okaythen2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set chooses:yes"/>
    </properties>
   </object>
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
@@ -64,11 +63,22 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="18" name="Go upstairs" type="event" x="16" y="144" width="16" height="16">
+  <object id="22" name="Player Spawn" type="event" x="112" y="160" width="16" height="16"/>
+  <object id="25" name="create npcs" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="cond1" value="is player_at"/>
+    <property name="act1" value="create_npc npc_tabanurse,6,6,nurse,stand"/>
+    <property name="cond1" value="not npc_exists npc_tabanurse"/>
    </properties>
   </object>
-  <object id="22" name="Player Spawn" type="event" x="112" y="160" width="16" height="16"/>
+  <object id="26" name="hello there" type="event" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tabanurse"/>
+    <property name="act2" value="translated_dialog tabanurse2"/>
+    <property name="act3" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

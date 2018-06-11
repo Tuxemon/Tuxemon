@@ -94,21 +94,16 @@ def translate_short_path(path, position=(0, 0)):
         yield position
 
 
-def get_direction(start, end):
-    """ Get direction name from two points
+def get_direction(base, target):
+    y_offset = base[1] - target[1]
+    x_offset = base[0] - target[0]
+    # Is it further away vertically or horizontally?
+    look_on_y_axis = abs(y_offset) >= abs(x_offset)
 
-    :param start:
-    :param end:
-    :return:
-    """
-    if start[0] > end[0]:
-        return "left"
-    elif start[0] < end[0]:
-        return "right"
-    elif start[1] < end[1]:
-        return "down"
-    elif start[1] > end[1]:
-        return "up"
+    if look_on_y_axis:
+        return "up" if y_offset > 0 else "down"
+    else:
+        return "left" if x_offset > 0 else "right"
 
 
 def proj(point):

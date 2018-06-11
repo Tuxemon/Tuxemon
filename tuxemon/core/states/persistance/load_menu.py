@@ -1,7 +1,6 @@
 import logging
 
 from tuxemon.core.components import save
-from tuxemon.core.components.player import Player
 from .save_menu import SaveMenuState
 
 # Create a logger for optional handling of debug messages.
@@ -20,13 +19,7 @@ class LoadMenuState(SaveMenuState):
             logger.error("Failed loading save file.")
 
         if save_data is not None and "error" not in save_data:
-            self.save_data = save.load(self.selected_index + 1)
-            self.game.player1.game_variables = save_data['game_variables']
-            self.game.player1.tile_pos = save_data['tile_pos']
-            self.game.player1.inventory = save_data['inventory']
-            self.game.player1.monsters = save_data['monsters']
-            self.game.player1.storage = save_data['storage']
-            self.game.player1.name = save_data['player_name']
+            self.game.player1.set_state(save_data)
 
             old_world = self.game.get_state_name("WorldState")
             if old_world is None:
@@ -42,4 +35,5 @@ class LoadMenuState(SaveMenuState):
 
             # teleport the player to the correct position using an event engine action
             tele_x, tele_y = save_data['tile_pos']
-            self.game.event_engine.execute_action('teleport', [save_data['current_map'], tele_x, tele_y])
+            params = [save_data['current_map'], tele_x, tele_y]
+            self.game.event_engine.execute_action('teleport', params)

@@ -85,7 +85,7 @@ class Monster(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, save_data=None):
         self.slug = ""
         self.name = ""          # The display name of the Tuxemon
         self.description = ""
@@ -137,6 +137,8 @@ class Monster(object):
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
         self.menu_sprite = ""
+
+        self.set_state(save_data)
 
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
@@ -425,3 +427,79 @@ class Monster(object):
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
         self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
         return False
+
+    def get_state(self):
+        """Prepares a dictionary of the monster to be saved to a file
+
+        :param: None
+
+        :rtype: Dictionary
+        :returns: Dictionary containing all the information about the monster
+
+        """
+        save_data = dict()
+        for key, value in self.__dict__.items():
+            if key == "moves":
+                save_data["moves"] = [i.slug for i in self.moves]
+            elif key == "body":
+                save_data[key] = self.save_body()
+            elif key not in ("sprites", "moveset", "ai"):
+                save_data[key] = value
+        return save_data
+
+    def save_body(self):
+        """Prepares a dictionary of the body to be saved to a file
+
+        :param: None
+
+        :rtype: Dictionary
+        :returns: Dictionary containing all the information about the body
+
+        """
+        save_data = dict(self.body.__dict__)
+        return save_data
+
+    def set_state(self, save_data):
+        """Loads information from saved data
+
+        :param save_data: Dictionary loaded from the json file
+
+        :rtype: None
+        :returns: None
+
+        """
+
+        self.load_from_db(save_data['slug'])
+
+        for key, value in save_data.items():
+            if key == "moves":
+                self.moves = [Technique(i) for i in value]
+            elif key == "body":
+                load_body(self.body, value)
+            else:
+                setattr(self, key, value)
+        self.load_sprites()
+
+
+def load_body(body, save_data):
+    """Loads information from saved data
+
+    :param save_data: Dictionary loaded from the json file
+
+    :rtype: None
+    :returns: None
+
+    """
+    for key, value in save_data.items():
+        setattr(body, key, value)
+
+
+def decode_monsters(json_data):
+    return [
+        Monster(save_data=mon)
+        for mon in json_data.get('monsters') or []
+    ]
+
+
+def encode_monsters(mons):
+    return [mon.get_state() for mon in mons]

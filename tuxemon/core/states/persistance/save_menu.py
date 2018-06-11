@@ -86,19 +86,23 @@ class SaveMenuState(PopUpMenu):
     def on_menu_selection(self, menuitem):
         logger.info("Saving!")
         try:
-            save.save(self.game.player1,
-                      self.capture_screenshot(),
-                      self.selected_index + 1,
-                      self.game)
+            save_data = save.get_save_data(
+                self.game.player1,
+                self.game,
+            )
+            save.save(
+                save_data,
+                self.capture_screenshot(),
+                self.selected_index + 1,
+            )
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)
-
             open_dialog(self.game, [trans('save_failure')])
-            self.game.pop_state(self)
         else:
             open_dialog(self.game, [trans('save_success')])
-            self.game.pop_state(self)
+
+        self.game.pop_state(self)
 
     def capture_screenshot(self):
         screenshot = pygame.Surface(self.game.screen.get_size())

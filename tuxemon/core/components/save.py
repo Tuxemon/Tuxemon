@@ -84,9 +84,10 @@ def save(save_data, slot):
     """
     # Save a screenshot of the current frame
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    text = json.dumps(save_data, indent=2)
     with open(save_path, 'w') as f:
         logger.info("Saving data to save file: " + save_path)
-        json.dump(save_data, f, indent=2)
+        f.write(text)
 
 
 def load(slot):

@@ -28,10 +28,10 @@
 #
 #
 
+import base64
 import json
 import datetime
 import logging
-import os
 
 import pygame
 
@@ -41,25 +41,33 @@ from tuxemon.core import prepare
 logger = logging.getLogger(__name__)
 
 
-def get_save_data(player, game):
+def get_save_data(game):
     """Gets a dictionary which represents the state of the game.
 
-    :param player: The player object that contains data to save.
     :param game: The core.control.Control object that runs the game.
-
-    :type player: core.components.player.Player
     :type game: core.control.Control
 
     :rtype: Dictionary
     :returns: Game data to save, must be JSON encodable.
 
     """
-    save_data = player.get_state(game)
+    save_data = game.player1.get_state(game)
+    screenshot = capture_screenshot(game)
+    save_data['screenshot'] = base64.encodestring(pygame.image.tostring(screenshot, "RGB"))
+    save_data['screenshot_width'] = screenshot.get_width()
+    save_data['screenshot_height'] = screenshot.get_height()
     save_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     return save_data
 
 
-def save(save_data, screenshot, slot):
+def capture_screenshot(game):
+    screenshot = pygame.Surface(game.screen.get_size())
+    world = game.get_state_name("WorldState")
+    world.draw(screenshot)
+    return screenshot
+
+
+def save(save_data, slot):
     """Saves the current game state to a file using shelve.
 
     :param save_data: The data to save.
@@ -75,7 +83,6 @@ def save(save_data, screenshot, slot):
 
     """
     # Save a screenshot of the current frame
-    pygame.image.save(screenshot, prepare.SAVE_PATH + str(slot) + '.png')
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
     with open(save_path, 'w') as f:
         logger.info("Saving data to save file: " + save_path)
@@ -97,13 +104,9 @@ def load(slot):
 
     """
 
-    # this check is required since opening a shelve will
-    # create the pickle is it doesn't already exist.
-    # this check prevents a bug where saves are not recorded
-    # properly.
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
-    if not os.path.exists(save_path):
-        return
-
-    with open(save_path, 'r') as save_file:
-        return json.load(save_file)
+    try:
+        with open(save_path, 'r') as save_file:
+            return json.load(save_file)
+    except IOError:
+        pass

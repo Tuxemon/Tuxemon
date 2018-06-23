@@ -48,6 +48,21 @@ monsters = db.JSONDatabase()
 monsters.load("monster")
 monsters.load("technique")
 
+SIMPLE_PERSISTANCE_ATTRIBUTES = (
+    'attack',
+    'current_hp',
+    'defense',
+    'hp',
+    'level',
+    'name',
+    'slug',
+    'special_attack',
+    'special_defense',
+    'speed',
+    'status',
+    'total_experience',
+)
+
 
 # class definition for first active tuxemon to use in combat:
 class Monster(object):
@@ -85,7 +100,7 @@ class Monster(object):
 
     """
 
-    def __init__(self, save_data=None):
+    def __init__(self, save_data={}):
         self.slug = ""
         self.name = ""          # The display name of the Tuxemon
         self.description = ""
@@ -435,63 +450,44 @@ class Monster(object):
 
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the monster
-
         """
-        save_data = dict()
-        for key, value in self.__dict__.items():
-            if key == "moves":
-                save_data["moves"] = [i.slug for i in self.moves]
-            elif key == "body":
-                save_data[key] = self.save_body()
-            elif key not in ("sprites", "moveset", "ai"):
-                save_data[key] = value
-        return save_data
+        save_data = {
+            attr: getattr(self, attr)
+            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
+            if getattr(self, attr)
+        }
 
-    def save_body(self):
-        """Prepares a dictionary of the body to be saved to a file
+        save_data["moves"] = [i.get_state() for i in self.moves]
+        body = self.body.get_state()
+        if body:
+            save_data["body"] = body
 
-        :param: None
-
-        :rtype: Dictionary
-        :returns: Dictionary containing all the information about the body
-
-        """
-        save_data = dict(self.body.__dict__)
         return save_data
 
     def set_state(self, save_data):
         """Loads information from saved data
 
-        :param save_data: Dictionary loaded from the json file
+        :param save_data: Data used to reconstruct the monster
+        :type save_data: Dictionary
 
         :rtype: None
         :returns: None
 
         """
+        if not save_data:
+            return
 
         self.load_from_db(save_data['slug'])
 
         for key, value in save_data.items():
-            if key == "moves":
-                self.moves = [Technique(i) for i in value]
-            elif key == "body":
-                load_body(self.body, value)
-            else:
+            if key == 'moves' and value:
+                self.moves = [Technique(slug=i) for i in value]
+            elif key == 'body' and value:
+                self.body.set_state(value)
+            elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
+
         self.load_sprites()
-
-
-def load_body(body, save_data):
-    """Loads information from saved data
-
-    :param save_data: Dictionary loaded from the json file
-
-    :rtype: None
-    :returns: None
-
-    """
-    for key, value in save_data.items():
-        setattr(body, key, value)
 
 
 def decode_monsters(json_data):

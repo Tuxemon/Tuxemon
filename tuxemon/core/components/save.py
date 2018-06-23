@@ -79,7 +79,7 @@ def save(save_data, screenshot, slot):
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
     with open(save_path, 'w') as f:
         logger.info("Saving data to save file: " + save_path)
-        json.dump(save_data, f)
+        json.dump(save_data, f, indent=2)
 
 
 def load(slot):

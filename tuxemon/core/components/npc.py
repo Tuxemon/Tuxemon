@@ -38,7 +38,7 @@ from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.locale import translator
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.tools import load_and_scale, trunc
-
+from .inventory import Inventory
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -78,7 +78,7 @@ class Npc(Entity):
     To move one tile, simply set a path of one item.
     """
     party_limit = 6  # The maximum number of tuxemon this npc can hold
-
+    speed = 1 # TODO: NPC ( and player ) speed
     def __init__(self, npc_slug, sprite_name=None):
         super(Npc, self).__init__()
 
@@ -107,7 +107,7 @@ class Npc(Entity):
         self.interactions = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
         self.monsters = []  # This is a list of tuxemon the npc has
-        self.inventory = {}  # The Player's inventory.
+        self.inventory = Inventory()  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
 
         # combat related

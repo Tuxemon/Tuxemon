@@ -68,6 +68,10 @@ class Sprite(pygame.sprite.DirtySprite):
     def _draw(self, surface, rect):
         return surface.blit(self._image, rect)
 
+    def set_animation(self, param1, param2):
+        """placeholder for animation"""
+        pass
+
     @property
     def image(self):
         # should always be a cached copy
@@ -182,20 +186,27 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         dirty = self.lostsprites
         self.lostsprites = []
         dirty_append = dirty.append
-
         for s in self.sprites():
+            from tuxemon.core.components.animation import PermisiveAnimation
+            if type(s.image) == Sprite or type(s.image) == PermisiveAnimation: # draw if it a sprite
+                image_temp = s.image.image
+            else:
+                image_temp = s.image
+
             if getattr(s, "image", None) is None:
                 continue
 
             if not getattr(s, 'visible', True):
                 continue
 
-            if isinstance(s.image, PygAnimation):
-                s.image.blit(surface, s.rect)
+            if isinstance(image_temp, PygAnimation):
+                image_temp.blit(surface, s.rect)
                 continue
 
             r = spritedict[s]
-            newrect = surface_blit(s.image, s.rect)
+
+
+            newrect = surface_blit(image_temp, s.rect)
             if r:
                 if newrect.colliderect(r):
                     dirty_append(newrect.union(r))

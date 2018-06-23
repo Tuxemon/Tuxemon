@@ -157,11 +157,46 @@ def load_sprite(filename, **rect_kwargs):
     :param filename: Filename to load
     :rtype: core.components.sprite.Sprite
     """
-    sprite = tuxemon.core.components.sprite.Sprite()
-    sprite.image = load_and_scale(filename)
-    sprite.rect = sprite.image.get_rect(**rect_kwargs)
-    return sprite
+    extension = filename.split(".")[len(filename.split("."))-1]
+    if extension == "asprt":
+        return load_asprt(filename)
+    else:
+        sprite = tuxemon.core.components.sprite.Sprite()
+        sprite.image = load_and_scale(filename)
+        sprite.rect = sprite.image.get_rect(**rect_kwargs)
+        return sprite
 
+def load_asprt(filename):
+    import json
+    from tuxemon.core.components.animation import PermisiveAnimation
+    filename = transform_resource_filename(filename)
+    data = json.load(open(filename))
+
+    anim = PermisiveAnimation()
+    anim._init()
+
+    slug = data["slug"]
+    animations = {}
+    for animation in data["animation"]:
+        animation_d = data["animation"][animation]
+        temp_anim = {"slug" : animation,
+            "lenght" : 0,
+            "loopable" : animation_d["loop"],
+            "frames" : [],
+            "time" : []}
+
+        for image in animation_d["images"]:
+            image_filename = image["frame"]
+            #load the image
+            temp_anim["frames"].append(load_and_scale(image_filename))
+            temp_anim["time"].append(image["time"])
+
+
+        temp_anim["lenght"] = len(temp_anim["frames"])
+        animations[animation] = temp_anim
+
+    anim.set_frames(animations)
+    return anim
 
 def new_scaled_rect(*args, **kwargs):
     """ Create a new rect and scale it

@@ -36,6 +36,7 @@ from tuxemon.core import prepare
 from tuxemon.core.components import db
 from tuxemon.core.components.locale import translator
 
+
 logger = logging.getLogger(__name__)
 
 trans = translator.translate
@@ -186,168 +187,26 @@ class Technique(object):
         # TODO: separate classes for each Technique
         # TODO: consider moving message templates to the JSON DB
 
+        # dynamic load for prevent of an infinite load loop ( cf : effect cant use a technique )
+        from . import effect as effects
         # defaults for the return. items can override these values in their return.
         meta_result = {
             'name': self.name,
             'success': False,
             'should_tackle': False,
             'capture': False,
+            'toPlay' : None
         }
 
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
         for effect in self.effect:
-            result = getattr(self, str(effect))(user, target)
+            last_effect_name = str(effect)
+            ndic = {"power":self.power, "technique" : self}
+            print(ndic)
+            actual_effect = getattr(effects, last_effect_name)(ndic)
+            print(actual_effect.param)
+            result = actual_effect.execute(user, target)
             meta_result.update(result)
 
         return meta_result
-
-    def calculate_damage(self, user, target):
-        """ Calc. damage for the damage technique
-
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
-
-        :type user: core.components.monster.Monster
-        :type target: core.components.monster.Monster
-
-        :rtype: int
-        """
-        # Original Pokemon battle damage formula:
-        # according to: http://www.math.miami.edu/~jam/azure/compendium/battdam.htm
-        # ((2 * user.level / 7) * user.attack * self.power) / target.defense) / 50) +2) * stab_bonus) * type_modifiers/10) * random.randrange(217, 255))/255
-
-        if self.category == "physical":
-            level_modifier = ((2 * user.level) / 7.)
-            attack_modifier = user.attack * self.power
-            return int(((level_modifier * attack_modifier) / float(target.defense)) / 50.)
-
-        elif self.category == "special":
-            level_modifier = ((2 * user.level) / 7.)
-            attack_modifier = user.special_attack * self.power
-            return int(((level_modifier * attack_modifier) / float(target.special_defense)) / 50.)
-
-        elif self.category == "poison":
-            return int(self.power)
-
-        logger.error('unhandled damage category')
-        raise RuntimeError
-
-    def damage(self, user, target):
-        """ This effect applies damage to a target monster. Damage calculations are based upon the
-        original Pokemon battle damage formula. This effect will be applied if "damage" is defined
-        in this technique's effect list.
-
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
-
-        :type user: core.components.monster.Monster
-        :type target: core.components.monster.Monster
-
-        :rtype: dict
-        """
-        damage = self.calculate_damage(user, target)
-        if damage:
-            target.current_hp -= damage
-
-        return {
-            'damage': damage,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
-        }
-
-    def poison(self, user, target):
-        """ This effect has a chance to apply the poison status effect to a target monster.
-        Currently there is a 1/10 chance of poison.
-
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
-
-        :type user: core.components.monster.Monster
-        :type target: core.components.monster.Monster
-
-        :rtype: dict
-        """
-        already_poisoned = any(t for t in target.status if t.slug == "status_poison")
-
-        if not already_poisoned and random.randrange(1, 2) == 1:
-            target.apply_status(Technique("status_poison"))
-            success = True
-        else:
-            success = False
-
-        return {
-            'should_tackle': success,
-            'success': success,
-        }
-
-    def faint(self, user, target):
-        """ Faint this monster.  Typically, called by combat to faint self, not others.
-
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
-
-        :type user: core.components.monster.Monster
-        :type target: core.components.monster.Monster
-
-        :rtype: dict
-        """
-        # TODO: implement into the combat state, currently not used
-
-        already_fainted = any(t for t in target.status if t.name == "status_faint")
-
-        if already_fainted:
-            raise RuntimeError
-
-        target.apply_status(Technique("status_faint"))
-
-        return {
-            'should_tackle': False,
-            'success': True,
-        }
-
-    def swap(self, user, target):
-        """ Used just for combat: change order of monsters
-
-        Position of monster in party will be changed
-
-        :param user: core.components.monster.Monster
-        :param target: core.components.monster.Monster
-
-        :rtype: dict
-        """
-        # TODO: implement actions as events, so that combat state can find them
-        # TODO: relies on setting "combat_state" attribute.  maybe clear it up later
-        # TODO: these values are set in combat_menus.py
-
-        def swap_add():
-            # rearrange the trainer's monster list
-            monster_list = user.monsters
-            original_index = monster_list.index(original_monster)
-            target_index = monster_list.index(target)
-            monster_list[original_index] = target
-            monster_list[target_index] = original_monster
-
-            # TODO: make accommodations for battlefield positions
-            # add the monster into play
-            combat_state.add_monster_into_play(user, target)
-
-        # TODO: find a way to pass values. this will only work for SP games with one monster party
-        # get the original monster to be swapped out
-        original_monster = user.monsters[0]
-        combat_state = self.combat_state
-
-        # rewrite actions to target the new monster.  must be done before original is removed
-        combat_state.rewrite_action_queue_target(original_monster, target)
-
-        # remove the old monster and all their actions
-        combat_state.remove_monster_from_play(user, original_monster)
-
-        # give a slight delay
-        combat_state.task(swap_add, .75)
-        combat_state.suppress_phase_change(.75)
-
-        return {
-            'success': True,
-            'should_tackle': False,
-        }

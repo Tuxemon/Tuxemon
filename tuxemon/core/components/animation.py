@@ -3,6 +3,7 @@ import sys
 from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
+import time
 import pygame
 
 __all__ = ('Task', 'Animation', 'remove_animations_of')
@@ -91,6 +92,52 @@ class AnimBase(pygame.sprite.Sprite):
         else:
             [cb() for cb in callbacks]
 
+import tuxemon.core.components.sprite as sprite
+
+class PermisiveAnimation(AnimBase):
+    def _init(self):
+        self.frames = {}
+        self.actual_animation = "main"
+        self.actual_frame = 0
+
+    def set_frames(self, frames):
+        self.frames = frames
+        self.last_frame = time.time()
+        self.global_rect = self.image.get_rect()
+
+    def set_animation(self, animation, after = None):
+        self.last_frame = time.time()
+        self.actual_frame = 0
+        self.actual_animation = animation
+        if after != None:
+            self.after = after
+
+    def update(self):
+        actual = self.frames[self.actual_animation]
+        durationFrame = 0.1
+
+        lastFrameID = self.actual_frame# previous frame
+
+        if time.time()-self.last_frame >= actual["time"][lastFrameID]: # il faut changer de sprite
+            self.last_frame = time.time()
+            self.actual_frame += 1
+            if self.actual_frame >= actual["lenght"]: # retour à 0
+                # fin de l'animation
+                if actual["loopable"] == True:
+                    self.actual_frame = 0
+                else:
+                    self.actual_frame = actual["lenght"]-1
+                    self.set_animation(self.after)# TODO: check if after exist
+                    self._execute_callbacks("on finished")
+
+    @property
+    def image(self):
+        self.update()
+        return self.frames[self.actual_animation]["frames"][self.actual_frame]
+
+    @property
+    def rect(self):
+        return self.global_rect
 
 class Task(AnimBase):
     """ Execute functions at a later time and optionally loop it

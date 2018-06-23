@@ -36,7 +36,7 @@ import random
 from tuxemon.core import tools
 from . import db
 from .locale import translator
-
+from . import effect as effects
 trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
@@ -165,109 +165,15 @@ class Item(object):
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effect:
             last_effect_name = str(effect)
-            result = getattr(self, last_effect_name)(user, target)
+            actual_effect = getattr(effects, last_effect_name)({"power":self.power})
+            result = actual_effect.execute(user, target)
+
             meta_result.update(result)
 
         # TODO: document how to handle items with multiple effects
 
         # If this is a consumable item, remove it from the player's inventory.
         if meta_result["success"] and self.type == "Consumable":
-            if user.inventory[self.slug]['quantity'] <= 1:
-                del user.inventory[self.slug]
-            else:
-                user.inventory[self.slug]['quantity'] -= 1
+            user.inventory.delete_item_slug(self.slug)
 
         return meta_result
-
-    def heal(self, user, target):
-        """This effect heals the target based on the item's power attribute.
-
-        :param user: The monster or object that is using this item.
-        :param target: The monster or object that we are using this item on.
-
-        :type user: Varies
-        :type target: Varies
-
-        :rtype: bool
-        :returns: Success
-
-        **Examples:**
-        >>> potion_item = Item("item_potion")
-        >>> potion_item.heal(bulbatux, game)
-        """
-
-        # don't heal if already at max health
-        if target.current_hp == target.hp:
-            return {"success": False}
-
-        # Heal the target monster by "self.power" number of hitpoints.
-        target.current_hp += self.power
-
-        # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
-        if target.current_hp > target.hp:
-            target.current_hp = target.hp
-
-        return {"success": True}
-
-    def capture(self, user, target):
-        """Captures target monster.
-
-        :param user: The monster or object that is using this item.
-        :param target: The monster or object that we are using this item on.
-
-        :type user: Varies
-        :type target: Varies
-
-        :rtype: bool
-        :returns: Success
-        """
-
-        # Set up variables for capture equation
-        damage_modifier = 0
-        status_modifier = 0
-        item_power = self.power
-
-        # Get percent of damage taken and multiply it by 10
-        if target.current_hp < target.hp:
-            total_damage = target.hp - target.current_hp
-            damage_modifier = int((float(total_damage) / target.hp) * 1000)
-
-        # Check if target has any status effects
-        if not target.status == "Normal":
-            status_modifier = 1.5
-
-        # TODO: debug logging this info
-
-        # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (
-        3 * target.hp)
-        shake_check = 65536 / (255 / catch_check) ** 0.1875
-
-        logger.debug("--- Capture Variables ---")
-        logger.debug("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
-
-        msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
-        logger.debug(msg.format(target, item_power, status_modifier))
-
-        logger.debug("65536 / (255 / catch_check) ** 0.1875")
-        logger.debug("65536 / (255 / {}) ** 0.1875".format(catch_check))
-
-        msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
-        logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
-
-        # 4 shakes to give monster change to escape
-        for i in range(0, 4):
-            random_num = random.randint(0, 65536)
-            logger.debug("shake check {}: random number {}".format(i, random_num))
-            if random_num > round(shake_check):
-                return {"success": False,
-                        "capture": True,
-                        "num_shakes": i + 1}
-
-        # add creature to the player's monster list
-        user.add_monster(target)
-
-        # TODO: remove monster from the other party
-        return {"success": True,
-                "capture": True,
-                "num_shakes": 4}

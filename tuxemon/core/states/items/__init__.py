@@ -6,7 +6,7 @@ from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.components.ui.text import TextArea
-
+from tuxemon.core.components.item import Item
 trans = translator.translate
 
 
@@ -127,13 +127,14 @@ class ItemMenuState(Menu):
 
     def sort_inventory(self, inventory):
         """ Sort inventory in a usable way.  Expects a list of inventory properties.
-        
+
         * Group items by category
         * Sort in groups by power
         * Group order: Potions, Food, Utility Items, Quest/Game Items
-        
+
         :return: Sorted copy of the inventory
         """
+
 
         def rank_item(properties):
             item = properties['item']
@@ -150,15 +151,16 @@ class ItemMenuState(Menu):
 
         :return:
         """
-        inventory = self.game.player1.inventory.values()
-
+        inventory = self.game.player1.inventory.get_all().values()
         # required because the max() below will fail if inv empty
         if not inventory:
             return
 
         name_len = 17  # TODO: dynamically get this value, maybe?
-        count_len = max(len(str(p['quantity'])) for p in inventory)
 
+        #count_len = max(len(str(p['quantity'])) for p in inventory)
+        # TODO: IMPORTANT : solve
+        count_len = 4
         # TODO: move this and other format strings to a locale or config file
         label_format = "{:<{name_len}} x {:>{count_len}}".format
 

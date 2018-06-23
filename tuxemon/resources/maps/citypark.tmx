@@ -22,7 +22,7 @@
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <tileset firstgid="2825" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="5" columns="40">
-  <image source="../../../../../Tuxemon - dev branch/Tuxemon/tuxemon/resources/gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
  </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">

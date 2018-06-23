@@ -49,15 +49,7 @@ class SaveMenuState(PopUpMenu):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
 
         # Try and load the save game and draw details about the save
-        try:
-            save_data = save.load(slot_num)
-        except Exception as e:
-            logger.error(e)
-            save_data = dict()
-            save_data["error"] = "Save file corrupted"
-            save_data["player_name"] = "BROKEN SAVE!"
-            logger.error("Failed loading save file.")
-
+        save_data = save.load(slot_num)
         if "screenshot" in save_data:
             screenshot = base64.decodestring(save_data["screenshot"])
             size = save_data["screenshot_width"], save_data["screenshot_height"]

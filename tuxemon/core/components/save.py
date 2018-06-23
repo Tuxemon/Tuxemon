@@ -29,6 +29,7 @@
 #
 
 import base64
+import cbor
 import json
 import datetime
 import logging
@@ -84,9 +85,13 @@ def save(save_data, slot):
     """
     # Save a screenshot of the current frame
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
-    text = json.dumps(save_data, indent=2)
+    if prepare.SAVE_METHOD == "CBOR":
+        text = cbor.dumps(save_data)
+    else:
+        text = json.dumps(save_data)
     with open(save_path, 'w') as f:
         logger.info("Saving data to save file: " + save_path)
+        # Don't dump straight to the file: if we crash it would corrupt the save_data
         f.write(text)
 
 
@@ -106,8 +111,32 @@ def load(slot):
     """
 
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    save_data = dict()
     try:
         with open(save_path, 'r') as save_file:
-            return json.load(save_file)
-    except IOError:
-        pass
+            text = save_file.read()
+            logs = []
+
+            try:
+                return json.loads(text)
+            except ValueError as e:
+                logs.append(e)
+
+            try:
+                # This comes after the json attempt.
+                # cbor thinks that it can open the json, but it messes up the screenshot somehow.
+                return cbor.loads(text)
+            except ValueError as e:
+                logs.append(e)
+
+            for log in logs:
+                logger.error(log)
+
+    except IOError as e:
+        logger.error(e)
+
+    save_data["error"] = "Save file corrupted"
+    save_data["player_name"] = "BROKEN SAVE!"
+    logger.error("Failed loading save file.")
+    return save_data
+

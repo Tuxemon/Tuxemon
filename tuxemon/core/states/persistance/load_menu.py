@@ -9,16 +9,8 @@ logger = logging.getLogger(__name__)
 
 class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem):
-        try:
-            save_data = save.load(self.selected_index + 1)
-
-        except Exception as e:
-            logger.error(e)
-            save_data = dict()
-            save_data["error"] = "Save file corrupted"
-            logger.error("Failed loading save file.")
-
-        if save_data is not None and "error" not in save_data:
+        save_data = save.load(self.selected_index + 1)
+        if "error" not in save_data:
             self.game.player1.set_state(save_data)
 
             old_world = self.game.get_state_name("WorldState")

@@ -458,6 +458,8 @@ class Monster(object):
         }
 
         save_data["moves"] = [i.get_state() for i in self.moves]
+        if self.status:
+            save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
         if body:
             save_data["body"] = body
@@ -482,6 +484,8 @@ class Monster(object):
         for key, value in save_data.items():
             if key == 'moves' and value:
                 self.moves = [Technique(slug=i) for i in value]
+            elif key == 'status' and value:
+                self.status = [Technique(slug=i) for i in value]
             elif key == 'body' and value:
                 self.body.set_state(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:

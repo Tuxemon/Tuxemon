@@ -317,6 +317,9 @@
     "npc_tuxemart": "npc_tuxemart",
     "npc_tuxemart_name": "Tuxemart Employee",
 
+    "healmytuxemon": "Do you want to heal your Tuxemon?",
+    "haveagoodday": "Have a nice day!",
+
     "yes": "Yes",
     "no": "No",
 
@@ -330,6 +333,8 @@
     "tree": "This tree looks happy and healthy!",
 
     "route_2": "Route 2",
+    "sure_i_do": "Sure I do",
+    "not_really": "Not really",
     
     "professor_dialog1": "Professor: \n Ah, yes. The very person I've been wanting to meet.",
     "professor_dialog2": "I've heard that you want to learn about Tuxemon.",
@@ -365,7 +370,7 @@
     "backstory5": "Omnichannel, as ruthless as they are, are not the only threat we have here. There is another organization called Spyder.",
     "backstory6": "You shouldn't have to worry too much about them. They aren't too active around here.",
     "backstory7": "Now, we'll send you back on your journey. Only if you agree to help us against Omnichannel.",
-    "backstory8": "Otherwise, we will report you to Omnichannel ourselves. And you will lose everything.",
+    "backstory8": "Otherwise, we will report you to Omnichannel ourselves. And you will lose everything. We are always watching.",
     "backstory9": "What do you say? Will you help us?",
     "sorryfurthis": "Good Choice. Sorry, this will only sting a little",
 
@@ -407,6 +412,38 @@
     "column2": "A rare and ancient column. Other ruins from the same culture can be found in Route 3. ",
     "cityparksign": "Welcome to City Park: A Taste of the Wild",
     "cityparksign2": "^ City Park --- Route 2 v",
+    "route2speech": "EEK!!!",
+    "route2speech2": "Oh. It's just you ${{name}}...",
+    "route2speech3": "Be more considerate the next time you push someone. The cliff goes down farther than it looks...",
+    "route2speech4": "Although that may not be a bad thing...",
+    "route2speech5": "I know, everyone needs me to lead, but with everything going on...",
+    "route2speech6": "But you don't want to listen to me... do you?",
+
+    "yestalk": "Really? Thanks...",
+    "notalk": "You insensitive person! You'll listen to me anyway!",
+
+    "spillit": "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.",
+    "spillit2": "Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it.",
+    "spillit3": "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ.",
+    "spillit4": "It may not seem like a bad thing, but it is. Do you know what they do to them? DO YOU!?",
+    "spillit5": "Because neither do I... All I know is that no one has ever left Omnichannel after being recruited.",
+    "spillit6": "Anyways... it doesn't concern you. All that matters is bringing down Omnichannel.",
+    "spillit7": "I'm sorry for troubling you with my issues. City Park is up ahead when you want to move on",
+    "leavemealone": "We used to play here all the time when we were younger...",
+
+    "iamknight": "What are you doing here? You know that only knights are allowed through city park.",
+    "iamknight2": "... ... ... Hmm... So you're trying to get to Leather Town...",
+    "iamknight3": "Well, I guess you could enter the challenge if you want. The only problem is that you'll need a Tuxemon...",
+    "iamknight4": "I'm sure we can lend you one. Are you up for the challenge?",
+    "sorry": "Okay, well... when you're ready, I'll still be here...",
+    "splendid": "You will? Splendid! Now, to find you a suitable Tuxemon...",
+    "splendid2": "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...",
+
+    "cottonnurse": "Welcome to the Cotton Town Tuxecenter!",
+    "tabanurse": "Welcome to the Taba Town Tuxecenter!",
+    "tabanurse2": "Do you want to heal your Tuxemon?",
+    "okaythen": "Okay! Just give me a second and I will heal your Tuxemon!",
+    "okaythen2": "Well, it looks like your Tuxemon are full of energy! Here they are!",
 
     "input_name": "Name?"
 }

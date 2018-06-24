@@ -3,6 +3,8 @@ import os
 import sys
 import unittest
 
+from interactive.locale.verify_master_locale import test_dialog, test_translation_slugs
+
 # for some test runners that cannot find the tuxemon core
 sys.path.insert(0, os.path.join('tuxemon', ))
 
@@ -83,3 +85,9 @@ class TextTestCase(unittest.TestCase):
         #     draw.test_iter_text(
         #             """Stacks are a subset of trees, which are a subset of DAGs, which are a subset of all\ngraphs. All stacks are trees, all trees are DAGs, but most DAGs\nare not trees, and most trees are not stacks. DAGs do have a topological ordering which will allow you to store them in a stack (for traversal e.g. dependency resolution), but once you cram them into the stack you have lost valuable information. In this case, the ability to navigate between a screen and its parent if it has a prior sibling""",
         #         None, None)
+
+    def test_dialog(self):
+        self.assertTrue(test_dialog(), "Dialog is missing")
+
+    def test_translation_slugs(self):
+        self.assertTrue(test_translation_slugs(), "Translation slugs are missing")

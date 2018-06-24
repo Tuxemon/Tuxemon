@@ -62,7 +62,7 @@
     <property name="act3" value="add_item item_capture_device"/>
     <property name="act4" value="add_item item_capture_device"/>
     <property name="act5" value="add_item item_capture_device"/>
-    <property name="act6" value="translated_dialog received_happiness"/>
+    <property name="act6" value="translated_dialog receive_happiness"/>
     <property name="act7" value="set_variable donegot:yes"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>

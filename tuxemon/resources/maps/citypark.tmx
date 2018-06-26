@@ -389,9 +389,6 @@
    <properties>
     <property name="act1" value="translated_dialog iamknight"/>
     <property name="act10" value="set_variable choice:maybe"/>
-    <property name="act2" value="translated_dialog iamknight2"/>
-    <property name="act3" value="translated_dialog iamknight3"/>
-    <property name="act4" value="translated_dialog iamknight4"/>
     <property name="act5" value="translated_dialog_choice yes:no,choice"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -420,7 +417,6 @@
   <object id="110" name="Yes" type="event" x="48" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog splendid"/>
-    <property name="act2" value="translated_dialog splendid2"/>
     <property name="act3" value="npc_face npc_knight1,left"/>
     <property name="act4" value="npc_face npc_knight2,right"/>
     <property name="cond1" value="is player_at"/>

@@ -202,7 +202,6 @@
   <object id="83" name="Sign: City Park" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog cityparksign"/>
-    <property name="act2" value="translated_dialog cityparksign2"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is player_at"/>
@@ -238,11 +237,8 @@
     <property name="act1" value="translated_dialog route2speech"/>
     <property name="act2" value="npc_face npc_misa,right"/>
     <property name="act3" value="translated_dialog route2speech2"/>
-    <property name="act4" value="translated_dialog route2speech3"/>
     <property name="act5" value="npc_face npc_misa,up"/>
-    <property name="act6" value="translated_dialog route2speech4"/>
-    <property name="act61" value="translated_dialog route2speech5"/>
-    <property name="act62" value="translated_dialog route2speech6"/>
+    <property name="act6" value="translated_dialog route2speech3"/>
     <property name="act63" value="set_variable skadoosh:no"/>
     <property name="act7" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
     <property name="cond1" value="is player_at"/>
@@ -276,7 +272,6 @@
     <property name="act1" value="npc_face npc_misa,right"/>
     <property name="act11" value="set_variable yahoo:maybe"/>
     <property name="act2" value="translated_dialog spillit"/>
-    <property name="act21" value="translated_dialog spillit2"/>
     <property name="act22" value="npc_face npc_misa,up"/>
     <property name="act23" value="translated_dialog spillit3"/>
     <property name="act231" value="npc_face npc_misa,right"/>

@@ -380,13 +380,8 @@
    <properties>
     <property name="act1" value="translated_dialog mwah"/>
     <property name="act11" value="set_variable npcs_are_created:yes"/>
-    <property name="act2" value="translated_dialog mwah2"/>
-    <property name="act3" value="translated_dialog mwah3"/>
-    <property name="act4" value="dialog ${{name}}..."/>
-    <property name="act7" value="translated_dialog mwah4"/>
-    <property name="act8" value="translated_dialog mwah5"/>
     <property name="act9" value="npc_face npc_allie,up"/>
-    <property name="act91" value="translated_dialog mwah6"/>
+    <property name="act91" value="translated_dialog mwah2"/>
     <property name="act92" value="remove_npc npc_allie"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -414,23 +409,6 @@
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog theinfo"/>
-    <property name="act2" value="translated_dialog theinfo2"/>
-    <property name="act3" value="translated_dialog theinfo2.5"/>
-    <property name="act4" value="translated_dialog theinfo3"/>
-    <property name="act5" value="translated_dialog theinfo4"/>
-    <property name="act6" value="translated_dialog theinfo5"/>
-    <property name="act7" value="translated_dialog theinfo6"/>
-    <property name="act8" value="translated_dialog theinfo7"/>
-    <property name="act81" value="translated_dialog theinfo8"/>
-    <property name="act83" value="translated_dialog theinfo9"/>
-    <property name="act84" value="translated_dialog theinfo10"/>
-    <property name="act85" value="translated_dialog theinfo11"/>
-    <property name="act86" value="translated_dialog theinfo12"/>
-    <property name="act87" value="translated_dialog theinfo13"/>
-    <property name="act89" value="translated_dialog theinfo14"/>
-    <property name="act90" value="translated_dialog theinfo15"/>
-    <property name="act91" value="translated_dialog theinfo16"/>
-    <property name="act92" value="translated_dialog theinfo17"/>
     <property name="act93" value="npc_move npc_aeble, down 1, right 8, up 1"/>
     <property name="act94" value="npc_speed npc_aeble, 0.5"/>
     <property name="act95" value="pathfind npc_aeble, 22, 10"/>

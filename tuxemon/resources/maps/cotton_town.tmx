@@ -413,6 +413,7 @@
   </object>
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
+    <property name="act0" value="npc_face npc_aeble,player"/>
     <property name="act1" value="translated_dialog theinfo"/>
     <property name="act2" value="translated_dialog theinfo2"/>
     <property name="act3" value="translated_dialog theinfo2.5"/>
@@ -436,9 +437,7 @@
     <property name="act95" value="pathfind npc_aeble, 22, 10"/>
     <property name="act96" value="remove_npc npc_aeble"/>
     <property name="act97" value="set_variable donewithyou:yes"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_talk npc_aeble"/>
     <property name="cond4" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>

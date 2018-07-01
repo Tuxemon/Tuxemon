@@ -378,6 +378,7 @@
   </object>
   <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
    <properties>
+    <property name="act0" value="npc_face npc_allie,player"/>
     <property name="act1" value="translated_dialog mwah"/>
     <property name="act11" value="set_variable npcs_are_created:yes"/>
     <property name="act2" value="translated_dialog mwah2"/>
@@ -388,27 +389,7 @@
     <property name="act9" value="npc_face npc_allie,up"/>
     <property name="act91" value="translated_dialog mwah6"/>
     <property name="act92" value="remove_npc npc_allie"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="254" name="come on over" type="event" x="336" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog dontmakemeturn"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is npc_exists npc_allie"/>
-   </properties>
-  </object>
-  <object id="255" name="come to me2" type="event" x="368" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog dontmakemeturn2"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is npc_exists npc_allie"/>
+    <property name="cond1" value="is to_talk npc_allie"/>
    </properties>
   </object>
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">

@@ -508,12 +508,10 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="273" name="fountain" type="event" x="464" y="400" width="48" height="16">
+  <object id="273" name="fountain" type="event" x="464" y="368" width="48" height="32">
    <properties>
     <property name="act1" value="translated_dialog cotton_town_fountain"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="274" name="tree" type="event" x="144" y="144" width="16" height="16">

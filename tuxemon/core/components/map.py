@@ -384,6 +384,24 @@ class Map(object):
                 action = MapAction(act_type, args)
                 acts.append(action)
 
+        for k in keys:
+            if k.startswith('behav'):
+                words = obj.properties[k].split(' ', 1)
+
+                # Actions have the form 'type parameters'.
+                behav_type = words[0]
+
+                # If this action has parameters, split them into a
+                # list
+                if len(words) > 1:
+                    args = self.split_escaped(words[1])
+                else:
+                    args = list()
+
+                if behav_type == "talk":
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is"))
+                    acts.insert(0, MapAction("npc_face", [args[0], "player"]))
+
         # TODO: move this to some post-creation function, as more may be needed
         # add a player_facing_tile condition automatically
         if obj.type == "interact":

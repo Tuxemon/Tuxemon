@@ -43,9 +43,8 @@
   </object>
   <object id="30" name="talkHouse" type="event" x="144" y="128" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face npc_wife,player"/>
     <property name="act1" value="dialog Professor's Wife: \n The Professor is out at the moment. You might want to check his lab or somewhere in town"/>
-    <property name="cond1" value="is to_talk npc_wife"/>
+    <property name="behav1" value="talk npc_wife"/>
    </properties>
   </object>
   <object id="32" name="wife appears" type="event" x="112" y="176" width="16" height="16">

@@ -393,7 +393,6 @@
   </object>
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face npc_aeble,player"/>
     <property name="act1" value="translated_dialog theinfo"/>
     <property name="act2" value="translated_dialog theinfo2"/>
     <property name="act3" value="translated_dialog theinfo2.5"/>
@@ -417,8 +416,8 @@
     <property name="act95" value="pathfind npc_aeble, 22, 10"/>
     <property name="act96" value="remove_npc npc_aeble"/>
     <property name="act97" value="set_variable donewithyou:yes"/>
-    <property name="cond1" value="is to_talk npc_aeble"/>
     <property name="cond4" value="not variable_set donewithyou:yes"/>
+    <property name="behav1" value="talk npc_aeble"/>
    </properties>
   </object>
   <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
@@ -486,9 +485,7 @@
    <properties>
     <property name="act1" value="translated_dialog liela_goes_to_battle"/>
     <property name="act2" value="start_battle npc_liela"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="behav1" value="talk npc_liela"/>
    </properties>
   </object>
   <object id="271" name="statue1" type="event" x="448" y="464" width="16" height="16">

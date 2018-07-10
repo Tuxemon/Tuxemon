@@ -423,6 +423,10 @@
     <property name="act2" value="translated_dialog splendid2"/>
     <property name="act3" value="npc_face npc_knight1,left"/>
     <property name="act4" value="npc_face npc_knight2,right"/>
+    <property name="act5" value="translated_dialog splendid3"/>
+    <property name="act6" value="npc_face npc_knight1,down"/>
+    <property name="act7" value="npc_face npc_knight2,down"/>
+    <property name="act8" value="translated_dialog splendid4"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set choice:yes"/>

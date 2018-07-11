@@ -1,5 +1,6 @@
 from __future__ import division
 
+import base64
 import logging
 import os
 
@@ -47,30 +48,27 @@ class SaveMenuState(PopUpMenu):
     def render_slot(self, rect, slot_num):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
 
-        thumb_image = None
-        try:
-            thumb_image = pygame.image.load(prepare.SAVE_PATH + str(slot_num) + ".png").convert()
+        # Try and load the save game and draw details about the save
+        save_data = save.load(slot_num)
+        if "screenshot" in save_data:
+            screenshot = base64.decodestring(save_data["screenshot"])
+            size = save_data["screenshot_width"], save_data["screenshot_height"]
+            thumb_image = pygame.image.fromstring(screenshot, size, "RGB").convert()
             thumb_rect = thumb_image.get_rect().fit(rect)
             thumb_image = pygame.transform.smoothscale(thumb_image, thumb_rect.size)
-        except Exception as e:
-            logger.error(e)
+        else:
+            thumb_rect = rect.copy()
+            thumb_rect.width /= 5.0
+            thumb_image = pygame.Surface(thumb_rect.size)
+            thumb_image.fill((255, 255, 255))
 
-        # Try and load the save game and draw details about the save
-        try:
-            save_data = save.load(slot_num)
-        except Exception as e:
-            logger.error(e)
-            save_data = dict()
-            save_data["error"] = "Save file corrupted"
-            save_data["player_name"] = "BROKEN SAVE!"
-            logger.error("Failed loading save file.")
-            if thumb_image is not None:
-                pygame.draw.line(thumb_image, (255,   0,   0), [0, 0], thumb_rect.size, 3)
-                pygame.draw.line(thumb_image, (255,   0,   0), [0, thumb_rect.height], [thumb_rect.width, 0], 3)
+        if "error" in save_data:
+            red = (255,   0,   0)
+            pygame.draw.line(thumb_image, red, [0, 0], thumb_rect.size, 3)
+            pygame.draw.line(thumb_image, red, [0, thumb_rect.height], [thumb_rect.width, 0], 3)
 
         # Draw the screenshot
-        if thumb_image is not None:
-            slot_image.blit(thumb_image, (rect.width * .20, 0))
+        slot_image.blit(thumb_image, (rect.width * .20, 0))
 
         # Draw the slot text
         rect = rect.move(0, rect.height // 2 - 10)
@@ -86,22 +84,19 @@ class SaveMenuState(PopUpMenu):
     def on_menu_selection(self, menuitem):
         logger.info("Saving!")
         try:
-            save.save(self.game.player1,
-                      self.capture_screenshot(),
-                      self.selected_index + 1,
-                      self.game)
+            save_data = save.get_save_data(
+                self.game,
+            )
+            save.save(
+                save_data,
+                self.selected_index + 1,
+            )
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)
-
             open_dialog(self.game, [trans('save_failure')])
-            self.game.pop_state(self)
         else:
             open_dialog(self.game, [trans('save_success')])
-            self.game.pop_state(self)
 
-    def capture_screenshot(self):
-        screenshot = pygame.Surface(self.game.screen.get_size())
-        world = self.game.get_state_name("WorldState")
-        world.draw(screenshot)
-        return screenshot
+        self.game.pop_state(self)
+

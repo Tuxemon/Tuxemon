@@ -28,113 +28,71 @@
 #
 #
 
+import base64
+import cbor
 import json
 import datetime
 import logging
-import os
 
 import pygame
 
 from tuxemon.core import prepare
-from tuxemon.core.tools import nearest
-from tuxemon.core.components.item import Item
-from tuxemon.core.components.monster import Monster
-from tuxemon.core.components.technique import Technique
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
-def save(player, screenshot, slot, game):
+def get_save_data(game):
+    """Gets a dictionary which represents the state of the game.
+
+    :param game: The core.control.Control object that runs the game.
+    :type game: core.control.Control
+
+    :rtype: Dictionary
+    :returns: Game data to save, must be JSON encodable.
+
+    """
+    save_data = game.player1.get_state(game)
+    screenshot = capture_screenshot(game)
+    save_data['screenshot'] = base64.encodestring(pygame.image.tostring(screenshot, "RGB"))
+    save_data['screenshot_width'] = screenshot.get_width()
+    save_data['screenshot_height'] = screenshot.get_height()
+    save_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    return save_data
+
+
+def capture_screenshot(game):
+    screenshot = pygame.Surface(game.screen.get_size())
+    world = game.get_state_name("WorldState")
+    world.draw(screenshot)
+    return screenshot
+
+
+def save(save_data, slot):
     """Saves the current game state to a file using shelve.
 
-    :param player: The player object that contains data to save.
+    :param save_data: The data to save.
+    :param screenshot: An image of the current frame
     :param slot: The save slot to save the data to.
-    :param game: The core.control.Control object that runs the game.
 
-    :type player: core.components.player.Player
+    :type save_data: Dictionary
+    :type screenshot: pygame.Image
     :type slot: Integer
-    :type game: core.control.Control
 
     :rtype: None
     :returns: None
 
-    **Examples:**
-
-    >>> core.components.save.save(player1, 2, self)
-
     """
     # Save a screenshot of the current frame
-    pygame.image.save(screenshot, prepare.SAVE_PATH + str(slot) + '.png')
-    save_file = open(prepare.SAVE_PATH + str(slot) + '.save', 'w')
-    json_data = dict()
-
-    tempinv1 = dict()
-    for name, itm in player.inventory.items():
-        tempinv1[itm['item'].slug] = itm['quantity']
-    json_data["inventory"] = tempinv1
-
-    tempmon1 = list()
-    for mon1 in player.monsters:
-        tempmon1.append(save_monster(mon1))
-    json_data["monsters"] = tempmon1
-
-    tempstorage1 = dict()
-    for keysstore, valuesstore in tempstorage1.items():
-        if keysstore == 'items':
-            tempinv = dict()
-            for name, itm in valuesstore.items():
-                tempinv[itm['item'].slug] = itm['quantity']
-            tempstorage1[keysstore] = tempinv
-        if keysstore == 'monsters':
-            tempmon = list()
-            for monstore in valuesstore:
-                tempmon.append(save_monster(monstore))
-            tempstorage1[keysstore] = tempmon
-    json_data['storage'] = tempstorage1
-
-    json_data['current_map'] = game.get_map_name()
-    json_data['game_variables'] = player.game_variables
-    json_data['tile_pos'] = nearest(player.tile_pos)
-    json_data['player_name'] = player.name
-    json_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-
-    json.dump(json_data, save_file)
-    save_file.close()
-    logger.info("Saving data to save file: " + prepare.SAVE_PATH + str(slot) + '.save')
-
-
-def save_monster(mon):
-    """Prepares a dictionary of the monster to be saved to a file
-
-    :param: None
-
-    :rtype: Dictionary
-    :returns: Dictionary containing all the information about the monster
-
-    """
-    save_data = dict()
-    for key, value in mon.__dict__.items():
-        if key == "moves":
-            save_data["moves"] = [i.slug for i in mon.moves]
-        elif key == "body":
-            save_data[key] = save_body(mon.body)
-        elif key != "sprites" and key != "moveset" and key != "ai":
-            save_data[key] = value
-    return save_data
-
-
-def save_body(body):
-    """Prepares a dictionary of the body to be saved to a file
-
-    :param: None
-
-    :rtype: Dictionary
-    :returns: Dictionary containing all the information about the body
-
-    """
-    save_data = dict(body.__dict__)
-    return save_data
+    save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    if prepare.SAVE_METHOD == "CBOR":
+        text = cbor.dumps(save_data)
+    else:
+        text = json.dumps(save_data)
+    with open(save_path, 'w') as f:
+        logger.info("Saving data to save file: " + save_path)
+        # Don't dump straight to the file: if we crash it would corrupt the save_data
+        f.write(text)
 
 
 def load(slot):
@@ -152,96 +110,33 @@ def load(slot):
 
     """
 
-    # this check is required since opening a shelve will
-    # create the pickle is it doesn't already exist.
-    # this check prevents a bug where saves are not recorded
-    # properly.
     save_path = prepare.SAVE_PATH + str(slot) + '.save'
-    if not os.path.exists(save_path):
-        return
+    save_data = dict()
+    try:
+        with open(save_path, 'r') as save_file:
+            text = save_file.read()
+            logs = []
 
-    saveData = dict()
-    with open(save_path, 'r') as save_file:
-        json_data = json.load(save_file)
-        tempinv = dict()
+            try:
+                return json.loads(text)
+            except ValueError as e:
+                logs.append(e)
 
-        for slug, quant in json_data['inventory'].items():
-            tempinv1 = dict()
-            tempinv1['item'] = Item(slug)
-            tempinv1['quantity'] = quant
-            tempinv[tempinv1['item'].slug] = tempinv1
-        saveData['inventory'] = tempinv
+            try:
+                # This comes after the json attempt.
+                # cbor thinks that it can open the json, but it messes up the screenshot somehow.
+                return cbor.loads(text)
+            except ValueError as e:
+                logs.append(e)
 
-        tempmon = list()
-        for mon in json_data['monsters']:
-            tempmon1 = Monster()
-            tempmon1.load_from_db(mon['slug'])
-            load_monster(tempmon1, mon);
-            tempmon.append(tempmon1)
-        saveData['monsters'] = tempmon
+            for log in logs:
+                logger.error(log)
 
-        # TODO: unify loading and game instancing
-        # Loop through the storage item keys and re-add the surface.
-        tempstorage = dict()
-        for keys, values in json_data['storage'].items():
-            if keys == 'items':
-                tempinv = dict()
+    except IOError as e:
+        logger.error(e)
 
-                for slug, quant in values.items():
-                    tempinv1 = dict()
-                    tempinv1['item'] = Item(slug)
-                    tempinv1['quantity'] = quant
-                    tempinv[tempinv1['item'].slug] = tempinv1
-                tempstorage[keys] = tempinv
+    save_data["error"] = "Save file corrupted"
+    save_data["player_name"] = "BROKEN SAVE!"
+    logger.error("Failed loading save file.")
+    return save_data
 
-            elif keys == 'monsters':
-                tempmon = list()
-                for mon in values:
-                    tempmon1 = Monster()
-                    tempmon1.load_from_db(mon['slug'])
-                    load_monster(tempmon1, mon);
-                    tempmon.append(tempmon1)
-                tempstorage[keys] = tempmon
-            else:
-                tempstorage[keys] = values
-        saveData['storage'] = tempstorage
-
-        saveData['game_variables'] = json_data['game_variables']
-        saveData['tile_pos'] = json_data['tile_pos']
-        saveData['current_map'] = json_data['current_map']
-        saveData['player_name'] = json_data['player_name']
-        saveData['time'] = json_data['time']
-
-    return saveData
-
-
-def load_monster(mon, save_data):
-    """Loads information from saved data
-
-    :param save_data: Dictionary loaded from the json file
-
-    :rtype: None
-    :returns: None
-
-    """
-    for key, value in save_data.items():
-        if key == "moves":
-            mon.moves = [Technique(i) for i in value]
-        elif key == "body":
-            load_body(mon, value)
-        else:
-            setattr(mon, key, value)
-    mon.load_sprites()
-
-
-def load_body(body, save_data):
-    """Loads information from saved data
-
-    :param save_data: Dictionary loaded from the json file
-
-    :rtype: None
-    :returns: None
-
-    """
-    for key, value in save_data.items():
-        setattr(body, key, value)

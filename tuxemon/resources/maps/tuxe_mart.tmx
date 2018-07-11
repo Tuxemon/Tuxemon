@@ -74,11 +74,8 @@
    <properties>
     <property name="act1" value="translated_dialog professor_dialog"/>
     <property name="act7" value="dialog_choice Hydrone:Rockitten:Fruitera,tuxchoice"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is npc_exists npc_professor"/>
     <property name="cond5" value="is variable_set tuxchoice:welcome"/>
+    <property name="behav1" value="talk npc_professor"/>
    </properties>
   </object>
   <object id="42" name="hello Professor" type="event" x="144" y="192" width="16" height="16">

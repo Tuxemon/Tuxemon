@@ -23,6 +23,7 @@ from __future__ import absolute_import
 
 from tuxemon.core.components.event import get_npc
 from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.map import get_direction, dirs2
 
 
 class NpcFaceAction(EventAction):
@@ -40,4 +41,12 @@ class NpcFaceAction(EventAction):
 
     def start(self):
         npc = get_npc(self.game, self.parameters.npc_slug)
-        npc.facing = self.parameters.direction
+        direction = self.parameters.direction
+        if direction not in dirs2:
+            if direction == "player":
+                target = self.game.player1
+            else:
+                target = get_npc(self.game, direction)
+            direction = get_direction(npc.tile_pos, target.tile_pos)
+
+        npc.facing = direction

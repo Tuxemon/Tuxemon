@@ -60,15 +60,18 @@ class TranslatedDialogAction(EventAction):
     ]
 
     def start(self):
-        text = process_translate_text(self.game, self.parameters.key,
-                                      self.raw_parameters[1:])
-        text = replace_text(self.game, text)
-        self.open_dialog(text)
+        self.open_dialog(
+            process_translate_text(
+                self.game,
+                self.parameters.key,
+                self.raw_parameters[1:],
+            )
+        )
 
     def update(self):
         if self.game.get_state_name("DialogState") is None:
             self.stop()
 
-    def open_dialog(self, initial_text):
+    def open_dialog(self, pages):
         logger.info("Opening dialog window")
-        open_dialog(self.game, [initial_text])
+        open_dialog(self.game, pages)

@@ -60,28 +60,28 @@ class TranslatedDialogChainAction(EventAction):
         key = self.parameters.key
 
         # If text is "${{end}}, then close the current dialog
-        if not key == "${{end}}":
-            self.stop()
+        if key == "${{end}}":
+            return
 
-            text = process_translate_text(self.game, key,
-                                          self.raw_parameters[1:])
-            text = replace_text(self.game, text)
+        self.stop()
 
-            # is a dialog already open?
-            dialog = self.game.get_state_name("DialogState")
+        pages = process_translate_text(
+            self.game,
+            key,
+            self.raw_parameters[1:],
+        )
 
-            if dialog:
-                # yes, so just add text to it
-                dialog.text_queue.append(text)
-            else:
-                # no, so create new dialog with this line
-                self.open_dialog(text)
+        dialog = self.game.get_state_name("DialogState")
+        if dialog:
+            dialog.text_queue += pages
+        else:
+            self.open_dialog(pages)
 
     def update(self):
         if self.parameters.key == "${{end}}":
             if self.game.get_state_name("DialogState") is None:
                 self.stop()
 
-    def open_dialog(self, initial_text):
+    def open_dialog(self, pages):
         logger.info("Opening chain dialog window")
-        open_dialog(self.game, [initial_text])
+        open_dialog(self.game, pages)

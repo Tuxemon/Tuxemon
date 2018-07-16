@@ -217,7 +217,7 @@
    <properties>
     <property name="act1" value="translated_dialog itslockedboi"/>
     <property name="act2" value="translated_dialog hellothere"/>
-    <property name="act3" value="create_npc npc_aeble,14,10,omnichannelceo,stand"/>
+    <property name="act3" value="create_npc npc_aeble,14,10,,stand"/>
     <property name="act4" value="npc_face npc_aeble,right"/>
     <property name="act5" value="translated_dialog kmere"/>
     <property name="cond1" value="is player_at"/>
@@ -371,7 +371,7 @@
   </object>
   <object id="252" name="create allie" type="event" x="0" y="352" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_allie,22,10,omnichannelfemale,stand"/>
+    <property name="act1" value="create_npc npc_allie,22,10,,stand"/>
     <property name="cond1" value="not npc_exists npc_allie"/>
     <property name="cond2" value="not variable_set npcs_are_created:yes"/>
    </properties>
@@ -400,7 +400,7 @@
   </object>
   <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_liela,38,17,femaletrainer,stand"/>
+    <property name="act1" value="create_npc npc_liela,38,17,,stand"/>
     <property name="act2" value="npc_face npc_liela,up"/>
     <property name="cond1" value="not npc_exists npc_liela"/>
    </properties>

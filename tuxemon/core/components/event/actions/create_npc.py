@@ -20,11 +20,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import absolute_import
+import logging
 
 import tuxemon.core.components.npc
-from tuxemon.core.components import ai
+from tuxemon.core.components import ai, db
 from tuxemon.core.components.event.eventaction import EventAction
 
+logger = logging.getLogger(__name__)
 
 class CreateNpcAction(EventAction):
     """Creates an NPC object and adds it to the game's current list of NPC's.
@@ -49,17 +51,27 @@ class CreateNpcAction(EventAction):
         # Get the npc's parameters from the action
         slug = self.parameters.npc_slug
 
+        # Ensure that the NPC doesn't already exist on the map.
+        if slug in world.npcs:
+            return
+
         # Get the npc's parameters from the action
         pos_x = self.parameters.tile_pos_x
         pos_y = self.parameters.tile_pos_y
         behavior = self.parameters.behavior
 
-        # Ensure that the NPC doesn't already exist on the map.
-        if slug in world.npcs:
-            return
+        sprite = self.parameters.animations
+        if sprite:
+            logger.warning(
+                "%s: setting npc sprites within a map is deprecated, and may be removed in the future. "
+                "Sprites should be defined in JSON before loading.",
+                slug
+            )
+        else:
+            sprite = db.JSONDatabase('npc').database['npc'][slug].get('sprite_name')
 
         # Create a new NPC object
-        npc = tuxemon.core.components.npc.Npc(slug, sprite_name=self.parameters.animations)
+        npc = tuxemon.core.components.npc.Npc(slug, sprite_name=sprite)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables

@@ -460,10 +460,10 @@
         "I'm sure we can lend you one. Are you up for the challenge?"
     ],
     "sorry": "Okay, well... when you're ready, I'll still be here...",
-    "splendid": [
-        "You will? Splendid! Now, to find you a suitable Tuxemon...",
-        "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well..."
-    ],
+    "splendid": "You will? Splendid! Now, to find you a suitable Tuxemon...",
+    "splendid2": "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...",
+    "splendid3": "... .... ... .... ....",
+    "splendid4": "Okay, we have decided to let you participate. Here is a new Tuxemon. You'll need it.",
 
     "cottonnurse": "Welcome to the Cotton Town Tuxecenter!",
     "tabanurse": [

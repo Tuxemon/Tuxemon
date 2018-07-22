@@ -41,7 +41,10 @@ def process_translate_text(game, text_slug, parameters):
 
         replace_values[key] = replace_text(game, value)
 
-    return replace_text(game, trans(text_slug, replace_values))
+    text = trans(text_slug)
+    pages = text if isinstance(text, list) else (text,)
+    pages = (translator.format(page, replace_values) for page in pages)
+    return [replace_text(game, page) for page in pages]
 
 
 def check_battle_legal(player):

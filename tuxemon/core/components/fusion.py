@@ -190,6 +190,15 @@ class Body(object):
         self.body_image = Image.open(self.body_image_path)
         self.face_image = Image.open(self.face_image_path)
 
+    def get_state(self):
+        if self.name:
+            return self.__dict__
+
+    def set_state(self, save_data):
+        # TODO: There's no point optimising this until Body is actually used.
+        if save_data:
+            for attr, value in save_data.iteritems():
+                setattr(self, attr, value)
 
 
 def replace_color(image, original_color, replacement_color):

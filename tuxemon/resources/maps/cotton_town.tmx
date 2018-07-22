@@ -380,66 +380,22 @@
    <properties>
     <property name="act1" value="translated_dialog mwah"/>
     <property name="act11" value="set_variable npcs_are_created:yes"/>
-    <property name="act2" value="translated_dialog mwah2"/>
-    <property name="act3" value="translated_dialog mwah3"/>
-    <property name="act4" value="dialog ${{name}}..."/>
-    <property name="act7" value="translated_dialog mwah4"/>
-    <property name="act8" value="translated_dialog mwah5"/>
     <property name="act9" value="npc_face npc_allie,up"/>
-    <property name="act91" value="translated_dialog mwah6"/>
+    <property name="act91" value="translated_dialog mwah2"/>
     <property name="act92" value="remove_npc npc_allie"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="254" name="come on over" type="event" x="336" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog dontmakemeturn"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is npc_exists npc_allie"/>
-   </properties>
-  </object>
-  <object id="255" name="come to me2" type="event" x="368" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog dontmakemeturn2"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is npc_exists npc_allie"/>
+    <property name="behav0" value="talk npc_allie"/>
    </properties>
   </object>
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog theinfo"/>
-    <property name="act2" value="translated_dialog theinfo2"/>
-    <property name="act3" value="translated_dialog theinfo2.5"/>
-    <property name="act4" value="translated_dialog theinfo3"/>
-    <property name="act5" value="translated_dialog theinfo4"/>
-    <property name="act6" value="translated_dialog theinfo5"/>
-    <property name="act7" value="translated_dialog theinfo6"/>
-    <property name="act8" value="translated_dialog theinfo7"/>
-    <property name="act81" value="translated_dialog theinfo8"/>
-    <property name="act83" value="translated_dialog theinfo9"/>
-    <property name="act84" value="translated_dialog theinfo10"/>
-    <property name="act85" value="translated_dialog theinfo11"/>
-    <property name="act86" value="translated_dialog theinfo12"/>
-    <property name="act87" value="translated_dialog theinfo13"/>
-    <property name="act89" value="translated_dialog theinfo14"/>
-    <property name="act90" value="translated_dialog theinfo15"/>
-    <property name="act91" value="translated_dialog theinfo16"/>
-    <property name="act92" value="translated_dialog theinfo17"/>
     <property name="act93" value="npc_move npc_aeble, down 1, right 8, up 1"/>
     <property name="act94" value="npc_speed npc_aeble, 0.5"/>
     <property name="act95" value="pathfind npc_aeble, 22, 10"/>
     <property name="act96" value="remove_npc npc_aeble"/>
     <property name="act97" value="set_variable donewithyou:yes"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="not variable_set donewithyou:yes"/>
+    <property name="behav1" value="talk npc_aeble"/>
    </properties>
   </object>
   <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
@@ -465,44 +421,34 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="263" name="purple flowers1" type="event" x="128" y="304" width="16" height="16">
+  <object id="263" name="purple flowers1" type="event" x="128" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="264" name="purple flowers2" type="event" x="160" y="304" width="16" height="16">
+  <object id="264" name="purple flowers2" type="event" x="160" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="265" name="purple flowers3" type="event" x="256" y="304" width="16" height="16">
+  <object id="265" name="purple flowers3" type="event" x="256" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="266" name="purple flowers4" type="event" x="288" y="304" width="16" height="16">
+  <object id="266" name="purple flowers4" type="event" x="288" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="267" name="purple flowers5" type="event" x="384" y="304" width="16" height="16">
+  <object id="267" name="purple flowers5" type="event" x="384" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="269" name="orange flowers" type="event" x="208" y="272" width="16" height="16">
@@ -517,9 +463,7 @@
    <properties>
     <property name="act1" value="translated_dialog liela_goes_to_battle"/>
     <property name="act2" value="start_battle npc_liela"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="behav1" value="talk npc_liela"/>
    </properties>
   </object>
   <object id="271" name="statue1" type="event" x="448" y="464" width="16" height="16">
@@ -538,12 +482,10 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="273" name="fountain" type="event" x="464" y="400" width="48" height="16">
+  <object id="273" name="fountain" type="event" x="464" y="368" width="48" height="32">
    <properties>
     <property name="act1" value="translated_dialog cotton_town_fountain"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="274" name="tree" type="event" x="144" y="144" width="16" height="16">

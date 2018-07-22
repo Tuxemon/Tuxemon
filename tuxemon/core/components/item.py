@@ -271,3 +271,36 @@ class Item(object):
         return {"success": True,
                 "capture": True,
                 "num_shakes": 4}
+
+
+def decode_inventory(data):
+    """ Reconstruct inventory from save_data
+
+    :param data: save data
+    :type data: Dictionary
+
+    :rtype: Dictionary
+    :returns: New inventory
+    """
+    return {
+        slug : {
+            'item': Item(slug),
+            'quantity': quant,
+        }
+        for slug, quant in (data.get('inventory') or {}).items()
+    }
+
+
+def encode_inventory(inventory):
+    """ Construct JSON encodable dict for saving
+
+    :param inventory: the inventory of the player
+    :type inventory: Dictionary
+
+    :rtype: Dictionary
+    :returns: inventory save_data
+    """
+    return {
+        itm['item'].slug: itm['quantity']
+        for itm in inventory.values()
+    }

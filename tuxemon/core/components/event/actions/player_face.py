@@ -21,7 +21,9 @@
 #
 from __future__ import absolute_import
 
+from tuxemon.core.components.event import get_npc
 from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.map import dirs2, get_direction
 
 
 class PlayerFaceAction(EventAction):
@@ -39,6 +41,9 @@ class PlayerFaceAction(EventAction):
     def start(self):
         # Get the parameters to determine what direction the player will face.
         direction = self.parameters.direction
+        if direction not in dirs2:
+            target = get_npc(self.game, direction)
+            direction = get_direction(self.game.player1.tilepos, target.tilepos)
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.

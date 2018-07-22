@@ -33,11 +33,13 @@ import os
 
 import pygame
 
+from item import decode_inventory, encode_inventory
+from monster import decode_monsters, encode_monsters
 from tuxemon.core.components import db, pyganim
 from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.locale import translator
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
-from tuxemon.core.tools import load_and_scale, trunc
+from tuxemon.core.tools import nearest, load_and_scale, trunc
 
 trans = translator.translate
 
@@ -93,6 +95,7 @@ class Npc(Entity):
         self.name = trans(npc_data["name_trans"])
 
         # use 'animations' passed in
+        # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
         if self.sprite_name is None:
             # Try to use the sprites defined in the JSON data
@@ -101,14 +104,19 @@ class Npc(Entity):
             except KeyError:
                 logger.error('Cannot find sprite for {}'.format(npc_slug))
 
-        self.ai = None  # Whether or not this player has AI associated with it
-        self.behavior = "wander"
+        # general
+        self.behavior = "wander"  # not used for now
+        self.game_variables = {}  # Tracks the game state
         self.interactions = []  # List of ways player can interact with the Npc
-
         self.isplayer = False  # used for various tests, idk
         self.monsters = []  # This is a list of tuxemon the npc has
         self.inventory = {}  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
+
+        # combat related
+        self.ai = None  # Whether or not this player has AI associated with it
+        self.speed = 10  # To determine combat order (not related to movement!)
+        self.moves = []  # list of techniques
 
         # pathfinding and waypoint related
         self.pathfinding = None
@@ -121,6 +129,7 @@ class Npc(Entity):
         # the destination due to speed issues or framerate jitters.
         self.path_origin = None
 
+        # movement related
         self.move_direction = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
         self.walking = False  # Whether or not the player is walking
@@ -142,6 +151,50 @@ class Npc(Entity):
         self.moveConductor = pyganim.PygConductor()
         self.load_sprites()
         self.rect = pygame.Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+
+    def get_state(self, game):
+        """Prepares a dictionary of the npc to be saved to a file
+
+        :param game: The object that runs the game.
+        :type game: core.control.Control
+
+        :rtype: Dictionary
+        :returns: Dictionary containing all the information about the npc
+
+        """
+        return {
+            'current_map': game.get_map_name(),
+            'facing': self.facing,
+            'game_variables': self.game_variables,
+            'inventory': encode_inventory(self.inventory),
+            'monsters': encode_monsters(self.monsters),
+            'player_name': self.name,
+            'storage': {
+                'items': encode_inventory(self.storage['items']),
+                'monsters': encode_monsters(self.storage['monsters']),
+            },
+            'tile_pos': nearest(self.tile_pos),
+        }
+
+    def set_state(self, save_data):
+        """Recreates npc from saved data
+
+        :param save_data: Data used to recreate the player
+        :type save_data: Dictionary
+
+        :rtype: None
+        :returns: None
+
+        """
+        self.facing = save_data.get('facing', 'down')
+        self.game_variables = save_data['game_variables']
+        self.inventory = decode_inventory(save_data)
+        self.monsters = decode_monsters(save_data)
+        self.name = save_data['player_name']
+        self.storage = {
+            'items': decode_inventory(save_data['storage']),
+            'monsters': decode_inventory(save_data['storage']),
+        }
 
     def load_sprites(self):
         """ Load sprite graphics

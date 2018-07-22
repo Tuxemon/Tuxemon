@@ -70,10 +70,6 @@
    <properties>
     <property name="act1" value="set_variable surprisemf:notanymore"/>
     <property name="act2" value="translated_dialog a_serious_discussion"/>
-    <property name="act3" value="translated_dialog a_serious_discussion2"/>
-    <property name="act4" value="translated_dialog a_serious_discussion3"/>
-    <property name="act5" value="dialog ${{name}}?"/>
-    <property name="act6" value="translated_dialog a_serious_discussion4"/>
     <property name="act7" value="set_variable jumpinback:yes"/>
     <property name="cond1" value="is variable_set surprisemf:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -86,7 +82,6 @@
     <property name="act1" value="teleport meet_misa.tmx,3,5"/>
     <property name="act2" value="set_variable jumpinback:no"/>
     <property name="act4" value="translated_dialog oops"/>
-    <property name="act5" value="translated_dialog oops2"/>
     <property name="act6" value="set_variable oopsie:yes"/>
     <property name="cond1" value="is variable_set jumpinback:yes"/>
    </properties>
@@ -94,13 +89,6 @@
   <object id="40" name="let's speak" type="event" x="48" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog backstory"/>
-    <property name="act2" value="translated_dialog backstory2"/>
-    <property name="act3" value="translated_dialog backstory3"/>
-    <property name="act4" value="translated_dialog backstory4"/>
-    <property name="act5" value="translated_dialog backstory5"/>
-    <property name="act6" value="translated_dialog backstory6"/>
-    <property name="act7" value="translated_dialog backstory7"/>
-    <property name="act8" value="translated_dialog backstory8"/>
     <property name="act9" value="set_variable oopsie:whoops"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -121,6 +109,7 @@
    <properties>
     <property name="act1" value="translated_dialog sorryfurthis"/>
     <property name="act2" value="transition_teleport route1.tmx,33,12,0.7"/>
+    <property name="act3" value="set_variable questioning:None"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set questioning:Yes"/>

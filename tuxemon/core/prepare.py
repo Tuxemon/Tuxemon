@@ -116,6 +116,8 @@ except OSError:
     if not os.path.isdir(CONFIG_PATH + "saves/"):
         raise
 SAVE_PATH = CONFIG_PATH + "saves/slot"
+SAVE_METHOD = "JSON"
+# SAVE_METHOD = "CBOR"
 
 
 # Initialization of PyGame dependent systems.

@@ -94,21 +94,16 @@ def translate_short_path(path, position=(0, 0)):
         yield position
 
 
-def get_direction(start, end):
-    """ Get direction name from two points
+def get_direction(base, target):
+    y_offset = base[1] - target[1]
+    x_offset = base[0] - target[0]
+    # Is it further away vertically or horizontally?
+    look_on_y_axis = abs(y_offset) >= abs(x_offset)
 
-    :param start:
-    :param end:
-    :return:
-    """
-    if start[0] > end[0]:
-        return "left"
-    elif start[0] < end[0]:
-        return "right"
-    elif start[1] < end[1]:
-        return "down"
-    elif start[1] > end[1]:
-        return "up"
+    if look_on_y_axis:
+        return "up" if y_offset > 0 else "down"
+    else:
+        return "left" if x_offset > 0 else "right"
 
 
 def proj(point):
@@ -388,6 +383,24 @@ class Map(object):
                 # Create an action object using named tuples
                 action = MapAction(act_type, args)
                 acts.append(action)
+
+        for k in keys:
+            if k.startswith('behav'):
+                words = obj.properties[k].split(' ', 1)
+
+                # Actions have the form 'type parameters'.
+                behav_type = words[0]
+
+                # If this action has parameters, split them into a
+                # list
+                if len(words) > 1:
+                    args = self.split_escaped(words[1])
+                else:
+                    args = list()
+
+                if behav_type == "talk":
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is"))
+                    acts.insert(0, MapAction("npc_face", [args[0], "player"]))
 
         # TODO: move this to some post-creation function, as more may be needed
         # add a player_facing_tile condition automatically

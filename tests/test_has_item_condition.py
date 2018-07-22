@@ -2,6 +2,7 @@ import os
 import sys
 import unittest
 from collections import namedtuple
+from nose.tools import nottest
 
 # for some test runners that cannot find the tuxemon core
 sys.path.insert(0, os.path.join('tuxemon', ))
@@ -19,6 +20,7 @@ def inventory(n):
     return {test_item: {'quantity': n}}
 
 
+@nottest
 def make_test(parameters, inventory):
     game = HeadlessControl()
     condition = cond_nt(parameters)
@@ -28,6 +30,7 @@ def make_test(parameters, inventory):
     return test.test(game, condition)
 
 
+@nottest
 def test_op(op):
     parameters = (test_target, test_item, op, 1)
     eq = make_test(parameters, inventory(1))

@@ -48,6 +48,21 @@ monsters = db.JSONDatabase()
 monsters.load("monster")
 monsters.load("technique")
 
+SIMPLE_PERSISTANCE_ATTRIBUTES = (
+    'attack',
+    'current_hp',
+    'defense',
+    'hp',
+    'level',
+    'name',
+    'slug',
+    'special_attack',
+    'special_defense',
+    'speed',
+    'status',
+    'total_experience',
+)
+
 
 # class definition for first active tuxemon to use in combat:
 class Monster(object):
@@ -85,7 +100,7 @@ class Monster(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, save_data={}):
         self.slug = ""
         self.name = ""          # The display name of the Tuxemon
         self.description = ""
@@ -137,6 +152,8 @@ class Monster(object):
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
         self.menu_sprite = ""
+
+        self.set_state(save_data)
 
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
@@ -425,3 +442,64 @@ class Monster(object):
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
         self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
         return False
+
+    def get_state(self):
+        """Prepares a dictionary of the monster to be saved to a file
+
+        :param: None
+
+        :rtype: Dictionary
+        :returns: Dictionary containing all the information about the monster
+        """
+        save_data = {
+            attr: getattr(self, attr)
+            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
+            if getattr(self, attr)
+        }
+
+        save_data["moves"] = [i.get_state() for i in self.moves]
+        if self.status:
+            save_data["status"] = [i.get_state() for i in self.status]
+        body = self.body.get_state()
+        if body:
+            save_data["body"] = body
+
+        return save_data
+
+    def set_state(self, save_data):
+        """Loads information from saved data
+
+        :param save_data: Data used to reconstruct the monster
+        :type save_data: Dictionary
+
+        :rtype: None
+        :returns: None
+
+        """
+        if not save_data:
+            return
+
+        self.load_from_db(save_data['slug'])
+
+        for key, value in save_data.items():
+            if key == 'moves' and value:
+                self.moves = [Technique(slug=i) for i in value]
+            elif key == 'status' and value:
+                self.status = [Technique(slug=i) for i in value]
+            elif key == 'body' and value:
+                self.body.set_state(value)
+            elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
+                setattr(self, key, value)
+
+        self.load_sprites()
+
+
+def decode_monsters(json_data):
+    return [
+        Monster(save_data=mon)
+        for mon in json_data.get('monsters') or []
+    ]
+
+
+def encode_monsters(mons):
+    return [mon.get_state() for mon in mons]

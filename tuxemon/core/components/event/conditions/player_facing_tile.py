@@ -63,32 +63,37 @@ class PlayerFacingTileCondition(EventCondition):
 
         """
 
-        coordinates = (condition.x, condition.y)
+        tiles = [
+            (condition.x + w, condition.y + h)
+            for w in range(0, condition.width)
+            for h in range(0, condition.height)
+        ]
         tile_location = None
 
         # Next, we check the player position and see if we're one tile away from
         # the tile.
-        if coordinates[1] == game.player1.tile_pos[1]:
-            # Check to see if the tile is to the left of the player
-            if coordinates[0] == game.player1.tile_pos[0] - 1:
-                logger.debug("Tile is to the left of the player")
-                tile_location = "left"
-            # Check to see if the tile is to the right of the player
-            elif coordinates[0] == game.player1.tile_pos[0] + 1:
-                logger.debug("Tile is to the right of the player")
-                tile_location = "right"
+        for coordinates in tiles:
+            if coordinates[1] == game.player1.tile_pos[1]:
+                # Check to see if the tile is to the left of the player
+                if coordinates[0] == game.player1.tile_pos[0] - 1:
+                    logger.debug("Tile is to the left of the player")
+                    tile_location = "left"
+                # Check to see if the tile is to the right of the player
+                elif coordinates[0] == game.player1.tile_pos[0] + 1:
+                    logger.debug("Tile is to the right of the player")
+                    tile_location = "right"
 
-        if coordinates[0] == game.player1.tile_pos[0]:
-            # Check to see if the tile is above the player
-            if coordinates[1] == game.player1.tile_pos[1] - 1:
-                logger.debug("Tile is above the player")
-                tile_location = "up"
-            elif coordinates[1] == game.player1.tile_pos[1] + 1:
-                logger.debug("Tile is below the player")
-                tile_location = "down"
+            elif coordinates[0] == game.player1.tile_pos[0]:
+                # Check to see if the tile is above the player
+                if coordinates[1] == game.player1.tile_pos[1] - 1:
+                    logger.debug("Tile is above the player")
+                    tile_location = "up"
+                elif coordinates[1] == game.player1.tile_pos[1] + 1:
+                    logger.debug("Tile is below the player")
+                    tile_location = "down"
 
-        # Then we check to see if we're facing the Tile
-        if game.player1.facing == tile_location:
-            return True
-        else:
-            return False
+            # Then we check to see if we're facing the Tile
+            if game.player1.facing == tile_location:
+                return True
+
+        return False

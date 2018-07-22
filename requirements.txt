@@ -1,3 +1,4 @@
+cbor
 pytmx>=3.20.17
 pyscroll>=2.17.9
 pillow

@@ -351,3 +351,6 @@ class Technique(object):
             'success': True,
             'should_tackle': False,
         }
+
+    def get_state(self):
+        return self.slug

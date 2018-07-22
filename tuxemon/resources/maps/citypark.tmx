@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="104">
+<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextobjectid="111">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -21,9 +21,6 @@
  <tileset firstgid="2669" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <tileset firstgid="2825" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="5" columns="40">
-  <image source="../../../../../Tuxemon - dev branch/Tuxemon/tuxemon/resources/gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
  <layer name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztzrENgDAQBMGXayGEDHqkUtMGLxETIr/MBKcJb3tEXLlO/tQ++H92l1aj4801+7Y2vkPfN+7ZdhTuI0mSJEmSj2eRDs7lDWjMmhw=
@@ -36,7 +33,7 @@
  </layer>
  <layer name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztWM1qFEEQrtlTwp70tK+QgJCXEDWJP1eNyopnMY+RXSU30eMEfYQIeYcI5ubfyQlI3iEXqzDF1tRWVff2zBqRfFDUbNNT/c03Xd/ODMD/jWsVwPXq76x1JtbLzWsY6wvM13lR8Hq5ufQ8ff4VynAH4xHGVpciS7wPD7H2HuadHtYo7YGoN4gfXT/za5w1bwzS/Ep7IOoN4jeq2vo1MO8PET85v0/tmN+GoZ/2rRS/ZWjH/Mh3iV8j1vu80ubZQBwS60HouRZa+w/+9O+O4ObNzUVXfp43NypHcyPwNX0fdt+H5H+bMPO/lH6eX8pxvqavw+77UPqL1E/3L4Pm78K8X3rjjOMFj1N1df/K+Zafp3z+9CL/EscQHDMmTt1IvxrzK4NfHfA7F/zOjXF9TDhchbqm0HWrWL8jzAerMP6Iocc1v/2L39sYdzGeBHFP8cP6Na5TW3Uj/U4w43WNDxW/E6PO02qWf0IcY0P7qVM30o/8/LVxf9nnPX4pj7f4eXW1fqNqNp/7/UjVkc8ZFr8S/SZO3Ug//TwRjXv6vcf/8w+DWD/uD6tutP82HH7WuKffMXL7NIj14/6w6qb61+JnjTO/Z9DWiv+LfwxnY89hHlOnbqp/Lf+L+pcgtVrD+DJsj1nw6qb61/K/qH8Jln7fhH4WJpn9K3lQP1n+Z/XZY8j3Yw3uj5L+tfzP6rMIlp9IcH/IuuxpffVvF36EqVPX1Q/az9vW+AOw7+f9An7eep5+BNrTN9G7bmHcznjv9BDxS73nePoxXiCvlxi7PfA7y+QmOUb6Ed4gr7cY7yx+mXvQ8uMcfqNqXj+tY9/v46W57+95fedFv2f+K/p5uGz9Ut9zLlu/ZX1nLs2/AYG1Hrg=
+   eJztWMFu00AQHefUHOGUX0gkpPxEBaW0cKUpKIhzRT6jCVVvqByN4BNSqf9QJPILGAn1H3JhVmSU8WRmdrN2KEI8aTTOaj37/LzzYhvg38aDAuBh8WfWumPrpeY+xmCL+TJvC1ovNeeeJ8//jzwcYJxgHDYpssP78BJrn2MetbBGbg94vRH4hesnfpWx5qNOnF9uD3i9Efj1irp+FWz6g8ePz29TO+I3VPSTvhXjtwvtiF/w3cCvYut926vzrMAPjoETcq6G2v6D3/07Ytysualoys/y5kpkb64Hfk1N92Hwv6ew9r+YfpZf8nF+TU33IfcXrp/sX0KYP4FNv7TGCbdbHsfqyv7l8zU/j/n8j1X+yY7BOSZMjbqefiXm9wq/0uG3ZPyWyrg8Dph3oSxDyLqFr98N5k9dGF9jyHHJ73L1+xnGEcYrJ44FP6xf4jqlVtfTb4EZr2s8F/wWSp3XxTp/Bz/GivYzo66nX/DzC+X+ks9b/GIer/Gz6kr9esV6PvX7jajDnzM0fjn6TY26nn7yecIbt/T7jP/nXzq+ftQfWl1v/w0Nftq4pd8tcvva8fWj/tDqxvpX46eNE783UNeK/xfT2FvYxMyoG+tfzf+8/g3gWvWVMQ1W3Vj/av7n9W9ATD8N08T+5TxCP2n+p/XZKaT7sQT1R07/av6n9ZkHzU84qD94XfK0tvq3Cb+AmVHX1A/qz9va+AvQ7+fzDH7WepZ+hH30rscYTxLeOy14/GLvOZZ+hDPk9Q5j0gK/u0RunGNMvw/I6wrjo8YvcQ9qfpzCr1ds6id1bPt9PDe3/T2v7bzt98y/RT8L961f7HvOfeu3q+/MufkXZtkZYA==
   </data>
  </layer>
  <layer name="Above Player" width="40" height="40">
@@ -388,5 +385,44 @@
    </properties>
   </object>
   <object id="103" name="Player Spawn" type="event" x="80" y="592" width="16" height="16"/>
+  <object id="105" name="explanation" type="event" x="48" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog iamknight"/>
+    <property name="act10" value="set_variable choice:maybe"/>
+    <property name="act5" value="translated_dialog_choice yes:no,choice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set choice:yes"/>
+    <property name="cond5" value="not variable_set choice:no"/>
+   </properties>
+  </object>
+  <object id="107" name="make npcs" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc npc_knight1,3,24,knight,stand"/>
+    <property name="act2" value="create_npc npc_knight2,2,24,knight,stand"/>
+    <property name="act3" value="npc_face npc_knight2,up"/>
+    <property name="cond1" value="not npc_exists npc_knight1"/>
+   </properties>
+  </object>
+  <object id="108" name="no, sorry" type="event" x="48" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog sorry"/>
+    <property name="act2" value="set_variable choice:maybe"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond4" value="is variable_set choice:no"/>
+   </properties>
+  </object>
+  <object id="110" name="Yes" type="event" x="48" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog splendid"/>
+    <property name="act3" value="npc_face npc_knight1,left"/>
+    <property name="act4" value="npc_face npc_knight2,right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is variable_set choice:yes"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

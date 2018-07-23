@@ -285,6 +285,11 @@ class WorldState(state.State):
         :returns: None
 
         """
+        # Handle text input events
+        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
+            self.player1.name = event.text
+            return
+
         # Handle Key DOWN events
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -308,6 +313,11 @@ class WorldState(state.State):
                 if multiplayer:
                     self.check_interactable_space()
 
+            if prepare.DEV_TOOLS:
+                if event.key == pygame.K_n:
+                    self.player1.ignore_collisions = not self.player1.ignore_collisions
+                    return
+
         # Handle Key UP events
         if event.type == pygame.KEYUP:
             # If the player lets go of the key, set the moving
@@ -317,11 +327,6 @@ class WorldState(state.State):
                 self.wants_to_move_player = None
                 self.player1.cancel_movement()
                 return
-
-        # Handle text input events
-        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
-            self.player1.name = event.text
-            return
 
         # if we made it this far, return the event for others to use
         return event

@@ -119,6 +119,7 @@ SAVE_PATH = CONFIG_PATH + "saves/slot"
 SAVE_METHOD = "JSON"
 # SAVE_METHOD = "CBOR"
 
+DEV_TOOLS = CONFIG.dev_tools
 
 # Initialization of PyGame dependent systems.
 def init():

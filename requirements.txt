@@ -1,6 +1,6 @@
 cbor
 pytmx>=3.20.17
-pyscroll>=2.19.0
+pyscroll>=2.19.1
 pillow
 pygame>=1.9.4
 six

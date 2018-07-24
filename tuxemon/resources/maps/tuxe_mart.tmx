@@ -57,17 +57,10 @@
   </object>
   <object id="27" name="Receive capture device" type="event" x="64" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item item_capture_device"/>
-    <property name="act2" value="add_item item_capture_device"/>
-    <property name="act3" value="add_item item_capture_device"/>
-    <property name="act4" value="add_item item_capture_device"/>
-    <property name="act5" value="add_item item_capture_device"/>
-    <property name="act6" value="translated_dialog receive_happiness"/>
-    <property name="act7" value="set_variable donegot:yes"/>
+    <property name="act1" value="open_shop npc_tuxemart"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set donegot:yes"/>
    </properties>
   </object>
   <object id="37" name="Talk to the professor" type="event" x="112" y="128" width="16" height="16">

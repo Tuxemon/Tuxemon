@@ -35,8 +35,9 @@ import pygame
 
 from item import decode_inventory, encode_inventory
 from monster import decode_monsters, encode_monsters
-from tuxemon.core.components import db, pyganim
+from tuxemon.core.components import db, monster, pyganim
 from tuxemon.core.components.entity import Entity
+from tuxemon.core.components.item import Item
 from tuxemon.core.components.locale import translator
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.tools import nearest, load_and_scale, trunc
@@ -548,3 +549,55 @@ class Npc(Entity):
         :returns: None
         """
         self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
+
+    def load_party(self):
+        """ Loads the party of this npc from their npc.json entry.
+
+        :rtype: None
+        :returns: None
+        """
+        self.monsters = []
+
+        # Look up the NPC's details from our NPC database
+        npcs = db.JSONDatabase()
+        npcs.load("npc")
+        npc_details = npcs.database['npc'][self.slug]
+        for npc_monster_details in npc_details['monsters']:
+            current_monster = monster.Monster(save_data=npc_monster_details)
+            current_monster.current_hp = current_monster.hp
+            current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']
+            current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
+            current_monster.set_level(current_monster.level)
+            current_monster.load_sprite_from_db()
+
+            # Add our monster to the NPC's party
+            self.monsters.append(current_monster)
+
+    def give_item(self, target, item, quantity):
+        subtract = self.alter_item_quantity(item.slug, -quantity)
+        give = target.alter_item_quantity(item.slug, quantity)
+        return subtract and give
+
+    def alter_item_quantity(self, item_slug, amount):
+        success = True
+        item = self.inventory.get(item_slug)
+        if amount > 0:
+            if item:
+                item['quantity'] += amount
+            else:
+                self.inventory[item_slug] = {
+                    'item': Item(item_slug),
+                    'quantity': amount,
+                }
+        elif amount < 0:
+            amount = abs(amount)
+            if item is None or item.get('infinite'):
+                pass
+            elif item['quantity'] == amount:
+                del self.inventory[item_slug]
+            elif item['quantity'] > amount:
+                item['quantity'] -= amount
+            else:
+                success = False
+
+        return success

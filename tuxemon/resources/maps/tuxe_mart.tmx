@@ -129,6 +129,7 @@
    <properties>
     <property name="act1" value="create_npc npc_tuxemart,2,7,tuxemartemployee,stand"/>
     <property name="act2" value="npc_face npc_tuxemart,right"/>
+    <property name="act3" value="set_inventory npc_tuxemart,inv_basic_store"/>
     <property name="cond1" value="not npc_exists npc_tuxemart"/>
    </properties>
   </object>

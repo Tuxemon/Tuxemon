@@ -193,7 +193,7 @@ class Npc(Entity):
         self.name = save_data['player_name']
         self.storage = {
             'items': decode_inventory(save_data['storage']),
-            'monsters': decode_inventory(save_data['storage']),
+            'monsters': decode_monsters(save_data['storage']),
         }
 
     def load_sprites(self):

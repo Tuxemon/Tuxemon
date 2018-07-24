@@ -46,6 +46,10 @@ logger = logging.getLogger(__name__)
 items = db.JSONDatabase()
 items.load("item")
 
+inventory_db = db.JSONDatabase()
+inventory_db.load("inventory")
+
+
 
 class Item(object):
     """An item object is an item that can be used either in or out of combat.
@@ -283,7 +287,7 @@ def decode_inventory(data):
     :returns: New inventory
     """
     return {
-        slug : {
+        slug: {
             'item': Item(slug),
             'quantity': quant,
         }

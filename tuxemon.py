@@ -37,8 +37,15 @@ To run an individual component (e.g. core/prepare.py):
 """
 from __future__ import absolute_import
 from __future__ import print_function
+from argparse import ArgumentParser
+
 import tuxemon.core.main
 
 
 if __name__ == '__main__':
-    tuxemon.core.main.main()
+    parser = ArgumentParser()
+    parser.add_argument('-l', dest='slot', metavar='1,2,3', type=int, nargs='?',
+                        default=None, help='The index of the save file to load')
+    args = parser.parse_args()
+    tuxemon.core.main.main(load_slot=args.slot)
+

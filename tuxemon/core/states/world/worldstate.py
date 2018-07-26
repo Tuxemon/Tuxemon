@@ -52,7 +52,6 @@ keymap = {
 
 }
 
-
 class WorldState(state.State):
     """ The state responsible for the world game play
     """
@@ -474,10 +473,11 @@ class WorldState(state.State):
 
         :return:
         """
-        pathnode = self.pathfind_r(dest,
-                                   [PathfindNode(start)],  # queue
-                                   [],  # visited
-                                   0)  # depth (not a limit, just a counter)
+        pathnode = self.pathfind_r(
+            dest,
+            [PathfindNode(start)],
+            set(),
+        )
 
         if pathnode:
             # traverse the node to get the path
@@ -494,59 +494,38 @@ class WorldState(state.State):
                          str(start) + " to " + str(dest) +
                          ". Are you sure that an obstacle-free path exists?")
 
-    def pathfind_r(self, dest, queue, visited, depth):
-        """ Recursive breadth first search algorithm
+    def pathfind_r(self, dest, queue, known_nodes):
+        """ Breadth first search algorithm
 
         :type dest: tuple
         :type queue: list
-        :type visited: list
-        :type depth: int
+        :type known_nodes: set
 
         :rtype: list
         """
-        # some situations will trigger an infinite loop
-        # There is an infinite recursion depth risk here
-        # our maximum depth is 1000 before giving up.
-        # TODO: tune the maximum depth limit
-        if depth > 1000:
-            logger.debug('maximum depth during pathfind')
-            return None
+        # The collisions shouldn't have changed whilst we were calculating,
+        # so it saves time to reuse the map.
+        collision_map = self.get_collision_map()
+        while queue:
+            node = queue.pop(0)
+            if node.get_value() == dest:
+                return node
+            else:
+                for adj_pos in self.get_exits(node.get_value(), collision_map, known_nodes):
+                    new_node = PathfindNode(adj_pos, node)
+                    known_nodes.add(new_node.get_value())
+                    queue.append(new_node)
 
-        if not queue:
-            # does reaching this case mean we exhausted the search?
-            # I think so which means there is no possible path
-            return False
-
-        elif queue[0].get_value() == dest:
-            # done
-            return queue[0]
-
-        else:
-            # sort the queue by node depth
-            queue = sorted(queue, key=lambda x: x.get_depth())
-
-            # pop next tile off queue
-            next_node = queue.pop(0)
-
-            # add neighbors of current tile to queue
-            # if we haven't checked them already
-            for adj_pos in self.get_exits(next_node.get_value()):
-                if adj_pos not in visited and adj_pos not in map(lambda x: x.get_value(), queue):
-                    queue = [PathfindNode(adj_pos, next_node)] + queue
-                    visited = [next_node.get_value()] + visited
-
-            # recur
-            path = self.pathfind_r(dest, queue, visited, depth + 1)
-            return path
-
-    def get_explicit_tile_exits(self, position, tile):
+    def get_explicit_tile_exits(self, position, tile, skip_nodes):
         """ Check for exits from tile which are defined in the map
 
         This will return exits which were defined by the map creator
 
         Checks "continue" and "exits" properties of the tile
 
-        :param position:
+        :param position: tuple
+        :param tile:
+        :param skip_nodes: set
         :return: list
         """
         # Check if the players current position has any exit limitations.
@@ -564,39 +543,57 @@ class WorldState(state.State):
             adjacent_tiles = list()
             for direction in tile["exit"]:
                 exit_tile = tuple(dirs2[direction] + position)
+                if exit_tile in skip_nodes:
+                    continue
+
                 adjacent_tiles.append(exit_tile)
             return adjacent_tiles
         except KeyError:
             pass
 
-    def get_exits(self, position):
+    def get_exits(self, position, collision_map=None, skip_nodes=None):
         """ Return list of tiles which can be moved into
 
         This checks for adjacent tiles while checking for walls,
         npcs, and collision lines, one-way tiles, etc
 
         :param position: tuple
+        :param collision_map: dict
+        :param skip_nodes: set
 
         :rtype: list
         """
         # get tile-level and npc/entity blockers
-        collision_map = self.get_collision_map()
+        if collision_map is None:
+            collision_map = self.get_collision_map()
+
+        if skip_nodes is None:
+            skip_nodes = set()
 
         # if there are explicit way to exit this position use that
         # information only and do not check surrounding tiles.
         # handles 'continue' and 'exits'
         tile_data = collision_map.get(position)
         if tile_data:
-            exits = self.get_explicit_tile_exits(position, tile_data)
+            exits = self.get_explicit_tile_exits(position, tile_data, skip_nodes)
             if exits:
                 return exits
 
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
-        for direction, offset in dirs2.items():
+        for direction, neighbor in (
+                ("down", (position[0], position[1] + 1)),
+                ("right", (position[0] + 1, position[1])),
+                ("up", (position[0], position[1] - 1)),
+                ("left", (position[0] - 1, position[1])),
+        ):
+            if neighbor in skip_nodes:
+                continue
 
-            # tile coords of this neighbor
-            neighbor = tuple(position + offset)
+            # We only need to check the perimeter,
+            # as there is no way to get further out of bounds
+            if position[0] in self.invalid_x or position[1] in self.invalid_y:
+                continue
 
             # check to see if this tile is separated by a wall
             if (position, direction) in self.collision_lines_map:
@@ -866,6 +863,11 @@ class WorldState(state.State):
         self.current_map = map_data["data"]
         self.collision_map = map_data["collision_map"]
         self.collision_lines_map = map_data["collision_lines_map"]
+        self.map_size = map_data["map_size"]
+
+        # The first coordinates that are out of bounds.
+        self.invalid_x = (-1, self.map_size[0] + 1)
+        self.invalid_y = (-1, self.map_size[1] + 1)
 
         # TODO: remove this monkey [patching!] business for the main control/game
         self.game.events = map_data["events"]

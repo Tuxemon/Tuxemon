@@ -37,7 +37,7 @@ from .components.player import Player
 logger = logging.getLogger(__name__)
 
 
-def main():
+def main(load_slot=None):
     """Add all available states to our scene manager (tools.Control)
     and start the game using the pygame interface.
 
@@ -68,6 +68,7 @@ def main():
 
     # basically the main menu
     control.push_state("StartState")
+    control.push_state("LoadMenuState", load_slot=load_slot)
 
     # Show the splash screen if it is enabled in the game configuration
     if prepare.CONFIG.splash == "1":

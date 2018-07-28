@@ -35,7 +35,7 @@ import pygame
 
 from item import decode_inventory, encode_inventory
 from monster import decode_monsters, encode_monsters
-from tuxemon.core.components import db, monster, pyganim
+from tuxemon.core.components import db, monster, pyganim, technique
 from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.item import Item
 from tuxemon.core.components.locale import translator
@@ -138,6 +138,7 @@ class Npc(Entity):
         self.walkrate = 3.75  # The rate in tiles per second the player is walking
         self.runrate = 7.35  # The rate in tiles per second the player is running
         self.moverate = self.walkrate  # walk by default
+        self.ignore_collisions = False
 
         # What is "move_direction"?
         # Move direction allows other functions to move the npc in a controlled way.
@@ -276,7 +277,7 @@ class Npc(Entity):
             pos = tuple(int(i) for i in self.tile_pos)
             direction_next = self.world.collision_map[pos]["continue"]
             self.move_one_tile(direction_next)
-        except KeyError:
+        except (KeyError, TypeError):
             pass
 
     def stop_moving(self):
@@ -388,7 +389,7 @@ class Npc(Entity):
         :param tile:
         :return:
         """
-        return tile in self.world.get_exits(trunc(self.tile_pos))
+        return tile in self.world.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
 
     @property
     def move_destination(self):

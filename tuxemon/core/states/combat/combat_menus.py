@@ -68,6 +68,7 @@ class MainCombatMenuState(PopUpMenu):
                 return
             elif monster.current_hp < 1:
                 tools.open_dialog(self.game, [trans('combat_fainted', {"name": monster.name})])
+                return
             combat_state = self.game.get_state_name("CombatState")
             swap = Technique("technique_swap")
             swap.combat_state = combat_state

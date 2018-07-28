@@ -8,6 +8,13 @@ logger = logging.getLogger(__name__)
 
 
 class LoadMenuState(SaveMenuState):
+    def startup(self, *items, **kwargs):
+        super(LoadMenuState, self).startup(*items, **kwargs)
+        slot = kwargs.get("load_slot")
+        if slot:
+            self.selected_index = slot - 1
+            self.on_menu_selection(None)
+
     def on_menu_selection(self, menuitem):
         save_data = save.load(self.selected_index + 1)
         if "error" not in save_data:

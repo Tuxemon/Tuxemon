@@ -24,6 +24,7 @@ from __future__ import absolute_import
 import logging
 
 from tuxemon.core.components.locale import translator
+from tuxemon.core.states.combat.combat import fainted_party
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +60,7 @@ def check_battle_legal(player):
         logger.warning("Cannot start battle, player has no monsters!")
         return False
     else:
-        if player.monsters[0].current_hp <= 0:
+        if fainted_party(player.monsters):
             logger.warning("Cannot start battle, player's monsters are all DEAD")
             return False
         else:

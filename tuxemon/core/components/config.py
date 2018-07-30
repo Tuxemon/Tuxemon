@@ -22,106 +22,170 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.components.config Configuration parser.
 #
 #
-try:
-    import configparser
-except ImportError:
-    import ConfigParser as configparser
-
-import pygame
+"""
+NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
+"""
+from collections import OrderedDict
+from six.moves import configparser
 
 # set default animation to 'out_quint'
 from tuxemon.core.components.animation import Animation
+
 Animation.default_transition = 'out_quint'
 
-# read by Config and HeadlessConfig
-FILE_DEFAULT = configparser.ConfigParser()
-FILE_CONFIG = configparser.ConfigParser()
 
-# customized version of config.get
-# tries the user config first, uses the default config if the setting is missing
-def config_get(section, setting):
-    try:
-        return FILE_CONFIG.get(section, setting)
-    except configparser.NoOptionError:
-        return FILE_DEFAULT.get(section, setting)
+class TuxemonConfig(object):
+    """ Handles loading of the configuration file for the primary game and map editor.
 
-class Config(object):
-    """Handles loading of the configuration file for the primary game and map editor.
-
+    Do not forget to edit the default configuration specified below!
     """
-    def __init__(self, file_default = "tuxemon.cfg", file_config = "tuxemon.cfg"):
-        FILE_DEFAULT.read(file_default)
-        FILE_CONFIG.read(file_config)
+
+    def __init__(self, config_path=None):
+        # load default config
+        cfg = generate_default_config()
+        self.cfg = cfg
+
+        # update with customized values
+        if config_path:
+            temp = configparser.ConfigParser()
+            temp.read(config_path)
+            populate_config(cfg, temp._sections)
 
         # [display]
-        self.resolution_x = config_get("display", "resolution_x")
-        self.resolution_y = config_get("display", "resolution_y")
-        self.resolution = (int(self.resolution_x), int(self.resolution_y))
-        self.splash = config_get("display", "splash")
-        self.fullscreen = self.fullscreen_check()
-        self.fps = float(config_get("display", "fps"))
-        self.show_fps = int(config_get("display", "show_fps"))
-        self.scaling = config_get("display", "scaling")
-        self.collision_map = config_get("display", "collision_map")
-        self.controller_overlay = config_get("display", "controller_overlay")
-        self.controller_transparency = int(config_get("display", "controller_transparency"))
+        resolution_x = cfg.getint("display", "resolution_x")
+        resolution_y = cfg.getint("display", "resolution_y")
+        self.resolution = resolution_x, resolution_y
+        self.splash = cfg.getboolean("display", "splash")
+        self.fullscreen = cfg.getboolean("display", "fullscreen")
+        self.fps = cfg.getfloat("display", "fps")
+        self.show_fps = cfg.getboolean("display", "show_fps")
+        self.scaling = cfg.getboolean("display", "scaling")
+        self.collision_map = cfg.getboolean("display", "collision_map")
+        self.controller_overlay = cfg.getboolean("display", "controller_overlay")
+        self.controller_transparency = cfg.getint("display", "controller_transparency")
 
         # [sound]
-        self.sound_volume = float(config_get("sound", "sound_volume"))
-        self.music_volume = float(config_get("sound", "music_volume"))
+        self.sound_volume = cfg.getfloat("sound", "sound_volume")
+        self.music_volume = cfg.getfloat("sound", "music_volume")
 
         # [game]
-        self.data = config_get("game", "data")
-        self.starting_map = config_get("game", "starting_map")
-        self.cli = int(config_get("game", "cli_enabled"))
-        self.net_controller_enabled = config_get("game", "net_controller_enabled")
-        self.locale = config_get("game", "locale")
-        self.dev_tools = int(config_get("game", "dev_tools"))
+        self.data = cfg.get("game", "data")
+        self.starting_map = cfg.get("game", "starting_map")
+        self.cli = cfg.getboolean("game", "cli_enabled")
+        self.net_controller_enabled = cfg.getboolean("game", "net_controller_enabled")
+        self.locale = cfg.get("game", "locale")
+        self.dev_tools = cfg.getboolean("game", "dev_tools")
 
         # [player]
-        self.player_animation_speed = float(config_get("player", "animation_speed"))
-        self.player_npc = config_get("player", "player_npc")
+        self.player_animation_speed = cfg.getfloat("player", "animation_speed")
+        self.player_npc = cfg.get("player", "player_npc")
 
         # [logging]
-        self.loggers = config_get("logging", "loggers")
+        # Log levels can be: debug, info, warning, error, or critical
+        # Setting loggers to "all" will enable debug logging for all modules.
+        #   Some available loggers:
+        #     core.states.combat, core.states.world, core.components.event,
+        #     neteria.server, neteria.client, neteria.core
+        # Comma-seperated list of which modules to enable logging on
+        self.loggers = cfg.get("logging", "loggers")
         self.loggers = self.loggers.replace(" ", "").split(",")
-        self.debug_logging = config_get("logging", "debug_logging")
-        self.debug_level = str(config_get("logging", "debug_level")).lower()
+        self.debug_logging = cfg.getboolean("logging", "debug_logging")
+        self.debug_level = cfg.get("logging", "debug_level")
 
-    def fullscreen_check(self):
-        """If the fullscreen option is set in our configuration option, return a
-        "pygame.FULLSCREEN" object to the game.
-
-        :param: None
-
-        :rtype: pygame.FULLSCREEN
-        :returns: pygame.FULLSCREEN object or 0
-
-        """
-        if config_get("display", "fullscreen") == "1":
-            return pygame.FULLSCREEN
-        else:
-            return 0
 
 class HeadlessConfig(object):
     """Handles loading of the configuration file for the headless server.
     """
-    def __init__(self, file_default = "tuxemon.cfg", file_config = "tuxemon.cfg"):
-        FILE_DEFAULT.read(file_default)
-        FILE_CONFIG.read(file_config)
 
-        # [game]
-        self.cli = int(config_get("game", "cli_enabled"))
+    def __init__(self, file_default="tuxemon.cfg", file_config="tuxemon.cfg"):
+        # FILE_DEFAULT.read(file_default)
+        # FILE_CONFIG.read(file_config)
+        #
+        # # [game]
+        # self.cli = int(config_get("game", "cli_enabled"))
+        #
+        # # [logging]
+        # self.loggers = config_get("logging", "loggers")
+        # self.loggers = self.loggers.replace(" ", "").split(",")
+        # self.debug_logging = config_get("logging", "debug_logging")
+        # self.debug_level = config_get("logging", "debug_level")
+        # BROKEN
+        raise RuntimeError("deprecated")
 
-        # [logging]
-        self.loggers = config_get("logging", "loggers")
-        self.loggers = self.loggers.replace(" ", "").split(",")
-        self.debug_logging = config_get("logging", "debug_logging")
-        self.debug_level = config_get("logging", "debug_level")
+
+def get_defaults():
+    """ Generate a config from defaults
+
+    When making game changes, do not forget to edit this config!
+
+    :rtype: OrderedDict
+    """
+    return OrderedDict((
+        ("display", OrderedDict((
+            ("resolution_x", 1280),
+            ("resolution_y", 720),
+            ("splash", True),
+            ("fullscreen", False),
+            ("fps", 60),
+            ("show_fps", False),
+            ("scaling", True),
+            ("collision_map", False),
+            ("large_gui", False),
+            ("controller_overlay", False),
+            ("controller_transparency", 45),
+        ))),
+        ("sound", OrderedDict((
+            ("sound_volume", 1.0),
+            ("music_volume", 1.0),
+        ))),
+        ("game", OrderedDict((
+            ("data", "resources"),
+            ("starting_map", "bedroom_test.tmx"),
+            ("cli_enabled", False),
+            ("net_controller_enabled", False),
+            ("locale", "en_US"),
+            ("dev_tools", False),
+        ))),
+        ("player", OrderedDict((
+            ("animation_speed", 0.15),
+            ("player_npc", "npc_red"),
+        ))),
+        ("logging", OrderedDict((
+            ("loggers", "all"),
+            ("debug_logging", True),
+            ("debug_level", "error")
+        ))),
+    ))
 
 
+def generate_default_config():
+    """ Get new config file from defaults
+
+    :rtype: configparser.ConfirParser
+    """
+    cfg = configparser.ConfigParser()
+    populate_config(cfg, get_defaults())
+    return cfg
+
+
+def populate_config(config, data):
+    """ Workaround awful configparser defaults.
+
+    :type data: dict
+    :return:
+    """
+    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked, dumb.  WTF's all over.
+    # so we fill in values manually, because they won't be read or written otherwise.
+    for k, v in data.items():
+        try:
+            config.add_section(k)
+        except configparser.DuplicateSectionError:
+            pass
+        for option, value in v.items():
+            config.set(k, option, str(value))  # yes.  all values be be stored as a string

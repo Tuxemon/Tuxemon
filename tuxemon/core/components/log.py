@@ -54,7 +54,7 @@ def configure():
         log_level = logging.INFO
 
     # Set up logging if the configuration has it enabled
-    if config.debug_logging == "1":
+    if config.debug_logging:
 
         for logger_name in config.loggers:
 

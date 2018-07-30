@@ -280,7 +280,7 @@ class Map(object):
         self.filename = filename
 
         # Scale the loaded tiles if enabled
-        if prepare.CONFIG.scaling == "1":
+        if prepare.CONFIG.scaling:
             self.data = pytmx.TiledMap(filename,
                                        image_loader=scaled_image_loader,
                                        pixelalpha=True)

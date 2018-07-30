@@ -29,7 +29,6 @@
 #
 
 import base64
-import cbor
 import json
 import datetime
 import logging
@@ -37,6 +36,11 @@ import logging
 import pygame
 
 from tuxemon.core import prepare
+
+try:
+    import cbor
+except ImportError:
+    prepare.SAVE_METHOD = "JSON"
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -115,22 +119,19 @@ def load(slot):
     try:
         with open(save_path, 'r') as save_file:
             text = save_file.read()
-            logs = []
 
             try:
                 return json.loads(text)
             except ValueError as e:
-                logs.append(e)
+                logger.error("cannot decode JSON: %s", save_path)
 
-            try:
-                # This comes after the json attempt.
-                # cbor thinks that it can open the json, but it messes up the screenshot somehow.
-                return cbor.loads(text)
-            except ValueError as e:
-                logs.append(e)
-
-            for log in logs:
-                logger.error(log)
+            if prepare.SAVE_METHOD == "CBOR":
+                try:
+                    return cbor.loads(text)
+                except ValueError as e:
+                    logger.error("cannot decode save CBOR: %s", save_path)
+            else:
+                pass
 
     except IOError as e:
         logger.error(e)

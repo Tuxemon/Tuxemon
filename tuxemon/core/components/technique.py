@@ -321,21 +321,13 @@ class Technique(object):
         # TODO: these values are set in combat_menus.py
 
         def swap_add():
-            # rearrange the trainer's monster list
-            monster_list = user.monsters
-            original_index = monster_list.index(original_monster)
-            target_index = monster_list.index(target)
-            monster_list[original_index] = target
-            monster_list[target_index] = original_monster
-
             # TODO: make accommodations for battlefield positions
-            # add the monster into play
             combat_state.add_monster_into_play(user, target)
 
         # TODO: find a way to pass values. this will only work for SP games with one monster party
-        # get the original monster to be swapped out
-        original_monster = user.monsters[0]
         combat_state = self.combat_state
+        # get the original monster to be swapped out
+        original_monster = combat_state.monsters_in_play[user][0]
 
         # rewrite actions to target the new monster.  must be done before original is removed
         combat_state.rewrite_action_queue_target(original_monster, target)

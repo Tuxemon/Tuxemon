@@ -81,6 +81,7 @@ class Config(object):
         self.cli = int(config_get("game", "cli_enabled"))
         self.net_controller_enabled = config_get("game", "net_controller_enabled")
         self.locale = config_get("game", "locale")
+        self.dev_tools = int(config_get("game", "dev_tools"))
 
         # [player]
         self.player_animation_speed = float(config_get("player", "animation_speed"))

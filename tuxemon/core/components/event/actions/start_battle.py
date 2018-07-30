@@ -24,10 +24,8 @@ from __future__ import absolute_import
 import logging
 
 from tuxemon.core import tools
-from tuxemon.core.components import ai, db, monster, technique
 from tuxemon.core.components.event.actions import check_battle_legal
 from tuxemon.core.components.event.eventaction import EventAction
-from tuxemon.core.components.npc import Npc
 from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -61,67 +59,16 @@ class StartBattleAction(EventAction):
             logger.debug("battle is not legal, won't start")
             return False
 
+        world = self.game.get_state_name("WorldState")
+        if not world:
+            return False
+
         # Stop movement and keypress on the server.
         if self.game.isclient or self.game.ishost:
             self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
 
-        # Start combat
-        npc_slug = self.parameters.npc_slug
-
-        # TODO: This should *really* be handled in the Npc initializer
-        # Create an NPC object that will be used as our opponent
-        npc = Npc(npc_slug)
-
-        # Look up the NPC's details from our NPC database
-        npcs = db.JSONDatabase()
-        npcs.load("npc")
-        npc_details = npcs.database['npc'][npc_slug]
-
-        # Set the NPC object's AI model.
-        npc.ai = ai.AI()
-
-        # Look up the NPC's monster party
-        npc_party = npc_details['monsters']
-
-        # Look up the monster's details
-        monsters = db.JSONDatabase()
-        monsters.load("monster")
-
-        # Look up each monster in the NPC's party
-        for npc_monster_details in npc_party:
-            results = monsters.database['monster'][npc_monster_details['monster']]
-
-            # Create a monster object for each monster the NPC has in their party.
-            # TODO: unify save/load of monsters
-            current_monster = monster.Monster()
-            current_monster.load_from_db(npc_monster_details['monster'])
-            current_monster.name = npc_monster_details['name']
-            current_monster.level = npc_monster_details['level']
-            current_monster.hp = npc_monster_details['hp']
-            current_monster.current_hp = npc_monster_details['hp']
-            current_monster.attack = npc_monster_details['attack']
-            current_monster.defense = npc_monster_details['defense']
-            current_monster.speed = npc_monster_details['speed']
-            current_monster.special_attack = npc_monster_details['special_attack']
-            current_monster.special_defense = npc_monster_details['special_defense']
-            current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']
-            current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
-
-            current_monster.type1 = results['types'][0]
-
-            current_monster.set_level(current_monster.level)
-
-            if len(results['types']) > 1:
-                current_monster.type2 = results['types'][1]
-
-            current_monster.load_sprite_from_db()
-
-            pound = technique.Technique('technique_pound')
-
-            current_monster.learn(pound)
-
-            # Add our monster to the NPC's party
-            npc.monsters.append(current_monster)
+        npc = world.get_entity(self.parameters.npc_slug)
+        npc.load_party()
 
         # Add our players and setup combat
         logger.debug("Starting battle!")

@@ -28,6 +28,7 @@ from __future__ import absolute_import, division
 
 import logging
 import time
+from collections import deque
 
 import pygame as pg
 
@@ -232,72 +233,6 @@ class Control(StateManager):
                 y += 200
 
             yy = y
-
-    def update(self, dt):
-        """Checks if a state is done or has called for a game quit.
-        State is flipped if neccessary and State.update is called. This
-        also calls the currently active state's "update" function each
-        frame.
-
-        The screen will be drawn here as well.
-
-        :param dt: Time delta - Amount of time passed since last frame.
-
-        :type dt: Float
-
-        :rtype: None
-        :returns: None
-
-        **Example:**
-
-        >>> dt
-        0.031
-
-        """
-        # TODO: phase out use of this attribute
-        self.current_time = pg.time.get_ticks()
-
-        # only the top most state gets updates
-        state = self.current_state
-
-        # handle case where the top state has been dismissed
-        if state is None:
-            self.exit = True
-
-        if state in self._state_resume_set:
-            state.resume()
-            self._state_resume_set.remove(state)
-
-        # iterate through layers and determine optimal drawing strategy
-        # this is a big performance boost for states covering other states
-        # force_draw is used for transitions, mostly
-        draw = True
-        to_draw = list()
-        full_screen = self.screen.get_rect()
-        for state in self.active_states:
-            state.update(dt)
-            if draw:
-                to_draw.append(state)
-
-            # if this state covers the screen
-            # break here so lower screens are not drawn
-            if (not state.transparent
-                and state.rect == full_screen
-                and not state.force_draw):
-                draw = False
-
-        # draw from bottom up for proper layering
-        for state in reversed(to_draw):
-            # might not be in draw if it has been removed for some reason
-            # another state have have popped it during an update
-            if state in self.active_states:
-                state.draw(self.screen)
-
-        if self.config.controller_overlay == "1":
-            self.controller.draw(self)
-
-        if prepare.CONFIG.collision_map == "1":
-            self.draw_event_debug()
 
     def gather_events(self):
         """ Collect all platform input events and iterate them.
@@ -616,15 +551,39 @@ class Control(StateManager):
         :returns: None
 
         """
-        while not self.exit:
-            self.main_loop()
+        import gc
 
-    def main_loop(self):
+        gc.disable()
+        update = self.update
+        draw = self.draw
+        screen = self.screen
+        flip = pg.display.update
+        times = deque(maxlen=10)
+        clock = time.time
+        frame_time = (1. / self.fps)
+        last_draw = 0
+        last_frame = clock()
+
+        while not self.exit:
+            dt = (clock() - last_frame)
+            last_frame = clock()
+            times.append(dt)
+            last_draw += dt
+            update(dt)
+            if last_draw >= frame_time:
+                last_draw = last_draw - frame_time
+                gc.collect()
+                draw(screen)
+                flip()
+            time.sleep(.001)
+
+    def update(self, time_delta):
         """Main loop for entire game. This method gets update every frame
         by Asteria Networking's "listen()" function. Every frame we get the
         amount of time that has passed each frame, check game conditions,
         and draw the game to the screen.
 
+        :type time_delta: float
         :rtype: None
         :returns: None
 
@@ -632,26 +591,6 @@ class Control(StateManager):
         # Android-specific check for pause
         if android and android.check_pause():
             android.wait_for_resume()
-
-        # Get the amount of time that has passed since the last frame.
-
-        # DEBUG:
-        # BUG: the following line is required for low resolution
-        # due to integer truncation, low scale movement will never work
-        # and a clock, not limited by fps will never work
-        time_delta = self.clock.tick(self.fps) / 1000.0
-        max_frame_time = 1./self.fps
-
-        # prevent odd behavior if game lags
-        time_delta = min(time_delta, max_frame_time)
-
-        # cannot run clock unlimited as movement is broken at low resolution
-        # time_delta = self.clock.tick() / 1000.0
-
-        if self.save_to_disk:
-            time_delta = 1 / self.fps
-
-        self.time_passed_seconds = time_delta
 
         # Update our networking.
         if self.controller_server:
@@ -673,8 +612,6 @@ class Control(StateManager):
         # this attribute is used for the event engine __only__
         self.key_events = list(events)
 
-        # self.combat_router.update()
-
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
         self.event_data = {}
@@ -683,22 +620,75 @@ class Control(StateManager):
         if self.event_data:
             logger.debug("Event Data:" + str(self.event_data))
 
-        # Draw and update our display
-        self.update(time_delta)
-        pg.display.flip()
-
-        if self.save_to_disk:
-            filename = "snapshot%05d.tga" % self.frame_number
-            self.frame_number += 1
-            pg.image.save(self.screen, filename)
-
-        if self.show_fps:
-            fps = self.clock.get_fps()
-            with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
-            pg.display.set_caption(with_fps)
+        # Update the game engine
+        self.update_states(time_delta)
 
         if self.exit:
             self.done = True
+
+    def update_states(self, dt):
+        """ Checks if a state is done or has called for a game quit.
+
+        :param dt: Time delta - Amount of time passed since last frame.
+
+        :type dt: Float
+        """
+        current_state = self.current_state
+
+        # handle case where the top state has been dismissed
+        if current_state is None:
+            self.exit = True
+
+        for state in self.active_states:
+            state.update(dt)
+
+        for state in self._state_resume_set:
+            state.resume()
+            state.update(dt)
+
+        self._state_resume_set.clear()
+
+    def draw(self, surface):
+        """ Draw all active states
+
+        :type surface: pygame.surface.Surface
+        """
+        # TODO: refactor into Widget
+
+        # iterate through layers and determine optimal drawing strategy
+        # this is a big performance boost for states covering other states
+        # force_draw is used for transitions, mostly
+        to_draw = list()
+        full_screen = surface.get_rect()
+        for state in self.active_states:
+            to_draw.append(state)
+
+            # if this state covers the screen
+            # break here so lower screens are not drawn
+            if (not state.transparent
+                    and state.rect == full_screen
+                    and not state.force_draw):
+                break
+
+        # draw from bottom up for proper layering
+        for state in reversed(to_draw):
+            state.draw(surface)
+
+        if self.config.controller_overlay == "1":
+            self.controller.draw(surface)
+
+        if self.config.collision_map == "1":
+            self.draw_event_debug()
+
+        # if self.save_to_disk:
+        #     filename = "snapshot%05d.tga" % self.frame_number
+        #     self.frame_number += 1
+        #     pg.image.save(self.screen, filename)
+
+        # if self.show_fps:
+        #     fps = self.clock.get_fps()
+        #     with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
+        #     pg.display.set_caption(with_fps)
 
     def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If
@@ -809,7 +799,7 @@ class HeadlessControl(Control, StateManager):
         if self.config.cli:
             self.cli = cli.CommandLine(self)
 
-    def main_loop(self):
+    def update(self):
         """Main loop for entire game. This method gets update every frame
         by Asteria Networking's "listen()" function. Every frame we get the
         amount of time that has passed each frame, check game conditions,
@@ -838,4 +828,4 @@ class HeadlessControl(Control, StateManager):
         :returns: None
         """
         while not self.exit:
-            self.main_loop()
+            self.update()

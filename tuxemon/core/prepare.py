@@ -155,7 +155,10 @@ def init():
     logger.debug("pygame init")
     pg.init()
     pg.display.set_caption(ORIGINAL_CAPTION)
-    SCREEN = pg.display.set_mode(SCREEN_SIZE, CONFIG.fullscreen, 32)
+
+    flags = pg.HWACCEL | pg.HWSURFACE | pg.DOUBLEBUF | CONFIG.fullscreen
+
+    SCREEN = pg.display.set_mode(SCREEN_SIZE, flags)
     SCREEN_RECT = SCREEN.get_rect()
 
     # Disable the mouse cursor visibility

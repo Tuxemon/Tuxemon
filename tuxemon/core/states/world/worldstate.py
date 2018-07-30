@@ -252,6 +252,8 @@ class WorldState(state.State):
 
         """
         super(WorldState, self).update(time_delta)
+        self.check_player_keys()
+        self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player1.game_variables))
 
@@ -262,8 +264,6 @@ class WorldState(state.State):
         :return:
         """
         self.screen = surface
-        self.player_movement()
-        self.move_npcs()
         self.map_drawing(surface)
         self.fullscreen_animations(surface)
 
@@ -634,19 +634,18 @@ class WorldState(state.State):
     ####################################################
     #                Player Movement                   #
     ####################################################
-    def player_movement(self):
-        """Handles player's movement
+    def check_player_keys(self):
+        """ Check key modifiers (deprecated!!
 
         :returns: None
         """
+        # TODO: refactor into discrete input events (no get_pressed!)
+
         # Get all the keys pressed for modifiers only!
         pressed = list(pygame.key.get_pressed())
         self.ctrl_held = pressed[pygame.K_LCTRL] or pressed[pygame.K_RCTRL]
         self.alt_held = pressed[pygame.K_LALT] or pressed[pygame.K_RALT]
         self.shift_held = pressed[pygame.K_LSHIFT] or pressed[pygame.K_RSHIFT]
-
-        # TODO: phase out in favor of a global game clock
-        self.time_passed_seconds = self.game.time_passed_seconds
 
         # Handle tile based movement for the player
         # TODO: move to some generic "InputManager' type class
@@ -706,15 +705,16 @@ class WorldState(state.State):
     def project(self, position):
         return position[0] * self.tile_size[0], position[1] * self.tile_size[1]
 
-    def move_npcs(self):
+    def move_npcs(self, time_delta):
         """ Move NPCs and Players around according to their state
 
+        :type time_delta: float
         :return:
         """
         # TODO: This function may be moved to a server
         # Draw any game NPC's
         for entity in self.get_all_entities():
-            entity.move(self.time_passed_seconds)
+            entity.move(time_delta)
 
             if entity.update_location:
                 char_dict = {"tile_pos": entity.final_move_dest}
@@ -723,7 +723,7 @@ class WorldState(state.State):
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
         for entity in self.npcs_off_map.values():
-            entity.move(self.time_passed_seconds, self)
+            entity.move(time_delta, self)
 
     def _collision_box_to_pgrect(self, box):
         """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
@@ -779,12 +779,15 @@ class WorldState(state.State):
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
 
+        NOTE: BROKEN
+
         :param surface: surface to draw on
 
         :rtype: None
         :returns: None
 
         """
+        raise RuntimeError("deprecated.  refactor!")
 
         if self.cinema_state == "turning on":
 

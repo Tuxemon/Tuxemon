@@ -4,10 +4,15 @@ from tuxemon.core import tools
 from tuxemon.core.components.locale import translator
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.components.menu.quantity import QuantityMenu
 from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.components.ui.text import TextArea
 
 trans = translator.translate
+
+# The import is required for PushState to work.
+# But linters may say the import is unused.
+assert QuantityMenu
 
 
 class ItemMenuState(Menu):
@@ -183,4 +188,141 @@ class ItemMenuState(Menu):
             self.animate(self.item_sprite.rect, centery=self.item_center[1], duration=.2)
 
             # show item description
+            self.alert(item.description)
+
+
+class ShopMenuState(Menu):
+    background_filename = "gfx/ui/item/item_menu_bg.png"
+    draw_borders = False
+
+    def startup(self, **kwargs):
+        self.state = "normal"
+
+        # this sprite is used to display the item
+        self.item_center = self.rect.width * .164, self.rect.height * .13
+        self.item_sprite = Sprite()
+        self.item_sprite.image = None
+        self.sprites.add(self.item_sprite)
+
+        # do not move this line
+        super(ShopMenuState, self).startup(**kwargs)
+        self.menu_items.line_spacing = tools.scale(7)
+
+        # this is the area where the item description is displayed
+        rect = self.game.screen.get_rect()
+        rect.top = tools.scale(106)
+        rect.left = tools.scale(3)
+        rect.width = tools.scale(250)
+        rect.height = tools.scale(32)
+        self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
+        self.text_area.rect = rect
+        self.sprites.add(self.text_area, layer=100)
+
+        self.image_center = self.rect.width * .16, self.rect.height * .45
+        self.buyer = kwargs["buyer"]
+        self.seller = kwargs["seller"]
+        self.buyer_purge = kwargs.get("buyer_purge", False)
+
+    def calc_internal_rect(self):
+        # area in the screen where the item list is
+        rect = self.rect.copy()
+        rect.width *= .58
+        rect.left = self.rect.width * .365
+        rect.top = rect.height * .05
+        rect.height = self.rect.height * .60
+        return rect
+
+    def on_menu_selection(self, menu_item):
+        """ Called when player has selected something from the inventory
+
+        Currently, opens a new menu depending on the state context
+
+        :param menu_item:
+        :return:
+        """
+        item = menu_item.game_object
+
+        def use_item(quantity):
+            if not quantity:
+                return
+
+            if self.buyer:
+                self.seller.give_item(self.buyer, item, quantity)
+            else:
+                self.seller.alter_item_quantity(item.slug, -quantity)
+            self.reload_items()
+
+        item_dict = self.seller.inventory[item.slug]
+        max_quantity = None if item_dict.get("infinite") else item_dict['quantity']
+        self.game.push_state(
+            "QuantityMenu",
+            callback=use_item,
+            max_quantity=max_quantity,
+            quantity=1,
+            shrink_to_items=True,
+        )
+
+    def sort_inventory(self, inventory):
+        """ Sort inventory in a usable way.  Expects a list of inventory properties.
+
+        * Group items by category
+        * Sort in groups by power
+        * Group order: Potions, Food, Utility Items, Quest/Game Items
+
+        :return: Sorted copy of the inventory
+        """
+
+        def rank_item(properties):
+            item = properties['item']
+            primary_order = sort_order.index(item.sort)
+            return primary_order, item.power
+
+        # the two reversals are used to let power dort dec, but class sort inc
+        sort_order = ['potion', 'food', 'utility', 'quest']
+        sort_order.reverse()
+        return sorted(inventory, key=rank_item, reverse=True)
+
+    def initialize_items(self):
+        """ Get all player inventory items and add them to menu
+
+        :return:
+        """
+        inventory = [
+            item
+            for item in self.seller.inventory.values()
+            if not(self.seller.isplayer and item['item'].sort == "quest")
+        ]
+
+        # required because the max() below will fail if inv empty
+        if not inventory:
+            return
+
+        name_len = 17  # TODO: dynamically get this value, maybe?
+        count_len = max(len(str(p['quantity'])) for p in inventory)
+
+        # TODO: move this and other format strings to a locale or config file
+        label_format_1 = "{:<{name_len}} x {:>{count_len}}".format
+        label_format_2 = "{:<{name_len}}".format
+
+        for properties in self.sort_inventory(inventory):
+            obj = properties['item']
+            if properties.get('infinite'):
+                label = label_format_2
+            else:
+                label = label_format_1
+            formatted_name = label(obj.name, properties['quantity'],
+                                          name_len=name_len, count_len=count_len)
+            image = self.shadow_text(formatted_name, bg=(128, 128, 128))
+            yield MenuItem(image, obj.name, obj.description, obj)
+
+    def on_menu_selection_change(self):
+        """ Called when menu selection changes
+
+        :return: None
+        """
+        item = self.get_selected_item()
+        if item:
+            image = item.game_object.surface
+            self.item_sprite.image = image
+            self.item_sprite.rect = image.get_rect(center=self.image_center)
             self.alert(item.description)

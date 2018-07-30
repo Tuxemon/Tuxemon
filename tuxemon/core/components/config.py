@@ -188,4 +188,4 @@ def populate_config(config, data):
         except configparser.DuplicateSectionError:
             pass
         for option, value in v.items():
-            config.set(k, option, str(value))  # yes.  all values be be stored as a string
+            config.set(k, option, str(value))  # yes.  all values must be stored as a string

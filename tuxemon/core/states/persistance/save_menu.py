@@ -1,8 +1,8 @@
 from __future__ import division
 
-import base64
 import logging
 import os
+from base64 import b64decode
 
 import pygame
 
@@ -51,7 +51,7 @@ class SaveMenuState(PopUpMenu):
         # Try and load the save game and draw details about the save
         save_data = save.load(slot_num)
         if "screenshot" in save_data:
-            screenshot = base64.decodestring(save_data["screenshot"])
+            screenshot = b64decode(save_data["screenshot"])
             size = save_data["screenshot_width"], save_data["screenshot_height"]
             thumb_image = pygame.image.fromstring(screenshot, size, "RGB").convert()
             thumb_rect = thumb_image.get_rect().fit(rect)

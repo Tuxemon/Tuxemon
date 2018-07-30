@@ -393,7 +393,7 @@ class WorldState(state.State):
         self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
 
         # If we want to draw the collision map for debug purposes
-        if prepare.CONFIG.collision_map == "1":
+        if prepare.CONFIG.collision_map:
             self.debug_drawing(surface)
 
     ####################################################

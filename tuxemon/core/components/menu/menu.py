@@ -373,7 +373,12 @@ class Menu(state.State):
             size = self.min_font_size
 
         self.line_spacing = tools.scale(line_spacing)
-        self.font_size = tools.scale(size)
+
+        if prepare.CONFIG.large_gui:
+            self.font_size = tools.scale(size + 1)
+        else:
+            self.font_size = tools.scale(size)
+
         self.font_color = color
         self.font = pygame.font.Font(font, self.font_size)
 

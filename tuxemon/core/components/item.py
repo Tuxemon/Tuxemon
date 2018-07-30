@@ -46,6 +46,10 @@ logger = logging.getLogger(__name__)
 items = db.JSONDatabase()
 items.load("item")
 
+inventory_db = db.JSONDatabase()
+inventory_db.load("inventory")
+
+
 
 class Item(object):
     """An item object is an item that can be used either in or out of combat.
@@ -282,13 +286,20 @@ def decode_inventory(data):
     :rtype: Dictionary
     :returns: New inventory
     """
-    return {
-        slug : {
+    out = {}
+    for slug, quant in (data.get('inventory') or {}).items():
+        item = {
             'item': Item(slug),
-            'quantity': quant,
         }
-        for slug, quant in (data.get('inventory') or {}).items()
-    }
+        if quant is None:
+            item["quantity"] = 1
+            # Infinite is used for shopkeepers
+            # to ensure they don't run out an item
+            item["infinite"] = True
+        else:
+            item["quantity"] = quant
+        out[slug] = item
+    return out
 
 
 def encode_inventory(inventory):

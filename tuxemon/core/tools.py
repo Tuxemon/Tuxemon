@@ -373,9 +373,13 @@ def calc_dialog_rect(screen_rect):
     :return:
     """
     rect = screen_rect.copy()
-    rect.height *= .25
-    rect.width *= .8
-    rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
+    if prepare.CONFIG.large_gui:
+        rect.height *= .4
+        rect.bottomleft = screen_rect.bottomleft
+    else:
+        rect.height *= .25
+        rect.width *= .8
+        rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
     return rect
 
 

@@ -291,7 +291,7 @@ class EventEngine(object):
         :return: None
         """
         # debugging mode is slower and will check all conditions
-        if prepare.CONFIG.collision_map == "1":
+        if prepare.CONFIG.collision_map:
             # less optimal, debug
             started = 0
             conds = list()

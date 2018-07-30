@@ -37,7 +37,6 @@ from . import prepare
 from .components import cli, controller, networking, rumble
 from .components.game_event import GAME_EVENT
 from .platform import android
-# from .components.combat import CombatEngine, CombatRouter
 from .state import StateManager
 
 logger = logging.getLogger(__name__)
@@ -57,13 +56,16 @@ class Control(StateManager):
     """
 
     def __init__(self, caption):
+        # Set up our game's configuration from the prepare module.
+        self.config = prepare.CONFIG
+
         # INFO: no need to call superclass for now
         self.screen = pg.display.get_surface()
         self.caption = caption
         self.done = False
         self.clock = pg.time.Clock()
-        self.fps = prepare.CONFIG.fps
-        self.show_fps = prepare.CONFIG.show_fps
+        self.fps = self.config.fps
+        self.show_fps = self.config.show_fps
         self.current_time = 0.0
         self.ishost = False
         self.isclient = False
@@ -89,13 +91,11 @@ class Control(StateManager):
         # Set up our networking for multiplayer.
         self.server = networking.TuxemonServer(self)
         self.client = networking.TuxemonClient(self)
+        self.controller_server = None
 
         # Set up our combat engine and router.
         #        self.combat_engine = CombatEngine(self)
         #        self.combat_router = CombatRouter(self, self.combat_engine)
-
-        # Set up our game's configuration from the prepare module.
-        self.config = prepare.CONFIG
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
@@ -159,7 +159,7 @@ class Control(StateManager):
             self.cli = cli.CommandLine(self)
 
         # Controller overlay
-        if self.config.controller_overlay == "1":
+        if self.config.controller_overlay:
             self.controller = controller.Controller(self)
             self.controller.load()
 
@@ -175,7 +175,7 @@ class Control(StateManager):
             }
 
         # Set up our networked controller if enabled.
-        if self.config.net_controller_enabled == "1":
+        if self.config.net_controller_enabled:
             self.controller_server = networking.ControllerServer(self)
 
         # Set up rumble support for gamepads

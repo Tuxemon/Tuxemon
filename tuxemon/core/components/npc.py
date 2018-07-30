@@ -33,10 +33,11 @@ import os
 
 import pygame
 
-from item import decode_inventory, encode_inventory
-from monster import decode_monsters, encode_monsters
+from tuxemon.core.components.item import decode_inventory, encode_inventory
+from tuxemon.core.components.monster import decode_monsters, encode_monsters
 from tuxemon.core.components import db, monster, pyganim, technique
 from tuxemon.core.components.entity import Entity
+from tuxemon.core.components.item import Item
 from tuxemon.core.components.locale import translator
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.tools import nearest, load_and_scale, trunc
@@ -194,7 +195,7 @@ class Npc(Entity):
         self.name = save_data['player_name']
         self.storage = {
             'items': decode_inventory(save_data['storage']),
-            'monsters': decode_inventory(save_data['storage']),
+            'monsters': decode_monsters(save_data['storage']),
         }
 
     def load_sprites(self):
@@ -572,3 +573,32 @@ class Npc(Entity):
 
             # Add our monster to the NPC's party
             self.monsters.append(current_monster)
+
+    def give_item(self, target, item, quantity):
+        subtract = self.alter_item_quantity(item.slug, -quantity)
+        give = target.alter_item_quantity(item.slug, quantity)
+        return subtract and give
+
+    def alter_item_quantity(self, item_slug, amount):
+        success = True
+        item = self.inventory.get(item_slug)
+        if amount > 0:
+            if item:
+                item['quantity'] += amount
+            else:
+                self.inventory[item_slug] = {
+                    'item': Item(item_slug),
+                    'quantity': amount,
+                }
+        elif amount < 0:
+            amount = abs(amount)
+            if item is None or item.get('infinite'):
+                pass
+            elif item['quantity'] == amount:
+                del self.inventory[item_slug]
+            elif item['quantity'] > amount:
+                item['quantity'] -= amount
+            else:
+                success = False
+
+        return success

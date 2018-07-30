@@ -34,7 +34,6 @@ from __future__ import absolute_import
 
 import logging
 import os
-import shutil
 
 import pygame as pg
 
@@ -59,11 +58,8 @@ except OSError:
 # Create a copy of our default config if one does not exist in the home dir.
 DEFAULT_FILE_PATH = BASEDIR + "tuxemon.cfg"
 CONFIG_FILE_PATH = CONFIG_PATH + "tuxemon.cfg"
-if not os.path.isfile(CONFIG_FILE_PATH):
-    try:
-        shutil.copyfile(DEFAULT_FILE_PATH, CONFIG_FILE_PATH)
-    except OSError:
-        raise
+
+config.generate_default_config()
 
 # Set up our custom campaign data directory.
 USER_DATA_PATH = CONFIG_PATH + "data/"
@@ -75,8 +71,13 @@ if not os.path.isdir(USER_DATA_PATH):
             raise
 
 # Read the "tuxemon.cfg" configuration file
-CONFIG = config.Config(DEFAULT_FILE_PATH, CONFIG_FILE_PATH)
-HEADLESSCONFIG = config.HeadlessConfig(DEFAULT_FILE_PATH, CONFIG_FILE_PATH)
+CONFIG = config.TuxemonConfig(CONFIG_FILE_PATH)
+
+# write it back to disk, updating it with new defaults
+with open(CONFIG_FILE_PATH, 'w') as fp:
+    CONFIG.cfg.write(fp)
+
+# HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)
 
 # Set up our data directory.
 DATADIR = CONFIG.data
@@ -102,7 +103,13 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # If scaling is enabled, scale the tiles based on the resolution
-if CONFIG.scaling == "1":
+
+
+if CONFIG.large_gui:
+    SCALE = 2
+    TILE_SIZE[0] *= SCALE
+    TILE_SIZE[1] *= SCALE
+elif CONFIG.scaling:
     SCALE = int((SCREEN_SIZE[0] / NATIVE_RESOLUTION[0]))
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
@@ -120,6 +127,7 @@ SAVE_METHOD = "JSON"
 # SAVE_METHOD = "CBOR"
 
 DEV_TOOLS = CONFIG.dev_tools
+
 
 # Initialization of PyGame dependent systems.
 def init():
@@ -156,7 +164,8 @@ def init():
     pg.init()
     pg.display.set_caption(ORIGINAL_CAPTION)
 
-    flags = pg.HWACCEL | pg.HWSURFACE | pg.DOUBLEBUF | CONFIG.fullscreen
+    fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
+    flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
 
     SCREEN = pg.display.set_mode(SCREEN_SIZE, flags)
     SCREEN_RECT = SCREEN.get_rect()

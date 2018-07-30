@@ -60,11 +60,14 @@ class JSONDatabase(object):
 
     def __init__(self, dir=None):
         self.path = prepare.BASEDIR + prepare.DATADIR + "/db/"
-        self.database = {"item": {},
-                         "monster": {},
-                         "npc": {},
-                         "technique": {},
-                         "encounter": {}}
+        self.database = {
+            "item": {},
+            "monster": {},
+            "npc": {},
+            "technique": {},
+            "encounter": {},
+            "inventory": {},
+        }
         if dir:
             self.load(dir)
 
@@ -85,6 +88,7 @@ class JSONDatabase(object):
             self.load_json("technique")
             self.load_json("npc")
             self.load_json("encounter")
+            self.load_json("inventory")
         else:
             self.load_json(directory)
 

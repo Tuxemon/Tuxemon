@@ -67,6 +67,7 @@ class TuxemonConfig(object):
         self.show_fps = cfg.getboolean("display", "show_fps")
         self.scaling = cfg.getboolean("display", "scaling")
         self.collision_map = cfg.getboolean("display", "collision_map")
+        self.large_gui = cfg.getboolean("display", "large_gui")
         self.controller_overlay = cfg.getboolean("display", "controller_overlay")
         self.controller_transparency = cfg.getint("display", "controller_transparency")
 

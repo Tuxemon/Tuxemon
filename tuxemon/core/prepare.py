@@ -103,7 +103,13 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # If scaling is enabled, scale the tiles based on the resolution
-if CONFIG.scaling:
+
+
+if CONFIG.large_gui:
+    SCALE = 2
+    TILE_SIZE[0] *= SCALE
+    TILE_SIZE[1] *= SCALE
+elif CONFIG.scaling:
     SCALE = int((SCREEN_SIZE[0] / NATIVE_RESOLUTION[0]))
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE

@@ -4,7 +4,7 @@ import logging
 import pygame
 
 from tuxemon.core.components.menu.interface import MenuItem
-from menu import Menu
+from tuxemon.core.components.menu import Menu
 
 logger = logging.getLogger(__name__)
 

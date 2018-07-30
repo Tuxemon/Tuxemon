@@ -33,8 +33,8 @@ import os
 
 import pygame
 
-from item import decode_inventory, encode_inventory
-from monster import decode_monsters, encode_monsters
+from tuxemon.core.components.item import decode_inventory, encode_inventory
+from tuxemon.core.components.monster import decode_monsters, encode_monsters
 from tuxemon.core.components import db, monster, pyganim, technique
 from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.item import Item

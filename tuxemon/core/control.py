@@ -633,20 +633,19 @@ class Control(StateManager):
 
         :type dt: Float
         """
+
+        for state in self.active_states:
+            state.update(dt)
+
         current_state = self.current_state
 
         # handle case where the top state has been dismissed
         if current_state is None:
             self.exit = True
 
-        for state in self.active_states:
-            state.update(dt)
-
-        for state in self._state_resume_set:
-            state.resume()
-            state.update(dt)
-
-        self._state_resume_set.clear()
+        if current_state in self._state_resume_set:
+            current_state.resume()
+            self._state_resume_set.remove(current_state)
 
     def draw(self, surface):
         """ Draw all active states

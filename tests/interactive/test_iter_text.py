@@ -13,7 +13,7 @@ if __name__ == "__main__":
     running = True
 
     while running:
-        for dirty, rect, surface in draw.iter_render_text(text, font, fg, bg, screen.get_rect()):
+        for rect, surface in draw.iter_render_text(text, font, fg, bg, screen.get_rect()):
             for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                     running = False
@@ -21,7 +21,6 @@ if __name__ == "__main__":
             if not running:
                 break
 
-            screen.fill(bg, dirty)
             screen.blit(surface, rect)
             pygame.display.flip()
             clock.tick(60)

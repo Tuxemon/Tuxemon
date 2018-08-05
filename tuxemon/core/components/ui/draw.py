@@ -151,15 +151,16 @@ def shadow_text(font, fg, bg, text):
 
 def iter_render_text(text, font, fg, bg, rect):
     line_height = guest_font_height(font)
-    dirty = rect
     for line_index, line in enumerate(constrain_width(text, font, rect.width)):
         top = rect.top + line_index * line_height
         for scrap in build_line(line):
-            surface = shadow_text(font, fg, bg, scrap)
-            update_rect = surface.get_rect(top=top, left=rect.left)
-            yield dirty, update_rect, surface
-            dirty = update_rect
-        dirty = (0, 0, 0, 0)
+            if scrap[-1] == " ":
+                # No need to blit a white sprite onto a white background
+                continue
+            dirty_length = font.size(scrap[:-1])[0]
+            surface = shadow_text(font, fg, bg, scrap[-1])
+            update_rect = surface.get_rect(top=top, left=rect.left + dirty_length)
+            yield update_rect, surface
 
 
 def build_line(text):

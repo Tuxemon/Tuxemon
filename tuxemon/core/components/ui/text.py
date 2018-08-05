@@ -48,8 +48,7 @@ class TextArea(Sprite):
     def __next__(self):
         if self.animated:
             try:
-                dirty, dest, scrap = next(self._iter)
-                self._image.fill((0, 0, 0, 0), dirty)
+                dest, scrap = next(self._iter)
                 self._image.blit(scrap, dest)
             except StopIteration:
                 self.drawing_text = False

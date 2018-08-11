@@ -28,7 +28,6 @@ from __future__ import absolute_import, division
 
 import logging
 import time
-from collections import deque
 
 import pygame as pg
 
@@ -551,30 +550,30 @@ class Control(StateManager):
         :returns: None
 
         """
-        import gc
-
-        gc.disable()
         update = self.update
         draw = self.draw
         screen = self.screen
         flip = pg.display.update
-        times = deque(maxlen=10)
         clock = time.time
-        frame_time = (1. / self.fps)
-        last_draw = 0
-        last_frame = clock()
+        frame_length = (1. / self.fps)
+        time_since_draw = 0
+        last_update = clock()
+        fps_timer = 0
+        frames = 0
 
         while not self.exit:
-            dt = (clock() - last_frame)
-            last_frame = clock()
-            times.append(dt)
-            last_draw += dt
-            update(dt)
-            if last_draw >= frame_time:
-                last_draw = last_draw - frame_time
-                gc.collect()
+            clock_tick = clock() - last_update
+            last_update = clock()
+            time_since_draw += clock_tick
+            update(clock_tick)
+            if time_since_draw >= frame_length:
+                time_since_draw -= frame_length
                 draw(screen)
                 flip()
+                frames += 1
+
+            fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
+
             time.sleep(.001)
 
     def update(self, time_delta):
@@ -684,10 +683,15 @@ class Control(StateManager):
         #     self.frame_number += 1
         #     pg.image.save(self.screen, filename)
 
-        # if self.show_fps:
-        #     fps = self.clock.get_fps()
-        #     with_fps = "{} - {:.2f} FPS".format(self.caption, fps)
-        #     pg.display.set_caption(with_fps)
+    def handle_fps(self, clock_tick, fps_timer, frames):
+        if self.show_fps:
+            fps_timer += clock_tick
+            if fps_timer >= 1:
+                with_fps = "{} - {:.2f} FPS".format(self.caption, frames / fps_timer)
+                pg.display.set_caption(with_fps)
+                return 0, 0
+            return fps_timer, frames
+        return 0, 0
 
     def add_clients_to_map(self, registry):
         """Checks to see if clients are supposed to be displayed on the current map. If

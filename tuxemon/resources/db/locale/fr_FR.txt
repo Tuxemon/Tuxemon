@@ -1,0 +1,14 @@
+Note for translation of proper name in french ( unofficial ):
+If you change, ensure to alter every apparition in fr_FR too.
+I was unable to translate daughter in theinfo. Can someone translate it please.
+
+Xero : Institut Xero pour la recherche sur les Tuxemon et le dévellopement
+Cathedral center : centre Cathédrale
+Cotton town : ville cotton
+City Park : parc de la ville
+Tuxecenter : centre Tuxemon
+Leather Town : plume ville
+Omnichannel : Omnichannel ( untranslated )
+Tuxemart : Tuxemag
+HQ : maison mêre
+taba city : Taba ville

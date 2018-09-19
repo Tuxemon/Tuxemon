@@ -58,7 +58,7 @@ def get_save_data(game):
     """
     save_data = game.player1.get_state(game)
     screenshot = capture_screenshot(game)
-    save_data['screenshot'] = base64.encodestring(pygame.image.tostring(screenshot, "RGB"))
+    save_data['screenshot'] = base64.b64encode(pygame.image.tostring(screenshot, "RGB")).decode('utf-8')
     save_data['screenshot_width'] = screenshot.get_width()
     save_data['screenshot_height'] = screenshot.get_height()
     save_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")

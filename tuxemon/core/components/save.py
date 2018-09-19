@@ -92,7 +92,7 @@ def save(save_data, slot):
     if prepare.SAVE_METHOD == "CBOR":
         text = cbor.dumps(save_data)
     else:
-        text = json.dumps(save_data)
+        text = json.dumps(save_data, indent=4, separators=(',', ': '))
     with open(save_path, 'w') as f:
         logger.info("Saving data to save file: " + save_path)
         # Don't dump straight to the file: if we crash it would corrupt the save_data

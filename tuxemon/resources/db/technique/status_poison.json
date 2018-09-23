@@ -21,7 +21,7 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 10,
+  "power": null,
   "types": [
     "Poison"
   ]

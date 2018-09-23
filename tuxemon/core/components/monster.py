@@ -49,19 +49,128 @@ monsters.load("monster")
 monsters.load("technique")
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
-    'attack',
     'current_hp',
-    'defense',
-    'hp',
     'level',
     'name',
     'slug',
-    'special_attack',
-    'special_defense',
-    'speed',
     'status',
     'total_experience',
 )
+
+SHAPES = {
+    'aquatic': {
+        'armour': 8,
+        'dodge': 4,
+        'hp': 8,
+        'melee': 6,
+        'ranged': 6,
+        'speed': 4,
+    },
+    'blob': {
+        'armour': 8,
+        'dodge': 4,
+        'hp': 8,
+        'melee': 4,
+        'ranged': 8,
+        'speed': 4,
+    },
+    'brute': {
+        'armour': 7,
+        'dodge': 5,
+        'hp': 7,
+        'melee': 8,
+        'ranged': 4,
+        'speed': 5,
+    },
+    'dragon': {
+        'armour': 7,
+        'dodge': 5,
+        'hp': 6,
+        'melee': 6,
+        'ranged': 6,
+        'speed': 6,
+    },
+    'flier': {
+        'armour': 5,
+        'dodge': 7,
+        'hp': 4,
+        'melee': 8,
+        'ranged': 4,
+        'speed': 8,
+    },
+    'grub': {
+        'armour': 7,
+        'dodge': 5,
+        'hp': 7,
+        'melee': 4,
+        'ranged': 8,
+        'speed': 5,
+    },
+    'humanoid': {
+        'armour': 5,
+        'dodge': 7,
+        'hp': 4,
+        'melee': 4,
+        'ranged': 8,
+        'speed': 8,
+    },
+    'hunter': {
+        'armour': 4,
+        'dodge': 8,
+        'hp': 5,
+        'melee': 8,
+        'ranged': 4,
+        'speed': 7,
+    },
+    'landrace': {
+        'armour': 8,
+        'dodge': 4,
+        'hp': 8,
+        'melee': 8,
+        'ranged': 4,
+        'speed': 4,
+    },
+    'leviathan': {
+        'armour': 8,
+        'dodge': 4,
+        'hp': 8,
+        'melee': 6,
+        'ranged': 6,
+        'speed': 4,
+    },
+    'polliwog': {
+        'armour': 4,
+        'dodge': 8,
+        'hp': 5,
+        'melee': 4,
+        'ranged': 8,
+        'speed': 7,
+    },
+    'serpent': {
+        'armour': 6,
+        'dodge': 6,
+        'hp': 6,
+        'melee': 4,
+        'ranged': 8,
+        'speed': 6,
+    },
+    'sprite': {
+        'armour': 6,
+        'dodge': 6,
+        'hp': 4,
+        'melee': 6,
+        'ranged': 6,
+        'speed': 8,
+    },
+    'varmint': {
+        'armour': 6,
+        'dodge': 6,
+        'hp': 6,
+        'melee': 8,
+        'ranged': 4,
+        'speed': 6,
+    },
+}
 
 
 # class definition for first active tuxemon to use in combat:
@@ -104,30 +213,26 @@ class Monster(object):
         self.slug = ""
         self.name = ""          # The display name of the Tuxemon
         self.description = ""
-        self.level = 0
-        self.hp = 0
-        self.current_hp = 0
-        self.attack = 0
-        self.defense = 0
+
+        self.armour = 0
+        self.dodge = 0
+        self.melee = 0
+        self.ranged = 0
         self.speed = 0
-        self.special_attack = 0
-        self.special_defense = 0
+        self.current_hp = 0
+        self.hp = 0
+        self.level = 0
+
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
         self.ai = None
 
-        self.hp_modifier = [0, 0, 0]
-        self.attack_modifier = [0, 0, 0]
-        self.defense_modifier = [0, 0, 0]
-        self.speed_modifier = [0, 0, 0]
-        self.special_attack_modifier = [0, 0, 0]
-        self.special_defense_modifier = [0, 0, 0]
-        self.experience_give_modifier = 0
         self.experience_required_modifier = 0
         self.total_experience = 0
 
         self.type1 = "Normal"
         self.type2 = None
+        self.shape = "landrace"
 
         self.status = list()
         self.status_damage = 0
@@ -136,7 +241,7 @@ class Monster(object):
         self.weight = 0
 
         # the multiplier for checks when a monster ball is thrown.
-        self.catch_rate = 1;
+        self.catch_rate = 1
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -154,6 +259,7 @@ class Monster(object):
         self.menu_sprite = ""
 
         self.set_state(save_data)
+        self.set_stats()
 
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
@@ -182,53 +288,16 @@ class Monster(object):
         self.slug = results["slug"]                             # short English identifier
         self.name = trans(results["name_trans"])                # will be locale string
         self.description = trans(results["description_trans"])  # will be locale string
-
-        self.hp = results["hp_base"]
-        self.current_hp = results["hp_base"]
-        self.attack = results["attack_base"]
-        self.defense = results["defense_base"]
-        self.speed = results["speed_base"]
-        self.special_attack = results["special_attack_base"]
-        self.special_defense = results["special_defense_base"]
-
-        self.hp_modifier = (
-            results["hp_mod"] - 1,
-            results["hp_mod"],
-            results["hp_mod"] + 1
-        )
-        self.attack_modifier = (
-            results["attack_mod"] - 1,
-            results["attack_mod"],
-            results["attack_mod"] + 1
-        )
-        self.defense_modifier = (
-            results["defense_mod"] - 1,
-            results["defense_mod"],
-            results["defense_mod"] + 1,
-        )
-        self.speed_modifier = (
-            results["speed_mod"] - 1,
-            results["speed_mod"],
-            results["speed_mod"] + 1,
-        )
-        self.special_attack_modifier = (
-            results["special_attack_mod"] - 1,
-            results["special_attack_mod"],
-            results["special_attack_mod"] + 1,
-        )
-        self.special_defense_modifier = (
-            results["special_defense_mod"] - 1,
-            results["special_defense_mod"],
-            results["special_defense_mod"] + 1,
-        )
-        self.experience_give_modifier = results["exp_give_mod"]
-        self.experience_required_modifier = results["exp_req_mod"]
-
-        self.type1 = results["types"][0]
-        if len(results["types"]) > 1:
-            self.type2 = results["types"][1]
+        self.shape = results.get("shape", "landrace")
+        types = results.get("types")
+        if types:
+            self.type1 = results["types"][0].lower()
+            if len(types) > 1:
+                self.type2 = results["types"][1].lower()
+            else:
+                self.type2 = None
         else:
-            self.type2 = None
+            self.type1 = "normal"
 
         self.weight = results['weight']
 
@@ -319,16 +388,11 @@ class Monster(object):
         self.status.append(status)
 
     def set_stats(self):
-        """Sets the monsters initial stats, or imporves stats
-        when called during a level up. If this is being called
-        when the game is creating a monster, it should be looped
-        through. Once for each level of the monster being created.
+        """Sets the monsters initial stats, or improves stats
+        when called during a level up.
 
         :rtype: None
         :returns: None
-
-        **Example:**
-
 
         """
         if self.level < 10:
@@ -336,30 +400,14 @@ class Monster(object):
         else:
             level = self.level
 
-        hp_up = int(self.hp * 0.1 + random.choice(self.hp_modifier) * (level / 10))
-        self.current_hp += hp_up
-        self.hp += hp_up
-
-        self.attack += int(
-            self.attack * 0.1 + random.choice(self.attack_modifier) * (level / 10))
-        self.defense += int(
-            self.defense * 0.1 + random.choice(self.defense_modifier) * (level / 10))
-        self.speed += int(
-            self.speed * 0.1 + random.choice(self.speed_modifier) * (level / 10))
-        self.special_attack += int(
-            self.special_attack * 0.1 + random.choice(self.special_attack_modifier) * (level / 10))
-        self.special_defense += int(
-            self.special_defense * 0.1 + random.choice(self.special_defense_modifier) * (level / 10))
-
-        # Display stats each time they are calculated
-        """print("---- Level: %s ----" % self.level)
-        print("HP:", self.hp)
-        print("Attack:", self.attack)
-        print("Defense:", self.defense)
-        print("Speed:", self.speed)
-        print("Spc Atk:", self.special_attack)
-        print("Spc Def:", self.special_defense)
-        """
+        multiplier = level + 7
+        shape = SHAPES[self.shape]
+        self.armour = shape["armour"] * multiplier
+        self.dodge = shape["dodge"] * multiplier
+        self.hp = shape["hp"] * multiplier
+        self.melee = shape["melee"] * multiplier
+        self.ranged = shape["ranged"] * multiplier
+        self.speed = shape["speed"] * multiplier
 
     def level_up(self):
         """Increases a Monster's level by one and increases stats
@@ -397,13 +445,7 @@ class Monster(object):
         """
         self.level = level
         self.total_experience = self.experience_required_modifier * self.level ** 3
-
-        count = 0
-
-        # For each level between 1 and current, calculate stats
-        while count < self.level:
-            count += 1
-            self.set_stats()
+        self.set_stats()
 
 
     def verify_or_replace_sprite(self, sprite):

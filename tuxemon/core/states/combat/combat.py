@@ -55,6 +55,12 @@ EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
 faint = Technique("status_faint")
 
+MULT_MAP = {
+    4: "attack_very_effective",
+    2: "attack_effective",
+    0.5: "attack_resisted",
+    0.25: "attack_weak",
+}
 
 def check_status(monster, status_name):
     return any(t for t in monster.status if t.slug == status_name)
@@ -645,6 +651,10 @@ class CombatState(CombatAnimations):
                 # TODO: track total damage
                 # Track damage
                 self._damage_map[target].add(user)
+                text_key = MULT_MAP.get(result['element_multiplier'])
+                if text_key:
+                    m = trans(text_key)
+                    message += "\n" + m
 
             else:  # assume this was an item used
 

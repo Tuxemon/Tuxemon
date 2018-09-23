@@ -21,8 +21,9 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 70,
+  "power": 1.25,
   "types": [
-    "Wood"
+    "wood",
+    "metal"
   ]
 }

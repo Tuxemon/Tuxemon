@@ -46,6 +46,28 @@ techniques.load("technique")
 
 tech_ret_value = namedtuple("use", "name success properties")
 
+type_chart = namedtuple("TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"])
+
+TYPES = {
+    "aether": type_chart(None, None, None, None),
+    "normal": type_chart(None, None, None, None),
+    "wood": type_chart(
+        "earth", "fire", "metal", "water"
+    ),
+    "fire": type_chart(
+        "metal", "earth", "water", "wood"
+    ),
+    "earth": type_chart(
+        "water", "metal", "wood", "fire"
+    ),
+    "metal": type_chart(
+        "wood", "water", "fire", "earth"
+    ),
+    "water": type_chart(
+        "fire", "wood", "earth", "metal"
+    ),
+}
+
 
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
@@ -211,26 +233,23 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: int
+        :rtype: tuple(int, str)
         """
-        # Original Pokemon battle damage formula:
-        # according to: http://www.math.miami.edu/~jam/azure/compendium/battdam.htm
-        # ((2 * user.level / 7) * user.attack * self.power) / target.defense) / 50) +2) * stab_bonus) * type_modifiers/10) * random.randrange(217, 255))/255
+        if self.category in ("physical", "special"):
+            if self.category == "physical":
+                user_strength = user.melee * (7 + user.level)
+            else:
+                user_strength = user.ranged * (7 + user.level)
 
-        if self.category == "physical":
-            level_modifier = ((2 * user.level) / 7.)
-            attack_modifier = user.attack * self.power
-            return int(((level_modifier * attack_modifier) / float(target.defense)) / 50.)
-
-        elif self.category == "special":
-            level_modifier = ((2 * user.level) / 7.)
-            attack_modifier = user.special_attack * self.power
-            return int(((level_modifier * attack_modifier) / float(target.special_defense)) / 50.)
+            mult = self.get_damage_multiplier(target)
+            move_strength = self.power * mult
+            damage = int(user_strength * move_strength / target.armour)
+            return damage, mult
 
         elif self.category == "poison":
-            return int(self.power)
+            return int(target.hp / 8), 1
 
-        logger.error('unhandled damage category')
+        logger.error('unhandled damage category %s', self.category)
         raise RuntimeError
 
     def damage(self, user, target):
@@ -246,12 +265,13 @@ class Technique(object):
 
         :rtype: dict
         """
-        damage = self.calculate_damage(user, target)
+        damage, mult = self.calculate_damage(user, target)
         if damage:
             target.current_hp -= damage
 
         return {
             'damage': damage,
+            'element_multiplier': mult,
             'should_tackle': bool(damage),
             'success': bool(damage),
         }
@@ -346,3 +366,20 @@ class Technique(object):
 
     def get_state(self):
         return self.slug
+
+    def get_damage_multiplier(self, target):
+        m = 1
+        for attack_type in (self.type1, self.type2):
+            if attack_type is None:
+                continue
+            for target_type in (target.type1, target.type2):
+                body = TYPES.get(target_type, TYPES["aether"])
+                if body.extra_damage is None:
+                    continue
+                if attack_type == body.extra_damage:
+                    m *= 2
+                elif attack_type == body.resist_damage:
+                    m /= 2.0
+        m = min(4, m)
+        m = max(0.25, m)
+        return m

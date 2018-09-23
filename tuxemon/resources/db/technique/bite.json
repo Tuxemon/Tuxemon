@@ -21,8 +21,8 @@
     "own trainer": 0,
     "item": 0
   },
-  "power": 50,
+  "power": 1.25,
   "types": [
-    "Normal"
+    "aether"
   ]
 }

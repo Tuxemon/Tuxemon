@@ -38,6 +38,7 @@
         "menu1": "gfx/sprites/battle/aardart-menu01.png",
         "menu2": "gfx/sprites/battle/aardart-menu02.png"
     },
+    "shape": "landrace",
     "types": [
         "earth"
     ],

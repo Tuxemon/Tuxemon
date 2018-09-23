@@ -90,6 +90,11 @@
     "status_faint_name": "Faint",
     "status_poison_name": "Poison",
 
+    "attack_very_effective": "The attack did a lot of extra damage!",
+    "attack_effective": "The attack did extra damage!",
+    "attack_resisted": "The attack was resisted!",
+    "attack_weak": "The attack was strongly resisted!",
+
     "technique_bite_name": "Bite",
     "technique_fire_explosion_name": "Fire Explosion",
     "technique_poison_sting_name": "Poison Sting",

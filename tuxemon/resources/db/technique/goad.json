@@ -1,6 +1,6 @@
 {
-  "accuracy": 1,
-  "animation": "Volume Tornado",
+  "accuracy": 0.8,
+  "animation": "Rage",
   "category": "physical",
   "effects": [
     "damage"
@@ -11,13 +11,13 @@
   "icon": "",
   "is_area": false,
   "is_fast": true,
-  "name_trans": "technique_whirlwind_name",
-  "potency": null,
-  "power": 1.25,
-  "range": "Ranged",
-  "recharge": 1,
+  "name_trans": "technique_goad_name",
+  "potency": 0.8,
+  "power": 1.75,
+  "range": "Melee",
+  "recharge": 2,
   "sfx": "blaster1.ogg",
-  "slug": "technique_whirlwind",
+  "slug": "technique_goad",
   "sort": "damage",
   "success_trans": "generic_thing_success",
   "target": {
@@ -30,7 +30,6 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
-    "metal"
+    "water"
   ]
 }

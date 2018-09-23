@@ -1,6 +1,6 @@
 {
-  "accuracy": 1,
-  "animation": "Volume Tornado",
+  "accuracy": 0.75,
+  "animation": "Sparks Gold 1",
   "category": "physical",
   "effects": [
     "damage"
@@ -10,14 +10,14 @@
   "healing_power": 0,
   "icon": "",
   "is_area": false,
-  "is_fast": true,
-  "name_trans": "technique_whirlwind_name",
-  "potency": null,
-  "power": 1.25,
-  "range": "Ranged",
-  "recharge": 1,
+  "is_fast": false,
+  "name_trans": "technique_amnesia_name",
+  "potency": 1,
+  "power": 2.25,
+  "range": "Reach",
+  "recharge": 2,
   "sfx": "blaster1.ogg",
-  "slug": "technique_whirlwind",
+  "slug": "technique_amnesia",
   "sort": "damage",
   "success_trans": "generic_thing_success",
   "target": {
@@ -30,7 +30,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
+    "fire",
     "metal"
   ]
 }

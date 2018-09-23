@@ -1,6 +1,6 @@
 {
-  "accuracy": 1,
-  "animation": "Volume Tornado",
+  "accuracy": 0.7,
+  "animation": "Claw (recolor)",
   "category": "physical",
   "effects": [
     "damage"
@@ -9,15 +9,15 @@
   "failure_trans": "generic_thing_failure",
   "healing_power": 0,
   "icon": "",
-  "is_area": false,
+  "is_area": true,
   "is_fast": true,
-  "name_trans": "technique_whirlwind_name",
+  "name_trans": "technique_midnight_mantle_name",
   "potency": null,
   "power": 1.25,
   "range": "Ranged",
-  "recharge": 1,
+  "recharge": 2,
   "sfx": "blaster1.ogg",
-  "slug": "technique_whirlwind",
+  "slug": "technique_midnight_mantle",
   "sort": "damage",
   "success_trans": "generic_thing_success",
   "target": {
@@ -30,7 +30,6 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
-    "metal"
+    "water"
   ]
 }

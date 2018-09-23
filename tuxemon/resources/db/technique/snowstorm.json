@@ -1,6 +1,6 @@
 {
-  "accuracy": 1,
-  "animation": "Volume Tornado",
+  "accuracy": 0.5,
+  "animation": "Ice Blast",
   "category": "physical",
   "effects": [
     "damage"
@@ -9,15 +9,15 @@
   "failure_trans": "generic_thing_failure",
   "healing_power": 0,
   "icon": "",
-  "is_area": false,
-  "is_fast": true,
-  "name_trans": "technique_whirlwind_name",
-  "potency": null,
-  "power": 1.25,
-  "range": "Ranged",
-  "recharge": 1,
+  "is_area": true,
+  "is_fast": false,
+  "name_trans": "technique_snowstorm_name",
+  "potency": 1,
+  "power": 3.0,
+  "range": "Melee",
+  "recharge": 3,
   "sfx": "blaster1.ogg",
-  "slug": "technique_whirlwind",
+  "slug": "technique_snowstorm",
   "sort": "damage",
   "success_trans": "generic_thing_success",
   "target": {
@@ -30,7 +30,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
-    "metal"
+    "earth",
+    "water"
   ]
 }

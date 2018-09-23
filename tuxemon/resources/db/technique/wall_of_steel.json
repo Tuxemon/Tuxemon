@@ -1,6 +1,6 @@
 {
-  "accuracy": 1,
-  "animation": "Volume Tornado",
+  "accuracy": 0.75,
+  "animation": "Screen",
   "category": "physical",
   "effects": [
     "damage"
@@ -11,13 +11,13 @@
   "icon": "",
   "is_area": false,
   "is_fast": true,
-  "name_trans": "technique_whirlwind_name",
-  "potency": null,
+  "name_trans": "technique_wall_of_steel_name",
+  "potency": 1,
   "power": 1.25,
-  "range": "Ranged",
-  "recharge": 1,
+  "range": "Melee",
+  "recharge": 2,
   "sfx": "blaster1.ogg",
-  "slug": "technique_whirlwind",
+  "slug": "technique_wall_of_steel",
   "sort": "damage",
   "success_trans": "generic_thing_success",
   "target": {
@@ -30,7 +30,6 @@
     "own trainer": 0
   },
   "types": [
-    "wood",
     "metal"
   ]
 }

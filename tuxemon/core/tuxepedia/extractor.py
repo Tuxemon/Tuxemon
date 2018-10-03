@@ -6,12 +6,14 @@
 """
 
 import logging
+import os
 import os.path
+import shutil
 
 from lxml import html
 import requests
 
-from . import WEB_PATHS
+from . import WEB_PATHS, RESOURCE_PATHS
 
 
 class TuxepediaWebExtractor:
@@ -111,8 +113,8 @@ class TuxepediaWebExtractor:
         # sprites JSON template
         sprites = {"front": None,
                    "back": None,
-                   "menu1": None,
-                   "menu2": None}
+                   "menu01": None,
+                   "menu02": None}
 
         for sprite_type, el in zip(sprites, monster_row[4:8]):
             a = el.find("a")
@@ -127,9 +129,19 @@ class TuxepediaWebExtractor:
             if img is None:
                 continue
 
+            # TODO: make sprite file values more meaningful
             sprite_img = os.path.basename(img.get("src"))
 
-            # TODO: add download step HERE
+            # construct sprite paths (full URL and local)
+            sprite_url = self.tuxepedia_url + img.get("src")
+
+            sprite_ext = os.path.splitext(sprite_img)[1]
+
+            local_sprite_path = os.path.join(RESOURCE_PATHS.monster_sprites,
+                                             self.get_monster_name(monster_row),
+                                             sprite_type + sprite_ext)
+
+            self.url_to_file(sprite_url, local_sprite_path)
 
             sprites[sprite_type] = sprite_img
 
@@ -159,10 +171,19 @@ class TuxepediaWebExtractor:
 
         href = a.get("href")
 
-        # TODO: add download step HERE
+        # construct sound paths (full URL and local)
+        cry_url = self.tuxepedia_url + href
+
+        cry_ext = os.path.splitext(cry_url)[1]
+
+        local_cry_path = os.path.join(RESOURCE_PATHS.monster_sounds,
+                                      self.get_monster_name(monster_row),
+                                      "cry" + cry_ext)
+
+        self.url_to_file(cry_url, local_cry_path)
 
         # combine subindex URL with main website URL
-        return self.tuxepedia_url + href
+        return cry_url
 
     def url_to_html(self, url, params, headers = None):
         """Extract Web content into an HTML tree object
@@ -182,12 +203,31 @@ class TuxepediaWebExtractor:
 
         return html.fromstring(content)
 
-    def _exec_request(self, url, params, headers = None):
+    def url_to_file(self, url, file_path):
+        """Extract Web content into a local file
+
+        :param url: URL path string
+        :param file_path: local file path target
+        :return:
+        """
+
+        # extract Web content as byte stream
+        byte_stream = self._exec_request(url, params={}, stream=True)
+
+        # make sure the directories exist!
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+        # write byte stream to file in binary mode
+        with open(file_path, "wb") as out_file:
+            shutil.copyfileobj(byte_stream, out_file)
+
+    def _exec_request(self, url, params, headers = None, stream = False):
         """Extract Web content
 
         :param url: URL path string
         :param params: requests auxiliary params
         :param headers: extra header fields needed for the request
+        :param stream: toggle for extracting byte streams directly
         :return: request object/JSON or None on failure
         """
 
@@ -196,9 +236,20 @@ class TuxepediaWebExtractor:
         else:
             headers = {**self.headers, **headers}
 
-        response = requests.get(url, params=params, headers=headers)
+        response = requests.get(url, params=params, headers=headers, stream=stream)
 
         if response.status_code != 200:
             return None
 
+        if stream:
+            return response.raw
+
         return response.content
+
+
+def download(url, to_path):
+    print("Downloading image: " + url)
+    response = requests.get(url, stream=True)
+    with open(to_path, 'wb') as out_file:
+        shutil.copyfileobj(response.raw, out_file)
+    del response

@@ -26,3 +26,5 @@ class RESOURCE_PATHS:
     database = os.path.join(top, "db", "tuxepedia", "tuxepedia.sqlite")
 
     monster_sprites = os.path.join(top, "gfx", "sprites", "tuxemon")
+
+    monster_sounds = os.path.join(top, "sounds", "tuxemon")

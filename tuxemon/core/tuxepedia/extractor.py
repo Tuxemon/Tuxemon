@@ -143,7 +143,7 @@ class TuxepediaWebExtractor:
             sprite_file = sprite_type + sprite_ext
 
             local_sprite_path = os.path.join(RESOURCE_PATHS.monster_sprites,
-                                             txmn_name,
+                                             txmn_name.lower(),
                                              sprite_file)
 
             # download tuxemon sprite
@@ -198,7 +198,7 @@ class TuxepediaWebExtractor:
         cry_file = "cry" + cry_ext
 
         local_cry_path = os.path.join(RESOURCE_PATHS.monster_sounds,
-                                      txmn_name, cry_file)
+                                      txmn_name.lower(), cry_file)
 
         # download tuxemon sound
         self.url_to_file(cry_url, local_cry_path)

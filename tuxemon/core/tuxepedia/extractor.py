@@ -150,7 +150,7 @@ class TuxepediaWebExtractor:
             self.get_logger().debug("Stored {} sprite at {}".format(txmn_name,
                                                                     local_sprite_path))
 
-            sprites[sprite_type] = sprite_img
+            sprites[sprite_type] = True
 
         return sprites
 
@@ -196,8 +196,7 @@ class TuxepediaWebExtractor:
         self.get_logger().debug("Stored {} sprite at {}".format(txmn_name,
                                                                 local_cry_path))
 
-        # combine subindex URL with main website URL
-        return cry_url
+        return True
 
     def url_to_html(self, url, params, headers = None):
         """Extract Web content into an HTML tree object
@@ -259,11 +258,3 @@ class TuxepediaWebExtractor:
             return response.raw
 
         return response.content
-
-
-def download(url, to_path):
-    print("Downloading image: " + url)
-    response = requests.get(url, stream=True)
-    with open(to_path, 'wb') as out_file:
-        shutil.copyfileobj(response.raw, out_file)
-    del response

@@ -15,6 +15,7 @@ class WEB_PATHS:
 
     # TODO: add xpath filters for other parts of the Tuxepedia as needed
     monsters_xpath = '//*[@id="mw-content-text"]/table[1]/tr[1]/td[1]/table'
+    monster_sound_xpath = '//*[@id="mw-content-text"]/div[1]/a'
 
 
 class RESOURCE_PATHS:

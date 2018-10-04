@@ -56,7 +56,7 @@ class TuxepediaWebExtractor:
             # construct monster JSON entry
             name = self.get_monster_name(monster_row)
 
-            monsters[name] = {"url": self.get_monster_url(monster_row),
+            monsters[name] = {"tuxepedia_url": self.get_monster_url(monster_row),
                               "types": self.get_monster_types(monster_row),
                               "sprites": self.get_monster_sprites(monster_row),
                               "blurp": self.get_monster_blurp(monster_row),
@@ -179,10 +179,16 @@ class TuxepediaWebExtractor:
         if a is None or a.text_content() == "Missing":
             return None
 
+        # get link to the sound file Tuxepedia entry
         href = a.get("href")
 
+        # extract the direct URL to the sound file
+        sound_entry = self.url_to_html(self.tuxepedia_url + href, params={})
+        sound = sound_entry.xpath(WEB_PATHS.monster_sound_xpath)[0]
+        sound_url = sound.get("href")
+
         # construct sound paths (full URL and local)
-        cry_url = self.tuxepedia_url + href
+        cry_url = self.tuxepedia_url + sound_url
 
         cry_ext = os.path.splitext(cry_url)[1]
 

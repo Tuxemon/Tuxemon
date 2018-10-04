@@ -140,17 +140,20 @@ class TuxepediaWebExtractor:
 
             sprite_ext = os.path.splitext(sprite_img)[1]
 
+            sprite_file = sprite_type + sprite_ext
+
             local_sprite_path = os.path.join(RESOURCE_PATHS.monster_sprites,
                                              txmn_name,
-                                             sprite_type + sprite_ext)
+                                             sprite_file)
 
+            # download tuxemon sprite
             self.url_to_file(sprite_url, local_sprite_path)
 
             # log output
             self.get_logger().debug("Stored {} sprite at {}".format(txmn_name,
                                                                     local_sprite_path))
 
-            sprites[sprite_type] = True
+            sprites[sprite_type] = sprite_file
 
         return sprites
 
@@ -192,17 +195,19 @@ class TuxepediaWebExtractor:
 
         cry_ext = os.path.splitext(cry_url)[1]
 
-        local_cry_path = os.path.join(RESOURCE_PATHS.monster_sounds,
-                                      txmn_name,
-                                      "cry" + cry_ext)
+        cry_file = "cry" + cry_ext
 
+        local_cry_path = os.path.join(RESOURCE_PATHS.monster_sounds,
+                                      txmn_name, cry_file)
+
+        # download tuxemon sound
         self.url_to_file(cry_url, local_cry_path)
 
         # log output
         self.get_logger().debug("Stored {} sprite at {}".format(txmn_name,
                                                                 local_cry_path))
 
-        return True
+        return cry_file
 
     def url_to_html(self, url, params, headers = None):
         """Extract Web content into an HTML tree object

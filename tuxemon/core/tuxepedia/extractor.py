@@ -110,11 +110,14 @@ class TuxepediaWebExtractor:
         :return: dict/JSON of tuxemon sprites
         """
 
+        # get tuxemon name
+        txmn_name = self.get_monster_name(monster_row)
+
         # sprites JSON template
-        sprites = {"front": None,
-                   "back": None,
-                   "menu01": None,
-                   "menu02": None}
+        sprites = {"battle1": None,
+                   "battle2": None,
+                   "menu1": None,
+                   "menu2": None}
 
         for sprite_type, el in zip(sprites, monster_row[4:8]):
             a = el.find("a")
@@ -138,10 +141,14 @@ class TuxepediaWebExtractor:
             sprite_ext = os.path.splitext(sprite_img)[1]
 
             local_sprite_path = os.path.join(RESOURCE_PATHS.monster_sprites,
-                                             self.get_monster_name(monster_row),
+                                             txmn_name,
                                              sprite_type + sprite_ext)
 
             self.url_to_file(sprite_url, local_sprite_path)
+
+            # log output
+            self.get_logger().debug("Stored {} sprite at {}".format(txmn_name,
+                                                                    local_sprite_path))
 
             sprites[sprite_type] = sprite_img
 
@@ -163,6 +170,9 @@ class TuxepediaWebExtractor:
         :return: tuxemon call/cry URL
         """
 
+        # get tuxemon name
+        txmn_name = self.get_monster_name(monster_row)
+
         a = monster_row[9].find("a")
 
         # skip if no call or only a placeholder was found
@@ -177,10 +187,14 @@ class TuxepediaWebExtractor:
         cry_ext = os.path.splitext(cry_url)[1]
 
         local_cry_path = os.path.join(RESOURCE_PATHS.monster_sounds,
-                                      self.get_monster_name(monster_row),
+                                      txmn_name,
                                       "cry" + cry_ext)
 
         self.url_to_file(cry_url, local_cry_path)
+
+        # log output
+        self.get_logger().debug("Stored {} sprite at {}".format(txmn_name,
+                                                                local_cry_path))
 
         # combine subindex URL with main website URL
         return cry_url

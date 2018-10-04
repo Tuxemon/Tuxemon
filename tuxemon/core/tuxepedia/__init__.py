@@ -21,10 +21,14 @@ class RESOURCE_PATHS:
     """Listing of all resource paths for the Tuxepedia"""
 
     # TODO: add project root path from global constants if possible
-    top = os.path.join("tuxemon", "resources")
+    # main static resources path
+    resources = os.path.join("tuxemon", "resources")
 
-    database = os.path.join(top, "db", "tuxepedia", "tuxepedia.sqlite")
+    database = os.path.join(resources, "db", "tuxepedia", "tuxepedia.sqlite")
 
-    monster_sprites = os.path.join(top, "gfx", "sprites", "tuxemon")
+    # tuxemon sprites and sound file paths
+    monster_sprites = os.path.join(resources, "gfx", "sprites", "tuxemon")
+    monster_sounds = os.path.join(resources, "sounds", "tuxemon")
 
-    monster_sounds = os.path.join(top, "sounds", "tuxemon")
+    # tuxemon JSON/YAML file paths
+    monster_stats = os.path.join(resources, "db", "tuxemon")

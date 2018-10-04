@@ -6,10 +6,14 @@
 """
 
 from contextlib import contextmanager
+import json
 import logging
+import os
+import os.path
 import sqlite3
 
 from . import RESOURCE_PATHS
+from .extractor import TuxepediaWebExtractor
 
 
 class TuxepediaStore:
@@ -43,3 +47,88 @@ class TuxepediaStore:
         yield self.connection.cursor()
 
         self.connection.commit()
+
+    def sync_with_remote(self):
+        """Update local Tuxepedia content from Tuxepedia wiki pages"""
+
+        # TODO: add version/timestamp check to decide whether a full pull is needed
+        tuxepedia = TuxepediaWebExtractor()
+
+        # scrape entire tuxemon database from Web
+        # (sprites and sounds are downloaded as well)
+        txmn_json_full = tuxepedia.get_monsters()
+
+        for txmn_name in txmn_json_full:
+
+            # full path to tuxemon JSON file
+            txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
+                                          txmn_name.lower() + ".json")
+
+            # update tuxemon JSON record if it already exists
+            if os.path.isfile(txmn_json_path):
+                self.update_txmn_json(txmn_name, txmn_json_full[txmn_name])
+
+                # log overwrite operation
+                self.get_logger().debug("JSON record for {} exists and was overwritten.".format(txmn_name))
+
+            # create new tuxemon JSON entry
+            else:
+                # make sure the tuxemon database directory exists
+                os.makedirs(os.path.dirname(txmn_json_path), exist_ok=True)
+
+                # dump tuxemon JSON
+                with open(txmn_json_path, "w") as f:
+                    json.dump(txmn_json_full[txmn_name], f)
+
+    def update_txmn_json(self, txmn_name, txmn_json_new, overwrite=True):
+        """Update a tuxemon JSON file record
+
+        :param txmn_name: tuxemon name
+        :param txmn_json_new: new tuxemon JSON record
+        :param overwrite: toggle to overwrite existing JSON fields
+        """
+
+        # full path to tuxemon JSON file
+        txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
+                                      txmn_name.lower() + ".json")
+
+        # load previous tuxemon JSON from file
+        with open(txmn_json_path) as f:
+            txmn_json_old = json.load(f)
+
+        # diff JSON records and add elements as needed
+        for field in txmn_json_new:
+
+            # replace existing fields
+            if field in txmn_json_old and overwrite:
+                txmn_json_old[field] = txmn_json_new[field]
+
+            # add new fields
+            elif field in txmn_json_new and field not in txmn_json_old:
+                txmn_json_old[field] = txmn_json_new[field]
+
+        # dump tuxemon JSON
+        with open(txmn_json_path, "w") as f:
+            json.dump(txmn_json_old, f)
+
+    def get_txmn_json(self, txmn_name):
+        """Extract tuxemon JSON from file
+
+        :param txmn_name: tuxemon name
+        """
+
+        txmn_json = None
+
+        # full path to tuxemon JSON file
+        txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
+                                      txmn_name.lower() + ".json")
+
+        if os.path.isfile(txmn_json_path):
+            with open(txmn_json_path) as f:
+                txmn_json = json.load(f)
+
+        # report if no JSON record was found
+        else:
+            self.get_logger().warning("Valid JSON record for {} not found.".format(txmn_name))
+
+        return txmn_json

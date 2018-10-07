@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_exapode",
-    "name_trans": "txmn_exapode_name",
-    "description_trans": "txmn_exapode_descr",
-    "category_trans": "txmn_exapode_category",
+    "slug": "exapode",
+    "category": "big_frightfear",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_rock"
+            "technique": "rock"
         },
         {
             "level_learned": 2,
-            "technique": "technique_clamp_on"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 2,
-            "technique": "technique_avalanche"
+            "technique": "avalanche"
         }
     ],
     "shape": "Grub",

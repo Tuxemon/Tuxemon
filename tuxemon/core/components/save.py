@@ -62,6 +62,7 @@ def get_save_data(game):
     save_data['screenshot_width'] = screenshot.get_width()
     save_data['screenshot_height'] = screenshot.get_height()
     save_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    save_data['version'] = 1
     return save_data
 
 
@@ -114,30 +115,48 @@ def load(slot):
 
     """
 
-    save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot)
+    save_data = open_save_file(save_path)
+    if save_data:
+        return upgrade_save(save_data)
+    else:
+        save_data["error"] = "Save file corrupted"
+        save_data["player_name"] = "BROKEN SAVE!"
+        logger.error("Failed loading save file.")
+        return save_data
+
+def open_save_file(save_path):
     save_data = dict()
     try:
         with open(save_path, 'r') as save_file:
-            text = save_file.read()
-
             try:
-                return json.loads(text)
+                return json.load(save_file)
             except ValueError as e:
                 logger.error("cannot decode JSON: %s", save_path)
 
-            if prepare.SAVE_METHOD == "CBOR":
-                try:
-                    return cbor.loads(text)
-                except ValueError as e:
-                    logger.error("cannot decode save CBOR: %s", save_path)
-            else:
-                pass
+            try:
+                return cbor.load(save_file)
+            except ValueError as e:
+                logger.error("cannot decode save CBOR: %s", save_path)
 
     except IOError as e:
         logger.error(e)
 
-    save_data["error"] = "Save file corrupted"
-    save_data["player_name"] = "BROKEN SAVE!"
-    logger.error("Failed loading save file.")
+
+def upgrade_save(save_data):
+    version = save_data.get("version", 0)
+    if version == 0:
+        def fix_items(data):
+            return {
+                key.partition("_")[2]: num
+                for key, num in data.items()
+            }
+        chest = save_data.get('storage', {})
+        save_data['inventory'] = fix_items(save_data.get('inventory', {}))
+        chest['items'] = fix_items(chest.get('items', {}))
+
+        for mons in save_data.get('monsters', []), chest.get('monsters', []):
+            for mon in mons:
+                mon['slug'] = mon['slug'].partition("_")[2]
     return save_data
 

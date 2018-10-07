@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_mrmoswitch",
-    "name_trans": "txmn_mrmoswitch_name",
-    "description_trans": "txmn_mrmoswitch_descr",
-    "category_trans": "txmn_mrmoswitch_category",
+    "slug": "mrmoswitch",
+    "category": "gremlin",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_beam"
+            "technique": "beam"
         },
         {
             "level_learned": 2,
-            "technique": "technique_battery_discharge"
+            "technique": "battery_discharge"
         }
     ],
     "shape": "Sprite",

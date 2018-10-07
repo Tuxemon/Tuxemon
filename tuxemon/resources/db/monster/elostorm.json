@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_elostorm",
-    "name_trans": "txmn_elostorm_name",
-    "description_trans": "txmn_elostorm_descr",
-    "category_trans": "txmn_elostorm_category",
+    "slug": "elostorm",
+    "category": "cloudburst",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_thunderclap"
+            "technique": "thunderclap"
         },
         {
             "level_learned": 2,
-            "technique": "technique_snowstorm"
+            "technique": "snowstorm"
         }
     ],
     "shape": "Flier",

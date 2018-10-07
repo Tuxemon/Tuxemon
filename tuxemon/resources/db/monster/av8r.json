@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_av8r",
-    "name_trans": "txmn_av8r_name",
-    "description_trans": "txmn_av8r_descr",
-    "category_trans": "txmn_av8r_category",
+    "slug": "av8r",
+    "category": "heliotrope",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wing_tip"
+            "technique": "wing_tip"
         },
         {
             "level_learned": 2,
-            "technique": "technique_glower"
+            "technique": "glower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_battery_discharge"
+            "technique": "battery_discharge"
         }
     ],
     "shape": "Flier",

@@ -1,9 +1,8 @@
 {
-  "slug": "technique_run",
-  "name_trans": "menu_run",
-  "execute_trans": "combat_used_x",
-  "success_trans": "generic_thing_success",
-  "failure_trans": "generic_thing_failure",
+  "slug": "menu_run",
+  "use_tech": "combat_used_x",
+  "use_success": "generic_success",
+  "use_failure": "generic_failure",
   "animation": null,
   "sfx": "blaster1.ogg",
   "icon": "",

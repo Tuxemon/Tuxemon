@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_eruptibus",
-    "name_trans": "txmn_eruptibus_name",
-    "description_trans": "txmn_eruptibus_descr",
-    "category_trans": "txmn_eruptibus_category",
+    "slug": "eruptibus",
+    "category": "hot_rock",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_berserk"
+            "technique": "berserk"
         },
         {
             "level_learned": 2,
-            "technique": "technique_hibernate"
+            "technique": "hibernate"
         },
         {
             "level_learned": 2,
-            "technique": "technique_energy_field"
+            "technique": "energy_field"
         }
     ],
     "shape": "Landrace",

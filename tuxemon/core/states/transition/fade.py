@@ -1,8 +1,10 @@
 import logging
 from abc import abstractmethod
+import os.path
 
 import pygame
 
+from tuxemon.constants.paths import BASEDIR
 from tuxemon.core import prepare
 from tuxemon.core.state import State
 from tuxemon.core.platform import mixer
@@ -52,7 +54,7 @@ class FadeOutTransition(FadeTransitionBase):
 
     def shutdown(self):
         if self.game.current_music["previoussong"]:
-            mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + self.game.current_music["previoussong"])
+            mixer.music.load(os.path.join(BASEDIR, prepare.DATADIR, "music", self.game.current_music["previoussong"]))
             mixer.music.play(-1)
             self.game.current_music["status"] = "playing"
             self.game.current_music["song"] = self.game.current_music["previoussong"]

@@ -71,7 +71,7 @@ class CreateNpcAction(EventAction):
             sprite = db.JSONDatabase('npc').database['npc'][slug].get('sprite_name')
 
         # Create a new NPC object
-        npc = tuxemon.core.components.npc.Npc(slug, sprite_name=sprite)
+        npc = tuxemon.core.components.npc.NPC(slug, sprite_name=sprite)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables

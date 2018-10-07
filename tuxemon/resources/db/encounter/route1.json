@@ -3,9 +3,9 @@
 
 
 
-{ "monster": "txmn_cardiling","encounter_rate":10,"level_range": [1,4]},
-{ "monster": "txmn_aardorn","encounter_rate":10,"level_range": [1,4]},
-{ "monster": "txmn_cataspike","encounter_rate":10,"level_range": [1,4]}
+{ "monster": "cardiling","encounter_rate":10,"level_range": [1,4]},
+{ "monster": "aardorn","encounter_rate":10,"level_range": [1,4]},
+{ "monster": "cataspike","encounter_rate":10,"level_range": [1,4]}
 
 
 

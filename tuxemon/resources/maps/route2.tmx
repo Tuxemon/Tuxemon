@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="137">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="136">
+>>>>>>> Fix slugs in remaining Tiled map files
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -24,27 +25,27 @@
  <tileset firstgid="6085" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
   <image source="../gfx/tilesets/Interiors 2 by Redshrike.PNG" width="112" height="64"/>
  </tileset>
- <layer name="Layer 1" width="40" height="20">
+ <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eJzNlEsOgDAIRLmPZ0euaJemYUZrpMyChNAPr5TBzewcFsNc0FfhUOW7xxgfukOhftlbWLyDD+1T5GM9osLXrZs/+JDumN528yn0H5o1X/hWZ9bbMwdY75x/Cr6KZjOdqfK55XxRlBvN+xW+mPZW1yyLPfHNemH9UK2JnfnQ/7L1Tr4V/wK5FR80
   </data>
  </layer>
- <layer name="Layer 2" width="40" height="20">
+ <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eJztlVEKgzAMQPvvdAeZ4kmsNxXcCWdAIcbSJjFxCD7Ij7XNqzVpCA93pkGRoybvQrwFebb5HsxrUD6B79jZ6Rz4ZsZ65hrDEi8DlxR079UScY1RsM5kZrSH+nG/mQcx8Uzr51kTGK2fZ03k8kDdcnqNxs9zDnVuFbk0ePYGK676l7T5pX64R1qA86fqU3LG4Cbp25TUvVnyAziOZ902aI/AtZbrb0NhXalbJME5o3/eX6X9AxbncxU/5IMP3A==
   </data>
  </layer>
- <layer name="Layer 3" width="40" height="20">
+ <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eJzFVkFuwjAQXHKDUvoQGvUH9AWBX7TfgWeQQ89F4kP0FXVERl2mXnuNHDHSykp27IzHa8cXEfkJccm0QI5Xu53PRBazfAt4+bXafSNyaGQyPIdYUbyoXK9C5+Hfd9B2qqiPtbxGOGvK9ZR/k//r9ig8hdiOsRzfDfq47mvia/zGNhJLxRu07eRvfVulz+PfeX5tj05dGB/6Uhzo6MfxWR/7hznwM78v1ffexDlaH6KTqyeDp9o/5DEPS7OF2F4o8c8KjXv84r5A6fpysE+WzhJtrA9niD7vmK85fD5696+lleeamtdaaWwjfO7n3b+eNbdqhYH1HvaAde5gLM/5h7y3LnM8qx65P7iWf3xv0DotWF5oWPX40dzqQ1j+sS5+9qCT2/+EB1zLufqz7lUam8S9okRjrDZSfsTqF1GCroDLdWv5x/+je/CZGSM1f3gw5f2lBuDfL4/Pnv0=
   </data>
  </layer>
- <layer name="Above Player" width="40" height="20">
+ <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBj6QIproF2AH7hTyX091DGGJHBUnHi1a2jnDJzgDAnuO0M7Z8ABcnjd4WdguAzl7+Gkg+VEAHzh1QvEfVDcTyf3IAPk8KIlGCnlxVAD6UwD7QLcYALQbRMHsft2AN22E4j7BqEb0wahm0bBKBgFAw8AqQcRDw==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="5" type="collision" x="96" y="96">
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
@@ -157,7 +158,7 @@
    <polyline points="0,0 96,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport citypark.tmx,10,39,0.3"/>
@@ -232,19 +233,19 @@
   <object id="86" name="Player Spawn" type="event" x="176" y="48" width="16" height="16"/>
   <object id="87" name="create npc" type="event" x="48" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_misa,2,3,misa,stand"/>
-    <property name="act2" value="npc_face npc_misa,up"/>
+    <property name="act1" value="create_npc misa,2,3,misa,stand"/>
+    <property name="act2" value="npc_face misa,up"/>
     <property name="act3" value="set_variable skadoosh:yes"/>
-    <property name="cond1" value="not npc_exists npc_misa"/>
+    <property name="cond1" value="not npc_exists misa"/>
    </properties>
   </object>
   <object id="88" name="talk to misa" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog route2speech"/>
-    <property name="act2" value="npc_face npc_misa,right"/>
-    <property name="act3" value="translated_dialog route2speech2"/>
-    <property name="act5" value="npc_face npc_misa,up"/>
-    <property name="act6" value="translated_dialog route2speech3"/>
+    <property name="act2" value="npc_face misa,right"/>
+    <property name="act3" value="translated_dialog route2speech2\n"/>
+    <property name="act5" value="npc_face misa,up"/>
+    <property name="act6" value="translated_dialog route2speech3\n"/>
     <property name="act63" value="set_variable skadoosh:no"/>
     <property name="act7" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
     <property name="cond1" value="is player_at"/>
@@ -254,7 +255,7 @@
     <property name="cond5" value="not variable_set leavemealone:yes"/>
    </properties>
   </object>
-  <object id="89" name="yes to talk" type="event" x="48" y="48" width="16" height="16">
+  <object id="89" name="yes to talk" type="event" x="47.75" y="48.25" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog yestalk"/>
     <property name="act2" value="set_variable route2choice:again"/>
@@ -263,9 +264,9 @@
     <property name="cond4" value="is variable_set route2choice:sure_i_do"/>
    </properties>
   </object>
-  <object id="90" name="no to talk" type="event" x="48" y="48" width="16" height="16">
+  <object id="90" name="no to talk" type="event" x="47.75" y="48.25" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face npc_misa,right"/>
+    <property name="act1" value="npc_face misa,right"/>
     <property name="act2" value="translated_dialog notalk"/>
     <property name="act3" value="set_variable route2choice:again"/>
     <property name="cond1" value="is player_at"/>
@@ -273,24 +274,24 @@
     <property name="cond4" value="is variable_set route2choice:not_really"/>
    </properties>
   </object>
-  <object id="93" name="spill the beans" type="event" x="48" y="48" width="16" height="16">
+  <object id="93" name="spill the beans" type="event" x="47.75" y="48.25" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face npc_misa,right"/>
+    <property name="act1" value="npc_face misa,right"/>
     <property name="act11" value="set_variable yahoo:maybe"/>
-    <property name="act2" value="translated_dialog spillit"/>
-    <property name="act22" value="npc_face npc_misa,up"/>
+    <property name="act2" value="translated_dialog spillit\n"/>
+    <property name="act22" value="npc_face misa,up"/>
     <property name="act23" value="translated_dialog spillit3"/>
-    <property name="act231" value="npc_face npc_misa,right"/>
+    <property name="act231" value="npc_face misa,right"/>
     <property name="act24" value="translated_dialog spillit4"/>
-    <property name="act25" value="npc_face npc_misa,left"/>
+    <property name="act25" value="npc_face misa,left"/>
     <property name="act26" value="wait 1"/>
     <property name="act27" value="translated_dialog spillit5"/>
-    <property name="act28" value="npc_face npc_misa, down"/>
+    <property name="act28" value="npc_face misa, down"/>
     <property name="act29" value="wait 1"/>
     <property name="act30" value="translated_dialog spillit6"/>
-    <property name="act31" value="npc_face npc_misa,right"/>
+    <property name="act31" value="npc_face misa,right"/>
     <property name="act32" value="translated_dialog spillit7"/>
-    <property name="act33" value="npc_face npc_misa,left"/>
+    <property name="act33" value="npc_face misa,left"/>
     <property name="act34" value="set_variable leavemealone:yes"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -563,7 +564,7 @@
     <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
-  <object id="134" name="spilledthebeans" type="event" x="48" y="48" width="16" height="16">
+  <object id="134" name="spilledthebeans" type="event" x="47.5833" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act2" value="wait 1"/>

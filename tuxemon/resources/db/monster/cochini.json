@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_cochini",
-    "name_trans": "txmn_cochini_name",
-    "description_trans": "txmn_cochini_descr",
-    "category_trans": "txmn_cochini_category",
+    "slug": "cochini",
+    "category": "tasty",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_stampede"
+            "technique": "stampede"
         },
         {
             "level_learned": 2,
-            "technique": "technique_thunderball"
+            "technique": "thunderball"
         },
         {
             "level_learned": 2,
-            "technique": "technique_headbutt"
+            "technique": "headbutt"
         }
     ],
     "shape": "Varmint",

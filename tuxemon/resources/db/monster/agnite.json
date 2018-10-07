@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_agnite",
-    "name_trans": "txmn_agnite_name",
-    "description_trans": "txmn_agnite_descr",
-    "category_trans": "txmn_agnite_category",
+    "slug": "agnite",
+    "category": "false_dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fire_claw"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fire_ball"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fume"
+            "technique": "fume"
         }
     ],
     "shape": "Dragon",

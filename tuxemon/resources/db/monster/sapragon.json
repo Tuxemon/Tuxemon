@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sapragon",
-    "name_trans": "txmn_sapragon_name",
-    "description_trans": "txmn_sapragon_descr",
-    "category_trans": "txmn_sapragon_category",
+    "slug": "sapragon",
+    "category": "dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         },
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sting"
+            "technique": "sting"
         }
     ],
     "shape": "Dragon",

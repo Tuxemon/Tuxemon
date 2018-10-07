@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_rhincus",
-    "name_trans": "txmn_rhincus_name",
-    "description_trans": "txmn_rhincus_descr",
-    "category_trans": "txmn_rhincus_category",
+    "slug": "rhincus",
+    "category": "missing_link",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_headbutt"
+            "technique": "headbutt"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wing_tip"
+            "technique": "wing_tip"
         },
         {
             "level_learned": 2,
-            "technique": "technique_peck"
+            "technique": "peck"
         }
     ],
     "shape": "Flier",

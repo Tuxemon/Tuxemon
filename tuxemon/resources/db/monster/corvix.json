@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_corvix",
-    "name_trans": "txmn_corvix_name",
-    "description_trans": "txmn_corvix_descr",
-    "category_trans": "txmn_corvix_category",
+    "slug": "corvix",
+    "category": "horned_raptor",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wing_tip"
+            "technique": "wing_tip"
         },
         {
             "level_learned": 2,
-            "technique": "technique_berserk"
+            "technique": "berserk"
         },
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         }
     ],
     "shape": "Flier",

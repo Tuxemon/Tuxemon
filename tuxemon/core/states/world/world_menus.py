@@ -6,7 +6,7 @@ from functools import partial
 import pygame
 
 from tuxemon.core import prepare
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.tools import open_dialog
@@ -27,7 +27,7 @@ def adapter(name, *args):
 
 def add_menu_items(state, items):
     for key, callback in items:
-        label = translator.translate(key).upper()
+        label = T.translate(key).upper()
         image = state.shadow_text(label)
         item = MenuItem(image, label, None, callback)
         state.add(item)
@@ -50,7 +50,7 @@ class WorldMenuState(Menu):
             self.game.event_engine.execute_action("quit")
 
         def not_implemented_dialog():
-            open_dialog(self.game, [translator.translate('not_implemented')])
+            open_dialog(self.game, [T.translate('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = (
@@ -113,7 +113,7 @@ class WorldMenuState(Menu):
             self.game.pop_state()  # close the info/move menu
 
         def open_monster_stats():
-            open_dialog(self.game, [translator.translate('not_implemented')])
+            open_dialog(self.game, [T.translate('not_implemented')])
 
         def open_monster_submenu(menu_item):
             menu_items_map = (

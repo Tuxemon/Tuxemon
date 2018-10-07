@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_pigabyte",
-    "name_trans": "txmn_pigabyte_name",
-    "description_trans": "txmn_pigabyte_descr",
-    "category_trans": "txmn_pigabyte_category",
+    "slug": "pigabyte",
+    "category": "electric_pig",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_electrical_storm"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         }
     ],
     "shape": "Blob",

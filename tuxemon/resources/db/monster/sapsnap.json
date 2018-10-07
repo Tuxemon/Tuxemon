@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sapsnap",
-    "name_trans": "txmn_sapsnap_name",
-    "description_trans": "txmn_sapsnap_descr",
-    "category_trans": "txmn_sapsnap_category",
+    "slug": "sapsnap",
+    "category": "barbed",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_shadow_boxing"
+            "technique": "shadow_boxing"
         },
         {
             "level_learned": 2,
-            "technique": "technique_one_two"
+            "technique": "one_two"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fluff_up"
+            "technique": "fluff_up"
         }
     ],
     "shape": "Brute",

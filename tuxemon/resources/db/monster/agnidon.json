@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_agnidon",
-    "name_trans": "txmn_agnidon_name",
-    "description_trans": "txmn_agnidon_descr",
-    "category_trans": "txmn_agnidon_category",
+    "slug": "agnidon",
+    "category": "false_dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fire_claw"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 2,
-            "technique": "technique_kindling_flame"
+            "technique": "kindling_flame"
         },
         {
             "level_learned": 2,
-            "technique": "technique_energy_claws"
+            "technique": "energy_claws"
         }
     ],
     "shape": "Dragon",

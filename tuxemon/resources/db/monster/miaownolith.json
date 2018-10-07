@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_miaownolith",
-    "name_trans": "txmn_miaownolith_name",
-    "description_trans": "txmn_miaownolith_descr",
-    "category_trans": "txmn_miaownolith_category",
+    "slug": "miaownolith",
+    "category": "desolate",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         },
         {
             "level_learned": 2,
-            "technique": "technique_petrify"
+            "technique": "petrify"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sand_spray"
+            "technique": "sand_spray"
         }
     ],
     "shape": "Hunter",

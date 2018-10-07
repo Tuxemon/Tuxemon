@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_katapill",
-    "name_trans": "txmn_katapill_name",
-    "description_trans": "txmn_katapill_descr",
-    "category_trans": "txmn_katapill_category",
+    "slug": "katapill",
+    "category": "beat",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_clamp_on"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_splinter"
+            "technique": "splinter"
         }
     ],
     "shape": "Grub",

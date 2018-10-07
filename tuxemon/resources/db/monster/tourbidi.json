@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_tourbidi",
-    "name_trans": "txmn_tourbidi_name",
-    "description_trans": "txmn_tourbidi_descr",
-    "category_trans": "txmn_tourbidi_category",
+    "slug": "tourbidi",
+    "category": "elf_ring",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fester"
+            "technique": "fester"
         },
         {
             "level_learned": 2,
-            "technique": "technique_midnight_mantle"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleeping_powder"
+            "technique": "sleeping_powder"
         }
     ],
     "shape": "Humanoid",

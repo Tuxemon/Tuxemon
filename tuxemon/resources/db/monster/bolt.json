@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_bolt",
-    "name_trans": "txmn_bolt_name",
-    "description_trans": "txmn_bolt_descr",
-    "category_trans": "txmn_bolt_category",
+    "slug": "bolt",
+    "category": "hardware",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bullet"
+            "technique": "bullet"
         },
         {
             "level_learned": 2,
-            "technique": "technique_static_field"
+            "technique": "static_field"
         },
         {
             "level_learned": 2,
-            "technique": "technique_clamp_on"
+            "technique": "clamp_on"
         }
     ],
     "shape": "Blob",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_velocitile",
-    "name_trans": "txmn_velocitile_name",
-    "description_trans": "txmn_velocitile_descr",
-    "category_trans": "txmn_velocitile_category",
+    "slug": "velocitile",
+    "category": "restless",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_splinter"
+            "technique": "splinter"
         },
         {
             "level_learned": 2,
-            "technique": "technique_peregrine"
+            "technique": "peregrine"
         },
         {
             "level_learned": 2,
-            "technique": "technique_whirlwind"
+            "technique": "whirlwind"
         }
     ],
     "shape": "Humanoid",

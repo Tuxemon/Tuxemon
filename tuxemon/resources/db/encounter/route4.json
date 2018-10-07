@@ -3,10 +3,10 @@
 
 
 
-{ "monster": "txmn_elofly","encounter_rate":10,"level_range": [11,14]},
-{ "monster": "txmn_sapsnap","encounter_rate":5,"level_range": [12,15]},
-{ "monster": "txmn_aardorn","encounter_rate":10,"level_range": [11,14]},
-{ "monster": "txmn_katapill","encounter_rate":10,"level_range": [11,14]}
+{ "monster": "elofly","encounter_rate":10,"level_range": [11,14]},
+{ "monster": "sapsnap","encounter_rate":5,"level_range": [12,15]},
+{ "monster": "aardorn","encounter_rate":10,"level_range": [11,14]},
+{ "monster": "katapill","encounter_rate":10,"level_range": [11,14]}
 
 
 

@@ -12,8 +12,7 @@ from tuxemon.core.components import save
 from tuxemon.core.components.menu import PopUpMenu
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.ui import text
-from tuxemon.core.components.locale import translator
-trans = translator.translate
+from tuxemon.core.components.locale import T
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -31,7 +30,7 @@ class SaveMenuState(PopUpMenu):
             # Check to see if a save exists for the current slot
             if os.path.exists(prepare.SAVE_PATH + str(i + 1) + ".save"):
                 image = self.render_slot(slot_rect, i + 1)
-                item = MenuItem(image, trans('menu_save'), None, None)
+                item = MenuItem(image, T.translate('menu_save'), None, None)
                 self.add(item)
             else:
                 if not empty_image:
@@ -42,7 +41,7 @@ class SaveMenuState(PopUpMenu):
     def render_empty_slot(self, rect):
         slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, trans('empty_slot'), rect, font=self.font)
+        text.draw_text(slot_image, T.translate('empty_slot'), rect, font=self.font)
         return slot_image
 
     def render_slot(self, rect, slot_num):
@@ -72,7 +71,7 @@ class SaveMenuState(PopUpMenu):
 
         # Draw the slot text
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, trans('slot') + " " + str(slot_num), rect, font=self.font)
+        text.draw_text(slot_image, T.translate('slot') + " " + str(slot_num), rect, font=self.font)
 
         x = int(rect.width * .5)
         text.draw_text(slot_image, save_data['player_name'], (x, 0, 500, 500), font=self.font)
@@ -94,9 +93,9 @@ class SaveMenuState(PopUpMenu):
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)
-            open_dialog(self.game, [trans('save_failure')])
+            open_dialog(self.game, [T.translate('save_failure')])
         else:
-            open_dialog(self.game, [trans('save_success')])
+            open_dialog(self.game, [T.translate('save_success')])
 
         self.game.pop_state(self)
 

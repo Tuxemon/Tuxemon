@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_grinflare",
-    "name_trans": "txmn_grinflare_name",
-    "description_trans": "txmn_grinflare_descr",
-    "category_trans": "txmn_grinflare_category",
+    "slug": "grinflare",
+    "category": "igneous",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_boulder"
+            "technique": "boulder"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fire_claw"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 2,
-            "technique": "technique_give_all"
+            "technique": "give_all"
         }
     ],
     "shape": "Brute",

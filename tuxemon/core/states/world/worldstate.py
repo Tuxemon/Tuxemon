@@ -31,10 +31,12 @@ from __future__ import division
 
 import itertools
 import logging
+import os.path
 
 import pygame
 from six.moves import map as imap
 
+from tuxemon.constants import paths
 from tuxemon.core import prepare, state
 from tuxemon.core.components import networking
 from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
@@ -201,7 +203,8 @@ class WorldState(state.State):
             self.lock_controls()
 
             # check if map has changed, and if so, change it
-            map_name = prepare.BASEDIR + prepare.DATADIR + "/maps/" + self.delayed_mapname
+            map_name = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps", self.delayed_mapname)
+
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 

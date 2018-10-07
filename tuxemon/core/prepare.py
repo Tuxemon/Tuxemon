@@ -34,52 +34,37 @@ from __future__ import absolute_import
 
 import logging
 import os
+import os.path
 
 import pygame as pg
 
 from .components import config
-from .platform import get_config_path
+from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 
-# Get the tuxemon base directory
-BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + os.sep
-if "library.zip" in BASEDIR:
-    BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
+# Create game dir if missing
+if not os.path.isdir(paths.USER_GAME_DIR):
+    os.makedirs(paths.USER_GAME_DIR)
 
-# Set up our config directory
-CONFIG_PATH = get_config_path() + "/.tuxemon/"
-try:
-    os.makedirs(CONFIG_PATH)
-except OSError:
-    if not os.path.isdir(CONFIG_PATH):
-        raise
+# Create game data dir if missing
+if not os.path.isdir(paths.USER_GAME_DATA_DIR):
+    os.makedirs(paths.USER_GAME_DATA_DIR)
 
-# Create a copy of our default config if one does not exist in the home dir.
-DEFAULT_FILE_PATH = BASEDIR + "tuxemon.cfg"
-CONFIG_FILE_PATH = CONFIG_PATH + "tuxemon.cfg"
+# Create game savegame dir if missing
+if not os.path.isdir(paths.USER_GAME_SAVE_DIR):
+    os.makedirs(paths.USER_GAME_SAVE_DIR)
 
+# Generate default config
 config.generate_default_config()
 
-# Set up our custom campaign data directory.
-USER_DATA_PATH = CONFIG_PATH + "data/"
-if not os.path.isdir(USER_DATA_PATH):
-    try:
-        os.makedirs(USER_DATA_PATH)
-    except OSError:
-        if not os.path.isdir(USER_DATA_PATH):
-            raise
+# Read "tuxemon.cfg" config from disk, update and write back
+CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
-# Read the "tuxemon.cfg" configuration file
-CONFIG = config.TuxemonConfig(CONFIG_FILE_PATH)
-
-# write it back to disk, updating it with new defaults
-with open(CONFIG_FILE_PATH, 'w') as fp:
+with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
 
-# HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)
-
-# Set up our data directory.
+# Reference data dir
 DATADIR = CONFIG.data
 
 # Set up the screen size and caption
@@ -103,8 +88,6 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # If scaling is enabled, scale the tiles based on the resolution
-
-
 if CONFIG.large_gui:
     SCALE = 2
     TILE_SIZE[0] *= SCALE
@@ -116,13 +99,8 @@ elif CONFIG.scaling:
 else:
     SCALE = 1
 
-# Set up the saves directory
-try:
-    os.makedirs(CONFIG_PATH + "saves/")
-except OSError:
-    if not os.path.isdir(CONFIG_PATH + "saves/"):
-        raise
-SAVE_PATH = CONFIG_PATH + "saves/slot"
+# Reference user save dir
+SAVE_PATH = os.path.join(paths.USER_GAME_SAVE_DIR, "slot")
 SAVE_METHOD = "JSON"
 # SAVE_METHOD = "CBOR"
 

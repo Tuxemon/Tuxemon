@@ -29,9 +29,12 @@
 #
 from __future__ import print_function
 
-import logging
 import cmd
 import code
+import logging
+import pprint
+
+from threading import Thread
 
 logger = logging.getLogger(__name__)
 
@@ -57,14 +60,13 @@ class CommandLine(cmd.Cmd):
 
         # Set up the command line prompt itself
         self.prompt = "Tuxemon>> "
-        self.intro = 'Tuxemon CLI\nType "help", "copyright", "credits" or "license" for more information.'
+        self.intro = ('Tuxemon CLI\nType "help", "copyright", "credits"'
+                      ' or "license" for more information.')
 
-        # Import pretty print so that shit is formatted nicely
-        import pprint
+        # set up a  pretty printer so that shit is formatted nicely
         self.pp = pprint.PrettyPrinter(indent=4)
 
-        # Import threading to start the CLI in a separate thread
-        from threading import Thread
+        # start the CLI in a separate thread
 
         self.app = app
         self.cmd_thread = Thread(target=self.cmdloop)

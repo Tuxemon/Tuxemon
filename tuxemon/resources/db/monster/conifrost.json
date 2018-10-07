@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_conifrost",
-    "name_trans": "txmn_conifrost_name",
-    "description_trans": "txmn_conifrost_descr",
-    "category_trans": "txmn_conifrost_category",
+    "slug": "conifrost",
+    "category": "taiga",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_font"
+            "technique": "font"
         },
         {
             "level_learned": 2,
-            "technique": "technique_chill_mist"
+            "technique": "chill_mist"
         },
         {
             "level_learned": 2,
-            "technique": "technique_whirlwind"
+            "technique": "whirlwind"
         }
     ],
     "shape": "Blob",

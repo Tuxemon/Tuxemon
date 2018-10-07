@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_drokoro",
-    "name_trans": "txmn_drokoro_name",
-    "description_trans": "txmn_drokoro_descr",
-    "category_trans": "txmn_drokoro_category",
+    "slug": "drokoro",
+    "category": "dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_supernova"
+            "technique": "supernova"
         },
         {
             "level_learned": 2,
-            "technique": "technique_berserk"
+            "technique": "berserk"
         },
         {
             "level_learned": 2,
-            "technique": "technique_breathe_fire"
+            "technique": "breathe_fire"
         }
     ],
     "shape": "Dragon",

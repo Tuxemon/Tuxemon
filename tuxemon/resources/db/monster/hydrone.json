@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_hydrone",
-    "name_trans": "txmn_hydrone_name",
-    "description_trans": "txmn_hydrone_descr",
-    "category_trans": "txmn_hydrone_category",
+    "slug": "hydrone",
+    "category": "short_circuit",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_electrical_storm"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 2,
-            "technique": "technique_perfect_cut"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         }
     ],
     "shape": "Humanoid",

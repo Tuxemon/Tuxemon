@@ -1,9 +1,8 @@
 {
-  "slug": "technique_swap",
-  "name_trans": "technique_swap_name",
-  "execute_trans": "combat_swap",
-  "success_trans": null,
-  "failure_trans": null,
+  "slug": "swap",
+  "use_tech": "combat_swap",
+  "use_success": null,
+  "use_failure": null,
   "animation": null,
   "sfx": "blaster1.ogg",
   "icon": "",

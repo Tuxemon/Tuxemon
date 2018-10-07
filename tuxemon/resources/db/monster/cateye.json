@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_cateye",
-    "name_trans": "txmn_cateye_name",
-    "description_trans": "txmn_cateye_descr",
-    "category_trans": "txmn_cateye_category",
+    "slug": "cateye",
+    "category": "sentinel",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_amnesia"
+            "technique": "amnesia"
         },
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flow"
+            "technique": "flow"
         }
     ],
     "shape": "Hunter",

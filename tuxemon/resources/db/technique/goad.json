@@ -3,24 +3,19 @@
   "animation": "Rage",
   "category": "physical",
   "effects": [
-    "damage",
-    "lifeleech"
+    "damage"
   ],
-  "execute_trans": "combat_used_x",
-  "failure_trans": "combat_miss",
   "healing_power": 0,
   "icon": "",
   "is_area": false,
   "is_fast": true,
-  "name_trans": "technique_goad_name",
   "potency": 0.8,
   "power": 1.75,
   "range": "melee",
   "recharge": 2,
   "sfx": "blaster1.ogg",
-  "slug": "technique_goad",
+  "slug": "goad",
   "sort": "damage",
-  "success_trans": null,
   "target": {
     "enemy monster": 2,
     "enemy team": 0,
@@ -32,5 +27,8 @@
   },
   "types": [
     "water"
-  ]
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
 }

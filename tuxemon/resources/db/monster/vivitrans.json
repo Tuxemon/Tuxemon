@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_vivitrans",
-    "name_trans": "txmn_vivitrans_name",
-    "description_trans": "txmn_vivitrans_descr",
-    "category_trans": "txmn_vivitrans_category",
+    "slug": "vivitrans",
+    "category": "sublimated",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_chill_mist"
+            "technique": "chill_mist"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bubble_trap"
+            "technique": "bubble_trap"
         },
         {
             "level_learned": 2,
-            "technique": "technique_frostbite"
+            "technique": "frostbite"
         }
     ],
     "shape": "Serpent",

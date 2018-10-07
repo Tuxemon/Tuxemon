@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_vivitron",
-    "name_trans": "txmn_vivitron_name",
-    "description_trans": "txmn_vivitron_descr",
-    "category_trans": "txmn_vivitron_category",
+    "slug": "vivitron",
+    "category": "sparked",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_electrical_storm"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sudden_glow"
+            "technique": "sudden_glow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_battery_acid"
+            "technique": "battery_acid"
         }
     ],
     "shape": "Serpent",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_katacoon",
-    "name_trans": "txmn_katacoon_name",
-    "description_trans": "txmn_katacoon_descr",
-    "category_trans": "txmn_katacoon_category",
+    "slug": "katacoon",
+    "category": "stance",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_clamp_on"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_font"
+            "technique": "font"
         }
     ],
     "shape": "Grub",

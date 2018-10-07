@@ -1,9 +1,8 @@
 {
   "slug": "status_faint",
-  "name_trans": "status_faint_name",
-  "execute_trans": "combat_used_x",
-  "success_trans": "generic_thing_success",
-  "failure_trans": "generic_thing_failure",
+  "use_tech": "combat_used_x",
+  "use_success": "generic_success",
+  "use_failure": "generic_failure",
   "animation": null,
   "sfx": "faint.ogg",
   "icon": "",

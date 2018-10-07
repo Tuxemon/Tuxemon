@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_puparmor",
-    "name_trans": "txmn_puparmor_name",
-    "description_trans": "txmn_puparmor_descr",
-    "category_trans": "txmn_puparmor_category",
+    "slug": "puparmor",
+    "category": "fortified",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bullet"
+            "technique": "bullet"
         },
         {
             "level_learned": 2,
-            "technique": "technique_hibernate"
+            "technique": "hibernate"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wallow"
+            "technique": "wallow"
         }
     ],
     "shape": "Blob",

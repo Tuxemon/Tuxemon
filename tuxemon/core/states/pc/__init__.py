@@ -38,20 +38,18 @@ from functools import partial
 
 from tuxemon.core.tools import open_dialog
 from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.menu import PopUpMenu
 from tuxemon.core.components.menu.interface import MenuItem
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
-# global translator
-trans = translator.translate
-
 
 def add_menu_items(state, items):
     for key, callback in items:
-        label = trans(key).upper()
+        label = T.translate(key).upper()
+
         state.build_item(label, callback)
 
 
@@ -103,7 +101,7 @@ class MultiplayerMenu(PopUpMenu):
         # check if server is already hosting a game
         if self.game.server.listening:
             self.game.pop_state(self)
-            open_dialog(self.game, [trans('multiplayer_already_hosting')])
+            open_dialog(self.game, [T.translate('multiplayer_already_hosting')])
 
         # not hosting, so start the process
         elif not self.game.isclient:
@@ -127,7 +125,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.pop_state(self)
 
             # inform player that hosting is ready
-            open_dialog(self.game, [trans('multiplayer_hosting_ready')])
+            open_dialog(self.game, [T.translate('multiplayer_hosting_ready')])
 
     def scan_for_games(self):
         # start the game scanner
@@ -140,7 +138,7 @@ class MultiplayerMenu(PopUpMenu):
         self.game.push_state("MultiplayerSelect")
 
     def join_by_ip(self):
-        self.game.push_state("InputMenu", prompt=trans("multiplayer_join_prompt"))
+        self.game.push_state("InputMenu", prompt=T.translate("multiplayer_join_prompt"))
 
     def join(self):
         if self.game.ishost:
@@ -169,7 +167,7 @@ class MultiplayerSelect(PopUpMenu):
                 label = self.shadow_text(server)
                 yield MenuItem(label, None, None, None)
         else:
-            label = self.shadow_text(trans('multiplayer_no_servers'))
+            label = self.shadow_text(T.translate('multiplayer_no_servers'))
             item = MenuItem(label, None, None, None)
             item.enabled = False
             yield item

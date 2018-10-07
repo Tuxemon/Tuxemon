@@ -27,9 +27,11 @@
 from __future__ import absolute_import
 
 import logging
+import os.path
 
 import pygame
 
+from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components import plugin
 
@@ -109,11 +111,11 @@ class EventEngine(object):
         # TODO: maybe move the stuff below to the game/control class?
 
         # Load all the available conditions
-        path = prepare.BASEDIR + "core/components/event/conditions"
+        path = os.path.join(paths.BASEDIR, "core/components/event/conditions")
         self.load_plugins(path, "conditions")
 
         # Load all the available actions
-        path = prepare.BASEDIR + "core/components/event/actions"
+        path = os.path.join(paths.BASEDIR, "core/components/event/actions")
         self.load_plugins(path, "actions")
 
     def reset(self):

@@ -1,14 +1,12 @@
 from __future__ import division
 
 from tuxemon.core import tools
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.menu.quantity import QuantityMenu
 from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.components.ui.text import TextArea
-
-trans = translator.translate
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.
@@ -76,7 +74,7 @@ class ItemMenuState(Menu):
         if state in item.usable_in:
             self.open_confirm_use_menu(item)
         else:
-            msg = trans('item_cannot_use_here', {'name': item.name})
+            msg = T.format('item_cannot_use_here', {'name': item.name})
             tools.open_dialog(self.game, [msg])
 
     def open_confirm_use_menu(self, item):
@@ -95,10 +93,10 @@ class ItemMenuState(Menu):
             self.game.pop_state()    # pop the monster screen
             self.game.pop_state()    # pop the item screen
 
-            msg_type = 'success_trans' if result['success'] else 'failure_trans'
+            msg_type = 'use_success' if result['success'] else 'use_failure'
             template = getattr(item, msg_type)
             if template:
-                message = trans(template)
+                message = T.translate(template)
                 tools.open_dialog(self.game, [message])
 
         def confirm():
@@ -123,7 +121,7 @@ class ItemMenuState(Menu):
 
             # add our options to the menu
             for key, callback in menu_items_map:
-                label = translator.translate(key).upper()
+                label = T.translate(key).upper()
                 image = self.shadow_text(label)
                 item = MenuItem(image, label, None, callback)
                 menu.add(item)

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_coleorus",
-    "name_trans": "txmn_coleorus_name",
-    "description_trans": "txmn_coleorus_descr",
-    "category_trans": "txmn_coleorus_category",
+    "slug": "coleorus",
+    "category": "timeless",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_avalanche"
+            "technique": "avalanche"
         },
         {
             "level_learned": 2,
-            "technique": "technique_peck"
+            "technique": "peck"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fluff_up"
+            "technique": "fluff_up"
         }
     ],
     "shape": "Sprite",

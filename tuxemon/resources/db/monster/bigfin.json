@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_bigfin",
-    "name_trans": "txmn_bigfin_name",
-    "description_trans": "txmn_bigfin_descr",
-    "category_trans": "txmn_bigfin_category",
+    "slug": "bigfin",
+    "category": "island",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_refresh"
+            "technique": "refresh"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         }
     ],
     "shape": "Leviathan",

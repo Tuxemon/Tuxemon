@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="59">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="59">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -12,32 +12,32 @@
  <tileset firstgid="1473" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
   <image source="../gfx/tilesets/items.png" width="160" height="160"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="15">
+ <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBg4YEkGhgEXMjAM+JOBYUCPDDyqd+joHQgAADE2HQ0=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="15" height="15">
+ <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBi5gJmVdD0dLAwM7UB8l4V8e2mhtxbol9tAuXo8frpJhr3EmEsuoKXZ2ACdrCEZAAA8MApU
   </data>
  </layer>
- <layer name="Tile Layer 3" width="15" height="15">
+ <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgF5IBw1oHRu4GFfL2bKdA7CmgHAAF2AiQ=
   </data>
  </layer>
- <layer name="Above player" width="15" height="15">
+ <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgFgwVsZGFg2ATEm1loYy4tAK3cPJIAACPLBbA=
   </data>
  </layer>
- <layer name="Above player" width="15" height="15">
+ <layer id="5" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgFgwUcYoXgg6yk6z3DCsGnydBLKTjMCsHkgLOsEDySAQBcNgf7
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
   <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
   <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
@@ -47,7 +47,7 @@
   <object id="24" type="collision" x="144" y="112" width="48" height="16"/>
   <object id="25" type="collision" x="144" y="160" width="48" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="7" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport paper_town.tmx,20,13,0.3"/>
@@ -57,11 +57,11 @@
   </object>
   <object id="27" name="Receive capture device" type="event" x="64" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="add_item item_capture_device"/>
-    <property name="act2" value="add_item item_capture_device"/>
-    <property name="act3" value="add_item item_capture_device"/>
-    <property name="act4" value="add_item item_capture_device"/>
-    <property name="act5" value="add_item item_capture_device"/>
+    <property name="act1" value="add_item capture_device"/>
+    <property name="act2" value="add_item capture_device"/>
+    <property name="act3" value="add_item capture_device"/>
+    <property name="act4" value="add_item capture_device"/>
+    <property name="act5" value="add_item capture_device"/>
     <property name="act6" value="dialog Received capture device (x5)!"/>
     <property name="act7" value="set_variable donegot:yes"/>
     <property name="cond1" value="is player_at"/>
@@ -74,62 +74,62 @@
    <properties>
     <property name="act1" value="translated_dialog professor_dialog"/>
     <property name="act7" value="dialog_choice Hydrone:Rockitten:Fruitera,tuxchoice"/>
+    <property name="behav1" value="talk professor"/>
     <property name="cond5" value="is variable_set tuxchoice:welcome"/>
-    <property name="behav1" value="talk npc_professor"/>
    </properties>
   </object>
   <object id="42" name="hello Professor" type="event" x="144" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_professor,7,7,professor,stand"/>
+    <property name="act1" value="create_npc rofessor,7,7,professor,stand"/>
     <property name="act2" value="set_variable tuxchoice:welcome"/>
     <property name="cond1" value="not variable_set tuxchoice:end"/>
-    <property name="cond2" value="not npc_exists npc_professor"/>
+    <property name="cond2" value="not npc_exists professor"/>
     <property name="cond3" value="not variable_set tuxchoice:Hydrone"/>
     <property name="cond4" value="not variable_set tuxchoice:Rockitten"/>
     <property name="cond5" value="not variable_set tuxchoice:Fruitera"/>
    </properties>
   </object>
-  <object id="46" name="choiceHydrone" type="event" x="112" y="128" width="16" height="16">
+  <object id="46" name="choiceHydrone" type="event" x="112" y="127.667" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster txmn_hydrone,5"/>
+    <property name="act1" value="add_monster hydrone,5"/>
     <property name="act2" value="set_variable tuxchoice:end"/>
     <property name="act3" value="translated_dialog_chain professor_dialog6.1"/>
     <property name="act4" value="translated_dialog_chain professor_dialog7"/>
     <property name="act45" value="translated_dialog_chain ${{end}}"/>
     <property name="act5" value="screen_transition 3"/>
-    <property name="act6" value="remove_npc npc_professor"/>
+    <property name="act6" value="remove_npc professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Hydrone"/>
    </properties>
   </object>
-  <object id="47" name="choiceRockitten" type="event" x="112" y="128" width="16" height="16">
+  <object id="47" name="choiceRockitten" type="event" x="111.333" y="127.667" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster txmn_rockitten,5"/>
+    <property name="act1" value="add_monster rockitten,5"/>
     <property name="act2" value="set_variable tuxchoice:end"/>
     <property name="act3" value="translated_dialog_chain professor_dialog6.2"/>
     <property name="act4" value="translated_dialog_chain professor_dialog7"/>
     <property name="act45" value="translated_dialog_chain ${{end}}"/>
     <property name="act5" value="screen_transition 3"/>
-    <property name="act6" value="remove_npc npc_professor"/>
+    <property name="act6" value="remove_npc professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Rockitten"/>
    </properties>
   </object>
-  <object id="51" name="choiceFruitera" type="event" x="112" y="128" width="16" height="16">
+  <object id="51" name="choiceFruitera" type="event" x="111.667" y="127.667" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster txmn_fruitera,5"/>
+    <property name="act1" value="add_monster fruitera,5"/>
     <property name="act2" value="set_variable tuxchoice:end"/>
     <property name="act3" value="translated_dialog_chain professor_dialog6.3"/>
     <property name="act4" value="translated_dialog_chain professor_dialog7"/>
     <property name="act45" value="translated_dialog_chain ${{end}}"/>
     <property name="act5" value="screen_transition 3"/>
-    <property name="act6" value="remove_npc npc_professor"/>
+    <property name="act6" value="remove_npc professor"/>
     <property name="cond1" value="is variable_set tuxchoice:Fruitera"/>
    </properties>
   </object>
   <object id="56" name="employee" type="event" x="48" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_tuxemart,2,7,tuxemartemployee,stand"/>
-    <property name="act2" value="npc_face npc_tuxemart,right"/>
-    <property name="cond1" value="not npc_exists npc_tuxemart"/>
+    <property name="act1" value="create_npc tuxemart_keeper,2,7,tuxemartemployee,stand"/>
+    <property name="act2" value="npc_face tuxemart_keeper,right"/>
+    <property name="cond1" value="not npc_exists tuxemart_keeper"/>
    </properties>
   </object>
   <object id="57" name="Play Music" type="event" x="0" y="0" width="16" height="16">

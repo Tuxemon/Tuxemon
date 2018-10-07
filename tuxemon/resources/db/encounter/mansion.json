@@ -3,10 +3,10 @@
 
 
 
-{ "monster": "txmn_cairfrey","encounter_rate":10,"level_range": [13,16]},
-{ "monster": "txmn_polyrock","encounter_rate":10,"level_range": [13,16]},
-{ "monster": "txmn_djinnbo","encounter_rate":5,"level_range": [14,17]},
-{ "monster": "txmn_pigabyte","encounter_rate":10,"level_range": [13,16]}
+{ "monster": "cairfrey","encounter_rate":10,"level_range": [13,16]},
+{ "monster": "polyrock","encounter_rate":10,"level_range": [13,16]},
+{ "monster": "djinnbo","encounter_rate":5,"level_range": [14,17]},
+{ "monster": "pigabyte","encounter_rate":10,"level_range": [13,16]}
 
 
 

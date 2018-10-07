@@ -1,10 +1,8 @@
 {
-  "slug": "item_berry",
-  "name_trans": "item_berry_name",
-  "description_trans": "item_berry_descr",
-  "execute_trans": "combat_used_x",
-  "success_trans": "generic_thing_success",
-  "failure_trans": "generic_thing_failure",
+  "slug": "berry",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success",
+  "use_failure": "generic_failure",
   "effects": [
     "heal"
   ],

@@ -16,9 +16,7 @@ from tuxemon.core.components.menu.interface import HpBar
 from tuxemon.core.components.pyganim import PygAnimation
 from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.tools import scale, scale_sequence, scale_sprite
-from tuxemon.core.components.locale import translator
-
-trans = translator.translate
+from tuxemon.core.components.locale import T
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -369,7 +367,7 @@ class CombatAnimations(Menu):
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
         self.monsters_in_play[self.players[1]].append(right_monster)
         self._monster_sprite_map[right_monster] = monster1
-        self.alert(trans('combat_wild_appeared', {"name": right_monster.name.upper()}))
+        self.alert(T.format('combat_wild_appeared', {"name": right_monster.name.upper()}))
 
         front_island = self.load_sprite('gfx/ui/combat/front_island.png',
                                         bottom=player_home.bottom - y_mod, left=w)

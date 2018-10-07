@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_noctula",
-    "name_trans": "txmn_noctula_name",
-    "description_trans": "txmn_noctula_descr",
-    "category_trans": "txmn_noctula_category",
+    "slug": "noctula",
+    "category": "nightcrawler",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_midnight_mantle"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_rot"
+            "technique": "rot"
         },
         {
             "level_learned": 2,
-            "technique": "technique_take_cover"
+            "technique": "take_cover"
         }
     ],
     "shape": "Flier",

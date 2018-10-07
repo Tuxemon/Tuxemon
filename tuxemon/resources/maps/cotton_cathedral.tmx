@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextobjectid="28">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -12,27 +12,27 @@
  <tileset firstgid="1473" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="15">
+ <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBg4wEQGhgFeMjAMSJCBYcCADDyqd+joHQgAAK/YFXw=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="15" height="15">
+ <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBjZgJmVgYEXiPlYMcW5WBgYuFlw670LlDMDqjNH0lvLAhE3BmITPHrxAXMi9NUC7bzNgsD1rIT1kAtA7tkGxNtZiHMbut77QPyADL3kgovs2MVxBREu9fQCAM0+DTc=
   </data>
  </layer>
- <layer name="Tile Layer 3" width="15" height="15">
+ <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgF5IJwVtLEkYEODjW4xEfB8AUAYq4BGw==
   </data>
  </layer>
- <layer name="Above player" width="15" height="15">
+ <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJxjYBgcIIuNgSGbjbAYNjAJqGYyG2GxwQY2sjAwbELCm1kG2kWDB6xkp636wQQA3n8JEw==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
   <object id="5" type="collision" x="48" y="144" width="32" height="32"/>
   <object id="6" type="collision" x="176" y="80" width="32" height="16"/>
@@ -45,7 +45,7 @@
   <object id="22" type="collision" x="16" y="192" width="16" height="16"/>
   <object id="23" type="collision" x="208" y="192" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport cotton_town.tmx,19,27,0.3"/>
@@ -63,13 +63,13 @@
   <object id="25" name="Player Spawn" type="event" x="112" y="144" width="16" height="16"/>
   <object id="26" name="create npcs" type="event" x="0" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_cottonnurse,6,6,nurse,stand"/>
-    <property name="cond1" value="not npc_exists npc_cottonnurse"/>
+    <property name="act1" value="create_npc cottonnurse,6,6,nurse,stand"/>
+    <property name="cond1" value="not npc_exists cottonnurse"/>
    </properties>
   </object>
   <object id="27" name="get those tuxemon healed" type="event" x="96" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog cottonnurse"/>
+    <property name="act1" value="translated_dialog cottonnurse_dialog"/>
     <property name="act2" value="translated_dialog healmytuxemon"/>
     <property name="act3" value="translated_dialog_choice yes:no,healme"/>
     <property name="cond1" value="is player_at"/>

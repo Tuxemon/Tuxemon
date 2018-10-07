@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_pipis",
-    "name_trans": "txmn_pipis_name",
-    "description_trans": "txmn_pipis_descr",
-    "category_trans": "txmn_pipis_category",
+    "slug": "pipis",
+    "category": "echo",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_rot"
+            "technique": "rot"
         },
         {
             "level_learned": 2,
-            "technique": "technique_splinter"
+            "technique": "splinter"
         },
         {
             "level_learned": 2,
-            "technique": "technique_take_cover"
+            "technique": "take_cover"
         }
     ],
     "shape": "Flier",

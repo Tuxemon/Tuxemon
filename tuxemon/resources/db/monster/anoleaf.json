@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_anoleaf",
-    "name_trans": "txmn_anoleaf_name",
-    "description_trans": "txmn_anoleaf_descr",
-    "category_trans": "txmn_anoleaf_category",
+    "slug": "anoleaf",
+    "category": "sprout",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_sting"
+            "technique": "sting"
         },
         {
             "level_learned": 2,
-            "technique": "technique_feint"
+            "technique": "feint"
         },
         {
             "level_learned": 2,
-            "technique": "technique_whirlwind"
+            "technique": "whirlwind"
         }
     ],
     "shape": "Varmint",

@@ -2,10 +2,12 @@ from __future__ import division, print_function
 
 import logging
 import math
+import os.path
 from functools import partial
 
 import pygame
 
+from tuxemon.constants import paths
 from tuxemon.core import prepare, state, tools
 from tuxemon.core.components.menu.interface import MenuCursor, MenuItem
 from tuxemon.core.components.sprite import RelativeGroup, VisualSpriteList
@@ -47,7 +49,7 @@ class Menu(state.State):
     background_color = 248, 248, 248  # The window's background color
     background_filename = None        # File to load for image background
     menu_select_sound_filename = "sounds/interface/menu-select.ogg"
-    font_filename = prepare.DATADIR + "/font/PressStart2P.ttf"
+    font_filename = os.path.join(prepare.DATADIR, "font/PressStart2P.ttf")
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = .20
@@ -367,7 +369,7 @@ class Menu(state.State):
 
         """
         if font is None:
-            font = prepare.BASEDIR + self.font_filename
+            font = os.path.join(paths.BASEDIR, self.font_filename)
 
         if size < self.min_font_size:
             size = self.min_font_size

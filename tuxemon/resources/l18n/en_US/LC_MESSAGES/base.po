@@ -1,0 +1,1517 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Tuxemon Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid "PROJECT DESCRIPTION\n"
+msgstr ""
+"Project-Id-Version: Insert package version from somewhere\n"
+"Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
+"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
+"PO-Revision-Date: 2018-10-07 20:58:38+0000\n"
+"Last-Translator: Andy Mender <andymenderunix@gmail.com>\n"
+"Language-Team: English <andymenderunix@gmail.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+## ITEM TRANSLATIONS ##
+
+# Apple
+msgid "apple"
+msgstr "Apple"
+
+msgid "apple_description"
+msgstr "Heals a monster by 10 HP."
+
+# Berry
+msgid "berry"
+msgstr "Berry"
+
+msgid "berry_description"
+msgstr "Heals a monster by 10 HP."
+
+# Cherry
+msgid "cherry"
+msgstr "Cherry"
+
+msgid "cherry_description"
+msgstr "Heals a monster by 10 HP."
+
+# Orange
+msgid "orange"
+msgstr "Orange"
+
+msgid "orange_description"
+msgstr "Heals a monster by 20 HP."
+
+# Potion
+msgid "potion"
+msgstr "Potion"
+
+msgid "potion_description"
+msgstr "Heals a monster by 50 HP."
+
+# Super Potion
+msgid "super_potion"
+msgstr "Super Potion"
+
+msgid "super_potion_description"
+msgstr "Heals a monster by 150 HP."
+
+# Imperial Potion
+msgid "imperial_potion"
+msgstr "Imperial Potion"
+
+msgid "imperial_potion_description"
+msgstr "Heals a monster by 350 HP."
+
+# Capture Device
+msgid "capture_device"
+msgstr "Capture Device"
+
+msgid "capture_device_description"
+msgstr "Captures a monster."
+
+msgid "item_cannot_use_here"
+msgstr "{name} cannot be used here!"
+
+
+## NOTIFICATION TRANSLATIONS ##
+
+# Combat notifications
+msgid "combat_run"
+msgstr "{user} ran away!"
+
+msgid "combat_miss"
+msgstr "It missed..."
+
+msgid "combat_player_run"
+msgstr "You have run away!"
+
+msgid "combat_used_x"
+msgstr "{user} used {name}!"
+
+msgid "combat_used_x_on_y"
+msgstr "{user} used {name} on {target}!"
+
+msgid "combat_swap"
+msgstr "{user} sent out {target}!"
+
+msgid "combat_call_tuxemon"
+msgstr "Go {name}!"
+
+# TODO: similar to combat_swap - refactor!
+msgid "combat_opponent_call_tuxemon"
+msgstr "{user} sent out {name}!"
+
+msgid "combat_state_poison_get"
+msgstr "{target} is poisoned."
+
+msgid "combat_state_poison_damage"
+msgstr "{name} took poison damage!"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} is leeching health from {target}."
+
+msgid "combat_state_lifeleech_success"
+msgstr "{user} lost health to lifeleech!"
+
+msgid "combat_state_lifeleech_failure"
+msgstr "{link} can't heal any further."
+
+msgid "combat_state_recover_get"
+msgstr "{target} started to recover health."
+
+msgid "combat_state_recover_success"
+msgstr "{user} recovered health!"
+
+msgid "combat_state_recover_failure"
+msgstr "{user} can't heal any further."
+
+msgid "combat_status_damage"
+msgstr "{name} took {status} damage!"
+
+msgid "combat_victory"
+msgstr "You have won!"
+
+msgid "combat_defeat"
+msgstr "You've been defeated!"
+
+msgid "combat_draw"
+msgstr "All parties have fainted!"
+
+msgid "combat_capturing_success"
+msgstr "You captured {name}!"
+
+msgid "combat_capturing_fail"
+msgstr "{name} broke free!"
+
+msgid "combat_recharging"
+msgstr "${{name}} needs a break before using ${{move}} again..."
+
+msgid "combat_replacement"
+msgstr "Choose a replacement!"
+
+msgid "combat_replacement_is_fainted"
+msgstr "That monster has fainted already!"
+
+msgid "combat_wild_appeared"
+msgstr "A wild {name} appeared!"
+
+msgid "combat_monster_choice"
+msgstr "What will {name} do?"
+
+msgid "combat_fainted"
+msgstr "{name} fainted!"
+
+msgid "combat_isactive"
+msgstr "{name} is already in play."
+
+msgid "attack_very_effective"
+msgstr "The attack did a lot of extra damage!"
+
+msgid "attack_effective"
+msgstr "The attack did extra damage!"
+
+msgid "attack_resisted"
+msgstr "The attack was resisted!"
+
+msgid "attack_weak"
+msgstr "The attack was strongly resisted!"
+
+# Generic notifications
+msgid "empty_slot"
+msgstr "Empty Slot"
+
+msgid "exit"
+msgstr "Exit"
+
+msgid "item_confirm_use"
+msgstr "Use"
+
+msgid "item_confirm_cancel"
+msgstr "Cancel"
+
+# TODO same as generic_success and generic_failure - refactor!
+msgid "item_success"
+msgstr "It worked!"
+
+msgid "item_failure"
+msgstr "It failed!"
+
+msgid "generic_success"
+msgstr "It worked!"
+
+msgid "generic_failure"
+msgstr "It failed!"
+
+msgid "attempting_capture"
+msgstr "Attempting capture..."
+
+msgid "gotcha"
+msgstr "Gotcha!"
+
+msgid "not_implemented"
+msgstr "This feature is not yet implemented."
+
+msgid "receive_happiness"
+msgstr "Received 5 Capture Devices!"
+
+msgid "received_x"
+msgstr "Received {name}!"
+
+msgid "save_success"
+msgstr "Saved!"
+
+msgid "save_failure"
+msgstr "There was a problem saving!"
+
+msgid "slot"
+msgstr "Slot"
+
+msgid "status_faint"
+msgstr "Faint"
+
+msgid "status_poison"
+msgstr "Poison"
+
+msgid "status_lifeleech"
+msgstr "Lifeleech"
+
+msgid "status_recover"
+msgstr "Recover"
+
+
+## TECHNIQUE TRANSLATIONS ##
+
+msgid "all_in"
+msgstr "All In"
+
+msgid "amnesia"
+msgstr "Amnesia"
+
+msgid "avalanche"
+msgstr "Avalanche"
+
+msgid "battery_acid"
+msgstr "Battery Acid"
+
+msgid "battery_discharge"
+msgstr "Battery Discharge"
+
+msgid "beam"
+msgstr "Beam"
+
+msgid "berserk"
+msgstr "Berserk"
+
+msgid "biting_winds"
+msgstr "Biting Winds"
+
+msgid "blade"
+msgstr "Blade"
+
+msgid "blood_bond"
+msgstr "Blood Bond"
+
+msgid "blossom"
+msgstr "Blossom"
+
+msgid "boulder"
+msgstr "Boulder"
+
+msgid "breathe_fire"
+msgstr "Breathe Fire"
+
+msgid "bubble_trap"
+msgstr "Bubble Trap"
+
+msgid "bullet"
+msgstr "Bullet"
+
+msgid "chill_mist"
+msgstr "Chill Mist"
+
+msgid "clamp_on"
+msgstr "Clamp On"
+
+msgid "constrict"
+msgstr "Constrict"
+
+msgid "electrical_storm"
+msgstr "Electrical Storm"
+
+msgid "energy_claws"
+msgstr "Energy Claws"
+
+msgid "energy_field"
+msgstr "Energy Field"
+
+msgid "eyebite"
+msgstr "Eyebite"
+
+msgid "feint"
+msgstr "Feint"
+
+msgid "fester"
+msgstr "Fester"
+
+msgid "fire_ball"
+msgstr "Fire Ball"
+
+msgid "fire_claw"
+msgstr "Fire Claw"
+
+msgid "flamethrower"
+msgstr "Flamethrower"
+
+msgid "flood"
+msgstr "Flood"
+
+msgid "flow"
+msgstr "Flow"
+
+msgid "fluff_up"
+msgstr "Fluff Up"
+
+msgid "font"
+msgstr "Font"
+
+msgid "frostbite"
+msgstr "Frostbite"
+
+msgid "fume"
+msgstr "Fume"
+
+msgid "give_all"
+msgstr "Give All"
+
+msgid "glower"
+msgstr "Glower"
+
+msgid "goad"
+msgstr "Goad"
+
+msgid "headbutt"
+msgstr "Headbutt"
+
+msgid "hibernate"
+msgstr "Hibernate"
+
+msgid "ice_claw"
+msgstr "Ice Claw"
+
+msgid "icicle_spear"
+msgstr "Icicle Spear"
+
+msgid "invictus"
+msgstr "Invictus"
+
+msgid "kindling_flame"
+msgstr "Kindling Flame"
+
+msgid "levitate"
+msgstr "Levitate"
+
+msgid "midnight_mantle"
+msgstr "Midnight Mantle"
+
+msgid "muddle"
+msgstr "Muddle"
+
+msgid "mudslide"
+msgstr "Mudslide"
+
+msgid "one_two"
+msgstr "One-Two"
+
+msgid "overgrowth"
+msgstr "Overgrowth"
+
+msgid "peck"
+msgstr "Peck"
+
+msgid "peregrine"
+msgstr "Peregrine"
+
+msgid "perfect_cut"
+msgstr "Perfect Cut"
+
+msgid "petrify"
+msgstr "Petrify"
+
+msgid "probiscus"
+msgstr "Probiscus"
+
+msgid "pseudopod"
+msgstr "Pseudopod"
+
+msgid "quicksand"
+msgstr "Quicksand"
+
+msgid "ram"
+msgstr "Ram"
+
+msgid "refresh"
+msgstr "Refresh"
+
+msgid "rock"
+msgstr "Rock"
+
+msgid "rot"
+msgstr "Rot"
+
+msgid "rust_bomb"
+msgstr "Rust Bomb"
+
+msgid "salamander"
+msgstr "Salamander"
+
+msgid "sand_spray"
+msgstr "Sand Spray"
+
+msgid "shadow_boxing"
+msgstr "Shadow Boxing"
+
+msgid "shrapnel"
+msgstr "Shrapnel"
+
+msgid "shuriken"
+msgstr "Shuriken"
+
+msgid "sleep_bomb"
+msgstr "Sleep Bomb"
+
+msgid "sleeping_powder"
+msgstr "Sleeping Powder"
+
+msgid "snowstorm"
+msgstr "Snowstorm"
+
+msgid "splinter"
+msgstr "Splinter"
+
+msgid "spray"
+msgstr "Spray"
+
+msgid "stampede"
+msgstr "Stampede"
+
+msgid "starfall"
+msgstr "Starfall"
+
+msgid "static_field"
+msgstr "Static Field"
+
+msgid "sting"
+msgstr "Sting"
+
+msgid "stone_rot"
+msgstr "Stone Rot"
+
+msgid "strike"
+msgstr "Strike"
+
+msgid "suck_poison"
+msgstr "Suck Poison"
+
+msgid "sudden_glow"
+msgstr "Sudden Glow"
+
+msgid "supernova"
+msgstr "Supernova"
+
+msgid "surge"
+msgstr "Surge"
+
+msgid "take_cover"
+msgstr "Take Cover"
+
+msgid "thunderball"
+msgstr "Thunderball"
+
+msgid "thunderclap"
+msgstr "Thunderclap"
+
+msgid "tonguespear"
+msgstr "Tonguespear"
+
+msgid "venomous_tentacle"
+msgstr "Venomous Tentacle"
+
+msgid "wall_of_steel"
+msgstr "Wall of Steel"
+
+msgid "wallow"
+msgstr "Wallow"
+
+msgid "web"
+msgstr "Web"
+
+msgid "whirlwind"
+msgstr "Whirlwind"
+
+msgid "wing_tip"
+msgstr "Wing Tip"
+
+
+## MENU TRANSLATIONS ##
+
+# Monster Menu notifications
+msgid "monster_menu_info"
+msgstr "Info"
+
+msgid "monster_menu_move"
+msgstr "Move"
+
+# Menu notifications
+msgid "log_off"
+msgstr "Log Off"
+
+msgid "menu_bag"
+msgstr "Bag"
+
+msgid "menu_fight"
+msgstr "Fight"
+
+msgid "menu_item"
+msgstr "Item"
+
+msgid "menu_items"
+msgstr "Items"
+
+msgid "menu_journal"
+msgstr "Journal"
+
+msgid "menu_load"
+msgstr "Load"
+
+msgid "menu_monster"
+msgstr "Tuxemon"
+
+# TODO: duplicate of menu_monster?
+msgid "menu_monsters"
+msgstr "Monsters"
+
+msgid "menu_multiplayer"
+msgstr "Multiplayer"
+
+msgid "menu_new_game"
+msgstr "New Game"
+
+msgid "menu_options"
+msgstr "Options"
+
+msgid "menu_player"
+msgstr "Player"
+
+msgid "menu_run"
+msgstr "Run"
+
+msgid "menu_save"
+msgstr "Save"
+
+# Multiplayer notifications
+msgid "multiplayer_accept"
+msgstr "Accept"
+
+msgid "multiplayer_decline"
+msgstr "Decline"
+
+msgid "multiplayer_duel"
+msgstr "{name} would like to Duel!"
+
+msgid "multiplayer_host_game"
+msgstr "Host Game"
+
+msgid "multiplayer_scan_games"
+msgstr "Scan for Games"
+
+msgid "multiplayer_join_game"
+msgstr "Join Game"
+
+msgid "multiplayer_hosting_ready"
+msgstr "Ready to accept clients!"
+
+msgid "multiplayer_already_hosting"
+msgstr "Already hosting!"
+
+msgid "multiplayer_no_servers"
+msgstr "No servers found..."
+
+msgid "multiplayer_join_prompt"
+msgstr "Hostname or IP?"
+
+
+## MONSTER TRANSLATIONS ##
+
+# Monster details
+msgid "aardart_description"
+msgstr "It keeps count of every ant it has eaten, and celebrates significant numbers."
+
+msgid "aardart"
+msgstr "Aardart"
+
+msgid "aardorn_description"
+msgstr "When born it is placed in an anthill and left to eat its way out."
+
+msgid "aardorn"
+msgstr "Aardorn"
+
+msgid "agnidon_description"
+msgstr "It prefers four legs, but can stand on two to open doors, push over trees or hold things."
+
+msgid "agnidon"
+msgstr "Agnidon"
+
+msgid "agnigon_description"
+msgstr "It is called a 'false dragon', because it appears to be a dragon, but actually evolved from a different line of ancient reptiles."
+
+msgid "agnigon"
+msgstr "Agnigon"
+
+msgid "agnite_description"
+msgstr "It is playful, but must be taught early on to keep its fire in check."
+
+msgid "agnite"
+msgstr "Agnite"
+
+msgid "allagon_description"
+msgstr "Allagon are drawn to relics made from the metals left behind by their ancestors, and will be violent to retrieve them."
+
+msgid "allagon"
+msgstr "Allagaon"
+
+msgid "anoleaf_description"
+msgstr "It considers the plants growing near it to be its brothers and sisters."
+
+msgid "anoleaf"
+msgstr "Anoleaf"
+
+msgid "axylightl_description"
+msgstr "It lights the deep waters with its tail, marking a safe shelter for fish."
+
+msgid "axylightl"
+msgstr "Axylightl"
+
+msgid "bamboon_description"
+msgstr "It fights with its bamboo staff, which it also uses for balance."
+
+msgid "bamboon"
+msgstr "Bamboon"
+
+msgid "bigfin_description"
+msgstr "A whole ecosystem exists on its back, so it tries not to go underwater."
+
+msgid "bigfin"
+msgstr "Bigfin"
+
+msgid "bolt_description"
+msgstr ""
+
+msgid "bolt"
+msgstr "Bolt"
+
+msgid "cairfrey_description"
+msgstr "A jolly piece of furniture who awoke one morning and decided to explore."
+
+msgid "cairfrey"
+msgstr "Cairfrey"
+
+msgid "capiti_description"
+msgstr "It looks like a baby, but some specimens have been found that are hundreds of years old."
+
+msgid "capiti"
+msgstr "Capiti"
+
+msgid "cardiling_description"
+msgstr "One wouldn't expect it to breathe fire, until it does."
+
+msgid "cardiling"
+msgstr "Cardiling"
+
+msgid "cardinale_description"
+msgstr "It hates all predators with a passion, and makes war with them and their young when it can."
+
+msgid "cardinale"
+msgstr "Cardinale"
+
+msgid "cardiwing_description"
+msgstr "Its song is remarkable, but few dare keep an explosive songbird."
+
+msgid "cardiwing"
+msgstr "Cardiwing"
+
+msgid "chillimp_description"
+msgstr "It is rumoured to live atop snowy mountains, but no clear photo of it has ever been taken."
+
+msgid "chillimp"
+msgstr "Chillimp"
+
+msgid "chloragon_description"
+msgstr "It hatches when an ancient egg is planted in fertile soil. When the eggs run out, there will be no more CHLORAGON."
+
+msgid "chloragon"
+msgstr "Chloragon"
+
+msgid "conifrost_description"
+msgstr "If it sneezes, an avalanche occurs. It has a permanent sniffle."
+
+msgid "conifrost"
+msgstr "Conifrost"
+
+msgid "corvix_description"
+msgstr "It arms its wings with bone shards from its victims."
+
+msgid "corvix"
+msgstr "Corvix"
+
+msgid "dandylion_description"
+msgstr "It gives birth to one litter in its life. Then it wanders the world trying to find them."
+
+msgid "dandylion"
+msgstr "Dandylion"
+
+msgid "djinnbo_description"
+msgstr "It is mistakenly believed that it is a human who died in a fire. Actually, its relatives did."
+
+msgid "djinnbo"
+msgstr "Djinnbo"
+
+msgid "dollfin_description"
+msgstr "Each one follows a ship from place to place, exploring the world."
+
+msgid "dollfin"
+msgstr "Dollfin"
+
+msgid "dracune_description"
+msgstr "It is immobile during the day, but can wriggle and bite at night."
+
+msgid "dracune"
+msgstr "Dracune"
+
+msgid "dragarbor_description"
+msgstr "When it feels it is coming to the end of its life, it travels to a graveyard where it plants itself. Its tail flower grows forever."
+
+msgid "dragarbor"
+msgstr "Dragarbor"
+
+msgid "dune_pincher_description"
+msgstr ""
+
+msgid "dune_pincher"
+msgstr "Dune Pincher"
+
+msgid "eaglace_description"
+msgstr "When it takes flight, clouds form. When it claps its wings, hail falls."
+
+msgid "eaglace"
+msgstr "Eaglace"
+
+msgid "eruptibus_description"
+msgstr "Smiths work with it, heating up metals in its caldera."
+
+msgid "eruptibus"
+msgstr "Eruptibus"
+
+msgid "eyenemy_description"
+msgstr "It feeds on beautiful views and other spectacular sights."
+
+msgid "eyenemy"
+msgstr "Eyenemy"
+
+msgid "falcono_description"
+msgstr "It is totally unafraid of adversaries, and will attack an enemy of any size without hesitation."
+
+msgid "falcono"
+msgstr "Falcono"
+
+msgid "ferricran_description"
+msgstr "Once, the Ferricran were covered all over with adamantine scales, and had wings of mithril."
+
+msgid "ferricran"
+msgstr "Ferricran"
+
+msgid "firomenis_description"
+msgstr ""
+
+msgid "firomenis"
+msgstr "Firomenis"
+
+msgid "fluttaflap_description"
+msgstr "It feeds on impurities, so it returns purified blood to those it sucks on."
+
+msgid "fluttaflap"
+msgstr "Fluttaflap"
+
+msgid "fruitera_description"
+msgstr ""
+
+msgid "fruitera"
+msgstr "Fruitera"
+
+msgid "gectile_description"
+msgstr "It is so quick and light that it can walk on leaves."
+
+msgid "gectile"
+msgstr "Gectile"
+
+msgid "heronquak_description"
+msgstr "The crystal on its chest is mistaken for a diamond by poachers. It melts when it is removed from HERONQUAK's body."
+
+msgid "heronquak"
+msgstr "Heronquak"
+
+msgid "hydrone_description"
+msgstr ""
+
+msgid "hydrone"
+msgstr "Hydrone"
+
+msgid "katacoon_description"
+msgstr "It stays in a meditative pose for its chrysalis, moving only to jab enemies."
+
+msgid "katacoon"
+msgstr "Katacoon"
+
+msgid "lambert_description"
+msgstr "It is placed in its nut by its parent, who then sends it into the world."
+
+msgid "lambert"
+msgstr "Lambert"
+
+msgid "legko_description"
+msgstr "Long thought to be legless, its leaves are actually vestigial limbs."
+
+msgid "legko"
+msgstr "Legko"
+
+msgid "magmaturtle_description"
+msgstr ""
+
+msgid "magmaturtle"
+msgstr "Magmaturtle"
+
+msgid "merlicun_description"
+msgstr ""
+
+msgid "merlicun"
+msgstr "Merlicun"
+
+msgid "moloch_description"
+msgstr "It can stiffen or soften its skin to respond to friends and foes."
+
+msgid "moloch"
+msgstr "Moloch"
+
+msgid "noctalo_description"
+msgstr "It inhabits only places abandoned by humans - castles, graveyards and sewers."
+
+msgid "noctalo"
+msgstr "Noctalo"
+
+msgid "noctula_description"
+msgstr "It eats bugs and PIPIS eat fruit, so despite living in close proximity they do not compete."
+
+msgid "noctula"
+msgstr "Noctula"
+
+msgid "nostray_description"
+msgstr "It can smell anything in the ocean, no matter how far away."
+
+msgid "nostray"
+msgstr "Nostray"
+
+msgid "nudiflot_female_description"
+msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
+
+msgid "nudiflot_male_description"
+msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
+
+msgid "nudiflot_female"
+msgstr "Nudiflot (F)"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot (M)"
+
+msgid "nut_description"
+msgstr ""
+
+msgid "nut"
+msgstr "Nut"
+
+msgid "pigabyte_description"
+msgstr ""
+
+msgid "pigabyte"
+msgstr "Pigabyte"
+
+msgid "possessun_description"
+msgstr "It is a ghost that inhabits a dead CAIRFREY."
+
+msgid "possessun"
+msgstr "Possessun"
+
+msgid "propellercat_description"
+msgstr ""
+
+msgid "propellercat"
+msgstr "Propellercat"
+
+msgid "rockat_description"
+msgstr ""
+
+msgid "rockat"
+msgstr "Rockat"
+
+msgid "rockitten_description"
+msgstr ""
+
+msgid "rockitten"
+msgstr "Rockitten"
+
+msgid "sapragon_description"
+msgstr "In olden times, each element had a mighty dragon - but those creatures have diminished and are rare in these days."
+
+msgid "sapragon"
+msgstr "Sapragon"
+
+msgid "selket_description"
+msgstr ""
+
+msgid "selket"
+msgstr "Selket"
+
+msgid "selmatek_description"
+msgstr ""
+
+msgid "selmatek"
+msgstr "Selmatek"
+
+msgid "sharpfin_description"
+msgstr "It is invisible in the water, being visible only when it leaps out of the water to drag animals on the shore back into the deep."
+
+msgid "sharpfin"
+msgstr "Sharpfin"
+
+msgid "sludgehog_description"
+msgstr ""
+
+msgid "sludgehog"
+msgstr "Sludgehog"
+
+msgid "snowrilla_description"
+msgstr "It delights in playing tag with skiers on desolate slopes."
+
+msgid "snowrilla"
+msgstr "Snowrilla"
+
+msgid "spycozeus_description"
+msgstr ""
+
+msgid "spycozeus"
+msgstr "Spycozeus"
+
+msgid "sumchon_description"
+msgstr "It uses its weight to trip much larger enemies. It is as dense as a star."
+
+msgid "sumchon"
+msgstr "Sumchon"
+
+msgid "swap"
+msgstr "Swap"
+
+msgid "template_description"
+msgstr "Some description here"
+
+msgid "template"
+msgstr "Template Name"
+
+msgid "tigrock_description"
+msgstr "It is said that it had to invent itself because an evolution was not designed."
+
+msgid "tigrock"
+msgstr "Tigrock"
+
+msgid "tumbleworm_description"
+msgstr ""
+
+msgid "tumbleworm"
+msgstr "Tumbleworm"
+
+msgid "tux_description"
+msgstr ""
+
+msgid "tux"
+msgstr "Tux"
+
+msgid "tweesher_description"
+msgstr "The colder the weather, the harder its beak. At below 0 degrees, it is harder than diamond."
+
+msgid "tweesher"
+msgstr "Tweesher"
+
+msgid "vamporm_description"
+msgstr "It thirsts for blood, but must make do with tree sap."
+
+msgid "vamporm"
+msgstr "Vamporm"
+
+msgid "velocitile_description"
+msgstr "It can outrun a bullet, but only when it has warmed up."
+
+msgid "velocitile"
+msgstr "Velocitile"
+
+msgid "wrougon_description"
+msgstr "Each WROUGON is born with a patch of rust larger than the patch of its parents."
+
+msgid "wrougon"
+msgstr "Wrougon"
+
+msgid "zunna_description"
+msgstr "Cheerful ZUNNA sucks up all the food it can find into its stomach."
+
+msgid "zunna"
+msgstr "Zunna"
+
+# Monster categories
+msgid "anteater"
+msgstr "Anteater"
+
+msgid "snout"
+msgstr "Snout"
+
+msgid "false_dragon"
+msgstr "False Dragon"
+
+msgid "dragon"
+msgstr "Dragon"
+
+msgid "sprout"
+msgstr "Sprout"
+
+msgid "inchoate"
+msgstr "Inchoate"
+
+msgid "prehensile"
+msgstr "Prehensile"
+
+msgid "island"
+msgstr "Island"
+
+msgid "host"
+msgstr "Host"
+
+msgid "woodwose"
+msgstr "Woodwose"
+
+msgid "firebird"
+msgstr "Firebird"
+
+msgid "frost_ape"
+msgstr "Frost Ape"
+
+msgid "taiga"
+msgstr "Taiga"
+
+msgid "horned_raptor"
+msgstr "Horned Raptor"
+
+msgid "lions_tooth"
+msgstr "Lion's Tooth"
+
+msgid "vengeance"
+msgstr "Vengeance"
+
+msgid "joyful"
+msgstr "Joyful"
+
+msgid "cloaked"
+msgstr "Cloaked"
+
+msgid "cirrus"
+msgstr "Cirrus"
+
+msgid "hot_rock"
+msgstr "Hot Rock"
+
+msgid "pupil"
+msgstr "Pupil"
+
+msgid "fire"
+msgstr "Fire"
+
+msgid "sanguine"
+msgstr "Sanguine"
+
+msgid "wood"
+msgstr "Wood"
+
+msgid "climbing"
+msgstr "Climbing"
+
+msgid "crested"
+msgstr "Crested"
+
+msgid "metal_water"
+msgstr "Metal, Water"
+
+msgid "stance"
+msgstr "Stance"
+
+msgid "gumnut"
+msgstr "Gumnut"
+
+msgid "lizard"
+msgstr "Lizard"
+
+msgid "earth_fire"
+msgstr "Earth, Fire"
+
+msgid "devil"
+msgstr "Devil"
+
+msgid "nightcrawler"
+msgstr "Nightcrawler"
+
+msgid "flopped"
+msgstr "Flopped"
+
+msgid "metal"
+msgstr "Metal"
+
+msgid "visitor"
+msgstr "Visitor"
+
+msgid "earth"
+msgstr "Earth"
+
+msgid "rip"
+msgstr "Rip"
+
+msgid "yeti"
+msgstr "Yeti"
+
+msgid "some_category_here"
+msgstr "Some category here"
+
+msgid "ex_machina"
+msgstr "Ex Machina"
+
+msgid "water"
+msgstr "Water"
+
+msgid "clot"
+msgstr "Clot"
+
+msgid "restless"
+msgstr "Restless"
+
+msgid "slurpy"
+msgstr "Slurpy"
+
+
+## NPC TRANSLATIONS ##
+
+# NPC slugs and names
+msgid "aeble"
+msgstr "Aeble"
+
+msgid "allie"
+msgstr "Allie"
+
+msgid "cottonnurse"
+msgstr "Cotton Nurse"
+
+msgid "karrianna"
+msgstr "Karrianna"
+
+msgid "knight1"
+msgstr "Knight I"
+
+msgid "knight2"
+msgstr "Knight II"
+
+msgid "liela"
+msgstr "Liela"
+
+msgid "maple_girl"
+msgstr "Maple"
+
+msgid "misa"
+msgstr "Misa"
+
+msgid "npc_wife"
+msgstr "Wife NPC"
+
+msgid "professor"
+msgstr "Professor"
+
+msgid "npc_red"
+msgstr "Red"
+
+msgid "tabanurse"
+msgstr "Taba Nurse"
+
+msgid "tuxemart_keeper"
+msgstr "Tuxemart Shopkeeper"
+
+msgid "tuxemart_aide"
+msgstr "Tuxemart Employee"
+
+msgid "xerogrund1"
+msgstr "Team Xero Grunt I"
+
+msgid "xerogrund2"
+msgstr "Team Xero Grunt II"
+
+msgid "xerogrunt2"
+msgstr "Team Xero Grunt II"
+
+msgid "xerogrunt3"
+msgstr "Team Xero Grunt III"
+
+msgid "xerogrunt4"
+msgstr "Team Xero Grunt IV"
+
+msgid "xerogrunt5"
+msgstr "Team Xero Grunt V"
+
+msgid "xerogrunt6"
+msgstr "Team Xero Grunt VI"
+
+msgid "xerogrunt7"
+msgstr "Team Xero Grunt VII"
+
+msgid "xerogrunt8"
+msgstr "Team Xero Grunt VIII"
+
+msgid "xerogrunt9"
+msgstr "Team Xero Grunt IX"
+
+msgid "xerogrunt10"
+msgstr "Team Xero Grunt X"
+
+
+## DIALOG TRANSLATIONS ##
+
+# general dialogs
+msgid "healmytuxemon"
+msgstr "Do you want to heal your Tuxemon?"
+
+msgid "haveagoodday"
+msgstr "Have a nice day!"
+
+msgid "yes"
+msgstr "Yes"
+
+msgid "no"
+msgstr "No"
+
+msgid "door_problems"
+msgstr "The door is stuck and won't open..."
+
+msgid "empty_pot"
+msgstr "It's an empty pot, maybe someone will plant something here"
+
+msgid "purple_flowers"
+msgstr "Somebody planted some sweet smelling purple flowers!"
+
+msgid "orange_flowers"
+msgstr "Someone planted some beautiful orange flowers!"
+
+msgid "famous_statue"
+msgstr "It's a statue of a former Tuxemon master. The name is weathered away..."
+
+msgid "famous_statue2"
+msgstr "It says: For our beloved friends and heroes of all, the wywen"
+
+msgid "cotton_town_fountain"
+msgstr "It's a fountain. A lot of coins are at the bottom"
+
+msgid "tree"
+msgstr "This tree looks happy and healthy!"
+
+msgid "route_2"
+msgstr "Route 2"
+
+msgid "sure_i_do"
+msgstr "Sure I do"
+
+msgid "not_really"
+msgstr "Not really"
+
+# NPC dialogs
+msgid "professor_dialog\n"
+msgstr "Professor: Ah, yes. The very person I've been wanting to meet.\n"
+"I've heard that you want to learn about Tuxemon.\n"
+"Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
+"I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
+"Which one would you like?\n"
+
+msgid "professor_dialog6.1"
+msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."
+
+msgid "professor_dialog6.2"
+msgstr "Professor: A superb choice! Rockitten is an earth Tuxemon."
+
+msgid "professor_dialog6.3"
+msgstr "Professor: A great choice! Fruitera is a wood Tuxemon."
+
+msgid "professor_dialog7"
+msgstr "Professor: I hope to see you around! I'm about to head on a journey, so maybe we'll meet up sometime."
+
+msgid "karrianna_dialog1"
+msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
+
+msgid "karrianna_dialog2"
+msgstr "Well... You were the first trainer I've faced..."
+
+msgid "xero_hideout1"
+msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
+
+msgid "cherry_found"
+msgstr "You found a cherry."
+
+msgid "xero_grunts_block"
+msgstr "This area is under construction, it should be done soon."
+
+msgid "waiting_for_misa"
+msgstr "Our leader would like to talk with you. When you are ready, talk to my friend next to me."
+
+msgid "teleport?"
+msgstr "Are you ready to meet our leader?"
+
+msgid "ouch"
+msgstr "Sorry, but this may hurt a bit..."
+
+msgid "maybe_sometime_again?"
+msgstr "Okay, I'll be here when you are ready."
+
+msgid "youcantleave"
+msgstr "The doors are locked from the outside... Is there a key somewhere?"
+
+msgid "discovered_a_person"
+msgstr "You found me! Haha!"
+
+msgid "a_serious_discussion\n"
+msgstr "???: I have been observing you for a while now, I'm glad my followers managed to grab you without harm.\n"
+"Oh, where are my manners! I am Misa, Premier of the Xero Institute for Tuxemon Research and Advancement.\n"
+"What was your name again? ....  .....  ....\n"
+"{name}?\n"
+"Misa: hmmm... That sounds like a good name for someone who illegally owns a Tuxemon.\n"
+
+msgid "oops\n"
+msgstr "Oh. I guess you didn't know that...\n"
+"You shouldn't be afraid, Having a Tuxemon by your side is the best thing ever to happen to you.\n"
+
+msgid "backstory\n"
+msgstr "About thirty years ago, a group called Omnichannel started controlling the media. Soon after, nobody was allowed to express themselves via the media.\n"
+"So people decided to use Tuxemon as messengers and to settle disputes. About ten years ago, the crackdown on Tuxemon was initiated.\n"
+"Now, only approved persons can own and raise Tuxemon. My group uses Tuxemon for research. That's why we all have them.\n"
+"You are unusual. You are not approved by Omnichannel. You might be the trainer we have been waiting for.\n"
+"Omnichannel, as ruthless as they are, are not the only threat we have here. There is another organization called Spyder.\n"
+"You shouldn't have to worry too much about them. They aren't too active around here.\n"
+"Now, we'll send you back on your journey. Only if you agree to help us against Omnichannel.\n"
+"Otherwise, we will report you to Omnichannel ourselves. And you will lose everything. We are always watching.\n"
+
+msgid "backstory9"
+msgstr "What do you say? Will you help us?"
+
+msgid "sorryfurthis"
+msgstr "Good Choice. Sorry, this will only sting a little"
+
+msgid "mwah\n"
+msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in here even though your clothes are tastefully done.\n"
+"I'm Allie by the way.\n"
+"Allie: Yes, this is the Omnichannel, I'm just a lowly guard though. Who are you?\n"
+"{name}...\n"
+"Hmm. A strong name. My house is not too far, maybe... after work... you could show me your strength?\n"
+"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!\n"
+
+msgid "mwah2"
+msgstr "JESS!!!"
+
+msgid "itslockedboi"
+msgstr "Allie locked the door behind her..."
+
+msgid "hellothere"
+msgstr "???: Hello there!"
+
+msgid "kmere"
+msgstr "Why don't you come over here and talk to me?"
+
+msgid "theinfo\n"
+msgstr "I'm sorry about that scene, Allie is sometimes hard to deal with, unlike my daughter Jess.\n"
+"Oh! Where are my manners. My name is Ae... You know what? I'll just write it.\n"
+"Aeble\n"
+"It's pronounced ahbluh, but everyone just calls me Able. You can call me that, I guess...\n"
+"Aeble: I'm the CEO here at the omnichannel, every broadcast you see, gets approved by me.\n"
+"Now, I'm not the only one that does their part, we have a board that helps us administrate the districts\n"
+"The board has been reelected since it was formed. They've done a great job though, so it makes sense.\n"
+"Omnichannel's goal is to open up the world to all. The only way to do that though, to make everyone equal,\n"
+"Was to restrict Tuxemon.\n"
+"We started with confiscation, but most Tuxemon managed to escape. So we went to extreme measures.\n"
+"Our sister organization Spyder developed a drug that could change Tuxemon.\n"
+"It isolated a portion of the brain that every Tuxemon mysteriously has and overloaded it.\n"
+"Once the Gage Paludal Lamina was overloaded with electricity, their will to resist faded and they became docile.\n"
+"Because of this, a few species are dead, Rockitten, Fruitera, and Hydrone specifically.\n"
+"This doesn't matter now though. This generation now doesn't even know what Tuxemon are unless they work for us.\n"
+"The birthrate is at an all time high, and approval of the Omnichannel has not fallen since the year before the restriction\n"
+"Tuxemon are a perversive curse that destroys humanity. Omnichannel has fixed that and imposed order.\n"
+"Tuxemon destroy and anyone who says otherwise is lying. Sorry, I must head to work.\n"
+
+msgid "liela_goes_to_battle"
+msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
+
+msgid "Cathedral_Center"
+msgstr "Cathedral Center: We Live to Serve"
+
+msgid "Cotton_Mart"
+msgstr "Get the scoop at the Scoop Store!"
+
+msgid "Cotton_Town_Sign\n"
+msgstr "Welcome to Cotton Town: A Growing Force\n"
+"^ Cotton Town --- Route 1 v\n"
+
+msgid "column1"
+msgstr "A rare and ancient column. This used to be a temple."
+
+msgid "column2"
+msgstr "A rare and ancient column. Other ruins from the same culture can be found in Route 3. "
+
+msgid "cityparksign\n"
+msgstr "Welcome to City Park: A Taste of the Wild\n"
+"^ City Park --- Route 2 v\n"
+
+msgid "route2speech"
+msgstr "EEK!!!"
+
+msgid "route2speech2\n"
+msgstr "Oh. It's just you {name}...\n"
+"Be more considerate the next time you push someone. The cliff goes down farther than it looks...\n"
+
+msgid "route2speech3\n"
+msgstr "Although that may not be a bad thing...\n"
+"I know, everyone needs me to lead, but with everything going on...\n"
+"But you don't want to listen to me... do you?\n"
+
+msgid "yestalk"
+msgstr "Really? Thanks..."
+
+msgid "notalk"
+msgstr "You insensitive person! You'll listen to me anyway!"
+
+msgid "spillit\n"
+msgstr "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.\n"
+"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it.\n"
+
+msgid "spillit3"
+msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
+
+msgid "spillit4"
+msgstr "It may not seem like a bad thing, but it is. Do you know what they do to them? DO YOU!?"
+
+msgid "spillit5"
+msgstr "Because neither do I... All I know is that no one has ever left Omnichannel after being recruited."
+
+msgid "spillit6"
+msgstr "Anyways... it doesn't concern you. All that matters is bringing down Omnichannel."
+
+msgid "spillit7"
+msgstr "I'm sorry for troubling you with my issues. City Park is up ahead when you want to move on"
+
+msgid "leavemealone"
+msgstr "We used to play here all the time when we were younger..."
+
+msgid "iamknight\n"
+msgstr "What are you doing here? You know that only knights are allowed through city park.\n"
+"... ... ... Hmm... So you're trying to get to Leather Town...\n"
+"Well, I guess you could enter the challenge if you want. The only problem is that you'll need a Tuxemon...\n"
+"I'm sure we can lend you one. Are you up for the challenge?\n"
+
+msgid "sorry"
+msgstr "Okay, well... when you're ready, I'll still be here..."
+
+msgid "splendid\n"
+msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
+"... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
+
+msgid "cottonnurse_dialog"
+msgstr "Welcome to the Cotton Town Tuxecenter!"
+
+msgid "tabanurse_dialog\n"
+msgstr "Welcome to the Taba Town Tuxecenter!\n"
+"Do you want to heal your Tuxemon?\n"
+
+msgid "okaythen"
+msgstr "Okay! Just give me a second and I will heal your Tuxemon!"
+
+msgid "okaythen2"
+msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
+
+msgid "input_name"
+msgstr "Name?"

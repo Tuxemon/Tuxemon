@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_elowind",
-    "name_trans": "txmn_elowind_name",
-    "description_trans": "txmn_elowind_descr",
-    "category_trans": "txmn_elowind_category",
+    "slug": "elowind",
+    "category": "cloudburst",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_thunderclap"
+            "technique": "thunderclap"
         },
         {
             "level_learned": 2,
-            "technique": "technique_biting_winds"
+            "technique": "biting_winds"
         }
     ],
     "shape": "Flier",

@@ -1,22 +1,19 @@
 {
-    "slug": "txmn_vamporm",
-    "name_trans": "txmn_vamporm_name",
-    "description_trans": "txmn_vamporm_descr",
-    "category_trans": "txmn_vamporm_category",
+    "slug": "vamporm",
+    "category": "clot",
     "ai": "RandomAI",
-    "call": null,
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_probiscus"
+            "technique": "probiscus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_spray"
+            "technique": "spray"
         },
         {
             "level_learned": 2,
-            "technique": "technique_refresh"
+            "technique": "refresh"
         }
     ],
     "shape": "Grub",

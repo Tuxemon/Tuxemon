@@ -23,26 +23,29 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
+# Andy Mender <andymenderunix@gmail.com>
 #
 #
 #
 #
 import logging
 import os
+import os.path
+import pprint
 import random
 from collections import namedtuple
 
+from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components import db
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 
 logger = logging.getLogger(__name__)
 
-trans = translator.translate
 
 # Load the technique database
-techniques = db.JSONDatabase()
-techniques.load("technique")
+techniques_db = db.JSONDatabase()
+techniques_db.load("technique")
 
 tech_ret_value = namedtuple("use", "name success properties")
 
@@ -138,16 +141,17 @@ class Technique(object):
 
         """
 
-        results = techniques.lookup(slug, table="technique")
-        self.slug = results["slug"]  # a short English identifier
-        self.name = trans(results["name_trans"])  # locale-specific string
+        results = techniques_db.lookup(slug, table="technique")
+        self.slug = results["slug"]                             # a short English identifier
+        self.name = T.translate(self.slug)                      # locale-specific string
 
         self.sort = results['sort']
 
-        # must be translated before displaying
-        self.execute_trans = results['execute_trans']
-        self.success_trans = results['success_trans']
-        self.failure_trans = results['failure_trans']
+        # technique use notifications (translated!)
+        # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
+        self.use_item = T.translate(results["use_tech"])
+        self.use_success = T.translate(results["use_success"])
+        self.use_failure = T.translate(results["use_failure"])
 
         self.category = results["category"]
         self.icon = results["icon"]
@@ -177,15 +181,15 @@ class Technique(object):
         self.animation = results["animation"]
         if self.animation:
             self.images = []
-            animation_dir = prepare.BASEDIR + prepare.DATADIR + "/animations/technique/"
+            animation_dir = os.path.join(paths.BASEDIR, prepare.DATADIR, "animations/technique")
             directory = sorted(os.listdir(animation_dir))
             for image in directory:
                 if self.animation and image.startswith(self.animation):
-                    self.images.append("animations/technique/" + image)
+                    self.images.append(os.path.join("animations/technique", image))
 
         # Load the sound effect for this technique
-        sfx_directory = "sounds/technique/"
-        self.sfx = sfx_directory + results["sfx"]
+        sfx_directory = "sounds/technique"
+        self.sfx = os.path.join(sfx_directory, results["sfx"])
 
     def advance_round(self, number=1):
         """ Advance the turn counters for this technique

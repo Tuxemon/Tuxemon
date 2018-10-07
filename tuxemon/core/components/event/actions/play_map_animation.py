@@ -22,7 +22,9 @@
 from __future__ import absolute_import
 
 import logging
+import os.path
 
+from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.tools import load_animation_from_frames
@@ -57,7 +59,7 @@ class PlayMapAnimationAction(EventAction):
         # "position" can be either a (x, y) tile coordinate or "player"
         animation_name = self.parameters.animation_name
         duration = self.parameters.duration
-        directory = prepare.BASEDIR + prepare.DATADIR + "/animations/tileset"
+        directory = os.path.join(paths.BASEDIR, prepare.DATADIR, "animations/tileset")
 
         if self.parameters.loop == "loop":
             loop = True

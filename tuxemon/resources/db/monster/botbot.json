@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_botbot",
-    "name_trans": "txmn_botbot_name",
-    "description_trans": "txmn_botbot_descr",
-    "category_trans": "txmn_botbot_category",
+    "slug": "botbot",
+    "category": "socket",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_beam"
+            "technique": "beam"
         },
         {
             "level_learned": 2,
-            "technique": "technique_levitate"
+            "technique": "levitate"
         },
         {
             "level_learned": 2,
-            "technique": "technique_battery_discharge"
+            "technique": "battery_discharge"
         }
     ],
     "shape": "Grub",

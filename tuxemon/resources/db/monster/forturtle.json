@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_forturtle",
-    "name_trans": "txmn_forturtle_name",
-    "description_trans": "txmn_forturtle_descr",
-    "category_trans": "txmn_forturtle_category",
+    "slug": "forturtle",
+    "category": "oracle_bone",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_rock"
+            "technique": "rock"
         },
         {
             "level_learned": 2,
-            "technique": "technique_energy_field"
+            "technique": "energy_field"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleep_bomb"
+            "technique": "sleep_bomb"
         }
     ],
     "shape": "Humanoid",

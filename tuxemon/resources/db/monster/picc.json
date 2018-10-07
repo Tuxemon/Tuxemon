@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_picc",
-    "name_trans": "txmn_picc_name",
-    "description_trans": "txmn_picc_descr",
-    "category_trans": "txmn_picc_category",
+    "slug": "picc",
+    "category": "bladder",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_battery_discharge"
+            "technique": "battery_discharge"
         }
     ],
     "shape": "Aquatic",

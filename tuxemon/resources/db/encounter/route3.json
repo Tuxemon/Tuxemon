@@ -3,10 +3,10 @@
 
 
 
-{ "monster": "txmn_cardiling","encounter_rate":10,"level_range": [7,10]},
-{ "monster": "txmn_elofly","encounter_rate":10,"level_range": [7,10]},
-{ "monster": "txmn_squabbit","encounter_rate":5,"level_range": [8,11]},
-{ "monster": "txmn_shybulb","encounter_rate":10,"level_range": [7,10]}
+{ "monster": "cardiling","encounter_rate":10,"level_range": [7,10]},
+{ "monster": "elofly","encounter_rate":10,"level_range": [7,10]},
+{ "monster": "squabbit","encounter_rate":5,"level_range": [8,11]},
+{ "monster": "shybulb","encounter_rate":10,"level_range": [7,10]}
 
 
 

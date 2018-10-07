@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_cowpignon",
-    "name_trans": "txmn_cowpignon_name",
-    "description_trans": "txmn_cowpignon_descr",
-    "category_trans": "txmn_cowpignon_category",
+    "slug": "cowpignon",
+    "category": "enhancement",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_headbutt"
+            "technique": "headbutt"
         },
         {
             "level_learned": 2,
-            "technique": "technique_invictus"
+            "technique": "invictus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_petrify"
+            "technique": "petrify"
         }
     ],
     "shape": "Sprite",

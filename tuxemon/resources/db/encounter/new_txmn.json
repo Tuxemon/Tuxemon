@@ -7,7 +7,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_wrougon"
+            "monster":"wrougon"
         },
         {
             "encounter_rate":1,
@@ -15,7 +15,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_anoleaf"
+            "monster":"anoleaf"
         },
         {
             "encounter_rate":1,
@@ -23,7 +23,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_chloragon"
+            "monster":"chloragon"
         },
         {
             "encounter_rate":1,
@@ -31,7 +31,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_tweesher"
+            "monster":"tweesher"
         },
         {
             "encounter_rate":1,
@@ -39,7 +39,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_merlicun"
+            "monster":"merlicun"
         },
         {
             "encounter_rate":1,
@@ -47,7 +47,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_aardorn"
+            "monster":"aardorn"
         },
         {
             "encounter_rate":1,
@@ -55,7 +55,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_agnite"
+            "monster":"agnite"
         },
         {
             "encounter_rate":1,
@@ -63,7 +63,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_cairfrey"
+            "monster":"cairfrey"
         },
         {
             "encounter_rate":1,
@@ -71,7 +71,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_capiti"
+            "monster":"capiti"
         },
         {
             "encounter_rate":1,
@@ -79,7 +79,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_cardiling"
+            "monster":"cardiling"
         },
         {
             "encounter_rate":1,
@@ -87,7 +87,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_chillimp"
+            "monster":"chillimp"
         },
         {
             "encounter_rate":1,
@@ -95,7 +95,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_falcono"
+            "monster":"falcono"
         },
         {
             "encounter_rate":1,
@@ -103,7 +103,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_noctula"
+            "monster":"noctula"
         },
         {
             "encounter_rate":1,
@@ -111,7 +111,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_nostray"
+            "monster":"nostray"
         },
         {
             "encounter_rate":1,
@@ -119,7 +119,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_selket"
+            "monster":"selket"
         },
         {
             "encounter_rate":1,
@@ -127,7 +127,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_spycozeus"
+            "monster":"spycozeus"
         },
         {
             "encounter_rate":1,
@@ -135,7 +135,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_conifrost"
+            "monster":"conifrost"
         },
         {
             "encounter_rate":1,
@@ -143,7 +143,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_vamporm"
+            "monster":"vamporm"
         },
         {
             "encounter_rate":1,
@@ -151,7 +151,7 @@
                 1,
                 6
             ],
-            "monster":"txmn_zunna"
+            "monster":"zunna"
         }
     ]
 }

@@ -27,7 +27,7 @@ from functools import partial
 from tuxemon.core.components.event import get_npc
 from tuxemon.core.components.event.actions import replace_text
 from tuxemon.core.components.event.eventaction import EventAction
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -58,11 +58,11 @@ class TranslatedDialogChoiceAction(EventAction):
         player = get_npc(self.game, "player")
 
         # make menu options for each string between the colons
-        trans = translator.translate
         var_list = choices.split(":")
         var_menu = list()
+
         for val in var_list:
-            text = trans(val)
+            text = T.translate(val)
             var_menu.append((text, text, partial(set_variable, val)))
 
         self.open_choice_dialog(self.game, var_menu)

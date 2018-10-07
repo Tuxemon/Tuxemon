@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sadito",
-    "name_trans": "txmn_sadito_name",
-    "description_trans": "txmn_sadito_descr",
-    "category_trans": "txmn_sadito_category",
+    "slug": "sadito",
+    "category": "lamenting_emotion",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_perfect_cut"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         }
     ],
     "shape": "",

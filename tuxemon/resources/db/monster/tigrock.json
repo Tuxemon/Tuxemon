@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_tigrock",
-    "name_trans": "txmn_tigrock_name",
-    "description_trans": "txmn_tigrock_descr",
-    "category_trans": "txmn_tigrock_category",
+    "slug": "tigrock",
+    "category": "ex_machina",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
-            "technique": "technique_energy_field"
+            "technique": "energy_field"
         }
     ],
     "shape": "Hunter",

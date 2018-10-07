@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_komodraw",
-    "name_trans": "txmn_komodraw_name",
-    "description_trans": "txmn_komodraw_descr",
-    "category_trans": "txmn_komodraw_category",
+    "slug": "komodraw",
+    "category": "quickdraw",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_flamethrower"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_rock"
+            "technique": "rock"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sudden_glow"
+            "technique": "sudden_glow"
         }
     ],
     "shape": "Humanoid",

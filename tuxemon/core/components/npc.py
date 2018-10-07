@@ -24,6 +24,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Derek Clark <derekjohn.clark@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
+# Andy Mender <andymenderunix@gmail.com>
 #
 # core.components.npc
 #
@@ -38,14 +39,16 @@ from tuxemon.core.components.monster import decode_monsters, encode_monsters
 from tuxemon.core.components import db, monster, pyganim, technique
 from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.item import Item
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.tools import nearest, load_and_scale, trunc
 
-trans = translator.translate
-
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
+
+# Load the NPC database
+npc_db = db.JSONDatabase()
+npc_db.load("npc")
 
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
@@ -69,7 +72,7 @@ def tile_distance(tile0, tile1):
     return hypot(x1 - x0, y1 - y0)
 
 
-class Npc(Entity):
+class NPC(Entity):
     """ Class for humanoid type game objects, NPC, Players, etc
 
     Currently, all movement is handled by a queue called "path".  This queue
@@ -83,21 +86,20 @@ class Npc(Entity):
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
     def __init__(self, npc_slug, sprite_name=None):
-        super(Npc, self).__init__()
+        super(NPC, self).__init__()
 
         # load initial data from the npc database
-        npcs = db.JSONDatabase()
-        npcs.load("npc")
-        npc_data = npcs.lookup(npc_slug, table="npc")
+        npc_data = npc_db.lookup(npc_slug, table="npc")
 
         self.slug = npc_slug
 
-        # This is the player's name to be used in dialog
-        self.name = trans(npc_data["name_trans"])
+        # This is the NPC's name to be used in dialog
+        self.name = T.translate(self.slug)
 
         # use 'animations' passed in
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
+
         if self.sprite_name is None:
             # Try to use the sprites defined in the JSON data
             try:

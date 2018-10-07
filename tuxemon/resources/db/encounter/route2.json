@@ -1,10 +1,10 @@
 {"slug": "route2","monsters": [
 
-{ "monster": "txmn_cardiling","encounter_rate":10,"level_range": [3,6]},
-{ "monster": "txmn_aardorn","encounter_rate":10,"level_range": [3,6]},
-{ "monster": "txmn_eyenemy","encounter_rate":10,"level_range": [3,6]},
-{ "monster": "txmn_axylightl","encounter_rate":5,"level_range": [4,7]},
-{ "monster": "txmn_cataspike","encounter_rate":10,"level_range": [3,6]},
-{ "monster": "txmn_cataspike","encounter_rate":1,"level_range": [5,8]}
+{ "monster": "cardiling","encounter_rate":10,"level_range": [3,6]},
+{ "monster": "aardorn","encounter_rate":10,"level_range": [3,6]},
+{ "monster": "eyenemy","encounter_rate":10,"level_range": [3,6]},
+{ "monster": "axylightl","encounter_rate":5,"level_range": [4,7]},
+{ "monster": "cataspike","encounter_rate":10,"level_range": [3,6]},
+{ "monster": "cataspike","encounter_rate":1,"level_range": [5,8]}
 
 ] }

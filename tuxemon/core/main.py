@@ -84,18 +84,18 @@ def main(load_slot=None):
 
         action = control.event_engine.execute_action
 
-        action("add_monster", ("txmn_bigfin", 10))
-        action("add_monster", ("txmn_dandylion", 10))
+        action("add_monster", ("bigfin", 10))
+        action("add_monster", ("dandylion", 10))
 
-        action("add_item", ("item_potion",))
-        action("add_item", ("item_cherry",))
-        action("add_item", ("item_capture_device",))
+        action("add_item", ("potion",))
+        action("add_item", ("cherry",))
+        action("add_item", ("capture_device",))
 
         for i in range(10):
-            action("add_item", ("item_super_potion",))
+            action("add_item", ("super_potion",))
 
         for i in range(100):
-            action("add_item", ("item_apple",))
+            action("add_item", ("apple",))
 
     control.main()
     pygame.quit()

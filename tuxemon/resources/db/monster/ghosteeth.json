@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_ghosteeth",
-    "name_trans": "txmn_ghosteeth_name",
-    "description_trans": "txmn_ghosteeth_descr",
-    "category_trans": "txmn_ghosteeth_category",
+    "slug": "ghosteeth",
+    "category": "cheshire",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fester"
+            "technique": "fester"
         },
         {
             "level_learned": 2,
-            "technique": "technique_blood_bond"
+            "technique": "blood_bond"
         },
         {
             "level_learned": 2,
-            "technique": "technique_chill_mist"
+            "technique": "chill_mist"
         }
     ],
     "shape": "Blob",

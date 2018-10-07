@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_elofly",
-    "name_trans": "txmn_elofly_name",
-    "description_trans": "txmn_elofly_descr",
-    "category_trans": "txmn_elofly_category",
+    "slug": "elofly",
+    "category": "cloudburst",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_biting_winds"
+            "technique": "biting_winds"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fume"
+            "technique": "fume"
         }
     ],
     "shape": "Flier",

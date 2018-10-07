@@ -36,6 +36,7 @@ import re
 import pygame
 
 import tuxemon.core.components.sprite
+from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components import pyganim
 from tuxemon.core.platform import mixer
@@ -94,7 +95,7 @@ def transform_resource_filename(*filename):
     :param filename: String
     :rtype: basestring
     """
-    return os.path.join(prepare.BASEDIR, prepare.DATADIR, *filename)
+    return os.path.join(paths.BASEDIR, prepare.DATADIR, *filename)
 
 
 def load_and_scale(filename):

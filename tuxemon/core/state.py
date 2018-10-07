@@ -26,12 +26,14 @@
 import inspect
 import logging
 import os
+import os.path
 import sys
 from abc import ABCMeta
 from importlib import import_module
 
 import pygame
 
+from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core import tools
 from tuxemon.core.components.animation import Animation
@@ -277,7 +279,7 @@ class StateManager(object):
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.')[1:])
+        state_folder = os.path.join(paths.BASEDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug("loading game states from {}".format(state_folder))
         for folder in os.listdir(state_folder):

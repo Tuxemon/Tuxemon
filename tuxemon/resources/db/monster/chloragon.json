@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_chloragon",
-    "name_trans": "txmn_chloragon_name",
-    "description_trans": "txmn_chloragon_descr",
-    "category_trans": "txmn_chloragon_category",
+    "slug": "chloragon",
+    "category": "dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         },
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         },
         {
             "level_learned": 2,
-            "technique": "technique_hibernate"
+            "technique": "hibernate"
         }
     ],
     "shape": "Dragon",

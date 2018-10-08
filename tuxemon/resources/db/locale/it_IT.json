@@ -330,17 +330,17 @@
     "famous_statue": "È una statua di un vecchio campione di Tuxemon. Il nome è sbiadito dalle intemperie...",
     "famous_statue2": "Dice: ai nostri amati amici e eroi, wywen.",
     "cotton_town_fountain": "È una fontana. Molte monete sono sul fondo.",
-    "tree": "QUesto albero sembra felice e in salute!",
+    "tree": "Questo albero sembra felice e in salute!",
     
     "route_2": "Strada 2",
     "sure_i_do": "Certamente",
     "not_really": "Non proprio",
 
     "professor_dialog": [
-        "Professore: \n Oh sì. Ecco la persona che volevo incontrare.",
+        "Professore: \n Oh sì. Ecco la persona che cercavo!",
         "Ho sentito che vuoi imparare di più sui Tuxemon.",
         "I Tuxemon sono piccoli animali, che alcuni definiscono come mostri, con cui diventiamo amici e che usiamo nei combattimenti contro altri Tuxemon.",
-        "Ho appena ricevuto tre nuovi Tuxemon per ricerca e mi piacerebbe dartene uno.",
+        "Ho appena ricevuto tre nuovi Tuxemon per una ricerca e mi piacerebbe dartene uno.",
         "Quale desideri?"
     ],
 
@@ -356,16 +356,16 @@
     "xero_grunts_block": "Quest'area è in costruzione. Dovrebbe essere pronta a breve.",
     "waiting_for_misa": "Al nostro capo piacerebbe parlare con te. Quando sei pronto, parla con il mio amico accanto a me.",
     "teleport?": "Sei pronto per incontrare il nostro capo?",
-    "ouch": "Scusa ma questo potrebbe fare male un po'...",
-    "maybe_sometime_again?": "Ok, sarò lì quando sarai pronto.",
+    "ouch": "Scusa ma questo potrebbe farti male un po'...",
+    "maybe_sometime_again?": "Ok, quando sarai pronto sarò ancora qui.",
     "youcantleave": "Le porte sono chiuse dall'esterno... C'è una chiave da qualche parte?",
     "discovered_a_person": "Mi hai trovato! Ahahah!",
     "a_serious_discussion": [
-        "???: Ti sto osservando da un po'. Sono contento che i miei seguiti ti hanno scortato senza ferimenti.",
+        "???: Ti sto osservando da un po'. Sono contento che i miei seguiti ti hanno scortato senza farti male.",
         "Oh, che maniere! Io sono Misa, presidente dell'Istituto Xero per la Ricerca e il Progresso sui Tuxemon.",
         "Quale sarebbe il tuo nome? ...  ...  ...",
         "${{name}}?",
-        "Misa: hmmm... suona come un giusto nome per qualcuno che possiede illegalmente un Tuxemon."
+        "Misa: hmmm... suona come un buon nome per qualcuno che possiede illegalmente un Tuxemon."
     ],
     "oops": [
         "Oh. Immagino che non lo sapevi...",
@@ -373,16 +373,16 @@
     ],
     "backstory": [
         "Circa trent'anni fa, un gruppo chiamato Omnichannel iniziò a controllare i media. Subito dopo, a nessuno era permesso esprimersi sui media.",
-        "Così le persone decisero di usare i Tuxemon come messaggeri e per risolvere le controversie. Circa dieci anni dopo, il giro di vite su Tuxemon è stato avviato.",
+        "Così le persone decisero di usare i Tuxemon come messaggeri e per risolvere le controversie. Circa dieci anni dopo, iniziò il giro di vite su Tuxemon.",
         "Ora, solo alcune persone approvate possono possedere e far crescere Tuxemon. Il mio gruppo usa i Tuxemon per la ricerca. Ecco perché noi tutti li abbiamo.",
         "Tu sei atipico. Non sei approvato da Omnichannel. Potresti essere l'allenatore che stavamo aspettando.",
         "Omnichannel, spietati come sono, non sono l'unica minaccia che abbiamo qui. C'è un'altra organizzazione chiamata Spyder.",
         "Non dovresti avere tanta paura di loro. Non sono così attivi qui.",
-        "Ora ti rimandiamo indietro nel tuo viaggio. Solo se sei d'accordo ad aiutarci contro Omnichannel.",
-        "Altrimenti ti segnaliamo alla Omnichannel. E perderai tutto."
+        "Ora ti rimandiamo indietro nel tuo viaggio. Solo se sei d'accordo nell'aiutarci contro Omnichannel,",
+        "altrimenti ti segnaliamo alla Omnichannel. E perderai tutto."
     ],
     "backstory9": "Cosa dici? Ci vuoi aiutare?",
-    "sorryfurthis": "Ottima scelta. Scusa ma questo pungerà un po'",
+    "sorryfurthis": "Ottima scelta. Scusa ma questo pungerà un po'.",
 
     "mwah": [
         "???: Che cosa vuoi? ... ... ... Beh, peccato. Bene, peccato Non entrerai qui anche se i tuoi vestiti sono fatti con gusto.",
@@ -444,13 +444,13 @@
 
     "spillit": [
         "Tu sai che sono il capo dell'Istituto Xero per la Ricerca e il Progresso sui Tuxemon e che ti ho reclutato per combatterli. Ma non sai nient'altro.",
-        "Allie, che hai incontrato prima... Cosa? Ti ho detto che ti osserviamo, non devi essere sorpreso di ciò."
+        "Allie, che hai incontrato prima... Cosa? Ti ho detto che ti osserviamo, non devi esserne sorpreso!"
     ],
-    "spillit3": "Comunque... Allie è mia sorella e per me lei è tutto, quindi mi ha distrutto quando ho scoperto  che l'avevano portata nella sede centrale.",
+    "spillit3": "Comunque... Allie è mia sorella e per me lei è tutto. Mi ha distrutto scoprire che l'avevano portata nella sede centrale.",
     "spillit4": "Potrebbe non essere una cattiva cosa ma in fondo lo è. Tu sai che cosa gli fanno? LO SAI!?",
     "spillit5": "Perché io non lo so... Ciò che so è che nessuno ha mai abbandonato la Omnichannel dopo essere stato reclutato.",
     "spillit6": "Comunque, tutto ciò non ti riguarda. Ciò che importa è far chiudere la Omnichannel.",
-    "spillit7": "Scusa per averti creato problemi con le mie questioni. Il parco cittadino è avanti a te, quando vorrai proseguire",
+    "spillit7": "Scusa per averti creato problemi con i miei problemi. Il parco cittadino è avanti a te, quando vorrai proseguire",
     "leavemealone": "Un tempo giocavamo qui tutto il tempo quando eravamo più giovani...",
 
     "iamknight": [
@@ -470,8 +470,8 @@
         "Benvenuto al Tuxcentro di Taba Town!",
         "Vuoi che guarisca i tuoi Tuxemon?"
     ],
-    "okaythen": "Ok! Dammi solo due secondi e ti guarisco i tuoi Tuxemon!",
-    "okaythen2": "Sembra che i tuoi Tuxemon siano pieni di energia! Eccoteli!",
+    "okaythen": "Ok! Dammi solo due secondi e guarisco i tuoi Tuxemon!",
+    "okaythen2": "Sembra che i tuoi Tuxemon siano già pieni di energia! Eccoteli!",
 
     "input_name": "Qual è il tuo nome?"
 }

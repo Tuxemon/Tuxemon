@@ -6,7 +6,7 @@
     "damage"
   ],
   "execute_trans": "combat_used_x",
-  "failure_trans": "generic_thing_failure",
+  "failure_trans": "combat_miss",
   "healing_power": 0,
   "icon": "",
   "is_area": true,
@@ -14,12 +14,12 @@
   "name_trans": "technique_probiscus_name",
   "potency": 0.5,
   "power": 1.0,
-  "range": "Reach",
+  "range": "reach",
   "recharge": 1,
   "sfx": "blaster1.ogg",
   "slug": "technique_probiscus",
   "sort": "damage",
-  "success_trans": "generic_thing_success",
+  "success_trans": null,
   "target": {
     "enemy monster": 2,
     "enemy team": 0,

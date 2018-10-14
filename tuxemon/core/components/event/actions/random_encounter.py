@@ -100,6 +100,7 @@ class RandomEncounterAction(EventAction):
             # Set the monster's level
             current_monster.level = 1
             current_monster.set_level(level)
+            current_monster.current_hp = current_monster.hp
 
             # Create an NPC object which will be this monster's "trainer"
             npc = Npc("npc_maple")

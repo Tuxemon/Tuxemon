@@ -602,3 +602,7 @@ class Npc(Entity):
                 success = False
 
         return success
+
+    def speed_test(self, action):
+        return self.speed
+

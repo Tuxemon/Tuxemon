@@ -230,7 +230,7 @@ class Monster(object):
         self.experience_required_modifier = 0
         self.total_experience = 0
 
-        self.type1 = "Normal"
+        self.type1 = "aether"
         self.type2 = None
         self.shape = "landrace"
 
@@ -288,16 +288,12 @@ class Monster(object):
         self.slug = results["slug"]                             # short English identifier
         self.name = trans(results["name_trans"])                # will be locale string
         self.description = trans(results["description_trans"])  # will be locale string
-        self.shape = results.get("shape", "landrace")
+        self.shape = results.get("shape", "landrace").lower()
         types = results.get("types")
         if types:
             self.type1 = results["types"][0].lower()
             if len(types) > 1:
                 self.type2 = results["types"][1].lower()
-            else:
-                self.type2 = None
-        else:
-            self.type1 = "normal"
 
         self.weight = results['weight']
 
@@ -499,7 +495,6 @@ class Monster(object):
             if getattr(self, attr)
         }
 
-        save_data["moves"] = [i.get_state() for i in self.moves]
         if self.status:
             save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
@@ -524,9 +519,7 @@ class Monster(object):
         self.load_from_db(save_data['slug'])
 
         for key, value in save_data.items():
-            if key == 'moves' and value:
-                self.moves = [Technique(slug=i) for i in value]
-            elif key == 'status' and value:
+            if key == 'status' and value:
                 self.status = [Technique(slug=i) for i in value]
             elif key == 'body' and value:
                 self.body.set_state(value)
@@ -534,6 +527,18 @@ class Monster(object):
                 setattr(self, key, value)
 
         self.load_sprites()
+
+    def end_combat(self):
+        for move in self.moves:
+            move.full_recharge()
+
+        self.status = ['status_faint'] if 'status_faint' in self.status else []
+
+    def speed_test(self, action):
+        if action.technique.is_fast:
+            return random.randrange(0, self.speed) * 1.5
+        else:
+            return random.randrange(0, self.speed)
 
 
 def decode_monsters(json_data):

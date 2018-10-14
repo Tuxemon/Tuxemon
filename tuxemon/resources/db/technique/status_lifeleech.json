@@ -1,0 +1,24 @@
+{
+  "slug": "status_lifeleech",
+  "name_trans": "status_lifeleech_name",
+  "execute_trans": "combat_state_lifeleech_get",
+  "success_trans": "combat_state_lifeleech_success",
+  "failure_trans": "combat_state_lifeleech_failure",
+  "animation": "greendrip",
+  "sfx": "bite1.ogg",
+  "icon": "gfx/ui/icons/status/lifeleech-icon.png",
+  "category": "lifeleech",
+  "sort": "meta",
+  "effects": [
+    "status"
+  ],
+  "target": {
+    "enemy monster": 0,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0,
+    "item": 0
+  }
+}

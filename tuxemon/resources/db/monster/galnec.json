@@ -1,0 +1,19 @@
+{
+    "slug": "txmn_galnec",
+    "name_trans": "txmn_galnec_name",
+    "description_trans": "txmn_galnec_descr",
+    "category_trans": "txmn_galnec_category",
+    "ai": "RandomAI",
+    "moveset": [],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/galnec-front.png",
+        "battle2": "gfx/sprites/battle/galnec-back.png",
+        "menu1": "gfx/sprites/battle/galnec-menu01.png",
+        "menu2": "gfx/sprites/battle/galnec-menu02.png"
+    },
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

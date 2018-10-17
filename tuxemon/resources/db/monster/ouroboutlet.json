@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_ouroboutlet",
+    "name_trans": "txmn_ouroboutlet_name",
+    "description_trans": "txmn_ouroboutlet_descr",
+    "category_trans": "txmn_ouroboutlet_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_constrict"
+        }
+    ],
+    "shape": "Serpent",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/ouroboutlet-front.png",
+        "battle2": "gfx/sprites/battle/ouroboutlet-back.png",
+        "menu1": "gfx/sprites/battle/ouroboutlet-menu01.png",
+        "menu2": "gfx/sprites/battle/ouroboutlet-menu02.png"
+    },
+    "types": [
+        "Metal",
+        "Fire"
+    ],
+    "weight": 25
+}

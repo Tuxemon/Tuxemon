@@ -1,0 +1,19 @@
+{
+    "slug": "txmn_windeye",
+    "name_trans": "txmn_windeye_name",
+    "description_trans": "txmn_windeye_descr",
+    "category_trans": "txmn_windeye_category",
+    "ai": "RandomAI",
+    "moveset": [],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/windeye-front.png",
+        "battle2": "gfx/sprites/battle/windeye-back.png",
+        "menu1": "gfx/sprites/battle/windeye-menu01.png",
+        "menu2": "gfx/sprites/battle/windeye-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

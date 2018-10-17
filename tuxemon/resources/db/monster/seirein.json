@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_seirein",
+    "name_trans": "txmn_seirein_name",
+    "description_trans": "txmn_seirein_descr",
+    "category_trans": "txmn_seirein_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_midnight_mantle"
+        }
+    ],
+    "shape": "Blob",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/seirein-front.png",
+        "battle2": "gfx/sprites/battle/seirein-back.png",
+        "menu1": "gfx/sprites/battle/seirein-menu01.png",
+        "menu2": "gfx/sprites/battle/seirein-menu02.png"
+    },
+    "types": [
+        "Fire",
+        "Water"
+    ],
+    "weight": 25
+}

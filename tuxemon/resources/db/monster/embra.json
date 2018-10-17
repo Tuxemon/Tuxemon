@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_embra",
+    "name_trans": "txmn_embra_name",
+    "description_trans": "txmn_embra_descr",
+    "category_trans": "txmn_embra_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_refresh"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_kindling_flame"
+        }
+    ],
+    "shape": "Blob",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/embra-front.png",
+        "battle2": "gfx/sprites/battle/embra-back.png",
+        "menu1": "gfx/sprites/battle/embra-menu01.png",
+        "menu2": "gfx/sprites/battle/embra-menu02.png"
+    },
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

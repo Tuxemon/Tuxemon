@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_elowind",
+    "name_trans": "txmn_elowind_name",
+    "description_trans": "txmn_elowind_descr",
+    "category_trans": "txmn_elowind_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_thunderclap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_biting_winds"
+        }
+    ],
+    "shape": "Flier",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/elowind-front.png",
+        "battle2": "gfx/sprites/battle/elowind-back.png",
+        "menu1": "gfx/sprites/battle/elowind-menu01.png",
+        "menu2": "gfx/sprites/battle/elowind-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_vivitron",
+    "name_trans": "txmn_vivitron_name",
+    "description_trans": "txmn_vivitron_descr",
+    "category_trans": "txmn_vivitron_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_battery_acid"
+        }
+    ],
+    "shape": "Serpent",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/vivitron-front.png",
+        "battle2": "gfx/sprites/battle/vivitron-back.png",
+        "menu1": "gfx/sprites/battle/vivitron-menu01.png",
+        "menu2": "gfx/sprites/battle/vivitron-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_grimachin",
+    "name_trans": "txmn_grimachin_name",
+    "description_trans": "txmn_grimachin_descr",
+    "category_trans": "txmn_grimachin_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_blade"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fume"
+        }
+    ],
+    "shape": "Hunter",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/grimachin-front.png",
+        "battle2": "gfx/sprites/battle/grimachin-back.png",
+        "menu1": "gfx/sprites/battle/grimachin-menu01.png",
+        "menu2": "gfx/sprites/battle/grimachin-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_incandesfin",
+    "name_trans": "txmn_incandesfin_name",
+    "description_trans": "txmn_incandesfin_descr",
+    "category_trans": "txmn_incandesfin_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_starfall"
+        }
+    ],
+    "shape": "Aquatic",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/incandesfin-front.png",
+        "battle2": "gfx/sprites/battle/incandesfin-back.png",
+        "menu1": "gfx/sprites/battle/incandesfin-menu01.png",
+        "menu2": "gfx/sprites/battle/incandesfin-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

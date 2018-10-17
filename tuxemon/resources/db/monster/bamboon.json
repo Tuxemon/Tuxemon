@@ -3,35 +3,22 @@
     "name_trans": "txmn_bamboon_name",
     "description_trans": "txmn_bamboon_descr",
     "category_trans": "txmn_bamboon_category",
-
-    "attack_base":            60,
-    "defense_base":           7,
-    "hp_base":                50,
-    "special_attack_base":    6,
-    "special_defense_base":   10,
-    "speed_base":             7,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           2,
-    "exp_req_mod":            25,
-
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_pound"
+            "technique": "technique_blade"
         },
         {
             "level_learned": 2,
-            "technique": "technique_poison_sting"
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
         }
     ],
+    "shape": "Sprite",
     "sprites": {
         "battle1": "gfx/sprites/battle/bamboon-front.png",
         "battle2": "gfx/sprites/battle/bamboon-back.png",
@@ -39,7 +26,7 @@
         "menu2": "gfx/sprites/battle/bamboon-menu02.png"
     },
     "types": [
-        "wood"
+        "Wood"
     ],
-    "weight": 30
+    "weight": 25
 }

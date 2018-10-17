@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_chenipode",
+    "name_trans": "txmn_chenipode_name",
+    "description_trans": "txmn_chenipode_descr",
+    "category_trans": "txmn_chenipode_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_take_cover"
+        }
+    ],
+    "shape": "Grub",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/chenipode-front.png",
+        "battle2": "gfx/sprites/battle/chenipode-back.png",
+        "menu1": "gfx/sprites/battle/chenipode-menu01.png",
+        "menu2": "gfx/sprites/battle/chenipode-menu02.png"
+    },
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

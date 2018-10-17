@@ -1,0 +1,20 @@
+{
+    "slug": "txmn_neutrito",
+    "name_trans": "txmn_neutrito_name",
+    "description_trans": "txmn_neutrito_descr",
+    "category_trans": "txmn_neutrito_category",
+    "ai": "RandomAI",
+    "moveset": [],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/neutrito-front.png",
+        "battle2": "gfx/sprites/battle/neutrito-back.png",
+        "menu1": "gfx/sprites/battle/neutrito-menu01.png",
+        "menu2": "gfx/sprites/battle/neutrito-menu02.png"
+    },
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

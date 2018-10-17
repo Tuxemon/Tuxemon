@@ -1,0 +1,19 @@
+{
+    "slug": "txmn_saurchin",
+    "name_trans": "txmn_saurchin_name",
+    "description_trans": "txmn_saurchin_descr",
+    "category_trans": "txmn_saurchin_category",
+    "ai": "RandomAI",
+    "moveset": [],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/saurchin-front.png",
+        "battle2": "gfx/sprites/battle/saurchin-back.png",
+        "menu1": "gfx/sprites/battle/saurchin-menu01.png",
+        "menu2": "gfx/sprites/battle/saurchin-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

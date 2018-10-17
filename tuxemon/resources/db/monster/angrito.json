@@ -1,0 +1,20 @@
+{
+    "slug": "txmn_angrito",
+    "name_trans": "txmn_angrito_name",
+    "description_trans": "txmn_angrito_descr",
+    "category_trans": "txmn_angrito_category",
+    "ai": "RandomAI",
+    "moveset": [],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/angrito-front.png",
+        "battle2": "gfx/sprites/battle/angrito-back.png",
+        "menu1": "gfx/sprites/battle/angrito-menu01.png",
+        "menu2": "gfx/sprites/battle/angrito-menu02.png"
+    },
+    "types": [
+        "Fire",
+        "Metal"
+    ],
+    "weight": 25
+}

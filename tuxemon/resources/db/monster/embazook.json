@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_embazook",
+    "name_trans": "txmn_embazook_name",
+    "description_trans": "txmn_embazook_descr",
+    "category_trans": "txmn_embazook_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shuriken"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_static_field"
+        }
+    ],
+    "shape": "Polliwog",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/embazook-front.png",
+        "battle2": "gfx/sprites/battle/embazook-back.png",
+        "menu1": "gfx/sprites/battle/embazook-menu01.png",
+        "menu2": "gfx/sprites/battle/embazook-menu02.png"
+    },
+    "types": [
+        "Fire",
+        "Metal"
+    ],
+    "weight": 25
+}

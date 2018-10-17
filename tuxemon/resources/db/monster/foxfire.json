@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_foxfire",
+    "name_trans": "txmn_foxfire_name",
+    "description_trans": "txmn_foxfire_descr",
+    "category_trans": "txmn_foxfire_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_give_all"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fume"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fluff_up"
+        }
+    ],
+    "shape": "Varmint",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/foxfire-front.png",
+        "battle2": "gfx/sprites/battle/foxfire-back.png",
+        "menu1": "gfx/sprites/battle/foxfire-menu01.png",
+        "menu2": "gfx/sprites/battle/foxfire-menu02.png"
+    },
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

@@ -3,35 +3,22 @@
     "name_trans": "txmn_rockat_name",
     "description_trans": "txmn_rockat_descr",
     "category_trans": "txmn_rockat_category",
-
-    "attack_base":            65,
-    "defense_base":           8,
-    "hp_base":                55,
-    "special_attack_base":    7,
-    "special_defense_base":   11,
-    "speed_base":             8,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1.1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
-            "technique": "technique_pound"
+            "level_learned": 2,
+            "technique": "technique_ram"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_thunderball"
         }
     ],
+    "shape": "Hunter",
     "sprites": {
         "battle1": "gfx/sprites/battle/rockat-front.png",
         "battle2": "gfx/sprites/battle/rockat-back.png",
@@ -39,7 +26,7 @@
         "menu2": "gfx/sprites/battle/rockat-menu02.png"
     },
     "types": [
-        "earth"
+        "Earth"
     ],
-    "weight": 33
+    "weight": 25
 }

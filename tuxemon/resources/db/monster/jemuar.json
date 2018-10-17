@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_jemuar",
+    "name_trans": "txmn_jemuar_name",
+    "description_trans": "txmn_jemuar_descr",
+    "category_trans": "txmn_jemuar_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_stampede"
+        }
+    ],
+    "shape": "Hunter",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/jemuar-front.png",
+        "battle2": "gfx/sprites/battle/jemuar-back.png",
+        "menu1": "gfx/sprites/battle/jemuar-menu01.png",
+        "menu2": "gfx/sprites/battle/jemuar-menu02.png"
+    },
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

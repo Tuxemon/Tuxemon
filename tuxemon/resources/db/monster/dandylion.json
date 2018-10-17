@@ -3,35 +3,22 @@
     "name_trans": "txmn_dandylion_name",
     "description_trans": "txmn_dandylion_descr",
     "category_trans": "txmn_dandylion_category",
-
-    "attack_base":            53,
-    "defense_base":           6.5,
-    "hp_base":                57,
-    "special_attack_base":    7,
-    "special_defense_base":   9,
-    "speed_base":             8,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1.1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
-            "technique": "technique_pound"
+            "level_learned": 2,
+            "technique": "technique_energy_claws"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleeping_powder"
         }
     ],
+    "shape": "Hunter",
     "sprites": {
         "battle1": "gfx/sprites/battle/dandylion-front.png",
         "battle2": "gfx/sprites/battle/dandylion-back.png",
@@ -39,7 +26,7 @@
         "menu2": "gfx/sprites/battle/dandylion-menu02.png"
     },
     "types": [
-        "wood"
+        "Wood"
     ],
-    "weight": 57
+    "weight": 25
 }

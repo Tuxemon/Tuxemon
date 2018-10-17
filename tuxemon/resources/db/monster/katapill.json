@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_katapill",
+    "name_trans": "txmn_katapill_name",
+    "description_trans": "txmn_katapill_descr",
+    "category_trans": "txmn_katapill_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_splinter"
+        }
+    ],
+    "shape": "Grub",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/katapill-front.png",
+        "battle2": "gfx/sprites/battle/katapill-back.png",
+        "menu1": "gfx/sprites/battle/katapill-menu01.png",
+        "menu2": "gfx/sprites/battle/katapill-menu02.png"
+    },
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

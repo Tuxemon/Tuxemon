@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_vivipere",
+    "name_trans": "txmn_vivipere_name",
+    "description_trans": "txmn_vivipere_descr",
+    "category_trans": "txmn_vivipere_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_wallow"
+        }
+    ],
+    "shape": "Serpent",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/vivipere-front.png",
+        "battle2": "gfx/sprites/battle/vivipere-back.png",
+        "menu1": "gfx/sprites/battle/vivipere-menu01.png",
+        "menu2": "gfx/sprites/battle/vivipere-menu02.png"
+    },
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

@@ -3,35 +3,22 @@
     "name_trans": "txmn_sharpfin_name",
     "description_trans": "txmn_sharpfin_descr",
     "category_trans": "txmn_sharpfin_category",
-
-    "attack_base":            60,
-    "defense_base":           7,
-    "hp_base":                50,
-    "special_attack_base":    6,
-    "special_defense_base":   10,
-    "speed_base":             7,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_poison_sting"
+            "technique": "technique_splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_web"
         }
     ],
+    "shape": "Aquatic",
     "sprites": {
         "battle1": "gfx/sprites/battle/sharpfin-front.png",
         "battle2": "gfx/sprites/battle/sharpfin-back.png",
@@ -39,7 +26,8 @@
         "menu2": "gfx/sprites/battle/sharpfin-menu02.png"
     },
     "types": [
-        "wood, water"
+        "Water",
+        "Wood"
     ],
     "weight": 25
 }

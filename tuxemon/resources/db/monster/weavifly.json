@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_weavifly",
+    "name_trans": "txmn_weavifly_name",
+    "description_trans": "txmn_weavifly_descr",
+    "category_trans": "txmn_weavifly_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shuriken"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        }
+    ],
+    "shape": "Grub",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/weavifly-front.png",
+        "battle2": "gfx/sprites/battle/weavifly-back.png",
+        "menu1": "gfx/sprites/battle/weavifly-menu01.png",
+        "menu2": "gfx/sprites/battle/weavifly-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

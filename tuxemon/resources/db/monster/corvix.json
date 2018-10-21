@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_corvix",
-    "name_trans": "txmn_corvix_name",
-    "description_trans": "txmn_corvix_descr",
-    "category_trans": "txmn_corvix_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_whirlwind"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/corvix-front.png",
-        "battle2": "gfx/sprites/battle/corvix-back.png",
-        "menu1": "gfx/sprites/battle/corvix-menu01.png",
-        "menu2": "gfx/sprites/battle/corvix-menu02.png"
-    },
     "types": [
         "metal"
     ],

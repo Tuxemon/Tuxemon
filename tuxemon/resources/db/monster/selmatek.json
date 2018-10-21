@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_selmatek",
-    "name_trans": "txmn_selmatek_name",
-    "description_trans": "txmn_selmatek_descr",
-    "category_trans": "txmn_selmatek_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/selmatek-front.png",
-        "battle2": "gfx/sprites/battle/selmatek-back.png",
-        "menu1": "gfx/sprites/battle/selmatek-menu01.png",
-        "menu2": "gfx/sprites/battle/selmatek-menu02.png"
-    },
     "types": [
         "earth"
     ],

@@ -1,5 +1,4 @@
 {
-  "slug": "item_orange",
   "name_trans": "item_orange_name",
   "description_trans": "item_orange_descr",
   "execute_trans": "combat_used_x",

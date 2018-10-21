@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_aardart",
-    "name_trans": "txmn_aardart_name",
-    "description_trans": "txmn_aardart_descr",
-    "category_trans": "txmn_aardart_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/aardart-front.png",
-        "battle2": "gfx/sprites/battle/aardart-back.png",
-        "menu1": "gfx/sprites/battle/aardart-menu01.png",
-        "menu2": "gfx/sprites/battle/aardart-menu02.png"
-    },
     "types": [
         "earth"
     ],

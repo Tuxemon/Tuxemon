@@ -1,5 +1,4 @@
 {
-  "slug": "item_capture_device",
   "name_trans": "item_capture_device_name",
   "description_trans": "item_capture_device_descr",
   "execute_trans": "combat_used_x",

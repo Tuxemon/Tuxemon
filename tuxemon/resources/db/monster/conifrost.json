@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_conifrost",
-    "name_trans": "txmn_conifrost_name",
-    "description_trans": "txmn_conifrost_descr",
-    "category_trans": "txmn_conifrost_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_water_shot"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/conifrost-front.png",
-        "battle2": "gfx/sprites/battle/conifrost-back.png",
-        "menu1": "gfx/sprites/battle/conifrost-menu01.png",
-        "menu2": "gfx/sprites/battle/conifrost-menu02.png"
-    },
     "types": [
         "wood, water"
     ],

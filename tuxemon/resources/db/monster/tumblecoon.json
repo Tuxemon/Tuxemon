@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_tumblecoon",
-    "name_trans": "txmn_tumblecoon_name",
-    "description_trans": "txmn_tumblecoon_descr",
-    "category_trans": "txmn_tumblecoon_category",
 
     "attack_base":            50,
     "defense_base":           6,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/tumblecoon-front.png",
-        "battle2": "gfx/sprites/battle/tumblecoon-back.png",
-        "menu1": "gfx/sprites/battle/tumblecoon-menu01.png",
-        "menu2": "gfx/sprites/battle/tumblecoon-menu02.png"
-    },
     "types": [
         "poison"
     ],

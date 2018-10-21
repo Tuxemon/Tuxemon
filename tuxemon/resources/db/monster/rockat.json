@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_rockat",
-    "name_trans": "txmn_rockat_name",
-    "description_trans": "txmn_rockat_descr",
-    "category_trans": "txmn_rockat_category",
 
     "attack_base":            65,
     "defense_base":           8,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/rockat-front.png",
-        "battle2": "gfx/sprites/battle/rockat-back.png",
-        "menu1": "gfx/sprites/battle/rockat-menu01.png",
-        "menu2": "gfx/sprites/battle/rockat-menu02.png"
-    },
     "types": [
         "earth"
     ],

@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_noctalo",
-    "name_trans": "txmn_noctalo_name",
-    "description_trans": "txmn_noctalo_descr",
-    "category_trans": "txmn_noctalo_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_water_shot"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/noctalo-front.png",
-        "battle2": "gfx/sprites/battle/noctalo-back.png",
-        "menu1": "gfx/sprites/battle/noctalo-menu01.png",
-        "menu2": "gfx/sprites/battle/noctalo-menu02.png"
-    },
     "types": [
         "water"
     ],

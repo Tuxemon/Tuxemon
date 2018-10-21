@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_spycozeus",
-    "name_trans": "txmn_spycozeus_name",
-    "description_trans": "txmn_spycozeus_descr",
-    "category_trans": "txmn_spycozeus_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/spycozeus-front.png",
-        "battle2": "gfx/sprites/battle/spycozeus-back.png",
-        "menu1": "gfx/sprites/battle/spycozeus-menu01.png",
-        "menu2": "gfx/sprites/battle/spycozeus-menu02.png"
-    },
     "types": [
         "none"
     ],

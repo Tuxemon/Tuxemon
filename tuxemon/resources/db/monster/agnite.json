@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_agnite",
-    "name_trans": "txmn_agnite_name",
-    "description_trans": "txmn_agnite_descr",
-    "category_trans": "txmn_agnite_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_fire_explosion"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/agnite-front.png",
-        "battle2": "gfx/sprites/battle/agnite-back.png",
-        "menu1": "gfx/sprites/battle/agnite-menu01.png",
-        "menu2": "gfx/sprites/battle/agnite-menu02.png"
-    },
     "types": [
         "fire"
     ],

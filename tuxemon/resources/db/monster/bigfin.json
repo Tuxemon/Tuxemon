@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_bigfin",
-    "name_trans": "txmn_bigfin_name",
-    "description_trans": "txmn_bigfin_descr",
-    "category_trans": "txmn_bigfin_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_water_shot"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/bigfin-front.png",
-        "battle2": "gfx/sprites/battle/bigfin-back.png",
-        "menu1": "gfx/sprites/battle/bigfin-menu01.png",
-        "menu2": "gfx/sprites/battle/bigfin-menu02.png"
-    },
     "types": [
         "water",
         "wood"

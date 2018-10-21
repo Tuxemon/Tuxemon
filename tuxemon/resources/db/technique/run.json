@@ -1,5 +1,4 @@
 {
-  "slug": "technique_run",
   "name_trans": "menu_run",
   "execute_trans": "combat_used_x",
   "success_trans": "generic_thing_success",

@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_selket",
-    "name_trans": "txmn_selket_name",
-    "description_trans": "txmn_selket_descr",
-    "category_trans": "txmn_selket_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/selket-front.png",
-        "battle2": "gfx/sprites/battle/selket-back.png",
-        "menu1": "gfx/sprites/battle/selket-menu01.png",
-        "menu2": "gfx/sprites/battle/selket-menu02.png"
-    },
     "types": [
         "earth"
     ],

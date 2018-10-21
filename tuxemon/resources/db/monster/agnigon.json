@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_agnigon",
-    "name_trans": "txmn_agnigon_name",
-    "description_trans": "txmn_agnigon_descr",
-    "category_trans": "txmn_agnigon_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_fire_explosion"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/agnigon-front.png",
-        "battle2": "gfx/sprites/battle/agnigon-back.png",
-        "menu1": "gfx/sprites/battle/agnigon-menu01.png",
-        "menu2": "gfx/sprites/battle/agnigon-menu02.png"
-    },
     "types": [
         "fire"
     ],

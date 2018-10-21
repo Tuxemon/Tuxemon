@@ -1,157 +1,156 @@
 {
-    "slug": "new_txmn",
-    "monsters":[
+    "monsters": [
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_wrougon"
+            "monster": "txmn_wrougon"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_anoleaf"
+            "monster": "txmn_anoleaf"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_chloragon"
+            "monster": "txmn_chloragon"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_tweesher"
+            "monster": "txmn_tweesher"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_merlicun"
+            "monster": "txmn_merlicun"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_aardorn"
+            "monster": "txmn_aardorn"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_agnite"
+            "monster": "txmn_agnite"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_cairfrey"
+            "monster": "txmn_cairfrey"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_capiti"
+            "monster": "txmn_capiti"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_cardiling"
+            "monster": "txmn_cardiling"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_chillimp"
+            "monster": "txmn_chillimp"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_falcono"
+            "monster": "txmn_falcono"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_noctula"
+            "monster": "txmn_noctula"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_nostray"
+            "monster": "txmn_nostray"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_selket"
+            "monster": "txmn_selket"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_spycozeus"
+            "monster": "txmn_spycozeus"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_conifrost"
+            "monster": "txmn_conifrost"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_vamporm"
+            "monster": "txmn_vamporm"
         },
         {
-            "encounter_rate":1,
-            "level_range":[
+            "encounter_rate": 1,
+            "level_range": [
                 1,
                 6
             ],
-            "monster":"txmn_zunna"
+            "monster": "txmn_zunna"
         }
     ]
 }

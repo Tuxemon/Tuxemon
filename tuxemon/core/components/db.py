@@ -39,6 +39,15 @@ from tuxemon.core import prepare
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
+SLUG_PREFIX_MAP = {
+    'encounter': None,
+    'inventory': 'inv',
+    'item': 'item',
+    'monster': 'txmn',
+    'npc': 'npc',
+    'technique': 'technique',
+}
+
 
 def process_targets(json_targets):
     """ Return values in order of preference for targeting things.
@@ -92,7 +101,6 @@ class JSONDatabase(object):
         else:
             self.load_json(directory)
 
-
     def load_json(self, directory):
         """Loads all JSON items under a specified path.
 
@@ -113,6 +121,8 @@ class JSONDatabase(object):
             with open(self.path + directory + "/" + json_item) as fp:
                 try:
                     item = json.load(fp)
+                    if not item.get('slug'):
+                        item['slug'] = get_slug_name(json_item, directory)
                 except ValueError:
                     logger.error("invalid JSON {}".format(json_item))
                     raise
@@ -122,7 +132,6 @@ class JSONDatabase(object):
             else:
                 logger.error(item, json)
                 raise Exception("Error: Item with this slug was already loaded.")
-
 
     def lookup(self, slug, table="monster"):
         """Looks up a monster, technique, item, or npc based on slug.
@@ -137,8 +146,10 @@ class JSONDatabase(object):
         :returns: A dictionary from the resulting lookup.
 
         """
-        return self.database[table][slug]
-
+        return set_defaults(
+            self.database[table][slug],
+            table
+        )
 
     def lookup_sprite(self, slug, table="sprite"):
         """Looks up a monster's sprite image paths based on monster slug.
@@ -162,3 +173,45 @@ class JSONDatabase(object):
 
         return results
 
+
+def set_defaults(results, table):
+    if table == "monster":
+        slug = results['slug']
+
+        for key, suffix in (
+                ('name_trans', 'name'),
+                ('description_trans', 'descr'),
+                ('category_trans', 'category'),
+        ):
+            if not results.get(key):
+                results[key] = "{}_{}".format(slug, suffix)
+
+        assert slug.startswith("txmn_"), "monster slug %s should start with txmn_" % slug
+        tuxmon_name = slug.partition("_")[2]
+        sprites = results.setdefault(
+            "sprites",
+            {}
+        )
+
+        for key, view in (
+                ('battle1', 'front'),
+                ('battle2', 'back'),
+                ('menu1', 'menu01'),
+                ('menu2', 'menu02'),
+        ):
+            if not results.get(key):
+                sprites[key] = "gfx/sprites/battle/{}-{}.png".format(
+                    tuxmon_name,
+                    view
+                )
+
+    return results
+
+
+def get_slug_name(json_name, table):
+    mon_name = json_name.partition(".")[0]
+    prefix = SLUG_PREFIX_MAP.get(table)
+    if prefix:
+        return "{}_{}".format(prefix, mon_name)
+    else:
+        return mon_name

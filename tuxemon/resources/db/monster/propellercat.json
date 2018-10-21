@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_propellercat",
-    "name_trans": "txmn_propellercat_name",
-    "description_trans": "txmn_propellercat_descr",
-    "category_trans": "txmn_propellercat_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_poison_sting"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/propellercat-front.png",
-        "battle2": "gfx/sprites/battle/propellercat-back.png",
-        "menu1": "gfx/sprites/battle/propellercat-menu01.png",
-        "menu2": "gfx/sprites/battle/propellercat-menu02.png"
-    },
     "types": [
         "metal"
     ],

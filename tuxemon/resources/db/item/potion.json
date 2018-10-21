@@ -1,5 +1,4 @@
 {
-  "slug": "item_potion",
   "name_trans": "item_potion_name",
   "description_trans": "item_potion_descr",
   "execute_trans": "combat_used_x",

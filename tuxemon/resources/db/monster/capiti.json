@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_capiti",
-    "name_trans": "txmn_capiti_name",
-    "description_trans": "txmn_capiti_descr",
-    "category_trans": "txmn_capiti_category",
 
     "attack_base":            60,
     "defense_base":           7,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/capiti-front.png",
-        "battle2": "gfx/sprites/battle/capiti-back.png",
-        "menu1": "gfx/sprites/battle/capiti-menu01.png",
-        "menu2": "gfx/sprites/battle/capiti-menu02.png"
-    },
     "types": [
         "wood"
     ],

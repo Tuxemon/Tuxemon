@@ -1,8 +1,4 @@
 {
-    "slug": "txmn_simba",
-    "name_trans": "txmn_simba_name",
-    "description_trans": "txmn_simba_descr",
-    "category_trans": "txmn_simba_category",
 
     "attack_base":            70,
     "defense_base":           8,
@@ -32,12 +28,6 @@
             "technique": "technique_bite"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/simba-front.png",
-        "battle2": "gfx/sprites/battle/simba-back.png",
-        "menu1": "gfx/sprites/battle/simba-menu01.png",
-        "menu2": "gfx/sprites/battle/simba-menu02.png"
-    },
     "types": [
         "poison"
     ],

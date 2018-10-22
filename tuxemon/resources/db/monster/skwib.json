@@ -4,7 +4,20 @@
     "description_trans": "txmn_skwib_descr",
     "category_trans": "txmn_skwib_category",
     "ai": "RandomAI",
-    "moveset": [],
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_font"
+        }
+    ],
     "shape": "",
     "sprites": {
         "battle1": "gfx/sprites/battle/skwib-front.png",

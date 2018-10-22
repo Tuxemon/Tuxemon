@@ -4,7 +4,20 @@
     "description_trans": "txmn_fancair_descr",
     "category_trans": "txmn_fancair_category",
     "ai": "RandomAI",
-    "moveset": [],
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        }
+    ],
     "shape": "",
     "sprites": {
         "battle1": "gfx/sprites/battle/fancair-front.png",

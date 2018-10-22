@@ -4,7 +4,20 @@
     "description_trans": "txmn_angrito_descr",
     "category_trans": "txmn_angrito_category",
     "ai": "RandomAI",
-    "moveset": [],
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
+        }
+    ],
     "shape": "",
     "sprites": {
         "battle1": "gfx/sprites/battle/angrito-front.png",

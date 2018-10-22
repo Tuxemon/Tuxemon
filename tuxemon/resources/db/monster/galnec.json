@@ -4,7 +4,20 @@
     "description_trans": "txmn_galnec_descr",
     "category_trans": "txmn_galnec_category",
     "ai": "RandomAI",
-    "moveset": [],
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        }
+    ],
     "shape": "",
     "sprites": {
         "battle1": "gfx/sprites/battle/galnec-front.png",

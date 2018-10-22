@@ -4,7 +4,20 @@
     "description_trans": "txmn_spighter_descr",
     "category_trans": "txmn_spighter_category",
     "ai": "RandomAI",
-    "moveset": [],
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_web"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fester"
+        }
+    ],
     "shape": "Grub",
     "sprites": {
         "battle1": "gfx/sprites/battle/spighter-front.png",

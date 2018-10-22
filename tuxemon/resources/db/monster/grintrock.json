@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Brute",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/grintrock-front.png",
-        "battle2": "gfx/sprites/battle/grintrock-back.png",
-        "menu1": "gfx/sprites/battle/grintrock-menu01.png",
-        "menu2": "gfx/sprites/battle/grintrock-menu02.png"
-    },
     "types": [
         "Earth",
         "Metal"

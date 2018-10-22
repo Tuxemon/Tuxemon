@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Serpent",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/vivipere-front.png",
-        "battle2": "gfx/sprites/battle/vivipere-back.png",
-        "menu1": "gfx/sprites/battle/vivipere-menu01.png",
-        "menu2": "gfx/sprites/battle/vivipere-menu02.png"
-    },
     "types": [
         "Earth"
     ],

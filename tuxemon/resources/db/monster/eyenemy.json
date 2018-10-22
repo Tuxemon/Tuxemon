@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Serpent",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/eyenemy-front.png",
-        "battle2": "gfx/sprites/battle/eyenemy-back.png",
-        "menu1": "gfx/sprites/battle/eyenemy-menu01.png",
-        "menu2": "gfx/sprites/battle/eyenemy-menu02.png"
-    },
     "types": [
         "Metal"
     ],

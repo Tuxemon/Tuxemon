@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Polliwog",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/nudikill-front.png",
-        "battle2": "gfx/sprites/battle/nudikill-back.png",
-        "menu1": "gfx/sprites/battle/nudikill-menu01.png",
-        "menu2": "gfx/sprites/battle/nudikill-menu02.png"
-    },
     "types": [
         "Water"
     ],

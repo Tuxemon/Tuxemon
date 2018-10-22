@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/dune pincher-front.png",
-        "battle2": "gfx/sprites/battle/dune pincher-back.png",
-        "menu1": "gfx/sprites/battle/dune pincher-menu01.png",
-        "menu2": "gfx/sprites/battle/dune pincher-menu02.png"
-    },
     "types": [
         "Water"
     ],

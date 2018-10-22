@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Aquatic",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/fluoresfin-front.png",
-        "battle2": "gfx/sprites/battle/fluoresfin-back.png",
-        "menu1": "gfx/sprites/battle/fluoresfin-menu01.png",
-        "menu2": "gfx/sprites/battle/fluoresfin-menu02.png"
-    },
     "types": [
         "Water"
     ],

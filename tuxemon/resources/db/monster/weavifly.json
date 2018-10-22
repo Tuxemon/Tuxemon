@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/weavifly-front.png",
-        "battle2": "gfx/sprites/battle/weavifly-back.png",
-        "menu1": "gfx/sprites/battle/weavifly-menu01.png",
-        "menu2": "gfx/sprites/battle/weavifly-menu02.png"
-    },
     "types": [
         "Metal"
     ],

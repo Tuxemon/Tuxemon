@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Polliwog",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/embazook-front.png",
-        "battle2": "gfx/sprites/battle/embazook-back.png",
-        "menu1": "gfx/sprites/battle/embazook-menu01.png",
-        "menu2": "gfx/sprites/battle/embazook-menu02.png"
-    },
     "types": [
         "Fire",
         "Metal"

@@ -64,6 +64,7 @@ class TuxepediaWebExtractor:
                 safe_name = fix_name(name.lower())
 
                 self.get_logger().info(name)
+                self.get_complete_monster_sprites(monster_row)
                 monsters[name] = {
                     "slug": f"txmn_{safe_name}",
                     "name_trans": f"txmn_{safe_name}_name",
@@ -75,7 +76,6 @@ class TuxepediaWebExtractor:
                     # "call": self.get_monster_call(monster_row),
                     "moveset": [],
                     "shape": self.get_monster_shape(monster_row),
-                    "sprites": self.get_complete_monster_sprites(monster_row),
                     # "tuxepedia_url": self.get_monster_url(monster_row),
                     "types": self.get_monster_types(monster_row),
                     "weight": 25,

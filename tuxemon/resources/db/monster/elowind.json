@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/elowind-front.png",
-        "battle2": "gfx/sprites/battle/elowind-back.png",
-        "menu1": "gfx/sprites/battle/elowind-menu01.png",
-        "menu2": "gfx/sprites/battle/elowind-menu02.png"
-    },
     "types": [
         "Water"
     ],

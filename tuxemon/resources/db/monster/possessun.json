@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/possessun-front.png",
-        "battle2": "gfx/sprites/battle/possessun-back.png",
-        "menu1": "gfx/sprites/battle/possessun-menu01.png",
-        "menu2": "gfx/sprites/battle/possessun-menu02.png"
-    },
     "types": [
         "Metal"
     ],

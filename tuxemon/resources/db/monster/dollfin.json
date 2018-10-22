@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Aquatic",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/dollfin-front.png",
-        "battle2": "gfx/sprites/battle/dollfin-back.png",
-        "menu1": "gfx/sprites/battle/dollfin-menu01.png",
-        "menu2": "gfx/sprites/battle/dollfin-menu02.png"
-    },
     "types": [
         "Water"
     ],

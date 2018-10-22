@@ -19,12 +19,6 @@
         }
     ],
     "shape": "",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/saurchin-front.png",
-        "battle2": "gfx/sprites/battle/saurchin-back.png",
-        "menu1": "gfx/sprites/battle/saurchin-menu01.png",
-        "menu2": "gfx/sprites/battle/saurchin-menu02.png"
-    },
     "types": [
         "Water"
     ],

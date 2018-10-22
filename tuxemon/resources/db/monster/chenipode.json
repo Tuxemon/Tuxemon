@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/chenipode-front.png",
-        "battle2": "gfx/sprites/battle/chenipode-back.png",
-        "menu1": "gfx/sprites/battle/chenipode-menu01.png",
-        "menu2": "gfx/sprites/battle/chenipode-menu02.png"
-    },
     "types": [
         "Earth"
     ],

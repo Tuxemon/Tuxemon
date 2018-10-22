@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Dragon",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/drokoro-front.png",
-        "battle2": "gfx/sprites/battle/drokoro-back.png",
-        "menu1": "gfx/sprites/battle/drokoro-menu01.png",
-        "menu2": "gfx/sprites/battle/drokoro-menu02.png"
-    },
     "types": [
         "Fire"
     ],

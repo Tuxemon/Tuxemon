@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Sprite",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/shybulb-front.png",
-        "battle2": "gfx/sprites/battle/shybulb-back.png",
-        "menu1": "gfx/sprites/battle/shybulb-menu01.png",
-        "menu2": "gfx/sprites/battle/shybulb-menu02.png"
-    },
     "types": [
         "Wood"
     ],

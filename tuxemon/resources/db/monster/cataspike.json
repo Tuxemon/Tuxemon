@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/cataspike-front.png",
-        "battle2": "gfx/sprites/battle/cataspike-back.png",
-        "menu1": "gfx/sprites/battle/cataspike-menu01.png",
-        "menu2": "gfx/sprites/battle/cataspike-menu02.png"
-    },
     "types": [
         "Metal"
     ],

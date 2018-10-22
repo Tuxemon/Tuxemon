@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Serpent",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/pythwire-front.png",
-        "battle2": "gfx/sprites/battle/pythwire-back.png",
-        "menu1": "gfx/sprites/battle/pythwire-menu01.png",
-        "menu2": "gfx/sprites/battle/pythwire-menu02.png"
-    },
     "types": [
         "Metal"
     ],

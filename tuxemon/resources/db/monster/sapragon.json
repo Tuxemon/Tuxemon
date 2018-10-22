@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Dragon",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/sapragon-front.png",
-        "battle2": "gfx/sprites/battle/sapragon-back.png",
-        "menu1": "gfx/sprites/battle/sapragon-menu01.png",
-        "menu2": "gfx/sprites/battle/sapragon-menu02.png"
-    },
     "types": [
         "Wood"
     ],

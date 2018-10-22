@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/tikoal-front.png",
-        "battle2": "gfx/sprites/battle/tikoal-back.png",
-        "menu1": "gfx/sprites/battle/tikoal-menu01.png",
-        "menu2": "gfx/sprites/battle/tikoal-menu02.png"
-    },
     "types": [
         "Fire",
         "Wood"

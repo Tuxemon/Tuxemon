@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/birdling-front.png",
-        "battle2": "gfx/sprites/battle/birdling-back.png",
-        "menu1": "gfx/sprites/battle/birdling-menu01.png",
-        "menu2": "gfx/sprites/battle/birdling-menu02.png"
-    },
     "types": [
         "Wood"
     ],

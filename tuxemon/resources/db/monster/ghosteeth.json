@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/ghosteeth-front.png",
-        "battle2": "gfx/sprites/battle/ghosteeth-back.png",
-        "menu1": "gfx/sprites/battle/ghosteeth-menu01.png",
-        "menu2": "gfx/sprites/battle/ghosteeth-menu02.png"
-    },
     "types": [
         "Metal"
     ],

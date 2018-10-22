@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Dragon",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/agnigon-front.png",
-        "battle2": "gfx/sprites/battle/agnigon-back.png",
-        "menu1": "gfx/sprites/battle/agnigon-menu01.png",
-        "menu2": "gfx/sprites/battle/agnigon-menu02.png"
-    },
     "types": [
         "Fire"
     ],

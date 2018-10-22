@@ -19,12 +19,6 @@
         }
     ],
     "shape": "",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/happito-front.png",
-        "battle2": "gfx/sprites/battle/happito-back.png",
-        "menu1": "gfx/sprites/battle/happito-menu01.png",
-        "menu2": "gfx/sprites/battle/happito-menu02.png"
-    },
     "types": [
         "Earth",
         "Metal"

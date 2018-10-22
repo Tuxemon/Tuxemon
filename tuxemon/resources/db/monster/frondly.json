@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Sprite",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/frondly-front.png",
-        "battle2": "gfx/sprites/battle/frondly-back.png",
-        "menu1": "gfx/sprites/battle/frondly-menu01.png",
-        "menu2": "gfx/sprites/battle/frondly-menu02.png"
-    },
     "types": [
         "Wood"
     ],

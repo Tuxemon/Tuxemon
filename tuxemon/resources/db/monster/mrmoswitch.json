@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Sprite",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/mrmoswitch-front.png",
-        "battle2": "gfx/sprites/battle/mrmoswitch-back.png",
-        "menu1": "gfx/sprites/battle/mrmoswitch-menu01.png",
-        "menu2": "gfx/sprites/battle/mrmoswitch-menu02.png"
-    },
     "types": [
         "Metal"
     ],

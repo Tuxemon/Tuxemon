@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_nudiflot_male",
+    "name_trans": "txmn_nudiflot_male_name",
+    "description_trans": "txmn_nudiflot_male_descr",
+    "category_trans": "txmn_nudiflot_male_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flood"
+        }
+    ],
+    "shape": "Polliwog",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/nudiflot-male-front.png",
+        "battle2": "gfx/sprites/battle/nudiflot-male-back.png",
+        "menu1": "gfx/sprites/battle/nudiflot-male-menu01.png",
+        "menu2": "gfx/sprites/battle/nudiflot-male-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

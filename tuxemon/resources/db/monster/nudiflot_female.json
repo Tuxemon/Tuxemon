@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_nudiflot_female",
+    "name_trans": "txmn_nudiflot_female_name",
+    "description_trans": "txmn_nudiflot_female_descr",
+    "category_trans": "txmn_nudiflot_female_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flood"
+        }
+    ],
+    "shape": "Polliwog",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/nudiflot-female-front.png",
+        "battle2": "gfx/sprites/battle/nudiflot-female-back.png",
+        "menu1": "gfx/sprites/battle/nudiflot-female-menu01.png",
+        "menu2": "gfx/sprites/battle/nudiflot-female-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

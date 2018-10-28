@@ -16,6 +16,7 @@ class WEB_PATHS:
     # TODO: add xpath filters for other parts of the Tuxepedia as needed
     monsters_xpath = '//*[@id="mw-content-text"]/table[1]/tr[1]/td[1]/table'
     monster_sound_xpath = '//*[@id="mw-content-text"]/div[1]/a'
+    monster_main_sprites = '//*[@id="mw-content-text"]/table[4]'
 
 
 class RESOURCE_PATHS:
@@ -28,8 +29,8 @@ class RESOURCE_PATHS:
     database = os.path.join(resources, "db", "tuxepedia", "tuxepedia.sqlite")
 
     # tuxemon sprites and sound file paths
-    monster_sprites = os.path.join(resources, "gfx", "sprites", "tuxemon")
+    monster_sprites = os.path.join(resources, "gfx", "sprites", "battle")
     monster_sounds = os.path.join(resources, "sounds", "tuxemon")
 
     # tuxemon JSON/YAML file paths
-    monster_stats = os.path.join(resources, "db", "tuxemon")
+    monster_stats = os.path.join(resources, "db", "monster")

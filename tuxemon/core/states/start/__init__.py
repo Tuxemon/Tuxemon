@@ -59,10 +59,6 @@ class BackgroundState(State):
     def draw(self, surface):
         surface.fill((0, 0, 0, 0))
 
-    def resume(self):
-        self.game.pop_state()
-
-
 class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """

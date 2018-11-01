@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_happito",
+    "name_trans": "txmn_happito_name",
+    "description_trans": "txmn_happito_descr",
+    "category_trans": "txmn_happito_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        }
+    ],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/happito-front.png",
+        "battle2": "gfx/sprites/battle/happito-back.png",
+        "menu1": "gfx/sprites/battle/happito-menu01.png",
+        "menu2": "gfx/sprites/battle/happito-menu02.png"
+    },
+    "types": [
+        "Earth",
+        "Metal"
+    ],
+    "weight": 25
+}

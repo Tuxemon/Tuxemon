@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_sumchon",
+    "name_trans": "txmn_sumchon_name",
+    "description_trans": "txmn_sumchon_descr",
+    "category_trans": "txmn_sumchon_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_blade"
+        }
+    ],
+    "shape": "Brute",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/sumchon-front.png",
+        "battle2": "gfx/sprites/battle/sumchon-back.png",
+        "menu1": "gfx/sprites/battle/sumchon-menu01.png",
+        "menu2": "gfx/sprites/battle/sumchon-menu02.png"
+    },
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

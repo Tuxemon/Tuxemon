@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_polyrock",
+    "name_trans": "txmn_polyrock_name",
+    "description_trans": "txmn_polyrock_descr",
+    "category_trans": "txmn_polyrock_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_one_two"
+        }
+    ],
+    "shape": "Brute",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/polyrock-front.png",
+        "battle2": "gfx/sprites/battle/polyrock-back.png",
+        "menu1": "gfx/sprites/battle/polyrock-menu01.png",
+        "menu2": "gfx/sprites/battle/polyrock-menu02.png"
+    },
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

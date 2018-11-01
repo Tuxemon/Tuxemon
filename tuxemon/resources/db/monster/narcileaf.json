@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_narcileaf",
+    "name_trans": "txmn_narcileaf_name",
+    "description_trans": "txmn_narcileaf_descr",
+    "category_trans": "txmn_narcileaf_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_take_cover"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleeping_powder"
+        }
+    ],
+    "shape": "Blob",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/narcileaf-front.png",
+        "battle2": "gfx/sprites/battle/narcileaf-back.png",
+        "menu1": "gfx/sprites/battle/narcileaf-menu01.png",
+        "menu2": "gfx/sprites/battle/narcileaf-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

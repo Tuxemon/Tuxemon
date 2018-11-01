@@ -3,35 +3,22 @@
     "name_trans": "txmn_sludgehog_name",
     "description_trans": "txmn_sludgehog_descr",
     "category_trans": "txmn_sludgehog_category",
-
-    "attack_base":            57,
-    "defense_base":           7.5,
-    "hp_base":                65,
-    "special_attack_base":    8,
-    "special_defense_base":   10,
-    "speed_base":             7,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1.1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
     "moveset": [
         {
-            "level_learned": 1,
-            "technique": "technique_pound"
+            "level_learned": 2,
+            "technique": "technique_fester"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_energy_claws"
         }
     ],
+    "shape": "Landrace",
     "sprites": {
         "battle1": "gfx/sprites/battle/sludgehog-front.png",
         "battle2": "gfx/sprites/battle/sludgehog-back.png",
@@ -39,7 +26,7 @@
         "menu2": "gfx/sprites/battle/sludgehog-menu02.png"
     },
     "types": [
-        "wood"
+        "Earth"
     ],
-    "weight": 77
+    "weight": 25
 }

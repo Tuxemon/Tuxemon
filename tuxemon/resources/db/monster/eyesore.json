@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_eyesore",
+    "name_trans": "txmn_eyesore_name",
+    "description_trans": "txmn_eyesore_descr",
+    "category_trans": "txmn_eyesore_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        }
+    ],
+    "shape": "Serpent",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/eyesore-front.png",
+        "battle2": "gfx/sprites/battle/eyesore-back.png",
+        "menu1": "gfx/sprites/battle/eyesore-menu01.png",
+        "menu2": "gfx/sprites/battle/eyesore-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

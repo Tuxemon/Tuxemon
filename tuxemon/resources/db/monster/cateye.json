@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_cateye",
+    "name_trans": "txmn_cateye_name",
+    "description_trans": "txmn_cateye_descr",
+    "category_trans": "txmn_cateye_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flow"
+        }
+    ],
+    "shape": "Hunter",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/cateye-front.png",
+        "battle2": "gfx/sprites/battle/cateye-back.png",
+        "menu1": "gfx/sprites/battle/cateye-menu01.png",
+        "menu2": "gfx/sprites/battle/cateye-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

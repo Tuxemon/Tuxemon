@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_komodraw",
+    "name_trans": "txmn_komodraw_name",
+    "description_trans": "txmn_komodraw_descr",
+    "category_trans": "txmn_komodraw_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        }
+    ],
+    "shape": "Humanoid",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/komodraw-front.png",
+        "battle2": "gfx/sprites/battle/komodraw-back.png",
+        "menu1": "gfx/sprites/battle/komodraw-menu01.png",
+        "menu2": "gfx/sprites/battle/komodraw-menu02.png"
+    },
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

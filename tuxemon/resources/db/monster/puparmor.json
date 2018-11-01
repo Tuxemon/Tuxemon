@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_puparmor",
+    "name_trans": "txmn_puparmor_name",
+    "description_trans": "txmn_puparmor_descr",
+    "category_trans": "txmn_puparmor_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_hibernate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_wallow"
+        }
+    ],
+    "shape": "Blob",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/puparmor-front.png",
+        "battle2": "gfx/sprites/battle/puparmor-back.png",
+        "menu1": "gfx/sprites/battle/puparmor-menu01.png",
+        "menu2": "gfx/sprites/battle/puparmor-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

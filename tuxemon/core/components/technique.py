@@ -46,6 +46,36 @@ techniques.load("technique")
 
 tech_ret_value = namedtuple("use", "name success properties")
 
+type_chart = namedtuple("TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"])
+
+TYPES = {
+    "aether": type_chart(None, None, None, None),
+    "normal": type_chart(None, None, None, None),
+    "wood": type_chart(
+        "earth", "fire", "metal", "water"
+    ),
+    "fire": type_chart(
+        "metal", "earth", "water", "wood"
+    ),
+    "earth": type_chart(
+        "water", "metal", "wood", "fire"
+    ),
+    "metal": type_chart(
+        "wood", "water", "fire", "earth"
+    ),
+    "water": type_chart(
+        "fire", "wood", "earth", "metal"
+    ),
+}
+
+
+def merge_results(result, meta_result):
+    status = result.pop("status", None)
+    if status:
+        meta_result["statuses"].append(status)
+    meta_result.update(result)
+    return meta_result
+
 
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
@@ -65,15 +95,27 @@ class Technique(object):
 
     """
 
-    def __init__(self, slug=None):
-        self.slug = slug
-        self.name = "Pound"
-        self.category = "attack"
-        self.type1 = "Normal"
-        self.type2 = None
+    def __init__(self, slug=None, carrier=None, link=None):
         self._combat_counter = 0  # number of turns that this technique has been active
-        self.power = 1
+        self.accuracy = 0
+        self.animation = None
+        self.can_apply_status = False
+        self.carrier = carrier
+        self.category = "attack"
         self.effect = []
+        self.images = []
+        self.is_area = False
+        self.is_fast = False
+        self.link = link
+        self.name = "Pound"
+        self.next_use = 0
+        self.potency = 0
+        self.power = 1
+        self.range = None
+        self.recharge_length = 0
+        self.slug = slug
+        self.type1 = "aether"
+        self.type2 = None
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -112,7 +154,7 @@ class Technique(object):
         self._combat_counter = 0
         self._life_counter = 0
 
-        if results['types']:
+        if results.get('types'):
             self.type1 = results["types"][0]
             if len(results['types']) > 1:
                 self.type2 = results["types"][1]
@@ -121,7 +163,13 @@ class Technique(object):
         else:
             self.type1 = self.type2 = None
 
-        self.power = results["power"]
+        self.power = results.get("power")
+        self.is_fast = results.get("is_fast")
+        self.recharge_length = results.get("recharge")
+        self.is_area = results.get("is_area")
+        self.range = results.get("range")
+        self.accuracy = results.get("accuracy")
+        self.potency = results.get("potency")
         self.effect = results["effects"]
         self.target = db.process_targets(results["target"])
 
@@ -153,6 +201,12 @@ class Technique(object):
         """
         self._combat_counter += 1
         self._life_counter += 1
+
+    def recharge(self):
+        self.next_use -= 1
+
+    def full_recharge(self):
+        self.next_use = 0
 
     def reset_combat_counter(self):
         """ Reset the combat counter.
@@ -192,13 +246,34 @@ class Technique(object):
             'success': False,
             'should_tackle': False,
             'capture': False,
+            'statuses': [],
         }
 
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
         for effect in self.effect:
-            result = getattr(self, str(effect))(user, target)
-            meta_result.update(result)
+            if effect == "damage":
+                result = self.damage(user, target)
+            elif effect == "poison":
+                result = self.apply_status("status_poison", target)
+            elif effect == "lifeleech":
+                result = self.apply_lifeleech(user, target)
+            elif effect == "recover":
+                result = self.apply_status("status_recover", user)
+            elif effect == "status":
+                if self.category == "poison":
+                    result = self.poison(target)
+                elif self.category == "lifeleech":
+                    result = self.lifeleech(target)
+                elif self.category == "recover":
+                    result = self.recover(target)
+                else:
+                    result = getattr(self, self.category)(target)
+            else:
+                result = getattr(self, str(effect))(user, target)
+            meta_result = merge_results(result, meta_result)
+
+        self.next_use = self.recharge_length
 
         return meta_result
 
@@ -211,27 +286,31 @@ class Technique(object):
         :type user: core.components.monster.Monster
         :type target: core.components.monster.Monster
 
-        :rtype: int
+        :rtype: tuple(int, str)
         """
-        # Original Pokemon battle damage formula:
-        # according to: http://www.math.miami.edu/~jam/azure/compendium/battdam.htm
-        # ((2 * user.level / 7) * user.attack * self.power) / target.defense) / 50) +2) * stab_bonus) * type_modifiers/10) * random.randrange(217, 255))/255
+        if self.range == "melee":
+            user_strength = user.melee * (7 + user.level)
+            target_resist = target.armour
+        elif self.range == "touch":
+            user_strength = user.melee * (7 + user.level)
+            target_resist = target.dodge
+        elif self.range == "ranged":
+            user_strength = user.ranged * (7 + user.level)
+            target_resist = target.dodge
+        elif self.range == "reach":
+            user_strength = user.ranged * (7 + user.level)
+            target_resist = target.armour
+        elif self.range == "reliable":
+            user_strength = 7 + user.level
+            target_resist = 1
+        else:
+            logger.error('unhandled damage category %s %s', self.category, self.range)
+            raise RuntimeError
 
-        if self.category == "physical":
-            level_modifier = ((2 * user.level) / 7.)
-            attack_modifier = user.attack * self.power
-            return int(((level_modifier * attack_modifier) / float(target.defense)) / 50.)
-
-        elif self.category == "special":
-            level_modifier = ((2 * user.level) / 7.)
-            attack_modifier = user.special_attack * self.power
-            return int(((level_modifier * attack_modifier) / float(target.special_defense)) / 50.)
-
-        elif self.category == "poison":
-            return int(self.power)
-
-        logger.error('unhandled damage category')
-        raise RuntimeError
+        mult = self.get_damage_multiplier(target)
+        move_strength = self.power * mult
+        damage = int(user_strength * move_strength / target_resist)
+        return damage, mult
 
     def damage(self, user, target):
         """ This effect applies damage to a target monster. Damage calculations are based upon the
@@ -246,19 +325,48 @@ class Technique(object):
 
         :rtype: dict
         """
-        damage = self.calculate_damage(user, target)
-        if damage:
+        hit = self.accuracy >= random.random()
+        if hit or self.is_area:
+            self.can_apply_status = True
+            damage, mult = self.calculate_damage(user, target)
+            if not hit:
+                damage /= 2
             target.current_hp -= damage
+        else:
+            damage = 0
+            mult = 1
 
         return {
             'damage': damage,
+            'element_multiplier': mult,
             'should_tackle': bool(damage),
             'success': bool(damage),
         }
 
-    def poison(self, user, target):
-        """ This effect has a chance to apply the poison status effect to a target monster.
-        Currently there is a 1/10 chance of poison.
+    def apply_status(self, slug, target):
+        """ This effect has a chance to apply a status effect to a target monster.
+
+        :param target: The Monster object that we are using this technique on.
+        :param slug: The Monster object that we are using this technique on.
+
+        :type user: core.components.monster.Monster
+        :type target: core.components.monster.Monster
+
+        :rtype: dict
+        """
+        already_applied = any(t for t in target.status if t.slug == slug)
+        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        tech = None
+        if success:
+            tech = Technique(slug, carrier=target)
+            target.apply_status(tech)
+
+        return {
+            'status': tech,
+        }
+
+    def apply_lifeleech(self, user, target):
+        """ This effect has a chance to apply the lifeleech status effect to a target monster.
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -268,17 +376,44 @@ class Technique(object):
 
         :rtype: dict
         """
-        already_poisoned = any(t for t in target.status if t.slug == "status_poison")
-
-        if not already_poisoned and random.randrange(1, 2) == 1:
-            target.apply_status(Technique("status_poison"))
-            success = True
-        else:
-            success = False
+        already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
+        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        tech = None
+        if success:
+            tech = Technique("status_lifeleech", carrier=target, link=user)
+            target.apply_status(tech)
 
         return {
-            'should_tackle': success,
-            'success': success,
+            'status': tech,
+        }
+
+    def poison(self, target):
+        damage = target.hp / 8
+        target.current_hp -= damage
+        return {
+            'damage': damage,
+            'should_tackle': bool(damage),
+            'success': bool(damage),
+        }
+
+    def recover(self, target):
+        heal = min(target.hp / 16, target.hp - target.current_hp)
+        target.current_hp += heal
+        return {
+            'damage': heal,
+            'should_tackle': False,
+            'success': bool(heal),
+        }
+
+    def lifeleech(self, target):
+        user = self.link
+        damage = min(target.hp / 2, target.current_hp, user.hp - user.current_hp)
+        target.current_hp -= damage
+        user.current_hp += damage
+        return {
+            'damage': damage,
+            'should_tackle': bool(damage),
+            'success': bool(damage),
         }
 
     def faint(self, user, target):
@@ -346,3 +481,20 @@ class Technique(object):
 
     def get_state(self):
         return self.slug
+
+    def get_damage_multiplier(self, target):
+        m = 1
+        for attack_type in (self.type1, self.type2):
+            if attack_type is None:
+                continue
+            for target_type in (target.type1, target.type2):
+                body = TYPES.get(target_type, TYPES["aether"])
+                if body.extra_damage is None:
+                    continue
+                if attack_type == body.extra_damage:
+                    m *= 2
+                elif attack_type == body.resist_damage:
+                    m /= 2.0
+        m = min(4, m)
+        m = max(0.25, m)
+        return m

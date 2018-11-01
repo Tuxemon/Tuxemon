@@ -565,10 +565,10 @@ class Npc(Entity):
         npc_details = npcs.database['npc'][self.slug]
         for npc_monster_details in npc_details['monsters']:
             current_monster = monster.Monster(save_data=npc_monster_details)
-            current_monster.current_hp = current_monster.hp
             current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']
             current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
             current_monster.set_level(current_monster.level)
+            current_monster.current_hp = current_monster.hp
             current_monster.load_sprite_from_db()
 
             # Add our monster to the NPC's party
@@ -602,3 +602,7 @@ class Npc(Entity):
                 success = False
 
         return success
+
+    def speed_test(self, action):
+        return self.speed
+

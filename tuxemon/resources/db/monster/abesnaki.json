@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_abesnaki",
+    "name_trans": "txmn_abesnaki_name",
+    "description_trans": "txmn_abesnaki_descr",
+    "category_trans": "txmn_abesnaki_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleep_bomb"
+        }
+    ],
+    "shape": "Serpent",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/abesnaki-front.png",
+        "battle2": "gfx/sprites/battle/abesnaki-back.png",
+        "menu1": "gfx/sprites/battle/abesnaki-menu01.png",
+        "menu2": "gfx/sprites/battle/abesnaki-menu02.png"
+    },
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

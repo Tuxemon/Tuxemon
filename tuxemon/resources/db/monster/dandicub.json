@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_dandicub",
+    "name_trans": "txmn_dandicub_name",
+    "description_trans": "txmn_dandicub_descr",
+    "category_trans": "txmn_dandicub_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleeping_powder"
+        }
+    ],
+    "shape": "Blob",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/dandicub-front.png",
+        "battle2": "gfx/sprites/battle/dandicub-back.png",
+        "menu1": "gfx/sprites/battle/dandicub-menu01.png",
+        "menu2": "gfx/sprites/battle/dandicub-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

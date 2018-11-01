@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_nudikill",
+    "name_trans": "txmn_nudikill_name",
+    "description_trans": "txmn_nudikill_descr",
+    "category_trans": "txmn_nudikill_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_bubble_trap"
+        }
+    ],
+    "shape": "Polliwog",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/nudikill-front.png",
+        "battle2": "gfx/sprites/battle/nudikill-back.png",
+        "menu1": "gfx/sprites/battle/nudikill-menu01.png",
+        "menu2": "gfx/sprites/battle/nudikill-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

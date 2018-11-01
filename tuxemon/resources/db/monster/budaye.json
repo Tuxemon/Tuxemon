@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_budaye",
+    "name_trans": "txmn_budaye_name",
+    "description_trans": "txmn_budaye_descr",
+    "category_trans": "txmn_budaye_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_muddle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
+        }
+    ],
+    "shape": "Sprite",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/budaye-front.png",
+        "battle2": "gfx/sprites/battle/budaye-back.png",
+        "menu1": "gfx/sprites/battle/budaye-menu01.png",
+        "menu2": "gfx/sprites/battle/budaye-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

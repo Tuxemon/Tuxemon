@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_viviphyta",
+    "name_trans": "txmn_viviphyta_name",
+    "description_trans": "txmn_viviphyta_descr",
+    "category_trans": "txmn_viviphyta_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_web"
+        }
+    ],
+    "shape": "Serpent",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/viviphyta-front.png",
+        "battle2": "gfx/sprites/battle/viviphyta-back.png",
+        "menu1": "gfx/sprites/battle/viviphyta-menu01.png",
+        "menu2": "gfx/sprites/battle/viviphyta-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

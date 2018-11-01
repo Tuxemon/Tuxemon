@@ -3,35 +3,22 @@
     "name_trans": "txmn_djinnbo_name",
     "description_trans": "txmn_djinnbo_descr",
     "category_trans": "txmn_djinnbo_category",
-
-    "attack_base":            60,
-    "defense_base":           7,
-    "hp_base":                50,
-    "special_attack_base":    6,
-    "special_defense_base":   10,
-    "speed_base":             7,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_pound"
+            "technique": "technique_petrify"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_give_all"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
         }
     ],
+    "shape": "Humanoid",
     "sprites": {
         "battle1": "gfx/sprites/battle/djinnbo-front.png",
         "battle2": "gfx/sprites/battle/djinnbo-back.png",
@@ -39,8 +26,7 @@
         "menu2": "gfx/sprites/battle/djinnbo-menu02.png"
     },
     "types": [
-        "water",
-        "wood"
+        "Fire"
     ],
-    "weight": 50
+    "weight": 25
 }

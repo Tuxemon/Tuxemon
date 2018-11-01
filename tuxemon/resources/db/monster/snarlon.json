@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_snarlon",
+    "name_trans": "txmn_snarlon_name",
+    "description_trans": "txmn_snarlon_descr",
+    "category_trans": "txmn_snarlon_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_energy_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sand_spray"
+        }
+    ],
+    "shape": "Hunter",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/snarlon-front.png",
+        "battle2": "gfx/sprites/battle/snarlon-back.png",
+        "menu1": "gfx/sprites/battle/snarlon-menu01.png",
+        "menu2": "gfx/sprites/battle/snarlon-menu02.png"
+    },
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

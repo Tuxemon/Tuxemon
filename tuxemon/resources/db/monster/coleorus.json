@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_coleorus",
+    "name_trans": "txmn_coleorus_name",
+    "description_trans": "txmn_coleorus_descr",
+    "category_trans": "txmn_coleorus_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_avalanche"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fluff_up"
+        }
+    ],
+    "shape": "Sprite",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/coleorus-front.png",
+        "battle2": "gfx/sprites/battle/coleorus-back.png",
+        "menu1": "gfx/sprites/battle/coleorus-menu01.png",
+        "menu2": "gfx/sprites/battle/coleorus-menu02.png"
+    },
+    "types": [
+        "Wood",
+        "Earth"
+    ],
+    "weight": 25
+}

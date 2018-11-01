@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_araignee",
+    "name_trans": "txmn_araignee_name",
+    "description_trans": "txmn_araignee_descr",
+    "category_trans": "txmn_araignee_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_web"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_petrify"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        }
+    ],
+    "shape": "Grub",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/araignee-front.png",
+        "battle2": "gfx/sprites/battle/araignee-back.png",
+        "menu1": "gfx/sprites/battle/araignee-menu01.png",
+        "menu2": "gfx/sprites/battle/araignee-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

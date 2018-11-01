@@ -13,7 +13,7 @@ import os.path
 import sqlite3
 
 from . import RESOURCE_PATHS
-from .extractor import TuxepediaWebExtractor
+from .extractor import TuxepediaWebExtractor, fix_name
 
 
 class TuxepediaStore:
@@ -48,7 +48,7 @@ class TuxepediaStore:
 
         self.connection.commit()
 
-    def sync_with_remote(self):
+    def sync_with_remote(self, completed_monsters):
         """Update local Tuxepedia content from Tuxepedia wiki pages"""
 
         # TODO: add version/timestamp check to decide whether a full pull is needed
@@ -56,13 +56,16 @@ class TuxepediaStore:
 
         # scrape entire tuxemon database from Web
         # (sprites and sounds are downloaded as well)
-        txmn_json_full = tuxepedia.get_monsters()
+        if completed_monsters:
+            txmn_json_full = tuxepedia.get_completed_monsters()
+        else:
+            txmn_json_full = tuxepedia.get_monsters()
 
         for txmn_name in txmn_json_full:
 
             # full path to tuxemon JSON file
             txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
-                                          txmn_name.lower() + ".json")
+                                          fix_name(txmn_name.lower()) + ".json")
 
             # update tuxemon JSON record if it already exists
             if os.path.isfile(txmn_json_path):
@@ -90,7 +93,7 @@ class TuxepediaStore:
 
         # full path to tuxemon JSON file
         txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
-                                      txmn_name.lower() + ".json")
+                                      fix_name(txmn_name.lower()) + ".json")
 
         # load previous tuxemon JSON from file
         with open(txmn_json_path) as f:

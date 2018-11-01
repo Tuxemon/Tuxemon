@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_picc",
+    "name_trans": "txmn_picc_name",
+    "description_trans": "txmn_picc_descr",
+    "category_trans": "txmn_picc_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_battery_discharge"
+        }
+    ],
+    "shape": "Aquatic",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/picc-front.png",
+        "battle2": "gfx/sprites/battle/picc-back.png",
+        "menu1": "gfx/sprites/battle/picc-menu01.png",
+        "menu2": "gfx/sprites/battle/picc-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

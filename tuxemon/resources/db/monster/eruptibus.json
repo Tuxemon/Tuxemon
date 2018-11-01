@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_eruptibus",
+    "name_trans": "txmn_eruptibus_name",
+    "description_trans": "txmn_eruptibus_descr",
+    "category_trans": "txmn_eruptibus_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_hibernate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_energy_field"
+        }
+    ],
+    "shape": "Landrace",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/eruptibus-front.png",
+        "battle2": "gfx/sprites/battle/eruptibus-back.png",
+        "menu1": "gfx/sprites/battle/eruptibus-menu01.png",
+        "menu2": "gfx/sprites/battle/eruptibus-menu02.png"
+    },
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

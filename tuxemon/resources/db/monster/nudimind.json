@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_nudimind",
+    "name_trans": "txmn_nudimind_name",
+    "description_trans": "txmn_nudimind_descr",
+    "category_trans": "txmn_nudimind_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleep_bomb"
+        }
+    ],
+    "shape": "Polliwog",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/nudimind-front.png",
+        "battle2": "gfx/sprites/battle/nudimind-back.png",
+        "menu1": "gfx/sprites/battle/nudimind-menu01.png",
+        "menu2": "gfx/sprites/battle/nudimind-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

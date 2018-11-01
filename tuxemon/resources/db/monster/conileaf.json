@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_conileaf",
+    "name_trans": "txmn_conileaf_name",
+    "description_trans": "txmn_conileaf_descr",
+    "category_trans": "txmn_conileaf_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_overgrowth"
+        }
+    ],
+    "shape": "Blob",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/conileaf-front.png",
+        "battle2": "gfx/sprites/battle/conileaf-back.png",
+        "menu1": "gfx/sprites/battle/conileaf-menu01.png",
+        "menu2": "gfx/sprites/battle/conileaf-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

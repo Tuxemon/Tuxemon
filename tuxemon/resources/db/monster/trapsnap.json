@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_trapsnap",
+    "name_trans": "txmn_trapsnap_name",
+    "description_trans": "txmn_trapsnap_descr",
+    "category_trans": "txmn_trapsnap_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_shadow_boxing"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fluff_up"
+        }
+    ],
+    "shape": "Brute",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/trapsnap-front.png",
+        "battle2": "gfx/sprites/battle/trapsnap-back.png",
+        "menu1": "gfx/sprites/battle/trapsnap-menu01.png",
+        "menu2": "gfx/sprites/battle/trapsnap-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

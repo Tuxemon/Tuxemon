@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_spighter",
+    "name_trans": "txmn_spighter_name",
+    "description_trans": "txmn_spighter_descr",
+    "category_trans": "txmn_spighter_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_web"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fester"
+        }
+    ],
+    "shape": "Grub",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/spighter-front.png",
+        "battle2": "gfx/sprites/battle/spighter-back.png",
+        "menu1": "gfx/sprites/battle/spighter-menu01.png",
+        "menu2": "gfx/sprites/battle/spighter-menu02.png"
+    },
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

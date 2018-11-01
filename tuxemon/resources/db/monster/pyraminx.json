@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_pyraminx",
+    "name_trans": "txmn_pyraminx_name",
+    "description_trans": "txmn_pyraminx_descr",
+    "category_trans": "txmn_pyraminx_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_blade"
+        }
+    ],
+    "shape": "Hunter",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/pyraminx-front.png",
+        "battle2": "gfx/sprites/battle/pyraminx-back.png",
+        "menu1": "gfx/sprites/battle/pyraminx-menu01.png",
+        "menu2": "gfx/sprites/battle/pyraminx-menu02.png"
+    },
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

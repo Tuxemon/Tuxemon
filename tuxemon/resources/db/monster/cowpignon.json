@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_cowpignon",
+    "name_trans": "txmn_cowpignon_name",
+    "description_trans": "txmn_cowpignon_descr",
+    "category_trans": "txmn_cowpignon_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_petrify"
+        }
+    ],
+    "shape": "Sprite",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/cowpignon-front.png",
+        "battle2": "gfx/sprites/battle/cowpignon-back.png",
+        "menu1": "gfx/sprites/battle/cowpignon-menu01.png",
+        "menu2": "gfx/sprites/battle/cowpignon-menu02.png"
+    },
+    "types": [
+        "Wood",
+        "Earth"
+    ],
+    "weight": 25
+}

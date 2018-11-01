@@ -1,0 +1,32 @@
+{
+    "slug": "txmn_fluoresfin",
+    "name_trans": "txmn_fluoresfin_name",
+    "description_trans": "txmn_fluoresfin_descr",
+    "category_trans": "txmn_fluoresfin_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_glower"
+        }
+    ],
+    "shape": "Aquatic",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/fluoresfin-front.png",
+        "battle2": "gfx/sprites/battle/fluoresfin-back.png",
+        "menu1": "gfx/sprites/battle/fluoresfin-menu01.png",
+        "menu2": "gfx/sprites/battle/fluoresfin-menu02.png"
+    },
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

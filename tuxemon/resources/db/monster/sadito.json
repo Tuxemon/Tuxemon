@@ -1,0 +1,33 @@
+{
+    "slug": "txmn_sadito",
+    "name_trans": "txmn_sadito_name",
+    "description_trans": "txmn_sadito_descr",
+    "category_trans": "txmn_sadito_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        }
+    ],
+    "shape": "",
+    "sprites": {
+        "battle1": "gfx/sprites/battle/sadito-front.png",
+        "battle2": "gfx/sprites/battle/sadito-back.png",
+        "menu1": "gfx/sprites/battle/sadito-menu01.png",
+        "menu2": "gfx/sprites/battle/sadito-menu02.png"
+    },
+    "types": [
+        "Metal",
+        "Water"
+    ],
+    "weight": 25
+}

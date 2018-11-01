@@ -55,6 +55,12 @@ EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
 faint = Technique("status_faint")
 
+MULT_MAP = {
+    4: "attack_very_effective",
+    2: "attack_effective",
+    0.5: "attack_resisted",
+    0.25: "attack_weak",
+}
 
 def check_status(monster, status_name):
     return any(t for t in monster.status if t.slug == status_name)
@@ -356,7 +362,7 @@ class CombatState(CombatAnimations):
 
             else:
                 # TODO: determine the secondary sort element, monster speed, trainer speed, etc
-                return primary_order, action.user.speed
+                return primary_order, action.user.speed_test(action)
 
         sort_order = ['meta', 'item', 'utility', 'potion', 'food', 'heal', 'damage']
 
@@ -378,6 +384,8 @@ class CombatState(CombatAnimations):
             # show monster action menu for human players
             if self._decision_queue:
                 monster = self._decision_queue.pop()
+                for tech in monster.moves:
+                    tech.recharge()
                 self.show_monster_action_menu(monster)
 
         elif self.phase == "action phase":
@@ -611,6 +619,7 @@ class CombatState(CombatAnimations):
         result = technique.use(user, target)
 
         if technique.execute_trans:
+            # "Monster used move!"
             context = {"user": getattr(user, "name", ''),
                        "name": technique.name,
                        "target": target.name}
@@ -646,6 +655,15 @@ class CombatState(CombatAnimations):
                 # Track damage
                 self._damage_map[target].add(user)
 
+                element_damage_key = MULT_MAP.get(result['element_multiplier'])
+                if element_damage_key:
+                    m = trans(element_damage_key)
+                    message += "\n" + m
+
+                for status in result.get("statuses", []):
+                    m = trans(status.execute_trans, {"user": status.link.name if status.link else "", "target": status.carrier.name})
+                    message += "\n" + m
+
             else:  # assume this was an item used
 
                 # handle the capture device
@@ -673,11 +691,12 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change(action_time)
 
         else:
-            if result["success"]:
-                self.suppress_phase_change()
-                self.alert(trans('combat_status_damage', {"name": target.name, "status": technique.name}))
+            # This was probably a status effect
+            self.suppress_phase_change()
+            msg_type = technique.success_trans if result['success'] else technique.failure_trans
+            self.alert(trans(msg_type, {"user": target.name, "link": technique.link.name if technique.link else ""}))
 
-        if result["success"] and target_sprite and hasattr(technique, "images"):
+        if result["success"] and target_sprite and technique.images:
             tech_sprite = self.get_technique_animation(technique)
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.image.play, hit_delay)
@@ -831,6 +850,9 @@ class CombatState(CombatAnimations):
         """ End the combat
         """
         # TODO: End combat differently depending on winning or losing
+        for player in self.active_players:
+            for mon in player.monsters:
+                mon.end_combat()
 
         # clear action queue
         self._action_queue = list()

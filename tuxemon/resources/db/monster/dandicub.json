@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/dandicub-front.png",
-        "battle2": "gfx/sprites/battle/dandicub-back.png",
-        "menu1": "gfx/sprites/battle/dandicub-menu01.png",
-        "menu2": "gfx/sprites/battle/dandicub-menu02.png"
-    },
     "types": [
         "Wood"
     ],

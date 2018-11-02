@@ -19,12 +19,6 @@
         }
     ],
     "shape": "",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/chromeye-front.png",
-        "battle2": "gfx/sprites/battle/chromeye-back.png",
-        "menu1": "gfx/sprites/battle/chromeye-menu01.png",
-        "menu2": "gfx/sprites/battle/chromeye-menu02.png"
-    },
     "types": [
         "Metal"
     ],

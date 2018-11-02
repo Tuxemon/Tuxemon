@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Polliwog",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/nudiflot-female-front.png",
-        "battle2": "gfx/sprites/battle/nudiflot-female-back.png",
-        "menu1": "gfx/sprites/battle/nudiflot-female-menu01.png",
-        "menu2": "gfx/sprites/battle/nudiflot-female-menu02.png"
-    },
     "types": [
         "Water"
     ],

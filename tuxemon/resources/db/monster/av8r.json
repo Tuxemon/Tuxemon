@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/av8r-front.png",
-        "battle2": "gfx/sprites/battle/av8r-back.png",
-        "menu1": "gfx/sprites/battle/av8r-menu01.png",
-        "menu2": "gfx/sprites/battle/av8r-menu02.png"
-    },
     "types": [
         "Metal"
     ],

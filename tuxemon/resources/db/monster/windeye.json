@@ -19,12 +19,6 @@
         }
     ],
     "shape": "",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/windeye-front.png",
-        "battle2": "gfx/sprites/battle/windeye-back.png",
-        "menu1": "gfx/sprites/battle/windeye-menu01.png",
-        "menu2": "gfx/sprites/battle/windeye-menu02.png"
-    },
     "types": [
         "Metal"
     ],

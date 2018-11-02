@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/katapill-front.png",
-        "battle2": "gfx/sprites/battle/katapill-back.png",
-        "menu1": "gfx/sprites/battle/katapill-menu01.png",
-        "menu2": "gfx/sprites/battle/katapill-menu02.png"
-    },
     "types": [
         "Metal",
         "Wood"

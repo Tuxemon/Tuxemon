@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Aquatic",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/picc-front.png",
-        "battle2": "gfx/sprites/battle/picc-back.png",
-        "menu1": "gfx/sprites/battle/picc-menu01.png",
-        "menu2": "gfx/sprites/battle/picc-menu02.png"
-    },
     "types": [
         "Metal"
     ],

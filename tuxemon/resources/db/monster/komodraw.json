@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Humanoid",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/komodraw-front.png",
-        "battle2": "gfx/sprites/battle/komodraw-back.png",
-        "menu1": "gfx/sprites/battle/komodraw-menu01.png",
-        "menu2": "gfx/sprites/battle/komodraw-menu02.png"
-    },
     "types": [
         "Fire"
     ],

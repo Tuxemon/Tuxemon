@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Varmint",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/anoleaf-front.png",
-        "battle2": "gfx/sprites/battle/anoleaf-back.png",
-        "menu1": "gfx/sprites/battle/anoleaf-menu01.png",
-        "menu2": "gfx/sprites/battle/anoleaf-menu02.png"
-    },
     "types": [
         "Wood"
     ],

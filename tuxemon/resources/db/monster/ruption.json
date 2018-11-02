@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Brute",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/ruption-front.png",
-        "battle2": "gfx/sprites/battle/ruption-back.png",
-        "menu1": "gfx/sprites/battle/ruption-menu01.png",
-        "menu2": "gfx/sprites/battle/ruption-menu02.png"
-    },
     "types": [
         "Fire"
     ],

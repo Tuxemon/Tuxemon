@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Hunter",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/miaownolith-front.png",
-        "battle2": "gfx/sprites/battle/miaownolith-back.png",
-        "menu1": "gfx/sprites/battle/miaownolith-menu01.png",
-        "menu2": "gfx/sprites/battle/miaownolith-menu02.png"
-    },
     "types": [
         "Metal",
         "Earth"

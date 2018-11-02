@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/nut-front.png",
-        "battle2": "gfx/sprites/battle/nut-back.png",
-        "menu1": "gfx/sprites/battle/nut-menu01.png",
-        "menu2": "gfx/sprites/battle/nut-menu02.png"
-    },
     "types": [
         "Metal"
     ],

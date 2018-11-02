@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/bolt-front.png",
-        "battle2": "gfx/sprites/battle/bolt-back.png",
-        "menu1": "gfx/sprites/battle/bolt-menu01.png",
-        "menu2": "gfx/sprites/battle/bolt-menu02.png"
-    },
     "types": [
         "Metal"
     ],

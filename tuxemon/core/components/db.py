@@ -137,8 +137,10 @@ class JSONDatabase(object):
         :returns: A dictionary from the resulting lookup.
 
         """
-        return self.database[table][slug]
-
+        return set_defaults(
+            self.database[table][slug],
+            table
+        )
 
     def lookup_sprite(self, slug, table="sprite"):
         """Looks up a monster's sprite image paths based on monster slug.
@@ -162,3 +164,27 @@ class JSONDatabase(object):
 
         return results
 
+
+def set_defaults(results, table):
+    if table == "monster":
+        slug = results['slug']
+        name = slug.partition('_')[2]
+
+        sprites = results.setdefault(
+            "sprites",
+            {}
+        )
+
+        for key, view in (
+                ('battle1', 'front'),
+                ('battle2', 'back'),
+                ('menu1', 'menu01'),
+                ('menu2', 'menu02'),
+        ):
+            if not results.get(key):
+                sprites[key] = "gfx/sprites/battle/{}-{}".format(
+                    name,
+                    view
+                )
+
+    return results

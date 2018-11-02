@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Brute",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/sumchon-front.png",
-        "battle2": "gfx/sprites/battle/sumchon-back.png",
-        "menu1": "gfx/sprites/battle/sumchon-menu01.png",
-        "menu2": "gfx/sprites/battle/sumchon-menu02.png"
-    },
     "types": [
         "Metal",
         "Wood"

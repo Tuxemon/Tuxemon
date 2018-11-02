@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Dragon",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/wrougon-front.png",
-        "battle2": "gfx/sprites/battle/wrougon-back.png",
-        "menu1": "gfx/sprites/battle/wrougon-menu01.png",
-        "menu2": "gfx/sprites/battle/wrougon-menu02.png"
-    },
     "types": [
         "Metal"
     ],

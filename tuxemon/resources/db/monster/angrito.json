@@ -19,12 +19,6 @@
         }
     ],
     "shape": "",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/angrito-front.png",
-        "battle2": "gfx/sprites/battle/angrito-back.png",
-        "menu1": "gfx/sprites/battle/angrito-menu01.png",
-        "menu2": "gfx/sprites/battle/angrito-menu02.png"
-    },
     "types": [
         "Fire",
         "Metal"

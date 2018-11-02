@@ -569,7 +569,6 @@ class Npc(Entity):
             current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
             current_monster.set_level(current_monster.level)
             current_monster.current_hp = current_monster.hp
-            current_monster.load_sprite_from_db()
 
             # Add our monster to the NPC's party
             self.monsters.append(current_monster)

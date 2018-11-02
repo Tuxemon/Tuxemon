@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/elostorm-front.png",
-        "battle2": "gfx/sprites/battle/elostorm-back.png",
-        "menu1": "gfx/sprites/battle/elostorm-menu01.png",
-        "menu2": "gfx/sprites/battle/elostorm-menu02.png"
-    },
     "types": [
         "Water"
     ],

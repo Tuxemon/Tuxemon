@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/zunna-front.png",
-        "battle2": "gfx/sprites/battle/zunna-back.png",
-        "menu1": "gfx/sprites/battle/zunna-menu01.png",
-        "menu2": "gfx/sprites/battle/zunna-menu02.png"
-    },
     "types": [
         "Metal"
     ],

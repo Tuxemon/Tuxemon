@@ -20,12 +20,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/vamporm-front.png",
-        "battle2": "gfx/sprites/battle/vamporm-back.png",
-        "menu1": "gfx/sprites/battle/vamporm-menu01.png",
-        "menu2": "gfx/sprites/battle/vamporm-menu02.png"
-    },
     "types": [
         "Water"
     ],

@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/sclairus-front.png",
-        "battle2": "gfx/sprites/battle/sclairus-back.png",
-        "menu1": "gfx/sprites/battle/sclairus-menu01.png",
-        "menu2": "gfx/sprites/battle/sclairus-menu02.png"
-    },
     "types": [
         "Wood"
     ],

@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Hunter",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/pyraminx-front.png",
-        "battle2": "gfx/sprites/battle/pyraminx-back.png",
-        "menu1": "gfx/sprites/battle/pyraminx-menu01.png",
-        "menu2": "gfx/sprites/battle/pyraminx-menu02.png"
-    },
     "types": [
         "Metal"
     ],

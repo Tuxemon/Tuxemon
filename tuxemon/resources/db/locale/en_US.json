@@ -23,7 +23,7 @@
     "combat_capturing_fail": "${{name}} broke free!",
     "combat_recharging": "${{name}} needs a break before using ${{move}} again...",
     "combat_replacement": "Choose a replacement!",
-    "combat_replacement_is_fainted": "That Tuxemon has fainted!",
+    "combat_replacement_is_fainted": "That Tuxemon already knocked out!",
     "combat_wild_appeared": "A wild ${{name}} appeared!",
     "combat_monster_choice": "What will ${{name}} do?",
     "combat_fainted": "${{name}} fainted!",

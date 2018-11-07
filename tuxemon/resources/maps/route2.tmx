@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextobjectid="136">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="137">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -150,6 +150,12 @@
   </object>
   <object id="91" type="collision" x="16" y="64" width="16" height="32"/>
   <object id="92" type="collision" x="32" y="64" width="16" height="16"/>
+  <object id="136" type="collision-line" x="512" y="96">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="137" type="collision-line" x="512" y="160">
+   <polyline points="0,0 96,0"/>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" name="Events">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">

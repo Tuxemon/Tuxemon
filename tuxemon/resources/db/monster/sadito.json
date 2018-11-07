@@ -19,12 +19,6 @@
         }
     ],
     "shape": "",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/sadito-front.png",
-        "battle2": "gfx/sprites/battle/sadito-back.png",
-        "menu1": "gfx/sprites/battle/sadito-menu01.png",
-        "menu2": "gfx/sprites/battle/sadito-menu02.png"
-    },
     "types": [
         "Metal",
         "Water"

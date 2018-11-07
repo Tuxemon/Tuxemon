@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/katacoon-front.png",
-        "battle2": "gfx/sprites/battle/katacoon-back.png",
-        "menu1": "gfx/sprites/battle/katacoon-menu01.png",
-        "menu2": "gfx/sprites/battle/katacoon-menu02.png"
-    },
     "types": [
         "Metal",
         "Wood"

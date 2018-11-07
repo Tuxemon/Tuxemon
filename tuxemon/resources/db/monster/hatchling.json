@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/hatchling-front.png",
-        "battle2": "gfx/sprites/battle/hatchling-back.png",
-        "menu1": "gfx/sprites/battle/hatchling-menu01.png",
-        "menu2": "gfx/sprites/battle/hatchling-menu02.png"
-    },
     "types": [
         "Wood"
     ],

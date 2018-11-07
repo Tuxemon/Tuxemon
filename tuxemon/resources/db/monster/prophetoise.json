@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Humanoid",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/prophetoise-front.png",
-        "battle2": "gfx/sprites/battle/prophetoise-back.png",
-        "menu1": "gfx/sprites/battle/prophetoise-menu01.png",
-        "menu2": "gfx/sprites/battle/prophetoise-menu02.png"
-    },
     "types": [
         "Fire"
     ],

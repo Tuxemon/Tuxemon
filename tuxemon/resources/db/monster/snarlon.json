@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Hunter",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/snarlon-front.png",
-        "battle2": "gfx/sprites/battle/snarlon-back.png",
-        "menu1": "gfx/sprites/battle/snarlon-menu01.png",
-        "menu2": "gfx/sprites/battle/snarlon-menu02.png"
-    },
     "types": [
         "Earth"
     ],

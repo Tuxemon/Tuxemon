@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Hunter",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/rockitten-front.png",
-        "battle2": "gfx/sprites/battle/rockitten-back.png",
-        "menu1": "gfx/sprites/battle/rockitten-menu01.png",
-        "menu2": "gfx/sprites/battle/rockitten-menu02.png"
-    },
     "types": [
         "Earth"
     ],

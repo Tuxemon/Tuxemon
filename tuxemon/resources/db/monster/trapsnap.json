@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Brute",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/trapsnap-front.png",
-        "battle2": "gfx/sprites/battle/trapsnap-back.png",
-        "menu1": "gfx/sprites/battle/trapsnap-menu01.png",
-        "menu2": "gfx/sprites/battle/trapsnap-menu02.png"
-    },
     "types": [
         "Wood"
     ],

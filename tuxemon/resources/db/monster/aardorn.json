@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Varmint",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/aardorn-front.png",
-        "battle2": "gfx/sprites/battle/aardorn-back.png",
-        "menu1": "gfx/sprites/battle/aardorn-menu01.png",
-        "menu2": "gfx/sprites/battle/aardorn-menu02.png"
-    },
     "types": [
         "Earth"
     ],

@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Aquatic",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/incandesfin-front.png",
-        "battle2": "gfx/sprites/battle/incandesfin-back.png",
-        "menu1": "gfx/sprites/battle/incandesfin-menu01.png",
-        "menu2": "gfx/sprites/battle/incandesfin-menu02.png"
-    },
     "types": [
         "Water"
     ],

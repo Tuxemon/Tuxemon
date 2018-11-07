@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Leviathan",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/bigfin-front.png",
-        "battle2": "gfx/sprites/battle/bigfin-back.png",
-        "menu1": "gfx/sprites/battle/bigfin-menu01.png",
-        "menu2": "gfx/sprites/battle/bigfin-menu02.png"
-    },
     "types": [
         "Water"
     ],

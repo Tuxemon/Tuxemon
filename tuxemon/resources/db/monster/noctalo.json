@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/noctalo-front.png",
-        "battle2": "gfx/sprites/battle/noctalo-back.png",
-        "menu1": "gfx/sprites/battle/noctalo-menu01.png",
-        "menu2": "gfx/sprites/battle/noctalo-menu02.png"
-    },
     "types": [
         "Water"
     ],

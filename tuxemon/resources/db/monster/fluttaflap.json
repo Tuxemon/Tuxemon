@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/fluttaflap-front.png",
-        "battle2": "gfx/sprites/battle/fluttaflap-back.png",
-        "menu1": "gfx/sprites/battle/fluttaflap-menu01.png",
-        "menu2": "gfx/sprites/battle/fluttaflap-menu02.png"
-    },
     "types": [
         "Water"
     ],

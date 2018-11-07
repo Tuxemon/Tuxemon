@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Hunter",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/memnomnom-front.png",
-        "battle2": "gfx/sprites/battle/memnomnom-back.png",
-        "menu1": "gfx/sprites/battle/memnomnom-menu01.png",
-        "menu2": "gfx/sprites/battle/memnomnom-menu02.png"
-    },
     "types": [
         "Metal"
     ],

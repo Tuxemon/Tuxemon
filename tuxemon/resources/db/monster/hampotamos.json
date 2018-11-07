@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Landrace",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/hampotamos-front.png",
-        "battle2": "gfx/sprites/battle/hampotamos-back.png",
-        "menu1": "gfx/sprites/battle/hampotamos-menu01.png",
-        "menu2": "gfx/sprites/battle/hampotamos-menu02.png"
-    },
     "types": [
         "Earth"
     ],

@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Aquatic",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/nostray-front.png",
-        "battle2": "gfx/sprites/battle/nostray-back.png",
-        "menu1": "gfx/sprites/battle/nostray-menu01.png",
-        "menu2": "gfx/sprites/battle/nostray-menu02.png"
-    },
     "types": [
         "Water"
     ],

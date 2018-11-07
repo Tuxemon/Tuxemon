@@ -389,7 +389,7 @@ class WorldState(state.State):
             screen_surfaces.append((s, c, l))
 
         # draw the map and sprites
-        self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
+        self.rect = self.current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
 
         # If we want to draw the collision map for debug purposes
         if prepare.CONFIG.collision_map:

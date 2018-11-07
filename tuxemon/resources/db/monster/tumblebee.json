@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Flier",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/tumblebee-front.png",
-        "battle2": "gfx/sprites/battle/tumblebee-back.png",
-        "menu1": "gfx/sprites/battle/tumblebee-menu01.png",
-        "menu2": "gfx/sprites/battle/tumblebee-menu02.png"
-    },
     "types": [
         "Metal"
     ],

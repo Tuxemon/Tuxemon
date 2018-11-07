@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Humanoid",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/volcoli-front.png",
-        "battle2": "gfx/sprites/battle/volcoli-back.png",
-        "menu1": "gfx/sprites/battle/volcoli-menu01.png",
-        "menu2": "gfx/sprites/battle/volcoli-menu02.png"
-    },
     "types": [
         "Fire"
     ],

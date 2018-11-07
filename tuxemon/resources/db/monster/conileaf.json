@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Blob",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/conileaf-front.png",
-        "battle2": "gfx/sprites/battle/conileaf-back.png",
-        "menu1": "gfx/sprites/battle/conileaf-menu01.png",
-        "menu2": "gfx/sprites/battle/conileaf-menu02.png"
-    },
     "types": [
         "Wood"
     ],

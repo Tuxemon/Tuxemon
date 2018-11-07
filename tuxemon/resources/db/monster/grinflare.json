@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Brute",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/grinflare-front.png",
-        "battle2": "gfx/sprites/battle/grinflare-back.png",
-        "menu1": "gfx/sprites/battle/grinflare-menu01.png",
-        "menu2": "gfx/sprites/battle/grinflare-menu02.png"
-    },
     "types": [
         "Earth",
         "Fire"

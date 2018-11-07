@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Grub",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/exapode-front.png",
-        "battle2": "gfx/sprites/battle/exapode-back.png",
-        "menu1": "gfx/sprites/battle/exapode-menu01.png",
-        "menu2": "gfx/sprites/battle/exapode-menu02.png"
-    },
     "types": [
         "Earth"
     ],

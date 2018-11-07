@@ -19,12 +19,6 @@
         }
     ],
     "shape": "Sprite",
-    "sprites": {
-        "battle1": "gfx/sprites/battle/coleorus-front.png",
-        "battle2": "gfx/sprites/battle/coleorus-back.png",
-        "menu1": "gfx/sprites/battle/coleorus-menu01.png",
-        "menu2": "gfx/sprites/battle/coleorus-menu02.png"
-    },
     "types": [
         "Wood",
         "Earth"

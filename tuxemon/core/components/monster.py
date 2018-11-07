@@ -305,9 +305,9 @@ class Monster(object):
                 self.learn(technique)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = results['sprites']['battle1']
-        self.back_battle_sprite = results['sprites']['battle2']
-        self.menu_sprite = results['sprites']['menu1']
+        self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])
+        self.back_battle_sprite = self.get_sprite_path(results['sprites']['battle2'])
+        self.menu_sprite = self.get_sprite_path(results['sprites']['menu1'])
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -316,24 +316,6 @@ class Monster(object):
             self.ai = ai.SimpleAI()
         elif ai_result == "RandomAI":
             self.ai = ai.RandomAI()
-
-    def load_sprite_from_db(self):
-        """Looks up the path to the monster's battle sprites so they can be
-        loaded as pygame surfaces.
-
-        :param: None
-
-        :rtype: None
-        :returns: None
-
-        """
-
-        # Look up the monster's sprite image paths
-        results = monsters.lookup_sprite(self.slug)
-
-        self.front_battle_sprite = results["sprite_battle1"]
-        self.back_battle_sprite = results["sprite_battle2"]
-        self.menu_sprite = results["sprite_menu1"]
 
     def learn(self, technique):
         """Adds a technique to this tuxemon's moveset.
@@ -443,19 +425,26 @@ class Monster(object):
         self.total_experience = self.experience_required_modifier * self.level ** 3
         self.set_stats()
 
-
-    def verify_or_replace_sprite(self, sprite):
-        '''Checks if the sprite exists and replaces it if it does not.
+    def get_sprite_path(self, sprite):
+        '''
+        Paths are set up by convention, so the file extension is unknown.
+        This adds the appropriate file extension if the sprite exists,
+        and returns a dummy image if it can't be found.
 
         rtype: String
-        returns: Returns path to sprite if it exists or replaces it with
-        placeholder image
+        returns: path to sprite or placeholder image
         '''
-        if not os.path.isfile(tools.transform_resource_filename(sprite)):
-            sprite = "gfx/sprites/battle/missing.png"
-
-        return sprite
-        
+        base_path = tools.transform_resource_filename(sprite)
+        path = "%s.png" % base_path
+        if os.path.isfile(path):
+            return path
+        path = "%s.gif" % base_path
+        if os.path.isfile(path):
+            return path
+        path = "%s.jpeg" % base_path
+        if os.path.isfile(path):
+            return path
+        return "gfx/sprites/battle/missing.png"
 
     def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.
@@ -471,10 +460,6 @@ class Monster(object):
         """
         if len(self.sprites):
             return True
-
-        self.front_battle_sprite = self.verify_or_replace_sprite(self.front_battle_sprite)
-        self.back_battle_sprite = self.verify_or_replace_sprite(self.back_battle_sprite)
-        self.menu_sprite = self.verify_or_replace_sprite(self.menu_sprite)
 
         self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_sapsnap",
+    "name_trans": "txmn_sapsnap_name",
+    "description_trans": "txmn_sapsnap_descr",
+    "category_trans": "txmn_sapsnap_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_shadow_boxing"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_one_two"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fluff_up"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

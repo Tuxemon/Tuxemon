@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_rabbitosaur",
+    "name_trans": "txmn_rabbitosaur_name",
+    "description_trans": "txmn_rabbitosaur_descr",
+    "category_trans": "txmn_rabbitosaur_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_stampede"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shadow_boxing"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_one_two"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

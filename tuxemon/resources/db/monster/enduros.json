@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_enduros",
+    "name_trans": "txmn_enduros_name",
+    "description_trans": "txmn_enduros_descr",
+    "category_trans": "txmn_enduros_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

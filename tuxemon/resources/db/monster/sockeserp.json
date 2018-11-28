@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_sockeserp",
+    "name_trans": "txmn_sockeserp_name",
+    "description_trans": "txmn_sockeserp_descr",
+    "category_trans": "txmn_sockeserp_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_constrict"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

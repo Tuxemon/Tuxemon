@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_volcoli",
+    "name_trans": "txmn_volcoli_name",
+    "description_trans": "txmn_volcoli_descr",
+    "category_trans": "txmn_volcoli_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

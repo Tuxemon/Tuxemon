@@ -17,6 +17,7 @@ from tuxemon.core.components.ui.draw import GraphicBox
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
+trans = translator.translate
 
 
 class MainCombatMenuState(PopUpMenu):
@@ -133,7 +134,10 @@ class MainCombatMenuState(PopUpMenu):
 
             # add techniques to the menu
             for tech in self.monster.moves:
-                image = self.shadow_text(tech.name)
+                if tech.next_use <= 0:
+                    image = self.shadow_text(tech.name)
+                else:
+                    image = self.shadow_text("%s -%s" % (tech.name, tech.next_use))
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 
@@ -147,6 +151,11 @@ class MainCombatMenuState(PopUpMenu):
         def choose_target(menu_item):
             # open menu to choose target of technique
             technique = menu_item.game_object
+            if technique.next_use > 0:
+                params = {"move": technique.name, "name": self.monster.name}
+                tools.open_dialog(self.game, [trans('combat_recharging', params)])
+                return
+
             combat_state = self.game.get_state_name("CombatState")
             state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                          user=self.monster, action=technique)

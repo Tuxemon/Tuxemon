@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_viviteel",
+    "name_trans": "txmn_viviteel_name",
+    "description_trans": "txmn_viviteel_descr",
+    "category_trans": "txmn_viviteel_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rust_bomb"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_constrict"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_perfect_cut"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

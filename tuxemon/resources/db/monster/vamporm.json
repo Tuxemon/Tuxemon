@@ -3,43 +3,25 @@
     "name_trans": "txmn_vamporm_name",
     "description_trans": "txmn_vamporm_descr",
     "category_trans": "txmn_vamporm_category",
-
-    "attack_base":            60,
-    "defense_base":           7,
-    "hp_base":                50,
-    "special_attack_base":    6,
-    "special_defense_base":   10,
-    "speed_base":             7,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
+    "call": null,
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_pound"
+            "technique": "technique_probiscus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_water_shot"
+            "technique": "technique_spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_refresh"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/vamporm-front.png",
-        "battle2": "gfx/sprites/battle/vamporm-back.png",
-        "menu1": "gfx/sprites/battle/vamporm-menu01.png",
-        "menu2": "gfx/sprites/battle/vamporm-menu02.png"
-    },
+    "shape": "Grub",
     "types": [
-        "water"
+        "Water"
     ],
     "weight": 25
 }

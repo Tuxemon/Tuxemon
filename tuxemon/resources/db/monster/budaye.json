@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_budaye",
+    "name_trans": "txmn_budaye_name",
+    "description_trans": "txmn_budaye_descr",
+    "category_trans": "txmn_budaye_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_muddle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_ram"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

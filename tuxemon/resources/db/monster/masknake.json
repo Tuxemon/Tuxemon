@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_masknake",
+    "name_trans": "txmn_masknake_name",
+    "description_trans": "txmn_masknake_descr",
+    "category_trans": "txmn_masknake_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_supernova"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

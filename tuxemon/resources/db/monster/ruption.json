@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_ruption",
+    "name_trans": "txmn_ruption_name",
+    "description_trans": "txmn_ruption_descr",
+    "category_trans": "txmn_ruption_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fume"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_kindling_flame"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

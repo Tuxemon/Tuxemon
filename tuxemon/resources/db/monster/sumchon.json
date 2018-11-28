@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_sumchon",
+    "name_trans": "txmn_sumchon_name",
+    "description_trans": "txmn_sumchon_descr",
+    "category_trans": "txmn_sumchon_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_blade"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

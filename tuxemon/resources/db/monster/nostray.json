@@ -3,43 +3,24 @@
     "name_trans": "txmn_nostray_name",
     "description_trans": "txmn_nostray_descr",
     "category_trans": "txmn_nostray_category",
-
-    "attack_base":            60,
-    "defense_base":           7,
-    "hp_base":                50,
-    "special_attack_base":    6,
-    "special_defense_base":   10,
-    "speed_base":             7,
-
-    "attack_mod":             1,
-    "defense_mod":            1,
-    "hp_mod":                 1,
-    "special_attack_mod":     1,
-    "special_defense_mod":    1,
-    "speed_mod":              1,
-
-    "exp_give_mod":           3,
-    "exp_req_mod":            27,
-
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bite"
+            "technique": "technique_probiscus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_water_shot"
+            "technique": "technique_chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_snowstorm"
         }
     ],
-    "sprites": {
-        "battle1": "gfx/sprites/battle/nostray-front.png",
-        "battle2": "gfx/sprites/battle/nostray-back.png",
-        "menu1": "gfx/sprites/battle/nostray-menu01.png",
-        "menu2": "gfx/sprites/battle/nostray-menu02.png"
-    },
+    "shape": "Aquatic",
     "types": [
-        "water"
+        "Water"
     ],
     "weight": 25
 }

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_trapsnap",
+    "name_trans": "txmn_trapsnap_name",
+    "description_trans": "txmn_trapsnap_descr",
+    "category_trans": "txmn_trapsnap_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_shadow_boxing"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fluff_up"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

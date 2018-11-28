@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_katacoon",
+    "name_trans": "txmn_katacoon_name",
+    "description_trans": "txmn_katacoon_descr",
+    "category_trans": "txmn_katacoon_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_font"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

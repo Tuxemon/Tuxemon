@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_eyesore",
+    "name_trans": "txmn_eyesore_name",
+    "description_trans": "txmn_eyesore_descr",
+    "category_trans": "txmn_eyesore_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

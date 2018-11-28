@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_snarlon",
+    "name_trans": "txmn_snarlon_name",
+    "description_trans": "txmn_snarlon_descr",
+    "category_trans": "txmn_snarlon_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_energy_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sand_spray"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

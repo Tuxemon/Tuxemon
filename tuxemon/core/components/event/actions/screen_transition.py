@@ -35,8 +35,12 @@ class ScreenTransitionAction(EventAction):
     ]
 
     def start(self):
+        pass
+
+    def update(self):
         world = self.game.get_state_name("WorldState")
 
         if world is not None:
             if not world.in_transition:
                 world.fade_and_teleport(self.parameters.transition_time)
+                self.stop()

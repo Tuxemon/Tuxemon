@@ -1,16 +1,16 @@
 {
   "slug": "status_poison",
   "name_trans": "status_poison_name",
-  "execute_trans": "combat_used_x",
-  "success_trans": "generic_thing_success",
-  "failure_trans": "generic_thing_failure",
+  "execute_trans": "combat_state_poison_get",
+  "success_trans": "combat_state_poison_damage",
+  "failure_trans": null,
   "animation": "greendrip",
   "sfx": "bite1.ogg",
   "icon": "gfx/ui/icons/status/poison-icon.png",
   "category": "poison",
   "sort": "meta",
   "effects": [
-    "damage"
+    "status"
   ],
   "target": {
     "enemy monster": 0,
@@ -20,9 +20,5 @@
     "own team": 0,
     "own trainer": 0,
     "item": 0
-  },
-  "power": 10,
-  "types": [
-    "Poison"
-  ]
+  }
 }

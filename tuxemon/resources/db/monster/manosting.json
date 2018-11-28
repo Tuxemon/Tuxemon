@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_manosting",
+    "name_trans": "txmn_manosting_name",
+    "description_trans": "txmn_manosting_descr",
+    "category_trans": "txmn_manosting_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_whirlwind"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flood"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

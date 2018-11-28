@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_polyrock",
+    "name_trans": "txmn_polyrock_name",
+    "description_trans": "txmn_polyrock_descr",
+    "category_trans": "txmn_polyrock_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_one_two"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

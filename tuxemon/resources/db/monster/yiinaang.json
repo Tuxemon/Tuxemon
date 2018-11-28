@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_yiinaang",
+    "name_trans": "txmn_yiinaang_name",
+    "description_trans": "txmn_yiinaang_descr",
+    "category_trans": "txmn_yiinaang_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_midnight_mantle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_electrical_storm"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Fire",
+        "Water"
+    ],
+    "weight": 25
+}

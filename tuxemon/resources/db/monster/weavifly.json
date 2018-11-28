@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_weavifly",
+    "name_trans": "txmn_weavifly_name",
+    "description_trans": "txmn_weavifly_descr",
+    "category_trans": "txmn_weavifly_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shuriken"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_shybulb",
+    "name_trans": "txmn_shybulb_name",
+    "description_trans": "txmn_shybulb_descr",
+    "category_trans": "txmn_shybulb_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_take_cover"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sting"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -58,7 +58,7 @@ def get_save_data(game):
     """
     save_data = game.player1.get_state(game)
     screenshot = capture_screenshot(game)
-    save_data['screenshot'] = base64.encodestring(pygame.image.tostring(screenshot, "RGB"))
+    save_data['screenshot'] = base64.b64encode(pygame.image.tostring(screenshot, "RGB")).decode('utf-8')
     save_data['screenshot_width'] = screenshot.get_width()
     save_data['screenshot_height'] = screenshot.get_height()
     save_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -92,7 +92,7 @@ def save(save_data, slot):
     if prepare.SAVE_METHOD == "CBOR":
         text = cbor.dumps(save_data)
     else:
-        text = json.dumps(save_data)
+        text = json.dumps(save_data, indent=4, separators=(',', ': '))
     with open(save_path, 'w') as f:
         logger.info("Saving data to save file: " + save_path)
         # Don't dump straight to the file: if we crash it would corrupt the save_data

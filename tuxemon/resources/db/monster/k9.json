@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_k9",
+    "name_trans": "txmn_k9_name",
+    "description_trans": "txmn_k9_descr",
+    "category_trans": "txmn_k9_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_constrict"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_battery_discharge"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

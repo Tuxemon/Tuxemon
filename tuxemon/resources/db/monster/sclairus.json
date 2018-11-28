@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_sclairus",
+    "name_trans": "txmn_sclairus_name",
+    "description_trans": "txmn_sclairus_descr",
+    "category_trans": "txmn_sclairus_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_avalanche"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_blossom"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

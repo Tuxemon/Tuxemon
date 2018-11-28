@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_botbot",
+    "name_trans": "txmn_botbot_name",
+    "description_trans": "txmn_botbot_descr",
+    "category_trans": "txmn_botbot_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_levitate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_battery_discharge"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

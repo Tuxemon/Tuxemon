@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_bursa",
+    "name_trans": "txmn_bursa_name",
+    "description_trans": "txmn_bursa_descr",
+    "category_trans": "txmn_bursa_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_bubble_trap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_ball"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_chromeye",
+    "name_trans": "txmn_chromeye_name",
+    "description_trans": "txmn_chromeye_descr",
+    "category_trans": "txmn_chromeye_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

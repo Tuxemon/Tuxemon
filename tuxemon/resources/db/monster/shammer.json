@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_shammer",
+    "name_trans": "txmn_shammer_name",
+    "description_trans": "txmn_shammer_descr",
+    "category_trans": "txmn_shammer_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_quicksand"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

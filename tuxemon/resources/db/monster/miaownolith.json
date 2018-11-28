@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_miaownolith",
+    "name_trans": "txmn_miaownolith_name",
+    "description_trans": "txmn_miaownolith_descr",
+    "category_trans": "txmn_miaownolith_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_petrify"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sand_spray"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Metal",
+        "Earth"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_tumblebee",
+    "name_trans": "txmn_tumblebee_name",
+    "description_trans": "txmn_tumblebee_descr",
+    "category_trans": "txmn_tumblebee_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_strike"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_web"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_overgrowth"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

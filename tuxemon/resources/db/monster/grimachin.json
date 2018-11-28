@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_grimachin",
+    "name_trans": "txmn_grimachin_name",
+    "description_trans": "txmn_grimachin_descr",
+    "category_trans": "txmn_grimachin_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_blade"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fume"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

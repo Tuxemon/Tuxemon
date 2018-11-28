@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_criniotherme",
+    "name_trans": "txmn_criniotherme_name",
+    "description_trans": "txmn_criniotherme_descr",
+    "category_trans": "txmn_criniotherme_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_claw"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

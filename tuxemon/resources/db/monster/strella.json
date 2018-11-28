@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_strella",
+    "name_trans": "txmn_strella_name",
+    "description_trans": "txmn_strella_descr",
+    "category_trans": "txmn_strella_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_all_in"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

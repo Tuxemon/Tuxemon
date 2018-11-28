@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_cochini",
+    "name_trans": "txmn_cochini_name",
+    "description_trans": "txmn_cochini_descr",
+    "category_trans": "txmn_cochini_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_stampede"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_thunderball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_headbutt"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_squabbit",
+    "name_trans": "txmn_squabbit_name",
+    "description_trans": "txmn_squabbit_descr",
+    "category_trans": "txmn_squabbit_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_thunderball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shadow_boxing"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_one_two"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

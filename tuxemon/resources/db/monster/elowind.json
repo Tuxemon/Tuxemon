@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_elowind",
+    "name_trans": "txmn_elowind_name",
+    "description_trans": "txmn_elowind_descr",
+    "category_trans": "txmn_elowind_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_thunderclap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_biting_winds"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

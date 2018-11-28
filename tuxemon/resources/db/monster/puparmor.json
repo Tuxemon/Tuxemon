@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_puparmor",
+    "name_trans": "txmn_puparmor_name",
+    "description_trans": "txmn_puparmor_descr",
+    "category_trans": "txmn_puparmor_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_hibernate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_wallow"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

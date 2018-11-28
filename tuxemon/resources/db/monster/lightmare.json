@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_lightmare",
+    "name_trans": "txmn_lightmare_name",
+    "description_trans": "txmn_lightmare_descr",
+    "category_trans": "txmn_lightmare_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_static_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_starfall"
+        }
+    ],
+    "shape": "Leviathan",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

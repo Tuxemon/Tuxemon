@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_eruptibus",
+    "name_trans": "txmn_eruptibus_name",
+    "description_trans": "txmn_eruptibus_descr",
+    "category_trans": "txmn_eruptibus_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_hibernate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_energy_field"
+        }
+    ],
+    "shape": "Landrace",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

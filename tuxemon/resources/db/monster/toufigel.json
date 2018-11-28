@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_toufigel",
+    "name_trans": "txmn_toufigel_name",
+    "description_trans": "txmn_toufigel_descr",
+    "category_trans": "txmn_toufigel_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_icicle_spear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_snowstorm"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Earth",
+        "Water"
+    ],
+    "weight": 25
+}

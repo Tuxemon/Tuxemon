@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_flambear",
+    "name_trans": "txmn_flambear_name",
+    "description_trans": "txmn_flambear_descr",
+    "category_trans": "txmn_flambear_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_bubble_trap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_give_all"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

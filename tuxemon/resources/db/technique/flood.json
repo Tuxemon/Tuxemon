@@ -1,0 +1,36 @@
+{
+  "accuracy": 1.5,
+  "animation": "Shot",
+  "category": "physical",
+  "effects": [
+    "damage",
+    "poison"
+  ],
+  "execute_trans": "combat_used_x",
+  "failure_trans": "combat_miss",
+  "healing_power": 0,
+  "icon": "",
+  "is_area": true,
+  "is_fast": false,
+  "name_trans": "technique_flood_name",
+  "potency": 1,
+  "power": 1.5,
+  "range": "ranged",
+  "recharge": 1,
+  "sfx": "blaster1.ogg",
+  "slug": "technique_flood",
+  "sort": "damage",
+  "success_trans": null,
+  "target": {
+    "enemy monster": 2,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "item": 0,
+    "own monster": 1,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "types": [
+    "water"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_forturtle",
+    "name_trans": "txmn_forturtle_name",
+    "description_trans": "txmn_forturtle_descr",
+    "category_trans": "txmn_forturtle_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_energy_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleep_bomb"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

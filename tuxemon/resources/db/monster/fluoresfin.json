@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_fluoresfin",
+    "name_trans": "txmn_fluoresfin_name",
+    "description_trans": "txmn_fluoresfin_descr",
+    "category_trans": "txmn_fluoresfin_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_glower"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

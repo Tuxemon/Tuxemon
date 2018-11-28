@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_pipis",
+    "name_trans": "txmn_pipis_name",
+    "description_trans": "txmn_pipis_descr",
+    "category_trans": "txmn_pipis_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_take_cover"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_angrito",
+    "name_trans": "txmn_angrito_name",
+    "description_trans": "txmn_angrito_descr",
+    "category_trans": "txmn_angrito_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Fire",
+        "Metal"
+    ],
+    "weight": 25
+}

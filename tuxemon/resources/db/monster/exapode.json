@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_exapode",
+    "name_trans": "txmn_exapode_name",
+    "description_trans": "txmn_exapode_descr",
+    "category_trans": "txmn_exapode_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_avalanche"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

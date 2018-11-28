@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_prophetoise",
+    "name_trans": "txmn_prophetoise_name",
+    "description_trans": "txmn_prophetoise_descr",
+    "category_trans": "txmn_prophetoise_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_sleep_bomb"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

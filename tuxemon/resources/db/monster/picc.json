@@ -1,0 +1,26 @@
+{
+    "slug": "txmn_picc",
+    "name_trans": "txmn_picc_name",
+    "description_trans": "txmn_picc_descr",
+    "category_trans": "txmn_picc_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_battery_discharge"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

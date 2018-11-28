@@ -1,0 +1,27 @@
+{
+    "slug": "txmn_seirein",
+    "name_trans": "txmn_seirein_name",
+    "description_trans": "txmn_seirein_descr",
+    "category_trans": "txmn_seirein_category",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "technique_supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "technique_midnight_mantle"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Fire",
+        "Water"
+    ],
+    "weight": 25
+}

@@ -103,14 +103,6 @@
                 1,
                 6
             ],
-            "monster":"magmaturtle"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
             "monster":"nudiflot_female"
         },
         {
@@ -184,14 +176,6 @@
                 6
             ],
             "monster":"tumbleworm"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
-            "monster":"tux"
         }
     ]
 }

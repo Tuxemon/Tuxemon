@@ -39,14 +39,6 @@
                 1,
                 6
             ],
-            "monster":"merlicun"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
             "monster":"aardorn"
         },
         {
@@ -95,7 +87,7 @@
                 1,
                 6
             ],
-            "monster":"falcono"
+            "monster":"flacono"
         },
         {
             "encounter_rate":1,
@@ -112,22 +104,6 @@
                 6
             ],
             "monster":"nostray"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
-            "monster":"selket"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                1,
-                6
-            ],
-            "monster":"spycozeus"
         },
         {
             "encounter_rate":1,

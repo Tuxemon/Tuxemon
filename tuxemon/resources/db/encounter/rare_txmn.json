@@ -4,14 +4,6 @@
         {
             "encounter_rate":1,
             "level_range":[
-                10,
-                30
-            ],
-            "monster":"firomenis"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
                 18,
                 35
             ],
@@ -80,14 +72,6 @@
                 35
             ],
             "monster":"allagon"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                36,
-                50
-            ],
-            "monster":"ferricran"
         },
         {
             "encounter_rate":1,
@@ -175,23 +159,7 @@
                 10,
                 30
             ],
-            "monster":"selmatek"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                10,
-                30
-            ],
             "monster":"sharpfin"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                10,
-                30
-            ],
-            "monster":"snowrilla"
         }
     ]
 }

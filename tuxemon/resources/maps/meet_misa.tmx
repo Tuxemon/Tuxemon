@@ -88,7 +88,7 @@
   </object>
   <object id="40" name="let's speak" type="event" x="69.5" y="103.75" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog backstory\n"</>
+    <property name="act1" value="translated_dialog backstory\n"/>
     <property name="act9" value="set_variable oopsie:whoops"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>

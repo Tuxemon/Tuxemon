@@ -123,7 +123,11 @@ class TranslatorPo(object):
             self.load_locale(self.locale)
             text = self.translate(text)         # self.load_locale populates self.translate
 
-        return text.format(**parameters)
+        # apply parameters only if non-empty
+        if parameters:
+            return text.format(**parameters)
+        else:
+            return text
 
 
 class Translator(object):

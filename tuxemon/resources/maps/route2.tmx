@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="137">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextobjectid="137">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -177,7 +177,9 @@
   <object id="60" name="Play Music" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music peasant_kingdom.ogg"/>
+    <property name="act2" value="set_variable sadsong:no"/>
     <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="cond2" value="not variable_set sadsong:yes"/>
    </properties>
   </object>
   <object id="61" name="Teleport to Cotton Town" type="event" x="624" y="144" width="16" height="16">
@@ -240,7 +242,9 @@
   </object>
   <object id="88" name="talk to misa" type="event" x="48" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog route2speech"/>
+    <property name="act1" value="set_variable sadsong:yes"/>
+    <property name="act10" value="play_music JRPG_princess.ogg"/>
+    <property name="act11" value="translated_dialog route2speech"/>
     <property name="act2" value="npc_face npc_misa,right"/>
     <property name="act3" value="translated_dialog route2speech2"/>
     <property name="act5" value="npc_face npc_misa,up"/>
@@ -252,6 +256,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="is variable_set skadoosh:yes"/>
     <property name="cond5" value="not variable_set leavemealone:yes"/>
+    <property name="cond6" value="not variable_set sadsong:yes"/>
    </properties>
   </object>
   <object id="89" name="yes to talk" type="event" x="48" y="48" width="16" height="16">
@@ -292,6 +297,10 @@
     <property name="act32" value="translated_dialog spillit7"/>
     <property name="act33" value="npc_face npc_misa,left"/>
     <property name="act34" value="set_variable leavemealone:yes"/>
+    <property name="act35" value="wait 1"/>
+    <property name="act36" value="translated_dialog leavemealone"/>
+    <property name="act37" value="play_music peasant_kingdom.ogg"/>
+    <property name="act38" value="set_variable sadsong:no"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="not variable_set yahoo:maybe"/>

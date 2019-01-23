@@ -53,7 +53,18 @@ class MainCombatMenuState(PopUpMenu):
         # TODO: only works for player0
         self.game.pop_state(self)
         combat_state = self.game.get_state_name("CombatState")
-        combat_state.trigger_player_run(combat_state.players[0])
+
+        if combat_state.is_trainer_battle:
+            def open_menu():
+                combat_state.task(
+                    partial(combat_state.show_monster_action_menu, self.monster)
+                )
+                combat_state.task(
+                    partial(combat_state.game.push_state, "WaitForInputState")
+                )
+            combat_state.alert(trans("combat_can't_run_from_trainer"), open_menu)
+        else:
+            combat_state.trigger_player_run(combat_state.players[0])
 
     def open_swap_menu(self):
         """ Open menus to swap monsters in party

@@ -3,8 +3,7 @@
   "animation": "Rage",
   "category": "physical",
   "effects": [
-    "damage",
-    "lifeleech"
+    "damage"
   ],
   "execute_trans": "combat_used_x",
   "failure_trans": "combat_miss",

@@ -50,6 +50,7 @@ class CombatAnimations(Menu):
         super(CombatAnimations, self).startup(**kwargs)
         self._monster_sprite_map = dict()
         self.hud = dict()
+        self.is_trainer_battle = None
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc
@@ -108,13 +109,16 @@ class CombatAnimations(Menu):
         sprite = self._monster_sprite_map[trainer]
         self.animate(sprite.rect, right=0, duration=.8)
 
-    def animate_monster_release_bottom(self, feet, monster):
+    def animate_monster_release(self, npc, monster):
         """
 
-        :type feet: sequence
+        :type npc: core.components.npc.Npc
         :type monster: core.components.monster.Monster
         :return:
         """
+        feet = list(self._layout[npc]['home'][0].center)
+        feet[1] += tools.scale(11)
+
         capdev = self.load_sprite('gfx/items/capture_device.png')
         scale_sprite(capdev, .4)
         capdev.rect.center = feet[0], feet[1] - scale(60)
@@ -142,7 +146,10 @@ class CombatAnimations(Menu):
         self.task(capdev.kill, fall_time + delay + fade_duration)
 
         # load monster and set in final position
-        monster_sprite = self.load_sprite(monster.back_battle_sprite, midbottom=feet)
+        monster_sprite = self.load_sprite(
+            monster.back_battle_sprite if npc.isplayer else monster.front_battle_sprite,
+            midbottom=feet,
+        )
         self._monster_sprite_map[monster] = monster_sprite
 
         # position monster_sprite off screen and set animation to move it back to final spot
@@ -367,9 +374,12 @@ class CombatAnimations(Menu):
                                     bottom=back_island.rect.bottom - scale(12),
                                     centerx=back_island.rect.centerx)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
-        self.monsters_in_play[self.players[1]].append(right_monster)
+        self.monsters_in_play[opponent].append(right_monster)
         self._monster_sprite_map[right_monster] = monster1
-        self.alert(trans('combat_wild_appeared', {"name": right_monster.name.upper()}))
+        if self.is_trainer_battle:
+            self.alert(trans('combat_trainer_appeared', {"name": opponent.name.upper()}))
+        else:
+            self.alert(trans('combat_wild_appeared', {"name": right_monster.name.upper()}))
 
         front_island = self.load_sprite('gfx/ui/combat/front_island.png',
                                         bottom=player_home.bottom - y_mod, left=w)

@@ -1,6 +1,7 @@
 {
     "combat_run": "${{user}} ran away!",
     "combat_miss": "It missed...",
+    "combat_can't_run_from_trainer": "Can't run from trainer battles!",
     "combat_player_run": "You have run away!",
     "combat_used_x": "${{user}} used ${{name}}!",
     "combat_used_x_on_y": "${{user}} used ${{name}} on ${{target}}!",
@@ -16,6 +17,7 @@
     "combat_state_recover_success": "${{user}} recovered health!",
     "combat_state_recover_failure": "${{user}} can't heal any further.",
     "combat_status_damage": "${{user}} took ${{status}} damage!",
+    "combat_trainer_appeared": "${{name}} wants to battle!",
     "combat_victory": "You have won!",
     "combat_defeat": "You've been defeated!",
     "combat_draw": "All parties have fainted!",
@@ -412,6 +414,7 @@
     "txmn_zunna_descr": "Cheerful ZUNNA sucks up all the food it can find into its stomach.",
     "txmn_zunna_name": "Zunna",
 
+    "npc_liela": "Liela",
     "npc_maple_name": "Maple",
     "npc_wife": "npc_wife",
     "npc_tuxemart": "npc_tuxemart",

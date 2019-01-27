@@ -104,11 +104,13 @@ class Menu(state.State):
         del self.menu_items
         del self.menu_sprites
 
-    def start_text_animation(self, text_area):
+    def start_text_animation(self, text_area, callback):
         """ Start an animation to show textarea, one character at a time
 
         :param text_area: TextArea to animate
         :type text_area: core.components.ui.text.TextArea
+        :param callback: called when alert is complete
+        :type callback: callable
         :rtype: None
         """
 
@@ -116,7 +118,8 @@ class Menu(state.State):
             try:
                 next(text_area)
             except StopIteration:
-                pass
+                if callback:
+                    callback()
             else:
                 self.task(next_character, self.character_delay)
 
@@ -124,19 +127,21 @@ class Menu(state.State):
         self.remove_animations_of(next_character)
         next_character()
 
-    def animate_text(self, text_area, text):
+    def animate_text(self, text_area, text, callback):
         """ Set and animate a text area
 
         :param text: Test to display
         :type text: basestring
         :param text_area: TextArea to animate
         :type text_area: core.components.ui.text.TextArea
+        :param callback: called when alert is complete
+        :type callback: callable
         :rtype: None
         """
         text_area.text = text
-        self.start_text_animation(text_area)
+        self.start_text_animation(text_area, callback)
 
-    def alert(self, message):
+    def alert(self, message, callback=None):
         """ Write a message to the first available text area
 
         Generally, a state will have just one, if any, text area.
@@ -145,6 +150,8 @@ class Menu(state.State):
 
         :param message: Something interesting, I hope.
         :type message: basestring
+        :param callback: called when alert is complete
+        :type callback: callable
 
         :returns: None
         """
@@ -156,7 +163,7 @@ class Menu(state.State):
             logger.error("attempted to use 'alert' on state without a TextArea", message)
             raise RuntimeError
 
-        self.animate_text(find_textarea(), message)
+        self.animate_text(find_textarea(), message, callback)
 
     def initialize_items(self):
         """ Advanced way to fill in menu items

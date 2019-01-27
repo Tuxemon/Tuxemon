@@ -134,6 +134,7 @@ class CombatState(CombatAnimations):
         self._round = 0
 
         super(CombatState, self).startup(**kwargs)
+        self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
         self.players = list(self.players)
         self.show_combat_dialog()
         self.transition_phase("begin")
@@ -462,15 +463,20 @@ class CombatState(CombatAnimations):
         :return:
         """
         # TODO: refactor some into the combat animations
-        feet = list(self._layout[player]['home'][0].center)
-        feet[1] += tools.scale(11)
-        self.animate_monster_release_bottom(feet, monster)
+        self.animate_monster_release(player, monster)
         self.build_hud(self._layout[player]['hud'][0], monster)
         self.monsters_in_play[player].append(monster)
 
         # TODO: not hardcode
         if player is self.players[0]:
             self.alert(T.format('combat_call_tuxemon', {"name": monster.name.upper()}))
+        elif self.is_trainer_battle:
+            self.alert(
+                T.format('combat_opponent_call_tuxemon', {
+                  "name": monster.name.upper(),
+                  "user": player.name.upper(),
+                })
+            )
         else:
             self.alert(T.format('combat_wild_appeared', {"name": monster.name.upper()}))
 

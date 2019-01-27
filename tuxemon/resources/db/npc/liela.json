@@ -3,15 +3,14 @@
     "sprite_name": "femaletrainer",
     "monsters": [
         {
-            "attack": 60,
-            "defense": 14,
-            "name": "Capiti",
-            "special_attack": 12,
             "level": 6,
             "slug": "capiti",
-            "hp": 55,
-            "speed": 14,
-            "special_defense": 20,
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        },
+        {
+            "level": 6,
+            "slug": "aardart",
             "exp_give_mod": 3,
             "exp_req_mod": 27
         }

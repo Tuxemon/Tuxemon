@@ -175,7 +175,7 @@
   <object id="70" name="teleportin" type="event" x="544" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog teleport?"/>
-    <property name="act2" value="dialog_choice Yes:No,jumponwards"/>
+    <property name="act2" value="translated_dialog_choice yes:no,jumponwards"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
@@ -188,7 +188,7 @@
     <property name="act1" value="translated_dialog ouch"/>
     <property name="act2" value="set_variable jumponwards:booyaa"/>
     <property name="act3" value="transition_teleport meet_misa.tmx,9,7,0.6"/>
-    <property name="cond1" value="is variable_set jumponwards:Yes"/>
+    <property name="cond1" value="is variable_set jumponwards:yes"/>
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
@@ -196,7 +196,7 @@
    <properties>
     <property name="act1" value="translated_dialog maybe_sometime_again?"/>
     <property name="act2" value="set_variable jumponwards:hi"/>
-    <property name="cond1" value="is variable_set jumponwards:No"/>
+    <property name="cond1" value="is variable_set jumponwards:no"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing up"/>
    </properties>

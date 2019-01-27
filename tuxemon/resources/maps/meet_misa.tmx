@@ -98,7 +98,7 @@
   <object id="41" name="choose m' boi" type="event" x="40" y="104" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog backstory9"/>
-    <property name="act2" value="dialog_choice Yes,questioning"/>
+    <property name="act2" value="translated_dialog_choice yes,questioning"/>
     <property name="act3" value="set_variable oopsie:eh"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -112,7 +112,7 @@
     <property name="act3" value="set_variable questioning:None"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is variable_set questioning:Yes"/>
+    <property name="cond3" value="is variable_set questioning:yes"/>
    </properties>
   </object>
   <object id="44" name="Player Spawn" type="event" x="112" y="112" width="16" height="16"/>

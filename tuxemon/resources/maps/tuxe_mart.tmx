@@ -66,9 +66,8 @@
   <object id="37" name="Talk to the professor" type="event" x="112" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog professor_dialog\n"/>
-    <property name="act7" value="dialog_choice Hydrone:Rockitten,tuxchoice"/>
-    <property name="behav1" value="talk professor"/>
-    <property name="cond5" value="is variable_set tuxchoice:welcome"/>
+    <property name="act7" value="translated_dialog_choice hydrone:rockitten,tuxchoice"/>     
+    <property name="cond5" value="is variable_set tuxchoice:welcome"/>     
     <property name="behav1" value="talk professor"/>
    </properties>
   </object>
@@ -78,9 +77,9 @@
     <property name="act30" value="set_variable tuxchoice:welcome"/>
     <property name="cond1" value="not variable_set tuxchoice:end"/>
     <property name="cond2" value="not npc_exists professor"/>
-    <property name="cond3" value="not variable_set tuxchoice:Hydrone"/>
-    <property name="cond4" value="not variable_set tuxchoice:Rockitten"/>
-    <property name="cond5" value="not variable_set tuxchoice:Fruitera"/>
+    <property name="cond3" value="not variable_set tuxchoice:hydrone"/>
+    <property name="cond4" value="not variable_set tuxchoice:rockitten"/>
+    <property name="cond5" value="not variable_set tuxchoice:fruitera"/>
    </properties>
   </object>
   <object id="46" name="choiceHydrone" type="event" x="112.333" y="128.667" width="16" height="16">
@@ -92,7 +91,7 @@
     <property name="act45" value="translated_dialog_chain ${{end}}"/>
     <property name="act5" value="screen_transition 2"/>
     <property name="act6" value="remove_npc professor"/>
-    <property name="cond1" value="is variable_set tuxchoice:Hydrone"/>
+    <property name="cond1" value="is variable_set tuxchoice:hydrone"/>
    </properties>
   </object>
   <object id="47" name="choiceRockitten" type="event" x="112.333" y="128.333" width="16" height="16">
@@ -104,7 +103,7 @@
     <property name="act45" value="translated_dialog_chain ${{end}}"/>
     <property name="act5" value="screen_transition 2"/>
     <property name="act6" value="remove_npc professor"/>
-    <property name="cond1" value="is variable_set tuxchoice:Rockitten"/>
+    <property name="cond1" value="is variable_set tuxchoice:rockitten"/>
    </properties>
   </object>
   <object id="51" name="choiceFruitera" type="event" x="112.333" y="128" width="16" height="16">
@@ -116,7 +115,7 @@
     <property name="act45" value="translated_dialog_chain ${{end}}"/>
     <property name="act5" value="screen_transition 2"/>
     <property name="act6" value="remove_npc professor"/>
-    <property name="cond1" value="is variable_set tuxchoice:Fruitera"/>
+    <property name="cond1" value="is variable_set tuxchoice:fruitera"/>
    </properties>
   </object>
   <object id="56" name="employee" type="event" x="32" y="176" width="16" height="16">

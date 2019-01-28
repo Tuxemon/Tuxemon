@@ -20,6 +20,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.components.item import Item

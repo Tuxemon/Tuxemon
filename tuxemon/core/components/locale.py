@@ -26,6 +26,7 @@
 # core.components.locale Component for handling in-game translations.
 #
 
+from __future__ import unicode_literals
 import logging
 import json
 import os

@@ -4,6 +4,7 @@
     author: Andy Mender <andymenderunix@gmail.com>
     license: GPLv3
 """
+from __future__ import unicode_literals
 
 from contextlib import contextmanager
 import json

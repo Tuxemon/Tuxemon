@@ -4,6 +4,7 @@ notably, the use of self.game
 """
 
 from __future__ import division
+from __future__ import unicode_literals
 
 import logging
 from functools import partial

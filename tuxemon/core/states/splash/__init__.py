@@ -27,6 +27,7 @@
 # core.states.start Handles the splash screen and start menu.
 #
 #
+from __future__ import unicode_literals
 import logging
 
 import pygame

@@ -25,6 +25,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import absolute_import, division
+from __future__ import unicode_literals
 
 import logging
 import os.path

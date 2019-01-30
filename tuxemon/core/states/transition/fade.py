@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import logging
 from abc import abstractmethod
 import os.path

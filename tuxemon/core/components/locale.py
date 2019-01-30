@@ -27,6 +27,7 @@
 # core.components.locale Component for handling in-game translations.
 #
 
+from __future__ import unicode_literals
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 import gettext

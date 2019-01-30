@@ -28,6 +28,7 @@
 # core.components.player
 #
 from __future__ import absolute_import, division
+from __future__ import unicode_literals
 
 import logging
 

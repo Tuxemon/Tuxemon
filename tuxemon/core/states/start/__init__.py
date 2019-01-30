@@ -30,6 +30,7 @@
 #
 """This module contains the Start state.
 """
+from __future__ import unicode_literals
 
 import logging
 import os.path

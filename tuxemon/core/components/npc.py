@@ -28,6 +28,7 @@
 #
 # core.components.npc
 #
+from __future__ import unicode_literals
 from math import hypot
 import logging
 import os

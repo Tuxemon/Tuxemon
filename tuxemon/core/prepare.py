@@ -31,6 +31,7 @@ It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 import logging
 import os

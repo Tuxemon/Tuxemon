@@ -27,6 +27,7 @@
 # core.components.monster Tuxemon monster module
 #
 #
+from __future__ import unicode_literals
 import logging
 import pprint
 import random

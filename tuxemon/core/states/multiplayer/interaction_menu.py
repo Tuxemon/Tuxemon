@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from tuxemon.core.components.menu import PopUpMenu
 from tuxemon.core.components.menu.interface import MenuItem
 

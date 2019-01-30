@@ -31,6 +31,7 @@
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
+from __future__ import unicode_literals
 from collections import OrderedDict
 from six.moves import configparser
 

@@ -27,6 +27,7 @@
 # core.states.transition Handles the all graphical transitions.
 #
 #
+from __future__ import unicode_literals
 from .fade import FadeInTransition, FadeOutTransition
 from .flash import FlashTransition
 

@@ -1,4 +1,5 @@
 from __future__ import division
+from __future__ import unicode_literals
 
 from tuxemon.core import tools
 from tuxemon.core.components.locale import translator

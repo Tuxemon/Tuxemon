@@ -28,6 +28,7 @@
 #
 """This module contains the Tuxemon server and client.
 """
+from __future__ import unicode_literals
 from tuxemon.core.components.middleware import Multiplayer, Controller
 from tuxemon.core import prepare
 

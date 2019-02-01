@@ -95,7 +95,7 @@ def replace_text(game, text):
     'Red is running away!'
 
     """
-    text = text.replace("{name}", game.player1.name)
+    text = text.replace("${{name}}", game.player1.name)
     text = text.replace(r"\n", "\n")
 
     for i in range(len(game.player1.monsters)):

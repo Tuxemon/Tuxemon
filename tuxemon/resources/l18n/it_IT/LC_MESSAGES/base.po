@@ -151,7 +151,7 @@ msgid "combat_recharging"
 msgstr "{name} ha bisogno di riposare prima di usare ancora ${move}..."
 
 msgid "combat_recharging"
-msgstr "${{name}} ha bisogno di riposare prima di usare ancora ${{move}}..."
+msgstr "{name} ha bisogno di riposare prima di usare ancora {move}..."
 
 msgid "combat_replacement"
 msgstr "Fai una sostituzione!"

@@ -149,7 +149,7 @@ msgid "combat_capturing_fail"
 msgstr "{name} broke free!"
 
 msgid "combat_recharging"
-msgstr "${{name}} needs a break before using ${{move}} again..."
+msgstr "{name} needs a break before using {move} again..."
 
 msgid "combat_replacement"
 msgstr "Choose a replacement!"

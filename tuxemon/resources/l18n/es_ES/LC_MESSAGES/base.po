@@ -101,7 +101,7 @@ msgid "combat_opponent_call_tuxemon"
 msgstr "¡{user} sacó a {name}!"
 
 msgid "combat_state_poison_damage"
-msgstr "¡${{name}} recibió daño por envenenamiento!"
+msgstr "¡{name} recibió daño por envenenamiento!"
 
 msgid "combat_status_damage"
 msgstr "¡{name} sufrió {status} de daño!"
@@ -122,7 +122,7 @@ msgid "combat_capturing_fail"
 msgstr "¡{name} consiguió liberarse!"
 
 msgid "combat_recharging"
-msgstr "${{name}} needs a break before using ${{move}} again..."
+msgstr "{name} needs a break before using {move} again..."
 
 msgid "combat_replacement"
 msgstr "¡Escoge otro Tuxemon!"

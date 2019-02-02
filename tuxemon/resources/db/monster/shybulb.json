@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_shybulb",
-    "name_trans": "txmn_shybulb_name",
-    "description_trans": "txmn_shybulb_descr",
-    "category_trans": "txmn_shybulb_category",
+    "slug": "shybulb",
+    "category": "gardener",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_pseudopod"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 2,
-            "technique": "technique_take_cover"
+            "technique": "take_cover"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sting"
+            "technique": "sting"
         }
     ],
     "shape": "Sprite",

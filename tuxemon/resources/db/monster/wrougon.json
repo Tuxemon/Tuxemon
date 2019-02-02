@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_wrougon",
-    "name_trans": "txmn_wrougon_name",
-    "description_trans": "txmn_wrougon_descr",
-    "category_trans": "txmn_wrougon_category",
+    "slug": "wrougon",
+    "category": "dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_perfect_cut"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         }
     ],
     "shape": "Dragon",

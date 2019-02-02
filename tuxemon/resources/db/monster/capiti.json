@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_capiti",
-    "name_trans": "txmn_capiti_name",
-    "description_trans": "txmn_capiti_descr",
-    "category_trans": "txmn_capiti_category",
+    "slug": "capiti",
+    "category": "woodwose",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_peck"
+            "technique": "peck"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fluff_up"
+            "technique": "fluff_up"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sting"
+            "technique": "sting"
         }
     ],
     "shape": "Sprite",

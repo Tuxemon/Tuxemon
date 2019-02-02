@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_jemuar",
-    "name_trans": "txmn_jemuar_name",
-    "description_trans": "txmn_jemuar_descr",
-    "category_trans": "txmn_jemuar_category",
+    "slug": "jemuar",
+    "category": "precious_boulder",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_ram"
+            "technique": "ram"
         },
         {
             "level_learned": 2,
-            "technique": "technique_glower"
+            "technique": "glower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_stampede"
+            "technique": "stampede"
         }
     ],
     "shape": "Hunter",

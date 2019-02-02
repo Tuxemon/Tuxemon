@@ -1,6 +1,5 @@
 {
-    "slug": "npc_karrianna",
-    "name_trans": "npc_karrianna",
+    "slug": "karrianna",
     "sprite_name": "maple",
     "monsters": [
         {
@@ -9,7 +8,7 @@
             "name": "Propellercat",
             "special_attack": 9,
             "level": 3,
-            "monster": "txmn_propellercat",
+            "monster": "propellercat",
             "hp": 36,
             "speed": 11,
             "special_defense": 12,

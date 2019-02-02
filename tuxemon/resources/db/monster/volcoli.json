@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_volcoli",
-    "name_trans": "txmn_volcoli_name",
-    "description_trans": "txmn_volcoli_descr",
-    "category_trans": "txmn_volcoli_category",
+    "slug": "volcoli",
+    "category": "seasonal",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_supernova"
+            "technique": "supernova"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flamethrower"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sudden_glow"
+            "technique": "sudden_glow"
         }
     ],
     "shape": "Humanoid",

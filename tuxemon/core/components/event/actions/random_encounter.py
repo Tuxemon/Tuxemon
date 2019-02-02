@@ -29,7 +29,7 @@ from tuxemon.core import tools
 from tuxemon.core.components import ai, db, monster
 from tuxemon.core.components.event.actions import check_battle_legal
 from tuxemon.core.components.event.eventaction import EventAction
-from tuxemon.core.components.npc import Npc
+from tuxemon.core.components.npc import NPC
 from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -104,7 +104,7 @@ class RandomEncounterAction(EventAction):
             current_monster.current_hp = current_monster.hp
 
             # Create an NPC object which will be this monster's "trainer"
-            npc = Npc("npc_maple")
+            npc = NPC("maple_girl")
             npc.monsters.append(current_monster)
             npc.party_limit = 0
 

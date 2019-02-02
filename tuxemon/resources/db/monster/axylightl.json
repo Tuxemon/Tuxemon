@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_axylightl",
-    "name_trans": "txmn_axylightl_name",
-    "description_trans": "txmn_axylightl_descr",
-    "category_trans": "txmn_axylightl_category",
+    "slug": "axylightl",
+    "category": "inchoate",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_starfall"
+            "technique": "starfall"
         },
         {
             "level_learned": 2,
-            "technique": "technique_midnight_mantle"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_beam"
+            "technique": "beam"
         }
     ],
     "shape": "Polliwog",

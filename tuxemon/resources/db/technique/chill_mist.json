@@ -5,21 +5,17 @@
   "effects": [
     "damage"
   ],
-  "execute_trans": "combat_used_x",
-  "failure_trans": "combat_miss",
   "healing_power": 0,
   "icon": "",
   "is_area": true,
   "is_fast": false,
-  "name_trans": "technique_chill_mist_name",
   "potency": null,
   "power": 1.25,
   "range": "reach",
   "recharge": 1,
   "sfx": "blaster1.ogg",
-  "slug": "technique_chill_mist",
+  "slug": "chill_mist",
   "sort": "damage",
-  "success_trans": null,
   "target": {
     "enemy monster": 2,
     "enemy team": 0,
@@ -31,5 +27,8 @@
   },
   "types": [
     "water"
-  ]
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
 }

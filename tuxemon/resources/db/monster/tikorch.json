@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_tikorch",
-    "name_trans": "txmn_tikorch_name",
-    "description_trans": "txmn_tikorch_descr",
-    "category_trans": "txmn_tikorch_category",
+    "slug": "tikorch",
+    "category": "taboo",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fire_ball"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "technique_blossom"
+            "technique": "blossom"
         },
         {
             "level_learned": 2,
-            "technique": "technique_rock"
+            "technique": "rock"
         }
     ],
     "shape": "Blob",

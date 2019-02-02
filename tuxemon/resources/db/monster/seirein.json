@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_seirein",
-    "name_trans": "txmn_seirein_name",
-    "description_trans": "txmn_seirein_descr",
-    "category_trans": "txmn_seirein_category",
+    "slug": "seirein",
+    "category": "spirit_fire",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_supernova"
+            "technique": "supernova"
         },
         {
             "level_learned": 2,
-            "technique": "technique_chill_mist"
+            "technique": "chill_mist"
         },
         {
             "level_learned": 2,
-            "technique": "technique_midnight_mantle"
+            "technique": "midnight_mantle"
         }
     ],
     "shape": "Blob",

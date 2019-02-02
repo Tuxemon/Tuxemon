@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_grintot",
-    "name_trans": "txmn_grintot_name",
-    "description_trans": "txmn_grintot_descr",
-    "category_trans": "txmn_grintot_category",
+    "slug": "grintot",
+    "category": "pebble",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_boulder"
+            "technique": "boulder"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sand_spray"
+            "technique": "sand_spray"
         },
         {
             "level_learned": 2,
-            "technique": "technique_avalanche"
+            "technique": "avalanche"
         }
     ],
     "shape": "Brute",

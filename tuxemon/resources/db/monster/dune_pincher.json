@@ -1,0 +1,24 @@
+{
+    "slug": "dune_pincher",
+    "category": "hermit",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 2,
+            "technique": "refresh"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_snarlon",
-    "name_trans": "txmn_snarlon_name",
-    "description_trans": "txmn_snarlon_descr",
-    "category_trans": "txmn_snarlon_category",
+    "slug": "snarlon",
+    "category": "westerly",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_sudden_glow"
+            "technique": "sudden_glow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_energy_field"
+            "technique": "energy_field"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sand_spray"
+            "technique": "sand_spray"
         }
     ],
     "shape": "Hunter",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_foofle",
-    "name_trans": "txmn_foofle_name",
-    "description_trans": "txmn_foofle_descr",
-    "category_trans": "txmn_foofle_category",
+    "slug": "foofle",
+    "category": "woolly",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_suck_poison"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 2,
-            "technique": "technique_headbutt"
+            "technique": "headbutt"
         },
         {
             "level_learned": 2,
-            "technique": "technique_refresh"
+            "technique": "refresh"
         }
     ],
     "shape": "Varmint",

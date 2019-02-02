@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_vivipere",
-    "name_trans": "txmn_vivipere_name",
-    "description_trans": "txmn_vivipere_descr",
-    "category_trans": "txmn_vivipere_category",
+    "slug": "vivipere",
+    "category": "potentia",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_stone_rot"
+            "technique": "stone_rot"
         },
         {
             "level_learned": 2,
-            "technique": "technique_headbutt"
+            "technique": "headbutt"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wallow"
+            "technique": "wallow"
         }
     ],
     "shape": "Serpent",

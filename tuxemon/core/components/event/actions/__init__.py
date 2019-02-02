@@ -24,28 +24,38 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core.components.locale import translator
+from tuxemon.core.components.locale import T
 from tuxemon.core.states.combat.combat import fainted_party
 
 logger = logging.getLogger(__name__)
 
 
 def process_translate_text(game, text_slug, parameters):
-    trans = translator.translate
     replace_values = {}
 
+    # extract INI-style params
     for param in parameters:
         key, value = param.split("=")
 
+        # TODO: is this code still valid? Translator class is NOT iterable
+        """
         # Check to see if param_value is translatable
         if value in translator:
             value = trans(value)
-
+        """
+        # match special placeholders like ${{name}}
         replace_values[key] = replace_text(game, value)
 
-    text = trans(text_slug)
-    pages = text if isinstance(text, list) else (text,)
-    pages = (translator.format(page, replace_values) for page in pages)
+    # generate translation
+    text = T.format(text_slug, replace_values)
+
+    # clear the terminal end-line symbol (multi-line translation records)
+    text = text.rstrip("\n")
+
+    # split text into pages for scrolling
+    pages = text.split("\n")
+
+    # generate scrollable text
     return [replace_text(game, page) for page in pages]
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="275">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="275">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -61,22 +61,22 @@
  <tileset firstgid="5037" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
   <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
  </tileset>
- <layer name="Tile Layer 1" width="40" height="40">
+ <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztl0sOgjAQQNnA8coKWShh4Ycr6Eo9gXoIo95Cb+Y0wWQwbZnSKW2Uxcs0GWge/UyLSJMkB8QUp8gcJQUwQ5QoF9pPuq2AY5Yke+AALJFjSL+Pm3TCfrJdt8+E9KvSrhNuL9F8x+iH2zH6zSG3acHvnSB3ZuaS6T0XluvvBrk7Mw+DX2XwUz1P9cN9ufit0TxiGoLfFXgy8DL42UbsVzP0xx3xnvoFP0Hsdyhj+eUO6PzwGROC0uBHOXd8t/H82Z6JPtsqPxm3mb5ejoX0MPntsm7sywuL96n7NaQfpQ7o1h9nnaKOm6qe+PBz+a7Jbxw/Uy2Pwc9XzY3dr2bw6zs3vvuljM2Q8cP/6y77w8aP637wb37U/atbU00kfpT7s4oiAj/qOA2pbS7OgujnG9O/0OTH4/cGmHllbw==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="40" height="40">
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJzNmGdPFEEcxvfKnpqYkOhLG01ABATUxNjiCwtdjNIlKk1jYqEKxApoNLF9Bztqom98oy/8BFZA3/g5rIC/DTdh7pi5LbegT/LLsDe7Mw/P/ndu9gzDMF5HDONNxHtrKQBBCEEYTLC6FsFiWAL5dBRALdSF9cey7jHI/UjybS5jrYc8ywcUwAYohCIoNmZ9CCU6Fl6TzU60BxnzENRY80Ad1EMDNEKToc5HJ+F1i5l8dpbOwwW4CJfgMlyBIRiGEUVeiST/L37U3wN4CI/gMTyBUXgKz+C5x/xUWXjRO3gPH+AjfILPMAbjMGF4y0+VhRd9hx/wE37Bb/gDkzAF04a3/CzpsusIOPeXyrlpkA4ZkAlrIQuyISfgLj9Zuuy+uRijlPnLoBwqoBKqYD9Uw4GAu/yE/Ki/jczZxfzd0AO90AfnoB8GYNBlfn7Xn98S/8tRM/ln16lEJiWm83MtLVR2dvc3TJ8Zjj3Xr/UvkeKfC3Gsa+VzFqL+RBYiH3Gsa8NhZ+ufW+2Kr6vQTGOXl661fFpjznf92eWla/MXqP68qvY/Xv/in6m3y/+dF5XEPc6TPBbyAlEExTAOm+DVspk+q93Kd9Q22A47YGcgtj/R9U50WHq+RH41kr8GxmuEJpiC5mBsXbbipw3aAzN7m+PR/U1LRH+90PUUw7iRkthfs+RPld8Q4w3DCGSzNlwLxtblTfzcgttwB+7G7b9U1wu9wNtLF/5U+clqMGdJ1K+T3fXFimdRl99YtF4m4At8DcZeZ9e/guOVsApWw5q4fqfS5TcZrZfp6At2IBR7nV3/bj7fA3thH5TAUg/7ZF1+WaGZesmBdZAbN79d/yn8nIYzcBY6YbMLf6ORuf7k/Gps9mO1pnfqHOz1hFT5xX/ut4549Cd/f8ynPzeyW/906jBnkdf4JjO2T3VOq4taaNPUX7/He6C7d37cDzm/Ts14qTyHaZAOGZAZnOtPtTb64U/OT+evlLnKoBwqoFLhT7U2tmvuuwrd3tlJfl3M2Q090At9Cn92a6NKVdExrLF0e2ehRPnZ1bCbtUOlZnPuPrSQz6qlcXX5OamhZP1ZkvM6IY1XH/3bym9AMY+TGrrKtS20gx44KXEsOr/8u4J4FxTrX73Co1u5fX9Uyfq9JUfyotv/eZHb90cn+guyKzOG
   </data>
  </layer>
- <layer name="Tile Layer 3" width="40" height="40">
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztlklLw0AYhqdN46099BeI4IpKXQ7idhdBPKh1QXBfj55UBLXiye3kUn+BetWjuPQutsX/4FIvetCK21s6waS0mTQLmUpfeJhMJsm88yXz5SOEP3W77HagrkrO/eXjZ0w8xu9d/DtWi98u2AP74AAEZWM+JyE1oBbUgXqnJVZV43cBLsEV7YdAuzt53Ac//WAg4UsgZNAEf6+isv8ipr9O0j14AI+0HwNz8HfqJWQVfgJgDZTD37pF8eNtf8RpzD5oy+P+kIu3+KUqHz9j0hq/G+zPW0oYRECU7tlGByFNoBm0gFZH8rw8R95ZmCMTesOzu0Cc4gefdL5R+BkD42ACTFJ/Xxj/Bj80RzoE6/wV4tlLmKdISLKM42K0Z8iFG/CzCbbANtih/kowXgrKhGSOrLDQX15sRd12O7Bf0/hvLWhgllEbWKWnAvXxIN7hIXhmXGeVWP6u4S2UpT8Xcrho0n8m1d+KB7UaCHiU57PxVwVv1WAowzfRILLX4BPT+zuCr2NwYsBfD+b1g94M/hJzS2tgKdVfGL4iIGrAnxZJa2CJ9f1J4nV/SOLB37lXOSbv2+Vvnubf4Qzf8ggdX7QpP5uptn+whlxXrr+DDlHZmqmYifU6y598fErnWjo13Kf32XLNiEoy5So1SfWC3pY3SfWF1jrDiPTsWam+UKszfgGhJ1/o
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="124" type="collision" x="256" y="512">
    <polygon points="0,0 0,48 80,48 80,0"/>
   </object>
@@ -180,7 +180,7 @@
   <object id="250" type="collision" x="320" y="256" width="64" height="16"/>
   <object id="261" type="collision" x="288" y="320" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="144" name="Teleport to Route 2" type="event" x="0" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport route2.tmx,39,9,0.3"/>
@@ -217,13 +217,13 @@
    <properties>
     <property name="act1" value="translated_dialog itslockedboi"/>
     <property name="act2" value="translated_dialog hellothere"/>
-    <property name="act3" value="create_npc npc_aeble,14,10,,stand"/>
-    <property name="act4" value="npc_face npc_aeble,right"/>
+    <property name="act3" value="create_npc aeble,14,10,,stand"/>
+    <property name="act4" value="npc_face aeble,right"/>
     <property name="act5" value="translated_dialog kmere"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not npc_exists npc_aeble"/>
+    <property name="cond4" value="not npc_exists aeble"/>
     <property name="cond5" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
@@ -331,7 +331,7 @@
   </object>
   <object id="245" name="Sign: Cotton Town" type="event" x="240" y="608" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog Cotton_Town_Sign"/>
+    <property name="act1" value="translated_dialog Cotton_Town_Sign\n"/>
     <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is player_at"/>
@@ -371,38 +371,38 @@
   </object>
   <object id="252" name="create allie" type="event" x="0" y="352" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_allie,22,10,,stand"/>
-    <property name="cond1" value="not npc_exists npc_allie"/>
+    <property name="act1" value="create_npc allie,22,10,,stand"/>
+    <property name="cond1" value="not npc_exists allie"/>
     <property name="cond2" value="not variable_set npcs_are_created:yes"/>
    </properties>
   </object>
   <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog mwah"/>
+    <property name="act1" value="translated_dialog mwah\n"/>
     <property name="act11" value="set_variable npcs_are_created:yes"/>
-    <property name="act9" value="npc_face npc_allie,up"/>
+    <property name="act9" value="npc_face allie,up"/>
     <property name="act91" value="translated_dialog mwah2"/>
-    <property name="act92" value="remove_npc npc_allie"/>
-    <property name="behav0" value="talk npc_allie"/>
+    <property name="act92" value="remove_npc allie"/>
+    <property name="behav0" value="talk allie"/>
    </properties>
   </object>
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog theinfo"/>
-    <property name="act93" value="npc_move npc_aeble, down 1, right 8, up 1"/>
-    <property name="act94" value="npc_speed npc_aeble, 0.5"/>
-    <property name="act95" value="pathfind npc_aeble, 22, 10"/>
-    <property name="act96" value="remove_npc npc_aeble"/>
+    <property name="act1" value="translated_dialog theinfo\n"/>
+    <property name="act93" value="npc_move aeble, down 1, right 8, up 1"/>
+    <property name="act94" value="npc_speed aeble, 0.5"/>
+    <property name="act95" value="pathfind aeble, 22, 10"/>
+    <property name="act96" value="remove_npc aeble"/>
     <property name="act97" value="set_variable donewithyou:yes"/>
+    <property name="behav1" value="talk aeble"/>
     <property name="cond4" value="not variable_set donewithyou:yes"/>
-    <property name="behav1" value="talk npc_aeble"/>
    </properties>
   </object>
   <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_liela,38,17,,stand"/>
-    <property name="act2" value="npc_face npc_liela,up"/>
-    <property name="cond1" value="not npc_exists npc_liela"/>
+    <property name="act1" value="create_npc liela,38,17,,stand"/>
+    <property name="act2" value="npc_face liela,up"/>
+    <property name="cond1" value="not npc_exists liela"/>
    </properties>
   </object>
   <object id="260" name="door problems" type="event" x="112" y="144" width="16" height="16">
@@ -462,8 +462,8 @@
   <object id="270" name="talk to liela" type="event" x="592" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog liela_goes_to_battle"/>
-    <property name="act2" value="start_battle npc_liela"/>
-    <property name="behav1" value="talk npc_liela"/>
+    <property name="act2" value="start_battle liela"/>
+    <property name="behav1" value="talk liela"/>
    </properties>
   </object>
   <object id="271" name="statue1" type="event" x="448" y="464" width="16" height="16">
@@ -497,12 +497,12 @@
    </properties>
   </object>
  </objectgroup>
- <layer name="Above Player" width="40" height="40">
+ <layer id="6" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztl1sKgzAQRUeZLscup92ZXYS2Ls8+frw/gdIyFJk0hvEeuMhI0MkJhESkPKoiB7Vr612pvjrkqHa9FamPE3JWu36fS0k+/5n6suqaqcEfWUckf5Hmkos1TujPB/3ZJDe/niQuXGMf9OdjT/76VuTS5v3mnvz9A/rzQX8+IvibG5E78kCeyKv5HjNg3xuRK3JDpkz7YC3+eHYmJC6135UX1LEQpg==
   </data>
  </layer>
- <layer name="Above Player" width="40" height="40">
+ <layer id="7" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJzt1lkKwjAUheGToY5PVl2Tuht1a+7MeXjxCIrSxjYWIQrngx8pRQwlvREQkVgDA+RsyEZsbJ732hbosC7rsb5Nt04RkRvvgcyXr4ufnzKcb5Y55lnGWveZ925O/uOMbPp8RH5J3btX9d8m5vsiIaF98zpT6/bVmvtww7Zsx/am/Bsp6FyQolVefS3ycOAcO7ITO7NLYK7pzI03ccCUzVzqlYTNua4FW35xfTqDRJq7AmXCEMk=
   </data>

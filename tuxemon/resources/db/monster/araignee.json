@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_araignee",
-    "name_trans": "txmn_araignee_name",
-    "description_trans": "txmn_araignee_descr",
-    "category_trans": "txmn_araignee_category",
+    "slug": "araignee",
+    "category": "weaver",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         },
         {
             "level_learned": 2,
-            "technique": "technique_petrify"
+            "technique": "petrify"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         }
     ],
     "shape": "Grub",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_memnomnom",
-    "name_trans": "txmn_memnomnom_name",
-    "description_trans": "txmn_memnomnom_descr",
-    "category_trans": "txmn_memnomnom_category",
+    "slug": "memnomnom",
+    "category": "relic",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         },
         {
             "level_learned": 2,
-            "technique": "technique_feint"
+            "technique": "feint"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sand_spray"
+            "technique": "sand_spray"
         }
     ],
     "shape": "Hunter",

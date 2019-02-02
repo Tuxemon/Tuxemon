@@ -23,6 +23,7 @@
 #
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
+# Andy Mender <andymenderunix@gmail.com>
 #
 #
 # core.components.item Item handling module.
@@ -35,21 +36,19 @@ import pprint
 import random
 
 from tuxemon.core import tools
+from tuxemon.core.components.locale import T
 from . import db
-from .locale import translator
-
-trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Load the monster database
-items = db.JSONDatabase()
-items.load("item")
+items_db = db.JSONDatabase()
+items_db.load("item")
 
+# Load the inventory database
 inventory_db = db.JSONDatabase()
 inventory_db.load("inventory")
-
 
 
 class Item(object):
@@ -57,26 +56,28 @@ class Item(object):
 
     **Example:**
 
-    >>> potion_item = Item("item_potion")
-    >>> pprint.pprint(potion_item.__dict__)
-    {'description': u'Heals a monster by 50 HP.',
-     'effect': [u'heal'],
-     'slug': 'item_potion,
-     'name': u'Potion',
-     'power': 50,
-     'sprite': u'resources/gfx/items/potion.png',
-     'surface': <Surface(66x90x32 SW)>,
-     'surface_size_original': (66, 90),
-     'type': u'Consumable'}
-
+    >>> potion = Item("potion")
+    >>> pprint.pprint(potion.__dict__)
+    {
+        'description': u'Heals a monster by 50 HP.',
+        'effects': [u'heal'],
+        'slug': 'potion',
+        'name': u'potion',
+        'power': 50,
+        'sprite': u'resources/gfx/items/potion.png',
+        'surface': <Surface(66x90x32 SW)>,
+        'surface_size_original': (66, 90),
+        'type': u'Consumable'
+    }
     """
 
     def __init__(self, slug=None):
 
         self.slug = slug
-        self.name = "Blank"
+        self.name = "None"
         self.description = "None"
         self.effect = []
+        self.images = []
         self.type = None
         self.power = 0
         self.sprite = ""  # The path to the sprite to load.
@@ -100,28 +101,34 @@ class Item(object):
 
         **Examples:**
 
-        >>> potion_item = Item()
-        >>> potion_item.load("item_potion")    # Load an item by slug.
-        >>> pprint.pprint(potion_item.__dict__)
-        {'description': u'Heals a monster by 50 HP.',
-         'effect': [u'heal'],
-         'slug': 'item_potion',
-         'name': u'Potion',
-         'power': 50,
-         'type': u'Consumable'}
-
+        >>> potion = Item()
+        >>> potion.load("potion")    # Load an item by slug.
+        >>> pprint.pprint(potion.__dict__)
+        {
+            'description': u'Heals a monster by 50 HP.',
+            'effects': [u'heal'],
+            'slug': 'potion',
+            'name': u'potion',
+            'power': 50,
+            'sprite': u'resources/gfx/items/potion.png',
+            'surface': <Surface(66x90x32 SW)>,
+            'surface_size_original': (66, 90),
+            'type': u'Consumable'
+        }
         """
 
-        results = items.lookup(slug, table="item")
-        self.slug = results["slug"]               # short English identifier
-        self.name = trans(results["name_trans"])  # will be locale string
-        self.description = trans(results["description_trans"])  # will be locale string
+        results = items_db.lookup(slug, table="item")
 
-        # must be translated before displaying
-        self.execute_trans = results['execute_trans']
-        self.success_trans = results['success_trans']
-        self.failure_trans = results['failure_trans']
+        self.slug = results["slug"]                                         # short English identifier
+        self.name = T.translate(self.slug)                                  # translated name
+        self.description = T.translate("{}_description".format(self.slug))  # will be locale string
 
+        # item use notifications (translated!)
+        self.use_item = T.translate(results["use_item"])
+        self.use_success = T.translate(results["use_success"])
+        self.use_failure = T.translate(results["use_failure"])
+
+        # misc attributes (not translated!)
         self.sort = results['sort']
         self.type = results["type"]
         self.power = results["power"]
@@ -197,9 +204,12 @@ class Item(object):
         :returns: Success
 
         **Examples:**
-        >>> potion_item = Item("item_potion")
-        >>> potion_item.heal(bulbatux, game)
+        >>> potion = Item("potion")
+        >>> potion.heal(bulbatux, game)
         """
+
+        # TODO: prevent use if the item is not a healing item!
+        # TODO: 'user' param is unused - remove or use!
 
         # don't heal if already at max health
         if target.current_hp == target.hp:
@@ -295,7 +305,7 @@ def decode_inventory(data):
         if quant is None:
             item["quantity"] = 1
             # Infinite is used for shopkeepers
-            # to ensure they don't run out an item
+            # to ensure they don't run out of an item
             item["infinite"] = True
         else:
             item["quantity"] = quant

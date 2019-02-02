@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_budaye",
-    "name_trans": "txmn_budaye_name",
-    "description_trans": "txmn_budaye_descr",
-    "category_trans": "txmn_budaye_category",
+    "slug": "budaye",
+    "category": "mutual",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_muddle"
+            "technique": "muddle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_clamp_on"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 2,
-            "technique": "technique_ram"
+            "technique": "ram"
         }
     ],
     "shape": "Sprite",

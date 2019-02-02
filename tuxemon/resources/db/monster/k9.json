@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_k9",
-    "name_trans": "txmn_k9_name",
-    "description_trans": "txmn_k9_descr",
-    "category_trans": "txmn_k9_category",
+    "slug": "k9",
+    "category": "cute",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_constrict"
+            "technique": "constrict"
         },
         {
             "level_learned": 2,
-            "technique": "technique_glower"
+            "technique": "glower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_battery_discharge"
+            "technique": "battery_discharge"
         }
     ],
     "shape": "Hunter",

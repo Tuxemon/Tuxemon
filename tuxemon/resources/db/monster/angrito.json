@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_angrito",
-    "name_trans": "txmn_angrito_name",
-    "description_trans": "txmn_angrito_descr",
-    "category_trans": "txmn_angrito_category",
+    "slug": "angrito",
+    "category": "enraged_emotion",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fire_ball"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fire_claw"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flamethrower"
+            "technique": "flamethrower"
         }
     ],
     "shape": "",

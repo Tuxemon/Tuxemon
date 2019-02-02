@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="37">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="15" visible="0">
+ <layer id="1" name="Tile Layer 1" width="15" height="15" visible="0">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUDCQAAAOEAAE=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="15" height="15" visible="0">
+ <layer id="2" name="Tile Layer 2" width="15" height="15" visible="0">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUDCQAAAOEAAE=
   </data>
  </layer>
- <layer name="TIle Layer 3rd" width="15" height="15">
+ <layer id="3" name="TIle Layer 3rd" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJzzYWBg8KEAswIxG4mYHaqXlwz7+NH0cpCAseklxk5cepmBWAwPZsGjFyYWCMRBQByM5lZeIvRGAnEUEEeToJcbR3wQoxdXmOLTy8qAGuek6EUXI0WvKBDzAbE4Ab3o6kjxLzL2gZqFLz2I49ALAMOCG2k=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="collision">
+ <objectgroup color="#ff0000" id="4" name="collision">
   <object id="1" type="collision-line" x="192" y="80">
    <polyline points="0,0 0,112"/>
   </object>
@@ -74,17 +74,17 @@
    <polyline points="0,0 -80,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="26" name="Test Pathfinding" type="event" x="112" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind npc_maple,3,11"/>
+    <property name="act1" value="pathfind maple_girl,3,11"/>
     <property name="cond1" value="is player_at 7,7 "/>
    </properties>
   </object>
   <object id="29" name="Create Maple" type="event" x="144" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_maple,9,6,maple,stay"/>
-    <property name="cond1" value="not npc_exists npc_maple"/>
+    <property name="act1" value="create_npc maple_girl,9,6,maple,stay"/>
+    <property name="cond1" value="not npc_exists maple_girl"/>
    </properties>
   </object>
   <object id="36" name="Player Spawn" type="event" x="112" y="96" width="16" height="16"/>

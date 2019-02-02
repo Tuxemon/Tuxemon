@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_nudiflot_male",
-    "name_trans": "txmn_nudiflot_male_name",
-    "description_trans": "txmn_nudiflot_male_descr",
-    "category_trans": "txmn_nudiflot_male_category",
+    "slug": "nudiflot_male",
+    "category": "flotsam",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_suck_poison"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 2,
-            "technique": "technique_feint"
+            "technique": "feint"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         }
     ],
     "shape": "Polliwog",

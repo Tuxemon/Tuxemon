@@ -5,21 +5,17 @@
   "effects": [
     "damage"
   ],
-  "execute_trans": "combat_used_x",
-  "failure_trans": "combat_miss",
   "healing_power": 0,
   "icon": "",
   "is_area": false,
   "is_fast": false,
-  "name_trans": "technique_overgrowth_name",
   "potency": 1,
   "power": 2.25,
   "range": "ranged",
   "recharge": 3,
   "sfx": "blaster1.ogg",
-  "slug": "technique_overgrowth",
+  "slug": "overgrowth",
   "sort": "damage",
-  "success_trans": null,
   "target": {
     "enemy monster": 2,
     "enemy team": 0,
@@ -31,5 +27,8 @@
   },
   "types": [
     "wood"
-  ]
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
 }

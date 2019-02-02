@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_dandicub",
-    "name_trans": "txmn_dandicub_name",
-    "description_trans": "txmn_dandicub_descr",
-    "category_trans": "txmn_dandicub_category",
+    "slug": "dandicub",
+    "category": "floret",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_pseudopod"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 2,
-            "technique": "technique_overgrowth"
+            "technique": "overgrowth"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleeping_powder"
+            "technique": "sleeping_powder"
         }
     ],
     "shape": "Blob",

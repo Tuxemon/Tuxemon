@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_nudimind",
-    "name_trans": "txmn_nudimind_name",
-    "description_trans": "txmn_nudimind_descr",
-    "category_trans": "txmn_nudimind_category",
+    "slug": "nudimind",
+    "category": "reverie",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_suck_poison"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 2,
-            "technique": "technique_feint"
+            "technique": "feint"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleep_bomb"
+            "technique": "sleep_bomb"
         }
     ],
     "shape": "Polliwog",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_trapsnap",
-    "name_trans": "txmn_trapsnap_name",
-    "description_trans": "txmn_trapsnap_descr",
-    "category_trans": "txmn_trapsnap_category",
+    "slug": "trapsnap",
+    "category": "barb",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_shadow_boxing"
+            "technique": "shadow_boxing"
         },
         {
             "level_learned": 2,
-            "technique": "technique_headbutt"
+            "technique": "headbutt"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fluff_up"
+            "technique": "fluff_up"
         }
     ],
     "shape": "Brute",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_hampotamos",
-    "name_trans": "txmn_hampotamos_name",
-    "description_trans": "txmn_hampotamos_descr",
-    "category_trans": "txmn_hampotamos_category",
+    "slug": "hampotamos",
+    "category": "hungry",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wallow"
+            "technique": "wallow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_mudslide"
+            "technique": "mudslide"
         },
         {
             "level_learned": 2,
-            "technique": "technique_ram"
+            "technique": "ram"
         }
     ],
     "shape": "Landrace",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="21" height="35" tilewidth="16" tileheight="16" nextobjectid="46">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="21" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
  <tileset firstgid="1" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
   <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
  </tileset>
@@ -18,27 +18,27 @@
  <tileset firstgid="1858" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
  </tileset>
- <layer name="Tile Layer 1" width="21" height="35">
+ <layer id="1" name="Tile Layer 1" width="21" height="35">
   <data encoding="base64" compression="zlib">
    eJztyzERACAMBMGviJUowiQBLJKWIYOCK7Zcl+QAAAAALr29hknxMdNK2+p/AOw6et8=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="21" height="35">
+ <layer id="2" name="Tile Layer 2" width="21" height="35">
   <data encoding="base64" compression="zlib">
    eJxjYBgFIxnMY2NwmA/EC4B4oN0CA9vYqW/mKTQza8mwI4gG7hoF5IGbLAwMt1gIq4shIc6YWBkYmIF4KwFzCwiYuZODgWEXEXg3B/FuOwtU+4ANvxqQ/FkSzXxFwMxXRJgZhhQexNpPSF0WhWZOJBBH1HLncDUTVNahq2Nhxa4O2Uxsaki1m1S19DSTlRWBB9rMzSyo6gqBcVGEJ90jq63BU8bhsjuUA4GxqV1KAzPxAXR1+Op0SuNIAwsmBWDTDwBmRTo9
   </data>
  </layer>
- <layer name="Tile Layer 3" width="21" height="35">
+ <layer id="3" name="Tile Layer 3" width="21" height="35">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApGwSgYBcMBOHIg8GA2cyQDAItOAbc=
   </data>
  </layer>
- <layer name="Above Player" width="21" height="35">
+ <layer id="4" name="Above Player" width="21" height="35">
   <data encoding="base64" compression="zlib">
    eJztzjEBAAAIA6B9ptT+MWyhDyQgAQDgQlcy9b3g0wKfDQDK
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="32" y="96" width="48" height="16"/>
   <object id="2" type="collision" x="16" y="144" width="16" height="16"/>
   <object id="3" type="collision" x="128" y="224" width="48" height="32"/>
@@ -85,10 +85,10 @@
   </object>
   <object id="27" type="collision" x="224" y="464" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="15" type="event" x="160" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_maple,10,6,girl1,wander"/>
+    <property name="act1" value="create_npc maple_girl,10,6,girl1,wander"/>
     <property name="cond1" value="is variable_set maple_bedroom1:true"/>
    </properties>
   </object>
@@ -102,7 +102,7 @@
   </object>
   <object id="29" type="event" x="144" y="512" width="48" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Hey, ${{name}}! I found some Tuxballs in this junkyard!"/>
+    <property name="act1" value="dialog_chain Hey, {name}! I found some Tuxballs in this junkyard!"/>
     <property name="act2" value="dialog_chain You can have one. I'll take the other"/>
     <property name="act3" value="dialog_chain ${{end}}"/>
     <property name="act4" value="set_variable talked_to_maple_junkyard:true"/>
@@ -113,7 +113,7 @@
   </object>
   <object id="30" type="event" x="144" y="528" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Hey, ${{name}}! I found some Tuxballs in this junkyard!"/>
+    <property name="act1" value="dialog_chain Hey, {name}! I found some Tuxballs in this junkyard!"/>
     <property name="act2" value="dialog_chain You can have one. I'll take the other"/>
     <property name="act3" value="dialog_chain ${{end}}"/>
     <property name="act4" value="set_variable talked_to_maple_junkyard:true"/>
@@ -124,7 +124,7 @@
   </object>
   <object id="31" type="event" x="176" y="528" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Hey, ${{name}}! I found some Tuxballs in this junkyard!"/>
+    <property name="act1" value="dialog_chain Hey, {name}! I found some Tuxballs in this junkyard!"/>
     <property name="act2" value="dialog_chain You can have one. I'll take the other"/>
     <property name="act3" value="dialog_chain ${{end}}"/>
     <property name="act4" value="set_variable talked_to_maple_junkyard:true"/>
@@ -135,7 +135,7 @@
   </object>
   <object id="32" type="event" x="80" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind npc_maple,6,18"/>
+    <property name="act1" value="pathfind maple_girl,6,18"/>
     <property name="act2" value="dialog MAPLE: I got a Bamboon!"/>
     <property name="act3" value="set_variable maple_got_tuxemon1:true"/>
     <property name="cond1" value="is variable_set got_Fruitera:true"/>
@@ -144,7 +144,7 @@
   </object>
   <object id="34" type="event" x="240" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind npc_maple,14,18"/>
+    <property name="act1" value="pathfind maple_girl,14,18"/>
     <property name="act2" value="dialog MAPLE: I got a Fruitera!"/>
     <property name="act3" value="set_variable maple_got_tuxemon1:true"/>
     <property name="cond1" value="is variable_set got_Bamboon:true"/>

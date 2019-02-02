@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_manosting",
-    "name_trans": "txmn_manosting_name",
-    "description_trans": "txmn_manosting_descr",
-    "category_trans": "txmn_manosting_category",
+    "slug": "manosting",
+    "category": "balloon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_venomous_tentacle"
+            "technique": "venomous_tentacle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_whirlwind"
+            "technique": "whirlwind"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         }
     ],
     "shape": "Blob",

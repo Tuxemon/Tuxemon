@@ -115,26 +115,26 @@
   </object>
   <object id="46" name="create Karrianna and grunts" type="event" x="512" y="448" width="64" height="16">
    <properties>
-    <property name="act10" value="create_npc npc_xerogrunt3,27,34,teamxerogrunt1,stand"/>
-    <property name="act11" value="npc_face npc_xerogrunt3,right"/>
-    <property name="act12" value="create_npc npc_xerogrunt4,27,35,teamxerogrunt1,stand"/>
-    <property name="act13" value="npc_face npc_xerogrunt4,right"/>
-    <property name="act14" value="create_npc npc_xerogrunt5,27,36,teamxerogrunt1,stand"/>
-    <property name="act15" value="npc_face npc_xerogrunt5,right"/>
-    <property name="act16" value="create_npc npc_xerogrunt6,27,37,teamxerogrunt1,stand"/>
-    <property name="act17" value="npc_face npc_xerogrunt6,right"/>
-    <property name="act18" value="create_npc npc_xerogrunt7,27,38,teamxerogrunt1,stand"/>
-    <property name="act19" value="npc_face npc_xerogrunt7,right"/>
-    <property name="act20" value="create_npc npc_xerogrunt8,27,39,teamxerogrunt1,stand"/>
-    <property name="act21" value="npc_face npc_xerogrunt8,right"/>
-    <property name="act22" value="create_npc npc_xerogrunt9,27,40,teamxerogrunt1,stand"/>
-    <property name="act23" value="npc_face npc_xerogrunt9,right"/>
-    <property name="act24" value="create_npc npc_xerogrunt10,27,41,teamxerogrunt1,stand"/>
-    <property name="act25" value="npc_face npc_xerogrunt10,right"/>
-    <property name="act7" value="create_npc npc_xerogrunt1,27,32,teamxerogrunt1,stand"/>
-    <property name="act8" value="npc_face npc_xerogrunt1,right"/>
-    <property name="act9" value="create_npc npc_xerogrunt2,27,33,teamxerogrunt1,stand"/>
-    <property name="act91" value="npc_face npc_xerogrunt2,right"/>
+    <property name="act10" value="create_npc xerogrunt3,27,34,teamxerogrunt1,stand"/>
+    <property name="act11" value="npc_face xerogrunt3,right"/>
+    <property name="act12" value="create_npc xerogrunt4,27,35,teamxerogrunt1,stand"/>
+    <property name="act13" value="npc_face xerogrunt4,right"/>
+    <property name="act14" value="create_npc xerogrunt5,27,36,teamxerogrunt1,stand"/>
+    <property name="act15" value="npc_face xerogrunt5,right"/>
+    <property name="act16" value="create_npc xerogrunt6,27,37,teamxerogrunt1,stand"/>
+    <property name="act17" value="npc_face xerogrunt6,right"/>
+    <property name="act18" value="create_npc xerogrunt7,27,38,teamxerogrunt1,stand"/>
+    <property name="act19" value="npc_face xerogrunt7,right"/>
+    <property name="act20" value="create_npc xerogrunt8,27,39,teamxerogrunt1,stand"/>
+    <property name="act21" value="npc_face xerogrunt8,right"/>
+    <property name="act22" value="create_npc xerogrunt9,27,40,teamxerogrunt1,stand"/>
+    <property name="act23" value="npc_face xerogrunt9,right"/>
+    <property name="act24" value="create_npc xerogrunt10,27,41,teamxerogrunt1,stand"/>
+    <property name="act25" value="npc_face xerogrunt10,right"/>
+    <property name="act7" value="create_npc xerogrunt1,27,32,teamxerogrunt1,stand"/>
+    <property name="act8" value="npc_face xerogrunt1,right"/>
+    <property name="act9" value="create_npc xerogrunt2,27,33,teamxerogrunt1,stand"/>
+    <property name="act91" value="npc_face xerogrunt2,right"/>
    </properties>
   </object>
   <object id="57" name="Establish hideout" type="event" x="256" y="384" width="16" height="16">
@@ -155,10 +155,10 @@
   </object>
   <object id="68" name="talk to me" type="event" x="176" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_xerogrund1,33,16,teamxerogrunt1,stand"/>
-    <property name="act2" value="create_npc npc_xerogrund2,34,16,teamxerogrunt1,stand"/>
-    <property name="cond1" value="not npc_exists npc_xerogrund1"/>
-    <property name="cond2" value="not npc_exists npc_xerogrund2"/>
+    <property name="act1" value="create_npc xerogrund1,33,16,teamxerogrunt1,stand"/>
+    <property name="act2" value="create_npc xerogrund2,34,16,teamxerogrunt1,stand"/>
+    <property name="cond1" value="not npc_exists xerogrund1"/>
+    <property name="cond2" value="not npc_exists xerogrund2"/>
    </properties>
   </object>
   <object id="69" name="talkin" type="event" x="528" y="272" width="16" height="16">

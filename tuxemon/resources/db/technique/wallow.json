@@ -3,21 +3,17 @@
   "animation": "Spurt",
   "category": "physical",
   "effects": [],
-  "execute_trans": "combat_used_x",
-  "failure_trans": "combat_miss",
   "healing_power": 4.0,
   "icon": "",
   "is_area": false,
   "is_fast": false,
-  "name_trans": "technique_wallow_name",
   "potency": 0.5,
   "power": 0,
   "range": "special",
   "recharge": 1,
   "sfx": "blaster1.ogg",
-  "slug": "technique_wallow",
+  "slug": "wallow",
   "sort": "damage",
-  "success_trans": null,
   "target": {
     "enemy monster": 2,
     "enemy team": 0,
@@ -29,5 +25,8 @@
   },
   "types": [
     "aether"
-  ]
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
 }

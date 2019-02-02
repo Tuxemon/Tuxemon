@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_noctalo",
-    "name_trans": "txmn_noctalo_name",
-    "description_trans": "txmn_noctalo_descr",
-    "category_trans": "txmn_noctalo_category",
+    "slug": "noctalo",
+    "category": "nightcrawler",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_midnight_mantle"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_starfall"
+            "technique": "starfall"
         },
         {
             "level_learned": 2,
-            "technique": "technique_take_cover"
+            "technique": "take_cover"
         }
     ],
     "shape": "Flier",

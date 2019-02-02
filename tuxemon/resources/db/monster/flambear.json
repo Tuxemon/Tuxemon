@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_flambear",
-    "name_trans": "txmn_flambear_name",
-    "description_trans": "txmn_flambear_descr",
-    "category_trans": "txmn_flambear_category",
+    "slug": "flambear",
+    "category": "too_hot",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bubble_trap"
+            "technique": "bubble_trap"
         },
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         },
         {
             "level_learned": 2,
-            "technique": "technique_give_all"
+            "technique": "give_all"
         }
     ],
     "shape": "Brute",

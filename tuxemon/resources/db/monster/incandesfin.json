@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_incandesfin",
-    "name_trans": "txmn_incandesfin_name",
-    "description_trans": "txmn_incandesfin_descr",
-    "category_trans": "txmn_incandesfin_category",
+    "slug": "incandesfin",
+    "category": "light_fin",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_flow"
+            "technique": "flow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sudden_glow"
+            "technique": "sudden_glow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_starfall"
+            "technique": "starfall"
         }
     ],
     "shape": "Aquatic",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" nextobjectid="45">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="45">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -9,28 +9,28 @@
  <tileset firstgid="105" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="13">
+ <layer id="1" name="Tile Layer 1" width="15" height="13">
   <data encoding="base64" compression="zlib">
    eJyTZGBgYCIDS0IxLxkYpleCDAzT+wyIpwHxVCLpZ0h684A4l0QappcUO2H0qL2k2/uMRHuR45dcDADldENE
   </data>
  </layer>
- <layer name="Tile Layer 2" width="15" height="13">
+ <layer id="2" name="Tile Layer 2" width="15" height="13">
   <data encoding="base64" compression="zlib">
    eJxjYKAcXGdkYLgBxDcZEWICQLYglF8OxBU49P4HqWFiYGBkQohZAMUsGXFoQALqQD0aQKwJxIlkun0gQCPQb014cDMev68Eyq3Cg1fj0XsRKHcJD75MRJgPZwAAUBUX/g==
   </data>
  </layer>
- <layer name="Tile Layer 3" width="15" height="13">
+ <layer id="3" name="Tile Layer 3" width="15" height="13">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUgAAAAwwAAQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="1" type="collision" x="0" y="192" width="240" height="16"/>
   <object id="2" type="collision" x="224" y="48" width="16" height="144"/>
   <object id="3" type="collision" x="0" y="48" width="16" height="144"/>
   <object id="4" type="collision" x="0" y="0" width="240" height="48"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Event">
+ <objectgroup color="#ffff00" id="5" name="Event">
   <object id="33" name="music!" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="play_music Enter_the_Emperor.ogg"/>
@@ -58,10 +58,10 @@
   <object id="36" name="create misa" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="teleport meet_misa.tmx,3,4"/>
-    <property name="act2" value="create_npc npc_misa,3,3,misa,stand"/>
+    <property name="act2" value="create_npc misa,3,3,misa,stand"/>
     <property name="act3" value="set_variable surprisemf:yes"/>
     <property name="act4" value="set_variable jumpinback:frakyeah"/>
-    <property name="cond1" value="not npc_exists npc_misa"/>
+    <property name="cond1" value="not npc_exists misa"/>
     <property name="cond2" value="is variable_set youarejumanji:yes"/>
     <property name="cond3" value="not variable_set surprisemf:yes"/>
    </properties>
@@ -69,7 +69,7 @@
   <object id="37" name="time to talk" type="event" x="48" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable surprisemf:notanymore"/>
-    <property name="act2" value="translated_dialog a_serious_discussion"/>
+    <property name="act2" value="translated_dialog a_serious_discussion\n"/>
     <property name="act7" value="set_variable jumpinback:yes"/>
     <property name="cond1" value="is variable_set surprisemf:yes"/>
     <property name="cond2" value="is player_at"/>
@@ -77,25 +77,25 @@
     <property name="cond4" value="is variable_set jumpinback:frakyeah"/>
    </properties>
   </object>
-  <object id="39" name="jumpback" type="event" x="48" y="64" width="16" height="16">
+  <object id="39" name="jumpback" type="event" x="14.375" y="65" width="16" height="16">
    <properties>
     <property name="act1" value="teleport meet_misa.tmx,3,5"/>
     <property name="act2" value="set_variable jumpinback:no"/>
-    <property name="act4" value="translated_dialog oops"/>
+    <property name="act4" value="translated_dialog oops\n"/>
     <property name="act6" value="set_variable oopsie:yes"/>
     <property name="cond1" value="is variable_set jumpinback:yes"/>
    </properties>
   </object>
-  <object id="40" name="let's speak" type="event" x="48" y="80" width="16" height="16">
+  <object id="40" name="let's speak" type="event" x="69.5" y="103.75" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog backstory"/>
+    <property name="act1" value="translated_dialog backstory\n"/>
     <property name="act9" value="set_variable oopsie:whoops"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set oopsie:yes"/>
    </properties>
   </object>
-  <object id="41" name="choose m' boi" type="event" x="48" y="80" width="16" height="16">
+  <object id="41" name="choose m' boi" type="event" x="40" y="104" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog backstory9"/>
     <property name="act2" value="translated_dialog_choice yes,questioning"/>
@@ -105,7 +105,7 @@
     <property name="cond3" value="is variable_set oopsie:whoops"/>
    </properties>
   </object>
-  <object id="42" name="yeeeee buddy" type="event" x="48" y="80" width="16" height="16">
+  <object id="42" name="yeeeee buddy" type="event" x="15.125" y="91" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog sorryfurthis"/>
     <property name="act2" value="transition_teleport route1.tmx,33,12,0.7"/>

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_lapinou",
-    "name_trans": "txmn_lapinou_name",
-    "description_trans": "txmn_lapinou_descr",
-    "category_trans": "txmn_lapinou_category",
+    "slug": "lapinou",
+    "category": "thlay",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_invictus"
+            "technique": "invictus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_perfect_cut"
+            "technique": "perfect_cut"
         }
     ],
     "shape": "Varmint",

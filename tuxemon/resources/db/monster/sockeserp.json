@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sockeserp",
-    "name_trans": "txmn_sockeserp_name",
-    "description_trans": "txmn_sockeserp_descr",
-    "category_trans": "txmn_sockeserp_category",
+    "slug": "sockeserp",
+    "category": "power_socket_snake",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_perfect_cut"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 2,
-            "technique": "technique_surge"
+            "technique": "surge"
         },
         {
             "level_learned": 2,
-            "technique": "technique_constrict"
+            "technique": "constrict"
         }
     ],
     "shape": "Serpent",

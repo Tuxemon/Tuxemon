@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_aardorn",
-    "name_trans": "txmn_aardorn_name",
-    "description_trans": "txmn_aardorn_descr",
-    "category_trans": "txmn_aardorn_category",
+    "slug": "aardorn",
+    "category": "snout",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_tonguespear"
+            "technique": "tonguespear"
         },
         {
             "level_learned": 2,
-            "technique": "technique_ram"
+            "technique": "ram"
         },
         {
             "level_learned": 2,
-            "technique": "technique_hibernate"
+            "technique": "hibernate"
         }
     ],
     "shape": "Varmint",

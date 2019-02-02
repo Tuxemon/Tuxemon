@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_grimachin",
-    "name_trans": "txmn_grimachin_name",
-    "description_trans": "txmn_grimachin_descr",
-    "category_trans": "txmn_grimachin_category",
+    "slug": "grimachin",
+    "category": "spook",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_blade"
+            "technique": "blade"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fume"
+            "technique": "fume"
         }
     ],
     "shape": "Hunter",

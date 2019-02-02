@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_ignibus",
-    "name_trans": "txmn_ignibus_name",
-    "description_trans": "txmn_ignibus_descr",
-    "category_trans": "txmn_ignibus_category",
+    "slug": "ignibus",
+    "category": "hot_rock",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fire_ball"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "technique_boulder"
+            "technique": "boulder"
         },
         {
             "level_learned": 2,
-            "technique": "technique_static_field"
+            "technique": "static_field"
         }
     ],
     "shape": "Polliwog",

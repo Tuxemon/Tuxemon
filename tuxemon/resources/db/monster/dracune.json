@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_dracune",
-    "name_trans": "txmn_dracune_name",
-    "description_trans": "txmn_dracune_descr",
-    "category_trans": "txmn_dracune_category",
+    "slug": "dracune",
+    "category": "cloaked",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_probiscus"
+            "technique": "probiscus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_font"
+            "technique": "font"
         },
         {
             "level_learned": 2,
-            "technique": "technique_hibernate"
+            "technique": "hibernate"
         }
     ],
     "shape": "Blob",

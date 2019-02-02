@@ -28,7 +28,7 @@
     "combat_monster_choice": "Cosa deve fare ${{name}}?",
     "combat_fainted": "${{name}} è K.O.!",
     "combat_isactive": "${{name}} è ancora in campo.",
-    
+
     "empty_slot": "Slot vuoto",
     "exit": "Esci",
     "item_confirm_use": "Usa",
@@ -39,7 +39,7 @@
     "generic_thing_failure": "Ha fallito!",
     "attempting_capture": "Cattura in corso...",
     "gotcha": "Evvai!",
-    
+
     "item_apple_name": "Mela",
     "item_apple_descr": "Fa recuperare 10 PV a un mostro.",
     "item_berry_name": "Bacca",
@@ -57,12 +57,12 @@
     "item_capture_device_name": "Dispositivo di cattura",
     "item_capture_device_descr": "Cattura un mostro.",
     "item_cannot_use_here": "L'oggetto non può essere usato qui!",
-    
+
     "monster_menu_info": "Informazioni",
     "monster_menu_move": "Sposta",
-    
+
     "receive_happiness": "Hai ricevuto 5 dispositivi di cattura!",
-    
+
     "log_off": "Disconnetti",
     "menu_bag": "Borsa",
     "menu_fight": "Combatti",
@@ -78,7 +78,7 @@
     "menu_player": "Giocatore",
     "menu_run": "Scappa",
     "menu_save": "Salva",
-    
+
     "multiplayer_accept": "Accetta",
     "multiplayer_decline": "Rifiuta",
     "multiplayer_duel": "${{name}} vuole sfidarti!",
@@ -91,7 +91,7 @@
     "multiplayer_join_prompt": "Hostname o IP?",
 
     "not_implemented": "Questa funzione non è ancora stata implementata.",
-    
+
     "received_x": "Hai ricevuto ${{name}}!",
     "save_success": "Salvato!",
     "save_failure": "C'è stato un problema nel salvataggio del file!",
@@ -105,7 +105,7 @@
     "attack_effective": "L'attacco ha fatto qualche danno in più!",
     "attack_resisted": "L'attacco è stato difeso!",
     "attack_weak": "L'attacco è stato fortemente difeso!",
-    
+
     "technique_all_in_name": "All In",
     "technique_amnesia_name": "Amnesia",
     "technique_avalanche_name": "Valanga",
@@ -196,7 +196,6 @@
     "technique_web_name": "Rete",
     "technique_whirlwind_name": "Turbine",
     "technique_wing_tip_name": "Colpodala",
-    
     "txmn_aardart_category": "Formichiere",
     "txmn_aardart_descr": "Tiene il conto di ogni formica che ha mangiato e fa celebrazioni in onore dei numeri più significativi.",
     "txmn_aardart_name": "Aardart",
@@ -416,13 +415,13 @@
     "npc_wife": "Moglie",
     "npc_tuxemart": "Persona del Tuxemart",
     "npc_tuxemart_name": "Impiegato del Tuxemart",
-    
+
     "healmytuxemon": "Vuoi guarire i tuoi Tuxemon?",
     "haveagoodday": "Ti auguro una buona giornata!",
-    
+
     "yes": "Sì",
     "no": "No",
-    
+
     "door_problems": "La porta è bloccata e non si apre...",
     "empty_pot": "È un vaso vuoto. Forse qualcuno può piantarci qualcosa dentro.",
     "purple_flowers": "Qualcuno ha piantato dei fiori viola dal profumo dolce!",
@@ -431,7 +430,7 @@
     "famous_statue2": "Dice: ai nostri amati amici e eroi, wywen.",
     "cotton_town_fountain": "È una fontana. Molte monete sono sul fondo.",
     "tree": "Questo albero sembra felice e in salute!",
-    
+
     "route_2": "Strada 2",
     "sure_i_do": "Certamente",
     "not_really": "Non proprio",
@@ -575,3 +574,4 @@
 
     "input_name": "Qual è il tuo nome?"
 }
+

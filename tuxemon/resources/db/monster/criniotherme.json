@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_criniotherme",
-    "name_trans": "txmn_criniotherme_name",
-    "description_trans": "txmn_criniotherme_descr",
-    "category_trans": "txmn_criniotherme_category",
+    "slug": "criniotherme",
+    "category": "mercury",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         },
         {
             "level_learned": 2,
-            "technique": "technique_glower"
+            "technique": "glower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fire_claw"
+            "technique": "fire_claw"
         }
     ],
     "shape": "Hunter",

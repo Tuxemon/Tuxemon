@@ -17,7 +17,6 @@ PRINT_SUMMARY = True
 excel_path = 'scripts/techniques.xlsx'
 wb2 = load_workbook(excel_path)
 move_list = wb2.get_sheet_by_name('Sheet4')
-
 defaults = {
     "Water": [
         "Flood",
@@ -77,19 +76,19 @@ def set_moves(f, data, moves):
     f.write(out)
 
 
-def slugify(prefix, data):
-    return "%s_%s" % (prefix, data.lower().replace(" ", "_").replace("-", "_"))
+def slugify(data):
+    return "%s" % (data.lower().replace(" ", "_").replace("-", "_"))
 
 
 for x in range(0, 2000):
     try:
-        row = [move_list[y][x].value for y in range(1, 5)]
+        row = [move_list.cell(row=y, column=x).value for y in range(2, 6)]
     except IndexError:
         break
     if None in row:
         continue
     mons[row[0]] = [
-        slugify("technique", attack)
+        slugify(attack)
         for attack in row[1:]
     ]
 
@@ -128,7 +127,7 @@ for path in jsons:
         with open(path, "r") as f2:
             data = f2.read()
             t = loads(data)['types'][0]
-            moves = [slugify("technique", m) for m in defaults[t]]
+            moves = [slugify(m) for m in defaults[t]]
 
         with open(path, "w") as f2:
             set_moves(f2, data, moves)

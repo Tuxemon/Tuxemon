@@ -87,6 +87,9 @@ msgstr "{user} ran away!"
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_can't_run_from_trainer"
+msgstr "Can't run from trainer battles!"
+
 msgid "combat_player_run"
 msgstr "You have run away!"
 
@@ -132,6 +135,9 @@ msgstr "{user} can't heal any further."
 
 msgid "combat_status_damage"
 msgstr "{name} took {status} damage!"
+
+msgid "combat_trainer_appeared"
+msgstr "{name} wants to battle!"
 
 msgid "combat_victory"
 msgstr "You have won!"

@@ -82,9 +82,9 @@
     <property name="act1" value="set_monster_health ,"/>
     <property name="act2" value="set_monster_status ,"/>
     <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act3" value="npc_face npc_cottonnurse,up"/>
+    <property name="act3" value="npc_face cottonnurse,up"/>
     <property name="act4" value="wait 1"/>
-    <property name="act5" value="npc_face npc_cottonnurse,down"/>
+    <property name="act5" value="npc_face cottonnurse,down"/>
     <property name="act6" value="translated_dialog okaythen2"/>
     <property name="act7" value="set_variable healme:none"/>
     <property name="cond1" value="is variable_set healme:yes"/>

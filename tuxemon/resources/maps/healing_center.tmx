@@ -50,10 +50,8 @@
     <property name="act4" value="wait 1"/>
     <property name="act5" value="npc_face tabanurse,down"/>
     <property name="act6" value="translated_dialog okaythen2"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set chooses:yes"/>
+    <property name="act7" value="set_variable chooses:none"/>
+    <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
@@ -77,6 +75,7 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set chooses:yes"/>
    </properties>
   </object>
  </objectgroup>

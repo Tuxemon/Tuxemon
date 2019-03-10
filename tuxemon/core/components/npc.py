@@ -223,13 +223,19 @@ class NPC(Entity):
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
-            images_and_durations = [('sprites/%s_%s.%s.png' % (self.sprite_name, anim_type, str(num).rjust(3, '0')),
-                                     frame_duration) for num in range(4)]
+            images = [
+                'sprites/%s_%s.%s.png' % (
+                    self.sprite_name,
+                    anim_type,
+                    str(num).rjust(3, str('0'))
+                )
+                for num in range(4)
+            ]
 
             frames = []
-            for image, duration in images_and_durations:
+            for image in images:
                 surface = load_and_scale(image)
-                frames.append((surface, duration))
+                frames.append((surface, frame_duration))
 
             self.sprite[anim_type] = pyganim.PygAnimation(frames, loop=True)
 

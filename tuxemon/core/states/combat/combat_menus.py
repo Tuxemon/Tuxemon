@@ -62,7 +62,7 @@ class MainCombatMenuState(PopUpMenu):
                 combat_state.task(
                     partial(combat_state.game.push_state, "WaitForInputState")
                 )
-            combat_state.alert(trans("combat_can't_run_from_trainer"), open_menu)
+            combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)
         else:
             combat_state.trigger_player_run(combat_state.players[0])
 

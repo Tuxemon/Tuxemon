@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
+        if 'selected_index' not in kwargs:
+            kwargs['selected_index'] = save.slot_number or 0
         super(LoadMenuState, self).startup(*items, **kwargs)
         slot = kwargs.get("load_slot")
         if slot:
@@ -19,6 +21,7 @@ class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem):
         save_data = save.load(self.selected_index + 1)
         if "error" not in save_data:
+            save.slot_number = self.selected_index
             self.game.player1.set_state(save_data)
 
             old_world = self.game.get_state_name("WorldState")

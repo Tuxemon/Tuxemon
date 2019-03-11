@@ -42,6 +42,7 @@ from tuxemon.core.state import State
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import PopUpMenu
 from tuxemon.core.components.locale import T
+from tuxemon.core.components.save import get_index_of_latest_save
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -68,9 +69,12 @@ class StartState(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, *args, **kwargs):
+        index = get_index_of_latest_save()
+        kwargs['selected_index'] = 0 if index is None else 1
         super(StartState, self).startup(*args, **kwargs)
 
         def change_state(state, **kwargs):
+            kwargs['selected_index'] = index or 0
             return partial(self.game.push_state, state, **kwargs)
 
         def new_game():

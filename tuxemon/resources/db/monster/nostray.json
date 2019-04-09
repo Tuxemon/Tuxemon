@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_nostray",
-    "name_trans": "txmn_nostray_name",
-    "description_trans": "txmn_nostray_descr",
-    "category_trans": "txmn_nostray_category",
+    "slug": "nostray",
+    "category": "probiscus",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_probiscus"
+            "technique": "probiscus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_chill_mist"
+            "technique": "chill_mist"
         },
         {
             "level_learned": 2,
-            "technique": "technique_snowstorm"
+            "technique": "snowstorm"
         }
     ],
     "shape": "Aquatic",

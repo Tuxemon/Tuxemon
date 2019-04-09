@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_nudiflot_female",
-    "name_trans": "txmn_nudiflot_female_name",
-    "description_trans": "txmn_nudiflot_female_descr",
-    "category_trans": "txmn_nudiflot_female_category",
+    "slug": "nudiflot_female",
+    "category": "flopped",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_suck_poison"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 2,
-            "technique": "technique_feint"
+            "technique": "feint"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         }
     ],
     "shape": "Polliwog",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_zunna",
-    "name_trans": "txmn_zunna_name",
-    "description_trans": "txmn_zunna_descr",
-    "category_trans": "txmn_zunna_category",
+    "slug": "zunna",
+    "category": "slurpy",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_constrict"
+            "technique": "constrict"
         },
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         }
     ],
     "shape": "Blob",

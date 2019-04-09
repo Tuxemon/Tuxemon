@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_dollfin",
-    "name_trans": "txmn_dollfin_name",
-    "description_trans": "txmn_dollfin_descr",
-    "category_trans": "txmn_dollfin_category",
+    "slug": "dollfin",
+    "category": "joyful",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flow"
+            "technique": "flow"
         }
     ],
     "shape": "Aquatic",

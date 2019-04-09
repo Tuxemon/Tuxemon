@@ -41,7 +41,7 @@
     "generic_thing_failure": "It failed!",
     "attempting_capture": "Attempting capture...",
     "gotcha": "Gotcha!",
-    
+
     "item_apple_name": "Apple",
     "item_apple_descr": "Heals a monster by 10 HP.",
     "item_berry_name": "Berry",
@@ -62,7 +62,7 @@
 
     "monster_menu_info": "Info",
     "monster_menu_move": "Move",
-    
+
     "receive_happiness": "Received 5 Capture Devices!!",
 
     "log_off": "Log Off",
@@ -80,7 +80,7 @@
     "menu_player": "Player",
     "menu_run": "Run",
     "menu_save": "Save",
-    
+
     "multiplayer_accept": "Accept",
     "multiplayer_decline": "Decline",
     "multiplayer_duel": "${{name}} would like to Duel!",

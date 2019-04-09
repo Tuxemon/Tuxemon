@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_galnec",
-    "name_trans": "txmn_galnec_name",
-    "description_trans": "txmn_galnec_descr",
-    "category_trans": "txmn_galnec_category",
+    "slug": "galnec",
+    "category": "",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_mudslide"
+            "technique": "mudslide"
         },
         {
             "level_learned": 2,
-            "technique": "technique_ram"
+            "technique": "ram"
         },
         {
             "level_learned": 2,
-            "technique": "technique_rock"
+            "technique": "rock"
         }
     ],
     "shape": "",

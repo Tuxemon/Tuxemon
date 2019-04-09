@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_fluttaflap",
-    "name_trans": "txmn_fluttaflap_name",
-    "description_trans": "txmn_fluttaflap_descr",
-    "category_trans": "txmn_fluttaflap_category",
+    "slug": "fluttaflap",
+    "category": "sanguine",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_probiscus"
+            "technique": "probiscus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_spray"
+            "technique": "spray"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleeping_powder"
+            "technique": "sleeping_powder"
         }
     ],
     "shape": "Grub",

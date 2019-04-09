@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_cardinale",
-    "name_trans": "txmn_cardinale_name",
-    "description_trans": "txmn_cardinale_descr",
-    "category_trans": "txmn_cardinale_category",
+    "slug": "cardinale",
+    "category": "firebird",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_breathe_fire"
+            "technique": "breathe_fire"
         },
         {
             "level_learned": 2,
-            "technique": "technique_berserk"
+            "technique": "berserk"
         },
         {
             "level_learned": 2,
-            "technique": "technique_peregrine"
+            "technique": "peregrine"
         }
     ],
     "shape": "Flier",

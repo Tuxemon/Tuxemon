@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_abesnaki",
-    "name_trans": "txmn_abesnaki_name",
-    "description_trans": "txmn_abesnaki_descr",
-    "category_trans": "txmn_abesnaki_category",
+    "slug": "abesnaki",
+    "category": "shield-mask",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_flamethrower"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 2,
-            "technique": "technique_pseudopod"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleep_bomb"
+            "technique": "sleep_bomb"
         }
     ],
     "shape": "Serpent",

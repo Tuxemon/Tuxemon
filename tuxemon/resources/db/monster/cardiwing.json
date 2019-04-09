@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_cardiwing",
-    "name_trans": "txmn_cardiwing_name",
-    "description_trans": "txmn_cardiwing_descr",
-    "category_trans": "txmn_cardiwing_category",
+    "slug": "cardiwing",
+    "category": "firebird",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_breathe_fire"
+            "technique": "breathe_fire"
         },
         {
             "level_learned": 2,
-            "technique": "technique_kindling_flame"
+            "technique": "kindling_flame"
         },
         {
             "level_learned": 2,
-            "technique": "technique_peregrine"
+            "technique": "peregrine"
         }
     ],
     "shape": "Flier",

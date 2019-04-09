@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_conileaf",
-    "name_trans": "txmn_conileaf_name",
-    "description_trans": "txmn_conileaf_descr",
-    "category_trans": "txmn_conileaf_category",
+    "slug": "conileaf",
+    "category": "pitcher",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
-            "technique": "technique_pseudopod"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 2,
-            "technique": "technique_overgrowth"
+            "technique": "overgrowth"
         }
     ],
     "shape": "Blob",

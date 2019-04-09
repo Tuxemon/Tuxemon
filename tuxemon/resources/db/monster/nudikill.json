@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_nudikill",
-    "name_trans": "txmn_nudikill_name",
-    "description_trans": "txmn_nudikill_descr",
-    "category_trans": "txmn_nudikill_category",
+    "slug": "nudikill",
+    "category": "dark_bishop",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_rot"
+            "technique": "rot"
         },
         {
             "level_learned": 2,
-            "technique": "technique_feint"
+            "technique": "feint"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bubble_trap"
+            "technique": "bubble_trap"
         }
     ],
     "shape": "Polliwog",

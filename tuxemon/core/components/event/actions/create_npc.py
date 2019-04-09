@@ -20,6 +20,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import logging
 
 import tuxemon.core.components.npc
@@ -71,7 +72,7 @@ class CreateNpcAction(EventAction):
             sprite = db.JSONDatabase('npc').database['npc'][slug].get('sprite_name')
 
         # Create a new NPC object
-        npc = tuxemon.core.components.npc.Npc(slug, sprite_name=sprite)
+        npc = tuxemon.core.components.npc.NPC(slug, sprite_name=sprite)
         npc.set_position((pos_x, pos_y))
 
         # Set the NPC object's variables

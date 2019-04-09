@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_saurchin",
-    "name_trans": "txmn_saurchin_name",
-    "description_trans": "txmn_saurchin_descr",
-    "category_trans": "txmn_saurchin_category",
+    "slug": "saurchin",
+    "category": "",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_flood"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
-            "technique": "technique_flow"
+            "technique": "flow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_font"
+            "technique": "font"
         }
     ],
     "shape": "",

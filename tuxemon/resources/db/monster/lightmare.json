@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_lightmare",
-    "name_trans": "txmn_lightmare_name",
-    "description_trans": "txmn_lightmare_descr",
-    "category_trans": "txmn_lightmare_category",
+    "slug": "lightmare",
+    "category": "nightmare_fuel",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_static_field"
+            "technique": "static_field"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sudden_glow"
+            "technique": "sudden_glow"
         },
         {
             "level_learned": 2,
-            "technique": "technique_starfall"
+            "technique": "starfall"
         }
     ],
     "shape": "Leviathan",

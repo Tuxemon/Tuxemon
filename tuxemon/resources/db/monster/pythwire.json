@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_pythwire",
-    "name_trans": "txmn_pythwire_name",
-    "description_trans": "txmn_pythwire_descr",
-    "category_trans": "txmn_pythwire_category",
+    "slug": "pythwire",
+    "category": "power_socket",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
-            "technique": "technique_surge"
+            "technique": "surge"
         },
         {
             "level_learned": 2,
-            "technique": "technique_constrict"
+            "technique": "constrict"
         }
     ],
     "shape": "Serpent",

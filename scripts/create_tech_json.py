@@ -42,11 +42,10 @@ def create_json(data_row):
         effects += ["damage"]
 
     template = {
-        "slug": "technique_%s" % name,
-        "name_trans": "technique_%s_name" % name,
-        "execute_trans": "combat_used_x",
-        "success_trans": None,
-        "failure_trans": "combat_miss",
+        "slug": name,
+        "use_tech": "combat_used_x",
+        "use_success": None,
+        "use_failure": "combat_miss",
         "animation": data_row.animation,
         "sfx": "blaster1.ogg",
         "icon": "",
@@ -76,12 +75,13 @@ def create_json(data_row):
     path = "tuxemon/resources/db/technique/%s.json" % name
     with open(path, "w") as f:
         dump(template, f, indent=2, separators=(",", ": "), sort_keys=True)
+        f.write("\n")
 
 
 name_trans = {}
 
 for y in range(2, 6000):
-    row = DataRow(*(tech_sheet[y][x].value for x in range(0, 15)))
+    row = DataRow(*(tech_sheet.cell(row=y, column=x).value for x in range(1, 16)))
     if row.name is None:
         break
     create_json(row)

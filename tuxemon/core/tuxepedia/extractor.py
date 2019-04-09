@@ -5,6 +5,7 @@
     author: Andy Mender <andymenderunix@gmail.com>
     license: GPLv3
 """
+from __future__ import unicode_literals
 
 import logging
 import os
@@ -66,15 +67,12 @@ class TuxepediaWebExtractor:
                 self.get_logger().info(name)
                 self.get_complete_monster_sprites(monster_row)
                 monsters[name] = {
-                    "slug": f"txmn_{safe_name}",
-                    "name_trans": f"txmn_{safe_name}_name",
-                    "description_trans": f"txmn_{safe_name}_descr",
-                    "category_trans": f"txmn_{safe_name}_category",
-
+                    "slug": safe_name,
+                    "category": fix_name(self.get_monster_category(monster_row).lower()),
                     "ai": "RandomAI",
                     # "blurp": self.get_monster_blurp(monster_row),
                     # "call": self.get_monster_call(monster_row),
-                    "moveset": [],
+                    # "moveset": [],
                     "shape": self.get_monster_shape(monster_row),
                     # "tuxepedia_url": self.get_monster_url(monster_row),
                     "types": self.get_monster_types(monster_row),
@@ -116,6 +114,19 @@ class TuxepediaWebExtractor:
                               "call": self.get_monster_call(monster_row)}
 
         return monsters
+
+    def get_monster_category(self, monster_row):
+        """Get tuxemon types/elements from Tuxepedia table row
+
+        :param monster_row: HTML <tr> table row element
+        :return: list of tuxemon types/elements
+        """
+
+        # get all type elements (<a> blocks)
+        types = monster_row[3].findall("a")
+
+        categories = [el.text_content() for el in types] or ['']
+        return categories[0]
 
     def get_monster_name(self, monster_row):
         """Get tuxemon name from Tuxepedia table row
@@ -411,4 +422,4 @@ class TuxepediaWebExtractor:
 
 
 def fix_name(name):
-    return name.replace(" ♂", "_male").replace(" ♀", "_female")
+    return name.replace(" ♂", "_male").replace(" ♀", "_female").replace(" ", "_")

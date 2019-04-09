@@ -4,18 +4,10 @@
         {
             "encounter_rate":1,
             "level_range":[
-                10,
-                30
-            ],
-            "monster":"txmn_firomenis"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
                 18,
                 35
             ],
-            "monster":"txmn_legko"
+            "monster":"legko"
         },
         {
             "encounter_rate":1,
@@ -23,7 +15,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_moloch"
+            "monster":"moloch"
         },
         {
             "encounter_rate":1,
@@ -31,7 +23,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_heronquak"
+            "monster":"heronquak"
         },
         {
             "encounter_rate":1,
@@ -39,7 +31,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_eaglace"
+            "monster":"eaglace"
         },
         {
             "encounter_rate":1,
@@ -47,7 +39,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_sapragon"
+            "monster":"sapragon"
         },
         {
             "encounter_rate":1,
@@ -55,7 +47,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_dragarbor"
+            "monster":"dragarbor"
         },
         {
             "encounter_rate":1,
@@ -63,7 +55,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_gectile"
+            "monster":"gectile"
         },
         {
             "encounter_rate":1,
@@ -71,7 +63,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_velocitile"
+            "monster":"velocitile"
         },
         {
             "encounter_rate":1,
@@ -79,15 +71,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_allagon"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                36,
-                50
-            ],
-            "monster":"txmn_ferricran"
+            "monster":"allagon"
         },
         {
             "encounter_rate":1,
@@ -95,7 +79,7 @@
                 10,
                 30
             ],
-            "monster":"txmn_aardart"
+            "monster":"aardart"
         },
         {
             "encounter_rate":1,
@@ -103,7 +87,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_agnidon"
+            "monster":"agnidon"
         },
         {
             "encounter_rate":1,
@@ -111,7 +95,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_agnigon"
+            "monster":"agnigon"
         },
         {
             "encounter_rate":1,
@@ -119,7 +103,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_cardiwing"
+            "monster":"cardiwing"
         },
         {
             "encounter_rate":1,
@@ -127,7 +111,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_cardinale"
+            "monster":"cardinale"
         },
         {
             "encounter_rate":1,
@@ -135,7 +119,7 @@
                 10,
                 30
             ],
-            "monster":"txmn_corvix"
+            "monster":"corvix"
         },
         {
             "encounter_rate":1,
@@ -143,7 +127,7 @@
                 18,
                 35
             ],
-            "monster":"txmn_dracune"
+            "monster":"dracune"
         },
         {
             "encounter_rate":1,
@@ -151,7 +135,7 @@
                 36,
                 50
             ],
-            "monster":"txmn_fluttaflap"
+            "monster":"fluttaflap"
         },
         {
             "encounter_rate":1,
@@ -159,7 +143,7 @@
                 10,
                 30
             ],
-            "monster":"txmn_noctalo"
+            "monster":"noctalo"
         },
         {
             "encounter_rate":1,
@@ -167,7 +151,7 @@
                 10,
                 30
             ],
-            "monster":"txmn_possessun"
+            "monster":"possessun"
         },
         {
             "encounter_rate":1,
@@ -175,23 +159,7 @@
                 10,
                 30
             ],
-            "monster":"txmn_selmatek"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                10,
-                30
-            ],
-            "monster":"txmn_sharpfin"
-        },
-        {
-            "encounter_rate":1,
-            "level_range":[
-                10,
-                30
-            ],
-            "monster":"txmn_snowrilla"
+            "monster":"sharpfin"
         }
     ]
 }

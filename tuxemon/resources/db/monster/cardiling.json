@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_cardiling",
-    "name_trans": "txmn_cardiling_name",
-    "description_trans": "txmn_cardiling_descr",
-    "category_trans": "txmn_cardiling_category",
+    "slug": "cardiling",
+    "category": "firebird",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_breathe_fire"
+            "technique": "breathe_fire"
         },
         {
             "level_learned": 2,
-            "technique": "technique_give_all"
+            "technique": "give_all"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fire_claw"
+            "technique": "fire_claw"
         }
     ],
     "shape": "Flier",

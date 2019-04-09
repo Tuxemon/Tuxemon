@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_strella",
-    "name_trans": "txmn_strella_name",
-    "description_trans": "txmn_strella_descr",
-    "category_trans": "txmn_strella_category",
+    "slug": "strella",
+    "category": "trailing",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_rot"
+            "technique": "rot"
         },
         {
             "level_learned": 2,
-            "technique": "technique_splinter"
+            "technique": "splinter"
         },
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         }
     ],
     "shape": "Flier",

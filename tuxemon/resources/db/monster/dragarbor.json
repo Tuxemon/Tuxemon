@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_dragarbor",
-    "name_trans": "txmn_dragarbor_name",
-    "description_trans": "txmn_dragarbor_descr",
-    "category_trans": "txmn_dragarbor_category",
+    "slug": "dragarbor",
+    "category": "dragon",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         },
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         },
         {
             "level_learned": 2,
-            "technique": "technique_whirlwind"
+            "technique": "whirlwind"
         }
     ],
     "shape": "Dragon",

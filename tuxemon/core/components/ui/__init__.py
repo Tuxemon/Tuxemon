@@ -27,6 +27,7 @@
 # core.components.ui User interface handling module.
 #
 #
+from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import tools

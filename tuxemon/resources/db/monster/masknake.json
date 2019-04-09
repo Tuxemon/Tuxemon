@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_masknake",
-    "name_trans": "txmn_masknake_name",
-    "description_trans": "txmn_masknake_descr",
-    "category_trans": "txmn_masknake_category",
+    "slug": "masknake",
+    "category": "serpent's_tooth",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_starfall"
+            "technique": "starfall"
         },
         {
             "level_learned": 2,
-            "technique": "technique_beam"
+            "technique": "beam"
         },
         {
             "level_learned": 2,
-            "technique": "technique_supernova"
+            "technique": "supernova"
         }
     ],
     "shape": "Serpent",

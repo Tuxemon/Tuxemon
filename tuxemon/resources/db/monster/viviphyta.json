@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_viviphyta",
-    "name_trans": "txmn_viviphyta_name",
-    "description_trans": "txmn_viviphyta_descr",
-    "category_trans": "txmn_viviphyta_category",
+    "slug": "viviphyta",
+    "category": "germinated",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fester"
+            "technique": "fester"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sting"
+            "technique": "sting"
         },
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         }
     ],
     "shape": "Serpent",

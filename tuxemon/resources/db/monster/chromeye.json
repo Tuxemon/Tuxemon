@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_chromeye",
-    "name_trans": "txmn_chromeye_name",
-    "description_trans": "txmn_chromeye_descr",
-    "category_trans": "txmn_chromeye_category",
+    "slug": "chromeye",
+    "category": "mixed_emotion",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_perfect_cut"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shrapnel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 2,
-            "technique": "technique_wall_of_steel"
+            "technique": "wall_of_steel"
         }
     ],
     "shape": "",

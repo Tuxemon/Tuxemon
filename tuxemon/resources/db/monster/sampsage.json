@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sampsage",
-    "name_trans": "txmn_sampsage_name",
-    "description_trans": "txmn_sampsage_descr",
-    "category_trans": "txmn_sampsage_category",
+    "slug": "sampsage",
+    "category": "brains",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_sleep_bomb"
+            "technique": "sleep_bomb"
         },
         {
             "level_learned": 2,
-            "technique": "technique_bubble_trap"
+            "technique": "bubble_trap"
         },
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         }
     ],
     "shape": "Humanoid",

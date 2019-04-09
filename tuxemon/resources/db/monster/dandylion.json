@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_dandylion",
-    "name_trans": "txmn_dandylion_name",
-    "description_trans": "txmn_dandylion_descr",
-    "category_trans": "txmn_dandylion_category",
+    "slug": "dandylion",
+    "category": "lion's_tooth",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_energy_claws"
+            "technique": "energy_claws"
         },
         {
             "level_learned": 2,
-            "technique": "technique_overgrowth"
+            "technique": "overgrowth"
         },
         {
             "level_learned": 2,
-            "technique": "technique_sleeping_powder"
+            "technique": "sleeping_powder"
         }
     ],
     "shape": "Hunter",

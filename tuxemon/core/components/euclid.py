@@ -22,6 +22,7 @@
 Documentation and tests are included in the file "euclid.txt", or online
 at http://code.google.com/p/pyeuclid
 """
+from __future__ import unicode_literals
 
 import math
 import operator

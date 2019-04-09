@@ -28,17 +28,18 @@
 # core.components.player
 #
 from __future__ import absolute_import, division
+from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core.components.npc import Npc
+from tuxemon.core.components.npc import NPC
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
 # Class definition for the player.
-class Player(Npc):
+class Player(NPC):
     """ Object for Players.  WIP
     """
 

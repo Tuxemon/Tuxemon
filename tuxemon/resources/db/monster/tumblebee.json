@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_tumblebee",
-    "name_trans": "txmn_tumblebee_name",
-    "description_trans": "txmn_tumblebee_descr",
-    "category_trans": "txmn_tumblebee_category",
+    "slug": "tumblebee",
+    "category": "drone",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         },
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         },
         {
             "level_learned": 2,
-            "technique": "technique_overgrowth"
+            "technique": "overgrowth"
         }
     ],
     "shape": "Flier",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_foxfire",
-    "name_trans": "txmn_foxfire_name",
-    "description_trans": "txmn_foxfire_descr",
-    "category_trans": "txmn_foxfire_category",
+    "slug": "foxfire",
+    "category": "smoke",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_give_all"
+            "technique": "give_all"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fume"
+            "technique": "fume"
         },
         {
             "level_learned": 2,
-            "technique": "technique_fluff_up"
+            "technique": "fluff_up"
         }
     ],
     "shape": "Varmint",

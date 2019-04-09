@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_polyrock",
-    "name_trans": "txmn_polyrock_name",
-    "description_trans": "txmn_polyrock_descr",
-    "category_trans": "txmn_polyrock_category",
+    "slug": "polyrock",
+    "category": "grasshopper",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_invictus"
+            "technique": "invictus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         },
         {
             "level_learned": 2,
-            "technique": "technique_one_two"
+            "technique": "one_two"
         }
     ],
     "shape": "Brute",

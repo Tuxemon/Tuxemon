@@ -28,6 +28,7 @@
 #
 """This module contains the Headless Server state.
 """
+from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import prepare

@@ -28,6 +28,7 @@
 #
 """This module contains the Tuxemon server middleware.
 """
+from __future__ import unicode_literals
 import logging
 
 # Create a logger for optional handling of debug messages.

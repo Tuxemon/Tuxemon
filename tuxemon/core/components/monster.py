@@ -27,18 +27,17 @@
 # core.components.monster Tuxemon monster module
 #
 #
+from __future__ import unicode_literals
 import logging
 import pprint
 import random
 import os.path
 
 from tuxemon.core import tools
+from tuxemon.core.components.locale import T
 from tuxemon.core.components import ai
 from tuxemon.core.components.technique import Technique
 from . import db, fusion
-from .locale import translator
-
-trans = translator.translate
 
 # Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
@@ -212,6 +211,7 @@ class Monster(object):
     def __init__(self, save_data={}):
         self.slug = ""
         self.name = ""          # The display name of the Tuxemon
+        self.category = ""
         self.description = ""
 
         self.armour = 0
@@ -286,8 +286,9 @@ class Monster(object):
             raise RuntimeError
 
         self.slug = results["slug"]                             # short English identifier
-        self.name = trans(results["name_trans"])                # will be locale string
-        self.description = trans(results["description_trans"])  # will be locale string
+        self.name = T.translate(results["slug"])                # translated name
+        self.description = T.translate("{}_description".format(results["slug"]))  # translated description
+        self.category = T.translate(results["category"])        # translated category
         self.shape = results.get("shape", "landrace").lower()
         types = results.get("types")
         if types:

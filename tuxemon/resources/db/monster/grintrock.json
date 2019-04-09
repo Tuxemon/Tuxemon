@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_grintrock",
-    "name_trans": "txmn_grintrock_name",
-    "description_trans": "txmn_grintrock_descr",
-    "category_trans": "txmn_grintrock_category",
+    "slug": "grintrock",
+    "category": "thunderstone",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_boulder"
+            "technique": "boulder"
         },
         {
             "level_learned": 2,
-            "technique": "technique_surge"
+            "technique": "surge"
         },
         {
             "level_learned": 2,
-            "technique": "technique_stampede"
+            "technique": "stampede"
         }
     ],
     "shape": "Brute",

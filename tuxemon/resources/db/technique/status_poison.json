@@ -1,9 +1,8 @@
 {
   "slug": "status_poison",
-  "name_trans": "status_poison_name",
-  "execute_trans": "combat_state_poison_get",
-  "success_trans": "combat_state_poison_damage",
-  "failure_trans": null,
+  "use_tech": "combat_used_x",
+  "use_success": "generic_success",
+  "use_failure": "generic_failure",
   "animation": "greendrip",
   "sfx": "bite1.ogg",
   "icon": "gfx/ui/icons/status/poison-icon.png",

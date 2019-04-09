@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_weavifly",
-    "name_trans": "txmn_weavifly_name",
-    "description_trans": "txmn_weavifly_descr",
-    "category_trans": "txmn_weavifly_category",
+    "slug": "weavifly",
+    "category": "brood",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_bullet"
+            "technique": "bullet"
         },
         {
             "level_learned": 2,
-            "technique": "technique_shuriken"
+            "technique": "shuriken"
         },
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         }
     ],
     "shape": "Grub",

@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_frondly",
-    "name_trans": "txmn_frondly_name",
-    "description_trans": "txmn_frondly_descr",
-    "category_trans": "txmn_frondly_category",
+    "slug": "frondly",
+    "category": "helping_hand",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_muddle"
+            "technique": "muddle"
         },
         {
             "level_learned": 2,
-            "technique": "technique_blossom"
+            "technique": "blossom"
         },
         {
             "level_learned": 2,
-            "technique": "technique_ram"
+            "technique": "ram"
         }
     ],
     "shape": "Sprite",

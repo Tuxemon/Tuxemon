@@ -24,6 +24,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from tuxemon.core.components.event.eventcontext import EventContext
 from tuxemon.core.tools import open_dialog

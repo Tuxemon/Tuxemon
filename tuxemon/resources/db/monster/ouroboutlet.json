@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_ouroboutlet",
-    "name_trans": "txmn_ouroboutlet_name",
-    "description_trans": "txmn_ouroboutlet_descr",
-    "category_trans": "txmn_ouroboutlet_category",
+    "slug": "ouroboutlet",
+    "category": "infinite_energy",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_electrical_storm"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 2,
-            "technique": "technique_surge"
+            "technique": "surge"
         },
         {
             "level_learned": 2,
-            "technique": "technique_constrict"
+            "technique": "constrict"
         }
     ],
     "shape": "Serpent",

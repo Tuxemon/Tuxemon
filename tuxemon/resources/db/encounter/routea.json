@@ -3,10 +3,10 @@
 
 
 
-{ "monster": "txmn_shybulb","encounter_rate":10,"level_range": [12,15]},
-{ "monster": "txmn_katapill","encounter_rate":10,"level_range": [12,15]},
-{ "monster": "txmn_vamporm","encounter_rate":5,"level_range": [12,16]},
-{ "monster": "txmn_anoleaf","encounter_rate":5,"level_range": [12,15]}
+{ "monster": "shybulb","encounter_rate":10,"level_range": [12,15]},
+{ "monster": "katapill","encounter_rate":10,"level_range": [12,15]},
+{ "monster": "vamporm","encounter_rate":5,"level_range": [12,16]},
+{ "monster": "anoleaf","encounter_rate":5,"level_range": [12,15]}
 
 
 

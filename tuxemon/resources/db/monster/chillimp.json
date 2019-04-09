@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_chillimp",
-    "name_trans": "txmn_chillimp_name",
-    "description_trans": "txmn_chillimp_descr",
-    "category_trans": "txmn_chillimp_category",
+    "slug": "chillimp",
+    "category": "frost_ape",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_ice_claw"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 2,
-            "technique": "technique_icicle_spear"
+            "technique": "icicle_spear"
         },
         {
             "level_learned": 2,
-            "technique": "technique_snowstorm"
+            "technique": "snowstorm"
         }
     ],
     "shape": "Brute",

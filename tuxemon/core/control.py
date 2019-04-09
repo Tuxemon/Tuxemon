@@ -25,8 +25,10 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import absolute_import, division
+from __future__ import unicode_literals
 
 import logging
+import os.path
 import time
 
 import pygame as pg
@@ -745,8 +747,10 @@ class Control(StateManager):
             return
 
         map_path = world.current_map.filename
-        map_name = str(map_path.replace(prepare.BASEDIR, ""))
-        map_name = str(map_name.replace(prepare.DATADIR + "/maps/", ""))
+
+        # extract map name from path
+        map_name = os.path.basename(map_path)
+
         return map_name
 
     def get_state_name(self, name):

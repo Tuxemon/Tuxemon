@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_eyesore",
-    "name_trans": "txmn_eyesore_name",
-    "description_trans": "txmn_eyesore_descr",
-    "category_trans": "txmn_eyesore_category",
+    "slug": "eyesore",
+    "category": "overseer",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_amnesia"
+            "technique": "amnesia"
         },
         {
             "level_learned": 2,
-            "technique": "technique_spray"
+            "technique": "spray"
         },
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         }
     ],
     "shape": "Serpent",

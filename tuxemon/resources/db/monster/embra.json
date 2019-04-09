@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_embra",
-    "name_trans": "txmn_embra_name",
-    "description_trans": "txmn_embra_descr",
-    "category_trans": "txmn_embra_category",
+    "slug": "embra",
+    "category": "flicker",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_fire_ball"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 2,
-            "technique": "technique_refresh"
+            "technique": "refresh"
         },
         {
             "level_learned": 2,
-            "technique": "technique_kindling_flame"
+            "technique": "kindling_flame"
         }
     ],
     "shape": "Blob",

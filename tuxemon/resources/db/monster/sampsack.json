@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sampsack",
-    "name_trans": "txmn_sampsack_name",
-    "description_trans": "txmn_sampsack_descr",
-    "category_trans": "txmn_sampsack_category",
+    "slug": "sampsack",
+    "category": "brawn",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_invictus"
+            "technique": "invictus"
         },
         {
             "level_learned": 2,
-            "technique": "technique_all_in"
+            "technique": "all_in"
         },
         {
             "level_learned": 2,
-            "technique": "technique_strike"
+            "technique": "strike"
         }
     ],
     "shape": "Brute",

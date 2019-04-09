@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_pyraminx",
-    "name_trans": "txmn_pyraminx_name",
-    "description_trans": "txmn_pyraminx_descr",
-    "category_trans": "txmn_pyraminx_category",
+    "slug": "pyraminx",
+    "category": "noble",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_eyebite"
+            "technique": "eyebite"
         },
         {
             "level_learned": 2,
-            "technique": "technique_rot"
+            "technique": "rot"
         },
         {
             "level_learned": 2,
-            "technique": "technique_blade"
+            "technique": "blade"
         }
     ],
     "shape": "Hunter",

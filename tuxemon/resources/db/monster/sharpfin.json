@@ -1,21 +1,19 @@
 {
-    "slug": "txmn_sharpfin",
-    "name_trans": "txmn_sharpfin_name",
-    "description_trans": "txmn_sharpfin_descr",
-    "category_trans": "txmn_sharpfin_category",
+    "slug": "sharpfin",
+    "category": "rip",
     "ai": "RandomAI",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "technique_goad"
+            "technique": "goad"
         },
         {
             "level_learned": 2,
-            "technique": "technique_splinter"
+            "technique": "splinter"
         },
         {
             "level_learned": 2,
-            "technique": "technique_web"
+            "technique": "web"
         }
     ],
     "shape": "Aquatic",

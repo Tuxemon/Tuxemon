@@ -12,8 +12,10 @@ from tuxemon.core.components.menu import Menu
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.ui.text import TextArea
 from tuxemon.core.components.game_event import input_event
+from tuxemon.core.components.locale import T
 
 import pygame
+import random
 
 
 class InputMenu(Menu):
@@ -52,7 +54,7 @@ class InputMenu(Menu):
         self.prompt.text = kwargs.get("prompt", "")
 
     def calc_internal_rect(self):
-        w = self.rect.width - self.rect.width * .8
+        w = self.rect.width - self.rect.width * .95
         h = self.rect.height - self.rect.height * .5
         rect = self.rect.inflate(-w, -h)
         rect.top = self.rect.centery * .7
@@ -70,6 +72,9 @@ class InputMenu(Menu):
 
         # button to confirm the input and close the dialog
         yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
+
+        # button to choose random name
+        yield MenuItem(self.shadow_text(T.translate("dont_care")), None, None, self.dont_care)
 
     def process_event(self, event):
         super(InputMenu, self).process_event(event)
@@ -92,6 +97,16 @@ class InputMenu(Menu):
 
     def update_text_area(self):
         self.text_area.text = self.input_string
+
+    def dont_care(self):
+        """ Assigns the user a random name
+
+        This is called when the user selects "Don't Care".
+
+        """
+        default_names = T.translate("default_names")
+        self.input_string = random.choice(default_names.split("\n"))
+        self.update_text_area()
 
     def confirm(self):
         """ Confirm the input

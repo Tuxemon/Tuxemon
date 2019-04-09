@@ -30,7 +30,7 @@
     "generic_thing_failure": "¡Falló!",
     "attempting_capture": "Intentando capturar...",
     "gotcha": "¡Atrapado!",
-    
+
     "item_apple_name": "Manzana",
     "item_apple_descr": "Cura a un monstruo 10 HP.",
     "item_berry_name": "Baya",
@@ -51,7 +51,7 @@
 
     "monster_menu_info": "Información",
     "monster_menu_move": "Mover",
-    
+
     "receive_happiness": "Recibidos 5 Dispositivos de Captura!!",
 
     "log_off": "Desconectar",
@@ -69,7 +69,7 @@
     "menu_player": "Jugador",
     "menu_run": "Huir",
     "menu_save": "Guardar",
-    
+
     "multiplayer_accept": "Aceptar",
     "multiplayer_decline": "Rechazar",
     "multiplayer_duel": "¡${{name}} quiere retarte a un duelo!",
@@ -319,7 +319,7 @@
 
     "healmytuxemon": "¿Quieres curar a tus Tuxemon?",
     "haveagoodday": "¡Que tengas un buen día!",
-    
+
     "yes": "Sí",
     "no": "No",
 
@@ -438,7 +438,7 @@
         "Ya sé, todo el mundo necesita que yo tome el mando, pero cuando todo marcha...",
         "Pero creo que no quieres escucharme... ¿o sí?"
     ],
-    
+
     "yestalk": "¿De verdad? Gracias...",
     "notalk": "¡Eres un insensible! ¡Pues me vas a escuchar aunque no quieras!",
 
@@ -464,7 +464,7 @@
         "¿Lo harás? ¡Expléndido! Ahora, tenemos que buscarte un Tuxemon apropiado...",
         "... ... ¿Ya tienes un Tuxemon? Bueno, entonces estoy seguro de que podrás manejarte bien..."
     ],
-    
+
     "cottonnurse": "¡Bienvenido al Centro Tuxemon de Pueblo Algodón!",
     "tabanurse": [
         "¡Bienvenido al Centro Tuxemon de Pueblo Taba!",
@@ -473,5 +473,7 @@
     "okaythen": "¡De acuerdo! ¡Dame un segundo y curaré a tus Tuxemon!",
     "okaythen2": "¡Bueno, parece que tus Tuxemon están llenos de energía! ¡Aquí los tienes!",
 
-    "input_name": "¿Cuál es tu nombre?"
+    "input_name": "¿Cuál es tu nombre?",
+    "dont_care": "No importa.",
+    "default_names": ["Cruz","Loreto","Lupe","Chus","Cande","Ariel","Ale","Manu","Zorion","Reyes","Odalis","Nazaret"]
 }

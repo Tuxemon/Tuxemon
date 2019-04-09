@@ -208,5 +208,7 @@
     "xero_grunt4": "Jeg ser du har et kirsebær, det tar jeg... Jeg vil eskortere deg inn nå.",
     "xero_grunts_block": "Dette området er under ubyggelse, det burde være klart snart.",
 
-    "input_name": "Navn?"
+    "input_name": "Navn?",
+    "dont_care": "Ikke bryr seg.",
+    "default_names": ["Alex","Hanne","Inge","Mille","Storm","Vanja","Passe","Uke","Klokke","Le","Ja","Kanskje"]
 }

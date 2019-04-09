@@ -19,7 +19,7 @@
     "combat_monster_choice": "Was soll ${{name}} tun?",
     "combat_fainted": "${{name}} ist erschöpft!",
     "combat_isactive": "${{name}} kämpft bereits.",
-    
+
     "empty_slot": "Leerer Slot",
     "exit": "Verlassen",
     "item_confirm_use": "Benutzen",
@@ -30,7 +30,7 @@
     "generic_thing_failure": "Es ist fehlgeschlagen!",
     "attempting_capture": "Versuche zu fangen...",
     "gotcha": "Geschnappt!",
-    
+
     "item_apple_name": "Apfel",
     "item_apple_descr": "Heilt ein Monster um 10 HP.",
     "item_berry_name": "Beere",
@@ -48,10 +48,10 @@
     "item_capture_device_name": "Einfang Gerät",
     "item_capture_device_descr": "Fängt ein Monster.",
     "item_cannot_use_here": "${{name}} kann hier nicht benutzt werden!",
-    
+
     "monster_menu_info": "Info",
     "monster_menu_move": "Bewegen",
-    
+
     "log_off": "Ausloggen",
     "menu_bag": "Tasche",
     "menu_fight": "Kampf",
@@ -67,7 +67,7 @@
     "menu_player": "Spieler",
     "menu_run": "Flucht",
     "menu_save": "Speichern",
-    
+
     "multiplayer_accept": "Akezeptieren",
     "multiplayer_decline": "Ablehnen",
     "multiplayer_duel": "${{name}} möchte ein Duell!",
@@ -78,16 +78,16 @@
     "multiplayer_already_hosting": "Bereits am Hosten!",
     "multiplayer_no_servers": "Keine Server gefunden...",
     "multiplayer_join_prompt": "Hostname oder IP?",
-    
+
     "not_implemented": "Diese Funktion ist noch nicht verfûgbar.",
-    
+
     "received_x": "${{name}} erhalten!",
     "save_success": "Gespeichert!",
     "save_failure": "Fehler beim Speichervorgang!",
     "slot": "Slot",
     "status_faint_name": "K.O.",
     "status_poison_name": "Gift",
-    
+
     "technique_bite_name": "Biss",
     "technique_fire_explosion_name": "Feuer Explosion",
     "technique_poison_sting_name": "Gift Stachel",
@@ -183,7 +183,7 @@
 
     "npc_maple_name": "Maple",
     "npc_wife": "npc_wife",
-    
+
     "yes": "Ja",
     "no": "Nein",
 
@@ -209,5 +209,8 @@
     "xero_grunt4": "Ich sehe du hast eine Kirsche, Ich nehme sie mal... Nun, werde ich dich mal hinein bringen.",
     "xero_grunts_block": "In diesem Bereich sind gerade Bauarbeiten im Gange, diese sollten aber bald fertig sein.",
 
-    "input_name": "Name?"
+    "input_name": "Name?",
+    "dont_care": "Ist mir egal.",
+    "default_names": ["Alex","Heike","Hanne","Sigi","Michi","Manu","Inge","Ulli","Jo","Danke","Allergisch","Polizei"]
+ 
 }

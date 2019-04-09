@@ -48,6 +48,8 @@
     "item_berry_descr": "Restaure 10 PV d'un monstre.",
     "log_off": "Déconnexion",
     "input_name" : "prénom :",
+    "default_names": ["Alex","Ariel","Francis","Jade","Jordan","Lou","Modeste","Morgan","Manu","Marie","Sasha","Yanick"],
+    "dont_care": "S'en fiche.",
     "menu_bag": "Sac",
     "menu_fight": "Attaque",
     "menu_item": "Objet",

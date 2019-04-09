@@ -1521,3 +1521,21 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
 msgid "input_name"
 msgstr "Name?"
+
+msgid "dont_care"
+msgstr "DON'T CARE"
+
+msgid "default_names"
+msgstr "Beep-beep\n"
+"Toast\n"
+"Chair\n"
+"Lizard\n"
+"Chris\n"
+"Carter\n"
+"Kyndi\n"
+"Wednesday\n"
+"Tapioca\n"
+"Pom\n"
+"Indiana\n"
+"Kansas"
+}

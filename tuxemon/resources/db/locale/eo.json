@@ -78,7 +78,7 @@
     "multiplayer_already_hosting": "Vi jam gastigas!",
     "multiplayer_no_servers": "Neniu servilo trovata...",
     "multiplayer_join_prompt": "Ĉu gastignomo aŭ IP-adreso?",
-    
+
     "not_implemented": "Ĉi tiu trajto ne estas jam realigita.",
 
     "received_x": "Vi ricevis ${{name}}!",
@@ -208,5 +208,7 @@
     "xero_grunt4": "Mi notis, ke vi havas ĉerizon. Mi prenas tion... Nun mi eskortos vin ene.",
     "xero_grunts_block": "Ĉi tiu areo estas konstruata. Baldaŭ estos preta.",
 
-    "input_name": "Kiel vi nomiĝas?"
+    "input_name": "Kiel vi nomiĝas?",
+    "dont_care": "Ne gravas.",
+    "default_names": ["Amika","Nikolao","Vilhelmo","Venka","Jozefo","Fiera","Brava","Kvin","Frukto","Semo","Folio","Radiko"]
 }

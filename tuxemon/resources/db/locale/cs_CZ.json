@@ -177,10 +177,10 @@
     "txmn_tux_descr": "",
     "txmn_tux_name": "Tux",
     "npc_maple_name": "Javor",
-    
+
     "yes": "Ano",
     "no": "Ne",
-    
+
     "route_2": "Cesta 2",
 
     "professor_dialog1": "Profesor: \n Hurá. Přesně ten člověk se kterým jsem se chtěl setkat.",
@@ -204,5 +204,8 @@
     "xero_grunts_block": "Tato oblast je ve výstavbě, mělo by to být brzy hotovo.",
 
 
-    "input_name": "Jméno?"
+    "input_name": "Jméno?",
+    "dont_care": "Nestarejte se.",
+    "default_names": ["Alex","Jindra","Marie","Alergický","Policii","Pomaleji","Doleva","Oheň","Odpoledne","Dezert","Předkrm","Stůl"]
+
 }

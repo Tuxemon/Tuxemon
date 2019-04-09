@@ -576,5 +576,7 @@
     "okaythen": "Okay! Just give me a second and I will heal your Tuxemon!",
     "okaythen2": "Well, it looks like your Tuxemon are full of energy! Here they are!",
 
-    "input_name": "Name?"
+    "input_name": "Name?",
+    "dont_care": "DON'T CARE",
+    "default_names": ["Beep-beep","Toast","Chair","Lizard","Chris","Carter","Kyndi","Wednesday","Tapioca","Pom","Indiana","Kansas"]
 }

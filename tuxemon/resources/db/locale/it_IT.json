@@ -572,6 +572,7 @@
     "okaythen": "Ok! Dammi solo due secondi e guarisco i tuoi Tuxemon!",
     "okaythen2": "Bene, sembra che i tuoi Tuxemon siano pieni di energia! Eccoteli!",
 
-    "input_name": "Qual è il tuo nome?"
+    "input_name": "Qual è il tuo nome?",
+    "dont_care": "Non importa.",
+    "default_names": ["Romilda","Rosario","Loreto","Fiore","Alex","Ale","Amore","Oggi","Bello","Piccollo","Giovedì","Manzo"]
 }
-

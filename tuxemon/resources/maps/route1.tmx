@@ -101,7 +101,7 @@
   </object>
   <object id="36" name="random battle" type="event" x="640" y="496" width="160" height="160">
    <properties>
-    <property name="act1" value="random_encounter"/>
+    <property name="act1" value="random_encounter route1"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
     <property name="cond3" value="is party_size greater_than,0"/>

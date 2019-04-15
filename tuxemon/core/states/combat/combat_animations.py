@@ -172,6 +172,10 @@ class CombatAnimations(Menu):
         self.task(tech.play, delay)
         self.task(partial(self.sprites.add, sprite), delay)
 
+        # update tuxemon balls to reflect fainted tuxemon
+        for player, layout in self._layout.items():
+            self.animate_update_party_hud(player, layout['party'][0])
+
     def animate_sprite_spin(self, sprite):
         """
 
@@ -214,6 +218,7 @@ class CombatAnimations(Menu):
                 monsters.remove(monster)
             except ValueError:
                 pass
+
 
     def animate_sprite_take_damage(self, sprite):
         """
@@ -330,10 +335,21 @@ class CombatAnimations(Menu):
             centerx = home.left + scale(13)
             offset = -scale(8)
 
+        count_fainted = 0
+
+        for monster in player.monsters:
+            if any(t for t in monster.status if t.slug == "status_faint"):
+                count_fainted += 1
+
         for index in range(player.party_limit):
             sprite = None
-            if len(player.monsters) > index:
+            if len(player.monsters) - count_fainted > index:
                 sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+            elif len(player.monsters) > index:
+                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)
@@ -347,6 +363,61 @@ class CombatAnimations(Menu):
             sprite.image = tools.convert_alpha_to_colorkey(sprite.image)
             sprite.image.set_alpha(0)
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
+            animate(sprite.image, set_alpha=255, initial=0)
+            animate(sprite.rect, bottom=tray.rect.top + scale(3))
+
+
+    def animate_update_party_hud(self, player, home):
+        """ Party HUD is the arrow thing with balls.  Yes, that one.
+
+        This function updates the balls to reflect how many Tuxemon have fainted.
+
+        :param player: the player
+        :type home: pygame.Rect
+        :param slots: Number of slots
+        :return:
+        """
+        if self.get_side(home) == "left":
+            tray = self.load_sprite('gfx/ui/combat/opponent_party_tray.png',
+                                    bottom=home.bottom, right=0, layer=hud_layer)
+            self.animate(tray.rect, right=home.right, duration=0.1, delay=0.1)
+            centerx = home.right - scale(13)
+            offset = scale(8)
+        else:
+            tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
+                                    bottom=home.bottom, left=home.right, layer=hud_layer)
+            self.animate(tray.rect, left=home.left, duration=0.1, delay=0.1)
+            centerx = home.left + scale(13)
+            offset = -scale(8)
+
+        count_fainted = 0
+
+        for monster in player.monsters:
+            if any(t for t in monster.status if t.slug == "status_faint"):
+                count_fainted += 1
+
+        for index in range(player.party_limit):
+            sprite = None
+            if len(player.monsters) - count_fainted > index: # render alive Tuxemon balls
+                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+            elif len(player.monsters) > index: # render fainted Tuxemon balls
+                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+            else:
+                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+
+            # convert alpha image to image with a colorkey so we can set_alpha
+            sprite.image = tools.convert_alpha_to_colorkey(sprite.image)
+            sprite.image.set_alpha(0)
+            animate = partial(self.animate, duration=0.1, delay=0.1)
             animate(sprite.image, set_alpha=255, initial=0)
             animate(sprite.rect, bottom=tray.rect.top + scale(3))
 

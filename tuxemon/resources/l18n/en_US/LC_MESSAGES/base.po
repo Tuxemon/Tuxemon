@@ -1519,5 +1519,11 @@ msgstr "Okay! Just give me a second and I will heal your Tuxemon!"
 msgid "okaythen2"
 msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
+msgid "waithere"
+msgstr "We have to wait here for now. Apparently a tree fell up ahead."
+
+msgid "waithere2"
+msgstr "Oh, I hope nobody got hurt from the fallen tree!"
+
 msgid "input_name"
 msgstr "Name?"

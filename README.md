@@ -96,6 +96,10 @@ Use *Tiled* map editor: http://www.mapeditor.org/
 Translations
 ------------
 
+JSON translation files are now obsolete.  Please edit the po files under the
+resources/l18n/ folder for new translations.  The json translation files will
+be removed sometime in the future.  Thank you!
+
 Tuxemon has support for several languages.  Because Tuxemon is a community project
 and not all members are intimately familiar with or fluent in each language, there
 are possible translation errors.  We also acknowledge that some translations may

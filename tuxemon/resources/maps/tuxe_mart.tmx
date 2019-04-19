@@ -66,8 +66,8 @@
   <object id="37" name="Talk to the professor" type="event" x="112" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog professor_dialog\n"/>
-    <property name="act7" value="translated_dialog_choice hydrone:rockitten,tuxchoice"/>     
-    <property name="cond5" value="is variable_set tuxchoice:welcome"/>     
+    <property name="act2" value="translated_dialog_choice hydrone:rockitten:fruitera,tuxchoice"/>
+    <property name="cond1" value="is variable_set tuxchoice:welcome"/>
     <property name="behav1" value="talk professor"/>
    </properties>
   </object>

@@ -20,8 +20,7 @@ class LoadMenuState(SaveMenuState):
 
     def on_menu_selection(self, menuitem):
         save_data = save.load(self.selected_index + 1)
-        if "error" not in save_data:
-            save.slot_number = self.selected_index
+        if save_data and "error" not in save_data:
             self.game.player1.set_state(save_data)
 
             old_world = self.game.get_state_name("WorldState")

@@ -1,0 +1,24 @@
+{
+    "slug": "fruitera",
+    "category": "tiny_bat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

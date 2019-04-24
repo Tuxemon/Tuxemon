@@ -124,14 +124,17 @@ def load(slot):
     save_data = open_save_file(save_path)
     if save_data:
         return upgrade_save(save_data)
+    elif save_data is None:
+        # File not found; it probably wasn't ever created, so don't panic
+        return None
     else:
         save_data["error"] = "Save file corrupted"
         save_data["player_name"] = "BROKEN SAVE!"
         logger.error("Failed loading save file.")
         return save_data
 
+
 def open_save_file(save_path):
-    save_data = dict()
     try:
         with open(save_path, 'r') as save_file:
             try:
@@ -144,8 +147,11 @@ def open_save_file(save_path):
             except ValueError as e:
                 logger.error("cannot decode save CBOR: %s", save_path)
 
+            return {}
+
     except IOError as e:
         logger.error(e)
+        return None
 
 
 def upgrade_save(save_data):

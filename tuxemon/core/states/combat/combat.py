@@ -67,7 +67,7 @@ def check_status(monster, status_name):
 
 
 def fainted(monster):
-    return check_status(monster, "status_faint")
+    return check_status(monster, "status_faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(player):

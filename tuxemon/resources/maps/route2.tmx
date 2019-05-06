@@ -305,7 +305,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="101" name="random battle2" type="event" x="128" y="176" width="32" height="48">
@@ -313,7 +312,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="102" name="random battle3" type="event" x="176" y="208" width="16" height="16">
@@ -321,7 +319,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="103" name="random battle4" type="event" x="112" y="192" width="16" height="16">
@@ -329,7 +326,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="104" name="random battle5" type="event" x="512" y="96" width="48" height="64">
@@ -337,7 +333,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="105" name="random battle6" type="event" x="528" y="80" width="32" height="16">
@@ -345,7 +340,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="106" name="random battle7" type="event" x="560" y="128" width="32" height="32">
@@ -353,7 +347,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="107" name="random battle8" type="event" x="512" y="32" width="48" height="16">
@@ -361,7 +354,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="108" name="random battle9" type="event" x="544" y="208" width="32" height="80">
@@ -369,7 +361,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="109" name="random battle10" type="event" x="560" y="192" width="32" height="16">
@@ -377,7 +368,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="111" name="random battle11" type="event" x="576" y="224" width="32" height="32">
@@ -385,7 +375,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="112" name="random battle12" type="event" x="256" y="160" width="32" height="48">
@@ -393,7 +382,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="113" name="random battle13" type="event" x="288" y="144" width="16" height="32">
@@ -401,7 +389,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="114" name="random battle14" type="event" x="336" y="192" width="16" height="32">
@@ -409,7 +396,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="115" name="random battle15" type="event" x="288" y="208" width="48" height="16">
@@ -417,7 +403,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="116" name="random battle16" type="event" x="352" y="224" width="16" height="16">
@@ -425,7 +410,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="117" name="random battle17" type="event" x="272" y="144" width="16" height="16">
@@ -433,7 +417,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="118" name="random battle18" type="event" x="224" y="176" width="32" height="16">
@@ -441,7 +424,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="119" name="random battle19" type="event" x="528" y="48" width="16" height="16">
@@ -449,7 +431,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="120" name="random battle20" type="event" x="608" y="128" width="16" height="16">
@@ -457,7 +438,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="121" name="random battle21" type="event" x="592" y="144" width="32" height="16">
@@ -465,7 +445,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="122" name="random battle22" type="event" x="464" y="176" width="96" height="16">
@@ -473,7 +452,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="123" name="random battle23" type="event" x="448" y="160" width="48" height="16">
@@ -481,7 +459,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="124" name="random battle24" type="event" x="32" y="112" width="32" height="48">
@@ -489,7 +466,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="125" name="random battle25" type="event" x="64" y="128" width="16" height="48">
@@ -497,7 +473,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="126" name="random battle26" type="event" x="80" y="144" width="16" height="32">
@@ -505,7 +480,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="127" name="random battle27" type="event" x="96" y="160" width="16" height="16">
@@ -513,7 +487,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="128" name="random battle28" type="event" x="16" y="128" width="16" height="16">
@@ -521,7 +494,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="129" name="random battle29" type="event" x="96" y="112" width="64" height="16">
@@ -529,7 +501,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="130" name="random battle30" type="event" x="128" y="128" width="16" height="16">
@@ -537,7 +508,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="131" name="random battle31" type="event" x="144" y="96" width="16" height="16">
@@ -545,7 +515,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="132" name="random battle32" type="event" x="528" y="256" width="16" height="16">
@@ -553,7 +522,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="133" name="random battle33" type="event" x="576" y="256" width="16" height="16">
@@ -561,7 +529,6 @@
     <property name="act1" value="random_encounter route2"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="134" name="spilledthebeans" type="event" x="47.5833" y="48" width="16" height="16">

@@ -2,7 +2,7 @@
     "slug": "new_txmn",
     "monsters":[
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -10,7 +10,7 @@
             "monster":"wrougon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -18,7 +18,7 @@
             "monster":"anoleaf"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -26,7 +26,7 @@
             "monster":"chloragon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -34,7 +34,7 @@
             "monster":"tweesher"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -42,7 +42,7 @@
             "monster":"aardorn"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -50,7 +50,7 @@
             "monster":"agnite"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -58,7 +58,7 @@
             "monster":"cairfrey"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -66,7 +66,7 @@
             "monster":"capiti"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -74,7 +74,7 @@
             "monster":"cardiling"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -82,7 +82,7 @@
             "monster":"chillimp"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -90,7 +90,7 @@
             "monster":"flacono"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -98,7 +98,7 @@
             "monster":"noctula"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -106,7 +106,7 @@
             "monster":"nostray"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -114,7 +114,7 @@
             "monster":"conifrost"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -122,7 +122,7 @@
             "monster":"vamporm"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6

@@ -2,7 +2,7 @@
     "slug": "default_encounter",
     "monsters":[
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -10,7 +10,7 @@
             "monster":"axylightl"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -18,7 +18,7 @@
             "monster":"bamboon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -26,7 +26,7 @@
             "monster":"bigfin"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -34,7 +34,7 @@
             "monster":"bolt"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -42,7 +42,7 @@
             "monster":"dandylion"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -50,7 +50,7 @@
             "monster":"djinnbo"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -58,7 +58,7 @@
             "monster":"dollfin"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -66,7 +66,7 @@
             "monster":"dune_pincher"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -74,7 +74,7 @@
             "monster":"eruptibus"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -82,7 +82,7 @@
             "monster":"eyenemy"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -90,7 +90,7 @@
             "monster":"katacoon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -98,7 +98,7 @@
             "monster":"lambert"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -106,7 +106,7 @@
             "monster":"nudiflot_female"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -114,7 +114,7 @@
             "monster":"nudiflot_male"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -122,7 +122,7 @@
             "monster":"nut"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -130,7 +130,7 @@
             "monster":"pigabyte"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -138,7 +138,7 @@
             "monster":"propellercat"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -146,7 +146,7 @@
             "monster":"rockat"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -154,7 +154,7 @@
             "monster":"sludgehog"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -162,7 +162,7 @@
             "monster":"sumchon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6
@@ -170,7 +170,7 @@
             "monster":"tigrock"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 1,
                 6

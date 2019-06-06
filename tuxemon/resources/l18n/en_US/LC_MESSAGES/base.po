@@ -1522,6 +1522,12 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 msgid "waithere"
 msgstr "We have to wait here for now. Apparently a tree fell up ahead."
 
+msgid "nodrink"
+msgstr "I'm pretty sure you're too young to drink..."
+
+msgid "professorswife"
+msgstr "Professor's Wife: Oh No! You just missed him. I think he went into town though. Maybe check there?"
+
 msgid "waithere2"
 msgstr "Oh, I hope nobody got hurt from the fallen tree!"
 

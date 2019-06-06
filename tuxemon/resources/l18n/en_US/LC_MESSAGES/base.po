@@ -1313,10 +1313,27 @@ msgstr "Not really"
 # NPC dialogs
 msgid "professor_dialog\n"
 msgstr "Professor: Ah, yes. The very person I've been wanting to meet.\n"
-"I've heard that you want to learn about Tuxemon.\n"
-"Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
-"I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
-"Which one would you like?\n"
+"I've heard that you want to learn about Tuxemon. Is that the case?"
+
+msgid "professor_yes"
+msgstr "Great!"
+
+msgid "professor_no"
+msgstr "Well, too bad then. I trekked all the way up here to talk to you, so you listen!"
+
+msgid "professor_dialog2\n"
+msgstr "Where did Tuxemon come from?\n"
+"Nobody really knows, but they have inhabited our planet for thousands of years at the very least\n"
+"Tuxemon are little animals. We befriend them, learn from them, and use them to battle other Tuxemon in sport.\n"
+"Well... at least we used to...\n"
+"I was wondering, I just received three new Tuxemon and I would like to research how they act with a trainer\n"
+"Would you be interested in one?"
+
+msgid "professor_turn"
+msgstr "Of course you would, who am I kidding?"
+
+msgid "professor_select"
+msgstr "Which one would you like?"
 
 msgid "professor_dialog6.1"
 msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."

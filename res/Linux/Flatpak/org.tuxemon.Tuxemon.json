@@ -91,6 +91,21 @@
 			]
 		},
 		{
+			"name": "cbor",
+			"buildsystem": "simple",
+			"build-commands": [
+				"pip3 install --prefix=/app --no-deps ."
+			],
+			"sources": [
+				{
+					"type": "archive",
+					"url": "https://files.pythonhosted.org/packages/9b/99/01c6a987c920500189eb74a291bd3a388e6c7cf85736bb6b066d9833315e/cbor-1.0.0.tar.gz",
+					"sha256": "13225a262ddf5615cbd9fd55a76a0d53069d18b07d2e9f19c39e6acb8609bbb6"
+				}
+				
+			]
+		},
+		{
             "name": "tuxemon",
             "buildsystem": "simple",
             "build-commands": [

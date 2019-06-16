@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Tuxemon
+Name[de_AT]=Tuxemon
+GenericName=c
+GenericName[de]=Tuxemon
+Comment=
+Exec=org.tuxemon.Tuxemon
+Icon=org.tuxemon.Tuxemon
+Terminal=false
+Type=Application
+Categories=Game
+StartupNotify=false
+

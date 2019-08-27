@@ -465,6 +465,3 @@ class Technique(object):
 
     def get_state(self):
         return self.slug
-
-    def get_damage_multiplier(self, target):
-        return formula.simple_damage_multiplier((self.type1, self.type2), (target.type1, target.type2))

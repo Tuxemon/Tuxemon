@@ -43,11 +43,11 @@ def simple_damage_multiplier(attack_types, target_types):
     """
     m = 1
     for attack_type in attack_types:
-        if attack_type in None:
+        if attack_type is None:
             continue
         for target_type in target_types:
             body = TYPES.get(target_type, TYPES["aether"])
-            if body.extra_damage in None:
+            if body.extra_damage is None:
                 continue
             if attack_type == body.extra_damage:
                 m *= 2
@@ -89,7 +89,7 @@ def simple_damage_calculate(technique, user, target):
         logger.error('unhandled damage category %s %s', technique.category, technique.range)
         raise RuntimeError
 
-    mult = technique.get_damage_multiplier(target)
+    mult = simple_damage_multiplier((technique.type1, technique.type2), (target.type1, target.type2))
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult

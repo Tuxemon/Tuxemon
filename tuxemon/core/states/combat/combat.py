@@ -756,7 +756,7 @@ class CombatState(CombatAnimations):
         for player, party in self.monsters_in_play.items():
             for monster in party:
                 self.animate_hp(monster)
-                if monster.current_hp <= 0 and not fainted(monster):
+                if monster.current_hp <= 0 and not check_status(monster, "status_faint"):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)
 

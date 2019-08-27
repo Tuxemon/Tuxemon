@@ -57,12 +57,10 @@ class MainCombatMenuState(PopUpMenu):
         if combat_state.is_trainer_battle:
             def open_menu():
                 combat_state.task(
-                    partial(combat_state.show_monster_action_menu, self.monster)
+                    partial(combat_state.show_monster_action_menu, self.monster),
+                    1
                 )
-                combat_state.task(
-                    partial(combat_state.game.push_state, "WaitForInputState")
-                )
-            combat_state.alert(trans("combat_can't_run_from_trainer"), open_menu)
+            combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)
         else:
             combat_state.trigger_player_run(combat_state.players[0])
 

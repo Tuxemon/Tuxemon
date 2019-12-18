@@ -39,6 +39,7 @@ from collections import namedtuple
 from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components import db
+from tuxemon.core.components import formula
 from tuxemon.core.components.locale import T
 
 logger = logging.getLogger(__name__)
@@ -293,29 +294,7 @@ class Technique(object):
 
         :rtype: tuple(int, str)
         """
-        if self.range == "melee":
-            user_strength = user.melee * (7 + user.level)
-            target_resist = target.armour
-        elif self.range == "touch":
-            user_strength = user.melee * (7 + user.level)
-            target_resist = target.dodge
-        elif self.range == "ranged":
-            user_strength = user.ranged * (7 + user.level)
-            target_resist = target.dodge
-        elif self.range == "reach":
-            user_strength = user.ranged * (7 + user.level)
-            target_resist = target.armour
-        elif self.range == "reliable":
-            user_strength = 7 + user.level
-            target_resist = 1
-        else:
-            logger.error('unhandled damage category %s %s', self.category, self.range)
-            raise RuntimeError
-
-        mult = self.get_damage_multiplier(target)
-        move_strength = self.power * mult
-        damage = int(user_strength * move_strength / target_resist)
-        return damage, mult
+        return formula.simple_damage_calculate(self, user, target)
 
     def damage(self, user, target):
         """ This effect applies damage to a target monster. Damage calculations are based upon the
@@ -393,7 +372,7 @@ class Technique(object):
         }
 
     def poison(self, target):
-        damage = target.hp / 8
+        damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
         return {
             'damage': damage,
@@ -402,7 +381,7 @@ class Technique(object):
         }
 
     def recover(self, target):
-        heal = min(target.hp / 16, target.hp - target.current_hp)
+        heal = formula.simple_recover(self, target)
         target.current_hp += heal
         return {
             'damage': heal,
@@ -412,7 +391,7 @@ class Technique(object):
 
     def lifeleech(self, target):
         user = self.link
-        damage = min(target.hp / 2, target.current_hp, user.hp - user.current_hp)
+        damage = formula.simple_lifeleech(self, user, target)
         target.current_hp -= damage
         user.current_hp += damage
         return {
@@ -486,20 +465,3 @@ class Technique(object):
 
     def get_state(self):
         return self.slug
-
-    def get_damage_multiplier(self, target):
-        m = 1
-        for attack_type in (self.type1, self.type2):
-            if attack_type is None:
-                continue
-            for target_type in (target.type1, target.type2):
-                body = TYPES.get(target_type, TYPES["aether"])
-                if body.extra_damage is None:
-                    continue
-                if attack_type == body.extra_damage:
-                    m *= 2
-                elif attack_type == body.resist_damage:
-                    m /= 2.0
-        m = min(4, m)
-        m = max(0.25, m)
-        return m

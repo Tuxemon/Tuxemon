@@ -51,28 +51,6 @@ techniques_db.load("technique")
 
 tech_ret_value = namedtuple("use", "name success properties")
 
-type_chart = namedtuple("TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"])
-
-TYPES = {
-    "aether": type_chart(None, None, None, None),
-    "normal": type_chart(None, None, None, None),
-    "wood": type_chart(
-        "earth", "fire", "metal", "water"
-    ),
-    "fire": type_chart(
-        "metal", "earth", "water", "wood"
-    ),
-    "earth": type_chart(
-        "water", "metal", "wood", "fire"
-    ),
-    "metal": type_chart(
-        "wood", "water", "fire", "earth"
-    ),
-    "water": type_chart(
-        "fire", "wood", "earth", "metal"
-    ),
-}
-
 
 def merge_results(result, meta_result):
     status = result.pop("status", None)

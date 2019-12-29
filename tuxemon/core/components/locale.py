@@ -77,7 +77,7 @@ class TranslatorPo(object):
 
             # build only complete translations
             if os.path.exists(infile):
-                with open(infile, "r") as po_file, open(outfile, "wb") as mo_file:
+                with open(infile, "r", encoding="UTF8") as po_file, open(outfile, "wb") as mo_file:
                     catalog = read_po(po_file)
                     write_mo(mo_file, catalog)
 

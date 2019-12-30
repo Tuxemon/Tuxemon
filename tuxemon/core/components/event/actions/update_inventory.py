@@ -21,11 +21,10 @@
 #
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from collections import defaultdict
 
-from tuxemon.core.components.event.eventaction import EventAction
-from tuxemon.core.components.item import Item, inventory_db, decode_inventory
 from tuxemon.core.components.event import get_npc
+from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.item import inventory_db, decode_inventory
 
 
 class UpdateInventoryAction(EventAction):

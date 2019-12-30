@@ -28,14 +28,16 @@
 #
 
 from __future__ import unicode_literals
-from babel.messages.mofile import write_mo
-from babel.messages.pofile import read_po
+
 import gettext
 import io
 import json
 import logging
 import os
 import os.path
+
+from babel.messages.mofile import write_mo
+from babel.messages.pofile import read_po
 
 from tuxemon.constants import paths
 from tuxemon.core.prepare import CONFIG

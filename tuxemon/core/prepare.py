@@ -31,16 +31,17 @@ It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os
 import os.path
 
 import pygame as pg
 
-from .components import config
 from tuxemon.constants import paths
+from .components import config
 
 logger = logging.getLogger(__name__)
 

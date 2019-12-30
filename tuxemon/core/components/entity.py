@@ -24,6 +24,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import unicode_literals
+
 from tuxemon.core.components.euclid import Point2, Vector3, Point3
 from tuxemon.core.components.map import proj
 

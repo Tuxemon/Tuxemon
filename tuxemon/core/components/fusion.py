@@ -33,7 +33,7 @@ try:
     from PIL import Image
 except ImportError:
     pass
-import json, pprint
+import json
 
 
 class Body(object):

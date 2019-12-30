@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+
 import pygame
 
 GAME_EVENT = pygame.USEREVENT + 0

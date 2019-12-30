@@ -28,9 +28,10 @@
 #
 #
 from __future__ import unicode_literals
-from .fade import FadeInTransition, FadeOutTransition
-from .flash import FlashTransition
 
 import logging
+
+from .fade import FadeInTransition, FadeOutTransition
+from .flash import FlashTransition
 
 logger = logging.getLogger(__name__)

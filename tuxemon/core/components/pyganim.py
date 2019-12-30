@@ -46,8 +46,9 @@
 from __future__ import division
 from __future__ import unicode_literals
 
-import pygame
 import time
+
+import pygame
 
 # setting up constants
 PLAYING = 'playing'

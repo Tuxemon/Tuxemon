@@ -24,6 +24,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 from __future__ import unicode_literals
+
 import logging
 from collections import namedtuple
 

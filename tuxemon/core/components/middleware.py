@@ -29,6 +29,7 @@
 """This module contains the Tuxemon server middleware.
 """
 from __future__ import unicode_literals
+
 import logging
 
 logger = logging.getLogger(__name__)

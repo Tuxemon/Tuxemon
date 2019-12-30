@@ -12,12 +12,12 @@ from functools import partial
 import pygame
 
 from tuxemon.core import tools
-from tuxemon.core.components.menu import Menu
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import HpBar
+from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.pyganim import PygAnimation
 from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.tools import scale, scale_sequence, scale_sprite
-from tuxemon.core.components.locale import T
 
 logger = logging.getLogger(__name__)
 

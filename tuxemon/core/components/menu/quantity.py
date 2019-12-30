@@ -2,10 +2,11 @@ from __future__ import division, print_function
 from __future__ import unicode_literals
 
 import logging
+
 import pygame
 
 from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu import Menu
+from tuxemon.core.components.menu.menu import Menu
 
 logger = logging.getLogger(__name__)
 

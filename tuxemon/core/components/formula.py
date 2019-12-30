@@ -28,9 +28,8 @@
 #
 from __future__ import unicode_literals
 
-from collections import namedtuple
-
 import logging
+from collections import namedtuple
 
 logger = logging.getLogger(__name__)
 

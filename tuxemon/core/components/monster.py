@@ -28,14 +28,15 @@
 #
 #
 from __future__ import unicode_literals
+
 import logging
+import os.path
 import pprint
 import random
-import os.path
 
 from tuxemon.core import tools
-from tuxemon.core.components.locale import T
 from tuxemon.core.components import ai
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.technique import Technique
 from . import db, fusion
 

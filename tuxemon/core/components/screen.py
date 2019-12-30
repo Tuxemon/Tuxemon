@@ -29,7 +29,9 @@
 #
 
 from __future__ import unicode_literals
+
 import logging
+
 import pygame
 
 logger = logging.getLogger(__name__)

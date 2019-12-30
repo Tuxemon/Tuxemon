@@ -29,10 +29,10 @@
 #
 
 from __future__ import unicode_literals
+
 import json
 import logging
 import os
-
 from operator import itemgetter
 
 from tuxemon.constants import paths

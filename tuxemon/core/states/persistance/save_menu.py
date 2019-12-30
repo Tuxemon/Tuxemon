@@ -8,12 +8,12 @@ from base64 import b64decode
 import pygame
 
 from tuxemon.core import prepare
-from tuxemon.core.tools import open_dialog
 from tuxemon.core.components import save
-from tuxemon.core.components.menu import PopUpMenu
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.ui import text
 from tuxemon.core.components.locale import T
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.components.ui import text
+from tuxemon.core.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 

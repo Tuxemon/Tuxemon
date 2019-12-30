@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 import pygame
 
-from tuxemon.core.components.ui import draw
 from tuxemon.core.components.sprite import Sprite
+from tuxemon.core.components.ui import draw
 
 min_font_size = 7
 

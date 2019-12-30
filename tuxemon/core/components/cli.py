@@ -34,7 +34,6 @@ import cmd
 import code
 import logging
 import pprint
-
 from threading import Thread
 
 logger = logging.getLogger(__name__)

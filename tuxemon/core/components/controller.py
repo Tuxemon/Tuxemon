@@ -29,10 +29,13 @@
 #
 
 from __future__ import unicode_literals
+
 import logging
+
 import pygame
-from . import screen
+
 from tuxemon.core import tools
+from . import screen
 
 logger = logging.getLogger(__name__)
 

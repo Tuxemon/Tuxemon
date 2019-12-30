@@ -29,15 +29,16 @@
 """This module contains the Tuxemon server and client.
 """
 from __future__ import unicode_literals
-from tuxemon.core.components.middleware import Multiplayer, Controller
-from tuxemon.core import prepare
-
-from datetime import datetime
-
-import pprint
-import pygame as pg
 
 import logging
+import pprint
+from datetime import datetime
+
+import pygame as pg
+
+from tuxemon.core import prepare
+from tuxemon.core.components.middleware import Multiplayer, Controller
+
 logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 

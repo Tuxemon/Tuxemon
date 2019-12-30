@@ -6,12 +6,12 @@
 """
 from __future__ import unicode_literals
 
-from contextlib import contextmanager
 import json
 import logging
 import os
 import os.path
 import sqlite3
+from contextlib import contextmanager
 
 from . import RESOURCE_PATHS
 from .extractor import TuxepediaWebExtractor, fix_name

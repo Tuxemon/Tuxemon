@@ -38,10 +38,10 @@ from functools import partial
 
 from tuxemon.constants import paths
 from tuxemon.core import prepare
-from tuxemon.core.state import State
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import PopUpMenu
-from tuxemon.core.components.locale import T
+from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)
 

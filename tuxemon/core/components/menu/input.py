@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-from __future__ import absolute_import
 from __future__ import unicode_literals
 
 from functools import partial
 
-from tuxemon.core import tools
-from tuxemon.core.components.menu import Menu
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.ui.text import TextArea
-from tuxemon.core.components.game_event import input_event
-
 import pygame
+
+from tuxemon.core import tools
+from tuxemon.core.components.game_event import input_event
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.components.ui.text import TextArea
 
 
 class InputMenu(Menu):

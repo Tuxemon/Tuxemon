@@ -22,9 +22,9 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-from tuxemon.core.components.event.eventcondition import EventCondition
 from tuxemon.core.components.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.core.components.event.conditions.player_facing_tile import PlayerFacingTileCondition
+from tuxemon.core.components.event.eventcondition import EventCondition
 from tuxemon.core.components.map import MapCondition
 
 

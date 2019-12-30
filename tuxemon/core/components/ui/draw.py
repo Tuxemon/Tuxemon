@@ -1,8 +1,8 @@
 from __future__ import division
 from __future__ import unicode_literals
 
-import math
 import logging
+import math
 from itertools import product
 
 import pygame

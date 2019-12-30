@@ -14,6 +14,7 @@ from tuxemon.core.components.game_event import input_event
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.platform.const import events
 
 
 class InputMenu(Menu):
@@ -72,15 +73,33 @@ class InputMenu(Menu):
         yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
 
     def process_event(self, event):
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
+
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
+
+        You should return None if you have handled input here.
+
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
+        """
         super(InputMenu, self).process_event(event)
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE:
+        if event.pressed:
+            if event.button == events.BACKSPACE:
                 self.backspace()
+                return
 
-            char = event.unicode
-            if char in self.chars:
-                self.add_input_char(char)
+            if event.button == events.UNICODE:
+                char = event.value
+                if char == " " or char in self.chars:
+                    self.add_input_char(char)
+                return
+
+        return event
 
     def backspace(self):
         self.input_string = self.input_string[:-1]
@@ -100,5 +119,5 @@ class InputMenu(Menu):
 
         :return:
         """
-        input_event(self.input_string)
+        # input_event(self.input_string)
         self.game.pop_state(self)

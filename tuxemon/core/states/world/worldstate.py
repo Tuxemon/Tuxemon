@@ -42,19 +42,20 @@ from six.moves import map as imap
 from tuxemon.constants import paths
 from tuxemon.core import prepare, state
 from tuxemon.core.components import networking
-from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
 from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core.platform.const import buttons, intentions
 from tuxemon.core.tools import nearest
 
 logger = logging.getLogger(__name__)
 
-keymap = {
-    pygame.K_UP: "up",
-    pygame.K_DOWN: "down",
-    pygame.K_LEFT: "left",
-    pygame.K_RIGHT: "right",
 
+direction_map = {
+    intentions.UP: "up",
+    intentions.DOWN: "down",
+    intentions.LEFT: "left",
+    intentions.RIGHT: "right",
 }
+
 
 class WorldState(state.State):
     """ The state responsible for the world game play
@@ -62,10 +63,20 @@ class WorldState(state.State):
 
     preloaded_maps = {}
 
+    keymap = {
+        buttons.UP: intentions.UP,
+        buttons.DOWN: intentions.DOWN,
+        buttons.LEFT: intentions.LEFT,
+        buttons.RIGHT: intentions.RIGHT,
+        buttons.A: intentions.INTERACT,
+        buttons.B: intentions.RUN,
+        buttons.START: intentions.WORLD_MENU,
+    }
+
     def startup(self):
         # Provide access to the screen surface
         self.screen = self.game.screen
-        self.screen_rect = prepare.SCREEN_RECT
+        self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
 
@@ -256,7 +267,6 @@ class WorldState(state.State):
 
         """
         super(WorldState, self).update(time_delta)
-        self.check_player_keys()
         self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player1.game_variables))
@@ -271,8 +281,21 @@ class WorldState(state.State):
         self.map_drawing(surface)
         self.fullscreen_animations(surface)
 
+    def translate_input_event(self, event):
+        """
+
+        :type event: tuxemon.core.input.events.PlayerInput
+        :rtype: tuxemon.core.input.events.PlayerInput
+        """
+        from tuxemon.core.platform.events import PlayerInput
+
+        try:
+            return PlayerInput(self.keymap[event.button], event.value, event.hold_time)
+        except KeyError:
+            return event
+
     def process_event(self, event):
-        """Handles player input events. This function is only called when the
+        """ Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -280,56 +303,52 @@ class WorldState(state.State):
         signifies that this method has dealt with an event and wants it
         exclusively.  Return the event and others can use it as well.
 
-        You should return if you have handled input here.
+        You should return None if you have handled input here.
 
-        :param event: A pygame key event from pygame.event.get()
-        :type event: pygame.event.Event
-
-        :rtype: None
-        :returns: None
-
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
-        # Handle text input events
-        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
-            self.player1.name = event.text
-            return
+        event = self.translate_input_event(event)
 
-        # Handle Key DOWN events
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+        if event.button == intentions.INTERACT:
+            if event.pressed:
+                multiplayer = False
+                if multiplayer:
+                    self.check_interactable_space()
+                    return
+
+        if event.button == intentions.RUN:
+            if event.held:
+                self.player1.running = True
+                self.player1.walking = False
+            else:
+                self.player1.running = False
+                self.player1.walking = True
+
+        if event.button == intentions.WORLD_MENU:
+            if event.pressed:
                 logger.info("Opening main menu!")
                 self.game.push_state("WorldMenuState")
                 return
 
-            # If we receive an arrow key press, set the facing and
-            # moving direction to that direction
-            # TODO: move to some generic "InputManager' type class
-            for key, direction in keymap.items():
-                if event.key == key:
-                    self.wants_to_move_player = direction
-                    if self.allow_player_movement:
-                        self.move_player(direction)
+        # If we receive an arrow key press, set the facing and
+        # moving direction to that direction
+        direction = direction_map.get(event.button)
+        if direction is not None:
+            if event.held:
+                self.wants_to_move_player = direction
+                if self.allow_player_movement:
+                    self.move_player(direction)
+                return
+            elif not event.pressed:
+                if direction == self.wants_to_move_player:
+                    self.wants_to_move_player = None
+                    self.player1.cancel_movement()
                     return
 
-            if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                # TODO: Check to see if we have network players to interact with.
-                multiplayer = False
-                if multiplayer:
-                    self.check_interactable_space()
-
-            if prepare.DEV_TOOLS:
-                if event.key == pygame.K_n:
-                    self.player1.ignore_collisions = not self.player1.ignore_collisions
-                    return
-
-        # Handle Key UP events
-        if event.type == pygame.KEYUP:
-            # If the player lets go of the key, set the moving
-            # direction to false to stop movement
-            direction = keymap.get(event.key)
-            if direction == self.wants_to_move_player:
-                self.wants_to_move_player = None
-                self.player1.cancel_movement()
+        if prepare.DEV_TOOLS:
+            if event.button == intentions.NOCLIP:
+                self.player1.ignore_collisions = not self.player1.ignore_collisions
                 return
 
         # if we made it this far, return the event for others to use
@@ -636,28 +655,6 @@ class WorldState(state.State):
     ####################################################
     #                Player Movement                   #
     ####################################################
-    def check_player_keys(self):
-        """ Check key modifiers (deprecated!!
-
-        :returns: None
-        """
-        # TODO: refactor into discrete input events (no get_pressed!)
-
-        # Get all the keys pressed for modifiers only!
-        pressed = list(pygame.key.get_pressed())
-        self.ctrl_held = pressed[pygame.K_LCTRL] or pressed[pygame.K_RCTRL]
-        self.alt_held = pressed[pygame.K_LALT] or pressed[pygame.K_RALT]
-        self.shift_held = pressed[pygame.K_LSHIFT] or pressed[pygame.K_RSHIFT]
-
-        # Handle tile based movement for the player
-        # TODO: move to some generic "InputManager' type class
-        if self.shift_held:
-            self.player1.running = True
-            self.player1.walking = False
-        else:
-            self.player1.running = False
-            self.player1.walking = True
-
     def lock_controls(self):
         """ Prevent input from moving the player
 

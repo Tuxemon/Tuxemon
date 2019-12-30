@@ -8,6 +8,8 @@ import pygame
 
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.platform.const import buttons
+from tuxemon.core.components.menu.menu import Menu
 
 logger = logging.getLogger(__name__)
 
@@ -21,36 +23,41 @@ class QuantityMenu(Menu):
         self.shrink_to_items = kwargs.get("shrink_to_items", False)
 
     def process_event(self, event):
-        """ Process pygame input events
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        The menu cursor is handled here, as well as the ESC and ENTER keys.
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
 
-        :param event: pygame.Event
-        :returns: None
+        You should return None if you have handled input here.
+
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
-        if event.type == pygame.KEYDOWN:
-
-            if event.key == pygame.K_ESCAPE:
+        if event.pressed:
+            if event.button == buttons.B:
                 self.close()
                 self.callback(0)
                 return
 
-            elif event.key == pygame.K_RETURN:
+            elif event.button == buttons.A:
                 self.menu_select_sound.play()
                 self.close()
                 self.callback(self.quantity)
                 return
 
-            elif event.key == pygame.K_UP:
+            elif event.button == buttons.UP:
                 self.quantity += 1
 
-            elif event.key == pygame.K_DOWN:
+            elif event.button == buttons.DOWN:
                 self.quantity -= 1
 
-            elif event.key == pygame.K_RIGHT:
+            elif event.button == buttons.RIGHT:
                 self.quantity += 10
 
-            elif event.key == pygame.K_LEFT:
+            elif event.button == buttons.LEFT:
                 self.quantity -= 10
 
             if self.quantity < 0:

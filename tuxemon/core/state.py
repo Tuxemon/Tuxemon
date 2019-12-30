@@ -144,17 +144,18 @@ class State(object):
         remove_animations_of(target, self.animations)
 
     def process_event(self, event):
-        """ Processes events that were passed from the main event loop.
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        This function can choose to return the event, or any other in
-        response to the event passed.  If the same, or any other event
-        is returned, then it will be passed down to other states.
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
 
-        :param event: A pygame key event from pygame.event.get()
-        :type event: PyGame Event
-        :returns: Pygame Event or None
-        :rtype: pygame Event
+        You should return None if you have handled input here.
 
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
         return event
 
@@ -262,23 +263,8 @@ class StateManager(object):
         self._state_queue = list()
         self._state_stack = list()
         self._state_dict = dict()
-        self._held_keys = list()
         self._state_resume_set = set()
         self._remove_queue = list()
-
-    def reset_controls(self):
-        """ Reset the controls during a state change
-
-        This is accomplished by using a list of keys which were
-        being held, then sending KEYUP events for each one.
-
-        :returns: None
-        """
-        current_state = self.current_state
-        for event in self._held_keys:
-            new_event = pygame.event.Event(pygame.KEYUP, event.dict)
-            current_state.process_event(new_event)
-        self._held_keys = list()
 
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
@@ -381,9 +367,6 @@ class StateManager(object):
             logger.critical("Attempted to pop state when state was not active.")
             raise RuntimeError
 
-        if index == 0:
-            self.reset_controls()
-
         try:
             previous = self._state_stack.pop(index)
         except IndexError:
@@ -426,7 +409,6 @@ class StateManager(object):
             raise RuntimeError
 
         previous = self.current_state
-        self.reset_controls()
 
         if previous is not None:
             previous.pause()

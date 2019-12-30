@@ -40,7 +40,6 @@ from collections import OrderedDict
 
 from six.moves import configparser
 
-# set default animation to 'out_quint'
 from tuxemon.core.components.animation import Animation
 
 Animation.default_transition = 'out_quint'
@@ -76,6 +75,8 @@ class TuxemonConfig(object):
         self.large_gui = cfg.getboolean("display", "large_gui")
         self.controller_overlay = cfg.getboolean("display", "controller_overlay")
         self.controller_transparency = cfg.getint("display", "controller_transparency")
+        self.hide_mouse = cfg.getboolean("display", "hide_mouse")
+        self.window_caption = cfg.get("display", "window_caption")
 
         # [sound]
         self.sound_volume = cfg.getfloat("sound", "sound_volume")
@@ -92,6 +93,8 @@ class TuxemonConfig(object):
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
         self.player_npc = cfg.get("player", "player_npc")
+        self.player_walkrate = cfg.getfloat("player", "player_walkrate")  # tiles/second
+        self.player_runrate = cfg.getfloat("player", "player_runrate")  # tiles/second
 
         # [logging]
         # Log levels can be: debug, info, warning, error, or critical
@@ -104,6 +107,11 @@ class TuxemonConfig(object):
         self.loggers = self.loggers.replace(" ", "").split(",")
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
+
+        # input config (None means use default for the platform)
+        self.gamepad_deadzone = .25
+        self.gamepad_button_map = None
+        self.keyboard_button_map = None
 
 
 class HeadlessConfig(object):
@@ -146,6 +154,8 @@ def get_defaults():
             ("large_gui", False),
             ("controller_overlay", False),
             ("controller_transparency", 45),
+            ("hide_mouse", True),
+            ("window_caption", "Tuxemon"),
         ))),
         ("sound", OrderedDict((
             ("sound_volume", 1.0),
@@ -162,6 +172,8 @@ def get_defaults():
         ("player", OrderedDict((
             ("animation_speed", 0.15),
             ("player_npc", "npc_red"),
+            ("player_walkrate", 3.75),
+            ("player_runrate", 7.35),
         ))),
         ("logging", OrderedDict((
             ("loggers", "all"),
@@ -174,7 +186,7 @@ def get_defaults():
 def generate_default_config():
     """ Get new config file from defaults
 
-    :rtype: configparser.ConfirParser
+    :rtype: configparser.ConfigParser
     """
     cfg = configparser.ConfigParser()
     populate_config(cfg, get_defaults())

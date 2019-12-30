@@ -60,7 +60,7 @@ class SplashState(state.State):
         self.fading_out = False
 
         width, height = prepare.SCREEN_SIZE
-        splash_border = prepare.SCREEN_SIZE[0] / 20     # The space between the edge of the screen
+        splash_border = prepare.SCREEN_SIZE[0] / 20  # The space between the edge of the screen
 
         # Set up the splash screen logos
         logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")
@@ -74,18 +74,21 @@ class SplashState(state.State):
         self.ding.play()
 
     def process_event(self, event):
-        """Processes events that were passed from the main event loop.
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        :param event: A pygame key event from pygame.event.get()
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
 
-        :type event: PyGame Event
+        You should return None if you have handled input here.
 
-        :rtype: None
-        :returns: None
-
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
         # Skip the splash screen if a key is pressed.
-        if event.type == pygame.KEYDOWN and not self.fading_out:
+        if event.pressed and not self.fading_out:
             self.animations.empty()
             self.fade_out()
 

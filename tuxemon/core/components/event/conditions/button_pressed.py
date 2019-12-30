@@ -24,8 +24,6 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import pygame
-
 from tuxemon.core.components.event.eventcondition import EventCondition
 
 
@@ -65,14 +63,13 @@ class ButtonPressedCondition(EventCondition):
             ...
         }
         """
-        # Get the keys pressed from the game.
-        events = game.key_events
-        button = str(condition.parameters[0])
-
-        # Loop through each event
-        for event in events:
-            # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
-            if event.type == pygame.KEYDOWN and event.key == getattr(pygame, button):
-                return True
+        # # Get the keys pressed from the game.
+        # events = game.key_events
+        # button = str(condition.parameters[0])
+        #
+        # # Loop through each event
+        # for event in events:
+        #     if event.pressed:
+        #         return True
 
         return False

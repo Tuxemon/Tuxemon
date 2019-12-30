@@ -46,6 +46,8 @@ from tuxemon.core.components.item import decode_inventory, encode_inventory
 from tuxemon.core.components.locale import T
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.components.monster import decode_monsters, encode_monsters
+from tuxemon.core.components.monster import decode_monsters, encode_monsters
+from tuxemon.core.prepare import CONFIG
 from tuxemon.core.tools import nearest, load_and_scale, trunc
 
 logger = logging.getLogger(__name__)
@@ -141,8 +143,8 @@ class NPC(Entity):
         self.facing = "down"  # Set this value to change the facing direction
         self.walking = False  # Whether or not the player is walking
         self.running = False  # Whether or not the player is running
-        self.walkrate = 3.75  # The rate in tiles per second the player is walking
-        self.runrate = 7.35  # The rate in tiles per second the player is running
+        self.walkrate = CONFIG.player_walkrate
+        self.runrate = CONFIG.player_runrate
         self.moverate = self.walkrate  # walk by default
         self.ignore_collisions = False
 

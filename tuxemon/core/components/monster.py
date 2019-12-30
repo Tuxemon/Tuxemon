@@ -186,32 +186,12 @@ class Monster(object):
 
     >>> bulbatux = Monster()
     >>> bulbatux.load_from_db("Bulbatux")
-    >>> pprint.pprint(bulbatux.__dict__)
-        {'attack': 10,
-         'attack_modifier': [u'1', u'1.1', u'1.2'],
-         'body': <core.components.fusion.Body instance at 0x1607638>,
-         'defense': u'1,1.1,1.2',
-         'defense_modifier': [u'1', u'1.1', u'1.2'],
-         'hp': 30,
-         'hp_modifier': [u'0.9', u'1', u'1.1'],
-         'level': 0,
-         'moves': [<__main__.Technique instance at 0x160b4d0>],
-         'name': u'Bulbatux',
-         'special_attack': 9,
-         'special_attack_modifier': [u'1', u'1.1', u'1.2'],
-         'special_defense': 8,
-         'special_defense_modifier': [u'1', u'1.1', u'1.2'],
-         'speed': 7,
-         'speed_modifier': [u'1', u'1.1', u'1.2'],
-         'status': 'Normal',
-         'type1': u'grass',
-         'type2': u'poison',
-         'experience_give_modifier': 3,
-         'experience_required_modifier': 55}
-
     """
 
-    def __init__(self, save_data={}):
+    def __init__(self, save_data=None):
+        if save_data is None:
+            save_data = dict()
+
         self.slug = ""
         self.name = ""          # The display name of the Tuxemon
         self.category = ""
@@ -268,17 +248,10 @@ class Monster(object):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.
 
-        :param name: The name of the monster to look up in the monster database.
-        :type name: String
+        :param slug: Slug to lookup
+        :type slug: str
 
         :rtype: None
-        :returns: None
-
-        **Examples:**
-
-        >>> bulbatux = Monster()
-        >>> bulbatux.load_from_db("Bigfin")
-
         """
 
         # Look up the monster by name and set the attributes in this instance

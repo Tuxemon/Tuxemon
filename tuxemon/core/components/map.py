@@ -215,13 +215,6 @@ class Map(object):
         Specifications for the TMX map format can be found here:
         https://github.com/bjorn/tiled/wiki/TMX-Map-Format
 
-        :param filename: The path to the tmx map file to load.
-
-        :type filename: String
-
-        :rtype: None
-        :returns: None
-
         **Examples:**
 
         In each map, there are three types of objects: **collisions**, **conditions**, and
@@ -229,55 +222,11 @@ class Map(object):
 
         .. image:: images/map/map_editor_action01.png
 
-        Here is an example of how we use pytmx to load the map data from a tmx file and what
-        those objects would look like after loading:
+        :param filename: The path to the tmx map file to load.
+        :type filename: String
 
-        >>> tmx_data = pytmx.TiledMap("pallet_town-room.tmx")
-        >>> for obj in tmx_data.objects:
-        ...     pprint.pprint(obj.__dict__)
-        ...
-        {'gid': 0,
-         'height': 32,
-         'name': None,
-         'parent': <TiledMap: "../tuxemon/resources/maps/pallet_town-room.tmx">,
-         'rotation': 0,
-         'type': 'collision',
-         'visible': 1,
-         'width': 16,
-         'x': 160,
-         'y': 48}
-        {'action_id': '9',
-         'condition_type': 'player_at',
-         'gid': 0,
-         'height': 16,
-         'id': 9,
-         'name': 'Start Combat',
-         'operator': 'is',
-         'parameters': '1,11',
-         'parent': <TiledMap: "../tuxemon/resources/maps/pallet_town-room.tmx">,
-         'rotation': 0,
-         'type': 'condition',
-         'visible': 1,
-         'width': 16,
-         'x': 16,
-         'y': 176}
-        {'action_type': 'teleport',
-         'gid': 0,
-         'height': 16,
-         'id': 5,
-         'name': 'Go Downstairs',
-         'parameters': 'test.tmx,5,5',
-         'parent': <TiledMap: "../tuxemon/resources/maps/pallet_town-room.tmx">,
-         'priority': '1',
-         'rotation': 0,
-         'type': 'action',
-         'visible': 1,
-         'width': 16,
-         'x': 0,
-         'y': 0}
-
+        :rtype: None
         """
-        # Load the tmx map data using the pytmx library.
         self.filename = filename
 
         # Scale the loaded tiles if enabled
@@ -418,93 +367,18 @@ class Map(object):
         the map itself. The list of tile surfaces is used to draw the map in the main game. The
         list of collision tile coordinates is used for collision detection.
 
-        :rtype: List
-        :returns: A multi-dimensional list of tiles in dictionary format; a set of collision
-            coordinates; the map size.
-
         **Examples:**
 
         The list of tiles is structured in a way where you can access an individual tile by
-        index number. For example, to get a tile located at (2, 1), you can access the tile's
-        details using:
-
-        >>> x = 2
-        >>> y = 1
-        >>> layer = 0
-        >>> tiles[x][y][layer]
-
-        Here is an example of what the the tiles list data structure actually looks like:
-
-        >>> tiles, collisions, mapsize =  map.loadfile()
-        >>> tiles
-            [
-              [
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                []
-              ],
-              [ [],
-                [{'layer': 1,
-                'name': '6,0',
-                'position': (80, 80),
-                'surface': <Surface(16x16x32 SW)>,
-                'tile_pos': [1, 1],
-                'tileset': 'resources/gfx/tileset.png'}],
-                [{'layer': 1,
-                'name': '7,0',
-                'position': (80, 160),
-                'surface': <Surface(16x16x32 SW)>,
-                'tile_pos': [1, 2],
-                'tileset': 'resources/gfx/tileset.png'}],
-                [{'layer': 1,
-                'name': '8,0',
-                'position': (80, 240),
-                'surface': <Surface(16x16x32 SW)>,
-                'tile_pos': [1, 3],
-                'tileset': 'resources/gfx/tileset.png'}],
-                [{'layer': 1,
-                'name': '9,0',
-                'position': (80, 320),
-                'surface': <Surface(16x16x32 SW)>,
-                'tile_pos': [1, 4],
-                'tileset': 'resources/gfx/tileset.png'}],
-                [{'layer': 1,
-                'name': '9,0',
-                'position': (80, 400),
-                'surface': <Surface(16x16x32 SW)>,
-                'tile_pos': [1, 5],
-                'tileset': 'resources/gfx/tileset.png'},
-                {'layer': 3,
-                'name': '10,0',
-                'position': (80, 400),
-                'surface': <Surface(16x16x32 SW)>,
-                'tile_pos': [1, 5],
-                'tileset': 'resources/gfx/tileset.png'}],
-        ...
-
+        index number.
 
         The collision map is a set of (x,y) coordinates that the player cannot walk
         through. This set is generated based on collision regions defined in the
         map file.
 
-        Here is an example of what the collision set looks like:
-
-        >>> tiles, collisions, mapsize =  map.loadfile([24, 24])
-        >>> collisions
-        set([(0, 2),
-             (0, 3),
-             (0, 4),
-             (0, 5),
-             (0, 6)])
-
+        :rtype: List
+        :returns: A multi-dimensional list of tiles in dictionary format; a set of collision
+            coordinates; the map size.
         """
         # Get the dimensions of the map
         mapsize = self.size
@@ -680,6 +554,13 @@ class Map(object):
         defined well. This function assists in making sure collisions work if the map creator
         didn't set the collision areas to round numbers.
 
+        **Examples:**
+
+        >>> round_to_divisible(31.23, base=16)
+        32
+        >>> round_to_divisible(17.8, base=16)
+        16
+
         :param x: The number we want to round.
         :param base: The base that we want our number to be divisible by. (Default: 16)
 
@@ -688,14 +569,6 @@ class Map(object):
 
         :rtype: Integer
         :returns: Rounded number that is divisible by "base".
-
-        **Examples:**
-
-        >>> round_to_divisible(31.23, base=16)
-        32
-        >>> round_to_divisible(17.8, base=16)
-        16
-
         """
         return int(base * round(float(x) / base))
 

@@ -24,6 +24,11 @@ class SaveMenuState(PopUpMenu):
     number_of_slots = 3
     shrink_to_items = True
 
+    def startup(self, *items, **kwargs):
+        if 'selected_index' not in kwargs:
+            kwargs['selected_index'] = save.slot_number or 0
+        super(SaveMenuState, self).startup(*items, **kwargs)
+
     def initialize_items(self):
         empty_image = None
         rect = self.game.screen.get_rect()
@@ -92,6 +97,7 @@ class SaveMenuState(PopUpMenu):
                 save_data,
                 self.selected_index + 1,
             )
+            save.slot_number = self.selected_index
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)

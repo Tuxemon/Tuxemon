@@ -13,6 +13,8 @@ logger = logging.getLogger(__name__)
 
 class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
+        if 'selected_index' not in kwargs:
+            kwargs['selected_index'] = save.slot_number or 0
         super(LoadMenuState, self).startup(*items, **kwargs)
         slot = kwargs.get("load_slot")
         if slot:

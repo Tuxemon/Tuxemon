@@ -37,6 +37,7 @@ import base64
 import datetime
 import json
 import logging
+from operator import itemgetter
 
 import pygame
 
@@ -48,6 +49,9 @@ except ImportError:
     prepare.SAVE_METHOD = "JSON"
 
 logger = logging.getLogger(__name__)
+
+slot_number = None
+TIME_FORMAT = "%Y-%m-%d %H:%M"
 
 
 def get_save_data(game):
@@ -65,7 +69,7 @@ def get_save_data(game):
     save_data['screenshot'] = base64.b64encode(pygame.image.tostring(screenshot, "RGB")).decode('utf-8')
     save_data['screenshot_width'] = screenshot.get_width()
     save_data['screenshot_height'] = screenshot.get_height()
-    save_data['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    save_data['time'] = datetime.datetime.now().strftime(TIME_FORMAT)
     save_data['version'] = 1
     return save_data
 
@@ -169,4 +173,19 @@ def upgrade_save(save_data):
             for mon in mons:
                 mon['slug'] = mon['slug'].partition("_")[2]
     return save_data
+
+
+def get_index_of_latest_save():
+    times = []
+    for slot_index in range(3):
+        save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot_index + 1)
+        save_data = open_save_file(save_path)
+        time_of_save = datetime.datetime.strptime(save_data['time'], TIME_FORMAT)
+        times.append((slot_index, time_of_save))
+
+    s = max(times, key=itemgetter(1))
+    if s:
+        return s[0]
+    else:
+        return None
 

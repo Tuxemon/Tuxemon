@@ -19,7 +19,6 @@ from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.tools import scale, scale_sequence, scale_sprite
 from tuxemon.core.components.locale import T
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 sprite_layer = 0

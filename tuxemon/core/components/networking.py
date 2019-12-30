@@ -37,7 +37,6 @@ from datetime import datetime
 import pprint
 import pygame as pg
 
-# Create a logger for optional handling of debug messages.
 import logging
 logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)

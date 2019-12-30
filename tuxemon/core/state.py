@@ -42,7 +42,6 @@ from tuxemon.core.components.animation import Task
 from tuxemon.core.components.animation import remove_animations_of
 from tuxemon.core.components.sprite import SpriteGroup
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

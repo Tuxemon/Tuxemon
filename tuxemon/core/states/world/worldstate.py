@@ -44,7 +44,6 @@ from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
 from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
 from tuxemon.core.tools import nearest
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 keymap = {

@@ -37,7 +37,6 @@ from operator import itemgetter
 
 from tuxemon.constants import paths
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

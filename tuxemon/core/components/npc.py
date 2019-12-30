@@ -44,7 +44,6 @@ from tuxemon.core.components.locale import T
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.tools import nearest, load_and_scale, trunc
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Load the NPC database

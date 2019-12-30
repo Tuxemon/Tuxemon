@@ -34,7 +34,6 @@ import pygame
 from . import screen
 from tuxemon.core import tools
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

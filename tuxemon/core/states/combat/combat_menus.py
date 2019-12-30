@@ -16,7 +16,6 @@ from tuxemon.core.components.sprite import MenuSpriteGroup, SpriteGroup
 from tuxemon.core.components.technique import Technique
 from tuxemon.core.components.ui.draw import GraphicBox
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

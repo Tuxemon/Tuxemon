@@ -30,7 +30,6 @@ from __future__ import unicode_literals
 import logging
 from collections import namedtuple
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Set up map action and condition objects

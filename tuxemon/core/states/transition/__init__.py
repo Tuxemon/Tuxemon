@@ -31,7 +31,6 @@ from __future__ import unicode_literals
 from .fade import FadeInTransition, FadeOutTransition
 from .flash import FlashTransition
 
-# Create a logger for optional handling of debug messages.
 import logging
 
 logger = logging.getLogger(__name__)

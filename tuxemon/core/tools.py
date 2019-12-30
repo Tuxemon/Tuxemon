@@ -42,7 +42,6 @@ from tuxemon.core import prepare
 from tuxemon.core.components import pyganim
 from tuxemon.core.platform import mixer
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

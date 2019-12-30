@@ -34,7 +34,6 @@ import logging
 from tuxemon.core import prepare
 from tuxemon.core.states import world
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

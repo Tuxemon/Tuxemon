@@ -48,7 +48,6 @@ from tuxemon.core.components.ui.text import TextArea
 from .combat_animations import CombatAnimations
 
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")

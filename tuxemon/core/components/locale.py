@@ -40,7 +40,6 @@ import os.path
 from tuxemon.constants import paths
 from tuxemon.core.prepare import CONFIG
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 FALLBACK_LOCALE = "en_US"

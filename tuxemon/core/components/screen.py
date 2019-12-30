@@ -32,7 +32,6 @@ from __future__ import unicode_literals
 import logging
 import pygame
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

@@ -43,7 +43,6 @@ from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.menu import PopUpMenu
 from tuxemon.core.components.menu.interface import MenuItem
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

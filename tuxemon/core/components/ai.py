@@ -32,7 +32,6 @@ from __future__ import unicode_literals
 import logging
 from random import choice
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

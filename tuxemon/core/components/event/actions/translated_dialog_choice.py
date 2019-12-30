@@ -30,7 +30,6 @@ from tuxemon.core.components.event.actions import replace_text
 from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.components.locale import T
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

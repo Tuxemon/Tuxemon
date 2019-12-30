@@ -39,7 +39,6 @@ from tuxemon.core import tools
 from tuxemon.core.components.locale import T
 from . import db
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Load the monster database

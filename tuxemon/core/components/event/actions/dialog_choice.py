@@ -28,7 +28,6 @@ from functools import partial
 from tuxemon.core.components.event.actions import replace_text
 from tuxemon.core.components.event.eventaction import EventAction
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

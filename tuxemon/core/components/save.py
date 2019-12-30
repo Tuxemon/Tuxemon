@@ -43,7 +43,6 @@ try:
 except ImportError:
     prepare.SAVE_METHOD = "JSON"
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

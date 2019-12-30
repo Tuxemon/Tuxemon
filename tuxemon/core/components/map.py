@@ -46,7 +46,6 @@ from tuxemon.core.components.event import EventObject
 from tuxemon.core.components.event import MapAction
 from tuxemon.core.components.event import MapCondition
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # direction => vector

@@ -39,7 +39,6 @@ from tuxemon.core.components import ai
 from tuxemon.core.components.technique import Technique
 from . import db, fusion
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Load the monster database

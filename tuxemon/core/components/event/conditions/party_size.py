@@ -26,7 +26,6 @@ import logging
 
 from tuxemon.core.components.event.eventcondition import EventCondition
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

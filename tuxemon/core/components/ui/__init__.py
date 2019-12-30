@@ -33,7 +33,6 @@ import logging
 from tuxemon.core import tools
 from tuxemon.core.components import pyganim
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

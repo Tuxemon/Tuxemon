@@ -28,7 +28,6 @@ from tuxemon.core.components.event.actions import process_translate_text, replac
 from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.tools import open_dialog
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

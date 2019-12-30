@@ -10,7 +10,6 @@ import pygame
 from tuxemon.core import prepare
 from tuxemon.core.components.sprite import Sprite
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 __all__ = ('GraphicBox', 'draw_text')

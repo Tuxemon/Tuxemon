@@ -48,71 +48,27 @@
   <object id="35" name="something" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog discovered_a_person"/>
-    <property name="act2" value="set_variable youarejumanji:yes"/>
+    <property name="act2" value="teleport meet_misa.tmx,3,4"/>
+    <property name="act3" value="create_npc misa,3,3,misa,stand"/>
+    <property name="act4" value="set_variable flag:0"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set youarejumanji:yes"/>
-   </properties>
-  </object>
-  <object id="36" name="create misa" type="event" x="48" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport meet_misa.tmx,3,4"/>
-    <property name="act2" value="create_npc misa,3,3,misa,stand"/>
-    <property name="act3" value="set_variable surprisemf:yes"/>
-    <property name="act4" value="set_variable jumpinback:frakyeah"/>
-    <property name="cond1" value="not npc_exists misa"/>
-    <property name="cond2" value="is variable_set youarejumanji:yes"/>
-    <property name="cond3" value="not variable_set surprisemf:yes"/>
+    <property name="cond4" value="not variable_set flag:0"/>
    </properties>
   </object>
   <object id="37" name="time to talk" type="event" x="48" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable surprisemf:notanymore"/>
-    <property name="act2" value="translated_dialog a_serious_discussion\n"/>
-    <property name="act7" value="set_variable jumpinback:yes"/>
-    <property name="cond1" value="is variable_set surprisemf:yes"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is player_facing up"/>
-    <property name="cond4" value="is variable_set jumpinback:frakyeah"/>
-   </properties>
-  </object>
-  <object id="39" name="jumpback" type="event" x="14.375" y="65" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport meet_misa.tmx,3,5"/>
-    <property name="act2" value="set_variable jumpinback:no"/>
-    <property name="act4" value="translated_dialog oops\n"/>
-    <property name="act6" value="set_variable oopsie:yes"/>
-    <property name="cond1" value="is variable_set jumpinback:yes"/>
-   </properties>
-  </object>
-  <object id="40" name="let's speak" type="event" x="69.5" y="103.75" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog backstory\n"/>
-    <property name="act9" value="set_variable oopsie:whoops"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is variable_set oopsie:yes"/>
-   </properties>
-  </object>
-  <object id="41" name="choose m' boi" type="event" x="40" y="104" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog backstory9"/>
-    <property name="act2" value="translated_dialog_choice yes,questioning"/>
-    <property name="act3" value="set_variable oopsie:eh"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is variable_set oopsie:whoops"/>
-   </properties>
-  </object>
-  <object id="42" name="yeeeee buddy" type="event" x="15.125" y="91" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog sorryfurthis"/>
-    <property name="act2" value="transition_teleport route1.tmx,33,12,0.7"/>
-    <property name="act3" value="set_variable questioning:None"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is variable_set questioning:yes"/>
+    <property name="act1" value="translated_dialog a_serious_discussion\n"/>
+    <property name="act2" value="teleport meet_misa.tmx,3,5"/>
+    <property name="act3" value="translated_dialog oops\n"/>
+    <property name="act4" value="translated_dialog backstory\n"/>
+    <property name="act5" value="translated_dialog backstory9"/>
+    <property name="act6" value="translated_dialog_choice yes,questioning"/>
+    <property name="act7" value="translated_dialog sorryfurthis"/>
+    <property name="act8" value="transition_teleport route1.tmx,33,12,0.7"/>
+    <property name="act9" value="set_variable flag:1"/>
+    <property name="cond1" value="is variable_set flag:0"/>
    </properties>
   </object>
   <object id="44" name="Player Spawn" type="event" x="112" y="112" width="16" height="16"/>

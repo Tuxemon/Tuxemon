@@ -27,11 +27,14 @@
 # core.states.transition Handles the all graphical transitions.
 #
 #
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
+import logging
+
 from .fade import FadeInTransition, FadeOutTransition
 from .flash import FlashTransition
-
-# Create a logger for optional handling of debug messages.
-import logging
 
 logger = logging.getLogger(__name__)

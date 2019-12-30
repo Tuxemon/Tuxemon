@@ -28,10 +28,13 @@
 #
 """This module contains the Tuxemon server middleware.
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import logging
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 class Multiplayer():

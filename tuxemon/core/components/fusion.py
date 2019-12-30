@@ -28,12 +28,16 @@
 #               http://www.alexonsager.net/blog/2013/06/04/behind-the-scenes-pokemon-fusion/
 #
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 try:
     from PIL import Image
 except ImportError:
     pass
-import json, pprint
+import json
 
 
 class Body(object):

@@ -3,7 +3,9 @@ There are quite a few hacks in here to get this working for single player only
 notably, the use of self.game
 """
 
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
@@ -12,14 +14,13 @@ from functools import partial
 import pygame
 
 from tuxemon.core import tools
-from tuxemon.core.components.menu import Menu
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import HpBar
+from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.pyganim import PygAnimation
 from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.tools import scale, scale_sequence, scale_sprite
-from tuxemon.core.components.locale import T
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 sprite_layer = 0

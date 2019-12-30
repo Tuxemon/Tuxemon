@@ -1,12 +1,14 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import pygame
 
 from tuxemon.core import prepare
 from tuxemon.core import tools
-from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.menu.interface import HpBar, MenuItem
+from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.ui.draw import GraphicBox
 from tuxemon.core.components.ui.text import draw_text, TextArea
 

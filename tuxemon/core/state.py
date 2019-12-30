@@ -23,7 +23,11 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import inspect
 import logging
 import os
@@ -42,7 +46,6 @@ from tuxemon.core.components.animation import Task
 from tuxemon.core.components.animation import remove_animations_of
 from tuxemon.core.components.sprite import SpriteGroup
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

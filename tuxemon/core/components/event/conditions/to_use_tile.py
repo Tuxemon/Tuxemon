@@ -20,11 +20,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.components.event.eventcondition import EventCondition
 from tuxemon.core.components.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.core.components.event.conditions.player_facing_tile import PlayerFacingTileCondition
+from tuxemon.core.components.event.eventcondition import EventCondition
 from tuxemon.core.components.map import MapCondition
 
 

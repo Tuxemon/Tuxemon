@@ -1,10 +1,13 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import logging
 
 from tuxemon.core.components import save
 from .save_menu import SaveMenuState
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

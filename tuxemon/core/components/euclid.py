@@ -22,6 +22,9 @@
 Documentation and tests are included in the file "euclid.txt", or online
 at http://code.google.com/p/pyeuclid
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import math
@@ -66,7 +69,7 @@ class _EuclidMetaclass(type):
         else:
             if '__slots__' in dct:
                 del dct['__slots__']
-            return types.ClassType.__new__(types.ClassType, name, bases, dct)
+            return types.ClassType.__new__(type, name, bases, dct)
 
     @classmethod
     def _create_getstate(cls, slots):

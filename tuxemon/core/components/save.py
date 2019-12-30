@@ -28,10 +28,14 @@
 #
 #
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import base64
-import json
 import datetime
+import json
 import logging
 from operator import itemgetter
 
@@ -44,7 +48,6 @@ try:
 except ImportError:
     prepare.SAVE_METHOD = "JSON"
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 slot_number = None

@@ -27,19 +27,22 @@
 # core.components.monster Tuxemon monster module
 #
 #
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import logging
+import os.path
 import pprint
 import random
-import os.path
 
 from tuxemon.core import tools
-from tuxemon.core.components.locale import T
 from tuxemon.core.components import ai
+from tuxemon.core.components.locale import T
 from tuxemon.core.components.technique import Technique
 from . import db, fusion
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Load the monster database

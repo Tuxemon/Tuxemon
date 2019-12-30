@@ -33,7 +33,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztWMFu00AQHefUHOGUX0gkpPxEBaW0cKUpKIhzRT6jCVVvqByN4BNSqf9QJPILGAn1H3JhVmSU8WRmdrN2KEI8aTTOaj37/LzzYhvg38aDAuBh8WfWumPrpeY+xmCL+TJvC1ovNeeeJ8//jzwcYJxgHDYpssP78BJrn2MetbBGbg94vRH4hesnfpWx5qNOnF9uD3i9Efj1irp+FWz6g8ePz29TO+I3VPSTvhXjtwvtiF/w3cCvYut926vzrMAPjoETcq6G2v6D3/07Ytysualoys/y5kpkb64Hfk1N92Hwv6ew9r+YfpZf8nF+TU33IfcXrp/sX0KYP4FNv7TGCbdbHsfqyv7l8zU/j/n8j1X+yY7BOSZMjbqefiXm9wq/0uG3ZPyWyrg8Dph3oSxDyLqFr98N5k9dGF9jyHHJ73L1+xnGEcYrJ44FP6xf4jqlVtfTb4EZr2s8F/wWSp3XxTp/Bz/GivYzo66nX/DzC+X+ks9b/GIer/Gz6kr9esV6PvX7jajDnzM0fjn6TY26nn7yecIbt/T7jP/nXzq+ftQfWl1v/w0Nftq4pd8tcvva8fWj/tDqxvpX46eNE783UNeK/xfT2FvYxMyoG+tfzf+8/g3gWvWVMQ1W3Vj/av7n9W9ATD8N08T+5TxCP2n+p/XZKaT7sQT1R07/av6n9ZkHzU84qD94XfK0tvq3Cb+AmVHX1A/qz9va+AvQ7+fzDH7WepZ+hH30rscYTxLeOy14/GLvOZZ+hDPk9Q5j0gK/u0RunGNMvw/I6wrjo8YvcQ9qfpzCr1ds6id1bPt9PDe3/T2v7bzt98y/RT8L961f7HvOfeu3q+/MufkXZtkZYA==
+   eJztWM1q20AQHrmX5pie/AoOFPISJf1vrnHS4NBzaR6jdktvpT2qNI/ggN/BheYVqkDJO/iSWeJBo/HM7HolN6Hkg2HkZTX76dPOZ0kA/ze2C4BHxb9Z64qtl5oHGDtrzJd5XdB6qTn3PHn+PfLwDGOI8aJNkQ3ehwOs/RHzYQdr5PaA1xuBX7h+4lcZaz7uxfnl9oDXG4Ffv2jqV8GqP3j8+PwutSN+u4p+0rdi/DahHfELvhv4VWy93w+bPCvwg2PHCTlXQ2P/wU3/HjJu1txUtOVneXMlsjfXA7+mtvsw+N9zqP0vpp/ll3ycX1Pbfcj9hesn+5cQ5p/Cql9a44T5msexurJ/+XzNz2M+f7nMf9kxOMeEsVHX06/E/EnhVzr8FozfQhmXxwHTLSjLELJu4es3w/xjC0bnGHJc8vuy/P0S4xXGWydeC35Yv8R1Sq2up98FZryu0VTwu1DqHBd1/gN+jBTtJ0ZdT7/g55+V+0s+b/GLebzGz6or9esX9Xzq95mow58zNH45+o2Nup5+8nnCG7f0+4n/52c9Xz/qD62ut/92DX7auKXfHLn96vn6UX9odaV+wwc1D62frHHidwJNrfh/MY29g1VMjLqx/tX8z+vfAK7VQBnTYNWN9a/mf17/BsT00zBO7F/OI/ST5n9anx1Buh9LUH/k9K/mf1qfedD8hIP6g9clT+uqf9vwC5gYdU39oPm8rY3vg34/32Tws9az9CM8Qe/aw3ia8N5pweMXe8+x9CO8R14fME474HeVyI1zjOn3FXl9w/iu8Uvcg5ofp/DrF6v6SR27fh/PzV1/z+s6r/s9867oZ+G29Yt9z7lt/Tb1nTk3XwMGKhm9
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -108,6 +108,7 @@
   <object id="98" type="collision" x="512" y="48" width="16" height="16"/>
   <object id="99" type="collision" x="80" y="496" width="16" height="16"/>
   <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
+  <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
@@ -399,10 +400,10 @@
   </object>
   <object id="107" name="make npcs" type="event" x="64" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc knight1,3,24,knight,stand"/>
-    <property name="act2" value="create_npc knight2,2,24,knight,stand"/>
-    <property name="act3" value="npc_face knight2,up"/>
-    <property name="cond1" value="not npc_exists knight1"/>
+    <property name="act1" value="create_npc npc_knight1,3,24,knight,stand"/>
+    <property name="act2" value="create_npc npc_knight2,2,24,knight,stand"/>
+    <property name="act3" value="npc_face npc_knight2,up"/>
+    <property name="cond1" value="not npc_exists npc_knight1"/>
    </properties>
   </object>
   <object id="108" name="no, sorry" type="event" x="48" y="400" width="16" height="16">
@@ -416,12 +417,23 @@
   </object>
   <object id="110" name="Yes" type="event" x="48" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog splendid\n"/>
-    <property name="act3" value="npc_face knight1,left"/>
-    <property name="act4" value="npc_face knight2,right"/>
+    <property name="act1" value="translated_dialog splendid"/>
+    <property name="act3" value="npc_face npc_knight1,left"/>
+    <property name="act4" value="npc_face npc_knight2,right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set choice:yes"/>
+   </properties>
+  </object>
+  <object id="116" name="rip jimmy" type="event" x="32" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face npc_knight1,left"/>
+    <property name="act2" value="translated_dialog ripjimmy"/>
+    <property name="act3" value="wait 1"/>
+    <property name="act4" value="npc_face npc_knight1,down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

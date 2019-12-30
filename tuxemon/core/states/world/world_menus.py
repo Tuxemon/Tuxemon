@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
@@ -12,7 +14,6 @@ from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.tools import open_dialog
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

@@ -41,9 +41,11 @@
 #
 
 
+from __future__ import absolute_import
 # TODO: Feature idea: if the same image file is specified, re-use the Surface object.
 # (Make this optional though.)
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import time

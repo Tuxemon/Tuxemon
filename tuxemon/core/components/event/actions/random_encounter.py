@@ -42,12 +42,15 @@ class RandomEncounterAction(EventAction):
     "monster.db" database. The chance that this will start a battle depends on the
     "encounter_rate" specified in the database. The "encounter_rate" number is the chance
     walking in to this tile will trigger a battle out of 100.
+    "total_prob" is an optional override which scales the probabilities so that the sum is
+    equal to "total_prob".
 
-    Valid Parameters: encounter_slug
+    Valid Parameters: encounter_slug, total_prob
     """
     name = "random_encounter"
     valid_parameters = [
         (str, "encounter_slug"),
+        ((float, None), "total_prob"),
     ]
 
     def start(self):
@@ -57,31 +60,18 @@ class RandomEncounterAction(EventAction):
         if not check_battle_legal(player1):
             return False
 
-        # Get the parameters to determine what encounter group we'll look up in the database.
-        encounter_slug = self.parameters.encounter_slug
-
-        # Look up the encounter details
         monsters = db.JSONDatabase()
         monsters.load("encounter")
-        monsters.load("monster")
 
-        # Keep an encounter variable that will let us know if we're going to start a battle.
-        encounter = None
-
-        # Get all the monsters associated with this encounter.
-        encounters = monsters.database['encounter'][encounter_slug]['monsters']
-
-        for item in encounters:
-            # Perform a roll to see if this monster is going to start a battle.
-            roll = random.randrange(1, 1000)
-            if roll <= int(item['encounter_rate']):
-                # Set our encounter details
-                encounter = item
+        slug = self.parameters.encounter_slug
+        encounters = monsters.database['encounter'][slug]['monsters']
+        encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster and start the
         # battle.
         if encounter:
             logger.info("Starting random encounter!")
+            monsters.load("monster")
 
             player1.stop_moving()
             player1.cancel_path()
@@ -90,28 +80,7 @@ class RandomEncounterAction(EventAction):
             if self.game.isclient or self.game.ishost:
                 self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
 
-            # Create a monster object
-            current_monster = monster.Monster()
-            current_monster.load_from_db(encounter['monster'])
-
-            # Set the monster's level based on the specified level range
-            if len(encounter['level_range']) > 1:
-                level = random.randrange(encounter['level_range'][0], encounter['level_range'][1])
-            else:
-                level = encounter['level_range'][0]
-
-            # Set the monster's level
-            current_monster.level = 1
-            current_monster.set_level(level)
-            current_monster.current_hp = current_monster.hp
-
-            # Create an NPC object which will be this monster's "trainer"
-            npc = NPC("maple_girl")
-            npc.monsters.append(current_monster)
-            npc.party_limit = 0
-
-            # Set the NPC object's AI model.
-            npc.ai = ai.AI()
+            npc = _create_monster_npc(encounter)
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
@@ -132,3 +101,40 @@ class RandomEncounterAction(EventAction):
     def update(self):
         if self.game.get_state_name("CombatState") is None:
             self.stop()
+
+
+def _choose_encounter(encounters, total_prob):
+    total = 0
+    roll = random.random() * 100
+    if total_prob is not None:
+        current_total = sum(encounter['encounter_rate'] for encounter in encounters)
+        scale = float(total_prob) / current_total
+    else:
+        scale = 1
+    for encounter in encounters:
+        total += encounter['encounter_rate'] * scale
+        if total >= roll:
+            return encounter
+
+
+def _create_monster_npc(encounter):
+    current_monster = monster.Monster()
+    current_monster.load_from_db(encounter['monster'])
+    # Set the monster's level based on the specified level range
+    if len(encounter['level_range']) > 1:
+        level = random.randrange(encounter['level_range'][0], encounter['level_range'][1])
+    else:
+        level = encounter['level_range'][0]
+    # Set the monster's level
+    current_monster.level = 1
+    current_monster.set_level(level)
+    current_monster.current_hp = current_monster.hp
+
+    # Create an NPC object which will be this monster's "trainer"
+    npc = NPC("maple_girl")
+    npc.monsters.append(current_monster)
+    npc.party_limit = 0
+
+    # Set the NPC object's AI model.
+    npc.ai = ai.AI()
+    return npc

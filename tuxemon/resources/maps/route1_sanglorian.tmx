@@ -186,7 +186,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="153" name="Encounters" type="event" x="208" y="96" width="112" height="48">
@@ -195,7 +194,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="154" name="Encounters" type="event" x="160" y="32" width="144" height="48">
@@ -204,7 +202,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="159" name="Player Spawn" type="event" x="400" y="272" width="16" height="16"/>

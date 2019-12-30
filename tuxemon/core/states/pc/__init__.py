@@ -38,7 +38,6 @@ from __future__ import unicode_literals
 import logging
 from functools import partial
 
-from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
 from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import PopUpMenu

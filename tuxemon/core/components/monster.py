@@ -34,7 +34,6 @@ from __future__ import unicode_literals
 
 import logging
 import os.path
-import pprint
 import random
 
 from tuxemon.core import tools

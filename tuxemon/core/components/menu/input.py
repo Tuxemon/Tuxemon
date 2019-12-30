@@ -10,7 +10,6 @@ from functools import partial
 import pygame
 
 from tuxemon.core import tools
-from tuxemon.core.components.game_event import input_event
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.ui.text import TextArea

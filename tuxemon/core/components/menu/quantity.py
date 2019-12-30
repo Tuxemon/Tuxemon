@@ -4,12 +4,9 @@ from __future__ import unicode_literals
 
 import logging
 
-import pygame
-
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.platform.const import buttons
-from tuxemon.core.components.menu.menu import Menu
 
 logger = logging.getLogger(__name__)
 

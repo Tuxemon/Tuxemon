@@ -34,8 +34,6 @@ from __future__ import unicode_literals
 
 import logging
 
-import pygame
-
 from tuxemon.core import prepare
 from tuxemon.core import state
 from tuxemon.core import tools

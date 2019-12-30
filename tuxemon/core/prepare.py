@@ -39,10 +39,6 @@ from __future__ import unicode_literals
 import logging
 import os.path
 
-import pygame as pg
-
-from tuxemon.constants import paths
-from .components import config
 from tuxemon.constants import paths
 from .components import config
 

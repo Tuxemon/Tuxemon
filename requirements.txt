@@ -3,7 +3,7 @@ cbor
 lxml>=4.2.5
 neteria
 pillow
-pygame>=1.9.4
+pygame>=1.9.6
 pyscroll>=2.19.2
 pytmx>=3.20.17
 requests>=2.19.1

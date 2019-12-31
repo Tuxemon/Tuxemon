@@ -180,11 +180,11 @@ def get_index_of_latest_save():
     for slot_index in range(3):
         save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot_index + 1)
         save_data = open_save_file(save_path)
-        time_of_save = datetime.datetime.strptime(save_data['time'], TIME_FORMAT)
-        times.append((slot_index, time_of_save))
-
-    s = max(times, key=itemgetter(1))
-    if s:
+        if save_data is not None:
+            time_of_save = datetime.datetime.strptime(save_data['time'], TIME_FORMAT)
+            times.append((slot_index, time_of_save))
+    if len(times) > 0:
+        s = max(times, key=itemgetter(1))
         return s[0]
     else:
         return None

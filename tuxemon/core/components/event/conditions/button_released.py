@@ -63,6 +63,9 @@ class ButtonReleasedCondition(EventCondition):
             ...
         }
         """
+        # no longer in use
+        # TODO: Cleanup or remove this action
+        raise NotImplementedError
         # # Get the keys pressed from the game.
         # events = game.key_events
         # button = str(condition.parameters[0])

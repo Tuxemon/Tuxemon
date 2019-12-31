@@ -37,7 +37,7 @@ def init():
     # but these values are more acceptable for faster computers
     if _pygame:
         logger.debug("pre-init pygame mixer")
-        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
+        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
 
 
 def get_config_dir():

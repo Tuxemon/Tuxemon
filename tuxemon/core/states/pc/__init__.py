@@ -84,31 +84,6 @@ class MultiplayerMenu(PopUpMenu):
                               ('multiplayer_scan_games', self.scan_for_games),
                               ('multiplayer_join_game', self.join_by_ip)))
 
-    def draw(self, surface):
-        # method used here only for debugging
-        super(MultiplayerMenu, self).draw(surface)
-
-    def process_event(self, event):
-        """ Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return None if you have handled input here.
-
-        :type event: core.input.PlayerInput
-        :rtype: Optional[core.input.PlayerInput]
-        """
-        super(MultiplayerMenu, self).process_event(event)
-
-        # # Handle text input events.
-        # # If a input menu is pushed, it will be for the hostname or ip
-        # if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
-        #     self.game.pop_state(self)
-
     def host_game(self):
 
         # check if server is already hosting a game

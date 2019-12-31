@@ -32,11 +32,10 @@ from __future__ import unicode_literals
 import logging
 import os.path
 
-import pygame
-
 from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components import plugin
+from tuxemon.core.platform.const import buttons
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +54,7 @@ class RunningEvent(object):
     Actions being managed by the RunningEvent class can share information
     using the context dictionary.
     """
-    __slots__ = ['map_event', 'context', 'action_index', 'current_action']
+    __slots__ = ('map_event', 'context', 'action_index', 'current_action')
 
     def __init__(self, map_event):
         self.map_event = map_event
@@ -438,18 +437,21 @@ class EventEngine(object):
                 pass
 
     def process_event(self, event):
-        """ Process a pygame event
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        :type event: pygame.Event
-        :rtype: pygame.Ecent
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
+
+        You should return None if you have handled input here.
+
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
-        # TODO: getattr on pygame is a little dangerous. We should sanitize input.
-        if self.button and event.type == pygame.KEYUP and event.key == getattr(pygame, self.button):
-            logger.debug("got button")
-            self.button = None
-
         # has the player pressed the action key?
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        if event.pressed and event.button == buttons.A:
             for map_event in self.game.interacts:
                 self.process_map_event(map_event)
 

@@ -36,6 +36,7 @@ from pygame.transform import rotozoom
 from pygame.transform import scale
 
 from tuxemon.core.components.pyganim import PygAnimation
+from tuxemon.core.platform.const import buttons
 
 
 class Sprite(pygame.sprite.DirtySprite):
@@ -325,25 +326,27 @@ class MenuSpriteGroup(SpriteGroup):
         The return value will be the newly selected object index
 
         :param index: Index of the item in the list
-        :param event: pygame.Event
+        :param event: core.input.PlayerInput
+
         :returns: New menu item offset
+        :rtype: int
         """
         # TODO: some sort of smart way to pick items based on location on screen
         if not len(self):
             return 0
 
-        if event.type == pygame.KEYDOWN:
+        if event.pressed:
             # ignore left/right if there is only one column
-            if event.key == pygame.K_LEFT:
+            if event.button == buttons.LEFT:
                 index -= 1
 
-            elif event.key == pygame.K_RIGHT:
+            elif event.button == buttons.RIGHT:
                 index += 1
 
-            if event.key == pygame.K_DOWN:
+            if event.button == buttons.DOWN:
                 index += 1
 
-            elif event.key == pygame.K_UP:
+            elif event.button == buttons.UP:
                 index -= 1
 
             # wrap the cursor position
@@ -469,7 +472,7 @@ class VisualSpriteList(RelativeGroup):
         handling them differently.
 
         :param index: Index of the item in the list
-        :param event: pygame.Event
+        :type event: tuxemon.core.components.game_event.player_input.InputEvent
         :returns: New menu item offset
         """
         # sanity check:
@@ -478,7 +481,7 @@ class VisualSpriteList(RelativeGroup):
         if enabled < 2:
             return 0
 
-        if event.type == pygame.KEYDOWN:
+        if event.pressed:
 
             # in order to accommodate disabled menu items,
             # the mod incrementer will loop until a suitable
@@ -488,10 +491,10 @@ class VisualSpriteList(RelativeGroup):
 
             # horizontal movement: left and right will inc/dec mod by one
             if self.columns > 1:
-                if event.key == pygame.K_LEFT:
+                if event.button == buttons.LEFT:
                     mod -= 1
 
-                elif event.key == pygame.K_RIGHT:
+                elif event.button == buttons.RIGHT:
                     mod += 1
 
             # vertical movement: up/down will inc/dec the mod by adjusted
@@ -500,7 +503,7 @@ class VisualSpriteList(RelativeGroup):
             row, col = divmod(index, self.columns)
 
             # down key pressed
-            if event.key == pygame.K_DOWN:
+            if event.button == buttons.DOWN:
                 if remainder:
                     if row == rows:
                         mod += remainder
@@ -517,7 +520,7 @@ class VisualSpriteList(RelativeGroup):
                     mod = self.columns
 
             # up key pressed
-            elif event.key == pygame.K_UP:
+            elif event.button == buttons.UP:
                 if remainder:
                     if row == 0:
                         if col < remainder:

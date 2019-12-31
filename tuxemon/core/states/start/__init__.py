@@ -79,13 +79,21 @@ class StartState(PopUpMenu):
             kwargs['selected_index'] = index or 0
             return partial(self.game.push_state, state, **kwargs)
 
+        def set_player_name(text):
+            world = self.game.get_state_name("WorldState")
+            world.player1.name = text
+
         def new_game():
             # load the starting map
             state = self.game.replace_state("WorldState")
             map_name = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps",
                                     prepare.CONFIG.starting_map)
             state.change_map(map_name)
-            self.game.push_state("InputMenu", prompt=T.translate("input_name"))
+            self.game.push_state(
+                state_name="InputMenu",
+                prompt=T.translate("input_name"),
+                callback=set_player_name,
+            )
             self.game.push_state("FadeInTransition")
 
         def options():

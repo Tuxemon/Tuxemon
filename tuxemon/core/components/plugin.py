@@ -47,7 +47,7 @@ log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
 
 
 class Plugin(object):
-    __slots__ = ['name', 'plugin_object']
+    __slots__ = ('name', 'plugin_object')
 
     def __init__(self, name, module):
         self.name = name

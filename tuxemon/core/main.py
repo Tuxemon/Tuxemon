@@ -33,9 +33,9 @@ from __future__ import unicode_literals
 
 import logging
 
-from . import prepare
-from .components import log
-from .components.player import Player
+from tuxemon.core import prepare
+from tuxemon.core.components import log
+from tuxemon.core.components.player import Player
 
 logger = logging.getLogger(__name__)
 
@@ -51,11 +51,14 @@ def main(load_slot=None):
     log.configure()
 
     import pygame
-    from .control import PygameControl
+    from .control import Control
 
     prepare.init()
-    control = PygameControl(prepare.ORIGINAL_CAPTION)
+    control = Control(prepare.ORIGINAL_CAPTION)
     control.auto_state_discovery()
+
+    # global/singleton hack for now
+    setattr(prepare, "GLOBAL_CONTROL", control)
 
     # load the player npc
     new_player = Player(prepare.CONFIG.player_npc)

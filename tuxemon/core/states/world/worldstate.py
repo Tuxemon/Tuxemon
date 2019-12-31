@@ -42,19 +42,20 @@ from six.moves import map as imap
 from tuxemon.constants import paths
 from tuxemon.core import prepare, state
 from tuxemon.core.components import networking
-from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
 from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.tools import nearest
 
 logger = logging.getLogger(__name__)
 
-keymap = {
-    pygame.K_UP: "up",
-    pygame.K_DOWN: "down",
-    pygame.K_LEFT: "left",
-    pygame.K_RIGHT: "right",
 
+direction_map = {
+    intentions.UP: "up",
+    intentions.DOWN: "down",
+    intentions.LEFT: "left",
+    intentions.RIGHT: "right",
 }
+
 
 class WorldState(state.State):
     """ The state responsible for the world game play
@@ -62,10 +63,21 @@ class WorldState(state.State):
 
     preloaded_maps = {}
 
+    keymap = {
+        buttons.UP: intentions.UP,
+        buttons.DOWN: intentions.DOWN,
+        buttons.LEFT: intentions.LEFT,
+        buttons.RIGHT: intentions.RIGHT,
+        buttons.A: intentions.INTERACT,
+        buttons.B: intentions.RUN,
+        buttons.START: intentions.WORLD_MENU,
+        buttons.BACK: intentions.WORLD_MENU,
+    }
+
     def startup(self):
         # Provide access to the screen surface
         self.screen = self.game.screen
-        self.screen_rect = prepare.SCREEN_RECT
+        self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
 
@@ -162,8 +174,7 @@ class WorldState(state.State):
         self.remove_animations_of(self)
         self.remove_animations_of(cleanup)
 
-        # stop player movement
-        self.player1.cancel_movement()
+        self.stop_player()
 
         self.in_transition = True
         self.trigger_fade_out(duration)
@@ -189,6 +200,7 @@ class WorldState(state.State):
         """
         self.set_transition_surface()
         self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
+        self.stop_player()
         self.lock_controls()
 
     def handle_delayed_teleport(self):
@@ -201,7 +213,7 @@ class WorldState(state.State):
         :return: None
         """
         if self.delayed_teleport:
-            self.player1.cancel_movement()
+            self.stop_player()
             self.lock_controls()
 
             # check if map has changed, and if so, change it
@@ -256,7 +268,6 @@ class WorldState(state.State):
 
         """
         super(WorldState, self).update(time_delta)
-        self.check_player_keys()
         self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player1.game_variables))
@@ -271,8 +282,27 @@ class WorldState(state.State):
         self.map_drawing(surface)
         self.fullscreen_animations(surface)
 
+    def translate_input_event(self, event):
+        """
+
+        :type event: tuxemon.core.input.events.PlayerInput
+        :rtype: tuxemon.core.input.events.PlayerInput
+        """
+        from tuxemon.core.platform.events import PlayerInput
+
+        try:
+            return PlayerInput(self.keymap[event.button], event.value, event.hold_time)
+        except KeyError:
+            pass
+
+        if event.button == events.UNICODE:
+            if event.value == "n":
+                return PlayerInput(intentions.NOCLIP, event.value, event.hold_time)
+
+        return event
+
     def process_event(self, event):
-        """Handles player input events. This function is only called when the
+        """ Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -280,56 +310,56 @@ class WorldState(state.State):
         signifies that this method has dealt with an event and wants it
         exclusively.  Return the event and others can use it as well.
 
-        You should return if you have handled input here.
+        You should return None if you have handled input here.
 
-        :param event: A pygame key event from pygame.event.get()
-        :type event: pygame.event.Event
-
-        :rtype: None
-        :returns: None
-
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
-        # Handle text input events
-        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
-            self.player1.name = event.text
-            return
+        event = self.translate_input_event(event)
 
-        # Handle Key DOWN events
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+        if event.button == intentions.WORLD_MENU:
+            if event.pressed:
                 logger.info("Opening main menu!")
+                self.game.release_controls()
                 self.game.push_state("WorldMenuState")
                 return
 
-            # If we receive an arrow key press, set the facing and
-            # moving direction to that direction
-            # TODO: move to some generic "InputManager' type class
-            for key, direction in keymap.items():
-                if event.key == key:
-                    self.wants_to_move_player = direction
-                    if self.allow_player_movement:
-                        self.move_player(direction)
-                    return
+        # map may not have a player registered
+        if self.player1 is None:
+            return
 
-            if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                # TODO: Check to see if we have network players to interact with.
+        if event.button == intentions.INTERACT:
+            if event.pressed:
                 multiplayer = False
                 if multiplayer:
                     self.check_interactable_space()
-
-            if prepare.DEV_TOOLS:
-                if event.key == pygame.K_n:
-                    self.player1.ignore_collisions = not self.player1.ignore_collisions
                     return
 
-        # Handle Key UP events
-        if event.type == pygame.KEYUP:
-            # If the player lets go of the key, set the moving
-            # direction to false to stop movement
-            direction = keymap.get(event.key)
-            if direction == self.wants_to_move_player:
-                self.wants_to_move_player = None
-                self.player1.cancel_movement()
+        if event.button == intentions.RUN:
+            if event.held:
+                self.player1.running = True
+                self.player1.walking = False
+            else:
+                self.player1.running = False
+                self.player1.walking = True
+
+        # If we receive an arrow key press, set the facing and
+        # moving direction to that direction
+        direction = direction_map.get(event.button)
+        if direction is not None:
+            if event.held:
+                self.wants_to_move_player = direction
+                if self.allow_player_movement:
+                    self.move_player(direction)
+                return
+            elif not event.pressed:
+                if direction == self.wants_to_move_player:
+                    self.stop_player()
+                    return
+
+        if prepare.DEV_TOOLS:
+            if event.pressed and event.button == intentions.NOCLIP:
+                self.player1.ignore_collisions = not self.player1.ignore_collisions
                 return
 
         # if we made it this far, return the event for others to use
@@ -636,28 +666,6 @@ class WorldState(state.State):
     ####################################################
     #                Player Movement                   #
     ####################################################
-    def check_player_keys(self):
-        """ Check key modifiers (deprecated!!
-
-        :returns: None
-        """
-        # TODO: refactor into discrete input events (no get_pressed!)
-
-        # Get all the keys pressed for modifiers only!
-        pressed = list(pygame.key.get_pressed())
-        self.ctrl_held = pressed[pygame.K_LCTRL] or pressed[pygame.K_RCTRL]
-        self.alt_held = pressed[pygame.K_LALT] or pressed[pygame.K_RALT]
-        self.shift_held = pressed[pygame.K_LSHIFT] or pressed[pygame.K_RSHIFT]
-
-        # Handle tile based movement for the player
-        # TODO: move to some generic "InputManager' type class
-        if self.shift_held:
-            self.player1.running = True
-            self.player1.walking = False
-        else:
-            self.player1.running = False
-            self.player1.walking = True
-
     def lock_controls(self):
         """ Prevent input from moving the player
 
@@ -677,13 +685,21 @@ class WorldState(state.State):
         if self.wants_to_move_player:
             self.move_player(self.wants_to_move_player)
 
+    def stop_player(self):
+        """ Reset controls and stop player movement at once.  Do not lock controls
+
+        :return:
+        """
+        self.wants_to_move_player = None
+        self.game.release_controls()
+        self.player1.cancel_movement()
+
     def move_player(self, direction):
         """ Move player in a direction.  Changes facing.
 
         :param direction:
         :return:
         """
-        # tell the npc we want to change directions
         self.player1.move_direction = direction
 
     def get_pos_from_tilepos(self, tile_position):
@@ -896,7 +912,7 @@ class WorldState(state.State):
 
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of control
-        self.player1.cancel_movement()
+        self.stop_player()
 
         # move to spawn position, if any
         for eo in self.game.events:

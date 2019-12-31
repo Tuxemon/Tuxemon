@@ -9,17 +9,17 @@ from __future__ import unicode_literals
 import logging
 import os.path
 
-__all__ = ('android', 'init', 'mixer')
+__all__ = ('android', 'init', 'mixer', 'get_config_dir')
 
 logger = logging.getLogger(__name__)
 
 _pygame = False
 
-# Import the android module and android specific components. If we can't import, set to None - this
-# lets us test it, and check to see if we want android-specific behavior.
 android = None
 
 try:
+    # Import the android module and android specific components. If we can't import, set to None - this
+    # lets us test it, and check to see if we want android-specific behavior.
     import android
 
     # import also android mixer
@@ -37,7 +37,7 @@ def init():
     # but these values are more acceptable for faster computers
     if _pygame:
         logger.debug("pre-init pygame mixer")
-        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
+        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=4096)
 
 
 def get_config_dir():

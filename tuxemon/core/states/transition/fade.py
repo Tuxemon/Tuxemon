@@ -39,7 +39,7 @@ class FadeTransitionBase(State):
         self.create_fade_animation()
 
     def process_event(self, event):
-        pass
+        return None
 
     def update(self, time_delta):
         self.animations.update(time_delta)

@@ -15,6 +15,7 @@ from tuxemon.core.components.menu.interface import MenuCursor, MenuItem
 from tuxemon.core.components.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.core.components.ui.draw import GraphicBox
 from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.platform.const import buttons, intentions
 
 logger = logging.getLogger(__name__)
 
@@ -102,6 +103,8 @@ class Menu(state.State):
         self.menu_items.empty()
         self.menu_sprites.empty()
         self.animations.empty()
+
+        self.game.release_controls()
 
         del self.arrow
         del self.menu_items
@@ -404,64 +407,66 @@ class Menu(state.State):
         return self.window.calc_inner_rect(self.rect)
 
     def process_event(self, event):
-        """ Process pygame input events
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        The menu cursor is handled here, as well as the ESC and ENTER keys.
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
 
-        This will also toggle the 'in_focus' of the menu item
+        You should return None if you have handled input here.
 
-        :param event: pygame.Event
-        :returns: None
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
-        if event.type == pygame.KEYDOWN:
-
-            # TODO: remove this check each time
-            # check if we have items, but they are all disabled
+        if event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)
 
-            if self.escape_key_exits and event.key == pygame.K_ESCAPE:
+            if (
+                event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL)
+                and self.escape_key_exits
+            ):
                 self.close()
-                return
 
             elif self.state == "normal" and not disabled and self.menu_items:
-
-                if event.key == pygame.K_RETURN:
+                if event.button in (buttons.A, intentions.SELECT):
                     self.menu_select_sound.play()
                     self.on_menu_selection(self.get_selected_item())
-
                 else:
                     index = self.menu_items.determine_cursor_movement(self.selected_index, event)
                     if not self.selected_index == index:
                         self.change_selection(index)
+            return
 
         # TODO: handling of click/drag, miss-click, etc
         # TODO: eventually, maybe move some handling into menuitems
         # TODO: handle screen scaling?
         # TODO: generalized widget system
-        elif self.touch_aware and event.type == pygame.MOUSEBUTTONDOWN:
-            # menu items is (sometimes) a relative group, so their rect will be relative to their parent
-            # we need to adjust the point to topleft of the containing rect
-            # eventually, a widget system could do this automatically
-
-            # make sure that the rect's position is current
-            # a sprite group may not be a relative group... so an attribute error will be raised
-            # obvi, a wart, but will be fixed sometime (tm)
-            try:
-                self.menu_items.update_rect_from_parent()
-            except AttributeError:
-                # not a relative group, no need to adjust cursor
-                mouse_pos = event.pos
-            else:
-                # move the mouse/touch origin to be relative to the menu_items
-                # TODO: a vector type would be niceeee
-                mouse_pos = [a - b for a, b in zip(event.pos, self.menu_items.rect.topleft)]
-
-            # loop through all the items here and see if they collide
-            # eventually, we should make this more generic...not part of the menu
-            for index, item in enumerate([i for i in self.menu_items if i.enabled]):
-                if item.rect.collidepoint(mouse_pos):
-                    self.change_selection(index)
-                    self.on_menu_selection(self.get_selected_item())
+        # elif self.touch_aware and event.type == pygame.MOUSEBUTTONDOWN:
+        #     # menu items is (sometimes) a relative group, so their rect will be relative to their parent
+        #     # we need to adjust the point to topleft of the containing rect
+        #     # eventually, a widget system could do this automatically
+        #
+        #     # make sure that the rect's position is current
+        #     # a sprite group may not be a relative group... so an attribute error will be raised
+        #     # obvi, a wart, but will be fixed sometime (tm)
+        #     try:
+        #         self.menu_items.update_rect_from_parent()
+        #     except AttributeError:
+        #         # not a relative group, no need to adjust cursor
+        #         mouse_pos = event.pos
+        #     else:
+        #         # move the mouse/touch origin to be relative to the menu_items
+        #         # TODO: a vector type would be niceeee
+        #         mouse_pos = [a - b for a, b in zip(event.pos, self.menu_items.rect.topleft)]
+        #
+        #     # loop through all the items here and see if they collide
+        #     # eventually, we should make this more generic...not part of the menu
+        #     for index, item in enumerate([i for i in self.menu_items if i.enabled]):
+        #         if item.rect.collidepoint(mouse_pos):
+        #             self.change_selection(index)
+        #             self.on_menu_selection(self.get_selected_item())
 
     def change_selection(self, index, animate=True):
         """ Force the menu to be evaluated and move cursor and trigger focus changes

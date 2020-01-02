@@ -1533,7 +1533,7 @@ msgid "splendid\n"
 msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
 "... .... ... .... ....\n"
-"Okay, we have decided to let you participate. Here is a new Tuxemon. You'll need it."
+"Okay, we have decided to let you participate."
 
 msgid "ripjimmy"
 msgstr "That's the grave of Jimmy, my former partner. We used to stand together here all day..."

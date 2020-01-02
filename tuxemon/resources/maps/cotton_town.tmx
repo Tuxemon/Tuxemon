@@ -389,12 +389,14 @@
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog theinfo\n"/>
-    <property name="act93" value="npc_move aeble, down 1, right 8, up 1"/>
-    <property name="act94" value="npc_speed aeble, 0.5"/>
-    <property name="act95" value="pathfind aeble, 22, 10"/>
-    <property name="act96" value="remove_npc aeble"/>
-    <property name="act97" value="set_variable donewithyou:yes"/>
-    <property name="act98" value="set_variable killgrace:yes"/>
+    <property name="act2" value="npc_move aeble, down 1, right 8, up 1"/>
+    <property name="act3" value="npc_speed aeble, 0.5"/>
+    <property name="act4" value="pathfind aeble, 22, 10"/>
+    <property name="act5" value="remove_npc aeble"/>
+    <property name="act6" value="remove_npc grace"/>
+    <property name="act7" value="remove_npc tallon"/>
+    <property name="act8" value="set_variable donewithyou:yes"/>
+    <property name="act9" value="set_variable killgrace:yes"/>
     <property name="behav1" value="talk aeble"/>
     <property name="cond4" value="not variable_set donewithyou:yes"/>
    </properties>
@@ -500,24 +502,19 @@
   <object id="276" name="personhere" type="event" x="16" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog waithere"/>
-    <property name="cond1" value="is player_facing left"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="behav1" value="talk tallon"/>
    </properties>
   </object>
   <object id="277" name="personhere" type="event" x="16" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face grace,right"/>
-    <property name="act2" value="translated_dialog waithere2"/>
-    <property name="cond1" value="is player_facing left"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="act1" value="translated_dialog waithere2"/>
+    <property name="behav1" value="talk grace"/>
    </properties>
   </object>
   <object id="278" name="create grace and tallon" type="event" x="0" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc grace,0,29,stand"/>
-    <property name="act2" value="create_npc tallon,0,28,stand"/>
+    <property name="act1" value="create_npc grace,0,29,,stand"/>
+    <property name="act2" value="create_npc tallon,0,28,,stand"/>
     <property name="act3" value="npc_face grace,left"/>
     <property name="act4" value="npc_face tallon,left"/>
     <property name="cond1" value="not npc_exists grace"/>

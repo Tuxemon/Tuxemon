@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="85">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="46" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="87">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -12,27 +12,27 @@
  <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="46">
+ <layer id="1" name="Tile Layer 1" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztzzEOgCAQAMELCc+xxIdT4Peg1l70MsX0u71EdEhiVMjjAnjB8YEGv379+vX71JbzZncTAAAAAAAA/MkEhrnfNA==
+   eAHt1DEOwCAIBVBi0uM4tgd30OvV2V0HfMNfJcKDViKa6EESA/2JED3IYmBMz6IHDDCw20C97Nb4b+6dMl/z3X0zT77/zvv8LTlZX63c+2S+5ssAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAM3GPgBhrnfNA==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="60" height="46">
+ <layer id="2" name="Tile Layer 2" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="Tile Layer 3" width="60" height="46">
+ <layer id="3" name="Tile Layer 3" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJztmkFuwjAQRaPUFuvcA6KuexB6AM7Cjj1LegIWlar2CLCreoCepVjBIlCDv51x4hn5SaMREor5if1ngl1VhVuUqiqt0uWh46XSuzhFq/5/Hpq/9fV4VNd15RC9uT7f5SlewYyQ8n63jt8w5fNt6rD7F5P7mLmdcjwfLzU2B3Jkq7s4av93LSvGendnvZ8BejfM9L4FaHPxwUzvUH5H1mtrzNzjLXN1CUpmT7TXS8G7vg7DV+S8fmaqNxZTf0P61LF63D6Uek39vdcHuUB7KEoo9a5qdx90D6SHooZSL7f6azlE6i71Ny+o/bHJXG8It/8ruOD8ftTnR3fhg/P7UQxc/TkW3/pdJ66tVKD1Scr63esufEhZv2jvJWX9onql9Feo3tz7KxRk7Rok9VcIUvwZRYo/o0jxZxQp/owixZ9Rij/LpvizbIo/y4bD/qCF4pwWh/1By6PzN6n3sKYg5BxQQSZ/ihBh7A==
+   eAHtWsFNQzEM/SqtOLMHoJ4ZBAZgFm7cOcIEHJCqMgLcEAMwC7aEpdS4yUvSftVWLEX+aew4z4md/J9O0yDtgeVymlZUjsV77Wn93rrgvCLM1wluqffyr9XuCHv7y+nvWrJrgvdYXFuttXNLc3BHBeHallXP+Yvnu7dd2+ztL6evben6xQLzG+pfSy61yWsbmSerH0QvtWU93xBer/REvuPyqfJDDs+9Y7zPf3i3FXgfneF9qcBmzfPGGV4LQ81vPzPjlb3okvJ+jrhdSk6utu38rFZjfvk3WsNp4RG8N67rtVO8rV7n/VfWGNKHyGqO6LbKpHPLzz3E+6+cV5B+RFZzRLdV5pB4ef+VcwsyHpHVHNFtlTkkXm/7r/jso3Fdj/1XPHgaXOdFqbeOjvNzFNLfFSxcnt+PUjzfFM9cSuT5/aiEzWr3mp8tLMhvpfh9KJzrERtzyKD7U5T4faXY5VKiKPErZ7AS3ijxi+KNcr5C8c79faO03lrbkdjlvkv5udX+qepFyc+of6PkZxRvlPyM4o2Sn1G8UfIzinfkZ9RTPuVGfvY5b+ioR35GPeVTzsP9oHhWvsXu4yKX4x7uB2X8fGe1j/h/RNFI31npejS8A89/D/wCihBh7A==
   </data>
  </layer>
- <layer name="Above Player" width="60" height="46">
+ <layer id="4" name="Above Player" width="60" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt2kEOgyAQhWEWcBx7nPaarnuCLnuk2kUTJTXRzDwG2v9LCBsJPkFUYkr4yDmlkvW1tV/vvNNSLsL6Wbb9nm3vnfe6lJuwrlnbW6nH19qft5bj+57b0eM7inm1DjzK/nEKqjW01joXYtTPtNaOvlPgvHvZll83Ql7P+TxCXk/k7Q/rM9a89xSizh/fjT6+/+bodVftCSKWes83Kk8rvb57qfb0e82rEpk3d3RfAQAAALBp9R/W6N/0ALReDYdGMA==
+   eAHtlk0OAiEMhVmMx9Hj6DVdewKXHklYvIQpkUmhBZy8SUj5a/v6geOEwAcEti2ES2zeFvlgtfng12uR9xprvsXmZT+XvVJtnr13+wj13mOtj9i8rFSozSP9e8da3tr9Ul+vv4ynHWt5a/fnetLd7vHPY529/8zeA++sP6Ju/PZhvXKOrsurDsatE5D/afXd9qu4x7Ayw695uY/jksArvpvyVu4410xea+qv+Fje53+o1/IMWK8lTZtYlvfZRhGjzCSA+9BqZ2pPuaF7to5V84NPq121rrPqwjkd1Yd9vfYoD9fHEug9T+k/Vn2ZDXrKFZ8ZfHP6RG+PCg7WdtV620nVPWfWm84O51dXyVUSIAESIAESIAESIAESIIHVCeDbfnW7OkfqIwES6CPwBQ2HRjA=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="672" y="304" width="96" height="160"/>
   <object id="2" type="collision" x="736" y="160" width="32" height="96"/>
   <object id="3" type="collision" x="608" y="160" width="16" height="208"/>
@@ -77,7 +77,7 @@
   <object id="79" type="collision" x="560" y="256" width="48" height="16"/>
   <object id="80" type="collision" x="512" y="256" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,11"/>
@@ -92,7 +92,7 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="32" name="Teleport to route1a" type="event" x="544" y="96" width="32" height="16">
+  <object id="32" name="Teleport to route1a" type="event" x="544" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="teleport route1_sanglorian.tmx,25,19"/>
     <property name="cond1" value="is player_at"/>
@@ -201,6 +201,22 @@
    </properties>
   </object>
   <object id="84" name="Player Spawn" type="event" x="540" y="127" width="16" height="16"/>
+  <object id="85" name="Teleport to route1a" type="event" x="528" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route1_sanglorian.tmx,24,19"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="86" name="Teleport to route1a" type="event" x="560" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route1_sanglorian.tmx,26,19"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="Conditions"/>
+ <objectgroup id="7" name="Conditions"/>
 </map>

@@ -177,6 +177,9 @@ msgstr "Versuche zu fangen..."
 msgid "gotcha"
 msgstr "Geschnappt!"
 
+msgid "level_up"
+msgstr "{name} has reached level {level}"
+
 msgid "item_cannot_use_here"
 msgstr "{name} kann hier nicht benutzt werden!"
 

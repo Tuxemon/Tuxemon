@@ -177,6 +177,9 @@ msgstr "Attempting capture..."
 msgid "gotcha"
 msgstr "Gotcha!"
 
+msgid "level_up"
+msgstr "{name} has reached level {level}"
+
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
 

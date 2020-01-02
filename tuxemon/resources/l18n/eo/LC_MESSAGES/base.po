@@ -177,6 +177,9 @@ msgstr "Kaptado..."
 msgid "gotcha"
 msgstr "Bone!"
 
+msgid "level_up"
+msgstr "{name} has reached level {level}"
+
 msgid "item_cannot_use_here"
 msgstr "{name} ne uzeblas ĉi tie!"
 

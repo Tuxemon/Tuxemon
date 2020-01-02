@@ -349,8 +349,8 @@ class Monster(object):
 
         :type amount: Integer
 
-        :rtype: None
-        :returns: None
+        :rtype: Boolean
+        :returns: True if the monster has leveled up.
 
         **Example:**
 
@@ -360,6 +360,9 @@ class Monster(object):
         if self.total_experience >= (self.experience_required_modifier * (self.level + 1) ** 3):
             #Level up worthy monsters
             self.level_up()
+            return True
+
+        return False
 
     def apply_status(self, status):
         """ Apply a status to the monster

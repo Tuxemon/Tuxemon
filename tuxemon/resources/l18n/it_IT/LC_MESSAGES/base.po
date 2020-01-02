@@ -215,6 +215,9 @@ msgstr "Cattura in corso..."
 msgid "gotcha"
 msgstr "Evvai!"
 
+msgid "level_up"
+msgstr "{name} has reached level {level}"
+
 msgid "not_implemented"
 msgstr "Questa funzione non è ancora stata implementata."
 

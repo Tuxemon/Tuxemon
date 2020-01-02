@@ -219,6 +219,9 @@ msgstr "Attempting capture..."
 msgid "gotcha"
 msgstr "Gotcha!"
 
+msgid "level_up"
+msgstr "{name} has reached level {level}"
+
 msgid "not_implemented"
 msgstr "This feature is not yet implemented."
 

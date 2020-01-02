@@ -726,7 +726,8 @@ class CombatState(CombatAnimations):
             # Award Experience
             awarded_exp = monster.total_experience / monster.level / len(self._damage_map[monster])
             for winners in self._damage_map[monster]:
-                winners.give_experience(awarded_exp)
+                if winners.give_experience(awarded_exp):
+					self.alert(T.format('level_up', {"name": winners.name, "level": winners.level}))
 
             # Remove monster from damage map
             del self._damage_map[monster]

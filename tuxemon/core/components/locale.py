@@ -81,8 +81,9 @@ class TranslatorPo(object):
 
             # build only complete translations
             if os.path.exists(infile):
-                with open(infile, "r", encoding="UTF8") as po_file, open(outfile, "wb") as mo_file:
+                with io.open(infile, "r", encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
+                with io.open(outfile, "wb") as mo_file:
                     write_mo(mo_file, catalog)
 
     def load_locale(self, locale_name="en_US"):

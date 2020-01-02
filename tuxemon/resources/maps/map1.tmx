@@ -295,14 +295,14 @@
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="192" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route1.tmx,47,17"/>
+    <property name="act1" value="teleport route1.tmx,46,15"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="192" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route1.tmx,47,18"/>
+    <property name="act1" value="teleport route1.tmx,46,16"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>

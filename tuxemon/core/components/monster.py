@@ -230,7 +230,8 @@ class Monster(object):
         self.moveset = []       # A list of possible technique objects.
         self.ai = None
 
-        self.experience_required_modifier = 0
+        # The multiplier for experience
+        self.experience_required_modifier = 1
         self.total_experience = 0
 
         self.type1 = "aether"

@@ -8,7 +8,7 @@ from collections import defaultdict
 import pygame as pg
 
 from tuxemon.core import prepare
-from tuxemon.core.platform.const import buttons, intentions, events
+from tuxemon.core.platform.const import buttons, events
 from tuxemon.core.platform.events import InputHandler, PlayerInput, EventQueueHandler
 
 
@@ -17,7 +17,7 @@ class PygameEventQueueHandler(EventQueueHandler):
     """
 
     def __init__(self):
-        self._inputs = defaultdict(list)  # type Dict[int, InputHandler]
+        self._inputs = defaultdict(list)  # type Dict[int, List[InputHandler]]
         self._inputs[0].append(PygameKeyboardInput(prepare.CONFIG.keyboard_button_map))
         self._inputs[0].append(PygameGamepadInput(prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone))
 
@@ -178,7 +178,6 @@ class PygameKeyboardInput(PygameEventHandler):
             # just get unicode value
             try:
                 if pressed:
-                    print(pg_event.unicode)
                     self.release(events.UNICODE)
                     self.press(events.UNICODE, pg_event.unicode)
                 else:

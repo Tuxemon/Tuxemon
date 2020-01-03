@@ -420,60 +420,59 @@ class Menu(state.State):
         :type event: core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
+        handled_event = False
+
+        # close menu
+        if event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL):
+            handled_event = True
+            if event.pressed and self.escape_key_exits:
+                self.close()
+
+        disabled = True
         if event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)
+        valid_change = event.pressed and self.state == "normal" and not disabled and self.menu_items
 
-            if (
-                event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL)
-                and self.escape_key_exits
-            ):
-                self.close()
-                return
+        # confirm selection
+        if event.button in (buttons.A, intentions.SELECT):
+            handled_event = True
+            if valid_change:
+                self.menu_select_sound.play()
+                self.on_menu_selection(self.get_selected_item())
 
-            elif self.state == "normal" and not disabled and self.menu_items:
-                if event.button in (buttons.A, intentions.SELECT):
-                    self.menu_select_sound.play()
-                    self.on_menu_selection(self.get_selected_item())
-                    return
+        # cursor movement
+        if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
+            handled_event = True
+            if valid_change:
+                index = self.menu_items.determine_cursor_movement(self.selected_index, event)
+                if not self.selected_index == index:
+                    self.change_selection(index)
 
-                if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
-                    index = self.menu_items.determine_cursor_movement(self.selected_index, event)
-                    if not self.selected_index == index:
+        # mouse/touch selection
+        if event.button in (buttons.MOUSELEFT, ):
+            handled_event = True
+            # TODO: handling of click/drag, miss-click, etc
+            # TODO: eventually, maybe move some handling into menuitems
+            # TODO: handle screen scaling?
+            # TODO: generalized widget system
+            if self.touch_aware and valid_change:
+                mouse_pos = event.value
+                assert mouse_pos is not 0
+
+                try:
+                    self.menu_items.update_rect_from_parent()
+                except AttributeError:
+                    pass
+                else:
+                    mouse_pos = [a - b for a, b in zip(mouse_pos, self.menu_items.rect.topleft)]
+
+                for index, item in enumerate([i for i in self.menu_items if i.enabled]):
+                    if item.rect.collidepoint(mouse_pos):
                         self.change_selection(index)
-                    return
+                        self.on_menu_selection(self.get_selected_item())
 
-                if self.touch_aware and event.button == buttons.MOUSELEFT:
-                    # menu items is (sometimes) a relative group, so their rect will be relative to their parent
-                    # we need to adjust the point to topleft of the containing rect
-                    # eventually, a widget system could do this automatically
-
-                    # make sure that the rect's position is current
-                    # a sprite group may not be a relative group... so an attribute error will be raised
-                    # obvi, a wart, but will be fixed sometime (tm)
-
-                    # TODO: handling of click/drag, miss-click, etc
-                    # TODO: eventually, maybe move some handling into menuitems
-                    # TODO: handle screen scaling?
-                    # TODO: generalized widget system
-                    mouse_pos = event.value
-                    assert mouse_pos is not 0
-
-                    try:
-                        self.menu_items.update_rect_from_parent()
-                    except AttributeError:
-                        # not a relative group, no need to adjust cursor
-                        pass
-                    else:
-                        # move the mouse/touch origin to be relative to the menu_items
-                        # TODO: a vector type would be niceeee
-                        mouse_pos = [a - b for a, b in zip(mouse_pos, self.menu_items.rect.topleft)]
-
-                    # loop through all the items here and see if they collide
-                    # eventually, we should make this more generic...not part of the menu
-                    for index, item in enumerate([i for i in self.menu_items if i.enabled]):
-                        if item.rect.collidepoint(mouse_pos):
-                            self.change_selection(index)
-                            self.on_menu_selection(self.get_selected_item())
+        if not handled_event:
+            return event
 
     def change_selection(self, index, animate=True):
         """ Force the menu to be evaluated and move cursor and trigger focus changes

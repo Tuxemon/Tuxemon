@@ -60,7 +60,7 @@ class Menu(state.State):
     shrink_to_items = False    # fit the border to contents
     escape_key_exits = True    # escape key closes menu
     animate_contents = False   # show contents while window opens
-    touch_aware = False        # if true, then menu items can be selected with the mouse/touch
+    touch_aware = True        # if true, then menu items can be selected with the mouse/touch
 
     def startup(self, *items, **kwargs):
         self.rect = self.rect.copy()  # do not remove!
@@ -428,45 +428,52 @@ class Menu(state.State):
                 and self.escape_key_exits
             ):
                 self.close()
+                return
 
             elif self.state == "normal" and not disabled and self.menu_items:
                 if event.button in (buttons.A, intentions.SELECT):
                     self.menu_select_sound.play()
                     self.on_menu_selection(self.get_selected_item())
-                else:
+                    return
+
+                if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
                     index = self.menu_items.determine_cursor_movement(self.selected_index, event)
                     if not self.selected_index == index:
                         self.change_selection(index)
-            return
+                    return
 
-        # TODO: handling of click/drag, miss-click, etc
-        # TODO: eventually, maybe move some handling into menuitems
-        # TODO: handle screen scaling?
-        # TODO: generalized widget system
-        elif self.touch_aware and event.type == pygame.MOUSEBUTTONDOWN:
-            # menu items is (sometimes) a relative group, so their rect will be relative to their parent
-            # we need to adjust the point to topleft of the containing rect
-            # eventually, a widget system could do this automatically
+                if self.touch_aware and event.button == buttons.MOUSELEFT:
+                    # menu items is (sometimes) a relative group, so their rect will be relative to their parent
+                    # we need to adjust the point to topleft of the containing rect
+                    # eventually, a widget system could do this automatically
 
-            # make sure that the rect's position is current
-            # a sprite group may not be a relative group... so an attribute error will be raised
-            # obvi, a wart, but will be fixed sometime (tm)
-            try:
-                self.menu_items.update_rect_from_parent()
-            except AttributeError:
-                # not a relative group, no need to adjust cursor
-                mouse_pos = event.pos
-            else:
-                # move the mouse/touch origin to be relative to the menu_items
-                # TODO: a vector type would be niceeee
-                mouse_pos = [a - b for a, b in zip(event.pos, self.menu_items.rect.topleft)]
+                    # make sure that the rect's position is current
+                    # a sprite group may not be a relative group... so an attribute error will be raised
+                    # obvi, a wart, but will be fixed sometime (tm)
 
-            # loop through all the items here and see if they collide
-            # eventually, we should make this more generic...not part of the menu
-            for index, item in enumerate([i for i in self.menu_items if i.enabled]):
-                if item.rect.collidepoint(mouse_pos):
-                    self.change_selection(index)
-                    self.on_menu_selection(self.get_selected_item())
+                    # TODO: handling of click/drag, miss-click, etc
+                    # TODO: eventually, maybe move some handling into menuitems
+                    # TODO: handle screen scaling?
+                    # TODO: generalized widget system
+                    mouse_pos = event.value
+                    assert mouse_pos is not 0
+
+                    try:
+                        self.menu_items.update_rect_from_parent()
+                    except AttributeError:
+                        # not a relative group, no need to adjust cursor
+                        pass
+                    else:
+                        # move the mouse/touch origin to be relative to the menu_items
+                        # TODO: a vector type would be niceeee
+                        mouse_pos = [a - b for a, b in zip(mouse_pos, self.menu_items.rect.topleft)]
+
+                    # loop through all the items here and see if they collide
+                    # eventually, we should make this more generic...not part of the menu
+                    for index, item in enumerate([i for i in self.menu_items if i.enabled]):
+                        if item.rect.collidepoint(mouse_pos):
+                            self.change_selection(index)
+                            self.on_menu_selection(self.get_selected_item())
 
     def change_selection(self, index, animate=True):
         """ Force the menu to be evaluated and move cursor and trigger focus changes

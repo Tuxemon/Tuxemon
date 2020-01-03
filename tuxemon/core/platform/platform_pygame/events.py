@@ -17,9 +17,12 @@ class PygameEventQueueHandler(EventQueueHandler):
     """
 
     def __init__(self):
+        # TODO: move this config to the config file
         self._inputs = defaultdict(list)  # type Dict[int, List[InputHandler]]
         self._inputs[0].append(PygameKeyboardInput(prepare.CONFIG.keyboard_button_map))
         self._inputs[0].append(PygameGamepadInput(prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone))
+        if prepare.CONFIG.hide_mouse is False:
+            self._inputs[0].append(PygameMouseInput())
 
     def process_events(self):
         """ Process all pygame events
@@ -186,7 +189,7 @@ class PygameKeyboardInput(PygameEventHandler):
                 pass
 
 
-class PygameTouchInput(PygameEventHandler):
+class PygameTouchOverlayInput(PygameEventHandler):
     def get_overlay_event(self, event):
         """ Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
@@ -214,3 +217,16 @@ class PygameTouchInput(PygameEventHandler):
                 yield PlayerInput(buttons.A)
             if self.controller.b_button["rect"].collidepoint(mouse_pos):
                 yield PlayerInput(buttons.B)
+
+
+class PygameMouseInput(PygameEventHandler):
+    default_input_map = {
+        pg.MOUSEBUTTONDOWN: buttons.MOUSELEFT,
+        pg.MOUSEBUTTONUP: buttons.MOUSELEFT,
+    }
+
+    def process_event(self, pg_event):
+        if pg_event.type == pg.MOUSEBUTTONDOWN:
+            self.press(buttons.MOUSELEFT, pg_event.pos)
+        elif pg_event.type == pg.MOUSEBUTTONUP:
+            self.release(buttons.MOUSELEFT)

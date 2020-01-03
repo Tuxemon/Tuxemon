@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
@@ -9,14 +11,13 @@ import pygame
 
 from tuxemon.core import tools
 from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu import PopUpMenu
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.components.menu.menu import PopUpMenu
 from tuxemon.core.components.sprite import MenuSpriteGroup, SpriteGroup
 from tuxemon.core.components.technique import Technique
 from tuxemon.core.components.ui.draw import GraphicBox
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

@@ -229,7 +229,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="71" name="Random Battle 2" type="event" x="352" y="432" width="96" height="80">
@@ -238,7 +237,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="72" name="Random Battle 3" type="event" x="400" y="368" width="112" height="48">
@@ -247,7 +245,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="73" name="Random Battle 4" type="event" x="352" y="304" width="144" height="48">
@@ -256,7 +253,6 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_moved"/>
     <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="74" name="Random Battle 5" type="event" x="208" y="80" width="64" height="80">
@@ -299,14 +295,14 @@
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="192" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route1.tmx,47,17"/>
+    <property name="act1" value="teleport route1.tmx,46,15"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="192" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport route1.tmx,47,18"/>
+    <property name="act1" value="teleport route1.tmx,46,16"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>

@@ -4,14 +4,17 @@
     author: Andy Mender <andymenderunix@gmail.com>
     license: GPLv3
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
-from contextlib import contextmanager
 import json
 import logging
 import os
 import os.path
 import sqlite3
+from contextlib import contextmanager
 
 from . import RESOURCE_PATHS
 from .extractor import TuxepediaWebExtractor, fix_name

@@ -5,16 +5,20 @@
     author: Andy Mender <andymenderunix@gmail.com>
     license: GPLv3
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
 import os
 import os.path
 import shutil
-
-from lxml import html
-import requests
 from sys import version_info
+
+import requests
+from lxml import html
+
 assert version_info[0] == 3, "Use Python 3 for this script"
 
 from . import WEB_PATHS, RESOURCE_PATHS

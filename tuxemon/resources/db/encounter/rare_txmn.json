@@ -2,7 +2,7 @@
     "slug": "rare_txmn",
     "monsters":[
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -10,7 +10,7 @@
             "monster":"legko"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -18,7 +18,7 @@
             "monster":"moloch"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -26,7 +26,7 @@
             "monster":"heronquak"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -34,7 +34,7 @@
             "monster":"eaglace"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -42,7 +42,7 @@
             "monster":"sapragon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -50,7 +50,7 @@
             "monster":"dragarbor"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -58,7 +58,7 @@
             "monster":"gectile"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -66,7 +66,7 @@
             "monster":"velocitile"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -74,7 +74,7 @@
             "monster":"allagon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 10,
                 30
@@ -82,7 +82,7 @@
             "monster":"aardart"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -90,7 +90,7 @@
             "monster":"agnidon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -98,7 +98,7 @@
             "monster":"agnigon"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -106,7 +106,7 @@
             "monster":"cardiwing"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -114,7 +114,7 @@
             "monster":"cardinale"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 10,
                 30
@@ -122,7 +122,7 @@
             "monster":"corvix"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 18,
                 35
@@ -130,7 +130,7 @@
             "monster":"dracune"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 36,
                 50
@@ -138,7 +138,7 @@
             "monster":"fluttaflap"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 10,
                 30
@@ -146,7 +146,7 @@
             "monster":"noctalo"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 10,
                 30
@@ -154,7 +154,7 @@
             "monster":"possessun"
         },
         {
-            "encounter_rate":1,
+            "encounter_rate":0.5,
             "level_range":[
                 10,
                 30

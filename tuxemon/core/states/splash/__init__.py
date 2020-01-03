@@ -27,7 +27,11 @@
 # core.states.start Handles the splash screen and start menu.
 #
 #
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import logging
 
 import pygame
@@ -36,7 +40,6 @@ from tuxemon.core import prepare
 from tuxemon.core import state
 from tuxemon.core import tools
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 

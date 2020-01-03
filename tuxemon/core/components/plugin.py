@@ -28,6 +28,8 @@
 #
 #
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import importlib
@@ -37,7 +39,6 @@ import os
 import re
 import sys
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)

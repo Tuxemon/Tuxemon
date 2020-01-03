@@ -1,10 +1,12 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import pygame
 
-from tuxemon.core.components.ui import draw
 from tuxemon.core.components.sprite import Sprite
+from tuxemon.core.components.ui import draw
 
 min_font_size = 7
 

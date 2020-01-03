@@ -27,7 +27,9 @@
 # core.states.world Handles the world map and player movement.
 #
 #
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import itertools
@@ -44,7 +46,6 @@ from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
 from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
 from tuxemon.core.tools import nearest
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 keymap = {

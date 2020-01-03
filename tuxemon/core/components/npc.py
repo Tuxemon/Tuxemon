@@ -28,23 +28,26 @@
 #
 # core.components.npc
 #
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
-from math import hypot
+
 import logging
 import os
+from math import hypot
 
 import pygame
 
-from tuxemon.core.components.item import decode_inventory, encode_inventory
-from tuxemon.core.components.monster import decode_monsters, encode_monsters
-from tuxemon.core.components import db, monster, pyganim, technique
+from tuxemon.core.components import db, monster, pyganim
 from tuxemon.core.components.entity import Entity
 from tuxemon.core.components.item import Item
+from tuxemon.core.components.item import decode_inventory, encode_inventory
 from tuxemon.core.components.locale import T
 from tuxemon.core.components.map import proj, facing, dirs3, dirs2, get_direction
+from tuxemon.core.components.monster import decode_monsters, encode_monsters
 from tuxemon.core.tools import nearest, load_and_scale, trunc
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 # Load the NPC database

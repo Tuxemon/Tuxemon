@@ -1,15 +1,20 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import logging
 
 from tuxemon.core.components import save
 from .save_menu import SaveMenuState
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
 class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
+        if 'selected_index' not in kwargs:
+            kwargs['selected_index'] = save.slot_number or 0
         super(LoadMenuState, self).startup(*items, **kwargs)
         slot = kwargs.get("load_slot")
         if slot:

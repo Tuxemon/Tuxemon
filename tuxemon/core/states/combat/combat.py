@@ -28,7 +28,9 @@
 # core.states.combat Combat Start module
 #
 #
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
@@ -47,8 +49,6 @@ from tuxemon.core.components.ui.draw import GraphicBox
 from tuxemon.core.components.ui.text import TextArea
 from .combat_animations import CombatAnimations
 
-
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")

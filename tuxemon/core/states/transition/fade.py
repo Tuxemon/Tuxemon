@@ -1,14 +1,18 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
+
 import logging
-from abc import abstractmethod
 import os.path
+from abc import abstractmethod
 
 import pygame
 
 from tuxemon.constants.paths import BASEDIR
 from tuxemon.core import prepare
-from tuxemon.core.state import State
 from tuxemon.core.platform import mixer
+from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)
 

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from __future__ import division, print_function
 from __future__ import unicode_literals
 
@@ -62,7 +63,8 @@ class Menu(state.State):
 
     def startup(self, *items, **kwargs):
         self.rect = self.rect.copy()  # do not remove!
-        self.selected_index = 0       # track which menu item is selected
+        i = kwargs.get('selected_index', 0)
+        self.selected_index = i       # track which menu item is selected
         self.state = "closed"         # closed, opening, normal, disabled, closing
         self.window = None            # draws borders, background
         self._show_contents = False   # draw menu items, or not
@@ -295,8 +297,8 @@ class Menu(state.State):
         """
         if self.arrow not in self.menu_sprites:
             self.menu_sprites.add(self.arrow)
-            self.trigger_cursor_update(False)
-            self.get_selected_item().in_focus = True
+        self.trigger_cursor_update(False)
+        self.get_selected_item().in_focus = True
 
     def hide_cursor(self):
         """ Hide the cursor that indicates the selected object

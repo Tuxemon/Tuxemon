@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
@@ -8,20 +10,24 @@ from base64 import b64decode
 import pygame
 
 from tuxemon.core import prepare
-from tuxemon.core.tools import open_dialog
 from tuxemon.core.components import save
-from tuxemon.core.components.menu import PopUpMenu
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.ui import text
 from tuxemon.core.components.locale import T
+from tuxemon.core.components.menu.interface import MenuItem
+from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.components.ui import text
+from tuxemon.core.tools import open_dialog
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
 class SaveMenuState(PopUpMenu):
     number_of_slots = 3
     shrink_to_items = True
+
+    def startup(self, *items, **kwargs):
+        if 'selected_index' not in kwargs:
+            kwargs['selected_index'] = save.slot_number or 0
+        super(SaveMenuState, self).startup(*items, **kwargs)
 
     def initialize_items(self):
         empty_image = None
@@ -91,6 +97,7 @@ class SaveMenuState(PopUpMenu):
                 save_data,
                 self.selected_index + 1,
             )
+            save.slot_number = self.selected_index
         except Exception as e:
             logger.error("Unable to save game!!")
             logger.error(e)

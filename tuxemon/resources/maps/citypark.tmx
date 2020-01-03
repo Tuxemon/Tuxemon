@@ -400,10 +400,10 @@
   </object>
   <object id="107" name="make npcs" type="event" x="64" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_knight1,3,24,knight,stand"/>
-    <property name="act2" value="create_npc npc_knight2,2,24,knight,stand"/>
-    <property name="act3" value="npc_face npc_knight2,up"/>
-    <property name="cond1" value="not npc_exists npc_knight1"/>
+    <property name="act1" value="create_npc knight1,3,24,knight,stand"/>
+    <property name="act2" value="create_npc knight2,2,24,knight,stand"/>
+    <property name="act3" value="npc_face knight2,up"/>
+    <property name="cond1" value="not npc_exists knight1"/>
    </properties>
   </object>
   <object id="108" name="no, sorry" type="event" x="48" y="400" width="16" height="16">
@@ -417,9 +417,11 @@
   </object>
   <object id="110" name="Yes" type="event" x="48" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog splendid"/>
-    <property name="act3" value="npc_face npc_knight1,left"/>
-    <property name="act4" value="npc_face npc_knight2,right"/>
+    <property name="act1" value="translated_dialog splendid\n"/>
+    <property name="act3" value="npc_face knight1,left"/>
+    <property name="act4" value="npc_face knight2,right"/>
+    <property name="act5" value="translated_dialog not_implemented"/>
+    <property name="act6" value="set_variable choice:none"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set choice:yes"/>
@@ -427,10 +429,10 @@
   </object>
   <object id="116" name="rip jimmy" type="event" x="32" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face npc_knight1,left"/>
+    <property name="act1" value="npc_face knight1,left"/>
     <property name="act2" value="translated_dialog ripjimmy"/>
     <property name="act3" value="wait 1"/>
-    <property name="act4" value="npc_face npc_knight1,down"/>
+    <property name="act4" value="npc_face knight1,down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

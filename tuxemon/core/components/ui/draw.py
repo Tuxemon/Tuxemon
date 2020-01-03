@@ -1,8 +1,10 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 from __future__ import unicode_literals
 
-import math
 import logging
+import math
 from itertools import product
 
 import pygame
@@ -10,7 +12,6 @@ import pygame
 from tuxemon.core import prepare
 from tuxemon.core.components.sprite import Sprite
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 __all__ = ('GraphicBox', 'draw_text')

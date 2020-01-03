@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="46" tilewidth="16" tileheight="16" nextobjectid="85">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="91">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -12,132 +12,128 @@
  <tileset firstgid="1417" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="46">
+ <layer id="1" name="Tile Layer 1" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eJztzzEOgCAQAMELCc+xxIdT4Peg1l70MsX0u71EdEhiVMjjAnjB8YEGv379+vX71JbzZncTAAAAAAAA/MkEhrnfNA==
+   eAHt1LsNwCAMBUArUsahDINTwHqhpkYigSvc8vE7u1wR5ZCqd4TSgz8baN2w0gMGGJhpIB20V/x1z9mRq1xn7sQVZz19D+ehVrzDnXvOklzlygADDDDAAAMMMMAAAwwwwAADDDDAAAMMMPBlAy8VfhPn
   </data>
  </layer>
- <layer name="Tile Layer 2" width="60" height="46">
+ <layer id="2" name="Tile Layer 2" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="Tile Layer 3" width="60" height="46">
+ <layer id="3" name="Tile Layer 3" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eJztmkFuwjAQRaPUFuvcA6KuexB6AM7Cjj1LegIWlar2CLCreoCepVjBIlCDv51x4hn5SaMREor5if1ngl1VhVuUqiqt0uWh46XSuzhFq/5/Hpq/9fV4VNd15RC9uT7f5SlewYyQ8n63jt8w5fNt6rD7F5P7mLmdcjwfLzU2B3Jkq7s4av93LSvGendnvZ8BejfM9L4FaHPxwUzvUH5H1mtrzNzjLXN1CUpmT7TXS8G7vg7DV+S8fmaqNxZTf0P61LF63D6Uek39vdcHuUB7KEoo9a5qdx90D6SHooZSL7f6azlE6i71Ny+o/bHJXG8It/8ruOD8ftTnR3fhg/P7UQxc/TkW3/pdJ66tVKD1Scr63esufEhZv2jvJWX9onql9Feo3tz7KxRk7Rok9VcIUvwZRYo/o0jxZxQp/owixZ9Rij/LpvizbIo/y4bD/qCF4pwWh/1By6PzN6n3sKYg5BxQQSZ/ihBh7A==
+   eAHtVsENwjAM7KPdBhgHJmIGnjABQnxgBPghJsKWasm1oFghaWhyliwnxq5zF4ekafLJqm2aRzesvyQf+1PYYaXpZi3h6UitiN9r1/SNDanH2lpTzWXfbD3xp7C21lRz2Qddj/tZ/CmsrjXn8Umd+xuNd73elT8FPs9Zi1GXMX2SfY/1MhLzKXcO/kOhuDT39t7Sv/3rWHp/8eYu0mvm30W1v/TxmfpWK+O9FtrLGiePfxHpK883JNZaT25oTEys8n7xrEVirfXkhsbExCrvF89aJNZaT25oTEysoWvImTf2xsi5LtT2MWD/A2Xuyy43ao5vq5DdeNK9ywoBA5aB7Zc3uo3PNa/pDjrSWWWtQeRtBaxlMVDTvtZyVsvqUKABA2AADIABMAAGwAAYAANgAAwMGXgBG2ZAJQ==
   </data>
  </layer>
- <layer name="Above Player" width="60" height="46">
+ <layer id="4" name="Above Player" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt2kEOgyAQhWEWcBx7nPaarnuCLnuk2kUTJTXRzDwG2v9LCBsJPkFUYkr4yDmlkvW1tV/vvNNSLsL6Wbb9nm3vnfe6lJuwrlnbW6nH19qft5bj+57b0eM7inm1DjzK/nEKqjW01joXYtTPtNaOvlPgvHvZll83Ql7P+TxCXk/k7Q/rM9a89xSizh/fjT6+/+bodVftCSKWes83Kk8rvb57qfb0e82rEpk3d3RfAQAAALBp9R/W6N/0ALReDYdGMA==
+   eAHtllFuwzAMQ/ORHmc7znbXnW7pB4HiwbItKZ41oAEClbJIkUk+ep7H8bjuc1M9cH1cPj6ve6aCOoS7MmovDaq/oq7QnPlO9N6YVf3ZSn4P78r6dX2n39fNS/3ZSn4P78ra87TqbJQ1snek+TzfcY183eGJO+7QjGjQB3FEk5wVmtwxg+mDeEaDM9SwMHmrseVD/Tv2S0v1Dk1p/DyO4/VWv1W136otjrdHbS+/N/+a8/m7d9EHcY87e0ZN4Vl+b6561p5379k7a/uJ6Xuyapvl667U9jixfKjv0bJmpaVqza3ua79V79hPba8m+V6sfSOe5jLV2pHRjHAtH+pHNMmRlirPR1i8aJX+iK+5TOWOjFaGSx/EGW1xqSmsc6tqLlulP9LRXKZyR0Yrw6UP4oy2uF5Nzmex5YO6mstUagpnND1c/Y/UXqt6NK1Zas/OkRfFFbNazyDb35lV7yebwcvXXqt69Vrz1G7N/EWPPojv8LBCM+KLPogjmlU5zEZc1XfEF7MRRzSrcpiNuKrviC9mI45oVuUwG3FV3xFfzEYc0azKYTbiqr4jvpiNOKJZlcNsxFV9R3wx23/FkezkKDv7b1z7CfwC+xE00g==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
-  <object id="1" type="collision" x="672" y="304" width="96" height="160"/>
-  <object id="2" type="collision" x="736" y="160" width="32" height="96"/>
-  <object id="3" type="collision" x="608" y="160" width="16" height="208"/>
-  <object id="4" type="collision" x="640" y="368" width="32" height="96"/>
-  <object id="5" type="collision" x="608" y="400" width="32" height="64"/>
-  <object id="6" type="collision" x="576" y="432" width="32" height="32"/>
-  <object id="7" type="collision" x="576" y="160" width="32" height="48"/>
-  <object id="8" type="collision" x="624" y="160" width="64" height="16"/>
-  <object id="9" type="collision" x="688" y="256" width="80" height="16"/>
-  <object id="10" type="collision" x="688" y="160" width="16" height="112"/>
-  <object id="11" type="collision" x="768" y="304" width="192" height="160"/>
-  <object id="12" type="collision" x="768" y="256" width="16" height="48"/>
-  <object id="13" type="collision" x="0" y="96" width="144" height="640"/>
-  <object id="14" type="collision" x="144" y="672" width="816" height="64"/>
-  <object id="15" type="collision" x="0" y="48" width="960" height="48"/>
-  <object id="18" type="collision" x="768" y="160" width="64" height="16"/>
-  <object id="19" type="collision" x="832" y="112" height="48"/>
-  <object id="20" type="collision" x="832" y="112" width="64" height="16"/>
-  <object id="21" type="collision" x="896" y="96" height="16"/>
-  <object id="22" type="collision" x="960" y="0" width="32" height="688"/>
-  <object id="28" type="collision" x="416" y="112" width="64" height="384"/>
-  <object id="30" type="collision" x="480" y="96" width="32" height="64"/>
-  <object id="33" type="collision" x="416" y="496" width="64" height="16"/>
-  <object id="34" type="collision" x="832" y="464" width="128" height="16"/>
-  <object id="35" type="collision" x="944" y="480" width="16" height="192"/>
-  <object id="39" type="collision" x="128" y="96" width="352" height="16"/>
-  <object id="41" type="collision" x="352" y="176" width="64" height="32"/>
-  <object id="42" type="collision" x="352" y="128" width="64" height="32"/>
-  <object id="43" type="collision" x="576" y="96" width="32" height="32"/>
-  <object id="44" type="collision" x="512" y="96" width="16" height="32"/>
-  <object id="51" x="816" y="464" width="16" height="16"/>
-  <object id="52" type="collision" x="816" y="480" width="16" height="192"/>
-  <object id="55" type="collision" x="144" y="208" width="272" height="48"/>
-  <object id="56" type="collision" x="256" y="368" width="16" height="16"/>
-  <object id="72" type="collision" x="480" y="176" width="32" height="32"/>
-  <object id="73" type="collision" x="480" y="224" width="32" height="32"/>
-  <object id="74" type="collision" x="480" y="272" width="32" height="32"/>
-  <object id="75" type="collision" x="480" y="320" width="32" height="32"/>
-  <object id="76" type="collision" x="480" y="368" width="32" height="32"/>
-  <object id="77" type="collision" x="480" y="416" width="32" height="32"/>
-  <object id="78" type="collision" x="480" y="464" width="32" height="32"/>
-  <object id="79" type="collision" x="560" y="256" width="48" height="16"/>
-  <object id="80" type="collision" x="512" y="256" width="16" height="16"/>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="656" y="272" width="96" height="160"/>
+  <object id="2" type="collision" x="720" y="128" width="32" height="96"/>
+  <object id="3" type="collision" x="592" y="128" width="16" height="208"/>
+  <object id="4" type="collision" x="624" y="336" width="32" height="96"/>
+  <object id="5" type="collision" x="592" y="368" width="32" height="64"/>
+  <object id="6" type="collision" x="560" y="400" width="32" height="32"/>
+  <object id="7" type="collision" x="560" y="128" width="32" height="48"/>
+  <object id="8" type="collision" x="608" y="128" width="64" height="16"/>
+  <object id="9" type="collision" x="672" y="224" width="80" height="16"/>
+  <object id="11" type="collision" x="752" y="272" width="192" height="160"/>
+  <object id="12" type="collision" x="752" y="224" width="16" height="48"/>
+  <object id="13" type="collision" x="-16" y="64" width="144" height="640"/>
+  <object id="14" type="collision" x="128" y="640" width="816" height="64"/>
+  <object id="15" type="collision" x="-16" y="16" width="960" height="48"/>
+  <object id="18" type="collision" x="752" y="128" width="64" height="16"/>
+  <object id="20" type="collision" x="816" y="80" width="64" height="16"/>
+  <object id="21" type="collision" x="880" y="64" height="16"/>
+  <object id="22" type="collision" x="944" y="-32" width="32" height="688"/>
+  <object id="28" type="collision" x="400" y="80" width="64" height="384"/>
+  <object id="30" type="collision" x="464" y="64" width="32" height="64"/>
+  <object id="33" type="collision" x="400" y="464" width="64" height="16"/>
+  <object id="34" type="collision" x="800" y="432" width="143.75" height="16"/>
+  <object id="35" type="collision" x="928" y="448" width="16" height="192"/>
+  <object id="39" type="collision" x="112" y="64" width="352" height="16"/>
+  <object id="41" type="collision" x="336" y="144" width="64" height="32"/>
+  <object id="42" type="collision" x="336" y="96" width="64" height="32"/>
+  <object id="43" type="collision" x="560" y="64" width="32" height="32"/>
+  <object id="44" type="collision" x="496" y="64" width="16" height="32"/>
+  <object id="52" type="collision" x="800" y="448" width="16" height="192"/>
+  <object id="55" type="collision" x="128" y="176" width="272" height="48"/>
+  <object id="56" type="collision" x="240" y="336" width="16" height="16"/>
+  <object id="72" type="collision" x="464" y="144" width="32" height="32"/>
+  <object id="73" type="collision" x="464" y="192" width="32" height="32"/>
+  <object id="74" type="collision" x="464" y="240" width="32" height="32"/>
+  <object id="75" type="collision" x="464" y="288" width="32" height="32"/>
+  <object id="76" type="collision" x="464" y="336" width="32" height="32"/>
+  <object id="77" type="collision" x="464" y="384" width="32" height="32"/>
+  <object id="78" type="collision" x="464" y="432" width="32" height="32"/>
+  <object id="79" type="collision" x="544" y="224" width="48" height="16"/>
+  <object id="80" type="collision" x="496" y="224" width="16" height="16"/>
+  <object id="89" type="collision-line" x="672.25" y="144">
+   <polyline points="0,0 0,87.25"/>
+  </object>
+  <object id="90" type="collision-line" x="815.5" y="95.75">
+   <polyline points="0,0 0,32.75"/>
+  </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
-  <object id="23" name="Teleport to map1 (upper)" type="event" x="752" y="272" width="16" height="16">
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="23" name="Teleport to map1 (upper)" type="event" x="736" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,11"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="25" name="Teleport to map1 (lower)" type="event" x="752" y="288" width="16" height="16">
+  <object id="25" name="Teleport to map1 (lower)" type="event" x="736" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="teleport map1.tmx,12,12"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="32" name="Teleport to route1a" type="event" x="544" y="96" width="32" height="16">
+  <object id="32" name="Teleport to route1a" type="event" x="528" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="teleport route1_sanglorian.tmx,25,19"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="36" name="random battle" type="event" x="640" y="496" width="160" height="160">
+  <object id="36" name="random battle" type="event" x="624" y="464" width="160" height="160">
    <properties>
     <property name="act1" value="random_encounter route1"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
    </properties>
   </object>
-  <object id="45" name="Music" type="event" x="160" y="720" width="16" height="16">
+  <object id="46" name="create Karrianna and grunts" type="event" x="496" y="416" width="64" height="16">
    <properties>
-    <property name="act1" value="play_music TheAdventureBegins8bitRemix.ogg"/>
-    <property name="cond1" value="not music_playing TheAdventureBegins8bitRemix.ogg"/>
-   </properties>
-  </object>
-  <object id="46" name="create Karrianna and grunts" type="event" x="512" y="448" width="64" height="16">
-   <properties>
-    <property name="act10" value="create_npc xerogrunt3,27,34,teamxerogrunt1,stand"/>
+    <property name="act10" value="create_npc xerogrunt3,26,32,teamxerogrunt1,stand"/>
     <property name="act11" value="npc_face xerogrunt3,right"/>
-    <property name="act12" value="create_npc xerogrunt4,27,35,teamxerogrunt1,stand"/>
+    <property name="act12" value="create_npc xerogrunt4,26,33,teamxerogrunt1,stand"/>
     <property name="act13" value="npc_face xerogrunt4,right"/>
-    <property name="act14" value="create_npc xerogrunt5,27,36,teamxerogrunt1,stand"/>
+    <property name="act14" value="create_npc xerogrunt5,26,34,teamxerogrunt1,stand"/>
     <property name="act15" value="npc_face xerogrunt5,right"/>
-    <property name="act16" value="create_npc xerogrunt6,27,37,teamxerogrunt1,stand"/>
+    <property name="act16" value="create_npc xerogrunt6,26,35,teamxerogrunt1,stand"/>
     <property name="act17" value="npc_face xerogrunt6,right"/>
-    <property name="act18" value="create_npc xerogrunt7,27,38,teamxerogrunt1,stand"/>
+    <property name="act18" value="create_npc xerogrunt7,26,36,teamxerogrunt1,stand"/>
     <property name="act19" value="npc_face xerogrunt7,right"/>
-    <property name="act20" value="create_npc xerogrunt8,27,39,teamxerogrunt1,stand"/>
+    <property name="act20" value="create_npc xerogrunt8,26,37,teamxerogrunt1,stand"/>
     <property name="act21" value="npc_face xerogrunt8,right"/>
-    <property name="act22" value="create_npc xerogrunt9,27,40,teamxerogrunt1,stand"/>
+    <property name="act22" value="create_npc xerogrunt9,26,38,teamxerogrunt1,stand"/>
     <property name="act23" value="npc_face xerogrunt9,right"/>
-    <property name="act24" value="create_npc xerogrunt10,27,41,teamxerogrunt1,stand"/>
+    <property name="act24" value="create_npc xerogrunt10,26,39,teamxerogrunt1,stand"/>
     <property name="act25" value="npc_face xerogrunt10,right"/>
-    <property name="act7" value="create_npc xerogrunt1,27,32,teamxerogrunt1,stand"/>
+    <property name="act7" value="create_npc xerogrunt1,26,30,teamxerogrunt1,stand"/>
     <property name="act8" value="npc_face xerogrunt1,right"/>
-    <property name="act9" value="create_npc xerogrunt2,27,33,teamxerogrunt1,stand"/>
+    <property name="act9" value="create_npc xerogrunt2,26,31,teamxerogrunt1,stand"/>
     <property name="act91" value="npc_face xerogrunt2,right"/>
    </properties>
   </object>
-  <object id="57" name="Establish hideout" type="event" x="256" y="384" width="16" height="16">
+  <object id="57" name="Establish hideout" type="event" x="240" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog xero_hideout1"/>
     <property name="cond1" value="is player_at"/>
@@ -145,7 +141,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="62" name="blocking the way" type="event" x="448" y="512" width="16" height="160">
+  <object id="62" name="blocking the way" type="event" x="432" y="480" width="16" height="160">
    <properties>
     <property name="act1" value="translated_dialog xero_grunts_block"/>
     <property name="cond1" value="is player_at"/>
@@ -153,37 +149,34 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="68" name="talk to me" type="event" x="176" y="144" width="16" height="16">
+  <object id="68" name="talk to me" type="event" x="160" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc xerogrund1,33,16,teamxerogrunt1,stand"/>
-    <property name="act2" value="create_npc xerogrund2,34,16,teamxerogrunt1,stand"/>
+    <property name="act1" value="create_npc xerogrund1,32,14,teamxerogrunt1,stand"/>
+    <property name="act2" value="create_npc xerogrund2,33,14,teamxerogrunt1,stand"/>
     <property name="cond1" value="not npc_exists xerogrund1"/>
     <property name="cond2" value="not npc_exists xerogrund2"/>
+    <property name="cond3" value="not variable_set jumponwards:booyaa"/>
    </properties>
   </object>
-  <object id="69" name="talkin" type="event" x="528" y="272" width="16" height="16">
+  <object id="69" name="talkin" type="event" x="512" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog waiting_for_misa"/>
     <property name="act2" value="set_variable been_talking:yes"/>
     <property name="act3" value="set_variable jumponwards:hi"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set been_talkin:yes"/>
+    <property name="cond1" value="not variable_set been_talkin:yes"/>
+    <property name="behav1" value="talk xerogrund1"/>
    </properties>
   </object>
-  <object id="70" name="teleportin" type="event" x="544" y="272" width="16" height="16">
+  <object id="70" name="teleportin" type="event" x="528" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog teleport?"/>
     <property name="act2" value="translated_dialog_choice yes:no,jumponwards"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set been_talking:yes"/>
-    <property name="cond5" value="is variable_set jumponwards:hi"/>
+    <property name="cond1" value="is variable_set been_talking:yes"/>
+    <property name="cond2" value="is variable_set jumponwards:hi"/>
+    <property name="behav1" value="talk xerogrund2"/>
    </properties>
   </object>
-  <object id="82" name="yes we be" type="event" x="544" y="272" width="16" height="16">
+  <object id="82" name="yes we be" type="event" x="528" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog ouch"/>
     <property name="act2" value="set_variable jumponwards:booyaa"/>
@@ -192,7 +185,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="83" name="no we aint" type="event" x="544" y="272" width="16" height="16">
+  <object id="83" name="no we aint" type="event" x="528" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog maybe_sometime_again?"/>
     <property name="act2" value="set_variable jumponwards:hi"/>
@@ -201,7 +194,23 @@
     <property name="cond3" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="84" name="Player Spawn" type="event" x="540" y="127" width="16" height="16"/>
+  <object id="84" name="Player Spawn" type="event" x="524" y="95" width="16" height="16"/>
+  <object id="85" name="Teleport to route1a" type="event" x="512" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route1_sanglorian.tmx,24,19"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="86" name="Teleport to route1a" type="event" x="544" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport route1_sanglorian.tmx,26,19"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="Conditions"/>
+ <objectgroup id="7" name="Conditions" visible="0"/>
 </map>

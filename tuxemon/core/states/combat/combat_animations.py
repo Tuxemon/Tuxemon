@@ -260,8 +260,8 @@ class CombatAnimations(Menu):
         :type monster: core.components.monster.Monster
         :return:
         """
-        target_previous = monster.experience_required_modifier * monster.level ** 3
-        target_next = monster.experience_required_modifier * (monster.level + 1) ** 3
+        target_previous = monster.experience_required()
+        target_next = monster.experience_required(1)
         value = max(0, min(1, (monster.total_experience - target_previous) / (target_next - target_previous)))
         exp_bar = self._exp_bars[monster]
         self.animate(exp_bar, value=value, duration=.7, transition='out_quint')

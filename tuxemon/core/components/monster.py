@@ -358,7 +358,7 @@ class Monster(object):
         >>> bulbatux.give_experience(20)
         """
         self.total_experience += amount
-        if self.total_experience >= (self.experience_required_modifier * (self.level + 1) ** 3):
+        if self.total_experience >= self.experience_required(1):
             #Level up worthy monsters
             self.level_up()
 
@@ -427,8 +427,16 @@ class Monster(object):
         >>> bulbatux.set_level(20)
         """
         self.level = level
-        self.total_experience = self.experience_required_modifier * self.level ** 3
+        self.total_experience = self.experience_required()
         self.set_stats()
+
+    def experience_required(self, level_ofs=0):
+        """Gets the experience requirement for the given level.
+
+        :rtype: Integer
+        :returns: Required exp
+        """
+        return self.experience_required_modifier * (self.level + level_ofs) ** 3
 
     def get_sprite_path(self, sprite):
         '''

@@ -130,6 +130,7 @@ class CombatState(CombatAnimations):
         self._status_icons = list()  # list of sprites that are status icons
         self._monster_sprite_map = dict()  # monster => sprite
         self._hp_bars = dict()  # monster => hp bar
+        self._exp_bars = dict()  # monster => exp bar
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
@@ -160,6 +161,7 @@ class CombatState(CombatAnimations):
     def draw(self, surface):
         super(CombatState, self).draw(surface)
         self.draw_hp_bars()
+        self.draw_exp_bars()
 
     def draw_hp_bars(self):
         """ Go through the HP bars and redraw them
@@ -171,6 +173,18 @@ class CombatState(CombatAnimations):
             rect.right = hud.image.get_width() - tools.scale(8)
             rect.top += tools.scale(12)
             self._hp_bars[monster].draw(hud.image, rect)
+
+    def draw_exp_bars(self):
+        """ Go through the EXP bars and redraw them
+
+        :returns: None
+        """
+        for monster, hud in self.hud.items():
+            if hud.player:
+                rect = pygame.Rect(0, 0, tools.scale(70), tools.scale(6))
+                rect.right = hud.image.get_width() - tools.scale(8)
+                rect.top += tools.scale(31)
+                self._exp_bars[monster].draw(hud.image, rect)
 
     def determine_phase(self, phase):
         """ Determine the next phase and set it
@@ -759,6 +773,13 @@ class CombatState(CombatAnimations):
                 if monster.current_hp <= 0 and not check_status(monster, "status_faint"):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)
+
+                    # If a monster fainted, exp was given, thus the exp bar should be updated
+                    # The exp bar must only be animated for the player's monsters
+                    # Enemies don't have a bar, doing it for them will cause a crash
+                    for player in self.human_players:
+                        for player_monster in self.monsters_in_play[player]:
+                            self.animate_exp(player_monster)
 
     def get_technique_animation(self, technique):
         """ Return a sprite usable as a technique animation

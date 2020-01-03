@@ -429,7 +429,7 @@ class Menu(state.State):
                 self.close()
 
         disabled = True
-        if event.pressed:
+        if hasattr(self, "menu_items") and event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)
         valid_change = event.pressed and self.state == "normal" and not disabled and self.menu_items
 

@@ -40,3 +40,18 @@ do not follow this format may be rejected until filenames are renamed.
 ## Making a Pull Request
 **When you're ready to make a pull request, submit your pull to the "development" branch.**
 The "master" branch is used for releases.
+
+Translations
+------------
+
+Tuxemon has support for several languages.  Because Tuxemon is a community project
+and not all members are intimately familiar with or fluent in each language, there
+are possible translation errors.  We also acknowledge that some translations may
+have errors intentional or otherwise that could be offensive or inappropriate.
+
+We make every effort to test using automated tools such as google translate to test
+translations, but these are not perfect tools.
+
+If you spot a translation error that is inappropriate, please open a github issue
+and be respectful to the team.  We do not wish for translation errors and will do
+what we can to make sure the game is fun and enjoyable to everyone.

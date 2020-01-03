@@ -36,7 +36,6 @@ from __future__ import unicode_literals
 import logging
 import os
 import os.path
-import pprint
 import random
 from collections import namedtuple
 
@@ -67,19 +66,6 @@ def merge_results(result, meta_result):
 class Technique(object):
     """A technique object is a particular skill that tuxemon monsters can use
     in battle.
-
-    **Example:**
-
-    >>> poison_tech = Technique("technique_poison_sting")
-    >>> pprint.pprint(poison_tech.__dict__)
-        {'category': u'special',
-         'effect': [u'poison', u'damage'],
-         'name': u'Poison Sting',
-         'power': 40,
-         'tech_id': 2,
-         'type1': u'Poison',
-         'type2': None}
-
     """
 
     def __init__(self, slug=None, carrier=None, link=None):
@@ -117,12 +103,6 @@ class Technique(object):
         :type slug: String
 
         :rtype: None
-        :returns: None
-
-        **Examples:**
-
-        >>>
-
         """
 
         results = techniques_db.lookup(slug, table="technique")

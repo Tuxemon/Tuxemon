@@ -38,7 +38,6 @@ from __future__ import unicode_literals
 import logging
 from functools import partial
 
-from tuxemon.core.components.game_event import GAME_EVENT, INPUT_EVENT
 from tuxemon.core.components.locale import T
 from tuxemon.core.components.menu.interface import MenuItem
 from tuxemon.core.components.menu.menu import PopUpMenu
@@ -84,18 +83,6 @@ class MultiplayerMenu(PopUpMenu):
         add_menu_items(self, (('multiplayer_host_game', self.host_game),
                               ('multiplayer_scan_games', self.scan_for_games),
                               ('multiplayer_join_game', self.join_by_ip)))
-
-    def draw(self, surface):
-        # method used here only for debugging
-        super(MultiplayerMenu, self).draw(surface)
-
-    def process_event(self, event):
-        super(MultiplayerMenu, self).process_event(event)
-
-        # Handle text input events.
-        # If a input menu is pushed, it will be for the hostname or ip
-        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
-            self.game.pop_state(self)
 
     def host_game(self):
 

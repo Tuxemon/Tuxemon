@@ -47,6 +47,7 @@ from tuxemon.core.components.sprite import Sprite
 from tuxemon.core.components.technique import Technique
 from tuxemon.core.components.ui.draw import GraphicBox
 from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.platform.const import buttons
 from .combat_animations import CombatAnimations
 
 logger = logging.getLogger(__name__)
@@ -94,7 +95,20 @@ class WaitForInputState(state.State):
     """
 
     def process_event(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
+
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
+
+        You should return None if you have handled input here.
+
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
+        """
+        if event.pressed and event.button == buttons.A:
             self.game.pop_state(self)
 
 

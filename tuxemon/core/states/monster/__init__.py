@@ -7,7 +7,7 @@ import pygame
 
 from tuxemon.core import prepare
 from tuxemon.core import tools
-from tuxemon.core.components.menu.interface import HpBar, MenuItem
+from tuxemon.core.components.menu.interface import HpBar, ExpBar, MenuItem
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.ui.draw import GraphicBox
 from tuxemon.core.components.ui.text import draw_text, TextArea
@@ -34,6 +34,7 @@ class MonsterMenuState(Menu):
         self.monster_slot_border = {}
         self.monster_portrait = pygame.sprite.Sprite()
         self.hp_bar = HpBar()
+        self.exp_bar = ExpBar()
 
         # load and scale the monster slot borders
         root = "gfx/ui/monster/"

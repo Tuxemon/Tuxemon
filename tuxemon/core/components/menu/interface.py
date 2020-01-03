@@ -64,6 +64,60 @@ class HpBar(object):
         self.border.draw(surface, rect)
 
 
+class ExpBar(object):
+    """ EXP bar for UI elements.
+
+    """
+    border_filename = "gfx/ui/monster/exp_bar.png"
+    border = None
+
+    def __init__(self, value=1.0):
+        super(ExpBar, self).__init__()
+
+        if self.border is None:
+            self.load_graphics()
+
+        rect = (0, 0, 100, 40)
+        self.rect = rect
+        self.fg_color = 31, 239, 255
+        # self.bg_color = 15, 95, 127
+        self.value = value
+        self.visible = True
+
+    def load_graphics(self):
+        """ Image become class attribute, so is shared.
+            Eventually, implement some game-wide image caching
+        """
+        image = tools.load_and_scale(self.border_filename)
+        ExpBar.border = GraphicBox(image)
+
+    @staticmethod
+    def calc_inner_rect(rect):
+        """ Calculate the inner rect to draw fg_color that fills bar
+            The values here are calculated based on game scale and
+            the content of the border image file.
+
+        :param rect:
+        :returns:
+        """
+        inner = rect.copy()
+        inner.top += tools.scale(2)
+        inner.height -= tools.scale(4)
+        inner.left += tools.scale(9)
+        inner.width -= tools.scale(11)
+        return inner
+
+    def draw(self, surface, rect):
+        inner = self.calc_inner_rect(rect)
+        # pygame.draw.rect(surface, self.bg_color, inner)
+        if self.value > 0:
+            left = inner.left
+            inner.width *= self.value
+            inner.left = left
+            pygame.draw.rect(surface, self.fg_color, inner)
+        self.border.draw(surface, rect)
+
+
 class MenuItem(pygame.sprite.Sprite):
     def __init__(self, image, label, description, game_object):
         super(MenuItem, self).__init__()

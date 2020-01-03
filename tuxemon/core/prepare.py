@@ -148,6 +148,7 @@ def pygame_init():
     # Initialize the individual joysticks themselves.
     for joystick in JOYSTICKS:
         joystick.init()
+        print("Found joystick: \"{}\"".format(joystick.get_name()))
 
     from .platform import android
     # Map the appropriate android keys if we're on android

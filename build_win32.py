@@ -26,7 +26,7 @@ build_exe_options = {'packages': packages,
 if __name__ == '__main__':
     setup(
         name='Tuxemon',
-        version='0.4.1',
+        version='0.4.2',
         options={'build_exe': build_exe_options},
         description='Open source RPG',
         executables=[Executable('tuxemon.py', icon='tuxemon/resources/gfx/icon.ico')],

@@ -49,3 +49,6 @@ class Player(NPC):
 
         # Game variables for use with events
         self.game_variables = {}
+
+        # Faint map for use with teleport_faint
+        self.faint_map = ["healing_center.tmx", 7, 10]

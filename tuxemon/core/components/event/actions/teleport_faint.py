@@ -27,12 +27,15 @@ from __future__ import unicode_literals
 from tuxemon.core.components.event.eventaction import EventAction
 
 
-class TeleportHealingCenterAction(EventAction):
-    name = "teleport_healing_center"
+class TeleportFaintAction(EventAction):
+    name = "teleport_faint"
 
     def start(self):
+        # Get the player object from the self.game.
+        player = self.game.player1
+
         # Start the screen transition
         # self.game.event_engine.execute_action("screen_transition", [.3])
 
-        # TODO: remember this value & use spawn event location
-        self.game.event_engine.execute_action("teleport", ["healing_center.tmx", 7, 10])
+        # Call the teleport action
+        self.game.event_engine.execute_action("teleport", player.faint_map)

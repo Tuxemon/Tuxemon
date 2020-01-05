@@ -43,22 +43,23 @@ class EvolveMonsterAction(EventAction):
         for slot in range(len(player.monsters)):
             current_monster = player.monsters[slot]
             for evolution in current_monster.evolutions:
-                if evolution['name'] == self.parameters.path and current_monster.level >= evolution['at_level']:
-                    # TODO: implement an evolution animation
+                if evolution['path'] == self.parameters.path:
+                    if current_monster.level >= evolution['at_level'] or current_monster.level <= -evolution['at_level']:
+                        # TODO: implement an evolution animation
 
-                    # Add the new monster
-                    new_monster = monster.Monster()
-                    new_monster.load_from_db(evolution['slug'])
-                    new_monster.set_level(current_monster.level)
-                    new_monster.current_hp = min(current_monster.current_hp, new_monster.hp)
-                    new_monster.name = current_monster.name
-                    player.add_monster(new_monster)
+                        # Add the new monster
+                        new_monster = monster.Monster()
+                        new_monster.load_from_db(evolution['slug'])
+                        new_monster.set_level(current_monster.level)
+                        new_monster.current_hp = min(current_monster.current_hp, new_monster.hp)
+                        new_monster.name = current_monster.name
+                        player.add_monster(new_monster)
 
-                    # Put the new monster in the slot of the old monster
-                    player.switch_monsters(slot, len(player.monsters) - 1)
+                        # Put the new monster in the slot of the old monster
+                        player.switch_monsters(slot, len(player.monsters) - 1)
 
-                    # Remove the old monster
-                    player.remove_monster(current_monster)
+                        # Remove the old monster
+                        player.remove_monster(current_monster)
 
-                    # We executed an evolution for this monster, don't keep looking
-                    break
+                        # We executed an evolution for this monster, don't keep looking
+                        break

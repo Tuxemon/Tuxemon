@@ -207,6 +207,7 @@ class Monster(object):
 
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
+        self.evolutions = []    # A list of possible evolution objects.
         self.ai = None
 
         # The multiplier for experience
@@ -275,11 +276,19 @@ class Monster(object):
         self.weight = results['weight']
 
         # Look up the moves that this monster can learn AND LEARN THEM.
-        for move in results["moveset"]:
-            self.moveset.append(move)
-            if move['level_learned'] >= self.level:
-                technique = Technique(move['technique'])
-                self.learn(technique)
+        moveset = results.get("moveset")
+        if moveset:
+            for move in moveset:
+                self.moveset.append(move)
+                if move['level_learned'] >= self.level:
+                    technique = Technique(move['technique'])
+                    self.learn(technique)
+
+        # Look up the evolutions for this monster.
+        evolutions = results.get("evolutions")
+        if evolutions:
+            for evolution in evolutions:
+                self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])

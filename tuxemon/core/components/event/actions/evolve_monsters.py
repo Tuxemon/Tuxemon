@@ -64,9 +64,9 @@ class EvolveMonstersAction(EventAction):
                         player.add_monster(new_monster)
 
                         # Removing the old monster caused all monsters in front to move a slot back
-                        # Bring our new monster from the end of the list to its previous slot
+                        # Bring our new monster from the end of the list to its previous position
                         for i in range(len(player.monsters) - 1, slot, -1):
                             player.switch_monsters(i, i - 1)
 
-                        # We executed an evolution for this monster, don't keep looking
-                        break
+                    # We found the desired evolution, don't keep looking
+                    break

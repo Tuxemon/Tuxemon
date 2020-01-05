@@ -47,12 +47,11 @@ class EvolveMonstersCondition(EventCondition):
 
         """
         player = game.player1
-        for slot in range(len(player.monsters)):
-            current_monster = player.monsters[slot]
-            for evolution in current_monster.evolutions:
+        for monster in player.monsters:
+            for evolution in monster.evolutions:
                 if evolution['path'] == condition.parameters[0]:
-                    level_over = evolution['at_level'] > 0 and current_monster.level >= evolution['at_level']
-                    level_under = evolution['at_level'] < 0 and current_monster.level <= -evolution['at_level']
+                    level_over = evolution['at_level'] > 0 and monster.level >= evolution['at_level']
+                    level_under = evolution['at_level'] < 0 and monster.level <= -evolution['at_level']
                     if level_over or level_under:
                         return True
         return False

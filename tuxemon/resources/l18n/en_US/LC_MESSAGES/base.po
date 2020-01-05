@@ -1536,7 +1536,9 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "Okay, we have decided to let you participate."
 
 msgid "ripjimmy"
-msgstr "That's the grave of Jimmy, my former partner. We used to stand together here all day..."
+msgstr "The grave says:\n"
+"Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
+"The rest is weathered away."
 
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"

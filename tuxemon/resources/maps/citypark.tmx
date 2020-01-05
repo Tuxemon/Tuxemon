@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="111">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="112">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -15,30 +15,30 @@
  <tileset firstgid="569" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="500" columns="20">
-  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="400"/>
+ <tileset firstgid="2169" name="KelvinShadewing_Buildings" tilewidth="16" tileheight="16" tilecount="680" columns="20">
+  <image source="../gfx/tilesets/KelvinShadewing_Buildings.png" width="320" height="544"/>
  </tileset>
- <tileset firstgid="2669" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="2849" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzrENgDAQBMGXayGEDHqkUtMGLxETIr/MBKcJb3tEXLlO/tQ++H92l1aj4801+7Y2vkPfN+7ZdhTuI0mSJEmSj2eRDs7lDWjMmhw=
+   eAHt2LENgDAMRNGIWSihgx0zaVgDM0OEdIhXWGmt89135NFau6qGlw4/9cHjff5/jwPrkq3vVv3tVakc1N+cf46a7Rk831Tf6WvOd/Sjn39F7l6VT/mUT/nEARzAARzAgVwOdPfp2PvUl3NzA2jMmhw=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlFkKwjAURZ/9svhV91DFoIJD3IHTEpyW4LRQ7Za8H0o1dFChSQr3wOFB3kcuN5CoIdKGkcM5CkXGcAKnUIfpvgeV4zlHngVcwhVch+n+ldMlG+TZwh3cw0NGf65ImiJH5DnBM7zAq2f9ZZHX3w3eLdk1MsXP80T87E+9TbO/OCi3E9jLar5rH3cPShxWnE8V7IrytaCGM4v9/ZKv6t6+QQf5uuyNEJsU/TGuUcb0kTpkq0NGH2F/n/f43AMhhBBCCCH/8ADszTV8
+   eAHtlFsKglAURU99FX3ZHCySCnrYDHoNodcQeg20nFJbcIOIj/tz70U6wuKoHN2LLRh0RIYg8DgXfZElWIE1iAF9JvCKgM+5hc8O7MEBHAF96CkejxN8zuACruAG6EVPX3pJT+QOnwd4ghd4A3rR05dfVS696Mm9D06+jhgzNJthlptg0ouehVUvl1GWmk560TPsijQxwo6rg17MmyJ71sDcsh/7o1N+1vkN4BWDjWW/vE/xvM7Pdm9Fl7LrtJ8qfPZW5qr3tAFbDdT9Y2xlmr6Xbpymz7nca4NbGxxdfjPTLPbGafqcyz1XbmmOqyyX/WmWNqANaAPagDagDWgD2sB/N/AD7M01fA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQBMHnIxtT7NnmtASzR5yByze6CF62WnUB8Bu/AwAAcKdnxDibWV0C8KcNy/YCYA==
+   eAHt1MEJACAMA8Dgy8UUd3Y5nUIpXCD/cIUmUllg98rrbSdAoKKAv1PxajYTIECAAAECBAgQIPBDYLRk3q5bIUCAAIH3AgfL9gJg
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -386,53 +386,9 @@
    </properties>
   </object>
   <object id="103" name="Player Spawn" type="event" x="80" y="592" width="16" height="16"/>
-  <object id="105" name="explanation" type="event" x="48" y="400" width="16" height="16">
+  <object id="111" name="ripjimmy" type="event" x="32" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog iamknight\n"/>
-    <property name="act10" value="set_variable choice:maybe"/>
-    <property name="act5" value="translated_dialog_choice yes:no,choice"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set choice:yes"/>
-    <property name="cond5" value="not variable_set choice:no"/>
-   </properties>
-  </object>
-  <object id="107" name="make npcs" type="event" x="64" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc knight1,3,24,knight,stand"/>
-    <property name="act2" value="create_npc knight2,2,24,knight,stand"/>
-    <property name="act3" value="npc_face knight2,up"/>
-    <property name="cond1" value="not npc_exists knight1"/>
-   </properties>
-  </object>
-  <object id="108" name="no, sorry" type="event" x="48" y="400" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog sorry"/>
-    <property name="act2" value="set_variable choice:maybe"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond4" value="is variable_set choice:no"/>
-   </properties>
-  </object>
-  <object id="110" name="Yes" type="event" x="48" y="400" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog splendid\n"/>
-    <property name="act3" value="npc_face knight1,left"/>
-    <property name="act4" value="npc_face knight2,right"/>
-    <property name="act5" value="translated_dialog not_implemented"/>
-    <property name="act6" value="set_variable choice:none"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is variable_set choice:yes"/>
-   </properties>
-  </object>
-  <object id="116" name="rip jimmy" type="event" x="32" y="400" width="16" height="16">
-   <properties>
-    <property name="act1" value="npc_face knight1,left"/>
-    <property name="act2" value="translated_dialog ripjimmy"/>
-    <property name="act3" value="wait 1"/>
-    <property name="act4" value="npc_face knight1,down"/>
+    <property name="act1" value="translated_dialog ripjimmy"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

@@ -47,19 +47,24 @@ class EvolveMonstersAction(EventAction):
                     if current_monster.level >= evolution['at_level'] or current_monster.level <= -evolution['at_level']:
                         # TODO: implement an evolution animation
 
-                        # Add the new monster
+                        # Store the properties of the old monster then remove it
+                        old_level = current_monster.level
+                        old_current_hp = current_monster.current_hp
+                        old_name = current_monster.name
+                        player.remove_monster(current_monster)
+
+                        # Add the new monster and load the old properties
                         new_monster = monster.Monster()
                         new_monster.load_from_db(evolution['slug'])
-                        new_monster.set_level(current_monster.level)
-                        new_monster.current_hp = min(current_monster.current_hp, new_monster.hp)
-                        new_monster.name = current_monster.name
+                        new_monster.set_level(old_level)
+                        new_monster.current_hp = min(old_current_hp, new_monster.hp)
+                        new_monster.name = old_name
                         player.add_monster(new_monster)
 
-                        # Put the new monster in the slot of the old monster
-                        player.switch_monsters(slot, len(player.monsters) - 1)
-
-                        # Remove the old monster
-                        player.remove_monster(current_monster)
+                        # Removing the old monster caused all monsters in front to move a slot back
+                        # Bring our new monster from the end of the list to its previous slot
+                        for i in range(len(player.monsters) - 1, slot, -1):
+                            player.switch_monsters(i, i - 1)
 
                         # We executed an evolution for this monster, don't keep looking
                         break

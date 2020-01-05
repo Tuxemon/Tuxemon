@@ -28,7 +28,7 @@ from tuxemon.core.components import monster
 from tuxemon.core.components.event.eventaction import EventAction
 
 
-class EvolveMonsterAction(EventAction):
+class EvolveMonstersAction(EventAction):
     """Evolves all monsters in the player's party for the specified evolutionary path.
 
     Valid Parameters: path

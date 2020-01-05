@@ -369,7 +369,7 @@ class Monster(object):
         self.speed = shape["speed"] * multiplier
 
     def level_up(self, levels):
-        """Increases a Monster's level by one and increases stats
+        """Increases a Monster's level and stats
         accordingly
 
         :rtype: None

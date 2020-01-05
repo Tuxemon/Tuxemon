@@ -68,5 +68,8 @@ class EvolveMonstersAction(EventAction):
                         for i in range(len(player.monsters) - 1, slot, -1):
                             player.switch_monsters(i, i - 1)
 
+                        # Only do one evolution per call
+                        return
+
                     # We found the desired evolution, don't keep looking
                     break

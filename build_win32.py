@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 Responsible for building the Windows binary package of the
-game with cx_Freeze.
+game with cx_Freeze and Python 3.6
 
 To build the package on Windows, run the following command on Windows:
     `python build_win32.py build`
@@ -26,7 +26,7 @@ build_exe_options = {'packages': packages,
 if __name__ == '__main__':
     setup(
         name='Tuxemon',
-        version='0.4.1',
+        version='0.4.2',
         options={'build_exe': build_exe_options},
         description='Open source RPG',
         executables=[Executable('tuxemon.py', icon='tuxemon/resources/gfx/icon.ico')],

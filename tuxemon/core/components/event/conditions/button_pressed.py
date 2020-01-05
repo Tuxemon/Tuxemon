@@ -24,9 +24,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import pygame
-
 from tuxemon.core.components.event.eventcondition import EventCondition
+from tuxemon.core.platform.const import intentions
 
 
 class ButtonPressedCondition(EventCondition):
@@ -47,32 +46,19 @@ class ButtonPressedCondition(EventCondition):
         :rtype: Boolean
         :returns: True or False
 
-        Valid Parameters: A pygame key (E.g. "K_RETURN")
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "button_pressed",
-            "parameters": [
-                "K_RETURN"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
-            ...
-        }
+        Valid Parameters: A button/intention key (E.g. "INTERACT")
         """
-        # Get the keys pressed from the game.
-        events = game.key_events
         button = str(condition.parameters[0])
 
+        # TODO: workaround for old maps.  eventually need to decide on a scheme and fix existing scripts
+        if button == "K_RETURN":
+            button = intentions.INTERACT
+        else:
+            raise ValueError("Cannot support key type: {}".format(button))
+
         # Loop through each event
-        for event in events:
-            # NOTE: getattr on pygame is a little dangerous. We should sanitize input.
-            if event.type == pygame.KEYDOWN and event.key == getattr(pygame, button):
+        for event in game.key_events:
+            if event.pressed and event.button == button:
                 return True
 
         return False

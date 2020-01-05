@@ -9,33 +9,22 @@ from tuxemon.core import tools
 from tuxemon.core.components.ui.draw import GraphicBox
 
 
-class HpBar(object):
-    """ HP bar for UI elements.
+class Bar(object):
+    """ Common bar class for UI elements.
 
     """
     border_filename = "gfx/ui/monster/hp_bar.png"
     border = None
 
     def __init__(self, value=1.0):
-        super(HpBar, self).__init__()
-
         if self.border is None:
             self.load_graphics()
 
-        rect = (0, 0, 100, 40)
-        self.rect = rect
-        # self._color = 112, 248, 168
-        self.fg_color = 10, 240, 25
-        self.bg_color = 245, 10, 25
-        self.value = value
+        self.rect = (0, 0, 100, 40)
+        self.fg_color = 255, 255, 255
+        self.bg_color = 0, 0, 0
+        self.value = 0
         self.visible = True
-
-    def load_graphics(self):
-        """ Image become class attribute, so is shared.
-            Eventually, implement some game-wide image caching
-        """
-        image = tools.load_and_scale(self.border_filename)
-        HpBar.border = GraphicBox(image)
 
     @staticmethod
     def calc_inner_rect(rect):
@@ -53,13 +42,60 @@ class HpBar(object):
         inner.width -= tools.scale(11)
         return inner
 
+class HpBar(Bar):
+    """ HP bar for UI elements.
+
+    """
+    border_filename = "gfx/ui/monster/hp_bar.png"
+
+    def __init__(self, value=1.0):
+        super(HpBar, self).__init__()
+
+        self.fg_color = 10, 240, 25
+        self.bg_color = 245, 10, 25
+        self.value = value
+
+    def load_graphics(self):
+        """ Image become class attribute, so is shared.
+            Eventually, implement some game-wide image caching
+        """
+        image = tools.load_and_scale(self.border_filename)
+        HpBar.border = GraphicBox(image)
+
     def draw(self, surface, rect):
         inner = self.calc_inner_rect(rect)
         pygame.draw.rect(surface, self.bg_color, inner)
         if self.value > 0:
-            left = inner.left
             inner.width *= self.value
-            inner.left = left
+            pygame.draw.rect(surface, self.fg_color, inner)
+        self.border.draw(surface, rect)
+
+
+class ExpBar(Bar):
+    """ EXP bar for UI elements.
+
+    """
+    border_filename = "gfx/ui/monster/exp_bar.png"
+
+    def __init__(self, value=1.0):
+        super(ExpBar, self).__init__()
+
+        self.fg_color = 31, 239, 255
+        # self.bg_color = 15, 95, 127
+        self.value = value
+
+    def load_graphics(self):
+        """ Image become class attribute, so is shared.
+            Eventually, implement some game-wide image caching
+        """
+        image = tools.load_and_scale(self.border_filename)
+        ExpBar.border = GraphicBox(image)
+
+    def draw(self, surface, rect):
+        inner = self.calc_inner_rect(rect)
+        # pygame.draw.rect(surface, self.bg_color, inner)
+        if self.value > 0:
+            inner.width *= self.value
             pygame.draw.rect(surface, self.fg_color, inner)
         self.border.draw(surface, rect)
 

@@ -15,7 +15,7 @@ import pygame
 
 from tuxemon.core import tools
 from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import HpBar
+from tuxemon.core.components.menu.interface import HpBar, ExpBar
 from tuxemon.core.components.menu.menu import Menu
 from tuxemon.core.components.pyganim import PygAnimation
 from tuxemon.core.components.sprite import Sprite
@@ -254,6 +254,28 @@ class CombatAnimations(Menu):
         self._hp_bars[monster] = HpBar(initial)
         self.animate_hp(monster)
 
+    def animate_exp(self, monster):
+        """
+
+        :type monster: core.components.monster.Monster
+        :return:
+        """
+        target_previous = monster.experience_required()
+        target_next = monster.experience_required(1)
+        value = max(0, min(1, (monster.total_experience - target_previous) / (target_next - target_previous)))
+        exp_bar = self._exp_bars[monster]
+        self.animate(exp_bar, value=value, duration=.7, transition='out_quint')
+
+    def build_animate_exp_bar(self, monster, initial=0):
+        """
+
+        :param initial: Starting EXP
+        :type monster: core.components.monster.Monster
+        :return:
+        """
+        self._exp_bars[monster] = ExpBar(initial)
+        self.animate_exp(monster)
+
     def build_hud_text(self, monster):
         """ Return a string for use on the callout of the monster
 
@@ -296,6 +318,7 @@ class CombatAnimations(Menu):
             hud = self.load_sprite('gfx/ui/combat/hp_opponent_nohp.png', layer=hud_layer)
             hud.image.blit(text, scale_sequence((5, 5)))
             hud.rect.bottomright = 0, home.bottom
+            hud.player = False
             animate(hud.rect, right=home.right)
             return hud
 
@@ -303,6 +326,7 @@ class CombatAnimations(Menu):
             hud = self.load_sprite('gfx/ui/combat/hp_player_nohp.png', layer=hud_layer)
             hud.image.blit(text, scale_sequence((12, 4)))
             hud.rect.bottomleft = home.right, home.bottom
+            hud.player = True
             animate(hud.rect, left=home.left)
             return hud
 
@@ -313,7 +337,10 @@ class CombatAnimations(Menu):
         else:
             hud = build_left_hud()
         self.hud[monster] = hud
+
         self.build_animate_hp_bar(monster)
+        if hud.player:
+            self.build_animate_exp_bar(monster)
 
     def animate_party_hud_in(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.

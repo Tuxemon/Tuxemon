@@ -242,13 +242,15 @@
   </object>
   <object id="88" name="talk to misa" type="event" x="48" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog route2speech"/>
-    <property name="act2" value="npc_face misa,right"/>
-    <property name="act3" value="translated_dialog route2speech2\n"/>
-    <property name="act5" value="npc_face misa,up"/>
-    <property name="act6" value="translated_dialog route2speech3\n"/>
-    <property name="act7" value="set_variable skadoosh:no"/>
-    <property name="act8" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
+    <property name="act1" value="set_variable sadsong:yes"/>
+    <property name="act2" value="play_music JRPG_princess.ogg"/>
+    <property name="act3" value="translated_dialog route2speech"/>
+    <property name="act4" value="npc_face misa,right"/>
+    <property name="act5" value="translated_dialog route2speech2\n"/>
+    <property name="act6" value="npc_face misa,up"/>
+    <property name="act7" value="translated_dialog route2speech3\n"/>
+    <property name="act8" value="set_variable skadoosh:no"/>
+    <property name="act9" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>

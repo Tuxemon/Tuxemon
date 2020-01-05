@@ -44,7 +44,9 @@ class EvolveMonstersAction(EventAction):
             current_monster = player.monsters[slot]
             for evolution in current_monster.evolutions:
                 if evolution['path'] == self.parameters.path:
-                    if current_monster.level >= evolution['at_level'] or current_monster.level <= -evolution['at_level']:
+                    level_over = evolution['at_level'] > 0 and current_monster.level >= evolution['at_level']
+                    level_under = evolution['at_level'] < 0 and current_monster.level <= -evolution['at_level']
+                    if level_over or level_under:
                         # TODO: implement an evolution animation
 
                         # Store the properties of the old monster then remove it

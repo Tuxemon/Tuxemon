@@ -330,9 +330,13 @@ class Monster(object):
         >>> bulbatux.give_experience(20)
         """
         self.total_experience += amount
-        if self.total_experience >= self.experience_required(1):
-            #Level up worthy monsters
-            self.level_up()
+
+        # Level up worthy monsters
+        levels = 0
+        while self.total_experience >= self.experience_required(levels + 1):
+            levels += 1
+        if levels > 0:
+            self.level_up(levels)
 
     def apply_status(self, status):
         """ Apply a status to the monster
@@ -364,16 +368,16 @@ class Monster(object):
         self.ranged = shape["ranged"] * multiplier
         self.speed = shape["speed"] * multiplier
 
-    def level_up(self):
+    def level_up(self, levels):
         """Increases a Monster's level by one and increases stats
         accordingly
 
         :rtype: None
         :returns: None
         """
-        logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
+        logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + levels))
         # Increase Level and stats
-        self.level += 1
+        self.level += levels
         self.set_stats()
 
         # Learn New Moves

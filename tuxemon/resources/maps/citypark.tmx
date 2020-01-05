@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="112">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="117">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -392,6 +392,46 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="112" name="make npcs" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight1,12,13,knight,stand"/>
+    <property name="act2" value="npc_face knight1,right"/>
+    <property name="act3" value="set_variable firstgo:no"/>
+    <property name="cond1" value="not npc_exists knight1"/>
+    <property name="cond2" value="not variable_set firstgo:gone"/>
+   </properties>
+  </object>
+  <object id="113" name="hurrytalk" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face knight1,left"/>
+    <property name="act2" value="translated_dialog iamknight"/>
+    <property name="act3" value="set_variable firstgo:yes"/>
+    <property name="act4" value="translated_dialog iamknight2"/>
+    <property name="act5" value="translated_dialog_choice mistaken:thats_me,cityparkchoice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set firstgo:no"/>
+   </properties>
+  </object>
+  <object id="115" name="hurrytalkmistaken" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable secondgo:yes"/>
+    <property name="act2" value="translated_dialog mistakenknight"/>
+    <property name="act3" value="set_variable firstgo:gone"/>
+    <property name="cond1" value="is variable_set firstgo:yes"/>
+    <property name="cond2" value="is variable_set cityparkchoice:mistaken"/>
+   </properties>
+  </object>
+  <object id="116" name="hurrytalkyes" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable firstgo:gone"/>
+    <property name="act2" value="set_variable secondgo:yes"/>
+    <property name="act3" value="translated_dialog thatsmeknight"/>
+    <property name="cond1" value="is variable_set firstgo:yes"/>
+    <property name="cond2" value="is variable_set cityparkchoice:thats_me"/>
    </properties>
   </object>
  </objectgroup>

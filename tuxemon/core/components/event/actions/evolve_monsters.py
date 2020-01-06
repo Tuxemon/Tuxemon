@@ -40,36 +40,29 @@ class EvolveMonstersAction(EventAction):
 
     def start(self):
         player = self.game.player1
-        for slot in range(len(player.monsters)):
-            current_monster = player.monsters[slot]
-            for evolution in current_monster.evolutions:
-                if evolution['path'] == self.parameters.path:
-                    level_over = evolution['at_level'] > 0 and current_monster.level >= evolution['at_level']
-                    level_under = evolution['at_level'] < 0 and current_monster.level <= -evolution['at_level']
-                    if level_over or level_under:
-                        # TODO: implement an evolution animation
+        for slot, current_monster in enumerate(player.monsters):
+            new_slug = current_monster.get_evolution(self.parameters.path)
+            if new_slug:
+                # TODO: implement an evolution animation
 
-                        # Store the properties of the old monster then remove it
-                        old_level = current_monster.level
-                        old_current_hp = current_monster.current_hp
-                        old_name = current_monster.name
-                        player.remove_monster(current_monster)
+                # Store the properties of the old monster then remove it
+                old_level = current_monster.level
+                old_current_hp = current_monster.current_hp
+                old_name = current_monster.name
+                player.remove_monster(current_monster)
 
-                        # Add the new monster and load the old properties
-                        new_monster = monster.Monster()
-                        new_monster.load_from_db(evolution['slug'])
-                        new_monster.set_level(old_level)
-                        new_monster.current_hp = min(old_current_hp, new_monster.hp)
-                        new_monster.name = old_name
-                        player.add_monster(new_monster)
+                # Add the new monster and load the old properties
+                new_monster = monster.Monster()
+                new_monster.load_from_db(new_slug)
+                new_monster.set_level(old_level)
+                new_monster.current_hp = min(old_current_hp, new_monster.hp)
+                new_monster.name = old_name
+                player.add_monster(new_monster)
 
-                        # Removing the old monster caused all monsters in front to move a slot back
-                        # Bring our new monster from the end of the list to its previous position
-                        for i in range(len(player.monsters) - 1, slot, -1):
-                            player.switch_monsters(i, i - 1)
+                # Removing the old monster caused all monsters in front to move a slot back
+                # Bring our new monster from the end of the list to its previous position
+                for i in range(len(player.monsters) - 1, slot, -1):
+                    player.switch_monsters(i, i - 1)
 
-                        # Only do one evolution per call
-                        return
-
-                    # We found the desired evolution, don't keep looking
-                    break
+                # Only do one evolution per call
+                return

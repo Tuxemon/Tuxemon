@@ -48,10 +48,7 @@ class EvolveMonstersCondition(EventCondition):
         """
         player = game.player1
         for monster in player.monsters:
-            for evolution in monster.evolutions:
-                if evolution['path'] == condition.parameters[0]:
-                    level_over = evolution['at_level'] > 0 and monster.level >= evolution['at_level']
-                    level_under = evolution['at_level'] < 0 and monster.level <= -evolution['at_level']
-                    if level_over or level_under:
-                        return True
+            new_slug = monster.get_evolution(condition.parameters[0])
+            if new_slug:
+                return True
         return False

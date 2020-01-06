@@ -419,6 +419,20 @@ class Monster(object):
         """
         return self.experience_required_modifier * (self.level + level_ofs) ** 3
 
+    def get_evolution(self, path):
+        """Checks if an evolution is valid and gets the resulting monster.
+
+        :rtype: String
+        :returns: New monster slug if valid, None otherwise
+        """
+        for evolution in self.evolutions:
+            if evolution['path'] == path:
+                level_over = evolution['at_level'] > 0 and self.level >= evolution['at_level']
+                level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
+                if level_over or level_under:
+                    return evolution['monster_slug']
+        return None
+
     def get_sprite_path(self, sprite):
         '''
         Paths are set up by convention, so the file extension is unknown.

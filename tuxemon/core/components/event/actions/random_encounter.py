@@ -51,6 +51,8 @@ class RandomEncounterAction(EventAction):
     valid_parameters = [
         (str, "encounter_slug"),
         ((float, None), "total_prob"),
+        (str, "theme"),
+        (str, "music")
     ]
 
     def start(self):
@@ -81,7 +83,7 @@ class RandomEncounterAction(EventAction):
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player1, npc), combat_type="monster")
+            self.game.queue_state("CombatState", players=(player1, npc), combat_type="monster", theme=self.parameters.theme)
 
             # stop the player
             world = self.game.get_state_name("WorldState")
@@ -92,6 +94,8 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+            if self.parameters.music:
+                filename = self.parameters.music
             mixer.music.load(tools.transform_resource_filename('music', filename))
             mixer.music.play(-1)
             if self.game.current_music["song"]:

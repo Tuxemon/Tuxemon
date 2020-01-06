@@ -34,8 +34,13 @@ class TeleportFaintAction(EventAction):
         # Get the player object from the self.game.
         player = self.game.player1
 
+        # Start with the default value, override if game variable exists
+        teleport = ["healing_center.tmx", 7, 10]
+        if 'teleport_faint' in player.game_variables:
+            teleport = player.game_variables['teleport_faint'].split(" ")
+
         # Start the screen transition
         # self.game.event_engine.execute_action("screen_transition", [.3])
 
         # Call the teleport action
-        self.game.event_engine.execute_action("teleport", player.faint_map)
+        self.game.event_engine.execute_action("teleport", teleport)

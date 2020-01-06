@@ -1310,6 +1310,12 @@ msgstr "Sure I do"
 msgid "not_really"
 msgstr "Not really"
 
+msgid "mistaken"
+msgstr "You're mistaken"
+
+msgid "thats_me"
+msgstr "That's me!"
+
 # NPC dialogs
 msgid "professor_dialog\n"
 msgstr "Professor: Ah, yes. The very person I've been wanting to meet.\n"
@@ -1520,23 +1526,25 @@ msgstr "I'm sorry for troubling you with my issues. City Park is up ahead when y
 msgid "leavemealone"
 msgstr "We used to play here all the time when we were younger..."
 
-msgid "iamknight\n"
-msgstr "What are you doing here? You know that only knights are allowed through city park.\n"
-"... ... ... Hmm... So you're trying to get to Leather Town...\n"
-"Well, I guess you could enter the challenge if you want. The only problem is that you'll need a Tuxemon...\n"
-"I'm sure we can lend you one. Are you up for the challenge?\n"
+msgid "iamknight"
+msgstr "AHHH!!!\n"
+"I thought you were someone else. I'm sorry for shouting."
 
-msgid "sorry"
-msgstr "Okay, well... when you're ready, I'll still be here..."
+msgid "iamknight2"
+msgstr "Wait, you're the one they whisper about right? The one with the illegal Tuxemon?"
 
-msgid "splendid\n"
-msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
-"... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
-"... .... ... .... ....\n"
-"Okay, we have decided to let you participate."
+msgid "mistakenknight"
+msgstr "Nope, there's no way I'm wrong. It's you!\n"
+"Don't worry, I won't tell anyone."
+
+msgid "thatsmeknight"
+msgstr "Oh, Splendid! I knew from the beginning it had to be you\n"
+"Don't worry, I won't tell anyone."
 
 msgid "ripjimmy"
-msgstr "That's the grave of Jimmy, my former partner. We used to stand together here all day..."
+msgstr "The grave says:\n"
+"Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
+"The rest is weathered away."
 
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"

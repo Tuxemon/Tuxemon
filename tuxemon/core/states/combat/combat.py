@@ -343,7 +343,7 @@ class CombatState(CombatAnimations):
             if self.remaining_players[0] == self.players[0]:
                 self.alert(T.translate('combat_victory'))
             else:
-                self.players[0].game_variables['battle_lost_healing_center'] = 'true'
+                self.players[0].game_variables['battle_lost_faint'] = 'true'
                 self.alert(T.translate('combat_defeat'))
 
             # after 3 seconds, push a state that blocks until enter is pressed

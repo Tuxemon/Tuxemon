@@ -24,15 +24,31 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.components.event.eventaction import EventAction
+from tuxemon.core.components.event.eventcondition import EventCondition
 
 
-class TeleportHealingCenterAction(EventAction):
-    name = "teleport_healing_center"
+class EvolveMonstersCondition(EventCondition):
+    """ Checks to see if monsters can be evolved on the specified evolutionary path
+    """
+    name = "evolve_monsters"
 
-    def start(self):
-        # Start the screen transition
-        # self.game.event_engine.execute_action("screen_transition", [.3])
+    def test(self, game, condition):
+        """Checks to see if a monster can be evolved on the specified evolutionary path
 
-        # TODO: remember this value & use spawn event location
-        self.game.event_engine.execute_action("teleport", ["healing_center.tmx", 7, 10])
+        :param game: The main game object that contains all the game's variables.
+        :param condition: A dictionary of condition details. See :py:func:`core.components.map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type game: core.control.Control
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
+        """
+        player = game.player1
+        for monster in player.monsters:
+            new_slug = monster.get_evolution(condition.parameters[0])
+            if new_slug:
+                return True
+        return False

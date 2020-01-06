@@ -376,10 +376,10 @@
   <object id="122" name="Player Spawn" type="event" x="608" y="752" width="16" height="16"/>
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="-32" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable battle_lost_healing_center:false"/>
+    <property name="act1" value="set_variable battle_lost_faint:false"/>
     <property name="act2" value="wait .4"/>
-    <property name="act3" value="teleport_healing_center"/>
-    <property name="cond1" value="is variable_set battle_lost_healing_center:true"/>
+    <property name="act3" value="teleport_faint"/>
+    <property name="cond1" value="is variable_set battle_lost_faint:true"/>
    </properties>
   </object>
  </objectgroup>

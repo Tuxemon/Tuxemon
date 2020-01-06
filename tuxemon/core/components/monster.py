@@ -207,6 +207,7 @@ class Monster(object):
 
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
+        self.evolutions = []    # A list of possible evolution objects.
         self.ai = None
 
         # The multiplier for experience
@@ -275,11 +276,19 @@ class Monster(object):
         self.weight = results['weight']
 
         # Look up the moves that this monster can learn AND LEARN THEM.
-        for move in results["moveset"]:
-            self.moveset.append(move)
-            if move['level_learned'] >= self.level:
-                technique = Technique(move['technique'])
-                self.learn(technique)
+        moveset = results.get("moveset")
+        if moveset:
+            for move in moveset:
+                self.moveset.append(move)
+                if move['level_learned'] >= self.level:
+                    technique = Technique(move['technique'])
+                    self.learn(technique)
+
+        # Look up the evolutions for this monster.
+        evolutions = results.get("evolutions")
+        if evolutions:
+            for evolution in evolutions:
+                self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])
@@ -330,8 +339,9 @@ class Monster(object):
         >>> bulbatux.give_experience(20)
         """
         self.total_experience += amount
-        if self.total_experience >= self.experience_required(1):
-            #Level up worthy monsters
+
+        # Level up worthy monsters
+        while self.total_experience >= self.experience_required(1):
             self.level_up()
 
     def apply_status(self, status):
@@ -409,6 +419,20 @@ class Monster(object):
         :returns: Required exp
         """
         return self.experience_required_modifier * (self.level + level_ofs) ** 3
+
+    def get_evolution(self, path):
+        """Checks if an evolution is valid and gets the resulting monster.
+
+        :rtype: String
+        :returns: New monster slug if valid, None otherwise
+        """
+        for evolution in self.evolutions:
+            if evolution['path'] == path:
+                level_over = evolution['at_level'] > 0 and self.level >= evolution['at_level']
+                level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
+                if level_over or level_under:
+                    return evolution['monster_slug']
+        return None
 
     def get_sprite_path(self, sprite):
         '''

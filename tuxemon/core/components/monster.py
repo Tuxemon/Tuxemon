@@ -330,8 +330,9 @@ class Monster(object):
         >>> bulbatux.give_experience(20)
         """
         self.total_experience += amount
-        if self.total_experience >= self.experience_required(1):
-            #Level up worthy monsters
+
+        # Level up worthy monsters
+        while self.total_experience >= self.experience_required(1):
             self.level_up()
 
     def apply_status(self, status):

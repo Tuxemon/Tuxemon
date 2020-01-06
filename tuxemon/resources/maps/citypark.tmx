@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="117">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="120">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -28,7 +28,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlFsKglAURU99FX3ZHCySCnrYDHoNodcQeg20nFJbcIOIj/tz70U6wuKoHN2LLRh0RIYg8DgXfZElWIE1iAF9JvCKgM+5hc8O7MEBHAF96CkejxN8zuACruAG6EVPX3pJT+QOnwd4ghd4A3rR05dfVS696Mm9D06+jhgzNJthlptg0ouehVUvl1GWmk560TPsijQxwo6rg17MmyJ71sDcsh/7o1N+1vkN4BWDjWW/vE/xvM7Pdm9Fl7LrtJ8qfPZW5qr3tAFbDdT9Y2xlmr6Xbpymz7nca4NbGxxdfjPTLPbGafqcyz1XbmmOqyyX/WmWNqANaAPagDagDWgD2sB/N/AD7M01fA==
+   eAHtlUkOgkAQRUtXGld6BzQSNXHAGzgdwekITgdVbuIZ/CT8hJAGVlCi1clLNZ1O/uMvoNsQ6YGu4py2RWZgDhYgAPQZwssHmnMFnzXYgC3YAfrQUxTXHj4HcAQncAb0oqeWXtgSucDnCm7gDh6AXvTU8svKpRc9ee+JzasiBgyNpxfnhpj0omfqqsqjH6dGk1709JoiRfRxp6pFL+aNkD0uYFKyH/ujU3Lm+XXgFYBlyX5Jn/Q+z6/s3tIurueonyw0e3O5/srZG9/+b15N/If+beV9Y7S7oBunto8rvw5udXB0dat9xt44tX1c+VW5RTlVZbne086sAWvAGrAGrAFrwBqwBqyBMhr4AJt/Nn0=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
@@ -418,9 +418,9 @@
   </object>
   <object id="115" name="hurrytalkmistaken" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable secondgo:yes"/>
     <property name="act2" value="translated_dialog mistakenknight"/>
     <property name="act3" value="set_variable firstgo:gone"/>
+    <property name="act4" value="set_variable secondgo:yes"/>
     <property name="cond1" value="is variable_set firstgo:yes"/>
     <property name="cond2" value="is variable_set cityparkchoice:mistaken"/>
    </properties>
@@ -428,10 +428,47 @@
   <object id="116" name="hurrytalkyes" type="event" x="176" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable firstgo:gone"/>
-    <property name="act2" value="set_variable secondgo:yes"/>
-    <property name="act3" value="translated_dialog thatsmeknight"/>
+    <property name="act2" value="translated_dialog thatsmeknight"/>
+    <property name="act3" value="set_variable secondgo:yes"/>
     <property name="cond1" value="is variable_set firstgo:yes"/>
     <property name="cond2" value="is variable_set cityparkchoice:thats_me"/>
+   </properties>
+  </object>
+  <object id="117" name="hurrytalknow" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face knight1,up"/>
+    <property name="act2" value="wait 0.4"/>
+    <property name="act3" value="npc_face knight1,down"/>
+    <property name="act4" value="wait 0.4"/>
+    <property name="act5" value="npc_face knight1,left"/>
+    <property name="act6" value="translated_dialog quicklyknight"/>
+    <property name="act7" value="set_variable secondgo:gone"/>
+    <property name="act8" value="set_variable iamsecret:yes"/>
+    <property name="cond1" value="is variable_set secondgo:yes"/>
+   </properties>
+  </object>
+  <object id="118" name="hurrytalksecret" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog quicklyknight2"/>
+    <property name="act2" value="npc_face knight1,up"/>
+    <property name="act3" value="wait 0.2"/>
+    <property name="act4" value="npc_face knight1,down"/>
+    <property name="act5" value="wait 0.2"/>
+    <property name="act6" value="npc_face knight1,left"/>
+    <property name="act7" value="translated_dialog quicklyknight3"/>
+    <property name="act8" value="npc_face knight1,right"/>
+    <property name="act9" value="wait 0.3"/>
+    <property name="act91" value="npc_face knight1,left"/>
+    <property name="act92" value="translated_dialog quicklyknight4"/>
+    <property name="act93" value="set_variable iamsecret:ohno"/>
+    <property name="cond1" value="is variable_set iamsecret:yes"/>
+   </properties>
+  </object>
+  <object id="119" name="hurrytalkohno" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="npc_speed knight1, 5"/>
+    <property name="act3" value="pathfind knight1, 3,15"/>
+    <property name="cond1" value="is variable_set iamsecret:ohno"/>
    </properties>
   </object>
  </objectgroup>

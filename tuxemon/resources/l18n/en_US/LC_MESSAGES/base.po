@@ -1541,6 +1541,20 @@ msgid "thatsmeknight"
 msgstr "Oh, Splendid! I knew from the beginning it had to be you\n"
 "Don't worry, I won't tell anyone."
 
+msgid "quicklyknight"
+msgstr "I don't have much time left. Omnichannel is coming...\n"
+"I was supposed to meet a contact, but you'll have to do. They're coming."
+
+msgid "quicklyknight2"
+msgstr "Two people control Omnichannel. The board is a joke.\n"
+"I only know one of the names though"
+
+msgid "quicklyknight3"
+msgstr "Allie. Allie is the name."
+
+msgid "quicklyknight4"
+msgstr "Sorry, but I should leave now"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

@@ -343,7 +343,7 @@ class CombatState(CombatAnimations):
             if self.remaining_players[0] == self.players[0]:
                 self.alert(T.translate('combat_victory'))
             else:
-                self.players[0].game_variables['battle_lost_healing_center'] = 'true'
+                self.players[0].game_variables['battle_lost_faint'] = 'true'
                 self.alert(T.translate('combat_defeat'))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -791,9 +791,8 @@ class CombatState(CombatAnimations):
                     # If a monster fainted, exp was given, thus the exp bar should be updated
                     # The exp bar must only be animated for the player's monsters
                     # Enemies don't have a bar, doing it for them will cause a crash
-                    for player in self.human_players:
-                        for player_monster in self.monsters_in_play[player]:
-                            self.animate_exp(player_monster)
+                    for monster in self.monsters_in_play[self.game.player1]:
+                        self.animate_exp(monster)
 
     def get_technique_animation(self, technique):
         """ Return a sprite usable as a technique animation

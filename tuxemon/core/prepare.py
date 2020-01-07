@@ -66,9 +66,6 @@ if not os.path.isdir(paths.USER_GAME_DATA_DIR):
 if not os.path.isdir(paths.USER_GAME_SAVE_DIR):
     os.makedirs(paths.USER_GAME_SAVE_DIR)
 
-# Stores the arguments provided at launch time
-ARGS = {}
-
 # Generate default config
 config.generate_default_config()
 
@@ -186,9 +183,13 @@ def init():
 
 # Set the arguments
 def args(arguments):
-    global ARGS
+    global CONFIG
     global DATADIR
 
-    ARGS = arguments
-    if ARGS.data:
-        DATADIR = ARGS.data
+    # Set the data directory from its CLI parameter
+    if arguments.data:
+        DATADIR = arguments.data
+
+    # Update specific settings from CLI parameters
+    if arguments.starting_map:
+        CONFIG.starting_map = arguments.starting_map

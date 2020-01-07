@@ -85,11 +85,9 @@ class StartState(PopUpMenu):
 
         def new_game():
             # load the starting map
-            starting_map = prepare.CONFIG.starting_map
-            if prepare.ARGS.starting_map:
-                starting_map = prepare.ARGS.starting_map
-            map_name = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps", starting_map)
             state = self.game.replace_state("WorldState")
+            map_name = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps",
+                                    prepare.CONFIG.starting_map)
             state.change_map(map_name)
             self.game.push_state(
                 state_name="InputMenu",

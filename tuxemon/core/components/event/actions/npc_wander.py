@@ -44,14 +44,14 @@ def pick_target(origin, tiles, collisions):
 
 
 class NpcWanderAction(EventAction):
-    """ Makes an NPC wander
+    """ Makes an NPC wander around the map
 
-    Valid Parameters: npc_slug, time, distance
+    Valid Parameters: npc_slug, frequency, tiles
     """
     name = "npc_wander"
     valid_parameters = [
         (str, "npc_slug"),
-        (float, "time"),
+        (float, "frequency"),
         (int, "tiles")
     ]
 
@@ -66,7 +66,7 @@ class NpcWanderAction(EventAction):
                 return
 
             # Choose a random distance
-            tiles_max = 8
+            tiles_max = 4
             if self.parameters.tiles:
                 tiles_max = self.parameters.tiles
             tiles = int(max(1, math.ceil(tiles_max * random.random())))
@@ -83,12 +83,12 @@ class NpcWanderAction(EventAction):
 
             move()
 
-            # Run this function again between time / 2 and time
+            # Randomly repeat between time / 2 and time
             time_max = 2
-            if self.parameters.time:
-                time_max = self.parameters.time
-            time = min(10, max(0.1, (time_max / 2) + ((time_max / 2) * random.random())))
-            world.task(next, time)
+            if self.parameters.frequency:
+                time_max = self.parameters.frequency
+            time = (time_max / 2) + ((time_max / 2) * random.random())
+            world.task(next, min(10, max(0.5, time)))
 
         # Initialize the schedule function
         next()

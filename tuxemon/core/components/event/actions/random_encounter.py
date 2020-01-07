@@ -79,9 +79,17 @@ class RandomEncounterAction(EventAction):
 
             npc = _create_monster_npc(encounter)
 
+            # Lookup the environment
+            environments = db.JSONDatabase()
+            environments.load("environment")
+            env_slug = "grass"
+            if 'environment' in player.game_variables:
+                env_slug = player.game_variables['environment']
+            env = environments.lookup(env_slug, table="environment")
+
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster")
+            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster", environment=env['battle_graphics'])
 
             # stop the player
             world = self.game.get_state_name("WorldState")
@@ -91,9 +99,7 @@ class RandomEncounterAction(EventAction):
             self.game.push_state("FlashTransition")
 
             # Start some music!
-            filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
-            if 'battle_music' in player.game_variables:
-                filename = player.game_variables['battle_music']
+            filename = env['battle_music']
             mixer.music.load(tools.transform_resource_filename('music', filename))
             mixer.music.play(-1)
             if self.game.current_music["song"]:

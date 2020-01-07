@@ -26,6 +26,7 @@ from __future__ import unicode_literals
 
 import logging
 
+from tuxemon.core.components import db
 from tuxemon.core.components.event.actions import check_battle_legal
 from tuxemon.core.components.event.eventaction import EventAction
 
@@ -52,17 +53,23 @@ class StartPseudoBattleAction(EventAction):
         if self.game.isclient or self.game.ishost:
             self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
+        # Lookup the environment
+        environments = db.JSONDatabase()
+        environments.load("environment")
+        env_slug = "grass"
+        if 'environment' in player.game_variables:
+            env_slug = player.game_variables['environment']
+        env = environments.lookup(env_slug, table="environment")
+
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer")
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", environment=env['battle_graphics'])
 
         # flash the screen
         self.game.push_state("FlashTransition")
 
         # Start some music!
         logger.info("Playing battle music!")
-        filename = "147066_pokemon.ogg"
-        if 'battle_music' in player.game_variables:
-            filename = player.game_variables['battle_music']
+        filename = env['battle_music']
 
         # mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
         # mixer.music.play(-1)

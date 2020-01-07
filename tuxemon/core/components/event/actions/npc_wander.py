@@ -24,6 +24,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import math
 import random
 
 from tuxemon.core.components.event import get_npc
@@ -31,14 +32,15 @@ from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.components.map import dirs2
 
 
-def single_dir(origin, direction, tiles, collisions):
-    origin = tuple(origin) # make copy to prevent modifying the npc
-    for i in range(tiles):
-        origin_ofs = dirs2[direction]
-        if tuple(origin + origin_ofs) in collisions:
-            break
-        origin += origin_ofs
-    return origin
+# Picks a random position from the cubic area around the origin
+def pick_target(origin, tiles, collisions):
+    origins = []
+    for x in range(origin[0] - tiles, origin[0] + tiles):
+        for y in range(origin[1] - tiles, origin[1] + tiles):
+            org = (x, y)
+            if (org) not in collisions:
+                origins.append(org)
+    return random.choice(origins)
 
 
 class NpcWanderAction(EventAction):
@@ -63,35 +65,22 @@ class NpcWanderAction(EventAction):
             if npc.moving or npc.path:
                 return
 
-            # Choose a direction
-            direction_random = random.random()
-            direction = "up"
-            if direction_random > 0.75:
-                direction = "down"
-            elif direction_random > 0.5:
-                direction = "left"
-            elif direction_random > 0.25:
-                direction = "right"
-
-            # Choose a distance
-            tiles_max = 4
+            # Choose a random distance
+            tiles_max = 8
             if self.parameters.tiles:
                 tiles_max = self.parameters.tiles
-            tiles = int(round(tiles_max * random.random(), 0))
+            tiles = int(max(1, math.ceil(tiles_max * random.random())))
 
-            # Move is there's at least one tile, change direction otherwise
-            if tiles > 0:
-                parameters = [direction + " " + str(tiles)]
-                npc.pathfind((single_dir(npc.tile_pos, direction, tiles, collisions)))
-            else:
-                npc.facing = direction
+            # Pick a new location to move to
+            origin = (int(npc.tile_pos[0]), int(npc.tile_pos[1]))
+            target = pick_target(origin, tiles, collisions)
+            npc.pathfind(target)
 
         def next():
             # Check that the NPC still exists
             if npc is None:
                 return
 
-            # Issue the move command
             move()
 
             # Run this function again between time / 2 and time
@@ -99,8 +88,6 @@ class NpcWanderAction(EventAction):
             if self.parameters.time:
                 time_max = self.parameters.time
             time = min(10, max(0.1, (time_max / 2) + ((time_max / 2) * random.random())))
-
-            # Schedule the next move
             world.task(next, time)
 
         # Initialize the schedule function

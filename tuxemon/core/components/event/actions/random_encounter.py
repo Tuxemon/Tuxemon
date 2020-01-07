@@ -89,7 +89,7 @@ class RandomEncounterAction(EventAction):
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster", environment=env['battle_graphics'])
+            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster", graphics=env['battle_graphics'])
 
             # stop the player
             world = self.game.get_state_name("WorldState")

@@ -465,8 +465,7 @@ class CombatAnimations(Menu):
         y_mod = scale(50)
         duration = 3
 
-        # Load the environment for the island sprites if one is present
-        back_island = self.load_sprite('gfx/ui/combat/' + self.environment['island_back'],
+        back_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_back'],
                                        bottom=opp_home.bottom + y_mod, right=0)
 
         monster1 = self.load_sprite(right_monster.front_battle_sprite,
@@ -481,7 +480,7 @@ class CombatAnimations(Menu):
         else:
             self.alert(T.format('combat_wild_appeared', {"name": right_monster.name.upper()}))
 
-        front_island = self.load_sprite('gfx/ui/combat/' + self.environment['island_front'],
+        front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
         trainer1 = self.load_sprite('gfx/sprites/player/player_back.png',

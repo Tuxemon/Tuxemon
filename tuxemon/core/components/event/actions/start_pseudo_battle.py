@@ -62,7 +62,7 @@ class StartPseudoBattleAction(EventAction):
         env = environments.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", environment=env['battle_graphics'])
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", graphics=env['battle_graphics'])
 
         # flash the screen
         self.game.push_state("FlashTransition")

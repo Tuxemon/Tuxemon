@@ -51,7 +51,7 @@ class RandomEncounterAction(EventAction):
     valid_parameters = [
         (str, "encounter_slug"),
         ((float, None), "total_prob"),
-        (str, "theme"),
+        (str, "environment"),
         (str, "music")
     ]
 
@@ -83,7 +83,7 @@ class RandomEncounterAction(EventAction):
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player1, npc), combat_type="monster", theme=self.parameters.theme)
+            self.game.queue_state("CombatState", players=(player1, npc), combat_type="monster", environment=self.parameters.environment)
 
             # stop the player
             world = self.game.get_state_name("WorldState")

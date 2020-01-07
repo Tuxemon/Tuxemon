@@ -54,7 +54,7 @@ class StartBattleAction(EventAction):
     name = "start_battle"
     valid_parameters = [
         (str, "npc_slug"),
-        (str, "theme"),
+        (str, "environment"),
         (str, "music")
     ]
 
@@ -77,7 +77,7 @@ class StartBattleAction(EventAction):
 
         # Add our players and setup combat
         logger.debug("Starting battle!")
-        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer", theme=self.parameters.theme)
+        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer", environment=self.parameters.environment)
 
         # Start some music!
         filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"

@@ -37,7 +37,7 @@ class StartPseudoBattleAction(EventAction):
     """
     name = "start_pseudo_battle"
     valid_parameters = [
-        (str, "theme"),
+        (str, "environment"),
         (str, "music")
     ]
 
@@ -54,7 +54,7 @@ class StartPseudoBattleAction(EventAction):
             self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
 
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer", theme=self.parameters.theme)
+        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer", environment=self.parameters.environment)
 
         # flash the screen
         self.game.push_state("FlashTransition")

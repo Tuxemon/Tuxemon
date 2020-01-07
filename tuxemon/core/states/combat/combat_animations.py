@@ -465,12 +465,12 @@ class CombatAnimations(Menu):
         y_mod = scale(50)
         duration = 3
 
-        # Load the theme for the island sprites if one is present
-        island_theme = "grass"
-        if self.theme:
-            island_theme = self.theme
+        # Load the environment for the island sprites if one is present
+        island_environment = "grass"
+        if self.environment:
+            island_environment = self.environment
 
-        back_island = self.load_sprite('gfx/ui/combat/' + island_theme + '_back_island.png',
+        back_island = self.load_sprite('gfx/ui/combat/' + island_environment + '_back_island.png',
                                        bottom=opp_home.bottom + y_mod, right=0)
 
         monster1 = self.load_sprite(right_monster.front_battle_sprite,
@@ -485,7 +485,7 @@ class CombatAnimations(Menu):
         else:
             self.alert(T.format('combat_wild_appeared', {"name": right_monster.name.upper()}))
 
-        front_island = self.load_sprite('gfx/ui/combat/' + island_theme + '_front_island.png',
+        front_island = self.load_sprite('gfx/ui/combat/' + island_environment + '_front_island.png',
                                         bottom=player_home.bottom - y_mod, left=w)
 
         trainer1 = self.load_sprite('gfx/sprites/player/player_back.png',

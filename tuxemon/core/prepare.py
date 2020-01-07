@@ -66,6 +66,9 @@ if not os.path.isdir(paths.USER_GAME_DATA_DIR):
 if not os.path.isdir(paths.USER_GAME_SAVE_DIR):
     os.makedirs(paths.USER_GAME_SAVE_DIR)
 
+# Stores the arguments provided at launch time
+ARGS = {}
+
 # Generate default config
 config.generate_default_config()
 
@@ -180,3 +183,12 @@ def init():
     # Initialize PyGame and our screen surface.
     if PLATFORM == 'pygame':
         pygame_init()
+
+# Set the arguments
+def args(arguments):
+    global ARGS
+    global DATADIR
+
+    ARGS = arguments
+    if ARGS.data:
+        DATADIR = ARGS.data

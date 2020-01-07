@@ -39,8 +39,7 @@ from tuxemon.core.components.player import Player
 
 logger = logging.getLogger(__name__)
 
-
-def main(load_slot=None):
+def main(arguments=[]):
     """Add all available states to our scene manager (tools.Control)
     and start the game using the pygame interface.
 
@@ -54,6 +53,7 @@ def main(load_slot=None):
     from .control import Control
 
     prepare.init()
+    prepare.args(arguments)
     control = Control(prepare.ORIGINAL_CAPTION)
     control.auto_state_discovery()
 
@@ -75,8 +75,8 @@ def main(load_slot=None):
     # basically the main menu
     control.push_state("StartState")
 
-    if load_slot:
-        control.push_state("LoadMenuState", load_slot=load_slot)
+    if arguments.slot:
+        control.push_state("LoadMenuState", load_slot=arguments.slot)
     elif prepare.CONFIG.splash:
         # Show the splash screen if it is enabled in the game configuration
         control.push_state("SplashState")

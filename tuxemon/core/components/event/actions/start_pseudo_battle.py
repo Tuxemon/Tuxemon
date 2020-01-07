@@ -26,6 +26,7 @@ from __future__ import unicode_literals
 
 import logging
 
+from tuxemon.core.components import db
 from tuxemon.core.components.event.actions import check_battle_legal
 from tuxemon.core.components.event.eventaction import EventAction
 
@@ -39,8 +40,10 @@ class StartPseudoBattleAction(EventAction):
     valid_parameters = []
 
     def start(self):
+        player = self.game.player1
+
         # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(self.game.player1):
+        if not check_battle_legal(player):
             return False
 
         if not check_battle_legal(npc):
@@ -48,17 +51,25 @@ class StartPseudoBattleAction(EventAction):
 
         # Stop movement and keypress on the server.
         if self.game.isclient or self.game.ishost:
-            self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
+            self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
+
+        # Lookup the environment
+        env_db = db.JSONDatabase()
+        env_db.load("environment")
+        env_slug = "grass"
+        if 'environment' in player.game_variables:
+            env_slug = player.game_variables['environment']
+        env = env_db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer")
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", graphics=env['battle_graphics'])
 
         # flash the screen
         self.game.push_state("FlashTransition")
 
         # Start some music!
         logger.info("Playing battle music!")
-        filename = "147066_pokemon.ogg"
+        filename = env['battle_music']
 
         # mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
         # mixer.music.play(-1)

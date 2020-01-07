@@ -28,18 +28,16 @@ from tuxemon.core.components.event import get_npc
 from tuxemon.core.components.event.eventaction import EventAction
 
 
-class NpcRun(EventAction):
-    """ Sets the NPC movement speed to a custom value
+class NpcWalk(EventAction):
+    """ Sets the NPC movement speed to the global walk speed
 
     Valid Parameters: npc_slug
     """
-    name = "npc_run"
+    name = "npc_walk"
     valid_parameters = [
         (str, "npc_slug"),
-        (float, "move_speed"),
     ]
 
     def start(self):
         npc = get_npc(self.game, self.parameters.npc_slug)
-        npc.moverate = self.parameters.move_speed
-        assert 0 < npc.moverate < 20  # just set some sane limit to avoid losing sprites
+        npc.moverate = self.game.config.player_walkrate

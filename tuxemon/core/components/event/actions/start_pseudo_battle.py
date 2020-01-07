@@ -36,14 +36,13 @@ class StartPseudoBattleAction(EventAction):
     """ Start a networked duel and switch to the combat module.
     """
     name = "start_pseudo_battle"
-    valid_parameters = [
-        (str, "environment"),
-        (str, "music")
-    ]
+    valid_parameters = []
 
     def start(self):
+        player = self.game.player1
+
         # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(self.game.player1):
+        if not check_battle_legal(player):
             return False
 
         if not check_battle_legal(npc):
@@ -51,10 +50,10 @@ class StartPseudoBattleAction(EventAction):
 
         # Stop movement and keypress on the server.
         if self.game.isclient or self.game.ishost:
-            self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
+            self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer", environment=self.parameters.environment)
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer")
 
         # flash the screen
         self.game.push_state("FlashTransition")
@@ -62,8 +61,8 @@ class StartPseudoBattleAction(EventAction):
         # Start some music!
         logger.info("Playing battle music!")
         filename = "147066_pokemon.ogg"
-        if self.parameters.music:
-            filename = self.parameters.music
+        if 'battle_music' in player.game_variables:
+            filename = player.game_variables['battle_music']
 
         # mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
         # mixer.music.play(-1)

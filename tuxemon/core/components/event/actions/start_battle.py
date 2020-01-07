@@ -53,14 +53,14 @@ class StartBattleAction(EventAction):
     """
     name = "start_battle"
     valid_parameters = [
-        (str, "npc_slug"),
-        (str, "environment"),
-        (str, "music")
+        (str, "npc_slug")
     ]
 
     def start(self):
+        player = self.game.player1
+
         # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(self.game.player1):
+        if not check_battle_legal(player):
             logger.debug("battle is not legal, won't start")
             return False
 
@@ -70,19 +70,19 @@ class StartBattleAction(EventAction):
 
         # Stop movement and keypress on the server.
         if self.game.isclient or self.game.ishost:
-            self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
+            self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
         npc = world.get_entity(self.parameters.npc_slug)
         npc.load_party()
 
         # Add our players and setup combat
         logger.debug("Starting battle!")
-        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer", environment=self.parameters.environment)
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer")
 
         # Start some music!
         filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
-        if self.parameters.music:
-            filename = self.parameters.music
+        if 'battle_music' in player.game_variables:
+            filename = player.game_variables['battle_music']
         mixer.music.load(tools.transform_resource_filename('music', filename))
         mixer.music.play(-1)
         if self.game.current_music["song"]:

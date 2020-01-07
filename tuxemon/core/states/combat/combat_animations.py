@@ -467,8 +467,8 @@ class CombatAnimations(Menu):
 
         # Load the environment for the island sprites if one is present
         island_environment = "grass"
-        if self.environment:
-            island_environment = self.environment
+        if 'battle_environment' in player.game_variables:
+            island_environment = player.game_variables['battle_environment']
 
         back_island = self.load_sprite('gfx/ui/combat/' + island_environment + '_back_island.png',
                                        bottom=opp_home.bottom + y_mod, right=0)

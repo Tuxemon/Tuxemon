@@ -152,7 +152,6 @@ class CombatState(CombatAnimations):
         super(CombatState, self).startup(**kwargs)
         self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
         self.players = list(self.players)
-        self.environment = kwargs.get('environment')
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)

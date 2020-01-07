@@ -51,15 +51,13 @@ class RandomEncounterAction(EventAction):
     valid_parameters = [
         (str, "encounter_slug"),
         ((float, None), "total_prob"),
-        (str, "environment"),
-        (str, "music")
     ]
 
     def start(self):
-        player1 = self.game.player1
+        player = self.game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(player1):
+        if not check_battle_legal(player):
             return False
 
         monsters = db.JSONDatabase()
@@ -77,13 +75,13 @@ class RandomEncounterAction(EventAction):
 
             # Stop movement and keypress on the server.
             if self.game.isclient or self.game.ishost:
-                self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
+                self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
             npc = _create_monster_npc(encounter)
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player1, npc), combat_type="monster", environment=self.parameters.environment)
+            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster")
 
             # stop the player
             world = self.game.get_state_name("WorldState")
@@ -94,8 +92,8 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
-            if self.parameters.music:
-                filename = self.parameters.music
+            if 'battle_music' in player.game_variables:
+                filename = player.game_variables['battle_music']
             mixer.music.load(tools.transform_resource_filename('music', filename))
             mixer.music.play(-1)
             if self.game.current_music["song"]:

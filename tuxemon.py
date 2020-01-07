@@ -44,10 +44,10 @@ import tuxemon.core.main
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('-l', '--load', dest='slot', metavar='1,2,3', type=int, nargs='?',
-                        default=None, help='The index of the save file to load')
     parser.add_argument('-d', '--data', dest='data', metavar='resources', type=str, nargs='?',
                         default=None, help='The data directory to use')
+    parser.add_argument('-l', '--load', dest='slot', metavar='1,2,3', type=int, nargs='?',
+                        default=None, help='The index of the save file to load')
     parser.add_argument('-s', '--starting-map', dest='starting_map', metavar='bedroom.tmx', type=str, nargs='?',
                         default=None, help='The starting map')
     args = parser.parse_args()

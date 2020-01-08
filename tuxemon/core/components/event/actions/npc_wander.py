@@ -53,6 +53,12 @@ class NpcWanderAction(EventAction):
             if npc.moving or npc.path:
                 return
 
+            # Suspend wandering if a dialog window is open
+            # TODO: this should only be done for the NPC the player is conversing with, not everyone
+            for state in self.game.active_states:
+                if state.name == "DialogState":
+                    return
+
             # Choose a random direction: Go there if the tile is free, look toward it if not
             direction = random.choice(["up", "down", "left", "right"])
             origin = (int(npc.tile_pos[0] + dirs2[direction][0]), int(npc.tile_pos[1] + dirs2[direction][1]))

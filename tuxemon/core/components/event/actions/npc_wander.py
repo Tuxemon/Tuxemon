@@ -59,13 +59,21 @@ class NpcWanderAction(EventAction):
                 if state.name == "DialogState":
                     return
 
-            # Choose a random direction: Go there if the tile is free, look toward it if not
+            # Choose a random direction
             direction = random.choice(["up", "down", "left", "right"])
             origin = (int(npc.tile_pos[0] + dirs2[direction][0]), int(npc.tile_pos[1] + dirs2[direction][1]))
-            if origin not in collisions:
-                npc.move_one_tile(direction)
-            else:
+
+            # Check if either a collision, the player or another NPC are blocking the way
+            blocked = origin in collisions
+            for ent in world.npcs.values():
+                if origin[0] == int(ent.tile_pos[0]) and origin[1] == int(ent.tile_pos[1]):
+                    blocked = True
+
+            # Go to the chosen position if the tile is free, look toward it if not
+            if blocked:
                 npc.facing = direction
+            else:
+                npc.move_one_tile(direction)
 
         def schedule():
             # Check that the NPC still exists

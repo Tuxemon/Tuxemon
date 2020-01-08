@@ -33,6 +33,9 @@ from collections import namedtuple
 
 from six.moves import zip_longest
 
+from tuxemon.core.control import Control  # for type introspection
+assert Control
+
 logger = logging.getLogger(__name__)
 
 
@@ -103,10 +106,9 @@ class EventAction(object):
     def __init__(self, game, parameters):
         """
 
-        :type game: core.control.Control
+        :type game: tuxemon.core.control.Control
         :type parameters: list
         """
-
         self.game = game
 
         # TODO: METACLASS

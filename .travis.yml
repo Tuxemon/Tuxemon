@@ -5,7 +5,7 @@ python:
 before_install:
   - pip install -r requirements.txt
   - pip install setuptools
-  - sudo apt-get install -y git curl squashfs-tools sed debmake debhelper python-all python3-all python-setuptools python3-setuptools
+  - sudo apt-get install -y fakeroot git curl squashfs-tools sed debmake debhelper python-all python3-all python-setuptools python3-setuptools
   - mkdir -p ./build
 script:
   # Debian

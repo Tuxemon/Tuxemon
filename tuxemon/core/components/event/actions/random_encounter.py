@@ -54,10 +54,10 @@ class RandomEncounterAction(EventAction):
     ]
 
     def start(self):
-        player1 = self.game.player1
+        player = self.game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(player1):
+        if not check_battle_legal(player):
             return False
 
         monsters = db.JSONDatabase()
@@ -75,13 +75,21 @@ class RandomEncounterAction(EventAction):
 
             # Stop movement and keypress on the server.
             if self.game.isclient or self.game.ishost:
-                self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
+                self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
             npc = _create_monster_npc(encounter)
 
+            # Lookup the environment
+            env_db = db.JSONDatabase()
+            env_db.load("environment")
+            env_slug = "grass"
+            if 'environment' in player.game_variables:
+                env_slug = player.game_variables['environment']
+            env = env_db.lookup(env_slug, table="environment")
+
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player1, npc), combat_type="monster")
+            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster", graphics=env['battle_graphics'])
 
             # stop the player
             world = self.game.get_state_name("WorldState")
@@ -91,7 +99,7 @@ class RandomEncounterAction(EventAction):
             self.game.push_state("FlashTransition")
 
             # Start some music!
-            filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+            filename = env['battle_music']
             mixer.music.load(tools.transform_resource_filename('music', filename))
             mixer.music.play(-1)
             if self.game.current_music["song"]:

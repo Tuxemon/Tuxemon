@@ -70,6 +70,7 @@ class JSONDatabase(object):
             "technique": {},
             "encounter": {},
             "inventory": {},
+            "environment": {},
         }
         if dir:
             self.load(dir)
@@ -92,6 +93,7 @@ class JSONDatabase(object):
             self.load_json("npc")
             self.load_json("encounter")
             self.load_json("inventory")
+            self.load_json("environment")
         else:
             self.load_json(directory)
 

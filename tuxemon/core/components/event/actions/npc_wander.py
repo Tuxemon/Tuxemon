@@ -46,7 +46,6 @@ class NpcWanderAction(EventAction):
     def start(self):
         npc = get_npc(self.game, self.parameters.npc_slug)
         world = self.game.get_state_name("WorldState")
-        collisions = world.get_collision_map()
 
         def move():
             # Don't interrupt existing movement
@@ -59,36 +58,27 @@ class NpcWanderAction(EventAction):
                 if state.name == "DialogState":
                     return
 
-            # Choose a random direction
-            direction = random.choice(["up", "down", "left", "right"])
-            origin = (int(npc.tile_pos[0] + dirs2[direction][0]), int(npc.tile_pos[1] + dirs2[direction][1]))
-
-            # Check if either a collision, the player or another NPC are blocking the way
-            blocked = origin in collisions
-            for ent in world.npcs.values():
-                if origin[0] == int(ent.tile_pos[0]) and origin[1] == int(ent.tile_pos[1]):
-                    blocked = True
-
-            # Go to the chosen position if the tile is free, look toward it if not
-            if blocked:
-                npc.facing = direction
-            else:
-                npc.move_one_tile(direction)
+            # Choose a random direction that is free and walk toward it
+            origin = (int(npc.tile_pos[0]), int(npc.tile_pos[1]))
+            exits = world.get_exits(origin)
+            if exits:
+                npc.path = [random.choice(exits)]
+                npc.next_waypoint()
 
         def schedule():
-            # Check that the NPC still exists
-            if npc is None:
-                world.remove_animations_of(schedule)
+            # The timer is randomized between 0.5 and 1.0 of the frequency parameter
+            # Frequency can be set to 0 to indicate that we want to stop wandering
+            world.remove_animations_of(schedule)
+            if npc is None or self.parameters.frequency == 0:
                 return
+            else:
+                frequency = 1
+                if self.parameters.frequency:
+                    frequency = min(5, max(0.5, self.parameters.frequency))
+                time = (0.5 + 0.5 * random.random()) * frequency
+                world.task(schedule, time)
 
             move()
-
-            # The timer is randomized between 0.5 and 1.0 of the frequency parameter
-            frequency = 1
-            if self.parameters.frequency:
-                frequency = min(5, max(0.5, self.parameters.frequency))
-            time = (0.5 + 0.5 * random.random()) * frequency
-            world.task(schedule, time)
 
         # Schedule the first move
         schedule()

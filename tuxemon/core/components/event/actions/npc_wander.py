@@ -29,7 +29,6 @@ import random
 
 from tuxemon.core.components.event import get_npc
 from tuxemon.core.components.event.eventaction import EventAction
-from tuxemon.core.components.map import dirs2
 
 
 class NpcWanderAction(EventAction):

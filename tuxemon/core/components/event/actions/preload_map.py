@@ -51,7 +51,7 @@ class PreloadMapAction(EventAction):
         world = self.game.current_state
 
         # Get the map name to preload
-        mapname = prepare.BASEDIR + prepare.DATADIR + "/maps/" + str(self.parameters[0])
+        mapname = prepare.fetch("maps", str(self.parameters[0]))
 
         if mapname not in world.preloaded_maps.keys():
             # TODO: We should do this asyncronously?

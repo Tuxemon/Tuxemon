@@ -78,6 +78,7 @@ class NpcWanderAction(EventAction):
         def schedule():
             # Check that the NPC still exists
             if npc is None:
+                world.remove_animations_of(schedule)
                 return
 
             move()

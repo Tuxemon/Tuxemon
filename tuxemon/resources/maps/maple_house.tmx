@@ -54,6 +54,7 @@
    <properties>
     <property name="act1" value="create_npc npc_wife,9,7,girl1,stand"/>
     <property name="act2" value="npc_face npc_wife,down"/>
+    <property name="act3" value="npc_wander npc_wife"/>
     <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="not npc_exists npc_wife"/>
    </properties>

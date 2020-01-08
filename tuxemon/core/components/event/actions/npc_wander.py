@@ -32,27 +32,15 @@ from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.components.map import dirs2
 
 
-# Picks a random position from the cubic area around the origin
-def pick_target(origin, tiles, collisions):
-    origins = []
-    for x in range(origin[0] - tiles, origin[0] + tiles):
-        for y in range(origin[1] - tiles, origin[1] + tiles):
-            org = (x, y)
-            if (org) not in collisions:
-                origins.append(org)
-    return random.choice(origins)
-
-
 class NpcWanderAction(EventAction):
     """ Makes an NPC wander around the map
 
-    Valid Parameters: npc_slug, frequency, tiles
+    Valid Parameters: npc_slug, frequency
     """
     name = "npc_wander"
     valid_parameters = [
         (str, "npc_slug"),
-        (float, "frequency"),
-        (int, "tiles")
+        (float, "frequency")
     ]
 
     def start(self):
@@ -65,30 +53,27 @@ class NpcWanderAction(EventAction):
             if npc.moving or npc.path:
                 return
 
-            # Choose a random distance
-            tiles_max = 4
-            if self.parameters.tiles:
-                tiles_max = self.parameters.tiles
-            tiles = int(max(1, math.ceil(tiles_max * random.random())))
+            # Choose a random direction: Go there if the tile is free, look toward it if not
+            direction = random.choice(["up", "down", "left", "right"])
+            origin = (int(npc.tile_pos[0] + dirs2[direction][0]), int(npc.tile_pos[1] + dirs2[direction][1]))
+            if origin not in collisions:
+                npc.move_one_tile(direction)
+            else:
+                npc.facing = direction
 
-            # Pick a new location to move to
-            origin = (int(npc.tile_pos[0]), int(npc.tile_pos[1]))
-            target = pick_target(origin, tiles, collisions)
-            npc.pathfind(target)
-
-        def next():
+        def schedule():
             # Check that the NPC still exists
             if npc is None:
                 return
 
             move()
 
-            # Randomly repeat between time / 2 and time
-            time_max = 2
+            # The timer is randomized between 0.5 and 1.0 of the frequency parameter
+            frequency = 1
             if self.parameters.frequency:
-                time_max = self.parameters.frequency
-            time = (time_max / 2) + ((time_max / 2) * random.random())
-            world.task(next, min(10, max(0.5, time)))
+                frequency = min(5, max(0.5, self.parameters.frequency))
+            time = (0.5 + 0.5 * random.random()) * frequency
+            world.task(schedule, time)
 
-        # Initialize the schedule function
-        next()
+        # Schedule the first move
+        schedule()

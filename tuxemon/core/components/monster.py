@@ -443,16 +443,12 @@ class Monster(object):
         rtype: String
         returns: path to sprite or placeholder image
         '''
-        base_path = tools.transform_resource_filename(sprite)
-        path = "%s.png" % base_path
-        if os.path.isfile(path):
-            return path
-        path = "%s.gif" % base_path
-        if os.path.isfile(path):
-            return path
-        path = "%s.jpeg" % base_path
-        if os.path.isfile(path):
-            return path
+        exts = ["png", "gif", "jpg", "jpeg"]
+        for ext in exts:
+            path = "%s.png" % sprite
+            full_path = tools.transform_resource_filename(path)
+            if full_path:
+                return full_path
         return "gfx/sprites/battle/missing.png"
 
     def load_sprites(self):

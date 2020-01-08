@@ -181,5 +181,12 @@ def init():
 # Fetches a resource file
 def fetch(*args):
     path = '/'.join(i for i in args if i is not None)
-    resource = os.path.join(paths.BASEDIR, CONFIG.data, path)
-    return resource
+    resource_default = os.path.join(paths.BASEDIR, "resources", path)
+    resource_game = os.path.join(paths.BASEDIR, "games", CONFIG.game, path)
+
+    # Always try the game directory first, fallback to the resources directory
+    if os.path.exists(resource_game):
+        return resource_game
+    if os.path.exists(resource_default):
+        return resource_default
+    return None

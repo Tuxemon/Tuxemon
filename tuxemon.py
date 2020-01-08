@@ -50,5 +50,9 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--starting-map', dest='starting_map', metavar='map.tmx', type=str, nargs='?',
                         default=None, help='The starting map')
     args = parser.parse_args()
-    prepare.parse_cfg(args)
+
+    if args.data:
+        prepare.CONFIG.data = prepare.DATADIR = args.data
+    if args.starting_map:
+        prepare.CONFIG.starting_map = args.starting_map
     main.main(load_slot=args.slot)

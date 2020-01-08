@@ -180,16 +180,3 @@ def init():
     # Initialize PyGame and our screen surface.
     if PLATFORM == 'pygame':
         pygame_init()
-
-# Overrides certain settings from the CLI parameters
-def parse_cfg(args):
-    global CONFIG
-    global DATADIR
-
-    # Set the data directory
-    if args.data:
-        DATADIR = args.data
-
-    # Update other settings
-    if args.starting_map:
-        CONFIG.starting_map = args.starting_map

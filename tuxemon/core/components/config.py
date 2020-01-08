@@ -83,7 +83,7 @@ class TuxemonConfig(object):
         self.music_volume = cfg.getfloat("sound", "music_volume")
 
         # [game]
-        self.game = cfg.get("game", "game")
+        self.data = cfg.get("game", "data")
         self.starting_map = cfg.get("game", "starting_map")
         self.cli = cfg.getboolean("game", "cli_enabled")
         self.net_controller_enabled = cfg.getboolean("game", "net_controller_enabled")
@@ -162,7 +162,7 @@ def get_defaults():
             ("music_volume", 1.0),
         ))),
         ("game", OrderedDict((
-            ("game", "tuxemon"),
+            ("data", "tuxemon"),
             ("starting_map", "bedroom_test.tmx"),
             ("cli_enabled", False),
             ("net_controller_enabled", False),

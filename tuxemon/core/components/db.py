@@ -38,7 +38,7 @@ import logging
 import os
 from operator import itemgetter
 
-from tuxemon.constants import paths
+from tuxemon.core import prepare
 
 logger = logging.getLogger(__name__)
 
@@ -62,7 +62,7 @@ class JSONDatabase(object):
     """
 
     def __init__(self, dir=None):
-        self.path = paths.DB_DIR
+        self.path = prepare.fetch("db")
         self.database = {
             "item": {},
             "monster": {},

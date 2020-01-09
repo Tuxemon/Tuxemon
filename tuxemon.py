@@ -44,7 +44,7 @@ from tuxemon.core import prepare, main
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('-d', '--data', dest='data', metavar='tuxemon', type=str, nargs='?',
-                        default=None, help='The data directory to use')
+                        default=None, help='The data subdirectory used in the mod directory')
     parser.add_argument('-l', '--load', dest='slot', metavar='1,2,3', type=int, nargs='?',
                         default=None, help='The index of the save file to load')
     parser.add_argument('-s', '--starting-map', dest='starting_map', metavar='map.tmx', type=str, nargs='?',

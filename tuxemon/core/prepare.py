@@ -182,7 +182,7 @@ def init():
 def fetch(*args):
     path = os.path.join(*args)
     resource_default = os.path.join(paths.BASEDIR, "..", "resources", path)
-    resource_game = os.path.join(paths.BASEDIR, "..", "games", CONFIG.data, path)
+    resource_game = os.path.join(paths.BASEDIR, "..", "mod", CONFIG.data, path)
 
     # Always try the game directory first, fallback to the resources directory
     if os.path.exists(resource_game):

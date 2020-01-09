@@ -53,6 +53,3 @@ USER_GAME_DATA_DIR = os.path.join(USER_GAME_DIR, "data")
 
 # game savegame dir
 USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
-
-# resource and database dirs
-DB_DIR = os.path.join(BASEDIR, "..", "resources", "db")

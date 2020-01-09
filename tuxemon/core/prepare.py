@@ -180,7 +180,7 @@ def init():
 
 # Fetches a resource file
 def fetch(*args):
-    path = '/'.join(i for i in args if i is not None)
+    path = os.path.join(*args)
     resource_default = os.path.join(paths.BASEDIR, "..", "resources", path)
     resource_game = os.path.join(paths.BASEDIR, "..", "games", CONFIG.data, path)
 

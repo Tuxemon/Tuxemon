@@ -64,6 +64,7 @@ class BackgroundState(State):
     def draw(self, surface):
         surface.fill((0, 0, 0, 0))
 
+
 class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
@@ -71,13 +72,13 @@ class StartState(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, *args, **kwargs):
+        # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         kwargs['selected_index'] = 0 if index is None else 1
         super(StartState, self).startup(*args, **kwargs)
 
-        def change_state(state, **kwargs):
-            kwargs['selected_index'] = index or 0
-            return partial(self.game.push_state, state, **kwargs)
+        def change_state(state, **change_state_kwargs):
+            return partial(self.game.push_state, state, **change_state_kwargs)
 
         def set_player_name(text):
             world = self.game.get_state_name("WorldState")

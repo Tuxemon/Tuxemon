@@ -322,12 +322,35 @@ class NPC(Entity):
         :return:
         """
         self.move_direction = None
-        if self.path and self.moving:
+        if self.tile_pos == self.path_origin:
+            # we *just* started a new path; discard it and stop
+            self.abort_movement()
+        elif self.path and self.moving:
+            # we are in the middle of moving between tiles
             self.path = [self.path[-1]]
             self.pathfinding = None
         else:
+            # probably already stopped, just clear the path
             self.stop_moving()
             self.cancel_path()
+
+    def abort_movement(self):
+        """ Stop moving, cancel paths, and reset tile position to center
+
+        The tile postion will be truncated, so even if there is another
+        closer tile, it will always return the the tile where movement
+        started.
+
+        This is a useful method if you want to abort a path movement
+        and also don't want to advance to another tile.
+
+        :return:
+        """
+        if self.path_origin is not None:
+            self.tile_pos = tuple(self.path_origin)
+        self.move_direction = None
+        self.stop_moving()
+        self.cancel_path()
 
     def move(self, time_passed_seconds):
         """ Move the entity around the game world

@@ -697,11 +697,28 @@ class WorldState(state.State):
     def stop_player(self):
         """ Reset controls and stop player movement at once.  Do not lock controls
 
+        Movement is gracefully stopped.  If player was in a movement, then
+        complete it before stopping.
+
         :return:
         """
         self.wants_to_move_player = None
         self.game.release_controls()
         self.player1.cancel_movement()
+
+    def stop_and_reset_player(self):
+        """ Reset controls, stop player and abort movement.  Do not lock controls.
+
+        Movement is aborted here, so the player will not complete movement
+        to a tile.  It will be reset to the tile where movement started.
+
+        Use if you don't want to trigger another tile event.
+
+        :return:
+        """
+        self.wants_to_move_player = None
+        self.game.release_controls()
+        self.player1.abort_movement()
 
     def move_player(self, direction):
         """ Move player in a direction.  Changes facing.

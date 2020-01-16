@@ -113,6 +113,8 @@ class Vector2:
         if isinstance(other, Vector2):
             return self.x == other.x and \
                    self.y == other.y
+        elif other is None:
+            return False
         else:
             assert hasattr(other, '__len__') and len(other) == 2
             return self.x == other[0] and \

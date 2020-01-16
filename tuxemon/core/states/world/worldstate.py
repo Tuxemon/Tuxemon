@@ -160,6 +160,10 @@ class WorldState(state.State):
     def resume(self):
         self.unlock_controls()
 
+    def pause(self):
+        self.lock_controls()
+        self.stop_player()
+
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
 

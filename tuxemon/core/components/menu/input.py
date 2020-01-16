@@ -19,7 +19,6 @@ from tuxemon.core.platform.const import events
 class InputMenu(Menu):
     background = None
     draw_borders = False
-    touch_aware = True
 
     chars = u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
     alphabet_length = 26

@@ -94,6 +94,7 @@ class StartState(PopUpMenu):
                 state_name="InputMenu",
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
+                escape_key_exits=False,
             )
             self.game.push_state("FadeInTransition")
 

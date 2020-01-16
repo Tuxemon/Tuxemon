@@ -157,6 +157,9 @@ class WorldState(state.State):
 
         self.map_animations = dict()
 
+    def resume(self):
+        self.unlock_controls()
+
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
 

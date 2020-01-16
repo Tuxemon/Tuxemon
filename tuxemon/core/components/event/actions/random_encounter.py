@@ -93,6 +93,7 @@ class RandomEncounterAction(EventAction):
 
             # stop the player
             world = self.game.get_state_name("WorldState")
+            world.lock_controls()
             world.stop_player()
 
             # flash the screen

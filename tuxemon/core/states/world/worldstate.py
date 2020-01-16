@@ -158,9 +158,13 @@ class WorldState(state.State):
         self.map_animations = dict()
 
     def resume(self):
+        """ Called after returning focus to this state
+        """
         self.unlock_controls()
 
     def pause(self):
+        """ Called before another state gets focus
+        """
         self.lock_controls()
         self.stop_player()
 

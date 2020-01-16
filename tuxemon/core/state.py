@@ -367,6 +367,10 @@ class StateManager(object):
             logger.critical("Attempted to pop state when state was not active.")
             raise RuntimeError
 
+        if index == 0:
+            logger.debug("resetting controls due to state change")
+            self.release_controls()
+
         try:
             previous = self._state_stack.pop(index)
         except IndexError:
@@ -409,6 +413,8 @@ class StateManager(object):
             raise RuntimeError
 
         previous = self.current_state
+        logger.debug("resetting controls due to state change")
+        self.release_controls()
 
         if previous is not None:
             previous.pause()

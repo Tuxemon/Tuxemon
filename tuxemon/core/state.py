@@ -380,16 +380,6 @@ class StateManager(object):
         previous.pause()
         previous.shutdown()
 
-        #  DEBUGGING =========================================================
-        # import gc
-        # import inspect
-        # gc.collect()
-        #
-        # if not all(map(inspect.isframe, gc.get_referrers(previous))):
-        #     logger.debug("State was not able to be GC'd %s" % previous)
-
-        # DEBUGGING =========================================================
-
         if index == 0 and self._state_stack:
             self.current_state.resume()
         elif index and self._state_stack:

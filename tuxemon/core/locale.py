@@ -80,7 +80,7 @@ class TranslatorPo(object):
             outfile = os.path.join(os.path.dirname(infile), "base.mo")
 
             # build only complete translations
-            if os.path.exists(infile):
+            if os.path.exists(infile) and not os.path.exists(outfile):
                 with io.open(infile, "r", encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
                 with io.open(outfile, "wb") as mo_file:

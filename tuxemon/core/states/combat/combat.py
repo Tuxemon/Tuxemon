@@ -292,6 +292,7 @@ class CombatState(CombatAnimations):
             pass
 
         elif phase == "ran away":
+            self.players[0].game_variables['battle_last_status'] = 'ran'
             self.alert(T.translate('combat_player_run'))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -301,6 +302,8 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
+            self.players[0].game_variables['battle_last_status'] = 'draw'
+
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate('combat_draw'))
 
@@ -313,10 +316,10 @@ class CombatState(CombatAnimations):
             # TODO: proper match check, etc
             # This assumes that player[0] is the human playing in single player
             if self.remaining_players[0] == self.players[0]:
-                self.players[0].game_variables['battle_last_won'] = 'true'
+                self.players[0].game_variables['battle_last_status'] = 'won'
                 self.alert(T.translate('combat_victory'))
             else:
-                self.players[0].game_variables['battle_last_won'] = 'false'
+                self.players[0].game_variables['battle_last_status'] = 'lost'
                 self.players[0].game_variables['battle_lost_faint'] = 'true'
                 self.alert(T.translate('combat_defeat'))
 

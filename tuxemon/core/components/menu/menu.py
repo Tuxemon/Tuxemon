@@ -554,11 +554,6 @@ class Menu(state.State):
                 self.state = "normal"
                 show_items()
 
-        elif self.state == "normal":
-            self.reload_items()
-            self.refresh_layout()
-            self.on_menu_selection_change()
-
     def close(self):
         if self.state in ["normal", "opening"]:
             self.state = "closing"

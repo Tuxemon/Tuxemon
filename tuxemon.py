@@ -55,7 +55,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.mod:
-        prepare.CONFIG.mods.append(args.mod)
+        prepare.CONFIG.mods.insert(0, args.mod)
     if args.starting_map:
         prepare.CONFIG.starting_map = args.starting_map
 

@@ -262,7 +262,7 @@ class CombatState(CombatAnimations):
             if monster_record in self.active_monsters:
                 self.players[0].game_variables['battle_last_monster_name'] = monster_record.name
                 self.players[0].game_variables['battle_last_monster_level'] = monster_record.level
-                self.players[0].game_variables['battle_last_monster_slug'] = monster_record.slug
+                self.players[0].game_variables['battle_last_monster_type'] = monster_record.slug
                 self.players[0].game_variables['battle_last_monster_category'] = monster_record.category
                 self.players[0].game_variables['battle_last_monster_shape'] = monster_record.shape
 

@@ -57,7 +57,7 @@ class MonsterPropertyCondition(EventCondition):
             return str(monster.level) == val
         elif prop == "level_reached":
             return monster.level >= int(val)
-        elif prop == "slug":
+        elif prop == "type":
             return monster.slug == val
         elif prop == "category":
             return monster.category == val

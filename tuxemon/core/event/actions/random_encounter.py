@@ -29,7 +29,7 @@ import random
 
 from tuxemon.core import tools
 from tuxemon.core import ai, db, monster
-from tuxemon.core.event.actions import check_battle_legal
+from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.npc import NPC
 from tuxemon.core.platform import mixer

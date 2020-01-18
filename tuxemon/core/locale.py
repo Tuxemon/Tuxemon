@@ -275,3 +275,64 @@ class Translator(object):
 
 
 T = TranslatorPo()
+
+
+def replace_text(game, text):
+    """ Replaces ${{var}} tiled variables with their in-game value.
+
+    :param game: The main game object that contains all the game's variables.
+    :param text: Raw text from the map
+
+    :type game: core.control.Control
+    :type text: str
+
+    :rtype: str
+
+    **Examples:**
+
+    >>> replace_text("${{name}} is running away!")
+    'Red is running away!'
+
+    """
+    text = text.replace("${{name}}", game.player1.name)
+    text = text.replace(r"\n", "\n")
+
+    for i in range(len(game.player1.monsters)):
+        monster = game.player1.monsters[i]
+        text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
+        text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
+        text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
+        text = text.replace("${{monster_" + str(i) + "_hp}}", str(monster.current_hp))
+        text = text.replace("${{monster_" + str(i) + "_hp_max}}", str(monster.hp))
+        text = text.replace("${{monster_" + str(i) + "_level}}", str(monster.level))
+
+    return text
+
+
+def process_translate_text(game, text_slug, parameters):
+    replace_values = {}
+
+    # extract INI-style params
+    for param in parameters:
+        key, value = param.split("=")
+
+        # TODO: is this code still valid? Translator class is NOT iterable
+        """
+        # Check to see if param_value is translatable
+        if value in translator:
+            value = trans(value)
+        """
+        # match special placeholders like ${{name}}
+        replace_values[key] = replace_text(game, value)
+
+    # generate translation
+    text = T.format(text_slug, replace_values)
+
+    # clear the terminal end-line symbol (multi-line translation records)
+    text = text.rstrip("\n")
+
+    # split text into pages for scrolling
+    pages = text.split("\n")
+
+    # generate scrollable text
+    return [replace_text(game, page) for page in pages]

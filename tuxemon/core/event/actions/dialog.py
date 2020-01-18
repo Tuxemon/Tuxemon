@@ -26,7 +26,7 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core.event.actions import replace_text
+from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.tools import open_dialog
 

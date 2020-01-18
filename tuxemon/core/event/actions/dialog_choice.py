@@ -27,7 +27,7 @@ from __future__ import unicode_literals
 import logging
 from functools import partial
 
-from tuxemon.core.event.actions import replace_text
+from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)

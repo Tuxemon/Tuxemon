@@ -41,6 +41,7 @@ from itertools import chain
 import pygame
 
 from tuxemon.core import state, tools
+from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defeated
 from tuxemon.core.locale import T
 from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.sprite import Sprite
@@ -62,32 +63,6 @@ MULT_MAP = {
     0.5: "attack_resisted",
     0.25: "attack_weak",
 }
-
-def check_status(monster, status_name):
-    return any(t for t in monster.status if t.slug == status_name)
-
-
-def fainted(monster):
-    return check_status(monster, "status_faint") or monster.current_hp <= 0
-
-
-def get_awake_monsters(player):
-    """ Iterate all non-fainted monsters in party
-
-    :param player:
-    :return:
-    """
-    for monster in player.monsters:
-        if not fainted(monster):
-            yield monster
-
-
-def fainted_party(party):
-    return all(map(fainted, party))
-
-
-def defeated(player):
-    return fainted_party(player.monsters)
 
 
 class WaitForInputState(state.State):
@@ -222,19 +197,6 @@ class CombatState(CombatAnimations):
                 positions_available = self.max_positions - len(self.monsters_in_play[player])
                 if positions_available:
                     return
-
-            # DO NOT REMOVE THIS CODE
-            # enable it to test for draw matches
-            if 0:
-                t = Technique("technique_poison_sting")
-                for p, m in self.monsters_in_play.items():
-                    for m in m:
-                        m.current_hp = min(m.current_hp, 1)
-                        t.use(m, m)
-
-            # enable to test for defeat in matches
-            if 0:
-                [setattr(m, 'current_hp', 1) for m in self.players[0].monsters]
 
             return "decision phase"
 
@@ -503,8 +465,8 @@ class CombatState(CombatAnimations):
         elif self.is_trainer_battle:
             self.alert(
                 T.format('combat_opponent_call_tuxemon', {
-                  "name": monster.name.upper(),
-                  "user": player.name.upper(),
+                    "name": monster.name.upper(),
+                    "user": player.name.upper(),
                 })
             )
         else:
@@ -696,7 +658,8 @@ class CombatState(CombatAnimations):
                     message += "\n" + m
 
                 for status in result.get("statuses", []):
-                    m = T.format(status.use_item, {"user": status.link.name if status.link else "", "target": status.carrier.name})
+                    m = T.format(status.use_item,
+                                 {"user": status.link.name if status.link else "", "target": status.carrier.name})
                     message += "\n" + m
 
             else:  # assume this was an item used

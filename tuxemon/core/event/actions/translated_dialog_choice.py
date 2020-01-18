@@ -28,9 +28,8 @@ import logging
 from functools import partial
 
 from tuxemon.core.event import get_npc
-from tuxemon.core.event.actions import replace_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.locale import T
+from tuxemon.core.locale import T, replace_text
 
 logger = logging.getLogger(__name__)
 

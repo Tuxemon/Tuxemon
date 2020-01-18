@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core import tools
 from tuxemon.core import db
-from tuxemon.core.event.actions import check_battle_legal
+from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.platform import mixer
 

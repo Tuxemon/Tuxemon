@@ -71,5 +71,5 @@ class StartPseudoBattleAction(EventAction):
         logger.info("Playing battle music!")
         filename = env['battle_music']
 
-        # mixer.music.load(prepare.BASEDIR + prepare.DATADIR + "/music/" + filename)
+        # mixer.music.load(prepare.fetch("music", filename))
         # mixer.music.play(-1)

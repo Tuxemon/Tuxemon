@@ -39,7 +39,6 @@ import os.path
 import random
 from collections import namedtuple
 
-from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components import db
 from tuxemon.core.components import formula
@@ -145,7 +144,7 @@ class Technique(object):
         self.animation = results["animation"]
         if self.animation:
             self.images = []
-            animation_dir = os.path.join(paths.BASEDIR, prepare.DATADIR, "animations/technique")
+            animation_dir = prepare.fetch("animations", "technique")
             directory = sorted(os.listdir(animation_dir))
             for image in directory:
                 if self.animation and image.startswith(self.animation):

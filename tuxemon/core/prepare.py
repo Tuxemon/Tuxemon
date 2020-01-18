@@ -75,9 +75,6 @@ CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
 
-# Reference data dir
-DATADIR = CONFIG.data
-
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
 ORIGINAL_CAPTION = CONFIG.window_caption
@@ -180,3 +177,16 @@ def init():
     # Initialize PyGame and our screen surface.
     if PLATFORM == 'pygame':
         pygame_init()
+
+# Fetches a resource file
+def fetch(*args):
+    path = os.path.join(*args)
+    resource_default = os.path.join(paths.BASEDIR, "..", "resources", path)
+    resource_mod = os.path.join(paths.BASEDIR, "..", "mod", CONFIG.data, path)
+
+    # Always try the mod directory first, fallback to resources
+    if os.path.exists(resource_mod):
+        return resource_mod
+    if os.path.exists(resource_default):
+        return resource_default
+    return None

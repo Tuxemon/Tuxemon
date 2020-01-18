@@ -43,7 +43,7 @@ from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
 from tuxemon.constants import paths
-from tuxemon.core.prepare import CONFIG
+from tuxemon.core import prepare
 
 logger = logging.getLogger(__name__)
 
@@ -54,18 +54,18 @@ class TranslatorPo(object):
     """gettext-based translator class."""
 
     def __init__(self):
-        self.locale = CONFIG.locale
+        self.locale = prepare.CONFIG.locale
         self.translate = None
         self.languages = self.collect_languages()
         self.build_translations()
-        self.load_locale(CONFIG.locale)
+        self.load_locale(prepare.CONFIG.locale)
 
     def collect_languages(self):
         """Collect languages/locales with available translation files."""
         languages = []
 
-        for ld in os.listdir(paths.L18N_DIR):
-            ld_full_path = os.path.join(paths.L18N_DIR, ld)
+        for ld in os.listdir(prepare.fetch("l18n")):
+            ld_full_path = os.path.join(prepare.fetch("l18n"), ld)
 
             if os.path.isdir(ld_full_path):
                 languages.append(ld)
@@ -76,7 +76,7 @@ class TranslatorPo(object):
         """Create MO files for existing PO translation files."""
 
         for ld in self.languages:
-            infile = os.path.join(paths.L18N_DIR, ld, "LC_MESSAGES", "base.po")
+            infile = os.path.join(prepare.fetch("l18n"), ld, "LC_MESSAGES", "base.po")
             outfile = os.path.join(os.path.dirname(infile), "base.mo")
 
             # build only complete translations
@@ -94,14 +94,14 @@ class TranslatorPo(object):
 
         # init and load requested language translation (if exists)
         if locale_name in self.languages:
-            trans = gettext.translation("base", localedir=paths.L18N_DIR, languages=[locale_name])
+            trans = gettext.translation("base", localedir = prepare.fetch("l18n"), languages=[locale_name])
 
             # update locale
             self.locale = locale_name
 
         else:
             logger.warning("Locale {} not found. Using fallback.".format(locale_name))
-            trans = gettext.translation("base", localedir=paths.L18N_DIR, languages=[FALLBACK_LOCALE])
+            trans = gettext.translation("base", localedir = prepare.fetch("l18n"), languages=[FALLBACK_LOCALE])
 
             # fall back to default locale
             self.locale = FALLBACK_LOCALE
@@ -140,7 +140,7 @@ class Translator(object):
 
     def __init__(self):
         # immediately grab fallback if 'locale' missing in config
-        self.locale = CONFIG.locale or FALLBACK_LOCALE
+        self.locale = prepare.CONFIG.locale or FALLBACK_LOCALE
 
         self.directories = self.discover_locale_dirs()
         self.locale_files = self.get_locales(self.directories)
@@ -154,7 +154,7 @@ class Translator(object):
         :returns: List of discovered locale directories
 
         """
-        directories = [os.path.join(paths.BASEDIR, paths.LOCALE_PATH)]
+        directories = [prepare.fetch("db", "locale")]
 
         # TODO: use os.walk if second level directories are needed?
         for item in os.listdir(paths.USER_GAME_DATA_DIR):
@@ -162,7 +162,7 @@ class Translator(object):
 
             # TODO: filter also by directory name?
             if os.path.isdir(item):
-                locale_directory = os.path.join(item, paths.LOCALE_PATH)
+                locale_directory = prepare.fetch(item, "db", "locale")
 
                 directories.append(locale_directory)
 

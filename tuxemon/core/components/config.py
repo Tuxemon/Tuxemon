@@ -162,7 +162,7 @@ def get_defaults():
             ("music_volume", 1.0),
         ))),
         ("game", OrderedDict((
-            ("data", "resources"),
+            ("data", "tuxemon"),
             ("starting_map", "bedroom_test.tmx"),
             ("cli_enabled", False),
             ("net_controller_enabled", False),

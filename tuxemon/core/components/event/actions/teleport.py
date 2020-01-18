@@ -24,9 +24,6 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import os.path
-
-from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core.components.event.eventaction import EventAction
 
@@ -78,7 +75,7 @@ class TeleportAction(EventAction):
 
         else:
             # If we're not doing a transition, then just do the teleport
-            map_path = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps", map_name)
+            map_path = prepare.fetch("maps", map_name)
 
             if world.current_map is None:
                 world.change_map(map_path)

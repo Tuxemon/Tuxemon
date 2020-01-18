@@ -363,9 +363,6 @@ class Control(StateManager):
         for state in reversed(to_draw):
             state.draw(surface)
 
-        # if self.config.controller_overlay:
-        #     self.controller.draw(surface)
-
         if self.config.collision_map:
             self.draw_event_debug()
 

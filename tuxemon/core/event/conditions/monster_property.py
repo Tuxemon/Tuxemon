@@ -49,8 +49,11 @@ class MonsterPropertyCondition(EventCondition):
         slot = condition.parameters[0]
         prop = condition.parameters[1]
         val = condition.parameters[2]
-        monster = game.player1.monsters[slot]
 
+        if int(slot) >= len(game.player1.monsters):
+            return False
+
+        monster = game.player1.monsters[slot]
         if prop == "name":
             return monster.name == val
         elif prop == "level":

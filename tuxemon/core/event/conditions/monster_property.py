@@ -28,12 +28,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class MonsterPropertyCondition(EventCondition):
-    """ Checks to see if a monster has a given property
+    """ Checks to see if a monster property or condition is as asked
     """
     name = "monster_property"
 
     def test(self, game, condition):
-        """Checks to see if a monster has a given property
+        """Checks to see if a monster property or condition is as asked
 
         :param game: The main game object that contains all the game's variables.
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
@@ -55,6 +55,8 @@ class MonsterPropertyCondition(EventCondition):
             return monster.name == val
         elif prop == "level":
             return str(monster.level) == val
+        elif prop == "level_reached":
+            return monster.level >= int(val)
         elif prop == "slug":
             return monster.slug == val
         elif prop == "category":

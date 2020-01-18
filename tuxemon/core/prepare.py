@@ -178,15 +178,14 @@ def init():
     if PLATFORM == 'pygame':
         pygame_init()
 
+
 # Fetches a resource file
 def fetch(*args):
-    path = os.path.join(*args)
-    resource_default = os.path.join(paths.BASEDIR, "..", "resources", path)
-    resource_mod = os.path.join(paths.BASEDIR, "..", "mod", CONFIG.data, path)
+    relative_path = os.path.join(*args)
 
-    # Always try the mod directory first, fallback to resources
-    if os.path.exists(resource_mod):
-        return resource_mod
-    if os.path.exists(resource_default):
-        return resource_default
-    return None
+    for mod_name in CONFIG.mods:
+        path = os.path.join(paths.mods_folder, mod_name, relative_path)
+        if os.path.exists(path):
+            return path
+
+    raise FileNotFoundError(relative_path)

@@ -273,6 +273,5 @@ class Translator(object):
 
         return self.format(translation_text, parameters)
 
-translator = Translator()
 
 T = TranslatorPo()

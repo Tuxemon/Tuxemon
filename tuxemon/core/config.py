@@ -113,24 +113,15 @@ class TuxemonConfig(object):
         self.gamepad_button_map = None
         self.keyboard_button_map = None
 
+        # not configurable from the file yet
+        self.mods = ["tuxemon"]
+
 
 class HeadlessConfig(object):
     """Handles loading of the configuration file for the headless server.
     """
 
     def __init__(self, file_default="tuxemon.cfg", file_config="tuxemon.cfg"):
-        # FILE_DEFAULT.read(file_default)
-        # FILE_CONFIG.read(file_config)
-        #
-        # # [game]
-        # self.cli = int(config_get("game", "cli_enabled"))
-        #
-        # # [logging]
-        # self.loggers = config_get("logging", "loggers")
-        # self.loggers = self.loggers.replace(" ", "").split(",")
-        # self.debug_logging = config_get("logging", "debug_logging")
-        # self.debug_level = config_get("logging", "debug_level")
-        # BROKEN
         raise RuntimeError("deprecated")
 
 

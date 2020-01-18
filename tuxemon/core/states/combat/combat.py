@@ -257,6 +257,15 @@ class CombatState(CombatAnimations):
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._round > 1)
 
+            # record the useful properties of the last monster we fought
+            monster_record = self.monsters_in_play[self.players[1]][0]
+            if monster_record in self.active_monsters:
+                self.players[0].game_variables['battle_last_monster_name'] = monster_record.name
+                self.players[0].game_variables['battle_last_monster_level'] = monster_record.level
+                self.players[0].game_variables['battle_last_monster_type'] = monster_record.slug
+                self.players[0].game_variables['battle_last_monster_category'] = monster_record.category
+                self.players[0].game_variables['battle_last_monster_shape'] = monster_record.shape
+
         if phase == "decision phase":
             self.reset_status_icons()
             if not self._decision_queue:
@@ -283,6 +292,7 @@ class CombatState(CombatAnimations):
             pass
 
         elif phase == "ran away":
+            self.players[0].game_variables['battle_last_result'] = 'ran'
             self.alert(T.translate('combat_player_run'))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -292,6 +302,8 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
+            self.players[0].game_variables['battle_last_result'] = 'draw'
+
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate('combat_draw'))
 
@@ -304,8 +316,10 @@ class CombatState(CombatAnimations):
             # TODO: proper match check, etc
             # This assumes that player[0] is the human playing in single player
             if self.remaining_players[0] == self.players[0]:
+                self.players[0].game_variables['battle_last_result'] = 'won'
                 self.alert(T.translate('combat_victory'))
             else:
+                self.players[0].game_variables['battle_last_result'] = 'lost'
                 self.players[0].game_variables['battle_lost_faint'] = 'true'
                 self.alert(T.translate('combat_defeat'))
 

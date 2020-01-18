@@ -38,9 +38,9 @@ import re
 
 import pygame
 
-import tuxemon.core.components.sprite
+import tuxemon.core.sprite
 from tuxemon.core import prepare
-from tuxemon.core.components import pyganim
+from tuxemon.core import pyganim
 from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -157,9 +157,9 @@ def load_sprite(filename, **rect_kwargs):
     of the image for positioning the rect.
 
     :param filename: Filename to load
-    :rtype: core.components.sprite.Sprite
+    :rtype: core.sprite.Sprite
     """
-    sprite = tuxemon.core.components.sprite.Sprite()
+    sprite = tuxemon.core.sprite.Sprite()
     sprite.image = load_and_scale(filename)
     sprite.rect = sprite.image.get_rect(**rect_kwargs)
     return sprite
@@ -262,7 +262,7 @@ def scale_sprite(sprite, ratio):
 
     :type sprite: pygame.Sprite
     :param ratio: amount to scale by
-    :rtype: core.components.sprite.Sprite
+    :rtype: core.sprite.Sprite
     """
     center = sprite.rect.center
     sprite.rect.width *= ratio

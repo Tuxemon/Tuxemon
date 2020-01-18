@@ -40,10 +40,10 @@ import os.path
 from functools import partial
 
 from tuxemon.core import prepare
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu.menu import PopUpMenu
-from tuxemon.core.components.save import get_index_of_latest_save
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.save import get_index_of_latest_save
 from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)

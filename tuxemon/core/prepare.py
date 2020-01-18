@@ -41,7 +41,7 @@ import os.path
 import re
 
 from tuxemon.constants import paths
-from .components import config
+from tuxemon.core import config
 
 logger = logging.getLogger(__name__)
 

@@ -34,8 +34,8 @@ from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import prepare
-from tuxemon.core.components import log
-from tuxemon.core.components.player import Player
+from tuxemon.core import log
+from tuxemon.core.player import Player
 
 logger = logging.getLogger(__name__)
 

@@ -41,12 +41,12 @@ from itertools import chain
 import pygame
 
 from tuxemon.core import state, tools
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.pyganim import PygAnimation
-from tuxemon.core.components.sprite import Sprite
-from tuxemon.core.components.technique import Technique
-from tuxemon.core.components.ui.draw import GraphicBox
-from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.locale import T
+from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core.sprite import Sprite
+from tuxemon.core.technique import Technique
+from tuxemon.core.ui.draw import GraphicBox
+from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
 from .combat_animations import CombatAnimations
 
@@ -549,7 +549,7 @@ class CombatState(CombatAnimations):
         """ Show the main window for choosing player actions
 
         :param monster: Monster to choose an action for
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
 
         :returns: None
         """
@@ -612,7 +612,7 @@ class CombatState(CombatAnimations):
 
         This is used mainly for removing actions after monster is fainted
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :returns: None
         """
         to_remove = set()
@@ -740,7 +740,7 @@ class CombatState(CombatAnimations):
     def faint_monster(self, monster):
         """ Instantly make the monster faint (will be removed later)
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :returns: None
         """
         monster.current_hp = 0
@@ -800,8 +800,8 @@ class CombatState(CombatAnimations):
 
         TODO: move to some generic animation loading thingy
 
-        :type technique: core.components.technique.Technique
-        :rtype: core.components.sprite.Sprite
+        :type technique: core.technique.Technique
+        :rtype: core.sprite.Sprite
         """
         try:
             return self._technique_cache[technique]
@@ -817,7 +817,7 @@ class CombatState(CombatAnimations):
         TODO: move to some generic animation loading thingy
 
         :param technique:
-        :rtype: core.components.sprite.Sprite
+        :rtype: core.sprite.Sprite
         """
         frame_time = .09
         images = list()
@@ -835,7 +835,7 @@ class CombatState(CombatAnimations):
     def active_players(self):
         """ Generator of any non-defeated players/trainers
 
-        :rtype: collections.Iterable[core.components.player.Player]
+        :rtype: collections.Iterable[core.player.Player]
         """
         for player in self.players:
             if not defeated(player):

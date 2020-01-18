@@ -41,10 +41,10 @@ import pygame
 from tuxemon.constants import paths
 from tuxemon.core import prepare
 from tuxemon.core import tools
-from tuxemon.core.components.animation import Animation
-from tuxemon.core.components.animation import Task
-from tuxemon.core.components.animation import remove_animations_of
-from tuxemon.core.components.sprite import SpriteGroup
+from tuxemon.core.animation import Animation
+from tuxemon.core.animation import Task
+from tuxemon.core.animation import remove_animations_of
+from tuxemon.core.sprite import SpriteGroup
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +100,7 @@ class State(object):
         :param filename: filename, relative to the resources folder
         :type filename: String
         :param kwargs: Keyword arguments to pass to the Rect constructor
-        :returns: core.components.sprite.Sprite
+        :returns: core.sprite.Sprite
         """
         layer = kwargs.pop('layer', 0)
         sprite = tools.load_sprite(filename, **kwargs)
@@ -115,7 +115,7 @@ class State(object):
         :param targets: targets of the Animation
         :type targets: any
         :param kwargs: Attributes and their final value
-        :returns: core.components.animation.Animation
+        :returns: core.animation.Animation
         """
         ani = Animation(*targets, **kwargs)
         self.animations.add(ani)
@@ -129,7 +129,7 @@ class State(object):
 
         :param args: function to be called
         :param kwargs: kwargs passed to the function
-        :returns: core.components.animation.Task
+        :returns: core.animation.Task
         """
         task = Task(*args, **kwargs)
         self.animations.add(task)

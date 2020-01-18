@@ -39,8 +39,8 @@ import pygame
 from six.moves import map as imap
 
 from tuxemon.core import prepare, state
-from tuxemon.core.components import networking
-from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core import networking
+from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
 from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.tools import nearest
 
@@ -457,7 +457,7 @@ class WorldState(state.State):
     def add_entity(self, entity):
         """
 
-        :type entity: core.components.entity.Entity
+        :type entity: core.entity.Entity
         :return:
         """
         entity.world = self

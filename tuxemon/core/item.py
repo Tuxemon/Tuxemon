@@ -39,9 +39,8 @@ import logging
 import pprint
 import random
 
-from tuxemon.core import tools
+from tuxemon.core import db, tools
 from tuxemon.core.locale import T
-from . import db
 
 logger = logging.getLogger(__name__)
 

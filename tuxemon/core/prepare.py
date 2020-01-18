@@ -160,7 +160,7 @@ def pygame_init():
             joystick.init()
             JOYSTICKS.append(joystick)
 
-    from .platform import android
+    from tuxemon.core.platform import android
     # Map the appropriate android keys if we're on android
     if android:
         android.init()

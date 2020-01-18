@@ -38,7 +38,7 @@ try:
     from ctypes import cdll
 except:
     cdll = None
-from .tools import *
+from tuxemon.core.rumble.tools import *
 
 # Set up logging for the rumble manager.
 logger = logging.getLogger(__name__)

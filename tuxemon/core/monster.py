@@ -33,14 +33,12 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os.path
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai
+from tuxemon.core import ai, db, fusion
 from tuxemon.core.locale import T
 from tuxemon.core.technique import Technique
-from . import db, fusion
 
 logger = logging.getLogger(__name__)
 

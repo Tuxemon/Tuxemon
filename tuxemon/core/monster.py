@@ -172,6 +172,8 @@ SHAPES = {
     },
 }
 
+MISSING_IMAGE = "gfx/sprites/battle/missing.png"
+
 
 # class definition for first active tuxemon to use in combat:
 class Monster(object):
@@ -452,14 +454,10 @@ class Monster(object):
 
         # Apply flairs to the monster sprite
         for flair in self.flairs:
-            try:
-                flair_local = "gfx/sprites/battle/" + self.slug + "-" + sprite + "-" + flair['value']
-                flair_path = self.get_sprite_path(flair_local)
-                if flair_path != "gfx/sprites/battle/missing.png":
-                    flair_sprite = tools.load_sprite(flair_path, **kwargs)
-                    surface.image.blit(flair_sprite.image, (0, 0))
-            except IOError:
-                pass
+            flair_path = self.get_sprite_path("gfx/sprites/battle/" + self.slug + "-" + sprite + "-" + flair['value'])
+            if flair_path != MISSING_IMAGE:
+                flair_sprite = tools.load_sprite(flair_path, **kwargs)
+                surface.image.blit(flair_sprite.image, (0, 0))
 
         return surface
 
@@ -498,7 +496,7 @@ class Monster(object):
                 if full_path:
                     return full_path
         except IOError:
-            return "gfx/sprites/battle/missing.png"
+            return MISSING_IMAGE
 
     def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.

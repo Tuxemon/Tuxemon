@@ -1555,6 +1555,12 @@ msgstr "Allie. Allie is the name."
 msgid "quicklyknight4"
 msgstr "Sorry, but I should leave now"
 
+msgid "omnichannelarrives"
+msgstr "STOP"
+
+msgid "omnichannelarrives2"
+msgstr ""
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

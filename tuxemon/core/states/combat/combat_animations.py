@@ -146,10 +146,8 @@ class CombatAnimations(Menu):
         self.task(capdev.kill, fall_time + delay + fade_duration)
 
         # load monster and set in final position
-        monster_sprite = self.load_sprite(
-            monster.back_battle_sprite if npc.isplayer else monster.front_battle_sprite,
-            midbottom=feet,
-        )
+        monster_sprite = monster.get_sprite("back" if npc.isplayer else "front",
+                                            midbottom = feet)
         self._monster_sprite_map[monster] = monster_sprite
 
         # position monster_sprite off screen and set animation to move it back to final spot
@@ -468,9 +466,9 @@ class CombatAnimations(Menu):
         back_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_back'],
                                        bottom=opp_home.bottom + y_mod, right=0)
 
-        monster1 = self.load_sprite(right_monster.front_battle_sprite,
-                                    bottom=back_island.rect.bottom - scale(12),
-                                    centerx=back_island.rect.centerx)
+        monster1 = right_monster.get_sprite("front",
+                                            bottom = back_island.rect.bottom - scale(12),
+                                            centerx = back_island.rect.centerx)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
         self.monsters_in_play[opponent].append(right_monster)
         self._monster_sprite_map[right_monster] = monster1

@@ -432,6 +432,22 @@ class Monster(object):
                     return evolution['monster_slug']
         return None
 
+    def get_sprite(self, sprite, **kwargs):
+        """Gets a specific type of sprite for the monster.
+
+        :rtype: Pygame surface
+        :returns: The surface of the monster sprite
+        """
+        load_sprite = ""
+        if sprite == "front":
+            load_sprite = self.front_battle_sprite
+        elif sprite == "back":
+            load_sprite = self.back_battle_sprite
+        elif sprite == "menu":
+            load_sprite = self.menu_sprite
+
+        return tools.load_sprite(load_sprite, **kwargs)
+
     def get_sprite_path(self, sprite):
         '''
         Paths are set up by convention, so the file extension is unknown.

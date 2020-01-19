@@ -49,6 +49,7 @@ class EvolveMonstersAction(EventAction):
                 old_level = current_monster.level
                 old_current_hp = current_monster.current_hp
                 old_name = current_monster.name
+                old_flairs = current_monster.flairs
                 player.remove_monster(current_monster)
 
                 # Add the new monster and load the old properties
@@ -58,6 +59,12 @@ class EvolveMonstersAction(EventAction):
                 new_monster.current_hp = min(old_current_hp, new_monster.hp)
                 new_monster.name = old_name
                 player.add_monster(new_monster)
+
+                # If the new monster has a flair matching that of the old monster, copy it
+                for new_flair in new_monster.flairs:
+                    for old_flair in old_flairs:
+                        if new_flair['name'] == old_flair['name']:
+                            new_monster.flairs[new_flair] = old_flair
 
                 # Removing the old monster caused all monsters in front to move a slot back
                 # Bring our new monster from the end of the list to its previous position

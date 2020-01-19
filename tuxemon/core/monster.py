@@ -442,13 +442,26 @@ class Monster(object):
         :returns: The surface of the monster sprite
         """
         if sprite == "front":
-            return tools.load_sprite(self.front_battle_sprite, **kwargs)
+            surface = tools.load_sprite(self.front_battle_sprite, **kwargs)
         elif sprite == "back":
-            return tools.load_sprite(self.back_battle_sprite, **kwargs)
+            surface = tools.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            return tools.load_sprite(self.menu_sprite, **kwargs)
+            surface = tools.load_sprite(self.menu_sprite, **kwargs)
         else:
             raise ValueError("Cannot find sprite for: {}".format(sprite))
+
+        # Apply flairs to the monster sprite
+        for flair in self.flairs:
+            try:
+                flair_local = "gfx/sprites/battle/" + self.slug + "-" + sprite + "-" + flair['value']
+                flair_path = self.get_sprite_path(flair_local)
+                if flair_path != "gfx/sprites/battle/missing.png":
+                    flair_sprite = tools.load_sprite(flair_path, **kwargs)
+                    surface.image.blit(flair_sprite.image, (0, 0))
+            except IOError:
+                pass
+
+        return surface
 
     def set_flairs(self):
         """Sets the flairs of this monster if they were not already configured
@@ -477,13 +490,15 @@ class Monster(object):
         rtype: String
         returns: path to sprite or placeholder image
         '''
-        exts = ["png", "gif", "jpg", "jpeg"]
-        for ext in exts:
-            path = "%s.png" % sprite
-            full_path = tools.transform_resource_filename(path)
-            if full_path:
-                return full_path
-        return "gfx/sprites/battle/missing.png"
+        try:
+            exts = ["png", "gif", "jpg", "jpeg"]
+            for ext in exts:
+                path = "%s.png" % sprite
+                full_path = tools.transform_resource_filename(path)
+                if full_path:
+                    return full_path
+        except IOError:
+            return "gfx/sprites/battle/missing.png"
 
     def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.

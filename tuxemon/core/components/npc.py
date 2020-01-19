@@ -140,11 +140,7 @@ class NPC(Entity):
         # movement related
         self.move_direction = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
-        self.walking = False  # Whether or not the player is walking
-        self.running = False  # Whether or not the player is running
-        self.walkrate = CONFIG.player_walkrate
-        self.runrate = CONFIG.player_runrate
-        self.moverate = self.walkrate  # walk by default
+        self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
         # What is "move_direction"?
@@ -222,7 +218,7 @@ class NPC(Entity):
 
         # avoid cutoff frames when steps don't line up with tile movement
         frames = 3
-        frame_duration = (1000 / self.walkrate) / frames / 1000 * 2
+        frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
 
         # Load all of the player's sprite animations
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
@@ -260,7 +256,7 @@ class NPC(Entity):
             frame = d[ani]
             try:
                 surface = frame.getCurrentFrame()
-                frame.rate = self.moverate / self.walkrate
+                frame.rate = self.moverate / CONFIG.player_walkrate
                 return surface
             except AttributeError:
                 return frame
@@ -348,7 +344,6 @@ class NPC(Entity):
         :type time_passed_seconds: Float
         """
         # update physics.  eventually move to another class
-        self.moverate = self.runrate if self.running else self.walkrate
         self.update_physics(time_passed_seconds)
 
         if self.pathfinding and not self.path:

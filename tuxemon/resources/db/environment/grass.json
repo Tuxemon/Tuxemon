@@ -1,0 +1,8 @@
+{
+  "slug": "grass",
+  "battle_graphics": {
+    "island_back":"grass_back_island.png",
+    "island_front":"grass_front_island.png"
+  },
+  "battle_music":"JRPGCollection/ogg/JRPG_battle_loop.ogg"
+}

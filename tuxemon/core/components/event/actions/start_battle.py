@@ -27,6 +27,7 @@ from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import tools
+from tuxemon.core.components import db
 from tuxemon.core.components.event.actions import check_battle_legal
 from tuxemon.core.components.event.eventaction import EventAction
 from tuxemon.core.platform import mixer
@@ -57,8 +58,10 @@ class StartBattleAction(EventAction):
     ]
 
     def start(self):
+        player = self.game.player1
+
         # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(self.game.player1):
+        if not check_battle_legal(player):
             logger.debug("battle is not legal, won't start")
             return False
 
@@ -68,17 +71,25 @@ class StartBattleAction(EventAction):
 
         # Stop movement and keypress on the server.
         if self.game.isclient or self.game.ishost:
-            self.game.client.update_player(self.game.player1.facing, event_type="CLIENT_START_BATTLE")
+            self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
         npc = world.get_entity(self.parameters.npc_slug)
         npc.load_party()
 
+        # Lookup the environment
+        env_db = db.JSONDatabase()
+        env_db.load("environment")
+        env_slug = "grass"
+        if 'environment' in player.game_variables:
+            env_slug = player.game_variables['environment']
+        env = env_db.lookup(env_slug, table="environment")
+
         # Add our players and setup combat
         logger.debug("Starting battle!")
-        self.game.push_state("CombatState", players=(self.game.player1, npc), combat_type="trainer")
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", graphics=env['battle_graphics'])
 
         # Start some music!
-        filename = "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+        filename = env['battle_music']
         mixer.music.load(tools.transform_resource_filename('music', filename))
         mixer.music.play(-1)
         if self.game.current_music["song"]:

@@ -34,12 +34,12 @@ import time
 
 import pygame as pg
 
-import tuxemon.core.components.event.eventengine
+import tuxemon.core.event.eventengine
 from tuxemon.core import prepare
 from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
-from .components import cli, networking, rumble
-from .platform import android
-from .state import StateManager
+from tuxemon.core import cli, networking, rumble
+from tuxemon.core.platform import android
+from tuxemon.core.state import StateManager
 
 logger = logging.getLogger(__name__)
 
@@ -98,7 +98,7 @@ class Control(StateManager):
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
-        self.event_engine = tuxemon.core.components.event.eventengine.EventEngine(self)
+        self.event_engine = tuxemon.core.event.eventengine.EventEngine(self)
         self.event_conditions = {}
         self.event_actions = {}
         self.event_persist = {}
@@ -129,7 +129,7 @@ class Control(StateManager):
 
         Only one human player is supported ATM
 
-        :type player: core.components.player.Player
+        :type player: core.player.Player
         :return:
         """
         # TODO: moar players
@@ -362,9 +362,6 @@ class Control(StateManager):
         # draw from bottom up for proper layering
         for state in reversed(to_draw):
             state.draw(surface)
-
-        # if self.config.controller_overlay:
-        #     self.controller.draw(surface)
 
         if self.config.collision_map:
             self.draw_event_debug()

@@ -9,9 +9,9 @@ from functools import partial
 import pygame
 
 from tuxemon.core import prepare
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu.menu import Menu
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import Menu
 from tuxemon.core.tools import open_dialog
 
 logger = logging.getLogger(__name__)

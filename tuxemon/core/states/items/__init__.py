@@ -4,12 +4,12 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core import tools
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu.menu import Menu
-from tuxemon.core.components.menu.quantity import QuantityMenu
-from tuxemon.core.components.sprite import Sprite
-from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.menu.quantity import QuantityMenu
+from tuxemon.core.sprite import Sprite
+from tuxemon.core.ui.text import TextArea
 
 # The import is required for PushState to work.
 # But linters may say the import is unused.

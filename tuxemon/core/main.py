@@ -34,8 +34,8 @@ from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import prepare
-from tuxemon.core.components import log
-from tuxemon.core.components.player import Player
+from tuxemon.core import log
+from tuxemon.core.player import Player
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +51,7 @@ def main(load_slot=None):
     log.configure()
 
     import pygame
-    from .control import Control
+    from tuxemon.core.control import Control
 
     prepare.init()
     control = Control(prepare.ORIGINAL_CAPTION)
@@ -114,7 +114,7 @@ def headless():
     :returns: None
 
     """
-    from .control import HeadlessControl
+    from tuxemon.core.control import HeadlessControl
 
     control = HeadlessControl()
     control.auto_state_discovery()

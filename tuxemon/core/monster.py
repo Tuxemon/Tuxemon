@@ -438,15 +438,14 @@ class Monster(object):
         :rtype: Pygame surface
         :returns: The surface of the monster sprite
         """
-        load_sprite = ""
         if sprite == "front":
-            load_sprite = self.front_battle_sprite
+            return tools.load_sprite(self.front_battle_sprite, **kwargs)
         elif sprite == "back":
-            load_sprite = self.back_battle_sprite
+            return tools.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            load_sprite = self.menu_sprite
-
-        return tools.load_sprite(load_sprite, **kwargs)
+            return tools.load_sprite(self.menu_sprite, **kwargs)
+        else:
+            raise ValueError("Cannot find sprite for: {}".format(sprite))
 
     def get_sprite_path(self, sprite):
         '''

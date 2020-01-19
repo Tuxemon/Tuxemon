@@ -147,7 +147,8 @@ class CombatAnimations(Menu):
 
         # load monster and set in final position
         monster_sprite = monster.get_sprite("back" if npc.isplayer else "front",
-                                            midbottom = feet)
+                                            midbottom=feet)
+        self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
         # position monster_sprite off screen and set animation to move it back to final spot
@@ -467,8 +468,9 @@ class CombatAnimations(Menu):
                                        bottom=opp_home.bottom + y_mod, right=0)
 
         monster1 = right_monster.get_sprite("front",
-                                            bottom = back_island.rect.bottom - scale(12),
-                                            centerx = back_island.rect.centerx)
+                                            bottom=back_island.rect.bottom - scale(12),
+                                            centerx=back_island.rect.centerx)
+        self.sprites.add(monster1)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
         self.monsters_in_play[opponent].append(right_monster)
         self._monster_sprite_map[right_monster] = monster1

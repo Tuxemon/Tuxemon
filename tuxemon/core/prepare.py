@@ -41,7 +41,7 @@ import os.path
 import re
 
 from tuxemon.constants import paths
-from .components import config
+from tuxemon.core import config
 
 logger = logging.getLogger(__name__)
 
@@ -74,9 +74,6 @@ CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
-
-# Reference data dir
-DATADIR = CONFIG.data
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
@@ -163,7 +160,7 @@ def pygame_init():
             joystick.init()
             JOYSTICKS.append(joystick)
 
-    from .platform import android
+    from tuxemon.core.platform import android
     # Map the appropriate android keys if we're on android
     if android:
         android.init()
@@ -180,3 +177,15 @@ def init():
     # Initialize PyGame and our screen surface.
     if PLATFORM == 'pygame':
         pygame_init()
+
+
+# Fetches a resource file
+def fetch(*args):
+    relative_path = os.path.join(*args)
+
+    for mod_name in CONFIG.mods:
+        path = os.path.join(paths.mods_folder, mod_name, relative_path)
+        if os.path.exists(path):
+            return path
+
+    raise FileNotFoundError(relative_path)

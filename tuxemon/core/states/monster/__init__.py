@@ -7,10 +7,10 @@ import pygame
 
 from tuxemon.core import prepare
 from tuxemon.core import tools
-from tuxemon.core.components.menu.interface import HpBar, ExpBar, MenuItem
-from tuxemon.core.components.menu.menu import Menu
-from tuxemon.core.components.ui.draw import GraphicBox
-from tuxemon.core.components.ui.text import draw_text, TextArea
+from tuxemon.core.menu.interface import HpBar, ExpBar, MenuItem
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.ui.draw import GraphicBox
+from tuxemon.core.ui.text import draw_text, TextArea
 
 
 class MonsterMenuState(Menu):

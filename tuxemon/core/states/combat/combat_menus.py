@@ -10,13 +10,13 @@ from functools import partial
 import pygame
 
 from tuxemon.core import tools
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu.menu import Menu
-from tuxemon.core.components.menu.menu import PopUpMenu
-from tuxemon.core.components.sprite import MenuSpriteGroup, SpriteGroup
-from tuxemon.core.components.technique import Technique
-from tuxemon.core.components.ui.draw import GraphicBox
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.core.technique import Technique
+from tuxemon.core.ui.draw import GraphicBox
 
 logger = logging.getLogger(__name__)
 

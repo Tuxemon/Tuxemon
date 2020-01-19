@@ -4,6 +4,10 @@ from setuptools import setup
 import fnmatch
 import os
 
+#build the translations
+from tuxemon.core.components.locale import T
+
+
 # Find all the python modules
 modules = []
 matches = []

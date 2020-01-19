@@ -64,7 +64,7 @@ class EvolveMonstersAction(EventAction):
                 for new_flair in new_monster.flairs:
                     for old_flair in old_flairs:
                         if new_flair['name'] == old_flair['name']:
-                            new_monster.flairs[new_flair] = old_flair
+                            new_monster.flairs[new_flair]['value'] = old_flair['value']
 
                 # Removing the old monster caused all monsters in front to move a slot back
                 # Bring our new monster from the end of the list to its previous position

@@ -54,6 +54,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'slug',
     'status',
     'total_experience',
+    'flairs',
 )
 
 SHAPES = {
@@ -206,6 +207,7 @@ class Monster(object):
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
         self.evolutions = []    # A list of possible evolution objects.
+        self.flairs = []        # A list of flairs, one is picked randomly.
         self.ai = None
 
         # The multiplier for experience
@@ -242,6 +244,7 @@ class Monster(object):
 
         self.set_state(save_data)
         self.set_stats()
+        self.set_flairs()
 
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
@@ -446,6 +449,24 @@ class Monster(object):
             return tools.load_sprite(self.menu_sprite, **kwargs)
         else:
             raise ValueError("Cannot find sprite for: {}".format(sprite))
+
+    def set_flairs(self):
+        """Sets the flairs of this monster if they were not already configured
+
+        :rtype: None
+        :returns: None
+        """
+        if len(self.flairs) > 0 or self.slug == "":
+            return
+
+        results = monsters.lookup(self.slug)
+        flairs = results.get("flairs")
+        if flairs:
+            for flair in flairs:
+                self.flairs.append({
+                    "name": flair['name'],
+                    "value": random.choice(flair['values'])
+                })
 
     def get_sprite_path(self, sprite):
         '''

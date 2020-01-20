@@ -36,11 +36,11 @@ class SetMonsterFlairAction(EventAction):
     name = "set_monster_flair"
     valid_parameters = [
         (int, "slot"),
+        (str, "category"),
         (str, "name"),
-        (str, "value"),
     ]
 
     def start(self):
         monster = game.player1.monsters[self.parameters.slot]
-        if self.parameters.name in monster.flairs:
-            monster.flairs[self.parameters.name] = Flair(self.parameters.name, self.parameters.value)
+        if self.parameters.category in monster.flairs:
+            monster.flairs[self.parameters.category] = Flair(self.parameters.category, self.parameters.name)

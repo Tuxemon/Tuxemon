@@ -47,12 +47,12 @@ class MonsterFlairCondition(EventCondition):
 
         """
         slot = condition.parameters[0]
-        name = condition.parameters[1]
-        value = condition.parameters[2]
+        category = condition.parameters[1]
+        name = condition.parameters[2]
 
         monster = game.player1.monsters[slot]
         try:
-            return monster.flairs[name].name == value
+            return monster.flairs[category].name == name
         except KeyError:
             return False
         return False

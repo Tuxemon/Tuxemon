@@ -481,7 +481,7 @@ class Monster(object):
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
-                flair = Flair(flair['name'], random.choice(flair['values']))
+                flair = Flair(flair['category'], random.choice(flair['names']))
                 self.flairs[flair.category] = flair
 
     def get_sprite_path(self, sprite):

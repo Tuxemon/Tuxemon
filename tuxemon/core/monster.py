@@ -454,7 +454,7 @@ class Monster(object):
 
         # Apply flairs to the monster sprite
         for flair in self.flairs:
-            flair_path = self.get_sprite_path("gfx/sprites/battle/" + self.slug + "-" + sprite + "-" + flair['value'])
+            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair['value']))
             if flair_path != MISSING_IMAGE:
                 flair_sprite = tools.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
@@ -496,6 +496,7 @@ class Monster(object):
                 if full_path:
                     return full_path
         except IOError:
+            logger.debug("Could not find monster sprite {}".format(sprite))
             return MISSING_IMAGE
 
     def load_sprites(self):

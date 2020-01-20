@@ -26,6 +26,7 @@ from __future__ import unicode_literals
 
 import logging
 
+from tuxemon.core import monster
 from tuxemon.core.event.eventcondition import EventCondition
 
 logger = logging.getLogger(__name__)
@@ -65,7 +66,7 @@ class PartyLevelCondition(EventCondition):
         if len(game.player1.monsters) == 0:
             return False
 
-        level_lowest = 100
+        level_lowest = monster.MAX_LEVEL
         level_highest = 0
         level_average = 0
         for monster in game.player1.monsters:

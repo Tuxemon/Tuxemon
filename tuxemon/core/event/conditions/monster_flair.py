@@ -52,6 +52,6 @@ class MonsterFlairCondition(EventCondition):
 
         monster = game.player1.monsters[slot]
         for flair in monster.flairs:
-            if flair['name'] == name:
-                return flair['value'] == value
+            if flair.category == name:
+                return flair.name == value
         return False

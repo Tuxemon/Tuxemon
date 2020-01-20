@@ -63,8 +63,8 @@ class EvolveMonstersAction(EventAction):
                 # If the new monster has a flair matching that of the old monster, copy it
                 for new_flair in new_monster.flairs:
                     for old_flair in old_flairs:
-                        if new_flair['name'] == old_flair['name']:
-                            new_monster.flairs[new_flair]['value'] = old_flair['value']
+                        if new_flair.category == old_flair.category:
+                            new_monster.flairs[new_flair].name = old_flair.name
 
                 # Removing the old monster caused all monsters in front to move a slot back
                 # Bring our new monster from the end of the list to its previous position

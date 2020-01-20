@@ -175,6 +175,13 @@ SHAPES = {
 MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
+# class definition for tuxemon flairs:
+class Flair(object):
+   def __init__(self, category, name):
+      self.category = category
+      self.name = name
+
+
 # class definition for first active tuxemon to use in combat:
 class Monster(object):
     """A class for a Tuxemon monster object. This class acts as a skeleton for
@@ -209,7 +216,7 @@ class Monster(object):
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
         self.evolutions = []    # A list of possible evolution objects.
-        self.flairs = []        # A list of flairs, one is picked randomly.
+        self.flairs = {}        # A dictionary of flairs, one is picked randomly.
         self.ai = None
 
         # The multiplier for experience
@@ -454,7 +461,8 @@ class Monster(object):
 
         # Apply flairs to the monster sprite
         for flair in self.flairs:
-            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair['value']))
+            print(flair.name)
+            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
             if flair_path != MISSING_IMAGE:
                 flair_sprite = tools.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
@@ -474,10 +482,8 @@ class Monster(object):
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
-                self.flairs.append({
-                    "name": flair['name'],
-                    "value": random.choice(flair['values'])
-                })
+                flair_info = Flair(flair['name'], random.choice(flair['values']))
+                self.flairs[flair_info.category] = flair_info
 
     def get_sprite_path(self, sprite):
         '''

@@ -43,5 +43,5 @@ class MonsterFlairAction(EventAction):
     def start(self):
         monster = game.player1.monsters[self.parameters.slot]
         for flair in monster.flairs:
-            if flair['name'] == self.parameters.name:
-                monster.flairs[flair]['value'] = self.parameters.value
+            if flair.category == self.parameters.name:
+                monster.flairs[flair].name = self.parameters.value

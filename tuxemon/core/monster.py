@@ -460,8 +460,7 @@ class Monster(object):
             raise ValueError("Cannot find sprite for: {}".format(sprite))
 
         # Apply flairs to the monster sprite
-        for flair in self.flairs:
-            print(flair.name)
+        for flair in self.flairs.values():
             flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
             if flair_path != MISSING_IMAGE:
                 flair_sprite = tools.load_sprite(flair_path, **kwargs)
@@ -482,8 +481,8 @@ class Monster(object):
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
-                flair_info = Flair(flair['name'], random.choice(flair['values']))
-                self.flairs[flair_info.category] = flair_info
+                flair = Flair(flair['name'], random.choice(flair['values']))
+                self.flairs[flair.category] = flair
 
     def get_sprite_path(self, sprite):
         '''

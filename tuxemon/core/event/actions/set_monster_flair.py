@@ -28,12 +28,12 @@ from tuxemon.core import monster
 from tuxemon.core.event.eventaction import EventAction
 
 
-class MonsterFlairAction(EventAction):
+class SetMonsterFlairAction(EventAction):
     """Sets a monster's flair to the given value
 
     Valid Parameters: slot, name, value
     """
-    name = "monster_flair"
+    name = "set_monster_flair"
     valid_parameters = [
         (int, "slot"),
         (str, "name"),
@@ -42,6 +42,5 @@ class MonsterFlairAction(EventAction):
 
     def start(self):
         monster = game.player1.monsters[self.parameters.slot]
-        for flair in monster.flairs:
-            if flair.category == self.parameters.name:
-                monster.flairs[flair].name = self.parameters.value
+        if self.parameters.name in monster.flairs:
+            monster.flairs[self.parameters.name] = Flair(self.parameters.name, self.parameters.value)

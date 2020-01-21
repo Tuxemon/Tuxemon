@@ -58,7 +58,8 @@ class TranslatedDialogAction(EventAction):
     name = "translated_dialog"
 
     valid_parameters = [
-        (str, "key")
+        (str, "key"),
+        (str, "avatar")
     ]
 
     def start(self):
@@ -67,13 +68,13 @@ class TranslatedDialogAction(EventAction):
                 self.game,
                 self.parameters.key,
                 self.raw_parameters[1:],
-            )
+            ), self.parameters.avatar
         )
 
     def update(self):
         if self.game.get_state_name("DialogState") is None:
             self.stop()
 
-    def open_dialog(self, pages):
+    def open_dialog(self, pages, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.game, pages)
+        open_dialog(self.game, pages, avatar)

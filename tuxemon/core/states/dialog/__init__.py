@@ -3,6 +3,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core import tools
 from tuxemon.core.menu.menu import PopUpMenu
 from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
@@ -21,6 +22,7 @@ class DialogState(PopUpMenu):
     def startup(self, **kwargs):
         super(DialogState, self).startup(**kwargs)
         self.text_queue = kwargs.get("text", list())
+        self.avatar = kwargs.get("avatar", None)
         self.menu = kwargs.get("menu", None)
         self.text_area = TextArea(self.font, self.font_color)
         self.text_area.rect = self.calc_internal_rect()
@@ -28,6 +30,7 @@ class DialogState(PopUpMenu):
 
     def on_open(self):
         self.next_text()
+        self.draw_avatar()
 
     def process_event(self, event):
         """ Handles player input events. This function is only called when the
@@ -60,3 +63,27 @@ class DialogState(PopUpMenu):
             return text
         except IndexError:
             return None
+
+    def draw_avatar(self):
+        if not self.avatar:
+            return
+
+        # If the prefix is "monster" the second parameter refers to a monster
+        # If this parameter is a number, we're referring to a monster slot in the party
+        # If this parameter is a string, we're referring to a monster name
+        # If there's no prefix, the parameter represents the path to a sprite file
+        params = self.avatar.split(" ")
+        if params[0] == "monster":
+            if params[1].isdigit():
+                player = self.game.player1
+                slot = int(params[1])
+                avatar_sprite = player.monsters[slot].menu_sprite
+            else:
+                avatar_sprite = "gfx/sprites/battle/{}-menu01.png".format(params[1])
+        else:
+            avatar_sprite = self.avatar
+
+        avatar_rect = self.calc_final_rect()
+        avatar_sprite = tools.load_sprite(avatar_sprite)
+        avatar_sprite.rect.bottomleft = avatar_rect.left, avatar_rect.top
+        self.sprites.add(avatar_sprite)

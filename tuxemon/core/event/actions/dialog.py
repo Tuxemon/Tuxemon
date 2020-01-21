@@ -55,17 +55,18 @@ class DialogAction(EventAction):
     """
     name = "dialog"
     valid_parameters = [
-        (str, "text")
+        (str, "text"),
+        (str, "avatar")
     ]
 
     def start(self):
         text = replace_text(self.game, self.parameters.text)
-        self.open_dialog(text)
+        self.open_dialog(text, self.parameters.avatar)
 
     def update(self):
         if self.game.get_state_name("DialogState") is None:
             self.stop()
 
-    def open_dialog(self, initial_text):
+    def open_dialog(self, initial_text, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.game, [initial_text])
+        open_dialog(self.game, [initial_text], avatar)

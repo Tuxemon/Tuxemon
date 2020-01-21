@@ -41,11 +41,15 @@ class DialogContext(EventContext):
     def add_dialog(self, text):
         self._dialog_chain_queue.append(text)
 
+    def add_avatar(self, avatar):
+        self._avatar = avatar
+
     def add_menu(self, menu):
         self._menu = menu
 
     def execute(self, game):
         # Open a dialog window in the current scene.
-        open_dialog(game, self._dialog_chain_queue, self._menu)
+        open_dialog(game, self._dialog_chain_queue, self._avatar, self._menu)
         self._dialog_chain_queue = list()
+        self._avatar = None
         self._menu = None

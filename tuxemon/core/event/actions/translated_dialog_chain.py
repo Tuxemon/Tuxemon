@@ -56,7 +56,10 @@ class TranslatedDialogChainAction(EventAction):
 
     """
     name = "translated_dialog_chain"
-    valid_parameters = [(str, "key")]
+    valid_parameters = [
+        (str, "key"),
+        (str, "avatar")
+    ]
 
     def start(self):
         key = self.parameters.key
@@ -77,13 +80,13 @@ class TranslatedDialogChainAction(EventAction):
         if dialog:
             dialog.text_queue += pages
         else:
-            self.open_dialog(pages)
+            self.open_dialog(pages, self.parameters.avatar)
 
     def update(self):
         if self.parameters.key == "${{end}}":
             if self.game.get_state_name("DialogState") is None:
                 self.stop()
 
-    def open_dialog(self, pages):
+    def open_dialog(self, pages, avatar):
         logger.info("Opening chain dialog window")
-        open_dialog(self.game, pages)
+        open_dialog(self.game, pages, avatar)

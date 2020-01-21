@@ -385,7 +385,7 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text, menu=None):
+def open_dialog(game, text, avatar=None, menu=None):
     """ Open a dialog with the standard window size
 
     :param game:
@@ -394,7 +394,7 @@ def open_dialog(game, text, menu=None):
     :rtype: core.states.dialog.DialogState
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    return game.push_state("DialogState", text=text, rect=rect, menu=menu)
+    return game.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
 
 
 def nearest(l):

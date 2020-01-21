@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core import tools
+from tuxemon.core import tools, monster
 from tuxemon.core.menu.menu import PopUpMenu
 from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
@@ -79,7 +79,10 @@ class DialogState(PopUpMenu):
                 slot = int(params[1])
                 avatar_sprite = player.monsters[slot].get_sprite("menu")
             else:
-                avatar_sprite = tools.load_sprite("gfx/sprites/battle/{}-menu01.png".format(params[1]))
+                avatar_monster = monster.Monster()
+                avatar_monster.load_from_db(params[1])
+                avatar_monster.flairs = {} # Don't use random flair graphics
+                avatar_sprite = avatar_monster.get_sprite("menu")
         else:
             avatar_sprite = tools.load_sprite(self.avatar)
 

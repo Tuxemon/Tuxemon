@@ -77,13 +77,12 @@ class DialogState(PopUpMenu):
             if params[1].isdigit():
                 player = self.game.player1
                 slot = int(params[1])
-                avatar_sprite = player.monsters[slot].menu_sprite
+                avatar_sprite = player.monsters[slot].get_sprite("menu")
             else:
-                avatar_sprite = "gfx/sprites/battle/{}-menu01.png".format(params[1])
+                avatar_sprite = tools.load_sprite("gfx/sprites/battle/{}-menu01.png".format(params[1]))
         else:
-            avatar_sprite = self.avatar
+            avatar_sprite = tools.load_sprite(self.avatar)
 
         avatar_rect = self.calc_final_rect()
-        avatar_sprite = tools.load_sprite(avatar_sprite)
         avatar_sprite.rect.bottomleft = avatar_rect.left, avatar_rect.top
         self.sprites.add(avatar_sprite)

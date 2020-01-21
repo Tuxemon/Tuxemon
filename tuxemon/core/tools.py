@@ -39,6 +39,7 @@ import re
 import pygame
 
 import tuxemon.core.sprite
+import tuxemon.core.monster
 from tuxemon.core import prepare
 from tuxemon.core import pyganim
 from tuxemon.core.platform import mixer
@@ -385,6 +386,27 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
+def get_dialog_avatar(game, avatar):
+    """Gets the avatar sprite of a monster or NPC.
+
+    If avatar is a number, we're referring to a monster slot in the player's party
+    If avatar is a string, we're referring to a monster by name
+    TODO: If the monster name isn't found, we're referring to an NPC on the map
+
+    :rtype: Pygame surface
+    :returns: The surface of the monster or NPC avatar sprite
+    """
+    if avatar.isdigit():
+        player = game.player1
+        slot = int(avatar)
+        return player.monsters[slot].get_sprite("menu")
+    else:
+        avatar_monster = tuxemon.core.monster.Monster()
+        avatar_monster.load_from_db(avatar)
+        avatar_monster.flairs = {} # Don't use random flair graphics
+        return avatar_monster.get_sprite("menu")
+
+
 def open_dialog(game, text, avatar=None, menu=None):
     """ Open a dialog with the standard window size
 
@@ -394,6 +416,7 @@ def open_dialog(game, text, avatar=None, menu=None):
     :rtype: core.states.dialog.DialogState
     """
     rect = calc_dialog_rect(game.screen.get_rect())
+    avatar = get_dialog_avatar(game, avatar)
     return game.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
 
 

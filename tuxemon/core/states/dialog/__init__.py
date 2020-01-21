@@ -3,7 +3,6 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core import tools, monster
 from tuxemon.core.menu.menu import PopUpMenu
 from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
@@ -28,9 +27,13 @@ class DialogState(PopUpMenu):
         self.text_area.rect = self.calc_internal_rect()
         self.sprites.add(self.text_area)
 
+        if self.avatar:
+            avatar_rect = self.calc_final_rect()
+            self.avatar.rect.bottomleft = avatar_rect.left, avatar_rect.top
+            self.sprites.add(self.avatar)
+
     def on_open(self):
         self.next_text()
-        self.draw_avatar()
 
     def process_event(self, event):
         """ Handles player input events. This function is only called when the
@@ -63,29 +66,3 @@ class DialogState(PopUpMenu):
             return text
         except IndexError:
             return None
-
-    def draw_avatar(self):
-        if not self.avatar:
-            return
-
-        # If the prefix is "monster" the second parameter refers to a monster
-        # If this parameter is a number, we're referring to a monster slot in the party
-        # If this parameter is a string, we're referring to a monster name
-        # If there's no prefix, the parameter represents the path to a sprite file
-        params = self.avatar.split(" ")
-        if params[0] == "monster":
-            if params[1].isdigit():
-                player = self.game.player1
-                slot = int(params[1])
-                avatar_sprite = player.monsters[slot].get_sprite("menu")
-            else:
-                avatar_monster = monster.Monster()
-                avatar_monster.load_from_db(params[1])
-                avatar_monster.flairs = {} # Don't use random flair graphics
-                avatar_sprite = avatar_monster.get_sprite("menu")
-        else:
-            avatar_sprite = tools.load_sprite(self.avatar)
-
-        avatar_rect = self.calc_final_rect()
-        avatar_sprite.rect.bottomleft = avatar_rect.left, avatar_rect.top
-        self.sprites.add(avatar_sprite)

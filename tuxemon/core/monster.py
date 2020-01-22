@@ -39,8 +39,6 @@ from tuxemon.core import tools
 from tuxemon.core import ai, db, fusion
 from tuxemon.core.locale import T
 from tuxemon.core.technique import Technique
-from tuxemon.core.sprite import Sprite
-from tuxemon.core.pyganim import PygAnimation
 
 logger = logging.getLogger(__name__)
 
@@ -470,8 +468,8 @@ class Monster(object):
         for flair in self.flairs.values():
             flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
             if flair_path != MISSING_IMAGE:
-                flair_sprite = tools.load_and_scale(flair_path)
-                surface.image.blit(flair_sprite, (0, 0))
+                flair_sprite = tools.load_sprite(flair_path, **kwargs)
+                surface.image.blit(flair_sprite.image, (0, 0))
 
         return surface
 

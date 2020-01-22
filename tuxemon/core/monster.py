@@ -468,11 +468,13 @@ class Monster(object):
                 flair_sprite = tools.load_and_scale(flair_path)
                 surface.blit(flair_sprite, (0, 0))
 
-        images = [(surface, .1)]
-        tech = PygAnimation(images, False)
+        images = [(surface, 0.1)]
+        anim = PygAnimation(images, True)
+        anim.play()
         sprite = Sprite()
-        sprite.image = tech
-        sprite.rect = surface.get_rect(**kwargs)
+        sprite.image = anim
+        sprite.rect = anim.get_rect(**kwargs)
+        sprite.image.blit(anim, (0, 0))
 
         return sprite
 

@@ -380,14 +380,22 @@ def get_avatar(game, avatar):
     :returns: The surface of the monster or NPC avatar sprite
     """
     if avatar.isdigit():
-        player = game.player1
-        slot = int(avatar)
-        return player.monsters[slot].get_sprite("menu")
+        try:
+            player = game.player1
+            slot = int(avatar)
+            return player.monsters[slot].get_sprite("menu")
+        except IndexError:
+            logger.error("invalid avatar monster slot")
+            return None
     else:
-        avatar_monster = tuxemon.core.monster.Monster()
-        avatar_monster.load_from_db(avatar)
-        avatar_monster.flairs = {} # Don't use random flair graphics
-        return avatar_monster.get_sprite("menu")
+        try:
+            avatar_monster = tuxemon.core.monster.Monster()
+            avatar_monster.load_from_db(avatar)
+            avatar_monster.flairs = {} # Don't use random flair graphics
+            return avatar_monster.get_sprite("menu")
+        except KeyError:
+            logger.error("invalid avatar monster name")
+            return None
 
 
 def calc_dialog_rect(screen_rect):

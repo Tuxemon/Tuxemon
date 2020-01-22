@@ -166,6 +166,31 @@ def load_sprite(filename, **rect_kwargs):
     return sprite
 
 
+def load_animated_sprite(filenames, delay, **rect_kwargs):
+    """ Load a set of images and return an animated pygame sprite
+
+    Image name will be transformed and converted
+    Rect attribute will be set
+
+    Any keyword arguments will be passed to the get_rect method
+    of the image for positioning the rect.
+
+    :param filename: Filename to load
+    :rtype: core.sprite.Sprite
+    """
+    anim = []
+    for filename in filenames:
+        image = load_and_scale(filename)
+        anim.append((image, delay))
+
+    tech = pyganim.PygAnimation(anim, True)
+    tech.play()
+    sprite = tuxemon.core.sprite.Sprite()
+    sprite.image = tech
+    sprite.rect = sprite.image.get_rect(**rect_kwargs)
+    return sprite
+
+
 def new_scaled_rect(*args, **kwargs):
     """ Create a new rect and scale it
 
@@ -379,7 +404,7 @@ def get_avatar(game, avatar):
     :rtype: Pygame surface
     :returns: The surface of the monster or NPC avatar sprite
     """
-    if avatar.isdigit():
+    if avatar and avatar.isdigit():
         try:
             player = game.player1
             slot = int(avatar)

@@ -251,7 +251,8 @@ class Monster(object):
         self.sprites = {}
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
-        self.menu_sprite = ""
+        self.menu_sprite_1 = ""
+        self.menu_sprite_2 = ""
 
         self.set_state(save_data)
         self.set_stats()
@@ -305,7 +306,8 @@ class Monster(object):
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])
         self.back_battle_sprite = self.get_sprite_path(results['sprites']['battle2'])
-        self.menu_sprite = self.get_sprite_path(results['sprites']['menu1'])
+        self.menu_sprite_1 = self.get_sprite_path(results['sprites']['menu1'])
+        self.menu_sprite_2 = self.get_sprite_path(results['sprites']['menu2'])
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -453,11 +455,14 @@ class Monster(object):
         :returns: The surface of the monster sprite
         """
         if sprite == "front":
-            surface = tools.load_and_scale(self.front_battle_sprite)
+            surface = tools.load_sprite(self.front_battle_sprite, **kwargs)
         elif sprite == "back":
-            surface = tools.load_and_scale(self.back_battle_sprite)
+            surface = tools.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = tools.load_and_scale(self.menu_sprite)
+            surface = tools.load_animated_sprite([
+                self.menu_sprite_1, 
+                self.menu_sprite_2],
+                0.25, **kwargs)
         else:
             raise ValueError("Cannot find sprite for: {}".format(sprite))
 
@@ -466,17 +471,9 @@ class Monster(object):
             flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
             if flair_path != MISSING_IMAGE:
                 flair_sprite = tools.load_and_scale(flair_path)
-                surface.blit(flair_sprite, (0, 0))
+                surface.image.blit(flair_sprite, (0, 0))
 
-        images = [(surface, 0.1)]
-        anim = PygAnimation(images, True)
-        anim.play()
-        sprite = Sprite()
-        sprite.image = anim
-        sprite.rect = anim.get_rect(**kwargs)
-        sprite.image.blit(anim, (0, 0))
-
-        return sprite
+        return surface
 
     def set_flairs(self):
         """Sets the flairs of this monster if they were not already configured
@@ -531,7 +528,7 @@ class Monster(object):
 
         self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
-        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
+        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite_1)
         return False
 
     def get_state(self):

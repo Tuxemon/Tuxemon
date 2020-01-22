@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core.locale import process_translate_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog
+from tuxemon.core.tools import open_dialog, get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -63,12 +63,13 @@ class TranslatedDialogAction(EventAction):
     ]
 
     def start(self):
+        avatar = get_avatar(self.game, self.parameters.avatar)
         self.open_dialog(
             process_translate_text(
                 self.game,
                 self.parameters.key,
                 self.raw_parameters[1:],
-            ), self.parameters.avatar
+            ), avatar
         )
 
     def update(self):

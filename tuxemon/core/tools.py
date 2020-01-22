@@ -369,24 +369,7 @@ def load_sound(filename):
         return DummySound()
 
 
-def calc_dialog_rect(screen_rect):
-    """ Return a rect that is the area for a dialog box on the screen
-
-    :param screen_rect:
-    :return:
-    """
-    rect = screen_rect.copy()
-    if prepare.CONFIG.large_gui:
-        rect.height *= .4
-        rect.bottomleft = screen_rect.bottomleft
-    else:
-        rect.height *= .25
-        rect.width *= .8
-        rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
-    return rect
-
-
-def get_dialog_avatar(game, avatar):
+def get_avatar(game, avatar):
     """Gets the avatar sprite of a monster or NPC.
 
     If avatar is a number, we're referring to a monster slot in the player's party
@@ -407,6 +390,23 @@ def get_dialog_avatar(game, avatar):
         return avatar_monster.get_sprite("menu")
 
 
+def calc_dialog_rect(screen_rect):
+    """ Return a rect that is the area for a dialog box on the screen
+
+    :param screen_rect:
+    :return:
+    """
+    rect = screen_rect.copy()
+    if prepare.CONFIG.large_gui:
+        rect.height *= .4
+        rect.bottomleft = screen_rect.bottomleft
+    else:
+        rect.height *= .25
+        rect.width *= .8
+        rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
+    return rect
+
+
 def open_dialog(game, text, avatar=None, menu=None):
     """ Open a dialog with the standard window size
 
@@ -416,7 +416,6 @@ def open_dialog(game, text, avatar=None, menu=None):
     :rtype: core.states.dialog.DialogState
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    avatar = get_dialog_avatar(game, avatar)
     return game.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
 
 

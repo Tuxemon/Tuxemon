@@ -410,7 +410,7 @@ def get_avatar(game, avatar):
             slot = int(avatar)
             return player.monsters[slot].get_sprite("menu")
         except IndexError:
-            logger.error("invalid avatar monster slot")
+            logger.debug("invalid avatar monster slot")
             return None
     else:
         try:
@@ -419,7 +419,7 @@ def get_avatar(game, avatar):
             avatar_monster.flairs = {} # Don't use random flair graphics
             return avatar_monster.get_sprite("menu")
         except KeyError:
-            logger.error("invalid avatar monster name")
+            logger.debug("invalid avatar monster name")
             return None
 
 

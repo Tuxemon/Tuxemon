@@ -191,7 +191,7 @@ class Map(object):
         self.tile_size = (0, 0)
 
         # set the default layer to draw character sprites
-        self.pc_layer = 2
+        self.sprite_layer = 2
 
         # Collision tiles in tmx object format
         self.collisions = []
@@ -241,15 +241,10 @@ class Map(object):
         else:
             self.data = load_pygame(filename, pixelalpha=True)
 
-        # Get the properties of the map
-        if type(self.data.properties) == dict:
-            # Get the edge type of the map
-            if "edges" in self.data.properties:
-                self.edges = self.data.properties["edges"]
-            # Get the layer to draw character sprites
-            if "pc_layer" in self.data.properties:
-                self.pc_layer = int(self.data.properties["pc_layer"])
-                logger.log(3, "Detected custom 'pc_layer' for map: %i", self.pc_layer)
+        # Get the edge type of the map
+        self.edges = self.data.properties.get("edges", "")
+        # Get the layer to draw character sprites
+        self.sprite_layer = int(self.data.properties.get("sprite_layer", 2))
 
         # make a scrolling renderer
         self.renderer = self.initialize_renderer()

@@ -249,6 +249,9 @@ class NPC(Entity):
 
         Used to render the player
 
+        TODO: Move the 'layer' to the NPC class so characters 
+        can define their own drawing layer.
+
         :param layer: The layer to draw the sprite on.
         :type layer: Int
 

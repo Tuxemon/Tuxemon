@@ -190,6 +190,9 @@ class Map(object):
         # in a collision region.
         self.tile_size = (0, 0)
 
+        # set the default layer to draw character sprites
+        self.pc_layer = 2
+
         # Collision tiles in tmx object format
         self.collisions = []
 
@@ -243,6 +246,10 @@ class Map(object):
             # Get the edge type of the map
             if "edges" in self.data.properties:
                 self.edges = self.data.properties["edges"]
+            # Get the layer to draw character sprites
+            if "pc_layer" in self.data.properties:
+                self.pc_layer = int(self.data.properties["pc_layer"])
+                logger.log(3, "Detected custom 'pc_layer' for map: %i", self.pc_layer)
 
         # make a scrolling renderer
         self.renderer = self.initialize_renderer()

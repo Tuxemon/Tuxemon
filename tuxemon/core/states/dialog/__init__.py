@@ -3,8 +3,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.components.menu.menu import PopUpMenu
-from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
 
 

@@ -34,15 +34,13 @@ from __future__ import unicode_literals
 
 import itertools
 import logging
-import os.path
 
 import pygame
 from six.moves import map as imap
 
-from tuxemon.constants import paths
 from tuxemon.core import prepare, state
-from tuxemon.core.components import networking
-from tuxemon.core.components.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core import networking
+from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
 from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.tools import nearest
 
@@ -157,6 +155,17 @@ class WorldState(state.State):
 
         self.map_animations = dict()
 
+    def resume(self):
+        """ Called after returning focus to this state
+        """
+        self.unlock_controls()
+
+    def pause(self):
+        """ Called before another state gets focus
+        """
+        self.lock_controls()
+        self.stop_player()
+
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
 
@@ -217,7 +226,7 @@ class WorldState(state.State):
             self.lock_controls()
 
             # check if map has changed, and if so, change it
-            map_name = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps", self.delayed_mapname)
+            map_name = prepare.fetch("maps", self.delayed_mapname)
 
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
@@ -337,11 +346,9 @@ class WorldState(state.State):
 
         if event.button == intentions.RUN:
             if event.held:
-                self.player1.running = True
-                self.player1.walking = False
+                self.player1.moverate = self.game.config.player_runrate
             else:
-                self.player1.running = False
-                self.player1.walking = True
+                self.player1.moverate = self.game.config.player_walkrate
 
         # If we receive an arrow key press, set the facing and
         # moving direction to that direction
@@ -450,7 +457,7 @@ class WorldState(state.State):
     def add_entity(self, entity):
         """
 
-        :type entity: core.components.entity.Entity
+        :type entity: core.entity.Entity
         :return:
         """
         entity.world = self
@@ -688,11 +695,28 @@ class WorldState(state.State):
     def stop_player(self):
         """ Reset controls and stop player movement at once.  Do not lock controls
 
+        Movement is gracefully stopped.  If player was in a movement, then
+        complete it before stopping.
+
         :return:
         """
         self.wants_to_move_player = None
         self.game.release_controls()
         self.player1.cancel_movement()
+
+    def stop_and_reset_player(self):
+        """ Reset controls, stop player and abort movement.  Do not lock controls.
+
+        Movement is aborted here, so the player will not complete movement
+        to a tile.  It will be reset to the tile where movement started.
+
+        Use if you don't want to trigger another tile event.
+
+        :return:
+        """
+        self.wants_to_move_player = None
+        self.game.release_controls()
+        self.player1.abort_movement()
 
     def move_player(self, direction):
         """ Move player in a direction.  Changes facing.

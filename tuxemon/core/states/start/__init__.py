@@ -39,12 +39,11 @@ import logging
 import os.path
 from functools import partial
 
-from tuxemon.constants import paths
 from tuxemon.core import prepare
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu.menu import PopUpMenu
-from tuxemon.core.components.save import get_index_of_latest_save
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.save import get_index_of_latest_save
 from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)
@@ -64,6 +63,7 @@ class BackgroundState(State):
     def draw(self, surface):
         surface.fill((0, 0, 0, 0))
 
+
 class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
@@ -71,13 +71,13 @@ class StartState(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, *args, **kwargs):
+        # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         kwargs['selected_index'] = 0 if index is None else 1
         super(StartState, self).startup(*args, **kwargs)
 
-        def change_state(state, **kwargs):
-            kwargs['selected_index'] = index or 0
-            return partial(self.game.push_state, state, **kwargs)
+        def change_state(state, **change_state_kwargs):
+            return partial(self.game.push_state, state, **change_state_kwargs)
 
         def set_player_name(text):
             world = self.game.get_state_name("WorldState")
@@ -86,13 +86,13 @@ class StartState(PopUpMenu):
         def new_game():
             # load the starting map
             state = self.game.replace_state("WorldState")
-            map_name = os.path.join(paths.BASEDIR, prepare.DATADIR, "maps",
-                                    prepare.CONFIG.starting_map)
+            map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
             state.change_map(map_name)
             self.game.push_state(
                 state_name="InputMenu",
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
+                escape_key_exits=False,
             )
             self.game.push_state("FadeInTransition")
 

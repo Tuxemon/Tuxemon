@@ -26,7 +26,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-# core.components.states.pc
+# core.states.pc
 #
 """ This module contains the PCState state.
 """
@@ -38,9 +38,9 @@ from __future__ import unicode_literals
 import logging
 from functools import partial
 
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import MenuItem
-from tuxemon.core.components.menu.menu import PopUpMenu
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import PopUpMenu
 from tuxemon.core.tools import open_dialog
 
 logger = logging.getLogger(__name__)

@@ -36,16 +36,27 @@ To run an individual component (e.g. core/prepare.py):
 
 """
 from __future__ import absolute_import
+from __future__ import division
 from __future__ import print_function
+from __future__ import unicode_literals
+
 from argparse import ArgumentParser
 
-import tuxemon.core.main
-
-
 if __name__ == '__main__':
-    parser = ArgumentParser()
-    parser.add_argument('-l', dest='slot', metavar='1,2,3', type=int, nargs='?',
-                        default=None, help='The index of the save file to load')
-    args = parser.parse_args()
-    tuxemon.core.main.main(load_slot=args.slot)
+    from tuxemon.core import prepare, main
 
+    parser = ArgumentParser()
+    parser.add_argument('-m', '--mod', dest='mod', metavar='mymod', type=str, nargs='?',
+                        default=None, help='The mod directory used in the mods directory')
+    parser.add_argument('-l', '--load', dest='slot', metavar='1,2,3', type=int, nargs='?',
+                        default=None, help='The index of the save file to load')
+    parser.add_argument('-s', '--starting-map', dest='starting_map', metavar='map.tmx', type=str, nargs='?',
+                        default=None, help='The starting map')
+    args = parser.parse_args()
+
+    if args.mod:
+        prepare.CONFIG.mods.insert(0, args.mod)
+    if args.starting_map:
+        prepare.CONFIG.starting_map = args.starting_map
+
+    main.main(load_slot=args.slot)

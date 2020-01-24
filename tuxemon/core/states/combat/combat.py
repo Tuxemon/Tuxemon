@@ -41,12 +41,13 @@ from itertools import chain
 import pygame
 
 from tuxemon.core import state, tools
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.pyganim import PygAnimation
-from tuxemon.core.components.sprite import Sprite
-from tuxemon.core.components.technique import Technique
-from tuxemon.core.components.ui.draw import GraphicBox
-from tuxemon.core.components.ui.text import TextArea
+from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defeated
+from tuxemon.core.locale import T
+from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core.sprite import Sprite
+from tuxemon.core.technique import Technique
+from tuxemon.core.ui.draw import GraphicBox
+from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
 from .combat_animations import CombatAnimations
 
@@ -62,32 +63,6 @@ MULT_MAP = {
     0.5: "attack_resisted",
     0.25: "attack_weak",
 }
-
-def check_status(monster, status_name):
-    return any(t for t in monster.status if t.slug == status_name)
-
-
-def fainted(monster):
-    return check_status(monster, "status_faint") or monster.current_hp <= 0
-
-
-def get_awake_monsters(player):
-    """ Iterate all non-fainted monsters in party
-
-    :param player:
-    :return:
-    """
-    for monster in player.monsters:
-        if not fainted(monster):
-            yield monster
-
-
-def fainted_party(party):
-    return all(map(fainted, party))
-
-
-def defeated(player):
-    return fainted_party(player.monsters)
 
 
 class WaitForInputState(state.State):
@@ -152,6 +127,7 @@ class CombatState(CombatAnimations):
         super(CombatState, self).startup(**kwargs)
         self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
         self.players = list(self.players)
+        self.graphics = kwargs.get('graphics')
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
@@ -222,19 +198,6 @@ class CombatState(CombatAnimations):
                 if positions_available:
                     return
 
-            # DO NOT REMOVE THIS CODE
-            # enable it to test for draw matches
-            if 0:
-                t = Technique("technique_poison_sting")
-                for p, m in self.monsters_in_play.items():
-                    for m in m:
-                        m.current_hp = min(m.current_hp, 1)
-                        t.use(m, m)
-
-            # enable to test for defeat in matches
-            if 0:
-                [setattr(m, 'current_hp', 1) for m in self.players[0].monsters]
-
             return "decision phase"
 
         elif phase == "decision phase":
@@ -294,6 +257,15 @@ class CombatState(CombatAnimations):
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._round > 1)
 
+            # record the useful properties of the last monster we fought
+            monster_record = self.monsters_in_play[self.players[1]][0]
+            if monster_record in self.active_monsters:
+                self.players[0].game_variables['battle_last_monster_name'] = monster_record.name
+                self.players[0].game_variables['battle_last_monster_level'] = monster_record.level
+                self.players[0].game_variables['battle_last_monster_type'] = monster_record.slug
+                self.players[0].game_variables['battle_last_monster_category'] = monster_record.category
+                self.players[0].game_variables['battle_last_monster_shape'] = monster_record.shape
+
         if phase == "decision phase":
             self.reset_status_icons()
             if not self._decision_queue:
@@ -320,6 +292,7 @@ class CombatState(CombatAnimations):
             pass
 
         elif phase == "ran away":
+            self.players[0].game_variables['battle_last_result'] = 'ran'
             self.alert(T.translate('combat_player_run'))
 
             # after 3 seconds, push a state that blocks until enter is pressed
@@ -329,6 +302,8 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
+            self.players[0].game_variables['battle_last_result'] = 'draw'
+
             # it is a draw match; both players were defeated in same round
             self.alert(T.translate('combat_draw'))
 
@@ -341,8 +316,10 @@ class CombatState(CombatAnimations):
             # TODO: proper match check, etc
             # This assumes that player[0] is the human playing in single player
             if self.remaining_players[0] == self.players[0]:
+                self.players[0].game_variables['battle_last_result'] = 'won'
                 self.alert(T.translate('combat_victory'))
             else:
+                self.players[0].game_variables['battle_last_result'] = 'lost'
                 self.players[0].game_variables['battle_lost_faint'] = 'true'
                 self.alert(T.translate('combat_defeat'))
 
@@ -502,8 +479,8 @@ class CombatState(CombatAnimations):
         elif self.is_trainer_battle:
             self.alert(
                 T.format('combat_opponent_call_tuxemon', {
-                  "name": monster.name.upper(),
-                  "user": player.name.upper(),
+                    "name": monster.name.upper(),
+                    "user": player.name.upper(),
                 })
             )
         else:
@@ -548,7 +525,7 @@ class CombatState(CombatAnimations):
         """ Show the main window for choosing player actions
 
         :param monster: Monster to choose an action for
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
 
         :returns: None
         """
@@ -611,7 +588,7 @@ class CombatState(CombatAnimations):
 
         This is used mainly for removing actions after monster is fainted
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :returns: None
         """
         to_remove = set()
@@ -695,7 +672,8 @@ class CombatState(CombatAnimations):
                     message += "\n" + m
 
                 for status in result.get("statuses", []):
-                    m = T.format(status.use_item, {"user": status.link.name if status.link else "", "target": status.carrier.name})
+                    m = T.format(status.use_item,
+                                 {"user": status.link.name if status.link else "", "target": status.carrier.name})
                     message += "\n" + m
 
             else:  # assume this was an item used
@@ -739,7 +717,7 @@ class CombatState(CombatAnimations):
     def faint_monster(self, monster):
         """ Instantly make the monster faint (will be removed later)
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :returns: None
         """
         monster.current_hp = 0
@@ -799,8 +777,8 @@ class CombatState(CombatAnimations):
 
         TODO: move to some generic animation loading thingy
 
-        :type technique: core.components.technique.Technique
-        :rtype: core.components.sprite.Sprite
+        :type technique: core.technique.Technique
+        :rtype: core.sprite.Sprite
         """
         try:
             return self._technique_cache[technique]
@@ -816,7 +794,7 @@ class CombatState(CombatAnimations):
         TODO: move to some generic animation loading thingy
 
         :param technique:
-        :rtype: core.components.sprite.Sprite
+        :rtype: core.sprite.Sprite
         """
         frame_time = .09
         images = list()
@@ -834,7 +812,7 @@ class CombatState(CombatAnimations):
     def active_players(self):
         """ Generator of any non-defeated players/trainers
 
-        :rtype: collections.Iterable[core.components.player.Player]
+        :rtype: collections.Iterable[core.player.Player]
         """
         for player in self.players:
             if not defeated(player):

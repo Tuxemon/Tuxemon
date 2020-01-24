@@ -1,0 +1,8 @@
+{
+  "slug": "sand",
+  "battle_graphics": {
+    "island_back":"sand_back_island.png",
+    "island_front":"sand_front_island.png"
+  },
+  "battle_music":"JRPGCollection/ogg/JRPG_battle_loop.ogg"
+}

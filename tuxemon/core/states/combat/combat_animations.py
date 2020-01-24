@@ -14,11 +14,11 @@ from functools import partial
 import pygame
 
 from tuxemon.core import tools
-from tuxemon.core.components.locale import T
-from tuxemon.core.components.menu.interface import HpBar, ExpBar
-from tuxemon.core.components.menu.menu import Menu
-from tuxemon.core.components.pyganim import PygAnimation
-from tuxemon.core.components.sprite import Sprite
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import HpBar, ExpBar
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core.sprite import Sprite
 from tuxemon.core.tools import scale, scale_sequence, scale_sprite
 
 logger = logging.getLogger(__name__)
@@ -95,7 +95,7 @@ class CombatAnimations(Menu):
     def blink(self, sprite):
         """
 
-        :param sprite: core.components.sprite.Sprite
+        :param sprite: core.sprite.Sprite
         :return:
         """
         self.task(partial(toggle_visible, sprite), .20, 8)
@@ -103,7 +103,7 @@ class CombatAnimations(Menu):
     def animate_trainer_leave(self, trainer):
         """
 
-        :type trainer: core.components.player.Player
+        :type trainer: core.player.Player
         :return:
         """
         sprite = self._monster_sprite_map[trainer]
@@ -112,8 +112,8 @@ class CombatAnimations(Menu):
     def animate_monster_release(self, npc, monster):
         """
 
-        :type npc: core.components.npc.Npc
-        :type monster: core.components.monster.Monster
+        :type npc: core.npc.Npc
+        :type monster: core.monster.Monster
         :return:
         """
         feet = list(self._layout[npc]['home'][0].center)
@@ -146,10 +146,9 @@ class CombatAnimations(Menu):
         self.task(capdev.kill, fall_time + delay + fade_duration)
 
         # load monster and set in final position
-        monster_sprite = self.load_sprite(
-            monster.back_battle_sprite if npc.isplayer else monster.front_battle_sprite,
-            midbottom=feet,
-        )
+        monster_sprite = monster.get_sprite("back" if npc.isplayer else "front",
+                                            midbottom=feet)
+        self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
         # position monster_sprite off screen and set animation to move it back to final spot
@@ -180,7 +179,7 @@ class CombatAnimations(Menu):
     def animate_sprite_spin(self, sprite):
         """
 
-        :type sprite: core.components.sprite.Sprite
+        :type sprite: core.sprite.Sprite
         :return:
         """
         self.animate(sprite, rotation=360, initial=0, duration=.8, transition='in_out_quint')
@@ -188,7 +187,7 @@ class CombatAnimations(Menu):
     def animate_sprite_tackle(self, sprite):
         """
 
-        :type sprite: core.components.sprite.Sprite
+        :type sprite: core.sprite.Sprite
         :return:
         """
         duration = .3
@@ -224,7 +223,7 @@ class CombatAnimations(Menu):
     def animate_sprite_take_damage(self, sprite):
         """
 
-        :type sprite: core.components.sprite.Sprite
+        :type sprite: core.sprite.Sprite
         :return:
         """
         original_x, original_y = sprite.rect.topleft
@@ -237,7 +236,7 @@ class CombatAnimations(Menu):
     def animate_hp(self, monster):
         """
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
         value = monster.current_hp / monster.hp
@@ -248,7 +247,7 @@ class CombatAnimations(Menu):
         """
 
         :param initial: Starting HP
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
         self._hp_bars[monster] = HpBar(initial)
@@ -257,7 +256,7 @@ class CombatAnimations(Menu):
     def animate_exp(self, monster):
         """
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
         target_previous = monster.experience_required()
@@ -270,7 +269,7 @@ class CombatAnimations(Menu):
         """
 
         :param initial: Starting EXP
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
         self._exp_bars[monster] = ExpBar(initial)
@@ -279,7 +278,7 @@ class CombatAnimations(Menu):
     def build_hud_text(self, monster):
         """ Return a string for use on the callout of the monster
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
         return self.shadow_text("{0.name: <12}Lv.{0.level: >2}".format(monster))
@@ -295,7 +294,7 @@ class CombatAnimations(Menu):
     def animate_monster_leave(self, monster):
         """
 
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
         sprite = self._monster_sprite_map[monster]
@@ -310,7 +309,7 @@ class CombatAnimations(Menu):
         """
 
         :type home: pygame.Rect
-        :type monster: core.components.monster.Monster
+        :type monster: core.monster.Monster
         :return:
         """
 
@@ -465,12 +464,13 @@ class CombatAnimations(Menu):
         y_mod = scale(50)
         duration = 3
 
-        back_island = self.load_sprite('gfx/ui/combat/back_island.png',
+        back_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_back'],
                                        bottom=opp_home.bottom + y_mod, right=0)
 
-        monster1 = self.load_sprite(right_monster.front_battle_sprite,
-                                    bottom=back_island.rect.bottom - scale(12),
-                                    centerx=back_island.rect.centerx)
+        monster1 = right_monster.get_sprite("front",
+                                            bottom=back_island.rect.bottom - scale(12),
+                                            centerx=back_island.rect.centerx)
+        self.sprites.add(monster1)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
         self.monsters_in_play[opponent].append(right_monster)
         self._monster_sprite_map[right_monster] = monster1
@@ -480,7 +480,7 @@ class CombatAnimations(Menu):
         else:
             self.alert(T.format('combat_wild_appeared', {"name": right_monster.name.upper()}))
 
-        front_island = self.load_sprite('gfx/ui/combat/front_island.png',
+        front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
         trainer1 = self.load_sprite('gfx/sprites/player/player_back.png',

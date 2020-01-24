@@ -24,7 +24,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Derek Clark <derekjohn.clark@gmail.com>
 #
-# core.components.states
+# core.states
 #
 """This module contains the Headless Server state.
 """

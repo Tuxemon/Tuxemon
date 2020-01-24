@@ -402,7 +402,7 @@ class WorldState(state.State):
 
         # get npc surfaces/sprites
         for npc in self.npcs:
-            world_surfaces.extend(self.npcs[npc].get_sprites())
+            world_surfaces.extend(self.npcs[npc].get_sprites(self.current_map.sprite_layer))
 
         # get map_animations
         for anim_data in self.map_animations.values():

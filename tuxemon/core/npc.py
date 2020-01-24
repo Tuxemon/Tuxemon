@@ -244,10 +244,16 @@ class NPC(Entity):
         # at the same time, so that way they'll always be in sync with each other.
         self.moveConductor.add(self.sprite)
 
-    def get_sprites(self):
+    def get_sprites(self, layer):
         """ Get the surfaces and layers for the sprite
 
         Used to render the player
+
+        TODO: Move the 'layer' to the NPC class so characters 
+        can define their own drawing layer.
+
+        :param layer: The layer to draw the sprite on.
+        :type layer: Int
 
         :return:
         """
@@ -264,7 +270,7 @@ class NPC(Entity):
         # TODO: move out to the world renderer
         frame_dict = self.sprite if self.moving else self.standing
         state = animation_mapping[self.moving][self.facing]
-        return [(get_frame(frame_dict, state), self.tile_pos, 2)]
+        return [(get_frame(frame_dict, state), self.tile_pos, layer)]
 
     def pathfind(self, destination):
         """ Find a path and also start it

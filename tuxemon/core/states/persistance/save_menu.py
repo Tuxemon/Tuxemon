@@ -35,7 +35,7 @@ class SaveMenuState(PopUpMenu):
         slot_rect = pygame.Rect(0, 0, rect.width * 0.80, rect.height // 6)
         for i in range(self.number_of_slots):
             # Check to see if a save exists for the current slot
-            if os.path.exists(prepare.SAVE_PATH + str(i + 1) + ".save"):
+            if os.path.exists(save.get_save_path(i + 1)):
                 image = self.render_slot(slot_rect, i + 1)
                 item = MenuItem(image, T.translate('menu_save'), None, None)
                 self.add(item)

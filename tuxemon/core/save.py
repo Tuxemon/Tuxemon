@@ -37,6 +37,7 @@ import base64
 import datetime
 import json
 import logging
+import os.path
 from operator import itemgetter
 
 import pygame
@@ -97,7 +98,7 @@ def save(save_data, slot):
 
     """
     # Save a screenshot of the current frame
-    save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    save_path = get_save_path(slot)
     if prepare.SAVE_METHOD == "CBOR":
         text = cbor.dumps(save_data)
     else:
@@ -123,7 +124,7 @@ def load(slot):
 
     """
 
-    save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot)
+    save_path = get_save_path(slot)
     save_data = open_save_file(save_path)
     if save_data:
         return upgrade_save(save_data)
@@ -178,7 +179,7 @@ def upgrade_save(save_data):
 def get_index_of_latest_save():
     times = []
     for slot_index in range(3):
-        save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot_index + 1)
+        save_path = get_save_path(slot_index + 1)
         save_data = open_save_file(save_path)
         if save_data is not None:
             time_of_save = datetime.datetime.strptime(save_data['time'], TIME_FORMAT)
@@ -189,3 +190,10 @@ def get_index_of_latest_save():
     else:
         return None
 
+
+def get_save_path(slot):
+    # append the mod name if this is a custom game	
+    if len(prepare.CONFIG.mods) > 1:
+        return os.path.join(prepare.SAVE_PATH, '{}-slot{}.save'.format(prepare.CONFIG.mods[0], slot))
+    else:
+        return os.path.join(prepare.SAVE_PATH, 'slot{}.save'.format(slot))

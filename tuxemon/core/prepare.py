@@ -108,7 +108,7 @@ else:
     SCALE = 1
 
 # Reference user save dir
-SAVE_PATH = os.path.join(paths.USER_GAME_SAVE_DIR, "slot")
+SAVE_PATH = paths.USER_GAME_SAVE_DIR
 SAVE_METHOD = "JSON"
 # SAVE_METHOD = "CBOR"
 

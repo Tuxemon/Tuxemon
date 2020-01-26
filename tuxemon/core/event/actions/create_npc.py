@@ -27,7 +27,8 @@ from __future__ import unicode_literals
 import logging
 
 import tuxemon.core.npc
-from tuxemon.core import ai, db
+from tuxemon.core import ai
+from tuxemon.core.db import databases
 from tuxemon.core.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -72,7 +73,7 @@ class CreateNpcAction(EventAction):
                 slug
             )
         else:
-            sprite = db.databases.npc[slug].get('sprite_name')
+            sprite = databases.npc[slug].get('sprite_name')
 
         # Create a new NPC object
         npc = tuxemon.core.npc.NPC(slug, sprite_name=sprite)

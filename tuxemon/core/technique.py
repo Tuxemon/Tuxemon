@@ -40,9 +40,9 @@ import random
 from collections import namedtuple
 
 from tuxemon.core import prepare
-from tuxemon.core import db
 from tuxemon.core import formula
 from tuxemon.core.locale import T
+from tuxemon.core.db import databases, process_targets
 
 logger = logging.getLogger(__name__)
 
@@ -99,7 +99,7 @@ class Technique(object):
         :rtype: None
         """
 
-        results = db.databases.technique.lookup(slug, table="technique")
+        results = databases.technique.lookup(slug, table="technique")
         self.slug = results["slug"]                             # a short English identifier
         self.name = T.translate(self.slug)                      # locale-specific string
 
@@ -133,7 +133,7 @@ class Technique(object):
         self.accuracy = results.get("accuracy")
         self.potency = results.get("potency")
         self.effect = results["effects"]
-        self.target = db.process_targets(results["target"])
+        self.target = process_targets(results["target"])
 
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]

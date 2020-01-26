@@ -36,8 +36,9 @@ import logging
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai, db, fusion
+from tuxemon.core import ai, fusion
 from tuxemon.core.locale import T
+from tuxemon.core.db import databases
 from tuxemon.core.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -261,7 +262,7 @@ class Monster(object):
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = db.databases.monster.lookup(slug)
+        results = databases.monster.lookup(slug)
 
         if results is None:
             logger.error("monster {} is not found".format(slug))
@@ -472,7 +473,7 @@ class Monster(object):
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = db.databases.monster.lookup(self.slug)
+        results = databases.monster.lookup(self.slug)
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:

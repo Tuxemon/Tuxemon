@@ -28,7 +28,8 @@ import logging
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai, db, monster
+from tuxemon.core import ai, monster
+from tuxemon.core.db import databases
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.npc import NPC
@@ -61,7 +62,7 @@ class RandomEncounterAction(EventAction):
             return False
 
         slug = self.parameters.encounter_slug
-        encounters = db.databases.encounter.database['encounter'][slug]['monsters']
+        encounters = databases.encounter.database['encounter'][slug]['monsters']
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster and start the
@@ -79,7 +80,7 @@ class RandomEncounterAction(EventAction):
             env_slug = "grass"
             if 'environment' in player.game_variables:
                 env_slug = player.game_variables['environment']
-            env = db.databases.environment.lookup(env_slug, table="environment")
+            env = databases.environment.lookup(env_slug, table="environment")
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)

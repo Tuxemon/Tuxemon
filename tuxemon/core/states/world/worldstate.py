@@ -940,7 +940,7 @@ class WorldState(state.State):
 
         # move to spawn position, if any
         for eo in self.game.events:
-            if eo.name.lower() == "player spawn":
+            if eo.name and eo.name.lower() == "player spawn":
                 self.player1.set_position((eo.x, eo.y))
 
     def load_map(self, map_name):

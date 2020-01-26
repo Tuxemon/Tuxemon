@@ -641,7 +641,7 @@ class WorldState(state.State):
 
             # We only need to check the perimeter,
             # as there is no way to get further out of bounds
-            if position[0] in self.invalid_x or position[1] in self.invalid_y:
+            if neighbor[0] in self.invalid_x or neighbor[1] in self.invalid_y:
                 continue
 
             # check to see if this tile is separated by a wall
@@ -921,8 +921,8 @@ class WorldState(state.State):
         self.map_size = map_data["map_size"]
 
         # The first coordinates that are out of bounds.
-        self.invalid_x = (-1, self.map_size[0] + 1)
-        self.invalid_y = (-1, self.map_size[1] + 1)
+        self.invalid_x = (-1, self.map_size[0])
+        self.invalid_y = (-1, self.map_size[1])
 
         # TODO: remove this monkey [patching!] business for the main control/game
         self.game.events = map_data["events"]

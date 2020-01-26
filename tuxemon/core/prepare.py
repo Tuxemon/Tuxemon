@@ -188,4 +188,4 @@ def fetch(*args):
         if os.path.exists(path):
             return path
 
-    raise FileNotFoundError(relative_path)
+    raise IOError(relative_path)

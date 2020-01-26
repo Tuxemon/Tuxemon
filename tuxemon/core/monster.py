@@ -54,6 +54,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'slug',
     'status',
     'total_experience',
+    'flairs',
 )
 
 SHAPES = {
@@ -171,6 +172,15 @@ SHAPES = {
     },
 }
 
+MISSING_IMAGE = "gfx/sprites/battle/missing.png"
+
+
+# class definition for tuxemon flairs:
+class Flair(object):
+   def __init__(self, category, name):
+      self.category = category
+      self.name = name
+
 
 # class definition for first active tuxemon to use in combat:
 class Monster(object):
@@ -206,6 +216,7 @@ class Monster(object):
         self.moves = []         # A list of technique objects. Used in combat.
         self.moveset = []       # A list of possible technique objects.
         self.evolutions = []    # A list of possible evolution objects.
+        self.flairs = {}        # A dictionary of flairs, one is picked randomly.
         self.ai = None
 
         # The multiplier for experience
@@ -242,6 +253,7 @@ class Monster(object):
 
         self.set_state(save_data)
         self.set_stats()
+        self.set_flairs()
 
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
@@ -432,6 +444,46 @@ class Monster(object):
                     return evolution['monster_slug']
         return None
 
+    def get_sprite(self, sprite, **kwargs):
+        """Gets a specific type of sprite for the monster.
+
+        :rtype: Pygame surface
+        :returns: The surface of the monster sprite
+        """
+        if sprite == "front":
+            surface = tools.load_sprite(self.front_battle_sprite, **kwargs)
+        elif sprite == "back":
+            surface = tools.load_sprite(self.back_battle_sprite, **kwargs)
+        elif sprite == "menu":
+            surface = tools.load_sprite(self.menu_sprite, **kwargs)
+        else:
+            raise ValueError("Cannot find sprite for: {}".format(sprite))
+
+        # Apply flairs to the monster sprite
+        for flair in self.flairs.values():
+            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
+            if flair_path != MISSING_IMAGE:
+                flair_sprite = tools.load_sprite(flair_path, **kwargs)
+                surface.image.blit(flair_sprite.image, (0, 0))
+
+        return surface
+
+    def set_flairs(self):
+        """Sets the flairs of this monster if they were not already configured
+
+        :rtype: None
+        :returns: None
+        """
+        if len(self.flairs) > 0 or self.slug == "":
+            return
+
+        results = monsters.lookup(self.slug)
+        flairs = results.get("flairs")
+        if flairs:
+            for flair in flairs:
+                flair = Flair(flair['category'], random.choice(flair['names']))
+                self.flairs[flair.category] = flair
+
     def get_sprite_path(self, sprite):
         '''
         Paths are set up by convention, so the file extension is unknown.
@@ -441,13 +493,16 @@ class Monster(object):
         rtype: String
         returns: path to sprite or placeholder image
         '''
-        exts = ["png", "gif", "jpg", "jpeg"]
-        for ext in exts:
-            path = "%s.png" % sprite
-            full_path = tools.transform_resource_filename(path)
-            if full_path:
-                return full_path
-        return "gfx/sprites/battle/missing.png"
+        try:
+            exts = ["png", "gif", "jpg", "jpeg"]
+            for ext in exts:
+                path = "%s.png" % sprite
+                full_path = tools.transform_resource_filename(path)
+                if full_path:
+                    return full_path
+        except IOError:
+            logger.debug("Could not find monster sprite {}".format(sprite))
+            return MISSING_IMAGE
 
     def load_sprites(self):
         """Loads the monster's sprite images as Pygame surfaces.

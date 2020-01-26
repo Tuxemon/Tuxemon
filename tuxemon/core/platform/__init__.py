@@ -2,33 +2,32 @@
 Put platform specific fixes here
 """
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
-from os.path import expanduser
+import os.path
 
-__all__ = ('android', 'init', 'mixer')
+__all__ = ('android', 'init', 'mixer', 'get_config_dir')
 
 logger = logging.getLogger(__name__)
 
 _pygame = False
 
-# Import the android module and android specific components. If we can't import, set to None - this
-# lets us test it, and check to see if we want android-specific behavior.
 android = None
-try:
-    import android
-except ImportError:
-    pass
 
-# Import the android mixer if on the android platform
 try:
+    # Import the android module and android specific components. If we can't import, set to None - this
+    # lets us test it, and check to see if we want android-specific behavior.
+    import android
+
+    # import also android mixer
+    import android.mixed as mixer
+except ImportError:
     import pygame.mixer as mixer
 
     _pygame = True
-
-except ImportError:
-    import android
-    import android.mixer as mixer
 
 
 def init():
@@ -41,8 +40,8 @@ def init():
         mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
 
 
-def get_config_path():
+def get_config_dir():
     if android:
         return "/sdcard/org.tuxemon"
     else:
-        return expanduser("~")
+        return os.path.join(os.path.expanduser("~"), ".tuxemon")

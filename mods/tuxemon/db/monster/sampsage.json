@@ -1,0 +1,24 @@
+{
+    "slug": "sampsage",
+    "category": "brains",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

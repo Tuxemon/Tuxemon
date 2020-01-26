@@ -1,0 +1,24 @@
+{
+    "slug": "hampotamos",
+    "category": "hungry",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        }
+    ],
+    "shape": "Landrace",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

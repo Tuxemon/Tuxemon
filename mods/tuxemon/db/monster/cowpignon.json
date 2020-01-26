@@ -1,0 +1,25 @@
+{
+    "slug": "cowpignon",
+    "category": "enhancement",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "petrify"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood",
+        "Earth"
+    ],
+    "weight": 25
+}

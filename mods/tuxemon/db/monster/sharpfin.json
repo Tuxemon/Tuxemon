@@ -1,0 +1,25 @@
+{
+    "slug": "sharpfin",
+    "category": "rip",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "web"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Water",
+        "Wood"
+    ],
+    "weight": 25
+}

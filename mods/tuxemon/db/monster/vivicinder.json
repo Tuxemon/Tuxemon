@@ -1,0 +1,24 @@
+{
+    "slug": "vivicinder",
+    "category": "lit",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "salamander"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "refresh"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

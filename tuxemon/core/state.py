@@ -23,23 +23,29 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import inspect
 import logging
 import os
+import os.path
 import sys
 from abc import ABCMeta
 from importlib import import_module
 
 import pygame
 
-from core import prepare
-from core import tools
-from core.components.animation import Animation
-from core.components.animation import Task
-from core.components.animation import remove_animations_of
-from core.components.sprite import SpriteGroup
+from tuxemon.constants import paths
+from tuxemon.core import prepare
+from tuxemon.core import tools
+from tuxemon.core.animation import Animation
+from tuxemon.core.animation import Task
+from tuxemon.core.animation import remove_animations_of
+from tuxemon.core.sprite import SpriteGroup
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
@@ -76,7 +82,7 @@ class State(object):
         :param control: State Manager / Control / Game... all the same
         :returns: None
         """
-        self.game = control  # TODO: rename 'game' to 'control'?
+        self.game = control  # type: tuxemon.core.control.Control
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
@@ -94,7 +100,7 @@ class State(object):
         :param filename: filename, relative to the resources folder
         :type filename: String
         :param kwargs: Keyword arguments to pass to the Rect constructor
-        :returns: core.components.sprite.Sprite
+        :returns: core.sprite.Sprite
         """
         layer = kwargs.pop('layer', 0)
         sprite = tools.load_sprite(filename, **kwargs)
@@ -109,7 +115,7 @@ class State(object):
         :param targets: targets of the Animation
         :type targets: any
         :param kwargs: Attributes and their final value
-        :returns: core.components.animation.Animation
+        :returns: core.animation.Animation
         """
         ani = Animation(*targets, **kwargs)
         self.animations.add(ani)
@@ -123,7 +129,7 @@ class State(object):
 
         :param args: function to be called
         :param kwargs: kwargs passed to the function
-        :returns: core.components.animation.Task
+        :returns: core.animation.Task
         """
         task = Task(*args, **kwargs)
         self.animations.add(task)
@@ -138,22 +144,20 @@ class State(object):
         remove_animations_of(target, self.animations)
 
     def process_event(self, event):
-        """ Processes events that were passed from the main event loop.
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        This function can choose to return the event, or any other in
-        response to the event passed.  If the same, or any other event
-        is returned, then it will be passed down to other states.
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
 
-        :param event: A pygame key event from pygame.event.get()
-        :type event: PyGame Event
-        :returns: Pygame Event or None
-        :rtype: pygame Event
+        You should return None if you have handled input here.
 
+        :type event: core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
         return event
-
-    # def __del__(self):
-    #     print "dying", self
 
     def update(self, time_delta):
         """ Time update function for state.  Must be overloaded in children.
@@ -167,6 +171,9 @@ class State(object):
 
     def draw(self, surface):
         """ Render the state to the surface passed.  Must be overloaded in children
+
+        Do not change the state of any game entities.  Every draw should be the same
+        for a given game time.  Any game changes should be done during update.
 
         :param surface: Surface to be rendered onto
         :type surface: pygame.Surface
@@ -256,28 +263,13 @@ class StateManager(object):
         self._state_queue = list()
         self._state_stack = list()
         self._state_dict = dict()
-        self._held_keys = list()
         self._state_resume_set = set()
         self._remove_queue = list()
-
-    def reset_controls(self):
-        """ Reset the controls during a state change
-
-        This is accomplished by using a list of keys which were
-        being held, then sending KEYUP events for each one.
-
-        :returns: None
-        """
-        current_state = self.current_state
-        for event in self._held_keys:
-            new_event = pygame.event.Event(pygame.KEYUP, event.dict)
-            current_state.process_event(new_event)
-        self._held_keys = list()
 
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = prepare.BASEDIR + os.path.join(*self.package.split('.'))
+        state_folder = os.path.join(paths.BASEDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug("loading game states from {}".format(state_folder))
         for folder in os.listdir(state_folder):
@@ -376,7 +368,8 @@ class StateManager(object):
             raise RuntimeError
 
         if index == 0:
-            self.reset_controls()
+            logger.debug("resetting controls due to state change")
+            self.release_controls()
 
         try:
             previous = self._state_stack.pop(index)
@@ -386,16 +379,6 @@ class StateManager(object):
 
         previous.pause()
         previous.shutdown()
-
-        #  DEBUGGING =========================================================
-        # import gc
-        # import inspect
-        # gc.collect()
-        #
-        # if not all(map(inspect.isframe, gc.get_referrers(previous))):
-        #     logger.debug("State was not able to be GC'd %s" % previous)
-
-        # DEBUGGING =========================================================
 
         if index == 0 and self._state_stack:
             self.current_state.resume()
@@ -420,7 +403,8 @@ class StateManager(object):
             raise RuntimeError
 
         previous = self.current_state
-        self.reset_controls()
+        logger.debug("resetting controls due to state change")
+        self.release_controls()
 
         if previous is not None:
             previous.pause()

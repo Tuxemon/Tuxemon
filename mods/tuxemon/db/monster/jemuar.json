@@ -1,0 +1,24 @@
+{
+    "slug": "jemuar",
+    "category": "precious_boulder",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "stampede"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

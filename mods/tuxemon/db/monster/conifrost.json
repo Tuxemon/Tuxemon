@@ -1,0 +1,25 @@
+{
+    "slug": "conifrost",
+    "category": "taiga",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "font"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Water",
+        "Wood"
+    ],
+    "weight": 25
+}

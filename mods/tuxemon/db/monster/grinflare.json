@@ -1,0 +1,25 @@
+{
+    "slug": "grinflare",
+    "category": "igneous",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "give_all"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Earth",
+        "Fire"
+    ],
+    "weight": 25
+}

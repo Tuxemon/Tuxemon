@@ -1,0 +1,24 @@
+{
+    "slug": "hatchling",
+    "category": "egg",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

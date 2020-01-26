@@ -1,0 +1,24 @@
+{
+    "slug": "dragarbor",
+    "category": "dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "web"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        }
+    ],
+    "shape": "Dragon",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

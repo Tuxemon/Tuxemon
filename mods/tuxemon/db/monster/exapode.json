@@ -1,0 +1,24 @@
+{
+    "slug": "exapode",
+    "category": "big_frightfear",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "avalanche"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

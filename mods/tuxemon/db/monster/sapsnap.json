@@ -1,0 +1,24 @@
+{
+    "slug": "sapsnap",
+    "category": "barbed",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

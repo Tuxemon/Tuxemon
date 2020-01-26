@@ -1,0 +1,25 @@
+{
+    "slug": "hydrone",
+    "category": "short_circuit",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Metal",
+        "Water"
+    ],
+    "weight": 25
+}

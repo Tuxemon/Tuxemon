@@ -1,0 +1,25 @@
+{
+    "slug": "coleorus",
+    "category": "timeless",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood",
+        "Earth"
+    ],
+    "weight": 25
+}

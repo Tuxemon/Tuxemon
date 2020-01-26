@@ -1,0 +1,24 @@
+{
+    "slug": "forturtle",
+    "category": "oracle_bone",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

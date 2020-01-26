@@ -1,0 +1,24 @@
+{
+    "slug": "skwib",
+    "category": "",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "font"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

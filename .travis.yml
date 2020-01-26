@@ -1,0 +1,37 @@
+language: python
+dist: xenial
+python:
+  - '2.7'
+before_install:
+  - pip install -r requirements.txt
+  - pip install setuptools
+  - sudo apt-get install -y fakeroot git curl squashfs-tools sed debmake debhelper python-all python3-all python-setuptools python3-setuptools
+  - mkdir -p ./build
+script:
+  # Debian
+  - python setup.py sdist
+  - cd dist
+  - tar xvfz tuxemon*.tar.gz
+  - cd tuxemon*
+  - debmake -b':py2'
+  - dpkg-buildpackage -us -uc
+  - cd ../..
+  - mv ./dist/tuxemon*.deb ./build/tuxemon-unstable-latest.deb
+  # GCW-Zero
+  - sed -i 's/resolution_x.*/resolution_x = 320/g' tuxemon/tuxemon.cfg
+  - sed -i 's/resolution_y.*/resolution_y = 240/g' tuxemon/tuxemon.cfg
+  - sed -i 's/fullscreen.*/fullscreen = 1/g' tuxemon/tuxemon.cfg
+  - cp tuxemon/resources/gfx/icon_32.png tuxemon/resources/gfx/icon.png
+  - mksquashfs tuxemon ./build/tuxemon-unstable-latest.opk -all-root -noappend -no-exports -no-xattrs
+deploy:
+  provider: s3
+  access_key_id: AKIAJCO54X2SZSP2HYCA
+  secret_access_key:
+    secure: IvdL4/le7EuQj7qepYWB4TcQAlkishk8k/B4Dxx2X7jmNSpFW8paoe/K+wTxNdbknikTgoUIqAbi93s8HczIlHPOdKPaCUVFr5YgaP5vRxu0AvSLMrs04ZdOpidVRSXHajGC7oCSe62TQf+lJbNJ/ZXUVjjNApPIPH46x45pZ1E3M3fwGn9bBVP7+ju8q7AZJqZIwalI24A4qk9jHUZoYUuOKToJmPAus9s4Lsp4xKAw3XTaJYdlWKZ/y5st+1+6a/8qBpBBifCYThWDIYq27BhNAK2W4Nvm8+YjYCbkYMpQxRXKZCl1YUO4RzpHcpYniNgKI0kwxWhY6lA9WeXcS98GldH5oJdaIvdorp1JQMU4pyom3FwOmwRMbIoKfKYKW7x9kjTmEzWg5pdfSEDYby1zVciEyjuVtqP1esEnhljMPlKEBjPVObfdz8mZSUcYss46k+y8Fgqfgkng0QP83YCVC8izTPJOCjfdCfn+tirbdMQbKk2MQ5eK0vFQlghgYc232LprJoPYVW6x5lNV25s9IZnppDd7zGo7DUe2ObKEZBzkmdAmM4RANnQrbzr+SEuKA9gbAUnlrpBNK+n1NkdJn7ya1JynvbyiIG5+JfY9Z4R00gHOUu+/Hy3bMg++QnGoSdipn2M9M6NBvzerpqzg754XL6q5pzNM7XmoG5c=
+  bucket: tuxemon
+  skip_cleanup: true
+  acl: 'public_read'
+  local_dir: build
+  on:
+    repo: Tuxemon/Tuxemon
+    branch: development

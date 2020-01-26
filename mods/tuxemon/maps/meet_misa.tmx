@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="45">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="105" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJyTZGBgYCIDS0IxLxkYpleCDAzT+wyIpwHxVCLpZ0h684A4l0QappcUO2H0qL2k2/uMRHuR45dcDADldENE
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAcXGdkYLgBxDcZEWICQLYglF8OxBU49P4HqWFiYGBkQohZAMUsGXFoQALqQD0aQKwJxIlkun0gQCPQb014cDMev68Eyq3Cg1fj0XsRKHcJD75MRJgPZwAAUBUX/g==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="15" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUgAAAAwwAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="1" type="collision" x="0" y="192" width="240" height="16"/>
+  <object id="2" type="collision" x="224" y="48" width="16" height="144"/>
+  <object id="3" type="collision" x="0" y="48" width="16" height="144"/>
+  <object id="4" type="collision" x="0" y="0" width="240" height="48"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Event">
+  <object id="33" name="music!" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music Enter_the_Emperor.ogg"/>
+    <property name="cond1" value="not music_playing Enter_the_Emperor.ogg"/>
+   </properties>
+  </object>
+  <object id="34" name="doors galores" type="event" x="112" y="48" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog youcantleave"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="35" name="something" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog discovered_a_person"/>
+    <property name="act2" value="teleport meet_misa.tmx,3,4"/>
+    <property name="act3" value="create_npc misa,3,3,misa,stand"/>
+    <property name="act4" value="set_variable flag:0"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="not variable_set flag:0"/>
+   </properties>
+  </object>
+  <object id="37" name="time to talk" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog a_serious_discussion\n"/>
+    <property name="act2" value="teleport meet_misa.tmx,3,5"/>
+    <property name="act3" value="translated_dialog oops\n"/>
+    <property name="act4" value="translated_dialog backstory\n"/>
+    <property name="act5" value="translated_dialog backstory9"/>
+    <property name="act6" value="translated_dialog_choice yes,questioning"/>
+    <property name="act7" value="translated_dialog sorryfurthis"/>
+    <property name="act8" value="transition_teleport route1.tmx,33,12,0.7"/>
+    <property name="act9" value="set_variable flag:1"/>
+    <property name="cond1" value="is variable_set flag:0"/>
+   </properties>
+  </object>
+  <object id="44" name="Player Spawn" type="event" x="112" y="112" width="16" height="16"/>
+ </objectgroup>
+</map>

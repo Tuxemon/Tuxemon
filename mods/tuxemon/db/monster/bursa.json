@@ -1,0 +1,24 @@
+{
+    "slug": "bursa",
+    "category": "too_hot",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

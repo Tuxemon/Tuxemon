@@ -1,0 +1,24 @@
+{
+    "slug": "axylightl",
+    "category": "inchoate",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "beam"
+        }
+    ],
+    "shape": "Polliwog",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

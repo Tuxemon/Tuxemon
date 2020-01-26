@@ -1,4 +1,7 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 from collections import defaultdict
@@ -6,16 +9,15 @@ from functools import partial
 
 import pygame
 
-from core import tools
-from core.components.locale import translator
-from core.components.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu
-from core.components.sprite import MenuSpriteGroup, SpriteGroup
-from core.components.technique import Technique
-from core.components.ui.draw import GraphicBox
+from tuxemon.core import tools
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.core.technique import Technique
+from tuxemon.core.ui.draw import GraphicBox
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
@@ -37,7 +39,7 @@ class MainCombatMenuState(PopUpMenu):
         )
 
         for key, callback in menu_items_map:
-            label = translator.translate(key).upper()
+            label = T.translate(key).upper()
             image = self.shadow_text(label)
             yield MenuItem(image, label, None, callback)
 
@@ -52,7 +54,16 @@ class MainCombatMenuState(PopUpMenu):
         # TODO: only works for player0
         self.game.pop_state(self)
         combat_state = self.game.get_state_name("CombatState")
-        combat_state.trigger_player_run(combat_state.players[0])
+
+        if combat_state.is_trainer_battle:
+            def open_menu():
+                combat_state.task(
+                    partial(combat_state.show_monster_action_menu, self.monster),
+                    1
+                )
+            combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)
+        else:
+            combat_state.trigger_player_run(combat_state.players[0])
 
     def open_swap_menu(self):
         """ Open menus to swap monsters in party
@@ -62,14 +73,15 @@ class MainCombatMenuState(PopUpMenu):
 
         def swap_it(menuitem):
             monster = menuitem.game_object
-            trans = translator.translate
+
             if monster in self.game.get_state_name('CombatState').active_monsters:
-                tools.open_dialog(self.game, [trans('combat_isactive', {"name": monster.name})])
+                tools.open_dialog(self.game, [T.format('combat_isactive', {"name": monster.name})])
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(self.game, [trans('combat_fainted', {"name": monster.name})])
+                tools.open_dialog(self.game, [T.format('combat_fainted', {"name": monster.name})])
+                return
             combat_state = self.game.get_state_name("CombatState")
-            swap = Technique("technique_swap")
+            swap = Technique("swap")
             swap.combat_state = combat_state
             player = self.game.player1
             target = monster
@@ -132,7 +144,10 @@ class MainCombatMenuState(PopUpMenu):
 
             # add techniques to the menu
             for tech in self.monster.moves:
-                image = self.shadow_text(tech.name)
+                if tech.next_use <= 0:
+                    image = self.shadow_text(tech.name)
+                else:
+                    image = self.shadow_text("%s -%s" % (tech.name, tech.next_use))
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 
@@ -146,6 +161,11 @@ class MainCombatMenuState(PopUpMenu):
         def choose_target(menu_item):
             # open menu to choose target of technique
             technique = menu_item.game_object
+            if technique.next_use > 0:
+                params = {"move": technique.name, "name": self.monster.name}
+                tools.open_dialog(self.game, [T.format('combat_recharging', params)])
+                return
+
             combat_state = self.game.get_state_name("CombatState")
             state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                          user=self.monster, action=technique)

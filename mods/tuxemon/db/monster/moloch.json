@@ -1,0 +1,24 @@
+{
+    "slug": "moloch",
+    "category": "devil",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "thunderball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

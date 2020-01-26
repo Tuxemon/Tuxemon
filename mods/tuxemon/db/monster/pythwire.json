@@ -1,0 +1,24 @@
+{
+    "slug": "pythwire",
+    "category": "power_socket",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

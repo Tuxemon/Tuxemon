@@ -1,0 +1,24 @@
+{
+    "slug": "pyraminx",
+    "category": "noble",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blade"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

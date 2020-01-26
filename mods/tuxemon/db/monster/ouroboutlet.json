@@ -1,0 +1,25 @@
+{
+    "slug": "ouroboutlet",
+    "category": "infinite_energy",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal",
+        "Fire"
+    ],
+    "weight": 25
+}

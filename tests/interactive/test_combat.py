@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
     print("Runs as standalone")
 
-    from core.components import config
+    from tuxemon.core.components import config
 
 
     class Game(object):
@@ -15,7 +15,7 @@ if __name__ == "__main__":
             # set up pygame
             pygame.init()
             # read the configuration file
-            self.config = config.Config()
+            self.config = config.TuxemonConfig()
             # The game resolution
             self.resolution = self.config.resolution
             # set up the window

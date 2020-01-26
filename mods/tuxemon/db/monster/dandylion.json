@@ -1,0 +1,24 @@
+{
+    "slug": "dandylion",
+    "category": "lion's_tooth",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleeping_powder"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "nudimind",
+    "category": "reverie",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "suck_poison"
+        },
+        {
+            "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
+        }
+    ],
+    "shape": "Polliwog",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "nut",
+    "category": "hardware",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shuriken"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

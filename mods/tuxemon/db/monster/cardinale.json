@@ -1,0 +1,24 @@
+{
+    "slug": "cardinale",
+    "category": "firebird",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

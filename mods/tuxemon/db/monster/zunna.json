@@ -1,0 +1,24 @@
+{
+    "slug": "zunna",
+    "category": "slurpy",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "angrito",
+    "category": "enraged_emotion",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flamethrower"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Fire",
+        "Metal"
+    ],
+    "weight": 25
+}

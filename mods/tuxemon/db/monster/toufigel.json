@@ -1,0 +1,25 @@
+{
+    "slug": "toufigel",
+    "category": "powder",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "snowstorm"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Earth",
+        "Water"
+    ],
+    "weight": 25
+}

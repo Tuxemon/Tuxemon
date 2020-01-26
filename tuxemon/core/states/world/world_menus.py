@@ -1,17 +1,19 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 from functools import partial
 
 import pygame
 
-from core import prepare
-from core.components.locale import translator
-from core.components.menu.interface import MenuItem
-from core.components.menu.menu import Menu
-from core.tools import open_dialog
+from tuxemon.core import prepare
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.tools import open_dialog
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
@@ -27,7 +29,7 @@ def adapter(name, *args):
 
 def add_menu_items(state, items):
     for key, callback in items:
-        label = translator.translate(key).upper()
+        label = T.translate(key).upper()
         image = state.shadow_text(label)
         item = MenuItem(image, label, None, callback)
         state.add(item)
@@ -50,7 +52,7 @@ class WorldMenuState(Menu):
             self.game.event_engine.execute_action("quit")
 
         def not_implemented_dialog():
-            open_dialog(self.game, [translator.translate('not_implemented')])
+            open_dialog(self.game, [T.translate('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = (
@@ -66,7 +68,7 @@ class WorldMenuState(Menu):
         add_menu_items(self, menu_items_map)
 
     def open_monster_menu(self):
-        from core.states.monster import MonsterMenuState
+        from tuxemon.core.states.monster import MonsterMenuState
 
         def monster_menu_hook():
             """ Used to rearrange monsters interactively
@@ -113,7 +115,7 @@ class WorldMenuState(Menu):
             self.game.pop_state()  # close the info/move menu
 
         def open_monster_stats():
-            open_dialog(self.game, [translator.translate('not_implemented')])
+            open_dialog(self.game, [T.translate('not_implemented')])
 
         def open_monster_submenu(menu_item):
             menu_items_map = (

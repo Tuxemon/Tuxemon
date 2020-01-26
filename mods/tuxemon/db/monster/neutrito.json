@@ -1,0 +1,25 @@
+{
+    "slug": "neutrito",
+    "category": "calm_emotion",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

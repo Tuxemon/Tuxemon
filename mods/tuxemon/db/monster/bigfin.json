@@ -1,0 +1,24 @@
+{
+    "slug": "bigfin",
+    "category": "island",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "refresh"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        }
+    ],
+    "shape": "Leviathan",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "polyrock",
+    "category": "grasshopper",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

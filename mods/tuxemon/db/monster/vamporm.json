@@ -1,0 +1,24 @@
+{
+    "slug": "vamporm",
+    "category": "clot",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "refresh"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

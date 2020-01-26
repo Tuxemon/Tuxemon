@@ -1,0 +1,25 @@
+{
+    "slug": "katapill",
+    "category": "beat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

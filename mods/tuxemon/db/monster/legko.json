@@ -1,0 +1,24 @@
+{
+    "slug": "legko",
+    "category": "lizard",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

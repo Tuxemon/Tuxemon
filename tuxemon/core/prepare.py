@@ -22,6 +22,7 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
 #
 # core.prepare Prepares the game environment.
@@ -31,55 +32,52 @@ It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
-import os
-import shutil
+import os.path
+import re
 
-import pygame as pg
-
-from .components import config
-from .platform import get_config_path
+from tuxemon.constants import paths
+from tuxemon.core import config
 
 logger = logging.getLogger(__name__)
 
-# Get the tuxemon base directory
-BASEDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")) + os.sep
-if "library.zip" in BASEDIR:
-    BASEDIR = os.path.abspath(os.path.join(BASEDIR, "..")) + os.sep
+# TODO: refact this out when other platforms supported (such as headless)
+PLATFORM = "pygame"
 
-# Set up our config directory
-CONFIG_PATH = get_config_path() + "/.tuxemon/"
-try:
-    os.makedirs(CONFIG_PATH)
-except OSError:
-    if not os.path.isdir(CONFIG_PATH):
-        raise
 
-# Create a copy of our default config if one does not exist in the home dir.
-CONFIG_FILE_PATH = CONFIG_PATH + "tuxemon.cfg"
-if not os.path.isfile(CONFIG_FILE_PATH):
-    try:
-        shutil.copyfile(BASEDIR + "tuxemon.cfg", CONFIG_FILE_PATH)
-    except OSError:
-        raise
+# list of regular expressions to blacklist devices
+joystick_blacklist = [
+    re.compile(r"Microsoft.*Transceiver.*"),
+]
 
-# Set up our custom campaign data directory.
-USER_DATA_PATH = CONFIG_PATH + "data/"
-if not os.path.isdir(USER_DATA_PATH):
-    try:
-        os.makedirs(USER_DATA_PATH)
-    except OSError:
-        if not os.path.isdir(USER_DATA_PATH):
-            raise
+# Create game dir if missing
+if not os.path.isdir(paths.USER_GAME_DIR):
+    os.makedirs(paths.USER_GAME_DIR)
 
-# Read the "tuxemon.cfg" configuration file
-CONFIG = config.Config(CONFIG_FILE_PATH)
-HEADLESSCONFIG = config.HeadlessConfig(CONFIG_FILE_PATH)
+# Create game data dir if missing
+if not os.path.isdir(paths.USER_GAME_DATA_DIR):
+    os.makedirs(paths.USER_GAME_DATA_DIR)
+
+# Create game savegame dir if missing
+if not os.path.isdir(paths.USER_GAME_SAVE_DIR):
+    os.makedirs(paths.USER_GAME_SAVE_DIR)
+
+# Generate default config
+config.generate_default_config()
+
+# Read "tuxemon.cfg" config from disk, update and write back
+CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
+
+with open(paths.USER_CONFIG_PATH, "w") as fp:
+    CONFIG.cfg.write(fp)
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
-ORIGINAL_CAPTION = "Tuxemon"
+ORIGINAL_CAPTION = CONFIG.window_caption
 
 # Set the native tile size so we know how much to scale our maps
 TILE_SIZE = [16, 16]  # 1 tile = 16 pixels
@@ -98,113 +96,96 @@ XP_COLOR = (248, 245, 71)
 NATIVE_RESOLUTION = [240, 160]
 
 # If scaling is enabled, scale the tiles based on the resolution
-if CONFIG.scaling == "1":
+if CONFIG.large_gui:
+    SCALE = 2
+    TILE_SIZE[0] *= SCALE
+    TILE_SIZE[1] *= SCALE
+elif CONFIG.scaling:
     SCALE = int((SCREEN_SIZE[0] / NATIVE_RESOLUTION[0]))
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 else:
     SCALE = 1
 
-# Set up the saves directory
-try:
-    os.makedirs(CONFIG_PATH + "saves/")
-except OSError:
-    if not os.path.isdir(CONFIG_PATH + "saves/"):
-        raise
-SAVE_PATH = CONFIG_PATH + "saves/slot"
+# Reference user save dir
+SAVE_PATH = os.path.join(paths.USER_GAME_SAVE_DIR, "slot")
+SAVE_METHOD = "JSON"
+# SAVE_METHOD = "CBOR"
+
+DEV_TOOLS = CONFIG.dev_tools
 
 
-# Initialization of PyGame dependent systems.
-def init():
-    """The init function is used to initialize all PyGame dependent
-    systems. This is primarily implemented to allow sphinx-apidoc
-    to autogenerate documentation without initializing a PyGame
-    window.
-
-    :param None:
-
-    :rtype: None
-    :returns: None
-
+def pygame_init():
+    """ Eventually refactor out of prepare
     """
-
-    # These variables will persist throughout the module so they
-    # can be called externally. E.g. "prepare.SCREEN", etc.
-    global SCREEN
-    global SCREEN_RECT
     global JOYSTICKS
-    global player1
     global FONTS
     global MUSIC
     global SFX
     global GFX
+    global SCREEN
+    global SCREEN_RECT
 
-    # initialize any platform-specific workarounds before pygame
-    from core import platform
-    platform.init()
+    import pygame as pg
 
-    from .platform import android
-
-    # Initialize PyGame and our screen surface.
     logger.debug("pygame init")
     pg.init()
     pg.display.set_caption(ORIGINAL_CAPTION)
-    SCREEN = pg.display.set_mode(SCREEN_SIZE, CONFIG.fullscreen, 32)
+
+    fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
+    flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
+
+    SCREEN = pg.display.set_mode(SCREEN_SIZE, flags)
     SCREEN_RECT = SCREEN.get_rect()
 
     # Disable the mouse cursor visibility
-    pg.mouse.set_visible(False)
+    pg.mouse.set_visible(not CONFIG.hide_mouse)
 
     # Set up any gamepads that we detect
     # The following event types will be generated by the joysticks:
     # JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION
+    JOYSTICKS = list()
     pg.joystick.init()
-    JOYSTICKS = [pg.joystick.Joystick(x)
-                 for x in range(pg.joystick.get_count())]
+    devices = [pg.joystick.Joystick(x) for x in range(pg.joystick.get_count())]
 
     # Initialize the individual joysticks themselves.
-    for joystick in JOYSTICKS:
-        joystick.init()
+    for joystick in devices:
+        name = joystick.get_name()
+        print("Found joystick: \"{}\"".format(name))
+        blacklisted = any(i.match(name) for i in joystick_blacklist)
+        if blacklisted:
+            print("Ignoring joystick: \"{}\"".format(name))
+        else:
+            print("Configuring joystick: \"{}\"".format(name))
+            joystick.init()
+            JOYSTICKS.append(joystick)
 
+    from tuxemon.core.platform import android
     # Map the appropriate android keys if we're on android
     if android:
         android.init()
         android.map_key(android.KEYCODE_MENU, pg.K_ESCAPE)
 
-    # Create an instance of the player and list of NPCs
-    from .components import player
-    player1 = player.Player()
 
-    # Scale the sprite and its animations
-    for key, animation in player1.sprite.items():
-        animation.scale(
-            tuple(i * SCALE for i in animation.getMaxSize()))
+# Initialize the game framework
+def init():
 
-    for key, image in player1.standing.items():
-        player1.standing[key] = pg.transform.scale(
-            image, (image.get_width() * SCALE,
-                    image.get_height() * SCALE))
+    # initialize any platform-specific workarounds before pygame
+    from tuxemon.core import platform
+    platform.init()
 
-    # Set the player's width and height based on the size of our scaled
-    # sprite.
-    player1.playerWidth, player1.playerHeight = \
-        player1.standing["front"].get_size()
-    player1.playerWidth = TILE_SIZE[0]
-    player1.playerHeight = TILE_SIZE[1]
-    player1.tile_size = TILE_SIZE
+    # Initialize PyGame and our screen surface.
+    if PLATFORM == 'pygame':
+        pygame_init()
 
-    # Put the player right in the middle of our screen.
-    player1.position = [
-        (SCREEN_SIZE[0] / 2) - (player1.playerWidth / 2),
-        (SCREEN_SIZE[1] / 2) - (player1.playerHeight / 2)]
 
-    # Set the player's collision rectangle
-    player1.rect = pg.Rect(
-        player1.position[0],
-        player1.position[1],
-        TILE_SIZE[0],
-        TILE_SIZE[1])
+# Fetches a resource file
+def fetch(*args):
+    relative_path = os.path.join(*args)
 
-    # Set the walking and running pixels per second based on the scale
-    player1.walkrate *= SCALE
-    player1.runrate *= SCALE
+    for mod_name in CONFIG.mods:
+        path = os.path.join(paths.mods_folder, mod_name, relative_path)
+        if os.path.exists(path):
+            return path
+
+    raise IOError(relative_path)

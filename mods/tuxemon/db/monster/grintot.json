@@ -1,0 +1,24 @@
+{
+    "slug": "grintot",
+    "category": "pebble",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "avalanche"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

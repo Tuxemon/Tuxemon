@@ -1,0 +1,24 @@
+{
+    "slug": "embra",
+    "category": "flicker",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "refresh"
+        },
+        {
+            "level_learned": 2,
+            "technique": "kindling_flame"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

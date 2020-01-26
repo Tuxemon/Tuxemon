@@ -1,0 +1,24 @@
+{
+    "slug": "elowind",
+    "category": "cloudburst",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "thunderclap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "biting_winds"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

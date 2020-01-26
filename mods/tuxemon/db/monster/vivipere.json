@@ -1,0 +1,24 @@
+{
+    "slug": "vivipere",
+    "category": "potentia",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "stone_rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wallow"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

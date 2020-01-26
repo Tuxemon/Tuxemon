@@ -1,0 +1,24 @@
+{
+    "slug": "windeye",
+    "category": "",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

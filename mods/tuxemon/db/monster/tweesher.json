@@ -1,0 +1,24 @@
+{
+    "slug": "tweesher",
+    "category": "halcyon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_field"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "grintrock",
+    "category": "thunderstone",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "stampede"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Earth",
+        "Metal"
+    ],
+    "weight": 25
+}

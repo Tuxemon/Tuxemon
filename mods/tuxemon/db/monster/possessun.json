@@ -1,0 +1,24 @@
+{
+    "slug": "possessun",
+    "category": "visitor",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "muddle"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "dandicub",
+    "category": "floret",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleeping_powder"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

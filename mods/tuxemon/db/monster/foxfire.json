@@ -1,0 +1,24 @@
+{
+    "slug": "foxfire",
+    "category": "smoke",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

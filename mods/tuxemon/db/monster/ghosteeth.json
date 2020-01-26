@@ -1,0 +1,24 @@
+{
+    "slug": "ghosteeth",
+    "category": "cheshire",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blood_bond"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

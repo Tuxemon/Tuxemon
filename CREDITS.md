@@ -18,7 +18,7 @@ Programming
 * [Arsène Thieffry](https://github.com/druz320) for menu sorting and bug fixes
 * [dtdannen](https://github.com/dtdannen) for pathfinding and polyline collisions
 * [ChillyCider](https://github.com/ChillyCider) for improved event system
-* [treetrunk](https://github.com/treetrunk) for creature catching variability and bug fixes
+* [treetrnk](https://github.com/treetrnk) for creature catching variability, bug fixes, and adding monster resources 
 
 
 Graphics
@@ -300,6 +300,189 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Wrougon"](https://wiki.tuxemon.org/index.php?title=Wrougon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Allagon"](https://wiki.tuxemon.org/index.php?title=Allagon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Ferricran"](https://wiki.tuxemon.org/index.php?title=Ferricran) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Chickenshowman](https://forum.tuxemon.org/thread.php?id=192#p1748)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Anoleaf"](https://wiki.tuxemon.org/index.php?title=Anoleaf) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Gectile"](https://wiki.tuxemon.org/index.php?title=Gectile) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Velocitile"](https://wiki.tuxemon.org/index.php?title=Velocitile) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Chloragon"](https://wiki.tuxemon.org/index.php?title=Chloragon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Sapragon"](https://wiki.tuxemon.org/index.php?title=Sapragon) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Dragarbor"](https://wiki.tuxemon.org/index.php?title=Dragarbor) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tweesher"](https://wiki.tuxemon.org/index.php?title=Tweesher) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Heronquak"](https://wiki.tuxemon.org/index.php?title=Heronquak) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Eaglace"](https://wiki.tuxemon.org/index.php?title=Eaglace) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) and
+[DevilDman](https://wiki.tuxemon.org/index.php?title=DevilDman)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Merlicun"](https://wiki.tuxemon.org/index.php?title=Merlicun) by 
+[Princess-pheonix](https://wiki.tuxemon.org/index.php?title=Princess-phoenix) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Firomenis"](https://wiki.tuxemon.org/index.php?title=Firomenis) by 
+[Princess-pheonix](https://wiki.tuxemon.org/index.php?title=Princess-phoenix) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Legko"](https://wiki.tuxemon.org/index.php?title=Legko) by 
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Moloch"](https://wiki.tuxemon.org/index.php?title=Moloch) by 
+[Sanglorian](https://forum.tuxemon.org/profile.php?id=41) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Arrdart"](https://wiki.tuxemon.org/index.php?title=Aardart) by 
+[Magic-Purple-Hermit](https://wiki.tuxemon.org/index.php?title=Magic-Purple-Hermit) 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Aardorn"](https://wiki.tuxemon.org/index.php?title=Aardorn) by 
+[Magic-Purple-Hermit](https://wiki.tuxemon.org/index.php?title=Magic-Purple-Hermit) 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+* ["Agnidon"](https://wiki.tuxemon.org/index.php?title=Agnidon) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Agnigon"](https://wiki.tuxemon.org/index.php?title=Agnigon) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Agnite"](https://wiki.tuxemon.org/index.php?title=Agnite) by 
+[Leo](https://wiki.tuxemon.org/index.php?title=Leo),
+[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian), and
+[extyrannomon](https://wiki.tuxemon.org/index.php?title=Extyrannomon&action=edit&redlink=1)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cairfrey"](https://wiki.tuxemon.org/index.php?title=Cairfrey) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Possessun"](https://wiki.tuxemon.org/index.php?title=Possessun) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Capiti"](https://wiki.tuxemon.org/index.php?title=) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cardiling"](https://wiki.tuxemon.org/index.php?title=Cardiling) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Kyu](https://wiki.tuxemon.org/index.php?title=Kyu&action=edit&redlink=1)
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cardinale"](https://wiki.tuxemon.org/index.php?title=Cardinale) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Cardiwing"](https://wiki.tuxemon.org/index.php?title=Cardiwing) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Chillimp"](https://wiki.tuxemon.org/index.php?title=Chillimp) by 
+[Chickenshowman](https://wiki.tuxemon.org/index.php?title=Chickenshowman) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Snowrilla"](https://wiki.tuxemon.org/index.php?title=Snowrilla) by 
+[Chickenshowman](https://wiki.tuxemon.org/index.php?title=Chickenshowman) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Falcono"](https://wiki.tuxemon.org/index.php?title=Falcono) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Corvix"](https://wiki.tuxemon.org/index.php?title=Corvix) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Vamporm"](https://wiki.tuxemon.org/index.php?title=Vamporm) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Dracune"](https://wiki.tuxemon.org/index.php?title=Dracune) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Fluttaflap"](https://wiki.tuxemon.org/index.php?title=Fluttaflap) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Noctula"](https://wiki.tuxemon.org/index.php?title=Noctula) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Noctalo"](https://wiki.tuxemon.org/index.php?title=Noctalo) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Nostray"](https://wiki.tuxemon.org/index.php?title=Nostray) by 
+[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Selket"](https://wiki.tuxemon.org/index.php?title=Selket) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Selmatek"](https://wiki.tuxemon.org/index.php?title=Selmatek) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Sharpfin"](https://wiki.tuxemon.org/index.php?title=Sharpfin) by 
+[N/A](https://tuxemon.org) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Spycozeus"](https://wiki.tuxemon.org/index.php?title=Spycozeus) by 
+[Catch Challenger](https://wiki.tuxemon.org/index.php?title=Catch_Challenger) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Zunna"](https://wiki.tuxemon.org/index.php?title=Zunna) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Conifrost"](https://wiki.tuxemon.org/index.php?title=Conifrost) by 
+[Spalding004](https://wiki.tuxemon.org/index.php?title=Spalding004) and
+[treetrnk](https://wiki.tuxemon.org/index.php?title=Treetrnk&action=edit&redlink=1) 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)
@@ -362,7 +545,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
 [josepharaoh99](https://forum.tuxemon.org/profile.php?id=45) 
-is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrunk](https://github.com/treetrunk)a
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrnk](https://github.com/treetrnk)
 
 * ["Small Water Shot"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
@@ -400,9 +583,9 @@ Maps
 * ["Map1 v1"](http://tuxemon.weebly.com/maps.html)
 by [luke83](http://tuxemon.weebly.com/) is licensed under
 [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-* ["Healing Center"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrunk](https://github.com/treetrunk)
+* ["Healing Center"](https://github.com/treetrnk/Tuxemon/blob/development/tuxemon/resources/maps/healing_center.tmx) by [treetrnk](https://github.com/treetrnk)
 is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
-* ["Professor's Lab"](https://github.com/treetrunk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrunk](https://github.com/treetrunk)
+* ["Professor's Lab"](https://github.com/treetrnk/Tuxemon/blob/development/tuxemon/resources/maps/professor_lab.tmx) by [treetrnk](https://github.com/treetrnk)
 is licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 
@@ -420,20 +603,64 @@ Fonts
 
 Music
 ------
-* [The Adventure Begins 8-bit Remix](opengameart.org/content/the-adventure-begins-8-bit-remix) by bart is licensed under CC BY 3.0
-* [Through Pixelated Clouds](https://opengameart.org/content/through-pixelated-clouds-8-bit-airship-remix) by bart is licensed under CC BY 3.0
-* [Stand With Us](https://opengameart.org/content/stand-with-us) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [Peasant Kingdom](https://opengameart.org/content/peasant-kingdom) by Spring is licensed under CC BY 3.0
-* [Lunar Joyride](https://opengameart.org/content/lunar-joyride-8-bit) by FoxSynergy is licensed under CC BY 3.0
-* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by t4ngr4m is licensed under CC BY 3.0
-  * Why do the nations so furiously rage together
-* [Melody Eternal](https://opengameart.org/content/melody-eternal) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [Taking Poison](https://opengameart.org/content/taking-poison) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [back34](https://opengameart.org/content/8bit-style-music) by Tom Peter is licensed under CC BY-SA 3.0
-* [Boss Introduction](https://opengameart.org/content/boss-introduction) by Spring is licensed under CC BY 3.0
-* [Valor of Heroes](https://opengameart.org/content/valor-of-heroes) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [We Persist](https://opengameart.org/content/we-persist) by Trevor Lentz is licensed under CC BY-SA 3.0
-* [Unending Strike](https://opengameart.org/content/8bit-style-music) by Trevor Lentz is licensed under CC BY-SA 3.0
+* [A Night Of Dizzy Spells](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [All of Us](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Arpanauts](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Ascending](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Boss Introduction](https://opengameart.org/content/boss-introduction) by Spring 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Chibi Ninja](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Come and Find Me](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Come and Find Me - B mix](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Digital Native](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by t4ngr4m 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)    * Why do the nations so furiously rage together
+* [HHavok-intro](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [HHavok-main](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Jumpshot](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Lunar Joyride](https://opengameart.org/content/lunar-joyride-8-bit) by FoxSynergy 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Melody Eternal](https://opengameart.org/content/melody-eternal) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Peasant Kingdom](https://opengameart.org/content/peasant-kingdom) by Spring 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Prologue](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Searching](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Stand With Us](https://opengameart.org/content/stand-with-us) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Taking Poison](https://opengameart.org/content/taking-poison) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [The Adventure Begins 8-bit Remix](opengameart.org/content/the-adventure-begins-8-bit-remix) by bart 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Through Pixelated Clouds](https://opengameart.org/content/through-pixelated-clouds-8-bit-airship-remix) by bart 
+is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Underclocked](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [Unending Strike](https://opengameart.org/content/8bit-style-music) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Valor of Heroes](https://opengameart.org/content/valor-of-heroes) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [We Persist](https://opengameart.org/content/we-persist) by Trevor Lentz 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [We're all under the stars](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [We're the Resistors](http://EricSkiff.com/music) by Eric Skiff 
+is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* [back34](https://opengameart.org/content/8bit-style-music) by Tom Peter 
+is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 * Songs from the [JRPG Collection](https://opengameart.org/content/jrpg-collection) and [JRPG Collection 2](https://opengameart.org/content/jrpg-collection-2) by Yubatake are licensed under CC BY 3.0:
   * princess
   * winBattle
@@ -512,6 +739,7 @@ Special Thanks
 
 ### Patreon Supporters
 * [Chris Sakkas](https://www.patreon.com/user?u=40864)
+* [IronCladLion](https://www.patreon.com/user?u=369077)
 * [Kelvin Shadewing](https://www.patreon.com/kelvin)
 
 Formerly used 
@@ -571,8 +799,4 @@ by [Minorthreat0987](http://minorthreat0987.deviantart.com/) and
 
 * ["Crybits"](http://www.newgrounds.com/audio/listen/498444) by
 [fredhalv](http://fredhalv.newgrounds.com/) is licensed under
-[CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
-* ["Digital Native"](http://ericskiff.com/music/) by
-[Eric Skiff](http://ericskiff.com/) is licensed under
 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/)

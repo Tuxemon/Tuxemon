@@ -1,0 +1,24 @@
+{
+    "slug": "k9",
+    "category": "cute",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 2,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "battery_discharge"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

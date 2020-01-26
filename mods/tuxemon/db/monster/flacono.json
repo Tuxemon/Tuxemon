@@ -1,0 +1,24 @@
+{
+    "slug": "flacono",
+    "category": "horned_raptor",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "one_two"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

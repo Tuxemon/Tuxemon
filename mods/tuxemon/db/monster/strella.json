@@ -1,0 +1,24 @@
+{
+    "slug": "strella",
+    "category": "trailing",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

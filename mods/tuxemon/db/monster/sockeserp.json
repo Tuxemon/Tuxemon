@@ -1,0 +1,24 @@
+{
+    "slug": "sockeserp",
+    "category": "power_socket_snake",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

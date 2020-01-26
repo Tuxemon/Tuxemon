@@ -1,0 +1,24 @@
+{
+    "slug": "masknake",
+    "category": "serpent's_tooth",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

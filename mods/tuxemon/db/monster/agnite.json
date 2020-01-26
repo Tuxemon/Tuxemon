@@ -1,0 +1,24 @@
+{
+    "slug": "agnite",
+    "category": "false_dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fume"
+        }
+    ],
+    "shape": "Dragon",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

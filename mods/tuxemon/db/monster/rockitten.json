@@ -1,0 +1,24 @@
+{
+    "slug": "rockitten",
+    "category": "cute_boulder",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "thunderball"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

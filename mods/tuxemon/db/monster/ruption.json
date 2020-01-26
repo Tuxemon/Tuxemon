@@ -1,0 +1,24 @@
+{
+    "slug": "ruption",
+    "category": "bonfire",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 2,
+            "technique": "kindling_flame"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

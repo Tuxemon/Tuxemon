@@ -1,0 +1,24 @@
+{
+    "slug": "pipis",
+    "category": "echo",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "take_cover"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "av8r",
+    "category": "heliotrope",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 2,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "battery_discharge"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

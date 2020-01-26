@@ -1,0 +1,24 @@
+{
+    "slug": "galnec",
+    "category": "",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

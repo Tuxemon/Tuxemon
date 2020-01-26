@@ -1,0 +1,24 @@
+{
+    "slug": "sludgehog",
+    "category": "garbage",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_claws"
+        }
+    ],
+    "shape": "Landrace",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

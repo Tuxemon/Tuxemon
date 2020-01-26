@@ -1,0 +1,24 @@
+{
+    "slug": "vivitron",
+    "category": "sparked",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "battery_acid"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

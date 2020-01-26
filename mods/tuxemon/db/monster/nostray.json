@@ -1,0 +1,24 @@
+{
+    "slug": "nostray",
+    "category": "probiscus",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "snowstorm"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

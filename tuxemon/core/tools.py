@@ -26,7 +26,10 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 import operator
@@ -35,12 +38,11 @@ import re
 
 import pygame
 
-import core.components.sprite
-from core import prepare
-from core.components import pyganim
-from core.platform import mixer
+import tuxemon.core.sprite
+from tuxemon.core import prepare
+from tuxemon.core import pyganim
+from tuxemon.core.platform import mixer
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
@@ -88,13 +90,13 @@ def cursor_from_image(image):
     return icon_string
 
 
-def transform_resource_filename(filename):
+def transform_resource_filename(*filename):
     """ Appends the resource folder name to a filename
 
     :param filename: String
     :rtype: basestring
     """
-    return os.path.join(prepare.BASEDIR, 'resources', filename)
+    return prepare.fetch(*filename)
 
 
 def load_and_scale(filename):
@@ -155,9 +157,9 @@ def load_sprite(filename, **rect_kwargs):
     of the image for positioning the rect.
 
     :param filename: Filename to load
-    :rtype: core.components.sprite.Sprite
+    :rtype: core.sprite.Sprite
     """
-    sprite = core.components.sprite.Sprite()
+    sprite = tuxemon.core.sprite.Sprite()
     sprite.image = load_and_scale(filename)
     sprite.rect = sprite.image.get_rect(**rect_kwargs)
     return sprite
@@ -260,7 +262,7 @@ def scale_sprite(sprite, ratio):
 
     :type sprite: pygame.Sprite
     :param ratio: amount to scale by
-    :rtype: core.components.sprite.Sprite
+    :rtype: core.sprite.Sprite
     """
     center = sprite.rect.center
     sprite.rect.width *= ratio
@@ -373,9 +375,13 @@ def calc_dialog_rect(screen_rect):
     :return:
     """
     rect = screen_rect.copy()
-    rect.height *= .25
-    rect.width *= .8
-    rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
+    if prepare.CONFIG.large_gui:
+        rect.height *= .4
+        rect.bottomleft = screen_rect.bottomleft
+    else:
+        rect.height *= .25
+        rect.width *= .8
+        rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
     return rect
 
 
@@ -389,3 +395,61 @@ def open_dialog(game, text, menu=None):
     """
     rect = calc_dialog_rect(game.screen.get_rect())
     return game.push_state("DialogState", text=text, rect=rect, menu=menu)
+
+
+def nearest(l):
+    """ Use rounding to find nearest tile
+
+    :param l:
+    :return:
+    """
+    return tuple(int(round(i)) for i in l)
+
+
+def trunc(l):
+    return tuple(int(i) for i in l)
+
+
+def scaled_image_loader(filename, colorkey, **kwargs):
+    """ pytmx image loader for pygame
+
+    Modified to load images at a scaled size
+
+    :param filename:
+    :param colorkey:
+    :param kwargs:
+    :return:
+    """
+    from pytmx.util_pygame import smart_convert, handle_transformation
+
+    if colorkey:
+        colorkey = pygame.Color('#{0}'.format(colorkey))
+
+    pixelalpha = kwargs.get('pixelalpha', True)
+
+    # load the tileset image
+    image = pygame.image.load(filename)
+
+    # scale the tileset image to match game scale
+    scaled_size = scale_sequence(image.get_size())
+    image = pygame.transform.scale(image, scaled_size)
+
+    def load_image(rect=None, flags=None):
+        if rect:
+            # scale the rect to match the scaled image
+            rect = scale_rect(rect)
+            try:
+                tile = image.subsurface(rect)
+            except ValueError:
+                logger.error('Tile bounds outside bounds of tileset image')
+                raise
+        else:
+            tile = image.copy()
+
+        if flags:
+            tile = handle_transformation(tile, flags)
+
+        tile = smart_convert(tile, colorkey, pixelalpha)
+        return tile
+
+    return load_image

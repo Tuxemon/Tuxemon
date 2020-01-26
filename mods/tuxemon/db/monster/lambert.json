@@ -1,0 +1,24 @@
+{
+    "slug": "lambert",
+    "category": "gumnut",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -15,7 +15,7 @@ import json
 import os
 
 # assume run from test folder
-locale_folder = '../tuxemon/resources/db/locale/'
+locale_folder = '../../../tuxemon/resources/db/locale/'
 locale_glob = locale_folder + '*.json'
 master_filename = 'en_US.json'
 
@@ -24,6 +24,9 @@ def load_keys(filename):
     with open(filename) as _fp:
         return set(json.load(_fp).keys())
 
+def load_dic(filename):
+    with open(filename) as _fp:
+        return json.load(_fp)
 
 def print_list(sequence):
     for i in sorted(sequence):
@@ -32,9 +35,12 @@ def print_list(sequence):
 
 def print_json(sequence):
     for i in sorted(sequence):
-        print('    "{}": "",'.format(i))
+        if i in master_dic:
+            print('    "'+i+'": "" --> "'+str(master_dic[i])+'"')
+        else:
+            print('    "'+i+'": ""')
 
-
+master_dic = load_dic(locale_folder + master_filename)
 master_keys = load_keys(locale_folder + master_filename)
 errors = set()
 
@@ -53,7 +59,6 @@ for lc in glob.glob(locale_glob):
         if missing:
             print(lc, " The following are missing:")
             print_json(missing)
-            print()
 
         extra = keys.difference(master_keys)
         if extra:

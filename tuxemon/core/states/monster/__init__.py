@@ -1,13 +1,16 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import pygame
 
-from core import prepare
-from core import tools
-from core.components.menu.menu import Menu
-from core.components.menu.interface import HpBar, MenuItem
-from core.components.ui.draw import GraphicBox
-from core.components.ui.text import draw_text, TextArea
+from tuxemon.core import prepare
+from tuxemon.core import tools
+from tuxemon.core.menu.interface import HpBar, ExpBar, MenuItem
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.ui.draw import GraphicBox
+from tuxemon.core.ui.text import draw_text, TextArea
 
 
 class MonsterMenuState(Menu):
@@ -31,6 +34,7 @@ class MonsterMenuState(Menu):
         self.monster_slot_border = {}
         self.monster_portrait = pygame.sprite.Sprite()
         self.hp_bar = HpBar()
+        self.exp_bar = ExpBar()
 
         # load and scale the monster slot borders
         root = "gfx/ui/monster/"

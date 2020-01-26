@@ -1,11 +1,16 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import logging
 from abc import abstractmethod
 
 import pygame
 
-from core import prepare
-from core.state import State
-from core.platform import mixer
+from tuxemon.core import prepare
+from tuxemon.core.platform import mixer
+from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +37,7 @@ class FadeTransitionBase(State):
         self.create_fade_animation()
 
     def process_event(self, event):
-        pass
+        return None
 
     def update(self, time_delta):
         self.animations.update(time_delta)
@@ -52,7 +57,7 @@ class FadeOutTransition(FadeTransitionBase):
 
     def shutdown(self):
         if self.game.current_music["previoussong"]:
-            mixer.music.load(prepare.BASEDIR + "resources/music/" + self.game.current_music["previoussong"])
+            mixer.music.load(prepare.fetch("music", self.game.current_music["previoussong"]))
             mixer.music.play(-1)
             self.game.current_music["status"] = "playing"
             self.game.current_music["song"] = self.game.current_music["previoussong"]

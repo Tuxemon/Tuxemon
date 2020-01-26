@@ -1,0 +1,24 @@
+{
+    "slug": "capiti",
+    "category": "woodwose",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

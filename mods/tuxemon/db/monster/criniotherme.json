@@ -1,0 +1,24 @@
+{
+    "slug": "criniotherme",
+    "category": "mercury",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

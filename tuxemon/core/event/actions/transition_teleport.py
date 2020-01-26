@@ -57,15 +57,19 @@ class TransitionTeleportAction(EventAction):
     ]
 
     def start(self):
-        # Start the screen transition
-        params = [self.parameters.transition_time]
-        self.transition = self.game.event_engine.get_action("screen_transition", params)
-        self.transition.start()
+        # Start the screen transition if one isn't already underway
+        world = self.game.get_state_name("WorldState")
+        if not world.in_transition:
+            params = [self.parameters.transition_time]
+            self.transition = self.game.event_engine.get_action("screen_transition", params)
+            self.transition.start()
 
     def update(self):
-        if not self.transition.done:
+        if not hasattr(self, 'transition'):
+            self.stop()
+        elif not self.transition.done:
             self.transition.update()
-        if self.transition.done:
+        else:
             self.transition.cleanup()
             # set the delayed teleport
             self.game.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])

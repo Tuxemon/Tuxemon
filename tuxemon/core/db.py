@@ -62,7 +62,6 @@ class JSONDatabase(object):
     """
 
     def __init__(self, dir=None):
-        self.path = prepare.fetch("db")
         self.database = {
             "item": {},
             "monster": {},
@@ -86,6 +85,7 @@ class JSONDatabase(object):
 
         """
 
+        self.path = prepare.fetch("db")
         if directory == "all":
             self.load_json("item")
             self.load_json("monster")
@@ -192,3 +192,22 @@ def set_defaults(results, table):
                 )
 
     return results
+
+# Register default databases
+env_db = JSONDatabase()
+techniques_db = JSONDatabase()
+items_db = JSONDatabase()
+inventory_db = JSONDatabase()
+npc_db = JSONDatabase()
+monster_db = JSONDatabase()
+encounter_db = JSONDatabase()
+
+# Load default databases
+def collect_databases():
+    env_db.load("environment")
+    techniques_db.load("technique")
+    items_db.load("item")
+    inventory_db.load("inventory")
+    npc_db.load("npc")
+    monster_db.load("monster")
+    encounter_db.load("encounter")

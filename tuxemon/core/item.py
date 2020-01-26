@@ -44,14 +44,6 @@ from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
 
-# Load the monster database
-items_db = db.JSONDatabase()
-items_db.load("item")
-
-# Load the inventory database
-inventory_db = db.JSONDatabase()
-inventory_db.load("inventory")
-
 
 class Item(object):
     """An item object is an item that can be used either in or out of combat.
@@ -119,7 +111,7 @@ class Item(object):
         }
         """
 
-        results = items_db.lookup(slug, table="item")
+        results = db.items_db.lookup(slug, table="item")
 
         self.slug = results["slug"]                                         # short English identifier
         self.name = T.translate(self.slug)                                  # translated name

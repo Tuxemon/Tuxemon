@@ -46,11 +46,6 @@ from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
 
-
-# Load the technique database
-techniques_db = db.JSONDatabase()
-techniques_db.load("technique")
-
 tech_ret_value = namedtuple("use", "name success properties")
 
 
@@ -104,7 +99,7 @@ class Technique(object):
         :rtype: None
         """
 
-        results = techniques_db.lookup(slug, table="technique")
+        results = db.techniques_db.lookup(slug, table="technique")
         self.slug = results["slug"]                             # a short English identifier
         self.name = T.translate(self.slug)                      # locale-specific string
 

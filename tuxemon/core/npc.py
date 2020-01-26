@@ -51,10 +51,6 @@ from tuxemon.core.tools import nearest, load_and_scale, trunc
 
 logger = logging.getLogger(__name__)
 
-# Load the NPC database
-npc_db = db.JSONDatabase()
-npc_db.load("npc")
-
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
 animation_mapping = {
@@ -94,7 +90,7 @@ class NPC(Entity):
         super(NPC, self).__init__()
 
         # load initial data from the npc database
-        npc_data = npc_db.lookup(npc_slug, table="npc")
+        npc_data = db.npc_db.lookup(npc_slug, table="npc")
 
         self.slug = npc_slug
 
@@ -597,9 +593,7 @@ class NPC(Entity):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npcs = db.JSONDatabase()
-        npcs.load("npc")
-        npc_details = npcs.database['npc'][self.slug]
+        npc_details = db.npc_db.database['npc'][self.slug]
         for npc_monster_details in npc_details['monsters']:
             current_monster = monster.Monster(save_data=npc_monster_details)
             current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']

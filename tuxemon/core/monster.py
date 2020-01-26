@@ -42,11 +42,6 @@ from tuxemon.core.technique import Technique
 
 logger = logging.getLogger(__name__)
 
-# Load the monster database
-monsters = db.JSONDatabase()
-monsters.load("monster")
-monsters.load("technique")
-
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'current_hp',
     'level',
@@ -266,7 +261,7 @@ class Monster(object):
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = monsters.lookup(slug)
+        results = db.monster_db.lookup(slug)
 
         if results is None:
             logger.error("monster {} is not found".format(slug))
@@ -477,7 +472,7 @@ class Monster(object):
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = monsters.lookup(self.slug)
+        results = db.monster_db.lookup(self.slug)
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:

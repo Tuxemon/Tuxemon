@@ -192,8 +192,9 @@ def get_index_of_latest_save():
 
 
 def get_save_path(slot):
-    # append the mod name if this is a custom game	
+    # append the mod names if this is a custom game	
+    mods = ""
     if len(prepare.CONFIG.mods) > 1:
-        return os.path.join(prepare.SAVE_PATH, '{}-slot{}.save'.format(prepare.CONFIG.mods[0], slot))
-    else:
-        return os.path.join(prepare.SAVE_PATH, 'slot{}.save'.format(slot))
+        for i in range(0, len(prepare.CONFIG.mods) - 1):
+            mods += prepare.CONFIG.mods[i] + "-"
+    return os.path.join(prepare.SAVE_PATH, '{}slot{}.save'.format(mods, slot))

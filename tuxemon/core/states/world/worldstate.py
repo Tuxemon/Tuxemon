@@ -588,7 +588,7 @@ class WorldState(state.State):
         # does the tile explicitly define exits?
         try:
             adjacent_tiles = list()
-            for direction in tile["exit"]:
+            for direction in tile['exit']:
                 exit_tile = tuple(dirs2[direction] + position)
                 if exit_tile in skip_nodes:
                     continue
@@ -617,14 +617,11 @@ class WorldState(state.State):
         if skip_nodes is None:
             skip_nodes = set()
 
-        # if there are explicit way to exit this position use that
-        # information only and do not check surrounding tiles.
+        # if there are explicit way to exit this position use that information,
         # handles 'continue' and 'exits'
         tile_data = collision_map.get(position)
         if tile_data:
             exits = self.get_explicit_tile_exits(position, tile_data, skip_nodes)
-            if exits:
-                return exits
 
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
@@ -634,6 +631,11 @@ class WorldState(state.State):
                 ("up", (position[0], position[1] - 1)),
                 ("left", (position[0] - 1, position[1])),
         ):
+            # if exits are defined make sure the neighbor is present there
+            if exits and not neighbor in exits:
+                continue
+
+            # check if the neighbor region is present in skipped nodes
             if neighbor in skip_nodes:
                 continue
 

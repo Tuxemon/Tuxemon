@@ -89,8 +89,8 @@ class JSONDatabase(object):
         if directory == "all":
             self.load_json("item")
             self.load_json("monster")
-            self.load_json("technique")
             self.load_json("npc")
+            self.load_json("technique")
             self.load_json("encounter")
             self.load_json("inventory")
             self.load_json("environment")
@@ -193,21 +193,27 @@ def set_defaults(results, table):
 
     return results
 
-# Register default databases
-env_db = JSONDatabase()
-techniques_db = JSONDatabase()
-items_db = JSONDatabase()
-inventory_db = JSONDatabase()
-npc_db = JSONDatabase()
-monster_db = JSONDatabase()
-encounter_db = JSONDatabase()
+# Database storage class
+class Databases(object):
+    def __init__(self):
+        self.item = JSONDatabase()
+        self.monster = JSONDatabase()
+        self.npc = JSONDatabase()
+        self.technique = JSONDatabase()
+        self.encounter = JSONDatabase()
+        self.inventory = JSONDatabase()
+        self.environment = JSONDatabase()
+        self.all = JSONDatabase()
 
-# Load default databases
-def collect_databases():
-    env_db.load("environment")
-    techniques_db.load("technique")
-    items_db.load("item")
-    inventory_db.load("inventory")
-    npc_db.load("npc")
-    monster_db.load("monster")
-    encounter_db.load("encounter")
+    def collect_databases(self):
+        self.item.load("item")
+        self.monster.load("monster")
+        self.npc.load("npc")
+        self.technique.load("technique")
+        self.encounter.load("encounter")
+        self.inventory.load("inventory")
+        self.environment.load("environment")
+        self.all.load("all")
+
+# Register default databases
+databases = Databases()

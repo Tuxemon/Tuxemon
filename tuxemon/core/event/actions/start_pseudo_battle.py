@@ -57,7 +57,7 @@ class StartPseudoBattleAction(EventAction):
         env_slug = "grass"
         if 'environment' in player.game_variables:
             env_slug = player.game_variables['environment']
-        env = db.env_db.lookup(env_slug, table="environment")
+        env = db.databases.environment.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", graphics=env['battle_graphics'])

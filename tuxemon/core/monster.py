@@ -261,7 +261,7 @@ class Monster(object):
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = db.monster_db.lookup(slug)
+        results = db.databases.monster.lookup(slug)
 
         if results is None:
             logger.error("monster {} is not found".format(slug))
@@ -472,7 +472,7 @@ class Monster(object):
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = db.monster_db.lookup(self.slug)
+        results = db.databases.monster.lookup(self.slug)
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:

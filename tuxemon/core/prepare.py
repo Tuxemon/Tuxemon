@@ -133,8 +133,8 @@ def pygame_init():
     T.collect_languages()
 
     # Configure databases
-    from tuxemon.core import db
-    db.collect_databases()
+    from tuxemon.core.db import databases
+    databases.collect_databases()
 
     logger.debug("pygame init")
     pg.init()

@@ -111,7 +111,7 @@ class Item(object):
         }
         """
 
-        results = db.items_db.lookup(slug, table="item")
+        results = db.databases.item.lookup(slug, table="item")
 
         self.slug = results["slug"]                                         # short English identifier
         self.name = T.translate(self.slug)                                  # translated name

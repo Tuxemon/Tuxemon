@@ -1561,6 +1561,15 @@ msgstr "STOP"
 msgid "omnichannelarrives2"
 msgstr ""
 
+msgid "firsts"
+msgstr "testmebitch"
+
+msgid "nopenotyet"
+msgstr "Sorry, someone got injured on the route. It's closed right now."
+
+msgid "bothofyou"
+msgstr "Both of you, come outside. A contingent from Omnichannel requests your presence."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
@@ -1586,7 +1595,7 @@ msgid "nodrink"
 msgstr "I'm pretty sure you're too young to drink..."
 
 msgid "professorswife"
-msgstr "Professor's Wife: Oh No! You just missed him. I think he went into town though. Maybe check there?"
+msgstr "Oh No! You just missed him. I think he went into town though. Maybe check there?"
 
 msgid "waithere2"
 msgstr "Oh, I hope nobody got hurt from the fallen tree!"

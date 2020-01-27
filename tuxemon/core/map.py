@@ -253,9 +253,10 @@ class Map(object):
         self.size = self.data.width, self.data.height
 
         # Get the tile size of the map
-        self.tile_size = 16, 16
         if len(self.data.tilesets) > 0:
             self.tile_size = self.data.tilesets[0].tilewidth, self.data.tilesets[0].tileheight
+        else:
+            self.tile_size = 16, 16
 
         # Load all objects from the map file and sort them by their type.
         for obj in self.data.objects:

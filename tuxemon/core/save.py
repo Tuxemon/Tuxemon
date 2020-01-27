@@ -192,9 +192,10 @@ def get_index_of_latest_save():
 
 
 def get_save_path(slot):
-    # append the mod names if this is a custom game	
-    mods = ""
-    if len(prepare.CONFIG.mods) > 1:
-        for i in range(0, len(prepare.CONFIG.mods) - 1):
-            mods += prepare.CONFIG.mods[i] + "-"
-    return os.path.join(prepare.SAVE_PATH, '{}slot{}.save'.format(mods, slot))
+    # The last element is always "tuxemon", ignore it
+    mods = prepare.CONFIG.mods[:-1]
+    if mods:
+        mod_prefix = "-".join(mods) + "-"
+    else:
+        mod_prefix = ""
+    return os.path.join(prepare.SAVE_PATH, '{}slot{}.save'.format(mod_prefix, slot))

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="37">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -18,22 +18,22 @@
  <tileset firstgid="2353" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="20" height="40">
+ <layer id="1" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1VEOgCAIBmDXgeSGHReuUQ+52T8hMcvWfGCUyrcyUw4h0B585HhcpxDIeXsan2e+4fEDnhTqennrcu7LPXS8XuzgUbA9avwelofP+7Tnfd/Unns4DyUPs8A9rles6e2J09PWfU9P2w9GeDh/05vem95X/g/r3PB62jjc32o8rb/V40LITc86c0q51dPq3vSs+firh3OHdbHCixdBRnjHW47m1azbkXkDz3rMEg==
+   eAHtklEOwjAMQycOBDfkuOMaYGlPMiaZttEPJvFRmbbxqxM2T9N0e6150evyW3utR6ify6d6VzjoHp48o3nKTz6yH+1XfufdL+8z8ndybuzJwL7j+Rx4t9I1Hn3qjYqne88By99x3xae6t0Pk3dG83x+W/N538rn+47nPamGxTl9VTyd+b28+NC9PNV7v3DQ5Omcemn+TyN4cF3Jk7oln3O+nR/+1MzFPvPh032Vy+/lhYP+eZ/fXzVH5pV6tvkpv/pD+T5Ss0/22S8cNDns8aPVt6g7OCj+VDhrdbrDt1bHPJSJ+kqP8OTJxTtHecwOLvtOt37Pyet83Xm+P4JX/Q/8X12O7lz5zsBjblJlzn7VA32opuqXmk7l6Vbl6WrXzslY8ejtV/UJz3rMEg==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="20" height="40">
+ <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJzNlj0OgkAQhRcS6fEWWnk072PjMcQ7qDV2UHkMIXGS57DzBxS8ZLKEhbffzgwbmjKl+xDNwpHUDtfvcvko+ZN6iFHn6SN/4v45cU+PJL66SGlfxP0kvsPgdQz4Wfmz+D4Cl8XXOfiQaY38Yc+skT9iaiF/j+H+8xevDF9dpXTZTWNf6Xzks5SP73Nr+eNCPk19kO9mePVBPostyufxi/Sf1ndz+LR9z8mftm+Nj3Ogj9QzGh/nIH/rvIrmb2vni5fvBLmV6nsFLs/54uk/4kI+SZH+80jj4/UgaXUgT+TznCPIQtHBHPLlvideA/Tgvkngw3p27Hlpz7n+y9WTrz/K+l+jfSPb5Jso8vPaiGz8TOH3PaO0Vq6mGNJ70lpSvXuDPZofZPfmzxpJufkvhGkbnw==
+   eAGl1k1u2zAQxXG1QLuPb9GserTcp5seo+4d2qyTXbPKMcJn+AcMpqIkwwSIecPh/Pn0Adnnz8vye8zznXG5jpfBeR3z3tj94ItvQ5hZe1KYxO5nbRte4tHBZ9//8GlZTmNi9vos57PXvw3W4w08vsTO2/P33hr4Elt54e/fKOzdv+qp6src81f38hQWXevR/B15HjyFRf8ZjL/X+Txi9/fwdVl+fPl/nsY6T2HRA3EZOPf6w8PBPXK9PK3569wjvHDyTQmXxhGrP2trMeeFk29KWHTf67p/9ULJw8rkKSy6bLtI/vp6zfF4Couu+6L56+s1x+MpLHr2/m29d3g8hUXXc6P527puPJ7CojsPB7fXk+PxFBatX1/lpG9t4PEUFl3704u/970Kk6ew6H4+Pg+9XnOewqJnzxdv6znzFBZdz4ve8/d9/LZk5DyewqJT+zmm+ybyl3ofajyFRdvLl5ie2cDjKSx61rO1jsdTWHR/HjhbzyF7wuQpLPdJ/yzyIua9NHgK131SS9RjTe7dlidmrPnjM3tqX/bPrjm/d/33jT+xnu38MPf+r2VPrjv/oXgTMeW3xPyH4k3MWWHKb4mzszF57XHWNzs7PAMrOT3rW7t/s7Ot48prXLt/s7Ot8y2v8QOEaRuf
   </data>
  </layer>
- <layer name="Tile Layer 1" width="20" height="40">
+ <layer id="3" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzEENACAMBLCbBHAB/gUyEUv4tAKaAAD8sSrZNfedvu7gB8x71TMAew==
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCEgyMjAIATE1AKaQLO0qGgetdw1as5oCIyGACIEANUzAHs=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="4" name="Collision" visible="0">
   <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
   <object id="2" type="collision" x="272" y="112" width="48" height="416"/>
   <object id="3" type="collision" x="32" y="0" width="288" height="32"/>
@@ -62,7 +62,7 @@
   <object id="27" type="collision" x="288" y="32" width="32" height="16"/>
   <object id="28" type="collision" x="128" y="304" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="5" name="Events" visible="0">
   <object id="30" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music peasant_kingdom.ogg"/>

@@ -1,0 +1,100 @@
+{
+    "maps": [
+        {
+            "fileName": "spyder_routea.tmx",
+            "x": 960,
+            "y": 0
+        },
+        {
+            "fileName": "spyder_route5.tmx",
+            "x": 0,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_flower_city.tmx",
+            "x": 640,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_timber_town.tmx",
+            "x": 0,
+            "y": 960
+        },
+        {
+            "fileName": "spyder_route4.tmx",
+            "x": 1280,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_route3.tmx",
+            "x": 1600,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_leather_town.tmx",
+            "x": 1600,
+            "y": 1280
+        },
+        {
+            "fileName": "spyder_cotton_town.tmx",
+            "x": 1600,
+            "y": 1920
+        },
+        {
+            "fileName": "spyder_citypark.tmx",
+            "x": 2240,
+            "y": 1600
+        },
+        {
+            "fileName": "spyder_route2.tmx",
+            "x": 2240,
+            "y": 2240
+        },
+        {
+            "fileName": "spyder_dryadsgrove.tmx",
+            "x": 960,
+            "y": 1920
+        },
+        {
+            "fileName": "spyder_route6.tmx",
+            "x": 320,
+            "y": 1920
+        },
+        {
+            "fileName": "spyder_tunnel.tmx",
+            "x": 0,
+            "y": 1600
+        },
+        {
+            "fileName": "spyder_candy_town.tmx",
+            "x": 320,
+            "y": 2240
+        },
+        {
+            "fileName": "spyder_routec.tmx",
+            "x": 960,
+            "y": 2560
+        },
+        {
+            "fileName": "spyder_route1.tmx",
+            "x": 1600,
+            "y": 2560
+        },
+		        {
+            "fileName": "spyder_routed.tmx",
+            "x": 960,
+            "y": 1280
+        },
+				        {
+            "fileName": "spyder_routee.tmx",
+            "x": 320,
+            "y": 1600
+        },
+        {
+            "fileName": "spyder_paper_town.tmx",
+            "x": 1600,
+            "y": 2880
+        }
+    ],
+    "type": "world"
+}

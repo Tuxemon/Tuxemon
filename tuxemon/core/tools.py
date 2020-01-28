@@ -176,7 +176,7 @@ def load_animated_sprite(filenames, delay, **rect_kwargs):
     of the image for positioning the rect.
 
     :param filenames: Filenames to load
-    :param delay: Frame interval; time between each frame
+    :param int delay: Frame interval; time between each frame
     :rtype: core.sprite.Sprite
     """
     anim = []

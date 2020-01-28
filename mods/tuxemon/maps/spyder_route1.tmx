@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1979" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <tileset firstgid="2135" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAG7wsrAcAWIrwKx3yDEILcRcp8rFd3tTqJZ94hw30CG62mg++4CMcidA+kOQnY/G8Lug6U/WNoB8d3I9A/MDELhhS4/lMMP3S8DwR/K4QdLf8SGGz71o+mPvuXkYWA58RaI35FZXhAb5+SqG8r5glQ/+9MgDkZS+JEa3sSoHw0/ysqjwR5+ABUuFBs=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHNlcttAzEMRHVwyknOqSCfAuK04P4riHR4gP3gMWnLhwgQZocaDsm1Fh7jcr0exnib23ipepzZt+KudJy9/c5ttO4a/3gZg/05n88XcftW/NxjPad5rEv8Z8629rX1PntO/ilunzSPdYnf6m/lJP8Ud53uHM6DV/0l/xTHF+zOgd5If9w3Y/JPcft353De4t/zftHfSd8H+uSf4uSB3TnQG+nPcXjyT3HywO4c6I23+vv6R9+v7x08vacU9/y7789+5sk/xZ3fncN5XZ78Uxzf1D9xdLuIXxepl/onjm4X8esi9ap50O1iVcfn1KvmQbeLVR2fU899P4v7f+ReX/pz38/i+IP3+pJXzYVuF6s6PqdeNRe6HVy/dVXH539MH3tv
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHNlNEJwzAMRP2RbNM12oZO0eW7Ry2IQDwin0pdUoORT5Lvzo5Ja7XxXGt9v+5altbWPhlv3d/RvO++r3u89L024/Ca5circOQZrR9dX03bf+RvxPtpLTuP8mZ1G8pfxp/lX53Xphqz/Ckd1ukvO4e9vTiO3qLlzrq/6G10l1V/kW+0rt5f5JjhL/tOzNNf9BHXW/i+3/iLnJU1/dG/4+y9Wd7/gRU956tG+ss0sjtjf9bnefYr7P7UeZyfkfysEysd1smfYeo4Zr/ns8j+KqZv4qpe1ud58ipc9e/8jNzPOjH7q3jWOZSe0mFd8f1Lnb6JZ/kkr8LU9X7mz8LuR8VZ/pQO62+mDkRH
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtkcEKwCAMQ3vQH9z/f8y2Qy4POhWq3aGClNQsCZlZnRMNXN1sdE/k8DxG2d73zPP3fJndrHp/dbmqtYNf+Xa0mqvp/VOm8njakx+Fpc9Jfb4Tkx+F6SNMfe29SX4UnvXzeNpH5aGO9DlnefqO/Cjcmll/7uqM8i+daiCjgRsU+SiS
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+  <object id="118" name="Teleport to Cotton Town" type="event" x="160" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,10,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="125" name="Route Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music peasant_kingdom.ogg"/>
+    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+   </properties>
+  </object>
+  <object id="129" name="Teleport to Route1" type="event" x="224" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport route1.tmx,34,4,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="130" name="Teleport to Route1" type="event" x="208" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport route1.tmx,33,4,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="133" name="Teleport to Cotton Town" type="event" x="176" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,11,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="134" name="Teleport to Cotton Town" type="event" x="192" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,12,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="135" name="Teleport to Cotton Town" type="event" x="208" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,13,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="136" name="Teleport to Cotton Town" type="event" x="224" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,14,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="137" name="Teleport to Cotton Town" type="event" x="240" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,15,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="138" name="Teleport to Cotton Town" type="event" x="256" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,16,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="139" name="Teleport to Cotton Town" type="event" x="272" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,17,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="140" name="Teleport to Cotton Town" type="event" x="288" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport cotton_town.tmx,18,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="151" name="Encounters" type="event" x="320" y="160" width="128" height="80">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="152" name="Encounters" type="event" x="160" y="160" width="96" height="80">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="153" name="Encounters" type="event" x="208" y="96" width="112" height="48">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="154" name="Encounters" type="event" x="160" y="32" width="144" height="48">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="159" name="Player Spawn" type="event" x="208" y="288" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="7" name="Collisions" visible="0">
+  <object id="120" type="collision" x="448" y="0">
+   <polygon points="0,0 0,16 0,320 192,320 192,0"/>
+  </object>
+  <object id="122" type="collision" x="320" y="16">
+   <polygon points="0,0 0,144 32,144 32,0"/>
+  </object>
+  <object id="127" type="collision" x="0" y="0" width="160" height="320"/>
+  <object id="128" type="collision" x="160" y="256" width="224" height="32"/>
+  <object id="132" type="collision-line" x="384" y="320">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object id="142" type="collision" x="352" y="144" width="96" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="143" type="collision" x="352" y="80" width="96" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="144" type="collision" x="400" y="16" width="48" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="145" type="collision" x="160" y="144" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="146" type="collision" x="160" y="80" width="32" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="147" type="collision" x="208" y="80" width="112" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="148" type="collision" x="160" y="16" width="112" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="149" type="collision" x="352" y="16" width="16" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="150" type="collision-line" x="304" y="0">
+   <polyline points="0,0 144,0"/>
+  </object>
+  <object id="155" type="collision" x="288" y="16" width="32" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
+  <object id="160" type="collision" x="0" y="0" width="160" height="320"/>
+ </objectgroup>
+</map>

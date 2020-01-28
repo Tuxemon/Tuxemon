@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="105" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+ </tileset>
+ <tileset firstgid="465" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <tileset firstgid="913" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="2353" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtklEOwjAMQycOBDfkuOMaYGlPMiaZttEPJvFRmbbxqxM2T9N0e6150evyW3utR6ify6d6VzjoHp48o3nKTz6yH+1XfufdL+8z8ndybuzJwL7j+Rx4t9I1Hn3qjYqne88By99x3xae6t0Pk3dG83x+W/N538rn+47nPamGxTl9VTyd+b28+NC9PNV7v3DQ5Omcemn+TyN4cF3Jk7oln3O+nR/+1MzFPvPh032Vy+/lhYP+eZ/fXzVH5pV6tvkpv/pD+T5Ss0/22S8cNDns8aPVt6g7OCj+VDhrdbrDt1bHPJSJ+kqP8OTJxTtHecwOLvtOt37Pyet83Xm+P4JX/Q/8X12O7lz5zsBjblJlzn7VA32opuqXmk7l6Vbl6WrXzslY8ejtV/UJz3rMEg==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAGtlktOwzAURU0lmLe7gBFLYz9MWAbpTmAGI5aBr8qRjl7jfFQsue/afu/6xImaTIfWzr1PN8b21z66z2fvt8bKg38ia99dp6e9XMLwt/I4kTX88HTOXn28a+3UO55762v+Y/d62uHHGRGr3xrfTyngjIhlucH31RfWzs9M1vZc43OumaydA9+W+2Ema/tVvuNDa6/31/3U581kHT98/osPH3y3XK+ZrH29+G7xmw6X/5TUW9vPfJ6vOvuZydq58L17smjYzWTtdPg8VzV+ZrJ2Pnyeqxo/M1k7H76l5w4/mOKFtlc0fPjW9Yzxgyle6JqPD7513X5mQlNPnX3CMdcqX3Lgc33m8V/7v4onTPFCx8MNfxi8VjVM8ULXHPjwW7rPZrK25xrfc3+3pGU/M1m/9TW4iPD1pavGGkzxQpMMFzE1o4YfTPFCj2qW5vEzk/Vc7dJ9SH48zcQ5zXl5DhZinkuamTgn1hKpYY4xzzbjxLQ5PjiT47rkj6457zu/3+ILH9F7s388177XkpPrzjcUbEQ8Ge+J+YaCjZi94sl4TxztzRnDWuOobrR3ziLf1Wl4WY/q5s5vtDfzsDN2nDu/0d7Mw87Y8RcaDQQv
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 1" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCEgyMjAIATE1AKaQLO0qGgetdw1as5oCIyGACIEANUzAHs=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collision" visible="0">
+  <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
+  <object id="2" type="collision" x="272" y="112" width="48" height="416"/>
+  <object id="3" type="collision" x="32" y="0" width="288" height="32"/>
+  <object id="4" type="collision" x="32" y="608" width="176" height="32"/>
+  <object id="5" type="collision" x="32" y="512" width="32" height="96"/>
+  <object id="6" type="collision" x="64" y="576" width="32" height="32"/>
+  <object id="7" type="collision" x="64" y="544" width="16" height="32"/>
+  <object id="8" type="collision" x="112" y="544" width="208" height="32"/>
+  <object id="9" type="collision" x="304" y="528" width="16" height="16"/>
+  <object id="10" type="collision" x="224" y="576" width="96" height="32"/>
+  <object id="11" type="collision" x="240" y="608" width="80" height="32"/>
+  <object id="12" type="collision" x="160" y="160" width="112" height="16"/>
+  <object id="13" type="collision" x="128" y="288" width="112" height="16"/>
+  <object id="14" type="collision" x="160" y="384" width="112" height="16"/>
+  <object id="15" type="collision" x="128" y="464" width="112" height="16"/>
+  <object id="16" type="collision" x="144" y="512" width="128" height="16"/>
+  <object id="17" type="collision" x="96" y="64" width="32" height="400"/>
+  <object id="19" type="collision" x="64" y="416" width="32" height="32"/>
+  <object id="20" type="collision" x="64" y="176" width="32" height="32"/>
+  <object id="21" type="collision" x="32" y="160" width="64" height="16"/>
+  <object id="22" type="collision" x="32" y="288" width="64" height="16"/>
+  <object id="23" type="collision" x="32" y="336" width="32" height="32"/>
+  <object id="24" type="collision" x="32" y="384" width="64" height="16"/>
+  <object id="25" type="collision" x="32" y="464" width="64" height="16"/>
+  <object id="26" type="collision" x="288" y="80" width="32" height="32"/>
+  <object id="27" type="collision" x="288" y="32" width="32" height="16"/>
+  <object id="28" type="collision" x="128" y="304" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events" visible="0">
+  <object id="30" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music peasant_kingdom.ogg"/>
+    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+   </properties>
+  </object>
+  <object id="31" name="Teleport to Route 3" type="event" x="208" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport route3.tmx,33,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="32" name="Teleport to Route 3" type="event" x="224" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport route3.tmx,34,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="33" name="Teleport to Flower City" type="event" x="304" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport flower_city.tmx,0,4,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="35" name="Teleport to Flower City" type="event" x="304" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport flower_city.tmx,0,5,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="36" name="Player Spawn" type="event" x="272" y="48" width="16" height="16"/>
+ </objectgroup>
+</map>

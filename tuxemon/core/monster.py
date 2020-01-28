@@ -245,7 +245,8 @@ class Monster(object):
         self.sprites = {}
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
-        self.menu_sprite = ""
+        self.menu_sprite_1 = ""
+        self.menu_sprite_2 = ""
 
         self.set_state(save_data)
         self.set_stats()
@@ -299,7 +300,8 @@ class Monster(object):
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])
         self.back_battle_sprite = self.get_sprite_path(results['sprites']['battle2'])
-        self.menu_sprite = self.get_sprite_path(results['sprites']['menu1'])
+        self.menu_sprite_1 = self.get_sprite_path(results['sprites']['menu1'])
+        self.menu_sprite_2 = self.get_sprite_path(results['sprites']['menu2'])
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -451,7 +453,10 @@ class Monster(object):
         elif sprite == "back":
             surface = tools.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = tools.load_sprite(self.menu_sprite, **kwargs)
+            surface = tools.load_animated_sprite([
+                self.menu_sprite_1, 
+                self.menu_sprite_2],
+                0.25, **kwargs)
         else:
             raise ValueError("Cannot find sprite for: {}".format(sprite))
 
@@ -517,7 +522,7 @@ class Monster(object):
 
         self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
-        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
+        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite_1)
         return False
 
     def get_state(self):

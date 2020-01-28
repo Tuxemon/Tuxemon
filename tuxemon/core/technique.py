@@ -112,10 +112,16 @@ class Technique(object):
         # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
         try:
             self.use_item = T.translate(results["use_tech"])
+        except KeyError:
+            logger.debug("Missing technique dialog use_tech")
+        try:
             self.use_success = T.translate(results["use_success"])
+        except KeyError:
+            logger.debug("Missing technique dialog use_success")
+        try:
             self.use_failure = T.translate(results["use_failure"])
         except KeyError:
-            logger.debug("Missing technique dialog")
+            logger.debug("Missing technique dialog use_failure")
 
         self.category = results["category"]
         self.icon = results["icon"]

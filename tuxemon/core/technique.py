@@ -42,7 +42,7 @@ from collections import namedtuple
 from tuxemon.core import prepare
 from tuxemon.core import formula
 from tuxemon.core.locale import T
-from tuxemon.core.db import databases, process_targets
+from tuxemon.core.db import db, process_targets
 
 logger = logging.getLogger(__name__)
 
@@ -99,7 +99,7 @@ class Technique(object):
         :rtype: None
         """
 
-        results = databases.lookup(slug, table="technique")
+        results = db.lookup(slug, table="technique")
         self.slug = results["slug"]                             # a short English identifier
         self.name = T.translate(self.slug)                      # locale-specific string
 

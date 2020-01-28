@@ -26,7 +26,7 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core.db import databases
+from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 
@@ -57,7 +57,7 @@ class StartPseudoBattleAction(EventAction):
         env_slug = "grass"
         if 'environment' in player.game_variables:
             env_slug = player.game_variables['environment']
-        env = databases.lookup(env_slug, table="environment")
+        env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", graphics=env['battle_graphics'])

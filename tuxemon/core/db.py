@@ -61,8 +61,19 @@ class JSONDatabase(object):
 
     """
 
-    def __init__(self):
-        self.database = {}
+    def __init__(self, dir=None):
+        self.path = None
+        self.database = {
+            "item": {},
+            "monster": {},
+            "npc": {},
+            "technique": {},
+            "encounter": {},
+            "inventory": {},
+            "environment": {},
+        }
+        if dir:
+            self.load(dir)
 
     def load(self, directory="all"):
         """Loads all data from JSON files located under our data path.
@@ -74,16 +85,6 @@ class JSONDatabase(object):
         :returns: None
 
         """
-
-        self.database = {
-            "item": {},
-            "monster": {},
-            "npc": {},
-            "technique": {},
-            "encounter": {},
-            "inventory": {},
-            "environment": {},
-        }
 
         self.path = prepare.fetch("db")
         if directory == "all":
@@ -194,4 +195,4 @@ def set_defaults(results, table):
     return results
 
 # Global database container
-databases = JSONDatabase()
+db = JSONDatabase()

@@ -40,7 +40,7 @@ import pprint
 import random
 
 from tuxemon.core import tools
-from tuxemon.core.db import databases, process_targets
+from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
@@ -112,7 +112,7 @@ class Item(object):
         }
         """
 
-        results = databases.lookup(slug, table="item")
+        results = db.lookup(slug, table="item")
 
         self.slug = results["slug"]                                         # short English identifier
         self.name = T.translate(self.slug)                                  # translated name

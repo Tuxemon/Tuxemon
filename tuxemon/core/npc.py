@@ -40,7 +40,7 @@ from math import hypot
 import pygame
 
 from tuxemon.core import monster, pyganim
-from tuxemon.core.db import databases
+from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
 from tuxemon.core.item import Item
 from tuxemon.core.item import decode_inventory, encode_inventory
@@ -91,7 +91,7 @@ class NPC(Entity):
         super(NPC, self).__init__()
 
         # load initial data from the npc database
-        npc_data = databases.lookup(npc_slug, table="npc")
+        npc_data = db.lookup(npc_slug, table="npc")
 
         self.slug = npc_slug
 
@@ -594,7 +594,7 @@ class NPC(Entity):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npc_details = databases.database['npc'][self.slug]
+        npc_details = db.database['npc'][self.slug]
         for npc_monster_details in npc_details['monsters']:
             current_monster = monster.Monster(save_data=npc_monster_details)
             current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']

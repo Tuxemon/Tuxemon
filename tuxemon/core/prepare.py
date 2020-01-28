@@ -128,6 +128,14 @@ def pygame_init():
 
     import pygame as pg
 
+    # Configure locale
+    from tuxemon.core.locale import T
+    T.collect_languages()
+
+    # Configure databases
+    from tuxemon.core.db import db
+    db.load()
+
     logger.debug("pygame init")
     pg.init()
     pg.display.set_caption(ORIGINAL_CAPTION)

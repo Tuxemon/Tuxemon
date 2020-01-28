@@ -27,7 +27,7 @@ from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import tools
-from tuxemon.core import db
+from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.platform import mixer
@@ -77,12 +77,10 @@ class StartBattleAction(EventAction):
         npc.load_party()
 
         # Lookup the environment
-        env_db = db.JSONDatabase()
-        env_db.load("environment")
         env_slug = "grass"
         if 'environment' in player.game_variables:
             env_slug = player.game_variables['environment']
-        env = env_db.lookup(env_slug, table="environment")
+        env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         logger.debug("Starting battle!")

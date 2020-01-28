@@ -175,7 +175,8 @@ def load_animated_sprite(filenames, delay, **rect_kwargs):
     Any keyword arguments will be passed to the get_rect method
     of the image for positioning the rect.
 
-    :param filename: Filename to load
+    :param filenames: Filenames to load
+    :param delay: Frame interval; time between each frame
     :rtype: core.sprite.Sprite
     """
     anim = []
@@ -446,6 +447,8 @@ def open_dialog(game, text, avatar=None, menu=None):
 
     :param game:
     :param text: list of strings
+    :param avatar: optional avatar sprite
+    :param menu: optional menu object
 
     :rtype: core.states.dialog.DialogState
     """

@@ -180,8 +180,9 @@ def load_animated_sprite(filenames, delay, **rect_kwargs):
     """
     anim = []
     for filename in filenames:
-        image = load_and_scale(filename)
-        anim.append((image, delay))
+        if os.path.exists(filename):
+            image = load_and_scale(filename)
+            anim.append((image, delay))
 
     tech = pyganim.PygAnimation(anim, True)
     tech.play()

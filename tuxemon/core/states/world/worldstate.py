@@ -581,14 +581,14 @@ class WorldState(state.State):
 
         # does the tile define continue movements?
         try:
-            return [tuple(dirs2[tile['continue']] + position)]
+            return [tuple(dirs2[tile["continue"]] + position)]
         except KeyError:
             pass
 
         # does the tile explicitly define exits?
         try:
             adjacent_tiles = list()
-            for direction in tile['exit']:
+            for direction in tile["exit"]:
                 exit_tile = tuple(dirs2[direction] + position)
                 if exit_tile in skip_nodes:
                     continue
@@ -662,7 +662,7 @@ class WorldState(state.State):
                     continue
 
                 try:
-                    if pairs[direction] not in tile_data['enter']:
+                    if pairs[direction] not in tile_data["enter"]:
                         continue
                 except KeyError:
                     continue

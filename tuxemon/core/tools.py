@@ -399,11 +399,14 @@ def load_sound(filename):
 def get_avatar(game, avatar):
     """Gets the avatar sprite of a monster or NPC.
 
+    Used to parse the string values for dialog event actions
     If avatar is a number, we're referring to a monster slot in the player's party
     If avatar is a string, we're referring to a monster by name
     TODO: If the monster name isn't found, we're referring to an NPC on the map
 
-    :rtype: Pygame surface
+    :param avatar: the avatar to be used
+    :type avatar: string
+    :rtype: Optional[pygame.Surface]
     :returns: The surface of the monster or NPC avatar sprite
     """
     if avatar and avatar.isdigit():

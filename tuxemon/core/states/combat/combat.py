@@ -677,7 +677,7 @@ class CombatState(CombatAnimations):
 
                 for status in result.get("statuses", []):
                     m = T.format(status.use_item,
-                                 {"user": status.link.name if status.link else "", "target": status.carrier.name})
+                                 {"name": technique.name, "user": status.link.name if status.link else "", "target": status.carrier.name})
                     message += "\n" + m
 
             else:  # assume this was an item used

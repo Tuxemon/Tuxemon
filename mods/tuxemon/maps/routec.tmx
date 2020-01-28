@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="151">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -64,17 +64,17 @@
  <tileset firstgid="5981" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="40" height="40">
+ <layer name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtl1tOxDAMRWcFbK8FFsJrIVM+BzZKLPWIy5XbpKgdRigfkV3HsU9ukxn1cnc6fZRxmcdTsc8yXua45oT/KfEj/eCKfvS8VT40WOMjh72wtyPj3iPjgwcOXRMx4uTpvPtDyR83DF9f44PHrddZYvX6etYz3+v6+teVvd7P2m3Rz+tnTBqr8Wmu+3G30cn1JF6r/1BqTCujtt6Z9Fn5oo7WauXT36/sPVATu0V/51OmofCOyXgrMd8jvWt8kXcuY1oYj0ntYNL69Gjd51b9qK898b0n+jEfa1nvuaqZ+lGDNeiPjbrUVt/zyfGea3fb36Myqc8eoydc2IwJFqyyOp/2qflL9/R91g8m5bwmX+iU7Tl4lEn9v+Cjp7LCGFbj5KJt9hxzzJ+LP/1yxHtc6w3jWk6ND04s+V6T+UwP5ljLM9ZrZc9ad2ldxJnT/L39Vj5lCYa9Oaif8ehczGtvncPHeq0j4t7D+VQr5b6W3/m+75Fr0XIefE1/vz/vX+0cd/36+eOMYFvu3V45/fz9j/M3lP/9MRm38n6Xvm06X9v5U/30W+8W9dNv4s63/f12/do00/9AvR+q3xc77RiX
+   eJzlldENgCAMRJ0AthJ1EBEnYANnUZeURkmM0aI0UBJJ7kMN9tFeqRVVZZ1gLQIXLCt4NMh7nvPzKPn4jIutnJoLZ32852TD8tgjXK371n3g1vL7nqc8qkDeIM4cUXN/fgpjSJ4Nyy12/lBdqDJET5pjr07IePdvqrdSKtaPuWQI9c6hlF76o8CPU8H94u9h6JkQI0ffA9/b2c3RW7ljluwnYFvFrj7xXIqtFbDVBd/BXPNhAxH9oBE=
   </data>
  </layer>
- <layer id="2" width="40" height="40">
+ <layer width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
+   eJxjYIAATT4GgkCbCDW0Ap5Au72gmAPqDnYkMRD2HkD3IQOQW1cNsHvYOIHhwzlw9hMCekC36Q9i942CUTAKRsEoGAWjYBSMAtoAABsrBPo=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" name="Collisions">
   <object id="118" type="collision" x="0" y="304" width="640" height="16"/>
   <object id="119" type="collision" x="0" y="0" width="640" height="16"/>
   <object id="120" type="collision" x="0" y="16" width="16" height="288"/>
@@ -106,7 +106,7 @@
   <object id="146" type="collision" x="144" y="288" width="16" height="16"/>
   <object id="147" type="collision" x="176" y="288" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="4" name="Events" visible="0">
+ <objectgroup name="Events">
   <object id="148" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music lunar_joyride.mp3"/>
@@ -123,9 +123,9 @@
   </object>
   <object id="150" name="Player Spawn" type="event" x="96" y="48" width="16" height="16"/>
  </objectgroup>
- <layer id="5" name="Tile Layer 2" width="40" height="40">
+ <layer name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
+   eJxjYCANhHNC6DscDAx3gTgEymcD0uyc1JcnB4QCzWABYlaoWWFAWg+I9TlpIw/zAzJYgEVsIEDYIHEHLgCL98EKkON9MILwQew2GAgdxG6kpJyhB0AuZ0DAk5+BoR2IvfgHzk3IAL3sywC6yw2IswaJ+0AAVgaCwq4DiNMGkduQyz9Q2K3iG1zuQy7/MqHuaxtE6Q+9/AO50R2IPQaRG7GVf5mDJI8MtfJvMAJCbdtOaPh2cGCXp2XbmZi2LQh0c+CWp2XbGQBL6jUO
   </data>
  </layer>
 </map>

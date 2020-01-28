@@ -545,6 +545,7 @@ class NPC(Entity):
             self.storage["monsters"].append(monster)
         else:
             self.monsters.append(monster)
+            self.set_party_status()
 
     def find_monster(self, monster_slug):
         """Finds a monster in the player's list of monsters.
@@ -571,6 +572,7 @@ class NPC(Entity):
         """
         if monster in self.monsters:
             self.monsters.remove(monster)
+            self.set_party_status()
 
     def switch_monsters(self, index_1, index_2):
         """ Swap two monsters in this player's party
@@ -604,6 +606,29 @@ class NPC(Entity):
 
             # Add our monster to the NPC's party
             self.monsters.append(current_monster)
+
+    def set_party_status(self):
+        """ Records important information about all monsters in the party.
+
+        :rtype: None
+        :returns: None
+        """
+        if not self.isplayer or len(self.monsters) == 0:
+            return
+
+        level_lowest = monster.MAX_LEVEL
+        level_highest = 0
+        level_average = 0
+        for npc_monster in self.monsters:
+            if npc_monster.level < level_lowest:
+                level_lowest = npc_monster.level
+            if npc_monster.level > level_highest:
+                level_highest = npc_monster.level
+            level_average += npc_monster.level
+        level_average = int(round(level_average / len(self.monsters)))
+        self.game_variables['party_level_lowest'] = level_lowest
+        self.game_variables['party_level_highest'] = level_highest
+        self.game_variables['party_level_average'] = level_average
 
     def give_item(self, target, item, quantity):
         subtract = self.alter_item_quantity(item.slug, -quantity)

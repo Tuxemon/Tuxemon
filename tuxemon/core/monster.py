@@ -168,6 +168,7 @@ SHAPES = {
     },
 }
 
+MAX_LEVEL = 999
 MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
@@ -392,6 +393,7 @@ class Monster(object):
         logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
         # Increase Level and stats
         self.level += 1
+        self.level = min(self.level, MAX_LEVEL)
         self.set_stats()
 
         # Learn New Moves

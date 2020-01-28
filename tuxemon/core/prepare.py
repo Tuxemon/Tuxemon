@@ -134,7 +134,7 @@ def pygame_init():
 
     # Configure databases
     from tuxemon.core.db import databases
-    databases.collect_databases()
+    databases.load()
 
     logger.debug("pygame init")
     pg.init()

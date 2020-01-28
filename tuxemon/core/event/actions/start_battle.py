@@ -80,7 +80,7 @@ class StartBattleAction(EventAction):
         env_slug = "grass"
         if 'environment' in player.game_variables:
             env_slug = player.game_variables['environment']
-        env = databases.environment.lookup(env_slug, table="environment")
+        env = databases.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         logger.debug("Starting battle!")

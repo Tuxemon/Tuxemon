@@ -61,18 +61,8 @@ class JSONDatabase(object):
 
     """
 
-    def __init__(self, dir=None):
-        self.database = {
-            "item": {},
-            "monster": {},
-            "npc": {},
-            "technique": {},
-            "encounter": {},
-            "inventory": {},
-            "environment": {},
-        }
-        if dir:
-            self.load(dir)
+    def __init__(self):
+        self.database = {}
 
     def load(self, directory="all"):
         """Loads all data from JSON files located under our data path.
@@ -84,6 +74,16 @@ class JSONDatabase(object):
         :returns: None
 
         """
+
+        self.database = {
+            "item": {},
+            "monster": {},
+            "npc": {},
+            "technique": {},
+            "encounter": {},
+            "inventory": {},
+            "environment": {},
+        }
 
         self.path = prepare.fetch("db")
         if directory == "all":
@@ -193,27 +193,5 @@ def set_defaults(results, table):
 
     return results
 
-# Database storage class
-class Databases(object):
-    def __init__(self):
-        self.item = JSONDatabase()
-        self.monster = JSONDatabase()
-        self.npc = JSONDatabase()
-        self.technique = JSONDatabase()
-        self.encounter = JSONDatabase()
-        self.inventory = JSONDatabase()
-        self.environment = JSONDatabase()
-        self.all = JSONDatabase()
-
-    def collect_databases(self):
-        self.item.load("item")
-        self.monster.load("monster")
-        self.npc.load("npc")
-        self.technique.load("technique")
-        self.encounter.load("encounter")
-        self.inventory.load("inventory")
-        self.environment.load("environment")
-        self.all.load("all")
-
-# Register default databases
-databases = Databases()
+# Global database container
+databases = JSONDatabase()

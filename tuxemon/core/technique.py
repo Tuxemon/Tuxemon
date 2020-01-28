@@ -99,7 +99,7 @@ class Technique(object):
         :rtype: None
         """
 
-        results = databases.technique.lookup(slug, table="technique")
+        results = databases.lookup(slug, table="technique")
         self.slug = results["slug"]                             # a short English identifier
         self.name = T.translate(self.slug)                      # locale-specific string
 

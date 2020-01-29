@@ -1,0 +1,19 @@
+{"id": "route5","monsters": [
+
+
+
+
+{ "monster":"txmn_pharfan","encounter_rate":10,"level_range": [15,18]},
+{ "monster":"txmn_foofle","encounter_rate":10,"level_range": [15,18]},
+{ "monster":"txmn_vamporm","encounter_rate":10,"level_range": [15,18]},
+{ "monster":"txmn_dracune","encounter_rate":5,"level_range": [19,20]},
+{ "monster":"txmn_anoleaf","encounter_rate":10,"level_range": [15,18]},
+{ "monster":"txmn_gectile","encounter_rate":5,"level_range": [19,20]}
+
+
+
+
+
+
+
+] }

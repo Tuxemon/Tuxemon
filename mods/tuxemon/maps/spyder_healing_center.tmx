@@ -40,7 +40,7 @@
   <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
   <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="16" name="Heal Tuxemon" type="event" x="96" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="set_monster_health ,"/>

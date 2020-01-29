@@ -1,0 +1,18 @@
+{"id": "citypark","monsters": [
+
+
+
+
+{ "monster":"txmn_cardiling","encounter_rate":10,"level_range": [5,8]},
+{ "monster":"txmn_cardiwing","encounter_rate":2,"level_range": [7,10]},
+{ "monster":"txmn_eyenemy","encounter_rate":10,"level_range": [5,8]},
+{ "monster":"txmn_axylightl","encounter_rate":5,"level_range": [6,9]},
+{ "monster":"txmn_cataspike","encounter_rate":10,"level_range": [12,12]}
+{ "monster":"txmn_puparmor","encounter_rate":10,"level_range": [5,8]}
+{ "monster":"txmn_squabbit","encounter_rate":10,"level_range": [5,8]}
+{ "monster":"txmn_tourbidi","encounter_rate":2,"level_range": [5,8]}
+
+
+
+
+] }

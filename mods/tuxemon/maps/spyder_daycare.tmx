@@ -95,10 +95,10 @@
   <object id="16" type="collision" x="112" y="48" width="32" height="16"/>
   <object id="18" type="collision" x="80" y="128" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="14" name="Teleport to Cotton Town" type="event" x="32" y="128" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport paper_town.tmx,21,5,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,21,5,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

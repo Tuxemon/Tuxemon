@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="56">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="57">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -38,7 +38,7 @@
    eAHtlE0KwjAUhGfh/1LvoHfQc/i71HMI2rsItrj3ILoXvIUu1HmL0lCSZwJFKGZg6OOl+ZjOosD/KWkBT7oqZRWyJFOZd28USc252OpTmddrAssusKJlDlWZJ/f3ZCW0ptTRk42XkpV94Z0CeFqu/MyXN2WuGT2nF0pGH965A2wNxo6z7Gzy4d1492DwjpxlZ5PGe7Hbt6NfYdnONd6wDYzoEGm8EE7+7i95Y3Y3UfrLM5lPLV+frEENeA9mvHj66vge+R+s6Y3j3OwszrGB2EBsIDZQzwY+xsEz9g==
   </data>
  </layer>
- <objectgroup color="#ffff00" id="5" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="44" name="Teleport to Flower City" type="event" x="192" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport flower_city.tmx,11,0,0.3"/>
@@ -78,6 +78,13 @@
    </properties>
   </object>
   <object id="55" name="Player Spawn" type="event" x="208" y="608" width="16" height="16"/>
+  <object id="56" name="encounter 3" type="event" x="256" y="64" width="32" height="80">
+   <properties>
+    <property name="act1" value="random_encounter routea"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
   <object id="2" type="collision" x="128" y="208" width="32" height="80"/>

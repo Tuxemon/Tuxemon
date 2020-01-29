@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -62,7 +62,7 @@
   <object id="27" type="collision" x="288" y="32" width="32" height="16"/>
   <object id="28" type="collision" x="128" y="304" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="5" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="30" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music peasant_kingdom.ogg"/>
@@ -102,5 +102,12 @@
    </properties>
   </object>
   <object id="36" name="Player Spawn" type="event" x="272" y="48" width="16" height="16"/>
+  <object id="37" name="encounter 3" type="event" x="240" y="240" width="32" height="128">
+   <properties>
+    <property name="act1" value="random_encounter route4"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

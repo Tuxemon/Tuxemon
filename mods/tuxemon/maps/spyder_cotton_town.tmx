@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="406">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="439">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -180,32 +180,32 @@
   <object id="362" type="collision" x="320" y="272" width="64" height="16" rotation="180"/>
   <object id="363" type="collision" x="352" y="336" width="16" height="16" rotation="180"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="5" name="Events" visible="0">
-  <object id="364" name="Teleport to Route 2" type="event" x="640" y="480" width="16" height="16" rotation="180">
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="377" name="Teleport to Route 1" type="event" x="336" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route2.tmx,39,9,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="365" name="Teleport to Route 1" type="event" x="480" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,10,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route1.tmx,21,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="366" name="Teleport to Cotton Cathedral" type="event" x="336" y="432" width="16" height="16" rotation="180">
+  <object id="406" name="Teleport to Route 2" type="event" x="624" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_cathedral.tmx,7,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route2.tmx,0,9,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="407" name="Teleport to Cotton Cathedral" type="event" x="320" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_healing_center.tmx,7,12,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="367" name="Teleport to Cotton Mart" type="event" x="496" y="560" width="16" height="16" rotation="180">
+  <object id="408" name="Teleport to Cotton Mart" type="event" x="480" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport cotton_scoop.tmx,5,10,0.3"/>
     <property name="act2" value="player_face up"/>
@@ -213,7 +213,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="368" name="Teleport to Omnichannel HQ almost" type="event" x="288" y="160" width="16" height="16" rotation="180">
+  <object id="409" name="Teleport to Omnichannel HQ almost" type="event" x="272" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog itslockedboi"/>
     <property name="act2" value="translated_dialog hellothere"/>
@@ -227,101 +227,37 @@
     <property name="cond5" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
-  <object id="369" name="Teleport to Dryad's Grove" type="event" x="16" y="128" width="16" height="16" rotation="180">
+  <object id="410" name="Teleport to Dryad's Grove" type="event" x="0" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,7,0.3"/>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,39,7,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="370" name="Teleport to Route 1" type="event" x="464" y="640" width="16" height="16" rotation="180">
+  <object id="411" name="Teleport to Route 2" type="event" x="624" y="448" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,11,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="371" name="Teleport to Route 1" type="event" x="448" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,12,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="372" name="Teleport to Route 1" type="event" x="432" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,13,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="373" name="Teleport to Route 1" type="event" x="416" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,14,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="374" name="Teleport to Route 1" type="event" x="400" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,15,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="375" name="Teleport to Route 1" type="event" x="384" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,16,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="376" name="Teleport to Route 1" type="event" x="368" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,17,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="377" name="Teleport to Route 1" type="event" x="352" y="640" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,18,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="378" name="Teleport to Route 2" type="event" x="640" y="464" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route2.tmx,39,8,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route2.tmx,0,8,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="379" name="Play Music" type="event" x="640" y="16" width="16" height="16" rotation="180">
+  <object id="412" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music JRPG_town_loop.ogg"/>
     <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
    </properties>
   </object>
-  <object id="380" name="Teleport to Dryad's Grove" type="event" x="16" y="144" width="16" height="16" rotation="180">
+  <object id="413" name="Teleport to Dryad's Grove" type="event" x="0" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,8,0.3"/>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,39,8,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="381" name="Sign: Cotton Town" type="event" x="400" y="624" width="16" height="16" rotation="180">
+  <object id="414" name="Sign: Cotton Town" type="event" x="384" y="608" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog Cotton_Town_Sign\n"/>
     <property name="cond1" value="is player_facing up"/>
@@ -329,7 +265,7 @@
     <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="382" name="Sign: Cotton Scoop" type="event" x="448" y="592" width="16" height="16" rotation="180">
+  <object id="415" name="Sign: Cotton Scoop" type="event" x="432" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog Cotton_Mart"/>
     <property name="cond1" value="is player_facing up"/>
@@ -337,7 +273,7 @@
     <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="383" name="Sign: Omnichannel HQ" type="event" x="368" y="160" width="16" height="16" rotation="180">
+  <object id="416" name="Sign: Omnichannel HQ" type="event" x="352" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="dialog_chain Omnichannel HQ: We Make Headlines"/>
     <property name="act4" value="dialog_chain ${{end}}"/>
@@ -345,7 +281,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="384" name="Sign: Cathedral Centre" type="event" x="288" y="448" width="16" height="16" rotation="180">
+  <object id="417" name="Sign: Cathedral Centre" type="event" x="352" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog Cathedral_Center"/>
     <property name="cond1" value="is player_facing up"/>
@@ -353,22 +289,22 @@
     <property name="cond3" value="is player_at"/>
    </properties>
   </object>
-  <object id="385" name="Teleport to Cafe" type="event" x="464" y="272" width="16" height="16" rotation="180">
+  <object id="418" name="Teleport to Cafe" type="event" x="448" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_cafe.tmx,8,11,0.3"/>
+    <property name="act1" value="transition_teleport spyder_cotton_cafe.tmx,8,11,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="386" name="create allie" type="event" x="640" y="368" width="16" height="16" rotation="180">
+  <object id="419" name="create allie" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc allie,22,10,,stand"/>
     <property name="cond1" value="not npc_exists allie"/>
     <property name="cond2" value="not variable_set npcs_are_created:yes"/>
    </properties>
   </object>
-  <object id="387" name="Hiya" type="event" x="288" y="192" width="16" height="16" rotation="180">
+  <object id="420" name="Hiya" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog mwah\n"/>
     <property name="act11" value="set_variable npcs_are_created:yes"/>
@@ -378,7 +314,7 @@
     <property name="behav0" value="talk allie"/>
    </properties>
   </object>
-  <object id="388" name="learn from me" type="event" x="400" y="176" width="16" height="16" rotation="180">
+  <object id="421" name="learn from me" type="event" x="48" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog theinfo\n"/>
     <property name="act2" value="npc_move aeble, down 1, right 8, up 1"/>
@@ -393,14 +329,14 @@
     <property name="cond4" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
-  <object id="389" name="Create liela" type="event" x="624" y="96" width="16" height="16" rotation="180">
+  <object id="422" name="Create liela" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc liela,38,17,,stand"/>
     <property name="act2" value="npc_face liela,up"/>
     <property name="cond1" value="not npc_exists liela"/>
    </properties>
   </object>
-  <object id="390" name="door problems" type="event" x="528" y="160" width="16" height="16" rotation="180">
+  <object id="423" name="door problems" type="event" x="512" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog door_problems"/>
     <property name="cond1" value="is player_at"/>
@@ -408,7 +344,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="391" name="it's an empty pot" type="event" x="480" y="160" width="16" height="16" rotation="180">
+  <object id="424" name="it's an empty pot" type="event" x="480" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog empty_pot"/>
     <property name="cond1" value="is player_at"/>
@@ -416,37 +352,37 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="392" name="purple flowers1" type="event" x="512" y="336" width="16" height="16" rotation="180">
+  <object id="425" name="purple flowers1" type="event" x="336" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
     <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="393" name="purple flowers2" type="event" x="480" y="336" width="16" height="16" rotation="180">
+  <object id="426" name="purple flowers2" type="event" x="464" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
     <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="394" name="purple flowers3" type="event" x="384" y="336" width="16" height="16" rotation="180">
+  <object id="427" name="purple flowers3" type="event" x="256" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
     <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="395" name="purple flowers4" type="event" x="352" y="336" width="16" height="16" rotation="180">
+  <object id="428" name="purple flowers4" type="event" x="288" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
     <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="396" name="purple flowers5" type="event" x="256" y="336" width="16" height="16" rotation="180">
+  <object id="429" name="purple flowers5" type="event" x="368" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog purple_flowers"/>
     <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="397" name="orange flowers" type="event" x="432" y="288" width="16" height="16" rotation="180">
+  <object id="430" name="orange flowers" type="event" x="416" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog orange_flowers"/>
     <property name="cond1" value="is player_at"/>
@@ -454,14 +390,14 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="398" name="talk to liela" type="event" x="48" y="288" width="16" height="16" rotation="180">
+  <object id="431" name="talk to liela" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog liela_goes_to_battle"/>
     <property name="act2" value="start_battle liela"/>
     <property name="behav1" value="talk liela"/>
    </properties>
   </object>
-  <object id="399" name="statue1" type="event" x="192" y="480" width="16" height="16" rotation="180">
+  <object id="432" name="statue1" type="event" x="112" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog famous_statue"/>
     <property name="cond1" value="is player_at"/>
@@ -469,7 +405,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="400" name="statue2" type="event" x="128" y="480" width="16" height="16" rotation="180">
+  <object id="433" name="statue2" type="event" x="176" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog famous_statue2"/>
     <property name="cond1" value="is player_at"/>
@@ -477,13 +413,13 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="401" name="fountain" type="event" x="176" y="400" width="48" height="32" rotation="180">
+  <object id="434" name="fountain" type="event" x="128" y="368" width="48" height="32">
    <properties>
     <property name="act1" value="translated_dialog cotton_town_fountain"/>
     <property name="cond1" value="is to_use_tile"/>
    </properties>
   </object>
-  <object id="402" name="tree" type="event" x="496" y="160" width="16" height="16" rotation="180">
+  <object id="435" name="tree" type="event" x="464" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tree"/>
     <property name="cond1" value="is player_at"/>
@@ -491,19 +427,19 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="403" name="personhere" type="event" x="624" y="464" width="16" height="16" rotation="180">
+  <object id="436" name="personhere" type="event" x="608" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog waithere"/>
     <property name="behav1" value="talk tallon"/>
    </properties>
   </object>
-  <object id="404" name="personhere" type="event" x="624" y="480" width="16" height="16" rotation="180">
+  <object id="437" name="personhere" type="event" x="608" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog waithere2"/>
     <property name="behav1" value="talk grace"/>
    </properties>
   </object>
-  <object id="405" name="create grace and tallon" type="event" x="640" y="384" width="16" height="16" rotation="180">
+  <object id="438" name="create grace and tallon" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc grace,0,29,,stand"/>
     <property name="act2" value="create_npc tallon,0,28,,stand"/>
@@ -518,7 +454,7 @@
  </objectgroup>
  <layer id="6" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlGsOgjAQhKuB4+hx9Do9hR7C1/FU/OP4Y0OzoRCofZEhmZQtu+z0a9O2MbaBjPO0ak7HTmrSV/Gxh78d5ItTmhIPv57i6whvB8gXp/Tn9hJfMqdjdy2SE3vM0TPWmta0lliMxv6bg1+OnmMMavs2h9+c3No4LPVLJkvJ9XXCcGrsK/hWCwHZ01r8luaT/MJ2hPzK43feGnuCwpzVUc3zF7ZP5Ed+YQTCqv95/h648+7QDbpCF0i7+2yM7aA39IKekM4ZisWnHodyOUcCJEACJRPQ95gv/gIUhUOm
+   eAHtlGsOwiAQhNG0x9Hj1OtwCj2Er+PVxx/HH5OSDa0WBIrZJhNYugvDB6FtjG0g43ytGJOxk5q1Sx9b+NtAY3FOU/TwXpO+dvDWQWNxTn/uWvTFMRm7e2FO6rbEmqn29E97ScVoat4S/EqsOcWgtn9z+M3JrY1DqF9lEkpuqCPDT+1Qob1aCPBMa/G7NJ/KL+5ElN/y+B3Wxu6hOGd1VOv9izsn5af84gjEVf/y/l3x5l2gM3SCjpB091wZ+4Du0A3qIZnji+lTtr5cHVMCSkAJhBCQ7wvjkLl8NZzv2/YF5jxH6g==
   </data>
  </layer>
  <layer id="7" name="Above Player" width="40" height="40">

@@ -25,7 +25,7 @@
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFltFNxDAQRANISBw90Q5tpBLgOwVQAlAHfMEHUAI7ujxlbmMbHyI6S77dWXtmJ5F9yu5sGK9iDjE+hmF8j6lcYyuMLnHfbem3M0/ugzq8rTC6xNzPPSlnn3KNrfG+y/Lr/bJX8LL7tBle8QU+rat1d3z5fbg9X+7GmnFY4fmIh6tr9BdtqXB314rlCn54PiL1Muu4KppiZd2Hy2G8j3kX01XZB3eK/yFqyqmXNF2nN0fbdcV9CV/PMZ+SP98nP+4JXNPs9eT7vJ/Xa/58j3I8eXRNvGZeD25xe/1lj7mve81rGT+me9niHuMv9+nFtTPu/No7/I5z9xXzM50/57bymq5zWu8AfusdupbyG3v/8FX3XFijR7flr4e/71T+dT75NN9nxZLnrNTyx97fdPK64yn5cIxn+pRiyx990AHnmNePxfhCF6zYOuO1PtSJ6P43dp+lPPfV9wE1onj4QqOGp/nssY4GuManrvgW9+91voPw0NH3ATWic0s5XLwRtbdXw3WvL8JDTK+h8wNE0GJH
+   eAHFllFOxDAMRANISCx34jpcoycBvnuAPQJwDviCD+AI2GrfdtaNQxap2khZe5zMeFolq+4uynBjs9j4LGX4sOm5j60wusSp29JvJ57UB3V4W2F0ibGfevKcfZ772BpPXZZf7Re9gpfd583wii/weV2tu+NL78P95XI31ozjCs9HPF5do/9ouwp3d61Yr+CH5yNSr7NOq6LprKj7dF2GR5sPNlWVfXBH+x+i5jn1mqbq9OZoq65zX83Xi83n4E/3uR/1BM40ez3pPu2n9cyf7vEcTxpVE6+R14Nb3F5/0WPsq17jWsT7cC9b3FP8xT69ODvjys/e4Y+du2+bX+H8KbeVZ7rKab0D+K13qFqe38n7h+91zR376NFt+evhT53qv8onH+f77LHmOSq1/LH3L5243sKj+MIzfWqx5Y8+6IBjjOsZpn9cp44u2GPrjEcdcIzoUs8wfbP1yGd/FqOOfx9QIzoXXXQyPM5nj3U0wBmfusd3u39v8x2Eh45/H1AjKtf8+z09DMV4I/qmmsaBnCS3V+bBpi6j8wtWAV4I
   </data>
  </layer>
  <objectgroup color="#ffff00" id="3" name="Events" visible="0">

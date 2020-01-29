@@ -47,10 +47,10 @@
   <object id="24" type="collision" x="144" y="112" width="48" height="16"/>
   <object id="25" type="collision" x="144" y="160" width="48" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="7" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="7" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport paper_town.tmx,20,13,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,20,13,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>

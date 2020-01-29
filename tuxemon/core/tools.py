@@ -360,7 +360,7 @@ def check_parameters(parameters, required=0, exit=True):
 def load_sound(filename):
     """ Load a sound from disk
 
-    The required path will be appended to the filename
+    The required path will be prepended to the filename, up to and including "sounds"
 
     :param filename: filename to load
     :type filename: basestring
@@ -371,7 +371,7 @@ def load_sound(filename):
         def play(self):
             pass
 
-    filename = transform_resource_filename(filename)
+    filename = transform_resource_filename("sounds", filename)
 
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here

@@ -46,10 +46,9 @@ class PlayMusicAction(EventAction):
 
     def start(self):
         filename = self.parameters.filename
-        print("file: " + filename)
+        
         try:
             path = prepare.fetch("music", db.lookup_file("music", filename))
-            print("filepath: " + path)
             mixer.music.load(path)
             mixer.music.set_volume(prepare.CONFIG.music_volume)
             mixer.music.play(-1)

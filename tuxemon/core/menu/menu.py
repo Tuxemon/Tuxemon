@@ -9,6 +9,7 @@ from functools import partial
 import pygame
 
 from tuxemon.core import prepare, state, tools
+from tuxemon.core.db import db
 from tuxemon.core.menu.interface import MenuCursor, MenuItem
 from tuxemon.core.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.core.ui.draw import GraphicBox
@@ -49,7 +50,7 @@ class Menu(state.State):
     background = None                 # Image used to draw the background
     background_color = 248, 248, 248  # The window's background color
     background_filename = None        # File to load for image background
-    menu_select_sound_filename = "sounds/interface/menu-select.ogg"
+    menu_select_sound_filename = "sound_menu_select"
     font_filename = prepare.fetch("font", "PressStart2P.ttf")
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
@@ -249,7 +250,7 @@ class Menu(state.State):
 
         :returns: None
         """
-        self.menu_select_sound = tools.load_sound(self.menu_select_sound_filename)
+        self.menu_select_sound = tools.load_sound(db.lookup_file("sounds", self.menu_select_sound_filename))
 
     def shadow_text(self, text, bg=(192, 192, 192)):
         """ Draw shadowed text

@@ -643,7 +643,7 @@ class CombatState(CombatAnimations):
             message = ''
 
         try:
-            tools.load_sound(technique.sfx).play()
+            tools.load_sound(db.lookup_file("sounds", technique.sfx)).play()
         except AttributeError:
             pass
 

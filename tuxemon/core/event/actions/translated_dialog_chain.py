@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core.locale import process_translate_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog
+from tuxemon.core.tools import open_dialog, get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -56,7 +56,10 @@ class TranslatedDialogChainAction(EventAction):
 
     """
     name = "translated_dialog_chain"
-    valid_parameters = [(str, "key")]
+    valid_parameters = [
+        (str, "key"),
+        (str, "avatar")
+    ]
 
     def start(self):
         key = self.parameters.key
@@ -77,13 +80,14 @@ class TranslatedDialogChainAction(EventAction):
         if dialog:
             dialog.text_queue += pages
         else:
-            self.open_dialog(pages)
+            avatar = get_avatar(self.game, self.parameters.avatar)
+            self.open_dialog(pages, avatar)
 
     def update(self):
         if self.parameters.key == "${{end}}":
             if self.game.get_state_name("DialogState") is None:
                 self.stop()
 
-    def open_dialog(self, pages):
+    def open_dialog(self, pages, avatar):
         logger.info("Opening chain dialog window")
-        open_dialog(self.game, pages)
+        open_dialog(self.game, pages, avatar)

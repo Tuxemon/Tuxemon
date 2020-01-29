@@ -127,13 +127,13 @@ class JSONDatabase(object):
                     logger.error("invalid JSON " + json_item)
                     raise
 
-            if item is list()
+            if type(item) is list:
                 for sub in item:
-                    load_dict(sub, directory)
-            else
-                load_dict(item, directory)
+                    self.load_dict(sub, directory)
+            else:
+                self.load_dict(item, directory)
               
-    def load_dict(self, item, table)
+    def load_dict(self, item, table):
         """Loads a single json object as a dictionary and adds it to the appropriate db table
 
         :param item: The json object to load in
@@ -145,7 +145,7 @@ class JSONDatabase(object):
 
         """
 
-        if item['slug'] not in self.database[directory]:
+        if item['slug'] not in self.database[table]:
             self.database[table][item['slug']] = item
         else:
             logger.error(item, json)
@@ -169,7 +169,7 @@ class JSONDatabase(object):
             table
         )
 
-    def lookup_file(self, slug, table):
+    def lookup_file(self, table, slug):
         """Does a lookup with the given slug in the given table, expecting a dictionary with two keys, 'slug' and 'file'
 
         :param slug: The slug of the file record.

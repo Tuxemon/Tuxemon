@@ -38,8 +38,8 @@ import logging
 import pygame
 from six.moves import map as imap
 
-from tuxemon.core import prepare, state
-from tuxemon.core import networking
+from tuxemon.core import prepare, state, networking
+from tuxemon.core.db import db
 from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
 from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.tools import nearest

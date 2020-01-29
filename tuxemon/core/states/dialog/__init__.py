@@ -21,10 +21,16 @@ class DialogState(PopUpMenu):
     def startup(self, **kwargs):
         super(DialogState, self).startup(**kwargs)
         self.text_queue = kwargs.get("text", list())
+        self.avatar = kwargs.get("avatar", None)
         self.menu = kwargs.get("menu", None)
         self.text_area = TextArea(self.font, self.font_color)
         self.text_area.rect = self.calc_internal_rect()
         self.sprites.add(self.text_area)
+
+        if self.avatar:
+            avatar_rect = self.calc_final_rect()
+            self.avatar.rect.bottomleft = avatar_rect.left, avatar_rect.top
+            self.sprites.add(self.avatar)
 
     def on_open(self):
         self.next_text()

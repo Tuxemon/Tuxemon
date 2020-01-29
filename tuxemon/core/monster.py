@@ -36,16 +36,12 @@ import logging
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai, db, fusion
+from tuxemon.core import ai, fusion
 from tuxemon.core.locale import T
+from tuxemon.core.db import db
 from tuxemon.core.technique import Technique
 
 logger = logging.getLogger(__name__)
-
-# Load the monster database
-monsters = db.JSONDatabase()
-monsters.load("monster")
-monsters.load("technique")
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'current_hp',
@@ -172,6 +168,7 @@ SHAPES = {
     },
 }
 
+MAX_LEVEL = 999
 MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
@@ -251,7 +248,8 @@ class Monster(object):
         self.sprites = {}
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
-        self.menu_sprite = ""
+        self.menu_sprite_1 = ""
+        self.menu_sprite_2 = ""
 
         self.set_state(save_data)
         self.set_stats()
@@ -268,7 +266,7 @@ class Monster(object):
         """
 
         # Look up the monster by name and set the attributes in this instance
-        results = monsters.lookup(slug)
+        results = db.lookup(slug, table="monster")
 
         if results is None:
             logger.error("monster {} is not found".format(slug))
@@ -305,7 +303,8 @@ class Monster(object):
         # Look up the monster's sprite image paths
         self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])
         self.back_battle_sprite = self.get_sprite_path(results['sprites']['battle2'])
-        self.menu_sprite = self.get_sprite_path(results['sprites']['menu1'])
+        self.menu_sprite_1 = self.get_sprite_path(results['sprites']['menu1'])
+        self.menu_sprite_2 = self.get_sprite_path(results['sprites']['menu2'])
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
         self.combat_call = results.get("sounds", {}).get("combat_call", "sound_{}_call".format(self.type1))
@@ -400,6 +399,7 @@ class Monster(object):
         logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
         # Increase Level and stats
         self.level += 1
+        self.level = min(self.level, MAX_LEVEL)
         self.set_stats()
 
         # Learn New Moves
@@ -461,7 +461,10 @@ class Monster(object):
         elif sprite == "back":
             surface = tools.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = tools.load_sprite(self.menu_sprite, **kwargs)
+            surface = tools.load_animated_sprite([
+                self.menu_sprite_1, 
+                self.menu_sprite_2],
+                0.25, **kwargs)
         else:
             raise ValueError("Cannot find sprite for: {}".format(sprite))
 
@@ -483,7 +486,7 @@ class Monster(object):
         if len(self.flairs) > 0 or self.slug == "":
             return
 
-        results = monsters.lookup(self.slug)
+        results = db.lookup(self.slug, table="monster")
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
@@ -527,7 +530,7 @@ class Monster(object):
 
         self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
         self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
-        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite)
+        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite_1)
         return False
 
     def get_state(self):

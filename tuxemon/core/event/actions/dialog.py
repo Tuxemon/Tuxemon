@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog
+from tuxemon.core.tools import open_dialog, get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -55,17 +55,19 @@ class DialogAction(EventAction):
     """
     name = "dialog"
     valid_parameters = [
-        (str, "text")
+        (str, "text"),
+        (str, "avatar")
     ]
 
     def start(self):
         text = replace_text(self.game, self.parameters.text)
-        self.open_dialog(text)
+        avatar = get_avatar(self.game, self.parameters.avatar)
+        self.open_dialog(text, avatar)
 
     def update(self):
         if self.game.get_state_name("DialogState") is None:
             self.stop()
 
-    def open_dialog(self, initial_text):
+    def open_dialog(self, initial_text, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.game, [initial_text])
+        open_dialog(self.game, [initial_text], avatar)

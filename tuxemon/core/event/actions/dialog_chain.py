@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog
+from tuxemon.core.tools import open_dialog, get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -56,7 +56,10 @@ class DialogChainAction(EventAction):
 
     """
     name = "dialog_chain"
-    valid_parameters = [(str, "text")]
+    valid_parameters = [
+        (str, "text"),
+        (str, "avatar")
+    ]
 
     def start(self):
         # hack to allow unescaped commas in the dialog string
@@ -75,7 +78,8 @@ class DialogChainAction(EventAction):
                 dialog.text_queue.append(text)
             else:
                 # no, so create new dialog with this line
-                self.open_dialog(text)
+                avatar = get_avatar(self.game, self.parameters.avatar)
+                self.open_dialog(text, avatar)
 
     def update(self):
         # hack to allow unescaped commas in the dialog string
@@ -84,6 +88,6 @@ class DialogChainAction(EventAction):
             if self.game.get_state_name("DialogState") is None:
                 self.stop()
 
-    def open_dialog(self, initial_text):
+    def open_dialog(self, initial_text, avatar):
         logger.info("Opening chain dialog window")
-        open_dialog(self.game, [initial_text])
+        open_dialog(self.game, [initial_text], avatar)

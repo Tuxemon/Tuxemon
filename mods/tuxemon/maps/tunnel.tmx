@@ -42,8 +42,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="88" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="act1" value="play_music music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
   <object id="89" name="Teleport to Below" type="event" x="224" y="416" width="16" height="16">

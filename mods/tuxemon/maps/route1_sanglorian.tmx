@@ -88,8 +88,8 @@
   </object>
   <object id="125" name="Route Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="act1" value="play_music music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
   <object id="129" name="Teleport to Route1" type="event" x="416" y="304" width="16" height="16">

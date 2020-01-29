@@ -303,6 +303,9 @@ class CombatAnimations(Menu):
         else:
             x_diff = scale(150)
 
+        cry = monster.combat_call if monster.current_hp > 0 else monster.faint_call
+        sound = tools.load_sound("sounds/" + db.lookup_file(cry, "sounds"))
+        sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
     def build_hud(self, home, monster):
@@ -392,7 +395,6 @@ class CombatAnimations(Menu):
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
             animate(sprite.image, set_alpha=255, initial=0)
             animate(sprite.rect, bottom=tray.rect.top + scale(3))
-
 
     def animate_update_party_hud(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.

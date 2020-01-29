@@ -47,7 +47,7 @@ class PlayMusicAction(EventAction):
         filename = self.parameters.filename
 
         try:
-            mixer.music.load(prepare.fetch("music", filename))
+            mixer.music.load(prepare.fetch("music", db.load_file("music", filename)))
             mixer.music.set_volume(prepare.CONFIG.music_volume)
             mixer.music.play(-1)
         except Exception as e:

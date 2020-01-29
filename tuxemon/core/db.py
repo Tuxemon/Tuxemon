@@ -71,6 +71,8 @@ class JSONDatabase(object):
             "encounter": {},
             "inventory": {},
             "environment": {},
+            "sounds": {},
+            "music" : {}
         }
         if dir:
             self.load(dir)
@@ -94,6 +96,8 @@ class JSONDatabase(object):
             self.load_json("encounter")
             self.load_json("inventory")
             self.load_json("environment")
+            self.load_json("sounds")
+            self.load_json("music")
         else:
             self.load_json(directory)
 
@@ -122,12 +126,29 @@ class JSONDatabase(object):
                     logger.error("invalid JSON " + json_item)
                     raise
 
-            if item['slug'] not in self.database[directory]:
-                self.database[directory][item['slug']] = item
-            else:
-                logger.error(item, json)
-                raise Exception("Error: Item with this slug was already loaded.")
+            if item is list()
+                for sub in item:
+                    load_dict(sub, directory)
+            else
+                load_dict(item, directory)
+              
+    def load_dict(self, item, table)
+        """Loads a single json object as a dictionary and adds it to the appropriate db table
 
+        :param item: The json object to load in
+        :type item: dict
+        :param table: The db table to load the object into
+        :type table: String
+
+        :returns None
+
+        """
+
+        if item['slug'] not in self.database[directory]:
+            self.database[table][item['slug']] = item
+        else:
+            logger.error(item, json)
+            raise Exception("Error: Item with this slug was already loaded.")
 
     def lookup(self, slug, table="monster"):
         """Looks up a monster, technique, item, or npc based on slug.
@@ -146,6 +167,20 @@ class JSONDatabase(object):
             self.database[table][slug],
             table
         )
+
+    def lookup_file(self, slug, table):
+        """Does a lookup with the given slug in the given table, expecting a dictionary with two keys, 'slug' and 'file'
+
+        :param slug: The slug of the file record.
+        :param table: The table to do the lookup in, such as "sounds" or "music"
+        :type slug: String
+        :type table: String
+
+        :rtype: String
+        :returns: The 'file' property of the resulting dictionary OR the slug if it doesn't exist.
+        """
+
+        return self.database[table][slug]["file"] or slug
 
     def lookup_sprite(self, slug, table="sprite"):
         """Looks up a monster's sprite image paths based on monster slug.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="127">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="128">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -279,7 +279,7 @@
   </object>
   <object id="78" name="Player's House Sign" type="event" x="624" y="736" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog ${{name}}'s house"/>
+    <property name="act1" value="dialog ${{name}}'s &quot;house&quot;"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
@@ -397,6 +397,18 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="127" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 1"/>
+    <property name="act2" value="create_npc allie,37,40,omnichannelfemale,stand"/>
+    <property name="act3" value="player_stop"/>
+    <property name="act4" value="translated_dialog hellolovelypeople"/>
+    <property name="act5" value="create_npc npc_mom,43,46,girl1,stand"/>
+    <property name="act6" value="npc_face npc_mom left"/>
+    <property name="act8" value="pathfind allie, 37, 44"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:yes"/>
    </properties>
   </object>
  </objectgroup>

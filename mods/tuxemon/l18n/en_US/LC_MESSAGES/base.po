@@ -1570,6 +1570,22 @@ msgstr "Sorry, someone got injured on the route. It's closed right now."
 msgid "bothofyou"
 msgstr "Both of you, come outside. A contingent from Omnichannel requests your presence."
 
+msgid "hellolovelypeople"
+msgstr "HELLOOOOO CITIZENS OF TABA TOWN!"
+
+msgid "hellolovelypeople2"
+msgstr "I know you're probably wondering why my Omni knights and I are here.\n"
+"Wait..."
+
+msgid "hellolovelypeople3"
+msgstr "Are you really the only people in this town? There's no one here! This has GOT to be the smallest town in the Fondent Region."
+
+msgid "hellolovelypeople4"
+msgstr "I'm pretty sure there are houses in Cotton Town larger than this..."
+
+msgid "hellolovelypeople5"
+msgstr "No... We are missing one person. The lone Tuxemon breeder left in the Fondent region. The one that calls himself the Tuxemon Professor"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

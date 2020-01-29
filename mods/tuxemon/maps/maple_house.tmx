@@ -81,11 +81,13 @@
     <property name="act6" value="npc_face knight3,right"/>
     <property name="act7" value="wait 0.7"/>
     <property name="act8" value="npc_face knight3,up"/>
+    <property name="act81" value="wait 0.2"/>
     <property name="act9" value="translated_dialog bothofyou"/>
-    <property name="act91" value="npc_face knight3,down"/>
-    <property name="act92" value="wait 0.8"/>
-    <property name="act93" value="set_variable goodbyeoldknight:yes"/>
-    <property name="act94" value="remove_npc knight3"/>
+    <property name="act91" value="wait 0.8"/>
+    <property name="act92" value="npc_face knight3,down"/>
+    <property name="act93" value="wait 0.5"/>
+    <property name="act94" value="set_variable goodbyeoldknight:yes"/>
+    <property name="act95" value="remove_npc knight3"/>
     <property name="cond1" value="is variable_set thewifedidspeak:yes"/>
     <property name="cond2" value="not variable_set goodbyeoldknight:yes"/>
    </properties>

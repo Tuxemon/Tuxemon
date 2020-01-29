@@ -134,6 +134,16 @@ class TranslatorPo(object):
         else:
             return text
 
+    def maybe_translate(self, text):
+        """ Try to translate the text. If None, return empty string
+
+        :param Optional[str] text: Text to translate
+        :rtype: str
+        """
+        if text is None:
+            return ""
+        else:
+            return self.translate(text)
 
 class Translator(object):
 

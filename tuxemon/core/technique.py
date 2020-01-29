@@ -83,9 +83,9 @@ class Technique(object):
         self.slug = slug
         self.type1 = "aether"
         self.type2 = None
-        self.use_item = ""
-        self.use_success = ""
-        self.use_failure = ""
+        self.use_item = None
+        self.use_success = None
+        self.use_failure = None
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -110,18 +110,9 @@ class Technique(object):
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
-        try:
-            self.use_item = T.translate(results["use_tech"])
-        except KeyError:
-            logger.debug("Missing technique dialog use_tech")
-        try:
-            self.use_success = T.translate(results["use_success"])
-        except KeyError:
-            logger.debug("Missing technique dialog use_success")
-        try:
-            self.use_failure = T.translate(results["use_failure"])
-        except KeyError:
-            logger.debug("Missing technique dialog use_failure")
+        self.use_item = T.maybe_translate(results.get("use_tech"))
+        self.use_success = T.maybe_translate(results.get("use_success"))
+        self.use_failure = T.maybe_translate(results.get("use_failure"))
 
         self.category = results["category"]
         self.icon = results["icon"]

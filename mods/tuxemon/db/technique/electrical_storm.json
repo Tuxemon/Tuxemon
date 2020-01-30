@@ -13,7 +13,7 @@
   "power": 3.0,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_lightning2",
   "slug": "electrical_storm",
   "sort": "damage",
   "target": {

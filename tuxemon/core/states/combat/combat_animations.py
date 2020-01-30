@@ -305,7 +305,7 @@ class CombatAnimations(Menu):
             x_diff = scale(150)
 
         cry = monster.combat_call if monster.current_hp > 0 else monster.faint_call
-        sound = tools.load_sound(db.lookup_file(cry, "sounds"))
+        sound = tools.load_sound(cry)
         sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 

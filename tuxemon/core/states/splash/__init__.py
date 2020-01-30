@@ -68,7 +68,7 @@ class SplashState(state.State):
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
         cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
 
-        self.ding = tools.load_sound("ding.wav")
+        self.ding = tools.load_sound("sound_ding")
         self.ding.play()
 
     def process_event(self, event):

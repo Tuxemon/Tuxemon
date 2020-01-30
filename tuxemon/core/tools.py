@@ -42,6 +42,7 @@ import tuxemon.core.sprite
 import tuxemon.core.monster
 from tuxemon.core import prepare
 from tuxemon.core import pyganim
+from tuxemon.core.db import db
 from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -357,13 +358,11 @@ def check_parameters(parameters, required=0, exit=True):
         return True
 
 
-def load_sound(filename):
-    """ Load a sound from disk
+def load_sound(slug):
+    """ Load a sound from disk, identified by it's slug in the db
 
-    The required path will be prepended to the filename, up to and including "sounds"
-
-    :param filename: filename to load
-    :type filename: basestring
+    :param slug: slug for the file record to load
+    :type slug: String
     :rtype: core.platform.mixer.Sound
     """
 
@@ -371,6 +370,8 @@ def load_sound(filename):
         def play(self):
             pass
 
+    # get the filename from the db
+    filename = db.lookup_file("sounds", slug)
     filename = transform_resource_filename("sounds", filename)
 
     # on some platforms, pygame will silently fail loading

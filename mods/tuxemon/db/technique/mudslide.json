@@ -13,7 +13,7 @@
   "power": 2.25,
   "range": "melee",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "mudslide",
   "sort": "damage",
   "target": {

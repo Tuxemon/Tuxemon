@@ -250,7 +250,7 @@ class Menu(state.State):
 
         :returns: None
         """
-        self.menu_select_sound = tools.load_sound(db.lookup_file("sounds", self.menu_select_sound_filename))
+        self.menu_select_sound = tools.load_sound(self.menu_select_sound_filename)
 
     def shadow_text(self, text, bg=(192, 192, 192)):
         """ Draw shadowed text

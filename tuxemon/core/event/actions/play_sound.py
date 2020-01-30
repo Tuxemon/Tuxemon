@@ -41,5 +41,5 @@ class PlaySoundAction(EventAction):
 
     def start(self):
         filename = self.parameters.filename
-        sound = tools.load_sound(db.lookup_file("sounds", filename))
+        sound = tools.load_sound(filename)
         sound.play()

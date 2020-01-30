@@ -43,6 +43,11 @@ class TranslatedDialogAction(EventAction):
 
     * ${{name}} - The current player's name.
 
+    Parameters following the translation name may represent one of two things:
+    If a parameter is var1=value1, it represents a value replacement.
+    If it's a single value (an integer or a string), it will be used as an avatar image.
+    TODO: This is a hack and should be fixed later on, ideally without overloading the parameters.
+
     **Examples:**
 
     >>> action.__dict__
@@ -57,18 +62,21 @@ class TranslatedDialogAction(EventAction):
     """
     name = "translated_dialog"
 
-    valid_parameters = [
-        (str, "key"),
-        (str, "avatar")
-    ]
-
     def start(self):
-        avatar = get_avatar(self.game, self.parameters.avatar)
+        key = self.raw_parameters[0]
+        replace = []
+        avatar = None
+        for param in self.raw_parameters[1:]:
+            if "=" in param:
+                replace.append(param)
+            else:
+                avatar = get_avatar(self.game, param)
+
         self.open_dialog(
             process_translate_text(
                 self.game,
-                self.parameters.key,
-                self.raw_parameters[1:],
+                key,
+                replace,
             ), avatar
         )
 

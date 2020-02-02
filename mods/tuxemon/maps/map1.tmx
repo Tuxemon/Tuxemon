@@ -359,7 +359,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="115" name="Route 0 Sign" type="event" x="576" y="560" width="16" height="16">
+  <object id="115" name="Route 20 Sign" type="event" x="576" y="560" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Route 20"/>
     <property name="cond1" value="is player_at"/>
@@ -406,7 +406,8 @@
     <property name="act3" value="player_stop"/>
     <property name="act4" value="translated_dialog hellolovelypeople"/>
     <property name="act5" value="create_npc npc_mom,43,46,girl1,stand"/>
-    <property name="act6" value="npc_face npc_mom left"/>
+    <property name="act6" value="npc_face npc_mom, left"/>
+    <property name="act7" value="set_variable goodbyeoldknight:hedead"/>
     <property name="act8" value="pathfind allie, 37, 44"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:yes"/>
    </properties>

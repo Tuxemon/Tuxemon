@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core.locale import process_translate_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog
+from tuxemon.core.tools import open_dialog, get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +43,11 @@ class TranslatedDialogChainAction(EventAction):
     * ${{name}} - The current player's name.
     * ${{end}} - Ends the dialog chain.
 
+    Parameters following the translation name may represent one of two things:
+    If a parameter is var1=value1, it represents a value replacement.
+    If it's a single value (an integer or a string), it will be used as an avatar image.
+    TODO: This is a hack and should be fixed later on, ideally without overloading the parameters.
+
     **Examples:**
 
     >>> action.__dict__
@@ -56,10 +61,16 @@ class TranslatedDialogChainAction(EventAction):
 
     """
     name = "translated_dialog_chain"
-    valid_parameters = [(str, "key")]
 
     def start(self):
-        key = self.parameters.key
+        key = self.raw_parameters[0]
+        replace = []
+        avatar = None
+        for param in self.raw_parameters[1:]:
+            if "=" in param:
+                replace.append(param)
+            else:
+                avatar = get_avatar(self.game, param)
 
         # If text is "${{end}}, then close the current dialog
         if key == "${{end}}":
@@ -70,20 +81,21 @@ class TranslatedDialogChainAction(EventAction):
         pages = process_translate_text(
             self.game,
             key,
-            self.raw_parameters[1:],
+            replace,
         )
 
         dialog = self.game.get_state_name("DialogState")
         if dialog:
             dialog.text_queue += pages
         else:
-            self.open_dialog(pages)
+            self.open_dialog(pages, avatar)
 
     def update(self):
-        if self.parameters.key == "${{end}}":
+        key = self.raw_parameters[0]
+        if key == "${{end}}":
             if self.game.get_state_name("DialogState") is None:
                 self.stop()
 
-    def open_dialog(self, pages):
+    def open_dialog(self, pages, avatar):
         logger.info("Opening chain dialog window")
-        open_dialog(self.game, pages)
+        open_dialog(self.game, pages, avatar)

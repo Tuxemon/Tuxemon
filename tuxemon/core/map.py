@@ -190,6 +190,9 @@ class Map(object):
         # in a collision region.
         self.tile_size = (0, 0)
 
+        # set the default layer to draw character sprites
+        self.sprite_layer = 2
+
         # Collision tiles in tmx object format
         self.collisions = []
 
@@ -238,11 +241,10 @@ class Map(object):
         else:
             self.data = load_pygame(filename, pixelalpha=True)
 
-        # Get the properties of the map
-        if type(self.data.properties) == dict:
-            # Get the edge type of the map
-            if "edges" in self.data.properties:
-                self.edges = self.data.properties["edges"]
+        # Get the edge type of the map
+        self.edges = self.data.properties.get("edges", "")
+        # Get the layer to draw character sprites
+        self.sprite_layer = int(self.data.properties.get("sprite_layer", 2))
 
         # make a scrolling renderer
         self.renderer = self.initialize_renderer()
@@ -251,7 +253,10 @@ class Map(object):
         self.size = self.data.width, self.data.height
 
         # Get the tile size of the map
-        self.tile_size = self.data.tilesets[0].tilewidth, self.data.tilesets[0].tileheight
+        if self.data.tilesets:
+            self.tile_size = self.data.tilesets[0].tilewidth, self.data.tilesets[0].tileheight
+        else:
+            self.tile_size = prepare.TILE_SIZE
 
         # Load all objects from the map file and sort them by their type.
         for obj in self.data.objects:

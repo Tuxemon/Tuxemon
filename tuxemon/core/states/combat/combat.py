@@ -292,6 +292,7 @@ class CombatState(CombatAnimations):
             pass
 
         elif phase == "ran away":
+            self.players[0].set_party_status()
             self.players[0].game_variables['battle_last_result'] = 'ran'
             self.alert(T.translate('combat_player_run'))
 
@@ -302,6 +303,7 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change(3)
 
         elif phase == "draw match":
+            self.players[0].set_party_status()
             self.players[0].game_variables['battle_last_result'] = 'draw'
 
             # it is a draw match; both players were defeated in same round
@@ -315,6 +317,7 @@ class CombatState(CombatAnimations):
         elif phase == "has winner":
             # TODO: proper match check, etc
             # This assumes that player[0] is the human playing in single player
+            self.players[0].set_party_status()
             if self.remaining_players[0] == self.players[0]:
                 self.players[0].game_variables['battle_last_result'] = 'won'
                 self.alert(T.translate('combat_victory'))
@@ -329,6 +332,7 @@ class CombatState(CombatAnimations):
             self.suppress_phase_change(3)
 
         elif phase == "end combat":
+            self.players[0].set_party_status()
             self.end_combat()
 
     def get_combat_decision_from_ai(self, monster):
@@ -673,7 +677,7 @@ class CombatState(CombatAnimations):
 
                 for status in result.get("statuses", []):
                     m = T.format(status.use_item,
-                                 {"user": status.link.name if status.link else "", "target": status.carrier.name})
+                                 {"name": technique.name, "user": status.link.name if status.link else "", "target": status.carrier.name})
                     message += "\n" + m
 
             else:  # assume this was an item used

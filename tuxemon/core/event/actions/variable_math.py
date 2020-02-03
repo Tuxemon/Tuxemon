@@ -25,18 +25,10 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.tools import number_or_variable
 
-
-# Value fetching: If it's a string get a game variable, if it's a number use it as such
-def number_or_variable(value):
-    if value.isdigit():
-        return float(value)
-    else:
-        try:
-            return float(player.game_variables[value])
-        except (KeyError, ValueError, TypeError):
-            logger.error("invalid number or game variable {}".format(value))
-            raise ValueError
+import logging
+logger = logging.getLogger(__name__)
 
 
 class VariableMathAction(EventAction):
@@ -57,9 +49,9 @@ class VariableMathAction(EventAction):
 
         # Read the parameters
         var = self.parameters.var
-        operand1 = number_or_variable(var)
+        operand1 = number_or_variable(game, var)
         operation = self.parameters.operation
-        operand2 = number_or_variable(self.parameters.value)
+        operand2 = number_or_variable(game, self.parameters.value)
 
         # Preform the operation on the variable
         if operation == "+":
@@ -70,3 +62,6 @@ class VariableMathAction(EventAction):
             player.game_variables[var] = operand1 * operand2
         elif operation == "/":
             player.game_variables[var] = operand1 / operand2
+        else:
+            logger.error("invalid operation type {}".format(operation))
+            raise ValueError

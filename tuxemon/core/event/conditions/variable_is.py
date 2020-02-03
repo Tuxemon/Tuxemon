@@ -25,18 +25,10 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.event.eventcondition import EventCondition
+from tuxemon.core.tools import number_or_variable
 
-
-# Value fetching: If it's a string get a game variable, if it's a number use it as such
-def number_or_variable(value):
-    if value.isdigit():
-        return float(value)
-    else:
-        try:
-            return float(player.game_variables[value])
-        except (KeyError, ValueError, TypeError):
-            logger.error("invalid number or game variable {}".format(value))
-            raise ValueError
+import logging
+logger = logging.getLogger(__name__)
 
 
 class VariableIsCondition(EventCondition):
@@ -67,9 +59,9 @@ class VariableIsCondition(EventCondition):
         player = game.player1
 
         # Read the parameters
-        operand1 = number_or_variable(condition.parameters[0])
+        operand1 = number_or_variable(game, condition.parameters[0])
         operation = condition.parameters[1]
-        operand2 = number_or_variable(condition.parameters[2])
+        operand2 = number_or_variable(game, condition.parameters[2])
 
         # Check if the condition is true
         if operation == "==":
@@ -84,4 +76,6 @@ class VariableIsCondition(EventCondition):
             return operand1 < operand2
         elif operation == "<=":
             return operand1 <= operand2
-        return False
+        else:
+            logger.error("invalid operation type {}".format(operation))
+            raise ValueError

@@ -34,7 +34,7 @@ def number_or_variable(value):
     else:
         try:
             return float(player.game_variables[value])
-        except KeyError:
+        except (KeyError, ValueError, TypeError):
             logger.error("invalid number or game variable {}".format(value))
             raise ValueError
 

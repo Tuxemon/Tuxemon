@@ -56,7 +56,7 @@ class RenameMonsterAction(EventAction):
 
     def set_monster_name(self, name):
         self.monster.name = name
-        self.game.pop_state()    # pop the monster menu
+        self.game.get_state_name("MonsterMenuState").refresh_menu_items()
 
     def prompt_for_name(self, menu_item):
         self.monster = menu_item.game_object

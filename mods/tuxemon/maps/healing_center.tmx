@@ -77,11 +77,11 @@
    </object>
    <object id="30" name="howdy" type="event" x="192" y="160" width="16" height="16">
     <properties>
-     <property name="act1" value="translated_dialog happy_guy_dialog\n"/>
-     <property name="act3" value="translated_dialog_choice yes:no,happy"/>
+     <property name="act1" value="translated_dialog happy_guy_dialog"/>
+     <property name="act2" value="translated_dialog_choice yes:no,happy"/>
      <property name="cond1" value="is player_facing_npc happy_guy"/>
-     <property name="cond3" value="is button_pressed K_RETURN"/>
-     <property name="cond4" value="not variable_set happy:yes"/>
+     <property name="cond2" value="is button_pressed K_RETURN"/>
+     <property name="cond3" value="not variable_set happy:yes"/>
     </properties>
    </object>
   <object id="31" name="Rename Monster" type="event" x="192.205" y="159.583" width="16" height="16">
@@ -89,26 +89,24 @@
      <property name="act1" value="rename_monster"/>
      <property name="act2" value="translated_dialog happy_rename"/>
      <property name="act3" value="set_variable happy:no"/>
-     <property name="cond1" value="is player_facing_npc happy_guy"/>
-     <property name="cond3" value="is variable_set happy:yes"/>
+     <property name="cond1" value="is variable_set happy:yes"/>
     </properties>
    </object>
    <object id="32" name="whats up" type="event" x="144" y="160" width="16" height="16">
     <properties>
-     <property name="act1" value="translated_dialog shady_guy_dialog\n"/>
-     <property name="act3" value="translated_dialog_choice yes:no,shady"/>
+     <property name="act1" value="translated_dialog shady_guy_dialog"/>
+     <property name="act2" value="translated_dialog_choice yes:no,shady"/>
      <property name="cond1" value="is player_facing_npc shady_guy"/>
-     <property name="cond3" value="is button_pressed K_RETURN"/>
-     <property name="cond4" value="not variable_set shady:yes"/>
+     <property name="cond2" value="is button_pressed K_RETURN"/>
+     <property name="cond3" value="not variable_set shady:yes"/>
     </properties>
    </object>
    <object id="33" name="Rename Player" type="event" x="144" y="160" width="16" height="16">
      <properties>
       <property name="act1" value="rename_player"/>
-      <property name="act3" value="translated_dialog shady_rename"/>
-      <property name="act4" value="set_variable shady:no"/>
-      <property name="cond1" value="is player_facing_npc shady"/>
-      <property name="cond3" value="is variable_set shady:yes"/>
+      <property name="act2" value="translated_dialog shady_rename"/>
+      <property name="act3" value="set_variable shady:no"/>
+      <property name="cond1" value="is variable_set shady:yes"/>
      </properties>
     </object>
   <object id="28" name="Go outside" type="event" x="112" y="192" width="16" height="16">

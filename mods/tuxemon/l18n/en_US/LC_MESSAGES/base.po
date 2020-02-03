@@ -1604,7 +1604,7 @@ msgid "happy_rename"
 msgstr "Happy: That's a great name! I'm sure your Tuxemon loves it :)"
 
 msgid "shady_guy_dialog"
-msgstr "Shady Guy: Hey. If you, uh... have some 'trouble' attached to your name I can fix it for you..."
+msgstr "Shady Guy: Hey. If you have some... 'trouble' attached to your name I can fix it for you..."
 
 msgid "shady_rename"
-msgstr "Shady Guy: Good luck with your new name friend..."
+msgstr "Shady Guy: Good luck with your new name, friend..."

@@ -30,6 +30,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.locale import T
 
 class RenamePlayerAction(EventAction):
     """Opens the text input screen to rename the player.
@@ -40,8 +41,8 @@ class RenamePlayerAction(EventAction):
     valid_parameters = []
 
 
-    def set_player_name(name):
-        world = self.game.get_state_name("WorldState")
+    def set_player_name(menu, name):
+        world = menu.game.get_state_name("WorldState")
         if world:
             world.player1.name = name
 
@@ -55,8 +56,8 @@ class RenamePlayerAction(EventAction):
         self.game.push_state(
             state_name="InputMenu",
             prompt=T.translate("input_name"),
-            callback=set_player_name,
-            escape_key_exits=True,
+            callback=self.set_player_name,
+            escape_key_exits=False,
             initial=world.player1.name
         )
 

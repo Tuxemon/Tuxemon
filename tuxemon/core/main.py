@@ -31,6 +31,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import time
 import random
 import logging
 
@@ -108,7 +109,7 @@ def main(load_slot=None):
     try:
         seed = new_player.game_variables["random_seed"]
     except KeyError:
-        seed = random.randint(0, 1000000)
+        seed = int(round(time.time() * 1000))
         new_player.game_variables["random_seed"] = seed
         logger.debug("generated new random seed {}".format(seed))
     random.seed(seed)

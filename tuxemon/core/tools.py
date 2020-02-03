@@ -532,7 +532,7 @@ def number_or_variable(game, value):
     """
     player = game.player1
     values = value.split("-")
-    if len(values) > 1 and values[0].isdigit() and values[1].isdigit():
+    if len(values) == 2 and values[0].isdigit() and values[1].isdigit():
         return random.uniform(values[0], values[1])
     elif value.isdigit():
         return float(value)

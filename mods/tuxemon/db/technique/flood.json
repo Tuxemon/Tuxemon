@@ -12,7 +12,7 @@
   "power": 1.5,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_bubbles",
   "slug": "flood",
   "sort": "damage",
   "target": {

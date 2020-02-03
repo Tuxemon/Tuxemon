@@ -27,6 +27,7 @@ from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import prepare
+from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.platform import mixer
 
@@ -45,9 +46,10 @@ class PlayMusicAction(EventAction):
 
     def start(self):
         filename = self.parameters.filename
-
+        
         try:
-            mixer.music.load(prepare.fetch("music", filename))
+            path = prepare.fetch("music", db.lookup_file("music", filename))
+            mixer.music.load(path)
             mixer.music.set_volume(prepare.CONFIG.music_volume)
             mixer.music.play(-1)
         except Exception as e:

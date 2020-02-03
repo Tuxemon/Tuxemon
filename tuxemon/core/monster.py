@@ -214,6 +214,8 @@ class Monster(object):
         self.moveset = []       # A list of possible technique objects.
         self.evolutions = []    # A list of possible evolution objects.
         self.flairs = {}        # A dictionary of flairs, one is picked randomly.
+        self.battle_cry = ""    # a slug for a sound file, used primarly when they enter battle
+        self.faint_cry = ""     # a slug for a sound file, used when the monster faints
         self.ai = None
 
         # The multiplier for experience
@@ -303,6 +305,10 @@ class Monster(object):
         self.back_battle_sprite = self.get_sprite_path(results['sprites']['battle2'])
         self.menu_sprite_1 = self.get_sprite_path(results['sprites']['menu1'])
         self.menu_sprite_2 = self.get_sprite_path(results['sprites']['menu2'])
+
+        # get sound slugs for this monster, defaulting to a generic type-based sound
+        self.combat_call = results.get("sounds", {}).get("combat_call", "sound_{}_call".format(self.type1))
+        self.faint_call = results.get("sounds", {}).get("faint_call", "sound_{}_faint".format(self.type1))
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not

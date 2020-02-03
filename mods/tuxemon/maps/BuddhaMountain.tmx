@@ -44,8 +44,8 @@
   </object>
   <object id="3" name="Play Music" type="event" x="0" y="1584" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music TheAdventureBegins8bitRemix.ogg"/>
-    <property name="cond1" value="not music_playing TheAdventureBegins8bitRemix.ogg"/>
+    <property name="act1" value="play_music music_adventure_begins"/>
+    <property name="cond1" value="not music_playing music_adventure_begins"/>
    </properties>
   </object>
   <object id="225" name="Teleport to map1" type="event" x="32" y="1424" width="16" height="32">

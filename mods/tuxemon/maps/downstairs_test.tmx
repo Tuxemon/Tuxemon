@@ -48,8 +48,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="23" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music All of Us.ogg"/>
-    <property name="cond1" value="not music_playing All of Us.ogg"/>
+    <property name="act1" value="play_music music_home"/>
+    <property name="cond1" value="not music_playing music_home"/>
    </properties>
   </object>
   <object id="24" name="Watch TV" type="event" x="32" y="96" width="16" height="16">

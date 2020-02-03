@@ -13,7 +13,7 @@
   "power": 3.0,
   "range": "melee",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "give_all",
   "sort": "damage",
   "target": {

@@ -42,6 +42,7 @@ import tuxemon.core.sprite
 import tuxemon.core.monster
 from tuxemon.core import prepare
 from tuxemon.core import pyganim
+from tuxemon.core.db import db
 from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -357,13 +358,11 @@ def check_parameters(parameters, required=0, exit=True):
         return True
 
 
-def load_sound(filename):
-    """ Load a sound from disk
+def load_sound(slug):
+    """ Load a sound from disk, identified by it's slug in the db
 
-    The required path will be appended to the filename
-
-    :param filename: filename to load
-    :type filename: basestring
+    :param slug: slug for the file record to load
+    :type slug: String
     :rtype: core.platform.mixer.Sound
     """
 
@@ -371,7 +370,9 @@ def load_sound(filename):
         def play(self):
             pass
 
-    filename = transform_resource_filename(filename)
+    # get the filename from the db
+    filename = db.lookup_file("sounds", slug)
+    filename = transform_resource_filename("sounds", filename)
 
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
@@ -515,3 +516,24 @@ def scaled_image_loader(filename, colorkey, **kwargs):
         return tile
 
     return load_image
+
+def number_or_variable(game, value):
+    """ Returns a numeric game variable by its name
+    If value is already a number, convert from string to float and return that
+
+    :param game:
+    :param value: Union[str, float, int]
+
+    :rtype: float
+
+    :raises: ValueError
+    """
+    player = game.player1
+    if value.isdigit():
+        return float(value)
+    else:
+        try:
+            return float(player.game_variables[value])
+        except (KeyError, ValueError, TypeError):
+            logger.error("invalid number or game variable {}".format(value))
+            raise ValueError

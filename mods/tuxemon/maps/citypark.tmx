@@ -364,8 +364,8 @@
   </object>
   <object id="91" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music back34.mp3"/>
-    <property name="cond1" value="not music_playing back34.mp3"/>
+    <property name="act1" value="play_music music_city_park"/>
+    <property name="cond1" value="not music_playing music_city_park"/>
    </properties>
   </object>
   <object id="101" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">

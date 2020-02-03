@@ -13,7 +13,7 @@
   "power": 2.25,
   "range": "touch",
   "recharge": 3,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_flames2",
   "slug": "breathe_fire",
   "sort": "damage",
   "target": {

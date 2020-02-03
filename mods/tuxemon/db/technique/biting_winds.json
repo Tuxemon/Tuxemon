@@ -13,7 +13,7 @@
   "power": 1.25,
   "range": "melee",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_tornado",
   "slug": "biting_winds",
   "sort": "damage",
   "target": {

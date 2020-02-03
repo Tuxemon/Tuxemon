@@ -40,7 +40,7 @@ class VariableMathAction(EventAction):
     valid_parameters = [
         (str, "var"),
         (str, "operation"),
-        (float, "value")
+        (str, "value")
     ]
 
     def start(self):
@@ -49,9 +49,9 @@ class VariableMathAction(EventAction):
 
         # Read the parameters
         var = self.parameters.var
-        operand1 = number_or_variable(game, var)
+        operand1 = number_or_variable(self.game, var)
         operation = self.parameters.operation
-        operand2 = number_or_variable(game, self.parameters.value)
+        operand2 = number_or_variable(self.game, self.parameters.value)
 
         # Preform the operation on the variable
         if operation == "=":

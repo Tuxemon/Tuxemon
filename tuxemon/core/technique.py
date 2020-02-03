@@ -149,8 +149,7 @@ class Technique(object):
                     self.images.append(os.path.join("animations/technique", image))
 
         # Load the sound effect for this technique
-        sfx_directory = "sounds/technique"
-        self.sfx = os.path.join(sfx_directory, results["sfx"])
+        self.sfx = results["sfx"]
 
     def advance_round(self, number=1):
         """ Advance the turn counters for this technique

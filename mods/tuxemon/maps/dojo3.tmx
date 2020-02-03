@@ -81,8 +81,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="9" name="Play Music" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music taking_poison.ogg"/>
-    <property name="cond1" value="not music_playing taking_poison.ogg"/>
+    <property name="act1" value="play_music music_dojo_theme"/>
+    <property name="cond1" value="not music_playing music_dojo_theme"/>
    </properties>
   </object>
   <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">

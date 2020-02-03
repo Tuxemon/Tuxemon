@@ -13,7 +13,7 @@
   "power": 1.75,
   "range": "melee",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_flames1",
   "slug": "fire_claw",
   "sort": "damage",
   "target": {

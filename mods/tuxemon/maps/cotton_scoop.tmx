@@ -111,8 +111,8 @@
   </object>
   <object id="15" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_royalCourt_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
   <object id="16" name="Player Spawn" type="event" x="80" y="128" width="16" height="16"/>

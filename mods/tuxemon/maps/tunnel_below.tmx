@@ -87,8 +87,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music stand_with_us.ogg"/>
-    <property name="cond1" value="not music_playing stand_with_us.ogg"/>
+    <property name="act1" value="play_music music_dragons_cave"/>
+    <property name="cond1" value="not music_playing music_dragons_cave"/>
    </properties>
   </object>
   <object id="38" name="Teleport to Aboveground" type="event" x="112" y="32" width="16" height="16">

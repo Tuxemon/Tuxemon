@@ -292,8 +292,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="111" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="act1" value="play_music music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
   <object id="153" name="Teleport to Leather Town" type="event" x="480" y="624" width="16" height="16">

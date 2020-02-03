@@ -94,13 +94,13 @@
  </layer>
  <objectgroup color="#ffff00" name="Event">
   <properties>
-   <property name="act1" value="play_music JRPG_docks_loop.ogg"/>
-   <property name="cond1" value="not music_playing JRPG_docks_loop.ogg"/>
+   <property name="act1" value="play_music music_omnichannel"/>
+   <property name="cond1" value="not music_playing music_omnichannel"/>
   </properties>
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_docks_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_docks_loop.ogg"/>
+    <property name="act1" value="play_music music_omnichannel"/>
+    <property name="cond1" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
   <object id="2" name="Teleport to Scoop 2" type="event" x="16" y="176" width="16" height="16">

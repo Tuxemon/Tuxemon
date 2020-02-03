@@ -31,6 +31,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import random
 import logging
 import operator
 import os.path
@@ -520,6 +521,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
 def number_or_variable(game, value):
     """ Returns a numeric game variable by its name
     If value is already a number, convert from string to float and return that
+    If value is "random", return a random number between 0 and 1
 
     :param game:
     :param value: Union[str, float, int]
@@ -531,6 +533,8 @@ def number_or_variable(game, value):
     player = game.player1
     if value.isdigit():
         return float(value)
+    elif value == "random":
+        return random.random()
     else:
         try:
             return float(player.game_variables[value])

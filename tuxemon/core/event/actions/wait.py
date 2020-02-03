@@ -27,23 +27,26 @@ from __future__ import unicode_literals
 import time
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.tools import number_or_variable
 
 
 class WaitAction(EventAction):
     """ Blocks event chain for some time
+    The duration can be either a number or the name of a numeric variable
 
     Valid Parameters: duration
 
-    * duration (float): time in seconds to wait for
+    * duration (string): time in seconds to wait for
     """
     name = "wait"
     valid_parameters = [
-        (float, 'seconds')
+        (str, 'seconds')
     ]
 
     # TODO: use event loop time, not wall clock
     def start(self):
-        self.finish_time = time.time() + self.parameters.seconds
+        secs = number_or_variable(self.parameters.seconds)
+        self.finish_time = time.time() + secs
 
     def update(self):
         if time.time() >= self.finish_time:

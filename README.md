@@ -32,8 +32,8 @@ Pip is installed by default of newer versions of python, so now you just need to
 
 ```cmd
 git clone https://github.com/Tuxemon/Tuxemon.git
-py -m pip install -U -r requirements.txt
 cd Tuxemon
+python -m pip install -U -r requirements.txt
 python tuxemon.py
 ```
 

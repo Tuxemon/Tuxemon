@@ -516,3 +516,24 @@ def scaled_image_loader(filename, colorkey, **kwargs):
         return tile
 
     return load_image
+
+def number_or_variable(game, value):
+    """ Returns a numeric game variable by its name
+    If value is already a number, convert from string to float and return that
+
+    :param game:
+    :param value: Union[str, float, int]
+
+    :rtype: float
+
+    :raises: ValueError
+    """
+    player = game.player1
+    if value.isdigit():
+        return float(value)
+    else:
+        try:
+            return float(player.game_variables[value])
+        except (KeyError, ValueError, TypeError):
+            logger.error("invalid number or game variable {}".format(value))
+            raise ValueError

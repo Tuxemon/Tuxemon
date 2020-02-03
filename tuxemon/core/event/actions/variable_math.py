@@ -54,7 +54,9 @@ class VariableMathAction(EventAction):
         operand2 = number_or_variable(game, self.parameters.value)
 
         # Preform the operation on the variable
-        if operation == "+":
+        if operation == "=":
+            player.game_variables[var] = operand2
+        elif operation == "+":
             player.game_variables[var] = operand1 + operand2
         elif operation == "-":
             player.game_variables[var] = operand1 - operand2

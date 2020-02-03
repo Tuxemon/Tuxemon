@@ -4,7 +4,7 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "animation": null,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "icon": "",
   "category": "",
   "sort": "meta",

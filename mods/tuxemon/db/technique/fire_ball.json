@@ -13,7 +13,7 @@
   "power": 1.75,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_flames2",
   "slug": "fire_ball",
   "sort": "damage",
   "target": {

@@ -13,7 +13,7 @@
   "power": 3.0,
   "range": "touch",
   "recharge": 3,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "all_in",
   "sort": "damage",
   "target": {

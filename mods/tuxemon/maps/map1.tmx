@@ -212,8 +212,8 @@
   </object>
   <object id="68" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music Chibi Ninja.ogg"/>
-    <property name="cond1" value="not music_playing Chibi Ninja.ogg"/>
+    <property name="act1" value="play_music music_chibi_ninja"/>
+    <property name="cond1" value="not music_playing music_chibi_ninja"/>
    </properties>
   </object>
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">

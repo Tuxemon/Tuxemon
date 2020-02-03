@@ -111,8 +111,8 @@
   </object>
   <object id="37" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music melody_eternal.ogg"/>
-    <property name="cond1" value="not music_playing melody_eternal.ogg"/>
+    <property name="act1" value="play_music music_mansion_theme"/>
+    <property name="cond1" value="not music_playing music_mansion_theme"/>
    </properties>
   </object>
   <object id="39" name="Player Spawn" type="event" x="96" y="336" width="16" height="16"/>

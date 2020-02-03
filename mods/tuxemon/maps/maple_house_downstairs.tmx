@@ -50,8 +50,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="23" name="Play Music" type="event" x="192" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music 472452_8-Bit-Ambient.ogg"/>
-    <property name="cond1" value="not music_playing 472452_8-Bit-Ambient.ogg"/>
+    <property name="act1" value="play_music music_house_downstairs"/>
+    <property name="cond1" value="not music_playing music_house_downstairs"/>
    </properties>
   </object>
   <object id="25" name="Read Sign" type="event" x="80" y="48" width="16" height="16">

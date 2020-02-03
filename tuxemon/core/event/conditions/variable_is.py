@@ -27,6 +27,18 @@ from __future__ import unicode_literals
 from tuxemon.core.event.eventcondition import EventCondition
 
 
+# Value fetching: If it's a string get a game variable, if it's a number use it as such
+def number_or_variable(value):
+    if value.isdigit():
+        return float(value)
+    else:
+        try:
+            return float(player.game_variables[value])
+        except KeyError:
+            logger.error("invalid number or game variable {}".format(value))
+            raise ValueError
+
+
 class VariableIsCondition(EventCondition):
     """ Checks to see if a player game variable has been set. This will look for a particular
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
@@ -55,24 +67,21 @@ class VariableIsCondition(EventCondition):
         player = game.player1
 
         # Read the parameters
-        try:
-            key = float(player.game_variables[condition.parameters[0]])
-        except KeyError:
-            return False
+        operand1 = number_or_variable(condition.parameters[0])
         operation = condition.parameters[1]
-        value = float(condition.parameters[2])
+        operand2 = number_or_variable(condition.parameters[2])
 
         # Check if the condition is true
         if operation == "==":
-            return key == value
+            return operand1 == operand2
         elif operation == "!=":
-            return key != value
+            return operand1 != operand2
         elif operation == ">":
-            return key > value
+            return operand1 > operand2
         elif operation == ">=":
-            return key >= value
+            return operand1 >= operand2
         elif operation == "<":
-            return key < value
+            return operand1 < operand2
         elif operation == "<=":
-            return key <= value
+            return operand1 <= operand2
         return False

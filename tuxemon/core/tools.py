@@ -521,7 +521,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
 def number_or_variable(game, value):
     """ Returns a numeric game variable by its name
     If value is already a number, convert from string to float and return that
-    If value is "random", return a random number between 0 and 1
+    If value contains two numbers separated by "-", return a random number between them
 
     :param game:
     :param value: Union[str, float, int]
@@ -531,10 +531,11 @@ def number_or_variable(game, value):
     :raises: ValueError
     """
     player = game.player1
-    if value.isdigit():
+    value1, value2 = value.split("-")
+    if value1 and value1.isdigit() and value2 and value2.isdigit():
+        return random.randrange(value1, value2)
+    elif value.isdigit():
         return float(value)
-    elif value == "random":
-        return random.random()
     else:
         try:
             return float(player.game_variables[value])

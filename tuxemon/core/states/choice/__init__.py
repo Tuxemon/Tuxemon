@@ -16,11 +16,12 @@ class ChoiceState(PopUpMenu):
     * if there are no more messages, then the dialog will close
     """
     shrink_to_items = True
+    escape_key_exits = None
 
     def startup(self, **kwargs):
         super(ChoiceState, self).startup(**kwargs)
         self.menu = kwargs.get("menu", list())
-        self.escape_key_exits = kwargs.get("escape_key_exits",False)
+        self.escape_key_exits = kwargs.get("escape_key_exits", False)
 
     def initialize_items(self):
         for key, label, callback in self.menu:

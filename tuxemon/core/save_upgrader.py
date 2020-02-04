@@ -5,7 +5,7 @@ Renaming maps:
   - Increment the value of SAVE_VERSION (e.g. from 1 to 2)
   - Add an entry to MAP_RENAMES consisting of:
     - The previous value of SAVE_VERSION (e.g. 1)
-    - Pairs of;
+    - Pairs of:
         - The name of each map that has been renamed (the key)
         - The new name of the map (the value)
     Keys and values are separated by colons, each key-value pair is separated by a comma

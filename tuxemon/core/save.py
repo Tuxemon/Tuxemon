@@ -42,7 +42,7 @@ from operator import itemgetter
 import pygame
 
 from tuxemon.core import prepare
-from tuxemon.core.save_upgrader import upgrade_save, SAVE_VERSION
+from tuxemon.core.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:
     import cbor
@@ -53,6 +53,7 @@ logger = logging.getLogger(__name__)
 
 slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
+
 
 def get_save_data(game):
     """Gets a dictionary which represents the state of the game.
@@ -170,4 +171,3 @@ def get_index_of_latest_save():
         return s[0]
     else:
         return None
-

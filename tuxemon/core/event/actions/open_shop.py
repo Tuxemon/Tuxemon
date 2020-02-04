@@ -58,4 +58,4 @@ class OpenShopAction(EventAction):
             ("Sell", "Sell", sell_menu),
         ]
 
-        return self.game.push_state("ChoiceState", menu=var_menu)
+        return self.game.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)

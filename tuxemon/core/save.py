@@ -53,6 +53,10 @@ logger = logging.getLogger(__name__)
 slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 
+MAP_RENAMES = {
+    # prev_version_number: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'}
+}
+
 
 def get_save_data(game):
     """Gets a dictionary which represents the state of the game.
@@ -172,7 +176,16 @@ def upgrade_save(save_data):
         for mons in save_data.get('monsters', []), chest.get('monsters', []):
             for mon in mons:
                 mon['slug'] = mon['slug'].partition("_")[2]
+        version += 1
+    update_current_map(1, save_data)
     return save_data
+
+
+def update_current_map(version, save_data):
+    if version in MAP_RENAMES:
+        new_name = MAP_RENAMES[version].get(save_data['current_map'])
+        if new_name:
+            save_data['current_map'] = new_name
 
 
 def get_index_of_latest_save():

@@ -67,7 +67,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlNEJwzAMRP2RbNM12oZO0eW7Ry2IQDwin0pdUoORT5Lvzo5Ja7XxXGt9v+5altbWPhlv3d/RvO++r3u89L024/Ca5circOQZrR9dX03bf+RvxPtpLTuP8mZ1G8pfxp/lX53Xphqz/Ckd1ukvO4e9vTiO3qLlzrq/6G10l1V/kW+0rt5f5JjhL/tOzNNf9BHXW/i+3/iLnJU1/dG/4+y9Wd7/gRU956tG+ss0sjtjf9bnefYr7P7UeZyfkfysEysd1smfYeo4Zr/ns8j+KqZv4qpe1ud58ipc9e/8jNzPOjH7q3jWOZSe0mFd8f1Lnb6JZ/kkr8LU9X7mz8LuR8VZ/pQO62+mDkRH
+   eAHNlNEJwzAMRP2RbNM12oZO0eW7Ry2IQDwin0pdUoORT5Lvzo5Ja7XxXGt9v+5altbWPhlv3d/RvO++r3u89L024/Ca5circOQZrR9dX03bf+RvxPtpLTuP8mZ1G8pfxp/lX53Xphqz/Ckd1ukvO4e9vTiO3qLlzrq/6G10l1V/kW+0rt5f5JjhL/tOzNNf9BHXW/i+3/iLnJU1/dG/4+y9Wd7/gRU956tG+ss0sjtjf9bnefYr7P7UeZyfkfysEysd1smfYeo4Zr/ns8j+KqZv4qpe1ud58ipc9e/8jNzPOjH7q3jWOZSe0mFd8f1Lnb6JZ/kkr8LU9X7mz8Luh/EsP9R9A4q+Q78=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">

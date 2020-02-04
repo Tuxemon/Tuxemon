@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="355">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="356">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -140,12 +140,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG1VjlOA0EQ3IDzBX4AR4ZxyDOI4AsEgIhMhLQJ8AqweQTwBfgDSIREHD+gStqyR62dmWY1s1Krpo/pqu2dXXu80rR7sLHBJnJdrDZtJLUI36417U3CrpGzfDH/GLqOYBYXZMHi0Gg7Mb5KZ+CfwORbvEPO8sX8mG7b8z8+9aXqqS/Ga+Mx3an+uZxHX4zXxq1e+TkNqbxHn3hyaPXKP4icrZQu5Z7x/J4S9oiceHJo9YujFlq+nG/119KlvpYv50u/9pfAc5yNsx47RUx8XpT+ErrYg+d2CtvdWH5jtrHe6nzxeVH3UUqf+kwCfYoRxedF3UfYo8Q6nB/77Qyc3weexRushKawh53ffqfPOzfVfW82bS2N4bmTdj0vL/5CH/dS43tgNWZKHs3Fi9zTd1FvX5zfjqvO+A3pq0nFvHNTXapXX+4Tv02K8/+Wdw5D68TlxdH6Uh/36D5rITkucQan3TmkH7seUDM3dUPn4t3H92MGu4dx/QXjO/3TIX3G6b/CXmCh/lpzU98/TUtc4Q==
+   eAG1VjtOQzEQdMH3BDkAn46QkmNQwRUoAFGFCuk1kFNAwiGAK8AdQKJCVHxuwIz0JlhL1jaS/aTReHft3XmbfVaGS6HbAYaGg/OcLYfOCc3dk5XQXSVwiZit59mH0HUAWJ4Xixb7RtuRsbV1ivojQLbla8RsPc/2dNuc/7GpL7Wf+ry61u/pTuXPxUr0eXWt3+qVndOQipfoU50cW72y95zZSulS7AG/330Cd4ipTo6tftVoxbZezrb6W+lSXlsvZ0u/ztfgU8zGSQGOsUf1PZb+GrqYg3M7BrbX/t4xm/BtAOK3gjmU7lr6lGe0QJ9iYupTfY9r90+1F/VPMfIW9Jf07xW/xTMQn62xzvVvt9fn9U3+z/XQtdKoOfPet6R/39DH89T4EqFFT63OkvmzZ2RTr9Yx8+646ME7JI7l1vbO4X7Nv8e5nDb+jm9OPv7f0py0YtUq5cHqrz6e8d67lp81zjGD434OaXvPLfbMzL5WfVNefh9T4Abg+gPgN/3VM236aT8Bj0Csv1afvDw/hGBVkA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOAzEQhi3Igmh4BkioODt4hnBUkIQCRAVUCImrSmB5AxKg4noProqz4CEQV8NZgij4LDHCsrzRLuyGlT6NPZ7x/J51DqXcz6yn/BkHzSnlS0ZQzFWD8j/hw8ElPskPYz3qpcC2Qbl9hj4dk2mKVu/6W59dL2gepMP0F9CUt3SZ65tK+RuwDhUog7lujkWf6as2DtKdq6LH3u8YPUdwCAewD3aMzEVfUF3bL3kuu0edXdiBbdgCO06/7wf893AHt3ADQffv/Y/3z6x/QZ1zOINTOAFzXcYFj/cPORBf1hiLL81d9ThPCsJayXXZN/S8wgs8wxPYnw9XXpw+OYf5vRHn/vZeUi+slXzdlwnv5/2Iv1ZW9Eo9mYvV/RN9YwnqlHphreg1+zeOvp465XdDF3RCB7SDxJu2DX8G0tAKLWCuxzE2+6f1jVKjAHnIwQgMg6vWEP5BGIB+yIIrTvvC9k3idI7+jbL7t0oNH1ZgGUpQhF7ugc6R57Fe+Uv4F2EB5mEOZD1OO03fpmAS4tzX3Ev6EtaauXq81picNrvWb+blCPr0/69SBIrEhu2bxNlniKLPzq3FvBKhf1qPnDMpW4sz/2eNpPom+34Bwxnq2Q==
+   eAHFlrlOAzEQhi3Igmh4BiBUnB08QzgqSEIBogIqhMRVBVjegHBUXO/BVXEWPATiajhLEAWfJUZYlh12xbJE+jT2rMf/71kHopT7MxWocNJBfUaFUuFbc1mjwg94d3BBTuqjxAC9DNjRV9tt+NNrsnXx9K6+/Nl6vrnPh5kv4qlg+TKfbygVrsMarEIZzOfmWPyZuUpjn+98BT/2fkf4OYQD2Ic9sNfIXPz5dO281LniLjo7sA1bsAn2Ov2+78nfwS3cwDX47t/bL++fqX+Ozhmcwgkcg/lcxsWA9w95kFzOGEuuibsacJ4MRI1S64qv+HmBZ3iCR7C/H666JHNyDvPvRpL723uJXtQo9bovo8H3+5F8WlH8ip7MJer+ib/hFH2Kvi+KX7N/I/jrrFJhB7RDG7RCC8h6MzaTz0ITNEIDmM+TGJv90/6G0ChCAfIwCAPg0uon3we90AM5cK1z5Xx9k7yu0f+j7P4toxHCEizCApSgi3tg6jxUq3Ce/BzMwgxMg7kmqfEEfRuHMUhqz5/2kT75ol2/UpueN1s7yrwcw5/+/bUQA1u/RK2vb5K3a+L4s2vTmK/G6J/2I+f8q5jGmf9T46/6Jvt+Ag+v4lE=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -155,7 +155,7 @@
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYKA+KGBlaKC+qaMmDkQI8LGMxiUp4T4aXqSE1qhackNgFRNDw0ogXgHEy4F4GRAvBWJs5v1mZGj4BcQ/gfgHEH8HYmzqnrFhF8emlhpinswMDR7MDAzuQJoY8+jhPl6k8q4I6K5CoPsKBpH7iAknXGroEX647CZGfNR9xITSqJrREBg+IQAAFd0dyw==
+   eAFjYKA+KGBlaKC+qaMmDkQI8LGMxiUp4T4aXqSE1qhackNgFRNDw0ogXgHEy4F4GRAvBWJs5v1mZGj4BcQ/gfgHEH8HYmzq6C3myczQ4MHMwOAOpOltNy77eJHKuyKguwqB7isYRO7D5e5R8dEQGA2B0RAYaiEAAGNrFUM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision" offsetx="-16" offsety="-16">
@@ -165,12 +165,10 @@
   <object id="333" type="collision" x="208" y="256" width="336" height="79.3333"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="335" name="Sign for Mart" type="event" x="256" y="192">
+  <object id="335" name="Sign for Mart" type="interact" x="256" y="192">
    <properties>
     <property name="act1" value="dialog_chain Buy things here"/>
     <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
    <polygon points="0,0 16,0 16,16 0,16"/>
   </object>
@@ -191,12 +189,10 @@
    </properties>
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="338" name="Sign for Boat" type="event" x="64" y="240" width="16" height="16">
+  <object id="338" name="Sign for Boat" type="interact" x="64" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="dialog_chain Under repairs"/>
     <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="339" name="Sign for Route 1" type="event" x="192" y="16" width="16" height="16">
@@ -310,6 +306,20 @@
    <properties>
     <property name="act1" value="play_music JRPG_town_loop.ogg"/>
     <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+   </properties>
+  </object>
+  <object id="355" name="Stop!" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="create_npc Dante,15,8,shop_assistant,wander"/>
+    <property name="act3" value="pathfind Dante,14,2"/>
+    <property name="act4" value="translated_dialog spyder_paper_stop,name=${{name}}"/>
+    <property name="act5" value="pathfind player,13,3"/>
+    <property name="act6" value="Dante,21,7"/>
+    <property name="act7" value="player_resume"/>
+    <property name="act8" value="remove_npc Dante"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
  </objectgroup>

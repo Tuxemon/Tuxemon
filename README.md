@@ -33,7 +33,7 @@ Run:
 ```cmd
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-python -m pip install -r requirements.txt
+python -m pip install -U -r requirements.txt
 python tuxemon.py
 ```
 

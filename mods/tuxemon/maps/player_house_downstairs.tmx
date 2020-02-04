@@ -71,7 +71,7 @@
   </object>
   <object id="26" name="Go Upstairs" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport bedroom_test.tmx,9,3,0.3"/>
+    <property name="act1" value="transition_teleport player_house_bedroom.tmx,9,3,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at 1,2"/>
    </properties>

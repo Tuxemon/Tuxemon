@@ -54,7 +54,7 @@ slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 
 MAP_RENAMES = {
-    # prev_version_number: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'}
+    # 1: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'}
 }
 
 
@@ -177,7 +177,8 @@ def upgrade_save(save_data):
             for mon in mons:
                 mon['slug'] = mon['slug'].partition("_")[2]
         version += 1
-    update_current_map(1, save_data)
+    if version == 1:
+        update_current_map(1, save_data)
     return save_data
 
 

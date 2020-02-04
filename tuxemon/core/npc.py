@@ -467,12 +467,14 @@ class NPC(Entity):
 
             if self.pathfinding:
                 # since we are pathfinding, just try a new path
-                logger.error('{} finding new path!'.format(self.slug))
+                if not self.isplayer:
+                    logger.error('{} finding new path!'.format(self.slug))
                 self.pathfind(self.pathfinding)
 
             else:
                 # give up and wait until the target is clear again
-                logger.error('{} waiting because way is blocked!'.format(self.slug))
+                if not self.isplayer:
+                    logger.error('{} waiting because way is blocked!'.format(self.slug))
 
     def check_waypoint(self):
         """ Check if the waypoint is reached and sets new waypoint if so

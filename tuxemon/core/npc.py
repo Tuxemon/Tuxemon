@@ -467,12 +467,12 @@ class NPC(Entity):
 
             if self.pathfinding:
                 # since we are pathfinding, just try a new path
-                if not self.isplayer:
-                    logger.error('{} finding new path!'.format(self.slug))
+                logger.error('{} finding new path!'.format(self.slug))
                 self.pathfind(self.pathfinding)
 
             else:
                 # give up and wait until the target is clear again
+                # don't log errors for the player, this causes console spam when walking into a wall
                 if not self.isplayer:
                     logger.error('{} waiting because way is blocked!'.format(self.slug))
 

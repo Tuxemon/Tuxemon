@@ -206,7 +206,7 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.5"/>
+    <property name="act1" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
     <property name="cond1" value="is player_at 43,45"/>
    </properties>
   </object>

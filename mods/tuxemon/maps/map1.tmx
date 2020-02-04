@@ -74,7 +74,7 @@
    eAHt0bENACAMA7BKHAd8A/w/0BdYWOpIOSBOhBAgQIAAAQIECBD4J9BbxMjObMWs3L2zp+j+ip/bTIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEXgUuqM0CPg==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <properties>
    <property name="Collision" value=""/>
   </properties>
@@ -203,7 +203,7 @@
   <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
   <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="7" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.5"/>
@@ -277,20 +277,18 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="78" name="Player's House Sign" type="event" x="624" y="736" width="16" height="16">
+  <object id="78" name="Player's House Sign" type="event" x="624" y="720" width="16" height="16">
    <properties>
     <property name="act1" value="dialog ${{name}}'s house"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="79" name="Professor's House Sign" type="event" x="560" y="704" width="16" height="16">
+  <object id="79" name="Professor's House Sign" type="event" x="560" y="688" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Tuxemon Professor's House"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="192" y="176" width="16" height="16">
@@ -313,12 +311,11 @@
     <property name="cond1" value="is player_at 44,52"/>
    </properties>
   </object>
-  <object id="96" name="Professor's Lab Sign" type="event" x="624" y="848" width="16" height="16">
+  <object id="96" name="Professor's Lab Sign" type="event" x="624" y="832" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Tuxemon Professor's Lab"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
@@ -335,36 +332,32 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="109" name="Tuxemart Sign" type="event" x="432" y="192" width="16" height="16">
+  <object id="109" name="Tuxemart Sign" type="event" x="432" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="110" name="Tuxecenter Sign" type="event" x="688" y="64" width="16" height="16">
+  <object id="110" name="Tuxecenter Sign" type="event" x="688" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Tuxecenter - A place to heal your tuxemon"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="112" name="Startup Town Sign" type="event" x="624" y="656" width="16" height="16">
+  <object id="112" name="Startup Town Sign" type="event" x="624" y="640" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Taba Town - A peaceful refuge"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="115" name="Route 0 Sign" type="event" x="576" y="560" width="16" height="16">
+  <object id="115" name="Route 0 Sign" type="event" x="576" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Route 20"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="118" name="Preload route1" type="event" x="0" y="16" width="16" height="16">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="356">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="357">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -309,6 +309,20 @@
    </properties>
   </object>
   <object id="355" name="Stop!" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="create_npc Dante,15,8,shop_assistant,wander"/>
+    <property name="act3" value="pathfind Dante,14,2"/>
+    <property name="act4" value="translated_dialog spyder_paper_stop,name=${{name}}"/>
+    <property name="act5" value="pathfind player,13,3"/>
+    <property name="act6" value="Dante,21,7"/>
+    <property name="act7" value="player_resume"/>
+    <property name="act8" value="remove_npc Dante"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="356" name="Stop!" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act2" value="create_npc Dante,15,8,shop_assistant,wander"/>

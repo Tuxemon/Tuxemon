@@ -4,14 +4,14 @@ This module is for handling breaking changes to the save file.
 Renaming maps:
   - Increment the value of SAVE_VERSION (e.g. from 1 to 2)
   - Add an entry to MAP_RENAMES consisting of:
-    - The previous value of SAVE_VERSION (e.g. 1)
-    - Pairs of:
+    - The previous value of SAVE_VERSION (e.g. 1) mapping to
+    - A 'dictionary' made up of pairs of:
         - The name of each map that has been renamed (the key)
         - The new name of the map (the value)
     Keys and values are separated by colons, each key-value pair is separated by a comma
     e.g.
         MAP_RENAMES = {
-            # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'}
+            # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
         }
 
 Other changes:
@@ -21,7 +21,7 @@ Other changes:
 
 SAVE_VERSION = 1
 MAP_RENAMES = {
-    # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'}
+    # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
 }
 
 

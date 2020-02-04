@@ -19,37 +19,49 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+# Contributor(s):
+#
+# Adam Chevalier <chevalierAdam2@gmail.com>
+# 
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.map import get_direction, dirs2
+from tuxemon.core.locale import T
 
+class RenamePlayerAction(EventAction):
+    """Opens the text input screen to rename the player.
 
-class NpcFaceAction(EventAction):
-    """ Makes the NPC face a certain direction.
-
-    Valid Parameters: npc_slug, direction
-
-    Direction parameter can be: "left", "right", "up", "down", or "player"
+    Valid Parameters: None
     """
-    name = "npc_face"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "direction")
-    ]
+    name = "rename_player"
+    valid_parameters = []
+
+
+    def set_player_name(menu, name):
+        world = menu.game.get_state_name("WorldState")
+        if world:
+            world.player1.name = name
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        direction = self.parameters.direction
-        if direction not in dirs2:
-            if direction == "player":
-                target = self.game.player1
-            else:
-                target = get_npc(self.game, direction)
-            direction = get_direction(npc.tile_pos, target.tile_pos)
+        print("starting rename_player")
+        # Get a copy of the world state.
+        world = self.game.get_state_name("WorldState")
+        if not world:
+            return
 
-        npc.facing = direction
+        self.game.push_state(
+            state_name="InputMenu",
+            prompt=T.translate("input_name"),
+            callback=self.set_player_name,
+            escape_key_exits=False,
+            initial=world.player1.name
+        )
+
+    def update(self):
+        if self.game.get_state_name("InputMenu") is None:
+            self.stop()
+

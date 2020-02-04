@@ -472,7 +472,8 @@ class NPC(Entity):
 
             else:
                 # give up and wait until the target is clear again
-                logger.error('{} waiting because way is blocked!'.format(self.slug))
+                #logger.error('{} waiting because way is blocked!'.format(self.slug))
+                pass
 
     def check_waypoint(self):
         """ Check if the waypoint is reached and sets new waypoint if so

@@ -1618,3 +1618,18 @@ msgstr "Oh, I hope nobody got hurt from the fallen tree!"
 
 msgid "input_name"
 msgstr "Name?"
+
+msgid "input_monster_name"
+msgstr "Name your Tuxemon?"
+
+msgid "happy_guy_dialog"
+msgstr "Happy: Hi! I love giving Tuxemon nicknames, do you wanna give yours a nickname?"
+
+msgid "happy_rename"
+msgstr "Happy: That's a great name! I'm sure your Tuxemon loves it :)"
+
+msgid "shady_guy_dialog"
+msgstr "Shady Guy: Hey. If you have some... 'trouble' attached to your name I can fix it for you..."
+
+msgid "shady_rename"
+msgstr "Shady Guy: Good luck with your new name, friend..."

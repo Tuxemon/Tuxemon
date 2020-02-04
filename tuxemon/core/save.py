@@ -42,6 +42,7 @@ from operator import itemgetter
 import pygame
 
 from tuxemon.core import prepare
+from tuxemon.core.save_upgrader import upgrade_save, SAVE_VERSION
 
 try:
     import cbor
@@ -52,11 +53,6 @@ logger = logging.getLogger(__name__)
 
 slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
-
-MAP_RENAMES = {
-    # 1: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'}
-}
-
 
 def get_save_data(game):
     """Gets a dictionary which represents the state of the game.
@@ -74,7 +70,7 @@ def get_save_data(game):
     save_data['screenshot_width'] = screenshot.get_width()
     save_data['screenshot_height'] = screenshot.get_height()
     save_data['time'] = datetime.datetime.now().strftime(TIME_FORMAT)
-    save_data['version'] = 1
+    save_data['version'] = SAVE_VERSION
     return save_data
 
 
@@ -159,34 +155,6 @@ def open_save_file(save_path):
     except IOError as e:
         logger.error(e)
         return None
-
-
-def upgrade_save(save_data):
-    version = save_data.get("version", 0)
-    if version == 0:
-        def fix_items(data):
-            return {
-                key.partition("_")[2]: num
-                for key, num in data.items()
-            }
-        chest = save_data.get('storage', {})
-        save_data['inventory'] = fix_items(save_data.get('inventory', {}))
-        chest['items'] = fix_items(chest.get('items', {}))
-
-        for mons in save_data.get('monsters', []), chest.get('monsters', []):
-            for mon in mons:
-                mon['slug'] = mon['slug'].partition("_")[2]
-        version += 1
-    if version == 1:
-        update_current_map(1, save_data)
-    return save_data
-
-
-def update_current_map(version, save_data):
-    if version in MAP_RENAMES:
-        new_name = MAP_RENAMES[version].get(save_data['current_map'])
-        if new_name:
-            save_data['current_map'] = new_name
 
 
 def get_index_of_latest_save():

@@ -34,7 +34,7 @@ class NpcFaceAction(EventAction):
 
     Valid Parameters: npc_slug, direction
 
-    Direction parameter can be: "left", "right", "up", or "down"
+    Direction parameter can be: "left", "right", "up", "down", or "player"
     """
     name = "npc_face"
     valid_parameters = [

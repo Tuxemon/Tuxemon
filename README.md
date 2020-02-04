@@ -26,14 +26,14 @@ Installation
 
 **Windows**
 
-Install the latest version of python 2.7 from [here](https://www.python.org/downloads/)
+Install the latest version of python 3 from [here](https://www.python.org/downloads/)
 
-Pip is installed by default of newer versions of python, so now you just need to run:
+Run:
 
 ```cmd
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-python -m pip install -U -r requirements.txt
+python -m pip install -r requirements.txt
 python tuxemon.py
 ```
 

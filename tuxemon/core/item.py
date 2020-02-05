@@ -40,6 +40,7 @@ import pprint
 import random
 
 from tuxemon.core import tools
+from tuxemon.core.config import config
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
@@ -178,7 +179,7 @@ class Item(object):
         # TODO: document how to handle items with multiple effects
 
         # If this is a consumable item, remove it from the player's inventory.
-        if meta_result["success"] and self.type == "Consumable":
+        if (config.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
             if user.inventory[self.slug]['quantity'] <= 1:
                 del user.inventory[self.slug]
             else:

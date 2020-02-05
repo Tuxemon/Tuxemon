@@ -1316,6 +1316,15 @@ msgstr "You're mistaken"
 msgid "thats_me"
 msgstr "That's me!"
 
+msgid "cash_register"
+msgstr "It's a cash register, looks relatively new."
+
+msgid "potions_in_shop"
+msgstr "The display case seems to have a lot of potions, must be pretty popular around here"
+
+msgid "capture_devices_in_shop"
+msgstr "Capture devices. How do they make these?"
+
 # NPC dialogs
 msgid "professor_dialog\n"
 msgstr "Professor: Ah, yes. The very person I've been wanting to meet.\n"

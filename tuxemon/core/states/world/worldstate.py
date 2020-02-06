@@ -607,10 +607,10 @@ class WorldState(state.State):
     def tile_blocks(self, entity, tile):
         """ Verifies if a collision tile is supposed to block a given type of NPC
 
-        Three checks are preformed in the following order:
-        If the slug of the NPC is present in the blocks string, return True
-        If the NPC is a player, return True if "players" exists in the blocks string
-        If the NPC isn't a player, return True if "npcs" exists in the blocks string
+        Three checks are preformed:
+        If the NPC is a player, return True if "players" exists in the blocks
+        If the NPC isn't a player, return True if "npcs" exists in the blocks
+        If the slug of the NPC is present in the blocks, return True
 
         :param entity: the player or NPC being checked
         :param tile: the data of the tile being checked
@@ -618,12 +618,14 @@ class WorldState(state.State):
         :rtype: bool
         """
         if entity and tile and 'blocks' in tile:
-            if entity.slug in tile['blocks']:
-                return True
-            elif entity.isplayer:
-                return 'players' in tile['blocks']
-            else:
-                return 'npcs' in tile['blocks']
+            for block in tile['blocks'].split():
+                if block == 'players' and entity.isplayer:
+                    return True
+                if block == 'npcs' and not entity.isplayer:
+                    return True
+                if block == entity.slug:
+                    return True
+            return False
         return True
 
     def get_exits(self, position, collision_map=None, skip_nodes=None):

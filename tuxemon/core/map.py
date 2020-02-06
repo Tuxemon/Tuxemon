@@ -452,7 +452,7 @@ class Map(object):
                             if "continue" in key:
                                 tile_conditions['continue'] = collision_region.properties[key]
                             if "blocks" in key:
-                                tile_conditions['blocks'] = collision_region.properties[key]
+                                tile_conditions['blocks'] = collision_region.properties[key].split()
                         collision_map[collision_tile] = tile_conditions
 
         # Similar to collisions, except we need to identify the tiles

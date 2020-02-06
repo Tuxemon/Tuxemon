@@ -4,5 +4,5 @@
     "island_back":"snow_back_island.png",
     "island_front":"snow_front_island.png"
   },
-  "battle_music":"JRPGCollection/ogg/JRPG_battle_loop.ogg"
+  "battle_music":"music_battle_loop"
 }

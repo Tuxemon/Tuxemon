@@ -181,7 +181,11 @@ class JSONDatabase(object):
         :returns: The 'file' property of the resulting dictionary OR the slug if it doesn't exist.
         """
 
-        return self.database[table][slug]["file"] or slug
+        filename = self.database[table][slug]["file"] or slug
+        if (filename == slug):
+            logger.debug("Could not find a file record for slug {}, did you remember to create a database record?".format(slug))
+
+        return filename
 
     def lookup_sprite(self, slug, table="sprite"):
         """Looks up a monster's sprite image paths based on monster slug.

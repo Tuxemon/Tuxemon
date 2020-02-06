@@ -622,6 +622,8 @@ class WorldState(state.State):
         tile_data = collision_map.get(position)
         if tile_data:
             exits = self.get_explicit_tile_exits(position, tile_data, skip_nodes)
+        else:
+            exits = None
 
         # get exits by checking surrounding tiles
         adjacent_tiles = list()

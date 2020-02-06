@@ -605,11 +605,25 @@ class WorldState(state.State):
             pass
 
     def tile_blocks(self, entity, tile):
+        """ Verifies if a collision tile is supposed to block a given type of NPC
+
+        Three checks are preformed in the following order:
+        If the slug of the NPC is present in the blocks string, return True
+        If the NPC is a player, return True if "players" exists in the blocks string
+        If the NPC isn't a player, return True if "npcs" exists in the blocks string
+
+        :param entity: the player or NPC being checked
+        :param tile: the data of the tile being checked
+
+        :rtype: bool
+        """
         if entity and tile and 'blocks' in tile:
-            if entity.isplayer and not 'player' in tile['blocks']:
-                return False
-            if not entity.isplayer and not 'npc' in tile['blocks']:
-                return False
+            if entity.slug in tile['blocks']:
+                return True
+            elif entity.isplayer:
+                return 'players' in tile['blocks']
+            else:
+                return 'npcs' in tile['blocks']
         return True
 
     def get_exits(self, position, collision_map=None, skip_nodes=None):
@@ -649,10 +663,8 @@ class WorldState(state.State):
                 ("up", (position[0], position[1] - 1)),
                 ("left", (position[0] - 1, position[1])),
         ):
-            self_blocks = self.tile_blocks(entity, collision_map.get(position))
-            neighbor_blocks = self.tile_blocks(entity, collision_map.get(neighbor))
-
             # if exits are defined make sure the neighbor is present there
+            self_blocks = self.tile_blocks(entity, collision_map.get(position))
             if self_blocks and exits and not neighbor in exits:
                 continue
 
@@ -683,6 +695,7 @@ class WorldState(state.State):
                     continue
 
                 # if entries are defined make sure the neighbor is present there
+                neighbor_blocks = self.tile_blocks(entity, collision_map.get(neighbor))
                 try:
                     if neighbor_blocks and pairs[direction] not in tile_data["enter"]:
                         continue

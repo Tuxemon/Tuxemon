@@ -97,8 +97,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="55" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music stand_with_us.ogg"/>
-    <property name="cond1" value="not music_playing stand_with_us.ogg"/>
+    <property name="act1" value="play_music music_dragons_cave"/>
+    <property name="cond1" value="not music_playing music_dragons_cave"/>
    </properties>
   </object>
   <object id="56" name="Teleport to Sea Route" type="event" x="208" y="624" width="16" height="16">

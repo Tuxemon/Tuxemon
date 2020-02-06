@@ -13,7 +13,7 @@
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_lightning1",
   "slug": "battery_discharge",
   "sort": "damage",
   "target": {

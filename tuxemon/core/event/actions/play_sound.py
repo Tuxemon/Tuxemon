@@ -25,6 +25,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core import tools
+from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 
 
@@ -40,5 +41,5 @@ class PlaySoundAction(EventAction):
 
     def start(self):
         filename = self.parameters.filename
-        sound = tools.load_sound("sounds/" + filename)
+        sound = tools.load_sound(filename)
         sound.play()

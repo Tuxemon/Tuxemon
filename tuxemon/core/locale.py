@@ -56,21 +56,20 @@ class TranslatorPo(object):
     def __init__(self):
         self.locale = prepare.CONFIG.locale
         self.translate = None
-        self.languages = self.collect_languages()
-        self.build_translations()
-        self.load_locale(prepare.CONFIG.locale)
+        self.languages = []
 
     def collect_languages(self):
         """Collect languages/locales with available translation files."""
-        languages = []
+        self.languages = []
 
         for ld in os.listdir(prepare.fetch("l18n")):
             ld_full_path = os.path.join(prepare.fetch("l18n"), ld)
 
             if os.path.isdir(ld_full_path):
-                languages.append(ld)
+                self.languages.append(ld)
 
-        return languages
+        self.build_translations()
+        self.load_locale(prepare.CONFIG.locale)
 
     def build_translations(self):
         """Create MO files for existing PO translation files."""
@@ -135,6 +134,16 @@ class TranslatorPo(object):
         else:
             return text
 
+    def maybe_translate(self, text):
+        """ Try to translate the text. If None, return empty string
+
+        :param Optional[str] text: Text to translate
+        :rtype: str
+        """
+        if text is None:
+            return ""
+        else:
+            return self.translate(text)
 
 class Translator(object):
 

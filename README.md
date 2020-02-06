@@ -1,4 +1,4 @@
-Tuxemon 0.4.8
+Tuxemon 0.4.9
 =============
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -26,7 +26,16 @@ Installation
 
 **Windows**
 
-[Detailed here](https://www.tuxemon.org/windows-install.html)
+Install the latest version of python 3 from [here](https://www.python.org/downloads/)
+
+Run:
+
+```cmd
+git clone https://github.com/Tuxemon/Tuxemon.git
+cd Tuxemon
+python -m pip install -U -r requirements.txt
+python tuxemon.py
+```
 
 Windows binaries are also available in the releases.
 

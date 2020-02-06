@@ -13,7 +13,7 @@
   "power": 1.75,
   "range": "reliable",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "perfect_cut",
   "sort": "damage",
   "target": {

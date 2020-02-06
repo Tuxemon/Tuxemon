@@ -1316,6 +1316,15 @@ msgstr "You're mistaken"
 msgid "thats_me"
 msgstr "That's me!"
 
+msgid "cash_register"
+msgstr "It's a cash register, looks relatively new."
+
+msgid "potions_in_shop"
+msgstr "The display case seems to have a lot of potions, must be pretty popular around here"
+
+msgid "capture_devices_in_shop"
+msgstr "Capture devices. How do they make these?"
+
 # NPC dialogs
 msgid "professor_dialog\n"
 msgstr "Professor: Ah, yes. The very person I've been wanting to meet.\n"
@@ -1593,3 +1602,18 @@ msgstr "Oh, I hope nobody got hurt from the fallen tree!"
 
 msgid "input_name"
 msgstr "Name?"
+
+msgid "input_monster_name"
+msgstr "Name your Tuxemon?"
+
+msgid "happy_guy_dialog"
+msgstr "Happy: Hi! I love giving Tuxemon nicknames, do you wanna give yours a nickname?"
+
+msgid "happy_rename"
+msgstr "Happy: That's a great name! I'm sure your Tuxemon loves it :)"
+
+msgid "shady_guy_dialog"
+msgstr "Shady Guy: Hey. If you have some... 'trouble' attached to your name I can fix it for you..."
+
+msgid "shady_rename"
+msgstr "Shady Guy: Good luck with your new name, friend..."

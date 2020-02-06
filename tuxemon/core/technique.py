@@ -40,16 +40,11 @@ import random
 from collections import namedtuple
 
 from tuxemon.core import prepare
-from tuxemon.core import db
 from tuxemon.core import formula
 from tuxemon.core.locale import T
+from tuxemon.core.db import db, process_targets
 
 logger = logging.getLogger(__name__)
-
-
-# Load the technique database
-techniques_db = db.JSONDatabase()
-techniques_db.load("technique")
 
 tech_ret_value = namedtuple("use", "name success properties")
 
@@ -88,6 +83,9 @@ class Technique(object):
         self.slug = slug
         self.type1 = "aether"
         self.type2 = None
+        self.use_item = None
+        self.use_success = None
+        self.use_failure = None
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -104,7 +102,7 @@ class Technique(object):
         :rtype: None
         """
 
-        results = techniques_db.lookup(slug, table="technique")
+        results = db.lookup(slug, table="technique")
         self.slug = results["slug"]                             # a short English identifier
         self.name = T.translate(self.slug)                      # locale-specific string
 
@@ -112,9 +110,9 @@ class Technique(object):
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
-        self.use_item = T.translate(results["use_tech"])
-        self.use_success = T.translate(results["use_success"])
-        self.use_failure = T.translate(results["use_failure"])
+        self.use_item = T.maybe_translate(results.get("use_tech"))
+        self.use_success = T.maybe_translate(results.get("use_success"))
+        self.use_failure = T.maybe_translate(results.get("use_failure"))
 
         self.category = results["category"]
         self.icon = results["icon"]
@@ -138,7 +136,7 @@ class Technique(object):
         self.accuracy = results.get("accuracy")
         self.potency = results.get("potency")
         self.effect = results["effects"]
-        self.target = db.process_targets(results["target"])
+        self.target = process_targets(results["target"])
 
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]
@@ -151,8 +149,7 @@ class Technique(object):
                     self.images.append(os.path.join("animations/technique", image))
 
         # Load the sound effect for this technique
-        sfx_directory = "sounds/technique"
-        self.sfx = os.path.join(sfx_directory, results["sfx"])
+        self.sfx = results["sfx"]
 
     def advance_round(self, number=1):
         """ Advance the turn counters for this technique

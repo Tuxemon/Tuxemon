@@ -14,6 +14,7 @@ from functools import partial
 import pygame
 
 from tuxemon.core import tools
+from tuxemon.core.db import db
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu
@@ -172,6 +173,11 @@ class CombatAnimations(Menu):
         self.task(tech.play, delay)
         self.task(partial(self.sprites.add, sprite), delay)
 
+        # attempt to load and queue up combat_call
+        call_sound = tools.load_sound(monster.combat_call)
+        if call_sound:
+            self.task(call_sound.play, delay)
+
         # update tuxemon balls to reflect fainted tuxemon
         for player, layout in self._layout.items():
             self.animate_update_party_hud(player, layout['party'][0])
@@ -218,7 +224,6 @@ class CombatAnimations(Menu):
                 monsters.remove(monster)
             except ValueError:
                 pass
-
 
     def animate_sprite_take_damage(self, sprite):
         """
@@ -303,6 +308,9 @@ class CombatAnimations(Menu):
         else:
             x_diff = scale(150)
 
+        cry = monster.combat_call if monster.current_hp > 0 else monster.faint_call
+        sound = tools.load_sound(cry)
+        sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
     def build_hud(self, home, monster):
@@ -392,7 +400,6 @@ class CombatAnimations(Menu):
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
             animate(sprite.image, set_alpha=255, initial=0)
             animate(sprite.rect, bottom=tray.rect.top + scale(3))
-
 
     def animate_update_party_hud(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
@@ -494,6 +501,7 @@ class CombatAnimations(Menu):
 
         flip()                       # flip images to opposite
         self.task(flip, 1.5)         # flip the images to proper direction
+        self.task(tools.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
@@ -562,6 +570,8 @@ class CombatAnimations(Menu):
         if is_captured:
             self.task(kill, 2 + num_shakes)
         else:
-            self.task(partial(toggle_visible, monster_sprite), 1.8 + num_shakes * 1.0) # make the monster appear again!
-            self.task(tech.play, 1.8 + num_shakes * 1.0)
-            self.task(capdev.kill, 1.8 + num_shakes * 1.0)
+            breakout_delay = 1.8 + num_shakes * 1.0
+            self.task(partial(toggle_visible, monster_sprite), breakout_delay) # make the monster appear again!
+            self.task(tools.load_sound(monster.combat_call).play, breakout_delay)
+            self.task(tech.play, breakout_delay)
+            self.task(capdev.kill, breakout_delay)

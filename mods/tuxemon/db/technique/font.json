@@ -13,7 +13,7 @@
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "font",
   "sort": "damage",
   "target": {

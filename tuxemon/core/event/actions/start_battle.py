@@ -88,12 +88,7 @@ class StartBattleAction(EventAction):
 
         # Start some music!
         filename = env['battle_music']
-        mixer.music.load(tools.transform_resource_filename('music', filename))
-        mixer.music.play(-1)
-        if self.game.current_music["song"]:
-            self.game.current_music["previoussong"] = self.game.current_music["song"]
-        self.game.current_music["status"] = "playing"
-        self.game.current_music["song"] = filename
+        self.game.event_engine.execute_action("play_music", [filename])
 
     def update(self):
         if self.game.get_state_name("CombatState") is None:

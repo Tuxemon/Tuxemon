@@ -28,7 +28,7 @@ import logging
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai, monster
+from tuxemon.core import ai, monster, prepare
 from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
@@ -116,6 +116,9 @@ def _choose_encounter(encounters, total_prob):
         scale = float(total_prob) / current_total
     else:
         scale = 1
+
+    scale *= prepare.CONFIG.encounter_rate_modifier
+    
     for encounter in encounters:
         total += encounter['encounter_rate'] * scale
         if total >= roll:

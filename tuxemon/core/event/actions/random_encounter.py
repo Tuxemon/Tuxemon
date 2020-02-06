@@ -28,7 +28,7 @@ import logging
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai, monster
+from tuxemon.core import ai, monster, prepare
 from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
@@ -96,12 +96,7 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = env['battle_music']
-            mixer.music.load(tools.transform_resource_filename('music', filename))
-            mixer.music.play(-1)
-            if self.game.current_music["song"]:
-                self.game.current_music["previoussong"] = self.game.current_music["song"]
-            self.game.current_music["status"] = "playing"
-            self.game.current_music["song"] = filename
+            self.game.event_engine.execute_action("play_music", [filename])
 
     def update(self):
         if self.game.get_state_name("CombatState") is None:
@@ -116,6 +111,9 @@ def _choose_encounter(encounters, total_prob):
         scale = float(total_prob) / current_total
     else:
         scale = 1
+
+    scale *= prepare.CONFIG.encounter_rate_modifier
+    
     for encounter in encounters:
         total += encounter['encounter_rate'] * scale
         if total >= roll:

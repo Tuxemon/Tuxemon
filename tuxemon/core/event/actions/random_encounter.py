@@ -96,7 +96,7 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = env['battle_music']
-            mixer.music.load(tools.transform_resource_filename('music', filename))
+            mixer.music.load(prepare.fetch("music", db.lookup_file("music", filename)))
             mixer.music.play(-1)
             if self.game.current_music["song"]:
                 self.game.current_music["previoussong"] = self.game.current_music["song"]

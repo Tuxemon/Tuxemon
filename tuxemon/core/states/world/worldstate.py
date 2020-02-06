@@ -502,13 +502,19 @@ class WorldState(state.State):
         # TODO: overlapping tiles/objects by returning a list
         collision_dict = dict()
 
+        # tile layout must be set first
+        collision_dict.update(self.collision_map)
+
         # Get all the NPCs' tile positions
         for npc in self.get_all_entities():
             pos = nearest(npc.tile_pos)
-            collision_dict[pos] = {"entity": npc}
 
-        # tile layout takes precedence
-        collision_dict.update(self.collision_map)
+            # make sure the data for this position exists
+            if not pos in collision_dict or not collision_dict[pos]:
+                collision_dict[pos] = {}
+
+            # append the NPC entity to the tile data
+            collision_dict[pos]['entity'] = npc
 
         return collision_dict
 
@@ -598,6 +604,14 @@ class WorldState(state.State):
         except KeyError:
             pass
 
+    def tile_blocks(self, entity, tile):
+        if entity and tile and 'blocks' in tile:
+            if entity.isplayer and not 'player' in tile['blocks']:
+                return False
+            if not entity.isplayer and not 'npc' in tile['blocks']:
+                return False
+        return True
+
     def get_exits(self, position, collision_map=None, skip_nodes=None):
         """ Return list of tiles which can be moved into
 
@@ -622,8 +636,10 @@ class WorldState(state.State):
         tile_data = collision_map.get(position)
         if tile_data:
             exits = self.get_explicit_tile_exits(position, tile_data, skip_nodes)
+            entity = tile_data['entity'] if 'entity' in tile_data else None
         else:
             exits = None
+            entity = None
 
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
@@ -633,8 +649,11 @@ class WorldState(state.State):
                 ("up", (position[0], position[1] - 1)),
                 ("left", (position[0] - 1, position[1])),
         ):
+            self_blocks = self.tile_blocks(entity, collision_map.get(position))
+            neighbor_blocks = self.tile_blocks(entity, collision_map.get(neighbor))
+
             # if exits are defined make sure the neighbor is present there
-            if exits and not neighbor in exits:
+            if self_blocks and exits and not neighbor in exits:
                 continue
 
             # check if the neighbor region is present in skipped nodes
@@ -663,11 +682,13 @@ class WorldState(state.State):
                 if tile_data is None:
                     continue
 
+                # if entries are defined make sure the neighbor is present there
                 try:
-                    if pairs[direction] not in tile_data["enter"]:
+                    if neighbor_blocks and pairs[direction] not in tile_data["enter"]:
                         continue
                 except KeyError:
-                    continue
+                    if neighbor_blocks:
+                        continue
 
             # no tile data, so assume it is free to move into
             adjacent_tiles.append(neighbor)

@@ -41,6 +41,7 @@ import pytmx
 from pytmx.util_pygame import load_pygame
 
 from tuxemon.core import prepare
+from tuxemon.core.db import db
 from tuxemon.core.euclid import Vector2, Vector3, Point2
 from tuxemon.core.event import EventObject
 from tuxemon.core.event import MapAction
@@ -452,7 +453,14 @@ class Map(object):
                             if "continue" in key:
                                 tile_conditions['continue'] = collision_region.properties[key]
                             if "blocks" in key:
-                                tile_conditions['blocks'] = collision_region.properties[key].split()
+                                # make sure each block parameter is valid before adding it
+                                tile_conditions['blocks'] = []
+                                for block in collision_region.properties[key].split():
+                                    if block == "players" or block == "npcs" or block in db.database['npc']:
+                                        tile_conditions['blocks'].append(block)
+                                    else:
+                                        logger.error("invalid collision block {}".format(block))
+                                        raise ValueError
                         collision_map[collision_tile] = tile_conditions
 
         # Similar to collisions, except we need to identify the tiles

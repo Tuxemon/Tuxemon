@@ -619,18 +619,12 @@ class WorldState(state.State):
         """
         if entity and tile and 'blocks' in tile:
             for block in tile['blocks']:
-                if block == 'players':
-                    if entity.isplayer:
-                        return True
-                elif block == 'npcs':
-                    if not entity.isplayer:
-                        return True
-                elif block in self.npcs:
-                    if block == entity.slug:
-                        return True
-                else:
-                    logger.error("invalid collision block {}".format(block))
-                    raise ValueError
+                if block == 'players' and entity.isplayer:
+                    return True
+                if block == 'npcs' and not entity.isplayer:
+                    return True
+                if block == entity.slug:
+                    return True
             return False
         return True
 

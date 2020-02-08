@@ -1,3 +1,33 @@
+# -*- coding: utf-8 -*-
+#
+# Tuxemon
+# Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
+#                     Benjamin Bean <superman2k5@gmail.com>
+#
+# This file is part of Tuxemon.
+#
+# Tuxemon is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Tuxemon is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Tuxemon.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Contributor(s):
+#
+# William Edwards <shadowapex@gmail.com>
+#
+#
+# core.save_upgrader Handle save file backwards compatability
+#
+#
+
 """
 This module is for handling breaking changes to the save file.
 
@@ -11,10 +41,11 @@ Renaming maps:
     Keys and values are separated by colons, each key-value pair is separated by a comma
     e.g.
         MAP_RENAMES = {
-            # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
+            # 1: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
         }
 
 Other changes:
+(If you have changed the codebase in such a way that older save files cannot be loaded)
     - Increment the value of SAVE_VERSION
     - Amend the `upgrade_save` function as necessary
 """

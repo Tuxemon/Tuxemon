@@ -124,6 +124,13 @@ class Control(StateManager):
         # TODO: moar players
         self.player1 = None
 
+    def load_map(self, map_data):
+        self.events = map_data["events"]
+        self.inits = map_data["inits"]
+        self.interacts = map_data["interacts"]
+        self.event_engine.reset()
+        self.event_engine.current_map = map_data
+
     def add_player(self, player):
         """ Add a player to the game
 

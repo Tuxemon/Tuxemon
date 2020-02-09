@@ -1,0 +1,25 @@
+{
+    "slug": "l3gk0",
+    "category": "glitched",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Glitch",
+        "Wood"
+    ],
+    "weight": 25
+}

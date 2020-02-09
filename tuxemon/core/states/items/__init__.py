@@ -89,7 +89,7 @@ class ItemMenuState(Menu):
         def use_item(menu_item):
             player = self.game.player1
             monster = menu_item.game_object
-
+            
             # item must be used before state is popped.
             # don't try to combine with "if result..." condition below
             result = item.use(player, monster)
@@ -107,6 +107,7 @@ class ItemMenuState(Menu):
             # TODO: allow items to be used on player or "in general"
 
             menu = self.game.push_state("MonsterMenuState")
+            menu.is_valid_entry = item.validate
             menu.on_menu_selection = use_item
 
         def cancel():

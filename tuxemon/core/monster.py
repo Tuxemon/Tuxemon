@@ -51,6 +51,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'status',
     'total_experience',
     'flairs',
+    'moves'
 )
 
 SHAPES = {

@@ -1617,3 +1617,9 @@ msgstr "Shady Guy: Hey. If you have some... 'trouble' attached to your name I ca
 
 msgid "shady_rename"
 msgstr "Shady Guy: Good luck with your new name, friend..."
+
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "tm_blossom"
+msgstr "TM: Blossom"

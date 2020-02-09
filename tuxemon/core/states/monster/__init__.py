@@ -100,6 +100,9 @@ class MonsterMenuState(Menu):
     def on_menu_selection(self, menu_item):
         pass
 
+    def is_valid_entry(self, monster):
+        return True
+
     def render_monster_slot(self, surface, rect, monster, in_focus):
         filled = monster is not None
         border = self.determine_border(in_focus, filled)
@@ -118,12 +121,12 @@ class MonsterMenuState(Menu):
                 monster = self.game.player1.monsters[index]
             except IndexError:
                 monster = None
+                continue
             item.game_object = monster
-            item.enabled = monster is not None
+            item.enabled = monster is not None and self.is_valid_entry(monster)
             item.image.fill((0, 0, 0, 0))
             # TODO: Cleanup this hack
-            if index == self.selected_index:
-                item.in_focus = True
+            item.in_focus = index == self.selected_index
             self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)
 
     def draw_monster_info(self, surface, monster, rect):

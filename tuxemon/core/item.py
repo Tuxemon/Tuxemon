@@ -39,8 +39,8 @@ import logging
 import pprint
 import random
 
-from tuxemon.core import tools
-from tuxemon.core import prepare
+from tuxemon.core import tools, prepare
+from tuxemon.core.technique import Technique
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
@@ -73,6 +73,7 @@ class Item(object):
         self.name = "None"
         self.description = "None"
         self.effect = []
+        self.conditions = []
         self.images = []
         self.type = None
         self.power = 0
@@ -132,6 +133,7 @@ class Item(object):
         self.usable_in = results["usable_in"]
         self.target = process_targets(results["target"])
         self.effect = results["effects"]
+        self.conditions = results.get("conditions", [])
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
@@ -144,6 +146,33 @@ class Item(object):
         :return: None
         """
         return
+
+    def validate(self, target):
+        """Ensures that the target meets all conditions that the
+        item has on it's use.
+
+        :param user: The monster or object that is using this item.
+        :param target: The monster or object that we are using this item on.
+
+        :type user: Varies
+        :type target: Varies
+
+        :rtype: bool
+        :returns: whether the item may be used by the user on the target.
+        """
+
+        if not self.conditions:
+            return True
+        
+        result = True
+
+        for condition in self.conditions:
+            check = condition.split()[0]
+            params = condition.split()[1].split(",")
+
+            result = result and (getattr(target, check) in params)
+
+        return result
 
     def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.
@@ -172,8 +201,14 @@ class Item(object):
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effect:
-            last_effect_name = str(effect)
-            result = getattr(self, last_effect_name)(user, target)
+            effect_lines = str(effect).split()
+            effect_name = effect_lines[0]
+            effect_param = effect_lines[1] if len(effect_lines) > 1 else None
+
+            if effect_param:
+                result = getattr(self, effect_name)(user, target, effect_param)
+            else:
+                result = getattr(self, effect_name)(user, target)
             meta_result.update(result)
 
         # TODO: document how to handle items with multiple effects
@@ -186,6 +221,35 @@ class Item(object):
                 user.inventory[self.slug]['quantity'] -= 1
 
         return meta_result
+
+    def learn(self, user, target, slug):
+        """This effect teaches the target the technique in the tech string.
+
+        :param user: The monster or object that is using this item.
+        :param target: The monster or object that we are using this item on.
+        :param tech: The slug of the technique to teach.
+
+        :type user: Player
+        :type target: Monster
+        :type tech: String
+
+        :rtype: bool
+        :returns: Success
+
+        **Examples:**
+        >>> tm = Item("tm_blossom")
+        >>> tm.learn(player1, bulbatux, "blossom")
+        """
+        
+        try:
+            tech = Technique()
+            tech.load(slug)
+            target.learn(tech)            
+        except RuntimeError:
+            logger.debug("encountered an error applying item: {}".format(self.slug))
+            return {"success":False}
+
+        return {"success":True}
 
     def heal(self, user, target):
         """This effect heals the target based on the item's power attribute.
@@ -201,7 +265,7 @@ class Item(object):
 
         **Examples:**
         >>> potion = Item("potion")
-        >>> potion.heal(bulbatux, game)
+        >>> potion.heal(game, bulbatux)
         """
 
         # TODO: prevent use if the item is not a healing item!

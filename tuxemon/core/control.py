@@ -421,6 +421,19 @@ class Control(StateManager):
                     if sprite.slug in world.npcs:
                         del world.npcs[sprite]
 
+    def get_map_filepath(self):
+        """Gets the filepath of the current map
+
+        :rtype: String
+        :returns: filepath
+
+        """
+        world = self.get_state_name("WorldState")
+        if not world:
+            return
+
+        return world.current_map.filename
+
     def get_map_name(self):
         """Gets the map of the player.
 
@@ -428,16 +441,12 @@ class Control(StateManager):
         :returns: map_name
 
         """
-        world = self.get_state_name("WorldState")
-        if not world:
+        map_path = self.get_map_filepath()
+        if map_path is None:
             return
 
-        map_path = world.current_map.filename
-
         # extract map name from path
-        map_name = os.path.basename(map_path)
-
-        return map_name
+        return os.path.basename(map_path)
 
     def get_state_name(self, name):
         """ Query the state stack for a state by the name supplied

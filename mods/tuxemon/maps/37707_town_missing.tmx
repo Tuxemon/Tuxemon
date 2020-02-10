@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="205">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -279,12 +279,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="48" height="32">
   <data encoding="base64" compression="zlib">
-   eAHtVsdqBDEM3Us+JIXUw+SSAglLIG0hIZtLCqQeUvb/vyB64EcewvaYKcwc9iAkq/nJ0tgzX5lM5kJ3QVYOmVSZfGB0GKEj02mulJyKR07mwD6p+Jz+2eKIdTvI+8ahxxp5N4yQw+Pg3rn8Pi4Vg33q8sTsZxa3MEIN94GzDqyR1+NmL1JY/D6peObRPvjYuvUsYP40jlpQB/GDA7/u02SvGP7S2uvwAyN8gJuzhPlBLcdGwM8c0IG4XohMXYyX+sViS3TrhsOfMdc8J8VN+bwQ/0XCb9X0V0JrCb+6GqqaOOKdmR++CeSD7kZk9Er3wZpxt85GP69nPtpLeZXIz3jiAHbUAL3ip1+KE+eDxT0GejK+YzQV2jU5lSOnrwriWAPyUD4xWft/HfJcOv1p0L8Zfw/0EXQ5XKW2EvzETeyludVvaPyKJSbz3NkH7zN2/B6vX48ZP8+e30OsB33iz93FOZs/49y6T/y847i/3sU5G/1LuOL/7fj+yd3FOVsJbvooft9TzF2b91ffFr4xXfOvcPfjDfA9RY3ac9ZcwiuL1bPhG9Mn9z2dGoY27++3xf80pFeLY60vBTm6nH30B+fPPvm51JlM2bR3Xf4XEFMdV/x+LnUmU7YYfv6Pel6HpYld8fu51JlM2caAv839o/fKUPOjZ8hvsQkfAv+efb+bDWjLYvyd1fXd0uR7KI3R76Y0Zkx+S/z/784QfVme//L828zdEPPzBxrF6+U=
+   eAHtWMlKA0EQzcUPcUGjHsaLCyhBcAsoxosacD245P+/wHrQD4qiq6cymWEi5FBUdW39qquXSSZrg8FE0X2SNYdMqkQ+FDrK0LHodC5P9uKRkzkwjxdf0k8ljliHST4QDj3GyLslhBwWB+cu5bdxXgzmqcuTs59L3EwINTwkzjowRl6Lm73wsNh5vHjm0X2wsXXjccL8KRy1oA7iBwd+PU+TuXL4o7XX4QdG+AA39xL2D2o5EQJ+5oAOxPFMydTleNQvFxvRbQoOu8Ycc500bsoXQfyXjt+66K8VbTh+dTVUNXHEOxY/nAnkg+5WyeiVngdjxt0ZG/2snvloj/LKyc944gB21AC9xk8/jxPno8Q9JXoWvis0UrQnspejpK8CcawBeSifiqz7f5PyXBn9WdK/CX9P9JF0JVxRWwQ/cRN7NLf26xu/xpKTue7sg/VZdvwWrx0vM36uPc9Drgdd4i/dxSWbXePSuEv8vOM4v76LSzb6R7jG/9vy/VO6i0u2CG76aPy2p9h3i7y/+m3hG9M2/0p3P94A21PUqHvOmiO8kli9NnxjuuS2pyPBsMj7+y3xPw3pVeJY60sgR5t7H/3B+rNPdl/qPenZdO/a/C4gpjqu8dt9qfekZ8vh5/eo5XVYmtg1frsv9Z70bMuAf5H7R98rfe0fvYY8i014H/j35fxuN6AdibF3Vtt3S5PzEI3R5yYa07Vf9L+Coaw9+tY1nnnyTx08/M1rc+F/C6v7T+Nqhb/X/q3Wf/7z8wexPuvJ
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="48" height="32">
   <data encoding="base64" compression="zlib">
-   eAHVmEFOFkEQhYdEjgMrExME9h4APQCgSyQmwEYg0aUo5+EWoLJgr+fwVciXdCrzeqZ/Z/j5O3l5f1X1VL+qLiajXfe4Nl503abwv2trreteC/C2fu8IuwW3nPFWmt4JjslFHLvGe8oX6Fvo3pfeA+FQeC98EKij77k+X5yBLsdT9Z086P8mvVfCd+GHcC206o+anO7s76u/xUc+9MfcZAzp515LJq9jNNI/7EU55ibmBTA/2DFHY9ft+nD/yUV92ItyzE3MC2B+sGOOWha6HE/V9xZNLXud7uxvyTnV3q+aj4/CZ+FI6FtZZ7Z5Zhn3cJI0vzTvZDQGoxMmRl3YT8FZ/5gz0Z15zLNT7rlT77+k/o/Jn3XP3fc3C2is1ZH1sxc/9nPgS9Ue32Q1oHPue+CckuP9U1ufFI9vtxqW2fehv98L6Uef45a+31T6xXs8v8tLf8RKnFfycS/oc8w+6sOeg39J72/hfoRuzkeXY/ZRH/ZzYXQ5pq5l6z0zdxL6aqCurD/PcRmPmXbfK7VYmaP8/VP5jo3+0FcDeVru4Y9y/hWmWvF+P5V+/v1dMroco6HvHh5MT2rfWbUYZ5UcuuL97hhdjqmrzPmUv0NX9Nsx+hxT15yaX0mfW67v+NHneKiu1rjTGf5yrrFd3/G78/G7uvDnfc7G7/RHvDbnLo4Ox5ybmf3Zj+3iTn/sr825i3OeY3Q45jnizsbv9Ed8FfpPHTD1uP4O+cnjmL465jnizs5+9of++P+0iK9i/8u6VmH+6Xvmufr/D7nX19w=
+   eAHtl0tuFEEQRNsSHMdeWbIEmD0HsH0AMCwxsgRs/JFgye883MKAf+ztc5Ah60mlpKO6a+ie8YKSQjGZWZMVmZXT6um6u7X+oOs2Av+6Hq113eMA/CQ+bweeFtxyxm5o2gs4Jhdx7BrvRD6hb6H7eeh9EdgPvAy8ClBH3/f6fDoDXY6n6jt50P8p9H4OfAl8DXwLtOpXTU539vfV3+IjH/o1NxlD+rnXksnrGI30D3tR1txoXgDzg605GrvOHg73n1zUh70oa240L4D5wdYctSx0OZ6q7y2aWvY63dnfknOqvR9jPg4CR4HXgb6VdWab76ziHt4mzZvmmYxGMTphYtSFvQzO+secie7MY7475Z4f0fsPqf9j8mfdc/f92QIaa3Vk/ezFj30f+DRq1ztZDeic+x44p2Q9f2rrMOJ6d6thlX0f+v2ehH70OW7p+/dKv3iO52d56VesxHElH/eCPsfsoz7sOfhX6D0PXIzQzfnocsw+6sO+L4wux9S1ar3vzZ1IXw3UlfXnOS7jmmn3vlKLlTnKzz8j3xujX/pqIE/LPdxEztvAVEvP93ehn//fJaPLMRr67uG36UntPasW46ySpUvPd8fockxdZc5lfpYu9dsx+hxT15yat0KfW67v+NHneKiu1rjTKX8519iu7/jd+fhdXfjzPmfjd/oVr825i6PDMefCl/GbvQqIr83vVxoVG9pT1qLza3Pu4uhynOvqe1+nHrGrSX7F3dL5y+g/dVIXduaheN/+ZfQfXTA6huy8j/2w4v/7//f/AfrjOPfV2dmf883V/z9jBdwH
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="48" height="32">
@@ -294,23 +294,21 @@
  </layer>
  <layer id="4" name="Above Player" width="48" height="32">
   <data encoding="base64" compression="zlib">
-   eAHdWEtuQyEMZJGsepWepndO+ln0THkjOlJkeQw0RoFYggm2scfmBeWllHF5P5WCMVt6cpwOHucELllxZvdkZnye6z325luxf5dzL/t9/Vbse0Y3P46zUyMjfnaMFc7hreMeJE+i6oPqPfQzhfEV2tytOqx/1voq+qB4U0++xCw+WXHIU6HKs0o9ijf15ElU9eyiX70O8lO4S59bPFlfy+8R+9dx53wf40fcPV5s8lLo7dlJx7pW5Qx+0ViB9+ff84Q70o5efs88B77/eUheCqP6fsX3LPqdFdm8XOAFUVitemZd2mO+xes7skJPfgrnsysleg9Ufae+xe/Ruuz+KF/UZ+zz7Da+XUf5Mm3ICxnFukvPtp7eNSNaf+o99PoLv0hv49u1l2eGDnkho1h36dnW07tmxJY//YBRn5V9JP59rszP+D8NPCCjWHfpuVWfsjOisls9/HftP7ijnv9g3fW68w0lZByW
+   eAHtV0sOQiEMZKErr+JpvLPfhWfyTZ6TGNIpEEusRhKYUPqZDkq0lPGx35SCOXv01NgsPLYBXKLyzNZkZn7e6yv21suo33Hby/57/TLqHqHmYbk7NSPyR+fIcA+7jneQPIlKB6U97DMH8yusa7f6qP2j9iehg+JNO/kSo/hE5SFPhapOln4Ub9qz8FQ6jtqz90N+Ckf7zerP/mbyuyxvznWZN/H2WLXJS6EV80029pWVM/h5MwPv8/PzhDeynr38PnkP/P9nIXkp9Pq7i++Z9zvLO7NqgReGwvVUr+xLe8w/sXRHVdjJT+F8dqV4/wOV7rS3+L3bVx3v1fN0Rpx1Xuev9169yDPUxRjFNUqvPf1QF9a39syjK9n6wp/5LGRehV69yDPUxxjFNUqvdV/as++kzsc9oi19W3bGK+xj9b4X6mOM4hqlV9VXy86MLT+ew/+vP1X7HXwACXgbtA==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="48" height="32">
   <data encoding="base64" compression="zlib">
-   eAHt0LEJwDAQA8Av4m28qOM68br+GQwpPpxApUBchBAgQIAAAQIECPxRYLSIOzuzFfPk7ze7iv6vaO4zAQIECBAgQIDAmUC/znZWBL4W2GT2A68=
+   eAHt0LENACAMA8E0DA/UwLpkjURn6XvrIowAAQIECBAgQKCjwBwRK9tZxZ38fbNX9H9Fc58JECBAgAABAgQIEOgl8AHnqwN/
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
   <properties>
    <property name="Collision" value=""/>
   </properties>
-  <object id="125" type="collision" x="0" y="384" width="320" height="128"/>
+  <object id="125" type="collision" x="0" y="384" width="320" height="32"/>
   <object id="126" type="collision" x="416" y="384" width="352" height="128"/>
-  <object id="127" type="collision" x="320" y="448" width="64" height="64"/>
-  <object id="128" type="collision" x="384" y="480" width="32" height="32"/>
-  <object id="129" type="collision" x="400" y="464" width="16" height="16"/>
+  <object id="127" type="collision" x="320" y="448" width="96" height="64"/>
   <object id="131" type="collision" x="512" y="320" width="256" height="64"/>
   <object id="132" type="collision" x="704" y="128" width="64" height="64"/>
   <object id="133" type="collision" x="640" y="192" width="128" height="128"/>
@@ -389,17 +387,24 @@
   <object id="175" type="collision" x="624" y="192" width="16" height="48"/>
   <object id="176" type="collision" x="112" y="336" width="16" height="16"/>
   <object id="177" type="collision" x="432" y="256" width="48" height="16"/>
+  <object id="205" type="collision" x="0" y="448" width="320" height="64"/>
+  <object id="206" type="collision" x="0" y="416" width="64" height="32"/>
+  <object id="207" type="collision" x="64" y="416" width="64" height="16"/>
+  <object id="208" type="collision" x="144" y="432" width="64" height="16"/>
+  <object id="209" type="collision" x="224" y="416" width="48" height="16"/>
+  <object id="210" type="collision" x="288" y="432" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="124" name="Player Spawn" type="event" x="384" y="96" width="16" height="16"/>
-  <object id="173" name="Teleport to Back" type="event" x="384" y="464" width="16" height="16">
+  <object id="173" name="Exit" type="event" x="64" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable 37707_tower:visited"/>
     <property name="act2" value="set_variable environment:grass"/>
     <property name="act3" value="translated_dialog 37707_exit_missing"/>
     <property name="act4" value="transition_teleport bedroom_test.tmx,1,3,1"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is variable_set 37707_tower:activated"/>
    </properties>
   </object>
   <object id="178" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -412,7 +417,7 @@
    <properties>
     <property name="act1" value="set_variable environment:37707"/>
     <property name="cond1" value="not variable_set environment:37707"/>
-    <property name="cond2" value="not variable_set 37707_tower:visited"/>
+    <property name="cond2" value="is variable_set 37707_tower:activated"/>
    </properties>
   </object>
   <object id="180" name="Random Battle 1" type="event" x="96" y="96" width="112" height="64">
@@ -579,6 +584,14 @@
    <properties>
     <property name="act1" value="translated_dialog 37707_tower_missing"/>
     <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="211" name="Flower" type="event" x="384" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_flower_missing"/>
+    <property name="act2" value="set_monster_health ,"/>
+    <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

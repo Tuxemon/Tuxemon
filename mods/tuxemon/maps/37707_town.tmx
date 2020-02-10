@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="211">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -32,7 +32,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="48" height="32">
   <data encoding="base64" compression="zlib">
-   eAHVmMduFTEUhh3KA9DLit6ksCIJva54AGBH70UgIQEbigRSCL23l0lIaCt6fQBQQkJb0cs3Ikeyfl3PjGfuvQJLXzzHPj7+f89kNEnjIOdmQmN/70q2K6y/CnMbnJsH82EBLITrjN+IrG+6Qv1KdK8C6/OUX0F+QqVm+jegdyNsgs2wBWL1J3uYrlCvvippyjNmdUz/KfSehjNwFs5BrP5kX6sb6tVXHq2VcqyO6b9GkpKl3+6r31vdUK++KmmLGWsnucOj07tOxrsgb2vh+VF9GquvvLVDed1M9Hj0etfJeB+E2iKescWwBJbCMlB9GqufUO16jG9F7zbYDjtgJ6g+jdVPPXTaHscGO7cHdvVzHr0X4CJcgsug+jRWP1a7Hv0+dPttVuCd7OeoXvXj59b6WvXn2U/1qp88NaqR08xZH5Xzz1NX9aqfPDVicpYX0JhWX/Wqn7S19Z47gnfVp7H6MY23Bjh3G+7AXbgH1tq57oCb0AldUKQl75+0tpd51aex+rF679D0Hj7AR/gE1rq57oG30At9UKRl/f4eLnH+Iwc6NwpGwxgYC32QtCH0Q2EYDIcRcJC9jN3euSbvdxvX/pCXd58zeAAP4RE8hieg561x6Pz/Kq3uzybeOa3wqsJ7/jNav8BX+Abf4QeoPo3VT3UV5682jns4HibARJgEk0H1aax+8u9Y3cwD3rPkV1Z9GqsfW2vP6lPu4TN4Di/gJdhcE98nzdACs2EOJHP+82/10vrku2F/QL/q01j96D4/0fsLfoPjfjbAa/Z7A6vRuwbWwjpYD7FN94+N1Y+/fxsap6B3KkyD6TAD7DurFb3HoQ1OwEmwOb9O2rXuHxur37S9ajGn+8fG6rcWGpO/A0NN94+NY/1m5Yd0Zq0rOh/rNys/pD9rXdH5or5D60L6Q/llx4v6Dq0L6Q/llx0v6z9rvfnJyis6X9Z/1vpEf57/Y2bVCc0X9f2vrAv5+l/G/wBw/CKQ
+   eAHVmMduFTEUhh3KA9DLit6ksCIJva54AGBH70UgIQEbigRSCL23l0lIaCt6fQBQQkJb0cs3Ikeyfl3PjGfuvQJLX+xjHx///8xkNEnjIOdmQmN/70q2K+y/CnMbnJsH82EBLITrzN+IrG+6Qv1KdK8C6/OUX0F+QqVm+jegdyNsgs2wBWL1J2eYrlCvvippyjNndUz/KfSehjNwFs5BrP7kXKsb6tVXHq2VcqyO6b9GkpKl3+6r31vdUK++KmmLmWsnucOj0xsn812Qt7Xw/Kg+jdVX3tqhvG4Wejx6vXEy3wehtohnbDEsgaWwDFSfxuonVLse81vRuw22ww7YCapPY/VTD512xrHBzu2BXf2cR+8FuAiX4DKoPo3Vj9WuR78P3X6bFXgn+zmqV/34ubUeq/4856le9ZOnRjVymrnWR+X656mretVPnhoxOcsLaEyrr3rVT9reeq8dwbvq01j9mMZbA5y7DXfgLtwDa+2MO+AmdEIXFGnJ+yet7WVd9WmsfqzeOzS9hw/wET6BtW7GPfAWeqEPirSs39/DJa7/yIHOjYLRMAbGQh8kbQj9UBgGw2EEHOQsY7d3XZP3u81rf8jLu881eAAP4RE8hieg11vj0PX/q7S6P5t457TCqwrv+c9o/QJf4Rt8hx+g+jRWP9VVnL/aOO7heJgAE2ESTAbVp7H6yX9idTMPeM+SX1n1aax+bK89q0+5h8/gObyAl2BrTXyfNEMLzIY5kKz5z7/VS+uT74b9Af2qT2P1o+f8RO8v+A2O+9kArznvDaxG7xpYC+tgPcQ2PT82Vj/++W1onILeqTANpsMMsO+sVvQehzY4ASfB1vw6aWM9PzZWv2ln1WJNz4+N1W8tNCZ/B4aanh8bx/rNyg/pzNpXdD3Wb1a+r9//9szaV3S9qO/QPl+/Pw7ll50v6ju0z9fsj0P5ZefL+s/abx6y8oqul/WftT/Rn+f/mFl1QutFff8r+0K+/pf5P+5+It4=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="48" height="32">
@@ -184,7 +184,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="185" name="Give Tuxemon" type="event" x="384" y="176" width="16" height="16">
+  <object id="185" name="Give Tuxemon" type="event" x="368" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="dialog You got a Fruitera for testing purposes. This will be removed later!"/>
     <property name="act2" value="add_monster fruitera,10"/>
@@ -358,6 +358,13 @@
    <properties>
     <property name="act1" value="translated_dialog 37707_house"/>
     <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="211" name="Flower" type="event" x="384" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_flower"/>
+    <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

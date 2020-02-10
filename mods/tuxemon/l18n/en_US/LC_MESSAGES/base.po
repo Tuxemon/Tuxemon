@@ -1659,6 +1659,12 @@ msgstr "Th3r3 is n0th1ng here. The7e n3vEr w@$."
 msgid "37707_mail_missing"
 msgstr "1t\"$ empty @nd y0u c@n $EE th3 v0id."
 
+msgid "37707_flower"
+msgstr "You sense a warm energy emanating from this flower. It's the only thing in this town your Tuxemon seem to enjoy."
+
+msgid "37707_flower_missing"
+msgstr "E330R: Event @ction set_monster_health contains inv@l1d p@r@meter$. He@l1ng aLL Tu+em0n.,."
+
 msgid "37707_computer"
 msgstr "Developer console: This is intended for Tuxemon developers only, for testing an experimental data loading system.\n"
 "The variable for the new loader will now be enabled. Please report any issues you find at https://tuxemon.org\n"

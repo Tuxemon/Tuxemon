@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="193">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="205">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -21,17 +21,129 @@
     <frame tileid="889" duration="200"/>
    </animation>
   </tile>
+  <tile id="1252">
+   <animation>
+    <frame tileid="1252" duration="3000"/>
+    <frame tileid="1254" duration="500"/>
+    <frame tileid="1256" duration="500"/>
+    <frame tileid="1258" duration="500"/>
+    <frame tileid="1260" duration="5000"/>
+    <frame tileid="1258" duration="250"/>
+    <frame tileid="1256" duration="250"/>
+    <frame tileid="1254" duration="250"/>
+   </animation>
+  </tile>
+  <tile id="1253">
+   <animation>
+    <frame tileid="1253" duration="3000"/>
+    <frame tileid="1255" duration="500"/>
+    <frame tileid="1257" duration="500"/>
+    <frame tileid="1259" duration="500"/>
+    <frame tileid="1261" duration="5000"/>
+    <frame tileid="1259" duration="250"/>
+    <frame tileid="1257" duration="250"/>
+    <frame tileid="1255" duration="250"/>
+   </animation>
+  </tile>
  </tileset>
  <tileset firstgid="1313" name="My_tuxemon_sheet_BW" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/My_tuxemon_sheet_BW.png" width="128" height="208"/>
+  <tile id="7">
+   <animation>
+    <frame tileid="7" duration="1000"/>
+    <frame tileid="45" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="15">
+   <animation>
+    <frame tileid="15" duration="1500"/>
+    <frame tileid="45" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="23">
+   <animation>
+    <frame tileid="23" duration="1750"/>
+    <frame tileid="45" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="31">
+   <animation>
+    <frame tileid="31" duration="750"/>
+    <frame tileid="48" duration="50"/>
+   </animation>
+  </tile>
+  <tile id="39">
+   <animation>
+    <frame tileid="39" duration="500"/>
+    <frame tileid="76" duration="100"/>
+   </animation>
+  </tile>
+  <tile id="40">
+   <animation>
+    <frame tileid="40" duration="10"/>
+    <frame tileid="41" duration="10"/>
+   </animation>
+  </tile>
+  <tile id="41">
+   <animation>
+    <frame tileid="41" duration="1000"/>
+    <frame tileid="49" duration="10"/>
+   </animation>
+  </tile>
+  <tile id="47">
+   <animation>
+    <frame tileid="47" duration="250"/>
+    <frame tileid="41" duration="50"/>
+   </animation>
+  </tile>
+  <tile id="55">
+   <animation>
+    <frame tileid="55" duration="1000"/>
+    <frame tileid="81" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="63">
+   <animation>
+    <frame tileid="63" duration="1000"/>
+    <frame tileid="81" duration="750"/>
+   </animation>
+  </tile>
+  <tile id="71">
+   <animation>
+    <frame tileid="71" duration="1000"/>
+    <frame tileid="81" duration="250"/>
+   </animation>
+  </tile>
  </tileset>
  <tileset firstgid="1417" name="setPieces_glitch" tilewidth="16" tileheight="16" tilecount="84" columns="12">
   <image source="../gfx/tilesets/setPieces_glitch.png" width="192" height="112"/>
+  <terraintypes>
+   <terrain name="New Terrain" tile="1"/>
+  </terraintypes>
   <tile id="0">
    <animation>
     <frame tileid="0" duration="3000"/>
     <frame tileid="3" duration="1000"/>
     <frame tileid="0" duration="2000"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="3" duration="100"/>
+    <frame tileid="0" duration="100"/>
+    <frame tileid="3" duration="1000"/>
+    <frame tileid="0" duration="5000"/>
+    <frame tileid="6" duration="3000"/>
+    <frame tileid="3" duration="50"/>
+    <frame tileid="6" duration="50"/>
+    <frame tileid="3" duration="50"/>
+    <frame tileid="6" duration="50"/>
+    <frame tileid="3" duration="50"/>
+    <frame tileid="6" duration="50"/>
+    <frame tileid="3" duration="50"/>
+    <frame tileid="6" duration="50"/>
+    <frame tileid="9" duration="1000"/>
+    <frame tileid="3" duration="50"/>
    </animation>
   </tile>
   <tile id="1">
@@ -39,6 +151,25 @@
     <frame tileid="1" duration="3000"/>
     <frame tileid="4" duration="1000"/>
     <frame tileid="1" duration="2000"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="4" duration="100"/>
+    <frame tileid="1" duration="100"/>
+    <frame tileid="4" duration="1000"/>
+    <frame tileid="1" duration="5000"/>
+    <frame tileid="7" duration="3000"/>
+    <frame tileid="4" duration="50"/>
+    <frame tileid="7" duration="50"/>
+    <frame tileid="4" duration="50"/>
+    <frame tileid="7" duration="50"/>
+    <frame tileid="4" duration="50"/>
+    <frame tileid="7" duration="50"/>
+    <frame tileid="4" duration="50"/>
+    <frame tileid="7" duration="50"/>
+    <frame tileid="10" duration="1000"/>
+    <frame tileid="4" duration="100"/>
    </animation>
   </tile>
   <tile id="2">
@@ -46,6 +177,25 @@
     <frame tileid="2" duration="3000"/>
     <frame tileid="5" duration="1000"/>
     <frame tileid="2" duration="2000"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="5" duration="100"/>
+    <frame tileid="2" duration="100"/>
+    <frame tileid="5" duration="1000"/>
+    <frame tileid="2" duration="5000"/>
+    <frame tileid="8" duration="3000"/>
+    <frame tileid="5" duration="50"/>
+    <frame tileid="8" duration="50"/>
+    <frame tileid="5" duration="50"/>
+    <frame tileid="8" duration="50"/>
+    <frame tileid="5" duration="50"/>
+    <frame tileid="8" duration="50"/>
+    <frame tileid="5" duration="50"/>
+    <frame tileid="8" duration="50"/>
+    <frame tileid="11" duration="1000"/>
+    <frame tileid="5" duration="150"/>
    </animation>
   </tile>
   <tile id="12">
@@ -53,6 +203,25 @@
     <frame tileid="12" duration="3000"/>
     <frame tileid="15" duration="1000"/>
     <frame tileid="12" duration="2000"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="15" duration="100"/>
+    <frame tileid="12" duration="100"/>
+    <frame tileid="15" duration="1000"/>
+    <frame tileid="12" duration="5000"/>
+    <frame tileid="18" duration="3000"/>
+    <frame tileid="15" duration="50"/>
+    <frame tileid="18" duration="50"/>
+    <frame tileid="15" duration="50"/>
+    <frame tileid="18" duration="50"/>
+    <frame tileid="15" duration="50"/>
+    <frame tileid="18" duration="50"/>
+    <frame tileid="15" duration="50"/>
+    <frame tileid="18" duration="50"/>
+    <frame tileid="21" duration="1000"/>
+    <frame tileid="15" duration="200"/>
    </animation>
   </tile>
   <tile id="13">
@@ -60,6 +229,25 @@
     <frame tileid="13" duration="3000"/>
     <frame tileid="16" duration="1000"/>
     <frame tileid="13" duration="2000"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="16" duration="100"/>
+    <frame tileid="13" duration="100"/>
+    <frame tileid="16" duration="1000"/>
+    <frame tileid="13" duration="5000"/>
+    <frame tileid="19" duration="3000"/>
+    <frame tileid="16" duration="50"/>
+    <frame tileid="19" duration="50"/>
+    <frame tileid="16" duration="50"/>
+    <frame tileid="19" duration="50"/>
+    <frame tileid="16" duration="50"/>
+    <frame tileid="19" duration="50"/>
+    <frame tileid="16" duration="50"/>
+    <frame tileid="19" duration="50"/>
+    <frame tileid="22" duration="1000"/>
+    <frame tileid="16" duration="250"/>
    </animation>
   </tile>
   <tile id="14">
@@ -67,6 +255,25 @@
     <frame tileid="14" duration="3000"/>
     <frame tileid="14" duration="1000"/>
     <frame tileid="14" duration="2000"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="17" duration="100"/>
+    <frame tileid="14" duration="100"/>
+    <frame tileid="14" duration="1000"/>
+    <frame tileid="14" duration="5000"/>
+    <frame tileid="20" duration="3000"/>
+    <frame tileid="17" duration="50"/>
+    <frame tileid="20" duration="50"/>
+    <frame tileid="17" duration="50"/>
+    <frame tileid="20" duration="50"/>
+    <frame tileid="17" duration="50"/>
+    <frame tileid="20" duration="50"/>
+    <frame tileid="17" duration="50"/>
+    <frame tileid="20" duration="50"/>
+    <frame tileid="23" duration="1000"/>
+    <frame tileid="14" duration="300"/>
    </animation>
   </tile>
  </tileset>
@@ -289,6 +496,90 @@
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is variable_set 37707_sign:read"/>
+   </properties>
+  </object>
+  <object id="193" name="House" type="event" x="128" y="304" width="80" height="48">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="194" name="Mail" type="event" x="112" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="195" name="House" type="event" x="240" y="304" width="80" height="48">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="196" name="House" type="event" x="96" y="208" width="80" height="48">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="197" name="House" type="event" x="208" y="208" width="80" height="48">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="198" name="House" type="event" x="544" y="240" width="96" height="48">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="199" name="House" type="event" x="560" y="80" width="80" height="48">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="200" name="Mail" type="event" x="208" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="201" name="Mail" type="event" x="320" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="202" name="Mail" type="event" x="528" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="203" name="Mail" type="event" x="560" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="204" name="Tower" type="event" x="384" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_tower_missing"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

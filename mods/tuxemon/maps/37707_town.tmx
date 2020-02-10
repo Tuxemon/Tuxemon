@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="201">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="211">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -289,6 +289,76 @@
     <property name="behav1" value="talk 37707_male"/>
     <property name="cond1" value="is variable_set 37707_male:spoke"/>
     <property name="cond2" value="is variable_set 37707_tower:entered"/>
+   </properties>
+  </object>
+  <object id="201" name="House" type="event" x="128" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="202" name="Mail" type="event" x="112" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="203" name="Mail" type="event" x="208" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="204" name="Mail" type="event" x="320" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="205" name="Mail" type="event" x="528" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="206" name="Mail" type="event" x="560" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_mail"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="207" name="House" type="event" x="240" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="208" name="House" type="event" x="176" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="209" name="House" type="event" x="288" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="210" name="House" type="event" x="608" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_house"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

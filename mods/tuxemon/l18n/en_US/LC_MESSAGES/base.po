@@ -1617,3 +1617,74 @@ msgstr "Shady Guy: Hey. If you have some... 'trouble' attached to your name I ca
 
 msgid "shady_rename"
 msgstr "Shady Guy: Good luck with your new name, friend..."
+
+msgid "37707_sign_welcome"
+msgstr "Welcome to town 37707! We are..."
+
+msgid "37707_sign_tower"
+msgstr "Town 37707 tower. This structure is highly unstable: Do not enter!"
+
+msgid "37707_sign_foreign"
+msgstr "This sign is written in a foreign language you can't understand."
+
+msgid "37707_sign_hidden"
+msgstr "Get out while you still can..."
+
+msgid "37707_sign_missing_welcome"
+msgstr "We11c0me T0 t0wn ERROR! We ne^er weR3"
+
+msgid "37707_sign_missing_tower"
+msgstr "Town N/A <undefined_structure>. denetsil evah dluohs uoY"
+
+msgid "37707_sign_missing_foreign"
+msgstr "PyGame - UnboundLocalError: Local variable 'map_id' referenced before assignment\n"
+"Error 404: Resource not found. Please notify tHe dEvEl0p#r$ @b0%t t#1# ##### ###########\n"
+"01010010 01100101 01101101 01100101 01101101 01100010 01100101 01110010 00100000 01101101 01100101 00101110"
+
+msgid "37707_sign_missing_hidden_read"
+msgstr "W3 KN0W Y0U R3@D TH1$: Y0U H@D 833N W@RN3D."
+
+msgid "37707_sign_missing_hidden_unread"
+msgstr "1T i$ t00 L8 N0W"
+
+msgid "37707_villager_male_1"
+msgstr "Hmph. Hi. Sorry: We're usually weary of outsiders. We only get visited... sometimes.\n"
+"But since you're here, maybe you can do me a favor. It might sound strange for me to ask you this though...\n"
+"Do you know who I am by chance? I'm curious: My name, do I have a...\n"
+"Sorry: I have made a mistake. Do not speak of this. Carry on, enjoy your trip here."
+
+msgid "37707_villager_male_2"
+msgstr "I can't help you any more. We are not allowed to talk. You cannot understand. Leave."
+
+msgid "37707_villager_male_3"
+msgstr "You will doom us all once more. Go back and never return!"
+
+msgid "37707_villager_female_1"
+msgstr "Oh... a newcomer? How did you get here? We haven't seen anyone new in... oh, never mind.\n"
+"Welcome! Welcome to... oh dear: We never got around to giving our town a name! Just call us whatever you'd like I guess.\n"
+"Please make yourself at home. Usually there are more people around... it depends on the seed, maybe it's a bad date today.\n"
+"Let me know if you need anything that exists here. Just be careful what you do... don't make the same mistake."
+
+msgid "37707_villager_female_2"
+msgstr "Please: Do not enter the tower. It hasn't been built yet."
+
+msgid "37707_villager_female_3"
+msgstr "No, no, no! Stop doing this! Do you not understand what you are doing?"
+
+msgid "37707_villager_male_missing"
+msgstr "i W@$ n3v3R 80rn"
+
+msgid "37707_villager_female_missing"
+msgstr "0H... @ n3wc0m3r! H0vv d1p y0v g3t he7e? <NONE> h311en\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37\n"
+"WElcoME! W3lcome t0... {_} deer: We never g0t ar0und to gi^ing our town {<1} We never g00000000 {<2} W3 neVer 8u1lt 0u7 t0wN\n"
+"TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E"
+
+msgid "37707_computer"
+msgstr "Developer console: This is intended for Tuxemon developers only, for testing an experimental data loading system.\n"
+"The variable for the new loader will now be enabled. Please report any issues you find at https://tuxemon.org\n"
+"Developer note 1: This suppresses crashes for missing maps. The system may attempt to load invalid data!\n"
+"Developer note 2: Do NOT save your game with this enabled, it may result in data corruption.\n"
+"Developer note 3: As of switching to Python 3, data seems to be aggregated and combined in a very unusual manner. Please debug this!"
+
+msgid "37707_exit_missing"
+msgstr "THIS NEVER EXISTED. YOU HAVE EXPERIENCED AN ERROR. WAKE UP AND FORGET ALL."

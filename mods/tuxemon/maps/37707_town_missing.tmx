@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="185">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="193">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -187,7 +187,10 @@
   <object id="124" name="Player Spawn" type="event" x="384" y="96" width="16" height="16"/>
   <object id="173" name="Teleport to Back" type="event" x="384" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport bedroom_test.tmx,1,3,0.5"/>
+    <property name="act1" value="set_variable 37707_tower:visited"/>
+    <property name="act2" value="set_variable environment:grass"/>
+    <property name="act3" value="translated_dialog 37707_exit_missing"/>
+    <property name="act4" value="transition_teleport bedroom_test.tmx,1,3,1"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -202,6 +205,7 @@
    <properties>
     <property name="act1" value="set_variable environment:37707"/>
     <property name="cond1" value="not variable_set environment:37707"/>
+    <property name="cond2" value="not variable_set 37707_tower:visited"/>
    </properties>
   </object>
   <object id="180" name="Random Battle 1" type="event" x="96" y="96" width="112" height="64">
@@ -236,6 +240,55 @@
     <property name="act3" value="npc_speed 37707_female_missing,5"/>
     <property name="act4" value="npc_wander 37707_female_missing,5"/>
     <property name="cond1" value="not npc_exists 37707_female_missing"/>
+   </properties>
+  </object>
+  <object id="185" name="Villager Female Talk Missing" type="event" x="192" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_villager_female_missing"/>
+    <property name="behav1" value="talk 37707_female_missing"/>
+   </properties>
+  </object>
+  <object id="186" name="Villager Male Talk Missing" type="event" x="528" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_villager_male_missing"/>
+    <property name="behav1" value="talk 37707_male_missing"/>
+   </properties>
+  </object>
+  <object id="187" name="Sign Welcome" type="event" x="400" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_sign_missing_welcome"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="188" name="Sign Tower" type="event" x="480" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_sign_missing_tower"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="189" name="Sign Foreign" type="event" x="432" y="256" width="48" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_sign_missing_foreign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="190" name="Sign Hidden Unread" type="event" x="624" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_sign_missing_hidden_unread"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set 37707_sign:read"/>
+   </properties>
+  </object>
+  <object id="191" name="Sign Hidden Read" type="event" x="624" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog 37707_sign_missing_hidden_read"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is variable_set 37707_sign:read"/>
    </properties>
   </object>
  </objectgroup>

@@ -319,7 +319,7 @@ class Map(object):
                     args = list()
 
                 # Create a condition object using named tuples
-                condition = MapCondition(cond_type, args, x, y, w, h, operator)
+                condition = MapCondition(cond_type, args, x, y, w, h, operator, k)
                 conds.append(condition)
 
             elif k.startswith('act'):
@@ -336,7 +336,7 @@ class Map(object):
                     args = list()
 
                 # Create an action object using named tuples
-                action = MapAction(act_type, args)
+                action = MapAction(act_type, args, k)
                 acts.append(action)
 
         for k in keys:
@@ -354,13 +354,13 @@ class Map(object):
                     args = list()
 
                 if behav_type == "talk":
-                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is"))
-                    acts.insert(0, MapAction("npc_face", [args[0], "player"]))
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", k))
+                    acts.insert(0, MapAction("npc_face", [args[0], "player"], k))
 
         # TODO: move this to some post-creation function, as more may be needed
         # add a player_facing_tile condition automatically
         if obj.type == "interact":
-            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is")
+            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
             logger.debug(cond_data)
             conds.append(cond_data)
 

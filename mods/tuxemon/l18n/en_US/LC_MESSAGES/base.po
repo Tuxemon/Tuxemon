@@ -1582,6 +1582,18 @@ msgstr "Both of you, come outside. A contingent from Omnichannel requests your p
 msgid "hellolovelypeople"
 msgstr "HELLOOOOO CITIZENS OF TABA TOWN!"
 
+msgid "darnitjohn"
+msgstr "Wait... Where's John?"
+
+msgid "darnitjohn2"
+msgstr "DARN IT JOHN! Get out here!"
+
+msgid "johnissorry"
+msgstr "Sorry Ma'am... I... \nSaw... \nSome... \nFlowers..."
+
+msgid "uselessnes"
+msgstr "You're absolutely useless John. I can't believe we were ever together."
+
 msgid "hellolovelypeople2"
 msgstr "I know you're probably wondering why my Omni knights and I are here.\n"
 "Wait..."

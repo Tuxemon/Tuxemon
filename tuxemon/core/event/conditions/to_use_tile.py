@@ -75,6 +75,7 @@ class ToUseTileCondition(EventCondition):
                 height=0,
                 x=0,
                 y=0,
+                name=""
             )
         )
         return player_next_to_and_facing_tile and button_pressed

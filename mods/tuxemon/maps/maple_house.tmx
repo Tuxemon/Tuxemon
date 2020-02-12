@@ -61,13 +61,12 @@
     <property name="cond2" value="not npc_exists npc_wife"/>
    </properties>
   </object>
-  <object id="39" name="nodrinkpls" type="event" x="96" y="48" width="32" height="16">
+  <object id="39" name="nodrinkpls" type="event" x="96" y="32" width="32" height="16">
    <properties>
     <property name="act1" value="npc_face npc_wife, up"/>
     <property name="act2" value="translated_dialog nodrink"/>
     <property name="act3" value="npc_face npc_wife,down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond1" value="is player_facing_tile"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

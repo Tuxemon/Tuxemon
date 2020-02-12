@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="128">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="129">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -442,18 +442,32 @@
     <property name="act3" value="pathfind player,37,47"/>
     <property name="act4" value="npc_face player,up"/>
     <property name="act5" value="player_resume"/>
-    <property name="act6" value="set_variable goodbyeoldknight:helpme"/>
+    <property name="act6" value="create_npc npc_wife,33,44"/>
+    <property name="act7" value="pathfind npc_wife,36,47"/>
+    <property name="act8" value="npc_face npc_wife,up"/>
+    <property name="act9" value="set_variable goodbyeoldknight:helpme"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:heback"/>
    </properties>
   </object>
   <object id="127" name="timetowalk2" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act1" value="pathfind npc_mom,38,47"/>
-    <property name="act2" value="create_npc npc_wife,33,44"/>
     <property name="act3" value="npc_face npc_mom,up"/>
-    <property name="act4" value="pathfind npc_wife,36,47"/>
-    <property name="act5" value="npc_face npc_wife,up"/>
+    <property name="act6" value="set_variable talkpls:gone"/>
     <property name="cond1" value="is variable_set talkpls:yes"/>
+   </properties>
+  </object>
+  <object id="128" name="listentime" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 0.6"/>
+    <property name="act2" value="translated_dialog hellolovelypeople2"/>
+    <property name="act3" value="npc_face allie,left"/>
+    <property name="act31" value="wait 0.5"/>
+    <property name="act32" value="npc_face allie,right"/>
+    <property name="act33" value="wait 0.5"/>
+    <property name="act34" value="npc_face allie,down"/>
+    <property name="act35" value="wait 0.3"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:helpme"/>
    </properties>
   </object>
  </objectgroup>

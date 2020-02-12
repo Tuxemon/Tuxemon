@@ -1594,6 +1594,9 @@ msgstr "Sorry Ma'am... I... \nSaw... \nSome... \nFlowers..."
 msgid "uselessnes"
 msgstr "You're absolutely useless John. I can't believe we were ever together."
 
+msgid "cometomepls"
+msgstr "NOW, EVERYONE, PLEASE COME TO THE CENTER OF TOWN. OMNICHANNEL WISHES TO ADDRESS YOU!"
+
 msgid "hellolovelypeople2"
 msgstr "I know you're probably wondering why my Omni knights and I are here.\n"
 "Wait..."

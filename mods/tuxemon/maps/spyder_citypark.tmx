@@ -386,7 +386,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="112" name="make npcs" type="event" x="48" y="0" width="16" height="16">
+  <object id="112" name="make npcs" type="event" x="61.3333" y="7.33333" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc knight1,12,13,knight,stand"/>
     <property name="act2" value="npc_face knight1,right"/>
@@ -395,7 +395,7 @@
     <property name="cond2" value="not variable_set firstgo:gone"/>
    </properties>
   </object>
-  <object id="113" name="hurrytalk" type="event" x="176" y="208" width="16" height="16">
+  <object id="113" name="hurrytalk" type="event" x="232.667" y="267.333" width="16" height="16">
    <properties>
     <property name="act1" value="npc_face knight1,left"/>
     <property name="act2" value="translated_dialog iamknight"/>
@@ -408,7 +408,7 @@
     <property name="cond4" value="is variable_set firstgo:no"/>
    </properties>
   </object>
-  <object id="115" name="hurrytalkmistaken" type="event" x="176" y="208" width="16" height="16">
+  <object id="115" name="hurrytalkmistaken" type="event" x="244.667" y="276.667" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog mistakenknight"/>
     <property name="act3" value="set_variable firstgo:gone"/>
@@ -417,7 +417,7 @@
     <property name="cond2" value="is variable_set cityparkchoice:mistaken"/>
    </properties>
   </object>
-  <object id="116" name="hurrytalkyes" type="event" x="176" y="208" width="16" height="16">
+  <object id="116" name="hurrytalkyes" type="event" x="238" y="262" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable firstgo:gone"/>
     <property name="act2" value="translated_dialog thatsmeknight"/>
@@ -426,7 +426,7 @@
     <property name="cond2" value="is variable_set cityparkchoice:thats_me"/>
    </properties>
   </object>
-  <object id="117" name="hurrytalknow" type="event" x="176" y="208" width="16" height="16">
+  <object id="117" name="hurrytalknow" type="event" x="224" y="276" width="16" height="16">
    <properties>
     <property name="act1" value="npc_face knight1,up"/>
     <property name="act2" value="wait 0.4"/>
@@ -439,7 +439,7 @@
     <property name="cond1" value="is variable_set secondgo:yes"/>
    </properties>
   </object>
-  <object id="118" name="hurrytalksecret" type="event" x="176" y="208" width="16" height="16">
+  <object id="118" name="hurrytalksecret" type="event" x="229.333" y="240.667" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog quicklyknight2"/>
     <property name="act2" value="npc_face knight1,up"/>
@@ -456,7 +456,7 @@
     <property name="cond1" value="is variable_set iamsecret:yes"/>
    </properties>
   </object>
-  <object id="119" name="hurrytalkohno" type="event" x="176" y="208" width="16" height="16">
+  <object id="119" name="hurrytalkohno" type="event" x="236" y="245.333" width="16" height="16">
    <properties>
     <property name="act2" value="npc_speed knight1, 5"/>
     <property name="act3" value="pathfind knight1, 3,15"/>

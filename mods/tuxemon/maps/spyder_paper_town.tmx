@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="357">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="412">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -145,17 +145,17 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOAzEQhi3Igmh4BiBUnB08QzgqSEIBogIqhMRVBVjegHBUXO/BVXEWPATiajhLEAWfJUZYlh12xbJE+jT2rMf/71kHopT7MxWocNJBfUaFUuFbc1mjwg94d3BBTuqjxAC9DNjRV9tt+NNrsnXx9K6+/Nl6vrnPh5kv4qlg+TKfbygVrsMarEIZzOfmWPyZuUpjn+98BT/2fkf4OYQD2Ic9sNfIXPz5dO281LniLjo7sA1bsAn2Ov2+78nfwS3cwDX47t/bL++fqX+Ozhmcwgkcg/lcxsWA9w95kFzOGEuuibsacJ4MRI1S64qv+HmBZ3iCR7C/H666JHNyDvPvRpL723uJXtQo9bovo8H3+5F8WlH8ip7MJer+ib/hFH2Kvi+KX7N/I/jrrFJhB7RDG7RCC8h6MzaTz0ITNEIDmM+TGJv90/6G0ChCAfIwCAPg0uon3we90AM5cK1z5Xx9k7yu0f+j7P4toxHCEizCApSgi3tg6jxUq3Ce/BzMwgxMg7kmqfEEfRuHMUhqz5/2kT75ol2/UpueN1s7yrwcw5/+/bUQA1u/RK2vb5K3a+L4s2vTmK/G6J/2I+f8q5jGmf9T46/6Jvt+Ag+v4lE=
+   eAHFlrlOAzEQhi3Igmh4BkioODt4Bq4KklCAqIAKIXFVBJY3gAAV13twVZwFD4G4Gs4SRMFniRGWZSdZsVkifRp71uP/96wDUcr9mQlUOO2gMaVCqfCtua5T4Rd8OrgiJ/WVxAC9FNjRV9tj+NNrMg3R9G5+/Nl6vrnPh5nP4yln+TKfbykVbsIGFGEdzOfmWPyZuVJjn+9sCT/2fif4OYYjOIQDsNfIXPz5dO281LniPjp7sAs7sA32Ov2+H8k/wD3cwS347t/HH++fqX+JzgWcwxmcgvlcxvmA9w9ZkFyvMZZcmrsacJ4UVBql1hXf8fMGr/ACz2B/P1x1cebkHObfjTj3L7eX6Pui1Ou+jAe/70fySUXxJ3oyl6j7J/5GE/Qp+r4ofs3+jeGvq0aFndAB7dAGrSDrzdhCPgNpaIYmMJ/HMTb7p/2NoJGHHGRhGIbApTVIfgD6oQ96wbXOlfP1TfK6Rv+Psvu3ikYIK7AMBViCbu6BqfNUq8JF8gswD3MwC+aauMZT9G0SJiCuPcvtI33yRbt+rT45b7Z2JfP1CP70769CBGz9JWp9fZO8XRPFn12bxLwYoX/aj5yzWjGJM/+nRrX6Jvt+A7wo4C8=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYCAMWFkYGliAmLDKgVGhB3SbLh735TAwNGQDcRYQZwJxBhDT2qU6eNxDa7uJNX8gwoVYt42qGw2B0RAYDYHREBgNgeEUAlIcpLU9YG0vXPRwCptRv4y8EAAA2OkRLw==
+   eAFjYCAMWFkYGliAmLDKgVGhB3SbLh735TAwNGQDcRYQZwJxBhDT2qU6eNxDa7uJNX8gwoVYt42qGw2B0RAYDYHREBgNgeEUAlIcpLU9YG0vcunhFHajfhl+IQAATM0Vcw==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYKA+KGBlaKC+qaMmDkQI8LGMxiUp4T4aXqSE1qhackNgFRNDw0ogXgHEy4F4GRAvBWJs5v1mZGj4BcQ/gfgHEH8HYmzq6C3myczQ4MHMwOAOpOltNy77eJHKuyKguwqB7isYRO7D5e5R8dEQGA2B0RAYaiEAAGNrFUM=
+   eAFjYKA+KGBlaKC+qaMmDkQI8LGMxiUp4T4aXqSE1qhackNgFRNDw0ogXgHEy4F4GRAvBWJs5v1mZGj4BcQ/gfgHEH8HYmzq6C3myczQ4MHMwOAOpOltN8i+BCyW8iKVd0VAdxUC3VcwQO7rxOK+UaHREBgNgdEQGC4hAAATOhYs
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision" offsetx="-16" offsety="-16">
@@ -163,12 +163,47 @@
    <property name="Collision" value=""/>
   </properties>
   <object id="333" type="collision" x="208" y="256" width="336" height="79.3333"/>
+  <object id="364" type="collision" x="528" y="16" width="128" height="320"/>
+  <object id="365" x="448.667" y="95.3333" width="80" height="16"/>
+  <object id="366" x="320" y="16" width="208" height="80"/>
+  <object id="367" x="464" y="112" width="64" height="32"/>
+  <object id="368" x="352" y="144" width="176" height="16"/>
+  <object id="369" x="448" y="160" width="64" height="16"/>
+  <object id="370" x="496" y="192" width="16" height="32"/>
+  <object id="371" x="368" y="160" width="16" height="64"/>
+  <object id="373" x="384" y="224" width="32" height="16"/>
+  <object id="374" x="288" y="160" width="80" height="48"/>
+  <object id="375" x="336" y="208" width="32" height="16"/>
+  <object id="378" x="272" y="208" width="48" height="16"/>
+  <object id="379" x="256" y="16" width="64" height="16"/>
+  <object id="380" x="272" y="32" width="48" height="16"/>
+  <object id="381" x="288" y="48" width="32" height="32"/>
+  <object id="382" x="272" y="80" width="32" height="16"/>
+  <object id="383" x="208" y="32" width="16" height="16"/>
+  <object id="384" x="208" y="112" width="16" height="16"/>
+  <object id="386" x="128" y="80" width="80" height="32"/>
+  <object id="387" x="160" y="112" width="64" height="16"/>
+  <object id="388" x="128" y="112" width="16" height="16"/>
+  <object id="389" x="16" y="16" width="208" height="16"/>
+  <object id="390" x="160" y="32" width="32" height="32"/>
+  <object id="391" x="16" y="32" width="96" height="80"/>
+  <object id="392" x="112" y="48" width="16" height="32"/>
+  <object id="393" x="16" y="112" width="64" height="32"/>
+  <object id="394" x="16" y="144" width="32" height="64"/>
+  <object id="395" x="112" y="176" width="96" height="48"/>
+  <object id="396" x="32" y="208" width="16" height="16"/>
+  <object id="397" x="80" y="256" width="16" height="16"/>
+  <object id="398" x="16" y="224" width="16" height="32"/>
+  <object id="399" x="16" y="320" width="192" height="16"/>
+  <object id="400" x="32" y="304" width="32" height="16"/>
+  <object id="401" x="192" y="304" width="16" height="16"/>
+  <object id="402" x="208" y="208" width="16" height="16"/>
+  <object id="403" x="1070.25" y="-225.5" width="0.25"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="335" name="Sign for Mart" type="interact" x="256" y="192">
+  <object id="335" name="Mart Sign" type="interact" x="256" y="192">
    <properties>
-    <property name="act1" value="dialog_chain Buy things here"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="act1" value="translated_dialog spyder_multi_martsign"/>
    </properties>
    <polygon points="0,0 16,0 16,16 0,16"/>
   </object>
@@ -180,43 +215,32 @@
    </properties>
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="337" name="Sign for Protagonist House" type="event" x="192" y="96">
+  <object id="337" name="Sign for Protagonist House" type="interact" x="192" y="96">
    <properties>
-    <property name="act1" value="dialog_chain Home sweet home"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="translated_dialog spyder_papertown_home"/>
    </properties>
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="338" name="Sign for Boat" type="interact" x="64" y="240" width="16" height="16">
+  <object id="338" name="Under Repairs" type="interact" x="64" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Under repairs"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="act1" value="translated_dialog spyder_multi_underrepairs"/>
+    <property name="cond1" value="is "/>
    </properties>
   </object>
-  <object id="339" name="Sign for Route 1" type="event" x="192" y="16" width="16" height="16">
+  <object id="339" name="Paper Town Sign" type="interact" x="192" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain ^ Route 1 --- Paper Town v"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="translated_dialog spyder_papertown_townsign"/>
    </properties>
   </object>
-  <object id="340" name="Sign for Sunnyside Manor" type="event" x="192" y="192" width="16" height="16">
+  <object id="340" name="Sign for Sunnyside Manor" type="interact" x="192" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Sunnyside Manor: If we are not home leave a message with our housekeeper"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="translated_dialogue spyder_papertown_sunnyside"/>
    </properties>
   </object>
-  <object id="341" name="Sign for Daycare" type="event" x="256" y="64" width="16" height="16">
+  <object id="341" name="Sign for Daycare, Before Opening" type="interact" x="256" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Daycare Centre: Under construction"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="translated_dialog spyder_papertown_daycare1"/>
+    <property name="cond1" value="not variable_set timberreached:yes"/>
    </properties>
   </object>
   <object id="342" name="Teleport to Route 1" type="event" x="224" y="0" width="16" height="16">
@@ -311,7 +335,7 @@
   <object id="355" name="Stop!" type="event" x="208" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="create_npc Dante,15,8,shop_assistant,wander"/>
+    <property name="act2" value="create_npc dantestop,15,8,shop_assistant,wander"/>
     <property name="act3" value="pathfind Dante,14,2"/>
     <property name="act4" value="translated_dialog spyder_paper_stop,name=${{name}}"/>
     <property name="act5" value="pathfind player,13,3"/>
@@ -334,6 +358,45 @@
     <property name="act8" value="remove_npc Dante"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="357" name="Sign for Daycare, After Opening" type="interact" x="256" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_daycare2"/>
+    <property name="cond1" value="is variable_set timberreached:yes"/>
+   </properties>
+  </object>
+  <object id="358" name="Create Conileaf" type="event" x="384" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc rockittenfrolicking,24,2,rockitten,wander"/>
+    <property name="cond1" value="not npc_exists rockittenfrolicking"/>
+    <property name="cond2" value="is variable_set timberreached:yes"/>
+   </properties>
+  </object>
+  <object id="360" name="Create Rockitten" type="event" x="400" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc conileaffrolicking,27,3,conileaf,wander"/>
+    <property name="cond1" value="not npc_exists conileaffrolicking"/>
+    <property name="cond2" value="is variable_set timberreached:yes"/>
+   </properties>
+  </object>
+  <object id="361" name="Create Riverboat Captain" type="event" x="64" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc riverboatcaptainpapertown,4,16,riverboatcaptain,stand"/>
+    <property name="cond1" value="not npc_exists riverboatcaptainpapertown"/>
+    <property name="cond2" value="is variable_set timberreached:yes"/>
+   </properties>
+  </object>
+  <object id="362" name="Create Homemaker" type="event" x="384" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc homemakerpapertown,11,14,homemaker,wander"/>
+    <property name="cond2" value="not npc_exists homemakerpapertown"/>
+   </properties>
+  </object>
+  <object id="363" name="Talk homemaker" type="event" x="400" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_homemaker"/>
+    <property name="behav1" value="talk homemaker"/>
    </properties>
   </object>
  </objectgroup>

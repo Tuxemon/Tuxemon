@@ -120,7 +120,7 @@
   <object id="160" type="collision" x="48" y="272" width="16" height="32" rotation="180"/>
   <object id="161" type="collision" x="368" y="336" width="16" height="16" rotation="180"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Event" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Event">
   <object id="175" name="Teleport to City Park" type="event" x="640" y="528" width="16" height="16" rotation="180">
    <properties>
     <property name="act1" value="transition_teleport citypark.tmx,39,11,0.3"/>

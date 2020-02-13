@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="62">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="64">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -47,7 +47,7 @@
   <object id="24" type="collision" x="144" y="112" width="48" height="16"/>
   <object id="25" type="collision" x="144" y="160" width="48" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="7" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="7" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport map1.tmx,30,12,0.3"/>
@@ -162,6 +162,19 @@
     <property name="act6" value="translated_dialog_choice hydrone:fruitera:rockitten,tuxchoice"/>
     <property name="cond1" value="is variable_set twocanplay:go"/>
     <property name="cond2" value="not variable_set tuxchoice:end"/>
+   </properties>
+  </object>
+  <object id="62" name="Create Shopkeeper" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc shopkeeperpapertown,4,8,shopkeeper,stand"/>
+    <property name="cond2" value="not npc_exists shopkeeperpapertown"/>
+   </properties>
+  </object>
+  <object id="63" name="Create Dante" type="event" x="192" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc danteinstore,12,7,shop_assistant,stand"/>
+    <property name="cond1" value="is party_size less_than,1"/>
+    <property name="cond2" value="not npc_exists danteinstore"/>
    </properties>
   </object>
  </objectgroup>

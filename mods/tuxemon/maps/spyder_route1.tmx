@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="161">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="162">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -67,17 +67,17 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlNEJwzAMRP2RbNM12oZO0eW7Ry2IQDwin0pdUoORT5Lvzo5Ja7XxXGt9v+5altbWPhlv3d/RvO++r3u89L024/Ca5circOQZrR9dX03bf+RvxPtpLTuP8mZ1G8pfxp/lX53Xphqz/Ckd1ukvO4e9vTiO3qLlzrq/6G10l1V/kW+0rt5f5JjhL/tOzNNf9BHXW/i+3/iLnJU1/dG/4+y9Wd7/gRU956tG+ss0sjtjf9bnefYr7P7UeZyfkfysEysd1smfYeo4Zr/ns8j+KqZv4qpe1ud58ipc9e/8jNzPOjH7q3jWOZSe0mFd8f1Lnb6JZ/kkr8LU9X7mz8Luh/EsP9R9A4q+Q78=
+   eAHNlN0NwjAMhPPQbsM7E/AjpmAUlmUPYqmWrE91zkBRsRTZZzvnSxq1tZrd51rfr7umqbW5L/pz17e2Lovu0+IPfa+taF6zHHkVjjyj+Nbnq2X71/SNeN+tZedR2qxupvRl/Fn+2XltKdtKn5rDOvVl57C3F23tLVpur/uL2kZ3WdUX+UZx9f4ixxb6su/EPPVFHTG+hu/7jb7IWYmpj/odZ+/N8v4PrMxzvqqnvmxGdmfsz/o8z36FXZ86j/PTk591YjWHdfJnmHMcs9/zmWd/FVM3cXVe1ud58ipc1e/89NzPOjH7q3irc6h5ag7riu9f6tRN/KnO49QecS95FY57LfZ+5vfCrod+Lz2c+wKhyUR6
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtkcEKwCAMQ3vQH9z/f8y2Qy4POhWq3aGClNQsCZlZnRMNXN1sdE/k8DxG2d73zPP3fJndrHp/dbmqtYNf+Xa0mqvp/VOm8njakx+Fpc9Jfb4Tkx+F6SNMfe29SX4UnvXzeNpH5aGO9DlnefqO/Cjcmll/7uqM8i+daiCjgRsU+SiS
+   eAHtUkEKwCAM60E/uBf59Okhl0CnQrQ7VJCSGtMQNct1I4Gnms32DR/ejJm3cR65/u4vMpvd2V9Z7mqd4Ke/E6nGanpvyq48HvrMV2Hoc2V9PmfMfBXmOcCsj75Xma/Cq/M8HvoqP6wDfa6rPNxjvgqXYlb73q2q+amTCSgT6H+59b/cZvUFeykt5w==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+   eAHt0DERAAAIxLAfmNGMdEwwcamADklEgAABAgQIECBA4E6gK3N3c/omsEFLAJM=
   </data>
  </layer>
  <objectgroup color="#ffff00" id="6" name="Events">
@@ -144,6 +144,11 @@
    </properties>
   </object>
   <object id="159" name="Player Spawn" type="event" x="208" y="288" width="16" height="16"/>
+  <object id="161" name="Route 1 Sign" type="interact" x="384" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="spyder_route1_routesign"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="7" name="Collisions"/>
 </map>

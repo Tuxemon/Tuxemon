@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="27">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -61,24 +61,13 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="16" name="Lord Lampy" type="interact" x="32" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="dialog_chain Hello stranger!"/>
-    <property name="act2" value="dialog_chain My name is Lampy, lord of all lamps."/>
-    <property name="act3" value="dialog_chain Go forth and inact my lampy will."/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-   </properties>
-  </object>
-  <object id="17" name="Lord or Filth" type="event" x="48" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="dialog_chain ${{name}}:\n Why the hell are you talking to a trashcan?!"/>
-    <property name="act2" value="dialog_chain Did Lord Lampy tell you about me? "/>
-    <property name="act3" value="dialog_chain Find me again and I shall grant you grand powers."/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
   <object id="26" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>
+  <object id="27" name="Resting in Bed" type="interact" x="16" y="48" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_restinbed"/>
+    <property name="act2" value="set_monster_health ,"/>
+    <property name="act3" value="set_monster_status ,"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -56,28 +56,37 @@ MAP_RENAMES = {
 }
 
 
-def update_current_map(version, save_data):
+def upgrade_save(save_data):
+    version = save_data.get("version", 0)
+    for i in range(version, SAVE_VERSION):
+        _update_current_map(i, save_data)
+        if i == 0:
+            _remove_slug_prefixes(save_data)
+    return save_data
+
+
+def _update_current_map(version, save_data):
     if version in MAP_RENAMES:
         new_name = MAP_RENAMES[version].get(save_data['current_map'])
         if new_name:
             save_data['current_map'] = new_name
 
 
-def upgrade_save(save_data):
-    version = save_data.get("version", 0)
-    for i in range(version, SAVE_VERSION):
-        update_current_map(i, save_data)
-        if i == 0:
-            def fix_items(data):
-                return {
-                    key.partition("_")[2]: num
-                    for key, num in data.items()
-                }
-            chest = save_data.get('storage', {})
-            save_data['inventory'] = fix_items(save_data.get('inventory', {}))
-            chest['items'] = fix_items(chest.get('items', {}))
+def _remove_slug_prefixes(save_data):
+    """
+    Slugs used to be prefixed by their type
+    Before: item_potion, txmn_rockitten
+    After: potion, rockitten
+    """
+    def fix_items(data):
+        return {
+            key.partition("_")[2]: num
+            for key, num in data.items()
+        }
+    chest = save_data.get('storage', {})
+    save_data['inventory'] = fix_items(save_data.get('inventory', {}))
+    chest['items'] = fix_items(chest.get('items', {}))
 
-            for mons in save_data.get('monsters', []), chest.get('monsters', []):
-                for mon in mons:
-                    mon['slug'] = mon['slug'].partition("_")[2]
-    return save_data
+    for mons in save_data.get('monsters', []), chest.get('monsters', []):
+        for mon in mons:
+            mon['slug'] = mon['slug'].partition("_")[2]

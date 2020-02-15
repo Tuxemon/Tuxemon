@@ -158,7 +158,7 @@ def get_defaults():
         ))),
         ("game", OrderedDict((
             ("data", "tuxemon"),
-            ("starting_map", "bedroom_test.tmx"),
+            ("starting_map", "player_house_bedroom.tmx"),
             ("cli_enabled", False),
             ("net_controller_enabled", False),
             ("locale", "en_US"),

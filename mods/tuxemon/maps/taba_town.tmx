@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="124">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -206,8 +206,8 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.5"/>
-    <property name="cond1" value="is player_at 43,45"/>
+    <property name="act1" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="cond1" value="is player_at"/>
    </properties>
   </object>
   <object id="68" name="Play Music" type="init" x="0" y="0" width="16" height="16">
@@ -219,7 +219,7 @@
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport maple_house.tmx,7,10,0.5"/>
-    <property name="cond1" value="is player_at 33,43"/>
+    <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
@@ -308,7 +308,7 @@
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport professor_lab.tmx,9,17,0.5"/>
-    <property name="cond1" value="is player_at 44,52"/>
+    <property name="cond1" value="is player_at"/>
    </properties>
   </object>
   <object id="96" name="Professor's Lab Sign" type="event" x="624" y="832" width="16" height="16">
@@ -373,6 +373,13 @@
     <property name="act2" value="wait .4"/>
     <property name="act3" value="teleport_faint"/>
     <property name="cond1" value="is variable_set battle_lost_faint:true"/>
+   </properties>
+  </object>
+  <object id="124" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

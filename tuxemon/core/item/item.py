@@ -24,7 +24,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 # Andy Mender <andymenderunix@gmail.com>
-#
+# Adam Chevalier <chevalieradam2@gmail.com>
 #
 # core.item Item handling module.
 #
@@ -43,6 +43,9 @@ from tuxemon.core import tools, prepare
 from tuxemon.core.technique import Technique
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
+
+from tuxemon.core.item.itemeffect import ItemEffect
+from tuxemon.core.item.itemcondition import ItemCondition
 
 logger = logging.getLogger(__name__)
 
@@ -132,10 +135,48 @@ class Item(object):
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]
         self.target = process_targets(results["target"])
-        self.effect = results["effects"]
-        self.conditions = results.get("conditions", [])
+        self.effect = self.parse_dicts(results["effects"])
+        self.conditions = self.parse_dicts(results.get("conditions", []))
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
+
+    def parse_effects(self, raw):
+        """Takes raw effects list from the item's json and parses it into a form more suitable for the engine.
+
+        :param raw: The raw effects list pulled from the item's db entry.
+        :type raw: list
+
+        :rtype: list
+        :returns: effects turned into a list of ItemEffect objects
+        """
+
+        ret = list()
+
+        for line in raw:
+            key = line.split()[0]
+            params = line.split()[1].split(",")
+            ret.add(ItemEffect(key, params))
+
+        return ret
+
+    def parse_conditions(self, raw):
+        """Takes raw condition list from the item's json and parses it into a form more suitable for the engine.
+
+        :param raw: The raw conditions list pulled from the item's db entry.
+        :type raw: list
+
+        :rtype: list
+        :returns: conditions turned into a list of ItemCondition objects
+        """
+
+        ret = []
+
+        for line in raw:
+            key = line.split()[0]
+            params = line.split()[1].split(",")
+            ret.add(ItemCondition(key, params))
+
+        return ret
 
     def advance_round(self):
         """ Advance round for items that take many rounds to use
@@ -154,8 +195,7 @@ class Item(object):
         :param user: The monster or object that is using this item.
         :param target: The monster or object that we are using this item on.
 
-        :type user: Varies
-        :type target: Varies
+        :type target: Any
 
         :rtype: bool
         :returns: whether the item may be used by the user on the target.
@@ -166,11 +206,8 @@ class Item(object):
         
         result = True
 
-        for condition in self.conditions:
-            check = condition.split()[0]
-            params = condition.split()[1].split(",")
-
-            result = result and (getattr(target, check) in params)
+        for condition,params in self.conditions:
+            result = result and (getattr(target, condition) in params)
 
         return result
 
@@ -200,15 +237,11 @@ class Item(object):
         }
 
         # Loop through all the effects of this technique and execute the effect's function.
-        for effect in self.effect:
-            effect_lines = str(effect).split()
-            effect_name = effect_lines[0]
-            effect_param = effect_lines[1] if len(effect_lines) > 1 else None
-
-            if effect_param:
-                result = getattr(self, effect_name)(user, target, effect_param)
+        for effect,params in self.effect:
+            if params:
+                result = getattr(self, effect)(user, target, params)
             else:
-                result = getattr(self, effect_name)(user, target)
+                result = getattr(self, effect)(user, target)
             meta_result.update(result)
 
         # TODO: document how to handle items with multiple effects
@@ -221,132 +254,6 @@ class Item(object):
                 user.inventory[self.slug]['quantity'] -= 1
 
         return meta_result
-
-    def learn(self, user, target, slug):
-        """This effect teaches the target the technique in the tech string.
-
-        :param user: The monster or object that is using this item.
-        :param target: The monster or object that we are using this item on.
-        :param tech: The slug of the technique to teach.
-
-        :type user: Player
-        :type target: Monster
-        :type tech: String
-
-        :rtype: bool
-        :returns: Success
-
-        **Examples:**
-        >>> tm = Item("tm_blossom")
-        >>> tm.learn(player1, bulbatux, "blossom")
-        """
-        
-        try:
-            tech = Technique()
-            tech.load(slug)
-            target.learn(tech)            
-        except RuntimeError:
-            logger.debug("encountered an error applying item: {}".format(self.slug))
-            return {"success":False}
-
-        return {"success":True}
-
-    def heal(self, user, target):
-        """This effect heals the target based on the item's power attribute.
-
-        :param user: The monster or object that is using this item.
-        :param target: The monster or object that we are using this item on.
-
-        :type user: Varies
-        :type target: Varies
-
-        :rtype: bool
-        :returns: Success
-
-        **Examples:**
-        >>> potion = Item("potion")
-        >>> potion.heal(game, bulbatux)
-        """
-
-        # TODO: prevent use if the item is not a healing item!
-        # TODO: 'user' param is unused - remove or use!
-
-        # don't heal if already at max health
-        if target.current_hp == target.hp:
-            return {"success": False}
-
-        # Heal the target monster by "self.power" number of hitpoints.
-        target.current_hp += self.power
-
-        # If we've exceeded the monster's maximum HP, set their health to 100% of their HP.
-        if target.current_hp > target.hp:
-            target.current_hp = target.hp
-
-        return {"success": True}
-
-    def capture(self, user, target):
-        """Captures target monster.
-
-        :param user: The monster or object that is using this item.
-        :param target: The monster or object that we are using this item on.
-
-        :type user: Varies
-        :type target: Varies
-
-        :rtype: bool
-        :returns: Success
-        """
-
-        # Set up variables for capture equation
-        damage_modifier = 0
-        status_modifier = 0
-        item_power = self.power
-
-        # Get percent of damage taken and multiply it by 10
-        if target.current_hp < target.hp:
-            total_damage = target.hp - target.current_hp
-            damage_modifier = int((float(total_damage) / target.hp) * 1000)
-
-        # Check if target has any status effects
-        if not target.status == "Normal":
-            status_modifier = 1.5
-
-        # TODO: debug logging this info
-
-        # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (
-        3 * target.hp)
-        shake_check = 65536 / (255 / catch_check) ** 0.1875
-
-        logger.debug("--- Capture Variables ---")
-        logger.debug("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
-
-        msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
-        logger.debug(msg.format(target, item_power, status_modifier))
-
-        logger.debug("65536 / (255 / catch_check) ** 0.1875")
-        logger.debug("65536 / (255 / {}) ** 0.1875".format(catch_check))
-
-        msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
-        logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
-
-        # 4 shakes to give monster change to escape
-        for i in range(0, 4):
-            random_num = random.randint(0, 65536)
-            logger.debug("shake check {}: random number {}".format(i, random_num))
-            if random_num > round(shake_check):
-                return {"success": False,
-                        "capture": True,
-                        "num_shakes": i + 1}
-
-        # add creature to the player's monster list
-        user.add_monster(target)
-
-        # TODO: remove monster from the other party
-        return {"success": True,
-                "capture": True,
-                "num_shakes": 4}
-
 
 def decode_inventory(data):
     """ Reconstruct inventory from save_data

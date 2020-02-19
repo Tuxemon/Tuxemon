@@ -40,7 +40,7 @@ class AddItemAction(EventAction):
 
     def start(self):
         player = self.game.player1
-        item_to_add = Item(self.parameters.item_slug)
+        item_to_add = Item(player, self.parameters.item_slug)
 
         # If the item already exists in the player's inventory, add to its quantity, otherwise
         # just add the item.

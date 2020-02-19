@@ -644,7 +644,7 @@ class NPC(Entity):
                 item['quantity'] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(item_slug),
+                    'item': Item(self, item_slug),
                     'quantity': amount,
                 }
         elif amount < 0:

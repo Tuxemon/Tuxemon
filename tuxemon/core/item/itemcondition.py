@@ -94,14 +94,14 @@ class ItemCondition(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, game, user, parameters):
+    def __init__(self, user, parameters):
         """
 
         :type game: tuxemon.core.control.Control
+        :type user: tuxemon.core.NPC
         :type parameters: list
         """
-        self.game = game
-        self.target = target
+        self.user = user
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

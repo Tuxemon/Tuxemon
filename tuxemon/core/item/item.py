@@ -70,7 +70,7 @@ class Item(object):
     }
     """
 
-    def __init__(self, slug=None):
+    def __init__(self, user, slug=None):
 
         self.slug = slug
         self.name = "None"
@@ -169,12 +169,14 @@ class Item(object):
         :returns: conditions turned into a list of ItemCondition objects
         """
 
-        ret = []
+        ret = list()
 
         for line in raw:
-            key = line.split()[0]
-            params = line.split()[1].split(",")
-            ret.add(ItemCondition(key, params))
+            tokens = line.split()
+            context = tokens[0]
+            cond = tokens[1]
+            params = line.replace(context, "").replace(cond, "").strip().split(',')
+            ret.add(ItemCondition(context, cond, params))
 
         return ret
 

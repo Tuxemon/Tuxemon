@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="129">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="130">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -467,7 +467,54 @@
     <property name="act33" value="wait 0.5"/>
     <property name="act34" value="npc_face allie,down"/>
     <property name="act35" value="wait 0.3"/>
+    <property name="act4" value="translated_dialog hellolovelypeople3"/>
+    <property name="act5" value="translated_dialog hellolovelypeople4"/>
+    <property name="act51" value="npc_face allie,right"/>
+    <property name="act52" value="wait 0.3"/>
+    <property name="act53" value="npc_face allie,left"/>
+    <property name="act54" value="wait 0.3"/>
+    <property name="act55" value="npc_face allie,down"/>
+    <property name="act6" value="translated_dialog hellolovelypeople5"/>
+    <property name="act7" value="set_variable goodbyeoldknight:ohwell"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:helpme"/>
+   </properties>
+  </object>
+  <object id="129" name="listentime2" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face allie,up"/>
+    <property name="act2" value="translated_dialog whereismyhairbrush"/>
+    <property name="act3" value="pathfind knight3,43,46"/>
+    <property name="act31" value="npc_face knight3,up"/>
+    <property name="act32" value="npc_face allie,right"/>
+    <property name="act33" value="remove_npc knight3"/>
+    <property name="act4" value="wait 0.3"/>
+    <property name="act41" value="npc_face allie,up"/>
+    <property name="act42" value="translated_dialog darnitjohn3"/>
+    <property name="act43" value="translated_dialog darnitjohn4"/>
+    <property name="act44" value="translated_dialog darnitjohn5"/>
+    <property name="act45" value="translated_dialog darnitjohn6"/>
+    <property name="act46" value="npc_face knight4,right"/>
+    <property name="act47" value="wait 0.1"/>
+    <property name="act48" value="npc_face knight4,left"/>
+    <property name="act49" value="wait 0.1"/>
+    <property name="act491" value="npc_face knight4,down"/>
+    <property name="act5" value="translated_dialog darnitjohn7"/>
+    <property name="act51" value="npc_face allie,down"/>
+    <property name="act52" value="wait 0.6"/>
+    <property name="act6" value="translated_dialog darnitjohn8"/>
+    <property name="act7" value="npc_speed allie,10"/>
+    <property name="act71" value="pathfind allie,38,43"/>
+    <property name="act72" value="npc_face allie,left"/>
+    <property name="act73" value="npc_face knight4,right"/>
+    <property name="act8" value="translated_dialog darnitjohn9"/>
+    <property name="act81" value="wait 0.5"/>
+    <property name="act82" value="translated_dialog darnitjohn10"/>
+    <property name="act83" value="npc_speed knight4,8"/>
+    <property name="act84" value="pathfind knight4,33,44"/>
+    <property name="act85" value="npc_face knight4,up"/>
+    <property name="act86" value="remove_npc knight4"/>
+    <property name="act99" value="set_variable goodbyeoldknight:mamamia"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:ohwell"/>
    </properties>
   </object>
  </objectgroup>

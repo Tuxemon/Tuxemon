@@ -1588,6 +1588,32 @@ msgstr "Wait... Where's John?"
 msgid "darnitjohn2"
 msgstr "DARN IT JOHN! Get out here!"
 
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "darnitjohn4"
+msgstr "Y-Yes ma'am?"
+
+msgid "darnitjohn5"
+msgstr "Why are you still here?"
+
+msgid "darnitjohn6"
+msgstr "Uhh..."
+
+msgid "darnitjohn7"
+msgstr "I'm not sure..."
+
+msgid "darnitjohn8"
+msgstr "AAAAAGH!!!"
+
+msgid "darnitjohn9"
+msgstr "YOU IMBECILE!\n"
+"I will say this once and only once:\n"
+"GO. INSPECT. THE. HOUSES."
+
+msgid "darnitjohn10"
+msgstr "NOW!"
+
 msgid "johnissorry"
 msgstr "Sorry Ma'am... I... \nSaw... \nSome... \nFlowers..."
 
@@ -1608,7 +1634,12 @@ msgid "hellolovelypeople4"
 msgstr "I'm pretty sure there are houses in Cotton Town larger than this..."
 
 msgid "hellolovelypeople5"
-msgstr "No... We are missing one person. The lone Tuxemon breeder left in the Fondent region. The one that calls himself the Tuxemon Professor"
+msgstr "No... Wait... We are missing one person... \n"
+"The lone Tuxemon breeder left in the Fondent region. The one that calls himself the Tuxemon Professor"
+
+msgid "whereismyhairbrush"
+msgstr "John, Grant, spread out. FIND HIM."
+
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

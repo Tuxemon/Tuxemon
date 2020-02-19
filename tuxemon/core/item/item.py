@@ -73,6 +73,7 @@ class Item(object):
     def __init__(self, user, slug=None):
 
         self.slug = slug
+        self.user = user
         self.name = "None"
         self.description = "None"
         self.effect = []
@@ -176,7 +177,7 @@ class Item(object):
             context = tokens[0]
             cond = tokens[1]
             params = line.replace(context, "").replace(cond, "").strip().split(',')
-            ret.add(ItemCondition(context, cond, params))
+            ret.add(ItemCondition(context, self.user, params))
 
         return ret
 

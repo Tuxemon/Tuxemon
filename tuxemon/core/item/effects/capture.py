@@ -34,6 +34,7 @@ from __future__ import unicode_literals
 
 from tuxemon.core.item.itemeffect import ItemEffect
 from tuxemon.core.item import Item
+from random import random
 
 class CaptureEffect(ItemEffect):
     """Attempts to capture the target with 'power' capture strength.
@@ -61,8 +62,7 @@ class CaptureEffect(ItemEffect):
         # TODO: debug logging this info
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (
-        3 * target.hp)
+        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         shake_check = 65536 / (255 / catch_check) ** 0.1875
 
         logger.debug("--- Capture Variables ---")
@@ -87,7 +87,7 @@ class CaptureEffect(ItemEffect):
                         "num_shakes": i + 1}
 
         # add creature to the player's monster list
-        user.add_monster(target)
+        self.user.add_monster(target)
 
         # TODO: remove monster from the other party
         return {"success": True,

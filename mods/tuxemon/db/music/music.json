@@ -36,6 +36,10 @@
         "file" : "JRPG_mysticIsle.ogg"
     },
     {
+        "slug" : "music_mystic_island_reverse",
+        "file" : "JRPG_mysticIsle_reverse.ogg"
+    },
+    {
         "slug" : "music_mansion_theme",
         "file" : "melody_eternal.ogg"
     },

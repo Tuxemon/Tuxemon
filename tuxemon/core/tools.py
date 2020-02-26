@@ -531,7 +531,7 @@ def number_or_variable(game, value):
     :raises: ValueError
     """
     player = game.player1
-    values = value.split("-")
+    values = value.split("~")
     if len(values) == 2 and values[0].isdigit() and values[1].isdigit():
         return random.uniform(values[0], values[1])
     elif value.isdigit():

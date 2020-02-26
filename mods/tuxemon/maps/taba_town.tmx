@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="130">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="131">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -515,6 +515,21 @@
     <property name="act86" value="remove_npc knight4"/>
     <property name="act99" value="set_variable goodbyeoldknight:mamamia"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:ohwell"/>
+   </properties>
+  </object>
+  <object id="130" name="listentime3" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind allie,37,45"/>
+    <property name="act11" value="npc_face allie,down"/>
+    <property name="act2" value="translated_dialog oopsie"/>
+    <property name="act3" value="pathfind npc_mom,38,46"/>
+    <property name="act31" value="translated_dialog ourstuffisours"/>
+    <property name="act4" value="npc_face allie,right"/>
+    <property name="act41" value="translated_dialog oopsie2"/>
+    <property name="act42" value="pathfind npc_mom,38,47"/>
+    <property name="act43" value="npc_face npc_mom,up"/>
+    <property name="act99" value="set_variable goodbyeoldknight:herewegoagain"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:mamamia"/>
    </properties>
   </object>
  </objectgroup>

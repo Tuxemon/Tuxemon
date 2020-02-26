@@ -1640,6 +1640,15 @@ msgstr "No... Wait... We are missing one person... \n"
 msgid "whereismyhairbrush"
 msgstr "John, Grant, spread out. FIND HIM."
 
+msgid "oopsie"
+msgstr "Sorry you had to see that. He's just SOOOOOOO useless sometimes."
+
+msgid "ourstuffisours"
+msgstr "Why are you actually here?"
+
+msgid "oopsie2"
+msgstr "Why don't we wait for my knights to return. \n"
+"I hate to announce bad news alone"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

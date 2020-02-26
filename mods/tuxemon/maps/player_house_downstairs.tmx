@@ -71,14 +71,14 @@
   </object>
   <object id="26" name="Go Upstairs" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport bedroom_test.tmx,9,3,0.3"/>
+    <property name="act1" value="transition_teleport player_house_bedroom.tmx,9,3,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at 1,2"/>
    </properties>
   </object>
   <object id="27" name="Go Outside" type="event" x="80" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,43,46,0.3"/>
+    <property name="act1" value="transition_teleport taba_town.tmx,43,46,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at 5,7"/>
     <property name="cond2" value="is player_facing down"/>

@@ -1,4 +1,10 @@
-{
-    "slug" : "music_battle_loop",
-    "file" : "JRPGCollection/ogg/JRPG_battle_loop.ogg"
-}
+[
+    {
+        "slug" : "music_battle_loop",
+        "file" : "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+    },
+    {
+        "slug" : "music_battle_loop_slow",
+        "file" : "JRPGCollection/ogg/JRPG_battle_loop_slow.ogg"
+    }
+]

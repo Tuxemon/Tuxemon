@@ -1697,3 +1697,98 @@ msgstr "Shady Guy: Hey. If you have some... 'trouble' attached to your name I ca
 
 msgid "shady_rename"
 msgstr "Shady Guy: Good luck with your new name, friend..."
+
+msgid "37707_sign_welcome"
+msgstr "Welcome to town 37707! We are..."
+
+msgid "37707_sign_tower"
+msgstr "Town 37707 tower. This structure is highly unstable: Do not enter!"
+
+msgid "37707_sign_foreign"
+msgstr "This sign is written in a foreign language you can't understand."
+
+msgid "37707_sign_hidden"
+msgstr "Get out while you still can..."
+
+msgid "37707_sign_missing_welcome"
+msgstr "We11c0me T0 t0wn ERROR! We ne^er weR3"
+
+msgid "37707_sign_missing_tower"
+msgstr "Town N/A <undefined_structure>. Denetsil evah dluohs uoy"
+
+msgid "37707_sign_missing_foreign"
+msgstr "PyGame - UnboundLocalError: Local variable 'map_id' referenced before assignment\n"
+"Error 404: **** resources not found. Please notify tHe dEvEl0p#r$ @b0%t t#1# ##### ###########\n"
+"01010010 01100101 01101101 01100101 01101101 01100010 01100101 01110010 00100000 01101101 01100101 00101110"
+
+msgid "37707_sign_missing_hidden_read"
+msgstr "W3 KN0W Y0U R3@D TH1$: Y0U H@D 833N W@RN3D."
+
+msgid "37707_sign_missing_hidden_unread"
+msgstr "1T i$ t00 L8 N0W"
+
+msgid "37707_house"
+msgstr "Strange: It's locked. No one seems to be using this building."
+
+msgid "37707_mail"
+msgstr "It's empty and full of spider webs."
+
+msgid "37707_house_missing"
+msgstr "Th3r3 is n0th1ng here. The7e n3vEr w@$."
+
+msgid "37707_mail_missing"
+msgstr "1t\"$ empty @nd y0u c@n $EE th3 v0id."
+
+msgid "37707_flower"
+msgstr "You sense a warm energy emanating from this flower. It's the only thing in this town your Tuxemon seem to enjoy."
+
+msgid "37707_flower_missing"
+msgstr "E330R: Event @ction set_monster_health contains inv@l1d p@r@meter$. He@l1ng aLL Tu+em0n.,."
+
+msgid "37707_computer"
+msgstr "Developer console: This is intended for Tuxemon developers only, for testing an experimental data loading system.\n"
+"The variable for the new loader will now be enabled. Please report any issues you find at https://tuxemon.org\n"
+"Developer note 1: This suppresses crashes for missing maps. The system may attempt to load invalid data!\n"
+"Developer note 2: Do NOT save your game with this enabled, it may result in data corruption.\n"
+"Developer note 3: As of switching to Python 3, data seems to be aggregated and combined in a very unusual manner. Please debug this!"
+
+msgid "37707_tower_missing"
+msgstr "Y0u c@nn0t ente7 @ bu1ldIng th@t d0e$ n0t e+i$t."
+
+msgid "37707_exit_missing"
+msgstr "<recovery_module>: GREETINGS ${{name}}. PLEASE UNDERSTAND THIS AREA NEVER EXISTED. YOU HAVE EXPERIENCED A SYSTEM ERROR.\n"
+"<recovery_module>: THE GLITCH HAS NOW BEEN PATCHED. YOU MAY CONTINUE THE GAME NORMALLY FROM HERE ON. DO NOT ATTEMPT TO RETURN HERE.\n"
+"<recovery_module>: WAKE UP. FORGET ALL. ALL IS BUT A DREAM..."
+
+msgid "37707_villager_male_1"
+msgstr "Blank: Hmph. Hi. Sorry: We're usually weary of outsiders. We only get visited... sometimes.\n"
+"Blank: But since you're here, maybe you can do me a favor. It might sound strange of me to ask you this, yet I must know...\n"
+"Blank: Do you know who I am? Have you... ever seen me? I'm curious: My name, do I have a...\n"
+"Blank: No. Sorry: I have made a mistake. Please do not speak of this. Carry on, enjoy your trip here."
+
+msgid "37707_villager_male_2"
+msgstr "Blank: You can't help any more. We are not allowed to talk about it. You cannot understand. Leave."
+
+msgid "37707_villager_male_3"
+msgstr "Blank: You... you will doom us all over again. Go back and never return!"
+
+msgid "37707_villager_female_1"
+msgstr "Wish: Oh... a newcomer! How did you get here? We haven't seen anyone new in... oh, never mind.\n"
+"Wish: Welcome! Welcome to... oh my: We never got around to giving our town a name! Just call us whatever you'd like I guess.\n"
+"Wish: Please make yourself at home. Usually there are more people around... it depends on the seed, maybe it's a bad omen today.\n"
+"Wish: Let me know if you need anything that exists here. Just don't make the same mistake as the others: We don't want you to leave us too."
+
+msgid "37707_villager_female_2"
+msgstr "Wish: Please: Do not enter the tower. It hasn't been built yet."
+
+msgid "37707_villager_female_3"
+msgstr "Wish: No, no, no: Stop doing this! Do you not understand it's not there?"
+
+msgid "37707_villager_male_missing"
+msgstr "00000: i W@$ n3v3R B0rN\n"
+"${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}}"
+
+msgid "37707_villager_female_missing"
+msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
+"@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
+"TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"

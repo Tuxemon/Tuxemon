@@ -39,7 +39,7 @@ class TransitionTeleportAction(EventAction):
     {
         "type": "transition_teleport",
         "parameters": [
-            "map1.tmx",
+            "taba_town.tmx",
             "5",
             "5",
             "2",

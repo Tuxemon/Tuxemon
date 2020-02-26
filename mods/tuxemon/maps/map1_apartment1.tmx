@@ -55,7 +55,7 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="11" type="event" x="144" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,55,44,0.3"/>
+    <property name="act1" value="transition_teleport taba_town.tmx,55,44,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
     <property name="cond3" value="is player_moved"/>
@@ -63,7 +63,7 @@
   </object>
   <object id="12" type="event" x="224" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,55,39,0.3 "/>
+    <property name="act1" value="transition_teleport taba_town.tmx,55,39,0.3 "/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>

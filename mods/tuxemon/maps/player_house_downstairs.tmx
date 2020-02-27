@@ -87,7 +87,7 @@
   <object id="28" name="Player Spawn" type="event" x="80" y="64" width="16" height="16"/>
   <object id="29" name="create mom" type="event" x="16" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_mom,9,4,girl1,stand"/>
+    <property name="act1" value="create_npc npc_mom,9,4,,stand"/>
     <property name="act2" value="npc_face npc_mom,left"/>
     <property name="act3" value="npc_speed npc_mom, 0.2"/>
     <property name="act4" value="npc_wander npc_mom"/>

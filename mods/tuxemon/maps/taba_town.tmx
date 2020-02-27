@@ -377,8 +377,8 @@
   </object>
   <object id="125" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc nurse1,37,39,nurse,stand"/>
-    <property name="act2" value="create_npc nurse2,38,39,nurse,stand"/>
+    <property name="act1" value="create_npc nurse1,37,39,,stand"/>
+    <property name="act2" value="create_npc nurse2,38,39,,stand"/>
     <property name="act3" value="npc_face nurse1,down"/>
     <property name="act4" value="npc_face nurse2,down"/>
     <property name="cond1" value="not variable_set thewifedidspeak:yes"/>
@@ -395,12 +395,12 @@
   <object id="127" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
    <properties>
     <property name="act1" value="wait 1"/>
-    <property name="act2" value="create_npc allie,37,40,omnichannelfemale,stand"/>
-    <property name="act3" value="create_npc knight4,37,39,knight,stand"/>
-    <property name="act4" value="create_npc knight3,38,39,knight,stand"/>
+    <property name="act2" value="create_npc allie,37,40,,stand"/>
+    <property name="act3" value="create_npc knight4,37,39,,stand"/>
+    <property name="act4" value="create_npc knight3,38,39,,stand"/>
     <property name="act5" value="player_stop"/>
     <property name="act6" value="translated_dialog hellolovelypeople"/>
-    <property name="act7" value="create_npc npc_mom,43,46,girl1,stand"/>
+    <property name="act7" value="create_npc npc_mom,43,46,,stand"/>
     <property name="act8" value="npc_face npc_mom, left"/>
     <property name="act9" value="set_variable goodbyeoldknight:hedead"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:yes"/>

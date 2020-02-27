@@ -77,6 +77,14 @@ msgstr "Captures a monster."
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
 
+# Allie's Address
+msgid "allies_address"
+msgstr "Allie's Address"
+
+msgid "allies_address_description"
+msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
+"\n"
+"There's a kiss mark next to the address"
 
 ## NOTIFICATION TRANSLATIONS ##
 
@@ -1570,6 +1578,9 @@ msgstr "STOP"
 msgid "omnichannelarrives2"
 msgstr ""
 
+msgid "yesmaam"
+msgstr "Yes Ma'am"
+
 msgid "firsts"
 msgstr "testmebitch"
 
@@ -1649,6 +1660,71 @@ msgstr "Why are you actually here?"
 msgid "oopsie2"
 msgstr "Why don't we wait for my knights to return. \n"
 "I hate to announce bad news alone"
+
+msgid "maamiexist"
+msgstr "Ma'am, He isn't in the house."
+
+msgid "maamiexist2"
+msgstr "Was there anything of interest?"
+
+msgid "maamiexist3"
+msgstr "There's a computer running Ubuntu.\n"
+"I know going Gnome isn't your style, but..."
+
+msgid "maamiexist4"
+msgstr "Nah, leave it. These people obviously have terrible taste and despise usefulness and simplicity...\n"
+"Check the lab now Grant. I'll wait for John."
+
+msgid "itsmyaurababe"
+msgstr "Now, who are you?"
+
+msgid "itsmyaurababe2"
+msgstr "Hmm, now that I actually look at you, you have a rather mysterious aura.\n"
+"...   ...   ...   ...\n"
+"We should talk sometime. Maybe see me in Cotton Town?"
+
+msgid "itsmyduhduhduh"
+msgstr "Received Allie's Address!"
+
+msgid "itsmyaurababe3"
+msgstr "I hope we'll meet again. "
+
+msgid "maamnothing"
+msgstr "Ma'am...\n"
+
+msgid "maamnothing2"
+msgstr "Darn it John! We were having a moment!\n"
+"What do you want?"
+
+msgid "maamnothing3"
+msgstr "I... I... Didn't find anything."
+
+msgid "maamnothing4"
+msgstr "Great. Thanks for the notice."
+
+msgid "maamnothing5"
+msgstr "Ma'am, I haven't found him either."
+
+msgid "maamnothing6"
+msgstr "... ... ... ...\n"
+"... Fine. We should probably head back to HQ and report."
+
+msgid "solongjohn"
+msgstr "John, you should stay here to keep the peace.\n"
+"I don't want you around anyways."
+
+msgid "solongjohn2"
+msgstr "Come on Grant, we have a schedule to keep."
+
+msgid "seeme"
+msgstr "Make sure you come see me..."
+
+msgid "knight4ispoor"
+msgstr "She's really not a bad person"
+
+msgid "frowntime"
+msgstr "I don't mind being here...\n"
+"It's just lonely sometimes..."
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

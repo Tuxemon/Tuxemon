@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="129">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -528,8 +528,94 @@
     <property name="act41" value="translated_dialog oopsie2"/>
     <property name="act42" value="pathfind npc_mom,38,47"/>
     <property name="act43" value="npc_face npc_mom,up"/>
+    <property name="act5" value="create_npc knight3,43,46"/>
+    <property name="act51" value="npc_face knight3,left"/>
+    <property name="act52" value="translated_dialog maamiexist"/>
+    <property name="act53" value="translated_dialog maamiexist2"/>
+    <property name="act54" value="npc_face knight3,up"/>
+    <property name="act55" value="wait 0.4"/>
+    <property name="act56" value="npc_face knight3,left"/>
+    <property name="act57" value="translated_dialog maamiexist3"/>
+    <property name="act58" value="translated_dialog maamiexist4"/>
+    <property name="act59" value="translated_dialog yesmaam"/>
+    <property name="act6" value="pathfind knight3,44,53"/>
+    <property name="act61" value="npc_face knight3,up"/>
+    <property name="act62" value="remove_npc knight3"/>
+    <property name="act7" value="npc_face allie,down"/>
     <property name="act99" value="set_variable goodbyeoldknight:herewegoagain"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:mamamia"/>
+   </properties>
+  </object>
+  <object id="125" name="listentime4" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsmyaurababe"/>
+    <property name="act11" value="npc_speed allie,1.5"/>
+    <property name="act2" value="pathfind allie,37,46"/>
+    <property name="act3" value="translated_dialog itsmyaurababe2"/>
+    <property name="act4" value="add_item allies_address"/>
+    <property name="act41" value="translated_dialog itsmyduhduhduh"/>
+    <property name="act5" value="translated_dialog itsmyaurababe3"/>
+    <property name="act99" value="set_variable goodbyeoldknight:mama"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:herewegoagain"/>
+   </properties>
+  </object>
+  <object id="126" name="listentime5" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight4,33,44"/>
+    <property name="act2" value="npc_face knight4,right"/>
+    <property name="act3" value="translated_dialog maamnothing"/>
+    <property name="act4" value="npc_face allie,left"/>
+    <property name="act41" value="translated_dialog maamnothing2"/>
+    <property name="act42" value="translated_dialog maamnothing3"/>
+    <property name="act43" value="translated_dialog maamnothing4"/>
+    <property name="act44" value="create_npc knight3,38,53"/>
+    <property name="act45" value="pathfind knight3,39,46"/>
+    <property name="act46" value="npc_face knight3,left"/>
+    <property name="act461" value="npc_face allie,right"/>
+    <property name="act47" value="translated_dialog maamnothing5"/>
+    <property name="act5" value="npc_face allie,left"/>
+    <property name="act51" value="wait 0.4"/>
+    <property name="act52" value="npc_face allie,right"/>
+    <property name="act6" value="translated_dialog maamnothing6"/>
+    <property name="act61" value="npc_speed allie,3"/>
+    <property name="act611" value="npc_face allie,down"/>
+    <property name="act612" value="wait 1"/>
+    <property name="act613" value="translated_dialog seeme"/>
+    <property name="act62" value="pathfind allie,37,44"/>
+    <property name="act63" value="pathfind knight3,38,44"/>
+    <property name="act64" value="npc_face allie,left"/>
+    <property name="act641" value="translated_dialog solongjohn"/>
+    <property name="act65" value="pathfind allie,37,40"/>
+    <property name="act66" value="translated_dialog solongjohn2"/>
+    <property name="act67" value="npc_face knight3,up"/>
+    <property name="act68" value="translated_dialog yesmaam"/>
+    <property name="act7" value="pathfind knight3,38,40"/>
+    <property name="act71" value="remove_npc knight3"/>
+    <property name="act72" value="remove_npc allie"/>
+    <property name="act99" value="set_variable goodbyeoldknight:howcaniresistyou"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:mama"/>
+   </properties>
+  </object>
+  <object id="127" name="listentime6" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind knight4, 37,44"/>
+    <property name="act2" value="npc_face knight4,down"/>
+    <property name="act21" value="wait 0.4"/>
+    <property name="act3" value="translated_dialog knight4ispoor"/>
+    <property name="act31" value="wait 0.6"/>
+    <property name="act4" value="npc_face knight4,right"/>
+    <property name="act5" value="pathfind knight4,39,44"/>
+    <property name="act6" value="npc_face knight4,left"/>
+    <property name="act99" value="set_variable goodbyeoldknight:finallydone"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:howcaniresistyou"/>
+   </properties>
+  </object>
+  <object id="128" name="imalone" type="event" x="624" y="704" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog frowntime"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:finallydone"/>
+    <property name="cond2" value="is player_facing_tile"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

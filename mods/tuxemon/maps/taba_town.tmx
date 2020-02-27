@@ -606,6 +606,14 @@
     <property name="act4" value="npc_face knight4,right"/>
     <property name="act5" value="pathfind knight4,39,44"/>
     <property name="act6" value="npc_face knight4,left"/>
+    <property name="act7" value="npc_face npc_mom,left"/>
+    <property name="act71" value="translated_dialog wherewasshe"/>
+    <property name="act72" value="pathfind npc_mom,43,46"/>
+    <property name="act73" value="npc_face npc_mom,up"/>
+    <property name="act74" value="remove_npc npc_mom"/>
+    <property name="act75" value="pathfind npc_wife,33,44"/>
+    <property name="act76" value="npc_face npc_wife,up"/>
+    <property name="act77" value="remove_npc npc_wife"/>
     <property name="act99" value="set_variable goodbyeoldknight:finallydone"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:howcaniresistyou"/>
    </properties>

@@ -1726,6 +1726,9 @@ msgid "frowntime"
 msgstr "I don't mind being here...\n"
 "It's just lonely sometimes..."
 
+msgid "wherewasshe"
+msgstr "She didn't tell us the bad news..."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

@@ -211,6 +211,10 @@ class Item(object):
         if target.current_hp == target.hp:
             return {"success": False}
 
+        # don't heal if fainted
+        if target.current_hp <= 0:
+            return {"success": False}
+
         # Heal the target monster by "self.power" number of hitpoints.
         target.current_hp += self.power
 

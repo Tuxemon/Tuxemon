@@ -54,7 +54,7 @@
   </object>
   <object id="32" name="wife appears" type="event" x="112" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_wife,9,7,girl1,stand"/>
+    <property name="act1" value="create_npc npc_wife,9,7,,stand"/>
     <property name="act2" value="npc_face npc_wife,down"/>
     <property name="act3" value="npc_wander npc_wife"/>
     <property name="cond1" value="is player_facing up"/>
@@ -72,7 +72,7 @@
   </object>
   <object id="40" name="create knight" type="event" x="192" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc knight3,7,11,knight,stand"/>
+    <property name="act1" value="create_npc knight3,7,11,,stand"/>
     <property name="act2" value="npc_face knight3,up"/>
     <property name="act3" value="wait 0.7"/>
     <property name="act4" value="npc_face knight3,left"/>

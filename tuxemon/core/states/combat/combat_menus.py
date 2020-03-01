@@ -106,17 +106,23 @@ class MainCombatMenuState(PopUpMenu):
             menu = self.game.push_state("ItemMenuState")
 
             # set next menu after after selection is made
-            menu.on_menu_selection = choose_target
+            menu.on_menu_selection = choose_target # overloads on_menu_selection in items/__init__.py
 
         def choose_target(menu_item):
-            # open menu to choose target of item
             item = menu_item.game_object
-            self.game.pop_state()   # close the item menu
-            # TODO: don't hardcode to player0
             combat_state = self.game.get_state_name("CombatState")
-            state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
-                                         user=combat_state.players[0], action=item)
-            state.on_menu_selection = partial(enqueue_item, item)
+            self.game.pop_state()   # close the item menu
+            # check to see if item can be used inside a trainer battle
+            if (combat_state.is_trainer_battle and item.slug == 'capture_device'):
+                msg = T.format('item_cannot_use_here', {'name': item.name})
+                tools.open_dialog(self.game, [msg])
+            else:         
+                # TODO: don't hardcode to player0
+                combat_state = self.game.get_state_name("CombatState")
+                # open menu to choose target of item
+                state = self.game.push_state("CombatTargetMenuState", player=combat_state.players[0],
+                                            user=combat_state.players[0], action=item)
+                state.on_menu_selection = partial(enqueue_item, item)
 
         def enqueue_item(item, menu_item):
             # enqueue the item

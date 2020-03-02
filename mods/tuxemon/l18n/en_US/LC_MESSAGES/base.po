@@ -77,6 +77,14 @@ msgstr "Captures a monster."
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
 
+# Allie's Address
+msgid "allies_address"
+msgstr "Allie's Address"
+
+msgid "allies_address_description"
+msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
+"\n"
+"There's a kiss mark next to the address"
 
 ## NOTIFICATION TRANSLATIONS ##
 
@@ -1570,6 +1578,158 @@ msgstr "STOP"
 msgid "omnichannelarrives2"
 msgstr ""
 
+msgid "yesmaam"
+msgstr "Yes Ma'am"
+
+msgid "firsts"
+msgstr "Watch me whip\n"
+"Watch me nae nae"
+
+msgid "nopenotyet"
+msgstr "Sorry, someone got injured on the route. It's closed right now."
+
+msgid "bothofyou"
+msgstr "Both of you, come outside. A contingent from Omnichannel requests your presence."
+
+msgid "hellolovelypeople"
+msgstr "HELLOOOOO CITIZENS OF TABA TOWN!"
+
+msgid "darnitjohn"
+msgstr "Wait... Where's John?"
+
+msgid "darnitjohn2"
+msgstr "DARN IT JOHN! Get out here!"
+
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "darnitjohn4"
+msgstr "Y-Yes ma'am?"
+
+msgid "darnitjohn5"
+msgstr "Why are you still here?"
+
+msgid "darnitjohn6"
+msgstr "Uhh..."
+
+msgid "darnitjohn7"
+msgstr "I'm not sure..."
+
+msgid "darnitjohn8"
+msgstr "AAAAAGH!!!"
+
+msgid "darnitjohn9"
+msgstr "YOU IMBECILE!\n"
+"I will say this once and only once:\n"
+"GO. INSPECT. THE. HOUSES."
+
+msgid "darnitjohn10"
+msgstr "NOW!"
+
+msgid "johnissorry"
+msgstr "Sorry Ma'am... I... \nSaw... \nSome... \nFlowers..."
+
+msgid "uselessnes"
+msgstr "You're absolutely useless John. I can't believe we were ever together."
+
+msgid "cometomepls"
+msgstr "NOW, EVERYONE, PLEASE COME TO THE CENTER OF TOWN. OMNICHANNEL WISHES TO ADDRESS YOU!"
+
+msgid "hellolovelypeople2"
+msgstr "I know you're probably wondering why my Omni knights and I are here.\n"
+"Wait..."
+
+msgid "hellolovelypeople3"
+msgstr "Are you really the only people in this town? There's no one here! This has GOT to be the smallest town in the Fondent Region."
+
+msgid "hellolovelypeople4"
+msgstr "I'm pretty sure there are houses in Cotton Town larger than this..."
+
+msgid "hellolovelypeople5"
+msgstr "No... Wait... We are missing one person... \n"
+"The lone Tuxemon breeder left in the Fondent region. The one that calls himself the Tuxemon Professor"
+
+msgid "whereismyhairbrush"
+msgstr "John, Grant, spread out. FIND HIM."
+
+msgid "oopsie"
+msgstr "Sorry you had to see that. He's just SOOOOOOO useless sometimes."
+
+msgid "ourstuffisours"
+msgstr "Why are you actually here?"
+
+msgid "oopsie2"
+msgstr "Why don't we wait for my knights to return. \n"
+"I hate to announce bad news alone"
+
+msgid "maamiexist"
+msgstr "Ma'am, He isn't in the house."
+
+msgid "maamiexist2"
+msgstr "Was there anything of interest?"
+
+msgid "maamiexist3"
+msgstr "There's a computer running Ubuntu.\n"
+"I know going Gnome isn't your style, but..."
+
+msgid "maamiexist4"
+msgstr "Nah, leave it. These people obviously have terrible taste and despise usefulness and simplicity...\n"
+"Check the lab now Grant. I'll wait for John."
+
+msgid "itsmyaurababe"
+msgstr "Now, who are you?"
+
+msgid "itsmyaurababe2"
+msgstr "Hmm, now that I actually look at you, you have a rather mysterious aura.\n"
+"...   ...   ...   ...\n"
+"We should talk sometime. Maybe see me in Cotton Town?"
+
+msgid "itsmyduhduhduh"
+msgstr "Received Allie's Address!"
+
+msgid "itsmyaurababe3"
+msgstr "I hope we'll meet again. "
+
+msgid "maamnothing"
+msgstr "Ma'am...\n"
+
+msgid "maamnothing2"
+msgstr "Darn it John! We were having a moment!\n"
+"What do you want?"
+
+msgid "maamnothing3"
+msgstr "I... I... Didn't find anything."
+
+msgid "maamnothing4"
+msgstr "Great. Thanks for the notice."
+
+msgid "maamnothing5"
+msgstr "Ma'am, I haven't found him either."
+
+msgid "maamnothing6"
+msgstr "... ... ... ...\n"
+"... Fine. We should probably head back to HQ and report."
+
+msgid "solongjohn"
+msgstr "John, you should stay here to keep the peace.\n"
+"I don't want you around anyways."
+
+msgid "solongjohn2"
+msgstr "Come on Grant, we have a schedule to keep."
+
+msgid "seeme"
+msgstr "Make sure you come see me..."
+
+msgid "knight4ispoor"
+msgstr "She's really not a bad person"
+
+msgid "frowntime"
+msgstr "I don't mind being here...\n"
+"It's just lonely sometimes..."
+
+msgid "wherewasshe"
+msgstr "She didn't tell us the bad news..."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
@@ -1595,7 +1755,7 @@ msgid "nodrink"
 msgstr "I'm pretty sure you're too young to drink..."
 
 msgid "professorswife"
-msgstr "Professor's Wife: Oh No! You just missed him. I think he went into town though. Maybe check there?"
+msgstr "Oh No! You just missed him. I think he went into town though. Maybe check there?"
 
 msgid "waithere2"
 msgstr "Oh, I hope nobody got hurt from the fallen tree!"

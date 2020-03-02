@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -17,17 +17,17 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eJyTZGBgYCIDS0IxLxkYpleCDAzTqwvEPGhYlwBG1ksqHtU7dPSSiwGmUhnY
+   eAGTZGBgYCIDSwL1gDAvGRimVwKol1QM06sL1MuDhkFi+DCyXnzqsMmN6sUftshhNtBhBbOfVBoAplIZ2A==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYBiaIBKIo4A4GohjoDQyeMrCwPCMBcH/jsSOBeI4II4H4gQoPRTAciRMKigF4jIgLsejphCIi4C4GE28EYibgLiZDHuJAUD7DgDtPQC0/wAhtaw0cgMIAAC2RhA7
+   eAFjYBiaIBLo7CggjgbiGCgNpODgKQsDwzMghoHvSOxYoGAcEMcDcQKUBlKDHiwHuhCGSXVsKVBDGRCX49FYCJQrAuJiNDWNQH4TEDejiVOLC7TvANDeA0D7DxAyk5WQAgrkAbZGEDs=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYBhcIB+IC6DskywMDKdYiNdbDcQ1NHDTYAGZQJwFxNl0tnc5EiakbigDACgYB0w=
+   eAFjYBhcIB/onAKok06yMDCcAmJiQTVQYQ2xioegukygm7OAOJvObl8OtA+G8VkNUjOUAQAoGAdM
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -47,26 +47,48 @@
   <object id="30" name="talkHouse" type="event" x="144" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog professorswife"/>
+    <property name="act2" value="set_variable thewifedidspeak:yes"/>
     <property name="behav1" value="talk npc_wife"/>
+    <property name="cond1" value="not variable_set thewifedidspeak:yes"/>
    </properties>
   </object>
   <object id="32" name="wife appears" type="event" x="112" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc npc_wife,9,7,girl1,stand"/>
+    <property name="act1" value="create_npc npc_wife,9,7,,stand"/>
     <property name="act2" value="npc_face npc_wife,down"/>
     <property name="act3" value="npc_wander npc_wife"/>
     <property name="cond1" value="is player_facing up"/>
     <property name="cond2" value="not npc_exists npc_wife"/>
    </properties>
   </object>
-  <object id="39" name="nodrinkpls" type="event" x="96" y="48" width="32" height="16">
+  <object id="39" name="nodrinkpls" type="event" x="96" y="32" width="32" height="16">
    <properties>
     <property name="act1" value="npc_face npc_wife, up"/>
     <property name="act2" value="translated_dialog nodrink"/>
     <property name="act3" value="npc_face npc_wife,down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond1" value="is player_facing_tile"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="40" name="create knight" type="event" x="192" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight3,7,11,,stand"/>
+    <property name="act2" value="npc_face knight3,up"/>
+    <property name="act3" value="wait 0.7"/>
+    <property name="act4" value="npc_face knight3,left"/>
+    <property name="act5" value="wait 0.7"/>
+    <property name="act6" value="npc_face knight3,right"/>
+    <property name="act7" value="wait 0.7"/>
+    <property name="act8" value="npc_face knight3,up"/>
+    <property name="act81" value="wait 0.2"/>
+    <property name="act9" value="translated_dialog bothofyou"/>
+    <property name="act91" value="wait 0.8"/>
+    <property name="act92" value="npc_face knight3,down"/>
+    <property name="act93" value="wait 0.5"/>
+    <property name="act94" value="set_variable goodbyeoldknight:yes"/>
+    <property name="act95" value="remove_npc knight3"/>
+    <property name="cond1" value="is variable_set thewifedidspeak:yes"/>
+    <property name="cond2" value="not variable_set goodbyeoldknight:yes"/>
    </properties>
   </object>
  </objectgroup>

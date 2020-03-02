@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="130">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -279,7 +279,7 @@
   </object>
   <object id="78" name="Player's House Sign" type="event" x="624" y="720" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog ${{name}}'s house"/>
+    <property name="act1" value="dialog ${{name}}'s &quot;house&quot;"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -332,7 +332,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="109" name="Tuxemart Sign" type="event" x="432" y="176" width="16" height="16">
+  <object id="124" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -375,11 +375,263 @@
     <property name="cond1" value="is variable_set battle_lost_faint:true"/>
    </properties>
   </object>
-  <object id="124" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
+  <object id="125" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Tuxemart - A place to buy and sell items"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="create_npc nurse1,37,39,,stand"/>
+    <property name="act2" value="create_npc nurse2,38,39,,stand"/>
+    <property name="act3" value="npc_face nurse1,down"/>
+    <property name="act4" value="npc_face nurse2,down"/>
+    <property name="cond1" value="not variable_set thewifedidspeak:yes"/>
+   </properties>
+  </object>
+  <object id="126" name="nopenotyet" type="event" x="592" y="640" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog nopenotyet"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="127" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 1"/>
+    <property name="act2" value="create_npc allie,37,40,,stand"/>
+    <property name="act3" value="create_npc knight4,37,39,,stand"/>
+    <property name="act4" value="create_npc knight3,38,39,,stand"/>
+    <property name="act5" value="player_stop"/>
+    <property name="act6" value="translated_dialog hellolovelypeople"/>
+    <property name="act7" value="create_npc npc_mom,43,46,,stand"/>
+    <property name="act8" value="npc_face npc_mom, left"/>
+    <property name="act9" value="set_variable goodbyeoldknight:hedead"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:yes"/>
+   </properties>
+  </object>
+  <object id="124" name="bringthecavalry2" type="event" x="672" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind allie,37,44"/>
+    <property name="act2" value="wait 0.5"/>
+    <property name="act3" value="npc_face allie,up"/>
+    <property name="act4" value="wait 0.3"/>
+    <property name="act5" value="npc_face allie,right"/>
+    <property name="act6" value="translated_dialog darnitjohn"/>
+    <property name="act7" value="npc_face allie,up"/>
+    <property name="act8" value="translated_dialog darnitjohn2"/>
+    <property name="act81" value="wait 1"/>
+    <property name="act9" value="pathfind knight4,37,43"/>
+    <property name="act91" value="translated_dialog johnissorry"/>
+    <property name="act92" value="npc_face allie,right"/>
+    <property name="act93" value="translated_dialog uselessnes"/>
+    <property name="act94" value="npc_face allie,down"/>
+    <property name="act99" value="set_variable goodbyeoldknight:heback"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:hedead"/>
+   </properties>
+  </object>
+  <object id="125" name="cavalrysamewalk" type="event" x="736" y="720" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind knight3,38,43"/>
+    <property name="act2" value="set_variable foome:ye"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:hedead"/>
+    <property name="cond2" value="not variable_set foome:ye"/>
+   </properties>
+  </object>
+  <object id="126" name="timetowalk" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cometomepls"/>
+    <property name="act11" value="set_variable talkpls:yes"/>
+    <property name="act2" value="player_stop"/>
+    <property name="act3" value="pathfind player,37,47"/>
+    <property name="act4" value="npc_face player,up"/>
+    <property name="act5" value="player_resume"/>
+    <property name="act6" value="create_npc npc_wife,33,44"/>
+    <property name="act7" value="pathfind npc_wife,36,47"/>
+    <property name="act8" value="npc_face npc_wife,up"/>
+    <property name="act9" value="set_variable goodbyeoldknight:helpme"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:heback"/>
+   </properties>
+  </object>
+  <object id="127" name="timetowalk2" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind npc_mom,38,47"/>
+    <property name="act3" value="npc_face npc_mom,up"/>
+    <property name="act6" value="set_variable talkpls:gone"/>
+    <property name="cond1" value="is variable_set talkpls:yes"/>
+   </properties>
+  </object>
+  <object id="128" name="listentime" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 0.6"/>
+    <property name="act2" value="translated_dialog hellolovelypeople2"/>
+    <property name="act3" value="npc_face allie,left"/>
+    <property name="act31" value="wait 0.5"/>
+    <property name="act32" value="npc_face allie,right"/>
+    <property name="act33" value="wait 0.5"/>
+    <property name="act34" value="npc_face allie,down"/>
+    <property name="act35" value="wait 0.3"/>
+    <property name="act4" value="translated_dialog hellolovelypeople3"/>
+    <property name="act5" value="translated_dialog hellolovelypeople4"/>
+    <property name="act51" value="npc_face allie,right"/>
+    <property name="act52" value="wait 0.3"/>
+    <property name="act53" value="npc_face allie,left"/>
+    <property name="act54" value="wait 0.3"/>
+    <property name="act55" value="npc_face allie,down"/>
+    <property name="act6" value="translated_dialog hellolovelypeople5"/>
+    <property name="act7" value="set_variable goodbyeoldknight:ohwell"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:helpme"/>
+   </properties>
+  </object>
+  <object id="129" name="listentime2" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face allie,up"/>
+    <property name="act2" value="translated_dialog whereismyhairbrush"/>
+    <property name="act3" value="pathfind knight3,43,46"/>
+    <property name="act31" value="npc_face knight3,up"/>
+    <property name="act32" value="npc_face allie,right"/>
+    <property name="act33" value="remove_npc knight3"/>
+    <property name="act4" value="wait 0.3"/>
+    <property name="act41" value="npc_face allie,up"/>
+    <property name="act42" value="translated_dialog darnitjohn3"/>
+    <property name="act43" value="translated_dialog darnitjohn4"/>
+    <property name="act44" value="translated_dialog darnitjohn5"/>
+    <property name="act45" value="translated_dialog darnitjohn6"/>
+    <property name="act46" value="npc_face knight4,right"/>
+    <property name="act47" value="wait 0.1"/>
+    <property name="act48" value="npc_face knight4,left"/>
+    <property name="act49" value="wait 0.1"/>
+    <property name="act491" value="npc_face knight4,down"/>
+    <property name="act5" value="translated_dialog darnitjohn7"/>
+    <property name="act51" value="npc_face allie,down"/>
+    <property name="act52" value="wait 0.6"/>
+    <property name="act6" value="translated_dialog darnitjohn8"/>
+    <property name="act7" value="npc_speed allie,10"/>
+    <property name="act71" value="pathfind allie,38,43"/>
+    <property name="act72" value="npc_face allie,left"/>
+    <property name="act73" value="npc_face knight4,right"/>
+    <property name="act8" value="translated_dialog darnitjohn9"/>
+    <property name="act81" value="wait 0.5"/>
+    <property name="act82" value="translated_dialog darnitjohn10"/>
+    <property name="act83" value="npc_speed knight4,8"/>
+    <property name="act84" value="pathfind knight4,33,44"/>
+    <property name="act85" value="npc_face knight4,up"/>
+    <property name="act86" value="remove_npc knight4"/>
+    <property name="act99" value="set_variable goodbyeoldknight:mamamia"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:ohwell"/>
+   </properties>
+  </object>
+  <object id="130" name="listentime3" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind allie,37,45"/>
+    <property name="act11" value="npc_face allie,down"/>
+    <property name="act2" value="translated_dialog oopsie"/>
+    <property name="act3" value="pathfind npc_mom,38,46"/>
+    <property name="act31" value="translated_dialog ourstuffisours"/>
+    <property name="act4" value="npc_face allie,right"/>
+    <property name="act41" value="translated_dialog oopsie2"/>
+    <property name="act42" value="pathfind npc_mom,38,47"/>
+    <property name="act43" value="npc_face npc_mom,up"/>
+    <property name="act5" value="create_npc knight3,43,46"/>
+    <property name="act51" value="npc_face knight3,left"/>
+    <property name="act52" value="translated_dialog maamiexist"/>
+    <property name="act53" value="translated_dialog maamiexist2"/>
+    <property name="act54" value="npc_face knight3,up"/>
+    <property name="act55" value="wait 0.4"/>
+    <property name="act56" value="npc_face knight3,left"/>
+    <property name="act57" value="translated_dialog maamiexist3"/>
+    <property name="act58" value="translated_dialog maamiexist4"/>
+    <property name="act59" value="translated_dialog yesmaam"/>
+    <property name="act6" value="pathfind knight3,44,53"/>
+    <property name="act61" value="npc_face knight3,up"/>
+    <property name="act62" value="remove_npc knight3"/>
+    <property name="act7" value="npc_face allie,down"/>
+    <property name="act99" value="set_variable goodbyeoldknight:herewegoagain"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:mamamia"/>
+   </properties>
+  </object>
+  <object id="125" name="listentime4" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog itsmyaurababe"/>
+    <property name="act11" value="npc_speed allie,1.5"/>
+    <property name="act2" value="pathfind allie,37,46"/>
+    <property name="act3" value="translated_dialog itsmyaurababe2"/>
+    <property name="act4" value="add_item allies_address"/>
+    <property name="act41" value="translated_dialog itsmyduhduhduh"/>
+    <property name="act5" value="translated_dialog itsmyaurababe3"/>
+    <property name="act99" value="set_variable goodbyeoldknight:mama"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:herewegoagain"/>
+   </properties>
+  </object>
+  <object id="126" name="listentime5" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight4,33,44"/>
+    <property name="act2" value="npc_face knight4,right"/>
+    <property name="act3" value="translated_dialog maamnothing"/>
+    <property name="act4" value="npc_face allie,left"/>
+    <property name="act41" value="translated_dialog maamnothing2"/>
+    <property name="act42" value="translated_dialog maamnothing3"/>
+    <property name="act43" value="translated_dialog maamnothing4"/>
+    <property name="act44" value="create_npc knight3,38,53"/>
+    <property name="act45" value="pathfind knight3,39,46"/>
+    <property name="act46" value="npc_face knight3,left"/>
+    <property name="act461" value="npc_face allie,right"/>
+    <property name="act47" value="translated_dialog maamnothing5"/>
+    <property name="act5" value="npc_face allie,left"/>
+    <property name="act51" value="wait 0.4"/>
+    <property name="act52" value="npc_face allie,right"/>
+    <property name="act6" value="translated_dialog maamnothing6"/>
+    <property name="act61" value="npc_speed allie,3"/>
+    <property name="act611" value="npc_face allie,down"/>
+    <property name="act612" value="wait 1"/>
+    <property name="act613" value="translated_dialog seeme"/>
+    <property name="act62" value="pathfind allie,37,44"/>
+    <property name="act63" value="pathfind knight3,38,44"/>
+    <property name="act64" value="npc_face allie,left"/>
+    <property name="act641" value="translated_dialog solongjohn"/>
+    <property name="act65" value="pathfind allie,37,40"/>
+    <property name="act66" value="translated_dialog solongjohn2"/>
+    <property name="act67" value="npc_face knight3,up"/>
+    <property name="act68" value="translated_dialog yesmaam"/>
+    <property name="act7" value="pathfind knight3,38,40"/>
+    <property name="act71" value="remove_npc knight3"/>
+    <property name="act72" value="remove_npc allie"/>
+    <property name="act99" value="set_variable goodbyeoldknight:howcaniresistyou"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:mama"/>
+   </properties>
+  </object>
+  <object id="127" name="listentime6" type="event" x="736" y="752" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind knight4, 37,44"/>
+    <property name="act2" value="npc_face knight4,down"/>
+    <property name="act21" value="wait 0.4"/>
+    <property name="act3" value="translated_dialog knight4ispoor"/>
+    <property name="act31" value="wait 0.6"/>
+    <property name="act4" value="npc_face knight4,right"/>
+    <property name="act5" value="pathfind knight4,39,44"/>
+    <property name="act6" value="npc_face knight4,left"/>
+    <property name="act7" value="npc_face npc_mom,left"/>
+    <property name="act71" value="translated_dialog wherewasshe"/>
+    <property name="act72" value="pathfind npc_mom,43,46"/>
+    <property name="act73" value="npc_face npc_mom,up"/>
+    <property name="act74" value="remove_npc npc_mom"/>
+    <property name="act75" value="pathfind npc_wife,33,44"/>
+    <property name="act76" value="npc_face npc_wife,up"/>
+    <property name="act77" value="remove_npc npc_wife"/>
+    <property name="act99" value="set_variable goodbyeoldknight:finallydone"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:howcaniresistyou"/>
+   </properties>
+  </object>
+  <object id="128" name="imalone" type="event" x="624" y="704" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog frowntime"/>
+    <property name="cond1" value="is variable_set goodbyeoldknight:finallydone"/>
+    <property name="cond2" value="is player_facing_tile"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="129" name="nuuujohnisgone" type="event" x="752" y="704" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight4,39,44"/>
+    <property name="act2" value="npc_face knight4,left"/>
+    <property name="cond1" value="not npc_exists knight4"/>
+    <property name="cond2" value="is variable_set goodbyeoldknight:finallydone"/>
    </properties>
   </object>
  </objectgroup>

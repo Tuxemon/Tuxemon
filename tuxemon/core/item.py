@@ -41,6 +41,7 @@ import random
 
 from tuxemon.core import tools
 from tuxemon.core import prepare
+from tuxemon.core.combat import check_status, fainted
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
@@ -212,7 +213,8 @@ class Item(object):
             return {"success": False}
 
         # don't heal if fainted
-        if target.current_hp <= 0:
+        print(check_status(target, 'status_faint'))
+        if check_status(target, 'status_faint'):
             return {"success": False}
 
         # Heal the target monster by "self.power" number of hitpoints.

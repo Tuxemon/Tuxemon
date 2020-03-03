@@ -37,15 +37,13 @@ from __future__ import unicode_literals
 
 import logging
 import pprint
-import random
 
 from tuxemon.core import tools, prepare
-from tuxemon.core.technique import Technique
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
-from tuxemon.core.item.itemeffect import ItemEffect
-from tuxemon.core.item.itemcondition import ItemCondition
+from tuxemon.core import plugin
+from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 
@@ -70,14 +68,16 @@ class Item(object):
     }
     """
 
-    def __init__(self, user, slug=None):
+    effects = dict()
+    conditions = dict()
 
+    def __init__(self, slug=None):
+
+        self.game = None
         self.slug = slug
-        self.user = user
+        self.user = None
         self.name = "None"
         self.description = "None"
-        self.effect = []
-        self.conditions = []
         self.images = []
         self.type = None
         self.power = 0
@@ -85,7 +85,20 @@ class Item(object):
         self.surface = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
-        # If a slug of the item was provided, autoload it from the item database.
+        self.sort = ""
+        self.use_item = ""
+        self.use_success = ""
+        self.use_failure = ""
+        self.usable_in = ""
+        self.target = list()
+
+        # load effect and condition plugins if it hasn't been done already
+        if not Item.effects:
+            logger.info("Loading Item Plugins...")
+            self.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
+            self.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
+
+        # If a slug of the item was provided, auto-load it from the item database.
         if slug:
             self.load(slug)
 
@@ -103,7 +116,7 @@ class Item(object):
         **Examples:**
 
         >>> potion = Item()
-        >>> potion.load("potion")    # Load an item by slug.
+        >>> potion.load('potion')    # Load an item by slug.
         >>> pprint.pprint(potion.__dict__)
         {
             'description': u'Heals a monster by 50 HP.',
@@ -136,10 +149,54 @@ class Item(object):
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]
         self.target = process_targets(results["target"])
-        self.effect = self.parse_dicts(results["effects"])
-        self.conditions = self.parse_dicts(results.get("conditions", []))
+        self.effects = self.parse_effects(results["effects"])
+        self.conditions = self.parse_conditions(results.get("conditions", []))
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
+
+    def load_plugins(self, path, category):
+        """ Load classes and store for use later
+
+        If there are plugins with the same name loaded, then the
+        newest one will be used, and a debug message printed.
+
+        :param path: path to load the plugins
+        :param category: "effects" or "conditions"
+
+        :return: None
+        """
+        assert category in ("effects", "conditions")
+        logger.info("Loading Item {}...".format(category))
+
+        classes = self.load_classes_from_plugins(path, category)
+        logger.info("Found {0} Item {1}".format(len(classes), category))
+        storage = getattr(self, category)
+        storage.update(classes)
+
+    @staticmethod
+    def load_classes_from_plugins(path, category="plugin"):
+        """ Load classes using plugin system
+
+        :param path: where plugins are stored
+        :param category: optional string for debugging info
+
+        :type path: str
+        :type category: str
+
+        :rtype: dict
+        """
+        classes = dict()
+        plugins = plugin.load_directory(path)
+
+        for cls in plugin.get_available_classes(plugins):
+            name = getattr(cls, "name", None)
+            if name is None:
+                logger.error("found incomplete {}: {}".format(category, cls.__name__))
+                continue
+            classes[name] = cls
+            logger.info("loaded {}: {}".format(category, cls.name))
+
+        return classes
 
     def parse_effects(self, raw):
         """Takes raw effects list from the item's json and parses it into a form more suitable for the engine.
@@ -154,9 +211,15 @@ class Item(object):
         ret = list()
 
         for line in raw:
-            key = line.split()[0]
+            name = line.split()[0]
             params = line.split()[1].split(",")
-            ret.add(ItemEffect(key, params))
+            try:
+                effect = self.effects[name]
+            except KeyError:
+                error = 'Error: ItemEffect "{}" not implemented'.format(name)
+                logger.error(error)
+            else:
+                ret.append(effect(params))
 
         return ret
 
@@ -173,11 +236,15 @@ class Item(object):
         ret = list()
 
         for line in raw:
-            tokens = line.split()
-            context = tokens[0]
-            cond = tokens[1]
-            params = line.replace(context, "").replace(cond, "").strip().split(',')
-            ret.add(ItemCondition(context, self.user, params))
+            name = line.split()[0]
+            params = line.split()[1].split(",")
+            try:
+                condition = self.conditions[name]
+            except KeyError:
+                error = 'Error: ItemCondition "{}" not implemented'.format(name)
+                logger.error(error)
+            else:
+                ret.append(condition(params[0], self.user, params[1:]))
 
         return ret
 
@@ -195,7 +262,6 @@ class Item(object):
         """Ensures that the target meets all conditions that the
         item has on it's use.
 
-        :param user: The monster or object that is using this item.
         :param target: The monster or object that we are using this item on.
 
         :type target: Any
@@ -209,8 +275,8 @@ class Item(object):
         
         result = True
 
-        for condition,params in self.conditions:
-            result = result and (getattr(target, condition) in params)
+        for condition in self.conditions:
+            result = result and condition.test(target)
 
         return result
 
@@ -240,14 +306,9 @@ class Item(object):
         }
 
         # Loop through all the effects of this technique and execute the effect's function.
-        for effect,params in self.effect:
-            if params:
-                result = getattr(self, effect)(user, target, params)
-            else:
-                result = getattr(self, effect)(user, target)
+        for effect in self.effects:
+            result = effect.apply(target)
             meta_result.update(result)
-
-        # TODO: document how to handle items with multiple effects
 
         # If this is a consumable item, remove it from the player's inventory.
         if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
@@ -257,6 +318,7 @@ class Item(object):
                 user.inventory[self.slug]['quantity'] -= 1
 
         return meta_result
+
 
 def decode_inventory(data):
     """ Reconstruct inventory from save_data
@@ -270,7 +332,7 @@ def decode_inventory(data):
     out = {}
     for slug, quant in (data.get('inventory') or {}).items():
         item = {
-            'item': Item(slug),
+            'item': Item(slug)
         }
         if quant is None:
             item["quantity"] = 1

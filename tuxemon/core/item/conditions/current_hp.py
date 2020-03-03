@@ -29,27 +29,42 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from operator import eq, gt, lt, ge, le
+
 from tuxemon.core.item.itemcondition import ItemCondition
 
+cmp_dict = {
+    None: ge,
+    "<": lt,
+    "<=": le,
+    ">": gt,
+    ">=": ge,
+    "==": eq
+}
 
-class TypeCondition(ItemCondition):
-    """Compares the target Monster's type1 and type2 against the given types.
-    Returns true if either is equal to any of the listed types.
+
+class CurrentHitPointsCondition(ItemCondition):
+    """Compares the target Monster's current hitpoints against the given value.
+    If an integer is passed, it will compare against the number directly, if a 
+    decimal between 0.0 and 1.0 is passed it will compare the current hp against
+    the total hp.
+
+    Example: To make an item only usable if a monster is at less than full health, you
+    would use the condition "current_hp target,<,1.0"
     """
-    name = "type"
+
+    name = 'current_hp'
     valid_parameters = [
-        (str, "type1"),
-        (str, None, "type2"),
-        (str, None, "type3"),
-        (str, None, "type4"),
-        (str, None, "type5")
+        (str, 'comparison'),
+        (int, float, 'value')
     ]
 
     def test(self, target):
-        ret = False
-        if target.type1 is not None:
-            ret = any(target.type1 in p for p in self.parameters)
-        if target.type2 is not None:
-            ret = ret or any(target.type2 in p for p in self.parameters)
+        lhs = target.current_hp
+        op = cmp_dict[self.parameters.comparison]
+        if type(self.parameters.value) is float:
+            rhs = target.hp * self.parameters.value
+        else:
+            rhs = self.parameters.value
 
-        return ret
+        return op(lhs, rhs)

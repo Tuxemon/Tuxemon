@@ -42,8 +42,8 @@ import pygame
 from tuxemon.core import monster, pyganim
 from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
-from tuxemon.core.item import Item
-from tuxemon.core.item import decode_inventory, encode_inventory
+from tuxemon.core.item.item import Item
+from tuxemon.core.item.item import decode_inventory, encode_inventory
 from tuxemon.core.locale import T
 from tuxemon.core.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.monster import decode_monsters, encode_monsters
@@ -644,7 +644,7 @@ class NPC(Entity):
                 item['quantity'] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(self, item_slug),
+                    'item': Item(item_slug),
                     'quantity': amount,
                 }
         elif amount < 0:

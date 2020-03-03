@@ -33,22 +33,21 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.item.itemeffect import ItemEffect
-from tuxemon.core.item import Item
+
 
 class HealEffect(ItemEffect):
     """Heals the target by 'amount' hp.
     This is a constant if amount is an integer, a percentage of total hp if a float
 
     Examples:
-    >>> potion = Item()
-    >>> potion.load("potion")
+    >>> potion = Item('potion')
     >>> potion.parameters.amount = 0.5
     >>> potion.apply(bulbatux)
     >>> # bulbatux is healed by 50% of it's total hp
     """
-    name = "heal"
+    name = 'heal'
     valid_parameters = [
-        (int, float, "amount")
+        (int, float, 'amount')
     ]
 
     def apply(self, target):
@@ -63,4 +62,4 @@ class HealEffect(ItemEffect):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return {"success": True}
+        return {'success': True}

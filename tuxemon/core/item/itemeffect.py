@@ -36,18 +36,13 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import pprint
-import random
 from six.moves import zip_longest
 from collections import namedtuple
-from tuxemon.core import tools, prepare
-from tuxemon.core.technique import Technique
-from tuxemon.core.db import db, process_targets
-from tuxemon.core.locale import T
 from tuxemon.core.control import Control  # for type introspection
 assert Control
 
 logger = logging.getLogger(__name__)
+
 
 class ItemEffect(object):
     """ ItemEffects are executed by items.
@@ -93,14 +88,11 @@ class ItemEffect(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, game, parameters):
+    def __init__(self, parameters):
         """
 
-        :type game: tuxemon.core.control.Control
         :type parameters: list
         """
-        self.game = game
-        self.target = target
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

@@ -33,19 +33,14 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import pprint
-import random
 
 from six.moves import zip_longest
 from collections import namedtuple
-from tuxemon.core import tools, prepare
-from tuxemon.core.technique import Technique
-from tuxemon.core.db import db, process_targets
-from tuxemon.core.locale import T
 from tuxemon.core.control import Control  # for type introspection
 assert Control
 
 logger = logging.getLogger(__name__)
+
 
 class ItemCondition(object):
     """ ItemConditions are evaluated by items.
@@ -88,9 +83,6 @@ class ItemCondition(object):
     (Monster, "monster_slug")   => a Monster instance will be created
     """
     name = "GenericCondition"
-    user = None
-    target = None
-    context = ""
     valid_parameters = list()
     _param_factory = None
 
@@ -181,11 +173,10 @@ class ItemCondition(object):
             logger.error("got: {}".format(self.raw_parameters))
             raise
 
-    def test(self):
+    def test(self, target):
         """ Return True if satisfied, or False if not
 
-        :param game:
-        :param condition:
+        :param target: the target of the item's use.
         :rtype: bool
         """
         return True

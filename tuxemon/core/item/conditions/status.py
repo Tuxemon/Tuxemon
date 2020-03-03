@@ -32,24 +32,14 @@ from __future__ import unicode_literals
 from tuxemon.core.item.itemcondition import ItemCondition
 
 
-class TypeCondition(ItemCondition):
-    """Compares the target Monster's type1 and type2 against the given types.
-    Returns true if either is equal to any of the listed types.
+class StatusCondition(ItemCondition):
+    """Checks against the creature's current statuses.
+    Accepts a single parameter and returns whether it is applied.
     """
-    name = "type"
+    name = "status"
     valid_parameters = [
-        (str, "type1"),
-        (str, None, "type2"),
-        (str, None, "type3"),
-        (str, None, "type4"),
-        (str, None, "type5")
+        (str, "expected")
     ]
 
     def test(self, target):
-        ret = False
-        if target.type1 is not None:
-            ret = any(target.type1 in p for p in self.parameters)
-        if target.type2 is not None:
-            ret = ret or any(target.type2 in p for p in self.parameters)
-
-        return ret
+        return self.parameters.expected in target.status

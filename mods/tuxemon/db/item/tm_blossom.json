@@ -7,7 +7,7 @@
       "learn blossom"
     ],
     "conditions": [
-        "type1 Wood"
+        "type target,Wood"
     ],
     "power": 0,
     "sort": "utility",

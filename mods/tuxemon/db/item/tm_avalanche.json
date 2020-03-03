@@ -7,7 +7,7 @@
       "learn avalanche"
     ],
     "conditions": [
-        "type1 Earth,Water"
+        "type target,Earth,Water"
     ],
     "power": 0,
     "sort": "utility",

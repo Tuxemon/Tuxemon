@@ -4,7 +4,7 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "effects": [
-    "heal"
+    "heal 350"
   ],
   "power": 350,
   "sort": "potion",

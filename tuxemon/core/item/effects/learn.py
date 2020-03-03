@@ -29,12 +29,13 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.item.itemeffect import ItemEffect
-from tuxemon.core.item import Item
 from tuxemon.core.technique import Technique
+
 
 class LearnEffect(ItemEffect):
     """This effect teaches the target the technique in the parameters.
     """
+    name = "learn"
     valid_parameters = [
         (str, "technique")
     ]
@@ -44,4 +45,4 @@ class LearnEffect(ItemEffect):
         tech.load(self.parameters.technique)
         target.learn(tech)
 
-        return {"success":True}
+        return {"success": True}

@@ -4,7 +4,7 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "effects": [
-    "capture"
+    "capture 100"
   ],
   "power": 100,
   "sort": "utility",

@@ -86,6 +86,9 @@ class Item(object):
         self.surface = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
+        self.effects = {}
+        self.conditions = {}
+
         self.sort = ""
         self.use_item = ""
         self.use_success = ""
@@ -171,7 +174,7 @@ class Item(object):
 
         classes = self.load_classes_from_plugins(path, category)
         logger.error("Found {0} Item {1}".format(len(classes), category))
-        storage = getattr(self, category)
+        storage = getattr(Item, category)
         storage.update(classes)
 
     @staticmethod
@@ -215,7 +218,7 @@ class Item(object):
             name = line.split()[0]
             params = line.split()[1].split(",")
             try:
-                effect = self.effects[name]
+                effect = Item.effects[name]
             except KeyError:
                 error = 'Error: ItemEffect "{}" not implemented'.format(name)
                 logger.error(error)
@@ -240,7 +243,7 @@ class Item(object):
             name = line.split()[0]
             params = line.split()[1].split(",")
             try:
-                condition = self.conditions[name]
+                condition = Item.conditions[name]
             except KeyError:
                 error = 'Error: ItemCondition "{}" not implemented'.format(name)
                 logger.error(error)

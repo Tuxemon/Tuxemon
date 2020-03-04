@@ -30,7 +30,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.item.itemcondition import ItemCondition
-
+from tuxemon.core.item.item import Item
 
 class TypeCondition(ItemCondition):
     """Compares the target Monster's type1 and type2 against the given types.
@@ -39,10 +39,10 @@ class TypeCondition(ItemCondition):
     name = "type"
     valid_parameters = [
         (str, "type1"),
-        (str, None, "type2"),
-        (str, None, "type3"),
-        (str, None, "type4"),
-        (str, None, "type5")
+        ((str, None), "type2"),
+        ((str, None), "type3"),
+        ((str, None), "type4"),
+        ((str, None), "type5")
     ]
 
     def test(self, target):

@@ -33,8 +33,10 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.item.itemeffect import ItemEffect
-from tuxemon.core.item.item import Item
-from random import random
+import random
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CaptureEffect(ItemEffect):
@@ -47,14 +49,8 @@ class CaptureEffect(ItemEffect):
 
     def apply(self, target):
         # Set up variables for capture equation
-        damage_modifier = 0
         status_modifier = 0
         item_power = self.parameters.power
-
-        # Get percent of damage taken and multiply it by 10
-        if target.current_hp < target.hp:
-            total_damage = target.hp - target.current_hp
-            damage_modifier = int((float(total_damage) / target.hp) * 1000)
 
         # Check if target has any status effects
         if not target.status == "Normal":
@@ -63,11 +59,13 @@ class CaptureEffect(ItemEffect):
         # TODO: debug logging this info
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
+        catch_check = (3 * target.hp - 2 * target.current_hp) \
+            * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         shake_check = 65536 / (255 / catch_check) ** 0.1875
 
         logger.debug("--- Capture Variables ---")
-        logger.debug("(3*target.hp - 2*target.current_hp) * target.catch_rate * item_power * status_modifier / (3*target.hp)")
+        logger.debug("(3*target.hp - 2*target.current_hp) "
+                     "* target.catch_rate * item_power * status_modifier / (3*target.hp)")
 
         msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
         logger.debug(msg.format(target, item_power, status_modifier))

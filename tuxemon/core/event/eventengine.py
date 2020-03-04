@@ -30,7 +30,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os.path
 
 from tuxemon.constants import paths
 from tuxemon.core import prepare

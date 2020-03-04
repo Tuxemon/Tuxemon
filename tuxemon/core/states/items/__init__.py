@@ -249,7 +249,7 @@ class ShopMenuState(Menu):
                 return
 
             if self.buyer:
-                self.seller.give_item(self.buyer, item, quantity)
+                self.seller.give_item(self.game, self.buyer, item, quantity)
             else:
                 self.seller.alter_item_quantity(item.slug, -quantity)
             self.reload_items()

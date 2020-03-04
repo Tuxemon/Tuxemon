@@ -34,7 +34,7 @@ from __future__ import unicode_literals
 
 import logging
 
-from six.moves import zip_longest
+from tuxemon.core.tools import cast_values
 from collections import namedtuple
 from tuxemon.core.control import Control  # for type introspection
 assert Control
@@ -86,13 +86,14 @@ class ItemCondition(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, context, user, parameters):
+    def __init__(self, context, game, user, parameters):
         """
 
         :type context: str
         :type user: tuxemon.core.NPC
         :type parameters: list
         """
+        self.game = game
         self.user = user
         self.context = context
 
@@ -110,7 +111,7 @@ class ItemCondition(object):
             if self.valid_parameters:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                values = self.cast_values(parameters)
+                values = cast_values(parameters, self.valid_parameters)
                 self.parameters = self._param_factory(*values)
             else:
                 self.parameters = parameters
@@ -123,55 +124,6 @@ class ItemCondition(object):
             self.parameters = None
 
         self._done = False
-
-    def cast_values(self, parameters):
-        """ Change all the string values to the expected type
-
-        This will also check and enforce the correct parameters for actions
-
-        :param parameters:
-        :return:
-        """
-
-        # TODO: stability/testing
-        def cast(i):
-            try:
-                ve = False
-                t, v = i
-                try:
-                    for tt in t[0]:
-                        if tt is None:
-                            return None
-
-                        try:
-                            return tt(v)
-                        except ValueError:
-                            ve = True
-
-                except TypeError:
-                    if v is None:
-                        return None
-
-                    if v == '':
-                        return None
-
-                    return t[0](v)
-
-                if ve:
-                    raise ValueError
-
-            except ValueError:
-                logger.error("Invalid parameters passed:")
-                logger.error("expected: {}".format(self.valid_parameters))
-                logger.error("got: {}".format(self.raw_parameters))
-
-        try:
-            return list(map(cast, zip_longest(self.valid_parameters, parameters)))
-        except ValueError:
-            logger.error("Invalid parameters passed:")
-            logger.error("expected: {}".format(self.valid_parameters))
-            logger.error("got: {}".format(self.raw_parameters))
-            raise
 
     def test(self, target):
         """ Return True if satisfied, or False if not

@@ -35,6 +35,7 @@ import logging
 import operator
 import os.path
 import re
+from six.moves import zip_longest
 
 import pygame
 
@@ -537,3 +538,48 @@ def number_or_variable(game, value):
         except (KeyError, ValueError, TypeError):
             logger.error("invalid number or game variable {}".format(value))
             raise ValueError
+
+
+def cast_values(parameters, valid_parameters):
+    """ Change all the string values to the expected type
+
+    This will also check and enforce the correct parameters for actions
+
+    :param parameters:
+    :param valid_parameters:
+    :return:
+    """
+
+    # TODO: stability/testing
+    def cast(i):
+        ve = False
+        t, v = i
+        try:
+            for tt in t[0]:
+                if tt is None:
+                    return None
+
+                try:
+                    return tt(v)
+                except ValueError:
+                    ve = True
+
+        except TypeError:
+            if v is None:
+                return None
+
+            if v == '':
+                return None
+
+            return t[0](v)
+
+        if ve:
+            raise ValueError
+
+    try:
+        return list(map(cast, zip_longest(valid_parameters, parameters)))
+    except ValueError:
+        logger.error("Invalid parameters passed:")
+        logger.error("expected: {}".format(valid_parameters))
+        logger.error("got: {}".format(parameters))
+        raise

@@ -24,7 +24,7 @@ class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem):
         save_data = save.load(self.selected_index + 1)
         if save_data and "error" not in save_data:
-            self.game.player1.set_state(save_data)
+            self.game.player1.set_state(self.game, save_data)
 
             old_world = self.game.get_state_name("WorldState")
             if old_world is None:

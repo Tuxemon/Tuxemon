@@ -71,9 +71,10 @@ class Item(object):
     effects = dict()
     conditions = dict()
 
-    def __init__(self, slug=None):
+    def __init__(self, game, user, slug=None):
 
-        self.game = None
+        self.game = game
+        self.user = user
         self.slug = slug
         self.user = None
         self.name = "None"
@@ -94,7 +95,7 @@ class Item(object):
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects:
-            logger.info("Loading Item Plugins...")
+            logger.error("Loading Item Plugins...")
             self.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
             self.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
 
@@ -166,10 +167,10 @@ class Item(object):
         :return: None
         """
         assert category in ("effects", "conditions")
-        logger.info("Loading Item {}...".format(category))
+        logger.error("Loading Item {}...".format(category))
 
         classes = self.load_classes_from_plugins(path, category)
-        logger.info("Found {0} Item {1}".format(len(classes), category))
+        logger.error("Found {0} Item {1}".format(len(classes), category))
         storage = getattr(self, category)
         storage.update(classes)
 
@@ -219,7 +220,7 @@ class Item(object):
                 error = 'Error: ItemEffect "{}" not implemented'.format(name)
                 logger.error(error)
             else:
-                ret.append(effect(params))
+                ret.append(effect(self.game, self.user, params))
 
         return ret
 
@@ -244,7 +245,7 @@ class Item(object):
                 error = 'Error: ItemCondition "{}" not implemented'.format(name)
                 logger.error(error)
             else:
-                ret.append(condition(params[0], self.user, params[1:]))
+                ret.append(condition(params[0], self.game, self.user, params[1:]))
 
         return ret
 
@@ -320,9 +321,11 @@ class Item(object):
         return meta_result
 
 
-def decode_inventory(data):
+def decode_inventory(game, owner, data):
     """ Reconstruct inventory from save_data
 
+    :param game:
+    :param owner:
     :param data: save data
     :type data: Dictionary
 
@@ -332,7 +335,7 @@ def decode_inventory(data):
     out = {}
     for slug, quant in (data.get('inventory') or {}).items():
         item = {
-            'item': Item(slug)
+            'item': Item(game, owner, slug)
         }
         if quant is None:
             item["quantity"] = 1

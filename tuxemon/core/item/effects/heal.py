@@ -47,7 +47,7 @@ class HealEffect(ItemEffect):
     """
     name = 'heal'
     valid_parameters = [
-        (int, float, 'amount')
+        ((int, float), 'amount')
     ]
 
     def apply(self, target):

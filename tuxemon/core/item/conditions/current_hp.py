@@ -56,7 +56,7 @@ class CurrentHitPointsCondition(ItemCondition):
     name = 'current_hp'
     valid_parameters = [
         (str, 'comparison'),
-        (int, float, 'value')
+        ((int, float), 'value')
     ]
 
     def test(self, target):

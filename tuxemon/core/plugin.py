@@ -66,7 +66,7 @@ class PluginManager(object):
         self.modules = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
-        self.include_patterns = ["core.event.actions", "core.event.conditions"]
+        self.include_patterns = ["core.event.actions", "core.event.conditions", "core.item.effects", "core.item.conditions"]
 
     def setPluginPlaces(self, plugin_folders):
         self.folders = plugin_folders

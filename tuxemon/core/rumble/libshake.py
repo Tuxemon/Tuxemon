@@ -77,7 +77,7 @@ class LibShakeRumble(Rumble):
             direction=16384):
         # Target -1 will target all available devices
         if target == -1:
-            for i in xrange(self.libShake.Shake_NumOfDevices()):
+            for i in range(self.libShake.Shake_NumOfDevices()):
                 self._start_thread(i, period, magnitude, length, delay, attack_length,
                                    attack_level, fade_length, fade_level, direction)
         else:

@@ -7,7 +7,7 @@ from ctypes import *
 from threading import Thread
 from time import sleep
 
-from tuxemon.core.tools import Rumble
+from tuxemon.core.rumble.tools import Rumble
 
 Shake_EffectType = c_int
 SHAKE_EFFECT_RUMBLE = Shake_EffectType(0)

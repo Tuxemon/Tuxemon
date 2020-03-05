@@ -71,12 +71,11 @@ class Item(object):
     effects = dict()
     conditions = dict()
 
-    def __init__(self, game, user, slug=None):
+    def __init__(self, game, user, slug):
 
         self.game = game
         self.user = user
         self.slug = slug
-        self.user = None
         self.name = "None"
         self.description = "None"
         self.images = []
@@ -98,9 +97,8 @@ class Item(object):
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects:
-            logger.error("Loading Item Plugins...")
-            self.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
-            self.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
+            Item.effects = plugin.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
+            Item.conditions = plugin.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
 
         # If a slug of the item was provided, auto-load it from the item database.
         if slug:
@@ -157,50 +155,6 @@ class Item(object):
         self.conditions = self.parse_conditions(results.get("conditions", []))
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
-
-    def load_plugins(self, path, category):
-        """ Load classes and store for use later
-
-        If there are plugins with the same name loaded, then the
-        newest one will be used, and a debug message printed.
-
-        :param path: path to load the plugins
-        :param category: "effects" or "conditions"
-
-        :return: None
-        """
-        assert category in ("effects", "conditions")
-        logger.error("Loading Item {}...".format(category))
-
-        classes = self.load_classes_from_plugins(path, category)
-        logger.error("Found {0} Item {1}".format(len(classes), category))
-        storage = getattr(Item, category)
-        storage.update(classes)
-
-    @staticmethod
-    def load_classes_from_plugins(path, category="plugin"):
-        """ Load classes using plugin system
-
-        :param path: where plugins are stored
-        :param category: optional string for debugging info
-
-        :type path: str
-        :type category: str
-
-        :rtype: dict
-        """
-        classes = dict()
-        plugins = plugin.load_directory(path)
-
-        for cls in plugin.get_available_classes(plugins):
-            name = getattr(cls, "name", None)
-            if name is None:
-                logger.error("found incomplete {}: {}".format(category, cls.__name__))
-                continue
-            classes[name] = cls
-            logger.info("loaded {}: {}".format(category, cls.name))
-
-        return classes
 
     def parse_effects(self, raw):
         """Takes raw effects list from the item's json and parses it into a form more suitable for the engine.

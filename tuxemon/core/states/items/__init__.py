@@ -89,12 +89,12 @@ class ItemMenuState(Menu):
         def use_item(menu_item):
             player = self.game.player1
             monster = menu_item.game_object
-            
+
             # item must be used before state is popped.
             # don't try to combine with "if result..." condition below
             result = item.use(player, monster)
-            self.game.pop_state()    # pop the monster screen
-            self.game.pop_state()    # pop the item screen
+            self.game.pop_state()  # pop the monster screen
+            self.game.pop_state()  # pop the item screen
 
             msg_type = 'use_success' if result['success'] else 'use_failure'
             template = getattr(item, msg_type)
@@ -292,7 +292,7 @@ class ShopMenuState(Menu):
         inventory = [
             item
             for item in self.seller.inventory.values()
-            if not(self.seller.isplayer and item['item'].sort == "quest")
+            if not (self.seller.isplayer and item['item'].sort == "quest")
         ]
 
         # required because the max() below will fail if inv empty
@@ -313,7 +313,7 @@ class ShopMenuState(Menu):
             else:
                 label = label_format_1
             formatted_name = label(obj.name, properties['quantity'],
-                                          name_len=name_len, count_len=count_len)
+                                   name_len=name_len, count_len=count_len)
             image = self.shadow_text(formatted_name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 

@@ -93,6 +93,7 @@ class ItemCondition(object):
         :type user: tuxemon.core.NPC
         :type parameters: list
         """
+
         self.game = game
         self.user = user
         self.context = context

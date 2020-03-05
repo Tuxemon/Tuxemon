@@ -37,6 +37,7 @@ from __future__ import unicode_literals
 
 import logging
 from tuxemon.core.tools import cast_values
+from tuxemon.core.npc import NPC
 from collections import namedtuple
 from tuxemon.core.control import Control  # for type introspection
 assert Control
@@ -88,11 +89,13 @@ class ItemEffect(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, game, user, parameters):
+    def __init__(self, game, user: NPC, parameters):
         """
 
+        :type user: NPC
         :type parameters: list
         """
+
         self.game = game
         self.user = user
 

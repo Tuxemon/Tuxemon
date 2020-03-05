@@ -181,6 +181,7 @@ class NPC(Entity):
     def set_state(self, game, save_data):
         """Recreates npc from saved data
 
+        :param game:
         :param save_data: Data used to recreate the player
         :type save_data: Dictionary
 
@@ -188,6 +189,7 @@ class NPC(Entity):
         :returns: None
 
         """
+
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
         self.inventory = decode_inventory(game, self, save_data)
@@ -472,7 +474,6 @@ class NPC(Entity):
 
             else:
                 # give up and wait until the target is clear again
-                #logger.error('{} waiting because way is blocked!'.format(self.slug))
                 pass
 
     def check_waypoint(self):

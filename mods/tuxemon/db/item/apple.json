@@ -6,6 +6,10 @@
   "effects": [
     "heal 20"
   ],
+  "conditions": [
+    "current_hp target,<,1.0",
+    "current_hp target,>,0"
+  ],
   "power": 20,
   "sort": "food",
   "sprite": "gfx/items/apple.png",

@@ -5,8 +5,9 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core import save
+from tuxemon.core import save, prepare
 from .save_menu import SaveMenuState
+from tuxemon.core.player import Player
 
 logger = logging.getLogger(__name__)
 

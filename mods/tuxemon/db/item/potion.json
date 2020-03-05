@@ -6,6 +6,10 @@
   "effects": [
     "heal 50"
   ],
+  "conditions": [
+    "current_hp target,<,1.0",
+    "current_hp target,>,0"
+  ],
   "power": 50,
   "sort": "potion",
   "sprite": "gfx/items/potion.png",

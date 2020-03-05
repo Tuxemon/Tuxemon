@@ -175,3 +175,28 @@ def get_available_classes(plugin_manager):
         classes.append(plugin.plugin_object)
 
     return classes
+
+
+def load_plugins(path, category="plugins"):
+    """ Load classes using plugin system
+
+    :param path: where plugins are stored
+    :param category: optional string for debugging info
+
+    :type path: str
+    :type category: str
+
+    :rtype: dict
+    """
+    classes = dict()
+    plugins = load_directory(path)
+
+    for cls in get_available_classes(plugins):
+        name = getattr(cls, "name", None)
+        if name is None:
+            logger.error("found incomplete {}: {}".format(category, cls.__name__))
+            continue
+        classes[name] = cls
+        logger.info("loaded {}: {}".format(category, cls.name))
+
+    return classes

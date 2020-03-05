@@ -6,6 +6,10 @@
   "effects": [
     "heal 350"
   ],
+  "conditions": [
+    "current_hp target,<,1.0",
+    "current_hp target,>,0"
+  ],
   "power": 350,
   "sort": "potion",
   "sprite": "gfx/items/imperial_potion.png",

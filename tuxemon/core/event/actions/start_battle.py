@@ -27,7 +27,7 @@ from __future__ import unicode_literals
 import logging
 
 from tuxemon.core import tools
-from tuxemon.core import db
+from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.platform import mixer
@@ -77,12 +77,10 @@ class StartBattleAction(EventAction):
         npc.load_party()
 
         # Lookup the environment
-        env_db = db.JSONDatabase()
-        env_db.load("environment")
         env_slug = "grass"
         if 'environment' in player.game_variables:
             env_slug = player.game_variables['environment']
-        env = env_db.lookup(env_slug, table="environment")
+        env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         logger.debug("Starting battle!")
@@ -90,12 +88,7 @@ class StartBattleAction(EventAction):
 
         # Start some music!
         filename = env['battle_music']
-        mixer.music.load(tools.transform_resource_filename('music', filename))
-        mixer.music.play(-1)
-        if self.game.current_music["song"]:
-            self.game.current_music["previoussong"] = self.game.current_music["song"]
-        self.game.current_music["status"] = "playing"
-        self.game.current_music["song"] = filename
+        self.game.event_engine.execute_action("play_music", [filename])
 
     def update(self):
         if self.game.get_state_name("CombatState") is None:

@@ -38,9 +38,11 @@ import re
 
 import pygame
 
+import tuxemon.core.monster
 import tuxemon.core.sprite
 from tuxemon.core import prepare
 from tuxemon.core import pyganim
+from tuxemon.core.db import db
 from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
@@ -161,6 +163,33 @@ def load_sprite(filename, **rect_kwargs):
     """
     sprite = tuxemon.core.sprite.Sprite()
     sprite.image = load_and_scale(filename)
+    sprite.rect = sprite.image.get_rect(**rect_kwargs)
+    return sprite
+
+
+def load_animated_sprite(filenames, delay, **rect_kwargs):
+    """ Load a set of images and return an animated pygame sprite
+
+    Image name will be transformed and converted
+    Rect attribute will be set
+
+    Any keyword arguments will be passed to the get_rect method
+    of the image for positioning the rect.
+
+    :param filenames: Filenames to load
+    :param int delay: Frame interval; time between each frame
+    :rtype: core.sprite.Sprite
+    """
+    anim = []
+    for filename in filenames:
+        if os.path.exists(filename):
+            image = load_and_scale(filename)
+            anim.append((image, delay))
+
+    tech = pyganim.PygAnimation(anim, True)
+    tech.play()
+    sprite = tuxemon.core.sprite.Sprite()
+    sprite.image = tech
     sprite.rect = sprite.image.get_rect(**rect_kwargs)
     return sprite
 
@@ -329,13 +358,11 @@ def check_parameters(parameters, required=0, exit=True):
         return True
 
 
-def load_sound(filename):
-    """ Load a sound from disk
+def load_sound(slug):
+    """ Load a sound from disk, identified by it's slug in the db
 
-    The required path will be appended to the filename
-
-    :param filename: filename to load
-    :type filename: basestring
+    :param slug: slug for the file record to load
+    :type slug: String
     :rtype: core.platform.mixer.Sound
     """
 
@@ -343,7 +370,9 @@ def load_sound(filename):
         def play(self):
             pass
 
-    filename = transform_resource_filename(filename)
+    # get the filename from the db
+    filename = db.lookup_file("sounds", slug)
+    filename = transform_resource_filename("sounds", filename)
 
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
@@ -368,6 +397,38 @@ def load_sound(filename):
         return DummySound()
 
 
+def get_avatar(game, avatar):
+    """Gets the avatar sprite of a monster or NPC.
+
+    Used to parse the string values for dialog event actions
+    If avatar is a number, we're referring to a monster slot in the player's party
+    If avatar is a string, we're referring to a monster by name
+    TODO: If the monster name isn't found, we're referring to an NPC on the map
+
+    :param avatar: the avatar to be used
+    :type avatar: string
+    :rtype: Optional[pygame.Surface]
+    :returns: The surface of the monster or NPC avatar sprite
+    """
+    if avatar and avatar.isdigit():
+        try:
+            player = game.player1
+            slot = int(avatar)
+            return player.monsters[slot].get_sprite("menu")
+        except IndexError:
+            logger.debug("invalid avatar monster slot")
+            return None
+    else:
+        try:
+            avatar_monster = tuxemon.core.monster.Monster()
+            avatar_monster.load_from_db(avatar)
+            avatar_monster.flairs = {}  # Don't use random flair graphics
+            return avatar_monster.get_sprite("menu")
+        except KeyError:
+            logger.debug("invalid avatar monster name")
+            return None
+
+
 def calc_dialog_rect(screen_rect):
     """ Return a rect that is the area for a dialog box on the screen
 
@@ -385,16 +446,18 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text, menu=None):
+def open_dialog(game, text, avatar=None, menu=None):
     """ Open a dialog with the standard window size
 
     :param game:
     :param text: list of strings
+    :param avatar: optional avatar sprite
+    :param menu: optional menu object
 
     :rtype: core.states.dialog.DialogState
     """
     rect = calc_dialog_rect(game.screen.get_rect())
-    return game.push_state("DialogState", text=text, rect=rect, menu=menu)
+    return game.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
 
 
 def nearest(l):
@@ -453,3 +516,25 @@ def scaled_image_loader(filename, colorkey, **kwargs):
         return tile
 
     return load_image
+
+
+def number_or_variable(game, value):
+    """ Returns a numeric game variable by its name
+    If value is already a number, convert from string to float and return that
+
+    :param game:
+    :param value: Union[str, float, int]
+
+    :rtype: float
+
+    :raises: ValueError
+    """
+    player = game.player1
+    if value.isdigit():
+        return float(value)
+    else:
+        try:
+            return float(player.game_variables[value])
+        except (KeyError, ValueError, TypeError):
+            logger.error("invalid number or game variable {}".format(value))
+            raise ValueError

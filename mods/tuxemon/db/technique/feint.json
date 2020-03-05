@@ -11,7 +11,7 @@
   "power": 0,
   "range": "special",
   "recharge": 1,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_feint",
   "slug": "feint",
   "sort": "damage",
   "target": {

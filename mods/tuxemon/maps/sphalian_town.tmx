@@ -48,8 +48,8 @@
   </object>
   <object id="11" name="Music playing" type="init" x="32" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music Digital_Native.ogg"/>
-    <property name="cond1" value="not music_playing Digital_Native.ogg"/>
+    <property name="act1" value="play_music music_sphalian_theme"/>
+    <property name="cond1" value="not music_playing music_sphalian_theme"/>
    </properties>
   </object>
   <object id="21" name="Buddha Mountain" type="event" x="352" y="208" width="16" height="48">

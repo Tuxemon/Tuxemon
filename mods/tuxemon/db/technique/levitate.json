@@ -11,7 +11,7 @@
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "levitate",
   "sort": "damage",
   "target": {

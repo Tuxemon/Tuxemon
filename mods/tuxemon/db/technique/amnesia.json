@@ -13,7 +13,7 @@
   "power": 2.25,
   "range": "reach",
   "recharge": 2,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_shine",
   "slug": "amnesia",
   "sort": "damage",
   "target": {

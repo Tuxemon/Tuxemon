@@ -13,7 +13,7 @@
   "power": 1.25,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "spray",
   "sort": "damage",
   "target": {

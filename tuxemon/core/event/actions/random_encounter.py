@@ -28,7 +28,8 @@ import logging
 import random
 
 from tuxemon.core import tools
-from tuxemon.core import ai, db, monster
+from tuxemon.core import ai, monster, prepare
+from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.npc import NPC
@@ -60,18 +61,14 @@ class RandomEncounterAction(EventAction):
         if not check_battle_legal(player):
             return False
 
-        monsters = db.JSONDatabase()
-        monsters.load("encounter")
-
         slug = self.parameters.encounter_slug
-        encounters = monsters.database['encounter'][slug]['monsters']
+        encounters = db.database['encounter'][slug]['monsters']
         encounter = _choose_encounter(encounters, self.parameters.total_prob)
 
         # If a random encounter was successfully rolled, look up the monster and start the
         # battle.
         if encounter:
             logger.info("Starting random encounter!")
-            monsters.load("monster")
 
             # Stop movement and keypress on the server.
             if self.game.isclient or self.game.ishost:
@@ -80,12 +77,10 @@ class RandomEncounterAction(EventAction):
             npc = _create_monster_npc(encounter)
 
             # Lookup the environment
-            env_db = db.JSONDatabase()
-            env_db.load("environment")
             env_slug = "grass"
             if 'environment' in player.game_variables:
                 env_slug = player.game_variables['environment']
-            env = env_db.lookup(env_slug, table="environment")
+            env = db.lookup(env_slug, table="environment")
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
@@ -101,12 +96,7 @@ class RandomEncounterAction(EventAction):
 
             # Start some music!
             filename = env['battle_music']
-            mixer.music.load(tools.transform_resource_filename('music', filename))
-            mixer.music.play(-1)
-            if self.game.current_music["song"]:
-                self.game.current_music["previoussong"] = self.game.current_music["song"]
-            self.game.current_music["status"] = "playing"
-            self.game.current_music["song"] = filename
+            self.game.event_engine.execute_action("play_music", [filename])
 
     def update(self):
         if self.game.get_state_name("CombatState") is None:
@@ -121,6 +111,9 @@ def _choose_encounter(encounters, total_prob):
         scale = float(total_prob) / current_total
     else:
         scale = 1
+
+    scale *= prepare.CONFIG.encounter_rate_modifier
+    
     for encounter in encounters:
         total += encounter['encounter_rate'] * scale
         if total >= roll:

@@ -10,7 +10,7 @@
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="1042">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,43,46,0.3"/>
+    <property name="act1" value="transition_teleport taba_town.tmx,43,46,0.3"/>
     <property name="act2" value="player_face down"/>
    </properties>
   </tile>
@@ -47,7 +47,7 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="11" name="Teleport to map1" type="event" x="144" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,44,53,0.3"/>
+    <property name="act1" value="transition_teleport taba_town.tmx,44,53,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at 8,17"/>
     <property name="cond2" value="is player_facing down"/>

@@ -5,7 +5,7 @@
   "success_trans": "combat_state_recover_success",
   "failure_trans": "combat_state_recover_failure",
   "animation": "greendrip",
-  "sfx": "bite1.ogg",
+  "sfx": "sfx_bite",
   "icon": "gfx/ui/icons/status/recover-icon.png",
   "category": "recover",
   "sort": "meta",

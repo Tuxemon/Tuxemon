@@ -13,7 +13,7 @@
   "power": 1.25,
   "range": "touch",
   "recharge": 1,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_blaster",
   "slug": "sand_spray",
   "sort": "damage",
   "target": {

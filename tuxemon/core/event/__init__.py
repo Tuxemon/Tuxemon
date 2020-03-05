@@ -42,11 +42,13 @@ condition_fields = [
     "y",
     "width",
     "height",
-    "operator"]
+    "operator",
+    "name"]
 
 action_fields = [
     "type",
-    "parameters"]
+    "parameters",
+    "name"]
 
 event_fields = [
     "id",

@@ -20,15 +20,15 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="2" type="event" x="112" y="192" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,40,11,0.3"/>
+    <property name="act1" value="transition_teleport taba_town.tmx,40,11,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
   <object id="10" name="Play Music" type="event" x="16" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music 488524_Purple---8-bit.ogg"/>
-    <property name="cond1" value="not music_playing 488524_Purple---8-bit.ogg"/>
+    <property name="act1" value="play_music music_gadget_store"/>
+    <property name="cond1" value="not music_playing music_gadget_store"/>
    </properties>
   </object>
   <object id="11" name="Player Spawn" type="event" x="128" y="160" width="16" height="16"/>

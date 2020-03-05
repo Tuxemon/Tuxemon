@@ -112,8 +112,8 @@
  <objectgroup color="#ffff00" name="Events">
   <object id="36" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_mysticIsle.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_mysticIsle.ogg"/>
+    <property name="act1" value="play_music music_mystic_island"/>
+    <property name="cond1" value="not music_playing music_mystic_island"/>
    </properties>
   </object>
   <object id="37" name="Teleport to Cotton Town" type="event" x="0" y="112" width="16" height="16">

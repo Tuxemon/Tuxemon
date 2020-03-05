@@ -38,8 +38,8 @@ import logging
 import pygame
 from six.moves import map as imap
 
-from tuxemon.core import prepare, state
-from tuxemon.core import networking
+from tuxemon.core import prepare, state, networking
+from tuxemon.core.db import db
 from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
 from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.tools import nearest
@@ -581,7 +581,7 @@ class WorldState(state.State):
 
         # does the tile define continue movements?
         try:
-            return [tuple(dirs2[tile['continue']] + position)]
+            return [tuple(dirs2[tile["continue"]] + position)]
         except KeyError:
             pass
 
@@ -617,14 +617,13 @@ class WorldState(state.State):
         if skip_nodes is None:
             skip_nodes = set()
 
-        # if there are explicit way to exit this position use that
-        # information only and do not check surrounding tiles.
+        # if there are explicit way to exit this position use that information,
         # handles 'continue' and 'exits'
         tile_data = collision_map.get(position)
         if tile_data:
             exits = self.get_explicit_tile_exits(position, tile_data, skip_nodes)
-            if exits:
-                return exits
+        else:
+            exits = None
 
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
@@ -634,12 +633,17 @@ class WorldState(state.State):
                 ("up", (position[0], position[1] - 1)),
                 ("left", (position[0] - 1, position[1])),
         ):
+            # if exits are defined make sure the neighbor is present there
+            if exits and not neighbor in exits:
+                continue
+
+            # check if the neighbor region is present in skipped nodes
             if neighbor in skip_nodes:
                 continue
 
             # We only need to check the perimeter,
             # as there is no way to get further out of bounds
-            if position[0] in self.invalid_x or position[1] in self.invalid_y:
+            if neighbor[0] in self.invalid_x or neighbor[1] in self.invalid_y:
                 continue
 
             # check to see if this tile is separated by a wall
@@ -660,7 +664,7 @@ class WorldState(state.State):
                     continue
 
                 try:
-                    if pairs[direction] not in tile_data['enter']:
+                    if pairs[direction] not in tile_data["enter"]:
                         continue
                 except KeyError:
                     continue
@@ -919,15 +923,10 @@ class WorldState(state.State):
         self.map_size = map_data["map_size"]
 
         # The first coordinates that are out of bounds.
-        self.invalid_x = (-1, self.map_size[0] + 1)
-        self.invalid_y = (-1, self.map_size[1] + 1)
+        self.invalid_x = (-1, self.map_size[0])
+        self.invalid_y = (-1, self.map_size[1])
 
-        # TODO: remove this monkey [patching!] business for the main control/game
-        self.game.events = map_data["events"]
-        self.game.inits = map_data["inits"]
-        self.game.interacts = map_data["interacts"]
-        self.game.event_engine.reset()
-        self.game.event_engine.current_map = map_data
+        self.game.load_map(map_data)
 
         # Clear out any existing NPCs
         self.npcs = {}

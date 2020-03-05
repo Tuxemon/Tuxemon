@@ -90,8 +90,8 @@
   </object>
   <object id="18" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="act1" value="play_music music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
   <object id="19" name="Player Spawn" type="event" x="32" y="240" width="16" height="16"/>

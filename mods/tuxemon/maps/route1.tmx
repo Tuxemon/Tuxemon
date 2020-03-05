@@ -83,14 +83,14 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="23" name="Teleport to map1 (upper)" type="event" x="736" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport map1.tmx,12,11"/>
+    <property name="act1" value="teleport taba_town.tmx,12,11"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
   <object id="25" name="Teleport to map1 (lower)" type="event" x="736" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport map1.tmx,12,12"/>
+    <property name="act1" value="teleport taba_town.tmx,12,12"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>

@@ -1,4 +1,4 @@
-﻿Tuxemon
+Tuxemon
 =========
 
 Copyright (C) 2017 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
@@ -177,6 +177,8 @@ is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=
 * ["Pacheesi tiles"](https://wiki.tuxemon.org/index.php?title=File:Pacheesi_Tiles.png) by Nikkita31 and adapted by Sanglorian are under CC0.
 
 * ["Superpowers Assets Ninja Tilesheet"](https://wiki.tuxemon.org/index.php?title=File:Superpowers_Tilesheet.png) by Superpower Asset Packs is under CC0.
+
+* ["Updated Ground Tiles"](https://wiki.tuxemon.org/index.php?title=File:Updated_ground_tiles_by_rubberduck.png) by rubberduck, based on original tiles by Buch, commissioned by luke83 (changes and additions by luke83 and Past the Future), and original tiles by George_.
 
 ### Tuxemon
 

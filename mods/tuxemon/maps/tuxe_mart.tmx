@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="62">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="66">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -14,27 +14,27 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBg4YEkGhgEXMjAM+JOBYUCPDDxY9JJizmBxM731DgQAAOfXHN8=
+   eAFjYBg4YAm0mlQMc60LkEEqhun1BzJIxTC9ekAGqXiw6AW5g1i3DxY3E+tekDoYIEUPTC1M70DQAOfXHN8=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5gJmVdD0dLAwM7UB8l4V8e2mhtxbol9tAuXo8frpJhr3EmEsuoKXZ2ACdrCEZAAA8MApU
+   eAFjYBi5gJmVdL93sDAwtAPxXSAmF9BCby3QL7eBbqrH46ebZLiZGHPJDQdamo3NTXiCBptyuokBADwwClQ=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF5IBw1oHRu4GFfL2bKdA7CmgHAAF2AiQ=
+   eAFjYBgF5IRAOCs5uiB6KNG7gYV8ezdToJd8W0d1EgoBAAF2AiQ=
   </data>
  </layer>
  <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwVsZGFg2ATEm1loYy4tAK3cPJIAACPLBbA=
+   eAFjYBgFgyUENrIwMGwC4s1ATE0AM5eaZsLMgplNbTfDzB8JNAAjywWw
   </data>
  </layer>
  <layer id="5" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwUcYoXgg6yk6z3DCsGnydBLKTjMCsHkgLOsEDySAQBcNgf7
+   eAFjYBgFgyUEDrEyMIDwQSAmFZwB6gHh02ToJdUudPWHgXaCMDngLFAfCI9kAABcNgf7
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collision">
@@ -50,17 +50,16 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport map1.tmx,30,12,0.3"/>
+    <property name="act1" value="transition_teleport taba_town.tmx,30,12,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="27" name="Receive capture device" type="event" x="64" y="112" width="16" height="16">
+  <object id="27" name="open shop" type="event" x="48" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="open_shop tuxemart_keeper"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="37" name="Talk to the professor" type="event" x="112" y="128" width="16" height="16">
@@ -122,7 +121,7 @@
     <property name="cond1" value="is variable_set tuxchoice:fruitera"/>
    </properties>
   </object>
-  <object id="56" name="employee" type="event" x="32" y="176" width="16" height="16">
+  <object id="56" name="employee" type="event" x="32" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc tuxemart_keeper,2,7,tuxemartemployee,stand"/>
     <property name="act2" value="npc_face tuxemart_keeper,right"/>
@@ -132,8 +131,8 @@
   </object>
   <object id="57" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_royalCourt_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
   <object id="59" name="yespls" type="event" x="112" y="128" width="16" height="16">
@@ -162,6 +161,27 @@
     <property name="act6" value="translated_dialog_choice hydrone:fruitera:rockitten,tuxchoice"/>
     <property name="cond1" value="is variable_set twocanplay:go"/>
     <property name="cond2" value="not variable_set tuxchoice:end"/>
+   </properties>
+  </object>
+  <object id="62" name="potions" type="event" x="144" y="112" width="48" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog potions_in_shop"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="64" name="capture devices" type="event" x="160" y="160" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog capture_devices_in_shop"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="65" name="capture devices" type="event" x="48" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cash_register"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

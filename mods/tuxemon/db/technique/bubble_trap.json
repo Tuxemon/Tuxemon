@@ -13,7 +13,7 @@
   "power": 2.25,
   "range": "reach",
   "recharge": 3,
-  "sfx": "blaster1.ogg",
+  "sfx": "sfx_bubbles",
   "slug": "bubble_trap",
   "sort": "damage",
   "target": {

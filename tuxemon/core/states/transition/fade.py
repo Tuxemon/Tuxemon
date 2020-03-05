@@ -57,10 +57,7 @@ class FadeOutTransition(FadeTransitionBase):
 
     def shutdown(self):
         if self.game.current_music["previoussong"]:
-            mixer.music.load(prepare.fetch("music", self.game.current_music["previoussong"]))
-            mixer.music.play(-1)
-            self.game.current_music["status"] = "playing"
-            self.game.current_music["song"] = self.game.current_music["previoussong"]
+            self.game.event_engine.execute_action("play_music", [self.game.current_music["previoussong"]])
             self.game.current_music["previoussong"] = None
         self.game.pop_state(self.caller)
 

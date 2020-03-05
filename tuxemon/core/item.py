@@ -39,18 +39,12 @@ import logging
 import pprint
 import random
 
-from tuxemon.core import db, tools
+from tuxemon.core import tools
+from tuxemon.core import prepare
+from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
-
-# Load the monster database
-items_db = db.JSONDatabase()
-items_db.load("item")
-
-# Load the inventory database
-inventory_db = db.JSONDatabase()
-inventory_db.load("inventory")
 
 
 class Item(object):
@@ -119,7 +113,7 @@ class Item(object):
         }
         """
 
-        results = items_db.lookup(slug, table="item")
+        results = db.lookup(slug, table="item")
 
         self.slug = results["slug"]                                         # short English identifier
         self.name = T.translate(self.slug)                                  # translated name
@@ -136,7 +130,7 @@ class Item(object):
         self.power = results["power"]
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]
-        self.target = db.process_targets(results["target"])
+        self.target = process_targets(results["target"])
         self.effect = results["effects"]
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
@@ -185,7 +179,7 @@ class Item(object):
         # TODO: document how to handle items with multiple effects
 
         # If this is a consumable item, remove it from the player's inventory.
-        if meta_result["success"] and self.type == "Consumable":
+        if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
             if user.inventory[self.slug]['quantity'] <= 1:
                 del user.inventory[self.slug]
             else:

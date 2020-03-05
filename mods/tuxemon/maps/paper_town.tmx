@@ -231,7 +231,7 @@
   </object>
   <object id="170" name="Teleport to Protagonist House" type="event" x="496" y="96">
    <properties>
-    <property name="act1" value="transition_teleport downstairs_test.tmx,5,7,0.3"/>
+    <property name="act1" value="transition_teleport player_house_downstairs.tmx,5,7,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
@@ -296,8 +296,8 @@
   </object>
   <object id="191" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
   <object id="197" name="Teleport to Daycare" type="event" x="336" y="64" width="16" height="16">

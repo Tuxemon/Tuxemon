@@ -4,7 +4,7 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "animation": null,
-  "sfx": "faint.ogg",
+  "sfx": "sfx_faint",
   "icon": "",
   "category": "faint",
   "sort": "meta",

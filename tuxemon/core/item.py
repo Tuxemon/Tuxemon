@@ -213,7 +213,6 @@ class Item(object):
             return {"success": False}
 
         # don't heal if fainted
-        print(check_status(target, 'status_faint'))
         if check_status(target, 'status_faint'):
             return {"success": False}
 

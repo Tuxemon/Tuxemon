@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="46" height="53" tilewidth="16" tileheight="16" nextobjectid="107">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="46" height="53" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="107">
  <tileset firstgid="1" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
   <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
  </tileset>
@@ -12,38 +12,38 @@
  <tileset firstgid="3241" name="updated_ground_tiles_by_rubberduck" tilewidth="16" tileheight="16" tilecount="1369" columns="37">
   <image source="../gfx/tilesets/updated_ground_tiles_by_rubberduck.png" width="592" height="592"/>
  </tileset>
- <tileset firstgid="4610" name="People" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+ <tileset firstgid="4610" name="People" tilewidth="16" tileheight="16" tilecount="0" columns="5">
   <image source="../../../../tuxemon/Tuxemon-development/tuxemon/resources/gfx/tilesets/People.png" width="80" height="32"/>
  </tileset>
- <tileset firstgid="4620" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="4610" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="0" columns="40">
   <image source="../../../../tuxemon/Tuxemon-development/tuxemon/resources/gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
  </tileset>
- <layer name="Lower_1" width="46" height="53">
+ <layer id="1" name="Lower_1" width="46" height="53">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="Lower_2" width="46" height="53">
+ <layer id="2" name="Lower_2" width="46" height="53">
   <data encoding="base64" compression="zlib">
-   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
+   eAHtmLluFEEQhke+AHGKiFNyaDBEJCYEm2eAJ0BEQII4JCRijhQhsIkBCXMIAkCQEGAbCZCdAzKPwCFC/t87v7ZUdPXO7K7XtqClcnX3dFd9XV3dM+ui+F/+1Qgc2FIUkrUSg/VgXitFsaU+uIq4X28qisHNRUE9AG2ll7GV35FtRTGxtSFvwKTSX7Kp7yueiX0fnlFGSmH/DyfTxpZsdqqZf/S7n37BPV5yi1+afsTPWJOdc5bmlVpr8Uzfl4lb/m+Cuw/Sb/iPYR0UrYd1FnJzvWRlHn+B5np6VRbh7yXkFYT8ZBE/15ASsol7pe8L7btyhtqK8sHmCvtWC7f4Xrh9UD/PH+tcE+vcr0Xob5CVKIzbOchbyHnIZ/Cw2DzSnaE9Ib+kl3G3Z8q/H8itPCGvzyP22efkPgk5hDNxHGf3RHl+G6tv/r0Puw8y0hwZ13IxGgKD8kH3m2IrTXat3a+b/Cn2D+U+xlStn+S4R8Gt9zWZyKo8sTpn47KLOWO9sMzcdtWjZU6Ql/yKcavvD8/djViTKxcry30B8dZZJHvVecwVW7rFzfcNJXWHPUT/HvBSlC/SPpctm62PY64t3eKWTR8/Mu91PjXW66F+39Nsk9veHd3I7ab1v/f9N3IhV9ZlWO28Xy3s2LF16ve2N0Yr3owzv0EnTKwHKzKm/C4Xt3yJ+xOY2y0DifX1mvuJiXfdddh8Z35PdxCLyLfuYd0PjPfkxsZosl+DHIHMI08pCzXzldzdvkNIp/zQusg9C26x7wDnTsiukncezyP2631FcQOichXMjzCPv3X0u63T2Ps46zz+hA8Wskclumuegfm54fZ3N+21G3vPK7boPB42HBorbpvHemZ1t7jJrDymfcX4I/oV5yvWcVnnPjNvtMfiTgxd6mJ+8EwwR45uwO9SiIrNGeWO1xorrVwWr1j1PKdt3pCJwjObKorzafCegZw13KnxrfrIzX1nTkwhfnchlzDJS2RnN+bzW4XMwxhk302aw1g/hdwG6x3IJGSK2pwX+Y60bEmTm7FmnOdg573hvohB4r+lCQk9bPpS3Ir1O7DOQGYhc9SGW74jbVwsVcmt8+fXKmbqqoX3u3JGmrFOFe8v1/bzLbdfq7fj56baY6nOoM/7y7W9CcvtOb2dscT95+3VaXt/uba1qztQeeI5OdbbsvM7rXt/ubb1xViz2LvEc3pbjRnpv/Z+SI9o9HofVdrWHrn9XeI5I5vWjuq8HzRefSntfVRpy47PEfnzOrIpO15rvPrtnaS691GlTXtiZj3KbfmPbD7m5ApFrFbLdh1NV8pr/570jBwb2eazdov3U6Wt/8nY75GILbIn3hlVaurIX65fLpQfObbIjmy0qyOfuX75EnfElrPBby/eeTZno7r8WR35zPVzvu6+iI1jcjb47cU7L2K1/bRlC7/VIr+5ftroNNayb/miumVWvVVMUs8Va9qQf69T8xhj3x+x2n5vu922/T3jOdSuatvyRXXZ7FTzTLXiqupD++41z2wrH3Wfp/bbc1a1Sd5THhptnllvs9N2L+Jddd11xnU73olwdz3W3Ku1Gu8/c0C5dA==
   </data>
  </layer>
- <layer name="Lower_3" width="46" height="53">
+ <layer id="3" name="Lower_3" width="46" height="53">
   <data encoding="base64" compression="zlib">
-   eJztmctOwkAUhgskQtNSCC6Nrowh0QcwbhTRlbyHGy/gTl9B4xKjgns3Kj6ASw2YEK8L3PoIRqOuPJO2oWAvM/YMU8x8yZ82vc3fw5nLKYoikUgk4pgxuhoWOrnufhz2p43g92jk3I/3U9NMYeLWdtLlmP0eV7r/83Zc1NRMEb4C7qcllWa7fsQl9m5enSI8+fg9R3oXVmh8E07j4du6pMzN1zR9Hrt5jQKVrKKUHNrK9p7v952A9y1DXlc8+uQsQvxpyIPPGChu6SD7+5pVR/6nwHcdPJ9o+GMKy29LfE+5ePWjBV5vtd4xBQMW31WPGPvhjDcmrP0+Nsr2fGe8MeE5BkwY/OLNG8x4047dYblnnIv/wmSCfxthoJn7xpHWsVg53aHMjyUk39hjCA27CN7HBNUfBcPsW0SPA+hjftDmis0H+G3D+vhBF++dlba1rr9jXN+TeoDUC6TGedZx+ukcwxryDdo809l9E7+2929dTD8lfeydwve8qigLoAJoEVRUzeMX1r32vO+15cVnQI6vgc910AZoE1RWe8/b877XlhdBc9Ih+DwCHYNqoLrD936Mn6+wXIPPG1ADPDZh21KD78HGq54s+axl9sDvNmw7VmxfBMSY1GXFDMz7oOUMe40mCtu37d3pO+hbSVjCrLWrVt2esPwP0jcG+SH23Z8nPMGqx4jvYeqXNoP0nURcc1Z9vqtJxLMS8W8DEvFg/BcikUj+L1H/xhwFfgDkoYWx
+   eAHtmM1OFjEUhgskggHFsCWyIoYEL8C4UQRXch9sVMAd3ALEpQYEt+rGnxtwCQESxR8WuvUSCAiueE++OcmxaTvtzGHmg7TJSzud09Onh3bafsbklCOQI5Aj0F4Ebl83htUeRVrPX0f+t58UY6CxuNIbq43Lhuo2Bjvyva9SH9s3j+PzULiXZby2tQNuEqXTkvYdq/K/A9fKbaTFFUfsbU77mdr/DPB+CLyTfWuXbU77mft718ul6vnbyLn5B/+P2LkkeauT6bdcvGHMrNAzlGVycS9gXi8Wc1vaUvmOQvxtn67nCXD2QL2FXlrc1GbOmv+bYH4NaX9TXDFyMVMdcd9ysPrsqX4XzHuQ/KaE7GPfpXC/ALMrxqG+ZLxDdqnvXNyhdf83cj0zh4w312nkLm4Nv+RjDHP9vOKtxejzoxnv2G+3jyW2/lviXhzrV9qN98mn7ivH7H03rW9w1VHQN1sj2WdVn88ZJW4+A/r6OY/6FQX2UQUfVcY2hX5pbZF+NLDGQoyxc4V9HIP3C87H36G22ZkpNiduSvuJ53u6D9B9ge44B5DGOr2bcIY8RJ/voVRu4mX2fyi3sU5pjR2h77J076ox96Ep6AE0DVH6WLTlfd+Xd6z1/56UrM/H4HwCPYXmoQVIJt73fbm01SyX7Ulr4FyHXkEb0CbE6XkPl7ov3wLnNvQJjDvIdwV3U7S+++Rs4CyzCt4lAP4qYvu7hRjTvWx62JgZ6CGUekdrKr52P8zN7JJb3jdk2fZR9bnOWZvuk3R37yvi3iR31fHKdhz3i8hNc1xyy3Fpl+vMEclC8b5I65LZm+TuL9mPmSkm5/WZ+ptPjO9sUz8CjwL7aX3v2cNliEDoN9HLML48hhyBHIF6Eej235jrjU6n9Rl+toXc
   </data>
  </layer>
- <layer name="Above_1" width="46" height="53">
+ <layer id="4" name="Above_1" width="46" height="53">
   <data encoding="base64" compression="zlib">
-   eJztmFFuwjAMhiMNTZOacI6m2y7IMXhm3AOQeN92h0qsFyFWazUtgUSaszhrPsmC8lB9/nGatkIUCvmxCSxu5OoN5OqN5OrNka2juOJyLd7xycnVJlfvJXBRQvzMqlOprfw8r4Wo1Vga3GVqq/tgzp3sfQ/m82jqNBxzBXJGVyjwx6yPjPMG79b4NaovPRQec2G+/jorYz1z5zQn9voDt1aOjo2a5s7N23Zr5ehcq+l3zcj71Xif5ej2ZGql+t9qdZs9JyBzraae6L+a9UHJ5Zd7GWT+NtRZ3q7HxuqDEsgLrq8U+7CrB3vOKcH/+WVNc76PSoh9Ne0BixJcW1TeX8b5u6I5lw9wfyfOY2nk9Cy4s+bKduXu/elYDznkvXT+w7uS4l0IJUX2O4J7hRTerms6QtFTDHxej3qKAd7j+vhrLx8h97ihM+B7Lx9jlh+5hWadwptiDrjlHUrJu1DIA677v49Y++wVU6KVzg==
+   eAHtl2tKBEEMhBsUEXycw+cFPYa/1Xuo4H/1DoLuRTYFW2zRzCO7k5nNyDSEpMd0+ktN9+5ayjIWBeanwIMheyxbZx5m5GQcHvaM3GTq4mfO4n0KPFpabb6V02fVnPV8eiLfjjVnPfdVOVyW8h6OYved58q9e6fzW/F7UcpfZSubZx8nl6VcGSftGj2c56WmzitjBPOr+Tez9808Kzl0Jit4wU+tMc86wP1jfDemNQzMMM6zcPNc8A5CX2pMXrLj3GQZev/AB63hwUiNqXs2bvKRm8zwGuPvWcatneePzXkG45HZsRmeYV5rn4UbHDgr5KMnP3rQPiK5cbeGfJdB87uNQWew80wzZh+R3NAL32VD2MnT1IOec+ZFeL7nU+OPGM9npbyYaQ98HxH1WYN3K4r7y5i/zaYYYL8P0nsK3ox76P8njDNygulJzpWyapyR/VO4yUdm+GXkVEDfkcY5abdUyqrxNiNnpKwa56T9f1SqOeOxu9TP9H33Iqv6fWt51zV9pnNtRE+sFen7uLp6iuRgLf7G5bzNT83VxsHnnt+4fVqzlp7Ztpi5Ub6Lzat1G6s+j+JlHS8b85u88rXFTeuGPOvS21u3jVWfe2t58+aqt7e/JW9RYAwFIu77GFx9NSPue9Mea1Oilc4=
   </data>
  </layer>
- <layer name="Above_2" width="46" height="53">
+ <layer id="5" name="Above_2" width="46" height="53">
   <data encoding="base64" compression="zlib">
-   eJztl0EOgjAQRcfoDrqBi1BOpsfQO+ghvIMbPYJu3HkMS6CxMRpsnU5nCi9pJmzK76OFQSsAbcaj7Gs7jJO5VqZypVH96HI36pW9u+aMdtxaz6WK4/paAdwqnLlsRu14j8WyBljVOHM1g+dGwJ52aZ2zyH1Pu2iiPYJN7LMYCy3Ms0XSWXSR6LpDomtOrAuATZE6xXTI1ffRsx/bIvVvY+TqO2cw+/tQ7gHfFcz+3pfQfb5IlNeyN5kPAs/n2WS+CMydA6n3bCjzt4gO6/pbzZGUa5uyb6o1jjl26z/zciUX35/m5gblOfbxbOvO8//Adz3Uz4W7b6x7cIA6W2zfnFy/3ztFtpi+Ofc5qTLF8v3rfKmgyBPiNjQTR99UebA8z77HwXYt+X2Ss2+OPAFC/cPA
+   eAHtV0FOxDAMzJ3dCy9hednyAvgInPnIXuC0/IAbP0BwwhYaKbLqYkd22nSJFLlJnZnxNFXTw76UA/WP3W+8pWvuJxrvKa613ZA27qybI9fAunm85sY64S183tFchtfn61LeqEc0aGT98D0CdwrjizR/B+lmrewzR/g+xbm2OdaMvvY9XXvH+6PHHqk5I66z38UIjVMY7PVI+wM1jPQuQjPHEb1m3RnfF8a9lHa8KuWO+n/r48BW/X52nmvunfmtT2erfrf6McK6yPN9a73vdP7wtsjzvZe7dZ9/dnoPtXoe6dvzNOD354U0vw6oW3sOI80vvWdbvWp9R1v5LnkdvNbiFr1BrUvUBm4tLqEpm1PW2ptP8tdjj5Z63Zr/BXvrlHxzY4/fnCuxvOuz86U+jDN4ge2JD85zq4at1YN87X70PPhkjOZhPMlhGXt1aJhenIz83to0vrl5T90ajgcjKhdagIexjLifESWXZWzV8ReWFScjT9OWwVVjarxz8/V67XpuPZ9TcF9bnz0PfhkjeSV269iiyYptwYrKqZ+zpi+CS8NunbdosmJbsKJyevhtrduTZ6nfimfBisrZst9RHkXi/ACGpMk4
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="1" type="collision" x="128" y="640" width="176" height="208"/>
   <object id="4" type="collision" x="608" y="208" width="96" height="640"/>
   <object id="5" type="collision" x="64" y="240" width="80" height="400"/>
@@ -190,113 +190,113 @@
    <polyline points="0,0 -32,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="7" name="Events">
   <object id="7" name="Route Music" type="event" x="64" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
+    <property name="act10" value="play_music peasant_kingdom.ogg"/>
+    <property name="cond10" value="not music_playing peasant_kingdom.ogg"/>
    </properties>
   </object>
   <object id="8" name="Teleport to map1 (lower)" type="event" x="608" y="128" width="16" height="80">
    <properties>
-    <property name="act1" value="teleport map1.tmx,12,12"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="teleport map1.tmx,12,12"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="9" name="Random Battle 3" type="event" x="448" y="608" width="80" height="32">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="10" name="Random Battle 3" type="event" x="384" y="544" width="96" height="48">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="11" name="Random Battle 3" type="event" x="304" y="688" width="144" height="80">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="12" name="Random Battle 3" type="event" x="144" y="480" width="80" height="32">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="13" name="Random Battle 3" type="event" x="176" y="512" width="48" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="15" name="Random Battle 3" type="event" x="432" y="144" width="128" height="32">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="16" name="Random Battle 3" type="event" x="464" y="176" width="48" height="32">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="17" name="Random Battle 3" type="event" x="480" y="128" width="80" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="18" name="Random Battle 3" type="event" x="160" y="224" width="48" height="64">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond1" value="is player_moved"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="is party_size greater_than,0"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="is party_size greater_than,0"/>
    </properties>
   </object>
   <object id="46" name="Teleport to map1 (lower)" type="event" x="304" y="800" width="96" height="16">
    <properties>
-    <property name="act1" value="teleport map1.tmx,12,12"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="teleport map1.tmx,12,12"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="55" name="Teleport to map1 (lower)" type="event" x="528" y="496" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport map1.tmx,12,12"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="teleport map1.tmx,12,12"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

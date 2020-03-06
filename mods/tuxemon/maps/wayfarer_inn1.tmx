@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="16" tilewidth="16" tileheight="16" nextobjectid="47">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -60,27 +60,27 @@
  <tileset firstgid="7766" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="16">
+ <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJyzk2FgcIFiEMgB0gkyEBqGU5HUwLADEPsCcTAUg0A1kM6XgdAwXIGkBob9oXplZVFxHVDMVBaBK9D4IAzTqyuBitHV4dMLsqsLzY/I/q7FIteNpLcKzY8gnIdFDIax+RcEYOw8LGEBw8h642UQemH6idW7FYufgGINxOjF5t8aIu0lFYP0xuCJIwcZBrwgBo+b/YnUi8tdA6E3joBeAKciTeY=
+   eAHFkjsKAkEQROcYBu4RDE3FwFQMTEVNzERT8Yexnsf7WQX9YFyGcTIbiurt7urP7k6GKc0CSbaXvxXMYBd56sxTYS4sA9Ze5B8FMzhFnjrzQrC2675xV2ysGLAWH0Y7GqSUgzxc03ruU725D+buWyH3Uoydz/K5Dz4UYuTYOb/X74tna/H7nGs3UWetzbWt2re03Akr9ujP4zmfW7r32rgz/VrZc1fRu/SN/N/VDG1pZ/euGdrSrv/Srn/s/AGnIk3m
   </data>
  </layer>
- <layer name="Tile Layer 4" width="15" height="16">
+ <layer id="2" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgyJFBYHzAT5KBwV8SVaxaBoGV5RgaQGLvxSFyDcIIdWVAfeVoepGBFlTvZ6DeBUB9U6B6gWZiBbKyqFhOFquZBMEmKeLEsIFbQHX5QHsnSqCKWQHtTQKKJQOxHZobZGQR7q8G4p1QvQJAtiAQO8pBaBB2xeJ+KTmEn2FAEsiWAmJ/oFwAEAcBcTAWvcj+grFhepGxNJawvCWFySZWLzagBFSnDMRMQHcyAzELEKvg0EtsfGADt8jQqwd0hz4SNiDSTyBgDlRrgYQtSdDrAIp/JOxEhF4A730m+A==
+   eAGVjztOw0AQQEfAAUAUwY7tIqZKAen4FChGosVRuAG0keigcOMrIOUAnIGOq3AJilyAN7JHXq3Xihnpece783ZmRUQ2SQe/g/EYiZTgRoVr5JnUevY7aSrq02bV7xveu+d2pyLz1t3hfuJtW5c7g5GmIi4Z/35w5974ivslob1+lcgP7it9P866U927pe8zey9w582QtHPq7BV8t+4x+QkU1OuqPHiudonZs3db14jaGErOVrCGJ/DDfZfl5qpvTMn90HdZWD7WNc9dZ/TI4YA5D+EIzgN91bFZXX9sbrOOrde6C+a4dFgMzBW684raa4ebf7hLaguH+xHuH+99Jvg=
   </data>
  </layer>
- <layer name="Tile Layer 5" width="15" height="16">
+ <layer id="3" name="Tile Layer 5" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYKAcuElSwZARDjJEIfRpEsLyoQRt3DIcgL4cA4OBHIQ9CRhOk0kIKzOgPnOo3l1AfbvJDOdHQH2PSdArKUW6HQA3pQkg
+   eAFjYKAcuElSbsZINyFDFBICp0kIy4cSIz3UcPtfX46BwQCIQWASMJwmkxBWZkB95lC9u4D6dpOgF2IjhHwE1PeYBL2SUsi6iWMDADelCSA=
   </data>
  </layer>
- <layer name="Above Player" width="15" height="16">
+ <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9AbCcgPtglEwXAAAdC4AMg==
+   eAFjYBgF9A4BYTl62zhq33ANAQB0LgAy
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="256"/>
   <object id="5" type="collision" x="16" y="0" width="160" height="32"/>
   <object id="8" type="collision" x="32" y="176" width="96" height="16"/>
@@ -113,43 +113,43 @@
    <polyline points="0,0 16,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="34" name="Go upstairs" type="event" x="64" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport wayfarer_inn2.tmx,5,2,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport wayfarer_inn2.tmx,5,2,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="35" name="Go to the other upstairs" type="event" x="176" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport wayfarer_inn2.tmx,9,3,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport wayfarer_inn2.tmx,9,3,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="39" name="Teleport to Route 3" type="event" x="160" y="160" width="48" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route3.tmx,35,5,0.3"/>
-    <property name="act2" value="player_face bottom"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing bottom"/>
+    <property name="act10" value="transition_teleport route3.tmx,35,5,0.3"/>
+    <property name="act20" value="player_face bottom"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing bottom"/>
    </properties>
   </object>
   <object id="40" name="Teleport to Route 3" type="event" x="176" y="16" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route3.tmx,33,1,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport route3.tmx,33,1,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="45" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+    <property name="act10" value="play_music music_cathedral_theme"/>
+    <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
   <object id="46" name="Player Spawn" type="event" x="176" y="144" width="16" height="16"/>

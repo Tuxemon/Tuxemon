@@ -230,6 +230,8 @@ class Item(object):
 
         if not self.conditions:
             return True
+        if not target:
+            return False
         
         result = True
 

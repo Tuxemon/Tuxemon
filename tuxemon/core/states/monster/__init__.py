@@ -97,6 +97,8 @@ class MonsterMenuState(Menu):
 
         self.refresh_menu_items()
 
+        # TODO: make sure we start on the first monster that is a valid option
+
     def on_menu_selection(self, menu_item):
         pass
 

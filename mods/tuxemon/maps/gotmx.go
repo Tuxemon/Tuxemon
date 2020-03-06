@@ -8,7 +8,7 @@ import (
 
 func main() {
 	fmt.Println("vim-go")
-	f, err := os.Open("bedroom_test.tmx")
+	f, err := os.Open("player_house_bedroom.tmx")
 	if err != nil {
 		panic(err)
 	}

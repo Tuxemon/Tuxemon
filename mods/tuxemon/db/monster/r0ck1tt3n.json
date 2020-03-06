@@ -1,0 +1,25 @@
+{
+    "slug": "r0ck1tt3n",
+    "category": "glitched",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "thunderball"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Glitch",
+        "Earth"
+    ],
+    "weight": 25
+}

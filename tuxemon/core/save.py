@@ -42,6 +42,7 @@ from operator import itemgetter
 import pygame
 
 from tuxemon.core import prepare
+from tuxemon.core.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:
     import cbor
@@ -70,7 +71,7 @@ def get_save_data(game):
     save_data['screenshot_width'] = screenshot.get_width()
     save_data['screenshot_height'] = screenshot.get_height()
     save_data['time'] = datetime.datetime.now().strftime(TIME_FORMAT)
-    save_data['version'] = 1
+    save_data['version'] = SAVE_VERSION
     return save_data
 
 
@@ -157,24 +158,6 @@ def open_save_file(save_path):
         return None
 
 
-def upgrade_save(save_data):
-    version = save_data.get("version", 0)
-    if version == 0:
-        def fix_items(data):
-            return {
-                key.partition("_")[2]: num
-                for key, num in data.items()
-            }
-        chest = save_data.get('storage', {})
-        save_data['inventory'] = fix_items(save_data.get('inventory', {}))
-        chest['items'] = fix_items(chest.get('items', {}))
-
-        for mons in save_data.get('monsters', []), chest.get('monsters', []):
-            for mon in mons:
-                mon['slug'] = mon['slug'].partition("_")[2]
-    return save_data
-
-
 def get_index_of_latest_save():
     times = []
     for slot_index in range(3):
@@ -188,4 +171,3 @@ def get_index_of_latest_save():
         return s[0]
     else:
         return None
-

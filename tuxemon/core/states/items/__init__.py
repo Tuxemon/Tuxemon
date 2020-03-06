@@ -74,11 +74,14 @@ class ItemMenuState(Menu):
         item = menu_item.game_object
         state = self.determine_state_called_from()
 
-        if state in item.usable_in:
-            self.open_confirm_use_menu(item)
-        else:
+        if not any(menu_item.game_object.validate(m) for m in self.game.player1.monsters):
+            msg = T.format('item_no_available_target', {'name': item.name})
+            tools.open_dialog(self.game, [msg])
+        elif state not in item.usable_in:
             msg = T.format('item_cannot_use_here', {'name': item.name})
             tools.open_dialog(self.game, [msg])
+        else:
+            self.open_confirm_use_menu(item)
 
     def open_confirm_use_menu(self, item):
         """ Confirm if player wants to use this item, or not
@@ -129,6 +132,7 @@ class ItemMenuState(Menu):
                 image = self.shadow_text(label)
                 item = MenuItem(image, label, None, callback)
                 menu.add(item)
+
 
         open_choice_menu()
 

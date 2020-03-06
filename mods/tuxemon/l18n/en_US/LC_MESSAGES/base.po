@@ -1872,3 +1872,44 @@ msgid "37707_villager_female_missing"
 msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
 "@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
+
+
+## DIALOG TRANSLATIONS ##
+
+# spyder dialogs
+msgid "spyder_papertown_stopthere" 
+msgstr "Hey! What do you think you're doing?\n
+It's not safe to go into the wilds unless you have a tuxemon.\n
+Come buy one from our shop." 
+msgid "spyder_papertown_homemaker" 
+msgstr "How are you, NAME? \n
+Quiet and solemn as always, I see." 
+msgid "spyder_papertown_mom1" 
+msgstr "Good morning sunshine! Rest here any time you like. \n
+Why am I saying that? You live here!" 
+msgid "spyder_papertown_mom2" 
+msgstr "Hello dear. I should get on with my inventing. \n
+Can't you occupy yourself? \n
+Back in my day, we could amuse ourselves with anything - a stick, a rock, rubbish we found in bins ... " 
+msgid "spyder_papertown_mom3" 
+msgstr "Oh, you found yourself a tuxemon. Congratulations! \n
+Why don't you head over to the next town and explore?" 
+msgid "spyder_papertown_mom4" 
+msgstr "Welcome back! Look at you, growing up so fast." 
+msgid "spyder_papertown_mom5" 
+msgstr "You know, Granny Piper next door has opened up her Daycare Centre. \n
+Well, not everyone can be an inventor, I guess. " 
+msgid "spyder_papertown_mom6" 
+msgstr "Congratulations! You took down the corporations! \n
+Of course, now lots of people don't have a job ... but you did the right thing. I think." 
+msgid "spyder_papertown_grannypiper1" 
+msgstr "Oh hello NAME, I didn't see you there among all this hustle and debris! \n
+I can't wait till the Daycare Centre is installed!" 
+msgid "spyder_papertown_grannypiper2" 
+msgstr "You know, the Pipers made our fortune in the daycare business! \n
+I've been retired for ten years and I'm getting bored. I want to get back into it!" 
+msgid "spyder_papertown_danteshop" 
+msgstr "I'm working, boss, I'm working! \n
+Oh, it's just you. You know, we throw out so much of our stock. \n
+It's such a terrible waste. It all goes into the bins behind the back of the Store." 
+

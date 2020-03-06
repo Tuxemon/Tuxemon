@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="12" height="22" tilewidth="16" tileheight="16" nextobjectid="30">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -72,52 +72,52 @@
  <tileset firstgid="8293" name="Land_bird" tilewidth="16" tileheight="16" tilecount="1" columns="1">
   <image source="../gfx/tilesets/Land_bird.gif" width="16" height="16"/>
  </tileset>
- <layer name="Tile Layer 1" width="12" height="22">
+ <layer id="1" name="Tile Layer 1" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eJxLlGRgSCQBd5KIN5KIjWRH8SgexYMFAwDeHF0l
+   eAFLlGRgSCQBdwLVkoI3AtWTgo1kGRhG8WgYjKaBwZEGAN4cXSU=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="12" height="22">
+ <layer id="2" name="Tile Layer 2" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eJzFkkEOwiAQRf8BIGxA6xn0CBgOobsepydsPY26cRqcFAlDYeVLfsKkj2EaAAB7AhyF2as9ra8d9T/xKqaFUPHWHkFt/dKeZwNczK9b40bu3dSdGqMGZspCeehYrwzCuRN9f1JelLeONfte+KcSef9Dp89YVQ77+b58Ro7kS/D9Svfc2qfHL83LOBUjkc4Zvm76Dvf2tL77nOOwrT+Enxe/
+   eAHFUcsNwlAM8wAgLi2UGWCEIoYoN8ZhQmAa4IItZBE9vdB3I5LlfBy/VAWAbgv0hGOuHqk9BP1cbd9/8LgAhJY4/tDJQ3P7Rc/dCtgTjjhzL/JE7Sno46wlPy+BK3Ej7oRqxZDcf+H8QTyJF6Ha+vg9c3eX/uvkvY97fk/HvRrsb7ZPeaNr68zWZ+z/ay51rT7ea9H7VnGp79kTsoh3KpdWPsrFtYg7maa2F3ub4Vu9AYSfF78=
   </data>
  </layer>
- <layer name="Tile Layer 3" width="12" height="22">
+ <layer id="3" name="Tile Layer 3" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBg84IosQwMp6m+TqH4UDF9gzzPQLhieAACJbAM1
+   eAFjYBg84IosQwMprrlNonpSzB5VO7RCwJ5naLl3qLgWAIlsAzU=
   </data>
  </layer>
- <layer name="Above Player" width="12" height="22">
+ <layer id="4" name="Above Player" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBh8IFkBUywFKibCA8HE6BXHow5khjgPwjx8ZuKToxZYycvAsAqIV/MixPC5HxcQIdJPxAB88UAKQPcHuhuxuZUcvxOylxKAnv6whS0pYY7sNnEkfejhS00/kAMAhjgJ2g==
+   eAHNkV0KgEAIhD1AvQW9dre6XHXJEvpgsFY2ikgQ/8dx1+x/Mg5nTtOR6xoz15LobJ/0OYbXwcsws1qJx9383Jotu667Ihl/eqLVe57y1rdkD/9AXGPjHZEjsWLFGa3V+m9gsIu74Xr1ttSYyaxycx889jCrfeS+tBuGOAna
   </data>
  </layer>
- <layer name="Above Player" width="12" height="22">
+ <layer id="5" name="Above Player" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFwwmI8Qy0C4Y3GGnhCwByiABF
+   eAFjYBgFwykExHiGk28Gn19GWvgCAHKIAEU=
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Event">
+ <objectgroup color="#ffff00" id="6" name="Event">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16"/>
   <object id="2" name="Teleport to Scoop 3" type="event" x="144" y="336" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport scoop3.tmx,5,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport scoop3.tmx,5,3,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="3" name="Teleport to Timber Town" type="event" x="176" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,18,23,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport timber_town.tmx,18,23,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="29" name="Player Spawn" type="event" x="160" y="320" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="7" name="Collision">
   <object id="4" type="collision" x="0" y="0" width="192" height="48"/>
   <object id="5" type="collision" x="112" y="160" width="80" height="16"/>
   <object id="7" type="collision-line" x="0" y="352">

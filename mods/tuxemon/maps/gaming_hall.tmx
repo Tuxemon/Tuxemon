@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="16" tilewidth="16" tileheight="16" nextobjectid="8">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="19" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="8">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -24,22 +24,22 @@
  <tileset firstgid="2860" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
   <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
  </tileset>
- <layer name="Layer 1" width="19" height="16">
+ <layer id="1" name="Layer 1" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eJyzZmBgsCYBh+PAEUD8ikgzJkPpNBw4nQSzCOGyUbNGzcJi1msgZqaCWe1A/ItK7ppGJXMGM25loB6YAsQAflROtg==
+   eAGzZmBgsCYBhwPVYsMRQPFXRJozGaouDUhjw+kkmEXI7WWjZpEUvyMlvF4D0wUzEBNKP4Tk24Fm/KKCOSB7plHJHEJuHkj5VqAfqQWmAA0CAH5UTrY=
   </data>
  </layer>
- <layer name="Layer 2" width="19" height="16">
+ <layer id="2" name="Layer 2" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eJydk88OwUAQh8e/lt2rm5sLXoirC0/Q4NqgD4CLmxfwDLwHLkhwwSOYSaexxnaTdpIv0253v8yvabsA0EthYllz1QAZphAa13Udd1cFiI+UkAJSRDzuobGvof/PHhTAETmpr4scY7FPCVeTXTcVQ3XGfkGuhqvEvWLMlszVQkcb6bDrqWKo7uo/o+JeFLOF4K6XxVU1spKPRvAcroeyrwd8LhDrZeEy3+fb4arAN6vP9zVkisyYecqM0qW5l8WzBbJkVinnzXmT7yt5b+QrcCf2GjZbDX0Cr/vSFXEfsSPSv3myMBeutf7Nk4WVcO0s/0fWIlfebLasebPZsn4AZEBXIQ==
+   eAGlkT1OAzEQhZ0Q/rItHR0N5ELQpoETIJIWAXsAoKHjAjkD3ANoAAloIEfI+9gZabDiEG2e9DQe2/tpnvcwpXRU8HjOvraKOtbJScHnYX+nau4VQTo4lTflNbkjd+UNq7Bcu2Lleuqn9Cy/yAgWjBFNEMeRtWesDx1g9Kr6Jr9bD4uZqOuyz8Z8sPbFOJAHxvrWdxh9Wm26hsEWLL6PinPFfV//zGFt6dCzwmME3qzE+soYuvorGHxHjeqpiaz4ntMFLN4JFlf4p/Tb8oV8ab5S/U8wyERllqhrNTfm23gQ1nFeGMxC5d3gdayyfqzS/aRKQ6z1UFt/VFt3pgqj1mAxj+dapnp2Z92JFfN4rmWqZ3fWAw+2omC1zZbnJ2vbbHl+ss4AZEBXIQ==
   </data>
  </layer>
- <layer name="Layer 3" width="19" height="16">
+ <layer id="3" name="Layer 3" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMtDNSpn85F4K9nkKzNnLhl99CmfFkgVdAN73mQtCUgI9A/Z+4EDS13EYu2IzEJsdNh8i3miywmbASokE6Fc0aBeQDABuoEYg=
+   eAFjYKAMtDNSpn85F0L/egrN2ohkFsJUBGsLgkk31iugm14DMYymxOKPQHM+ATGMpsQskF5K3bQZyQHkuOkQkn56MJHdS6l96ZQaMKqfKiEAABuoEYg=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="1" type="collision" x="16" y="32">
    <polygon points="0,0 96,0 96,128 160,128 160,80 144,80 144,96 112,96 112,48 160,48 160,0 192,0 192,16 208,16 208,0 240,0 240,-16 256,-16 256,0 272,0 272,192 0,192 0,0 -16,0 -16,224 288,224 288,-32 0,-32 -16,-32 -16,0"/>
   </object>
@@ -56,7 +56,7 @@
    <polygon points="0,0 0,16 32,16 48,16 48,0 0,0"/>
   </object>
  </objectgroup>
- <objectgroup name="Events">
+ <objectgroup id="5" name="Events">
   <object id="7" name="Player Spawn" type="event" x="256" y="48" width="16" height="16"/>
  </objectgroup>
 </map>

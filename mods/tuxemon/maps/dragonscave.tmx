@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="61">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="61">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -18,27 +18,27 @@
  <tileset firstgid="2925" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="20" height="40">
+ <layer id="1" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJztyqEBAAAEADD+v8o5vlAVSV1YW2VEAQAAPPVynQHDLl7X
+   eAE7yMjAcHAUj4bBaBoYTQOjaWA0DYymgdE0MJoGRtPAaBoYTQMUpoGXQP0wjKuPAQDDLl7X
   </data>
  </layer>
- <layer name="Tile Layer 2" width="20" height="40">
+ <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJxjYBheYAITA8NEJuqZtwNo1k4qmocOQO7tp5KbQWZNAuLtVHIzrf0+CkbBKBgF1AJpo2XVKMAB7EfTxihAA31Epgm70bRDMwAAH2YJ2Q==
+   eAFjYBheYAITA8NEIKYW2AE0aycVzUN3F8i9/UBMDTeDzJoExNuBmBpuprXf0cNilD8aAqMhMBoC5IZAGrDcGwWjIYAtBOxH0wa2YBnRYn1Epgk7ItWN6MAk0/MAH2YJ2Q==
   </data>
  </layer>
- <layer name="Filler" width="20" height="40">
+ <layer id="3" name="Filler" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
- <layer name="Above Player" width="20" height="40">
+ <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJztllEOgjAQRAtfcBP0NPU2clP0NIAR02xnpttG4w9N9kfM2+mws9qNIXR/qLjVRdStktdvJc/JO3k/5N23egy4nkM9r6idPCvlCtVV8PZeC7mXqrlB+7e9qK349mIa6/cPY6WnlYlYi/DYzoHta2cfsewcpf2tP1mWHPpV3vYsvTJDtB39FpsxoeGjkWizfbwaAmChPgeTZePgzeCz0rv25oJ50MJL7zqZWfH8hlte6jc7KpfyvpVMtgc8GhFTvUcvMxiemgmUjywjBe/S/KN8ZP46Z4X5UOJNRo9iRfC9TJ/DZ7a71K5QPOQD2weIafv2I3+Gyv5HYbPYsm9q9lBaK7eFac0=
+   eAHtlV1uwkAMhANP9CbQ09DbtDeFngbPthNNBttNEFJfQIrys+vPs2Pvsnubpt0/XOfIeWquj42a9jG//b14bZ1f/ln3bOyXz5h/PeTXd3yfNvK6PTlqVfD+2lfZnnsPVqUPuS7Fuqr14vtXoa/T3q25GnsmD97Bi2NcW88f10eWdtWjzIyFmlQeQ4v2gecdnomwjKXx6JnRI78x7o/zvJcy/ZL+5zFy0EPspbFnYiTTxnzal5w/c4UHLmMqbZ5nrQblLdZp+aGBZ0RWN+rTMX5zbfSpu49Y00Ceau4YOuY8XSv6ITtXvO86nvo919AevO86Hsbm9RpHXzMm1+ZjazSC7XHUkdVxLVNrBl7Goh+aT8/oxR6R3hjz5R0ceMCaYu9n+Zhn+CnxzqOf9D1j3dXLePBU9XQsatczy/1j/N1d8tKHBScCXH9bQ+FlPlT/lRnT86r/PsZe0DuY2g961mAec65hKbd79l7wuTe3hWnN
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="2" type="collision" x="240" y="336">
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
@@ -94,27 +94,27 @@
   <object id="58" type="collision" x="48" y="560" width="16" height="16"/>
   <object id="59" type="collision" x="208" y="560" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="55" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_dragons_cave"/>
-    <property name="cond1" value="not music_playing music_dragons_cave"/>
+    <property name="act10" value="play_music music_dragons_cave"/>
+    <property name="cond10" value="not music_playing music_dragons_cave"/>
    </properties>
   </object>
   <object id="56" name="Teleport to Sea Route" type="event" x="208" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routec.tmx,6,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport routec.tmx,6,3,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="57" name="Teleport to Sea Route" type="event" x="192" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routec.tmx,6,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport routec.tmx,6,3,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="60" name="Player Spawn" type="event" x="208" y="592" width="16" height="16"/>

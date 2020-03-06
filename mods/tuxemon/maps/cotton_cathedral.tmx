@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -14,22 +14,22 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBg4wEQGhgFeMjAMSJCBYcCADDyqd+joHQgAAK/YFXw=
+   eAFjYBg4wAS0mlQMcy0vkEEqhumVADJIxTC9BkAGqXhUL/FhNtBhBbOfnjQAr9gVfA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBjZgJmVgYEXiPlYMcW5WBgYuFlw670LlDMDqjNH0lvLAhE3BmITPHrxAXMi9NUC7bzNgsD1rIT1kAtA7tkGxNtZiHMbut77QPyADL3kgovs2MVxBREu9fQCAM0+DTc=
+   eAFjYBjZgJmVgYEXiPmAGBmAxLlYGBi4gRgXuAuUMwOqM0fSWwsUA4kbA7EJEJMDzInQVwu08zZQHQzXI7mBHDvx6QG5ZxsQbwdiYtyGbBZI/X0gfkCGXmRzSGFfZMeuGlcQ4VKP3RTqiwIAzT4NNw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF5IJwVtLEkYEODjW4xEfB8AUAYq4BGw==
+   eAFjYBgF5IZAOCt2nbjEkVXr4NCLSxxZ7yh7eIUAAGKuARs=
   </data>
  </layer>
  <layer id="4" name="Above player" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBgcIIuNgSGbjbAYNjAJqGYyG2GxwQY2sjAwbELCm1kG2kWDB6xkp636wQQA3n8JEw==
+   eAFjYBgcIIuNgSEbiJEBNjFkeRh7ElDfZDS92MRg6gcLvZGFgWETEt4MZI8CSAisZCctJEhVT5rptFUNAN5/CRM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -48,47 +48,47 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="17" name="Go outside" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_town.tmx,19,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport cotton_town.tmx,19,27,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="24" name="Play Music" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+    <property name="act10" value="play_music music_cathedral_theme"/>
+    <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
   <object id="25" name="Player Spawn" type="event" x="112" y="144" width="16" height="16"/>
   <object id="26" name="create npcs" type="event" x="0" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc cottonnurse,6,6,nurse,stand"/>
-    <property name="cond1" value="not npc_exists cottonnurse"/>
+    <property name="act10" value="create_npc cottonnurse,6,6,nurse,stand"/>
+    <property name="cond10" value="not npc_exists cottonnurse"/>
    </properties>
   </object>
   <object id="27" name="get those tuxemon healed" type="event" x="96" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog cottonnurse_dialog"/>
-    <property name="act2" value="translated_dialog healmytuxemon"/>
-    <property name="act3" value="translated_dialog_choice yes:no,healme"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not variable_set healme:yes"/>
+    <property name="act10" value="translated_dialog cottonnurse_dialog"/>
+    <property name="act20" value="translated_dialog healmytuxemon"/>
+    <property name="act30" value="translated_dialog_choice yes:no,healme"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond40" value="not variable_set healme:yes"/>
    </properties>
   </object>
   <object id="28" name="Heal Tuxemon" type="event" x="96" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
-    <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act3" value="npc_face cottonnurse,up"/>
-    <property name="act4" value="wait 1"/>
-    <property name="act5" value="npc_face cottonnurse,down"/>
-    <property name="act6" value="translated_dialog okaythen2"/>
-    <property name="act7" value="set_variable healme:none"/>
-    <property name="cond1" value="is variable_set healme:yes"/>
+    <property name="act10" value="set_monster_health ,"/>
+    <property name="act20" value="set_monster_status ,"/>
+    <property name="act30" value="translated_dialog okaythen"/>
+    <property name="act40" value="npc_face cottonnurse,up"/>
+    <property name="act50" value="wait 1"/>
+    <property name="act60" value="npc_face cottonnurse,down"/>
+    <property name="act70" value="translated_dialog okaythen2"/>
+    <property name="act80" value="set_variable healme:none"/>
+    <property name="cond10" value="is variable_set healme:yes"/>
    </properties>
   </object>
  </objectgroup>

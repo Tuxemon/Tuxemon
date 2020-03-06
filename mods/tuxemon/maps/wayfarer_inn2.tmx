@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="16" tilewidth="16" tileheight="16" nextobjectid="33">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="33">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -60,57 +60,57 @@
  <tileset firstgid="7766" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="15" height="16">
+ <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJyzk2FgyIHiBCQ2DBdjEQNhByD2BeJqKM5DYsNwMRYxEPaH6jWVZWgAYZBeWVlUXAyRx8Ck6JXFo7dXhqGhFs0/IPWH0fzZCxWH6QWyG2qAetH9A1KDHgY1mHoxMLJeXPIwvfEy2PXmE6F3K5q/cqHidUTorcLhL1wYn38JYZDeGKjeLhzpDh+IweFmWDwRoxeXuwajXgDMWlNu
+   eAHNkUsKAkEMRPsg08dwK15AvICgB/CzcOePXgsexxN4MaskBWVmGHHnQEg6qZdOeqZdKZuwtcXKHQZyrM1gc9gpbGexcmQVu18gT3ZSS6ORrfXTyKLWs19Y9vQezt670i64Q3tyH+qflmMNundeLDTtDDbvQza/AXSZ7e3JvmLps9m9ZRVaacTuU97rfGeeH/DalX4b+Wt4MfJ+7xEa31d7SZu9s7n27Ux2GTPd4H1mxvxPY5/YPDPnZ++xT+zQjP/KvgDMWlNu
   </data>
  </layer>
- <layer name="Tile Layer 3" width="15" height="16">
+ <layer id="2" name="Tile Layer 3" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMfOVkYPjGSZ5eJS4GBmUu4tWbyZJnD6V67WSxs7EBfTkGBgM5/GpYgfJsQMyOps4MyDcnoJcHKM8LxHxo6iyAfEsCenEBe6A+BzL1IgMpoBmSVDCHGqBcmIGhX4KBYYIEcXGCDLqBercD9e2QIC5O0MF9oL4HEqTpwQYkpQirAQDT8g83
+   eAFjYKAMfOVkYPgGxOQAJS4GBmUgJhaYyRKrElMdJXrtkOxFZmPawsCgL8fAYADE+AArUJ4NiNnR1JkB+eZoYujm8ADleYGYD02dBZBviSaGrhcX3x6oz4FMvchmSgHNkKSCOchmkssuF2Zg6JdgYJgAxMTECbI93UC924H6dgAxMXGCrBfEvg/U9wCIKQWSUoRNAADT8g83
   </data>
  </layer>
- <layer name="Tile Layer 2" width="15" height="16">
+ <layer id="3" name="Tile Layer 2" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgcwFCOfL3HBHGa2eDFTb65xICJEtjFNwkzMGwWxq93Jw69x4D6jhPQ+xCH3oEE0sA4lKEgHkcB6QAATagIbw==
+   eAFjYBgcwFCOfHccE8SuF2hmgxc3djlqiU6UwG7SJmEGhs1AjA/sxKH3GFDfcQJ6H+LQi88+WstJA+NQhoJ4pLX7hqP5AE2oCG8=
   </data>
  </layer>
- <layer name="Above Player" width="15" height="16">
+ <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABROQYGETlBtoVo4BYAACtKABm
+   eAFjYBgFoyGACAEROQYGUSAeBUMjBACtKABm
   </data>
  </layer>
- <layer name="Above Player" width="15" height="16">
+ <layer id="5" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBj8IFVkoF0wcoCwHAODkNxAu2IUEAsAHroA2w==
+   eAFjYBj8IFVk8LtxuLhQWI6BQQiIR8HQCAEAHroA2w==
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="17" name="Go downstairs" type="event" x="64" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport wayfarer_inn1.tmx,3,2,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport wayfarer_inn1.tmx,3,2,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="23" name="Go to the other downstairs" type="event" x="160" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport wayfarer_inn1.tmx,11,3,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport wayfarer_inn1.tmx,11,3,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="31" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+    <property name="act10" value="play_music music_cathedral_theme"/>
+    <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
   <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="2" type="collision" x="0" y="0" width="16" height="256"/>
   <object id="3" type="collision" x="16" y="256" width="96" height="16"/>
   <object id="4" type="collision" x="32" y="176" width="48" height="48"/>

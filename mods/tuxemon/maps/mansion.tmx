@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="16" tileheight="16" nextobjectid="37">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -31,27 +31,27 @@
  <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="18" height="18">
+ <layer id="1" name="Tile Layer 1" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eJyzZmBgsKYyLhmm5oziUTyKhzcGAKKES1g=
+   eAGzZmBgsKYyLqGSeYPNHGqH06h51E97o2E6GqaUpAEAooRLWA==
   </data>
  </layer>
- <layer width="18" height="18">
+ <layer id="2" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eJzFkz0OgCAMhbsxeFw9goO6sngK8QTGn4sJA4l5eQWJGpu8gfblozRF5P+oK5Gmes7pPGPwaiGP51QE7+QZ84ccW8CxmX6YtHqqHyatrnHC/PsCOYWz+dxO5C7C2lEwnwnuTs0wcnAGjMM8yMFgHObJcQQ4LBhnMe9wmCf1rtHc48R9ixz8OyvhsP8VcttlVzTPCfn2Wl0=
+   eAHFkjEOwkAMBK+j4LnwBApIS8MrgBcgIB/DU1hylr0gQAhLVmJ7b+yzrrX/22rZ2jr8W9sGYwjfCEhjKU9CtMdgnH/I2U86zgdo5+ZhXvUkar7HoYfz5Gitx2H/uzf81NnzLfJ34+jTtT5GjftW0/tnzPy1d+brVzm6A7TKcRrl1Jh/x3GamuOMszqPq+s54sviWfkJRymv7nWIvm4e5bDTOg9xtavhqAY9uXxXvJWe5gH59lpd
   </data>
  </layer>
- <layer name="Tile Layer 3" width="18" height="18">
+ <layer id="3" name="Tile Layer 3" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eJyt0r1qAkEQB/Dp7i5a62uYPIC+hcGztwyBHJJSPE57CWLlJ5FIXiFIOrkEBGsbtbPxGfwvrjiO63kcDvxhZtn9sfcREtFbishDiuifY+ad9S4SMsdD37WJekgfGSMVOmVlEa2RDVJl6552fBiBdgY4O0RGyBzhZWN2kAf74Bzr6ExgfGsnxJ4/5F8YqnJYe0SetLNNH2Jy4tat+9zD8Q37P1k/ZH0Q4bQMzgfrW1fWpbNLRzxIRElH1SyBJZ2SYY8rZrXHxXcvs/9iQVTjTsPgNA1zHYavHfXPN8R91PxinZ9r0+X8hbMT7cyvOG3hxKl7OK/WyfmBMdXOVDhLip65k3GIso75Pcs1OXeYk4dRSOj8amcPAJZhhg==
+   eAGtk71KA2EQRaczUWt9DfUB9C0UY28pgkEsxSXaiwQrfyKKwVeQYCerIFjbqJ2Nz+C5uAPDsFFZHLjsnfm+OZkks6WZbU2ZddEyfuWP2gn3OvgSOaeLP2mZnaIzdIXWqbleJ8ze0DvaDnX1iVMwS08z4c/pHaAL9IRitMjbaBKJ4+GcIYybilNy5wE9ohxz1ObRAhLnY/pbdZzcOy7/bZ5xfbn+E6fIl8kvQ20QfC/4/L0Ow5nbIzc843msZ84nv1uTyBwx7huwMme1Zhjtagzd6fC/ryGPZ7Nd7aHvz74fhOdB8LLK92AUFUc7r77M2WDnY/Rjgld+Te+w4mjn6zj9xEmY2vQ/OJt8rnNuebdGSPkozfOSJsh55My0zWaRODlyLefHYZ5FGEsNOXcV5wsAlmGG
   </data>
  </layer>
- <layer name="Above Player" width="18" height="18">
+ <layer id="4" name="Above Player" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0AvksQ8ucwYKFAxS9wMApwoBYg==
+   eAFjYBgFoyEwGgL0CoE8durYRC1zqOMa0k0poFI4kG4zfh0ApwoBYg==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="48" y="0" width="16" height="128"/>
   <object id="2" type="collision" x="64" y="0" width="224" height="32"/>
   <object id="3" type="collision" x="64" y="96" width="80" height="32"/>
@@ -80,83 +80,83 @@
   <object id="34" type="collision" x="64" y="32" width="64" height="16"/>
   <object id="35" type="collision" x="176" y="32" width="48" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="22" name="Teleport to Top" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_top.tmx,1,16,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport mansion_top.tmx,1,16,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="23" name="Teleport to Basement" type="event" x="16" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,6,20,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing bottom"/>
+    <property name="act10" value="transition_teleport mansion_basement.tmx,6,20,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing bottom"/>
    </properties>
   </object>
   <object id="24" name="Teleport to Basement" type="event" x="32" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,7,20,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport mansion_basement.tmx,7,20,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="25" name="Teleport to Top" type="event" x="32" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_top.tmx,2,16,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport mansion_top.tmx,2,16,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="27" name="Teleport to Side Route" type="event" x="144" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routea.tmx,6,13,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport routea.tmx,6,13,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="28" name="Teleport to Side Route" type="event" x="160" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routea.tmx,7,13,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport routea.tmx,7,13,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="29" name="Teleport to Basement" type="event" x="240" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,13,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport mansion_basement.tmx,13,3,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="30" name="Play Music" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_mansion_theme"/>
-    <property name="cond1" value="not music_playing music_mansion_theme"/>
+    <property name="act10" value="play_music music_mansion_theme"/>
+    <property name="cond10" value="not music_playing music_mansion_theme"/>
    </properties>
   </object>
   <object id="32" name="Teleport to Side Route" type="event" x="176" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routea.tmx,7,13,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport routea.tmx,7,13,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="33" name="Teleport to Basement" type="event" x="256" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,13,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport mansion_basement.tmx,13,3,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="36" name="Player Spawn" type="event" x="160" y="160" width="16" height="16"/>

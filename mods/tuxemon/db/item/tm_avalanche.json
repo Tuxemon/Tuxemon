@@ -9,7 +9,6 @@
     "conditions": [
         "type target,Earth,Water"
     ],
-    "power": 0,
     "sort": "utility",
     "sprite": "gfx/items/red-book.png",
     "target": {

@@ -60,7 +60,6 @@ class Item(object):
         'effects': [u'heal'],
         'slug': 'potion',
         'name': u'potion',
-        'power': 50,
         'sprite': u'resources/gfx/items/potion.png',
         'surface': <Surface(66x90x32 SW)>,
         'surface_size_original': (66, 90),
@@ -80,7 +79,6 @@ class Item(object):
         self.description = "None"
         self.images = []
         self.type = None
-        self.power = 0
         self.sprite = ""  # The path to the sprite to load.
         self.surface = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
@@ -125,7 +123,6 @@ class Item(object):
             'effects': [u'heal'],
             'slug': 'potion',
             'name': u'potion',
-            'power': 50,
             'sprite': u'resources/gfx/items/potion.png',
             'surface': <Surface(66x90x32 SW)>,
             'surface_size_original': (66, 90),
@@ -147,7 +144,6 @@ class Item(object):
         # misc attributes (not translated!)
         self.sort = results['sort']
         self.type = results["type"]
-        self.power = results["power"]
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]
         self.target = process_targets(results["target"])

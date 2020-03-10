@@ -474,12 +474,5 @@
     <property name="cond10" value="is variable_set iamsecret:ohno"/>
    </properties>
   </object>
-  <object id="122" name="omnichannel npc 1" type="event" x="0" y="256" width="16" height="16">
-   <properties>
-    <property name="act10" value="create_npc "/>
-    <property name="cond10" value="is variable_set omnichannelhere:here"/>
-    <property name="cond20" value="not npc_exists"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

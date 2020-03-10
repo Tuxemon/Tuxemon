@@ -926,12 +926,7 @@ class WorldState(state.State):
         self.invalid_x = (-1, self.map_size[0])
         self.invalid_y = (-1, self.map_size[1])
 
-        # TODO: remove this monkey [patching!] business for the main control/game
-        self.game.events = map_data["events"]
-        self.game.inits = map_data["inits"]
-        self.game.interacts = map_data["interacts"]
-        self.game.event_engine.reset()
-        self.game.event_engine.current_map = map_data
+        self.game.load_map(map_data)
 
         # Clear out any existing NPCs
         self.npcs = {}

@@ -1,0 +1,25 @@
+{
+    "slug": "d0llf1n",
+    "category": "glitched",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Glitch",
+        "Water"
+    ],
+    "weight": 25
+}

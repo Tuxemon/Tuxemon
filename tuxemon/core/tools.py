@@ -35,11 +35,12 @@ import logging
 import operator
 import os.path
 import re
+from six.moves import zip_longest
 
 import pygame
 
-import tuxemon.core.sprite
 import tuxemon.core.monster
+import tuxemon.core.sprite
 from tuxemon.core import prepare
 from tuxemon.core import pyganim
 from tuxemon.core.db import db
@@ -422,7 +423,7 @@ def get_avatar(game, avatar):
         try:
             avatar_monster = tuxemon.core.monster.Monster()
             avatar_monster.load_from_db(avatar)
-            avatar_monster.flairs = {} # Don't use random flair graphics
+            avatar_monster.flairs = {}  # Don't use random flair graphics
             return avatar_monster.get_sprite("menu")
         except KeyError:
             logger.debug("invalid avatar monster name")
@@ -517,6 +518,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
 
     return load_image
 
+
 def number_or_variable(game, value):
     """ Returns a numeric game variable by its name
     If value is already a number, convert from string to float and return that
@@ -537,3 +539,48 @@ def number_or_variable(game, value):
         except (KeyError, ValueError, TypeError):
             logger.error("invalid number or game variable {}".format(value))
             raise ValueError
+
+
+def cast_values(parameters, valid_parameters):
+    """ Change all the string values to the expected type
+
+    This will also check and enforce the correct parameters for actions
+
+    :param parameters:
+    :param valid_parameters:
+    :return:
+    """
+
+    # TODO: stability/testing
+    def cast(i):
+        ve = False
+        t, v = i
+        try:
+            for tt in t[0]:
+                if tt is None:
+                    return None
+
+                try:
+                    return tt(v)
+                except ValueError:
+                    ve = True
+
+        except TypeError:
+            if v is None:
+                return None
+
+            if v == '':
+                return None
+
+            return t[0](v)
+
+        if ve:
+            raise ValueError
+
+    try:
+        return list(map(cast, zip_longest(valid_parameters, parameters)))
+    except ValueError:
+        logger.error("Invalid parameters passed:")
+        logger.error("expected: {}".format(valid_parameters))
+        logger.error("got: {}".format(parameters))
+        raise

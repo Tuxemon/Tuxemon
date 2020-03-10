@@ -74,11 +74,14 @@ class ItemMenuState(Menu):
         item = menu_item.game_object
         state = self.determine_state_called_from()
 
-        if state in item.usable_in:
-            self.open_confirm_use_menu(item)
-        else:
+        if not any(menu_item.game_object.validate(m) for m in self.game.player1.monsters):
+            msg = T.format('item_no_available_target', {'name': item.name})
+            tools.open_dialog(self.game, [msg])
+        elif state not in item.usable_in:
             msg = T.format('item_cannot_use_here', {'name': item.name})
             tools.open_dialog(self.game, [msg])
+        else:
+            self.open_confirm_use_menu(item)
 
     def open_confirm_use_menu(self, item):
         """ Confirm if player wants to use this item, or not
@@ -93,8 +96,8 @@ class ItemMenuState(Menu):
             # item must be used before state is popped.
             # don't try to combine with "if result..." condition below
             result = item.use(player, monster)
-            self.game.pop_state()    # pop the monster screen
-            self.game.pop_state()    # pop the item screen
+            self.game.pop_state()  # pop the monster screen
+            self.game.pop_state()  # pop the item screen
 
             msg_type = 'use_success' if result['success'] else 'use_failure'
             template = getattr(item, msg_type)
@@ -107,6 +110,7 @@ class ItemMenuState(Menu):
             # TODO: allow items to be used on player or "in general"
 
             menu = self.game.push_state("MonsterMenuState")
+            menu.is_valid_entry = item.validate
             menu.on_menu_selection = use_item
 
         def cancel():
@@ -128,6 +132,7 @@ class ItemMenuState(Menu):
                 image = self.shadow_text(label)
                 item = MenuItem(image, label, None, callback)
                 menu.add(item)
+
 
         open_choice_menu()
 
@@ -248,7 +253,7 @@ class ShopMenuState(Menu):
                 return
 
             if self.buyer:
-                self.seller.give_item(self.buyer, item, quantity)
+                self.seller.give_item(self.game, self.buyer, item, quantity)
             else:
                 self.seller.alter_item_quantity(item.slug, -quantity)
             self.reload_items()
@@ -291,7 +296,7 @@ class ShopMenuState(Menu):
         inventory = [
             item
             for item in self.seller.inventory.values()
-            if not(self.seller.isplayer and item['item'].sort == "quest")
+            if not (self.seller.isplayer and item['item'].sort == "quest")
         ]
 
         # required because the max() below will fail if inv empty
@@ -312,7 +317,7 @@ class ShopMenuState(Menu):
             else:
                 label = label_format_1
             formatted_name = label(obj.name, properties['quantity'],
-                                          name_len=name_len, count_len=count_len)
+                                   name_len=name_len, count_len=count_len)
             image = self.shadow_text(formatted_name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 

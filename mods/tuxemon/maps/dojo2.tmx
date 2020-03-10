@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="12" tilewidth="16" tileheight="16" nextobjectid="20">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="20">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -63,52 +63,52 @@
  <tileset firstgid="7922" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
  </tileset>
- <layer name="Layer 1" width="24" height="12">
+ <layer id="1" name="Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYKAvsJNhYMhBwtQGvkAzq5EwLcw3lSUPk2I+CBCrhxi1sHDvlUFVKyuLHxNrPizca2Qw1VLLfHxhictcZPPxxYMvFnfjAoTsoZb52AA1zMcHaGk+tvAHANLtGxs=
+   eAG9kNENgCAMRG8QGcNfN3ATN8AV3Fku5pKmEVBTJDmaEvquLfDvWSZgM4p2Xws7G43gzwn4oie9sH+yeRSvrH33/mrvh+GTmIpXS3Lt8bX33fF7Hm/47EFSnaKfQe+KqqvNYfeumlq0Xv5PJN+zmUfw77h6G8kn2/NP0u0bGw==
   </data>
  </layer>
- <layer name="Layer 2" width="24" height="12">
+ <layer id="2" name="Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBhYYC/DwJCDA6PLOciQbr4fUE81Dowu50+k+cKyDAwiJGJRII4j0nwZoFpZErEcBebjAujmdxEZD+SaX0UgHmDhTmrYwDCheCAl3NHdT0w84DLfUA5TTEuOoYFa5lMrHdHCfABkMzEE
+   eAFjYBhYYC/DwJCDA6PLOQDVkQr8gHqqcWB0OX8izReWZWAQIRGLAtXHEWm+DFCtLIlYjgLzcYUpshtA5ncB3Q+KK0LxgO5+Ys2vApoNiitc8QALd2R3kcIGxRm+eEB3Nz6zQX7CJo8vHnCZbyiHaZaWHEMDtczHZg4uMXLcj8ssbOLo5gMAZDMxBA==
   </data>
  </layer>
- <layer name="Layer 3" width="24" height="12">
+ <layer id="3" name="Layer 3" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKBAQAEgAAB
+   eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
   </data>
  </layer>
- <layer name="Above Player" width="24" height="12">
+ <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUkAqU5RgaBtoNwwEAAPoqAMI=
+   eAFjYBgFoyEwGgKkhoCyHEMDqXpG1WOGAAD6KgDC
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="9" name="Play Music" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_dojo_theme"/>
-    <property name="cond1" value="not music_playing music_dojo_theme"/>
+    <property name="act10" value="play_music music_dojo_theme"/>
+    <property name="cond10" value="not music_playing music_dojo_theme"/>
    </properties>
   </object>
   <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dojo1.tmx,11,5,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport dojo1.tmx,11,5,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="11" name="Teleport to Upper Floor" type="event" x="224" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dojo3.tmx,10,9,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport dojo3.tmx,10,9,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="19" name="Player Spawn" type="event" x="192" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="1" type="collision" x="32" y="80" width="16" height="112"/>
   <object id="2" type="collision" x="32" y="80" width="48" height="32"/>
   <object id="3" type="collision" x="64" y="16" width="16" height="96"/>

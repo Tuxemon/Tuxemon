@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="151">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -64,17 +64,17 @@
  <tileset firstgid="5981" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
   <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
  </tileset>
- <layer name="Tile Layer 1" width="40" height="20">
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzlldENgCAMRJ0AthJ1EBEnYANnUZeURkmM0aI0UBJJ7kMN9tFeqRVVZZ1gLQIXLCt4NMh7nvPzKPn4jIutnJoLZ32852TD8tgjXK371n3g1vL7nqc8qkDeIM4cUXN/fgpjSJ4Nyy12/lBdqDJET5pjr07IePdvqrdSKtaPuWQI9c6hlF76o8CPU8H94u9h6JkQI0ffA9/b2c3RW7ljluwnYFvFrj7xXIqtFbDVBd/BXPNhAxH9oBE=
+   eAHdlYkNwjAMRTsBbMU1CNcE3YBZgCXxk/hSZJrSpDSJQLJSEh/f33bSr7quN+H3sHVM0EG3hpzXn9g85qvp1MBGzIvF3prsHM7Ne78mtpATz+PR8IXn4ffezg4j56Eu3yfTTbXxPsQjXCIx3ohzt5ixc+9X/5V/Sl6ynboK2xi3MV/kzwzm2MZ8+n1xnMqd/GCPLfXW3q/XId/wumTd5uQAtpx+nBMzxVY1S7EpqTtU75Lx/y0W/XhreF50DzMz32a6xtyDb+rbXWO2SsdsuZ/A9rQ+Qng3W7tLqBXY6KfcN3fp+6l0PymfFxH9oBE=
   </data>
  </layer>
- <layer width="40" height="20">
+ <layer id="2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYIAATT4GgkCbCDW0Ap5Au72gmAPqDnYkMRD2HkD3IQOQW1cNsHvYOIHhwzlw9hMCekC36Q9i942CUTAKRsEoGAWjYBSMAtoAABsrBPo=
+   eAFjYIAATT4oAw+lTYQaPNopkvIE2u0FxRxQd7AjiYHkvKHiFFlEBc0gt64aYPewcTIwsAPxYAV6QLfpD2L3DdZwG3XXaAiMhsBoCIyGwGgIjIbAaAgM9RAAABsrBPo=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="118" type="collision" x="0" y="304" width="640" height="16"/>
   <object id="119" type="collision" x="0" y="0" width="640" height="16"/>
   <object id="120" type="collision" x="0" y="16" width="16" height="288"/>
@@ -106,26 +106,26 @@
   <object id="146" type="collision" x="144" y="288" width="16" height="16"/>
   <object id="147" type="collision" x="176" y="288" width="16" height="16"/>
  </objectgroup>
- <objectgroup name="Events">
+ <objectgroup id="4" name="Events">
   <object id="148" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music lunar_joyride.mp3"/>
-    <property name="cond1" value="not music_playing lunar_joyride.mp3"/>
+    <property name="act10" value="play_music lunar_joyride.mp3"/>
+    <property name="cond10" value="not music_playing lunar_joyride.mp3"/>
    </properties>
   </object>
   <object id="149" name="Teleport to Dragon's Cave" type="event" x="96" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dragonscave.tmx,12,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport dragonscave.tmx,12,39,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="150" name="Player Spawn" type="event" x="96" y="48" width="16" height="16"/>
  </objectgroup>
- <layer name="Tile Layer 2" width="40" height="20">
+ <layer id="5" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCANhHNC6DscDAx3gTgEymcD0uyc1JcnB4QCzWABYlaoWWFAWg+I9TlpIw/zAzJYgEVsIEDYIHEHLgCL98EKkON9MILwQew2GAgdxG6kpJyhB0AuZ0DAk5+BoR2IvfgHzk3IAL3sywC6yw2IswaJ+0AAVgaCwq4DiNMGkduQyz9Q2K3iG1zuQy7/MqHuaxtE6Q+9/AO50R2IPQaRG7GVf5mDJI8MtfJvMAJCbdtOaPh2cGCXp2XbmZi2LQh0c+CWp2XbGQBL6jUO
+   eAHVll0KwjAQhPPg74veRG/h37M/NxD1IFrxEj57pnoXZ8guhCDUSsBxYZq2ScnXZXdICO1iN4zr60EIT2htzz2Mfaj0fDu6uHoDjg7UhRhbjBNoas+l5z0Hcbd4vdte6btf3PPflcPrRpUxrRtFRu83RTZnYr+phvuYKl/qY2RcjkO4QCtIIXLvO4BrBp1E+Jgj90DmroL2Qmyp/zF3j5EWX+p/R+M7Y1Spv9z/yDiHFkKM7/yPnAo98m/+p+B5OYP3sNei59S98YpzMqOyMZ9v+v7bee75ydmX627GVvps3LT/C0vqNQ4=
   </data>
  </layer>
 </map>

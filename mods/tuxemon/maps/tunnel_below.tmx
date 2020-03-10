@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="42">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="42">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -24,27 +24,27 @@
  <tileset firstgid="4133" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Lowest Level" width="20" height="40">
+ <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJyTZmJgmAXE0lSiqWmWNAE550HuvsEefrjsH8zuG+zhN+o+yt2HL18PBvcN9vAbdd+o+6iV5waL+wZ7+I26b9R9o+4jnQYATiogmg==
+   eAHN00EOREAABVFxDceZWzotve95olhYiMTvUhWJbV2W/by2l+5vvms0qet3sc9aZs/kuDr/hJ29e/bsieMuO/xq0HbXNc4XRg3aiqswatBWXIVRg7biKoz+6y/0qUFb+RaFUYO24iqMGrQVV2HUoK24CqMGbXL9++fEFFdh1KCtuAqjBm3FVRg1aCuuwqhBW3EVRg3aiqswatBWXIVRwwFOKiCa
   </data>
  </layer>
- <layer name="Pit" width="20" height="40">
+ <layer id="2" name="Pit" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF6OAVEwPDSyB+zYQpJ8BMunlCQD2CQCyMRe8BLHaQCo4BzTgBNecgmeYJCCDY74BmfICa84IK7kM2DwRmUGgmyLyPSH6mFIgB4+UUkhuRw4JcgO7nUfNIA6A4kSAjr42CwQ1gZSuu8pVUACtbcZWvgwVQo5xHBuSW8/gANcp6dHCMzHIaVxk8kOUWMWmXFPOQ064IM3YzyfWvEI78QM3wm8FG23LajQ2/PChtHUfD6Gktj4AZMCAoAPGLOBrG5bdpRJpLC/CKiLKzgAT34Uor9AAAmvI4uQ==
+   eAHtlm0KwjAMhoOCvzsV9UQeRzyN7Dj6R8WT+AGiNzCBhcXQrmvsEHGFsGxrnzZZ9rYAfdMZuA4ALmg3NN3cUD+J349xTIE28YzdeuaIE9977JFxrDg7I8+5mnlHxqPinI28mgYgefS8/JBJvCcaxyznsvgz/C4n5HHMMhcWHo3RMVs5PO7fePRNFp7/hfPRX38zA6ytIX1NjYq1NaSvqbyu+ufQebk2q85LhvZzaL1myr1Jv2u6D2nwN3WwTe2mrE/W7hS1znfeSOHJfBLbd96w8iSb/XIE0KVOL5Hf1Ki2Dsr0mWAVYTC/wPMPxTJXFtqDNi25zM95pTr01YqcY52wvlCtSF5X/gua8ji5
   </data>
  </layer>
- <layer name="Layer 3" width="20" height="40">
+ <layer id="3" name="Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
- <layer name="Wall" width="20" height="40">
+ <layer id="4" name="Wall" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJzdllsOgyAQRf11O21Xg67Guhq7G9xQIXGSiWWeYEtKcmMicHKReTiNwzAptCU9kV7KfdT+NQmPxciNx/57ej5OLDyC0WfWzPCsPiWex2fvvCjciZWn8fhrnnTmvWEcemKa8+jlUR5reJDX2GcNr+TzH3lUfc31sVXs9RQnPfO28bO/5QG9w9I/KJbHK8W6He+sOSfVJ2tMf4OXz7o35AVinuNBrpbuIqA1q5LH9bLSt7uCtzAx7eFxHjW8Uq+r4QET/29SvPM6ycMs8Kw1SssDn1ilXhGZuVq9AcFK8eU=
+   eAHdlWEKwjAMRvfX66inUU+jnkZvoxeyH+zBR2hnug0cDkZKm7wmTdKed8NwTvyPonOz/5mwcW60vxd7/64jO8t9jfaHIo+B5dxTWXM/MuPLBK/XT+03xcPXHj+3zlNupnKimHvizZzhr3nfYn6vWIe9sVLzLR/n8lp5WcKjr71+lvCI3XvmH3mt+1X341q1t+Tc/Pzn3HnkEbllnnIR3zfFzNuhdzT7zrVYnCEyk5sWa1/80dfbc7UciIMvvs4c+atJ1xeHD1tfZ67GYc71YSlW+sHX5/LcLsujV2s1Ai/minlic+n7EicSu6jDvHMYR11YkthFHdV2q6ajbobne+EXMsOrvXX4DgeZ4UlXTN2n9EmLF/Vq8bK3JPu3eOiitxYPPxUTP73BnpLo1dZcb874A8FK8eU=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="2" type="collision" x="112" y="544" width="112" height="32"/>
   <object id="3" type="collision" x="208" y="464" width="16" height="176"/>
   <object id="4" type="collision" x="224" y="416" width="16" height="80"/>
@@ -84,35 +84,35 @@
   <object id="36" type="collision" x="288" y="176" width="16" height="208"/>
   <object id="37" type="collision" x="256" y="304" width="32" height="80"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_dragons_cave"/>
-    <property name="cond1" value="not music_playing music_dragons_cave"/>
+    <property name="act10" value="play_music music_dragons_cave"/>
+    <property name="cond10" value="not music_playing music_dragons_cave"/>
    </properties>
   </object>
   <object id="38" name="Teleport to Aboveground" type="event" x="112" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel.tmx,7,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport tunnel.tmx,7,3,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="39" name="Teleport to Aboveground" type="event" x="208" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel.tmx,13,16,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport tunnel.tmx,13,16,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="40" name="Teleport to Aboveground" type="event" x="224" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel.tmx,14,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport tunnel.tmx,14,27,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="41" name="Player Spawn" type="event" x="160" y="32" width="16" height="16"/>

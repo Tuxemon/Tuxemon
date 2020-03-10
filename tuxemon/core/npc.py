@@ -42,8 +42,8 @@ import pygame
 from tuxemon.core import monster, pyganim
 from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
-from tuxemon.core.item import Item
-from tuxemon.core.item import decode_inventory, encode_inventory
+from tuxemon.core.item.item import Item
+from tuxemon.core.item.item import decode_inventory, encode_inventory
 from tuxemon.core.locale import T
 from tuxemon.core.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.monster import decode_monsters, encode_monsters
@@ -178,9 +178,10 @@ class NPC(Entity):
             'tile_pos': nearest(self.tile_pos),
         }
 
-    def set_state(self, save_data):
+    def set_state(self, game, save_data):
         """Recreates npc from saved data
 
+        :param game:
         :param save_data: Data used to recreate the player
         :type save_data: Dictionary
 
@@ -188,13 +189,14 @@ class NPC(Entity):
         :returns: None
 
         """
+
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
-        self.inventory = decode_inventory(save_data)
+        self.inventory = decode_inventory(game, self, save_data)
         self.monsters = decode_monsters(save_data)
         self.name = save_data['player_name']
         self.storage = {
-            'items': decode_inventory(save_data['storage']),
+            'items': decode_inventory(game, self, save_data['storage']),
             'monsters': decode_monsters(save_data['storage']),
         }
 
@@ -472,7 +474,6 @@ class NPC(Entity):
 
             else:
                 # give up and wait until the target is clear again
-                #logger.error('{} waiting because way is blocked!'.format(self.slug))
                 pass
 
     def check_waypoint(self):
@@ -631,12 +632,12 @@ class NPC(Entity):
         self.game_variables['party_level_highest'] = level_highest
         self.game_variables['party_level_average'] = level_average
 
-    def give_item(self, target, item, quantity):
-        subtract = self.alter_item_quantity(item.slug, -quantity)
-        give = target.alter_item_quantity(item.slug, quantity)
+    def give_item(self, game, target, item, quantity):
+        subtract = self.alter_item_quantity(game, item.slug, -quantity)
+        give = target.alter_item_quantity(game, item.slug, quantity)
         return subtract and give
 
-    def alter_item_quantity(self, item_slug, amount):
+    def alter_item_quantity(self, game, item_slug, amount):
         success = True
         item = self.inventory.get(item_slug)
         if amount > 0:
@@ -644,7 +645,7 @@ class NPC(Entity):
                 item['quantity'] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(item_slug),
+                    'item': Item(game, self, item_slug),
                     'quantity': amount,
                 }
         elif amount < 0:

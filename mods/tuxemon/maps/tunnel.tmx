@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="16" tileheight="16" nextobjectid="103">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="103">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -24,127 +24,127 @@
  <tileset firstgid="4133" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Lowest Level" width="20" height="40">
+ <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJzN1ksOgkAMBuDO3ugh8XEQRA4iLsGVegrxJnoFS2CSpimTdKboLP4MIeEL05ZHCwAd5oppDY4tDHrc/ch7YnrMS+n1M1k5gDeuH6V3w9wxDxiv59F6axfOxv23v1shuwTvKKTKyGumHIw8v5bEO5E6WnjU1fYm5FFT651ZDXl/tF6BqQ09v9+9cJ8xXs2u5fOj8crp3HBvF2HvMR6dO17HWG8ulp6vgcabmz1vxTwf3PRWyveX7ltTM+4VQl9TPKkfuXpDHxrQzUjIqyKMJT3+bs7Nk+YuxZPmJCevYYl5Byz5v2btfQH3dPxz
+   eAHNlEFOwzAURM2+gkM2LQcB2oMkXbasgFMAN4ErdGYx0ugrrvodL7IY2bX9X8bzrZ5LKRfoHTp3mPdguBd66+mvxvvGd36gXyhzB9bMafNQyh/2/pO8D5z/hL4g1kdleY/wcUtP2M/cN3PW+1ibD7hj1A5rrd95RW3U24p4E7xQz+ZziT/l9GK8A+YDxBxrudfW53jKk9xsb27xyBXzcqdX8Uac9wzlkSPzzPK2qDlCztG8had+7MGMPlt48qZaZ2qt1lNfZ370xjV6O0Hx7i08ZsVeDpC8tuan7FQfx1Z/kcPfyiDzXkbUef7iiqU36rnX5jobmWLV6mrr4nHfc8xk5mzyttAAeV+X8NyXslsrj32YoBN07xuJ+fl9eU/fz87Zj5483mnNvLl3l83Mz+u9aVzaD3E0LuVN6IeL7879Z+f+f9Bj3oPhd7gC93T8cw==
   </data>
  </layer>
- <layer name="Obstacles" width="20" height="40">
+ <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJy9lv1NAzEMxd3rX3xWgjEoYpL2lmIIprgdGKdlCc4Slt4Z23mJEJaik/LxuxfbcXIRkevaLu47ajc7kdvd7+/DOvZItEPBRm2ntZ1/2n2x5o3Q2mMv0tbp7ZWYU+n8T951Evma+ng+d5D3tBd53vfxfO5orLMY3xE81GjW8mGL53OH5VXny+d3tec50TGiEffaUwMyjcjDODIWaUReb32yOoE6kTdSAxbZ6hz1H1rGY/3n6+sx4Zm29w49Zpp36ssZ+lj/teJqxvqN5f1V3pkxsdVYHIN+uzvw/mj5L2N5M61V/rEs5FX5l9UTyxM7c4tw9a9Vn6IzUvlvhFfFVucvrg9rccSLtNlZjWKBORfxIv9Vd4+t87Gv/BfxPqftOj9Hc/sQaGP0+XpqbxAd68m7TJ+9QaLzrPtieNFdl70RGJ4x8ZxkvOgOi3gf0/b/rTcMW/NYHr7Jrc3FPB37BqveSUI=
+   eAG1lutNAzEQhA384nFEgjIgopLkmqIIqkgPlJPQBDuSRxot4z2DhKWV7/bx3XjtXO7cWruEndMct38at1et3YXleQna44TtiqdSI1IOYcduD3AMxtvADzc1Fik/Qi/hwToqnblonx3mvtKZ0/+Td7lu7Sssj0of94Wz6nu6ae05LI+Kx33hjL0e7fF9B1c8pFBbT2+qkT6dt3jUxppZXtbBeswa21rz2guzDuXl2EijrlXfBcpy1yONytN3gWNkn9OoPO1RrnX30Ij3hJ4f5eUeOUb2ncKhOpX3m/4pd8Sb7d8SMLyXaK8CV33s37vE3aXqYRy/NfRypSPm2f45nuoiEv2bGbM89G9mzPLYv4q5RFD7z1z+d2CPdt251b8Ri0zO7GV1/mZZYJJXnT/XM9TynPA3dxJe1b8Rj1o0Tl/VP82HLg7Wapy+6vwhH2vRgbWu3eF47vwtkY8z4M4IdQDpeK5/moc6HeThmfo8+l3/HO+zfxOwLufgbO/CXP9ybtaHnmoOv0HwLNc/zVUWrp0+foMwpjVY1wzvEEU8z6x3PMRmeMgD8xhG7oiX81DLoTUffY/4fI0xX2fmqc/VMM/FtJY6sSbaqgn9mnmIfQOr3klC
   </data>
  </layer>
- <layer name="Obstacles 2" width="20" height="40">
+ <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eJzNlssNwjAMQFO4AQX2AMQkwF587nQIYAXYowMgpsARtWSiOnHiUPokS1QtL67TODFGRgkxJTET/o9jBXGBuELcINbMcy+Poy6+fRTONyqYG05uId9zEPa4Tp8vlg3EhFwvjH5u3ByR2FyxNrl8iOvDcXaJPlvDrfnUcdz8DrkOQ5lXktNe4MrJvOPx+kItWPN94hHZW3Jz//P4UuiepN2PLLS/aPpz1dL/tP0efdI+5QPrtsyQV9l4EPSlrjlaM/uu9D3PCd/lL+aA80nXLT075MyPm4tUfGeW2PNPyJeCxnds2QvpeSDWZzkx+yvmmeP7s2Cemh7AUXXc+9+dVB4V
+   eAHFltsNwjAMRXn8AQX2AMQkpXvx+IchgBVgDwZATIEt9YpLlNZJm0IkK6ljHzsOden1wkYmZlOSWZhbpdVKds4iF5GryFrEN14+Zal79D+byuNRxRuRD9vzWlkW7zlgD3tt8WzCt0UujxNSLWSN+2l6N26OwFfVEvvujNqk4oHv8hCngEHkrDXciGgdx+XaYu2GYmgM5VocRWwDWEaoqO35j+NFJdehMfeJDsMkQ98je0uywCXo9uf4oefJxLBtz+NY3F9iex5zTmX9UvHAVl5on4KPb0bdlrLZ5pzKVpZyMMBr+s5xzfSs3EePDX6XzENuyLXJXMcLfW/x3dL4dbzY/DJx8N1FLAf2nJvquH58Bthbcx3P8vXtt+HtPd/CXILg/4DG4/P64ru6g4epNsgzlufy8Yw8CygSzuhdCZG1qDedVB4V
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="88" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_the_wild_places"/>
-    <property name="cond1" value="not music_playing music_the_wild_places"/>
+    <property name="act10" value="play_music music_the_wild_places"/>
+    <property name="cond10" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
   <object id="89" name="Teleport to Below" type="event" x="224" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel_below.tmx,14,25,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport tunnel_below.tmx,14,25,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="90" name="Teleport to Below" type="event" x="208" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel_below.tmx,13,14,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport tunnel_below.tmx,13,14,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="91" name="Teleport to Below" type="event" x="112" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel_below.tmx,7,2,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport tunnel_below.tmx,7,2,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="92" name="Teleport to Timber Town" type="event" x="208" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,33,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport timber_town.tmx,33,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="93" name="Teleport to Timber Town" type="event" x="224" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,34,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport timber_town.tmx,34,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="95" name="Teleport to Timber Town" type="event" x="240" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,35,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport timber_town.tmx,35,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="96" name="Teleport to Timber Town" type="event" x="256" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,36,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport timber_town.tmx,36,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="97" name="Teleport to Route 6" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,4,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route6.tmx,39,4,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="98" name="Teleport to Route 6" type="event" x="0" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,5,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route6.tmx,39,5,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="99" name="Teleport to Route 6" type="event" x="0" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,6,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route6.tmx,39,6,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="100" name="Teleport to Route 6" type="event" x="0" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,7,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route6.tmx,39,7,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="101" name="Teleport to Route 6" type="event" x="0" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,8,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route6.tmx,39,8,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="102" name="Player Spawn" type="event" x="112" y="64" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="112" y="400" width="96" height="240"/>
   <object id="2" type="collision" x="272" y="512" width="48" height="128"/>
   <object id="3" type="collision" x="80" y="480" width="32" height="128"/>

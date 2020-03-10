@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="94">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
  <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
@@ -24,33 +24,33 @@
  <tileset firstgid="1501" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
- <layer name="Tile Layer 1" width="20" height="20">
+ <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYECADaykY3xgNyvpGB84xko6xgdWsJKOR80bNW/UvFHzBsK8wQgAniChCA==
+   eAFjYECADawMDKRihG5M1m6geaRiTFMQIseA5pGKEboxWSuA5pGKMU1BiJBqFkg9PjBqHuH4GQ0/RAiMppfhnV4QMT14WACeIKEI
   </data>
  </layer>
- <layer name="Tile Layer 2" width="20" height="20">
+ <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBg6gAWI2YA4E8jIBuKjQHyMBVPdIWYGhsPMhM2TAWI5IDZlZWAwB+J3QLPeo5nnBMSvgWa9IcI8YoE69YwiCXzCEla0BiArgUELjjdCwIKVsBoBIBYEYiGKXIUAoDQgywBJB/QGoHQ3mQWBzVlJk6c3WAS0fzESXkKhe9YC9a9DwuspNG8HUP9OJLxrgMPrIdB+TiDNBcTcSOK1SO5Cln84wO4lBwAAHSEcKQ==
+   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6jh/UgK4FBC443QvZZgBQSAAJAeUEgFiKgjlhpUBqQBWJQOqA3AKW7ycAAgmFQGkQGhOSR1dKDvQjovsVIeAmae0l1w1qg/nVIeD2F5u0A6t+JhHdRaB6p/kFX/xBoPydQkAuIuZEka5HchSwPUj/UAAAdIRwp
   </data>
  </layer>
- <layer name="Tile Layer 3" width="20" height="20">
+ <layer id="3" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBg6wBOIvahonhoVzRoFo2AUjIKRBgABaAC6
+   eAFjYBg6wBPoVC8qOleNimaNGjUaAqMhMBoCIy0EAAFoALo=
   </data>
  </layer>
- <layer name="Above player" width="20" height="20">
+ <layer id="4" name="Above player" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgxWcZBloF+AHuwe5+6gNMoH+zULC2SykyY+CwQ1aSIwvUtUPRwAAvfQG6Q==
+   eAFjYBgFgzUETrIMVpdB3LV7kLuP2qGXCfRvFhLORvM/IXlqu2fUPOqGQAtafBIynVT1hMwbivIAvfQG6Q==
   </data>
  </layer>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="5" name="Events">
   <object id="11" name="Teleport to map1" type="event" x="144" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport taba_town.tmx,44,53,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at 8,17"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport taba_town.tmx,44,53,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at 8,17"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="69" name="Choose Creature 1" x="192" y="96" width="16" height="16"/>
@@ -58,7 +58,7 @@
   <object id="75" name="Choose Creature 3" x="224" y="96" width="16" height="16"/>
   <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="43" type="collision" x="192" y="112" width="48" height="32"/>
   <object id="56" type="collision" x="192" y="48" width="48" height="16"/>
   <object id="81" type="collision" x="256" y="-16" width="16" height="320"/>

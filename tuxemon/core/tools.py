@@ -38,8 +38,8 @@ import re
 
 import pygame
 
-import tuxemon.core.sprite
 import tuxemon.core.monster
+import tuxemon.core.sprite
 from tuxemon.core import prepare
 from tuxemon.core import pyganim
 from tuxemon.core.db import db
@@ -422,7 +422,7 @@ def get_avatar(game, avatar):
         try:
             avatar_monster = tuxemon.core.monster.Monster()
             avatar_monster.load_from_db(avatar)
-            avatar_monster.flairs = {} # Don't use random flair graphics
+            avatar_monster.flairs = {}  # Don't use random flair graphics
             return avatar_monster.get_sprite("menu")
         except KeyError:
             logger.debug("invalid avatar monster name")
@@ -516,6 +516,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
         return tile
 
     return load_image
+
 
 def number_or_variable(game, value):
     """ Returns a numeric game variable by its name

@@ -39,6 +39,7 @@ import re
 import pyscroll
 import pytmx
 from pytmx.util_pygame import load_pygame
+from natsort import natsorted
 
 from tuxemon.core import prepare
 from tuxemon.core.euclid import Vector2, Vector3, Point2
@@ -297,7 +298,7 @@ class Map(object):
 
         # Conditions & actions are stored as Tiled properties.
         # We need to sort them by name, so that "act1" comes before "act2" and so on..
-        keys = sorted(obj.properties.keys())
+        keys = natsorted(obj.properties.keys())
 
         x = int(obj.x / self.tile_size[0])
         y = int(obj.y / self.tile_size[1])

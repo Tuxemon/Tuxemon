@@ -58,41 +58,41 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="27" name="Go Outside" type="event" x="192" y="352" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport 37707_town.tmx,24,6,0.5"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="not variable_set 37707_tower:activated"/>
+    <property name="act10" value="transition_teleport 37707_town.tmx,24,6,0.5"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="not variable_set 37707_tower:activated"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="192" y="336" width="16" height="16"/>
   <object id="53" name="Change" type="event" x="192" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog 37707_computer"/>
-    <property name="act2" value="set_variable 37707_tower:activated"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="not variable_set 37707_tower:activated"/>
+    <property name="act10" value="translated_dialog 37707_computer"/>
+    <property name="act20" value="set_variable 37707_tower:activated"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="not variable_set 37707_tower:activated"/>
    </properties>
   </object>
   <object id="54" name="Go Outside Glitched" type="event" x="192" y="352" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport 37707_town_missing.tmx,24,6,0.5"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is variable_set 37707_tower:activated"/>
+    <property name="act10" value="transition_teleport 37707_town_missing.tmx,24,6,0.5"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="is variable_set 37707_tower:activated"/>
    </properties>
   </object>
   <object id="55" name="Enter" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable 37707_tower:entered"/>
-    <property name="cond1" value="not variable_set 37707_tower:entered"/>
-    <property name="cond2" value="not variable_set 37707_tower:activated"/>
+    <property name="act10" value="set_variable 37707_tower:entered"/>
+    <property name="cond10" value="not variable_set 37707_tower:entered"/>
+    <property name="cond20" value="not variable_set 37707_tower:activated"/>
    </properties>
   </object>
   <object id="57" name="Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="fadeout_music 1000"/>
-    <property name="cond1" value="is music_playing music_mystic_island"/>
+    <property name="act10" value="fadeout_music 1000"/>
+    <property name="cond10" value="is music_playing music_mystic_island"/>
    </properties>
   </object>
  </objectgroup>

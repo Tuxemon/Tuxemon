@@ -8,3 +8,5 @@ pyscroll>=2.19.2
 pytmx>=3.20.17
 requests>=2.19.1
 six
+natsort
+click

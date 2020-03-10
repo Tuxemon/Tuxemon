@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="14" height="21" tilewidth="16" tileheight="16" nextobjectid="24">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="24">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -31,17 +31,17 @@
  <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="14" height="21">
+ <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eJzzYWBg8CER+wFxNBk4FkrvY0PFPljEkDEufdjEiNFHS/tmDaD/PjBQbl80mtwMJPZMHPqw4Q6guk4G/PYRwkNJH7Z4H4zuHCr6AKrZwUw=
+   eAHzYWBg8CER+wHVR5OBY6F69rExMCBjkP3IfHQ2Ln0gN6CrRebj0kdL+2ZhcRMt7UMOgw9QuymxDxavsHCcgeSfmUA2sn0wNdjoDqDaTqheXPGATR+y2FDShy3ekf2CjT2U/EdsvCP7kxL/AQCq2cFM
   </data>
  </layer>
- <layer name="Tile Layer 2" width="14" height="21">
+ <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgqELDeVjEkDEMdKLhGixiyBgXqMEjhw8MVn2wcPIjUR8snGJJ1FfMzcBQAsQfyNTXA+X/Y4C4ezaSmhkMmPGODjoYIO7uwiKGL95pDcQ4GRjEgdifAXda9sOizw6ox54TEg+40nIsFn0wM6vxuCkHixjMzC4scvj0YQNFSOwZBNyCDBqR2B0E3IJLHymAkD4Aw/ssnw==
+   eAFjYGBgqELDeWh8dHmgNBh0AklkXIPGR5YDsXEBkD5ywGDVBwsvP6iniHUnLLxiSdRXzM3AUALEH8jU1wPV9w9Ig9w+G8oHUTOAGOYfJGEUZgeQB3J7F5IoTAxfvCMppwlTjJOBQRyI/YGmw/yATsPiCNkBdkA99kAMiodOHBgWR8j6YGZXIwuisXPQ+CAuzA7k8ENXhk0fuhoQvwhJEBR3+NyCpJShEYkDijt8bkFSiqIPWZwQG9k+bGoBw/ssnw==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collision">
+ <objectgroup color="#ff0000" id="3" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="2" type="collision" x="16" y="0" width="208" height="16"/>
   <object id="4" type="collision" x="208" y="16" width="16" height="320"/>
@@ -60,32 +60,32 @@
    <polyline points="0,0 224,0 0,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="18" name="Teleport to Omnichannel 2" type="event" x="16" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport omnichannel2.tmx,1,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act10" value="transition_teleport omnichannel2.tmx,1,12,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
    </properties>
   </object>
   <object id="19" name="Teleport to Omnichannel 2" type="event" x="32" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport omnichannel2.tmx,2,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act10" value="transition_teleport omnichannel2.tmx,2,12,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
    </properties>
   </object>
   <object id="21" name="Teleport to Omnichannel 1" type="event" x="16" y="208" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_town.tmx,22,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act10" value="transition_teleport cotton_town.tmx,22,10,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
    </properties>
   </object>
   <object id="22" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_omnichannel"/>
-    <property name="cond1" value="not music_playing music_omnichannel"/>
+    <property name="act10" value="play_music music_omnichannel"/>
+    <property name="cond10" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
   <object id="23" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>

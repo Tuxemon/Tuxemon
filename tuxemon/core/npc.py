@@ -48,7 +48,8 @@ from tuxemon.core.locale import T
 from tuxemon.core.map import proj, facing, dirs3, dirs2, get_direction
 from tuxemon.core.monster import decode_monsters, encode_monsters
 from tuxemon.core.prepare import CONFIG
-from tuxemon.core.tools import nearest, load_and_scale, trunc
+from tuxemon.core.tools import nearest, trunc
+from tuxemon.core.graphics import load_and_scale
 
 logger = logging.getLogger(__name__)
 

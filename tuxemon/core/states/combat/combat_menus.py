@@ -207,7 +207,7 @@ class CombatTargetMenuState(Menu):
         self.player = kwargs.get("player")
 
         # load and scale the menu borders
-        border = tools.load_and_scale(self.borders_filename)
+        border = graphics.load_and_scale(self.borders_filename)
         self.border = GraphicBox(border, None, None)
 
     def initialize_items(self):

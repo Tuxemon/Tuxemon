@@ -129,7 +129,7 @@ class Task(AnimBase):
         # do something every 2.5 seconds forever
         task = Task(call_later, 2500, -1)
 
-        # pass arguments using functools.partial
+        # pass arguments using funcgraphics.partial
         from functools import partial
         task = Task(partial(call_later(1,2,3, key=value)), 1000)
 

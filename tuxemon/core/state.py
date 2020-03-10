@@ -39,7 +39,7 @@ from importlib import import_module
 import pygame
 
 from tuxemon.constants import paths
-from tuxemon.core import prepare
+from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
 from tuxemon.core.animation import Animation
 from tuxemon.core.animation import Task
@@ -103,7 +103,7 @@ class State(object):
         :returns: core.sprite.Sprite
         """
         layer = kwargs.pop('layer', 0)
-        sprite = tools.load_sprite(filename, **kwargs)
+        sprite = graphics.load_sprite(filename, **kwargs)
         self.sprites.add(sprite, layer=layer)
         return sprite
 
@@ -125,7 +125,7 @@ class State(object):
         """ Create a task for this state
 
         Tasks are processed even while state is inactive
-        If you want to pass positional arguments, use functools.partial
+        If you want to pass positional arguments, use funcgraphics.partial
 
         :param args: function to be called
         :param kwargs: kwargs passed to the function

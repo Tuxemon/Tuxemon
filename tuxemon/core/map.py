@@ -46,7 +46,7 @@ from tuxemon.core.euclid import Vector2, Vector3, Point2
 from tuxemon.core.event import EventObject
 from tuxemon.core.event import MapAction
 from tuxemon.core.event import MapCondition
-from tuxemon.core.tools import scaled_image_loader
+from tuxemon.core.graphics import scaled_image_loader
 
 logger = logging.getLogger(__name__)
 

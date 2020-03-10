@@ -35,7 +35,7 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import tools
+from tuxemon.core import tools, graphics
 from tuxemon.core import ai, fusion
 from tuxemon.core.locale import T
 from tuxemon.core.db import db
@@ -457,11 +457,11 @@ class Monster(object):
         :returns: The surface of the monster sprite
         """
         if sprite == "front":
-            surface = tools.load_sprite(self.front_battle_sprite, **kwargs)
+            surface = graphics.load_sprite(self.front_battle_sprite, **kwargs)
         elif sprite == "back":
-            surface = tools.load_sprite(self.back_battle_sprite, **kwargs)
+            surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = tools.load_animated_sprite([
+            surface = graphics.load_animated_sprite([
                 self.menu_sprite_1, 
                 self.menu_sprite_2],
                 0.25, **kwargs)
@@ -472,7 +472,7 @@ class Monster(object):
         for flair in self.flairs.values():
             flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
             if flair_path != MISSING_IMAGE:
-                flair_sprite = tools.load_sprite(flair_path, **kwargs)
+                flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
 
         return surface
@@ -506,7 +506,7 @@ class Monster(object):
             exts = ["png", "gif", "jpg", "jpeg"]
             for ext in exts:
                 path = "%s.png" % sprite
-                full_path = tools.transform_resource_filename(path)
+                full_path = graphics.transform_resource_filename(path)
                 if full_path:
                     return full_path
         except IOError:
@@ -528,9 +528,9 @@ class Monster(object):
         if len(self.sprites):
             return True
 
-        self.sprites["front"] = tools.load_and_scale(self.front_battle_sprite)
-        self.sprites["back"] = tools.load_and_scale(self.back_battle_sprite)
-        self.sprites["menu"] = tools.load_and_scale(self.menu_sprite_1)
+        self.sprites["front"] = graphics.load_and_scale(self.front_battle_sprite)
+        self.sprites["back"] = graphics.load_and_scale(self.back_battle_sprite)
+        self.sprites["menu"] = graphics.load_and_scale(self.menu_sprite_1)
         return False
 
     def get_state(self):

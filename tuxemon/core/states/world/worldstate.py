@@ -811,7 +811,7 @@ class WorldState(state.State):
 
         # draw noc and wall collision tiles
         red = (255, 0, 0, 128)
-        for item in itertools.chain(box_iter, npc_iter):
+        for item in itergraphics.chain(box_iter, npc_iter):
             box(surface, item, red)
 
         # draw center lines to verify camera is correct

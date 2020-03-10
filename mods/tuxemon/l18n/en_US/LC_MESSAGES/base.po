@@ -67,6 +67,13 @@ msgstr "Imperial Potion"
 msgid "imperial_potion_description"
 msgstr "Heals a monster by 350 HP."
 
+# Revive
+msgid "revive"
+msgstr "Revive"
+
+msgid "revive_description"
+msgstr "Revives knocked out Tuxemon and restores 20 HP."
+
 # Capture Device
 msgid "capture_device"
 msgstr "Capture Device"
@@ -74,8 +81,24 @@ msgstr "Capture Device"
 msgid "capture_device_description"
 msgstr "Captures a monster."
 
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "tm_avalanche_description"
+msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_blossom"
+msgstr "TM: Blossom"
+
+msgid "tm_blossom_description"
+msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
+
+msgid "item_no_available_target"
+msgstr "{name} cannot be used on any of your Tuxemon right now."
 
 # Allie's Address
 msgid "allies_address"

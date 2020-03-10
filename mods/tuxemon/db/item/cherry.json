@@ -4,9 +4,12 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "effects": [
-    "heal"
+    "heal 10"
   ],
-  "power": 10,
+  "conditions": [
+    "current_hp target,<,1.0",
+    "current_hp target,>,0"
+  ],
   "sort": "food",
   "sprite": "gfx/items/cherry.png",
   "target": {

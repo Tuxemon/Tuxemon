@@ -1,17 +1,16 @@
 {
-  "slug": "super_potion",
+  "slug": "revive",
   "use_item": "combat_used_x",
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "effects": [
-    "heal 150"
+    "heal 20"
   ],
   "conditions": [
-    "current_hp target,<,1.0",
-    "current_hp target,>,0"
+    "current_hp target,==,0"
   ],
-  "sort": "potion",
-  "sprite": "gfx/items/super_potion.png",
+  "sort": "food",
+  "sprite": "gfx/items/potion.png",
   "target": {
     "enemy monster": 1,
     "enemy team": 0,

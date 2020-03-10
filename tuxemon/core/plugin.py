@@ -66,7 +66,7 @@ class PluginManager(object):
         self.modules = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
-        self.include_patterns = ["core.event.actions", "core.event.conditions"]
+        self.include_patterns = ["core.event.actions", "core.event.conditions", "core.item.effects", "core.item.conditions"]
 
     def setPluginPlaces(self, plugin_folders):
         self.folders = plugin_folders
@@ -173,5 +173,30 @@ def get_available_classes(plugin_manager):
     classes = []
     for plugin in plugin_manager.getAllPlugins():
         classes.append(plugin.plugin_object)
+
+    return classes
+
+
+def load_plugins(path, category="plugins"):
+    """ Load classes using plugin system
+
+    :param path: where plugins are stored
+    :param category: optional string for debugging info
+
+    :type path: str
+    :type category: str
+
+    :rtype: dict
+    """
+    classes = dict()
+    plugins = load_directory(path)
+
+    for cls in get_available_classes(plugins):
+        name = getattr(cls, "name", None)
+        if name is None:
+            logger.error("found incomplete {}: {}".format(category, cls.__name__))
+            continue
+        classes[name] = cls
+        logger.info("loaded {}: {}".format(category, cls.name))
 
     return classes

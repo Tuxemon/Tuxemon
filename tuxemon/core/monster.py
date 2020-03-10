@@ -50,7 +50,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'slug',
     'status',
     'total_experience',
-    'flairs',
+    'flairs'
 )
 
 SHAPES = {
@@ -553,6 +553,8 @@ class Monster(object):
         if body:
             save_data["body"] = body
 
+        save_data["moves"] = [tech.slug for tech in self.moves]
+
         return save_data
 
     def set_state(self, save_data):
@@ -575,6 +577,8 @@ class Monster(object):
                 self.status = [Technique(slug=i) for i in value]
             elif key == 'body' and value:
                 self.body.set_state(value)
+            elif key == 'moves' and value:
+                self.moves = [Technique(slug) for slug in value]
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 

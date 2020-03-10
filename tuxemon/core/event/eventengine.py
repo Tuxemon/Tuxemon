@@ -30,7 +30,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os.path
 from contextlib import contextmanager
 from lxml import etree
 from textwrap import dedent
@@ -114,8 +113,8 @@ class EventEngine(object):
         # debug
         self.partial_events = list()
 
-        self.load_plugins(paths.CONDITIONS_PATH, "conditions")
-        self.load_plugins(paths.ACTIONS_PATH, "actions")
+        self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
+        self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
 
     def reset(self):
         """ Clear out running events.  Use when changing maps.
@@ -127,50 +126,6 @@ class EventEngine(object):
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
-
-    def load_plugins(self, path, category):
-        """ Load classes and store for use later
-
-        If there are plugins with the same name loaded, then the
-        newest one will be used, and a debug message printed.
-
-        :param path: will be searched for plugin classes
-        :param category: "actions" or "conditions"
-
-        :return: None
-        """
-        assert category in ("actions", "conditions")
-
-        classes = self.load_classes_from_plugins(path, category)
-        storage = getattr(self, category)
-        storage.update(classes)
-
-    @staticmethod
-    def load_classes_from_plugins(path, category="plugin"):
-        """ Load classes using plugin system
-
-        :param path: where plugins are stored
-        :param category: optional string for debugging info
-
-        :type path: str
-        :type category: str
-
-        :rtype: dict
-        """
-        classes = dict()
-        plugins = plugin.load_directory(path)
-
-        for cls in plugin.get_available_classes(plugins):
-
-            # TODO: enforce a template for plugins; make this generic
-            name = getattr(cls, "name", None)
-            if name is None:
-                logger.error("found incomplete {}: {}".format(category, cls.__name__))
-                continue
-            classes[name] = cls
-            logger.info("loaded {}: {}".format(category, cls.name))
-
-        return classes
 
     def get_action(self, name, parameters=None):
         """ Get an action that is loaded into the engine

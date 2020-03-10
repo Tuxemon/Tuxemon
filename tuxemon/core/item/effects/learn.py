@@ -19,31 +19,30 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+# Contributor(s):
+# Adam Chevalier <chevalieradam2@gmail.com>
+#
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.db import db
-from tuxemon.core.event import get_npc
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item.item import decode_inventory
+from tuxemon.core.item.itemeffect import ItemEffect
+from tuxemon.core.technique import Technique
 
 
-class SetInventoryAction(EventAction):
-    """ Overwrites the inventory of the npc or player.
+class LearnEffect(ItemEffect):
+    """This effect teaches the target the technique in the parameters.
     """
-    name = "set_inventory"
+    name = "learn"
     valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
+        (str, "technique")
     ]
 
-    def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        if self.parameters.inventory_slug == "None":
-            npc.inventory = {}
-            return
+    def apply(self, target):
+        tech = Technique()
+        tech.load(self.parameters.technique)
+        target.learn(tech)
 
-        entry = db.database["inventory"][self.parameters.inventory_slug]
-        npc.inventory = decode_inventory(self.game, npc, entry)
+        return {"success": True}

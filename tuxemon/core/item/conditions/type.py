@@ -19,31 +19,37 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+# Contributor(s):
+#
+# Adam Chevalier <chevalieradam2@gmail.com>
+#
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.db import db
-from tuxemon.core.event import get_npc
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item.item import decode_inventory
+from tuxemon.core.item.itemcondition import ItemCondition
 
 
-class SetInventoryAction(EventAction):
-    """ Overwrites the inventory of the npc or player.
+class TypeCondition(ItemCondition):
+    """Compares the target Monster's type1 and type2 against the given types.
+    Returns true if either is equal to any of the listed types.
     """
-    name = "set_inventory"
+    name = "type"
     valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
+        (str, "type1"),
+        ((str, None), "type2"),
+        ((str, None), "type3"),
+        ((str, None), "type4"),
+        ((str, None), "type5")
     ]
 
-    def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        if self.parameters.inventory_slug == "None":
-            npc.inventory = {}
-            return
+    def test(self, target):
+        ret = False
+        if target.type1 is not None:
+            ret = any(target.type1 in p for p in self.parameters)
+        if target.type2 is not None:
+            ret = ret or any(target.type2 in p for p in self.parameters)
 
-        entry = db.database["inventory"][self.parameters.inventory_slug]
-        npc.inventory = decode_inventory(self.game, npc, entry)
+        return ret

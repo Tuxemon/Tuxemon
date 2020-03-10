@@ -5,8 +5,9 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core import save
+from tuxemon.core import save, prepare
 from .save_menu import SaveMenuState
+from tuxemon.core.player import Player
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class LoadMenuState(SaveMenuState):
     def on_menu_selection(self, menuitem):
         save_data = save.load(self.selected_index + 1)
         if save_data and "error" not in save_data:
-            self.game.player1.set_state(save_data)
+            self.game.player1.set_state(self.game, save_data)
 
             old_world = self.game.get_state_name("WorldState")
             if old_world is None:

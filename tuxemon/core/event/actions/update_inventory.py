@@ -27,7 +27,7 @@ from __future__ import unicode_literals
 from tuxemon.core.db import db
 from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item import decode_inventory
+from tuxemon.core.item.item import decode_inventory
 
 
 class UpdateInventoryAction(EventAction):
@@ -46,7 +46,7 @@ class UpdateInventoryAction(EventAction):
 			return
 
 		npc.inventory.update(
-			decode_inventory(
+			decode_inventory(self.game, npc,
 				db.database["inventory"][self.parameters.inventory_slug]
 			)
 		)

@@ -19,31 +19,41 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+# Contributor(s):
+#
+# Adam Chevalier <chevalieradam2@gmail.com>
+#
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.db import db
-from tuxemon.core.event import get_npc
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item.item import decode_inventory
+from tuxemon.core.item.itemcondition import ItemCondition
 
 
-class SetInventoryAction(EventAction):
-    """ Overwrites the inventory of the npc or player.
+class VariableCondition(ItemCondition):
+    """Checks against the variables of the context.
+    Accepts two parameters; variable name and expected value.
     """
-    name = "set_inventory"
+    name = "variable"
     valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
+        (str, "var_name"),
+        ((str, int, None), "expected")
     ]
 
-    def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        if self.parameters.inventory_slug == "None":
-            npc.inventory = {}
-            return
+    def test(self, target):
+        var_name = self.parameters.var_name
+        expect = self.parameters.expected
 
-        entry = db.database["inventory"][self.parameters.inventory_slug]
-        npc.inventory = decode_inventory(self.game, npc, entry)
+        if self.context == 'target':
+            context = target
+        else:
+            context = self.user
+
+        if type(expect) is str:
+            return context.game_variables[var_name] == expect
+        elif type(expect) is int:
+            return context.game_variables[var_name] >= expect
+        elif not expect:
+            return not context.game_variables[var_name]

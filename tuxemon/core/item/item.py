@@ -164,8 +164,6 @@ class Item(object):
 
         ret = list()
 
-        return []
-
         for line in raw:
             name = line.split()[0]
             params = line.split()[1].split(",")
@@ -190,8 +188,6 @@ class Item(object):
         """
 
         ret = list()
-
-        return []
 
         for line in raw:
             name = line.split()[0]

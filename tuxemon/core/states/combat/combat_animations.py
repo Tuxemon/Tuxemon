@@ -13,16 +13,14 @@ from functools import partial
 
 import pygame
 
-import tuxemon.core.audio
-from tuxemon.core import tools
-from tuxemon.core.db import db
+from tuxemon.core import audio, tools
+from tuxemon.core.graphics import scale_sprite
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu
 from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.tools import scale, scale_sequence
-from tuxemon.core.graphics import scale_sprite
 
 logger = logging.getLogger(__name__)
 
@@ -176,7 +174,7 @@ class CombatAnimations(Menu):
         self.task(partial(self.sprites.add, sprite), delay)
 
         # attempt to load and queue up combat_call
-        call_sound = tuxemon.core.audio.load_sound(monster.combat_call)
+        call_sound = core.audio.load_sound(monster.combat_call)
         if call_sound:
             self.task(call_sound.play, delay)
 
@@ -311,7 +309,7 @@ class CombatAnimations(Menu):
             x_diff = scale(150)
 
         cry = monster.combat_call if monster.current_hp > 0 else monster.faint_call
-        sound = tuxemon.core.audio.load_sound(cry)
+        sound = audio.load_sound(cry)
         sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
@@ -503,7 +501,7 @@ class CombatAnimations(Menu):
 
         flip()                       # flip images to opposite
         self.task(flip, 1.5)         # flip the images to proper direction
-        self.task(tuxemon.core.audio.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
+        self.task(audio.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
@@ -574,6 +572,6 @@ class CombatAnimations(Menu):
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
             self.task(partial(toggle_visible, monster_sprite), breakout_delay) # make the monster appear again!
-            self.task(tuxemon.core.audio.load_sound(monster.combat_call).play, breakout_delay)
+            self.task(audio.load_sound(monster.combat_call).play, breakout_delay)
             self.task(tech.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)

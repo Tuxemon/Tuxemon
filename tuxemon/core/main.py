@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 
 def main(load_slot=None):
-    """Add all available states to our scene manager (graphics.Control)
+    """Add all available states to our scene manager (tools.Control)
     and start the game using the pygame interface.
 
     :rtype: None

@@ -16,9 +16,9 @@ import re
 import pygame
 from pytmx.util_pygame import smart_convert, handle_transformation
 
-import tuxemon.core
 from tuxemon.compat import Rect
 from tuxemon.core import prepare
+from tuxemon.core.monster import Monster
 from tuxemon.core.pyganim import PygAnimation, PygConductor
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.tools import transform_resource_filename, scale_sequence, scale_rect
@@ -48,8 +48,7 @@ def strip_coords_from_sheet(sheet, coords, size):
 
 def cursor_from_image(image):
     """Take a valid image and create a mouse cursor."""
-    colors = {(0, 0, 0, 255): "X",
-              (255, 255, 255, 255): "."}
+    colors = {(0, 0, 0, 255): "X", (255, 255, 255, 255): "."}
     rect = image.get_rect()
     icon_string = []
     for j in range(rect.height):
@@ -142,7 +141,9 @@ def scale_surface(surface, factor):
     :returns: Scaled surface
     :rtype: pygame.Surface
     """
-    return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
+    return pygame.transform.scale(
+        surface, [int(i * factor) for i in surface.get_size()]
+    )
 
 
 def load_frames_files(directory, name):
@@ -160,7 +161,9 @@ def load_frames_files(directory, name):
         pattern = r"{}\.[0-9].*".format(name)
         if re.findall(pattern, animation_frame):
             frame = pygame.image.load(directory + "/" + animation_frame).convert_alpha()
-            frame = pygame.transform.scale(frame, (frame.get_width() * scale, frame.get_height() * scale))
+            frame = pygame.transform.scale(
+                frame, (frame.get_width() * scale, frame.get_height() * scale)
+            )
             yield frame
 
 
@@ -174,7 +177,7 @@ def create_animation(frames, duration, loop):
     """
     data = [(f, duration) for f in frames]
     animation = PygAnimation(data, loop=loop)
-    conductor = PygConductor({'animation': animation})
+    conductor = PygConductor({"animation": animation})
     return animation, conductor
 
 
@@ -218,7 +221,9 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
+    sprite._original_image = pygame.transform.scale(
+        sprite._original_image, sprite.rect.size
+    )
     sprite._needs_update = True
 
 
@@ -255,9 +260,9 @@ def scaled_image_loader(filename, colorkey, **kwargs):
     :return:
     """
     if colorkey:
-        colorkey = pygame.Color('#{0}'.format(colorkey))
+        colorkey = pygame.Color("#{0}".format(colorkey))
 
-    pixelalpha = kwargs.get('pixelalpha', True)
+    pixelalpha = kwargs.get("pixelalpha", True)
 
     # load the tileset image
     image = pygame.image.load(filename)
@@ -273,7 +278,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
             try:
                 tile = image.subsurface(rect)
             except ValueError:
-                logger.error('Tile bounds outside bounds of tileset image')
+                logger.error("Tile bounds outside bounds of tileset image")
                 raise
         else:
             tile = image.copy()
@@ -317,7 +322,7 @@ def get_avatar(game, avatar):
             return None
     else:
         try:
-            avatar_monster = tuxemon.core.monster.Monster()
+            avatar_monster = Monster()
             avatar_monster.load_from_db(avatar)
             avatar_monster.flairs = {}  # Don't use random flair graphics
             return avatar_monster.get_sprite("menu")

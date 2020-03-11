@@ -147,7 +147,7 @@ class Item(object):
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]
         self.target = process_targets(results["target"])
-        self.effects = self.parse_effects(results["effects"])
+        self.effects = self.parse_effects(results.get("effects", []))
         self.conditions = self.parse_conditions(results.get("conditions", []))
         self.surface = tools.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()

@@ -48,8 +48,8 @@ class TypeCondition(ItemCondition):
     def test(self, target):
         ret = False
         if target.type1 is not None:
-            ret = any(target.type1 in p for p in self.parameters)
+            ret = any(target.type1.casefold() == p.casefold() for p in self.parameters)
         if target.type2 is not None:
-            ret = ret or any(target.type2 in p for p in self.parameters)
+            ret = ret or any(target.type2.casefold() == p.casefold() for p in self.parameters)
 
         return ret

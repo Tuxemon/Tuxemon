@@ -10,11 +10,12 @@ from tuxemon.core.menu.menu import Menu
 from tuxemon.core.menu.quantity import QuantityMenu
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.ui.text import TextArea
-
+import logging
 # The import is required for PushState to work.
 # But linters may say the import is unused.
 assert QuantityMenu
-
+logger = logging.getLogger(__name__
+                           )
 
 class ItemMenuState(Menu):
     """ The item menu allows you to view and use items in your inventory.
@@ -133,7 +134,6 @@ class ItemMenuState(Menu):
                 item = MenuItem(image, label, None, callback)
                 menu.add(item)
 
-
         open_choice_menu()
 
     def sort_inventory(self, inventory):
@@ -149,9 +149,9 @@ class ItemMenuState(Menu):
         def rank_item(properties):
             item = properties['item']
             primary_order = sort_order.index(item.sort)
-            return primary_order, item.power
+            return primary_order, item.name
 
-        # the two reversals are used to let power dort dec, but class sort inc
+        # the two reversals are used to let name sort desc, but class sort asc
         sort_order = ['potion', 'food', 'utility', 'quest']
         sort_order.reverse()
         return sorted(inventory, key=rank_item, reverse=True)
@@ -281,9 +281,9 @@ class ShopMenuState(Menu):
         def rank_item(properties):
             item = properties['item']
             primary_order = sort_order.index(item.sort)
-            return primary_order, item.power
+            return primary_order, item.name
 
-        # the two reversals are used to let power dort dec, but class sort inc
+        # the two reversals are used to let name sort desc, but class sort ascending
         sort_order = ['potion', 'food', 'utility', 'quest']
         sort_order.reverse()
         return sorted(inventory, key=rank_item, reverse=True)

@@ -1,10 +1,13 @@
+import logging
 import os.path
 
 import pygame
 from pygame import mixer
 
 from tuxemon.core.db import db
-from tuxemon.core.tools import transform_resource_filename, logger
+from tuxemon.core.tools import transform_resource_filename
+
+logger = logging.getLogger(__name__)
 
 
 def load_sound(slug):

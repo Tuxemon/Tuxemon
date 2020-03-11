@@ -13,8 +13,7 @@ from functools import partial
 
 import pygame
 
-from tuxemon.core import audio, tools
-from tuxemon.core.graphics import scale_sprite
+from tuxemon.core import graphics, audio, tools
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu
@@ -121,7 +120,7 @@ class CombatAnimations(Menu):
         feet[1] += tools.scale(11)
 
         capdev = self.load_sprite('gfx/items/capture_device.png')
-        scale_sprite(capdev, .4)
+        graphics.scale_sprite(capdev, .4)
         capdev.rect.center = feet[0], feet[1] - scale(60)
 
         # animate the capdev falling
@@ -526,7 +525,7 @@ class CombatAnimations(Menu):
         monster_sprite = self._monster_sprite_map.get(monster, None)
         capdev = self.load_sprite('gfx/items/capture_device.png')
         animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)
-        scale_sprite(capdev, .4)
+        graphics.scale_sprite(capdev, .4)
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)

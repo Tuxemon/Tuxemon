@@ -37,7 +37,7 @@ import logging
 
 import pygame
 
-from tuxemon.core import tools
+from tuxemon.core import graphics
 from tuxemon.core import screen
 
 logger = logging.getLogger(__name__)

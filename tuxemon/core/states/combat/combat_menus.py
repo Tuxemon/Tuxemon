@@ -9,7 +9,7 @@ from functools import partial
 
 import pygame
 
-from tuxemon.core import tools
+from tuxemon.core import tools, graphics
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import Menu

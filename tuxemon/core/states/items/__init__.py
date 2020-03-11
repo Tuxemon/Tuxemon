@@ -149,7 +149,7 @@ class ItemMenuState(Menu):
         def rank_item(properties):
             item = properties['item']
             primary_order = sort_order.index(item.sort)
-            return primary_order
+            return primary_order, item.power
 
         # the two reversals are used to let power dort dec, but class sort inc
         sort_order = ['potion', 'food', 'utility', 'quest']

@@ -40,16 +40,15 @@ from itertools import chain
 
 import pygame
 
-import tuxemon.core.audio
-from tuxemon.core import state, tools
+from tuxemon.core import audio, state, tools
 from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defeated
 from tuxemon.core.locale import T
+from tuxemon.core.platform.const import buttons
 from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.technique import Technique
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
-from tuxemon.core.platform.const import buttons
 from .combat_animations import CombatAnimations
 
 logger = logging.getLogger(__name__)
@@ -644,7 +643,7 @@ class CombatState(CombatAnimations):
             message = ''
 
         try:
-            tuxemon.core.audio.load_sound(technique.sfx).play()
+            audio.load_sound(technique.sfx).play()
         except AttributeError:
             pass
 

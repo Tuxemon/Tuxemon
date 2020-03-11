@@ -139,7 +139,7 @@ class ItemMenuState(Menu):
         """ Sort inventory in a usable way.  Expects a list of inventory properties.
         
         * Group items by category
-        * Sort in groups by power
+        * Sort in groups by name
         * Group order: Potions, Food, Utility Items, Quest/Game Items
         
         :return: Sorted copy of the inventory
@@ -271,7 +271,7 @@ class ShopMenuState(Menu):
         """ Sort inventory in a usable way.  Expects a list of inventory properties.
 
         * Group items by category
-        * Sort in groups by power
+        * Sort in groups by name
         * Group order: Potions, Food, Utility Items, Quest/Game Items
 
         :return: Sorted copy of the inventory

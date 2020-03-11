@@ -10,12 +10,11 @@ from tuxemon.core.menu.menu import Menu
 from tuxemon.core.menu.quantity import QuantityMenu
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.ui.text import TextArea
-import logging
+
 # The import is required for PushState to work.
 # But linters may say the import is unused.
 assert QuantityMenu
-logger = logging.getLogger(__name__
-                           )
+
 
 class ItemMenuState(Menu):
     """ The item menu allows you to view and use items in your inventory.

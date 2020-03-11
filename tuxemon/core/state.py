@@ -125,7 +125,7 @@ class State(object):
         """ Create a task for this state
 
         Tasks are processed even while state is inactive
-        If you want to pass positional arguments, use funcgraphics.partial
+        If you want to pass positional arguments, use functools.partial
 
         :param args: function to be called
         :param kwargs: kwargs passed to the function

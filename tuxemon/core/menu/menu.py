@@ -8,14 +8,12 @@ from functools import partial
 
 import pygame
 
-import tuxemon.core.audio
-from tuxemon.core import prepare, state, tools, graphics
-from tuxemon.core.db import db
+from tuxemon.core import audio, prepare, state, tools, graphics
 from tuxemon.core.menu.interface import MenuCursor, MenuItem
+from tuxemon.core.platform.const import buttons, intentions
 from tuxemon.core.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
-from tuxemon.core.platform.const import buttons, intentions
 
 logger = logging.getLogger(__name__)
 
@@ -251,7 +249,7 @@ class Menu(state.State):
 
         :returns: None
         """
-        self.menu_select_sound = tuxemon.core.audio.load_sound(self.menu_select_sound_filename)
+        self.menu_select_sound = audio.load_sound(self.menu_select_sound_filename)
 
     def shadow_text(self, text, bg=(192, 192, 192)):
         """ Draw shadowed text

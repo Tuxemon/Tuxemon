@@ -18,7 +18,6 @@ from pytmx.util_pygame import smart_convert, handle_transformation
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare
-from tuxemon.core.monster import Monster
 from tuxemon.core.pyganim import PygAnimation, PygConductor
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.tools import transform_resource_filename, scale_sequence, scale_rect
@@ -312,6 +311,9 @@ def get_avatar(game, avatar):
     :rtype: Optional[pygame.Surface]
     :returns: The surface of the monster or NPC avatar sprite
     """
+    # TODO: remove the need for this import
+    from tuxemon.core.monster import Monster
+
     if avatar and avatar.isdigit():
         try:
             player = game.player1
@@ -322,6 +324,7 @@ def get_avatar(game, avatar):
             return None
     else:
         try:
+            # TODO: don't create a new monster just to load the sprite
             avatar_monster = Monster()
             avatar_monster.load_from_db(avatar)
             avatar_monster.flairs = {}  # Don't use random flair graphics

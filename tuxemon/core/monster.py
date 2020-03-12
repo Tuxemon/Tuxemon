@@ -35,7 +35,7 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import tools, graphics
+from tuxemon.core import graphics
 from tuxemon.core import ai, fusion
 from tuxemon.core.locale import T
 from tuxemon.core.db import db
@@ -462,7 +462,7 @@ class Monster(object):
             surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
             surface = graphics.load_animated_sprite([
-                self.menu_sprite_1, 
+                self.menu_sprite_1,
                 self.menu_sprite_2],
                 0.25, **kwargs)
         else:

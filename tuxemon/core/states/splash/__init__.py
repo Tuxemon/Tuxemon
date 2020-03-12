@@ -34,9 +34,9 @@ from __future__ import unicode_literals
 
 import logging
 
+from tuxemon.core import audio
 from tuxemon.core import prepare
 from tuxemon.core import state
-from tuxemon.core import tools
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +68,7 @@ class SplashState(state.State):
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
         cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
 
-        self.ding = tools.load_sound("sound_ding")
+        self.ding = audio.load_sound("sound_ding")
         self.ding.play()
 
     def process_event(self, event):

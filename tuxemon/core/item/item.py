@@ -38,7 +38,7 @@ from __future__ import unicode_literals
 import logging
 import pprint
 
-from tuxemon.core import tools, prepare
+from tuxemon.core import tools, prepare, graphics
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
@@ -149,7 +149,7 @@ class Item(object):
         self.target = process_targets(results["target"])
         self.effects = self.parse_effects(results.get("effects", []))
         self.conditions = self.parse_conditions(results.get("conditions", []))
-        self.surface = tools.load_and_scale(self.sprite)
+        self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
     def parse_effects(self, raw):

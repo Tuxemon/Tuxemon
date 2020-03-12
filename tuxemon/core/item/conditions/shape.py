@@ -48,6 +48,6 @@ class ShapeCondition(ItemCondition):
     def test(self, target):
         ret = False
         if target.shape is not None:
-            ret = any(target.shape in p for p in self.parameters)
+            ret = any(target.shape.lower() == p.lower() for p in self.parameters)
 
         return ret

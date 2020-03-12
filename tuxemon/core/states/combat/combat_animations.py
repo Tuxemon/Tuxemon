@@ -13,7 +13,7 @@ from functools import partial
 
 import pygame
 
-from tuxemon.core import graphics, audio, tools
+from tuxemon.core import audio, graphics, tools
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu
@@ -173,7 +173,7 @@ class CombatAnimations(Menu):
         self.task(partial(self.sprites.add, sprite), delay)
 
         # attempt to load and queue up combat_call
-        call_sound = core.audio.load_sound(monster.combat_call)
+        call_sound = audio.load_sound(monster.combat_call)
         if call_sound:
             self.task(call_sound.play, delay)
 

@@ -40,6 +40,7 @@ from itertools import chain
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import audio, state, tools, graphics
 from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defeated
 from tuxemon.core.locale import T
@@ -159,7 +160,7 @@ class CombatState(CombatAnimations):
         :returns: None
         """
         for monster, hud in self.hud.items():
-            rect = pygame.Rect(0, 0, tools.scale(70), tools.scale(8))
+            rect = Rect(0, 0, tools.scale(70), tools.scale(8))
             rect.right = hud.image.get_width() - tools.scale(8)
             rect.top += tools.scale(12)
             self._hp_bars[monster].draw(hud.image, rect)
@@ -171,7 +172,7 @@ class CombatState(CombatAnimations):
         """
         for monster, hud in self.hud.items():
             if hud.player:
-                rect = pygame.Rect(0, 0, tools.scale(70), tools.scale(6))
+                rect = Rect(0, 0, tools.scale(70), tools.scale(6))
                 rect.right = hud.image.get_width() - tools.scale(8)
                 rect.top += tools.scale(31)
                 self._exp_bars[monster].draw(hud.image, rect)
@@ -513,7 +514,7 @@ class CombatState(CombatAnimations):
         """
         # make the border and area at the bottom of the screen for messages
         x, y, w, h = self.game.screen.get_rect()
-        rect = pygame.Rect(0, 0, w, h // 4)
+        rect = Rect(0, 0, w, h // 4)
         rect.bottomright = w, h
         border = graphics.load_and_scale(self.borders_filename)
         self.dialog_box = GraphicBox(border, None, self.background_color)
@@ -536,7 +537,7 @@ class CombatState(CombatAnimations):
         message = T.format('combat_monster_choice', {"name": monster.name})
         self.alert(message)
         x, y, w, h = self.game.screen.get_rect()
-        rect = pygame.Rect(0, 0, w // 2.5, h // 4)
+        rect = Rect(0, 0, w // 2.5, h // 4)
         rect.bottomright = w, h
 
         state = self.game.push_state("MainCombatMenuState", columns=2)

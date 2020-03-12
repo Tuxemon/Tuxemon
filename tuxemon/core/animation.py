@@ -12,6 +12,8 @@ import pygame
 
 __all__ = ('Task', 'Animation', 'remove_animations_of')
 
+from tuxemon.compat import Rect
+
 logger = logging.getLogger(__name__)
 
 ANIMATION_NOT_STARTED = 0
@@ -497,7 +499,7 @@ class Animation(pygame.sprite.Sprite):
         self.targets = list()
         for target in self._targets:
             props = dict()
-            if isinstance(target, pygame.Rect):
+            if isinstance(target, Rect):
                 self._round_values = True
             for name, value in self.props.items():
                 initial = self._get_value(target, name)

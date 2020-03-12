@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.ui import draw
 
@@ -18,7 +19,7 @@ class TextArea(Sprite):
 
     def __init__(self, font, font_color, bg=(192, 192, 192)):
         super(TextArea, self).__init__()
-        self.rect = pygame.Rect(0, 0, 0, 0)
+        self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
         self.font = font
         self.font_color = font_color

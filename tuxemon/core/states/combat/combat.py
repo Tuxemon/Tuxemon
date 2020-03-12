@@ -40,7 +40,7 @@ from itertools import chain
 
 import pygame
 
-from tuxemon.core import audio, state, tools
+from tuxemon.core import audio, state, tools, graphics
 from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defeated
 from tuxemon.core.locale import T
 from tuxemon.core.platform.const import buttons

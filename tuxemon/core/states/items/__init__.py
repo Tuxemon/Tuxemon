@@ -133,14 +133,13 @@ class ItemMenuState(Menu):
                 item = MenuItem(image, label, None, callback)
                 menu.add(item)
 
-
         open_choice_menu()
 
     def sort_inventory(self, inventory):
         """ Sort inventory in a usable way.  Expects a list of inventory properties.
         
         * Group items by category
-        * Sort in groups by power
+        * Sort in groups by name
         * Group order: Potions, Food, Utility Items, Quest/Game Items
         
         :return: Sorted copy of the inventory
@@ -149,9 +148,9 @@ class ItemMenuState(Menu):
         def rank_item(properties):
             item = properties['item']
             primary_order = sort_order.index(item.sort)
-            return primary_order, item.power
+            return primary_order, item.name
 
-        # the two reversals are used to let power dort dec, but class sort inc
+        # the two reversals are used to let name sort desc, but class sort asc
         sort_order = ['potion', 'food', 'utility', 'quest']
         sort_order.reverse()
         return sorted(inventory, key=rank_item, reverse=True)
@@ -272,7 +271,7 @@ class ShopMenuState(Menu):
         """ Sort inventory in a usable way.  Expects a list of inventory properties.
 
         * Group items by category
-        * Sort in groups by power
+        * Sort in groups by name
         * Group order: Potions, Food, Utility Items, Quest/Game Items
 
         :return: Sorted copy of the inventory
@@ -281,9 +280,9 @@ class ShopMenuState(Menu):
         def rank_item(properties):
             item = properties['item']
             primary_order = sort_order.index(item.sort)
-            return primary_order, item.power
+            return primary_order, item.name
 
-        # the two reversals are used to let power dort dec, but class sort inc
+        # the two reversals are used to let name sort desc, but class sort ascending
         sort_order = ['potion', 'food', 'utility', 'quest']
         sort_order.reverse()
         return sorted(inventory, key=rank_item, reverse=True)

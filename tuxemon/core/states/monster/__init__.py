@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 import pygame
 
-from tuxemon.core import prepare
+from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
 from tuxemon.core.menu.interface import HpBar, ExpBar, MenuItem
 from tuxemon.core.menu.menu import Menu
@@ -41,10 +41,10 @@ class MonsterMenuState(Menu):
         border_types = ["empty", "filled", "active"]
         for border_type in border_types:
             filename = root + border_type + "_monster_slot_border.png"
-            border = tools.load_and_scale(filename)
+            border = graphics.load_and_scale(filename)
 
             filename = root + border_type + "_monster_slot_bg.png"
-            background = tools.load_image(filename)
+            background = graphics.load_image(filename)
 
             window = GraphicBox(border, background, None)
             self.monster_slot_border[border_type] = window
@@ -158,7 +158,7 @@ class MonsterMenuState(Menu):
         # TODO: not hardcode icon sizes
         for index, status in enumerate(monster.status):
             if status.icon:
-                image = tools.load_and_scale(status.icon)
+                image = graphics.load_and_scale(status.icon)
                 pos = (rect.width * .4) + (index * tools.scale(32)), rect.y + tools.scale(5)
                 surface.blit(image, pos)
 

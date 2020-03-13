@@ -8,13 +8,12 @@ from functools import partial
 
 import pygame
 
-from tuxemon.core import prepare, state, tools
-from tuxemon.core.db import db
+from tuxemon.core import audio, prepare, state, tools, graphics
 from tuxemon.core.menu.interface import MenuCursor, MenuItem
+from tuxemon.core.platform.const import buttons, intentions
 from tuxemon.core.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
-from tuxemon.core.platform.const import buttons, intentions
 
 logger = logging.getLogger(__name__)
 
@@ -250,7 +249,7 @@ class Menu(state.State):
 
         :returns: None
         """
-        self.menu_select_sound = tools.load_sound(self.menu_select_sound_filename)
+        self.menu_select_sound = audio.load_sound(self.menu_select_sound_filename)
 
     def shadow_text(self, text, bg=(192, 192, 192)):
         """ Draw shadowed text
@@ -278,18 +277,18 @@ class Menu(state.State):
             # load and scale the _background
             background = None
             if self.background_filename:
-                background = tools.load_image(self.background_filename)
+                background = graphics.load_image(self.background_filename)
 
             # load and scale the menu borders
             border = None
             if self.draw_borders:
-                border = tools.load_and_scale(self.borders_filename)
+                border = graphics.load_and_scale(self.borders_filename)
 
             # set the helper to draw the _background
             self.window = GraphicBox(border, background, self.background_color)
 
         # handle the arrow cursor
-        image = tools.load_and_scale(self.cursor_filename)
+        image = graphics.load_and_scale(self.cursor_filename)
         self.arrow = MenuCursor(image)
 
     def show_cursor(self):

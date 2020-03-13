@@ -40,4 +40,4 @@ class AddItemAction(EventAction):
 
     def start(self):
         player = self.game.player1
-        player.alter_item_quantity(self.parameters.item_slug, 1)
+        player.alter_item_quantity(self.game, self.parameters.item_slug, 1)

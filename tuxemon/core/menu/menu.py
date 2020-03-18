@@ -48,6 +48,7 @@ class Menu(state.State):
     draw_borders = True
     background = None                 # Image used to draw the background
     background_color = 248, 248, 248  # The window's background color
+    unavailable_color = 220, 220, 220 # Font color when the action is unavailable
     background_filename = None        # File to load for image background
     menu_select_sound_filename = "sound_menu_select"
     font_filename = prepare.fetch("font", "PressStart2P.ttf")
@@ -251,14 +252,18 @@ class Menu(state.State):
         """
         self.menu_select_sound = audio.load_sound(self.menu_select_sound_filename)
 
-    def shadow_text(self, text, bg=(192, 192, 192)):
+    def shadow_text(self, text, bg=(192, 192, 192), fg=None):
         """ Draw shadowed text
 
         :param text: Text to draw
         :param bg:
         :returns:
         """
-        top = self.font.render(text, 1, self.font_color)
+        color = fg
+        if not color:
+            color = self.font_color
+
+        top = self.font.render(text, 1, color)
         shadow = self.font.render(text, 1, bg)
 
         offset = layout((0.5, 0.5))

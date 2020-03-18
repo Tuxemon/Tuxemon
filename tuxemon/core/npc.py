@@ -39,6 +39,7 @@ from math import hypot
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import monster, pyganim
 from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
@@ -153,7 +154,7 @@ class NPC(Entity):
         self.sprite = {}  # Moving animation frames
         self.moveConductor = pyganim.PygConductor()
         self.load_sprites()
-        self.rect = pygame.Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+        self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
     def get_state(self, game):
         """Prepares a dictionary of the npc to be saved to a file

@@ -13,6 +13,7 @@ from functools import partial
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import audio, graphics, tools
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
@@ -33,7 +34,7 @@ def toggle_visible(sprite):
 
 
 def scale_area(area):
-    return pygame.Rect(tools.scale_sequence(area))
+    return Rect(tools.scale_sequence(area))
 
 
 class CombatAnimations(Menu):
@@ -69,7 +70,7 @@ class CombatAnimations(Menu):
         layout.append(opponent)
         # end config =========================================
 
-        # convert the list/tuple of coordinates to pygame Rects
+        # convert the list/tuple of coordinates to Rects
         for position in layout:
             for key, value in position.items():
                 position[key] = list(map(scale_area, value))
@@ -290,7 +291,7 @@ class CombatAnimations(Menu):
     def get_side(self, rect):
         """ [WIP] get 'side' of screen rect is in
 
-        :type rect: pygame.Rect
+        :type rect: Rect
         :return: basestring
         """
         return "left" if rect.centerx < scale(100) else "right"
@@ -315,7 +316,7 @@ class CombatAnimations(Menu):
     def build_hud(self, home, monster):
         """
 
-        :type home: pygame.Rect
+        :type home: Rect
         :type monster: core.monster.Monster
         :return:
         """
@@ -352,7 +353,7 @@ class CombatAnimations(Menu):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
 
         :param player: the player
-        :type home: pygame.Rect
+        :type home: Rect
         :param slots: Number of slots
         :return:
         """
@@ -406,7 +407,7 @@ class CombatAnimations(Menu):
         This function updates the balls to reflect how many Tuxemon have fainted.
 
         :param player: the player
-        :type home: pygame.Rect
+        :type home: Rect
         :param slots: Number of slots
         :return:
         """

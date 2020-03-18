@@ -38,6 +38,7 @@ from importlib import import_module
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.constants import paths
 from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
@@ -69,7 +70,7 @@ class State(object):
     """
     __metaclass__ = ABCMeta
 
-    rect = pygame.Rect((0, 0), prepare.SCREEN_SIZE)
+    rect = Rect((0, 0), prepare.SCREEN_SIZE)
     transparent = False   # ignore all background/borders
     force_draw = False    # draw even if completely under another state
 
@@ -95,7 +96,7 @@ class State(object):
     def load_sprite(self, filename, **kwargs):
         """ Load a sprite and add it to this state
 
-        kwargs can be any value used by pygame Rect, or layer
+        kwargs can be any value used by Rect, or layer
 
         :param filename: filename, relative to the resources folder
         :type filename: String

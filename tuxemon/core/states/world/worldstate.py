@@ -38,6 +38,7 @@ import logging
 import pygame
 from six.moves import map as imap
 
+from tuxemon.compat import Rect
 from tuxemon.core import prepare, state, networking
 from tuxemon.core.db import db
 from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
@@ -772,20 +773,20 @@ class WorldState(state.State):
             entity.move(time_delta, self)
 
     def _collision_box_to_pgrect(self, box):
-        """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
+        """Returns a Rect (in screen-coords) version of a collision box (in world-coords).
         """
 
         # For readability
         x, y = self.get_pos_from_tilepos(box)
         tw, th = self.tile_size
 
-        return pygame.Rect(x, y, tw, th)
+        return Rect(x, y, tw, th)
 
     def _npc_to_pgrect(self, npc):
-        """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
+        """Returns a Rect (in screen-coords) version of an NPC's bounding box.
         """
         pos = self.get_pos_from_tilepos(npc.tile_pos)
-        return pygame.Rect(pos, self.tile_size)
+        return Rect(pos, self.tile_size)
 
     ####################################################
     #                Debug Drawing                     #

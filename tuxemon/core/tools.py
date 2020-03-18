@@ -78,7 +78,7 @@ def new_scaled_rect(*args, **kwargs):
 def scale_rect(rect, factor=prepare.SCALE):
     """ Scale a rect.  Returns a new object.
 
-    :param rect: pygame Rect
+    :param rect: Rect
     :param factor: int
     :rtype: tuxemon.compat.rect.Rect
     """

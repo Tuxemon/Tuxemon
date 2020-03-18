@@ -9,6 +9,7 @@ from base64 import b64decode
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import prepare
 from tuxemon.core import save
 from tuxemon.core.locale import T
@@ -32,7 +33,7 @@ class SaveMenuState(PopUpMenu):
     def initialize_items(self):
         empty_image = None
         rect = self.game.screen.get_rect()
-        slot_rect = pygame.Rect(0, 0, rect.width * 0.80, rect.height // 6)
+        slot_rect = Rect(0, 0, rect.width * 0.80, rect.height // 6)
         for i in range(self.number_of_slots):
             # Check to see if a save exists for the current slot
             if os.path.exists(prepare.SAVE_PATH + str(i + 1) + ".save"):

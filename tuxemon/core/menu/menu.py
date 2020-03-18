@@ -400,7 +400,7 @@ class Menu(state.State):
         If no borders are present, a copy of the menu rect will be returned
 
         :returns: Rect representing space inside borders, if any
-        :rtype: pygame.Rect
+        :rtype: Rect
         """
         return self.window.calc_inner_rect(self.rect)
 
@@ -599,7 +599,7 @@ class Menu(state.State):
     def calc_menu_items_rect(self):
         """ Calculate the area inside the internal rect where items are listed
 
-        :rtype: pygame.Rect
+        :rtype: Rect
         """
         # WARNING: hardcoded values related to menu arrow size
         #          if menu arrow image changes, this should be adjusted
@@ -618,7 +618,7 @@ class Menu(state.State):
 
         The rect represents the size of the menu after all items are added.
 
-        :rtype: pygame.Rect
+        :rtype: Rect
         """
         original = self.rect.copy()    # store the original rect
         self.refresh_layout()          # arrange the menu

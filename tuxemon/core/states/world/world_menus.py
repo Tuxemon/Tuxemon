@@ -8,6 +8,7 @@ from functools import partial
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import prepare
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
@@ -160,7 +161,7 @@ class WorldMenuState(Menu):
         self.shrink_to_items = False   # force menu to expand
         self.menu_items.expand = True  # force menu to expand
         self.refresh_layout()          # rearrange items
-        self.rect = pygame.Rect(right, 0, width, height)  # set new rect
+        self.rect = Rect(right, 0, width, height)  # set new rect
 
         # animate the menu sliding in
         ani = self.animate(self.rect, x=right - width, duration=.50)

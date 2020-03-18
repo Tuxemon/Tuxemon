@@ -28,7 +28,7 @@ import logging
 
 from tuxemon.core import prepare
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import load_animation_from_frames
+from tuxemon.core.graphics import load_animation_from_frames
 
 logger = logging.getLogger(__name__)
 

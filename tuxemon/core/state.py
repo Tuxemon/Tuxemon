@@ -39,7 +39,7 @@ from importlib import import_module
 import pygame
 
 from tuxemon.constants import paths
-from tuxemon.core import prepare
+from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
 from tuxemon.core.animation import Animation
 from tuxemon.core.animation import Task
@@ -103,7 +103,7 @@ class State(object):
         :returns: core.sprite.Sprite
         """
         layer = kwargs.pop('layer', 0)
-        sprite = tools.load_sprite(filename, **kwargs)
+        sprite = graphics.load_sprite(filename, **kwargs)
         self.sprites.add(sprite, layer=layer)
         return sprite
 

@@ -13,14 +13,13 @@ from functools import partial
 
 import pygame
 
-from tuxemon.core import tools
-from tuxemon.core.db import db
+from tuxemon.core import audio, graphics, tools
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu
 from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.sprite import Sprite
-from tuxemon.core.tools import scale, scale_sequence, scale_sprite
+from tuxemon.core.tools import scale, scale_sequence
 
 logger = logging.getLogger(__name__)
 
@@ -121,7 +120,7 @@ class CombatAnimations(Menu):
         feet[1] += tools.scale(11)
 
         capdev = self.load_sprite('gfx/items/capture_device.png')
-        scale_sprite(capdev, .4)
+        graphics.scale_sprite(capdev, .4)
         capdev.rect.center = feet[0], feet[1] - scale(60)
 
         # animate the capdev falling
@@ -140,7 +139,7 @@ class CombatAnimations(Menu):
 
         # convert the capdev sprite so we can fade it easily
         def func():
-            capdev.image = tools.convert_alpha_to_colorkey(capdev.image)
+            capdev.image = graphics.convert_alpha_to_colorkey(capdev.image)
             self.animate(capdev.image, set_alpha=0, initial=255, duration=fade_duration)
 
         self.task(func, delay)
@@ -161,7 +160,7 @@ class CombatAnimations(Menu):
         images = list()
         for fn in ["capture%02d.png" % i for i in range(1, 10)]:
             fn = 'animations/technique/' + fn
-            image = tools.load_and_scale(fn)
+            image = graphics.load_and_scale(fn)
             images.append((image, .07))
 
         delay = 1.3
@@ -174,7 +173,7 @@ class CombatAnimations(Menu):
         self.task(partial(self.sprites.add, sprite), delay)
 
         # attempt to load and queue up combat_call
-        call_sound = tools.load_sound(monster.combat_call)
+        call_sound = audio.load_sound(monster.combat_call)
         if call_sound:
             self.task(call_sound.play, delay)
 
@@ -309,7 +308,7 @@ class CombatAnimations(Menu):
             x_diff = scale(150)
 
         cry = monster.combat_call if monster.current_hp > 0 else monster.faint_call
-        sound = tools.load_sound(cry)
+        sound = audio.load_sound(cry)
         sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
@@ -395,7 +394,7 @@ class CombatAnimations(Menu):
                                           layer=hud_layer)
 
             # convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = tools.convert_alpha_to_colorkey(sprite.image)
+            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
             sprite.image.set_alpha(0)
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
             animate(sprite.image, set_alpha=255, initial=0)
@@ -449,7 +448,7 @@ class CombatAnimations(Menu):
                                           layer=hud_layer)
 
             # convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = tools.convert_alpha_to_colorkey(sprite.image)
+            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
             sprite.image.set_alpha(0)
             animate = partial(self.animate, duration=0.1, delay=0.1)
             animate(sprite.image, set_alpha=255, initial=0)
@@ -501,7 +500,7 @@ class CombatAnimations(Menu):
 
         flip()                       # flip images to opposite
         self.task(flip, 1.5)         # flip the images to proper direction
-        self.task(tools.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
+        self.task(audio.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
@@ -526,7 +525,7 @@ class CombatAnimations(Menu):
         monster_sprite = self._monster_sprite_map.get(monster, None)
         capdev = self.load_sprite('gfx/items/capture_device.png')
         animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)
-        scale_sprite(capdev, .4)
+        graphics.scale_sprite(capdev, .4)
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
@@ -543,7 +542,7 @@ class CombatAnimations(Menu):
         images = list()
         for fn in ["capture%02d.png" % i for i in range(1, 10)]:
             fn = 'animations/technique/' + fn
-            image = tools.load_and_scale(fn)
+            image = graphics.load_and_scale(fn)
             images.append((image, .07))
 
         tech = PygAnimation(images, False)
@@ -572,6 +571,6 @@ class CombatAnimations(Menu):
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
             self.task(partial(toggle_visible, monster_sprite), breakout_delay) # make the monster appear again!
-            self.task(tools.load_sound(monster.combat_call).play, breakout_delay)
+            self.task(audio.load_sound(monster.combat_call).play, breakout_delay)
             self.task(tech.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)

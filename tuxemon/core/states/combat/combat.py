@@ -440,6 +440,7 @@ class CombatState(CombatAnimations):
         # until after the state hs been startup
         state.task(partial(state.alert, T.translate("combat_replacement")), 0)
         state.on_menu_selection = add
+        state.escape_key_exits = False
 
     def fill_battlefield_positions(self, ask=False):
         """ Check the battlefield for unfilled positions and send out monsters

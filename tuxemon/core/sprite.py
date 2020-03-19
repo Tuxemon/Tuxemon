@@ -384,8 +384,7 @@ class VisualSpriteList(RelativeGroup):
 
     def calc_bounding_rect(self):
         if self._needs_arrange:
-            self._arrange_menu_items()
-            self._needs_arrange = False
+            self.arrange_menu_items()
         return super(VisualSpriteList, self).calc_bounding_rect()
 
     def add(self, item, **kwargs):
@@ -403,11 +402,10 @@ class VisualSpriteList(RelativeGroup):
 
     def draw(self, surface):
         if self._needs_arrange:
-            self._arrange_menu_items()
-            self._needs_arrange = False
+            self.arrange_menu_items()
         super(VisualSpriteList, self).draw(surface)
 
-    def _arrange_menu_items(self):
+    def arrange_menu_items(self):
         """ Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
@@ -442,6 +440,8 @@ class VisualSpriteList(RelativeGroup):
         for index, item in enumerate(self.sprites()):
             oy, ox = divmod(index, self.columns)
             item.rect.topleft = ox * column_spacing, oy * line_spacing
+
+        self._needs_arrange = False
 
     def determine_cursor_movement(self, *args):
         """ Given an event, determine a new selected item offset

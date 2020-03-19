@@ -256,6 +256,9 @@ class ShopMenuState(Menu):
             else:
                 self.seller.alter_item_quantity(item.slug, -quantity)
             self.reload_items()
+            if not self.seller.has_item(item.slug):
+                # We're pointing at a new item
+                self.on_menu_selection_change()
 
         item_dict = self.seller.inventory[item.slug]
         max_quantity = None if item_dict.get("infinite") else item_dict['quantity']

@@ -638,6 +638,9 @@ class NPC(Entity):
         give = target.alter_item_quantity(game, item.slug, quantity)
         return subtract and give
 
+    def has_item(self, item_slug):
+        return self.inventory.get(item_slug) is not None
+
     def alter_item_quantity(self, game, item_slug, amount):
         success = True
         item = self.inventory.get(item_slug)

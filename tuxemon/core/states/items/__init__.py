@@ -254,7 +254,7 @@ class ShopMenuState(Menu):
             if self.buyer:
                 self.seller.give_item(self.game, self.buyer, item, quantity)
             else:
-                self.seller.alter_item_quantity(item.slug, -quantity)
+                self.seller.alter_item_quantity(self.game, item.slug, -quantity)
             self.reload_items()
 
         item_dict = self.seller.inventory[item.slug]

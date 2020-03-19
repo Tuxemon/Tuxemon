@@ -147,7 +147,7 @@ class MainCombatMenuState(PopUpMenu):
                 if tech.next_use <= 0:
                     image = self.shadow_text(tech.name)
                 else:
-                    image = self.shadow_text("%s -%s" % (tech.name, tech.next_use))
+                    image = self.shadow_text("%s %d" % (tech.name, abs(tech.next_use)), fg=self.unavailable_color)
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 

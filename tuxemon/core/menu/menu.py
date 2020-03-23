@@ -195,6 +195,8 @@ class Menu(state.State):
             for item in items:
                 self.add(item)
 
+            self.menu_items.arrange_menu_items()
+
             number_items = len(self.menu_items)
             if self.menu_items and self.selected_index >= number_items:
                 self.change_selection(number_items - 1)

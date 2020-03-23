@@ -6,6 +6,9 @@
   "effects": [
     "capture 100"
   ],
+  "conditions": [
+    "is_wild_monster target"
+  ],
   "sort": "utility",
   "sprite": "gfx/items/capture_device.png",
   "target": {

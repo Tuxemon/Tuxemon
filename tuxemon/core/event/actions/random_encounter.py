@@ -135,7 +135,10 @@ def _create_monster_npc(encounter):
 
     # Create an NPC object which will be this monster's "trainer"
     npc = NPC("maple_girl")
-    npc.monsters.append(current_monster)
+    npc.add_monster(current_monster)
+    # NOTE: random battles are implemented as trainer battles.
+    #       this is a hack. remove this once trainer/random battlers are fixed
+    current_monster.owner = None
     npc.party_limit = 0
 
     # Set the NPC object's AI model.

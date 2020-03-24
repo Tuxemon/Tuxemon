@@ -48,6 +48,7 @@ class Menu(state.State):
     draw_borders = True
     background = None                 # Image used to draw the background
     background_color = 248, 248, 248  # The window's background color
+    unavailable_color = 220, 220, 220 # Font color when the action is unavailable
     background_filename = None        # File to load for image background
     menu_select_sound_filename = "sound_menu_select"
     font_filename = prepare.fetch("font", "PressStart2P.ttf")
@@ -194,6 +195,8 @@ class Menu(state.State):
             for item in items:
                 self.add(item)
 
+            self.menu_items.arrange_menu_items()
+
             number_items = len(self.menu_items)
             if self.menu_items and self.selected_index >= number_items:
                 self.change_selection(number_items - 1)
@@ -251,14 +254,18 @@ class Menu(state.State):
         """
         self.menu_select_sound = audio.load_sound(self.menu_select_sound_filename)
 
-    def shadow_text(self, text, bg=(192, 192, 192)):
+    def shadow_text(self, text, bg=(192, 192, 192), fg=None):
         """ Draw shadowed text
 
         :param text: Text to draw
         :param bg:
         :returns:
         """
-        top = self.font.render(text, 1, self.font_color)
+        color = fg
+        if not color:
+            color = self.font_color
+
+        top = self.font.render(text, 1, color)
         shadow = self.font.render(text, 1, bg)
 
         offset = layout((0.5, 0.5))
@@ -400,7 +407,7 @@ class Menu(state.State):
         If no borders are present, a copy of the menu rect will be returned
 
         :returns: Rect representing space inside borders, if any
-        :rtype: pygame.Rect
+        :rtype: Rect
         """
         return self.window.calc_inner_rect(self.rect)
 
@@ -599,7 +606,7 @@ class Menu(state.State):
     def calc_menu_items_rect(self):
         """ Calculate the area inside the internal rect where items are listed
 
-        :rtype: pygame.Rect
+        :rtype: Rect
         """
         # WARNING: hardcoded values related to menu arrow size
         #          if menu arrow image changes, this should be adjusted
@@ -618,7 +625,7 @@ class Menu(state.State):
 
         The rect represents the size of the menu after all items are added.
 
-        :rtype: pygame.Rect
+        :rtype: Rect
         """
         original = self.rect.copy()    # store the original rect
         self.refresh_layout()          # arrange the menu

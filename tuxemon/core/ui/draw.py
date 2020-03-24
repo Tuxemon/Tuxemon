@@ -9,6 +9,7 @@ from itertools import product
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import prepare
 from tuxemon.core.sprite import Sprite
 
@@ -74,7 +75,7 @@ class GraphicBox(Sprite):
                        for x, y in product(range(0, iw, tw), range(0, ih, th))]
 
     def update_image(self):
-        rect = pygame.Rect((0, 0), self._rect.size)
+        rect = Rect((0, 0), self._rect.size)
         surface = pygame.Surface(rect.size, pygame.SRCALPHA)
         self._original_image = surface
         self._image = surface

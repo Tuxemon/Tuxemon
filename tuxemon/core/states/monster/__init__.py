@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
 from tuxemon.core.menu.interface import HpBar, ExpBar, MenuItem
@@ -27,7 +28,7 @@ class MonsterMenuState(Menu):
 
         # make a text area to show messages
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
-        self.text_area.rect = pygame.Rect(tools.scale_sequence([20, 80, 80, 100]))
+        self.text_area.rect = Rect(tools.scale_sequence([20, 80, 80, 100]))
         self.sprites.add(self.text_area, layer=100)
 
         # Set up the border images used for the monster slots
@@ -68,7 +69,7 @@ class MonsterMenuState(Menu):
         left = width // 2.25
         top = height // 12
         width /= 2
-        return pygame.Rect(left, top, width, height - top * 2)
+        return Rect(left, top, width, height - top * 2)
 
     def initialize_items(self):
         # position the monster portrait
@@ -90,7 +91,7 @@ class MonsterMenuState(Menu):
 
         # make 6 slots
         for i in range(self.game.player1.party_limit):
-            rect = pygame.Rect(0, 0, width, height)
+            rect = Rect(0, 0, width, height)
             surface = pygame.Surface(rect.size, pygame.SRCALPHA)
             item = MenuItem(surface, None, None, None)
             yield item
@@ -101,9 +102,6 @@ class MonsterMenuState(Menu):
 
     def on_menu_selection(self, menu_item):
         pass
-
-    def is_valid_entry(self, monster):
-        return True
 
     def render_monster_slot(self, surface, rect, monster, in_focus):
         filled = monster is not None
@@ -123,12 +121,10 @@ class MonsterMenuState(Menu):
                 monster = self.game.player1.monsters[index]
             except IndexError:
                 monster = None
-                continue
             item.game_object = monster
-            item.enabled = monster is not None and self.is_valid_entry(monster)
+            item.enabled = monster is not None
             item.image.fill((0, 0, 0, 0))
-            # TODO: Cleanup this hack
-            item.in_focus = index == self.selected_index
+            item.in_focus = index == self.selected_index and item.enabled
             self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)
 
     def draw_monster_info(self, surface, monster, rect):

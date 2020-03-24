@@ -35,6 +35,7 @@ import pygame
 from pygame.transform import rotozoom
 from pygame.transform import scale
 
+from tuxemon.compat import Rect
 from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.platform.const import buttons
 
@@ -165,7 +166,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
     Variations from standard group:
     * SpriteGroup.add no longer accepts a sequence, use SpriteGroup.extend
     """
-    _init_rect = pygame.Rect(0, 0, 0, 0)
+    _init_rect = Rect(0, 0, 0, 0)
 
     def __init__(self, *args, **kwargs):
         self._spritelayers = dict()
@@ -249,7 +250,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         if not sprites:
             return self.rect
         elif len(sprites) == 1:
-            return pygame.Rect(sprites[0].rect)
+            return Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
@@ -258,7 +259,7 @@ class RelativeGroup(SpriteGroup):
     """
     Drawing operations are relative to the group's rect
     """
-    rect = pygame.Rect(0, 0, 0, 0)
+    rect = Rect(0, 0, 0, 0)
 
     def __init__(self, **kwargs):
         self.parent = kwargs.get('parent')
@@ -279,7 +280,7 @@ class RelativeGroup(SpriteGroup):
         try:
             self.rect = self.parent()
         except TypeError:
-            self.rect = pygame.Rect(self.parent.rect)
+            self.rect = Rect(self.parent.rect)
 
     def draw(self, surface):
         self.update_rect_from_parent()
@@ -384,8 +385,7 @@ class VisualSpriteList(RelativeGroup):
 
     def calc_bounding_rect(self):
         if self._needs_arrange:
-            self._arrange_menu_items()
-            self._needs_arrange = False
+            self.arrange_menu_items()
         return super(VisualSpriteList, self).calc_bounding_rect()
 
     def add(self, item, **kwargs):
@@ -403,11 +403,10 @@ class VisualSpriteList(RelativeGroup):
 
     def draw(self, surface):
         if self._needs_arrange:
-            self._arrange_menu_items()
-            self._needs_arrange = False
+            self.arrange_menu_items()
         super(VisualSpriteList, self).draw(surface)
 
-    def _arrange_menu_items(self):
+    def arrange_menu_items(self):
         """ Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
@@ -442,6 +441,8 @@ class VisualSpriteList(RelativeGroup):
         for index, item in enumerate(self.sprites()):
             oy, ox = divmod(index, self.columns)
             item.rect.topleft = ox * column_spacing, oy * line_spacing
+
+        self._needs_arrange = False
 
     def determine_cursor_movement(self, *args):
         """ Given an event, determine a new selected item offset

@@ -40,6 +40,7 @@ from itertools import chain
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.core import audio, state, tools, graphics
 from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defeated
 from tuxemon.core.locale import T
@@ -159,7 +160,7 @@ class CombatState(CombatAnimations):
         :returns: None
         """
         for monster, hud in self.hud.items():
-            rect = pygame.Rect(0, 0, tools.scale(70), tools.scale(8))
+            rect = Rect(0, 0, tools.scale(70), tools.scale(8))
             rect.right = hud.image.get_width() - tools.scale(8)
             rect.top += tools.scale(12)
             self._hp_bars[monster].draw(hud.image, rect)
@@ -171,7 +172,7 @@ class CombatState(CombatAnimations):
         """
         for monster, hud in self.hud.items():
             if hud.player:
-                rect = pygame.Rect(0, 0, tools.scale(70), tools.scale(6))
+                rect = Rect(0, 0, tools.scale(70), tools.scale(6))
                 rect.right = hud.image.get_width() - tools.scale(8)
                 rect.top += tools.scale(31)
                 self._exp_bars[monster].draw(hud.image, rect)
@@ -425,11 +426,11 @@ class CombatState(CombatAnimations):
         def add(menuitem):
             monster = menuitem.game_object
             if monster.current_hp == 0:
-                graphics.open_dialog(self.game, [T.format("combat_fainted", parameters={"name": monster.name})])
+                tools.open_dialog(self.game, [T.format("combat_fainted", parameters={"name": monster.name})])
             elif monster in self.active_monsters:
-                graphics.open_dialog(self.game, [T.format("combat_isactive", parameters={"name": monster.name})])
+                tools.open_dialog(self.game, [T.format("combat_isactive", parameters={"name": monster.name})])
                 msg = T.translate("combat_replacement_is_fainted")
-                graphics.open_dialog(self.game, [msg])
+                tools.open_dialog(self.game, [msg])
             else:
                 self.add_monster_into_play(player, monster)
                 self.game.pop_state()
@@ -439,6 +440,7 @@ class CombatState(CombatAnimations):
         # until after the state hs been startup
         state.task(partial(state.alert, T.translate("combat_replacement")), 0)
         state.on_menu_selection = add
+        state.escape_key_exits = False
 
     def fill_battlefield_positions(self, ask=False):
         """ Check the battlefield for unfilled positions and send out monsters
@@ -513,7 +515,7 @@ class CombatState(CombatAnimations):
         """
         # make the border and area at the bottom of the screen for messages
         x, y, w, h = self.game.screen.get_rect()
-        rect = pygame.Rect(0, 0, w, h // 4)
+        rect = Rect(0, 0, w, h // 4)
         rect.bottomright = w, h
         border = graphics.load_and_scale(self.borders_filename)
         self.dialog_box = GraphicBox(border, None, self.background_color)
@@ -536,7 +538,7 @@ class CombatState(CombatAnimations):
         message = T.format('combat_monster_choice', {"name": monster.name})
         self.alert(message)
         x, y, w, h = self.game.screen.get_rect()
-        rect = pygame.Rect(0, 0, w // 2.5, h // 4)
+        rect = Rect(0, 0, w // 2.5, h // 4)
         rect.bottomright = w, h
 
         state = self.game.push_state("MainCombatMenuState", columns=2)

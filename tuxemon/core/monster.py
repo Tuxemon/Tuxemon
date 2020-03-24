@@ -50,7 +50,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     'slug',
     'status',
     'total_experience',
-    'flairs',
+    'flairs'
 )
 
 SHAPES = {

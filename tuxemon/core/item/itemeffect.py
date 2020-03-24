@@ -89,7 +89,7 @@ class ItemEffect(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, game, user: NPC, parameters):
+    def __init__(self, game, user, parameters):
         """
 
         :type user: NPC

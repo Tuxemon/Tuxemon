@@ -122,10 +122,9 @@ class MainCombatMenuState(PopUpMenu):
             target = menu_item.game_object
             # is the item valid to use?
             if not item.validate(target):
-                msg = T.format('item_no_available_target', {'name': item.name})
+                msg = T.format('cannot_use_item_monster', {'name': item.name})
                 tools.open_dialog(self.game, [msg])
                 return
-
 
             # enqueue the item
             combat_state = self.game.get_state_name("CombatState")

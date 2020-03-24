@@ -190,9 +190,9 @@ class Item(object):
         ret = list()
 
         for line in raw:
-            space_split = line.split()
-            args = "".join(space_split[1:]).split(",")
-            name = space_split[0]
+            words = line.split()
+            args = "".join(words[1:]).split(",")
+            name = words[0]
             context = args[0]
             params = args[1:]
             try:

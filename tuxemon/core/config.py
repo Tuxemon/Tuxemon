@@ -121,14 +121,6 @@ class TuxemonConfig(object):
         self.mods = ["tuxemon"]
 
 
-class HeadlessConfig(object):
-    """Handles loading of the configuration file for the headless server.
-    """
-
-    def __init__(self, file_default="tuxemon.cfg", file_config="tuxemon.cfg"):
-        raise RuntimeError("deprecated")
-
-
 def get_defaults():
     """ Generate a config from defaults
 

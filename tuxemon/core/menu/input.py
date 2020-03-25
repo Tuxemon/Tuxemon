@@ -7,14 +7,12 @@ from __future__ import unicode_literals
 
 from functools import partial
 
-import pygame
-
 from tuxemon.compat import Rect
 from tuxemon.core import tools
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import Menu
-from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import events
+from tuxemon.core.ui.text import TextArea
 
 
 class InputMenu(Menu):

@@ -48,7 +48,6 @@ logger = logging.getLogger(__name__)
 # TODO: refact this out when other platforms supported (such as headless)
 PLATFORM = "pygame"
 
-
 # list of regular expressions to blacklist devices
 joystick_blacklist = [
     re.compile(r"Microsoft.*Transceiver.*"),
@@ -77,7 +76,6 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
-ORIGINAL_CAPTION = CONFIG.window_caption
 
 # Set the native tile size so we know how much to scale our maps
 TILE_SIZE = [16, 16]  # 1 tile = 16 pixels
@@ -138,7 +136,7 @@ def pygame_init():
 
     logger.debug("pygame init")
     pg.init()
-    pg.display.set_caption(ORIGINAL_CAPTION)
+    pg.display.set_caption(CONFIG.window_caption)
 
     fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
@@ -177,12 +175,8 @@ def pygame_init():
 
 # Initialize the game framework
 def init():
-
-    # initialize any platform-specific workarounds before pygame
     from tuxemon.core import platform
     platform.init()
-
-    # Initialize PyGame and our screen surface.
     if PLATFORM == 'pygame':
         pygame_init()
 

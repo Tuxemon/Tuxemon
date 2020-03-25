@@ -89,8 +89,7 @@
    <properties>
     <property name="act10" value="create_npc npc_mom,9,4,,stand"/>
     <property name="act20" value="npc_face npc_mom,left"/>
-    <property name="act30" value="npc_speed npc_mom, 0.2"/>
-    <property name="act40" value="npc_wander npc_mom"/>
+    <property name="act40" value="npc_wander npc_mom,3.0"/>
     <property name="cond10" value="not npc_exists npc_mom"/>
    </properties>
   </object>

@@ -44,7 +44,7 @@ from tuxemon.core import screen
 logger = logging.getLogger(__name__)
 
 
-class Controller(object):
+class ControllerOverlay(object):
     """Handles the controller overlay functionality for mobile versions of the game. This includes
     detecting screen touches of on-screen buttons so they can be translated to keystrokes as well
     as drawing the controller overlay itself.
@@ -55,6 +55,7 @@ class Controller(object):
     :type game: tuxemon.Game
 
     """
+
     def __init__(self, game):
         self.game = game
         self.dpad = {}
@@ -62,7 +63,7 @@ class Controller(object):
     def load(self):
         from tuxemon.core import prepare
         self.dpad["surface"] = graphics.load_and_scale("gfx/d-pad.png")
-        self.dpad["position"] = (0, prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height() )
+        self.dpad["position"] = (0, prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height())
 
         # Create the collision rectangle objects for the dpad so we can see if we're pressing a button
         self.dpad["rect"] = {}
@@ -102,7 +103,6 @@ class Controller(object):
             self.b_button["position"][1],
             self.b_button["surface"].get_width(),
             self.b_button["surface"].get_height())
-
 
     def draw(self, game):
         """Draws the controller overlay to the screen.

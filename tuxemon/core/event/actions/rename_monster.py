@@ -32,6 +32,7 @@ from __future__ import unicode_literals
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.locale import T
 
+
 class RenameMonsterAction(EventAction):
     """Opens the monster menu and text input screens to rename a selected monster.
 

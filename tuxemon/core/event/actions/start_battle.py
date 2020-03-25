@@ -60,19 +60,23 @@ class StartBattleAction(EventAction):
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
-            logger.debug("battle is not legal, won't start")
-            return False
+            logger.debug("battle is not legal: won't start because we don't have enough monsters in our party")
+            return False # don't start battle
 
+        # Fetch the antagonist NPC from the world state
         world = self.game.get_state_name("WorldState")
         if not world:
+            logger.debug("battle could not be started because WorldState was not obtained")
+            return False # don't start battle
+        npc = world.get_entity(self.parameters.npc_slug)
+        if npc.battled_already:
+            logger.debug("battle did not start because this NPC battled the protagonist already") 
             return False
+        npc.load_party()
 
         # Stop movement and keypress on the server.
         if self.game.isclient or self.game.ishost:
             self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
-
-        npc = world.get_entity(self.parameters.npc_slug)
-        npc.load_party()
 
         # Lookup the environment
         env_slug = "grass"
@@ -90,5 +94,7 @@ class StartBattleAction(EventAction):
         self.game.event_engine.execute_action("play_music", [filename])
 
     def update(self):
+        # Check if the CombatState no longer exists (hence combat is over)
         if self.game.get_state_name("CombatState") is None:
+            npc.battled_already = True 
             self.stop()

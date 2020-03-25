@@ -25,10 +25,12 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.event.eventaction import EventAction
 import logging
 
+from tuxemon.core.event.eventaction import EventAction
+
 logger = logging.getLogger(__name__)
+
 
 class WaitForInputAction(EventAction):
     """Pauses the event engine until specified button is pressed

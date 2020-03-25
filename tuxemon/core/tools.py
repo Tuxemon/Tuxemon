@@ -42,6 +42,7 @@ from six.moves import zip_longest
 
 from tuxemon.compat.rect import Rect
 from tuxemon.core import prepare
+from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
 
@@ -229,3 +230,11 @@ def cast_values(parameters, valid_parameters):
         logger.error("expected: {}".format(valid_parameters))
         logger.error("got: {}".format(parameters))
         raise
+
+
+def show_item_result_as_dialog(game, item, result):
+    msg_type = 'use_success' if result['success'] else 'use_failure'
+    template = getattr(item, msg_type)
+    if template:
+        message = T.translate(template)
+        open_dialog(game, [message])

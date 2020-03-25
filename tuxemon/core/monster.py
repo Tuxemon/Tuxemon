@@ -217,6 +217,7 @@ class Monster(object):
         self.battle_cry = ""    # a slug for a sound file, used primarly when they enter battle
         self.faint_cry = ""     # a slug for a sound file, used when the monster faints
         self.ai = None
+        self.owner = None       # set to NPC instance if they own it
 
         # The multiplier for experience
         self.experience_required_modifier = 1

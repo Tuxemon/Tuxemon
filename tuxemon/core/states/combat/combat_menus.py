@@ -119,8 +119,14 @@ class MainCombatMenuState(PopUpMenu):
             state.on_menu_selection = partial(enqueue_item, item)
 
         def enqueue_item(item, menu_item):
-            # enqueue the item
             target = menu_item.game_object
+            # is the item valid to use?
+            if not item.validate(target):
+                msg = T.format('cannot_use_item_monster', {'name': item.name})
+                tools.open_dialog(self.game, [msg])
+                return
+
+            # enqueue the item
             combat_state = self.game.get_state_name("CombatState")
             # TODO: don't hardcode to player0
             combat_state.enqueue_action(combat_state.players[0], item, target)

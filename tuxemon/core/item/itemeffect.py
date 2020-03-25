@@ -36,10 +36,12 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-from tuxemon.core.tools import cast_values
-from tuxemon.core.npc import NPC
 from collections import namedtuple
+
 from tuxemon.core.control import Control  # for type introspection
+from tuxemon.core.npc import NPC
+from tuxemon.core.tools import cast_values
+
 assert Control
 
 logger = logging.getLogger(__name__)

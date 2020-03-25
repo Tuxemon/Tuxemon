@@ -32,9 +32,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.item.itemeffect import ItemEffect
-import random
 import logging
+import random
+
+from tuxemon.core.item.itemeffect import ItemEffect
 
 logger = logging.getLogger(__name__)
 

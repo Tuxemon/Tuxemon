@@ -256,6 +256,7 @@ class ShopMenuState(Menu):
             else:
                 self.seller.alter_item_quantity(self.game, item.slug, -quantity)
             self.reload_items()
+            self.menu_items.arrange_menu_items()
             if not self.seller.has_item(item.slug):
                 # We're pointing at a new item
                 self.on_menu_selection_change()

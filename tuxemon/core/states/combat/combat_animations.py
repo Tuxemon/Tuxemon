@@ -93,6 +93,9 @@ class CombatAnimations(Menu):
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
+        if self.is_trainer_battle:
+            self.task(partial(self.animate_trainer_leave, self.players[1], 'right'), 3)
+
     def blink(self, sprite):
         """
 
@@ -101,14 +104,20 @@ class CombatAnimations(Menu):
         """
         self.task(partial(toggle_visible, sprite), .20, 8)
 
-    def animate_trainer_leave(self, trainer):
+    def animate_trainer_leave(self, trainer, direction='left'):
         """
 
         :type trainer: core.player.Player
+        :param direction: 'right' or 'left'
         :return:
         """
         sprite = self._monster_sprite_map[trainer]
-        self.animate(sprite.rect, right=0, duration=.8)
+        if self.get_side(sprite.rect) == "left":
+            x_diff = -scale(150)
+        else:
+            x_diff = scale(150)
+
+        self.animate(sprite.rect, x=x_diff, relative=True, duration=.8)
 
     def animate_monster_release(self, npc, monster):
         """
@@ -432,12 +441,12 @@ class CombatAnimations(Menu):
 
         for index in range(player.party_limit):
             sprite = None
-            if len(player.monsters) - count_fainted > index: # render alive Tuxemon balls
+            if len(player.monsters) - count_fainted > index:  # render alive Tuxemon balls
                 sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)
-            elif len(player.monsters) > index: # render fainted Tuxemon balls
+            elif len(player.monsters) > index:  # render fainted Tuxemon balls
                 sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
@@ -474,13 +483,20 @@ class CombatAnimations(Menu):
         back_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_back'],
                                        bottom=opp_home.bottom + y_mod, right=0)
 
-        monster1 = right_monster.get_sprite("front",
-                                            bottom=back_island.rect.bottom - scale(12),
-                                            centerx=back_island.rect.centerx)
-        self.sprites.add(monster1)
+        if self.is_trainer_battle:
+            enemy = self.load_sprite('gfx/sprites/player/' + opponent.sprite_name + '_front.png',
+                                     bottom=back_island.rect.bottom - scale(12),
+                                     centerx=back_island.rect.centerx)
+            self._monster_sprite_map[opponent] = enemy
+        else:
+            enemy = right_monster.get_sprite("front",
+                                             bottom=back_island.rect.bottom - scale(12),
+                                             centerx=back_island.rect.centerx)
+            self._monster_sprite_map[right_monster] = enemy
+            self.monsters_in_play[opponent].append(right_monster)
+
+        self.sprites.add(enemy)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
-        self.monsters_in_play[opponent].append(right_monster)
-        self._monster_sprite_map[right_monster] = monster1
 
         if self.is_trainer_battle:
             self.alert(T.format('combat_trainer_appeared', {"name": opponent.name.upper()}))
@@ -490,24 +506,24 @@ class CombatAnimations(Menu):
         front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
-        trainer1 = self.load_sprite('gfx/sprites/player/player_back.png',
+        trainer1 = self.load_sprite('gfx/sprites/player/' + player.sprite_name + '_back.png',
                                     bottom=front_island.rect.centery + scale(6),
                                     centerx=front_island.rect.centerx)
         self._monster_sprite_map[left_trainer] = trainer1
 
         def flip():
-            monster1.image = pygame.transform.flip(monster1.image, 1, 0)
+            enemy.image = pygame.transform.flip(enemy.image, 1, 0)
             trainer1.image = pygame.transform.flip(trainer1.image, 1, 0)
 
-        flip()                       # flip images to opposite
-        self.task(flip, 1.5)         # flip the images to proper direction
-        self.task(audio.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
+        flip()  # flip images to opposite
+        self.task(flip, 1.5)  # flip the images to proper direction
+        # self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
         # top trainer
-        animate(monster1.rect, back_island.rect, centerx=opp_home.centerx)
-        animate(monster1.rect, back_island.rect, y=-y_mod,
+        animate(enemy.rect, back_island.rect, centerx=opp_home.centerx)
+        animate(enemy.rect, back_island.rect, y=-y_mod,
                 transition='out_back', relative=True)
 
         # bottom trainer
@@ -530,7 +546,7 @@ class CombatAnimations(Menu):
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
-        self.task(partial(toggle_visible, monster_sprite), 1.0) # make the monster go away temporarily
+        self.task(partial(toggle_visible, monster_sprite), 1.0)  # make the monster go away temporarily
 
         def kill():
             self._monster_sprite_map[monster].kill()
@@ -565,13 +581,13 @@ class CombatAnimations(Menu):
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):
-            shake_ball(1.8 + i * 1.0) # leave a 0.6s wait between each shake
+            shake_ball(1.8 + i * 1.0)  # leave a 0.6s wait between each shake
 
         if is_captured:
             self.task(kill, 2 + num_shakes)
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
-            self.task(partial(toggle_visible, monster_sprite), breakout_delay) # make the monster appear again!
+            self.task(partial(toggle_visible, monster_sprite), breakout_delay)  # make the monster appear again!
             self.task(audio.load_sound(monster.combat_call).play, breakout_delay)
             self.task(tech.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)

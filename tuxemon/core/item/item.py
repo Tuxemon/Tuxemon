@@ -231,7 +231,7 @@ class Item(object):
             return True
         if not target:
             return False
-        
+
         result = True
 
         for condition in self.conditions:

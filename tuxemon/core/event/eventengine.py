@@ -31,12 +31,13 @@ from __future__ import unicode_literals
 
 import logging
 from contextlib import contextmanager
-from lxml import etree
 from textwrap import dedent
 
+from lxml import etree
+
 from tuxemon.constants import paths
-from tuxemon.core import prepare
 from tuxemon.core import plugin
+from tuxemon.core import prepare
 from tuxemon.core.platform.const import buttons
 
 logger = logging.getLogger(__name__)

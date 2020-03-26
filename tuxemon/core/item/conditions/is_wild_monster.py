@@ -21,48 +21,22 @@
 #
 # Contributor(s):
 #
-# Adam Chevalier <chevalierAdam2@gmail.com>
-# 
+# Leif Theden <leif.theden@gmail.com>
+#
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.locale import T
+from tuxemon.core.item.itemcondition import ItemCondition
 
 
-class RenamePlayerAction(EventAction):
-    """Opens the text input screen to rename the player.
-
-    Valid Parameters: None
+class IsWildMonsterCondition(ItemCondition):
+    """ True if not owned by a trainer
     """
-    name = "rename_player"
+    name = "is_wild_monster"
     valid_parameters = []
 
-
-    def set_player_name(menu, name):
-        world = menu.game.get_state_name("WorldState")
-        if world:
-            world.player1.name = name
-
-    def start(self):
-        print("starting rename_player")
-        # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
-        if not world:
-            return
-
-        self.game.push_state(
-            state_name="InputMenu",
-            prompt=T.translate("input_name"),
-            callback=self.set_player_name,
-            escape_key_exits=False,
-            initial=world.player1.name
-        )
-
-    def update(self):
-        if self.game.get_state_name("InputMenu") is None:
-            self.stop()
-
+    def test(self, target):
+        return target.owner is None

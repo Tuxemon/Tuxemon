@@ -8,8 +8,6 @@ from abc import abstractmethod
 
 import pygame
 
-from tuxemon.core import prepare
-from tuxemon.core.platform import mixer
 from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)

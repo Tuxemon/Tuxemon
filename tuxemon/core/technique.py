@@ -39,10 +39,10 @@ import os.path
 import random
 from collections import namedtuple
 
-from tuxemon.core import prepare
 from tuxemon.core import formula
-from tuxemon.core.locale import T
+from tuxemon.core import prepare
 from tuxemon.core.db import db, process_targets
+from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
 

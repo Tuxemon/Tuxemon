@@ -38,7 +38,7 @@ from __future__ import unicode_literals
 import logging
 import pprint
 
-from tuxemon.core import tools, prepare, graphics
+from tuxemon.core import prepare, graphics
 from tuxemon.core.db import db, process_targets
 from tuxemon.core.locale import T
 
@@ -190,15 +190,18 @@ class Item(object):
         ret = list()
 
         for line in raw:
-            name = line.split()[0]
-            params = line.split()[1].split(",")
+            words = line.split()
+            args = "".join(words[1:]).split(",")
+            name = words[0]
+            context = args[0]
+            params = args[1:]
             try:
                 condition = Item.conditions[name]
             except KeyError:
                 error = 'Error: ItemCondition "{}" not implemented'.format(name)
                 logger.error(error)
             else:
-                ret.append(condition(params[0], self.game, self.user, params[1:]))
+                ret.append(condition(context, self.game, self.user, params))
 
         return ret
 
@@ -228,7 +231,7 @@ class Item(object):
             return True
         if not target:
             return False
-        
+
         result = True
 
         for condition in self.conditions:

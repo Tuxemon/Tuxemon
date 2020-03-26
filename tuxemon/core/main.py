@@ -54,7 +54,7 @@ def main(load_slot=None):
     from tuxemon.core.control import Control
 
     prepare.init()
-    control = Control(prepare.ORIGINAL_CAPTION)
+    control = Control(prepare.CONFIG.window_caption)
     control.auto_state_discovery()
 
     # global/singleton hack for now

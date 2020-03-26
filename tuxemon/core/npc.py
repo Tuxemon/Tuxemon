@@ -37,17 +37,15 @@ import logging
 import os
 from math import hypot
 
-import pygame
-
 from tuxemon.compat import Rect
-from tuxemon.core import monster, pyganim
+from tuxemon.core import pyganim
 from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
 from tuxemon.core.item.item import Item
 from tuxemon.core.item.item import decode_inventory, encode_inventory
 from tuxemon.core.locale import T
 from tuxemon.core.map import proj, facing, dirs3, dirs2, get_direction
-from tuxemon.core.monster import decode_monsters, encode_monsters
+from tuxemon.core.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.core.prepare import CONFIG
 from tuxemon.core.tools import nearest, trunc
 from tuxemon.core.graphics import load_and_scale
@@ -116,7 +114,7 @@ class NPC(Entity):
         self.game_variables = {}  # Tracks the game state
         self.interactions = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters = []  # This is a list of tuxemon the npc has
+        self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
         self.inventory = {}  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
 
@@ -545,6 +543,7 @@ class NPC(Entity):
         :returns: None
 
         """
+        monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.storage["monsters"].append(monster)
         else:
@@ -575,6 +574,7 @@ class NPC(Entity):
         :returns: None
         """
         if monster in self.monsters:
+            monster.owner = None
             self.monsters.remove(monster)
             self.set_party_status()
 
@@ -597,19 +597,22 @@ class NPC(Entity):
         :rtype: None
         :returns: None
         """
+        for monster in self.monsters:
+            self.remove_monster(monster)
+
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
         npc_details = db.database['npc'][self.slug]
         for npc_monster_details in npc_details['monsters']:
-            current_monster = monster.Monster(save_data=npc_monster_details)
-            current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']
-            current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
-            current_monster.set_level(current_monster.level)
-            current_monster.current_hp = current_monster.hp
+            monster = Monster(save_data=npc_monster_details)
+            monster.experience_give_modifier = npc_monster_details['exp_give_mod']
+            monster.experience_required_modifier = npc_monster_details['exp_req_mod']
+            monster.set_level(monster.level)
+            monster.current_hp = monster.hp
 
             # Add our monster to the NPC's party
-            self.monsters.append(current_monster)
+            self.add_monster(monster)
 
     def set_party_status(self):
         """ Records important information about all monsters in the party.
@@ -620,7 +623,7 @@ class NPC(Entity):
         if not self.isplayer or len(self.monsters) == 0:
             return
 
-        level_lowest = monster.MAX_LEVEL
+        level_lowest = MAX_LEVEL
         level_highest = 0
         level_average = 0
         for npc_monster in self.monsters:

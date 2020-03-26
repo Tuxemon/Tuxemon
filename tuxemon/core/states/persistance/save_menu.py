@@ -15,8 +15,8 @@ from tuxemon.core import save
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
-from tuxemon.core.ui import text
 from tuxemon.core.tools import open_dialog
+from tuxemon.core.ui import text
 
 logger = logging.getLogger(__name__)
 

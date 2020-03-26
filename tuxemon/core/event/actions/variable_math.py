@@ -24,10 +24,11 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import logging
+
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.tools import number_or_variable
 
-import logging
 logger = logging.getLogger(__name__)
 
 

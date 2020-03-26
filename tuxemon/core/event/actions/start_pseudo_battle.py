@@ -26,8 +26,8 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
+from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -60,7 +60,8 @@ class StartPseudoBattleAction(EventAction):
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer", graphics=env['battle_graphics'])
+        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer",
+                             graphics=env['battle_graphics'])
 
         # flash the screen
         self.game.push_state("FlashTransition")

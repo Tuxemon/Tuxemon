@@ -32,6 +32,7 @@ from __future__ import unicode_literals
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.locale import T
 
+
 class RenamePlayerAction(EventAction):
     """Opens the text input screen to rename the player.
 

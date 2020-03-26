@@ -88,13 +88,12 @@ class StartBattleAction(EventAction):
         logger.debug("Starting battle!")
         self.game.push_state("CombatState", players=(player, npc), combat_type="trainer",
                              graphics=env['battle_graphics'])
+        npc.battled_already = True
 
         # Start some music!
         filename = env['battle_music']
         self.game.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        # Check if the CombatState no longer exists (hence combat is over)
         if self.game.get_state_name("CombatState") is None:
-            npc.battled_already = True 
             self.stop()

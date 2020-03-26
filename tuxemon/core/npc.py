@@ -167,6 +167,7 @@ class NPC(Entity):
 
         """
         return {
+            'battled_already' : self.battled_already,
             'current_map': game.get_map_name(),
             'facing': self.facing,
             'game_variables': self.game_variables,
@@ -191,7 +192,7 @@ class NPC(Entity):
         :returns: None
 
         """
-
+        self.battled_already = save_data.get('battled_already', False)
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
         self.inventory = decode_inventory(game, self, save_data)

@@ -7,7 +7,7 @@
     "heal 20"
   ],
   "conditions": [
-    "current_hp target,<,1"
+    "current_hp target,==,0"
   ],
   "sort": "food",
   "sprite": "gfx/items/potion.png",

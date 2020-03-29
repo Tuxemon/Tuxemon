@@ -480,7 +480,7 @@ class VisualSpriteList(RelativeGroup):
         # if there are 0 or 1 enabled items, then ignore movement
         enabled = len([i for i in self if i.enabled])
         if enabled < 2:
-            return index
+            return 0
 
         if event.pressed:
 

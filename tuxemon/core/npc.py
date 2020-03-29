@@ -122,8 +122,6 @@ class NPC(Entity):
         self.ai = None  # Whether or not this player has AI associated with it
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves = []  # list of techniques
-        self.battled_already = False # For actual non-playable NPCs only: tracks whether protagonist already fought them
-        # (The implication for now is that a protagonist can only battle an NPC once)
 
         # pathfinding and waypoint related
         self.pathfinding = None

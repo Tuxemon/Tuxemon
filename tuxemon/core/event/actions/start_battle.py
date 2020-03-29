@@ -56,22 +56,31 @@ class StartBattleAction(EventAction):
     ]
 
     def start(self):
+        """
+        Assumes single player against single NPC
+        """
         player = self.game.player1
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
             logger.debug("battle is not legal: won't start because we don't have enough monsters in our party")
-            return False # don't start battle
+            return False
 
-        # Fetch the antagonist NPC from the world state
+        # Fetch the world state
         world = self.game.get_state_name("WorldState")
         if not world:
             logger.debug("battle could not be started because WorldState was not obtained")
-            return False # don't start battle
+            return False 
+
+        # Fetch the antagonist NPC from the world state
         npc = world.get_entity(self.parameters.npc_slug)
-        if npc.battled_already:
+
+        # Don't start a battle if we've already battled this npc before
+        if npc.name in player.game_variables['battle_history']:
             logger.debug("battle did not start because this NPC battled the protagonist already") 
-            return False
+            return False 
+
+        # Load the party of this npc from their npc.json entry.
         npc.load_party()
 
         # Stop movement and keypress on the server.
@@ -84,11 +93,10 @@ class StartBattleAction(EventAction):
             env_slug = player.game_variables['environment']
         env = db.lookup(env_slug, table="environment")
 
-        # Add our players and setup combat
+        # Setup combat with our player against the npc
         logger.debug("Starting battle!")
         self.game.push_state("CombatState", players=(player, npc), combat_type="trainer",
                              graphics=env['battle_graphics'])
-        npc.battled_already = True
 
         # Start some music!
         filename = env['battle_music']

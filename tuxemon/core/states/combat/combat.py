@@ -127,7 +127,7 @@ class CombatState(CombatAnimations):
 
         super(CombatState, self).startup(**kwargs)
         self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
-        self.players = list(self.players)
+        self.players = list(self.players) # A list of tuxemon.core.npc.NPC objects; the humans in the battle
         self.graphics = kwargs.get('graphics')
         self.show_combat_dialog()
         self.transition_phase("begin")
@@ -320,12 +320,24 @@ class CombatState(CombatAnimations):
             # This assumes that player[0] is the human playing in single player
             self.players[0].set_party_status()
             if self.remaining_players[0] == self.players[0]:
-                self.players[0].game_variables['battle_last_result'] = 'won'
+                battle_result = 'won'
                 self.alert(T.translate('combat_victory'))
             else:
-                self.players[0].game_variables['battle_last_result'] = 'lost'
+                battle_result = 'lost'
                 self.players[0].game_variables['battle_lost_faint'] = 'true'
                 self.alert(T.translate('combat_defeat'))
+
+            # Record the result of this battle as the most recent battle result of the player
+            self.players[0].game_variables['battle_last_result'] = battle_result
+
+            if self.is_trainer_battle:
+                # Assumes self.players[0] represents the protagonist (a tuxemon.core.player.Player object)
+                # Assumes self.players[1] represents the AI NPC antagonist (a tuxemon.core.npc.NPC object)
+                # Assumes these are the only elements in self.players
+                # If this is a trainer battle, record whether the protagonist
+                # won or lost against this particular NPC
+                antagonist_name = self.players[1].name 
+                self.players[0].game_variables['battle_history'][antagonist_name] = battle_result
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close

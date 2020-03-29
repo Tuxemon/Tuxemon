@@ -48,4 +48,17 @@ class Player(NPC):
         self.isplayer = True
 
         # Game variables for use with events
-        self.game_variables = {}
+        self.game_variables = {
+        	'battle_history' : {} # Maps the names of NPCs the Player has battled to the outcome of their battle
+        						  #    any NPC name not present in the dictionary implies the Player has never 
+        						  #    battled them before
+        }
+
+    def set_state(self, game, save_data):
+    	super(Player, self).set_state(game, save_data)
+
+    	# Add 'battle_history' as a game variable if it wasn't saved as one
+    	# this line was added 03/29/2020 so as not to break saves from older versions of the codebase
+    	# feel free to remove this if case in the future
+    	if 'battle_history' not in self.game_variables:
+    		self.game_variables['battle_history'] = {}

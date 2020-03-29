@@ -49,8 +49,9 @@ Other changes:
     - Increment the value of SAVE_VERSION
     - Amend the `upgrade_save` function as necessary
 """
+from tuxemon.core.player import Player
 
-SAVE_VERSION = 1
+SAVE_VERSION = 2
 MAP_RENAMES = {
     # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
 }
@@ -62,8 +63,17 @@ def upgrade_save(save_data):
         _update_current_map(i, save_data)
         if i == 0:
             _remove_slug_prefixes(save_data)
+        if i == 1:
+            _add_battle_history(save_data)
     return save_data
 
+def _add_battle_history(save_data):
+    """
+    'battle_history' is a dictionary added to the class tuxemon.core.player.Player
+    """
+    if 'battle_history' not in save_data['game_variables']:
+        # If 'battle_history' not present, use the default value for a new Player
+        save_data['game_variables']['battle_history'] = Player("").game_variables['battle_history']
 
 def _update_current_map(version, save_data):
     if version in MAP_RENAMES:

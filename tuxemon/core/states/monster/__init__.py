@@ -122,7 +122,7 @@ class MonsterMenuState(Menu):
             except IndexError:
                 monster = None
             item.game_object = monster
-            item.enabled = monster is not None
+            item.enabled = self.is_valid_entry(item.game_object)
             item.image.fill((0, 0, 0, 0))
             item.in_focus = index == self.selected_index and item.enabled
             self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)

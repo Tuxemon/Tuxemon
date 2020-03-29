@@ -180,6 +180,9 @@ class Menu(state.State):
         """
         pass
 
+    def is_valid_entry(self, item):
+        return True
+
     def reload_items(self):
         """ Empty all items in the menu and re-add them
 
@@ -194,13 +197,15 @@ class Menu(state.State):
 
             for item in items:
                 self.add(item)
+                item.enabled = self.is_valid_entry(item.game_object)
 
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()
 
-            number_items = len(self.menu_items)
-            if self.menu_items and self.selected_index >= number_items:
-                self.change_selection(number_items - 1)
+            for index, item in enumerate(self.menu_items):
+                self.selected_index = index
+                if item.enabled:
+                    break
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu

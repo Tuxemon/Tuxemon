@@ -1753,6 +1753,13 @@ msgstr "I don't mind being here...\n"
 msgid "wherewasshe"
 msgstr "She didn't tell us the bad news..."
 
+msgid "waitdontgo"
+msgstr "${{name}}! Wait! Don't Leave Yet!"
+
+msgid "thetvbescreamin"
+msgstr "Honey, wait. I turned on the TV and an Omnichannel press conference was happening.\n"
+"We should watch it."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

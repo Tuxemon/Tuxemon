@@ -104,11 +104,10 @@ class CombatAnimations(Menu):
         """
         self.task(partial(toggle_visible, sprite), .20, 8)
 
-    def animate_trainer_leave(self, trainer, direction='left'):
+    def animate_trainer_leave(self, trainer):
         """
 
         :type trainer: core.player.Player
-        :param direction: 'right' or 'left'
         :return:
         """
         sprite = self._monster_sprite_map[trainer]
@@ -517,7 +516,8 @@ class CombatAnimations(Menu):
 
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
-        # self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
+        if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
+            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 

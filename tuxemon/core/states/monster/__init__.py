@@ -96,8 +96,6 @@ class MonsterMenuState(Menu):
             item = MenuItem(surface, None, None, None)
             yield item
 
-        self.selected_index = -1
-
         self.refresh_menu_items()
 
     def on_menu_selection(self, menu_item):
@@ -106,7 +104,7 @@ class MonsterMenuState(Menu):
     def render_monster_slot(self, surface, rect, monster, in_focus):
         filled = monster is not None
         border = self.determine_border(in_focus, filled)
-        border.draw(surface)
+        border.draw(surface)`
         if filled:
             self.draw_monster_info(surface, monster, rect)
         return surface

@@ -104,10 +104,11 @@ class CombatAnimations(Menu):
         """
         self.task(partial(toggle_visible, sprite), .20, 8)
 
-    def animate_trainer_leave(self, trainer):
+    def animate_trainer_leave(self, trainer, direction='left'):
         """
 
         :type trainer: core.player.Player
+        :param direction: 'right' or 'left'
         :return:
         """
         sprite = self._monster_sprite_map[trainer]

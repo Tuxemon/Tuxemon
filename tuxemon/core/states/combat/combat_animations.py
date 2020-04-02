@@ -370,24 +370,24 @@ class CombatAnimations(Menu):
             centerx = home.left + scale(13)
             offset = -scale(8)
 
-        count_fainted = 0
-
-        for monster in player.monsters:
-            if any(t for t in monster.status if t.slug == "status_faint"):
-                count_fainted += 1
-
         for index in range(player.party_limit):
-            sprite = None
-            if len(player.monsters) - count_fainted > index:
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            elif len(player.monsters) > index:
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
+            if len(player.monsters) > index:
+                monster = player.monsters[index]
+                if any(t for t in monster.status if t.slug == "status_faint"):
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                elif len(monster.status) > 0:
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                else:
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
             else:
                 sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
                                           top=tray.rect.top + scale(1),
@@ -432,12 +432,12 @@ class CombatAnimations(Menu):
 
         for index in range(player.party_limit):
             sprite = None
-            if len(player.monsters) - count_fainted > index: # render alive Tuxemon balls
+            if len(player.monsters) - count_fainted > index:  # render alive Tuxemon balls
                 sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)
-            elif len(player.monsters) > index: # render fainted Tuxemon balls
+            elif len(player.monsters) > index:  # render fainted Tuxemon balls
                 sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
@@ -499,9 +499,9 @@ class CombatAnimations(Menu):
             monster1.image = pygame.transform.flip(monster1.image, 1, 0)
             trainer1.image = pygame.transform.flip(trainer1.image, 1, 0)
 
-        flip()                       # flip images to opposite
-        self.task(flip, 1.5)         # flip the images to proper direction
-        self.task(audio.load_sound(right_monster.combat_call).play, 1.5) # play combat call when it turns back
+        flip()  # flip images to opposite
+        self.task(flip, 1.5)  # flip the images to proper direction
+        self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
@@ -530,7 +530,7 @@ class CombatAnimations(Menu):
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
-        self.task(partial(toggle_visible, monster_sprite), 1.0) # make the monster go away temporarily
+        self.task(partial(toggle_visible, monster_sprite), 1.0)  # make the monster go away temporarily
 
         def kill():
             self._monster_sprite_map[monster].kill()
@@ -565,13 +565,13 @@ class CombatAnimations(Menu):
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):
-            shake_ball(1.8 + i * 1.0) # leave a 0.6s wait between each shake
+            shake_ball(1.8 + i * 1.0)  # leave a 0.6s wait between each shake
 
         if is_captured:
             self.task(kill, 2 + num_shakes)
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
-            self.task(partial(toggle_visible, monster_sprite), breakout_delay) # make the monster appear again!
+            self.task(partial(toggle_visible, monster_sprite), breakout_delay)  # make the monster appear again!
             self.task(audio.load_sound(monster.combat_call).play, breakout_delay)
             self.task(tech.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)

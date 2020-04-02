@@ -94,7 +94,7 @@ class CombatAnimations(Menu):
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
         if self.is_trainer_battle:
-            self.task(partial(self.animate_trainer_leave, self.players[1], 'right'), 3)
+            self.task(partial(self.animate_trainer_leave, self.players[1]), 3)
 
     def blink(self, sprite):
         """

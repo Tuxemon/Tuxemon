@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Disintegrate",
+  "animation": "disintegrate",
   "category": "physical",
   "effects": [
     "damage"

@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Screen",
+  "animation": "screen",
   "category": "physical",
   "effects": [
     "damage"

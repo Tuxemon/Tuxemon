@@ -98,8 +98,6 @@ class MonsterMenuState(Menu):
 
         self.refresh_menu_items()
 
-        # TODO: make sure we start on the first monster that is a valid option
-
     def on_menu_selection(self, menu_item):
         pass
 
@@ -111,20 +109,31 @@ class MonsterMenuState(Menu):
             self.draw_monster_info(surface, monster, rect)
         return surface
 
+    def is_valid_entry(self, monster):
+        """ Used to determine if a given monster should be selectable.
+            When other code creates a MonsterMenu, it should overwrite this method
+            to suit it's needs.
+        :param monster:
+        :return:
+        """
+        return monster is not None
+
     def refresh_menu_items(self):
         """ Used to render slots after their 'focus' flags change
 
         :return:
         """
+
         for index, item in enumerate(self.menu_items):
             try:
                 monster = self.game.player1.monsters[index]
             except IndexError:
                 monster = None
             item.game_object = monster
-            item.enabled = self.is_valid_entry(item.game_object)
+
+            item.enabled = (monster is not None) and self.is_valid_entry(item.game_object)
             item.image.fill((0, 0, 0, 0))
-            item.in_focus = index == self.selected_index and item.enabled
+            item.in_focus = ((index == self.selected_index) and item.enabled)
             self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)
 
     def draw_monster_info(self, surface, monster, rect):

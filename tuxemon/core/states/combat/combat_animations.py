@@ -93,6 +93,9 @@ class CombatAnimations(Menu):
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
+        if self.is_trainer_battle:
+            self.task(partial(self.animate_trainer_leave, self.players[1]), 3)
+
     def blink(self, sprite):
         """
 
@@ -108,7 +111,12 @@ class CombatAnimations(Menu):
         :return:
         """
         sprite = self._monster_sprite_map[trainer]
-        self.animate(sprite.rect, right=0, duration=.8)
+        if self.get_side(sprite.rect) == "left":
+            x_diff = -scale(150)
+        else:
+            x_diff = scale(150)
+
+        self.animate(sprite.rect, x=x_diff, relative=True, duration=.8)
 
     def animate_monster_release(self, npc, monster):
         """
@@ -474,13 +482,20 @@ class CombatAnimations(Menu):
         back_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_back'],
                                        bottom=opp_home.bottom + y_mod, right=0)
 
-        monster1 = right_monster.get_sprite("front",
-                                            bottom=back_island.rect.bottom - scale(12),
-                                            centerx=back_island.rect.centerx)
-        self.sprites.add(monster1)
+        if self.is_trainer_battle:
+            enemy = self.load_sprite('gfx/sprites/player/' + opponent.sprite_name + '_front.png',
+                                     bottom=back_island.rect.bottom - scale(12),
+                                     centerx=back_island.rect.centerx)
+            self._monster_sprite_map[opponent] = enemy
+        else:
+            enemy = right_monster.get_sprite("front",
+                                             bottom=back_island.rect.bottom - scale(12),
+                                             centerx=back_island.rect.centerx)
+            self._monster_sprite_map[right_monster] = enemy
+            self.monsters_in_play[opponent].append(right_monster)
+
+        self.sprites.add(enemy)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
-        self.monsters_in_play[opponent].append(right_monster)
-        self._monster_sprite_map[right_monster] = monster1
 
         if self.is_trainer_battle:
             self.alert(T.format('combat_trainer_appeared', {"name": opponent.name.upper()}))
@@ -490,24 +505,26 @@ class CombatAnimations(Menu):
         front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
-        trainer1 = self.load_sprite('gfx/sprites/player/player_back.png',
+        trainer1 = self.load_sprite('gfx/sprites/player/' + player.sprite_name + '_back.png',
                                     bottom=front_island.rect.centery + scale(6),
                                     centerx=front_island.rect.centerx)
         self._monster_sprite_map[left_trainer] = trainer1
 
         def flip():
-            monster1.image = pygame.transform.flip(monster1.image, 1, 0)
+            enemy.image = pygame.transform.flip(enemy.image, 1, 0)
             trainer1.image = pygame.transform.flip(trainer1.image, 1, 0)
 
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
-        self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
+        
+        if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
+            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
         # top trainer
-        animate(monster1.rect, back_island.rect, centerx=opp_home.centerx)
-        animate(monster1.rect, back_island.rect, y=-y_mod,
+        animate(enemy.rect, back_island.rect, centerx=opp_home.centerx)
+        animate(enemy.rect, back_island.rect, y=-y_mod,
                 transition='out_back', relative=True)
 
         # bottom trainer

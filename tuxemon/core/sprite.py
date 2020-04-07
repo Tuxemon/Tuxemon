@@ -39,6 +39,9 @@ from tuxemon.compat import Rect
 from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.platform.const import buttons
 
+import logging
+
+logger = logging.getLogger()
 
 class Sprite(pygame.sprite.DirtySprite):
     dirty = False
@@ -427,6 +430,7 @@ class VisualSpriteList(RelativeGroup):
         items_per_column = math.ceil(len(self) / self.columns)
 
         if self.expand:
+            logger.debug("expanding menu...")
             # fill available space
             line_spacing = self.line_spacing
             if not line_spacing:

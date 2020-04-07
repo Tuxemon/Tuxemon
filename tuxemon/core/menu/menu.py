@@ -188,7 +188,7 @@ class Menu(state.State):
         :param Any game_object: Any object to check
         :return boolean: Becomes the menu item enabled value
         """
-        return game_object is not None
+        return True
 
     def reload_items(self):
         """ Empty all items in the menu and re-add them

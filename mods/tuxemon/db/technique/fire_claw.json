@@ -1,6 +1,6 @@
 {
   "accuracy": 0.7,
-  "animation": "Two Slash",
+  "animation": "two slash",
   "category": "physical",
   "effects": [
     "damage"

@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Ice Sparks White",
+  "animation": "ice sparks white",
   "category": "physical",
   "effects": [
     "damage"

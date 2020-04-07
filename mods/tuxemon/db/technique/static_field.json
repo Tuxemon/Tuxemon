@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Disintegrate",
+  "animation": "disintegrate",
   "category": "physical",
   "effects": [],
   "healing_power": 0,

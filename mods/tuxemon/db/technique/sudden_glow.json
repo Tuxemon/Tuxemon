@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Heal (No Cross)",
+  "animation": "heal (no cross)",
   "category": "physical",
   "effects": [],
   "healing_power": 2.0,

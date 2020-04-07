@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Triforce",
+  "animation": "triforce",
   "category": "physical",
   "effects": [
     "damage"

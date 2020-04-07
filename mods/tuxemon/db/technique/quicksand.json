@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Rock Spikes",
+  "animation": "rock spikes",
   "category": "physical",
   "effects": [
     "damage"

@@ -378,24 +378,24 @@ class CombatAnimations(Menu):
             centerx = home.left + scale(13)
             offset = -scale(8)
 
-        count_fainted = 0
-
-        for monster in player.monsters:
-            if any(t for t in monster.status if t.slug == "status_faint"):
-                count_fainted += 1
-
         for index in range(player.party_limit):
-            sprite = None
-            if len(player.monsters) - count_fainted > index:
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            elif len(player.monsters) > index:
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
+            if len(player.monsters) > index:
+                monster = player.monsters[index]
+                if any(t for t in monster.status if t.slug == "status_faint"):
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                elif len(monster.status) > 0:
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                else:
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
             else:
                 sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
                                           top=tray.rect.top + scale(1),
@@ -516,6 +516,7 @@ class CombatAnimations(Menu):
 
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
+        
         if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
             self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 

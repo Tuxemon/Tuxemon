@@ -100,6 +100,7 @@ Controls
 * *Arrow Keys* - Movement
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
+* *Shift* - Sprint
 
 ##### Map Editor
 

@@ -113,7 +113,7 @@ class Menu(state.State):
         """ Start an animation to show textarea, one character at a time
 
         :param text_area: TextArea to animate
-        :type text_area: core.ui.text.TextArea
+        : tuxemon.core.ui.text.TextArea
         :param callback: called when alert is complete
         :type callback: callable
         :rtype: None
@@ -138,7 +138,7 @@ class Menu(state.State):
         :param text: Test to display
         :type text: basestring
         :param text_area: TextArea to animate
-        :type text_area: core.ui.text.TextArea
+        : tuxemon.core.ui.text.TextArea
         :param callback: called when alert is complete
         :type callback: callable
         :rtype: None
@@ -229,7 +229,7 @@ class Menu(state.State):
     def add(self, item):
         """ Add a menu item
 
-        :type item: core.menu.MenuItem
+        : tuxemon.core.menu.MenuItem
         :return: None
         """
         self.menu_items.add(item)
@@ -435,7 +435,7 @@ class Menu(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        : tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         handled_event = False

@@ -56,7 +56,7 @@ class CommonAction(object):
         :param attribute: The attribute to modify.
         :param value: The value to set the attribute to, as a string.
 
-        :type character: core.Player
+        : tuxemon.core.Player
         :type attribute: String
         :type value: String
 
@@ -91,7 +91,7 @@ class CommonAction(object):
         :param attribute: The attribute to modify.
         :param modifier: The modifier to apply the attribute by.
 
-        :type character: core.Player
+        : tuxemon.core.Player
         :type attribute: String
         :type modifier: string
 

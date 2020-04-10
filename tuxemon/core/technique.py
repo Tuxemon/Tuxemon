@@ -186,8 +186,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        : tuxemon.core.monster.Monster
+        : tuxemon.core.monster.Monster
 
         :rtype: dictionary
         :returns: a dictionary with the effect name, success and misc properties
@@ -247,8 +247,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        : tuxemon.core.monster.Monster
+        : tuxemon.core.monster.Monster
 
         :rtype: tuple(int, str)
         """
@@ -262,8 +262,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        : tuxemon.core.monster.Monster
+        : tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -291,8 +291,8 @@ class Technique(object):
         :param target: The Monster object that we are using this technique on.
         :param slug: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        : tuxemon.core.monster.Monster
+        : tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -313,8 +313,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        : tuxemon.core.monster.Monster
+        : tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -364,8 +364,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        : tuxemon.core.monster.Monster
+        : tuxemon.core.monster.Monster
 
         :rtype: dict
         """

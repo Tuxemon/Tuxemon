@@ -107,7 +107,7 @@ class CombatAnimations(Menu):
     def animate_trainer_leave(self, trainer):
         """
 
-        :type trainer: core.player.Player
+        : tuxemon.core.player.Player
         :return:
         """
         sprite = self._monster_sprite_map[trainer]
@@ -121,8 +121,8 @@ class CombatAnimations(Menu):
     def animate_monster_release(self, npc, monster):
         """
 
-        :type npc: core.npc.Npc
-        :type monster: core.monster.Monster
+        : tuxemon.core.npc.Npc
+        : tuxemon.core.monster.Monster
         :return:
         """
         feet = list(self._layout[npc]['home'][0].center)
@@ -193,7 +193,7 @@ class CombatAnimations(Menu):
     def animate_sprite_spin(self, sprite):
         """
 
-        :type sprite: core.sprite.Sprite
+        : tuxemon.core.sprite.Sprite
         :return:
         """
         self.animate(sprite, rotation=360, initial=0, duration=.8, transition='in_out_quint')
@@ -201,7 +201,7 @@ class CombatAnimations(Menu):
     def animate_sprite_tackle(self, sprite):
         """
 
-        :type sprite: core.sprite.Sprite
+        : tuxemon.core.sprite.Sprite
         :return:
         """
         duration = .3
@@ -236,7 +236,7 @@ class CombatAnimations(Menu):
     def animate_sprite_take_damage(self, sprite):
         """
 
-        :type sprite: core.sprite.Sprite
+        : tuxemon.core.sprite.Sprite
         :return:
         """
         original_x, original_y = sprite.rect.topleft
@@ -249,7 +249,7 @@ class CombatAnimations(Menu):
     def animate_hp(self, monster):
         """
 
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
         value = monster.current_hp / monster.hp
@@ -260,7 +260,7 @@ class CombatAnimations(Menu):
         """
 
         :param initial: Starting HP
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
         self._hp_bars[monster] = HpBar(initial)
@@ -269,7 +269,7 @@ class CombatAnimations(Menu):
     def animate_exp(self, monster):
         """
 
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
         target_previous = monster.experience_required()
@@ -282,7 +282,7 @@ class CombatAnimations(Menu):
         """
 
         :param initial: Starting EXP
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
         self._exp_bars[monster] = ExpBar(initial)
@@ -291,7 +291,7 @@ class CombatAnimations(Menu):
     def build_hud_text(self, monster):
         """ Return a string for use on the callout of the monster
 
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
         return self.shadow_text("{0.name: <12}Lv.{0.level: >2}".format(monster))
@@ -307,7 +307,7 @@ class CombatAnimations(Menu):
     def animate_monster_leave(self, monster):
         """
 
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
         sprite = self._monster_sprite_map[monster]
@@ -325,7 +325,7 @@ class CombatAnimations(Menu):
         """
 
         :type home: Rect
-        :type monster: core.monster.Monster
+        : tuxemon.core.monster.Monster
         :return:
         """
 

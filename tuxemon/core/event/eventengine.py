@@ -183,8 +183,8 @@ class EventEngine(object):
 
         Returns False if the condition is not loaded properly
 
-        :type cond_data: core.event.MapCondition
-        :type map_event: core.event.MapEvent
+        : tuxemon.core.event.MapCondition
+        : tuxemon.core.event.MapEvent
         :rtype: bool
         """
         with add_error_context(map_event, cond_data, self.game):
@@ -246,7 +246,7 @@ class EventEngine(object):
 
         Actions will be started, but may finish much later.
 
-        :type map_event: core.event.EventObject
+        : tuxemon.core.event.EventObject
         :return: None
         """
         # debugging mode is slower and will check all conditions
@@ -404,7 +404,7 @@ class EventEngine(object):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        : tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         # has the player pressed the action key?
@@ -418,9 +418,9 @@ class EventEngine(object):
 @contextmanager
 def add_error_context(event, item, game):
     """
-    :type event: core.event.EventObject
-    :type item: core.event.MapCondition or core.event.MapAction
-    :type game: core.control.Control
+    : tuxemon.core.event.EventObject
+    : tuxemon.core.event.MapCondition or core.event.MapAction
+    : tuxemon.core.control.Control
     :rtype None
     """
     try:

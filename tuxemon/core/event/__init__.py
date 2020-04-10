@@ -77,7 +77,7 @@ def get_npc(game, slug):
     :param game: The main game object that contains all the game's variables.
     :param slug: The slug of the NPC that exists on the current map.
 
-    :type game: core.control.Control
+    : tuxemon.core.control.Control
     :type slug: str
 
     :rtype: tuxemon.core.player.Player

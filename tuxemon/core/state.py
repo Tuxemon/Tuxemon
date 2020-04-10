@@ -155,7 +155,7 @@ class State(object):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        : tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         return event

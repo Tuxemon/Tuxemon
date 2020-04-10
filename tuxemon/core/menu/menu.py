@@ -210,9 +210,9 @@ class Menu(state.State):
                 self.menu_items.arrange_menu_items()
 
             for index, item in enumerate(self.menu_items):
-                self.selected_index = index
                 if item.enabled:
                     break
+                self.selected_index = index
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu

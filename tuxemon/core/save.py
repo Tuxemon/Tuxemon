@@ -85,7 +85,7 @@ def capture_screenshot(client):
 
 
 def save(save_data, slot):
-    """Saves the current session state to a file using shelve.
+    """Saves the current game state to a file using shelve.
 
     :param save_data: The data to save.
     :param screenshot: An image of the current frame
@@ -112,13 +112,13 @@ def save(save_data, slot):
 
 
 def load(slot):
-    """Loads session state data from a shelved save file.
+    """Loads gamen state data from a shelved save file.
 
-    :param slot: The save slot to load session data from.
+    :param slot: The save slot to load game data from.
     :type slot: Integer
 
     :rtype: Dictionary
-    :returns: Dictionary containing session data to load.
+    :returns: Dictionary containing game data to load.
 
     **Examples:**
 

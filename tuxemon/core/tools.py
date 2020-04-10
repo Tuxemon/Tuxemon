@@ -244,4 +244,4 @@ def show_item_result_as_dialog(session, item, result):
     template = getattr(item, msg_type)
     if template:
         message = T.translate(template)
-        open_dialog(session.client, [message])
+        open_dialog(session, [message])

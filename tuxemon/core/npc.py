@@ -641,7 +641,7 @@ class NPC(Entity):
     def has_item(self, item_slug):
         return self.inventory.get(item_slug) is not None
 
-    def alter_item_quantity(self, game, item_slug, amount):
+    def alter_item_quantity(self, session, item_slug, amount):
         success = True
         item = self.inventory.get(item_slug)
         if amount > 0:

@@ -98,7 +98,7 @@ class ItemMenuState(Menu):
             result = item.use(player, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
-            tools.show_item_result_as_dialog(self.client, item, result)
+            tools.show_item_result_as_dialog(local_session, item, result)
 
         def confirm():
             self.client.pop_state()  # close the confirm dialog

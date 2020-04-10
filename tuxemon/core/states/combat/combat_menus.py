@@ -128,7 +128,7 @@ class MainCombatMenuState(PopUpMenu):
                 return
 
             # enqueue the item
-            combat_state = self.game.get_state_name("CombatState")
+            combat_state = self.client.get_state_name("CombatState")
             # TODO: don't hardcode to player0
             combat_state.enqueue_action(combat_state.players[0], item, target)
 

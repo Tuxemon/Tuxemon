@@ -40,7 +40,7 @@ class DelayedTeleportAction(EventAction):
     ]
 
     def start(self):
-        # Get the world object from the self.game.
+        # Get the world object from the session
         world = self.session.client.get_state_name("WorldState")
 
         # give up if there is a teleport in progress

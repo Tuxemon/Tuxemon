@@ -146,7 +146,7 @@ def open_dialog(game, text, avatar=None, menu=None):
     :param avatar: optional avatar sprite
     :param menu: optional menu object
 
-    :rtype: core.states.dialog.DialogState
+    :rtype: tuxemon.core.states.dialog.DialogState
     """
     rect = calc_dialog_rect(game.screen.get_rect())
     return game.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)

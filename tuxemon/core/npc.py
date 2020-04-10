@@ -158,7 +158,7 @@ class NPC(Entity):
         """Prepares a dictionary of the npc to be saved to a file
 
         :param game: The object that runs the game.
-        :type game: core.control.Control
+        :type game: tuxemon.core.control.Control
 
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the npc
@@ -537,7 +537,7 @@ class NPC(Entity):
 
         :param monster: The core.monster.Monster object to add to the player's party.
 
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
 
         :rtype: None
         :returns: None
@@ -556,7 +556,7 @@ class NPC(Entity):
         :param monster_slug: The slug name of the monster
         :type monster_slug: str
 
-        :rtype: core.monster.Monster
+        :rtype: tuxemon.core.monster.Monster
         :returns: Monster found
         """
         for monster in self.monsters:
@@ -568,7 +568,7 @@ class NPC(Entity):
 
         :param monster: Monster to remove from the player's party.
 
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
 
         :rtype: None
         :returns: None

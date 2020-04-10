@@ -99,7 +99,7 @@ def load_sprite(filename, **rect_kwargs):
     of the image for positioning the rect.
 
     :param filename: Filename to load
-    :rtype: core.sprite.Sprite
+    :rtype: tuxemon.core.sprite.Sprite
     """
     sprite = Sprite()
     sprite.image = load_and_scale(filename)
@@ -118,7 +118,7 @@ def load_animated_sprite(filenames, delay, **rect_kwargs):
 
     :param filenames: Filenames to load
     :param int delay: Frame interval; time between each frame
-    :rtype: core.sprite.Sprite
+    :rtype: tuxemon.core.sprite.Sprite
     """
     anim = []
     for filename in filenames:
@@ -214,7 +214,7 @@ def scale_sprite(sprite, ratio):
 
     :type sprite: pygame.Sprite
     :param ratio: amount to scale by
-    :rtype: core.sprite.Sprite
+    :rtype: tuxemon.core.sprite.Sprite
     """
     center = sprite.rect.center
     sprite.rect.width *= ratio

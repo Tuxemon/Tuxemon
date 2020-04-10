@@ -30,7 +30,7 @@ class QuantityMenu(Menu):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         if event.pressed:
@@ -72,4 +72,3 @@ class QuantityMenu(Menu):
         formatted_name = label_format(self.quantity, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
-

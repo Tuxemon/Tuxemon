@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Crushing Ball",
+  "animation": "crushing ball",
   "category": "physical",
   "effects": [
     "damage"

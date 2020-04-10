@@ -75,7 +75,7 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None,
     autowrap. To place text on a new line, put TWO newline characters (\\n)  in your text.
 
     :param text: The text that you want to draw to the current menu item.
-        *Default: core.menu.Menu.text*
+        *Default: tuxemon.core.menu.Menu.text*
     :param left: The horizontal pixel position of the text relative to the menu's position.
         *Default: 0*
     :param top: The vertical pixel position of the text relative to the menu's position.

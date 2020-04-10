@@ -427,11 +427,11 @@ class CombatState(CombatAnimations):
         def add(menuitem):
             monster = menuitem.game_object
             if monster.current_hp == 0:
-                tools.open_dialog(self.game, [T.format("combat_fainted", parameters={"name": monster.name})])
+                tools.open_dialog(local_session, [T.format("combat_fainted", parameters={"name": monster.name})])
             elif monster in self.active_monsters:
-                tools.open_dialog(self.game, [T.format("combat_isactive", parameters={"name": monster.name})])
+                tools.open_dialog(local_session, [T.format("combat_isactive", parameters={"name": monster.name})])
                 msg = T.translate("combat_replacement_is_fainted")
-                tools.open_dialog(self.game, [msg])
+                tools.open_dialog(local_session, [msg])
             else:
                 self.add_monster_into_play(player, monster)
                 self.client.pop_state()

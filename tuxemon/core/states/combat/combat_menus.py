@@ -76,10 +76,10 @@ class MainCombatMenuState(PopUpMenu):
             monster = menuitem.game_object
 
             if monster in self.client.get_state_name('CombatState').active_monsters:
-                tools.open_dialog(self.client, [T.format('combat_isactive', {"name": monster.name})])
+                tools.open_dialog(local_session, [T.format('combat_isactive', {"name": monster.name})])
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(self.client, [T.format('combat_fainted', {"name": monster.name})])
+                tools.open_dialog(local_session, [T.format('combat_fainted', {"name": monster.name})])
                 return
             combat_state = self.client.get_state_name("CombatState")
             swap = Technique("swap")
@@ -124,7 +124,7 @@ class MainCombatMenuState(PopUpMenu):
             # is the item valid to use?
             if not item.validate(target):
                 msg = T.format('cannot_use_item_monster', {'name': item.name})
-                tools.open_dialog(self.game, [msg])
+                tools.open_dialog(local_session, [msg])
                 return
 
             # enqueue the item
@@ -170,7 +170,7 @@ class MainCombatMenuState(PopUpMenu):
             technique = menu_item.game_object
             if technique.next_use > 0:
                 params = {"move": technique.name, "name": self.monster.name}
-                tools.open_dialog(self.client, [T.format('combat_recharging', params)])
+                tools.open_dialog(local_session, [T.format('combat_recharging', params)])
                 return
 
             combat_state = self.client.get_state_name("CombatState")

@@ -91,4 +91,4 @@ class DialogChainAction(EventAction):
 
     def open_dialog(self, initial_text, avatar):
         logger.info("Opening chain dialog window")
-        open_dialog(self.session.client, [initial_text], avatar)
+        open_dialog(self.session, [initial_text], avatar)

@@ -41,6 +41,7 @@ from functools import partial
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.session import local_session
 from tuxemon.core.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -89,7 +90,7 @@ class MultiplayerMenu(PopUpMenu):
         # check if server is already hosting a game
         if self.game.server.listening:
             self.game.pop_state(self)
-            open_dialog(self.game, [T.translate('multiplayer_already_hosting')])
+            open_dialog(local_session, [T.translate('multiplayer_already_hosting')])
 
         # not hosting, so start the process
         elif not self.game.isclient:
@@ -113,7 +114,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.pop_state(self)
 
             # inform player that hosting is ready
-            open_dialog(self.game, [T.translate('multiplayer_hosting_ready')])
+            open_dialog(local_session, [T.translate('multiplayer_hosting_ready')])
 
     def scan_for_games(self):
         # start the game scanner

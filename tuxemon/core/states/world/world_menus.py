@@ -54,7 +54,7 @@ class WorldMenuState(Menu):
             self.client.event_engine.execute_action("quit")
 
         def not_implemented_dialog():
-            open_dialog(self.client, [T.translate('not_implemented')])
+            open_dialog(local_session, [T.translate('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = (
@@ -117,7 +117,7 @@ class WorldMenuState(Menu):
             self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats():
-            open_dialog(self.client, [T.translate('not_implemented')])
+            open_dialog(local_session, [T.translate('not_implemented')])
 
         def open_monster_submenu(menu_item):
             menu_items_map = (

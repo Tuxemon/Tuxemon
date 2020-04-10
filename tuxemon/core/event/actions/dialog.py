@@ -71,4 +71,4 @@ class DialogAction(EventAction):
 
     def open_dialog(self, initial_text, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.session.client, [initial_text], avatar)
+        open_dialog(self.session, [initial_text], avatar)

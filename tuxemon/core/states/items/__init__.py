@@ -77,10 +77,10 @@ class ItemMenuState(Menu):
 
         if not any(menu_item.game_object.validate(m) for m in local_session.player.monsters):
             msg = T.format('item_no_available_target', {'name': item.name})
-            tools.open_dialog(self.client, [msg])
+            tools.open_dialog(local_session, [msg])
         elif state not in item.usable_in:
             msg = T.format('item_cannot_use_here', {'name': item.name})
-            tools.open_dialog(self.client, [msg])
+            tools.open_dialog(local_session, [msg])
         else:
             self.open_confirm_use_menu(item)
 

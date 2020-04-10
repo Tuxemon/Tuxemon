@@ -330,7 +330,7 @@ class MenuSpriteGroup(SpriteGroup):
         The return value will be the newly selected object index
 
         :param index: Index of the item in the list
-        :param event: core.input.PlayerInput
+        :param event: tuxemon.core.input.PlayerInput
 
         :returns: New menu item offset
         :rtype: int

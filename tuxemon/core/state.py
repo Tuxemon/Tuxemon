@@ -64,7 +64,7 @@ class State(object):
        pause         - Called when state is no longer active
        shutdown      - Called before state is destroyed
 
-    :ivar game: core.control.Control
+    :ivar game: tuxemon.core.control.Control
     :cvar force_draw: If True, state will never be skipped in drawing phase
     :cvar rect: Area of the screen will be drawn on
     """
@@ -101,7 +101,7 @@ class State(object):
         :param filename: filename, relative to the resources folder
         :type filename: String
         :param kwargs: Keyword arguments to pass to the Rect constructor
-        :returns: core.sprite.Sprite
+        :returns: tuxemon.core.sprite.Sprite
         """
         layer = kwargs.pop('layer', 0)
         sprite = graphics.load_sprite(filename, **kwargs)
@@ -116,7 +116,7 @@ class State(object):
         :param targets: targets of the Animation
         :type targets: any
         :param kwargs: Attributes and their final value
-        :returns: core.animation.Animation
+        :returns: tuxemon.core.animation.Animation
         """
         ani = Animation(*targets, **kwargs)
         self.animations.add(ani)
@@ -130,7 +130,7 @@ class State(object):
 
         :param args: function to be called
         :param kwargs: kwargs passed to the function
-        :returns: core.animation.Task
+        :returns: tuxemon.core.animation.Task
         """
         task = Task(*args, **kwargs)
         self.animations.add(task)
@@ -155,7 +155,7 @@ class State(object):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         return event
@@ -395,7 +395,7 @@ class StateManager(object):
 
         :param state_name: name of state to start
         :returns: instanced State
-        :rtype: core.state.State
+        :rtype: tuxemon.core.state.State
         """
         try:
             state = self._state_dict[state_name]
@@ -427,7 +427,7 @@ class StateManager(object):
 
         :param state_name: name of state to start
         :returns: New instance
-        :rtype: core.state.State
+        :rtype: tuxemon.core.state.State
         """
         previous = self._state_stack[0]
         instance = self.push_state(state_name, **kwargs)
@@ -450,7 +450,7 @@ class StateManager(object):
         """ The currently running state
 
         :returns: State
-        :rtype: core.state.State
+        :rtype: tuxemon.core.state.State
         """
         try:
             return self._state_stack[0]

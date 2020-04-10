@@ -81,7 +81,7 @@ class WaitForInputState(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         if event.pressed and event.button == buttons.A:
@@ -531,7 +531,7 @@ class CombatState(CombatAnimations):
         """ Show the main window for choosing player actions
 
         :param monster: Monster to choose an action for
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
 
         :returns: None
         """
@@ -594,7 +594,7 @@ class CombatState(CombatAnimations):
 
         This is used mainly for removing actions after monster is fainted
 
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
         :returns: None
         """
         to_remove = set()
@@ -723,7 +723,7 @@ class CombatState(CombatAnimations):
     def faint_monster(self, monster):
         """ Instantly make the monster faint (will be removed later)
 
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
         :returns: None
         """
         monster.current_hp = 0
@@ -783,8 +783,8 @@ class CombatState(CombatAnimations):
 
         TODO: move to some generic animation loading thingy
 
-        :type technique: core.technique.Technique
-        :rtype: core.sprite.Sprite
+        :type technique: tuxemon.core.technique.Technique
+        :rtype: tuxemon.core.sprite.Sprite
         """
         try:
             return self._technique_cache[technique]
@@ -800,7 +800,7 @@ class CombatState(CombatAnimations):
         TODO: move to some generic animation loading thingy
 
         :param technique:
-        :rtype: core.sprite.Sprite
+        :rtype: tuxemon.core.sprite.Sprite
         """
         frame_time = .09
         images = list()

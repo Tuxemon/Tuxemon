@@ -30,7 +30,7 @@ class QuantityMenu(Menu):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         if event.pressed:

@@ -41,7 +41,7 @@ class ToUseTileCondition(EventCondition):
         :param game: The main game object that contains all the game's variables.
         :param condition: The condition details.
 
-        :type game: core.control.Control
+        :type game: tuxemon.core.control.Control
         :type condition: NamedTuple
 
         :rtype: Boolean

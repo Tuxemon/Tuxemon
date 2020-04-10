@@ -136,7 +136,7 @@ class Control(StateManager):
 
         Only one human player is supported ATM
 
-        : tuxemon.core.player.Player
+        :type player: core.player.Player
         :return:
         """
         # TODO: moar players

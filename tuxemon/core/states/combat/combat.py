@@ -81,7 +81,7 @@ class WaitForInputState(state.State):
 
         You should return None if you have handled input here.
 
-        : tuxemon.core.input.PlayerInput
+        :type event: core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         if event.pressed and event.button == buttons.A:
@@ -531,7 +531,7 @@ class CombatState(CombatAnimations):
         """ Show the main window for choosing player actions
 
         :param monster: Monster to choose an action for
-        : tuxemon.core.monster.Monster
+        :type monster: core.monster.Monster
 
         :returns: None
         """
@@ -594,7 +594,7 @@ class CombatState(CombatAnimations):
 
         This is used mainly for removing actions after monster is fainted
 
-        : tuxemon.core.monster.Monster
+        :type monster: core.monster.Monster
         :returns: None
         """
         to_remove = set()
@@ -723,7 +723,7 @@ class CombatState(CombatAnimations):
     def faint_monster(self, monster):
         """ Instantly make the monster faint (will be removed later)
 
-        : tuxemon.core.monster.Monster
+        :type monster: core.monster.Monster
         :returns: None
         """
         monster.current_hp = 0
@@ -783,7 +783,7 @@ class CombatState(CombatAnimations):
 
         TODO: move to some generic animation loading thingy
 
-        : tuxemon.core.technique.Technique
+        :type technique: core.technique.Technique
         :rtype: core.sprite.Sprite
         """
         try:

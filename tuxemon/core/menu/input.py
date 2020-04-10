@@ -85,7 +85,7 @@ class InputMenu(Menu):
 
         You should return None if you have handled input here.
 
-        : tuxemon.core.input.PlayerInput
+        :type event: core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         event = super(InputMenu, self).process_event(event)

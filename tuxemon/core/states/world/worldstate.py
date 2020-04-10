@@ -322,7 +322,7 @@ class WorldState(state.State):
 
         You should return None if you have handled input here.
 
-        : tuxemon.core.input.PlayerInput
+        :type event: core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         event = self.translate_input_event(event)
@@ -458,7 +458,7 @@ class WorldState(state.State):
     def add_entity(self, entity):
         """
 
-        : tuxemon.core.entity.Entity
+        :type entity: core.entity.Entity
         :return:
         """
         entity.world = self

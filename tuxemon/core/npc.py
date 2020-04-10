@@ -158,7 +158,7 @@ class NPC(Entity):
         """Prepares a dictionary of the npc to be saved to a file
 
         :param game: The object that runs the game.
-        : tuxemon.core.control.Control
+        :type game: core.control.Control
 
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the npc
@@ -537,7 +537,7 @@ class NPC(Entity):
 
         :param monster: The core.monster.Monster object to add to the player's party.
 
-        : tuxemon.core.monster.Monster
+        :type monster: core.monster.Monster
 
         :rtype: None
         :returns: None
@@ -568,7 +568,7 @@ class NPC(Entity):
 
         :param monster: Monster to remove from the player's party.
 
-        : tuxemon.core.monster.Monster
+        :type monster: core.monster.Monster
 
         :rtype: None
         :returns: None

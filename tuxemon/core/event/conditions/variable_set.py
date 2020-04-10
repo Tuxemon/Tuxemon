@@ -43,7 +43,7 @@ class VariableSetCondition(EventCondition):
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        : tuxemon.core.control.Control
+        :type game: core.control.Control
         :type condition: Dictionary
 
         :rtype: Boolean

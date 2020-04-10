@@ -292,7 +292,7 @@ def replace_text(game, text):
     :param game: The main game object that contains all the game's variables.
     :param text: Raw text from the map
 
-    : tuxemon.core.control.Control
+    :type game: core.control.Control
     :type text: str
 
     :rtype: str

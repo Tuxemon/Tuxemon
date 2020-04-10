@@ -325,7 +325,7 @@ class Monster(object):
         :param technique: The core.monster.Technique object for
             the monster to learn.
 
-        : tuxemon.core.monster.Technique
+        :type technique: core.monster.Technique
 
         :rtype: None
         :returns: None
@@ -363,7 +363,7 @@ class Monster(object):
     def apply_status(self, status):
         """ Apply a status to the monster
 
-        : tuxemon.core.technique.Technique
+        :type status: core.technique.Technique
         :rtype: None
         """
         self.status.append(status)

@@ -93,9 +93,9 @@ def simple_damage_calculate(technique, user, target):
     :param user: The user of the technique.
     :param target: The one the technique is being used on.
 
-    : tuxemon.core.technique.Technique
-    : tuxemon.core.monster.Monster
-    : tuxemon.core.monster.Monster
+    :type technique: core.technique.Technique
+    :type user: core.monster.Monster
+    :type target: core.monster.Monster
 
     :return: damage, multiplier
     """
@@ -130,9 +130,9 @@ def simple_poison(technique, user, target):
     :param user: The user of the technique.
     :param target: The one the technique is being used on.
 
-    : tuxemon.core.technique.Technique
-    : tuxemon.core.monster.Monster
-    : tuxemon.core.monster.Monster
+    :type technique: core.technique.Technique
+    :type user: core.monster.Monster
+    :type target: core.monster.Monster
 
     :return: damage
     """
@@ -145,8 +145,8 @@ def simple_recover(technique, target):
     :param technique: The technique causing recover.
     :param target: The one being healed.
 
-    : tuxemon.core.technique.Technique
-    : tuxemon.core.monster.Monster
+    :type technique: core.technique.Technique
+    :type target: core.monster.Monster
 
     :return: heal
     """
@@ -161,9 +161,9 @@ def simple_lifeleech(technique, user, target):
     :param user: The user of the technique.
     :param target: The one the technique is being used on.
 
-    : tuxemon.core.technique.Technique
-    : tuxemon.core.monster.Monster
-    : tuxemon.core.monster.Monster
+    :type technique: core.technique.Technique
+    :type user: core.monster.Monster
+    :type target: core.monster.Monster
 
     :return: damage
     """

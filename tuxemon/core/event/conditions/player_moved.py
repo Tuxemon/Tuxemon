@@ -30,7 +30,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 # TODO: move to some other place?
 def collide(condition, tile_position):
     """
-    : tuxemon.core.event.MapCondition
+    :type condition: core.event.MapCondition
     :param tile_position: tuple
     :rtype: bool
     """
@@ -58,8 +58,8 @@ class PlayerMovedCondition(EventCondition):
         """Checks to see the player has just moved into this tile. Using this condition will
         prevent a condition like "player_at" from constantly being true every single frame.
 
-        : tuxemon.core.control.Control
-        : tuxemon.core.event.MapCondition
+        :type game: core.control.Control
+        :type condition: core.event.MapCondition
 
         :rtype: bool
 
@@ -86,8 +86,8 @@ class PlayerMovedCondition(EventCondition):
     def generic_test(self, game, condition, npc):
         """ Eventually, this can be made into own condition or something
 
-        : tuxemon.core.control.Control
-        : tuxemon.core.event.MapCondition
+        :type game: core.control.Control
+        :type condition: core.event.MapCondition
 
         :rtype: bool
         """

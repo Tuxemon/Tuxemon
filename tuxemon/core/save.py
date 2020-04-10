@@ -59,7 +59,7 @@ def get_save_data(game):
     """Gets a dictionary which represents the state of the game.
 
     :param game: The core.control.Control object that runs the game.
-    : tuxemon.core.control.Control
+    :type game: core.control.Control
 
     :rtype: Dictionary
     :returns: Game data to save, must be JSON encodable.

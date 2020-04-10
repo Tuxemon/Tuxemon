@@ -1,14 +1,21 @@
 class Session(object):
     """
 
-    Contains Control, World, and Player
+    Contains Client, World, and Player
+
+    Eventually this will be extended to support network sessions
 
     """
-    def __init__(self, control, world, player):
-        self.control = control
+    def __init__(self, client, world, player):
+        """
+        :param tuxemon.core.client.Client client: Game session
+        :param tuxemon.core.world.World world: Game world
+        :param tuxemon.core.player.Player player: Player object
+        """
+        self.client = client
         self.world = world
         self.player = player
 
 
-# will be filled in later when game starts
+# WIP will be filled in later when game starts
 local_session = Session(None, None, None)

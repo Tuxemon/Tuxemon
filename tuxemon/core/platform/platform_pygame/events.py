@@ -10,6 +10,7 @@ import pygame as pg
 from tuxemon.core import prepare
 from tuxemon.core.platform.const import buttons, events
 from tuxemon.core.platform.events import InputHandler, PlayerInput, EventQueueHandler
+from tuxemon.core.session import local_session
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -20,7 +21,7 @@ class PygameEventQueueHandler(EventQueueHandler):
         # TODO: move this config to the config file
         self._inputs = defaultdict(list)  # type Dict[int, List[InputHandler]]
         self._inputs[0].append(PygameKeyboardInput(prepare.CONFIG.keyboard_button_map))
-        self._inputs[0].append(PygameGamepadInput(prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone))
+        # self._inputs[0].append(PygameGamepadInput(prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone))
         if prepare.CONFIG.hide_mouse is False:
             self._inputs[0].append(PygameMouseInput())
 
@@ -39,7 +40,7 @@ class PygameEventQueueHandler(EventQueueHandler):
                     player_input.process_event(pg_event)
 
             if pg_event.type == pg.QUIT:
-                prepare.GLOBAL_CONTROL.event_engine.execute_action("quit")
+                local_session.client.event_engine.execute_action("quit")
 
         for player, inputs in self._inputs.items():
             for player_input in inputs:

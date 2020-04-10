@@ -10,6 +10,7 @@ from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
 from tuxemon.core.menu.interface import HpBar, ExpBar, MenuItem
 from tuxemon.core.menu.menu import Menu
+from tuxemon.core.session import local_session
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import draw_text, TextArea
 
@@ -51,7 +52,7 @@ class MonsterMenuState(Menu):
             self.monster_slot_border[border_type] = window
 
         # TODO: something better than this global, load_sprites stuff
-        for monster in self.game.player1.monsters:
+        for monster in local_session.player.monsters:
             monster.load_sprites()
 
     def animate_monster_down(self):
@@ -74,7 +75,7 @@ class MonsterMenuState(Menu):
     def initialize_items(self):
         # position the monster portrait
         try:
-            monster = self.game.player1.monsters[self.selected_index]
+            monster = local_session.player.monsters[self.selected_index]
             image = monster.sprites["front"]
         except IndexError:
             image = pygame.Surface((1, 1), pygame.SRCALPHA)
@@ -87,10 +88,10 @@ class MonsterMenuState(Menu):
         self.animate_monster_down()
 
         width = prepare.SCREEN_SIZE[0] // 2
-        height = prepare.SCREEN_SIZE[1] // (self.game.player1.party_limit * 1.5)
+        height = prepare.SCREEN_SIZE[1] // (local_session.player.party_limit * 1.5)
 
         # make 6 slots
-        for i in range(self.game.player1.party_limit):
+        for i in range(local_session.player.party_limit):
             rect = Rect(0, 0, width, height)
             surface = pygame.Surface(rect.size, pygame.SRCALPHA)
             item = MenuItem(surface, None, None, None)
@@ -126,7 +127,7 @@ class MonsterMenuState(Menu):
 
         for index, item in enumerate(self.menu_items):
             try:
-                monster = self.game.player1.monsters[index]
+                monster = local_session.player.monsters[index]
             except IndexError:
                 monster = None
             item.game_object = monster
@@ -177,7 +178,7 @@ class MonsterMenuState(Menu):
 
     def on_menu_selection_change(self):
         try:
-            monster = self.game.player1.monsters[self.selected_index]
+            monster = local_session.player.monsters[self.selected_index]
             image = monster.sprites["front"]
         except IndexError:
             image = pygame.Surface((1, 1), pygame.SRCALPHA)

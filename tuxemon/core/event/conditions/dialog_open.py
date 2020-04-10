@@ -32,14 +32,14 @@ class DialogOpenCondition(EventCondition):
     """
     name = "dialog_open"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a dialog window is open.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -62,7 +62,7 @@ class DialogOpenCondition(EventCondition):
         }
 
         """
-        for state in game.active_states:
+        for state in session.client.active_states:
             if state.name == "DialogState":
                 return True
 

@@ -138,18 +138,18 @@ def calc_dialog_rect(screen_rect):
     return rect
 
 
-def open_dialog(game, text, avatar=None, menu=None):
+def open_dialog(session, text, avatar=None, menu=None):
     """ Open a dialog with the standard window size
 
-    :param game:
+    :param tuxemon.core.session.Session session: Game session
     :param text: list of strings
     :param avatar: optional avatar sprite
     :param menu: optional menu object
 
     :rtype: tuxemon.core.states.dialog.DialogState
     """
-    rect = calc_dialog_rect(game.screen.get_rect())
-    return game.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
+    rect = calc_dialog_rect(session.client.screen.get_rect())
+    return session.client.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
 
 
 def nearest(l):
@@ -165,18 +165,18 @@ def trunc(l):
     return tuple(int(i) for i in l)
 
 
-def number_or_variable(game, value):
+def number_or_variable(session, value):
     """ Returns a numeric game variable by its name
     If value is already a number, convert from string to float and return that
 
-    :param game:
+    :param session:
     :param value: Union[str, float, int]
 
     :rtype: float
 
     :raises: ValueError
     """
-    player = game.player1
+    player = session.player
     if value.isdigit():
         return float(value)
     else:
@@ -232,9 +232,16 @@ def cast_values(parameters, valid_parameters):
         raise
 
 
-def show_item_result_as_dialog(game, item, result):
+def show_item_result_as_dialog(session, item, result):
+    """ Show generic dialog if item was used or not
+
+    :param tuxemon.core.session.Session session: Session
+    :param tuxemon.core.item.item.Item item: Item
+    :param dict result:
+    :return: None
+    """
     msg_type = 'use_success' if result['success'] else 'use_failure'
     template = getattr(item, msg_type)
     if template:
         message = T.translate(template)
-        open_dialog(game, [message])
+        open_dialog(session.client, [message])

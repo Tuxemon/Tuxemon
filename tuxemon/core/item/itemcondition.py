@@ -35,10 +35,10 @@ from __future__ import unicode_literals
 import logging
 from collections import namedtuple
 
-from tuxemon.core.control import Control  # for type introspection
+from tuxemon.core.client import Client  # for type introspection
 from tuxemon.core.tools import cast_values
 
-assert Control
+assert Client
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +87,7 @@ class ItemCondition(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, context, game, user, parameters):
+    def __init__(self, context, session,  user, parameters):
         """
 
         :type context: str
@@ -95,7 +95,7 @@ class ItemCondition(object):
         :type parameters: list
         """
 
-        self.game = game
+        self.session = session
         self.user = user
         self.context = context
 

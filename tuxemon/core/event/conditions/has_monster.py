@@ -32,21 +32,21 @@ class HasMonsterCondition(EventCondition):
     """
     name = "has_monster"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Checks to see the player is has a monster in his party
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
 
         """
-        player = game.player1
+        player = session.player
         monster_slug = condition.parameters[0]
         if player.find_monster(monster_slug) is None:
             return False

@@ -13,6 +13,7 @@ from tuxemon.core import prepare
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import Menu
+from tuxemon.core.session import local_session
 from tuxemon.core.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -47,13 +48,13 @@ class WorldMenuState(Menu):
         super(WorldMenuState, self).startup(*args, **kwargs)
 
         def change_state(state, **kwargs):
-            return partial(self.game.replace_state, state, **kwargs)
+            return partial(self.client.replace_state, state, **kwargs)
 
         def exit_game():
-            self.game.event_engine.execute_action("quit")
+            self.client.event_engine.execute_action("quit")
 
         def not_implemented_dialog():
-            open_dialog(self.game, [T.translate('not_implemented')])
+            open_dialog(self.client, [T.translate('not_implemented')])
 
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = (
@@ -85,7 +86,7 @@ class WorldMenuState(Menu):
                 # at this point, the cursor will have changed
                 # so we need to re-arrange the list before it is rendered again
                 # TODO: API for getting the game player object
-                player = self.game.player1
+                player = local_session.player
                 monster_list = player.monsters
 
                 # get the newly selected item.  it will be set to previous position
@@ -109,21 +110,21 @@ class WorldMenuState(Menu):
 
         def select_first_monster():
             # TODO: API for getting the game player obj
-            player = self.game.player1
+            player = local_session.player
             monster = monster_menu.get_selected_item().game_object
             context['monster'] = monster
             context['old_index'] = player.monsters.index(monster)
-            self.game.pop_state()  # close the info/move menu
+            self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats():
-            open_dialog(self.game, [T.translate('not_implemented')])
+            open_dialog(self.client, [T.translate('not_implemented')])
 
         def open_monster_submenu(menu_item):
             menu_items_map = (
                 ('monster_menu_info', open_monster_stats),
                 ('monster_menu_move', select_first_monster),
             )
-            menu = self.game.push_state("Menu")
+            menu = self.client.push_state("Menu")
             menu.shrink_to_items = True
             add_menu_items(menu, menu_items_map)
 
@@ -134,7 +135,7 @@ class WorldMenuState(Menu):
                 open_monster_submenu(menu_item)
 
         context = dict()  # dict passed around to hold info between menus/callbacks
-        monster_menu = self.game.replace_state("MonsterMenuState")
+        monster_menu = self.client.replace_state("MonsterMenuState")
         monster_menu.on_menu_selection = handle_selection
         monster_menu.on_menu_selection_change = monster_menu_hook
 

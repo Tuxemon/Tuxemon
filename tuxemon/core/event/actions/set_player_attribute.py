@@ -40,12 +40,8 @@ class SetPlayerAttributeAction(EventAction):
     ]
 
     def start(self):
-        world = self.game.get_state_name("WorldState")
-
-        if not world:
-            return
-
         attribute = self.parameters[0]
         value = self.parameters[1]
 
-        Common.set_character_attribute(world.player1, attribute, value)
+        raise RuntimeError("missing function code")
+        set_character_attribute(self.session.player, attribute, value)

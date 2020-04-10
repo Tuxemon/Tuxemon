@@ -43,11 +43,8 @@ class ModifyPlayerAttributeAction(EventAction):
     ]
 
     def start(self):
-        world = self.game.get_state_name("WorldState")
-        if not world:
-            return
-
         attribute = self.parameters[0]
         modifier = self.parameters[1]
 
-        Common.modify_character_attribute(world.player1, attribute, modifier)
+        raise RuntimeError("missing this function")
+        # modify_character_attribute(self.game.player, attribute, modifier)

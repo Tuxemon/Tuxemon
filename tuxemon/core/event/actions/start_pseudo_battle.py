@@ -40,7 +40,7 @@ class StartPseudoBattleAction(EventAction):
     valid_parameters = []
 
     def start(self):
-        player = self.game.player1
+        player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
@@ -49,10 +49,6 @@ class StartPseudoBattleAction(EventAction):
         if not check_battle_legal(npc):
             return False
 
-        # Stop movement and keypress on the server.
-        if self.game.isclient or self.game.ishost:
-            self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
-
         # Lookup the environment
         env_slug = "grass"
         if 'environment' in player.game_variables:
@@ -60,11 +56,11 @@ class StartPseudoBattleAction(EventAction):
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
-        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer",
+        self.session.client.push_state("CombatState", players=(player, npc), combat_type="trainer",
                              graphics=env['battle_graphics'])
 
         # flash the screen
-        self.game.push_state("FlashTransition")
+        self.session.client.push_state("FlashTransition")
 
         # Start some music!
         logger.info("Playing battle music!")

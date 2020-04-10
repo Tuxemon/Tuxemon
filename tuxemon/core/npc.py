@@ -126,7 +126,7 @@ class NPC(Entity):
         # pathfinding and waypoint related
         self.pathfinding = None
         self.path = []
-        self.final_move_dest = [0, 0]  # Stores the final destination sent from a game
+        self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
 
         # This is used to 'set back' when lost, and make movement robust.
         # If entity falls off of map due to a bug, it can be returned to this value.
@@ -301,8 +301,6 @@ class NPC(Entity):
 
         :return: None
         """
-        #
-        # self.network_notify_stop_moving()
         self.velocity3.x = 0
         self.velocity3.y = 0
         self.velocity3.z = 0
@@ -362,7 +360,7 @@ class NPC(Entity):
         * check if the move_direction variable is set
         * set the movement speed
         * follow waypoints
-        * game walking animations
+        * control walking animations
         * send network updates
 
         :param time_passed_seconds: A float of the time that has passed since the last frame.
@@ -459,7 +457,6 @@ class NPC(Entity):
             # eventually, there will need to be a global clock for the game,
             # not based on wall time, to prevent visual glitches.
             self.moveConductor.play()
-            # self.network_notify_start_moving(direction)
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:

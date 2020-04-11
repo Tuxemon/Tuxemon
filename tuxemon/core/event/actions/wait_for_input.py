@@ -57,6 +57,6 @@ class WaitForInputAction(EventAction):
 
     def start(self):
         logger.warning("the wait_for_input action has been deprecated, please remove it from your scripts")
-        self.game.event_engine.button = self.parameters.button
-        self.game.event_engine.state = "waiting for input"
-        self.game.event_engine.wait = 2
+        self.session.client.event_engine.button = self.parameters.button
+        self.session.client.event_engine.state = "waiting for input"
+        self.session.client.event_engine.wait = 2

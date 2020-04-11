@@ -56,20 +56,16 @@ class StartBattleAction(EventAction):
     ]
 
     def start(self):
-        player = self.game.player1
+        player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
             logger.debug("battle is not legal, won't start")
             return False
 
-        world = self.game.get_state_name("WorldState")
+        world = self.session.client.get_state_name("WorldState")
         if not world:
             return False
-
-        # Stop movement and keypress on the server.
-        if self.game.isclient or self.game.ishost:
-            self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
 
         npc = world.get_entity(self.parameters.npc_slug)
         npc.load_party()
@@ -82,13 +78,13 @@ class StartBattleAction(EventAction):
 
         # Add our players and setup combat
         logger.debug("Starting battle!")
-        self.game.push_state("CombatState", players=(player, npc), combat_type="trainer",
-                             graphics=env['battle_graphics'])
+        self.session.client.push_state("CombatState", players=(player, npc), combat_type="trainer",
+                                       graphics=env['battle_graphics'])
 
         # Start some music!
         filename = env['battle_music']
-        self.game.event_engine.execute_action("play_music", [filename])
+        self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.game.get_state_name("CombatState") is None:
+        if self.session.client.get_state_name("CombatState") is None:
             self.stop()

@@ -94,3 +94,20 @@ class Entity(object):
         :rtype: bool
         """
         return not self.velocity3 == (0, 0, 0)
+
+    def get_state(self, session):
+        """ Get Entities internal state for saving/loading
+        
+        :param tuxemon.core.session.Session session:
+        :rtype: Dict[str, str]
+        """
+        raise NotImplementedError
+
+    def set_state(self, session,  save_data):
+        """ Recreates entity from saved data
+
+        :param tuxemon.core.session.Session session:
+        :param Dict save_data: Data used to recreate the Entity
+        :rtype: Dict[str, str]
+        """
+        raise NotImplementedError

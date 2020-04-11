@@ -43,7 +43,7 @@ class PathfindAction(EventAction):
     ]
 
     def start(self):
-        self.npc = get_npc(self.game, self.parameters.npc_slug)
+        self.npc = get_npc(self.session, self.parameters.npc_slug)
         self.npc.pathfind((self.parameters.tile_pos_x, self.parameters.tile_pos_y))
 
     def update(self):

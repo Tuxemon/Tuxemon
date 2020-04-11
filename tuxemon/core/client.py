@@ -34,18 +34,18 @@ import time
 
 import pygame as pg
 
-import tuxemon.core.event.eventengine
-from tuxemon.core import prepare
 from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
-from tuxemon.core import cli, networking, rumble
+from tuxemon.core import cli, networking, prepare, rumble
+from tuxemon.core.event.eventengine import EventEngine
 from tuxemon.core.platform import android
+from tuxemon.core.session import local_session
 from tuxemon.core.state import StateManager
 
 logger = logging.getLogger(__name__)
 
 
-class Control(StateManager):
-    """ Control class for entire project. Contains the game loop, and contains
+class Client(StateManager):
+    """ Client class for entire project. Contains the game loop, and contains
     the event_loop which passes events to States as needed.
     """
 
@@ -98,7 +98,7 @@ class Control(StateManager):
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
-        self.event_engine = tuxemon.core.event.eventengine.EventEngine(self)
+        self.event_engine = EventEngine(local_session)
         self.event_conditions = {}
         self.event_actions = {}
         self.event_persist = {}
@@ -121,29 +121,12 @@ class Control(StateManager):
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
-        # TODO: moar players
-        self.player1 = None
-
     def load_map(self, map_data):
         self.events = map_data["events"]
         self.inits = map_data["inits"]
         self.interacts = map_data["interacts"]
         self.event_engine.reset()
         self.event_engine.current_map = map_data
-
-    def add_player(self, player):
-        """ Add a player to the game
-
-        Only one human player is supported ATM
-
-        :type player: tuxemon.core.player.Player
-        :return:
-        """
-        # TODO: moar players
-        self.player1 = player
-
-    def get_player(self):
-        return self.player1
 
     def draw_event_debug(self):
         """ Very simple overlay of event data.  Needs some love.
@@ -190,7 +173,7 @@ class Control(StateManager):
         Kept or returned, the state may process it.
         Eventually, if all states have returned the event, it will go to the event engine.
         The event engine also can keep or return the event.
-        All unused events will be added to Control.key_events each frame.
+        All unused events will be added to Client.key_events each frame.
         Conditions in the the event system can then check that list.
 
         States can "keep" events by simply returning None from State.process_event
@@ -231,7 +214,7 @@ class Control(StateManager):
 
     def main(self):
         """ Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this core.control.Control instance to
+        to handle network events, we pass this core.session.Client instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
 
@@ -467,8 +450,8 @@ class Control(StateManager):
         return None
 
 
-class HeadlessControl(Control, StateManager):
-    """Control class for headless server. Contains the game loop, and contains
+class HeadlessClient(Client, StateManager):
+    """Client class for headless server. Contains the game loop, and contains
     the event_loop which passes events to States as needed.
 
     :param: None
@@ -525,7 +508,7 @@ class HeadlessControl(Control, StateManager):
 
     def main(self):
         """Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this core.control.Control instance to
+        to handle network events, we pass this core.session.Client instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
         :param None:

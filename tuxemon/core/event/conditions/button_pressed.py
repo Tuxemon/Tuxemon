@@ -33,14 +33,14 @@ class ButtonPressedCondition(EventCondition):
     """
     name = "button_pressed"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a particular key was pressed
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -57,7 +57,7 @@ class ButtonPressedCondition(EventCondition):
             raise ValueError("Cannot support key type: {}".format(button))
 
         # Loop through each event
-        for event in game.key_events:
+        for event in session.client.key_events:
             if event.pressed and event.button == button:
                 return True
 

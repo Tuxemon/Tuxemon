@@ -5,28 +5,29 @@ from __future__ import unicode_literals
 
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.session import local_session
 
 
 class InteractionMenu(PopUpMenu):
     def initialize_items(self):
         def duel():
-            self.game.wants_duel = True
+            self.client.wants_duel = True
 
         def trade():
             pass
 
         kwagrs = {
             "accept", duel,
-            "decline", self.game.pop_state
+            "decline", self.client.pop_state
         }
         kwagrs = {
             "accept", trade,
-            "decline", self.game.pop_state
+            "decline", self.client.pop_state
         }
 
-        # if self.game.game.isclient or self.game.game.ishost:
-        #    self.game.game.client.player_interact(self.player, "DUEL")
-        # self.game.game.client.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
+        # if self.session.session.isclient or self.game.ishost:
+        #    self.session.game.player_interact(self.player, "DUEL")
+        # self.session.game.player_interact(self.player, self.interaction, "CLIENT_RESPONSE", response)
 
 
 class ConfirmMenu(PopUpMenu):
@@ -46,8 +47,8 @@ class ConfirmMenu(PopUpMenu):
 
         # TODO: combat checks?
 
-        player = self.game.player1
-        item.use(player, self.game)
+        player = local_session.player
+        item.use(player, self.client)
 
     def initialize_items(self):
         menu_items_map = (

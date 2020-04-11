@@ -34,16 +34,16 @@ class VariableSetCondition(EventCondition):
     """
     name = "variable_set"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a player game variable has been set. This will look for a particular
         key in the player.game_variables dictionary and see if it exists. If it exists, it will
         return true.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -68,8 +68,7 @@ class VariableSetCondition(EventCondition):
         }
 
         """
-        # Get the player object from the game.
-        player = game.player1
+        player = session.player
 
         # Split the string by ":" into a list
         key, value = condition.parameters[0].split(":")

@@ -1,0 +1,24 @@
+{
+    "slug": "eyenemy",
+    "category": "pupil",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "glower"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

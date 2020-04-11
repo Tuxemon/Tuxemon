@@ -1,0 +1,24 @@
+{
+    "slug": "chenipode",
+    "category": "travel_bug",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "take_cover"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

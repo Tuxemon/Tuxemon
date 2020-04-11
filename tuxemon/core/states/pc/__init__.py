@@ -26,32 +26,31 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-# core.components.states.pc
+# core.states.pc
 #
 """ This module contains the PCState state.
 """
 from __future__ import absolute_import
+from __future__ import division
 from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 from functools import partial
 
-from core.tools import open_dialog
-from core.components.game_event import GAME_EVENT, INPUT_EVENT
-from core.components.locale import translator
-from core.components.menu.menu import PopUpMenu
-from core.components.menu.interface import MenuItem
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import MenuItem
+from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.session import local_session
+from tuxemon.core.tools import open_dialog
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
-
-# global translator
-trans = translator.translate
 
 
 def add_menu_items(state, items):
     for key, callback in items:
-        label = trans(key).upper()
+        label = T.translate(key).upper()
+
         state.build_item(label, callback)
 
 
@@ -64,12 +63,12 @@ class PCState(PopUpMenu):
         super(PCState, self).startup(*items, **kwargs)
 
         def change_state(state, **kwargs):
-            return partial(self.game.replace_state, state, **kwargs)
+            return partial(self.client.replace_state, state, **kwargs)
 
         add_menu_items(self, (('menu_monsters', change_state('MonsterMenuState')),
                               ('menu_items', change_state('ItemMenuState')),
                               ('menu_multiplayer', change_state('MultiplayerMenu')),
-                              ('log_off', self.game.pop_state)))
+                              ('log_off', self.client.pop_state)))
 
 
 class MultiplayerMenu(PopUpMenu):
@@ -86,24 +85,12 @@ class MultiplayerMenu(PopUpMenu):
                               ('multiplayer_scan_games', self.scan_for_games),
                               ('multiplayer_join_game', self.join_by_ip)))
 
-    def draw(self, surface):
-        # method used here only for debugging
-        super(MultiplayerMenu, self).draw(surface)
-
-    def process_event(self, event):
-        super(MultiplayerMenu, self).process_event(event)
-
-        # Handle text input events.
-        # If a input menu is pushed, it will be for the hostname or ip
-        if event.type == GAME_EVENT and event.event_type == INPUT_EVENT:
-            self.game.pop_state(self)
-
     def host_game(self):
 
         # check if server is already hosting a game
         if self.game.server.listening:
             self.game.pop_state(self)
-            open_dialog(self.game, [trans('multiplayer_already_hosting')])
+            open_dialog(local_session, [T.translate('multiplayer_already_hosting')])
 
         # not hosting, so start the process
         elif not self.game.isclient:
@@ -112,7 +99,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.server.server.listen()
             self.game.server.listening = True
 
-            # Enable the client, so we can connect to self
+            # Enable the game, so we can connect to self
             self.game.client.enable_join_multiplayer = True
             self.game.client.client.listen()
             self.game.client.listening = True
@@ -127,7 +114,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.pop_state(self)
 
             # inform player that hosting is ready
-            open_dialog(self.game, [trans('multiplayer_hosting_ready')])
+            open_dialog(local_session, [T.translate('multiplayer_hosting_ready')])
 
     def scan_for_games(self):
         # start the game scanner
@@ -140,7 +127,7 @@ class MultiplayerMenu(PopUpMenu):
         self.game.push_state("MultiplayerSelect")
 
     def join_by_ip(self):
-        self.game.push_state("InputMenu", prompt=trans("multiplayer_join_prompt"))
+        self.game.push_state("InputMenu", prompt=T.translate("multiplayer_join_prompt"))
 
     def join(self):
         if self.game.ishost:
@@ -148,7 +135,7 @@ class MultiplayerMenu(PopUpMenu):
         else:
             self.game.client.enable_join_multiplayer = True
             self.game.client.listening = True
-            self.game.client.client.listen()
+            self.game.client.game.listen()
 
 
 class MultiplayerSelect(PopUpMenu):
@@ -169,7 +156,7 @@ class MultiplayerSelect(PopUpMenu):
                 label = self.shadow_text(server)
                 yield MenuItem(label, None, None, None)
         else:
-            label = self.shadow_text(trans('multiplayer_no_servers'))
+            label = self.shadow_text(T.translate('multiplayer_no_servers'))
             item = MenuItem(label, None, None, None)
             item.enabled = False
             yield item

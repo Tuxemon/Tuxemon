@@ -1,0 +1,24 @@
+{
+    "slug": "shammer",
+    "category": "fossil",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 2,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "quicksand"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

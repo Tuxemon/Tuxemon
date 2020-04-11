@@ -1,0 +1,25 @@
+{
+    "slug": "bugnin",
+    "category": "honour",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blade"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "chillimp",
+    "category": "frost_ape",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "snowstorm"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Water",
+        "Earth"
+    ],
+    "weight": 25
+}

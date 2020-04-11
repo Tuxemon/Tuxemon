@@ -6,6 +6,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+venv/
 bin/
 build/
 develop-eggs/
@@ -16,6 +17,7 @@ lib64/
 parts/
 sdist/
 var/
+*.bak
 *.egg-info/
 .installed.cfg
 *.egg
@@ -44,7 +46,7 @@ coverage.xml
 
 # Django stuff:
 *.log
-*.pot
+
 
 # Sphinx documentation
 docs/_build/
@@ -64,3 +66,6 @@ Thumbs.db
 # PyCharm
 *.iml
 .idea/*
+
+# Mac OS
+*.DS_Store

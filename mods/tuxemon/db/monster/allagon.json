@@ -1,0 +1,24 @@
+{
+    "slug": "allagon",
+    "category": "dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rust_bomb"
+        }
+    ],
+    "shape": "Dragon",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

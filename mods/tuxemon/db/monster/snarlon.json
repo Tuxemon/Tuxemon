@@ -1,0 +1,24 @@
+{
+    "slug": "snarlon",
+    "category": "westerly",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sand_spray"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

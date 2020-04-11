@@ -1,0 +1,24 @@
+{
+    "slug": "aardorn",
+    "category": "snout",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "tonguespear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hibernate"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Earth"
+    ],
+    "weight": 25
+}

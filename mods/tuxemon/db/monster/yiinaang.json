@@ -1,0 +1,25 @@
+{
+    "slug": "yiinaang",
+    "category": "balance",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Fire",
+        "Water"
+    ],
+    "weight": 25
+}

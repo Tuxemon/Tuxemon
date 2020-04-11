@@ -1,0 +1,25 @@
+{
+    "slug": "katacoon",
+    "category": "stance",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "font"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

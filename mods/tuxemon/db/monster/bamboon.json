@@ -1,0 +1,24 @@
+{
+    "slug": "bamboon",
+    "category": "prehensile",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

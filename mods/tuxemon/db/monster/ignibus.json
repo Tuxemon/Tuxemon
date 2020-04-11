@@ -1,0 +1,24 @@
+{
+    "slug": "ignibus",
+    "category": "hot_rock",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "static_field"
+        }
+    ],
+    "shape": "Polliwog",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

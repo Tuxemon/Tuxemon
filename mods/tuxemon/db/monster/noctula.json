@@ -1,0 +1,24 @@
+{
+    "slug": "noctula",
+    "category": "nightcrawler",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "take_cover"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

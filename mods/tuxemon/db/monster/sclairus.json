@@ -1,0 +1,24 @@
+{
+    "slug": "sclairus",
+    "category": "fallow",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

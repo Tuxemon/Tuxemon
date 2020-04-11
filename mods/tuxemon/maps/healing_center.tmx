@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="34">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+  <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
+ </tileset>
+ <tileset firstgid="161" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eAFjYBg4wAS0mlQMcy0vkEEqhumVADJIxTC9BkAGqXhUL/FhNtBhBbOfnjQAr9gVfA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eAFjYBi6gJkCp/NB9TKzMjDwAjEfECMDkDgXCwMDNxDjAneBcmZAdeZIemuBYiBxYyA2AWJygDkR+mqBdt4GqoPheiQ3kGPnQOgB+XMbEG8HYmL8jOxGkPr7QPyABL2DNYgAiu4LmA==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgF5IZAOCt2nbjEkVXr4NCLSxxZ7yh7eIUAAGKuARs=
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFAxUCG1kYGDYh4c1A9igYeSEAAB/JA48=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="4" type="collision" x="16" y="208" width="208" height="32"/>
+  <object id="5" type="collision" x="160" y="160" width="32" height="32"/>
+  <object id="6" type="collision" x="176" y="80" width="32" height="16"/>
+  <object id="7" type="collision" x="160" y="80" width="16" height="32"/>
+  <object id="8" type="collision" x="80" y="112" width="80" height="16"/>
+  <object id="9" type="collision" x="64" y="80" width="16" height="32"/>
+  <object id="11" type="collision" x="16" y="48" width="208" height="32"/>
+  <object id="12" type="collision" x="-16" y="64" width="32" height="160"/>
+  <object id="14" type="collision" x="224" y="64" width="32" height="160"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="22" name="Player Spawn" type="event" x="112" y="160" width="16" height="16"/>
+  <object id="25" name="create npcs" type="event" x="16" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc tabanurse,6,6,,stand"/>
+    <property name="act20" value="create_npc shady_guy,9,10,,stand"/>
+    <property name="act30" value="npc_face shady_guy,right"/>
+    <property name="act40" value="create_npc happy_guy,12,10,,stand"/>
+    <property name="act50" value="npc_face happy_guy,left"/>
+    <property name="cond10" value="not npc_exists tabanurse"/>
+   </properties>
+  </object>
+  <object id="26" name="hello there" type="event" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog tabanurse_dialog\n"/>
+    <property name="act20" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond40" value="not variable_set chooses:yes"/>
+   </properties>
+  </object>
+  <object id="27" name="Heal Tuxemon" type="event" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="act10" value="set_monster_health ,"/>
+    <property name="act20" value="set_monster_status ,"/>
+    <property name="act30" value="translated_dialog okaythen"/>
+    <property name="act40" value="npc_face tabanurse,up"/>
+    <property name="act50" value="wait 1"/>
+    <property name="act60" value="npc_face tabanurse,down"/>
+    <property name="act70" value="translated_dialog okaythen2"/>
+    <property name="act80" value="set_variable chooses:none"/>
+    <property name="cond10" value="is variable_set chooses:yes"/>
+   </properties>
+  </object>
+  <object id="30" name="howdy" type="event" x="192" y="160" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face happy_guy,player"/>
+    <property name="act20" value="translated_dialog happy_guy_dialog"/>
+    <property name="act30" value="translated_dialog_choice yes:no,happy"/>
+    <property name="cond10" value="is player_facing_npc happy_guy"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="not variable_set happy:yes"/>
+   </properties>
+  </object>
+  <object id="31" name="Rename Monster" type="event" x="192.205" y="159.583" width="16" height="16">
+   <properties>
+    <property name="act10" value="rename_monster"/>
+    <property name="act20" value="translated_dialog happy_rename"/>
+    <property name="act30" value="npc_face happy_guy,left"/>
+    <property name="act40" value="set_variable happy:no"/>
+    <property name="cond10" value="is variable_set happy:yes"/>
+   </properties>
+  </object>
+  <object id="32" name="whats up" type="event" x="144" y="160" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face shady_guy,player"/>
+    <property name="act20" value="translated_dialog shady_guy_dialog"/>
+    <property name="act30" value="translated_dialog_choice yes:no,shady"/>
+    <property name="cond10" value="is player_facing_npc shady_guy"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="not variable_set shady:yes"/>
+   </properties>
+  </object>
+  <object id="33" name="Rename Player" type="event" x="144" y="160" width="16" height="16">
+   <properties>
+    <property name="act10" value="rename_player"/>
+    <property name="act20" value="translated_dialog shady_rename"/>
+    <property name="act30" value="npc_face shady_guy,right"/>
+    <property name="act40" value="set_variable shady:no"/>
+    <property name="cond10" value="is variable_set shady:yes"/>
+   </properties>
+  </object>
+  <object id="28" name="Go outside" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town.tmx,40,4,0.3"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,24 @@
+{
+    "slug": "sampsack",
+    "category": "brawn",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

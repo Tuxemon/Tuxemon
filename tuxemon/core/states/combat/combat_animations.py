@@ -3,24 +3,25 @@ There are quite a few hacks in here to get this working for single player only
 notably, the use of self.game
 """
 
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 from functools import partial
 
 import pygame
 
-from core import tools
-from core.components.menu import Menu
-from core.components.menu.interface import HpBar
-from core.components.pyganim import PygAnimation
-from core.components.sprite import Sprite
-from core.tools import scale, scale_sequence, scale_sprite
-from core.components.locale import translator
+from tuxemon.compat import Rect
+from tuxemon.core import audio, graphics, tools
+from tuxemon.core.locale import T
+from tuxemon.core.menu.interface import HpBar, ExpBar
+from tuxemon.core.menu.menu import Menu
+from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core.sprite import Sprite
+from tuxemon.core.tools import scale, scale_sequence
 
-trans = translator.translate
-
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 sprite_layer = 0
@@ -33,7 +34,7 @@ def toggle_visible(sprite):
 
 
 def scale_area(area):
-    return pygame.Rect(tools.scale_sequence(area))
+    return Rect(tools.scale_sequence(area))
 
 
 class CombatAnimations(Menu):
@@ -50,6 +51,7 @@ class CombatAnimations(Menu):
         super(CombatAnimations, self).startup(**kwargs)
         self._monster_sprite_map = dict()
         self.hud = dict()
+        self.is_trainer_battle = None
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc
@@ -68,7 +70,7 @@ class CombatAnimations(Menu):
         layout.append(opponent)
         # end config =========================================
 
-        # convert the list/tuple of coordinates to pygame Rects
+        # convert the list/tuple of coordinates to Rects
         for position in layout:
             for key, value in position.items():
                 position[key] = list(map(scale_area, value))
@@ -91,10 +93,13 @@ class CombatAnimations(Menu):
 
         self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
 
+        if self.is_trainer_battle:
+            self.task(partial(self.animate_trainer_leave, self.players[1]), 3)
+
     def blink(self, sprite):
         """
 
-        :param sprite: core.components.sprite.Sprite
+        :param sprite: tuxemon.core.sprite.Sprite
         :return:
         """
         self.task(partial(toggle_visible, sprite), .20, 8)
@@ -102,21 +107,29 @@ class CombatAnimations(Menu):
     def animate_trainer_leave(self, trainer):
         """
 
-        :type trainer: core.components.player.Player
+        :type trainer: tuxemon.core.player.Player
         :return:
         """
         sprite = self._monster_sprite_map[trainer]
-        self.animate(sprite.rect, right=0, duration=.8)
+        if self.get_side(sprite.rect) == "left":
+            x_diff = -scale(150)
+        else:
+            x_diff = scale(150)
 
-    def animate_monster_release_bottom(self, feet, monster):
+        self.animate(sprite.rect, x=x_diff, relative=True, duration=.8)
+
+    def animate_monster_release(self, npc, monster):
         """
 
-        :type feet: sequence
-        :type monster: core.components.monster.Monster
+        :type npc: tuxemon.core.npc.Npc
+        :type monster: tuxemon.core.monster.Monster
         :return:
         """
+        feet = list(self._layout[npc]['home'][0].center)
+        feet[1] += tools.scale(11)
+
         capdev = self.load_sprite('gfx/items/capture_device.png')
-        scale_sprite(capdev, .4)
+        graphics.scale_sprite(capdev, .4)
         capdev.rect.center = feet[0], feet[1] - scale(60)
 
         # animate the capdev falling
@@ -135,18 +148,20 @@ class CombatAnimations(Menu):
 
         # convert the capdev sprite so we can fade it easily
         def func():
-            capdev.image = tools.convert_alpha_to_colorkey(capdev.image)
+            capdev.image = graphics.convert_alpha_to_colorkey(capdev.image)
             self.animate(capdev.image, set_alpha=0, initial=255, duration=fade_duration)
 
         self.task(func, delay)
         self.task(capdev.kill, fall_time + delay + fade_duration)
 
         # load monster and set in final position
-        monster_sprite = self.load_sprite(monster.back_battle_sprite, midbottom=feet)
+        monster_sprite = monster.get_sprite("back" if npc.isplayer else "front",
+                                            midbottom=feet)
+        self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
         # position monster_sprite off screen and set animation to move it back to final spot
-        monster_sprite.rect.top = self.game.screen.get_height()
+        monster_sprite.rect.top = self.client.screen.get_height()
         self.animate(monster_sprite.rect, bottom=feet[1], transition='out_back',
                      duration=.9, delay=fall_time + .5)
 
@@ -154,7 +169,7 @@ class CombatAnimations(Menu):
         images = list()
         for fn in ["capture%02d.png" % i for i in range(1, 10)]:
             fn = 'animations/technique/' + fn
-            image = tools.load_and_scale(fn)
+            image = graphics.load_and_scale(fn)
             images.append((image, .07))
 
         delay = 1.3
@@ -166,10 +181,19 @@ class CombatAnimations(Menu):
         self.task(tech.play, delay)
         self.task(partial(self.sprites.add, sprite), delay)
 
+        # attempt to load and queue up combat_call
+        call_sound = audio.load_sound(monster.combat_call)
+        if call_sound:
+            self.task(call_sound.play, delay)
+
+        # update tuxemon balls to reflect fainted tuxemon
+        for player, layout in self._layout.items():
+            self.animate_update_party_hud(player, layout['party'][0])
+
     def animate_sprite_spin(self, sprite):
         """
 
-        :type sprite: core.components.sprite.Sprite
+        :type sprite: tuxemon.core.sprite.Sprite
         :return:
         """
         self.animate(sprite, rotation=360, initial=0, duration=.8, transition='in_out_quint')
@@ -177,7 +201,7 @@ class CombatAnimations(Menu):
     def animate_sprite_tackle(self, sprite):
         """
 
-        :type sprite: core.components.sprite.Sprite
+        :type sprite: tuxemon.core.sprite.Sprite
         :return:
         """
         duration = .3
@@ -212,7 +236,7 @@ class CombatAnimations(Menu):
     def animate_sprite_take_damage(self, sprite):
         """
 
-        :type sprite: core.components.sprite.Sprite
+        :type sprite: tuxemon.core.sprite.Sprite
         :return:
         """
         original_x, original_y = sprite.rect.topleft
@@ -225,7 +249,7 @@ class CombatAnimations(Menu):
     def animate_hp(self, monster):
         """
 
-        :type monster: core.components.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
         :return:
         """
         value = monster.current_hp / monster.hp
@@ -236,16 +260,38 @@ class CombatAnimations(Menu):
         """
 
         :param initial: Starting HP
-        :type monster: core.components.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
         :return:
         """
         self._hp_bars[monster] = HpBar(initial)
         self.animate_hp(monster)
 
+    def animate_exp(self, monster):
+        """
+
+        :type monster: tuxemon.core.monster.Monster
+        :return:
+        """
+        target_previous = monster.experience_required()
+        target_next = monster.experience_required(1)
+        value = max(0, min(1, (monster.total_experience - target_previous) / (target_next - target_previous)))
+        exp_bar = self._exp_bars[monster]
+        self.animate(exp_bar, value=value, duration=.7, transition='out_quint')
+
+    def build_animate_exp_bar(self, monster, initial=0):
+        """
+
+        :param initial: Starting EXP
+        :type monster: tuxemon.core.monster.Monster
+        :return:
+        """
+        self._exp_bars[monster] = ExpBar(initial)
+        self.animate_exp(monster)
+
     def build_hud_text(self, monster):
         """ Return a string for use on the callout of the monster
 
-        :type monster: core.components.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
         :return:
         """
         return self.shadow_text("{0.name: <12}Lv.{0.level: >2}".format(monster))
@@ -253,7 +299,7 @@ class CombatAnimations(Menu):
     def get_side(self, rect):
         """ [WIP] get 'side' of screen rect is in
 
-        :type rect: pygame.Rect
+        :type rect: Rect
         :return: basestring
         """
         return "left" if rect.centerx < scale(100) else "right"
@@ -261,7 +307,7 @@ class CombatAnimations(Menu):
     def animate_monster_leave(self, monster):
         """
 
-        :type monster: core.components.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
         :return:
         """
         sprite = self._monster_sprite_map[monster]
@@ -270,13 +316,16 @@ class CombatAnimations(Menu):
         else:
             x_diff = scale(150)
 
+        cry = monster.combat_call if monster.current_hp > 0 else monster.faint_call
+        sound = audio.load_sound(cry)
+        sound.play()
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
 
     def build_hud(self, home, monster):
         """
 
-        :type home: pygame.Rect
-        :type monster: core.components.monster.Monster
+        :type home: Rect
+        :type monster: tuxemon.core.monster.Monster
         :return:
         """
 
@@ -284,6 +333,7 @@ class CombatAnimations(Menu):
             hud = self.load_sprite('gfx/ui/combat/hp_opponent_nohp.png', layer=hud_layer)
             hud.image.blit(text, scale_sequence((5, 5)))
             hud.rect.bottomright = 0, home.bottom
+            hud.player = False
             animate(hud.rect, right=home.right)
             return hud
 
@@ -291,6 +341,7 @@ class CombatAnimations(Menu):
             hud = self.load_sprite('gfx/ui/combat/hp_player_nohp.png', layer=hud_layer)
             hud.image.blit(text, scale_sequence((12, 4)))
             hud.rect.bottomleft = home.right, home.bottom
+            hud.player = True
             animate(hud.rect, left=home.left)
             return hud
 
@@ -301,13 +352,16 @@ class CombatAnimations(Menu):
         else:
             hud = build_left_hud()
         self.hud[monster] = hud
+
         self.build_animate_hp_bar(monster)
+        if hud.player:
+            self.build_animate_exp_bar(monster)
 
     def animate_party_hud_in(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
 
         :param player: the player
-        :type home: pygame.Rect
+        :type home: Rect
         :param slots: Number of slots
         :return:
         """
@@ -325,9 +379,74 @@ class CombatAnimations(Menu):
             offset = -scale(8)
 
         for index in range(player.party_limit):
-            sprite = None
             if len(player.monsters) > index:
+                monster = player.monsters[index]
+                if any(t for t in monster.status if t.slug == "status_faint"):
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                elif len(monster.status) > 0:
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                else:
+                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+            else:
+                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+
+            # convert alpha image to image with a colorkey so we can set_alpha
+            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
+            sprite.image.set_alpha(0)
+            animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
+            animate(sprite.image, set_alpha=255, initial=0)
+            animate(sprite.rect, bottom=tray.rect.top + scale(3))
+
+    def animate_update_party_hud(self, player, home):
+        """ Party HUD is the arrow thing with balls.  Yes, that one.
+
+        This function updates the balls to reflect how many Tuxemon have fainted.
+
+        :param player: the player
+        :type home: Rect
+        :param slots: Number of slots
+        :return:
+        """
+        if self.get_side(home) == "left":
+            tray = self.load_sprite('gfx/ui/combat/opponent_party_tray.png',
+                                    bottom=home.bottom, right=0, layer=hud_layer)
+            self.animate(tray.rect, right=home.right, duration=0.1, delay=0.1)
+            centerx = home.right - scale(13)
+            offset = scale(8)
+        else:
+            tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
+                                    bottom=home.bottom, left=home.right, layer=hud_layer)
+            self.animate(tray.rect, left=home.left, duration=0.1, delay=0.1)
+            centerx = home.left + scale(13)
+            offset = -scale(8)
+
+        count_fainted = 0
+
+        for monster in player.monsters:
+            if any(t for t in monster.status if t.slug == "status_faint"):
+                count_fainted += 1
+
+        for index in range(player.party_limit):
+            sprite = None
+            if len(player.monsters) - count_fainted > index:  # render alive Tuxemon balls
                 sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                          top=tray.rect.top + scale(1),
+                                          centerx=centerx - index * offset,
+                                          layer=hud_layer)
+            elif len(player.monsters) > index:  # render fainted Tuxemon balls
+                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)
@@ -338,9 +457,9 @@ class CombatAnimations(Menu):
                                           layer=hud_layer)
 
             # convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = tools.convert_alpha_to_colorkey(sprite.image)
+            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
             sprite.image.set_alpha(0)
-            animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
+            animate = partial(self.animate, duration=0.1, delay=0.1)
             animate(sprite.image, set_alpha=255, initial=0)
             animate(sprite.rect, bottom=tray.rect.top + scale(3))
 
@@ -360,37 +479,52 @@ class CombatAnimations(Menu):
         y_mod = scale(50)
         duration = 3
 
-        back_island = self.load_sprite('gfx/ui/combat/back_island.png',
+        back_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_back'],
                                        bottom=opp_home.bottom + y_mod, right=0)
 
-        monster1 = self.load_sprite(right_monster.front_battle_sprite,
-                                    bottom=back_island.rect.bottom - scale(12),
-                                    centerx=back_island.rect.centerx)
-        self.build_hud(self._layout[opponent]['hud'][0], right_monster)
-        self.monsters_in_play[self.players[1]].append(right_monster)
-        self._monster_sprite_map[right_monster] = monster1
-        self.alert(trans('combat_wild_appeared', {"name": right_monster.name.upper()}))
+        if self.is_trainer_battle:
+            enemy = self.load_sprite('gfx/sprites/player/' + opponent.sprite_name + '_front.png',
+                                     bottom=back_island.rect.bottom - scale(12),
+                                     centerx=back_island.rect.centerx)
+            self._monster_sprite_map[opponent] = enemy
+        else:
+            enemy = right_monster.get_sprite("front",
+                                             bottom=back_island.rect.bottom - scale(12),
+                                             centerx=back_island.rect.centerx)
+            self._monster_sprite_map[right_monster] = enemy
+            self.monsters_in_play[opponent].append(right_monster)
 
-        front_island = self.load_sprite('gfx/ui/combat/front_island.png',
+        self.sprites.add(enemy)
+        self.build_hud(self._layout[opponent]['hud'][0], right_monster)
+
+        if self.is_trainer_battle:
+            self.alert(T.format('combat_trainer_appeared', {"name": opponent.name.upper()}))
+        else:
+            self.alert(T.format('combat_wild_appeared', {"name": right_monster.name.upper()}))
+
+        front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
-        trainer1 = self.load_sprite('gfx/sprites/player/player_front.png',
+        trainer1 = self.load_sprite('gfx/sprites/player/' + player.sprite_name + '_back.png',
                                     bottom=front_island.rect.centery + scale(6),
                                     centerx=front_island.rect.centerx)
         self._monster_sprite_map[left_trainer] = trainer1
 
         def flip():
-            monster1.image = pygame.transform.flip(monster1.image, 1, 0)
+            enemy.image = pygame.transform.flip(enemy.image, 1, 0)
             trainer1.image = pygame.transform.flip(trainer1.image, 1, 0)
 
-        flip()                       # flip images to opposite
-        self.task(flip, 1.5)         # flip the images to proper direction
+        flip()  # flip images to opposite
+        self.task(flip, 1.5)  # flip the images to proper direction
+        
+        if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
+            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)
 
         # top trainer
-        animate(monster1.rect, back_island.rect, centerx=opp_home.centerx)
-        animate(monster1.rect, back_island.rect, y=-y_mod,
+        animate(enemy.rect, back_island.rect, centerx=opp_home.centerx)
+        animate(enemy.rect, back_island.rect, y=-y_mod,
                 transition='out_back', relative=True)
 
         # bottom trainer
@@ -409,11 +543,11 @@ class CombatAnimations(Menu):
         monster_sprite = self._monster_sprite_map.get(monster, None)
         capdev = self.load_sprite('gfx/items/capture_device.png')
         animate = partial(self.animate, capdev.rect, transition='in_quad', duration=1.0)
-        scale_sprite(capdev, .4)
+        graphics.scale_sprite(capdev, .4)
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
-        self.task(partial(toggle_visible, monster_sprite), 1.0) # make the monster go away temporarily
+        self.task(partial(toggle_visible, monster_sprite), 1.0)  # make the monster go away temporarily
 
         def kill():
             self._monster_sprite_map[monster].kill()
@@ -426,7 +560,7 @@ class CombatAnimations(Menu):
         images = list()
         for fn in ["capture%02d.png" % i for i in range(1, 10)]:
             fn = 'animations/technique/' + fn
-            image = tools.load_and_scale(fn)
+            image = graphics.load_and_scale(fn)
             images.append((image, .07))
 
         tech = PygAnimation(images, False)
@@ -448,11 +582,13 @@ class CombatAnimations(Menu):
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):
-            shake_ball(1.8 + i * 1.0) # leave a 0.6s wait between each shake
+            shake_ball(1.8 + i * 1.0)  # leave a 0.6s wait between each shake
 
         if is_captured:
             self.task(kill, 2 + num_shakes)
         else:
-            self.task(partial(toggle_visible, monster_sprite), 1.8 + num_shakes * 1.0) # make the monster appear again!
-            self.task(tech.play, 1.8 + num_shakes * 1.0)
-            self.task(capdev.kill, 1.8 + num_shakes * 1.0)
+            breakout_delay = 1.8 + num_shakes * 1.0
+            self.task(partial(toggle_visible, monster_sprite), breakout_delay)  # make the monster appear again!
+            self.task(audio.load_sound(monster.combat_call).play, breakout_delay)
+            self.task(tech.play, breakout_delay)
+            self.task(capdev.kill, breakout_delay)

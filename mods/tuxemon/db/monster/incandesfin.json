@@ -1,0 +1,24 @@
+{
+    "slug": "incandesfin",
+    "category": "light_fin",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

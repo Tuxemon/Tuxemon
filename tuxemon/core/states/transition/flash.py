@@ -1,13 +1,15 @@
+from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 
 import pygame
 
-from core import prepare
-from core.state import State
+from tuxemon.core import prepare
+from tuxemon.core.state import State
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
@@ -23,7 +25,7 @@ class FlashTransition(State):
         self.transition_alpha = 0
         self.max_flash_count = 7
         self.flash_count = 0
-        self.game.rumble.rumble(-1, length=1.5)
+        self.client.rumble.rumble(-1, length=1.5)
 
     def resume(self):
         self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
@@ -58,7 +60,7 @@ class FlashTransition(State):
         # transition animation.
         if self.flash_count > self.max_flash_count:
             logger.info("Flashed " + str(self.flash_count) + " times. Stopping transition.")
-            self.game.pop_state()
+            self.client.pop_state()
 
     def draw(self, surface):
         """Draws the start screen to the screen.
@@ -73,18 +75,19 @@ class FlashTransition(State):
         self.transition_surface.set_alpha(self.transition_alpha)
         surface.blit(self.transition_surface, (0, 0))
 
-    def process_event(self, game_event):
-        """ Processes events that were passed from the main event loop.
+    def process_event(self, event):
+        """ Handles player input events. This function is only called when the
+        player provides input such as pressing a key or clicking the mouse.
 
-        By returning "None" here, we prevent input events from reaching the
-        world state, which would have allowed the player to continue moving
-        around during a transition.
+        Since this is part of a chain of event handlers, the return value
+        from this method becomes input for the next one.  Returning None
+        signifies that this method has dealt with an event and wants it
+        exclusively.  Return the event and others can use it as well.
 
-        :param event: A pygame key event from pygame.event.get()
-        :type event: PyGame Event
-        :returns: Pygame Event or None
-        :rtype: pygame Event
+        You should return None if you have handled input here.
 
+        :type event: tuxemon.core.input.PlayerInput
+        :rtype: Optional[core.input.PlayerInput]
         """
-
+        # prevent other states from getting input
         return None

@@ -1,0 +1,24 @@
+{
+    "slug": "propellercat",
+    "category": "eureka",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 2,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

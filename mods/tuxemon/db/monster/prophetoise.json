@@ -1,0 +1,24 @@
+{
+    "slug": "prophetoise",
+    "category": "dragon_bone",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

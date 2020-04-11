@@ -1,0 +1,24 @@
+{
+    "slug": "conileaf",
+    "category": "pitcher",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "dracune",
+    "category": "cloaked",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "probiscus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "font"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hibernate"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

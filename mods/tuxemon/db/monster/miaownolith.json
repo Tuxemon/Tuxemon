@@ -1,0 +1,25 @@
+{
+    "slug": "miaownolith",
+    "category": "desolate",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 2,
+            "technique": "petrify"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sand_spray"
+        }
+    ],
+    "shape": "Hunter",
+    "types": [
+        "Metal",
+        "Earth"
+    ],
+    "weight": 25
+}

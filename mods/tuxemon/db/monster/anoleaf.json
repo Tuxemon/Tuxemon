@@ -1,0 +1,24 @@
+{
+    "slug": "anoleaf",
+    "category": "sprout",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        }
+    ],
+    "shape": "Varmint",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

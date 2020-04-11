@@ -1,0 +1,24 @@
+{
+    "slug": "eyesore",
+    "category": "overseer",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 2,
+            "technique": "spray"
+        },
+        {
+            "level_learned": 2,
+            "technique": "eyebite"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

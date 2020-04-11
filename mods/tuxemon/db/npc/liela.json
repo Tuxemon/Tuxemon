@@ -1,0 +1,18 @@
+{
+    "slug": "liela",
+    "sprite_name": "femaletrainer",
+    "monsters": [
+        {
+            "level": 6,
+            "slug": "capiti",
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        },
+        {
+            "level": 6,
+            "slug": "aardart",
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ]
+}

@@ -1,49 +1,45 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import logging
 
-from core import prepare
-from core.components import save
+from tuxemon.core import save
 from .save_menu import SaveMenuState
+from ...session import local_session
 
-# Create a logger for optional handling of debug messages.
 logger = logging.getLogger(__name__)
 
 
 class LoadMenuState(SaveMenuState):
+    def startup(self, *items, **kwargs):
+        if 'selected_index' not in kwargs:
+            kwargs['selected_index'] = save.slot_number or 0
+        super(LoadMenuState, self).startup(*items, **kwargs)
+        slot = kwargs.get("load_slot")
+        if slot:
+            self.selected_index = slot - 1
+            self.on_menu_selection(None)
+
     def on_menu_selection(self, menuitem):
-        try:
-            save_data = save.load(self.selected_index + 1)
+        save_data = save.load(self.selected_index + 1)
+        if save_data and "error" not in save_data:
+            local_session.player.set_state(self.client, save_data)
 
-        except Exception as e:
-            logger.error(e)
-            save_data = dict()
-            save_data["error"] = "Save file corrupted"
-            logger.error("Failed loading save file.")
-
-        if save_data is not None and "error" not in save_data:
-            self.save_data = save.load(self.selected_index + 1)
-            self.game.player1 = prepare.player1
-            self.game.player1.game_variables = save_data['game_variables']
-            self.game.player1.tile_pos = save_data['tile_pos']
-            self.game.player1.inventory = save_data['inventory']
-            self.game.player1.monsters = save_data['monsters']
-            self.game.player1.storage = save_data['storage']
-            self.game.player1.name = save_data['player_name']
-
-            old_world = self.game.get_state_name("WorldState")
+            old_world = self.client.get_state_name("WorldState")
             if old_world is None:
                 # when game is loaded from the start menu
-                self.game.pop_state()  # close this menu
-                self.game.pop_state()  # close the start menu
+                self.client.pop_state()  # close this menu
+                self.client.pop_state()  # close the start menu
             else:
                 # when game is loaded from world menu
-                self.game.pop_state(self)
-                self.game.pop_state(old_world)
+                self.client.pop_state(self)
+                self.client.pop_state(old_world)
 
-            self.game.push_state("WorldState")
-            # self.game.current_state.change_map(save_data['current_map'])
+            self.client.push_state("WorldState")
 
             # teleport the player to the correct position using an event engine action
-            tele_x = str(int(save_data['tile_pos'][0]))
-            tele_y = str(int(save_data['tile_pos'][1]))
-
-            self.game.event_engine.execute_action('teleport', [save_data['current_map'], tele_x, tele_y])
+            tele_x, tele_y = save_data['tile_pos']
+            params = [save_data['current_map'], tele_x, tele_y]
+            self.client.event_engine.execute_action('teleport', params)

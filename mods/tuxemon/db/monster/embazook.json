@@ -1,0 +1,25 @@
+{
+    "slug": "embazook",
+    "category": "gunner",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 2,
+            "technique": "static_field"
+        }
+    ],
+    "shape": "Polliwog",
+    "types": [
+        "Fire",
+        "Metal"
+    ],
+    "weight": 25
+}

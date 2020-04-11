@@ -1,0 +1,35 @@
+{
+    "slug": "37707_town_missing",
+    "monsters":[
+        {
+            "encounter_rate": 0.5,
+            "level_range": [
+                1,
+                999
+            ],
+            "monster": "f7u1t3ra"
+        },
+        {
+            "encounter_rate": 0.5,
+            "level_range": [
+                1
+            ],
+            "monster": "d0llf1n"
+        },
+        {
+            "encounter_rate": 0.5,
+            "level_range": [
+                666
+            ],
+            "monster": "l3gk0"
+        },
+        {
+            "encounter_rate": 0.5,
+            "level_range": [
+                13,
+                37
+            ],
+            "monster": "r0ck1tt3n"
+        }
+    ]
+}

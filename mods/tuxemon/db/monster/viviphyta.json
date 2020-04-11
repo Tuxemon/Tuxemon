@@ -1,0 +1,24 @@
+{
+    "slug": "viviphyta",
+    "category": "germinated",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "web"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

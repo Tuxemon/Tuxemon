@@ -1,0 +1,24 @@
+{
+    "slug": "eaglace",
+    "category": "cirrus",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 2,
+            "technique": "snowstorm"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

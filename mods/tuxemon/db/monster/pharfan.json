@@ -1,0 +1,24 @@
+{
+    "slug": "pharfan",
+    "category": "little_elephant",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "stampede"
+        }
+    ],
+    "shape": "Landrace",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

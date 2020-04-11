@@ -1,0 +1,24 @@
+{
+    "slug": "puparmor",
+    "category": "fortified",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wallow"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

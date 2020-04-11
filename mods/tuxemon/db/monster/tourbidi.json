@@ -1,0 +1,24 @@
+{
+    "slug": "tourbidi",
+    "category": "elf_ring",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleeping_powder"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,24 @@
+{
+    "slug": "nudikill",
+    "category": "dark_bishop",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 2,
+            "technique": "feint"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bubble_trap"
+        }
+    ],
+    "shape": "Polliwog",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

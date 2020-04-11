@@ -1,0 +1,24 @@
+{
+    "slug": "arthrobolt",
+    "category": "foreman",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 2,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 2,
+            "technique": "thunderclap"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

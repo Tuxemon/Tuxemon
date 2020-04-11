@@ -1,0 +1,74 @@
+[
+    {
+        "slug" : "music_town_theme",
+        "file" : "JRPG_town_loop.ogg"
+    },
+    {
+        "slug" : "music_city_park",
+        "file" : "back34.mp3"
+    },
+    {
+        "slug" : "music_adventure_begins",
+        "file" : "TheAdventureBegins8bitRemix.ogg"
+    },
+    {
+        "slug" : "music_cathedral_theme",
+        "file" : "JRPG_royalCourt_loop.ogg"
+    },
+    {
+        "slug" : "music_gadget_store",
+        "file" : "488524_Purple---8-bit.ogg"
+    },
+    {
+        "slug" : "music_dojo_theme",
+        "file" : "taking_poison.ogg"
+    },
+    {
+        "slug" : "music_home",
+        "file" : "All of Us.ogg"
+    },
+    {
+        "slug" : "music_dragons_cave",
+        "file" : "stand_with_us.ogg"
+    },
+    {
+        "slug" : "music_mystic_island",
+        "file" : "JRPG_mysticIsle.ogg"
+    },
+    {
+        "slug" : "music_mystic_island_reverse",
+        "file" : "JRPG_mysticIsle_reverse.ogg"
+    },
+    {
+        "slug" : "music_mansion_theme",
+        "file" : "melody_eternal.ogg"
+    },
+    {
+        "slug" : "music_chibi_ninja",
+        "file" : "Chibi Ninja.ogg"
+    },
+    {
+        "slug" : "music_house_downstairs",
+        "file" : "472452_8-Bit-Ambient.ogg"
+    },
+    {
+        "slug" : "music_the_emperor",
+        "file" : "Enter_the_Emperor.ogg"
+    },
+    {
+        "slug" : "music_omnichannel",
+        "file" : "JRPG_docks_loop.ogg"
+    },
+    {
+        "slug" : "music_the_wild_places",
+        "file" : "peasant_kingdom.ogg"
+    },
+    {
+        "slug" : "music_the_princess",
+        "file" : "JRPG_princess.ogg"
+    },
+    {
+        "slug" : "music_sphalian_theme",
+        "file" : "Digital_Native.ogg"
+    }
+]

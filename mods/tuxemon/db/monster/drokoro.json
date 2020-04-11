@@ -1,0 +1,24 @@
+{
+    "slug": "drokoro",
+    "category": "dragon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "breathe_fire"
+        }
+    ],
+    "shape": "Dragon",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

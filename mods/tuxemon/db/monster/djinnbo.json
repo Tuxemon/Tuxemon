@@ -1,0 +1,24 @@
+{
+    "slug": "djinnbo",
+    "category": "vengeance",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "petrify"
+        },
+        {
+            "level_learned": 2,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flamethrower"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

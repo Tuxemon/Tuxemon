@@ -1,0 +1,24 @@
+{
+    "slug": "manosting",
+    "category": "balloon",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

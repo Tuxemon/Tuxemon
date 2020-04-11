@@ -1,0 +1,19 @@
+{
+    "slug": "maple_girl",
+    "sprite_name": "girl1",
+    "monsters": [
+        {
+            "attack": 50,
+            "defense": 7,
+            "name": "Snowball",
+            "special_attack": 9,
+            "level": 5,
+            "monster": "bamboon",
+            "hp": 50,
+            "speed": 7,
+            "special_defense": 7,
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ]
+}

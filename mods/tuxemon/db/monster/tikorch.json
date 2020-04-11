@@ -1,0 +1,25 @@
+{
+    "slug": "tikorch",
+    "category": "taboo",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Fire",
+        "Wood"
+    ],
+    "weight": 25
+}

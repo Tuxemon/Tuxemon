@@ -1,0 +1,24 @@
+{
+    "slug": "tumbleworm",
+    "category": "buzzkill",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "strike"
+        },
+        {
+            "level_learned": 2,
+            "technique": "web"
+        },
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

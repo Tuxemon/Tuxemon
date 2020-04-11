@@ -1,0 +1,24 @@
+{
+    "slug": "lightmare",
+    "category": "nightmare_fuel",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "static_field"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        }
+    ],
+    "shape": "Leviathan",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,25 @@
+{
+    "slug": "sumchon",
+    "category": "wrestling",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 2,
+            "technique": "blade"
+        }
+    ],
+    "shape": "Brute",
+    "types": [
+        "Metal",
+        "Wood"
+    ],
+    "weight": 25
+}

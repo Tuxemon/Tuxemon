@@ -1,0 +1,24 @@
+{
+    "slug": "cataspike",
+    "category": "pointy",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wallow"
+        }
+    ],
+    "shape": "Grub",
+    "types": [
+        "Metal"
+    ],
+    "weight": 25
+}

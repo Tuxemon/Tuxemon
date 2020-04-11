@@ -1,0 +1,24 @@
+{
+    "slug": "heronquak",
+    "category": "crested",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 2,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_field"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

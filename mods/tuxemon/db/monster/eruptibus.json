@@ -1,0 +1,24 @@
+{
+    "slug": "eruptibus",
+    "category": "hot_rock",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_field"
+        }
+    ],
+    "shape": "Landrace",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

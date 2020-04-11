@@ -1,0 +1,25 @@
+{
+    "slug": "seirein",
+    "category": "spirit_fire",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "shape": "Blob",
+    "types": [
+        "Fire",
+        "Water"
+    ],
+    "weight": 25
+}

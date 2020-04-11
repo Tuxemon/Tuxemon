@@ -1,0 +1,24 @@
+{
+    "slug": "abesnaki",
+    "category": "shield-mask",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 2,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sleep_bomb"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Fire"
+    ],
+    "weight": 25
+}

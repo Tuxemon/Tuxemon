@@ -1,0 +1,24 @@
+{
+    "slug": "dollfin",
+    "category": "joyful",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flow"
+        }
+    ],
+    "shape": "Aquatic",
+    "types": [
+        "Water"
+    ],
+    "weight": 25
+}

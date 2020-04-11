@@ -1,0 +1,25 @@
+{
+    "slug": "vivitrans",
+    "category": "sublimated",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 2,
+            "technique": "frostbite"
+        }
+    ],
+    "shape": "Serpent",
+    "types": [
+        "Metal",
+        "Water"
+    ],
+    "weight": 25
+}

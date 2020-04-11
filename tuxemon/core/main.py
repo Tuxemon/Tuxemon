@@ -22,22 +22,27 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
-#
+# Leif Theden <leif.theden@gmail.com>
 #
 # core.main Sets up the states and main game loop.
 #
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
 import logging
 
-from . import prepare
-from .components import log
+from tuxemon.core import prepare
+from tuxemon.core import log
+from tuxemon.core.player import Player
+from tuxemon.core.session import local_session
 
 logger = logging.getLogger(__name__)
 
 
-def main():
-    """Add all available states to our scene manager (tools.Control)
+def main(load_slot=None):
+    """Add all available states to our scene manager (tools.Client)
     and start the game using the pygame interface.
 
     :rtype: None
@@ -47,11 +52,21 @@ def main():
     log.configure()
 
     import pygame
-    from .control import PygameControl
+    from tuxemon.core.client import Client
 
     prepare.init()
-    control = PygameControl(prepare.ORIGINAL_CAPTION)
-    control.auto_state_discovery()
+    client = Client(prepare.CONFIG.window_caption)
+    client.auto_state_discovery()
+
+    # global/singleton hack for now
+    setattr(prepare, "GLOBAL_CONTROL", client)
+
+    # load the player npc
+    new_player = Player(prepare.CONFIG.player_npc)
+
+    # WIP.  Will be more complete with game-view
+    local_session.client = client
+    local_session.player = new_player
 
     # background state is used to prevent other states from
     # being required to track dirty screen areas.  for example,
@@ -59,38 +74,40 @@ def main():
     # since menus do not clean up dirty areas, the blank,
     # "Background state" will do that.  The alternative is creating
     # a system for states to clean up their dirty screen areas.
-    control.push_state("BackgroundState")
+    client.push_state("BackgroundState")
 
     # basically the main menu
-    control.push_state("StartState")
+    client.push_state("StartState")
 
-    # Show the splash screen if it is enabled in the game configuration
-    if prepare.CONFIG.splash == "1":
-        control.push_state("SplashState")
-        control.push_state("FadeInTransition")
+    if load_slot:
+        client.push_state("LoadMenuState", load_slot=load_slot)
+    elif prepare.CONFIG.splash:
+        # Show the splash screen if it is enabled in the game configuration
+        client.push_state("SplashState")
+        client.push_state("FadeInTransition")
 
     # block of code useful for testing
-    if prepare.CONFIG.collision_map == "1":
+    if prepare.CONFIG.collision_map:
         logger.info("********* DEBUG OPTIONS ENABLED *********")
 
-        # TODO: fix this player/player1 issue
-        control.player1 = prepare.player1
-        action = control.event_engine.execute_action
+        logging.basicConfig(level=logging.DEBUG)
 
-        action("add_monster", ("txmn_bigfin", 10))
-        action("add_monster", ("txmn_dandylion", 10))
+        action = client.event_engine.execute_action
 
-        action("add_item", ("item_potion",))
-        action("add_item", ("item_cherry",))
-        action("add_item", ("item_capture_device",))
+        action("add_monster", ("bigfin", 10))
+        action("add_monster", ("dandylion", 10))
+
+        action("add_item", ("potion",))
+        action("add_item", ("cherry",))
+        action("add_item", ("capture_device",))
 
         for i in range(10):
-            action("add_item", ("item_super_potion",))
+            action("add_item", ("super_potion",))
 
         for i in range(100):
-            action("add_item", ("item_apple",))
+            action("add_item", ("apple",))
 
-    control.main()
+    client.main()
     pygame.quit()
 
 
@@ -101,9 +118,9 @@ def headless():
     :returns: None
 
     """
-    from .control import HeadlessControl
+    from tuxemon.core.client import HeadlessClient
 
-    control = HeadlessControl()
+    control = HeadlessClient()
     control.auto_state_discovery()
     control.push_state("HeadlessServerState")
     control.main()

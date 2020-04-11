@@ -1,0 +1,24 @@
+{
+    "slug": "gectile",
+    "category": "climbing",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        }
+    ],
+    "shape": "Humanoid",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

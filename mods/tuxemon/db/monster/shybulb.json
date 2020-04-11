@@ -1,0 +1,24 @@
+{
+    "slug": "shybulb",
+    "category": "gardener",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 2,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        }
+    ],
+    "shape": "Sprite",
+    "types": [
+        "Wood"
+    ],
+    "weight": 25
+}

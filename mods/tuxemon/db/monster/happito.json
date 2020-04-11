@@ -1,0 +1,25 @@
+{
+    "slug": "happito",
+    "category": "ecstatic_emotion",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rock"
+        }
+    ],
+    "shape": "",
+    "types": [
+        "Earth",
+        "Metal"
+    ],
+    "weight": 25
+}

@@ -1,0 +1,118 @@
+[
+    {
+        "slug" : "sfx_bite",
+        "file" : "technique/bite1.ogg"
+    },
+    {
+        "slug" : "sfx_blaster",
+        "file" : "technique/blaster1.ogg"
+    },
+    {
+        "slug" : "sfx_spring",
+        "file" : "technique/boioing.ogg"
+    },
+    {
+        "slug" : "sfx_bounce",
+        "file" : "technique/bounce.ogg"
+    },
+    {
+        "slug" : "sfx_bubbles",
+        "file" : "technique/bubble.ogg"
+    },
+    {
+        "slug" : "sfx_crumble1",
+        "file" : "technique/crumble.ogg"
+    },
+    {
+        "slug" : "sfx_crumble2",
+        "file" : "technique/crumble1.ogg"
+    },
+    {
+        "slug" : "sfx_crumble3",
+        "file" : "technique/crumble2.ogg"
+    },
+    {
+        "slug" : "sfx_drill",
+        "file" : "technique/drill.ogg"
+    },
+    {
+        "slug" : "sfx_feint",
+        "file" : "technique/faint.ogg"
+    },
+    {
+        "slug" : "sfx_flamethrower",
+        "file" : "technique/flamethrower.ogg"
+    },
+    {
+        "slug" : "sfx_flames1",
+        "file" : "technique/flamey.ogg"
+    },
+    {
+        "slug" : "sfx_flames2",
+        "file" : "technique/flamey2.ogg"
+    },
+    {
+        "slug" : "sfx_forcefield",
+        "file" : "technique/forcefield.ogg"
+    },
+    {
+        "slug" : "sfx_freeze",
+        "file" : "technique/freeze.ogg"
+    },
+    {
+        "slug" : "sfx_growl",
+        "file" : "technique/growl.ogg"
+    },
+    {
+        "slug" : "sfx_hop",
+        "file" : "technique/hop.ogg"
+    },
+    {
+        "slug" : "sfx_kick",
+        "file" : "technique/kick.ogg"
+    },
+    {
+        "slug" : "sfx_laser_beam",
+        "file" : "technique/laser.ogg"
+    },
+    {
+        "slug" : "sfx_lightning1",
+        "file" : "technique/lightning.ogg"
+    },
+    {
+        "slug" : "sfx_lightning2",
+        "file" : "technique/lightning1.ogg"
+    },
+    {
+        "slug" : "sfx_pulse",
+        "file" : "technique/pulse1.ogg"
+    },
+    {
+        "slug" : "sfx_sand",
+        "file" : "technique/sand.ogg"
+    },
+    {
+        "slug" : "sfx_shine",
+        "file" : "technique/shiney.ogg"
+    },
+    {
+        "slug" : "sfx_shpring",
+        "file" : "technique/shpring.ogg"
+    },
+    {
+        "slug" : "sfx_squeak",
+        "file" : "technique/squeak.ogg"
+    },
+    {
+        "slug" : "sfx_machine_beep",
+        "file" : "technique/techyBeep.ogg"
+    },
+    {
+        "slug" : "sfx_tornado",
+        "file" : "technique/tornado1.ogg"
+    },
+    {
+        "slug" : "sfx_zap",
+        "file" : "technique/zap1.ogg"
+    }
+]

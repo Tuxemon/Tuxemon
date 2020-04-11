@@ -1,0 +1,6 @@
+include README.md
+include CREDITS.md
+include LICENSE
+include requirements.txt
+include tuxemon/tuxemon.cfg
+recursive-include tuxemon/resources *

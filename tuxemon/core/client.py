@@ -122,9 +122,14 @@ class Client(StateManager):
         self.rumble = self.rumble_manager.rumbler
 
     def load_map(self, map_data):
-        self.events = map_data["events"]
-        self.inits = map_data["inits"]
-        self.interacts = map_data["interacts"]
+        """ Load map
+
+        :param tuxemon.core.map.TuxemonMap map_data:
+        :return: None
+        """
+        self.events = map_data.events
+        self.inits = map_data.inits
+        self.interacts = map_data.interacts
         self.event_engine.reset()
         self.event_engine.current_map = map_data
 

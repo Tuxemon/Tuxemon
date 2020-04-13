@@ -40,7 +40,8 @@ from six.moves import map as imap
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare, state, networking
-from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core.map import PathfindNode, TuxemonMap, dirs2, pairs
+from tuxemon.core.map_loader import TMXMapLoader
 from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.session import local_session
 from tuxemon.core.tools import nearest
@@ -389,6 +390,10 @@ class WorldState(state.State):
         # interlace player sprites with tiles surfaces.
         # eventually, maybe use pygame sprites or something similar
         world_surfaces = list()
+
+        # temporary
+        if self.current_map.renderer is None:
+            self.current_map.initialize_renderer()
 
         # get player coords to center map
         cx, cy = nearest(self.project(self.player.tile_pos))
@@ -918,10 +923,10 @@ class WorldState(state.State):
             map_data = self.preloaded_maps[map_name]
             self.clear_preloaded_maps()
 
-        self.current_map = map_data["data"]
-        self.collision_map = map_data["collision_map"]
-        self.collision_lines_map = map_data["collision_lines_map"]
-        self.map_size = map_data["map_size"]
+        self.current_map = map_data
+        self.collision_map = map_data.collision_map
+        self.collision_lines_map = map_data.collision_lines_map
+        self.map_size = map_data.size
 
         # The first coordinates that are out of bounds.
         self.invalid_x = (-1, self.map_size[0])
@@ -945,16 +950,9 @@ class WorldState(state.State):
 
     def load_map(self, map_name):
         """ Returns map data as a dictionary to be used for map changing and preloading
+        :rtype: tuxemon.core.map.TuxemonMap
         """
-        map_data = {}
-        map_data["data"] = Map(map_name)
-        map_data["events"] = map_data["data"].events
-        map_data["inits"] = map_data["data"].inits
-        map_data["interacts"] = map_data["data"].interacts
-        map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
-            map_data["data"].loadfile()
-
-        return map_data
+        return TMXMapLoader().load(map_name)
 
     def preload_map(self, map_name):
         """ Preload a map for quicker access

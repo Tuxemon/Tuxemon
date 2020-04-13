@@ -24,6 +24,12 @@ Tuxemon uses a number of open source projects to work properly:
 Installation
 ------------
 
+If you want to try the game, its recommended to download and try the master branch
+first. The default development branch is often more up to date, but might have
+breaking bugs. If you want to try the latest version or contribute code changes,
+please use the development branch.
+
+
 **Windows Source**
 
 Install the latest version of python 3 from [here](https://www.python.org/downloads/)

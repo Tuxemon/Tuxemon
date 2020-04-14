@@ -140,16 +140,14 @@ class Monster(object):
         self.hp = 0
         self.level = 0
 
-        self.moves = []  # A list of technique objects. Used in combat.
-        self.moveset = []  # A list of possible technique objects.
-        self.evolutions = []  # A list of possible evolution objects.
-        self.flairs = {}  # A dictionary of flairs, one is picked randomly.
-        self.battle_cry = (
-            ""  # a slug for a sound file, used primarly when they enter battle
-        )
-        self.faint_cry = ""  # a slug for a sound file, used when the monster faints
+        self.moves = []       # list of technique objects. Used in combat.
+        self.moveset = []     # list of possible technique objects.
+        self.evolutions = []  # list of possible evolution objects.
+        self.flairs = {}      # dictionary of flairs, one is picked randomly.
+        self.battle_cry = ""  # slug for a sound file, used primarly when they enter battle
+        self.faint_cry = ""   # slug for a sound file, used when the monster faints
         self.ai = None
-        self.owner = None  # set to NPC instance if they own it
+        self.owner = None     # set to NPC instance if they own it
 
         # The multiplier for experience
         self.experience_required_modifier = 1
@@ -205,12 +203,10 @@ class Monster(object):
             logger.error("monster {} is not found".format(slug))
             raise RuntimeError
 
-        self.slug = results["slug"]  # short English identifier
-        self.name = T.translate(results["slug"])  # translated name
-        self.description = T.translate(
-            "{}_description".format(results["slug"])
-        )  # translated description
-        self.category = T.translate(results["category"])  # translated category
+        self.slug = results["slug"]                             # short English identifier
+        self.name = T.translate(results["slug"])                # translated name
+        self.description = T.translate("{}_description".format(results["slug"]))  # translated description
+        self.category = T.translate(results["category"])        # translated category
         self.shape = results.get("shape", "landrace").lower()
         types = results.get("types")
         if types:
@@ -335,9 +331,7 @@ class Monster(object):
         :rtype: None
         :returns: None
         """
-        logger.info(
-            "Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1)
-        )
+        logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
         # Increase Level and stats
         self.level += 1
         self.level = min(self.level, MAX_LEVEL)
@@ -384,13 +378,9 @@ class Monster(object):
         :returns: New monster slug if valid, None otherwise
         """
         for evolution in self.evolutions:
-            if evolution["path"] == path:
-                level_over = (
-                    evolution["at_level"] > 0 and self.level >= evolution["at_level"]
-                )
-                level_under = (
-                    evolution["at_level"] < 0 and self.level <= -evolution["at_level"]
-                )
+            if evolution['path'] == path:
+                level_over = evolution['at_level'] > 0 and self.level >= evolution['at_level']
+                level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
                 if level_over or level_under:
                     return evolution["monster_slug"]
         return None
@@ -406,17 +396,16 @@ class Monster(object):
         elif sprite == "back":
             surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = graphics.load_animated_sprite(
-                [self.menu_sprite_1, self.menu_sprite_2], 0.25, **kwargs
-            )
+            surface = graphics.load_animated_sprite([
+                self.menu_sprite_1,
+                self.menu_sprite_2],
+                0.25, **kwargs)
         else:
             raise ValueError("Cannot find sprite for: {}".format(sprite))
 
         # Apply flairs to the monster sprite
         for flair in self.flairs.values():
-            flair_path = self.get_sprite_path(
-                "gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name)
-            )
+            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
             if flair_path != MISSING_IMAGE:
                 flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))

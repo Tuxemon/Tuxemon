@@ -27,8 +27,8 @@ from __future__ import unicode_literals
 import logging
 from functools import partial
 
-from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.locale import replace_text
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +66,6 @@ class DialogChoiceAction(EventAction):
         if self.session.client.get_state_name("ChoiceState") is None:
             self.stop()
 
-    def open_choice_dialog(self, session,  menu):
+    def open_choice_dialog(self, session, menu):
         logger.info("Opening choice window")
         return session.client.push_state("ChoiceState", menu=menu)

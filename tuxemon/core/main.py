@@ -33,8 +33,8 @@ from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core import prepare
 from tuxemon.core import log
+from tuxemon.core import prepare
 from tuxemon.core.player import Player
 from tuxemon.core.session import local_session
 

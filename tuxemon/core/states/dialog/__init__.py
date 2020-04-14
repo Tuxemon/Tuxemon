@@ -4,8 +4,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.menu.menu import PopUpMenu
-from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
+from tuxemon.core.ui.text import TextArea
 
 
 class DialogState(PopUpMenu):

@@ -29,6 +29,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import logging
 import math
 
 import pygame
@@ -36,12 +37,11 @@ from pygame.transform import rotozoom
 from pygame.transform import scale
 
 from tuxemon.compat import Rect
-from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.platform.const import buttons
-
-import logging
+from tuxemon.core.pyganim import PygAnimation
 
 logger = logging.getLogger()
+
 
 class Sprite(pygame.sprite.DirtySprite):
     dirty = False

@@ -38,6 +38,7 @@ class Entity(object):
 
         Need to refactor in most NPC code to here.
         Need to refactor -out- all drawing/sprite code.
+        Consider to refactor out world position/movement into "Body" class
     """
 
     def __init__(self):

@@ -516,8 +516,8 @@ class CombatAnimations(Menu):
 
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
-        
-        if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
+
+        if not self.is_trainer_battle:  # the combat call is handled by fill_battlefield_positions for trainer battles
             self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)

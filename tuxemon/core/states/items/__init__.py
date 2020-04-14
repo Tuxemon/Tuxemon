@@ -249,7 +249,7 @@ class ShopMenuState(Menu):
             if self.buyer:
                 self.seller.give_item(self.client, self.buyer, item, quantity)
             else:
-                self.seller.alter_item_quantity(self.game, item.slug, -quantity)
+                self.seller.alter_item_quantity(self.client, item.slug, -quantity)
             self.reload_items()
             if not self.seller.has_item(item.slug):
                 # We're pointing at a new item

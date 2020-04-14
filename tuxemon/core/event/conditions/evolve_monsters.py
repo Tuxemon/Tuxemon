@@ -32,21 +32,21 @@ class EvolveMonstersCondition(EventCondition):
     """
     name = "evolve_monsters"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Checks to see if a monster can be evolved on the specified evolutionary path
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
 
         """
-        player = game.player1
+        player = session.player
         for monster in player.monsters:
             new_slug = monster.get_evolution(condition.parameters[0])
             if new_slug:

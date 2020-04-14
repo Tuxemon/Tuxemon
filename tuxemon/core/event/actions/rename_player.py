@@ -41,28 +41,18 @@ class RenamePlayerAction(EventAction):
     name = "rename_player"
     valid_parameters = []
 
-
-    def set_player_name(menu, name):
-        world = menu.game.get_state_name("WorldState")
-        if world:
-            world.player1.name = name
+    def set_player_name(self, name):
+        self.session.player.name = name
 
     def start(self):
-        print("starting rename_player")
-        # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
-        if not world:
-            return
-
-        self.game.push_state(
+        self.session.client.push_state(
             state_name="InputMenu",
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,
-            initial=world.player1.name
+            initial=self.session.player.name
         )
 
     def update(self):
-        if self.game.get_state_name("InputMenu") is None:
+        if self.session.client.get_state_name("InputMenu") is None:
             self.stop()
-

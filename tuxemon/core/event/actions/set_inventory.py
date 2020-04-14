@@ -40,10 +40,10 @@ class SetInventoryAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
         if self.parameters.inventory_slug == "None":
             npc.inventory = {}
             return
 
         entry = db.database["inventory"][self.parameters.inventory_slug]
-        npc.inventory = decode_inventory(self.game, npc, entry)
+        npc.inventory = decode_inventory(self.session, npc, entry)

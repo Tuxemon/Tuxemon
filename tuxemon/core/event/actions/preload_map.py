@@ -45,10 +45,10 @@ class PreloadMapAction(EventAction):
     ]
 
     def start(self):
-        if not hasattr(self.game.current_state, 'state') or self.game.current_state.state != "WorldState":
+        if not hasattr(self.session.client.current_state, 'state') or self.session.client.current_state.state != "WorldState":
             return
 
-        world = self.game.current_state
+        world = self.session.client.current_state
 
         # Get the map name to preload
         mapname = prepare.fetch("maps", str(self.parameters[0]))

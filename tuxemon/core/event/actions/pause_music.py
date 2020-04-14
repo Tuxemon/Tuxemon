@@ -42,7 +42,7 @@ class PauseMusicAction(EventAction):
 
     def start(self):
         mixer.music.pause()
-        if self.game.current_music["song"]:
-            self.game.current_music["status"] = "paused"
+        if self.session.client.current_music["song"]:
+            self.session.client.current_music["status"] = "paused"
         else:
             logger.warning("Music cannot be paused, none is playing.")

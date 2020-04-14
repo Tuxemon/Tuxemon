@@ -37,14 +37,14 @@ class PlayerFacingNPCCondition(EventCondition):
     """
     name = "player_facing_npc"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see the player is next to and facing a particular NPC
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -70,33 +70,33 @@ class PlayerFacingNPCCondition(EventCondition):
         """
         npc_location = None
 
-        world = game.current_state
-        npc = get_npc(game, condition.parameters[0])
+        world = session.client.current_state
+        npc = get_npc(session, condition.parameters[0])
         if not npc:
             return False
 
         # Next, we check the player position and see if we're one tile away from the NPC.
-        if npc.tile_pos[1] == game.player1.tile_pos[1]:
+        if npc.tile_pos[1] == session.player.tile_pos[1]:
             # Check to see if the NPC is to the left of the player
-            if npc.tile_pos[0] == game.player1.tile_pos[0] - 1:
+            if npc.tile_pos[0] == session.player.tile_pos[0] - 1:
                 logger.debug("NPC is to the left of the player")
                 npc_location = "left"
             # Check to see if the NPC is to the right of the player
-            elif npc.tile_pos[0] == game.player1.tile_pos[0] + 1:
+            elif npc.tile_pos[0] == session.player.tile_pos[0] + 1:
                 logger.debug("NPC is to the right of the player")
                 npc_location = "right"
 
-        if npc.tile_pos[0] == game.player1.tile_pos[0]:
+        if npc.tile_pos[0] == session.player.tile_pos[0]:
             # Check to see if the NPC is above the player
-            if npc.tile_pos[1] == game.player1.tile_pos[1] - 1:
+            if npc.tile_pos[1] == session.player.tile_pos[1] - 1:
                 logger.debug("NPC is above the player")
                 npc_location = "up"
-            elif npc.tile_pos[1] == game.player1.tile_pos[1] + 1:
+            elif npc.tile_pos[1] == session.player.tile_pos[1] + 1:
                 logger.debug("NPC is below the player")
                 npc_location = "down"
 
         # Then we check to see if we're facing the NPC
-        if game.player1.facing == npc_location:
+        if session.player.facing == npc_location:
             return True
         else:
             return False

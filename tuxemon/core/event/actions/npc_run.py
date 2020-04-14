@@ -39,5 +39,5 @@ class NpcRun(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        npc.moverate = self.game.config.player_runrate
+        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc.moverate = self.session.client.config.player_runrate

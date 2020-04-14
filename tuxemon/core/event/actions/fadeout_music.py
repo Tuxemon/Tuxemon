@@ -45,7 +45,7 @@ class FadeoutMusicAction(EventAction):
     def start(self):
         time = self.parameters.duration
         mixer.music.fadeout(time)
-        if self.game.current_music["song"]:
-            self.game.current_music["status"] = "stopped"
+        if self.session.client.current_music["song"]:
+            self.session.client.current_music["status"] = "stopped"
         else:
             logger.warning("Music cannot be paused, none is playing.")

@@ -41,7 +41,6 @@ import pygame
 from tuxemon.compat import Rect
 from tuxemon.constants import paths
 from tuxemon.core import prepare, graphics
-from tuxemon.core import tools
 from tuxemon.core.animation import Animation
 from tuxemon.core.animation import Task
 from tuxemon.core.animation import remove_animations_of
@@ -64,7 +63,7 @@ class State(object):
        pause         - Called when state is no longer active
        shutdown      - Called before state is destroyed
 
-    :ivar game: tuxemon.core.control.Control
+    :ivar client: tuxemon.core.session.Client
     :cvar force_draw: If True, state will never be skipped in drawing phase
     :cvar rect: Area of the screen will be drawn on
     """
@@ -74,16 +73,16 @@ class State(object):
     transparent = False   # ignore all background/borders
     force_draw = False    # draw even if completely under another state
 
-    def __init__(self, control):
+    def __init__(self, client):
         """ Do not override this unless there is a special need.
 
         All init for the State, loading of config, images, etc should
         be done in State.startup or State.resume, not here.
 
-        :param control: State Manager / Control / Game... all the same
+        :param tuxemon.core.client.Client client: State Manager / Game Client
         :returns: None
         """
-        self.game = control  # type: tuxemon.core.control.Control
+        self.client = client
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
@@ -248,7 +247,7 @@ class State(object):
 
 
 class StateManager(object):
-    """ Mix-in style class for use with Control class.
+    """ Mix-in style class for use with Client class.
 
     This is currently undergoing a refactor of sorts, API may not be stable
     """

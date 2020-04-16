@@ -35,137 +35,67 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import graphics
 from tuxemon.core import ai, fusion
-from tuxemon.core.locale import T
+from tuxemon.core import graphics
 from tuxemon.core.db import db
+from tuxemon.core.locale import T
 from tuxemon.core.technique import Technique
 
 logger = logging.getLogger(__name__)
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
-    'current_hp',
-    'level',
-    'name',
-    'slug',
-    'status',
-    'total_experience',
-    'flairs'
+    "current_hp",
+    "level",
+    "name",
+    "slug",
+    "status",
+    "total_experience",
+    "flairs",
 )
 
 SHAPES = {
-    'aquatic': {
-        'armour': 8,
-        'dodge': 4,
-        'hp': 8,
-        'melee': 6,
-        'ranged': 6,
-        'speed': 4,
+    "aquatic": {"armour": 8, "dodge": 4, "hp": 8, "melee": 6, "ranged": 6, "speed": 4,},
+    "blob": {"armour": 8, "dodge": 4, "hp": 8, "melee": 4, "ranged": 8, "speed": 4,},
+    "brute": {"armour": 7, "dodge": 5, "hp": 7, "melee": 8, "ranged": 4, "speed": 5,},
+    "dragon": {"armour": 7, "dodge": 5, "hp": 6, "melee": 6, "ranged": 6, "speed": 6,},
+    "flier": {"armour": 5, "dodge": 7, "hp": 4, "melee": 8, "ranged": 4, "speed": 8,},
+    "grub": {"armour": 7, "dodge": 5, "hp": 7, "melee": 4, "ranged": 8, "speed": 5,},
+    "humanoid": {
+        "armour": 5,
+        "dodge": 7,
+        "hp": 4,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 8,
     },
-    'blob': {
-        'armour': 8,
-        'dodge': 4,
-        'hp': 8,
-        'melee': 4,
-        'ranged': 8,
-        'speed': 4,
+    "hunter": {"armour": 4, "dodge": 8, "hp": 5, "melee": 8, "ranged": 4, "speed": 7,},
+    "landrace": {
+        "armour": 8,
+        "dodge": 4,
+        "hp": 8,
+        "melee": 8,
+        "ranged": 4,
+        "speed": 4,
     },
-    'brute': {
-        'armour': 7,
-        'dodge': 5,
-        'hp': 7,
-        'melee': 8,
-        'ranged': 4,
-        'speed': 5,
+    "leviathan": {
+        "armour": 8,
+        "dodge": 4,
+        "hp": 8,
+        "melee": 6,
+        "ranged": 6,
+        "speed": 4,
     },
-    'dragon': {
-        'armour': 7,
-        'dodge': 5,
-        'hp': 6,
-        'melee': 6,
-        'ranged': 6,
-        'speed': 6,
+    "polliwog": {
+        "armour": 4,
+        "dodge": 8,
+        "hp": 5,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 7,
     },
-    'flier': {
-        'armour': 5,
-        'dodge': 7,
-        'hp': 4,
-        'melee': 8,
-        'ranged': 4,
-        'speed': 8,
-    },
-    'grub': {
-        'armour': 7,
-        'dodge': 5,
-        'hp': 7,
-        'melee': 4,
-        'ranged': 8,
-        'speed': 5,
-    },
-    'humanoid': {
-        'armour': 5,
-        'dodge': 7,
-        'hp': 4,
-        'melee': 4,
-        'ranged': 8,
-        'speed': 8,
-    },
-    'hunter': {
-        'armour': 4,
-        'dodge': 8,
-        'hp': 5,
-        'melee': 8,
-        'ranged': 4,
-        'speed': 7,
-    },
-    'landrace': {
-        'armour': 8,
-        'dodge': 4,
-        'hp': 8,
-        'melee': 8,
-        'ranged': 4,
-        'speed': 4,
-    },
-    'leviathan': {
-        'armour': 8,
-        'dodge': 4,
-        'hp': 8,
-        'melee': 6,
-        'ranged': 6,
-        'speed': 4,
-    },
-    'polliwog': {
-        'armour': 4,
-        'dodge': 8,
-        'hp': 5,
-        'melee': 4,
-        'ranged': 8,
-        'speed': 7,
-    },
-    'serpent': {
-        'armour': 6,
-        'dodge': 6,
-        'hp': 6,
-        'melee': 4,
-        'ranged': 8,
-        'speed': 6,
-    },
-    'sprite': {
-        'armour': 6,
-        'dodge': 6,
-        'hp': 4,
-        'melee': 6,
-        'ranged': 6,
-        'speed': 8,
-    },
-    'varmint': {
-        'armour': 6,
-        'dodge': 6,
-        'hp': 6,
-        'melee': 8,
-        'ranged': 4,
-        'speed': 6,
-    },
+    "serpent": {"armour": 6, "dodge": 6, "hp": 6, "melee": 4, "ranged": 8, "speed": 6,},
+    "sprite": {"armour": 6, "dodge": 6, "hp": 4, "melee": 6, "ranged": 6, "speed": 8,},
+    "varmint": {"armour": 6, "dodge": 6, "hp": 6, "melee": 8, "ranged": 4, "speed": 6,},
 }
 
 MAX_LEVEL = 999
@@ -174,9 +104,9 @@ MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 # class definition for tuxemon flairs:
 class Flair(object):
-   def __init__(self, category, name):
-      self.category = category
-      self.name = name
+    def __init__(self, category, name):
+        self.category = category
+        self.name = name
 
 
 # class definition for first active tuxemon to use in combat:
@@ -197,7 +127,7 @@ class Monster(object):
             save_data = dict()
 
         self.slug = ""
-        self.name = ""          # The display name of the Tuxemon
+        self.name = ""  # The display name of the Tuxemon
         self.category = ""
         self.description = ""
 
@@ -210,14 +140,14 @@ class Monster(object):
         self.hp = 0
         self.level = 0
 
-        self.moves = []         # A list of technique objects. Used in combat.
-        self.moveset = []       # A list of possible technique objects.
-        self.evolutions = []    # A list of possible evolution objects.
-        self.flairs = {}        # A dictionary of flairs, one is picked randomly.
-        self.battle_cry = ""    # a slug for a sound file, used primarly when they enter battle
-        self.faint_cry = ""     # a slug for a sound file, used when the monster faints
+        self.moves = []       # list of technique objects. Used in combat.
+        self.moveset = []     # list of possible technique objects.
+        self.evolutions = []  # list of possible evolution objects.
+        self.flairs = {}      # dictionary of flairs, one is picked randomly.
+        self.battle_cry = ""  # slug for a sound file, used primarly when they enter battle
+        self.faint_cry = ""   # slug for a sound file, used when the monster faints
         self.ai = None
-        self.owner = None       # set to NPC instance if they own it
+        self.owner = None     # set to NPC instance if they own it
 
         # The multiplier for experience
         self.experience_required_modifier = 1
@@ -284,15 +214,15 @@ class Monster(object):
             if len(types) > 1:
                 self.type2 = results["types"][1].lower()
 
-        self.weight = results['weight']
+        self.weight = results["weight"]
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         moveset = results.get("moveset")
         if moveset:
             for move in moveset:
                 self.moveset.append(move)
-                if move['level_learned'] >= self.level:
-                    technique = Technique(move['technique'])
+                if move["level_learned"] >= self.level:
+                    technique = Technique(move["technique"])
                     self.learn(technique)
 
         # Look up the evolutions for this monster.
@@ -302,18 +232,22 @@ class Monster(object):
                 self.evolutions.append(evolution)
 
         # Look up the monster's sprite image paths
-        self.front_battle_sprite = self.get_sprite_path(results['sprites']['battle1'])
-        self.back_battle_sprite = self.get_sprite_path(results['sprites']['battle2'])
-        self.menu_sprite_1 = self.get_sprite_path(results['sprites']['menu1'])
-        self.menu_sprite_2 = self.get_sprite_path(results['sprites']['menu2'])
+        self.front_battle_sprite = self.get_sprite_path(results["sprites"]["battle1"])
+        self.back_battle_sprite = self.get_sprite_path(results["sprites"]["battle2"])
+        self.menu_sprite_1 = self.get_sprite_path(results["sprites"]["menu1"])
+        self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        self.combat_call = results.get("sounds", {}).get("combat_call", "sound_{}_call".format(self.type1))
-        self.faint_call = results.get("sounds", {}).get("faint_call", "sound_{}_faint".format(self.type1))
+        self.combat_call = results.get("sounds", {}).get(
+            "combat_call", "sound_{}_call".format(self.type1)
+        )
+        self.faint_call = results.get("sounds", {}).get(
+            "faint_call", "sound_{}_faint".format(self.type1)
+        )
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
-        ai_result = results['ai']
+        ai_result = results["ai"]
         if ai_result == "SimpleAI":
             self.ai = ai.SimpleAI()
         elif ai_result == "RandomAI":
@@ -405,9 +339,9 @@ class Monster(object):
 
         # Learn New Moves
         for move in self.moveset:
-            if move['level_learned'] >= self.level:
-                logger.info("%s learned technique %s!" % (self.name, move['technique']))
-                technique = Technique(move['technique'])
+            if move["level_learned"] >= self.level:
+                logger.info("%s learned technique %s!" % (self.name, move["technique"]))
+                technique = Technique(move["technique"])
                 self.learn(technique)
 
     def set_level(self, level=5):
@@ -448,7 +382,7 @@ class Monster(object):
                 level_over = evolution['at_level'] > 0 and self.level >= evolution['at_level']
                 level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
                 if level_over or level_under:
-                    return evolution['monster_slug']
+                    return evolution["monster_slug"]
         return None
 
     def get_sprite(self, sprite, **kwargs):
@@ -491,18 +425,18 @@ class Monster(object):
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
-                flair = Flair(flair['category'], random.choice(flair['names']))
+                flair = Flair(flair["category"], random.choice(flair["names"]))
                 self.flairs[flair.category] = flair
 
     def get_sprite_path(self, sprite):
-        '''
+        """
         Paths are set up by convention, so the file extension is unknown.
         This adds the appropriate file extension if the sprite exists,
         and returns a dummy image if it can't be found.
 
         rtype: String
         returns: path to sprite or placeholder image
-        '''
+        """
         try:
             exts = ["png", "gif", "jpg", "jpeg"]
             for ext in exts:
@@ -571,14 +505,14 @@ class Monster(object):
         if not save_data:
             return
 
-        self.load_from_db(save_data['slug'])
+        self.load_from_db(save_data["slug"])
 
         for key, value in save_data.items():
-            if key == 'status' and value:
+            if key == "status" and value:
                 self.status = [Technique(slug=i) for i in value]
-            elif key == 'body' and value:
+            elif key == "body" and value:
                 self.body.set_state(value)
-            elif key == 'moves' and value:
+            elif key == "moves" and value:
                 self.moves = [Technique(slug) for slug in value]
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
@@ -589,7 +523,7 @@ class Monster(object):
         for move in self.moves:
             move.full_recharge()
 
-        self.status = ['status_faint'] if 'status_faint' in self.status else []
+        self.status = ["status_faint"] if "status_faint" in self.status else []
 
     def speed_test(self, action):
         if action.technique.is_fast:
@@ -599,10 +533,7 @@ class Monster(object):
 
 
 def decode_monsters(json_data):
-    return [
-        Monster(save_data=mon)
-        for mon in json_data.get('monsters') or []
-    ]
+    return [Monster(save_data=mon) for mon in json_data.get("monsters") or []]
 
 
 def encode_monsters(mons):

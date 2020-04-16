@@ -38,11 +38,13 @@ class Entity(object):
 
         Need to refactor in most NPC code to here.
         Need to refactor -out- all drawing/sprite code.
+        Consider to refactor out world position/movement into "Body" class
     """
 
     def __init__(self):
         self.slug = None
         self.world = None
+        self.instance_id = None
         self.tile_pos = Point2(0, 0)
         self.position3 = Point3(0, 0, 0)
         self.acceleration3 = Vector3(0, 0, 0)  # not used currently, just set velocity

@@ -47,7 +47,6 @@ from tuxemon.core.tools import nearest
 
 logger = logging.getLogger(__name__)
 
-
 direction_map = {
     intentions.UP: "up",
     intentions.DOWN: "down",

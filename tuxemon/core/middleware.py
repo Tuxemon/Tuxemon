@@ -37,7 +37,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class Multiplayer():
+
+class Multiplayer(object):
     """This middleware will allow you to use the AsteriaServer for Multiplayer games and the mobile controller.
     When it receives KEYDOWN/KEYUP/NETKBD events, it will set the corresponding dictionary key in
     "network_events" to true or false. In your main game loop, you can then iterate through this dictionary
@@ -49,6 +50,7 @@ class Multiplayer():
     event_execute -- Sets the game_server.network_events dictionary based on what key was pressed
 
     """
+
     def __init__(self, game_server=None):
         self.game_server = game_server
         self.server = None
@@ -75,14 +77,15 @@ class Multiplayer():
         if event_data["type"] == "CLIENT_START_BATTLE":
             return True
         if event_data["type"] == "PING":
-                return True
+            return True
         else:
             return False
 
     def event_execute(self, cuuid, euuid, event_data):
         self.game_server.server_event_handler(cuuid, event_data)
 
-class Controller():
+
+class Controller(object):
     """This middleware will allow you to use the AsteriaServer for Multiplayer games and the mobile controller.
     When it receives KEYDOWN/KEYUP events, it will set the corresponding dictionary key in
     "network_events" to true or false. In your main game loop, you can then iterate through this dictionary
@@ -94,6 +97,7 @@ class Controller():
     event_execute -- Sets the game_server.network_events dictionary based on what key was pressed
 
     """
+
     def __init__(self, game_server=None):
         self.game_server = game_server
         self.server = None

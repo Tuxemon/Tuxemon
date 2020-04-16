@@ -27,13 +27,11 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import tools
 from tuxemon.core import ai, monster, prepare
-from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
+from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.npc import NPC
-from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
 
@@ -80,7 +78,8 @@ class RandomEncounterAction(EventAction):
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.session.client.queue_state("CombatState", players=(player, npc), combat_type="monster", graphics=env['battle_graphics'])
+            self.session.client.queue_state("CombatState", players=(player, npc), combat_type="monster",
+                                            graphics=env['battle_graphics'])
 
             # stop the player
             world = self.session.client.get_state_name("WorldState")
@@ -109,7 +108,7 @@ def _choose_encounter(encounters, total_prob):
         scale = 1
 
     scale *= prepare.CONFIG.encounter_rate_modifier
-    
+
     for encounter in encounters:
         total += encounter['encounter_rate'] * scale
         if total >= roll:

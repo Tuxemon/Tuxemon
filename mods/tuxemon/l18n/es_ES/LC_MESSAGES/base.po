@@ -1878,7 +1878,7 @@ msgstr "Blank: Tú... tú nos traerás la ruina de nuevo. ¡Vuelve sobre tus pas
 msgid "37707_villager_female_1"
 msgstr "Wish: ¡Oh... un recién llegado! ¿Cómo viniste aquí? No hemos visto a nadie nuevo desde... oh, da igual.\n"
 "Wish: ¡Bienvenido! Bienvenido a... oh vaya: ¡nunca le llegamos a dar un nombre a nuestro pueblo! Puedes llamarnos como quieras supongo.\n"
-"Wish: Por favor, considérate como en tu propia casa. Normalmente hay más gente por aquí... depende de la semilla, quizás hoy había malos presagios.\n"
+"Wish: Por favor, considérate como en tu propia casa. Normalmente hay más gente por aquí... depende de la semilla, quizás hoy no era buena.\n"
 "Wish: Dime si necesitas algo que exista aquí. Pero no cometas el mismo error que los otros: no queremos que tú también nos abandones."
 
 msgid "37707_villager_female_2"
@@ -1893,7 +1893,7 @@ msgstr "00000: Y0 nunc@ n@cÍ\n"
 
 msgid "37707_villager_female_missing"
 msgstr "@*!^: ¡0H... un r3c1En Ll3g@d0! ¿C0mo v1ni$t3 @qu1? <NONE> h3m0$ v1$t0 @ nAd13 nu3v0 d3$De... ()h, d@ dA D@ IGUAAAAAL\n"
-"@*!^: ¡BIenvENidO! Bi3nven1d0 a... 0H N/A: ¡nunc@ le ll3gam0$ a d@r un n0mbr3 a nue$tr0 puebl0 {<1} Nunc@ ll3gam0000000s {<2} NuNc@ c0n$tru1m0s nu3str0 pu3bl0\n"
+"@*!^: ¡BIenvENidO! Bi3nven1d0 a... 0H N/A: ¡nunc@ le ll3gam0$ a d@r un n0mbr3 a nue$tr0 puebl0 {<1} Nunc@ ll3gam000s {<2} NuNc@ l0 c0n$tru1m0s\n"
 "E TO NO EX ST  EST S C NECT D  A L  N DA D B S IRT  A OR "
 
 msgid "cannot_use_item_monster"

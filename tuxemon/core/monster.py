@@ -35,8 +35,7 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import ai, fusion
-from tuxemon.core import graphics
+from tuxemon.core import ai, fusion, graphics
 from tuxemon.core.db import db
 from tuxemon.core.locale import T
 from tuxemon.core.technique import Technique

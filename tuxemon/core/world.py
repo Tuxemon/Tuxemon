@@ -37,8 +37,8 @@ class World(object):
         :param float time_delta: Time passed since last frame
         :return: None
         """
-        # for map_object in self.maps.values():
-        #     map_object.update(time_delta)
+        for map_object in self.maps.values():
+            map_object.update(time_delta)
         self.move_npcs(time_delta)
 
     def add_entity(self, entity):

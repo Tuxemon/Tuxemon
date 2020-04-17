@@ -36,8 +36,7 @@ from textwrap import dedent
 from lxml import etree
 
 from tuxemon.constants import paths
-from tuxemon.core import plugin
-from tuxemon.core import prepare
+from tuxemon.core import plugin, prepare
 from tuxemon.core.platform.const import buttons
 from tuxemon.core.session import local_session
 
@@ -58,9 +57,10 @@ class RunningEvent(object):
     Actions being managed by the RunningEvent class can share information
     using the context dictionary.
     """
-    __slots__ = ('map_event', 'context', 'action_index', 'current_action', 'current_map_action')
+    __slots__ = ('map_event', 'session', 'context', 'action_index', 'current_action', 'current_map_action')
 
-    def __init__(self, map_event):
+    def __init__(self, session, map_event):
+        self.session = session
         self.map_event = map_event
         self.context = dict()
         self.action_index = 0
@@ -79,12 +79,10 @@ class RunningEvent(object):
         # if None, then make a new one
         try:
             action = self.map_event.acts[self.action_index]
-
         except IndexError:
             # reached end of list, remove event and move on
             logger.debug("map event actions finished")
             return
-
         return action
 
 
@@ -98,120 +96,97 @@ class EventEngine(object):
     run over one or several frames.
     """
 
-    def __init__(self, world, events):
-        self.world = world
+    def __init__(self, events):
         self.events = events
         self.conditions = dict()
         self.actions = dict()
         self.running_events = dict()
         self.partial_events = list()
-
         self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
         self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
 
-    def get_action(self, name, parameters=None):
+    def get_action(self, session, name, parameters=None):
         """ Get an action that is loaded into the engine
 
         A new instance will be returned each time
 
-        Return None if action is not loaded
-
-        :param parameters: list
-        :type name: str
-
+        :param tuxemon.core.session.Session session:
+        :param str name:
+        :param List parameters:
         :rtype: tuxemon.core.event.eventaction.EventAction
-
         """
-        # TODO: make generic
+        # TODO: make loading of actions and conditions generic
         if parameters is None:
             parameters = list()
 
         try:
             action = self.actions[name]
-
         except KeyError:
             error = 'Error: EventAction "{}" not implemented'.format(name)
-            logger.error(error)
-
+            raise RuntimeError(error)
         else:
-            # TODO: the 1st parameter specifies the player/session
-            return action(local_session, parameters)
+            return action(session, parameters)
 
     def get_condition(self, name):
         """ Get a condition that is loaded into the engine
 
         A new instance will be returned each time
 
-        Return None if condition is not loaded
-
-        :type name: str
-
+        :param str name:
         :rtype: tuxemon.core.event.eventcondition.EventCondition
-
         """
-        # TODO: make generic
+        # TODO: make loading of actions and conditions generic
         try:
             condition = self.conditions[name]
-
         except KeyError:
             error = 'Error: EventCondition "{}" not implemented'.format(name)
-            logger.error(error)
-
+            raise RuntimeError(error)
         else:
             return condition()
 
-    def check_condition(self, cond_data, map_event):
+    def check_condition(self, session, cond_data, map_event):
         """ Check if condition is true of false
 
         Returns False if the condition is not loaded properly
 
-        :type cond_data: tuxemon.core.event.MapCondition
-        :type map_event: tuxemon.core.event.MapEvent
+        :param tuxemon.core.session.Session session:
+        :param tuxemon.core.event.MapCondition cond_data:
+        :param tuxemon.core.event.MapEvent map_event:
         :rtype: bool
         """
-        with add_error_context(map_event, cond_data, self.session):
+        with add_error_context(map_event, cond_data, session):
             map_condition = self.get_condition(cond_data.type)
             if map_condition is None:
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False
-
-            result = map_condition.test(local_session, cond_data) == (cond_data.operator == 'is')
+            result = map_condition.test(session, cond_data) == (cond_data.operator == 'is')
             logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
             return result
 
-    def execute_action(self, action_name, parameters=None):
+    def execute_action(self, session, action_name, parameters=None):
         """ Load and execute an action
 
         This will cause the game to hang if an action waits on game changes
 
-        :type action_name: str
-        :type parameters: tuple
-
+        :param str action_name:
+        :param Optional[Tuple] parameters:
         :rtype: bool
         """
         if parameters is None:
             parameters = list()
 
-        action = self.get_action(action_name, parameters)
+        action = self.get_action(session, action_name, parameters)
         if action is None:
             logger.debug('map action "{}" is not loaded'.format(action_name))
 
         return action.execute()
 
-    def start_event(self, map_event):
+    def start_event(self, session, map_event):
         """ Begins execution of action list.  Conditions are not checked.
 
-        :param map_event:
-        :type map_event: EventObject
-
-        Here is an example of what an action list might look like:
-
-        >>> map_event
-        [<class 'core.map.action'>, <class 'core.map.action'>]
-
+        :param tuxemon.core.session.Session session:
+        :param tuxemon.core.event.EventObject map_event:
         :rtype: None
-        :returns: None
-
         """
         # the event id is used to make sure multiple copies of the same event are not
         # started.  If not checked, then the game would freeze while it tries to run
@@ -220,7 +195,7 @@ class EventEngine(object):
             logger.debug("starting map event: {}".format(map_event))
             logger.debug("Executing action list")
             logger.debug(map_event)
-            token = RunningEvent(map_event)
+            token = RunningEvent(session, map_event)
             self.running_events[map_event.id] = token
 
     def process_map_event(self, map_event):
@@ -228,38 +203,41 @@ class EventEngine(object):
 
         Actions will be started, but may finish much later.
 
-        :type map_event: tuxemon.core.event.EventObject
-        :return: None
+        :param tuxemon.core.event.EventObject map_event:
+        :rtype: None
         """
+        # TODO: support more sessions
+        session = local_session
+
         # debugging mode is slower and will check all conditions
         if prepare.CONFIG.collision_map:
             # less optimal, debug
             started = 0
             conds = list()
             for cond in map_event.conds:
-                if self.check_condition(cond, map_event):
+                if self.check_condition(session, cond, map_event):
                     conds.append((True, cond))
                     started += 1
                 else:
                     conds.append((False, cond))
 
             if started == len(map_event.conds):
-                self.start_event(map_event)
+                self.start_event(session, map_event)
 
             self.partial_events.append(conds)
 
         else:
             # optimal, less debug
-            if all(self.check_condition(cond, map_event) for cond in map_event.conds):
-                self.start_event(map_event)
+            if all(self.check_condition(session, cond, map_event) for cond in map_event.conds):
+                self.start_event(session, map_event)
 
     def process_map_events(self, events):
         """ Check conditions in a list or sequence.  Start actions
 
         Simple now, may become more complex
 
-        :type events: list
-        :return: None
+        :param List events:
+        :rtype: None
         """
         for event in events:
             self.process_map_event(event)
@@ -267,9 +245,7 @@ class EventEngine(object):
     def update(self, dt):
         """ Check all the MapEvents and start their actions if conditions are OK
 
-        :param dt: Amount of time passed in seconds since last frame.
-        :type dt: float
-
+        :param Float dt: Amount of time passed in seconds since last frame.
         :rtype: None
         """
         self.partial_events = list()
@@ -286,17 +262,13 @@ class EventEngine(object):
         Actions may be started during this function
 
         :rtype: None
-        :returns: None
-
         """
         self.process_map_events(self.events)
 
     def update_running_events(self, dt):
         """ Update the events that are running
 
-        :param dt: Amount of time passed in seconds since last frame.
-        :type dt: float
-
+        :param Float dt: Amount of time passed in seconds since last frame.
         :rtype: None
         """
         to_remove = set()
@@ -329,7 +301,7 @@ class EventEngine(object):
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(next_action.type, next_action.parameters)
+                        action = self.get_action(e.session, next_action.type, next_action.parameters)
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk
@@ -341,7 +313,7 @@ class EventEngine(object):
 
                         else:
                             # start the action
-                            with add_error_context(e.map_event, next_action, self.session):
+                            with add_error_context(e.map_event, next_action, e.session):
                                 action.start()
 
                             # save the action that is running
@@ -349,7 +321,7 @@ class EventEngine(object):
 
                 # update the action
                 action = e.current_action
-                with add_error_context(e.map_event, e.current_map_action, self.session):
+                with add_error_context(e.map_event, e.current_map_action, e.session):
                     action.update()
 
                 if action.done:
@@ -381,14 +353,14 @@ class EventEngine(object):
 
         You should return None if you have handled input here.
 
-        :type event: tuxemon.core.input.PlayerInput
+        :param tuxemon.core.input.PlayerInput event:
         :rtype: Optional[core.input.PlayerInput]
         """
         # has the player pressed the action key?
-        if event.pressed and event.button == buttons.A:
-            for map_event in self.world.interacts:
-                self.process_map_event(map_event)
-
+        # if event.pressed and event.button == buttons.A:
+        #     for map_event in self.world.interacts:
+        #         self.process_map_event(map_event)
+        #
         return event
 
 

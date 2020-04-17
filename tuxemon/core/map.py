@@ -39,8 +39,9 @@ from math import pi, atan2, cos, sin
 
 from tuxemon.compat import Rect
 from tuxemon.core.euclid import Vector2, Vector3, Point2
+from tuxemon.core.event.eventengine import EventEngine
 from tuxemon.core.platform.const import intentions
-from tuxemon.core.tools import round_to_divisible, nearest
+from tuxemon.core.tools import round_to_divisible
 from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
@@ -132,8 +133,8 @@ def tiles_inside_rect(rect, grid_size):
     :rtype: Iterator[Tuple[int, int]]
     """
     for y, x in product(
-        range(rect.top, rect.bottom, grid_size[1]),
-        range(rect.left, rect.right, grid_size[0]),
+            range(rect.top, rect.bottom, grid_size[1]),
+            range(rect.left, rect.right, grid_size[0]),
     ):
         yield x // grid_size[0], y // grid_size[1]
 
@@ -281,15 +282,15 @@ class TuxemonMap(object):
     """
 
     def __init__(
-        self,
-        events,
-        inits,
-        interacts,
-        collision_map,
-        collisions_lines_map,
-        data,
-        edges,
-        filename,
+            self,
+            events,
+            inits,
+            interacts,
+            collision_map,
+            collisions_lines_map,
+            data,
+            edges,
+            filename,
     ):
         """ Constructor
 
@@ -318,6 +319,7 @@ class TuxemonMap(object):
         self.inits = inits
         self.events = events
         self.renderer = None
+        self.event_engine = EventEngine(events)
         # TODO: create conditions to clamp the edges according to map/screen size
         self.edges = edges
         self.clamped = self.edges == "clamped"
@@ -328,6 +330,9 @@ class TuxemonMap(object):
         self.invalid_x = (-1, self.size[0])
         self.invalid_y = (-1, self.size[1])
 
+    def update(self, dt):
+        self.event_engine.update(dt)
+
     def pathfind(self, start, dest):
         """ Pathfind
 
@@ -336,7 +341,7 @@ class TuxemonMap(object):
 
         :return:
         """
-        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set(),)
+        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set(), )
 
         if pathnode:
             # traverse the node to get the path
@@ -375,7 +380,7 @@ class TuxemonMap(object):
                 return node
             else:
                 for adj_pos in self.get_exits(
-                    node.get_value(), collision_map, known_nodes
+                        node.get_value(), collision_map, known_nodes
                 ):
                     new_node = PathfindNode(adj_pos, node)
                     known_nodes.add(new_node.get_value())
@@ -410,10 +415,10 @@ class TuxemonMap(object):
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
         for direction, neighbor in (
-            ("down", (position[0], position[1] + 1)),
-            ("right", (position[0] + 1, position[1])),
-            ("up", (position[0], position[1] - 1)),
-            ("left", (position[0] - 1, position[1])),
+                ("down", (position[0], position[1] + 1)),
+                ("right", (position[0] + 1, position[1])),
+                ("up", (position[0], position[1] - 1)),
+                ("left", (position[0] - 1, position[1])),
         ):
             # if exits are defined make sure the neighbor is present there
             if exits and neighbor not in exits:

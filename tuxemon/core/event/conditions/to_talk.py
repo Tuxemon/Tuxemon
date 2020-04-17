@@ -24,10 +24,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core.event import MapCondition
 from tuxemon.core.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.core.event.conditions.player_facing_npc import PlayerFacingNPCCondition
 from tuxemon.core.event.eventcondition import EventCondition
-from tuxemon.core.map import MapCondition
 
 
 class ToTalkCondition(EventCondition):

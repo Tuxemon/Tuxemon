@@ -57,7 +57,15 @@ class RunningEvent(object):
     Actions being managed by the RunningEvent class can share information
     using the context dictionary.
     """
-    __slots__ = ('map_event', 'session', 'context', 'action_index', 'current_action', 'current_map_action')
+
+    __slots__ = (
+        "map_event",
+        "session",
+        "context",
+        "action_index",
+        "current_action",
+        "current_map_action",
+    )
 
     def __init__(self, session, map_event):
         self.session = session
@@ -159,8 +167,14 @@ class EventEngine(object):
             if map_condition is None:
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False
-            result = map_condition.test(session, cond_data) == (cond_data.operator == 'is')
-            logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
+            result = map_condition.test(session, cond_data) == (
+                cond_data.operator == "is"
+            )
+            logger.debug(
+                'map condition "{}": {} ({})'.format(
+                    map_condition.name, result, cond_data
+                )
+            )
             return result
 
     def execute_action(self, session, action_name, parameters=None):
@@ -228,7 +242,10 @@ class EventEngine(object):
 
         else:
             # optimal, less debug
-            if all(self.check_condition(session, cond, map_event) for cond in map_event.conds):
+            if all(
+                self.check_condition(session, cond, map_event)
+                for cond in map_event.conds
+            ):
                 self.start_event(session, map_event)
 
     def process_map_events(self, events):
@@ -301,7 +318,9 @@ class EventEngine(object):
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(e.session, next_action.type, next_action.parameters)
+                        action = self.get_action(
+                            e.session, next_action.type, next_action.parameters
+                        )
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk

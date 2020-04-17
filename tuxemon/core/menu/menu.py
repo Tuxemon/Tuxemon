@@ -14,6 +14,7 @@ from tuxemon.core.platform.const import buttons, intentions
 from tuxemon.core.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
+from tuxemon.core.monster import Monster
 
 logger = logging.getLogger(__name__)
 
@@ -211,7 +212,7 @@ class Menu(state.State):
                 self.menu_items.arrange_menu_items()
             
             for index, item in enumerate(self.menu_items):
-                if not hasattr(item.game_object,"hp"):
+                if not isinstance(item.game_object,Monster):
                     break
                 self.selected_index = index
                 if item.enabled:

@@ -86,13 +86,13 @@ msgid "tm_avalanche"
 msgstr "MT: Avalancha"
 
 msgid "tm_avalanche_description"
-msgstr "Máquna técnica que enseña a un Tuxemon de Agua o Tierra la técnica Avalancha."
+msgstr "Máquina técnica que enseña a un Tuxemon de Agua o Tierra la técnica Avalancha."
 
 msgid "tm_blossom"
 msgstr "TM: Florecer"
 
 msgid "tm_blossom_description"
-msgstr "Máquna técnica que enseña a un Tuxemon de Madera la técnica Florecer."
+msgstr "Máquina técnica que enseña a un Tuxemon de Madera la técnica Florecer."
 
 msgid "item_cannot_use_here"
 msgstr "¡No puede usarse {name} aquí!"
@@ -1336,10 +1336,10 @@ msgid "route_2"
 msgstr "Ruta 2"
 
 msgid "sure_i_do"
-msgstr "Claro, lo haré"
+msgstr "Claro que quiero"
 
 msgid "not_really"
-msgstr "Va a ser que no"
+msgstr "En realidad no"
 
 msgid "mistaken"
 msgstr "Estás equivocado"
@@ -1369,10 +1369,11 @@ msgstr "Vaya, que lástima. ¡Pues me he hecho todo el camino hasta aquí para h
 
 msgid "professor_dialog2\n"
 msgstr "¿De dónde vinieron los Tuxemon?\n"
-"Nadie lo sabe realmente, pero han habitado nuestro planeta por miles de años cuanto menos\n"
-"Los Tuxemon son pequeños animales. Nos hacemos sus amigos, aprendemos de ellos, y los usamos para luchar contra otros Tuxemon en competiciones deportivas.\n"
+"Nadie lo sabe realmente, pero han habitado nuestro planeta por miles de años cuanto menos. \n"
+"Los Tuxemon son pequeños animales. \n"
+"Nos hacemos sus amigos, aprendemos de ellos, y los usamos para luchar contra otros Tuxemon en competiciones deportivas.\n"
 "Bueno... por lo menos solíamos hacerlo...\n"
-"Me preguntaba... acabo de recibir tres nuevos Tuxemon y me gustaría investigar cómo actúan con un entrenador\n"
+"Me preguntaba... acabo de recibir tres nuevos Tuxemon y me gustaría investigar cómo actúan con un entrenador. \n"
 "¿Estarías interesado en uno?"
 
 msgid "professor_turn"
@@ -1526,10 +1527,10 @@ msgstr "Bienvenido al Parque de la Ciudad: Una muestra del mundo silvestre\n"
 "↑ Parque de la Ciudad --- Ruta 2 ↓\n"
 
 msgid "route2speech"
-msgstr "EEK!!!"
+msgstr "¡¡¡Ehhhh!!!"
 
 msgid "route2speech2\n"
-msgstr "Oh. Solo eres tú, {name}...\n"
+msgstr "Oh. Solo eres tú, ${{name}}...\n"
 "Sé más considerado la siguiente vez que empujes a alguien. El barranco es más profundo de lo que parece...\n"
 
 msgid "route2speech3\n"
@@ -1726,7 +1727,7 @@ msgid "maamnothing4"
 msgstr "Genial. Gracias por avisar."
 
 msgid "maamnothing5"
-msgstr "Señora, tampoco le he encontrado a él."
+msgstr "Señora, yo tampoco le he encontrado."
 
 msgid "maamnothing6"
 msgstr "... ... ... ...\n"
@@ -1792,10 +1793,108 @@ msgid "happy_guy_dialog"
 msgstr "Happy: ¡Hola! Me encanta poner motes a los Tuxemon, ¿quieres que les ponga motes a los tuyos?"
 
 msgid "happy_rename"
-msgstr "Happy: ¡Es un nombre genial! Estoy seguro de que a tu Tuxemon le encanta 🙂"
+msgstr "Happy: ¡Es un nombre genial! Estoy seguro de que a tu Tuxemon le encanta :)"
 
 msgid "shady_guy_dialog"
 msgstr "Tipo Siniestro: ¡Eh, tú! Si tienes algún... \"problema\" asociado a tu nombre puedo arreglarlo por ti..."
 
 msgid "shady_rename"
 msgstr "Tipo Siniestro: Buena suerte con tu nuevo nombre, amigo..."
+
+msgid "37707_sign_welcome"
+msgstr "¡Bienvenido al pueblo 37707! Somos..."
+
+msgid "37707_sign_tower"
+msgstr "Torre del pueblo 37707. Estructura altamente inestable: ¡No entrar!"
+
+msgid "37707_sign_foreign"
+msgstr "Esta señal está escrita en un lenguage extraño que no logras entender."
+
+msgid "37707_sign_hidden"
+msgstr "Sal mientras puedas..."
+
+msgid "37707_sign_missing_welcome"
+msgstr "Bi3n^3nid0 a Pu3b10 ¡ERROR! N^nca fu1m0$"
+
+msgid "37707_sign_missing_tower"
+msgstr "Pueblo N/A <undefined_structure>. Odahcucse rebah saírebed"
+
+msgid "37707_sign_missing_foreign"
+msgstr "PyGame - UnboundLocalError: Local variable 'map_id' referenced before assignment\n"
+"Error 404: **** resources not found. Please notify tHe dEvEl0p#r$ @b0%t t#1# ##### ###########\n"
+"01010010 01100101 01101101 01100101 01101101 01100010 01100101 01110010 00100000 01101101 01100101 00101110"
+
+msgid "37707_sign_missing_hidden_read"
+msgstr "$@B3M0$ QU3 L33$ 3$T0: H@$ $1D0 @DV3RT1D0."
+
+msgid "37707_sign_missing_hidden_unread"
+msgstr "3$ D3M@$1@D0 T@RD3 Y@"
+
+msgid "37707_house"
+msgstr "Qué extraño: está cerrado. Nadie parece estar usando este edificio."
+
+msgid "37707_mail"
+msgstr "Está vacío y lleno de telarañas."
+
+msgid "37707_house_missing"
+msgstr "N0 h@y nAd@ @qu1. Nunc@ l0 hub0."
+
+msgid "37707_mail_missing"
+msgstr "E$t@ v@ci0 y pu3dE$ v3r l@ n@dA"
+
+msgid "37707_flower"
+msgstr "Sientes una cálida energía que emana de esta flor. Es lo único de este pueblo que a tus Tuxemon parece gustarle."
+
+msgid "37707_flower_missing"
+msgstr "E330R: Event @ction set_monster_health contains inv@l1d p@r@meter$. He@l1ng aLL Tu+em0n.,."
+
+msgid "37707_computer"
+msgstr "Developer console: This is intended for Tuxemon developers only, for testing an experimental data loading system.\n"
+"The variable for the new loader will now be enabled. Please report any issues you find at https://tuxemon.org\n"
+"Developer note 1: This suppresses crashes for missing maps. The system may attempt to load invalid data!\n"
+"Developer note 2: Do NOT save your game with this enabled, it may result in data corruption.\n"
+"Developer note 3: As of switching to Python 3, data seems to be aggregated and combined in a very unusual manner. Please debug this!"
+
+msgid "37707_tower_missing"
+msgstr "N0 pu3de$ 3ntr@r 3n un 3d1fIci0 qu3 n0 e+i$t3."
+
+msgid "37707_exit_missing"
+msgstr "<recovery_module>: GREETINGS ${{name}}. PLEASE UNDERSTAND THIS AREA NEVER EXISTED. YOU HAVE EXPERIENCED A SYSTEM ERROR.\n"
+"<recovery_module>: THE GLITCH HAS NOW BEEN PATCHED. YOU MAY CONTINUE THE GAME NORMALLY FROM HERE ON. DO NOT ATTEMPT TO RETURN HERE.\n"
+"<recovery_module>: WAKE UP. FORGET ALL. ALL IS BUT A DREAM..."
+
+msgid "37707_villager_male_1"
+msgstr "Blank: Mmmm. Hola. Lo siento: normalmente somos precavidos con los extraños. Solo recibimos visitas... a veces.\n"
+"Blank: Pero ya que estás aquí, quizás puedas hacerme un favor. Puede sonar extraño viniendo de mí, pero necesito saberlo...\n"
+"Blank: ¿Sabes quién soy? ¿Me has... visto alguna vez? Tengo curiosidad: mi nombre, ¿tengo un...\n"
+"Blank: No. Lo siento: he cometido un error. Por favor, nunca hables de esto. Continúa, disfruta tu viaje aquí."
+
+msgid "37707_villager_male_2"
+msgstr "Blank: No puedes ayudarme más. No nos está permitido hablar de ello. No puedes entenderlo. Vete."
+
+msgid "37707_villager_male_3"
+msgstr "Blank: Tú... tú nos traerás la ruina de nuevo. ¡Vuelve sobre tus pasos y no regreses!"
+
+msgid "37707_villager_female_1"
+msgstr "Wish: ¡Oh... un recién llegado! ¿Cómo viniste aquí? No hemos visto a nadie nuevo desde... oh, da igual.\n"
+"Wish: ¡Bienvenido! Bienvenido a... oh vaya: ¡nunca le llegamos a dar un nombre a nuestro pueblo! Puedes llamarnos como quieras supongo.\n"
+"Wish: Por favor, considérate como en tu propia casa. Normalmente hay más gente por aquí... depende de la semilla, quizás hoy había malos presagios.\n"
+"Wish: Dime si necesitas algo que exista aquí. Pero no cometas el mismo error que los otros: no queremos que tú también nos abandones."
+
+msgid "37707_villager_female_2"
+msgstr "Wish: Por favor, no entres en la torre. Aún no ha sido construída."
+
+msgid "37707_villager_female_3"
+msgstr "Wish: No, no, no: ¡deja de hacer eso! ¿No entiendes que no está aquí?"
+
+msgid "37707_villager_male_missing"
+msgstr "00000: Y0 nunc@ n@cÍ\n"
+"${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}}"
+
+msgid "37707_villager_female_missing"
+msgstr "@*!^: ¡0H... un r3c1En Ll3g@d0! ¿C0mo v1ni$t3 @qu1? <NONE> h3m0$ v1$t0 @ nAd13 nu3v0 d3$De... ()h, d@ dA D@ IGUAAAAAL\n"
+"@*!^: ¡BIenvENidO! Bi3nven1d0 a... 0H N/A: ¡nunc@ le ll3gam0$ a d@r un n0mbr3 a nue$tr0 puebl0 {<1} Nunc@ ll3gam0000000s {<2} NuNc@ c0n$tru1m0s nu3str0 pu3bl0\n"
+"E TO NO EX ST  EST S C NECT D  A L  N DA D B S IRT  A OR "
+
+msgid "cannot_use_item_monster"
+msgstr "Este objeto no puede ser usado en este monstruo."

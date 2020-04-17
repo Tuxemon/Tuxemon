@@ -40,7 +40,12 @@ from collections import OrderedDict
 
 from six.moves import configparser
 
+import pygame
+from pygame.locals import *
+
 from tuxemon.core.animation import Animation
+from tuxemon.core.platform.const import buttons, events
+
 
 Animation.default_transition = 'out_quint'
 
@@ -113,9 +118,37 @@ class TuxemonConfig(object):
         self.debug_level = cfg.get("logging", "debug_level")
 
         # input config (None means use default for the platform)
+        # [controls]
         self.gamepad_deadzone = .25
         self.gamepad_button_map = None
-        self.keyboard_button_map = None
+        self.keyboard_button_map = {
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_up")): buttons.UP,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_down")): buttons.DOWN,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_left")): buttons.LEFT,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_right")): buttons.RIGHT,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_a")): buttons.A,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_b")): buttons.B,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_b2")): buttons.B,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_back")): buttons.BACK,
+            getattr(pygame.locals,"K_"+cfg.get("controls", "player_backspace")): events.BACKSPACE,
+            None: events.UNICODE,
+         }
+
+        #self.keyboard_button_map = ast.literal_eval(self.string_key_map)
+        #self.keyboard_button_map = None
+
+       # self.keyboard_button_map = {
+        #    pygame.K_w: buttons.UP,
+        #    pygame.K_s: buttons.DOWN,
+        #    pygame.K_a: buttons.LEFT,
+        #    pygame.K_d: buttons.RIGHT,
+        #    pygame.K_RETURN: buttons.A,
+        #    pygame.K_RSHIFT: buttons.B,
+        #    pygame.K_LSHIFT: buttons.B,
+        #    pygame.K_ESCAPE: buttons.BACK,
+        #    pygame.K_BACKSPACE: events.BACKSPACE,
+        #    None: events.UNICODE,
+       # }
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
@@ -170,6 +203,17 @@ def get_defaults():
             ("loggers", "all"),
             ("debug_logging", True),
             ("debug_level", "error")
+        ))),
+        ("controls", OrderedDict((
+            ("player_up", "UP"),
+            ("player_down", "DOWN"),
+            ("player_left", "LEFT"),
+            ("player_right", "RIGHT"),
+            ("player_a", "RETURN"),
+            ("player_b", "LSHIFT"),
+            ("player_b2", "RSHIFT"),
+            ("player_back", "ESCAPE"),
+            ("player_backspace", "BACKSPACE")
         ))),
     ))
 

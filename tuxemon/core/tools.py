@@ -31,6 +31,9 @@
 Do not import platform-specific libraries such as pygame.
 Graphics/audio operations should go to their own modules.
 
+As the game library is developed and matures, move these into larger modules
+if more appropriate.  Ideally this should be kept small.
+
 """
 from __future__ import absolute_import
 from __future__ import division

@@ -32,8 +32,6 @@ from __future__ import unicode_literals
 import logging
 from collections import namedtuple
 
-from tuxemon.core.session import local_session
-
 logger = logging.getLogger(__name__)
 
 # Set up map action and condition objects
@@ -87,5 +85,5 @@ def get_npc(session, slug):
     :returns: The NPC object or None if the NPC is not found.
     """
     if slug == "player":
-        return local_session.player
-    return local_session.world.get_entity(slug)
+        return session.player
+    return session.world.get_entity(slug)

@@ -374,7 +374,6 @@ class NPC(Entity):
         direction = get_direction(self.tile_pos, target)
         self.facing = direction
         if self.valid_movement(target):
-            # self.network_notify_start_moving(direction)
             self.animation = "walking"
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
@@ -418,30 +417,6 @@ class NPC(Entity):
         :return:
         """
         self.tile_pos = proj(self.position3)
-        # self.network_notify_location_change()
-
-    # def network_notify_start_moving(self, direction):
-    #     """ WIP guesswork ¯\_(ツ)_/¯
-    #
-    #     :return:
-    #     """
-    #     if self.world.game.isclient or self.world.game.ishost:
-    #         self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
-    #
-    # def network_notify_stop_moving(self):
-    #     """ WIP guesswork ¯\_(ツ)_/¯
-    #
-    #     :return:
-    #     """
-    #     if self.world.game.isclient or self.world.game.ishost:
-    #         self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
-    #
-    # def network_notify_location_change(self):
-    #     """ WIP guesswork ¯\_(ツ)_/¯
-    #
-    #     :return:
-    #     """
-    #     self.update_location = True
 
     ####################################################
     #                   Monsters                       #

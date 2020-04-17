@@ -10,12 +10,12 @@ class Session(object):
         """
         :param tuxemon.core.client.Client client: Game session
         :param tuxemon.core.world.World world: Game world
-        :param tuxemon.core.player.Player player: Player object
+        :param tuxemon.core.npc.NPC player: Player NPC object
         """
         self.client = client
         self.world = world
         self.player = player
 
 
-# WIP will be filled in later when game starts
+# will be filled in later when game starts
 local_session = Session(None, None, None)

@@ -41,7 +41,7 @@ import os.path
 import re
 
 from tuxemon.constants import paths
-from tuxemon.core import config
+from tuxemon.core import config, log
 
 logger = logging.getLogger(__name__)
 
@@ -70,6 +70,7 @@ config.generate_default_config()
 
 # Read "tuxemon.cfg" config from disk, update and write back
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
+log.configure()
 
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)

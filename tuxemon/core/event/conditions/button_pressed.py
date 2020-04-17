@@ -57,8 +57,8 @@ class ButtonPressedCondition(EventCondition):
             raise ValueError("Cannot support key type: {}".format(button))
 
         # Loop through each event
-        for event in session.client.key_events:
-            if event.pressed and event.button == button:
-                return True
+        # for event in game.key_events:
+        #     if event.pressed and event.button == button:
+        #         return True
 
         return False

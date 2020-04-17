@@ -70,3 +70,4 @@ class EventCondition(object):
     @property
     def done(self):
         return True
+

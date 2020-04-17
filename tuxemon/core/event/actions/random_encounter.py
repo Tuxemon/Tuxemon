@@ -68,6 +68,10 @@ class RandomEncounterAction(EventAction):
         if encounter:
             logger.info("Starting random encounter!")
 
+            # Stop movement and keypress on the server.
+            if self.session.client.isclient or self.session.client.ishost:
+                self.session.client.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
+
             npc = _create_monster_npc(encounter)
 
             # Lookup the environment

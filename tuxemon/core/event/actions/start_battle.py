@@ -67,6 +67,10 @@ class StartBattleAction(EventAction):
         if not world:
             return False
 
+        # Stop movement and keypress on the server.
+        if self.session.client.isclient or self.session.client.ishost:
+            self.session.client.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
+
         npc = world.get_entity(self.parameters.npc_slug)
         npc.load_party()
 

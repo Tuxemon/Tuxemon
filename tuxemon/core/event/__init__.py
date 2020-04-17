@@ -32,6 +32,8 @@ from __future__ import unicode_literals
 import logging
 from collections import namedtuple
 
+from tuxemon.core.session import local_session
+
 logger = logging.getLogger(__name__)
 
 # Set up map action and condition objects
@@ -68,6 +70,7 @@ __all__ = [
     "EventObject",
     "MapAction",
     "MapCondition",
+    "EventObject",
     "get_npc"
 ]
 
@@ -85,13 +88,5 @@ def get_npc(session, slug):
     :returns: The NPC object or None if the NPC is not found.
     """
     if slug == "player":
-        return session.player
-
-    # Loop through the NPC list and see if the slug matches any in the list
-    world = session.client.get_state_by_name("WorldState")
-    if world is None:
-        logger.error("Cannot search for NPC if world doesn't exist: " + slug)
-        return
-
-    # logger.error("Unable to find NPC: " + slug)
-    return world.get_entity(slug)
+        return local_session.player
+    return local_session.world.get_entity(slug)

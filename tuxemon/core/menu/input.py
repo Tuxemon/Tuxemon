@@ -40,8 +40,8 @@ class InputMenu(Menu):
         # area where the input will be shown
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
         self.text_area.animated = False
-        self.text_area.rect = Rect(tools.scale_sequence([90, 30, 80, 100]))
         self.text_area.text = self.input_string
+        self.text_area.rect = Rect(tools.scale_sequence([90, 30, 80, 100]))
         self.sprites.add(self.text_area)
 
         # prompt

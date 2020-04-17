@@ -25,7 +25,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.event.eventcondition import EventCondition
-from tuxemon.core.platform import mixer
 
 
 class MusicPlayingCondition(EventCondition):
@@ -76,7 +75,9 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        if session.client.current_music["song"] == song and mixer.music.get_busy():
-            return True
-        else:
-            return False
+        # todo fix this
+        return True
+        # if session.current_music["song"] == song and mixer.music.get_busy():
+        #     return True
+        # else:
+        #     return False

@@ -45,6 +45,8 @@ class Entity(object):
         self.slug = None
         self.world = None
         self.instance_id = None
+        self.map = None
+        self.map_name = None
         self.tile_pos = Point2(0, 0)
         self.position3 = Point3(0, 0, 0)
         self.acceleration3 = Vector3(0, 0, 0)  # not used currently, just set velocity

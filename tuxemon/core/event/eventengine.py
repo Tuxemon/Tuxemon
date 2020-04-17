@@ -39,6 +39,7 @@ from tuxemon.constants import paths
 from tuxemon.core import plugin
 from tuxemon.core import prepare
 from tuxemon.core.platform.const import buttons
+from tuxemon.core.session import local_session
 
 logger = logging.getLogger(__name__)
 
@@ -88,45 +89,25 @@ class RunningEvent(object):
 
 
 class EventEngine(object):
-    """ A class for the event engine. The event engine checks to see if a group of
-    conditions have been met and then executes a set of actions.
+    """ A class for the event engine.
 
-    Actions in the same MapEvent are not run concurrently, and they can be run over
-    one or several frames.  Currently this engine is run in the context of a single map.
+    The event engine checks to see if a group of conditions have been met
+    and then executes a set of actions.
 
-    Any actions or conditions executed on one map will be reset when the map is
-    changed.
-
+    Actions in the same MapEvent are not run concurrently, and they can be
+    run over one or several frames.
     """
 
-    def __init__(self, session):
-        self.session = session
-
+    def __init__(self, world, events):
+        self.world = world
+        self.events = events
         self.conditions = dict()
         self.actions = dict()
         self.running_events = dict()
-        self.name = "Event"
-        self.current_map = None
-        self.timer = 0.0
-        self.wait = 0.0
-        self.button = None
-
-        # debug
         self.partial_events = list()
 
         self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
         self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
-
-    def reset(self):
-        """ Clear out running events.  Use when changing maps.
-
-        :return:
-        """
-        self.running_events = dict()
-        self.current_map = None
-        self.timer = 0.0
-        self.wait = 0.0
-        self.button = None
 
     def get_action(self, name, parameters=None):
         """ Get an action that is loaded into the engine
@@ -153,7 +134,8 @@ class EventEngine(object):
             logger.error(error)
 
         else:
-            return action(self.session, parameters)
+            # TODO: the 1st parameter specifies the player/session
+            return action(local_session, parameters)
 
     def get_condition(self, name):
         """ Get a condition that is loaded into the engine
@@ -193,7 +175,7 @@ class EventEngine(object):
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False
 
-            result = map_condition.test(self.session, cond_data) == (cond_data.operator == 'is')
+            result = map_condition.test(local_session, cond_data) == (cond_data.operator == 'is')
             logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
             return result
 
@@ -290,8 +272,11 @@ class EventEngine(object):
 
         :rtype: None
         """
-        # debug
         self.partial_events = list()
+        # NOTE: there is a potential bug here; if/when a condition here starts
+        # a new action, that action will be updated immediately after with a time
+        # delta.  the dt for new actions should be essentially 0, but in this case
+        # it will be some value greater.
         self.check_conditions()
         self.update_running_events(dt)
 
@@ -304,15 +289,7 @@ class EventEngine(object):
         :returns: None
 
         """
-        # do the "init" events.  this will be done just once
-        # TODO: find solution that doesn't nuke the init list
-        # TODO: make event engine generic, so can be used in global scope, not just maps
-        if self.session.client.inits:
-            self.process_map_events(self.session.client.inits)
-            self.session.client.inits = list()
-
-        # process any other events
-        self.process_map_events(self.session.client.events)
+        self.process_map_events(self.events)
 
     def update_running_events(self, dt):
         """ Update the events that are running
@@ -409,7 +386,7 @@ class EventEngine(object):
         """
         # has the player pressed the action key?
         if event.pressed and event.button == buttons.A:
-            for map_event in self.session.client.interacts:
+            for map_event in self.world.interacts:
                 self.process_map_event(map_event)
 
         return event

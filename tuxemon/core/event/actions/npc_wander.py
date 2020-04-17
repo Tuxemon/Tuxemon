@@ -24,7 +24,6 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import math
 import random
 
 from tuxemon.core.event import get_npc

@@ -34,21 +34,18 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os
 from math import hypot
 
 from tuxemon.compat import Rect
-from tuxemon.core import pyganim
 from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
 from tuxemon.core.item.item import Item
 from tuxemon.core.item.item import decode_inventory, encode_inventory
 from tuxemon.core.locale import T
-from tuxemon.core.map import proj, facing, dirs3, dirs2, get_direction
+from tuxemon.core.map import proj, dirs3, dirs2, get_direction
 from tuxemon.core.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.core.prepare import CONFIG
 from tuxemon.core.tools import nearest, trunc
-from tuxemon.core.graphics import load_and_scale
 
 logger = logging.getLogger(__name__)
 
@@ -82,6 +79,8 @@ class NPC(Entity):
     length paths for directly setting a series of movements.
 
     Pathfinding is accomplished by setting the path directly.
+
+    TODO: move the map position/movement code into a "Body" class
 
     To move one tile, simply set a path of one item.
     """
@@ -119,6 +118,7 @@ class NPC(Entity):
         self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
         self.inventory = {}  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
+        self.animation = "standing"
 
         # combat related
         self.ai = None  # Whether or not this player has AI associated with it
@@ -147,13 +147,9 @@ class NPC(Entity):
         # To move the npc, change the value to one of four directions: left, right, up or down.
         # The npc will then move one tile in that direction until it is set to None.
 
-        # TODO: move sprites into renderer so class can be used headless
-        self.playerHeight = 0
-        self.playerWidth = 0
-        self.standing = {}  # Standing animation frames
-        self.sprite = {}  # Moving animation frames
-        self.moveConductor = pyganim.PygConductor()
-        self.load_sprites()
+        # TODO: pull values from the sprite, json, or some default
+        self.playerHeight = 16
+        self.playerWidth = 16
         self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
     def get_state(self, session):
@@ -166,7 +162,7 @@ class NPC(Entity):
 
         """
         return {
-            'current_map': session.client.get_map_name(),
+            'current_map': self.map,
             'facing': self.facing,
             'game_variables': self.game_variables,
             'inventory': encode_inventory(self.inventory),
@@ -200,88 +196,17 @@ class NPC(Entity):
             'monsters': decode_monsters(save_data['storage']),
         }
 
-    def load_sprites(self):
-        """ Load sprite graphics
-
-        :return:
-        """
-        # TODO: refactor animations into renderer
-        # Get all of the player's standing animation images.
-        self.standing = {}
-        for standing_type in facing:
-            filename = "{}_{}.png".format(self.sprite_name, standing_type)
-            path = os.path.join("sprites", filename)
-            self.standing[standing_type] = load_and_scale(path)
-
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
-
-        # avoid cutoff frames when steps don't line up with tile movement
-        frames = 3
-        frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
-
-        # Load all of the player's sprite animations
-        anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
-        for anim_type in anim_types:
-            images = [
-                'sprites/%s_%s.%s.png' % (
-                    self.sprite_name,
-                    anim_type,
-                    str(num).rjust(3, str('0'))
-                )
-                for num in range(4)
-            ]
-
-            frames = []
-            for image in images:
-                surface = load_and_scale(image)
-                frames.append((surface, frame_duration))
-
-            self.sprite[anim_type] = pyganim.PygAnimation(frames, loop=True)
-
-        # Have the animation objects managed by a conductor.
-        # With the conductor, we can call play() and stop() on all the animation objects
-        # at the same time, so that way they'll always be in sync with each other.
-        self.moveConductor.add(self.sprite)
-
-    def get_sprites(self, layer):
-        """ Get the surfaces and layers for the sprite
-
-        Used to render the player
-
-        TODO: Move the 'layer' to the NPC class so characters
-        can define their own drawing layer.
-
-        :param layer: The layer to draw the sprite on.
-        :type layer: Int
-
-        :return:
-        """
-
-        def get_frame(d, ani):
-            frame = d[ani]
-            try:
-                surface = frame.getCurrentFrame()
-                frame.rate = self.moverate / CONFIG.player_walkrate
-                return surface
-            except AttributeError:
-                return frame
-
-        # TODO: move out to the world renderer
-        frame_dict = self.sprite if self.moving else self.standing
-        state = animation_mapping[self.moving][self.facing]
-        return [(get_frame(frame_dict, state), self.tile_pos, layer)]
-
     def pathfind(self, destination):
         """ Find a path and also start it
 
-        Queries the world for a valid path
+        Queries the map for a valid path
 
         :param destination:
         :return:
         """
         # TODO: handle invalid paths
         self.pathfinding = destination
-        path = self.world.pathfind(tuple(self.tile_pos), destination)
+        path = self.map.pathfind(tuple(self.tile_pos), destination)
         if path:
             self.path = path
             self.next_waypoint()
@@ -289,7 +214,7 @@ class NPC(Entity):
     def check_continue(self):
         try:
             pos = tuple(int(i) for i in self.tile_pos)
-            direction_next = self.world.collision_map[pos]["continue"]
+            direction_next = self.map.collision_map[pos]["continue"]
             self.move_one_tile(direction_next)
         except (KeyError, TypeError):
             pass
@@ -357,7 +282,7 @@ class NPC(Entity):
         self.cancel_path()
 
     def move(self, time_passed_seconds):
-        """ Move the entity around the game world
+        """ Move the entity around the game map
 
         * check if the move_direction variable is set
         * set the movement speed
@@ -403,7 +328,6 @@ class NPC(Entity):
         # TODO: its not possible to move the entity with physics b/c this stops that
         if not self.path:
             self.cancel_movement()
-            self.moveConductor.stop()
 
     def move_one_tile(self, direction):
         """ Ask entity to move one tile
@@ -424,7 +348,7 @@ class NPC(Entity):
         :param tile:
         :return:
         """
-        return tile in self.world.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
 
     @property
     def move_destination(self):
@@ -450,15 +374,8 @@ class NPC(Entity):
         direction = get_direction(self.tile_pos, target)
         self.facing = direction
         if self.valid_movement(target):
-            # pyganim has horrible clock drift.  even after one animation
-            # cycle, the time will be off.  drift causes the walking steps to not
-            # align with tiles and some frames will only last one game frame.
-            # using play to start each tile will reset the pyganim timer
-            # and prevent the walking animation frames from coming out of sync.
-            # it still occasionally happens though!
-            # eventually, there will need to be a global clock for the game,
-            # not based on wall time, to prevent visual glitches.
-            self.moveConductor.play()
+            # self.network_notify_start_moving(direction)
+            self.animation = "walking"
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:
@@ -501,30 +418,30 @@ class NPC(Entity):
         :return:
         """
         self.tile_pos = proj(self.position3)
-        self.network_notify_location_change()
+        # self.network_notify_location_change()
 
-    def network_notify_start_moving(self, direction):
-        """ WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
-        if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
-
-    def network_notify_stop_moving(self):
-        """ WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
-        if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
-
-    def network_notify_location_change(self):
-        """ WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
-        self.update_location = True
+    # def network_notify_start_moving(self, direction):
+    #     """ WIP guesswork ¯\_(ツ)_/¯
+    #
+    #     :return:
+    #     """
+    #     if self.world.game.isclient or self.world.game.ishost:
+    #         self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
+    #
+    # def network_notify_stop_moving(self):
+    #     """ WIP guesswork ¯\_(ツ)_/¯
+    #
+    #     :return:
+    #     """
+    #     if self.world.game.isclient or self.world.game.ishost:
+    #         self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
+    #
+    # def network_notify_location_change(self):
+    #     """ WIP guesswork ¯\_(ツ)_/¯
+    #
+    #     :return:
+    #     """
+    #     self.update_location = True
 
     ####################################################
     #                   Monsters                       #

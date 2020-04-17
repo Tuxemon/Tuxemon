@@ -57,6 +57,9 @@ MAP_RENAMES = {
 
 
 def upgrade_save(save_data):
+    if 'steps' not in save_data['game_variables']:
+        save_data['game_variables']['steps'] = 0
+
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
         _update_current_map(i, save_data)

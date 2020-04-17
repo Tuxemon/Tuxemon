@@ -33,8 +33,8 @@ from collections import namedtuple
 
 from tuxemon.core.tools import cast_values
 
-from tuxemon.core.control import Control  # for type introspection
-assert Control
+from tuxemon.core.client import Client  # for type introspection
+assert Client
 
 logger = logging.getLogger(__name__)
 
@@ -103,13 +103,13 @@ class EventAction(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, game, parameters):
+    def __init__(self, session, parameters):
         """
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.session.Session
         :type parameters: list
         """
-        self.game = game
+        self.session = session
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

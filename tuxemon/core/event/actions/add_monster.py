@@ -49,4 +49,4 @@ class AddMonsterAction(EventAction):
         current_monster.set_level(monster_level)
         current_monster.current_hp = current_monster.hp
 
-        self.game.player1.add_monster(current_monster)
+        self.session.player.add_monster(current_monster)

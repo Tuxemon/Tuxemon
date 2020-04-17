@@ -165,7 +165,7 @@ class Task(AnimBase):
     def chain(self, callback, interval=0, times=1):
         """ Schedule a callback to execute when this one is finished
 
-        If you attempt to chain a task to a task that will will
+        If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
 
         This is convenience to make a new Task and set to it to
@@ -182,7 +182,7 @@ class Task(AnimBase):
     def chain_task(self, *others):
         """ Schedule Task(s) to execute when this one is finished
 
-        If you attempt to chain a task to a task that will will
+        If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
 
         :param others: Task instances

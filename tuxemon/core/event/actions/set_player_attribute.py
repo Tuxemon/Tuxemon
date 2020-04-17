@@ -24,6 +24,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core.event.actions.common import CommonAction
 from tuxemon.core.event.eventaction import EventAction
 
 
@@ -40,12 +41,6 @@ class SetPlayerAttributeAction(EventAction):
     ]
 
     def start(self):
-        world = self.game.get_state_name("WorldState")
-
-        if not world:
-            return
-
         attribute = self.parameters[0]
         value = self.parameters[1]
-
-        Common.set_character_attribute(world.player1, attribute, value)
+        CommonAction.set_character_attribute(self.session.player, attribute, value)

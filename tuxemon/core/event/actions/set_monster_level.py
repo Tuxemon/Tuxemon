@@ -41,23 +41,23 @@ class SetMonsterLevelAction(EventAction):
     ]
 
     def start(self):
-        if not self.game.player1.monsters > 0:
+        if not self.session.player.monsters > 0:
             return
 
         monster_slot = self.parameters[0]
         monster_level = self.parameters[1]
 
         if monster_slot:
-            if len(self.game.player1.monsters) < int(monster_slot):
+            if len(self.session.player.monsters) < int(monster_slot):
                 return
 
-            monster = self.game.player1.monsters[int(monster_slot)]
+            monster = self.session.player.monsters[int(monster_slot)]
             if monster_level:
                 monster.level = max(1, monster.level + int(monster_level))
             else:
                 monster.level = 1
         else:
-            for monster in self.game.player1.monsters:
+            for monster in self.session.player.monsters:
                 if monster_level:
                     monster.level = max(1, monster.level + int(monster_level))
                 else:

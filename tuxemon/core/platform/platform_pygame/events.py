@@ -10,6 +10,7 @@ import pygame as pg
 from tuxemon.core import prepare
 from tuxemon.core.platform.const import buttons, events
 from tuxemon.core.platform.events import InputHandler, PlayerInput, EventQueueHandler
+from tuxemon.core.session import local_session
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -39,7 +40,7 @@ class PygameEventQueueHandler(EventQueueHandler):
                     player_input.process_event(pg_event)
 
             if pg_event.type == pg.QUIT:
-                prepare.GLOBAL_CONTROL.event_engine.execute_action("quit")
+                local_session.client.event_engine.execute_action("quit")
 
         for player, inputs in self._inputs.items():
             for player_input in inputs:

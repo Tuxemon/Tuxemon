@@ -41,6 +41,7 @@ from functools import partial
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.session import local_session
 from tuxemon.core.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -62,12 +63,12 @@ class PCState(PopUpMenu):
         super(PCState, self).startup(*items, **kwargs)
 
         def change_state(state, **kwargs):
-            return partial(self.game.replace_state, state, **kwargs)
+            return partial(self.client.replace_state, state, **kwargs)
 
         add_menu_items(self, (('menu_monsters', change_state('MonsterMenuState')),
                               ('menu_items', change_state('ItemMenuState')),
                               ('menu_multiplayer', change_state('MultiplayerMenu')),
-                              ('log_off', self.game.pop_state)))
+                              ('log_off', self.client.pop_state)))
 
 
 class MultiplayerMenu(PopUpMenu):
@@ -89,7 +90,7 @@ class MultiplayerMenu(PopUpMenu):
         # check if server is already hosting a game
         if self.game.server.listening:
             self.game.pop_state(self)
-            open_dialog(self.game, [T.translate('multiplayer_already_hosting')])
+            open_dialog(local_session, [T.translate('multiplayer_already_hosting')])
 
         # not hosting, so start the process
         elif not self.game.isclient:
@@ -98,7 +99,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.server.server.listen()
             self.game.server.listening = True
 
-            # Enable the client, so we can connect to self
+            # Enable the game, so we can connect to self
             self.game.client.enable_join_multiplayer = True
             self.game.client.client.listen()
             self.game.client.listening = True
@@ -113,7 +114,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.pop_state(self)
 
             # inform player that hosting is ready
-            open_dialog(self.game, [T.translate('multiplayer_hosting_ready')])
+            open_dialog(local_session, [T.translate('multiplayer_hosting_ready')])
 
     def scan_for_games(self):
         # start the game scanner
@@ -134,7 +135,7 @@ class MultiplayerMenu(PopUpMenu):
         else:
             self.game.client.enable_join_multiplayer = True
             self.game.client.listening = True
-            self.game.client.client.listen()
+            self.game.client.game.listen()
 
 
 class MultiplayerSelect(PopUpMenu):

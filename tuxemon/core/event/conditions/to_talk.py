@@ -24,10 +24,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core.event import MapCondition
 from tuxemon.core.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.core.event.conditions.player_facing_npc import PlayerFacingNPCCondition
 from tuxemon.core.event.eventcondition import EventCondition
-from tuxemon.core.map import MapCondition
 
 
 class ToTalkCondition(EventCondition):
@@ -35,13 +35,13 @@ class ToTalkCondition(EventCondition):
     """
     name = "to_talk"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see the player is next to and facing a particular NPC and that the Return button is pressed.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: The condition details.
 
-        :type game: tuxemon.core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: NamedTuple
 
         :rtype: Boolean
@@ -64,9 +64,9 @@ class ToTalkCondition(EventCondition):
             ...
         }
         """
-        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(game, condition)
+        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, condition)
         button_pressed = ButtonPressedCondition().test(
-            game,
+            session,
             MapCondition(
                 type="button_pressed",
                 parameters=[

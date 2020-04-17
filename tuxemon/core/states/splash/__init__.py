@@ -48,7 +48,7 @@ class SplashState(state.State):
 
     def fade_out(self):
         self.fading_out = True
-        self.game.push_state("FadeOutTransition", caller=self)
+        self.client.push_state("FadeOutTransition", caller=self)
 
     def startup(self, **kwargs):
         # this task will skip the splash screen after some time

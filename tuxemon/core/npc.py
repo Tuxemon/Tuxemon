@@ -154,18 +154,17 @@ class NPC(Entity):
         self.load_sprites()
         self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
-    def get_state(self, game):
+    def get_state(self, session):
         """Prepares a dictionary of the npc to be saved to a file
 
-        :param game: The object that runs the game.
-        :type game: tuxemon.core.control.Control
+        :param tuxemon.core.session.Session session:
 
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the npc
 
         """
         return {
-            'current_map': game.get_map_name(),
+            'current_map': session.client.get_map_name(),
             'facing': self.facing,
             'game_variables': self.game_variables,
             'inventory': encode_inventory(self.inventory),
@@ -178,12 +177,11 @@ class NPC(Entity):
             'tile_pos': nearest(self.tile_pos),
         }
 
-    def set_state(self, game, save_data):
+    def set_state(self, session,  save_data):
         """Recreates npc from saved data
 
-        :param game:
-        :param save_data: Data used to recreate the player
-        :type save_data: Dictionary
+        :param tuxemon.core.session.Session session:
+        :param Dict save_data: Data used to recreate the player
 
         :rtype: None
         :returns: None
@@ -192,11 +190,11 @@ class NPC(Entity):
 
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
-        self.inventory = decode_inventory(game, self, save_data)
+        self.inventory = decode_inventory(session, self, save_data)
         self.monsters = decode_monsters(save_data)
         self.name = save_data['player_name']
         self.storage = {
-            'items': decode_inventory(game, self, save_data['storage']),
+            'items': decode_inventory(session, self, save_data['storage']),
             'monsters': decode_monsters(save_data['storage']),
         }
 
@@ -303,7 +301,6 @@ class NPC(Entity):
 
         :return: None
         """
-        self.network_notify_stop_moving()
         self.velocity3.x = 0
         self.velocity3.y = 0
         self.velocity3.z = 0
@@ -460,7 +457,6 @@ class NPC(Entity):
             # eventually, there will need to be a global clock for the game,
             # not based on wall time, to prevent visual glitches.
             self.moveConductor.play()
-            self.network_notify_start_moving(direction)
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:
@@ -637,15 +633,15 @@ class NPC(Entity):
         self.game_variables['party_level_highest'] = level_highest
         self.game_variables['party_level_average'] = level_average
 
-    def give_item(self, game, target, item, quantity):
-        subtract = self.alter_item_quantity(game, item.slug, -quantity)
-        give = target.alter_item_quantity(game, item.slug, quantity)
+    def give_item(self, session,  target, item, quantity):
+        subtract = self.alter_item_quantity(session, item.slug, -quantity)
+        give = target.alter_item_quantity(session, item.slug, quantity)
         return subtract and give
 
     def has_item(self, item_slug):
         return self.inventory.get(item_slug) is not None
 
-    def alter_item_quantity(self, game, item_slug, amount):
+    def alter_item_quantity(self, session, item_slug, amount):
         success = True
         item = self.inventory.get(item_slug)
         if amount > 0:
@@ -653,7 +649,7 @@ class NPC(Entity):
                 item['quantity'] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(game, self, item_slug),
+                    'item': Item(session, self, item_slug),
                     'quantity': amount,
                 }
         elif amount < 0:

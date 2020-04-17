@@ -4,8 +4,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.menu.menu import PopUpMenu
-from tuxemon.core.ui.text import TextArea
 from tuxemon.core.platform.const import buttons
+from tuxemon.core.ui.text import TextArea
 
 
 class DialogState(PopUpMenu):
@@ -55,9 +55,9 @@ class DialogState(PopUpMenu):
 
             elif self.next_text() is None:
                 if self.menu:
-                    self.game.push_state("ChoiceState", menu=self.menu, rect=self.text_area.rect)
+                    self.client.push_state("ChoiceState", menu=self.menu, rect=self.text_area.rect)
                 else:
-                    self.game.pop_state(self)
+                    self.client.pop_state(self)
 
     def next_text(self):
         try:

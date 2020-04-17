@@ -103,7 +103,7 @@ class Menu(state.State):
         self.menu_sprites.empty()
         self.animations.empty()
 
-        self.game.release_controls()
+        self.client.release_controls()
 
         del self.arrow
         del self.menu_items
@@ -210,9 +210,9 @@ class Menu(state.State):
                 self.menu_items.arrange_menu_items()
 
             for index, item in enumerate(self.menu_items):
-                self.selected_index = index
                 if item.enabled:
                     break
+                self.selected_index = index
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu
@@ -579,9 +579,9 @@ class Menu(state.State):
             self.state = "closing"
             ani = self.animate_close()
             if ani:
-                ani.callback = self.game.pop_state
+                ani.callback = self.client.pop_state
             else:
-                self.game.pop_state()
+                self.client.pop_state()
 
     def anchor(self, attribute, value):
         """ Set an anchor for the menu window
@@ -723,7 +723,7 @@ class PopUpMenu(Menu):
         :rtype: tuxemon.core.animation.Animation
         """
         # anchor the center of the popup
-        rect = self.game.screen.get_rect()
+        rect = self.client.screen.get_rect()
         self.anchor("center", rect.center)
 
         rect = self.calc_final_rect()

@@ -161,7 +161,7 @@ class CombatAnimations(Menu):
         self._monster_sprite_map[monster] = monster_sprite
 
         # position monster_sprite off screen and set animation to move it back to final spot
-        monster_sprite.rect.top = self.game.screen.get_height()
+        monster_sprite.rect.top = self.client.screen.get_height()
         self.animate(monster_sprite.rect, bottom=feet[1], transition='out_back',
                      duration=.9, delay=fall_time + .5)
 
@@ -516,8 +516,8 @@ class CombatAnimations(Menu):
 
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
-        
-        if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
+
+        if not self.is_trainer_battle:  # the combat call is handled by fill_battlefield_positions for trainer battles
             self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)

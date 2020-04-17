@@ -14,20 +14,22 @@ __all__ = ('android', 'init', 'mixer', 'get_config_dir')
 logger = logging.getLogger(__name__)
 
 _pygame = False
-
+mixer = None
 android = None
 
+# TODO: more graceful handling of android and pygame deps.
 try:
-    # Import the android module and android specific components. If we can't import, set to None - this
-    # lets us test it, and check to see if we want android-specific behavior.
     import android
-
-    # import also android mixer
     import android.mixed as mixer
 except ImportError:
-    import pygame.mixer as mixer
+    pass
 
-    _pygame = True
+if mixer is None:
+    try:
+        import pygame.mixer as mixer
+        _pygame = True
+    except ImportError:
+        pass
 
 
 def init():

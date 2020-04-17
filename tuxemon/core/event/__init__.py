@@ -70,7 +70,6 @@ __all__ = [
     "EventObject",
     "MapAction",
     "MapCondition",
-    "EventObject",
     "get_npc"
 ]
 

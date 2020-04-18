@@ -62,7 +62,7 @@ class Player(NPC):
 
         :type time_passed_seconds: Float
         """
-        # TODO: this will also record involuntary steps.  
+        # TODO: this will also record involuntary steps.
         # refactor so that only movements from the player are recorded.
         before_x = self.tile_pos[0]
         before_y = self.tile_pos[1]

@@ -122,15 +122,15 @@ class TuxemonConfig(object):
         self.gamepad_deadzone = .25
         self.gamepad_button_map = None
         self.keyboard_button_map = {
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_up")): buttons.UP,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_down")): buttons.DOWN,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_left")): buttons.LEFT,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_right")): buttons.RIGHT,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_a")): buttons.A,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_b")): buttons.B,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_b2")): buttons.B,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_back")): buttons.BACK,
-            getattr(pygame.locals,"K_"+cfg.get("controls", "player_backspace")): events.BACKSPACE,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_up").upper() if len(cfg.get("controls", "player_up")) > 1 else cfg.get("controls", "player_up").lower())): buttons.UP,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_down").upper() if len(cfg.get("controls", "player_down")) > 1 else cfg.get("controls", "player_down").lower())): buttons.DOWN,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_left").upper() if len(cfg.get("controls", "player_left")) > 1 else cfg.get("controls", "player_left").lower())): buttons.LEFT,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_right").upper() if len(cfg.get("controls", "player_right")) > 1 else cfg.get("controls", "player_right").lower())): buttons.RIGHT,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_a").upper() if len(cfg.get("controls", "player_a")) > 1 else cfg.get("controls", "player_a").lower())): buttons.A,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_b").upper() if len(cfg.get("controls", "player_b")) > 1 else cfg.get("controls", "player_b").lower())): buttons.B,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_b2").upper() if len(cfg.get("controls", "player_b2")) > 1 else cfg.get("controls", "player_b2").lower())): buttons.B,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_back").upper() if len(cfg.get("controls", "player_back")) > 1 else cfg.get("controls", "player_back").lower())): buttons.BACK,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_backspace").upper() if len(cfg.get("controls", "player_backspace")) > 1 else cfg.get("controls", "player_backspace").lower())): events.BACKSPACE,
             None: events.UNICODE,
          }
 
@@ -189,15 +189,15 @@ def get_defaults():
             ("debug_level", "error")
         ))),
         ("controls", OrderedDict((
-            ("player_up", "UP"),
-            ("player_down", "DOWN"),
-            ("player_left", "LEFT"),
-            ("player_right", "RIGHT"),
-            ("player_a", "RETURN"),
-            ("player_b", "LSHIFT"),
-            ("player_b2", "RSHIFT"),
-            ("player_back", "ESCAPE"),
-            ("player_backspace", "BACKSPACE")
+            ("player_up", "up"),
+            ("player_down", "down"),
+            ("player_left", "left"),
+            ("player_right", "right"),
+            ("player_a", "return"),
+            ("player_b", "lshift"),
+            ("player_b2", "rshift"),
+            ("player_back", "escape"),
+            ("player_backspace", "backspace")
         ))),
     ))
 

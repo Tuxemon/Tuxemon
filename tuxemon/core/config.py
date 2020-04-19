@@ -40,7 +40,11 @@ from collections import OrderedDict
 
 from six.moves import configparser
 
+import pygame
+from pygame.locals import *
+
 from tuxemon.core.animation import Animation
+from tuxemon.core.platform.const import buttons, events
 
 Animation.default_transition = 'out_quint'
 
@@ -115,7 +119,18 @@ class TuxemonConfig(object):
         # input config (None means use default for the platform)
         self.gamepad_deadzone = .25
         self.gamepad_button_map = None
-        self.keyboard_button_map = None
+        self.keyboard_button_map = {
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_up").upper() if len(cfg.get("controls", "player_up")) > 1 else cfg.get("controls", "player_up").lower())): buttons.UP,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_down").upper() if len(cfg.get("controls", "player_down")) > 1 else cfg.get("controls", "player_down").lower())): buttons.DOWN,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_left").upper() if len(cfg.get("controls", "player_left")) > 1 else cfg.get("controls", "player_left").lower())): buttons.LEFT,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_right").upper() if len(cfg.get("controls", "player_right")) > 1 else cfg.get("controls", "player_right").lower())): buttons.RIGHT,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_a").upper() if len(cfg.get("controls", "player_a")) > 1 else cfg.get("controls", "player_a").lower())): buttons.A,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_b").upper() if len(cfg.get("controls", "player_b")) > 1 else cfg.get("controls", "player_b").lower())): buttons.B,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_b2").upper() if len(cfg.get("controls", "player_b2")) > 1 else cfg.get("controls", "player_b2").lower())): buttons.B,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_back").upper() if len(cfg.get("controls", "player_back")) > 1 else cfg.get("controls", "player_back").lower())): buttons.BACK,
+            getattr(pygame.locals,"K_"+(cfg.get("controls", "player_backspace").upper() if len(cfg.get("controls", "player_backspace")) > 1 else cfg.get("controls", "player_backspace").lower())): events.BACKSPACE,
+            None: events.UNICODE,
+         }
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
@@ -170,6 +185,17 @@ def get_defaults():
             ("loggers", "all"),
             ("debug_logging", True),
             ("debug_level", "error")
+        ))),
+        ("controls", OrderedDict((
+            ("player_up", "up"),
+            ("player_down", "down"),
+            ("player_left", "left"),
+            ("player_right", "right"),
+            ("player_a", "return"),
+            ("player_b", "lshift"),
+            ("player_b2", "rshift"),
+            ("player_back", "escape"),
+            ("player_backspace", "backspace")
         ))),
     ))
 

@@ -1,6 +1,6 @@
 """
-Some basic checks to make sure the monster json is valid.
-Assumes all JSON files are properly formatted.
+Some basic checks to make sure the monster json is valid. Assumes all JSON
+files are properly formatted.
 
 
 Currently this will:

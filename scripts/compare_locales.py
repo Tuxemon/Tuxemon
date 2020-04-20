@@ -1,5 +1,5 @@
 """
-Check to see if locales differ from the master locale
+Check to see if JSON locales differ from the master locale
 
 The master locale is the US English locale.
 
@@ -24,9 +24,11 @@ def load_keys(filename):
     with open(filename) as _fp:
         return set(json.load(_fp).keys())
 
+
 def load_dic(filename):
     with open(filename) as _fp:
         return json.load(_fp)
+
 
 def print_list(sequence):
     for i in sorted(sequence):
@@ -36,9 +38,10 @@ def print_list(sequence):
 def print_json(sequence):
     for i in sorted(sequence):
         if i in master_dic:
-            print('    "'+i+'": "" --> "'+str(master_dic[i])+'"')
+            print('    "' + i + '": "" --> "' + str(master_dic[i]) + '"')
         else:
-            print('    "'+i+'": ""')
+            print('    "' + i + '": ""')
+
 
 master_dic = load_dic(locale_folder + master_filename)
 master_keys = load_keys(locale_folder + master_filename)

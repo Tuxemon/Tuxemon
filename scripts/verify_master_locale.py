@@ -1,7 +1,7 @@
 """
-Do some basic checks of the DB to make sure translated string
-have references in the master locale.  translated strings are
-defined by having a "_trans" suffix.
+Do some basic checks of the DB to make sure translated string have references
+in the master JSON locale.  translated strings are defined by having a
+"_trans" suffix.
 
 This isn't considered to be a comprehensive check
 
@@ -14,9 +14,8 @@ from __future__ import print_function
 
 import glob
 import json
-from os.path import dirname, join, normpath
 import re
-
+from os.path import dirname, join, normpath
 
 RESOURCES_DIR = normpath(join(dirname(__file__), '../../../tuxemon/resources'))
 

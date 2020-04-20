@@ -3,7 +3,7 @@
   "use_tech": "combat_used_x",
   "use_success": "generic_success",
   "use_failure": "generic_failure",
-  "animation": "greendrip",
+  "animation": "drip_green",
   "sfx": "sfx_bite",
   "icon": "gfx/ui/icons/status/poison-icon.png",
   "category": "poison",

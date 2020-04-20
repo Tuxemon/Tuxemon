@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "rage",
+  "animation": "buff_rage",
   "category": "physical",
   "effects": [],
   "healing_power": 0,

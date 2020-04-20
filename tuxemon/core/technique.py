@@ -42,6 +42,7 @@ from collections import namedtuple
 from tuxemon.core import formula
 from tuxemon.core import prepare
 from tuxemon.core.db import db, process_targets
+from tuxemon.core.graphics import animation_frame_files
 from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
@@ -141,12 +142,10 @@ class Technique(object):
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]
         if self.animation:
-            self.images = []
-            animation_dir = prepare.fetch("animations", "technique")
-            directory = sorted(os.listdir(animation_dir))
-            for image in directory:
-                if self.animation and image.startswith(self.animation):
-                    self.images.append(os.path.join("animations/technique", image))
+            directory = prepare.fetch("animations", "technique")
+            self.images = animation_frame_files(directory, self.animation)
+            if self.animation and not self.images:
+                logger.error("Cannot find animation frames for: {}".format(self.animation))
 
         # Load the sound effect for this technique
         self.sfx = results["sfx"]
@@ -324,7 +323,6 @@ class Technique(object):
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)
             target.apply_status(tech)
-
         return {
             'status': tech,
         }

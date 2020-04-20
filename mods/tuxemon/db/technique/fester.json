@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "greendrip",
+  "animation": "drip_green",
   "category": "physical",
   "effects": [
     "damage"

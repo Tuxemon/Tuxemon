@@ -142,6 +142,7 @@ class Item(object):
 
         # misc attributes (not translated!)
         self.sort = results['sort']
+        assert self.sort
         self.type = results["type"]
         self.sprite = results["sprite"]
         self.usable_in = results["usable_in"]

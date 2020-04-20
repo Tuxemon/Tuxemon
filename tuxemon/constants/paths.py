@@ -55,7 +55,7 @@ USER_GAME_DATA_DIR = os.path.join(USER_GAME_DIR, "data")
 USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
 
 # mods
-mods_folder = os.path.join(BASEDIR, "..", "mods")
+mods_folder = os.path.normpath(os.path.join(BASEDIR, "..", "mods"))
 
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.join(BASEDIR, "core/event/conditions")

@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "icelance ",
+  "animation": "icelance",
   "category": "physical",
   "effects": [
     "damage"

@@ -146,24 +146,38 @@ def scale_surface(surface, factor):
 
 
 def load_frames_files(directory, name):
-    """ Load animation that is a collection of frames
+    """ Load frames from filenames
 
     For example, water00.png, water01.png, water03.png
 
     :type directory: str
     :type name: str
-
-    :rtype: generator
+    :rtype: Iterator[pygame.surface.Surface]
     """
-    scale = prepare.SCALE
-    for animation_frame in os.listdir(directory):
-        pattern = r"{}\.[0-9].*".format(name)
-        if re.findall(pattern, animation_frame):
-            frame = pygame.image.load(directory + "/" + animation_frame).convert_alpha()
-            frame = pygame.transform.scale(
-                frame, (frame.get_width() * scale, frame.get_height() * scale)
-            )
-            yield frame
+    for filename in animation_frame_files(directory, name):
+        yield load_and_scale(filename)
+
+
+def animation_frame_files(directory, name):
+    """ Return list of filenames from directory for use in animation
+
+    * each filename will have the format: animation_name[0-9]*\..*
+    * will be returned in sorted order
+
+    For example, water00.png, water01.png, water02.png
+
+    :param str directory:
+    :param str name:
+    :rtype: List[str]
+    """
+    frames = list()
+    pattern = r"{}[0-9]*\..*".format(name)
+    # might be slow on large folders
+    for filename in os.listdir(directory):
+        if re.match(pattern, filename):
+            frames.append(os.path.join(directory, filename))
+    frames.sort()
+    return frames
 
 
 def create_animation(frames, duration, loop):

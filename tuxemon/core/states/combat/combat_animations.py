@@ -475,7 +475,6 @@ class CombatAnimations(Menu):
         player, opponent = self.players
         player_home = self._layout[player]['home'][0]
         opp_home = self._layout[opponent]['home'][0]
-        print(dir(player));
         y_mod = scale(50)
         duration = 3
 

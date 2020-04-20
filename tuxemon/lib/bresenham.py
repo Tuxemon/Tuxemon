@@ -3,7 +3,7 @@ See en.wikipedia.org/wiki/Bresenham's_line_algorithm
 
 https://github.com/encukou/bresenham
 
-Copyright © 2016 Petr Viktorin
+Copyright (c) 2016 Petr Viktorin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

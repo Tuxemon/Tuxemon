@@ -27,13 +27,11 @@ from __future__ import unicode_literals
 import logging
 import random
 
-from tuxemon.core import tools
 from tuxemon.core import ai, monster, prepare
-from tuxemon.core.db import db
 from tuxemon.core.combat import check_battle_legal
+from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.npc import NPC
-from tuxemon.core.platform import mixer
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +53,7 @@ class RandomEncounterAction(EventAction):
     ]
 
     def start(self):
-        player = self.game.player1
+        player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
@@ -70,10 +68,6 @@ class RandomEncounterAction(EventAction):
         if encounter:
             logger.info("Starting random encounter!")
 
-            # Stop movement and keypress on the server.
-            if self.game.isclient or self.game.ishost:
-                self.game.client.update_player(player.facing, event_type="CLIENT_START_BATTLE")
-
             npc = _create_monster_npc(encounter)
 
             # Lookup the environment
@@ -84,22 +78,23 @@ class RandomEncounterAction(EventAction):
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.game.queue_state("CombatState", players=(player, npc), combat_type="monster", graphics=env['battle_graphics'])
+            self.session.client.queue_state("CombatState", players=(player, npc), combat_type="monster",
+                                            graphics=env['battle_graphics'])
 
             # stop the player
-            world = self.game.get_state_name("WorldState")
+            world = self.session.client.get_state_name("WorldState")
             world.lock_controls()
             world.stop_player()
 
             # flash the screen
-            self.game.push_state("FlashTransition")
+            self.session.client.push_state("FlashTransition")
 
             # Start some music!
             filename = env['battle_music']
-            self.game.event_engine.execute_action("play_music", [filename])
+            self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.game.get_state_name("CombatState") is None:
+        if self.session.client.get_state_name("CombatState") is None:
             self.stop()
 
 
@@ -113,7 +108,7 @@ def _choose_encounter(encounters, total_prob):
         scale = 1
 
     scale *= prepare.CONFIG.encounter_rate_modifier
-    
+
     for encounter in encounters:
         total += encounter['encounter_rate'] * scale
         if total >= roll:

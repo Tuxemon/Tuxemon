@@ -41,6 +41,6 @@ class RemoveMonsterAction(EventAction):
         monster_slug = self.parameters.monster_slug
 
         # TODO: will give unpredictable result with multiple copies of the same monster
-        monster = self.game.player1.find_monster(monster_slug)
+        monster = self.session.player.find_monster(monster_slug)
         if monster:
-            self.game.player1.remove_monster(monster)
+            self.session.player.remove_monster(monster)

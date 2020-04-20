@@ -1,6 +1,6 @@
 {
   "accuracy": 0.7,
-  "animation": "Darkfire",
+  "animation": "darkfire",
   "category": "physical",
   "effects": [
     "damage"

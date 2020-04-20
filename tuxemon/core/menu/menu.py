@@ -103,7 +103,7 @@ class Menu(state.State):
         self.menu_sprites.empty()
         self.animations.empty()
 
-        self.game.release_controls()
+        self.client.release_controls()
 
         del self.arrow
         del self.menu_items
@@ -113,7 +113,7 @@ class Menu(state.State):
         """ Start an animation to show textarea, one character at a time
 
         :param text_area: TextArea to animate
-        :type text_area: core.ui.text.TextArea
+        :type text_area: tuxemon.core.ui.text.TextArea
         :param callback: called when alert is complete
         :type callback: callable
         :rtype: None
@@ -138,7 +138,7 @@ class Menu(state.State):
         :param text: Test to display
         :type text: basestring
         :param text_area: TextArea to animate
-        :type text_area: core.ui.text.TextArea
+        :type text_area: tuxemon.core.ui.text.TextArea
         :param callback: called when alert is complete
         :type callback: callable
         :rtype: None
@@ -188,7 +188,7 @@ class Menu(state.State):
         :param Any game_object: Any object to check
         :return boolean: Becomes the menu item enabled value
         """
-        return game_object is not None
+        return True
 
     def reload_items(self):
         """ Empty all items in the menu and re-add them
@@ -210,9 +210,9 @@ class Menu(state.State):
                 self.menu_items.arrange_menu_items()
 
             for index, item in enumerate(self.menu_items):
-                self.selected_index = index
                 if item.enabled:
                     break
+                self.selected_index = index
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu
@@ -229,7 +229,7 @@ class Menu(state.State):
     def add(self, item):
         """ Add a menu item
 
-        :type item: core.menu.MenuItem
+        :type item: tuxemon.core.menu.MenuItem
         :return: None
         """
         self.menu_items.add(item)
@@ -435,7 +435,7 @@ class Menu(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         handled_event = False
@@ -475,7 +475,7 @@ class Menu(state.State):
             # TODO: generalized widget system
             if self.touch_aware and valid_change:
                 mouse_pos = event.value
-                assert mouse_pos is not 0
+                assert mouse_pos != 0
 
                 try:
                     self.menu_items.update_rect_from_parent()
@@ -543,7 +543,7 @@ class Menu(state.State):
         """ Get the Menu Item that is currently selected
 
         :rtype: MenuItem
-        :rtype: core.menu.interface.MenuItem
+        :rtype: tuxemon.core.menu.interface.MenuItem
         """
         try:
             return self.menu_items[self.selected_index]
@@ -579,9 +579,9 @@ class Menu(state.State):
             self.state = "closing"
             ani = self.animate_close()
             if ani:
-                ani.callback = self.game.pop_state
+                ani.callback = self.client.pop_state
             else:
-                self.game.pop_state()
+                self.client.pop_state()
 
     def anchor(self, attribute, value):
         """ Set an anchor for the menu window
@@ -683,7 +683,7 @@ class Menu(state.State):
         Do not change important state attributes
 
         :returns: Animation or Task
-        :rtype: core.animation.Animation
+        :rtype: tuxemon.core.animation.Animation
         """
         return None
 
@@ -699,7 +699,7 @@ class Menu(state.State):
         Do not change important state attributes
 
         :returns: Animation or Task
-        :rtype: core.animation.Animation
+        :rtype: tuxemon.core.animation.Animation
         """
         return None
 
@@ -720,10 +720,10 @@ class PopUpMenu(Menu):
         Do not change important state attributes
 
         :returns: Animation or Task
-        :rtype: core.animation.Animation
+        :rtype: tuxemon.core.animation.Animation
         """
         # anchor the center of the popup
-        rect = self.game.screen.get_rect()
+        rect = self.client.screen.get_rect()
         self.anchor("center", rect.center)
 
         rect = self.calc_final_rect()

@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Screen",
+  "animation": "screen",
   "category": "physical",
   "effects": [],
   "healing_power": 0,

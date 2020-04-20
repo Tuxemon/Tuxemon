@@ -15,6 +15,7 @@ from tuxemon.core import save
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
+from tuxemon.core.session import local_session
 from tuxemon.core.tools import open_dialog
 from tuxemon.core.ui import text
 
@@ -32,7 +33,7 @@ class SaveMenuState(PopUpMenu):
 
     def initialize_items(self):
         empty_image = None
-        rect = self.game.screen.get_rect()
+        rect = self.client.screen.get_rect()
         slot_rect = Rect(0, 0, rect.width * 0.80, rect.height // 6)
         for i in range(self.number_of_slots):
             # Check to see if a save exists for the current slot
@@ -92,7 +93,7 @@ class SaveMenuState(PopUpMenu):
         logger.info("Saving!")
         try:
             save_data = save.get_save_data(
-                self.game,
+                local_session,
             )
             save.save(
                 save_data,
@@ -100,11 +101,12 @@ class SaveMenuState(PopUpMenu):
             )
             save.slot_number = self.selected_index
         except Exception as e:
+            raise
             logger.error("Unable to save game!!")
             logger.error(e)
-            open_dialog(self.game, [T.translate('save_failure')])
+            open_dialog(local_session, [T.translate('save_failure')])
         else:
-            open_dialog(self.game, [T.translate('save_success')])
+            open_dialog(local_session, [T.translate('save_success')])
 
-        self.game.pop_state(self)
+        self.client.pop_state(self)
 

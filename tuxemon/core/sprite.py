@@ -29,6 +29,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import logging
 import math
 
 import pygame
@@ -36,8 +37,10 @@ from pygame.transform import rotozoom
 from pygame.transform import scale
 
 from tuxemon.compat import Rect
-from tuxemon.core.pyganim import PygAnimation
 from tuxemon.core.platform.const import buttons
+from tuxemon.core.pyganim import PygAnimation
+
+logger = logging.getLogger()
 
 
 class Sprite(pygame.sprite.DirtySprite):
@@ -327,7 +330,7 @@ class MenuSpriteGroup(SpriteGroup):
         The return value will be the newly selected object index
 
         :param index: Index of the item in the list
-        :param event: core.input.PlayerInput
+        :param event: tuxemon.core.input.PlayerInput
 
         :returns: New menu item offset
         :rtype: int
@@ -427,6 +430,7 @@ class VisualSpriteList(RelativeGroup):
         items_per_column = math.ceil(len(self) / self.columns)
 
         if self.expand:
+            logger.debug("expanding menu...")
             # fill available space
             line_spacing = self.line_spacing
             if not line_spacing:

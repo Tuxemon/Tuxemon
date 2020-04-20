@@ -286,14 +286,11 @@ class Translator(object):
 T = TranslatorPo()
 
 
-def replace_text(game, text):
-    """ Replaces ${{var}} tiled variables with their in-game value.
+def replace_text(session, text):
+    """ Replaces ${{var}} tiled variables with their in-session value.
 
-    :param game: The main game object that contains all the game's variables.
-    :param text: Raw text from the map
-
-    :type game: core.control.Control
-    :type text: str
+    :param tuxemon.core.session.Session session: Session
+    :param str text: Raw text from the map
 
     :rtype: str
 
@@ -303,11 +300,11 @@ def replace_text(game, text):
     'Red is running away!'
 
     """
-    text = text.replace("${{name}}", game.player1.name)
+    text = text.replace("${{name}}", session.player.name)
     text = text.replace(r"\n", "\n")
 
-    for i in range(len(game.player1.monsters)):
-        monster = game.player1.monsters[i]
+    for i in range(len(session.player.monsters)):
+        monster = session.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
@@ -320,7 +317,7 @@ def replace_text(game, text):
     return text
 
 
-def process_translate_text(game, text_slug, parameters):
+def process_translate_text(session, text_slug, parameters):
     replace_values = {}
 
     # extract INI-style params
@@ -334,7 +331,7 @@ def process_translate_text(game, text_slug, parameters):
             value = trans(value)
         """
         # match special placeholders like ${{name}}
-        replace_values[key] = replace_text(game, value)
+        replace_values[key] = replace_text(session, value)
 
     # generate translation
     text = T.format(text_slug, replace_values)
@@ -346,4 +343,4 @@ def process_translate_text(game, text_slug, parameters):
     pages = text.split("\n")
 
     # generate scrollable text
-    return [replace_text(game, page) for page in pages]
+    return [replace_text(session, page) for page in pages]

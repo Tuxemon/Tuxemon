@@ -39,7 +39,7 @@ class RemoveNpcAction(EventAction):
 
     def start(self):
         # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
+        world = self.session.client.get_state_name("WorldState")
         if not world:
             return
 

@@ -10,6 +10,7 @@ from tuxemon.core import prepare, graphics
 from tuxemon.core import tools
 from tuxemon.core.menu.interface import HpBar, ExpBar, MenuItem
 from tuxemon.core.menu.menu import Menu
+from tuxemon.core.session import local_session
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import draw_text, TextArea
 
@@ -51,7 +52,7 @@ class MonsterMenuState(Menu):
             self.monster_slot_border[border_type] = window
 
         # TODO: something better than this global, load_sprites stuff
-        for monster in self.game.player1.monsters:
+        for monster in local_session.player.monsters:
             monster.load_sprites()
 
     def animate_monster_down(self):
@@ -74,7 +75,7 @@ class MonsterMenuState(Menu):
     def initialize_items(self):
         # position the monster portrait
         try:
-            monster = self.game.player1.monsters[self.selected_index]
+            monster = local_session.player.monsters[self.selected_index]
             image = monster.sprites["front"]
         except IndexError:
             image = pygame.Surface((1, 1), pygame.SRCALPHA)
@@ -87,18 +88,16 @@ class MonsterMenuState(Menu):
         self.animate_monster_down()
 
         width = prepare.SCREEN_SIZE[0] // 2
-        height = prepare.SCREEN_SIZE[1] // (self.game.player1.party_limit * 1.5)
+        height = prepare.SCREEN_SIZE[1] // (local_session.player.party_limit * 1.5)
 
         # make 6 slots
-        for i in range(self.game.player1.party_limit):
+        for i in range(local_session.player.party_limit):
             rect = Rect(0, 0, width, height)
             surface = pygame.Surface(rect.size, pygame.SRCALPHA)
             item = MenuItem(surface, None, None, None)
             yield item
 
         self.refresh_menu_items()
-
-        # TODO: make sure we start on the first monster that is a valid option
 
     def on_menu_selection(self, menu_item):
         pass
@@ -111,20 +110,31 @@ class MonsterMenuState(Menu):
             self.draw_monster_info(surface, monster, rect)
         return surface
 
+    def is_valid_entry(self, monster):
+        """ Used to determine if a given monster should be selectable.
+            When other code creates a MonsterMenu, it should overwrite this method
+            to suit it's needs.
+        :param monster:
+        :return:
+        """
+        return monster is not None
+
     def refresh_menu_items(self):
         """ Used to render slots after their 'focus' flags change
 
         :return:
         """
+
         for index, item in enumerate(self.menu_items):
             try:
-                monster = self.game.player1.monsters[index]
+                monster = local_session.player.monsters[index]
             except IndexError:
                 monster = None
             item.game_object = monster
-            item.enabled = self.is_valid_entry(item.game_object)
+
+            item.enabled = (monster is not None) and self.is_valid_entry(item.game_object)
             item.image.fill((0, 0, 0, 0))
-            item.in_focus = index == self.selected_index and item.enabled
+            item.in_focus = ((index == self.selected_index) and item.enabled)
             self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)
 
     def draw_monster_info(self, surface, monster, rect):
@@ -168,7 +178,7 @@ class MonsterMenuState(Menu):
 
     def on_menu_selection_change(self):
         try:
-            monster = self.game.player1.monsters[self.selected_index]
+            monster = local_session.player.monsters[self.selected_index]
             image = monster.sprites["front"]
         except IndexError:
             image = pygame.Surface((1, 1), pygame.SRCALPHA)

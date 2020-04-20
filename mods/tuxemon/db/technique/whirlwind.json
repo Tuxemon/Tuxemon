@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Volume Tornado",
+  "animation": "volume tornado",
   "category": "physical",
   "effects": [
     "damage"

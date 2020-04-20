@@ -85,7 +85,7 @@ class InputMenu(Menu):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         event = super(InputMenu, self).process_event(event)
@@ -122,4 +122,4 @@ class InputMenu(Menu):
         :return:
         """
         self.callback(self.input_string)
-        self.game.pop_state(self)
+        self.client.pop_state(self)

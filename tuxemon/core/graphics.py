@@ -99,7 +99,7 @@ def load_sprite(filename, **rect_kwargs):
     of the image for positioning the rect.
 
     :param filename: Filename to load
-    :rtype: core.sprite.Sprite
+    :rtype: tuxemon.core.sprite.Sprite
     """
     sprite = Sprite()
     sprite.image = load_and_scale(filename)
@@ -118,7 +118,7 @@ def load_animated_sprite(filenames, delay, **rect_kwargs):
 
     :param filenames: Filenames to load
     :param int delay: Frame interval; time between each frame
-    :rtype: core.sprite.Sprite
+    :rtype: tuxemon.core.sprite.Sprite
     """
     anim = []
     for filename in filenames:
@@ -214,7 +214,7 @@ def scale_sprite(sprite, ratio):
 
     :type sprite: pygame.Sprite
     :param ratio: amount to scale by
-    :rtype: core.sprite.Sprite
+    :rtype: tuxemon.core.sprite.Sprite
     """
     center = sprite.rect.center
     sprite.rect.width *= ratio
@@ -298,7 +298,7 @@ def capture_screenshot(game):
     return screenshot
 
 
-def get_avatar(game, avatar):
+def get_avatar(session, avatar):
     """Gets the avatar sprite of a monster or NPC.
 
     Used to parse the string values for dialog event actions
@@ -306,6 +306,7 @@ def get_avatar(game, avatar):
     If avatar is a string, we're referring to a monster by name
     TODO: If the monster name isn't found, we're referring to an NPC on the map
 
+    :param tuxemon.core.session.Session session:
     :param avatar: the avatar to be used
     :type avatar: string
     :rtype: Optional[pygame.Surface]
@@ -316,7 +317,7 @@ def get_avatar(game, avatar):
 
     if avatar and avatar.isdigit():
         try:
-            player = game.player1
+            player = session.player
             slot = int(avatar)
             return player.monsters[slot].get_sprite("menu")
         except IndexError:

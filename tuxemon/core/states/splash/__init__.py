@@ -48,7 +48,7 @@ class SplashState(state.State):
 
     def fade_out(self):
         self.fading_out = True
-        self.game.push_state("FadeOutTransition", caller=self)
+        self.client.push_state("FadeOutTransition", caller=self)
 
     def startup(self, **kwargs):
         # this task will skip the splash screen after some time
@@ -82,7 +82,7 @@ class SplashState(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         # Skip the splash screen if a key is pressed.

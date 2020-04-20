@@ -482,7 +482,7 @@ class CombatAnimations(Menu):
                                        bottom=opp_home.bottom + y_mod, right=0)
 
         if self.is_trainer_battle:
-            enemy = self.load_sprite('gfx/sprites/player/' + opponent.sprite_name + '_front.png',
+            enemy = self.load_sprite('gfx/sprites/player/' + opponent.combat_front,
                                      bottom=back_island.rect.bottom - scale(12),
                                      centerx=back_island.rect.centerx)
             self._monster_sprite_map[opponent] = enemy

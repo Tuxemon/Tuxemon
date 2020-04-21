@@ -103,10 +103,12 @@ class NPC(Entity):
         self.sprite_name = sprite_name
         self.combat_front = combat_front
         self.combat_back = combat_back
-        if self.sprite_name is None or self.combat_front is None or self.combat_back is None:
+        if self.sprite_name is None:
             # Try to use the sprites defined in the JSON data
             self.sprite_name = npc_data["sprite_name"]
+        if self.self.combat_front is None:
             self.combat_front = npc_data["combat_front"]
+        if self.combat_back is None:
             self.combat_back = npc_data["combat_back"]
 
         # general

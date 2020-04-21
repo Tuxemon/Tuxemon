@@ -1,4 +1,6 @@
 {
     "slug": "tuxemart_keeper",
-    "sprite_name": "tuxemartemployee"
+    "sprite_name": "tuxemartemployee",
+    "combat_front": "red_front.png",
+    "combat_back": "red_back.png"
 }

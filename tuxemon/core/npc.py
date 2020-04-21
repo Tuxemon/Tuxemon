@@ -101,24 +101,13 @@ class NPC(Entity):
         # use 'animations' passed in
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
-        self.combat_front = combat_front;
-        self.combat_back = combat_back;
-        if self.sprite_name is None:
+        self.combat_front = combat_front
+        self.combat_back = combat_back
+        if self.sprite_name is None or self.combat_front is None or self.combat_back is None:
             # Try to use the sprites defined in the JSON data
-            try:
-                self.sprite_name = npc_data["sprite_name"]
-            except KeyError:
-                logger.error('Cannot find sprite for {}'.format(npc_slug))
-        if self.combat_front is None:
-            try:
-                self.combat_front = npc_data["combat_front"]
-            except KeyError:
-                logger.error('Cannot find combat front sprite for {}'.format(npc_slug))
-        if self.combat_back is None:
-            try:
-                self.combat_back = npc_data["combat_back"]
-            except KeyError:
-                logger.error('Cannot find combat back sprite for {}'.format(npc_slug))
+            self.sprite_name = npc_data["sprite_name"]
+            self.combat_front = npc_data["combat_front"]
+            self.combat_back = npc_data["combat_back"]
 
         # general
         self.behavior = "wander"  # not used for now

@@ -1,4 +1,6 @@
 {
     "slug": "xerogrunt4",
-    "sprite_name": "teamxerogrunt1"
+    "sprite_name": "teamxerogrunt1",
+    "combat_front": "red_front.png",
+    "combat_back": "red_back.png"
 }

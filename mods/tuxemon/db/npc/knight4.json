@@ -1,4 +1,6 @@
 {
     "slug": "knight4",
-    "sprite_name": "knight"
+    "sprite_name": "knight",
+    "combat_front": "knight_front.png",
+    "combat_back": "red_back.png"
 }

@@ -1,4 +1,6 @@
 {
     "slug": "37707_male",
-    "sprite_name": "37707_male"
+    "sprite_name": "37707_male",
+    "combat_front": "red_front.png",
+    "combat_back": "red_back.png"
 }

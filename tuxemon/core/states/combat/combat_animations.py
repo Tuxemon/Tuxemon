@@ -475,7 +475,6 @@ class CombatAnimations(Menu):
         player, opponent = self.players
         player_home = self._layout[player]['home'][0]
         opp_home = self._layout[opponent]['home'][0]
-
         y_mod = scale(50)
         duration = 3
 
@@ -483,7 +482,7 @@ class CombatAnimations(Menu):
                                        bottom=opp_home.bottom + y_mod, right=0)
 
         if self.is_trainer_battle:
-            enemy = self.load_sprite('gfx/sprites/player/' + opponent.sprite_name + '_front.png',
+            enemy = self.load_sprite('gfx/sprites/player/' + opponent.combat_front,
                                      bottom=back_island.rect.bottom - scale(12),
                                      centerx=back_island.rect.centerx)
             self._monster_sprite_map[opponent] = enemy
@@ -497,6 +496,7 @@ class CombatAnimations(Menu):
         self.sprites.add(enemy)
         self.build_hud(self._layout[opponent]['hud'][0], right_monster)
 
+
         if self.is_trainer_battle:
             self.alert(T.format('combat_trainer_appeared', {"name": opponent.name.upper()}))
         else:
@@ -505,7 +505,7 @@ class CombatAnimations(Menu):
         front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
-        trainer1 = self.load_sprite('gfx/sprites/player/' + player.sprite_name + '_back.png',
+        trainer1 = self.load_sprite('gfx/sprites/player/' + player.combat_back,
                                     bottom=front_island.rect.centery + scale(6),
                                     centerx=front_island.rect.centerx)
         self._monster_sprite_map[left_trainer] = trainer1

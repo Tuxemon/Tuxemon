@@ -87,7 +87,7 @@ class NPC(Entity):
     """
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
-    def __init__(self, npc_slug, sprite_name=None):
+    def __init__(self, npc_slug, sprite_name=None,combat_front=None,combat_back=None):
         super(NPC, self).__init__()
 
         # load initial data from the npc database
@@ -101,13 +101,15 @@ class NPC(Entity):
         # use 'animations' passed in
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
-
+        self.combat_front = combat_front
+        self.combat_back = combat_back
         if self.sprite_name is None:
             # Try to use the sprites defined in the JSON data
-            try:
-                self.sprite_name = npc_data["sprite_name"]
-            except KeyError:
-                logger.error('Cannot find sprite for {}'.format(npc_slug))
+            self.sprite_name = npc_data["sprite_name"]
+        if self.self.combat_front is None:
+            self.combat_front = npc_data["combat_front"]
+        if self.combat_back is None:
+            self.combat_back = npc_data["combat_back"]
 
         # general
         self.behavior = "wander"  # not used for now
@@ -246,7 +248,7 @@ class NPC(Entity):
 
         Used to render the player
 
-        TODO: Move the 'layer' to the NPC class so characters 
+        TODO: Move the 'layer' to the NPC class so characters
         can define their own drawing layer.
 
         :param layer: The layer to draw the sprite on.
@@ -667,4 +669,3 @@ class NPC(Entity):
 
     def speed_test(self, action):
         return self.speed
-

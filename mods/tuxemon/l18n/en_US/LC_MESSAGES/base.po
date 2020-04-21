@@ -1753,6 +1753,58 @@ msgstr "I don't mind being here...\n"
 msgid "wherewasshe"
 msgstr "She didn't tell us the bad news..."
 
+msgid "waitdontgo"
+msgstr "${{name}}! Wait! Don't Leave Yet!"
+
+msgid "thetvbescreamin"
+msgstr "Honey, wait. I turned on the TV and an Omnichannel press conference was happening.\n"
+"We should watch it."
+
+msgid "ipausedit"
+msgstr "I paused the TV, grab a glass of water and then we can watch together."
+
+msgid "announcement1"
+msgstr "HELLO CITIZENS OF THE FONDENT REGION!\n"
+"THANK YOU FOR TUNING IN TO THIS MANDATORY ANNOUNCEMENT"
+
+msgid "announcement2"
+msgstr "WE LOVE YOU ABLE!"
+
+msgid "announcement3"
+msgstr "Thank you. I love you too\n"
+"Now, to the matter at hand."
+
+msgid "announcement4"
+msgstr "To ALL the citizens of the Fondent Region and beyond who are tuning in, I welcome you.\n"
+"My name is Aeble, spelled A-E-B-L-E for those who wonder, and I am the CEO of Omnichannel!\n"
+
+msgid "whythecheering"
+msgstr "Those Omnichannel people are cheering a lot for him. I wonder why?"
+
+msgid "announcement5"
+msgstr "It has been a long, hard road to our current situation here in the Fondent Region.\n"
+"However, it is my pleasure to announce, on this day, the 25th Anniversary of the founding of omnichannel...\n"
+"TUXEMON ARE CONTROLLED!\n"
+"*deafening screaming*\n"
+"Quiet Down! Quiet Down! You're enthusiasm is infectious I must say!\n"
+"In conjunction with the Xero institute, we have stripped away their will to attack!\n"
+"Due to this, we are confident that releasing Tuxemon into the wild is safe.\n"
+"However, curfews must still be enforced, we are not a lawless region after all.\n"
+"After all... WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL!"
+
+msgid "ohnoes"
+msgstr "Well... I don't know how to feel about this..."
+
+msgid "ohnoes2"
+msgstr "Regardless, We need potions from the Tuxemart. You should probably head into town and get some.\n"
+"Make sure you're back before curfew though!"
+
+msgid "depressedmom"
+msgstr "Why would he do something like that... I thought he cared..."
+
+msgid "waterwater"
+msgstr "The water is ice cold and delicious!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

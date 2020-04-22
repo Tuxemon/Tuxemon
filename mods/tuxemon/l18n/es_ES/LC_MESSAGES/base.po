@@ -86,13 +86,13 @@ msgid "tm_avalanche"
 msgstr "MT: Avalancha"
 
 msgid "tm_avalanche_description"
-msgstr "Máquina técnica que enseña a un Tuxemon de Agua o Tierra la técnica Avalancha."
+msgstr "Manual técnico que enseña a un Tuxemon de Agua o Tierra la técnica Avalancha."
 
 msgid "tm_blossom"
 msgstr "TM: Florecer"
 
 msgid "tm_blossom_description"
-msgstr "Máquina técnica que enseña a un Tuxemon de Madera la técnica Florecer."
+msgstr "Manual técnico que enseña a un Tuxemon de Madera la técnica Florecer."
 
 msgid "item_cannot_use_here"
 msgstr "¡No puede usarse {name} aquí!"
@@ -1303,7 +1303,7 @@ msgid "haveagoodday"
 msgstr "¡Que tengas un buen día!"
 
 msgid "yes"
-msgstr "Si"
+msgstr "Sí"
 
 msgid "no"
 msgstr "No"
@@ -1605,8 +1605,8 @@ msgid "yesmaam"
 msgstr "Sí, señora."
 
 msgid "firsts"
-msgstr "Watch me whip\n"
-"Watch me nae nae"
+msgstr "♪  Watch me whip ♪\n"
+"♪ Watch me nae nae ♪"
 
 msgid "nopenotyet"
 msgstr "Lo siento, alguien ha resultado herido en la ruta. Ahora mismo está cerrada."
@@ -1673,7 +1673,7 @@ msgstr "No... Espera... Nos falta una persona... \n"
 "El solitario criador de Tuxemon de la región Fondent. El que se hace llamar Profesor Tuxemon."
 
 msgid "whereismyhairbrush"
-msgstr "John, Grant, separáos. ENCONTRADLO."
+msgstr "John, Grant, separaos. ENCONTRADLO."
 
 msgid "oopsie"
 msgstr "Siento que tuviérais que ver eso. Es TAAAAAAAN inútil a veces..."
@@ -1752,6 +1752,58 @@ msgstr "No me importa estar aquí...\n"
 
 msgid "wherewasshe"
 msgstr "No nos ha dicho las malas noticias..."
+
+msgid "waitdontgo"
+msgstr "¡${{name}}! ¡Espera! ¡No te vayas aún!"
+
+msgid "thetvbescreamin"
+msgstr "Cariño, espera. Acabo de encender la televisión y echaban una rueda de prensa de Omnichannel.\n"
+"Deberíamos verla."
+
+msgid "ipausedit"
+msgstr "La he puesto en pausa para poder coger un vaso de agua y verla juntos."
+
+msgid "announcement1"
+msgstr "¡SALUDOS, CIUDADANOS DE LA REGIÓN FONDENT!\n"
+"GRACIAS POR SINTONIZAR VUESTROS TELEVISORES PARA VER ESTE ANUNCIO OBLIGATORIO."
+
+msgid "announcement2"
+msgstr "¡TE QUEREMOS, ABLE!"
+
+msgid "announcement3"
+msgstr "Gracias. Yo también os quiero.\n"
+"Ahora, a lo que vamos."
+
+msgid "announcement4"
+msgstr "A TODOS los ciudadanos de la región Fondent y más allá que estáis viendo este programa, os doy la bienvenida.\n"
+"¡Mi nombre es Aeble, deletreado A-E-B-L-E para aquellos que se lo pregunten, y soy el CEO de Omnichannel!\n"
+
+msgid "whythecheering"
+msgstr "Toda esa gente de Omnichannel le está vitoreando mucho. ¿Me pregunto por qué?"
+
+msgid "announcement5"
+msgstr "Hemos seguido un camino largo y difícil hasta nuestra situación actual aquí, en la región Fondent.\n"
+"No obstante, es para mí un placer anunciar en este día, el vigésimo quinto aniversario de la fundación de Omnichannel...\n"
+"¡LOS TUXEMON ESTÁN BAJO CONTROL!\n"
+"*grito ensordecedor*\n"
+"¡Silencio! ¡Silencio! ¡He de decir que vuestro entusiasmo es contagioso!\n"
+"¡Conjuntamente con el instituto Xero, hemos eliminado su deseo de atacar!\n"
+"A causa de esto, estamos bastante convencidos de que dejar sueltos a los Tuxemon es seguro ahora.\n"
+"No obstante, los toques de queda siguen vigentes. ¡No somos una tierra sin ley después de todo!\n"
+"Al fin y al cabo... ¡SOMOS SEGURIDAD, SOMOS ORDEN, SOMOS OMNICHANNEL!"
+
+msgid "ohnoes"
+msgstr "Bueno... No sé como sentirme con todo esto..."
+
+msgid "ohnoes2"
+msgstr "En cualquier caso, necesitamos pociones del Tuxemart. Probablemente deberías ir al pueblo y conseguir algunas.\n"
+"¡Asegúrate de volver antes del toque de queda, no obstante!"
+
+msgid "depressedmom"
+msgstr "¿Por qué haría algo como eso?... Pensaba que le importaba..."
+
+msgid "waterwater"
+msgstr "¡El agua está helada y deliciosa!"
 
 msgid "ripjimmy"
 msgstr "En la tumba se puede leer:\n"

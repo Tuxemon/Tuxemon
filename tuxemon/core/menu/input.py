@@ -69,7 +69,7 @@ class InputMenu(Menu):
             yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
 
         # backspace key
-        yield MenuItem(self.shadow_text("<="), None, None, self.backspace)
+        yield MenuItem(self.shadow_text("←"), None, None, self.backspace)
 
         # button to confirm the input and close the dialog
         yield MenuItem(self.shadow_text("END"), None, None, self.confirm)

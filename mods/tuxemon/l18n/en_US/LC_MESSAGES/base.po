@@ -1514,7 +1514,7 @@ msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign\n"
 msgstr "Welcome to Cotton Town: A Growing Force\n"
-"^ Cotton Town --- Route 1 v\n"
+"↑ Cotton Town --- Route 1 ↓\n"
 
 msgid "column1"
 msgstr "A rare and ancient column. This used to be a temple."
@@ -1524,7 +1524,7 @@ msgstr "A rare and ancient column. Other ruins from the same culture can be foun
 
 msgid "cityparksign\n"
 msgstr "Welcome to City Park: A Taste of the Wild\n"
-"^ City Park --- Route 2 v\n"
+"↑ City Park --- Route 2 ↓\n"
 
 msgid "route2speech"
 msgstr "EEK!!!"
@@ -1605,8 +1605,8 @@ msgid "yesmaam"
 msgstr "Yes Ma'am"
 
 msgid "firsts"
-msgstr "Watch me whip\n"
-"Watch me nae nae"
+msgstr "♪ Watch me whip ♪\n"
+"♪ Watch me nae nae ♪"
 
 msgid "nopenotyet"
 msgstr "Sorry, someone got injured on the route. It's closed right now."

@@ -89,6 +89,7 @@ class TuxemonConfig(object):
         self.net_controller_enabled = cfg.getboolean("game", "net_controller_enabled")
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
+        self.recompile_translations = cfg.getboolean("game", "recompile_translations")
         
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
@@ -155,6 +156,7 @@ def get_defaults():
             ("net_controller_enabled", False),
             ("locale", "en_US"),
             ("dev_tools", False),
+            ("recompile_translations", False),
         ))),
         ("gameplay", OrderedDict((
             ("items_consumed_on_failure", True),

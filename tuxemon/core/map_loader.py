@@ -185,17 +185,18 @@ class TMXMapLoader(object):
         :param tile_size:
         :return:
         """
-        if len(line.points) != 2:
-            raise ValueError("Error: collision lines must be exactly 2 points")
-        p0 = point_to_grid(line.points[0], tile_size)
-        p1 = point_to_grid(line.points[1], tile_size)
-        p0, p1 = sorted((p0, p1))
-        angle = angle_of_points(p0, p1)
-        orientation = orientation_by_angle(angle)
-        for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
-            angle1 = angle - (pi / 2)
-            other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
-            yield i, other, orientation
+        if len(line.points) < 2:
+            raise ValueError("Error: collision lines must be at least 2 points")
+        for point_0, point_1 in zip(line.points, line.points[1:]):
+            p0 = point_to_grid(point_0, tile_size)
+            p1 = point_to_grid(point_1, tile_size)
+            p0, p1 = sorted((p0, p1))
+            angle = angle_of_points(p0, p1)
+            orientation = orientation_by_angle(angle)
+            for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
+                angle1 = angle - (pi / 2)
+                other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
+                yield i, other, orientation
 
     @staticmethod
     def region_tiles(region, grid_size):

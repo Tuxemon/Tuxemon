@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="137">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="137">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -97,7 +97,7 @@
   <object id="49" type="collision-line" x="16" y="64">
    <polyline points="0,0 0,128"/>
   </object>
-  <object id="50" type="collision" x="32" y="208">
+  <object id="50" type="collision-line" x="32" y="208">
    <polyline points="0,0 0,32"/>
   </object>
   <object id="51" type="collision" x="448" y="288" width="160" height="16"/>

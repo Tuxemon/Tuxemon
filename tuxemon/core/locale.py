@@ -58,7 +58,7 @@ class TranslatorPo(object):
         self.translate = None
         self.languages = []
 
-    def collect_languages(self):
+    def collect_languages(self, recompile_translations=False):
         """Collect languages/locales with available translation files."""
         self.languages = []
 
@@ -68,10 +68,10 @@ class TranslatorPo(object):
             if os.path.isdir(ld_full_path):
                 self.languages.append(ld)
 
-        self.build_translations()
+        self.build_translations(recompile_translations)
         self.load_locale(prepare.CONFIG.locale)
 
-    def build_translations(self):
+    def build_translations(self, recompile_translations=False):
         """Create MO files for existing PO translation files."""
 
         for ld in self.languages:
@@ -79,7 +79,8 @@ class TranslatorPo(object):
             outfile = os.path.join(os.path.dirname(infile), "base.mo")
 
             # build only complete translations
-            if os.path.exists(infile) and not os.path.exists(outfile):
+            if os.path.exists(infile) and (
+                    not os.path.exists(outfile) or recompile_translations):
                 with io.open(infile, "r", encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
                 with io.open(outfile, "wb") as mo_file:

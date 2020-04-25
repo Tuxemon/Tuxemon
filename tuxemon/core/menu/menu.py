@@ -475,7 +475,7 @@ class Menu(state.State):
             # TODO: generalized widget system
             if self.touch_aware and valid_change:
                 mouse_pos = event.value
-                assert mouse_pos is not 0
+                assert mouse_pos != 0
 
                 try:
                     self.menu_items.update_rect_from_parent()

@@ -31,6 +31,9 @@
 Do not import platform-specific libraries such as pygame.
 Graphics/audio operations should go to their own modules.
 
+As the game library is developed and matures, move these into larger modules
+if more appropriate.  Ideally this should be kept small.
+
 """
 from __future__ import absolute_import
 from __future__ import division
@@ -38,6 +41,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
+import re
+
 from six.moves import zip_longest
 
 from tuxemon.compat.rect import Rect
@@ -245,3 +250,63 @@ def show_item_result_as_dialog(session, item, result):
     if template:
         message = T.translate(template)
         open_dialog(session, [message])
+
+
+def split_escaped(string_to_split, delim=","):
+    """Splits a string by the specified deliminator excluding escaped
+    deliminators.
+
+    :param string_to_split: The string to split.
+    :param delim: The deliminator to split the string by.
+
+    :type string_to_split: Str
+    :type delim: Str
+
+    :rtype: List
+    :returns: A list of the splitted string.
+
+    """
+    # Split by "," unless it is escaped by a "\"
+    split_list = re.split(r'(?<!\\)' + delim, string_to_split)
+
+    # Remove the escape character from the split list
+    split_list = [w.replace(r'\,', ',') for w in split_list]
+
+    # strip whitespace around each
+    split_list = [i.strip() for i in split_list]
+
+    return split_list
+
+
+def round_to_divisible(x, base=16):
+    """ Rounds a number to a divisible base.
+
+    This is used to round collision areas that aren't defined well. This
+    function assists in making sure collisions work if the map creator didn't
+    set the collision areas to round numbers.
+
+    **Examples:**
+    >>> round_to_divisible(31.23, base=16)
+    32
+    >>> round_to_divisible(17.8, base=16)
+    16
+    :param x: The number we want to round.
+    :param base: The base that we want our number to be divisible by. (Default: 16)
+    :type x: Float
+    :type base: Integer
+    :rtype: Integer
+    :returns: Rounded number that is divisible by "base".
+    """
+    return int(base * round(float(x) / base))
+
+
+def copy_dict_with_keys(source, keys):
+    """ Return new dict using only the keys/value from `keys`
+
+    If key from keys is not present no error is raised
+
+    :param Dict source:
+    :param List[str] keys:
+    :rtype: Dict
+    """
+    return {k: source[k] for k in keys if k in source}

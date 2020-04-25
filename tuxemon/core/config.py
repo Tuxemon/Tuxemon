@@ -41,6 +41,7 @@ from collections import OrderedDict
 from six.moves import configparser
 
 from tuxemon.core.animation import Animation
+from tuxemon.core.platform.const import buttons, events
 
 Animation.default_transition = 'out_quint'
 
@@ -116,11 +117,29 @@ class TuxemonConfig(object):
         # input config (None means use default for the platform)
         self.gamepad_deadzone = .25
         self.gamepad_button_map = None
-        self.keyboard_button_map = None
+        self.keyboard_button_map = get_custom_pygame_keyboard_controls(cfg);
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
 
+def get_custom_pygame_keyboard_controls(cfg):
+    import pygame.locals
+    from tuxemon.core.platform.platform_pygame.events import PygameKeyboardInput
+
+    custom_controls = PygameKeyboardInput.default_input_map.copy()
+    for key, value in cfg.items("controls"):
+        # pygame.locals uses all caps for constants except for letters
+        key = key.lower() if len(key) == 1 else key.upper()
+        value = value.upper()
+        pygame_value = getattr(pygame.locals, "K_" + key, None)
+        button_value = getattr(buttons, value, None)
+        event_value = getattr(events, value, None)
+        if pygame_value is not None and button_value is not None:
+            custom_controls[pygame_value] = button_value
+        elif pygame_value is not None and event_value is not None:
+            custom_controls[pygame_value] = event_value
+
+    return custom_controls
 
 def get_defaults():
     """ Generate a config from defaults
@@ -172,6 +191,17 @@ def get_defaults():
             ("loggers", "all"),
             ("debug_logging", True),
             ("debug_level", "error")
+        ))),
+        ("controls", OrderedDict((
+            ("up", "up"),
+            ("down", "down"),
+            ("left", "left"),
+            ("right", "right"),
+            ("return", "a"),
+            ("rshift", "b"),
+            ("lshift", "b"),
+            ("escape", "back"),
+            ("backspace", "backspace")
         ))),
     ))
 

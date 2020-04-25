@@ -14,7 +14,6 @@ from tuxemon.core.platform.const import buttons, intentions
 from tuxemon.core.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
-from tuxemon.core.monster import Monster
 
 logger = logging.getLogger(__name__)
 
@@ -200,7 +199,7 @@ class Menu(state.State):
         """
         self._needs_refresh = True
         items = self.initialize_items()
-        
+
         if items:
             self.menu_items.empty()
 
@@ -210,14 +209,13 @@ class Menu(state.State):
 
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()
-            
             for index, item in enumerate(self.menu_items):
-                if not isinstance(item.game_object,Monster):
+                if item.game_object.__class__.__name__ != "Monster":
                     break
                 self.selected_index = index
                 if item.enabled:
                     break
-            
+
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu

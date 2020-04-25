@@ -162,7 +162,7 @@ class CombatState(CombatAnimations):
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
-        
+
         super(CombatState, self).startup(**kwargs)
         self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
         self.players = list(self.players)

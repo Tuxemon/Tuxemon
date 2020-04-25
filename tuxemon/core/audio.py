@@ -22,6 +22,9 @@ def load_sound(slug):
         def play(self):
             pass
 
+    if slug is None:
+        return DummySound()
+
     # get the filename from the db
     filename = db.lookup_file("sounds", slug)
     filename = transform_resource_filename("sounds", filename)

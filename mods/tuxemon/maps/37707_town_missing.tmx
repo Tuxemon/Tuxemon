@@ -401,7 +401,7 @@
     <property name="act10" value="set_variable 37707_tower:visited"/>
     <property name="act20" value="set_variable environment:grass"/>
     <property name="act30" value="translated_dialog 37707_exit_missing"/>
-    <property name="act40" value="transition_teleport bedroom_test.tmx,1,3,1"/>
+    <property name="act40" value="transition_teleport player_house_bedroom.tmx,1,3,1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
     <property name="cond30" value="is variable_set 37707_tower:activated"/>

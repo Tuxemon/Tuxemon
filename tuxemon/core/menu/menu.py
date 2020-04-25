@@ -210,6 +210,7 @@ class Menu(state.State):
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()
             for index, item in enumerate(self.menu_items):
+                # TODO: avoid introspection of the items to implement different behavior
                 if item.game_object.__class__.__name__ != "Monster":
                     break
                 self.selected_index = index

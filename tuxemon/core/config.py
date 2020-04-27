@@ -53,15 +53,20 @@ class TuxemonConfig(object):
     """
 
     def __init__(self, config_path=None):
+        import os.path
+        
         # load default config
-        cfg = generate_default_config()
-        self.cfg = cfg
+        cfg = configparser.ConfigParser()
 
         # update with customized values
-        if config_path:
+        if os.path.isfile(config_path):
             temp = configparser.ConfigParser()
             temp.read(config_path)
             populate_config(cfg, temp._sections)
+        else:
+            populate_config(cfg, get_defaults())
+
+        self.cfg = cfg
 
         # [display]
         resolution_x = cfg.getint("display", "resolution_x")
@@ -126,7 +131,8 @@ def get_custom_pygame_keyboard_controls(cfg):
     import pygame.locals
     from tuxemon.core.platform.platform_pygame.events import PygameKeyboardInput
 
-    custom_controls = PygameKeyboardInput.default_input_map.copy()
+    #custom_controls = PygameKeyboardInput.default_input_map.copy()
+    custom_controls = {None: events.UNICODE}
     for key, value in cfg.items("controls"):
         # pygame.locals uses all caps for constants except for letters
         key = key.lower() if len(key) == 1 else key.upper()

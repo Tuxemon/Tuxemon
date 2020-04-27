@@ -189,9 +189,9 @@ class CombatState(CombatAnimations):
 
     def draw(self, surface):
         """ Draw combat state
-        
-        :param pygame.surface.Surface surface: 
-        :rtype: None 
+
+        :param pygame.surface.Surface surface:
+        :rtype: None
         """
         super(CombatState, self).draw(surface)
         self.draw_hp_bars()

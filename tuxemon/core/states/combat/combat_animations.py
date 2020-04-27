@@ -492,10 +492,9 @@ class CombatAnimations(Menu):
                                              centerx=back_island.rect.centerx)
             self._monster_sprite_map[right_monster] = enemy
             self.monsters_in_play[opponent].append(right_monster)
+            self.build_hud(self._layout[opponent]['hud'][0], right_monster)
 
         self.sprites.add(enemy)
-        self.build_hud(self._layout[opponent]['hud'][0], right_monster)
-
 
         if self.is_trainer_battle:
             self.alert(T.format('combat_trainer_appeared', {"name": opponent.name.upper()}))

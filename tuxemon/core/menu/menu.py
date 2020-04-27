@@ -199,6 +199,7 @@ class Menu(state.State):
         """
         self._needs_refresh = True
         items = self.initialize_items()
+
         if items:
             self.menu_items.empty()
 
@@ -208,11 +209,14 @@ class Menu(state.State):
 
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()
-
             for index, item in enumerate(self.menu_items):
-                if item.enabled:
+                # TODO: avoid introspection of the items to implement different behavior
+                if item.game_object.__class__.__name__ != "Monster":
                     break
                 self.selected_index = index
+                if item.enabled:
+                    break
+
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu

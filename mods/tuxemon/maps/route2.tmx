@@ -75,7 +75,13 @@
   <object id="20" type="collision-line" x="560" y="80">
    <polyline points="0,0 0,32"/>
   </object>
-  <object id="21" type="collision" x="304" y="96" width="64" height="16"/>
+  <object id="21" type="collision" x="304" y="96" width="64" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter" value="up"/>
+    <property name="exit" value="down"/>
+   </properties>
+  </object>
   <object id="22" type="collision" x="432" y="32" width="16" height="48"/>
   <object id="32" type="collision" x="64" y="272" width="144" height="16"/>
   <object id="33" type="collision" x="240" y="224" width="96" height="16"/>
@@ -97,7 +103,7 @@
   <object id="49" type="collision-line" x="16" y="64">
    <polyline points="0,0 0,128"/>
   </object>
-  <object id="50" type="collision" x="32" y="208">
+  <object id="50" type="collision-line" x="32" y="208">
    <polyline points="0,0 0,32"/>
   </object>
   <object id="51" type="collision" x="448" y="288" width="160" height="16"/>

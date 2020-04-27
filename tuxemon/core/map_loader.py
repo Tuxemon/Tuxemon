@@ -145,21 +145,25 @@ class TMXMapLoader(object):
         edges = data.properties.get("edges")
 
         for obj in data.objects:
-            if obj.type == "collision":
-                for tile_position, conds in self.region_tiles(obj, tile_size):
-                    collision_map[tile_position] = conds if conds else None
-            elif obj.type == "collision-line":
-                for item in self.process_line(obj, tile_size):
-                    # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
-                    i, m, orientation = item
-                    if orientation == "vertical":
-                        collision_lines_map.add((i, "left"))
-                        collision_lines_map.add((m, "right"))
-                    elif orientation == "horizontal":
-                        collision_lines_map.add((m, "down"))
-                        collision_lines_map.add((i, "up"))
-                    else:
-                        raise Exception(orientation)
+            if obj.type and obj.type.lower().startswith("collision"):
+                closed = getattr(obj, "closed", True)
+                if closed:
+                    # closed; polygon or region with bounding box
+                    for tile_position, conds in self.region_tiles(obj, tile_size):
+                        collision_map[tile_position] = conds if conds else None
+                else:
+                    # not closed; a line of one ore more segments
+                    for item in self.process_line(obj, tile_size):
+                        # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
+                        i, m, orientation = item
+                        if orientation == "vertical":
+                            collision_lines_map.add((i, "left"))
+                            collision_lines_map.add((m, "right"))
+                        elif orientation == "horizontal":
+                            collision_lines_map.add((m, "down"))
+                            collision_lines_map.add((i, "up"))
+                        else:
+                            raise Exception(orientation)
             elif obj.type == "event":
                 events.append(self.load_event(obj, tile_size))
             elif obj.type == "init":
@@ -185,17 +189,18 @@ class TMXMapLoader(object):
         :param tile_size:
         :return:
         """
-        if len(line.points) != 2:
-            raise ValueError("Error: collision lines must be exactly 2 points")
-        p0 = point_to_grid(line.points[0], tile_size)
-        p1 = point_to_grid(line.points[1], tile_size)
-        p0, p1 = sorted((p0, p1))
-        angle = angle_of_points(p0, p1)
-        orientation = orientation_by_angle(angle)
-        for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
-            angle1 = angle - (pi / 2)
-            other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
-            yield i, other, orientation
+        if len(line.points) < 2:
+            raise ValueError("Error: collision lines must be at least 2 points")
+        for point_0, point_1 in zip(line.points, line.points[1:]):
+            p0 = point_to_grid(point_0, tile_size)
+            p1 = point_to_grid(point_1, tile_size)
+            p0, p1 = sorted((p0, p1))
+            angle = angle_of_points(p0, p1)
+            orientation = orientation_by_angle(angle)
+            for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
+                angle1 = angle - (pi / 2)
+                other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
+                yield i, other, orientation
 
     @staticmethod
     def region_tiles(region, grid_size):

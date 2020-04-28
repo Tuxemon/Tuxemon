@@ -307,7 +307,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
 
 def capture_screenshot(game):
     screenshot = pygame.Surface(game.screen.get_size())
-    world = game.get_state_name("WorldState")
+    world = game.get_state_by_name("WorldState")
     world.draw(screenshot)
     return screenshot
 

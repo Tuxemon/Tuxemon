@@ -390,7 +390,7 @@ class Client(StateManager):
         :returns: None
 
         """
-        world = self.get_state_name("WorldState")
+        world = self.get_state_by_name("WorldState")
         if not world:
             return
 
@@ -423,7 +423,7 @@ class Client(StateManager):
         :returns: filepath
 
         """
-        world = self.get_state_name("WorldState")
+        world = self.get_state_by_name("WorldState")
         if not world:
             return
 
@@ -443,7 +443,7 @@ class Client(StateManager):
         # extract map name from path
         return os.path.basename(map_path)
 
-    def get_state_name(self, name):
+    def get_state_by_name(self, name):
         """ Query the state stack for a state by the name supplied
 
         :str name: str

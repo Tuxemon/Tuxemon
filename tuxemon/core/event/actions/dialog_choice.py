@@ -63,7 +63,7 @@ class DialogChoiceAction(EventAction):
         self.open_choice_dialog(self.session, var_menu)
 
     def update(self):
-        if self.session.client.get_state_name("ChoiceState") is None:
+        if self.session.client.get_state_by_name("ChoiceState") is None:
             self.stop()
 
     def open_choice_dialog(self, session, menu):

@@ -72,7 +72,7 @@ class PlayMapAnimationAction(EventAction):
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation using the animation's conductor.
-        world_state = self.session.client.get_state_name("WorldState")
+        world_state = self.session.client.get_state_by_name("WorldState")
 
         if world_state is None:
             logger.error("Cannot run MapAnimation outside of world state")

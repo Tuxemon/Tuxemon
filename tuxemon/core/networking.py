@@ -522,7 +522,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_name("WorldState")
+                world = self.game.get_state_by_name("WorldState")
                 if not world:
                     return
                 world.handle_interaction(event_data, self.client.registry)
@@ -673,7 +673,7 @@ class TuxemonClient():
         :returns: None
 
         """
-        if self.game.current_state != self.game.get_state_name("WorldState"):
+        if self.game.current_state != self.game.get_state_by_name("WorldState"):
             return False
 
         event_type = None
@@ -890,7 +890,7 @@ def update_client(sprite, char_dict, game):
     # broken, b/c no global x/y
     return
 
-    world = game.get_state_name("WorldState")
+    world = game.get_state_by_name("WorldState")
     if not world:
         return
 

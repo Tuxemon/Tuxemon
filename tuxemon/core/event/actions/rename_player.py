@@ -54,5 +54,5 @@ class RenamePlayerAction(EventAction):
         )
 
     def update(self):
-        if self.session.client.get_state_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()

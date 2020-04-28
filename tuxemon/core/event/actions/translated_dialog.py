@@ -82,7 +82,7 @@ class TranslatedDialogAction(EventAction):
         )
 
     def update(self):
-        if self.session.client.get_state_name("DialogState") is None:
+        if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()
 
     def open_dialog(self, pages, avatar):

@@ -44,7 +44,7 @@ class NpcWanderAction(EventAction):
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)
-        world = self.session.client.get_state_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
 
         def move():
             # Don't interrupt existing movement

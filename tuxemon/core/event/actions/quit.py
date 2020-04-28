@@ -34,4 +34,4 @@ class QuitAction(EventAction):
     valid_parameters = []
 
     def start(self):
-        self.session.client.running = False
+        self.session.client.stop()

@@ -127,6 +127,9 @@ class LocalPygameClient(object):
 
         pg.quit()
 
+    def stop(self):
+        self.running = False
+
     def update(self, time_delta):
         """ This method gets updated at least once per frame
 

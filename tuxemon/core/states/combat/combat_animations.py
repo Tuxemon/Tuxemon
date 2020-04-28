@@ -15,7 +15,6 @@ import pygame
 
 from tuxemon.compat import Rect
 from tuxemon.core import audio, graphics, tools
-from tuxemon.core.graphics import scale_sprite
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu

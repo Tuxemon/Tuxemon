@@ -29,7 +29,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from tuxemon.core.euclid import Point2, Vector3, Point3
-from tuxemon.core.map import proj
+from tuxemon.core.world import proj
 
 
 class Entity(object):

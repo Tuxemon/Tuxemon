@@ -21,67 +21,6 @@ def proj(point):
         return point[0], point[1]
 
 
-class WorldBody(object):
-    """ WIP Physics for map/world objects
-    """
-
-    def __init__(self):
-        self.acceleration3 = Vector3(0, 0, 0)
-        self.velocity3 = Vector3(0, 0, 0)
-        self.position3 = Vector3(0, 0, 0)
-        self.bbox2 = Rect(0, 0, 0, 0)
-        self.map_name = None
-
-    def stop_moving(self):
-        """ Completely stop all movement
-
-        :return: None
-        """
-        self.acceleration3.x = 0
-        self.acceleration3.y = 0
-        self.acceleration3.z = 0
-        self.velocity3.x = 0
-        self.velocity3.y = 0
-        self.velocity3.z = 0
-
-    def pos_update(self):
-        """ Required to be called after position changes
-
-        :return: None
-        """
-        self.tile_pos = proj(self.position3)
-
-    def update_physics(self, td):
-        """ Move the entity according to the movement vector
-
-        NOTE: gravity, acceleration, friction is not implemented
-
-        :param float td:
-        :rtype: None
-        """
-        self.position3 += self.velocity3 * td
-        self.pos_update()
-
-    def set_position(self, pos):
-        """ Set the entity's position in the game world
-
-        :param pos:
-        :return:
-        """
-        self.stop_moving()
-        self.position3.x = pos[0]
-        self.position3.y = pos[1]
-        self.pos_update()
-
-    @property
-    def moving(self):
-        """ Is the body moving?
-
-        :rtype: bool
-        """
-        return not self.velocity3 == (0, 0, 0)
-
-
 class World(object):
     """
 
@@ -142,8 +81,8 @@ class World(object):
         :type entity: core.entity.Entity
         :return:
         """
-        if entity.body.map_name not in self.maps:
-            entity.body.map = self.get_map(entity.map_name)
+        if entity.map_name not in self.maps:
+            entity.map = self.get_map(entity.map_name)
         self.npcs_by_slug[entity.slug] = entity
         self.npcs_by_map[entity.map_name].add(entity)
 

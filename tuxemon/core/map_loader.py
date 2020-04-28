@@ -30,6 +30,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
+from math import cos, sin, pi
 
 import pytmx
 from natsort import natsorted
@@ -42,10 +43,10 @@ from tuxemon.core.map import (
     TuxemonMap,
     tiles_inside_rect,
     snap_rect_to_grid,
-    snap_rect_to_tile,
-    tiles_along_line,
+    snap_rect_to_tile, angle_of_points, orientation_by_angle, snap_to_grid,
 )
 from tuxemon.core.tools import split_escaped, copy_dict_with_keys
+from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
 
@@ -106,7 +107,7 @@ def event_actions_and_conditions(rect, items):
     for key, value in natsorted(items):
         if key.startswith("cond"):
             operator, cond_type, args = parse_condition_string(value)
-            condition = MapCondition(cond_type, args, operator, key)
+            condition = MapCondition(cond_type, args, w, y, w, h, operator, key)
             conds.append(condition)
         elif key.startswith("act"):
             act_type, args = parse_action_string(value)
@@ -196,19 +197,25 @@ class TMXMapLoader(object):
         edges = data.properties.get("edges")
 
         for obj in data.objects:
-            if obj.type == "collision":
-                for tile_position, conds in self.region_tiles(obj, tile_size):
-                    collision_map[tile_position] = conds if conds else None
-            elif obj.type == "collision-line":
-                for item in tiles_along_line(obj.points, tile_size):
-                    # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
-                    i, m, orientation = item
-                    if orientation == "vertical":
-                        collision_lines_map.add((i, "left"))
-                        collision_lines_map.add((m, "right"))
-                    elif orientation == "horizontal":
-                        collision_lines_map.add((m, "down"))
-                        collision_lines_map.add((i, "up"))
+            if obj.type and obj.type.lower().startswith("collision"):
+                closed = getattr(obj, "closed", True)
+                if closed:
+                    # closed; polygon or region with bounding box
+                    for tile_position, conds in self.region_tiles(obj, tile_size):
+                        collision_map[tile_position] = conds if conds else None
+                else:
+                    # not closed; a line of one ore more segments
+                    for item in self.process_line(obj, tile_size):
+                        # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
+                        i, m, orientation = item
+                        if orientation == "vertical":
+                            collision_lines_map.add((i, "left"))
+                            collision_lines_map.add((m, "right"))
+                        elif orientation == "horizontal":
+                            collision_lines_map.add((m, "down"))
+                            collision_lines_map.add((i, "up"))
+                        else:
+                            raise Exception(orientation)
             elif obj.type == "event":
                 events.append(self.load_event(obj, tile_size))
             elif obj.type == "init":
@@ -226,6 +233,25 @@ class TMXMapLoader(object):
             edges,
             filename,
         )
+
+    def process_line(self, line, tile_size):
+        """ Identify the tiles on either side of the line and block movement along it
+        :param line:
+        :param tile_size:
+        :return:
+        """
+        if len(line.points) < 2:
+            raise ValueError("Error: collision lines must be at least 2 points")
+        for point_0, point_1 in zip(line.points, line.points[1:]):
+            p0 = snap_to_grid(point_0, tile_size)
+            p1 = snap_to_grid(point_1, tile_size)
+            p0, p1 = sorted((p0, p1))
+            angle = angle_of_points(p0, p1)
+            orientation = orientation_by_angle(angle)
+            for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
+                angle1 = angle - (pi / 2)
+                other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
+                yield i, other, orientation
 
     def region_tiles(self, region, grid_size):
         """ Apply region properties to individual tiles

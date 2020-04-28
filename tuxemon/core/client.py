@@ -34,7 +34,6 @@ import time
 import pygame as pg
 
 from tuxemon.core import cli, networking
-from tuxemon.core.clock import Scheduler, Clock
 from tuxemon.core.platform import android
 from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon.core.state import StateManager
@@ -186,9 +185,9 @@ class LocalPygameClient(object):
             # if this state covers the screen
             # break here so lower screens are not drawn
             if (
-                not state.transparent
-                and state.rect == full_screen
-                and not state.force_draw
+                    not state.transparent
+                    and state.rect == full_screen
+                    and not state.force_draw
             ):
                 break
 

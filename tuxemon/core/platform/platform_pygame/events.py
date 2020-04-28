@@ -40,7 +40,7 @@ class PygameEventQueueHandler(EventQueueHandler):
                     player_input.process_event(pg_event)
 
             if pg_event.type == pg.QUIT:
-                local_session.client.exit = True
+                local_session.client.stop()
 
         for player, inputs in self._inputs.items():
             for player_input in inputs:

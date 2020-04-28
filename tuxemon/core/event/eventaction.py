@@ -33,9 +33,6 @@ from collections import namedtuple
 
 from tuxemon.core.tools import cast_values
 
-from tuxemon.core.client import Client  # for type introspection
-assert Client
-
 logger = logging.getLogger(__name__)
 
 

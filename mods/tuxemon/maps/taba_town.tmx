@@ -360,12 +360,6 @@
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="118" name="Preload route1" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act10" value="preload_map route1.tmx"/>
-    <property name="cond10" value="is true"/>
-   </properties>
-  </object>
   <object id="122" name="Player Spawn" type="event" x="608" y="752" width="16" height="16"/>
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="-32" width="16" height="16">
    <properties>

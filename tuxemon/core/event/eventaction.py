@@ -103,8 +103,8 @@ class EventAction(object):
     def __init__(self, session, parameters):
         """
 
-        :type session: tuxemon.session.Session
-        :type parameters: list
+        :param tuxemon.core.session.Session session:
+        :param List parameters:
         """
         self.session = session
 

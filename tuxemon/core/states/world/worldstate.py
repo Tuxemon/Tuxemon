@@ -60,8 +60,6 @@ class WorldState(state.State):
     """ The state responsible for the world game play
     """
 
-    preloaded_maps = {}
-
     keymap = {
         buttons.UP: intentions.UP,
         buttons.DOWN: intentions.DOWN,
@@ -94,8 +92,6 @@ class WorldState(state.State):
         #                              Map                                   #
         ######################################################################
 
-        # Keep a map of preloaded maps for fast map switching.
-        self.preloaded_maps = {}
         self.current_map = None
 
         ######################################################################
@@ -914,13 +910,8 @@ class WorldState(state.State):
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
-        if map_name not in self.preloaded_maps.keys():
-            logger.debug("Map was not preloaded. Loading from disk.")
-            map_data = self.load_map(map_name)
-        else:
-            logger.debug("%s was found in preloaded maps." % map_name)
-            map_data = self.preloaded_maps[map_name]
-            self.clear_preloaded_maps()
+        logger.debug("Map was not preloaded. Loading from disk.")
+        map_data = self.load_map(map_name)
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
@@ -948,25 +939,10 @@ class WorldState(state.State):
                 self.player.set_position((eo.x, eo.y))
 
     def load_map(self, map_name):
-        """ Returns map data as a dictionary to be used for map changing and preloading
+        """ Returns map data as a dictionary to be used for map changing
         :rtype: tuxemon.core.map.TuxemonMap
         """
         return TMXMapLoader().load(map_name)
-
-    def preload_map(self, map_name):
-        """ Preload a map for quicker access
-
-        :param map_name:
-        :return: None
-        """
-        self.preloaded_maps[map_name] = self.load_map(map_name)
-
-    def clear_preloaded_maps(self):
-        """ Clear the preloaded maps cache
-
-        :return: None
-        """
-        self.preloaded_maps = {}
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu

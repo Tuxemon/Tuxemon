@@ -81,6 +81,7 @@ class PlayerMovedCondition(EventCondition):
 
         """
         # TODO: Eventually generalize command for checking players and npcs
+        return False
         return self.generic_test(session, condition, session.player)
 
     def generic_test(self, session,  condition, npc):

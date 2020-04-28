@@ -84,7 +84,6 @@ class RunningEvent(object):
 
         :rtype: tuxemon.core.event.MapAction
         """
-        # if None, then make a new one
         try:
             action = self.map_event.acts[self.action_index]
         except IndexError:
@@ -92,6 +91,9 @@ class RunningEvent(object):
             logger.debug("map event actions finished")
             return
         return action
+
+    def advance(self):
+        self.action_index += 1
 
 
 class EventEngine(object):
@@ -126,7 +128,6 @@ class EventEngine(object):
         # TODO: make loading of actions and conditions generic
         if parameters is None:
             parameters = list()
-
         try:
             action = self.actions[name]
         except KeyError:
@@ -394,6 +395,7 @@ def add_error_context(event, item, session):
     try:
         yield
     except Exception:
+        raise
         file_name = session.client.get_map_filepath()
         tree = etree.parse(file_name)
         event_node = tree.find("//object[@id='%s']" % event.id)

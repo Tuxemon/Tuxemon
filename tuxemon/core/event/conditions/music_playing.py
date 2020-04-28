@@ -35,16 +35,6 @@ class MusicPlayingCondition(EventCondition):
     def test(self, session,  condition):
         """ Checks to see if a particular piece of music is playing or not.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
-            for the format of the dictionary.
-
-        :type session: tuxemon.core.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
-
         Valid Parameters: music_filename
 
         **Examples:**
@@ -63,7 +53,12 @@ class MusicPlayingCondition(EventCondition):
             ...
         }
 
+        :param tuxemon.core.session.Session session:
+        :param Dict condition:
+        :rtype: Boolean
         """
+        # todo fix this
+        return True
         song = condition.parameters[0]
 
         # currently no way to query the names of states in the state game stack.
@@ -75,8 +70,6 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        # todo fix this
-        return True
         # if session.current_music["song"] == song and mixer.music.get_busy():
         #     return True
         # else:

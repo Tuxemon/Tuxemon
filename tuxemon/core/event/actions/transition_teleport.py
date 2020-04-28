@@ -24,6 +24,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core.euclid import Vector3
 from tuxemon.core.event.eventaction import EventAction
 
 
@@ -57,16 +58,17 @@ class TransitionTeleportAction(EventAction):
     ]
 
     def start(self):
-        # Start the screen transition
-        params = [self.parameters.transition_time]
-        self.transition = self.session.client.event_engine.get_action("screen_transition", params)
-        self.transition.start()
+        # self.transition = self.session.client.event_engine.get_action("screen_transition", params)
+        # self.transition.start()
+        position = Vector3(self.parameters.x, self.parameters.y, 0)
+        self.session.client.release_controls()
+        self.session.world.teleport(self.session.player, self.parameters.map_name, position)
 
-    def update(self):
-        if not self.transition.done:
-            self.transition.update()
-        if self.transition.done:
-            self.transition.cleanup()
-            # set the delayed teleport
-            self.session.client.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
-            self.stop()
+    # def update(self):
+    #     if not self.transition.done:
+    #         self.transition.update()
+    #     if self.transition.done:
+    #         self.transition.cleanup()
+    #         # set the delayed teleport
+    #         self.session.client.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
+    #         self.stop()

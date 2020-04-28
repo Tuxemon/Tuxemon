@@ -148,6 +148,9 @@ class MapView(object):
         self.tileheight = None
         self.sprites = SpriteCache()
 
+        # TODO: consider using some event to signify changing this
+        self._current_map = None
+
     def follow(self, entity):
         self.tracked_npc = entity
 
@@ -162,6 +165,8 @@ class MapView(object):
 
         # TODO: make more robust to handle no tracking, and tracking other npcs
         if self.tracked_npc is not None:
+            if self.tracked_npc.map_name != self._current_map:
+                self.renderer = None
             if self.renderer is None:
                 map_name = self.tracked_npc.map_name
                 filename = prepare.fetch("maps", map_name)
@@ -180,7 +185,7 @@ class MapView(object):
 
         # get npc surfaces/sprites
         world_surfaces = list()
-        for npc in self.world.get_all_entities_on_map(None):
+        for npc in self.world.get_entities_on_map(self.tracked_npc.map_name):
             sprite = self.sprites.get(npc.sprite_name)
             world_surfaces.extend(sprite.get_current_npc_surface(npc, self.sprite_layer))
 

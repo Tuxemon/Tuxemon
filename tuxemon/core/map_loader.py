@@ -106,7 +106,7 @@ def event_actions_and_conditions(rect, items):
     for key, value in natsorted(items):
         if key.startswith("cond"):
             operator, cond_type, args = parse_condition_string(value)
-            condition = MapCondition(cond_type, args, x, y, w, h, operator, key)
+            condition = MapCondition(cond_type, args, operator, key)
             conds.append(condition)
         elif key.startswith("act"):
             act_type, args = parse_action_string(value)
@@ -115,7 +115,7 @@ def event_actions_and_conditions(rect, items):
         elif key.startswith("behav"):
             behav_type, args = parse_behav_string(value)
             if behav_type == "talk":
-                cond = MapCondition("to_talk", args, x, y, w, h, "is", key)
+                cond = MapCondition("to_talk", args, "is", key)
                 action = MapAction("npc_face", [args[0], "player"], key)
                 conds.insert(0, cond)
                 acts.insert(0, action)
@@ -139,8 +139,7 @@ def new_event_object(event_id, name, event_type, rect, properties):
     """
     acts, conds = event_actions_and_conditions(rect, properties)
     if event_type == "interact":
-        x, y, w, h = rect
-        cond = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
+        cond = MapCondition("player_facing_tile", list(), "is", None)
         conds.append(cond)
     return EventObject(event_id, name, rect.x, rect.y, rect.w, rect.h, conds, acts)
 
@@ -180,9 +179,7 @@ class TMXMapLoader(object):
 
         .. image:: images/map/map_editor_action01.png
 
-        :param filename: The path to the tmx map file to load.
-        :type filename: String
-
+        :param str filename: The path to the tmx map file to load.
         :rtype: tuxemon.core.map.TuxemonMap
         """
         # TODO: remove the need to load graphics here

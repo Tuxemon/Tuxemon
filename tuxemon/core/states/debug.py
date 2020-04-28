@@ -53,7 +53,7 @@ def debug_drawing(self, surface):
     box_iter = itertools.imap(self._collision_box_to_pgrect, self.collision_map)
 
     # Next, deal with solid NPCs.
-    npc_iter = itertools.imap(self._npc_to_pgrect, self.npcs.values())
+    npc_iter = itertools.imap(self._npc_to_pgrect, self.npcs_by_slug.values())
 
     # draw noc and wall collision tiles
     red = (255, 0, 0, 128)

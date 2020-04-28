@@ -57,7 +57,7 @@ def main(load_slot=None):
     # setup game for local single player
     player = NPC(prepare.CONFIG.player_npc)
     player.map_name = prepare.CONFIG.starting_map
-    player.set_position((5, 5))
+    player.body.set_position((5, 5))
     world.add_entity(player)
 
     local_session.client = client

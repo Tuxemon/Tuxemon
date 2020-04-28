@@ -8,7 +8,7 @@ class Session(object):
     """
     def __init__(self, client, world, player):
         """
-        :param tuxemon.core.client.Client client: Game session
+        :param tuxemon.core.client.LocalPygameClient client: Game session
         :param tuxemon.core.world.World world: Game world
         :param tuxemon.core.npc.NPC player: Player NPC object
         """

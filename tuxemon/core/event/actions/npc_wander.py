@@ -42,8 +42,9 @@ class NpcWanderAction(EventAction):
     ]
 
     def start(self):
+        # TODO: fix me
+        return
         npc = get_npc(self.session, self.parameters.npc_slug)
-        world = self.session.client.get_state_by_name("WorldState")
 
         def move():
             # Don't interrupt existing movement

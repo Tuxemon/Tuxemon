@@ -38,10 +38,6 @@ logger = logging.getLogger(__name__)
 condition_fields = [
     "type",
     "parameters",
-    "x",
-    "y",
-    "width",
-    "height",
     "operator",
     "name"]
 
@@ -73,16 +69,13 @@ __all__ = [
 
 
 def get_npc(session, slug):
-    """ Gets an NPC object by slug.
+    """ Gets an NPC object by slug.  None is returned if not found.
 
-    :param session: The session object
-    :param slug: The slug of the NPC that exists on the current map.
+    Pass "player" to get the player's npc of this session
 
-    :type session: tuxemon.core.session.Session
-    :type slug: str
-
+    :param tuxemon.core.session.Session session: The session object
+    :param str slug: The slug of the NPC that exists on the current map.
     :rtype: tuxemon.core.player.Player
-    :returns: The NPC object or None if the NPC is not found.
     """
     if slug == "player":
         return session.player

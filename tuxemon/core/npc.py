@@ -42,7 +42,7 @@ from tuxemon.core.entity import Entity
 from tuxemon.core.item.item import Item
 from tuxemon.core.item.item import decode_inventory, encode_inventory
 from tuxemon.core.locale import T
-from tuxemon.core.map import proj, dirs3, dirs2, get_direction
+from tuxemon.core.map import dirs3, dirs2, get_direction
 from tuxemon.core.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.core.prepare import CONFIG
 from tuxemon.core.tools import nearest, trunc
@@ -79,8 +79,6 @@ class NPC(Entity):
     length paths for directly setting a series of movements.
 
     Pathfinding is accomplished by setting the path directly.
-
-    TODO: move the map position/movement code into a "Body" class
 
     To move one tile, simply set a path of one item.
     """
@@ -150,16 +148,14 @@ class NPC(Entity):
         # TODO: pull values from the sprite, json, or some default
         self.playerHeight = 16
         self.playerWidth = 16
-        self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+        # self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
     def get_state(self, session):
         """Prepares a dictionary of the npc to be saved to a file
 
         :param tuxemon.core.session.Session session:
-
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the npc
-
         """
         return {
             'current_map': self.map,
@@ -180,12 +176,8 @@ class NPC(Entity):
 
         :param tuxemon.core.session.Session session:
         :param Dict save_data: Data used to recreate the player
-
         :rtype: None
-        :returns: None
-
         """
-
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
         self.inventory = decode_inventory(session, self, save_data)
@@ -199,12 +191,9 @@ class NPC(Entity):
     def pathfind(self, destination):
         """ Find a path and also start it
 
-        Queries the map for a valid path
-
         :param destination:
-        :return:
+        :rtype: None
         """
-        # TODO: handle invalid paths
         self.pathfinding = destination
         path = self.map.pathfind(tuple(self.tile_pos), destination)
         if path:
@@ -212,25 +201,16 @@ class NPC(Entity):
             self.next_waypoint()
 
     def check_continue(self):
+        """
+
+        :return:
+        """
         try:
             pos = tuple(int(i) for i in self.tile_pos)
             direction_next = self.map.collision_map[pos]["continue"]
             self.move_one_tile(direction_next)
         except (KeyError, TypeError):
             pass
-
-    def stop_moving(self):
-        """ Completely stop all movement
-
-        Be careful, if stopped while in the path, it might not be tile-aligned.
-
-        May continue if move_direction is set
-
-        :return: None
-        """
-        self.velocity3.x = 0
-        self.velocity3.y = 0
-        self.velocity3.z = 0
 
     def cancel_path(self):
         """ Stop following a path.
@@ -296,6 +276,7 @@ class NPC(Entity):
         :type time_passed_seconds: Float
         """
         # update physics.  eventually move to another class
+        return
         self.update_physics(time_passed_seconds)
 
         if self.pathfinding and not self.path:
@@ -410,13 +391,6 @@ class NPC(Entity):
             self.check_continue()  # handle "continue" tiles
             if self.path:
                 self.next_waypoint()
-
-    def pos_update(self):
-        """ WIP.  Required to be called after position changes
-
-        :return:
-        """
-        self.tile_pos = proj(self.position3)
 
     ####################################################
     #                   Monsters                       #

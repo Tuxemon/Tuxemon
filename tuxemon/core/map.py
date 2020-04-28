@@ -110,21 +110,6 @@ def get_direction(base, target):
         return "left" if x_offset > 0 else "right"
 
 
-def proj(point):
-    """ Project 3d coordinates to 2d.
-
-    Not necessarily for use on a screen.
-
-    :param point:
-
-    :rtype: Tuple[Float, Float]
-    """
-    try:
-        return Point2(point.x, point.y)
-    except AttributeError:
-        return point[0], point[1]
-
-
 def tiles_inside_rect(rect, grid_size):
     """ Iterate all tile positions within this rect from left to right, top to bottom
 
@@ -230,6 +215,7 @@ def tiles_along_line(points, tile_size):
     :return: Iterator[Tuple[Tuple[int, int], Tuple[int, int], str]]
     """
     if len(points) != 2:
+        return
         raise ValueError("Error: collision lines must be exactly 2 points")
     p0 = snap_to_tile(points[0], tile_size)
     p1 = snap_to_tile(points[1], tile_size)

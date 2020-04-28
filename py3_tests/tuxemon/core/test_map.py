@@ -43,7 +43,14 @@ class TestSnapToTile(unittest.TestCase):
     def test_round_down(self):
         point = (32, 50)
         grid_size = (16, 16)
-        expected = (2, 3)
+        expected = (2, 3    def rect_from_object(obj):
+        """ Return Rect from TiledObject
+
+        :param obj: TiledObject
+        :rtype: Rect
+        """
+        return Rect(obj.x, obj.y, obj.width, obj.height)
+)
         result = snap_to_tile(point, grid_size)
         self.assertEqual(expected, result)
 

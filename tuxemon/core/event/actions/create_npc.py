@@ -28,10 +28,10 @@ import logging
 
 import tuxemon.core.npc
 from tuxemon.core import ai
-from tuxemon.core.db import db
 from tuxemon.core.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
+
 
 class CreateNpcAction(EventAction):
     """Creates an NPC object and adds it to the game's current list of NPC's.
@@ -49,36 +49,19 @@ class CreateNpcAction(EventAction):
 
     def start(self):
         world = self.session.world
-
-        # Get the npc's parameters from the action
         slug = self.parameters.npc_slug
 
-        # Ensure that the NPC doesn't already exist on the map.
-        if slug in world.npcs:
+        # Ensure that the NPC doesn't already exist
+        if slug in world.npcs_by_slug:
             return
 
-        # Get the npc's parameters from the action
+        # Create a new NPC object
         pos_x = self.parameters.tile_pos_x
         pos_y = self.parameters.tile_pos_y
-        behavior = self.parameters.behavior
-
-        sprite = self.parameters.animations
-        if sprite:
-            logger.warning(
-                "%s: setting npc sprites within a map is deprecated, and may be removed in the future. "
-                "Sprites should be defined in JSON before loading.",
-                slug
-            )
-        else:
-            sprite = db.database['npc'][slug].get('sprite_name')
-
-        # Create a new NPC object
-        npc = tuxemon.core.npc.NPC(slug, sprite_name=sprite)
+        npc = tuxemon.core.npc.NPC(slug)
         npc.set_position((pos_x, pos_y))
 
-        # Set the NPC object's variables
-        npc.behavior = behavior
-        npc.ai = ai.AI()
+        # TODO: Get the map name from the event
+        npc.map_name = self.session.player.map_name
 
-        # Add the NPC to the game's NPC list
         world.add_entity(npc)

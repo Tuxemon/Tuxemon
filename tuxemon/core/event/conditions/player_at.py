@@ -33,35 +33,11 @@ class PlayerAtCondition(EventCondition):
     name = "player_at"
 
     def test(self, session,  condition):
-        """Checks to see if the player is at a current position on the map.
+        """ Checks to see if the player is at a current position on the map.
 
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
-            for the format of the dictionary.
-
-        :type session: tuxemon.core.session.Session
-        :type condition: Dictionary
-
+        :param tuxemon.core.session.Session session:
+        :param Dict condition: :py:func:`core.map.Map.loadevents`
         :rtype: Boolean
-        :returns: True or False
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_at",
-            "parameters": [
-                "6",
-                "9"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         player = session.player
 

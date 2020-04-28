@@ -40,7 +40,10 @@ from collections import OrderedDict
 
 from six.moves import configparser
 
+from tuxemon.core.animation import Animation
 from tuxemon.core.platform.const import buttons, events
+
+Animation.default_transition = 'out_quint'
 
 
 class TuxemonConfig(object):
@@ -88,7 +91,7 @@ class TuxemonConfig(object):
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
-
+        
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")

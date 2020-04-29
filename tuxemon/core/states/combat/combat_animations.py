@@ -187,8 +187,8 @@ class CombatAnimations(Menu):
             self.task(call_sound.play, delay)
 
         # update tuxemon balls to reflect fainted tuxemon
-        for player, layout in self._layout.items():
-            self.animate_update_party_hud(player, layout['party'][0])
+        #for player, layout in self._layout.items():
+        #    self.animate_update_party_hud(player, layout['party'][0])
 
     def animate_sprite_spin(self, sprite):
         """
@@ -232,6 +232,8 @@ class CombatAnimations(Menu):
                 monsters.remove(monster)
             except ValueError:
                 pass
+        for player, layout in self._layout.items():
+            self.animate_update_party_hud(player, layout['party'][0])
 
     def animate_sprite_take_damage(self, sprite):
         """

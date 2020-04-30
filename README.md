@@ -1,4 +1,4 @@
-Tuxemon 0.4.24
+Tuxemon 0.4.25
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -98,6 +98,14 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 **Smartphones**
 * [Android](https://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
 
+
+**Fedora Linux**
+
+```
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel
+virtualenv venv
+pip install -r requirements.txt
+```
 
 Controls
 --------

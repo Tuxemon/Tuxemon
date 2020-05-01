@@ -424,13 +424,13 @@ class CombatAnimations(Menu):
         if self.get_side(home) == "left":
             tray = self.load_sprite('gfx/ui/combat/opponent_party_tray.png',
                                     bottom=home.bottom, right=0, layer=hud_layer)
-            self.animate(tray.rect, right=home.right, duration=0.1, delay=0.1)
+            self.animate(tray.rect, right=home.right, duration=0.001, delay=0.1)
             centerx = home.right - scale(13)
             offset = scale(8)
         else:
             tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
                                     bottom=home.bottom, left=home.right, layer=hud_layer)
-            self.animate(tray.rect, left=home.left, duration=0.1, delay=0.1)
+            self.animate(tray.rect, left=home.left, duration=0.001, delay=0.1)
             centerx = home.left + scale(13)
             offset = -scale(8)
 
@@ -461,7 +461,7 @@ class CombatAnimations(Menu):
             # convert alpha image to image with a colorkey so we can set_alpha
             sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
             sprite.image.set_alpha(0)
-            animate = partial(self.animate, duration=0.1, delay=0.1)
+            animate = partial(self.animate, duration=0.001, delay=0.1)
             animate(sprite.image, set_alpha=255, initial=0)
             animate(sprite.rect, bottom=tray.rect.top + scale(3))
 

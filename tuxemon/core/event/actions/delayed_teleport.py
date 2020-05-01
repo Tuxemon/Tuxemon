@@ -24,6 +24,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core.euclid import Vector3
 from tuxemon.core.event.eventaction import EventAction
 
 
@@ -40,13 +41,6 @@ class DelayedTeleportAction(EventAction):
     ]
 
     def start(self):
-        world = self.session.world
-
-        # give up if there is a teleport in progress
-        if world.delayed_teleport:
-            return
-
-        world.delayed_teleport = True
-        world.delayed_mapname = self.parameters.map_name
-        world.delayed_x = self.parameters.position_x
-        world.delayed_y = self.parameters.position_y
+        position = Vector3(self.parameters.x, self.parameters.y, 0)
+        self.session.client.release_controls()
+        self.session.world.teleport(self.session.player, self.parameters.map_name, position)

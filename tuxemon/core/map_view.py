@@ -114,6 +114,7 @@ class SpriteCache(object):
     """ Cache seen sprites.  Currently memory is never freed.
 
     """
+
     def __init__(self):
         self.sprites = dict()
 
@@ -150,6 +151,11 @@ class MapView(object):
 
         # TODO: consider using some event to signify changing this
         self._current_map = None
+
+        # TODO: Transitions should be changed to states and not coded in here
+        self.transition_alpha = 0
+        self.transition_surface = None
+        self.in_transition = False
 
     def follow(self, entity):
         self.tracked_npc = entity
@@ -228,6 +234,66 @@ class MapView(object):
         self.tilewidth, self.tileheight = prepare.TILE_SIZE
         self.map_animations = dict()
         return pyscroll.BufferedRenderer(visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2)
+
+    def fade_and_teleport(self, duration=2):
+        """ Fade out, teleport, fade in
+
+        :return:
+        """
+
+        def cleanup():
+            self.in_transition = False
+
+        def fade_in():
+            self.trigger_fade_in(duration)
+            self.task(cleanup, duration)
+
+        # cancel any fades that may be going one
+        self.remove_animations_of(self)
+        self.remove_animations_of(cleanup)
+        self.stop_player()
+        self.in_transition = True
+        self.trigger_fade_out(duration)
+        task = self.task(self.handle_delayed_teleport, duration)
+        task.chain(fade_in, duration + .5)
+
+    def trigger_fade_in(self, duration=2):
+        """ World state has own fade code b/c moving maps doesn't change state
+
+        :returns: None
+        """
+        self.set_transition_surface()
+        self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
+        self.task(self.unlock_controls, duration - .5)
+
+    def trigger_fade_out(self, duration=2):
+        """ World state has own fade code b/c moving maps doesn't change state
+
+        * will cause player to teleport if set somewhere else
+
+        :returns: None
+        """
+        self.set_transition_surface()
+        self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
+        self.stop_player()
+        self.lock_controls()
+
+    def set_transition_surface(self, color=(0, 0, 0)):
+        self.transition_surface = pygame.Surface(self.client.screen.get_size())
+        self.transition_surface.fill(color)
+
+    def fullscreen_animations(self, surface):
+        """Handles fullscreen animations such as transitions, cutscenes, etc.
+
+        :param surface: Surface to draw onto
+
+        :rtype: None
+        :returns: None
+
+        """
+        if self.in_transition:
+            self.transition_surface.set_alpha(self.transition_alpha)
+            surface.blit(self.transition_surface, (0, 0))
 
     def get_pos_from_tilepos(self, tile_position):
         """ Return the screen pixel coordinate based on tile position

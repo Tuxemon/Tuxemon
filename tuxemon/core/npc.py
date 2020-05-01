@@ -135,7 +135,7 @@ class NPC(Entity):
         self.path_origin = None
 
         # movement related
-        self.move_direction = None  # Set this value to move the npc (see below)
+        self._move_direction = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
@@ -188,6 +188,9 @@ class NPC(Entity):
             'monsters': decode_monsters(save_data['storage']),
         }
 
+    def move_direction(self, direction):
+        self._move_direction = direction
+
     def pathfind(self, destination):
         """ Find a path and also start it
 
@@ -230,7 +233,7 @@ class NPC(Entity):
 
         :return:
         """
-        self.move_direction = None
+        self._move_direction = None
         if self.tile_pos == self.path_origin:
             # we *just* started a new path; discard it and stop
             self.abort_movement()
@@ -257,7 +260,7 @@ class NPC(Entity):
         """
         if self.path_origin is not None:
             self.tile_pos = tuple(self.path_origin)
-        self.move_direction = None
+        self._move_direction = None
         self.stop_moving()
         self.cancel_path()
 
@@ -276,7 +279,6 @@ class NPC(Entity):
         :type time_passed_seconds: Float
         """
         # update physics.  eventually move to another class
-        return
         self.update_physics(time_passed_seconds)
 
         if self.pathfinding and not self.path:
@@ -294,14 +296,14 @@ class NPC(Entity):
                 self.next_waypoint()
 
         # does the npc want to move?
-        if self.move_direction:
+        if self._move_direction:
             if self.path and not self.moving:
                 # npc wants to move and has a path, but it is blocked
                 self.cancel_path()
 
             if not self.path:
                 # there is no path, so start a new one
-                self.move_one_tile(self.move_direction)
+                self.move_one_tile(self._move_direction)
                 self.next_waypoint()
 
         # TODO: determine way to tell if another force is moving the entity

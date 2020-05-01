@@ -79,25 +79,6 @@ class WorldState(state.State):
         self.player_npc = None
         self.wants_to_move_player = None
         self.allow_player_movement = True
-
-        ######################################################################
-        #                            Transitions                             #
-        ######################################################################
-        # TODO: Transitions should be changed to states and not coded in here
-
-        # default variables for transition
-        self.transition_alpha = 0
-        self.transition_surface = None
-        self.in_transition = False
-
-        # The delayed teleport variable is used to perform a teleport in the
-        # middle of a transition. For example, fading to black, then
-        # teleporting the player, and fading back in again.
-        self.delayed_teleport = False
-
-        # The delayed facing variable used to change the player's facing in
-        # the middle of a transition.
-        self.delayed_facing = None
         self.view = MapView(self.world)
         self.player_npc = kwargs.get("player")
         self.set_player_npc(self.player_npc)
@@ -122,79 +103,6 @@ class WorldState(state.State):
         self.player_npc = entity
         self.view.follow(entity)
 
-    def fade_and_teleport(self, duration=2):
-        """ Fade out, teleport, fade in
-
-        :return:
-        """
-
-        def cleanup():
-            self.in_transition = False
-
-        def fade_in():
-            self.trigger_fade_in(duration)
-            self.task(cleanup, duration)
-
-        # cancel any fades that may be going one
-        self.remove_animations_of(self)
-        self.remove_animations_of(cleanup)
-        self.stop_player()
-        self.in_transition = True
-        self.trigger_fade_out(duration)
-        task = self.task(self.handle_delayed_teleport, duration)
-        task.chain(fade_in, duration + .5)
-
-    def trigger_fade_in(self, duration=2):
-        """ World state has own fade code b/c moving maps doesn't change state
-
-        :returns: None
-        """
-        self.set_transition_surface()
-        self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
-        self.task(self.unlock_controls, duration - .5)
-
-    def trigger_fade_out(self, duration=2):
-        """ World state has own fade code b/c moving maps doesn't change state
-
-        * will cause player to teleport if set somewhere else
-
-        :returns: None
-        """
-        self.set_transition_surface()
-        self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
-        self.stop_player()
-        self.lock_controls()
-
-    def handle_delayed_teleport(self):
-        """ Call to teleport player if delayed_teleport is set
-
-        * load a map
-        * move player
-        * send data to network about teleport
-
-        :return: None
-        """
-        if self.delayed_teleport:
-            self.stop_player()
-            self.lock_controls()
-
-            # check if map has changed, and if so, change it
-            map_name = prepare.fetch("maps", self.delayed_mapname)
-
-            # TODO: change player map
-
-            self.player_npc.set_position((self.delayed_x, self.delayed_y))
-
-            if self.delayed_facing:
-                self.player_npc.facing = self.delayed_facing
-                self.delayed_facing = None
-
-            self.delayed_teleport = False
-
-    def set_transition_surface(self, color=(0, 0, 0)):
-        self.transition_surface = pygame.Surface(self.client.screen.get_size())
-        self.transition_surface.fill(color)
-
     def draw(self, surface):
         """ Draw the game world to the screen
 
@@ -202,7 +110,6 @@ class WorldState(state.State):
         :return:
         """
         self.view.draw(surface)
-        self.fullscreen_animations(surface)
 
     def translate_input_event(self, event):
         """ Translate a key to a game input
@@ -294,7 +201,7 @@ class WorldState(state.State):
     def stop_player(self):
         """ Reset controls and stop player movement at once.  Do not lock controls
 
-        If player was in a movement then complete it before stopping.
+        If player was in a movement when stopped, the player will be moved to end.
 
         :return:
         """
@@ -325,7 +232,7 @@ class WorldState(state.State):
         :return:
         """
         if self.player_npc is not None:
-            self.player_npc.move_direction = direction
+            self.player_npc.move_direction(direction)
 
     # Below is the boneyard.  Eventually this should be added back in.
 
@@ -431,22 +338,6 @@ class WorldState(state.State):
                 self.cinema_top['surface'], self.cinema_top['position'])
             surface.blit(
                 self.cinema_bottom['surface'], self.cinema_bottom['position'])
-
-    ####################################################
-    #         Full Screen Animations Functions         #
-    ####################################################
-    def fullscreen_animations(self, surface):
-        """Handles fullscreen animations such as transitions, cutscenes, etc.
-
-        :param surface: Surface to draw onto
-
-        :rtype: None
-        :returns: None
-
-        """
-        if self.in_transition:
-            self.transition_surface.set_alpha(self.transition_alpha)
-            surface.blit(self.transition_surface, (0, 0))
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu

@@ -27,7 +27,7 @@ from __future__ import unicode_literals
 import logging
 
 import tuxemon.core.npc
-from tuxemon.core import ai
+from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -48,11 +48,10 @@ class CreateNpcAction(EventAction):
     ]
 
     def start(self):
-        world = self.session.world
         slug = self.parameters.npc_slug
 
         # Ensure that the NPC doesn't already exist
-        if slug in world.entities_by_slug:
+        if get_npc(self.session, slug) is not None:
             return
 
         # Create a new NPC object
@@ -63,5 +62,4 @@ class CreateNpcAction(EventAction):
 
         # TODO: Get the map name from the event
         npc.map_name = self.session.player.map_name
-
-        world.add_entity(npc)
+        self.session.world.add_entity(npc)

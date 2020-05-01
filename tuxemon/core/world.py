@@ -32,8 +32,8 @@ class World(object):
         """ Constructor
         """
         self.entities = None
-        self.npcs_by_slug = dict()
-        self.npcs_by_map = defaultdict(set)
+        self.entities_by_slug = dict()
+        self.entities_by_map = defaultdict(set)
         self.maps = dict()
         self.time = 0.0
 
@@ -71,7 +71,7 @@ class World(object):
         :return: None
         """
         self.time += time_delta
-        self.move_npcs(time_delta)
+        self.move_entities(time_delta)
         for map_object in list(self.maps.values()):
             map_object.update(time_delta)
 
@@ -83,8 +83,8 @@ class World(object):
         """
         if entity.map_name not in self.maps:
             entity.map = self.get_map(entity.map_name)
-        self.npcs_by_slug[entity.slug] = entity
-        self.npcs_by_map[entity.map_name].add(entity)
+        self.entities_by_slug[entity.slug] = entity
+        self.entities_by_map[entity.map_name].add(entity)
 
     def remove_entity(self, slug):
         """ Remove an entity by its slug
@@ -92,9 +92,9 @@ class World(object):
         :type slug: str
         :return:
         """
-        entity = self.npcs_by_slug[slug]
-        del self.npcs_by_slug[slug]
-        for map_name, entities in self.npcs_by_map.items():
+        entity = self.entities_by_slug[slug]
+        del self.entities_by_slug[slug]
+        for map_name, entities in self.entities_by_map.items():
             try:
                 entities.remove(entity)
             except KeyError:
@@ -103,24 +103,24 @@ class World(object):
                 break
 
     def clear_entities_on_map(self, map_name):
-        for entity in self.npcs_by_slug[map_name]:
+        for entity in self.entities_by_slug[map_name]:
             self.remove_entity(entity.slug)
-        del self.npcs_by_map[map_name]
+        del self.entities_by_map[map_name]
 
     def get_entity(self, slug):
-        """ Return NPC object by its slug
+        """ Return Entity by its slug.  Returns None if not found.
 
         :type slug: str
-        :rtype: tuxemon.core.entity.Entity
+        :rtype: Optional[tuxemon.core.entity.Entity]
         """
-        return self.npcs_by_slug.get(slug)
+        return self.entities_by_slug.get(slug)
 
     def get_all_entities(self):
         """ All entities across all maps
 
         :rtype: Iterator[Entity]
         """
-        return self.npcs_by_slug.values()
+        return self.entities_by_slug.values()
 
     def get_entities_on_map(self, map_name):
         """ All entities on a map
@@ -128,9 +128,9 @@ class World(object):
         :param str map_name:
         :rtype: Iterator[Entity]
         """
-        return self.npcs_by_map[map_name]
+        return self.entities_by_map[map_name]
 
-    def move_npcs(self, time_delta):
+    def move_entities(self, time_delta):
         """ Move NPCs and Players around according to their state
 
         :type time_delta: float
@@ -187,7 +187,7 @@ class World(object):
         if not world:
             return
 
-        world.npcs_by_slug = {}
+        world.entities_by_slug = {}
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
@@ -197,13 +197,13 @@ class World(object):
 
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
-                    if sprite.slug not in world.npcs_by_slug:
-                        world.npcs_by_slug[sprite.slug] = sprite
+                    if sprite.slug not in world.entities_by_slug:
+                        world.entities_by_slug[sprite.slug] = sprite
 
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
-                    if sprite.slug in world.npcs_by_slug:
-                        del world.npcs_by_slug[sprite]
+                    if sprite.slug in world.entities_by_slug:
+                        del world.entities_by_slug[sprite]
 
     def broadcast_player_teleport_change(self):
         """ Tell clients/host that player has moved or changed map after teleport
@@ -219,6 +219,6 @@ class World(object):
             self.game.client.update_player(self.player1.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs_by_slug.values():
+        for npc in self.entities_by_slug.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.game)

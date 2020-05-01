@@ -75,11 +75,12 @@ __all__ = [
 def get_npc(session, slug):
     """ Gets an NPC object by slug.  None is returned if not found.
 
-    Pass "player" to get the player's npc of this session
+    Pass "player" to get the player's entity of this session.
+    Name is outdated.  Will return any live game object by the slug.
 
     :param tuxemon.core.session.Session session: The session object
     :param str slug: The slug of the NPC that exists on the current map.
-    :rtype: tuxemon.core.player.Player
+    :rtype: Optional[tuxemon.core.player.Player]
     """
     if slug == "player":
         return session.player

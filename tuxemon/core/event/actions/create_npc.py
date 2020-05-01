@@ -52,7 +52,7 @@ class CreateNpcAction(EventAction):
         slug = self.parameters.npc_slug
 
         # Ensure that the NPC doesn't already exist
-        if slug in world.npcs_by_slug:
+        if slug in world.entities_by_slug:
             return
 
         # Create a new NPC object

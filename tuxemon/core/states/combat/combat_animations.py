@@ -375,14 +375,14 @@ class CombatAnimations(Menu):
             self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
             centerx = home.right - scale(13)
             offset = scale(8)
-            self.opponent_tray = tray;
+            self.opponent_tray = tray
         else:
             tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
                                     bottom=home.bottom, left=home.right, layer=hud_layer)
             self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
             centerx = home.left + scale(13)
             offset = -scale(8)
-            self.player_tray = tray;
+            self.player_tray = tray
 
         for index in range(player.party_limit):
             if len(player.monsters) > index:

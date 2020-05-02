@@ -52,6 +52,8 @@ class CombatAnimations(Menu):
         self._monster_sprite_map = dict()
         self.hud = dict()
         self.is_trainer_battle = None
+        self.opponent_tray = None;
+        self.player_tray = None;
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc
@@ -373,12 +375,14 @@ class CombatAnimations(Menu):
             self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
             centerx = home.right - scale(13)
             offset = scale(8)
+            self.opponent_tray = tray;
         else:
             tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
                                     bottom=home.bottom, left=home.right, layer=hud_layer)
             self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
             centerx = home.left + scale(13)
             offset = -scale(8)
+            self.player_tray = tray;
 
         for index in range(player.party_limit):
             if len(player.monsters) > index:
@@ -422,13 +426,11 @@ class CombatAnimations(Menu):
         :return:
         """
         if self.get_side(home) == "left":
-            tray = self.load_sprite('gfx/ui/combat/opponent_party_tray.png',
-                                    bottom=home.bottom, right=0, layer=hud_layer)
+            tray = self.opponent_tray
             centerx = home.right - scale(13)
             offset = scale(8)
         else:
-            tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
-                                    bottom=home.bottom, left=home.right, layer=hud_layer)
+            tray = self.player_tray
             centerx = home.left + scale(13)
             offset = -scale(8)
 

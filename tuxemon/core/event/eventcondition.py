@@ -45,7 +45,7 @@ class EventCondition(object):
         """ Return True if satisfied, or False if not
 
         :param tuxemon.core.session.Session session:
-        :param condition:
+        :param Dict condition:
         :rtype: bool
         """
         pass

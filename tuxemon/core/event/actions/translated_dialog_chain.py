@@ -85,7 +85,7 @@ class TranslatedDialogChainAction(EventAction):
             replace,
         )
 
-        dialog = self.session.client.get_state_name("DialogState")
+        dialog = self.session.client.get_state_by_name("DialogState")
         if dialog:
             dialog.text_queue += pages
         else:
@@ -94,7 +94,7 @@ class TranslatedDialogChainAction(EventAction):
     def update(self):
         key = self.raw_parameters[0]
         if key == "${{end}}":
-            if self.session.client.get_state_name("DialogState") is None:
+            if self.session.client.get_state_by_name("DialogState") is None:
                 self.stop()
 
     def open_dialog(self, pages, avatar):

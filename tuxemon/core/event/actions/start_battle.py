@@ -63,7 +63,7 @@ class StartBattleAction(EventAction):
             logger.debug("battle is not legal, won't start")
             return False
 
-        world = self.session.client.get_state_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
         if not world:
             return False
 
@@ -86,5 +86,5 @@ class StartBattleAction(EventAction):
         self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.session.client.get_state_name("CombatState") is None:
+        if self.session.client.get_state_by_name("CombatState") is None:
             self.stop()

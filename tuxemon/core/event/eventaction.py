@@ -33,9 +33,6 @@ from collections import namedtuple
 
 from tuxemon.core.tools import cast_values
 
-from tuxemon.core.client import Client  # for type introspection
-assert Client
-
 logger = logging.getLogger(__name__)
 
 
@@ -106,8 +103,8 @@ class EventAction(object):
     def __init__(self, session, parameters):
         """
 
-        :type session: tuxemon.session.Session
-        :type parameters: list
+        :param tuxemon.core.session.Session session:
+        :param List parameters:
         """
         self.session = session
 

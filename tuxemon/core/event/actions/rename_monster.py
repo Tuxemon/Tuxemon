@@ -43,7 +43,7 @@ class RenameMonsterAction(EventAction):
 
     def start(self):
         # Get a copy of the world state.
-        world = self.session.client.get_state_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
         if not world:
             return
     
@@ -52,12 +52,12 @@ class RenameMonsterAction(EventAction):
         menu.on_menu_selection = self.prompt_for_name
 
     def update(self):
-        if self.session.client.get_state_name("MonsterMenuState") is None and self.session.client.get_state_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("MonsterMenuState") is None and self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()
 
     def set_monster_name(self, name):
         self.monster.name = name
-        self.session.client.get_state_name("MonsterMenuState").refresh_menu_items()
+        self.session.client.get_state_by_name("MonsterMenuState").refresh_menu_items()
 
     def prompt_for_name(self, menu_item):
         self.monster = menu_item.game_object

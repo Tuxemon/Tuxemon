@@ -66,7 +66,7 @@ class DialogAction(EventAction):
         self.open_dialog(text, avatar)
 
     def update(self):
-        if self.session.client.get_state_name("DialogState") is None:
+        if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()
 
     def open_dialog(self, initial_text, avatar):

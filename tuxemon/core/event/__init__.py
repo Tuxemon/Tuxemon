@@ -88,7 +88,7 @@ def get_npc(session, slug):
         return session.player
 
     # Loop through the NPC list and see if the slug matches any in the list
-    world = session.client.get_state_name("WorldState")
+    world = session.client.get_state_by_name("WorldState")
     if world is None:
         logger.error("Cannot search for NPC if world doesn't exist: " + slug)
         return

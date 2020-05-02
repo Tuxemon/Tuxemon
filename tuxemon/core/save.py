@@ -79,7 +79,7 @@ def capture_screenshot(client):
     :type client: tuxemon.core.client.Client
     """
     screenshot = pygame.Surface(client.screen.get_size())
-    world = client.get_state_name("WorldState")
+    world = client.get_state_by_name("WorldState")
     world.draw(screenshot)
     return screenshot
 

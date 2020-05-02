@@ -38,11 +38,8 @@ from __future__ import unicode_literals
 import logging
 from collections import namedtuple
 
-from tuxemon.core.client import Client  # for type introspection
 from tuxemon.core.npc import NPC
 from tuxemon.core.tools import cast_values
-
-assert Client
 
 logger = logging.getLogger(__name__)
 

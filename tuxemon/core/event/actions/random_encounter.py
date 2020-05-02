@@ -82,7 +82,7 @@ class RandomEncounterAction(EventAction):
                                             graphics=env['battle_graphics'])
 
             # stop the player
-            world = self.session.client.get_state_name("WorldState")
+            world = self.session.client.get_state_by_name("WorldState")
             world.lock_controls()
             world.stop_player()
 
@@ -94,7 +94,7 @@ class RandomEncounterAction(EventAction):
             self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.session.client.get_state_name("CombatState") is None:
+        if self.session.client.get_state_by_name("CombatState") is None:
             self.stop()
 
 

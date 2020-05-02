@@ -54,7 +54,7 @@ class MainCombatMenuState(PopUpMenu):
 
         # TODO: only works for player0
         self.client.pop_state(self)
-        combat_state = self.client.get_state_name("CombatState")
+        combat_state = self.client.get_state_by_name("CombatState")
 
         if combat_state.is_trainer_battle:
             def open_menu():
@@ -75,13 +75,13 @@ class MainCombatMenuState(PopUpMenu):
         def swap_it(menuitem):
             monster = menuitem.game_object
 
-            if monster in self.client.get_state_name('CombatState').active_monsters:
+            if monster in self.client.get_state_by_name('CombatState').active_monsters:
                 tools.open_dialog(local_session, [T.format('combat_isactive', {"name": monster.name})])
                 return
             elif monster.current_hp < 1:
                 tools.open_dialog(local_session, [T.format('combat_fainted', {"name": monster.name})])
                 return
-            combat_state = self.client.get_state_name("CombatState")
+            combat_state = self.client.get_state_by_name("CombatState")
             swap = Technique("swap")
             swap.combat_state = combat_state
             player = local_session.player
@@ -114,7 +114,7 @@ class MainCombatMenuState(PopUpMenu):
             item = menu_item.game_object
             self.client.pop_state()   # close the item menu
             # TODO: don't hardcode to player0
-            combat_state = self.client.get_state_name("CombatState")
+            combat_state = self.client.get_state_by_name("CombatState")
             state = self.client.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                            user=combat_state.players[0], action=item)
             state.on_menu_selection = partial(enqueue_item, item)
@@ -128,7 +128,7 @@ class MainCombatMenuState(PopUpMenu):
                 return
 
             # enqueue the item
-            combat_state = self.client.get_state_name("CombatState")
+            combat_state = self.client.get_state_by_name("CombatState")
             # TODO: don't hardcode to player0
             combat_state.enqueue_action(combat_state.players[0], item, target)
 
@@ -173,7 +173,7 @@ class MainCombatMenuState(PopUpMenu):
                 tools.open_dialog(local_session, [T.format('combat_recharging', params)])
                 return
 
-            combat_state = self.client.get_state_name("CombatState")
+            combat_state = self.client.get_state_by_name("CombatState")
             state = self.client.push_state("CombatTargetMenuState", player=combat_state.players[0],
                                            user=self.monster, action=technique)
             state.on_menu_selection = partial(enqueue_technique, technique)
@@ -181,7 +181,7 @@ class MainCombatMenuState(PopUpMenu):
         def enqueue_technique(technique, menu_item):
             # enqueue the technique
             target = menu_item.game_object
-            combat_state = self.client.get_state_name("CombatState")
+            combat_state = self.client.get_state_by_name("CombatState")
             combat_state.enqueue_action(self.monster, technique, target)
 
             # close all the open menus
@@ -219,7 +219,7 @@ class CombatTargetMenuState(Menu):
 
     def initialize_items(self):
         # get a ref to the combat state
-        combat_state = self.client.get_state_name("CombatState")
+        combat_state = self.client.get_state_by_name("CombatState")
 
         # TODO: trainer targeting
         # TODO: cleanup how monster sprites and whatnot are managed

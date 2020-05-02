@@ -70,7 +70,6 @@ class PlayerFacingNPCCondition(EventCondition):
         """
         npc_location = None
 
-        world = session.client.current_state
         npc = get_npc(session, condition.parameters[0])
         if not npc:
             return False

@@ -72,7 +72,7 @@ class DialogChainAction(EventAction):
             self.stop()
 
             # is a dialog already open?
-            dialog = self.session.client.get_state_name("DialogState")
+            dialog = self.session.client.get_state_by_name("DialogState")
 
             if dialog:
                 # yes, so just add text to it
@@ -86,7 +86,7 @@ class DialogChainAction(EventAction):
         # hack to allow unescaped commas in the dialog string
         text = ', '.join(self.raw_parameters)
         if text == "${{end}}":
-            if self.session.client.get_state_name("DialogState") is None:
+            if self.session.client.get_state_by_name("DialogState") is None:
                 self.stop()
 
     def open_dialog(self, initial_text, avatar):

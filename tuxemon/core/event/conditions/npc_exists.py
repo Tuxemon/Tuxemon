@@ -64,7 +64,7 @@ class NPCExistsCondition(EventCondition):
             ...
         }
         """
-        world = session.client.get_state_name("WorldState")
+        world = session.client.get_state_by_name("WorldState")
         if not world:
             return
 

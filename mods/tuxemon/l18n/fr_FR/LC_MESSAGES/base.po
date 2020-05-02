@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-03 05:11+0200\n"
+"PO-Revision-Date: 2020-05-03 03:11+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"fr/>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.1-dev\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
@@ -17,7 +33,6 @@ msgstr "<<MISSING>>"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
 msgstr "Apple"
@@ -74,9 +89,7 @@ msgstr "Dispositif de capture"
 msgid "capture_device_description"
 msgstr "Capture un monstre."
 
-
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_used_x"
 msgstr "{user} utilise {name} !"
@@ -147,10 +160,10 @@ msgid "not_implemented"
 msgstr "Cette fonction n'existe pas encore."
 
 msgid "generic_success"
-msgstr "It worked!"
+msgstr "Ça a marché !"
 
 msgid "generic_failure"
-msgstr "It failed!"
+msgstr "Ça a échoué !"
 
 msgid "empty_slot"
 msgstr "Emplacement Vide"
@@ -172,25 +185,25 @@ msgid "item_failure"
 msgstr "Cela fonctionne !"
 
 msgid "attempting_capture"
-msgstr "Attempting capture..."
+msgstr "Tentative de capture…"
 
 msgid "gotcha"
-msgstr "Gotcha!"
+msgstr "Je t'ai eu !"
 
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
 
 msgid "receive_happiness"
-msgstr "Received 5 Capture Devices!"
+msgstr "Tu as reçu 5 appareils de capture !"
 
 msgid "received_x"
 msgstr "{name} reçu !"
 
 msgid "save_success"
-msgstr "Sauvegardé !"
+msgstr "Enregistré !"
 
 msgid "save_failure"
-msgstr "Il y a eu un problème lors de la sauvegarde !"
+msgstr "Il y a eu un problème lors de l'enregistrement !"
 
 msgid "save_overwrite"
 msgstr "Oui, écraser cette sauvegarde."
@@ -207,9 +220,7 @@ msgstr "K.O."
 msgid "status_poison"
 msgstr "Poison"
 
-
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "bite"
 msgstr "Morsure"
 
@@ -234,9 +245,7 @@ msgstr "Whirlwind"
 msgid "run"
 msgstr "Run"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"
@@ -322,9 +331,7 @@ msgstr "No servers found..."
 msgid "multiplayer_join_prompt"
 msgstr "Hostname or IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart"
 msgstr "Aardart"
@@ -876,9 +883,7 @@ msgstr "Restless"
 msgid "slurpy"
 msgstr "Slurpy"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -958,9 +963,7 @@ msgstr "Team Xero Grunt IX"
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Do you want to heal your Tuxemon?"
@@ -1219,3 +1222,12 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
 msgid "input_name"
 msgstr "Name?"
+
+msgid "amnesia"
+msgstr "Amnésie"
+
+msgid "battery_acid"
+msgstr "Acide de batterie"
+
+msgid "avalanche"
+msgstr "Avalanche"

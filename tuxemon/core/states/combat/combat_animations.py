@@ -52,8 +52,8 @@ class CombatAnimations(Menu):
         self._monster_sprite_map = dict()
         self.hud = dict()
         self.is_trainer_battle = None
-        self.opponent_tray = None;
-        self.player_tray = None;
+        self.opponent_tray = None
+        self.player_tray = None
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc

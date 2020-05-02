@@ -458,6 +458,7 @@ class CombatAnimations(Menu):
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)
 
+            #TODO: remove old sprite instead of covering it up
             # convert alpha image to image with a colorkey so we can set_alpha
             sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
             sprite.image.set_alpha(0)

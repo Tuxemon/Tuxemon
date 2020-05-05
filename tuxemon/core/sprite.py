@@ -31,6 +31,7 @@ from __future__ import unicode_literals
 
 import logging
 import math
+from functools import partial
 
 import pygame
 from pygame.transform import rotozoom
@@ -39,6 +40,8 @@ from pygame.transform import scale
 from tuxemon.compat import Rect
 from tuxemon.core.platform.const import buttons
 from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core import graphics
+from tuxemon.core import prepare
 
 logger = logging.getLogger()
 
@@ -155,6 +158,30 @@ class Sprite(pygame.sprite.DirtySprite):
             self._rotation = value
             self._needs_update = True
 
+class CaptureDeviceSprite(Sprite):
+    def __init__(self,*args, **kwargs):
+        self.tray = kwargs['tray']
+        self.monster = kwargs['monster']
+        self.sprite = kwargs['sprite']
+        self.state = kwargs['state']
+        super(CaptureDeviceSprite, self).__init__()
+
+    def update_state(self):
+        if self.state == "empty":
+            self.sprite.image = graphics.load_and_scale('gfx/ui/combat/empty_slot_icon.png')
+        elif any(t for t in self.monster.status if t.slug == "status_faint"):
+            self.state = "faint"
+            self.sprite.image = graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
+        else:
+            self.state = "alive"
+            self.sprite.image = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
+        return self.state
+    def draw(self,animate):
+        sprite = self.sprite
+        sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
+        sprite.image.set_alpha(0)
+        animate(sprite.image, set_alpha=255, initial=0)
+        animate(sprite.rect, bottom=self.tray.rect.top + prepare.SCALE*3)
 
 class SpriteGroup(pygame.sprite.LayeredUpdates):
     """ Sane variation of a pygame sprite group

@@ -265,6 +265,12 @@ msgstr "Saved!"
 msgid "save_failure"
 msgstr "There was a problem saving!"
 
+msgid "save_overwrite"
+msgstr "Yes, overwrite this save."
+
+msgid "save_keep"
+msgstr "No, keep this save."
+
 msgid "slot"
 msgstr "Slot"
 

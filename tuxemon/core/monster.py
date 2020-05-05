@@ -522,7 +522,10 @@ class Monster(object):
         for move in self.moves:
             move.full_recharge()
 
-        self.status = ["status_faint"] if "status_faint" in self.status else []
+        if "status_faint" in (s.slug for s in self.status):
+            self.status = [Technique("status_faint")]
+        else:
+            self.status = []
 
     def speed_test(self, action):
         if action.technique.is_fast:

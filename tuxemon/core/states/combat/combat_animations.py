@@ -52,8 +52,6 @@ class CombatAnimations(Menu):
         self._monster_sprite_map = dict()
         self.hud = dict()
         self.is_trainer_battle = None
-        self.opponent_tray = None
-        self.player_tray = None
         self.capdevs = list()
 
         # eventually store in a config somewhere
@@ -376,14 +374,12 @@ class CombatAnimations(Menu):
             self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
             centerx = home.right - scale(13)
             offset = scale(8)
-            self.opponent_tray = tray
         else:
             tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
                                     bottom=home.bottom, left=home.right, layer=hud_layer)
             self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
             centerx = home.left + scale(13)
             offset = -scale(8)
-            self.player_tray = tray
 
         for index in range(player.party_limit):
             status = None
@@ -416,12 +412,6 @@ class CombatAnimations(Menu):
             self.capdevs.append(capdev)
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
             capdev.draw(animate)
-            '''#convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
-            sprite.image.set_alpha(0)
-            animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
-            animate(sprite.image, set_alpha=255, initial=0)
-            animate(sprite.rect, bottom=tray.rect.top + scale(3))'''
 
     def animate_update_party_hud(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
@@ -433,50 +423,12 @@ class CombatAnimations(Menu):
         :param slots: Number of slots
         :return:
         """
-        if self.get_side(home) == "left":
-            tray = self.opponent_tray
-            centerx = home.right - scale(13)
-            offset = scale(8)
-        else:
-            tray = self.player_tray
-            centerx = home.left + scale(13)
-            offset = -scale(8)
-
-        count_fainted = 0
-
-        for monster in player.monsters:
-            if any(t for t in monster.status if t.slug == "status_faint"):
-                count_fainted += 1
         for dev in self.capdevs:
             prev = dev.state
             if(prev != dev.update_state()):
                 animate = partial(self.animate, duration=0.1, delay=0.1)
                 dev.draw(animate)
-        '''for index in range(player.party_limit):
-            sprite = None
-            if len(player.monsters) - count_fainted > index:  # render alive Tuxemon balls
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            elif len(player.monsters) > index:  # render fainted Tuxemon balls
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            else:
-                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
 
-            #TODO: remove old sprite instead of covering it up
-            # convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
-            sprite.image.set_alpha(0)
-            animate = partial(self.animate, duration=0.001, delay=0.1)
-            animate(sprite.image, set_alpha=255, initial=0)
-            animate(sprite.rect, bottom=tray.rect.top + scale(3))'''
 
     def animate_parties_in(self):
         # TODO: break out functions here for each

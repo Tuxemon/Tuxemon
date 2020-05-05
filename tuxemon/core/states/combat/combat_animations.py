@@ -374,46 +374,83 @@ class CombatAnimations(Menu):
             self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
             centerx = home.right - scale(13)
             offset = scale(8)
+            #animates opponenet capdevs from left to right
+            for index in range(player.party_limit):
+                status = None
+                pos = len(player.monsters) - index - 1;
+                if len(player.monsters) > index:
+                    monster = player.monsters[index]
+                    if any(t for t in monster.status if t.slug == "status_faint"):
+                        status = "faint"
+                        sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
+                                                  top=tray.rect.top + scale(1),
+                                                  centerx=centerx - pos * offset,
+                                                  layer=hud_layer)
+                    elif len(monster.status) > 0:
+                        status = "effected"
+                        sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
+                                                  top=tray.rect.top + scale(1),
+                                                  centerx=centerx - pos * offset,
+                                                  layer=hud_layer)
+                    else:
+                        status = "alive"
+                        sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                                  top=tray.rect.top + scale(1),
+                                                  centerx=centerx - pos * offset,
+                                                  layer=hud_layer)
+                else:
+                    status = "empty"
+                    monster = None
+                    sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
+                                              top=tray.rect.top + scale(1),
+                                              centerx=centerx - index * offset,
+                                              layer=hud_layer)
+                capdev = CaptureDeviceSprite(sprite = sprite, tray = tray, monster = monster, state = status)
+                self.capdevs.append(capdev)
+                animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
+                capdev.draw(animate)
+
         else:
             tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
                                     bottom=home.bottom, left=home.right, layer=hud_layer)
             self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
             centerx = home.left + scale(13)
             offset = -scale(8)
-
-        for index in range(player.party_limit):
-            status = None
-            if len(player.monsters) > index:
-                monster = player.monsters[index]
-                if any(t for t in monster.status if t.slug == "status_faint"):
-                    status = "faint"
-                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
-                                              top=tray.rect.top + scale(1),
-                                              centerx=centerx - index * offset,
-                                              layer=hud_layer)
-                elif len(monster.status) > 0:
-                    status = "effected"
-                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
-                                              top=tray.rect.top + scale(1),
-                                              centerx=centerx - index * offset,
-                                              layer=hud_layer)
+            #animates player capdevs from left to right
+            for index in range(player.party_limit):
+                status = None
+                if len(player.monsters) > index:
+                    monster = player.monsters[index]
+                    if any(t for t in monster.status if t.slug == "status_faint"):
+                        status = "faint"
+                        sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
+                                                  top=tray.rect.top + scale(1),
+                                                  centerx=centerx - index * offset,
+                                                  layer=hud_layer)
+                    elif len(monster.status) > 0:
+                        status = "effected"
+                        sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
+                                                  top=tray.rect.top + scale(1),
+                                                  centerx=centerx - index * offset,
+                                                  layer=hud_layer)
+                    else:
+                        status = "alive"
+                        sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                                                  top=tray.rect.top + scale(1),
+                                                  centerx=centerx - index * offset,
+                                                  layer=hud_layer)
                 else:
-                    status = "alive"
-                    sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
+                    status = "empty"
+                    monster = None
+                    sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
                                               top=tray.rect.top + scale(1),
                                               centerx=centerx - index * offset,
                                               layer=hud_layer)
-            else:
-                status = "empty"
-                monster = None
-                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            capdev = CaptureDeviceSprite(sprite = sprite, tray = tray, monster = monster, state = status)
-            self.capdevs.append(capdev)
-            animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
-            capdev.draw(animate)
+                capdev = CaptureDeviceSprite(sprite = sprite, tray = tray, monster = monster, state = status)
+                self.capdevs.append(capdev)
+                animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
+                capdev.draw(animate)
+
 
     def animate_update_party_hud(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.

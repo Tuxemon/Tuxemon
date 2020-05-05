@@ -404,6 +404,7 @@ class CombatAnimations(Menu):
                                               layer=hud_layer)
             else:
                 status = "empty"
+                monster = None
                 sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,

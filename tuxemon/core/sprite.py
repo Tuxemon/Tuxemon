@@ -164,6 +164,10 @@ class CaptureDeviceSprite(Sprite):
         self.monster = kwargs['monster']
         self.sprite = kwargs['sprite']
         self.state = kwargs['state']
+        self.empty = graphics.load_and_scale('gfx/ui/combat/empty_slot_icon.png')
+        self.faint =  graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
+        self.alive = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
+        self.effected = graphics.load_and_scale('gfx/ui/icons/party/party_icon02.png')
         super(CaptureDeviceSprite, self).__init__()
 
     def update_state(self):
@@ -172,13 +176,16 @@ class CaptureDeviceSprite(Sprite):
             :return: the new state
         """
         if self.state == "empty":
-            self.sprite.image = graphics.load_and_scale('gfx/ui/combat/empty_slot_icon.png')
+            self.sprite.image = self.empty
         elif any(t for t in self.monster.status if t.slug == "status_faint"):
             self.state = "faint"
-            self.sprite.image = graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
+            self.sprite.image = self.faint
+        elif len(self.monster.status) > 0:
+            self.state = "effected"
+            self.sprite.image = self.effected
         else:
             self.state = "alive"
-            self.sprite.image = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
+            self.sprite.image = self.alive
         return self.state
     def draw(self,animate):
         """ Animates the capture device in game.

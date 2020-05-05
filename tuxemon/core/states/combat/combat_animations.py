@@ -392,6 +392,7 @@ class CombatAnimations(Menu):
                                               centerx=centerx - index * offset,
                                               layer=hud_layer)
                 elif len(monster.status) > 0:
+                    status = "effected"
                     sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
                                               top=tray.rect.top + scale(1),
                                               centerx=centerx - index * offset,

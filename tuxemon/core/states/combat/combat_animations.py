@@ -377,7 +377,7 @@ class CombatAnimations(Menu):
             #animates opponenet capdevs from left to right
             for index in range(player.party_limit):
                 status = None
-                pos = len(player.monsters) - index - 1;
+                pos = len(player.monsters) - index - 1
                 if len(player.monsters) > index:
                     monster = player.monsters[index]
                     if any(t for t in monster.status if t.slug == "status_faint"):

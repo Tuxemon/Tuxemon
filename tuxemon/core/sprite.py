@@ -31,6 +31,7 @@ from __future__ import unicode_literals
 
 import logging
 import math
+from functools import partial
 
 import pygame
 from pygame.transform import rotozoom
@@ -39,6 +40,8 @@ from pygame.transform import scale
 from tuxemon.compat import Rect
 from tuxemon.core.platform.const import buttons
 from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core import graphics
+from tuxemon.core.tools import scale as set
 
 logger = logging.getLogger()
 
@@ -155,6 +158,46 @@ class Sprite(pygame.sprite.DirtySprite):
             self._rotation = value
             self._needs_update = True
 
+class CaptureDeviceSprite(Sprite):
+    def __init__(self,**kwargs):
+        self.tray = kwargs['tray']
+        self.monster = kwargs['monster']
+        self.sprite = kwargs['sprite']
+        self.state = kwargs['state']
+        self.empty = graphics.load_and_scale('gfx/ui/combat/empty_slot_icon.png')
+        self.faint =  graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
+        self.alive = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
+        self.effected = graphics.load_and_scale('gfx/ui/icons/party/party_icon02.png')
+        super(CaptureDeviceSprite, self).__init__()
+
+    def update_state(self):
+        """ Updates the state of the capture device.
+
+            :return: the new state
+        """
+        if self.state == "empty":
+            self.sprite.image = self.empty
+        elif any(t for t in self.monster.status if t.slug == "status_faint"):
+            self.state = "faint"
+            self.sprite.image = self.faint
+        elif len(self.monster.status) > 0:
+            self.state = "effected"
+            self.sprite.image = self.effected
+        else:
+            self.state = "alive"
+            self.sprite.image = self.alive
+        return self.state
+    def draw(self,animate):
+        """ Animates the capture device in game.
+
+            :param animate: the animation function
+            :return:
+        """
+        sprite = self.sprite
+        sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
+        sprite.image.set_alpha(0)
+        animate(sprite.image, set_alpha=255, initial=0)
+        animate(sprite.rect, bottom=self.tray.rect.top + set(3))
 
 class SpriteGroup(pygame.sprite.LayeredUpdates):
     """ Sane variation of a pygame sprite group

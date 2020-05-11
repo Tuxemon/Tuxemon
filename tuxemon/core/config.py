@@ -135,7 +135,6 @@ def get_custom_pygame_keyboard_controls(cfg):
         for each in values.split(", "):
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
-            print(each)
             pygame_value = getattr(pygame.locals, "K_"+each, None)
             if pygame_value is not None and button_value is not None:
                 custom_controls[pygame_value] = button_value

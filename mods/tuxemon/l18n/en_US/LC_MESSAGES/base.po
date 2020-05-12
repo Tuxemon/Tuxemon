@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 05:41+0200\n"
+"PO-Revision-Date: 2020-05-14 03:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: English <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"en/>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.1-dev\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
@@ -17,7 +33,6 @@ msgstr "<<MISSING>>"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
 msgstr "Apple"
@@ -110,7 +125,6 @@ msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 "There's a kiss mark next to the address"
 
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_run"
 msgstr "{user} ran away!"
@@ -245,7 +259,7 @@ msgid "generic_failure"
 msgstr "It failed!"
 
 msgid "attempting_capture"
-msgstr "Attempting capture..."
+msgstr "Attempting capture…"
 
 msgid "gotcha"
 msgstr "Gotcha!"
@@ -286,9 +300,7 @@ msgstr "Lifeleech"
 msgid "status_recover"
 msgstr "Recover"
 
-
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "all_in"
 msgstr "All In"
 
@@ -559,9 +571,7 @@ msgstr "Whirlwind"
 msgid "wing_tip"
 msgstr "Wing Tip"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"
@@ -647,9 +657,7 @@ msgstr "No servers found..."
 msgid "multiplayer_join_prompt"
 msgstr "Hostname or IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart_description"
 msgstr "It keeps count of every ant it has eaten, and celebrates significant numbers."
@@ -1216,9 +1224,7 @@ msgstr "Restless"
 msgid "slurpy"
 msgstr "Slurpy"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -1298,9 +1304,7 @@ msgstr "Team Xero Grunt IX"
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Do you want to heal your Tuxemon?"

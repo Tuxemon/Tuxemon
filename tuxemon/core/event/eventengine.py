@@ -113,6 +113,7 @@ class EventEngine(object):
 
         # debug
         self.partial_events = list()
+        self.parameters = list()
 
         self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
         self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
@@ -142,8 +143,8 @@ class EventEngine(object):
 
         """
         # TODO: make generic
-        if parameters is None:
-            parameters = list()
+        if parameters is not None:
+            self.parameters = parameters
 
         try:
             action = self.actions[name]
@@ -334,11 +335,11 @@ class EventEngine(object):
                 * if there is an action, then update it
                 * if action is finished, then clear the pointer to the action and inc. the index, cleanup
                 * RunningEvent will be checked next frame
-                
+
                 This loop will execute as many actions as possible for every MapEvent
                 For example, some actions like set_variable do not require several frames,
                 so all of them will be processed this frame.
-                
+
                 If an action is not finished, then this loop breaks and will check another
                 RunningEvent, but the position in the action list is remembered and will be restored.
                 """

@@ -50,6 +50,7 @@ from tuxemon.core.technique import Technique
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
 from .combat_animations import CombatAnimations
+import pygame
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +71,7 @@ class TechniqueAnimationCache(object):
     def __init__(self):
         self._sprites = dict()
 
-    def get(self, technique):
+    def get(self, direction, technique):
         """ Return a sprite usable as a technique animation
 
         :type technique: tuxemon.core.technique.Technique
@@ -79,12 +80,12 @@ class TechniqueAnimationCache(object):
         try:
             return self._sprites[technique]
         except KeyError:
-            sprite = self.load_technique_animation(technique)
+            sprite = self.load_technique_animation(direction, technique)
             self._sprites[technique] = sprite
             return sprite
 
     @staticmethod
-    def load_technique_animation(technique):
+    def load_technique_animation(direction, technique):
         """ Return animated sprite from a technique
 
         :param tuxemon.core.technique.Technique technique:
@@ -96,6 +97,8 @@ class TechniqueAnimationCache(object):
         images = list()
         for fn in technique.images:
             image = graphics.load_and_scale(fn)
+            if direction:
+                image = pygame.transform.flip(image, True, False);
             images.append((image, frame_time))
         tech = PygAnimation(images, False)
         sprite = Sprite()
@@ -189,9 +192,9 @@ class CombatState(CombatAnimations):
 
     def draw(self, surface):
         """ Draw combat state
-        
-        :param pygame.surface.Surface surface: 
-        :rtype: None 
+
+        :param pygame.surface.Surface surface:
+        :rtype: None
         """
         super(CombatState, self).draw(surface)
         self.draw_hp_bars()
@@ -748,7 +751,11 @@ class CombatState(CombatAnimations):
                 self.suppress_phase_change()
                 self.alert(T.format('combat_status_damage', {"name": target.name, "status": technique.name}))
 
-        tech_sprite = self._technique_cache.get(technique)
+        direction = False;
+        for trainer in self.ai_players:
+            if user in self.monsters_in_play[trainer]:
+                direction = True
+        tech_sprite = self._technique_cache.get(direction, technique)
         if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.image.play, hit_delay)

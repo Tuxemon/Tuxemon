@@ -64,10 +64,12 @@ class StartBattleAction(EventAction):
             return False
 
         world = self.session.client.get_state_name("WorldState")
+        print(self.parameters)
         if not world:
             return False
 
         npc = world.get_entity(self.parameters.npc_slug)
+        print(npc)
         npc.load_party()
 
         # Lookup the environment

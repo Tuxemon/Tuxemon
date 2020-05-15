@@ -37,6 +37,28 @@ be under a free license, such as CC0.  For questions about the license, open a g
 PLEASE NOTE!  All contributions must be submitted with LOWER CASE FILENAMES only!  PRs which
 do not follow this format may be rejected until filenames are renamed.
 
+Additionally, for combat animation contributions please ensure that techniques that move along the x-axis by default do so from left to right. There is code that will determine the correct orientation that the animation should be displayed.
+
+Example:
+
+![alt text][water0]![alt text][water1]![alt text][water2]![alt text][water3]![alt text][water4]![alt text][water5]![alt text][water6]
+
+*If a Tuxemon on the left uses the water shot technique above then the animation will display in its default orientation from left to right. However, if a Tuxemon on the right uses the water shot technique then the animation will be flipped horizontally to display movement from right to left.*
+
+[water0]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot00.png "water_shot00"
+
+[water1]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot01.png "water_shot01"
+
+[water2]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot02.png "water_shot02"
+
+[water3]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot03.png "water_shot03"
+
+[water4]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot04.png "water_shot04"
+
+[water5]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot05.png "water_shot05"
+
+[water6]: https://raw.githubusercontent.com/Tuxemon/Tuxemon/development/mods/tuxemon/animations/technique/water_shot06.png "water_shot06"
+
 ## Making a Pull Request
 **When you're ready to make a pull request, submit your pull to the "development" branch.**
 The "master" branch is used for releases.

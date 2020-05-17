@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-05-17 03:36+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-05-17 03:37+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
 "Language: fr_FR\n"
@@ -1256,3 +1256,14 @@ msgstr ""
 
 msgid "item_no_available_target"
 msgstr "{name} ne peut être utilisé sur aucun de vos Tuxemon actuellement."
+
+#, fuzzy
+msgid "allies_address_description"
+msgstr ""
+"Chambre 31, Bloc 2, Omnichannel Tower, Cotton Town\n"
+"\n"
+"Il y a une marque de baiser à côté de l'adresse"
+
+# Allie's Address
+msgid "allies_address"
+msgstr "Adresse d'Allie"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-05-17 03:37+0000\n"
+"PO-Revision-Date: 2020-05-18 04:41+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -104,10 +104,10 @@ msgid "combat_used_x_on_y"
 msgstr "{user} utilise {name} sur {target} !"
 
 msgid "combat_swap"
-msgstr "{user} sent out {target}!"
+msgstr "{user} a envoyé {target} !"
 
 msgid "combat_call_tuxemon"
-msgstr "{name} ! Go !"
+msgstr "Allez {name} !"
 
 # TODO: similar to combat_swap - refactor!
 msgid "combat_opponent_call_tuxemon"
@@ -126,7 +126,7 @@ msgid "combat_defeat"
 msgstr "Tu as perdu !"
 
 msgid "combat_draw"
-msgstr "All parties have fainted!"
+msgstr "Tout le monde s'est évanoui !"
 
 msgid "combat_capturing_success"
 msgstr "Tu as capturé un {name} !"
@@ -141,7 +141,7 @@ msgid "combat_replacement"
 msgstr "Choisis un remplacement !"
 
 msgid "combat_replacement_is_fainted"
-msgstr "That monster has fainted already!"
+msgstr "Ce monstre s'est déjà évanoui !"
 
 msgid "combat_wild_appeared"
 msgstr "Un {name} sauvage apparait !"
@@ -996,7 +996,7 @@ msgid "famous_statue2"
 msgstr "It says: For our beloved friends and heroes of all, the wywen"
 
 msgid "cotton_town_fountain"
-msgstr "It's a fountain. A lot of coins are at the bottom"
+msgstr "C'est une fontaine. Il y a beaucoup de pièces au fond"
 
 msgid "tree"
 msgstr "This tree looks happy and healthy!"
@@ -1141,8 +1141,9 @@ msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign\n"
-msgstr "Welcome to Cotton Town: A Growing Force\n"
-"^ Cotton Town --- Route 1 v\n"
+msgstr ""
+"Bienvenue à Cotonville : Une force grandissante\n"
+"^ Cotonville --- Route 1 v\n"
 
 msgid "column1"
 msgstr "A rare and ancient column. This used to be a temple."
@@ -1208,7 +1209,7 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
 
 msgid "cottonnurse_dialog"
-msgstr "Welcome to the Cotton Town Tuxecenter!"
+msgstr "Bienvenue au Tuxecentre de Contonville !"
 
 msgid "tabanurse_dialog\n"
 msgstr "Welcome to the Taba Town Tuxecenter!\n"
@@ -1257,10 +1258,9 @@ msgstr ""
 msgid "item_no_available_target"
 msgstr "{name} ne peut être utilisé sur aucun de vos Tuxemon actuellement."
 
-#, fuzzy
 msgid "allies_address_description"
 msgstr ""
-"Chambre 31, Bloc 2, Omnichannel Tower, Cotton Town\n"
+"Chambre 31, Bloc 2, Tour Omnichannel Cotonville\n"
 "\n"
 "Il y a une marque de baiser à côté de l'adresse"
 
@@ -1270,3 +1270,25 @@ msgstr "Adresse d'Allie"
 
 msgid "combat_miss"
 msgstr "Ça a raté…"
+
+msgid "itsmyaurababe2"
+msgstr ""
+"Hmm, maintenant que je te regarde, tu as une aura plutôt mystérieuse.\n"
+"...   ...   ...   ...\n"
+"On devrait discuter un de ces jours. On se verra peut-être à Contonville ?"
+
+msgid "hellolovelypeople4"
+msgstr ""
+"Je suis assez sûr qu'il y a des maisons à Contonville plus grande que ça…"
+
+msgid "combat_state_recover_success"
+msgstr "{user} a récupéré ses PV !"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} aspire les PV de {target}."
+
+msgid "combat_state_poison_get"
+msgstr "{target} est empoisonné."
+
+msgid "combat_can't_run_from_trainer"
+msgstr "On ne peut pas s'enfuir d'une bataille d'entraîneurs !"

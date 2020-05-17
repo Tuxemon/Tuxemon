@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-05-17 03:33+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-05-17 03:36+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
 "Language: fr_FR\n"
@@ -191,7 +191,7 @@ msgid "gotcha"
 msgstr "Je t'ai eu !"
 
 msgid "item_cannot_use_here"
-msgstr "{name} cannot be used here!"
+msgstr "{name} ne peut pas être utilisé ici !"
 
 msgid "receive_happiness"
 msgstr "Tu as reçu 5 appareils de capture !"
@@ -1237,4 +1237,19 @@ msgid "revive"
 msgstr "Ranimer"
 
 msgid "revive_description"
-msgstr "Ranime le Tuxemon et restaure 20 HP"
+msgstr "Ranime le Tuxemon et restaure 20 HP."
+
+msgid "tm_blossom_description"
+msgstr "Manuel technique qui enseigne la technique Floraison à un Tuxemon Bois."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "MT : Avalanche"
+
+msgid "tm_blossom"
+msgstr "MT : Floraison"
+
+msgid "tm_avalanche_description"
+msgstr ""
+"Manuel technique qui enseigne la technique Avalanche à un Tuxemon Eau ou "
+"Terre."

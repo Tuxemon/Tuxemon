@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-05-03 03:11+0000\n"
+"PO-Revision-Date: 2020-05-17 03:33+0000\n"
 "Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
@@ -35,31 +35,31 @@ msgstr "<<MISSING>>"
 ## ITEM TRANSLATIONS ##
 # Apple
 msgid "apple"
-msgstr "Apple"
+msgstr "Pomme"
 
 msgid "apple_description"
-msgstr "Heals a monster by 10 HP."
+msgstr "Restaure 10 PV d'un monstre."
 
 # Berry
 msgid "berry"
-msgstr "Berry"
+msgstr "Baie"
 
 msgid "berry_description"
-msgstr "Heals a monster by 10 HP."
+msgstr "Restaure 10 PV d'un monstre."
 
 # Cherry
 msgid "cherry"
-msgstr "Cherry"
+msgstr "Cerise"
 
 msgid "cherry_description"
-msgstr "Heals a monster by 10 HP."
+msgstr "Restaure 50 PV d'un monstre."
 
 # Orange
 msgid "orange"
 msgstr "Orange"
 
 msgid "orange_description"
-msgstr "Heals a monster by 20 HP."
+msgstr "Restaure 20 PV d'un monstre."
 
 # Potion
 msgid "potion"
@@ -70,17 +70,17 @@ msgstr "Restaure 50 PV d'un monstre."
 
 # Super Potion
 msgid "super_potion"
-msgstr "Super Potion"
+msgstr "Super potion"
 
 msgid "super_potion_description"
 msgstr "Restaure 150 PV d'un monstre."
 
 # Imperial Potion
 msgid "imperial_potion"
-msgstr "Imperial Potion"
+msgstr "Potion impériale"
 
 msgid "imperial_potion_description"
-msgstr "Heals a monster by 350 HP."
+msgstr "Restaure 350 PV d'un monstre."
 
 # Capture Device
 msgid "capture_device"
@@ -1231,3 +1231,7 @@ msgstr "Acide de batterie"
 
 msgid "avalanche"
 msgstr "Avalanche"
+
+# Revive
+msgid "revive"
+msgstr "Ranimer"

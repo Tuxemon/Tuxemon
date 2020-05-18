@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Ice Blast",
+  "animation": "ice blast",
   "category": "physical",
   "effects": [
     "damage"

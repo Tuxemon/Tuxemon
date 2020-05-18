@@ -1,0 +1,25 @@
+{
+    "slug": "f7u1t3ra",
+    "category": "glitched",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "splinter"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Glitch",
+        "Wood"
+    ],
+    "weight": 25
+}

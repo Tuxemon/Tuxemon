@@ -39,7 +39,7 @@ class TransitionTeleportAction(EventAction):
     {
         "type": "transition_teleport",
         "parameters": [
-            "map1.tmx",
+            "taba_town.tmx",
             "5",
             "5",
             "2",
@@ -59,7 +59,7 @@ class TransitionTeleportAction(EventAction):
     def start(self):
         # Start the screen transition
         params = [self.parameters.transition_time]
-        self.transition = self.game.event_engine.get_action("screen_transition", params)
+        self.transition = self.session.client.event_engine.get_action("screen_transition", params)
         self.transition.start()
 
     def update(self):
@@ -68,5 +68,5 @@ class TransitionTeleportAction(EventAction):
         if self.transition.done:
             self.transition.cleanup()
             # set the delayed teleport
-            self.game.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
+            self.session.client.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
             self.stop()

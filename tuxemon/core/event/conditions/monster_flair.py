@@ -32,14 +32,14 @@ class MonsterFlairCondition(EventCondition):
     """
     name = "monster_flair"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Checks to see if the given monster flair matches the expected value
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -50,7 +50,7 @@ class MonsterFlairCondition(EventCondition):
         category = condition.parameters[1]
         name = condition.parameters[2]
 
-        monster = game.player1.monsters[slot]
+        monster = session.player.monsters[slot]
         try:
             return monster.flairs[category].name == name
         except KeyError:

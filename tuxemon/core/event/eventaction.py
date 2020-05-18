@@ -31,10 +31,7 @@ from __future__ import unicode_literals
 import logging
 from collections import namedtuple
 
-from six.moves import zip_longest
-
-from tuxemon.core.control import Control  # for type introspection
-assert Control
+from tuxemon.core.tools import cast_values
 
 logger = logging.getLogger(__name__)
 
@@ -103,13 +100,13 @@ class EventAction(object):
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, game, parameters):
+    def __init__(self, session, parameters):
         """
 
-        :type game: tuxemon.core.control.Control
-        :type parameters: list
+        :param tuxemon.core.session.Session session:
+        :param List parameters:
         """
-        self.game = game
+        self.session = session
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters
@@ -125,7 +122,7 @@ class EventAction(object):
             if self.valid_parameters:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                values = self.cast_values(parameters)
+                values = cast_values(parameters, self.valid_parameters)
                 self.parameters = self._param_factory(*values)
             else:
                 self.parameters = parameters
@@ -138,55 +135,6 @@ class EventAction(object):
             self.parameters = None
 
         self._done = False
-
-    def cast_values(self, parameters):
-        """ Change all the string values to the expected type
-
-        This will also check and enforce the correct parameters for actions
-
-        :param parameters:
-        :return:
-        """
-
-        # TODO: stability/testing
-        def cast(i):
-            try:
-                ve = False
-                t, v = i
-                try:
-                    for tt in t[0]:
-                        if tt is None:
-                            return None
-
-                        try:
-                            return tt(v)
-                        except ValueError:
-                            ve = True
-
-                except TypeError:
-                    if v is None:
-                        return None
-
-                    if v == '':
-                        return None
-
-                    return t[0](v)
-
-                if ve:
-                    raise ValueError
-
-            except ValueError:
-                logger.error("Invalid parameters passed:")
-                logger.error("expected: {}".format(self.valid_parameters))
-                logger.error("got: {}".format(self.raw_parameters))
-
-        try:
-            return list(map(cast, zip_longest(self.valid_parameters, parameters)))
-        except ValueError:
-            logger.error("Invalid parameters passed:")
-            logger.error("expected: {}".format(self.valid_parameters))
-            logger.error("got: {}".format(self.raw_parameters))
-            raise
 
     def __enter__(self):
         """ Called only once, when the action is started

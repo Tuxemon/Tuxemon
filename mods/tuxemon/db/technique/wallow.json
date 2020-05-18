@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Spurt",
+  "animation": "water_spurt",
   "category": "physical",
   "effects": [],
   "healing_power": 4.0,

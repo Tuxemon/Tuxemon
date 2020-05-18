@@ -1,6 +1,6 @@
 {
   "accuracy": 0.85,
-  "animation": "Sparks Blood 1",
+  "animation": "sparks_red",
   "category": "physical",
   "effects": [
     "damage"

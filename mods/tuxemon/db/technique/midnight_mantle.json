@@ -1,6 +1,6 @@
 {
   "accuracy": 0.7,
-  "animation": "Claw (recolor)",
+  "animation": "claw_blue",
   "category": "physical",
   "effects": [
     "damage"

@@ -60,7 +60,7 @@ class TuxemonServer():
 
     :param game: instance of the local game.
 
-    :type game: core.control.Control object.
+    :type game: tuxemon.core.control.Control object.
 
     :rtype: None
     :returns: None
@@ -289,7 +289,7 @@ class ControllerServer():
 
     :param game: instance of the local game.
 
-    :type game: core.control.Control object.
+    :type game: tuxemon.core.control.Control object.
 
     :rtype: None
     :returns: None
@@ -394,7 +394,7 @@ class TuxemonClient():
 
     :param game: instance of the local game.
 
-    :type game: core.control.Control object.
+    :type game: tuxemon.core.control.Control object.
 
     :rtype: None
     :returns: None
@@ -522,7 +522,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_name("WorldState")
+                world = self.game.get_state_by_name("WorldState")
                 if not world:
                     return
                 world.handle_interaction(event_data, self.client.registry)
@@ -673,7 +673,7 @@ class TuxemonClient():
         :returns: None
 
         """
-        if self.game.current_state != self.game.get_state_name("WorldState"):
+        if self.game.current_state != self.game.get_state_by_name("WorldState"):
             return False
 
         event_type = None
@@ -762,7 +762,7 @@ class TuxemonClient():
         :param sprite: Character sprite being interacted with.
         :param interaction: Which interaction you wish to do.
 
-        :type sprite: core.player.Npc() object
+        :type sprite: tuxemon.core.player.Npc() object
         :type interaction: String
 
         :rtype: None
@@ -843,9 +843,9 @@ def populate_client(cuuid, event_data, game, registry):
     :type cuuid: String
     :type event_data: Dictionary
     :type registry: Dictionary
-    :type game: core.control.Control() object
+    :type game: tuxemon.core.control.Control() object
 
-    :rtype: core.player.Npc() object
+    :rtype: tuxemon.core.player.Npc() object
     :returns: sprite
 
     """
@@ -880,7 +880,7 @@ def update_client(sprite, char_dict, game):
 
     :type sprite: Player or Npc object from tuxemon.core.player
     :type event_data: Dictionary
-    :type game: core.control.Control() object
+    :type game: tuxemon.core.control.Control() object
 
     :rtype: None
     :returns: None
@@ -890,7 +890,7 @@ def update_client(sprite, char_dict, game):
     # broken, b/c no global x/y
     return
 
-    world = game.get_state_name("WorldState")
+    world = game.get_state_by_name("WorldState")
     if not world:
         return
 

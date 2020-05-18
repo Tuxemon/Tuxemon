@@ -53,6 +53,8 @@ class WaitForSecsAction(EventAction):
     ]
 
     def start(self):
-        secs = number_or_variable(self.parameters.seconds)
         self.game.event_engine.state = "waiting"
         self.game.event_engine.wait = secs
+        secs = number_or_variable(self.parameters.seconds)
+        self.session.client.event_engine.state = "waiting"
+        self.session.client.event_engine.wait = secs

@@ -19,12 +19,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import logging
+
 from tuxemon.core.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 class WaitForInputAction(EventAction):
@@ -51,6 +56,7 @@ class WaitForInputAction(EventAction):
     ]
 
     def start(self):
-        self.game.event_engine.button = self.parameters.button
-        self.game.event_engine.state = "waiting for input"
-        self.game.event_engine.wait = 2
+        logger.warning("the wait_for_input action has been deprecated, please remove it from your scripts")
+        self.session.client.event_engine.button = self.parameters.button
+        self.session.client.event_engine.state = "waiting for input"
+        self.session.client.event_engine.wait = 2

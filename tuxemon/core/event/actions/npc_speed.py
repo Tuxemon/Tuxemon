@@ -40,6 +40,6 @@ class NpcSpeed(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
         npc.moverate = self.parameters.speed
         assert 0 < npc.moverate < 20  # just set some sane limit to avoid losing sprites

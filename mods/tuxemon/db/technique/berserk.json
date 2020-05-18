@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Constant Burn",
+  "animation": "constantburn",
   "category": "physical",
   "effects": [
     "damage"

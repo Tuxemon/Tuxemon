@@ -45,5 +45,5 @@ class EventContext(object):
         """
         pass
 
-    def execute(self, game):
+    def execute(self, session):
         pass

@@ -36,6 +36,10 @@
         "file" : "monster/robot.ogg"
     },
     {
+        "slug" : "sound_glitch_call",
+        "file" : "monster/glitch.ogg"
+    },
+    {
         "slug" : "sound_av8r",
         "file" : "monster/robot2.ogg"
     },
@@ -74,6 +78,10 @@
     {
         "slug" : "sound_metal_faint",
         "file" : "monster/reverse_robot.ogg"
+    },
+    {
+        "slug" : "sound_glitch_faint",
+        "file" : "monster/reverse_glitch.ogg"
     },
     {
         "slug" : "sound_av8r_faint",

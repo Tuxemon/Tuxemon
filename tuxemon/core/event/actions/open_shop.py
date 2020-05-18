@@ -35,22 +35,22 @@ class OpenShopAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
 
         def buy_menu():
-            self.game.pop_state()
-            self.game.push_state(
+            self.session.client.pop_state()
+            self.session.client.push_state(
                 "ShopMenuState",
-                buyer=self.game.player1,
+                buyer=self.session.player,
                 seller=npc,
             )
 
         def sell_menu():
-            self.game.pop_state()
-            self.game.push_state(
+            self.session.client.pop_state()
+            self.session.client.push_state(
                 "ShopMenuState",
                 buyer=None,
-                seller=self.game.player1,
+                seller=self.session.player,
             )
 
         var_menu = [
@@ -58,4 +58,4 @@ class OpenShopAction(EventAction):
             ("Sell", "Sell", sell_menu),
         ]
 
-        return self.game.push_state("ChoiceState", menu=var_menu)
+        return self.session.client.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)

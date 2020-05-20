@@ -1314,6 +1314,9 @@ msgstr "Yes"
 msgid "no"
 msgstr "No"
 
+msgid "hey"
+msgstr "Hey!"
+
 msgid "door_problems"
 msgstr "The door is stuck and won't open..."
 
@@ -1810,6 +1813,21 @@ msgstr "Why would he do something like that... I thought he cared..."
 
 msgid "waterwater"
 msgstr "The water is ice cold and delicious!"
+
+msgid "watchmewatchme"
+msgstr "Why are you heading into town, You know there's an early curfew.\n"
+"... ... ... ...\n"
+"... ... ... ...\n"
+"You don't seem like a threat, so you can head on to town...\n"
+"Just don't tell any of those Omnichannel thugs I let you past, M'kay?"
+
+msgid "grumble"
+msgstr "Omnichannel are a bunch of thugs, but we don't have a choice...\n"
+"As she always says, guess we have to work with them..."
+
+msgid "bobtalk"
+msgstr "It would be nice if more people like you came around to say Hi...\n"
+"By the way, Hello! Have a good day! Today or Tomorrow or any day will be great!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

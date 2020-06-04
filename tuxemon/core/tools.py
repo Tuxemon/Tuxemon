@@ -174,7 +174,7 @@ def trunc(l):
 def number_or_variable(session, value):
     """ Returns a numeric game variable by its name
     If value is already a number, convert from string to float and return that
-    If value contains two numbers separated by "-", return a random number between them
+    If value contains two numbers separated by "~", return a random number between them
 
     :param session:
     :param value: Union[str, float, int]
@@ -186,7 +186,7 @@ def number_or_variable(session, value):
     player = session.player
     values = value.split("~")
     if len(values) == 2 and values[0].isdigit() and values[1].isdigit():
-        return random.uniform(values[0], values[1])
+        return random.uniform(float(values[0]), float(values[1]))
     elif value.isdigit():
         return float(value)
     else:

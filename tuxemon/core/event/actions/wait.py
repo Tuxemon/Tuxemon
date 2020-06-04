@@ -45,7 +45,7 @@ class WaitAction(EventAction):
 
     # TODO: use event loop time, not wall clock
     def start(self):
-        secs = number_or_variable(self.parameters.seconds)
+        secs = number_or_variable(self.session, self.parameters.seconds)
         self.finish_time = time.time() + secs
 
     def update(self):

@@ -78,6 +78,7 @@ class Item(object):
         self.description = "None"
         self.images = []
         self.type = None
+        self.sfx = None
         self.sprite = ""  # The path to the sprite to load.
         self.surface = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.

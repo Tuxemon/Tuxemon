@@ -71,6 +71,7 @@ class Technique(object):
         self.carrier = carrier
         self.category = "attack"
         self.effect = []
+        self.icon = None
         self.images = []
         self.is_area = False
         self.is_fast = False
@@ -81,12 +82,16 @@ class Technique(object):
         self.power = 1
         self.range = None
         self.recharge_length = 0
+        self.sfx = None
+        self.sort = None
         self.slug = slug
+        self.target = list()
         self.type1 = "aether"
         self.type2 = None
         self.use_item = None
         self.use_success = None
         self.use_failure = None
+        self.use_tech = None
 
         # If a slug of the technique was provided, autoload it.
         if slug:

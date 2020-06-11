@@ -1,31 +1,14 @@
-<<<<<<< HEAD
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR The Tuxemon Team
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-msgid "PROJECT DESCRIPTION\n"
-msgstr "<<MISSING>>"
-"Project-Id-Version: Insert package version from somewhere\n"
-"Report-Msgid-Bugs-To: leif.theden@gmail.com\n"
-"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
-"PO-Revision-Date: 2018-10-07 20:58:38+0000\n"
-"Last-Translator:\n"
-"Language-Team: Norwegian Bokmål\n"
-=======
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-05-14 03:41+0000\n"
+"PO-Revision-Date: 2020-06-12 07:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/nb_NO/>\n"
->>>>>>> b4491c46... Translated using Weblate (Norwegian Bokmål)
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-<<<<<<< HEAD
-=======
 "X-Generator: Weblate 4.1-dev\n"
 
 msgid "save_success"
@@ -266,4 +249,113 @@ msgstr "Eple"
 
 msgid "multiplayer_join_prompt"
 msgstr "Vertsnavn eller IP?"
->>>>>>> b4491c46... Translated using Weblate (Norwegian Bokmål)
+
+#, fuzzy
+msgid "yestalk"
+msgstr "Virkelig? Takk…"
+
+msgid "column1"
+msgstr "En sjelden søyle fra oldtiden. Dette var tidligere et tempel."
+
+msgid "kmere"
+msgstr "Hvorfor ikke komme hit og prate med meg?"
+
+msgid "column2"
+msgstr ""
+"En sjelden søyle fra oldtiden. Andre ruiner fra samme kulturer er å finne i "
+"Rute 3. "
+
+#, fuzzy
+msgid "capture_devices_in_shop"
+msgstr "Fangstenheter. Hvordan lager de disse?"
+
+#, fuzzy
+msgid "cotton_town_fountain"
+msgstr "Dette er en fontene. Alle myntene er på bunnen."
+
+msgid "route_2"
+msgstr "Rute 2"
+
+msgid "not_really"
+msgstr "Ikke egentlig"
+
+msgid "mistaken"
+msgstr "Du tar feil"
+
+msgid "npc_red"
+msgstr "Rød"
+
+msgid "professor"
+msgstr "Professor"
+
+msgid "water"
+msgstr "Vann"
+
+msgid "metal"
+msgstr "Metall"
+
+msgid "metal_water"
+msgstr "Metall, vann"
+
+msgid "climbing"
+msgstr "Klatring"
+
+msgid "fire"
+msgstr "Brann"
+
+msgid "island"
+msgstr "Øy"
+
+msgid "host"
+msgstr "Vert"
+
+msgid "tux_description"
+msgstr "<<MANGLER>>"
+
+msgid "spycozeus_description"
+msgstr "<<MANGLER>>"
+
+msgid "sludgehog_description"
+msgstr "<<MANGLER>>"
+
+msgid "selket_description"
+msgstr "<<MANGLER>>"
+
+msgid "rockitten_description"
+msgstr "<<MANGLER>>"
+
+msgid "rockat_description"
+msgstr "<<MANGLER>>"
+
+msgid "propellercat_description"
+msgstr "<<MANGLER>>"
+
+msgid "nut_description"
+msgstr "<<MANGLER>>"
+
+msgid "merlicun_description"
+msgstr "<<MANGLER>>"
+
+msgid "firomenis_description"
+msgstr "<<MANGLER>>"
+
+msgid "dune_pincher_description"
+msgstr "<<MANGLER>>"
+
+msgid "menu_fight"
+msgstr "Sloss"
+
+msgid "menu_bag"
+msgstr "Bag"
+
+msgid "wing_tip"
+msgstr "Vingetipp"
+
+msgid "whirlwind"
+msgstr "Virvelvind"
+
+msgid "web"
+msgstr "Nett"
+
+msgid "wall_of_steel"
+msgstr "Stålvegg"

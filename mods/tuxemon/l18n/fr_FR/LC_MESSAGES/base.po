@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-05-18 04:41+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-06-12 07:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
 "Language: fr_FR\n"
@@ -1034,8 +1034,9 @@ msgstr "Professor: I hope to see you around! I'm about to head on a journey, so 
 msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
 
+#, fuzzy
 msgid "karrianna_dialog2"
-msgstr "Well... You were the first trainer I've faced..."
+msgstr "Well… You were the first trainer I've faced…"
 
 msgid "xero_hideout1"
 msgstr "Xero Institute for Tuxemon Research and Advancement ahead."

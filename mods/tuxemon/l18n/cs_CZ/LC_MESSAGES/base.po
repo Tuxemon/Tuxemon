@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-05-14 03:41+0000\n"
+"PO-Revision-Date: 2020-06-12 07:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tuxemon/tuxemon/cs/"
 ">\n"
@@ -1027,8 +1027,9 @@ msgstr "Profesor: Doufám, že se uvidíme! Jdu se vydat na cestu, takže se mo�
 msgid "karrianna_dialog1"
 msgstr "Karrianna: Trénovala jsem celý měsíc! Zatím mě nikdo neporazil!"
 
+#, fuzzy
 msgid "karrianna_dialog2"
-msgstr "No... Byl jsi první trenér, kterému jsem čelila ..."
+msgstr "No… Byl jsi první trenér, kterému jsem čelila …"
 
 msgid "xero_hideout1"
 msgstr "Institut Xero pro výzkum a vývoj v oblasti Tuxemonů."

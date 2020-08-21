@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="156">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="157">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -69,49 +69,16 @@
    eAHtV0sOwiAQZeO23kqj19D4i+7UlTXdeQ6X6iWdl3QSQloKQ2mNGZMJUN7MPIYHxHJiTDmgGfq9C1P5DJgjcToNyItrcJia6lkY47MdYcbiB54rsgvZlQw8UUu05/o75th4XV3tkta0INuSdWF5nn147LZ34oE9ZLtR38WEjJEHa0TdQ/CMwV6+yA/r4m92y3XkWq2F/DY1v31LHjun24evj6OLjx1jP1EHCTfkgu88wT+Wrw8PHTTtZYxmffFT57r0lhq/D/8ULfSRPyTGr+xnCNcxMTgPj5YzkZNX2zm0cwKDe01yb9txJP0QjQODe21GFvuuSDhJfULWIo09tB80MYZeQ9aJOwdv8Yc0C2t6Z0Li5MRAC9Ar+Enf85z8EPuf9Jq7Vhpf9n9A66Z1Uw2oBlQDqgHVgGpANaAakGrgC+7KUKY=
   </data>
  </layer>
- <layer id="2" width="40" height="40">
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtljEKwjAYhTMpLvUcIugt1OrsoAcQ9QY6dVKv4OroKX1PHdKpJYH6wFd4tCX5k48vSWkI3V7jIlRNM45a9GkaI7V91WLuMurTH4Sqh6TOl1tH3icSM8VjTsE2+SFfzOJnG7CBuoHlMFRXpETqLRpvR3DNkL0oHy3twHZDVB2Sj99oRYfcf5cv3wF3jV33oSDbApkjamwk5NlQ5FJaw1yWtf9dchW6PtHAtkgs7KjsZL4s08r+uPfuwutLdw/zJe8/+0tW9y5U93fG2dgInw9KJKMvG7ABG/hXAy9sXyks
   </data>
  </layer>
- <layer id="5" name="Tile Layer 2" width="40" height="40">
+ <layer id="5" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtWMsNwjAMzYHvhR0Qd5gBWIHPOj0yBmIuugu21CdZlhpiNXVTKZGsNrHT95o4L2nbTWi+ZIHKcxuaNdmKjOs3uraZ/ftdCJ8/diA/ypI4LMjuHacTXY9kj66e28/8dGG+skh+st3j/kxcLsreNBay7ar4evCyYnBuYQ6tfT3i5TrwwLNiYB1Y+3nGs5544lmwoCeWPp6xUnc9cVOxoLup8VPEscZMgZuCWbL2Mf+qfymzGI+p+hcfn5h3TvonuY59ho6NWZ8PWo09D2cHaFBufx8P3Q583T5m/dV964yJMeTZU4xJKt+S91N+B7kOU9/JMw7rzBPTgqW1y9LXKxba5YVnxdH/TKz9PeJrHg4fZeRhyZpYc3HYPM9JD0vNw5qD+XKw1LOh1EKcwUr9f4C9D5x/d82SIA==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collisions" visible="0">
-  <object id="118" type="collision" x="384" y="320" width="384" height="16" rotation="180"/>
-  <object id="119" type="collision" x="640" y="16" width="640" height="16" rotation="180"/>
-  <object id="120" type="collision" x="640" y="304" width="16" height="288" rotation="180"/>
-  <object id="121" type="collision" x="32" y="64" width="32" height="48" rotation="180"/>
-  <object id="122" type="collision" x="48" y="304" width="32" height="16" rotation="180"/>
-  <object id="123" type="collision" x="608" y="32" width="160" height="16" rotation="180"/>
-  <object id="124" type="collision" x="560" y="48" width="16" height="16" rotation="180"/>
-  <object id="125" type="collision" x="528" y="48" width="16" height="16" rotation="180"/>
-  <object id="126" type="collision" x="432" y="32" width="48" height="16" rotation="180"/>
-  <object id="127" type="collision" x="368" y="32" width="48" height="16" rotation="180"/>
-  <object id="128" type="collision" x="304" y="32" width="48" height="16" rotation="180"/>
-  <object id="129" type="collision" x="240" y="32" width="48" height="16" rotation="180"/>
-  <object id="130" type="collision" x="176" y="32" width="48" height="16" rotation="180"/>
-  <object id="131" type="collision" x="112" y="32" width="48" height="16" rotation="180"/>
-  <object id="132" type="collision" x="48" y="32" width="16" height="16" rotation="180"/>
-  <object id="133" type="collision" x="624" y="288" width="16" height="48" rotation="180"/>
-  <object id="134" type="collision" x="624" y="224" width="16" height="48" rotation="180"/>
-  <object id="135" type="collision" x="624" y="160" width="16" height="48" rotation="180"/>
-  <object id="136" type="collision" x="624" y="96" width="16" height="32" rotation="180"/>
-  <object id="137" type="collision" x="624" y="48" width="16" height="16" rotation="180"/>
-  <object id="139" type="collision" x="464" y="400" width="32" height="32" rotation="180"/>
-  <object id="140" type="collision" x="432" y="320" width="48" height="31.8788" rotation="180"/>
-  <object id="141" type="collision" x="368" y="304" width="48" height="16" rotation="180"/>
-  <object id="142" type="collision" x="304" y="304" width="48" height="16" rotation="180"/>
-  <object id="143" type="collision" x="240" y="304" width="48" height="16" rotation="180"/>
-  <object id="144" type="collision" x="176" y="304" width="48" height="16" rotation="180"/>
-  <object id="145" type="collision" x="112" y="304" width="48" height="16" rotation="180"/>
-  <object id="151" type="collision" x="448" y="320" width="16" height="16" rotation="180"/>
-  <object id="152" type="collision" x="464" y="336" width="16" height="16" rotation="180"/>
-  <object id="153" type="collision" x="464" y="352" width="16" height="16" rotation="180"/>
-  <object id="154" type="collision" x="448" y="368" width="16" height="16" rotation="180"/>
- </objectgroup>
  <objectgroup id="4" name="Events">
   <object id="149" name="Teleport to Dragon's Cave" type="event" x="528" y="32" width="16" height="16">
    <properties>
@@ -121,10 +88,22 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="155" type="event" x="0" y="64" width="16" height="192">
+  <object id="155" name="Teleport to Candy Town" type="event" x="0" y="64" width="16" height="192">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,39,28,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="156" name="Teleport to Paper Town" type="event" x="624" y="560" width="16" height="48">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,0,15,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup color="#ff0000" id="3" name="Collisions"/>
 </map>

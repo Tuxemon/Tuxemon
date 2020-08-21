@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="19">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="19">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -58,17 +58,17 @@
    <polyline points="0,0 192,0"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" id="4" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="4" name="Events">
   <object id="14" name="Teleport to Omnichannel 3" type="event" x="16" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport omnichannel3.tmx,1,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,10,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
   <object id="15" name="Teleport to Omnichannel 3" type="event" x="32" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport omnichannel3.tmx,2,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,2,10,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
    </properties>

@@ -94,7 +94,7 @@
     <property name="act1" value="transition_teleport spyder_mansion_basement.tmx,6,20,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing bottom"/>
+    <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
   <object id="24" name="Teleport to Basement" type="event" x="32" y="256" width="16" height="16">

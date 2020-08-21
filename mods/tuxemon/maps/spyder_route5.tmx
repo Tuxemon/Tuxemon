@@ -42,12 +42,12 @@
  </layer>
  <layer id="3" name="Path" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtld1NQzEMhfMMPAA7wAowBSvABnQbOk5hGmAIhI/gU48sO/eCKpUHIqVxHPv4Jye9Y/yPQ3ZgdzrG84r5EjY+8HM9uhme2zveTH6K2JuYWrcxH9NeZ+8xfbx+27ge3QzL7R2vk8G8ORvjopi3oVO+GVd+WY+uwhJOVWeXF3owc3w/V0/vA9/v7SH2WY+uwlqKQ7y8yk9xKkzZglvdmfqX+ZB7SjzieJ1ruCg/8a7L7zz6VN17pZvdYVVnF5Oa6M9veOEYyORQxdWZ4oibquMqZO+luPNxAtJ+nWHurdZJwuq44nGQM2euwz8PMHMt/haQl/hC3ArL307HmbsmP3E611Ltq3vzepWf/Cpfcbx7O46RZWoRJ4TBfxdchy9rsOkfGP6GwFuqMefHntrxJ5b2kjte4a91Zud47jOT/XspfniPiCUucQYPuxW7Jf7NcvIzanK+5P752Vqedt9xr9/z6GTl9xZTOcGVy+iXBrxEf6gV/K8o81/Pb255nFN69JOajpPp34n6CR5bytc=
+   eAHtld1NQzEMhfMMPAA7wAowBSvABnQbOk5hGmAIhI/gU48sO/eCqooHIqVxHPv4Jye9Y/yPQ3ZgdzrG84r5EjY+8HM9uhme2zveTH6K2JuYWrcxH9NeZ+8xfbx+27ge3QzL7R2vk8G8ORvjopi3oVO+GVd+WY+uwhJOVWeXF3owc3w/V0/vA9/v7SH2WY+uwlqKQ7y8yk9xKkzZglvdmfqX+ZB7SjzieJ1ruCg/8a7L7zz6VN17pZvdYVVnF5Oa6M9veOEYyORQxdWZ4oibquMqZO+luPNxAtJ+nWHurdZJwuq44nGQM2euwz8PMHMt/haQl/hC3ArL307HmbsmP3E611Ltq3vzepWf/Cpfcbx7O46RZWoRJ4TBfxdchy9rsOkfGP6GwFuqMefHntrxJ5b2kjte4a91Zud47jOT/XspfniPiCUucQYPuxW7Jf7NcvIzanK+5P752Vqedt9xr9/z6GTl92acE18uY2rAS+fQIWTwv6LMf8mPns2tj39Kj35S0/Gz/FsRPwFvJMol
   </data>
  </layer>
  <layer id="4" name="Gravestones" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlk1uAjEMRr2ryrTiBHRLC8eAtmdtbwGn4Qbtsv4UHrIsApryk1hyEnsyyYvtiWZrZhvXbUe9oxyYvnz87To8mD11oFNngClyzt3/X/l5NPt1lcRx8ZxvyZ9mLp0j2oqdBL7dUOwx7Wxi9uIqiePiGdeKT0IMVXcS+IrVroWPGMLZEx9MihKc9+KLex/L0rn6O/bONX3Eo7Ym+eUcvdXfyr+P5/ANw3mv/NbiVvMT7174hn38iFu+/2rnqPlZJz+v+fO8bFN/xO3S+mOdvE/Nn+fJjmcRX7QZt8xvPIv4os24JV+MKfklbjw7xZfn8s4teviIG3uf4mPuLXjymrn+2Ft8r65vrgvXVpLrj/tF9/ba9d31w7XVv+qn7y0hr9wvxXvdlj3G9qIgr38eb3Y4
+   eAHNlkFuAjEMRb1D7bTqCcq20B6jBc4Ktyin4QZl2W+FV1kWAQ0UEkvO2E4m/vn2RLM1s2/ptqOnoPxhWsveSIeJ2VMH+iIMYIo43xS/VH4ezPZSl2iXyPmR+vnKD+GIvnPnAr7dUPwx4+uj2VTqEu0SGTc6Phc49L5zAV/x2o3gg0Nw9oQPTM4SOO+FL+Y+VqVz/Xfsnf+MwUdtT+rLOXrrv099H8/hGwbnvepb460Wh+9e8A0H/uAt33+1c9Ti7JPna/G8Lvv0H7xd23/sk/PU4nmd+/Esji/62C3rG8/i+KKP3RJf5JT6whtzp/Dltbxziyf44I3cp/Cx9hZ48p65/8jt+GbSufRd2kpy/3G/+L39JV1Il9JW/6or5XahrtwvJVpG5mLsEpt9xj49F3X9BdUrd4s=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 8" width="40" height="20">
@@ -55,12 +55,12 @@
    eAHt0DEBAAAIAkH6N9GU2oACx8pPl1gTmA+2RX4CBAgQIECAAAECBKrAARWNAVQ=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="32" height="240"/>
   <object id="4" type="collision" x="32" y="0" width="608" height="32"/>
   <object id="5" type="collision" x="576" y="32" width="64" height="112"/>
   <object id="6" type="collision" x="576" y="160" width="64" height="160"/>
-  <object id="7" type="collision" x="0" y="288" width="576" height="32"/>
+  <object id="7" type="collision" x="80" y="288" width="496" height="32"/>
   <object id="8" type="collision" x="0" y="256" width="64" height="32"/>
   <object id="10" type="collision" x="320" y="32" width="32" height="32"/>
   <object id="11" type="collision" x="272" y="32" width="32" height="32"/>
@@ -72,17 +72,17 @@
   <object id="17" type="collision" x="144" y="240" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="1" name="Teleport to Flower City" type="event" x="64" y="304" width="16" height="16">
+  <object id="1" name="Teleport to Timber Town" type="event" x="64" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,4,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,4,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="2" name="Teleport to Timber Town" type="event" x="624" y="144" width="16" height="16">
+  <object id="2" name="Teleport to Flower City" type="event" x="624" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,0,9,0.3"/>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,9,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>

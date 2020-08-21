@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="139">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="145">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -32,30 +32,30 @@
   <object id="72" name="Teleport to Tunnel" type="event" x="0" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,35,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="73" name="Teleport to Tunnel" type="event" x="0" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,34,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="74" name="Teleport to Tunnel" type="event" x="0" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,33,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="77" name="Teleport to Candy Town" type="event" x="512" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,7,39,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,32,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -63,7 +63,7 @@
   </object>
   <object id="78" name="Teleport to Candy Town" type="event" x="496" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,8,39,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,31,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -71,7 +71,7 @@
   </object>
   <object id="79" name="Teleport to Candy Town" type="event" x="480" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,9,39,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,30,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -79,7 +79,55 @@
   </object>
   <object id="80" name="Teleport to Candy Town" type="event" x="464" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,10,39,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,14,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="139" name="Teleport to Candy Town" type="event" x="224" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,14,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="140" name="Teleport to Candy Town" type="event" x="240" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,15,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="141" name="Teleport to Candy Town" type="event" x="256" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,16,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="142" name="Teleport to Candy Town" type="event" x="272" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,17,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="143" name="Teleport to Candy Town" type="event" x="288" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,18,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="144" name="Teleport to Candy Town" type="event" x="304" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,19,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

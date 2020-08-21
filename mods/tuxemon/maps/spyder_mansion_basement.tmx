@@ -51,7 +51,7 @@
    eAFjYBgFwyEEbBgZGEDYHohHwWgIjIbAaAiMhsDgCoHhWDYDAO20APs=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="16" height="224"/>
   <object id="2" type="collision" x="16" y="0" width="368" height="32"/>
   <object id="3" type="collision" x="368" y="32" width="16" height="320"/>
@@ -96,9 +96,9 @@
   <object id="35" name="Teleport to Middle" type="event" x="96" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_mansion.tmx,1,15,0.3"/>
-    <property name="act2" value="player_face top"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing top"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
   <object id="36" name="Teleport to Middle" type="event" x="112" y="304" width="16" height="16">

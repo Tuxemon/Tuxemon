@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="61">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="61">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -29,6 +29,11 @@
   </data>
  </layer>
  <layer id="3" name="Filler" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="7" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>

@@ -66,7 +66,7 @@
   </object>
   <object id="200" name="Teleport to Timber Town" type="event" x="256" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_town.tmx,33,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,15,39,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -74,7 +74,7 @@
   </object>
   <object id="201" name="Teleport to Timber Town" type="event" x="240" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_town.tmx,34,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,14,39,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -82,7 +82,7 @@
   </object>
   <object id="202" name="Teleport to Timber Town" type="event" x="224" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_town.tmx,35,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,13,39,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -90,7 +90,7 @@
   </object>
   <object id="203" name="Teleport to Timber Town" type="event" x="208" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_town.tmx,36,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,12,39,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -121,57 +121,5 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
-  <object id="210" type="collision" x="208" y="240" width="96" height="240" rotation="-180"/>
-  <object id="211" type="collision" x="48" y="128" width="48" height="128" rotation="-180"/>
-  <object id="212" type="collision" x="240" y="160" width="32" height="128" rotation="-180"/>
-  <object id="213" type="collision" x="256" y="80" width="16" height="16" rotation="-180"/>
-  <object id="214" type="collision" x="160" y="352" width="96" height="112" rotation="-180"/>
-  <object id="215" type="collision" x="80" y="272" width="64" height="224" rotation="-180"/>
-  <object id="216" type="collision" x="96" y="144" width="16" height="80" rotation="-180"/>
-  <object id="217" type="collision" x="112" y="240" width="16" height="80" rotation="-180"/>
-  <object id="218" type="collision" x="96" y="240" width="16" height="16" rotation="-180"/>
-  <object id="219" type="collision" x="288" y="80" width="16" height="16" rotation="-180"/>
-  <object id="220" type="collision" x="272" y="64" width="16" height="16" rotation="-180"/>
-  <object id="221" type="collision" x="160" y="640" width="160" height="192" rotation="-180"/>
-  <object id="222" type="collision" x="144" y="448" width="144" height="32" rotation="-180"/>
-  <object id="223" type="collision" x="128" y="416" width="128" height="16" rotation="-180"/>
-  <object id="224" type="collision" x="96" y="400" width="96" height="176" rotation="-180"/>
-  <object id="225" type="collision" x="128" y="400" width="16" height="16" rotation="-180"/>
-  <object id="226" type="collision" x="320" y="640" width="160" height="32" rotation="-180"/>
-  <object id="227" type="collision" x="320" y="608" width="16" height="32" rotation="-180"/>
-  <object id="228" type="collision" x="272" y="608" width="32" height="32" rotation="-180"/>
-  <object id="229" type="collision" x="224" y="608" width="16" height="16" rotation="-180"/>
-  <object id="230" type="collision" x="192" y="608" width="32" height="16" rotation="-180"/>
-  <object id="231" type="collision" x="176" y="592" width="16" height="96" rotation="-180"/>
-  <object id="232" type="collision" x="240" y="528" width="64" height="32" rotation="-180"/>
-  <object id="233" type="collision" x="272" y="464" width="16" height="16" rotation="-180"/>
-  <object id="234" type="collision" x="256" y="480" width="16" height="16" rotation="-180"/>
-  <object id="235" type="collision" x="224" y="496" width="32" height="32" rotation="-180"/>
-  <object id="236" type="collision" x="208" y="464" width="32" height="32" rotation="-180"/>
-  <object id="237" type="collision" x="176" y="336" width="16" height="16" rotation="-180"/>
-  <object id="238" type="collision" x="176" y="272" width="16" height="32" rotation="-180"/>
-  <object id="239" type="collision" x="192" y="256" width="16" height="16" rotation="-180"/>
-  <object id="240" type="collision" x="320" y="464" width="32" height="160" rotation="-180"/>
-  <object id="241" type="collision" x="288" y="432" width="16" height="32" rotation="-180"/>
-  <object id="242" type="collision" x="288" y="368" width="16" height="32" rotation="-180"/>
-  <object id="243" type="collision" x="320" y="304" width="16" height="224" rotation="-180"/>
-  <object id="244" type="collision" x="304" y="272" width="16" height="96" rotation="-180"/>
-  <object id="245" type="collision" x="288" y="240" width="16" height="32" rotation="-180"/>
-  <object id="246" type="collision" x="304" y="144" width="16" height="32" rotation="-180"/>
-  <object id="247" type="collision" x="320" y="496" width="80" height="32" rotation="-180"/>
-  <object id="248" type="collision" x="272" y="464" width="32" height="64" rotation="-180"/>
-  <object id="249" type="collision" x="256" y="432" width="48" height="64" rotation="-180"/>
-  <object id="250" type="collision" x="288" y="208" width="32" height="160" rotation="-180"/>
-  <object id="251" type="collision" x="320" y="80" width="32" height="32" rotation="-180"/>
-  <object id="252" type="collision" x="256" y="304" width="32" height="128" rotation="-180"/>
-  <object id="253" type="collision" x="208" y="400" width="32" height="112" rotation="-180"/>
-  <object id="254" type="collision" x="288" y="304" width="96" height="32" rotation="-180"/>
-  <object id="255" type="collision" x="272" y="272" width="64" height="16" rotation="-180"/>
-  <object id="256" type="collision" x="272" y="368" width="16" height="32" rotation="-180"/>
-  <object id="257" type="collision" x="288" y="336" width="16" height="32" rotation="-180"/>
-  <object id="258" type="collision" x="80" y="48" width="16" height="16" rotation="-180"/>
-  <object id="259" type="collision" x="224" y="416" width="32" height="64" rotation="-180"/>
-  <object id="260" type="collision" x="224" y="320" width="16" height="16" rotation="-180"/>
- </objectgroup>
+ <objectgroup color="#ff0000" id="5" name="Collisions"/>
 </map>

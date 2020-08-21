@@ -77,91 +77,10 @@
  </layer>
  <layer id="5" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHlmMtOFUEQhovD4cDGwFZ2sDcaJLKGxzAGt4g+RO+MkaghLNzJ5RUU8AkUXBIkYKKAypaLC7xs+CueP6lMhumZ6e4JCZ18qelb1T91ajJ9RuR/2+wTtwG6XbH90RviRoDa0x5xOzfFfQbbgNe0OrYFuN5a+qY/9rPWzlPHIbQdgGx/pl/cFHRNArV9w+LaoBe0zLUdE4xzvbXUQX/sZ62dpy6uyfY5TpvVpzotqln1cX1Vq/nQPaPIheZer6u0McS+U8BtzN0K0EctNoccK2MfIva0h/sR9FEL6419n51D7OcenkbU56u3rF7N3wMPMfJXt/40f888xMhfnfqb74h7D23rOaxhbBW8A29BNu+p+6pNYxwh9s8cfmDsOzgEB0DXNt2osem4ZeJdZW3UbzU+EXGPwSx4BGYA18W2d9t+31Zb7Pix/FXR2GnhLAHaoBe0QA8I1UINl9lQ/1X32/fbZZo4XtV3yHqeY6q+30Jilt07OCQyBEJaqvoK0ZR675dBcXtgFzBW3XMC9xfZf/iv8hf8Ab/BOShanzdX55yQ5+c6jOX9vr77ftMRWQRLYBmsgCabr/4+QM9HsAE2wSfQZPPV3zH0nIBTcAZ+gVStzu+bSstV8LvQPXOHaPHVX4jv1xH0+eovRF+MvchfUHuF7yUvwYvud5MgZzmbkb+gtg5da2A1kb7xgervRHtD+9D1DXxNpE9jTQRqtHpjX9+roS3lM2/vT8/22udZ2s4VXTf1zOvZnrlIZYvus2iOepiLVFY1sIaqPIvUo/upNZXVGHwGUUul47H+qDWVVX22lY2j9XcBCpdejg==
+   eAHlmLtuVDEQhp3NZqFBSQsd6REIENTwGAhBGwIP4Q4hECBEQcftFSAJTwAJJQqIIAEJlxYCBbeGb8T+knW0OT5e2wsSlj6N7WPP/GfOWHHWuT9tbcb5VRgOXTie3+P8fjC7PeX8i73OP4d1UF/W5p6B1odWvuVP46YNn0vHFto2oTle2OX8SXSdALMz+5zvwzT0gn4455jX+tBKh/xp3LThc+nSmuZY87JNfaYzxDSbPq1PtZYP2zNPLiz31k9ph4l9qIWDPDuQoU9awhxqros9S+wzEU4V0CctqjeNY/YKsS9HuFhQX6zemnotf6cjlMif6m+c/F1CXxsl8qf6S8nfjYHzj9C2MoJl5pbgITyAZt5rj02bxfhI7A8jeM/cO9iCTbC1JVrK95XGEnG7+uj6ff+Gtq7voHWhxgvO+fOwCOdgAbSutD3Sj/sOtZWOX8pfisZBj7sE9GEaejAFuVqkYSeb6z91f3h+d9Kk+VTfOet1j+l6fnNipe6dnXNuDnJarfrK0VR776tZ5zfgJSiW7gkal7S/+F/lJ/yA7/ANUv3rnpC6739cP+r7xvJwe+DcHbgL9+A+TLLF6u8xep7AKqzBU5hki9XfJ/R8hm34Al+hVhvn+9bS8i/4vTm8c+doidVfju9bBfTF6i9HX4m95C+rXef3kmtwdfi7SZazEZvJX1ZbQdcyLFXSd3R3+t/E8IXeousNvK6kz2Idz9QY6i3dPzaGtppnPnw/u9vbWHfp8Flbf1Jn3u72ykUt2/aebc+kR7moZU2DaijlLEqP7ZfWWtZi6AxSS53jqf6ktZY1fWHrGsfq7zeijmli
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision" visible="0">
-  <object id="206" type="collision" x="640" y="640" width="640" height="32" rotation="180"/>
-  <object id="207" type="collision" x="640" y="128" width="32" height="32" rotation="180"/>
-  <object id="208" type="collision" x="640" y="608" width="16" height="480" rotation="180"/>
-  <object id="209" type="collision" x="608" y="272" width="96" height="112" rotation="180"/>
-  <object id="210" type="collision" x="608" y="288" width="16" height="16" rotation="180"/>
-  <object id="211" type="collision" x="576" y="288" width="96" height="16" rotation="180"/>
-  <object id="212" type="collision" x="608" y="160" width="64" height="48" rotation="180"/>
-  <object id="213" type="collision" x="544" y="160" width="32" height="16" rotation="180"/>
-  <object id="214" type="collision" x="384" y="160" width="64" height="160" rotation="180"/>
-  <object id="215" type="collision" x="320" y="144" width="128" height="144" rotation="180"/>
-  <object id="216" type="collision" x="304" y="160" width="128" height="16" rotation="180"/>
-  <object id="217" type="collision" x="16" y="208" width="16" height="176" rotation="180"/>
-  <object id="218" type="collision" x="448" y="608" width="16" height="16" rotation="180"/>
-  <object id="219" type="collision" x="416" y="608" width="16" height="16" rotation="180"/>
-  <object id="220" type="collision" x="384" y="608" width="384" height="32" rotation="180"/>
-  <object id="221" type="collision" x="16" y="576" width="16" height="320" rotation="180"/>
-  <object id="222" type="collision" x="32" y="288" width="16" height="32" rotation="180"/>
-  <object id="223" type="collision" x="192" y="416" width="176" height="96" rotation="180"/>
-  <object id="224" type="collision" x="32" y="480" width="16" height="32" rotation="180"/>
-  <object id="225" type="collision" x="160" y="432" width="128" height="16" rotation="180"/>
-  <object id="226" type="collision" x="208" y="448" width="32" height="64" rotation="180"/>
-  <object id="227" type="collision" x="160" y="448" width="32" height="16" rotation="180"/>
-  <object id="228" type="collision" x="320" y="352" width="96" height="48" rotation="180"/>
-  <object id="229" type="collision" x="304" y="256" width="80" height="48" rotation="180"/>
-  <object id="230" type="collision" x="448" y="384" width="32" height="48" rotation="180"/>
-  <object id="231" type="collision" x="416" y="368" width="48" height="32" rotation="180"/>
-  <object id="232" type="collision" x="400" y="384" width="32" height="16" rotation="180"/>
-  <object id="233" type="collision" x="448" y="288" width="96" height="48" rotation="180"/>
-  <object id="234" type="collision" x="576" y="64" width="80" height="48" rotation="180"/>
-  <object id="235" type="collision" x="496" y="32" width="32" height="32" rotation="180"/>
-  <object id="236" type="collision" x="432" y="32" width="48" height="32" rotation="180"/>
-  <object id="237" type="collision" x="32" y="544" width="16" height="16" rotation="180"/>
-  <object id="238" type="collision" x="32" y="224" width="16" height="16" rotation="180"/>
-  <object id="239" type="collision" x="192" y="32" width="192" height="32" rotation="180"/>
-  <object id="240" type="collision" x="240" y="576" width="32" height="32" rotation="180"/>
-  <object id="241" type="collision" x="384" y="464" width="16" height="16" rotation="180"/>
-  <object id="242" type="collision" x="624" y="32" width="32" height="32" rotation="180"/>
-  <object id="243" type="collision" x="592" y="48" width="16" height="16" rotation="180"/>
-  <object id="244" type="collision" x="640" y="64" width="32" height="32" rotation="180"/>
-  <object id="245" type="collision" x="544" y="464" width="48" height="176" rotation="180"/>
-  <object id="246" type="collision" x="576" y="560" width="64" height="96" rotation="180"/>
-  <object id="247" type="collision" x="496" y="304" width="16" height="16" rotation="180"/>
-  <object id="248" type="collision" x="496" y="368" width="16" height="32" rotation="180"/>
-  <object id="249" type="collision" x="496" y="432" width="16" height="32" rotation="180"/>
-  <object id="250" type="collision" x="512" y="528" width="16" height="32" rotation="180"/>
-  <object id="251" type="collision" x="592" y="528" width="16" height="32" rotation="180"/>
-  <object id="252" type="collision" x="560" y="592" width="32" height="32" rotation="180"/>
-  <object id="253" type="collision" x="624" y="608" width="32" height="64" rotation="180"/>
-  <object id="254" type="collision" x="592" y="608" width="16" height="32" rotation="180"/>
-  <object id="255" type="collision" x="624" y="480" width="32" height="32" rotation="180"/>
-  <object id="256" type="collision" x="64" y="560" width="48" height="48" rotation="180"/>
-  <object id="257" type="collision" x="208" y="576" width="144" height="48" rotation="180"/>
-  <object id="258" type="collision" x="448" y="576" width="192" height="48" rotation="180"/>
-  <object id="259" type="collision" x="448" y="608" width="48" height="32" rotation="180"/>
-  <object id="260" type="collision" x="272" y="544" width="112" height="48" rotation="180"/>
-  <object id="261" type="collision" x="304" y="528" width="16" height="32" rotation="180"/>
-  <object id="262" type="collision" x="288" y="528" width="16" height="16" rotation="180"/>
-  <object id="263" type="collision" x="32" y="576" width="16" height="16" rotation="180"/>
-  <object id="264" type="collision" x="192" y="176" width="16" height="48" rotation="180"/>
-  <object id="265" type="collision" x="176" y="160" width="16" height="16" rotation="180"/>
-  <object id="266" type="collision" x="192" y="208" width="16" height="16" rotation="180"/>
-  <object id="267" type="collision" x="176" y="192" width="16" height="16" rotation="180"/>
-  <object id="268" type="collision" x="176" y="224" width="16" height="16" rotation="180"/>
-  <object id="269" type="collision" x="192" y="240" width="16" height="16" rotation="180"/>
-  <object id="270" type="collision" x="176" y="256" width="16" height="16" rotation="180"/>
-  <object id="271" type="collision" x="160" y="272" width="16" height="16" rotation="180"/>
-  <object id="272" type="collision" x="144" y="256" width="16" height="16" rotation="180"/>
-  <object id="273" type="collision" x="128" y="272" width="16" height="16" rotation="180"/>
-  <object id="274" type="collision" x="112" y="256" width="16" height="16" rotation="180"/>
-  <object id="275" type="collision" x="96" y="272" width="16" height="16" rotation="180"/>
-  <object id="276" type="collision" x="80" y="256" width="16" height="16" rotation="180"/>
-  <object id="277" type="collision" x="64" y="272" width="16" height="16" rotation="180"/>
-  <object id="278" type="collision" x="96" y="48" width="32" height="16" rotation="180"/>
-  <object id="279" type="collision" x="624" y="272" width="16" height="16" rotation="180"/>
-  <object id="280" type="collision" x="512" y="272" width="16" height="96" rotation="180"/>
-  <object id="281" type="collision" x="496" y="240" width="16" height="32" rotation="180"/>
-  <object id="282" type="collision" x="48" y="256" width="16" height="16" rotation="180"/>
-  <object id="283" type="collision-line" x="0" y="256" rotation="180">
-   <polyline points="0,48 0,0 0,48"/>
-  </object>
- </objectgroup>
+ <objectgroup color="#ff0000" id="6" name="Collision"/>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="293" name="Teleport to Route 4" type="event" x="624" y="64" width="16" height="16">
    <properties>
@@ -195,9 +114,9 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="298" name="Teleport to Route 5" type="event" x="16" y="160" width="16" height="16" rotation="180">
+  <object id="298" name="Teleport to Route 5" type="event" x="0" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route5.tmx,39,9,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route5.tmx,39,9,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>

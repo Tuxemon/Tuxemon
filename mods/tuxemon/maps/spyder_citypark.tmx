@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="123">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="126">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -33,7 +33,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -41,8 +41,8 @@
    eAHt1MEJACAMA8Dgy8UUd3Y5HcKHhQvkH67QRCoL7F55ve0ECFQW8H8qX892AgQIECBAgACBnwRGS+btuhUCBAgQIEDgncABWXgCYA==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
-  <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="0" y="224" width="32" height="416"/>
   <object id="2" type="collision" x="32" y="0" width="496" height="32"/>
   <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
   <object id="5" type="collision" x="256" y="32" width="32" height="16"/>
@@ -66,7 +66,6 @@
   <object id="24" type="collision" x="256" y="288" height="144"/>
   <object id="26" type="collision" x="288" y="304" height="96"/>
   <object id="28" type="collision" x="384" y="448" height="96"/>
-  <object id="30" type="collision" x="464" y="176" width="32" height="32"/>
   <object id="31" type="collision" x="32" y="144" width="112" height="32"/>
   <object id="32" type="collision" x="608" y="0" width="32" height="160"/>
   <object id="39" type="collision" x="384" y="384" width="16" height="16"/>
@@ -75,7 +74,7 @@
   <object id="45" type="collision" x="528" y="0">
    <polygon points="0,0 0,64 48,64 48,48 64,48 64,64 80,64 80,0"/>
   </object>
-  <object id="46" type="collision" x="96" y="512">
+  <object id="46" type="collision" x="112" y="464">
    <polygon points="0,0 0,32 48,32 48,0"/>
   </object>
   <object id="50" type="collision" x="352" y="352">
@@ -104,11 +103,12 @@
   <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
   <object id="95" type="collision" x="496" y="272" width="16" height="32"/>
   <object id="96" type="collision" x="496" y="432" width="16" height="32"/>
-  <object id="97" type="collision" x="608" y="160" width="16" height="16"/>
+  <object id="97" type="collision" x="608" y="160" width="32" height="63.8182"/>
   <object id="98" type="collision" x="512" y="48" width="16" height="16"/>
-  <object id="99" type="collision" x="80" y="496" width="16" height="16"/>
   <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
   <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
+  <object id="123" type="collision" x="32" y="224" width="32" height="32"/>
+  <object id="125" type="collision" x="0" y="0" width="32" height="192"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
@@ -340,24 +340,18 @@
   </object>
   <object id="89" name="Teleport to Leather Town" type="event" x="0" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_town.tmx,0,32,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act1" value="transition_teleport spyder_leather_town.tmx,39,32,0.3"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="90" name="Teleport to Leather Town" type="event" x="0" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_town.tmx,0,33,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act1" value="transition_teleport spyder_leather_town.tmx,39,33,0.3"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="91" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music back34.mp3"/>
-    <property name="cond1" value="not music_playing back34.mp3"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="101" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">
@@ -377,7 +371,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="103" name="Player Spawn" type="event" x="80" y="592" width="16" height="16"/>
   <object id="111" name="ripjimmy" type="event" x="32" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog ripjimmy"/>
@@ -386,7 +379,7 @@
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="112" name="make npcs" type="event" x="61.3333" y="7.33333" width="16" height="16">
+  <object id="112" name="make npcs" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc knight1,12,13,knight,stand"/>
     <property name="act2" value="npc_face knight1,right"/>

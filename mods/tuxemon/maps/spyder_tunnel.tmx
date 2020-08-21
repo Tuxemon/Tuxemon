@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="261">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="261">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -39,72 +39,66 @@
    eAHtVcsNwjAMDZQblLID3AB1EuhKnGEBGIKyAuzBAEgswbNUS27apPlUVQ9UsuKkzy/PbuMo1XwypU5LYSn8Jsp9JUf8A1bC7rA9zD26iSQ+uSr53pP6O4lj/zOtY9r4JCfHuY5tfK6xjMuQI3+Drch3Af8g5ozvGnVNjA/Ns4tPrzHvZxqLKic9LlQf7UOcR9gcRnUjP6R2umbideG5JPX/TOcJmZ89OVee+BBNY4hxOfdD6nxpPWbIvfvY6zki/RnOG/fCFH5sfrngiOkvrKON7xZRP+ov3Lf60Cd17qpaxtSRz5rMm3hDOK+iTpQ39WrWG8rJ8TRKjTT3rad+jmP5SIN8THz6PShjbD7zxdx3cm/m862bSWOB72u7hxMEzkzBHuslsGRr2MYjzgaVfF8b8P/OuQI/xLlLAA==
   </data>
  </layer>
- <objectgroup color="#ffff00" id="4" name="Events" visible="0">
-  <object id="196" name="Play Music" type="event" x="320" y="640" width="16" height="16" rotation="-180">
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="197" name="Teleport to Below" type="event" x="192" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music peasant_kingdom.ogg"/>
-    <property name="cond1" value="not music_playing peasant_kingdom.ogg"/>
-   </properties>
-  </object>
-  <object id="197" name="Teleport to Below" type="event" x="96" y="224" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport tunnel_below.tmx,14,25,0.3"/>
+    <property name="act1" value="transition_teleport spyder_tunnel_below.tmx,7,2,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="198" name="Teleport to Below" type="event" x="112" y="400" width="16" height="16" rotation="-180">
+  <object id="198" name="Teleport to Below" type="event" x="96" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel_below.tmx,13,14,0.3"/>
+    <property name="act1" value="transition_teleport spyder_tunnel_below.tmx,13,14,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="199" name="Teleport to Below" type="event" x="208" y="608" width="16" height="16" rotation="-180">
+  <object id="199" name="Teleport to Below" type="event" x="80" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport tunnel_below.tmx,7,2,0.3"/>
+    <property name="act1" value="transition_teleport spyder_tunnel_below.tmx,14,25,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="200" name="Teleport to Timber Town" type="event" x="112" y="16" width="16" height="16" rotation="-180">
+  <object id="200" name="Teleport to Timber Town" type="event" x="256" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,33,0,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,33,0,0.3"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="201" name="Teleport to Timber Town" type="event" x="96" y="16" width="16" height="16" rotation="-180">
+  <object id="201" name="Teleport to Timber Town" type="event" x="240" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,34,0,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,34,0,0.3"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="202" name="Teleport to Timber Town" type="event" x="80" y="16" width="16" height="16" rotation="-180">
+  <object id="202" name="Teleport to Timber Town" type="event" x="224" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,35,0,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,35,0,0.3"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="203" name="Teleport to Timber Town" type="event" x="64" y="16" width="16" height="16" rotation="-180">
+  <object id="203" name="Teleport to Timber Town" type="event" x="208" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,36,0,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,36,0,0.3"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
   <object id="204" name="Teleport to Route 6" type="event" x="320" y="576" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,4,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,0,15,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -112,7 +106,7 @@
   </object>
   <object id="205" name="Teleport to Route 6" type="event" x="320" y="560" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,5,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,0,14,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
@@ -120,29 +114,12 @@
   </object>
   <object id="206" name="Teleport to Route 6" type="event" x="320" y="544" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,6,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,0,13,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="207" name="Teleport to Route 6" type="event" x="320" y="528" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,7,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="208" name="Teleport to Route 6" type="event" x="320" y="512" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,39,8,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="209" name="Player Spawn" type="event" x="208" y="576" width="16" height="16" rotation="-180"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
   <object id="210" type="collision" x="208" y="240" width="96" height="240" rotation="-180"/>

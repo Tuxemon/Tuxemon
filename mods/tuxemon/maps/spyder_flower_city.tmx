@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="302">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="302">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -162,69 +162,54 @@
    <polyline points="0,48 0,0 0,48"/>
   </object>
  </objectgroup>
- <objectgroup color="#ffff00" id="7" name="Events" visible="0">
-  <object id="293" name="Teleport to Route 4" type="event" x="640" y="80" width="16" height="16" rotation="180">
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="293" name="Teleport to Route 4" type="event" x="624" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route4.tmx,19,3,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="294" name="Teleport to Route 4" type="event" x="640" y="96" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route4.tmx,19,4,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="295" name="Teleport to Side Route A" type="event" x="464" y="16" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport routea.tmx,12,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="296" name="Teleport to Side Route A" type="event" x="448" y="16" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport routea.tmx,13,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="297" name="Play Music" type="event" x="640" y="16" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
-   </properties>
-  </object>
-  <object id="298" name="Teleport to Route 5" type="event" x="16" y="256" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport route5.tmx,0,15,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route4.tmx,0,4,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="299" name="Teleport to Route 5" type="event" x="48" y="272" width="16" height="16" rotation="180">
+  <object id="294" name="Teleport to Route 4" type="event" x="624" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route5.tmx,0,15,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route4.tmx,0,5,0.3"/>
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="300" name="Teleport to Dojo" type="event" x="592" y="288" width="16" height="16" rotation="180">
+  <object id="295" name="Teleport to Side Route A" type="event" x="448" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dojo1.tmx,11,11,0.3"/>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,8,39,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="301" name="Player Spawn" type="event" x="608" y="96" width="16" height="16" rotation="180"/>
+  <object id="296" name="Teleport to Side Route A" type="event" x="432" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,7,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="298" name="Teleport to Route 5" type="event" x="16" y="160" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="transition_teleport route5.tmx,39,9,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="300" name="Teleport to Dojo" type="event" x="576" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dojo1.tmx,11,11,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

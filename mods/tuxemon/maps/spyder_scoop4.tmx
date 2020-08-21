@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -97,11 +97,11 @@
    eAFjYBgFwykExHiGk28Gn19GWvgCAHKIAEU=
   </data>
  </layer>
- <objectgroup color="#ffff00" id="6" name="Event" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Event">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16"/>
   <object id="2" name="Teleport to Scoop 3" type="event" x="144" y="336" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport scoop3.tmx,5,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_scoop3.tmx,5,3,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -109,7 +109,7 @@
   </object>
   <object id="3" name="Teleport to Timber Town" type="event" x="176" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport timber_town.tmx,18,23,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,17,20,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>

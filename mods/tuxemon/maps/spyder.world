@@ -106,7 +106,7 @@
             "y": 0
         },
 												        {
-            "fileName": "spyder_paper_mart.tmx",
+            "fileName": "spyder_paper_scoop.tmx",
             "x": 2240,
             "y": 3240
         },
@@ -143,16 +143,16 @@
 		{
             "fileName": "spyder_mansion_top.tmx",
             "x": 960,
-            "y": -640
+            "y": -672
         },  
 		{
             "fileName": "spyder_mansion_basement.tmx",
             "x": 960,
-            "y": -320
+            "y": -352
         },  
 		{
             "fileName": "spyder_mansion.tmx",
-            "x": 1280,
+            "x": 1344,
             "y": -320
         },  
 		{
@@ -162,17 +162,17 @@
         }, 
 		{
             "fileName": "spyder_dojo1.tmx",
-            "x": 0,
+            "x": -192,
             "y": 0
         },
 		{
             "fileName": "spyder_dojo2.tmx",
-            "x": 320,
+            "x": 192,
             "y": 0
         },
 		{
             "fileName": "spyder_dojo3.tmx",
-            "x": 640,
+            "x": 576,
             "y": 0
         },
 		{

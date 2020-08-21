@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -80,10 +80,10 @@
   <object id="34" type="collision" x="64" y="32" width="64" height="16"/>
   <object id="35" type="collision" x="176" y="32" width="48" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="22" name="Teleport to Top" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_top.tmx,1,16,0.3"/>
+    <property name="act1" value="transition_teleport spyder_mansion_top.tmx,1,16,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -91,7 +91,7 @@
   </object>
   <object id="23" name="Teleport to Basement" type="event" x="16" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,6,20,0.3"/>
+    <property name="act1" value="transition_teleport spyder_mansion_basement.tmx,6,20,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing bottom"/>
@@ -99,7 +99,7 @@
   </object>
   <object id="24" name="Teleport to Basement" type="event" x="32" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,7,20,0.3"/>
+    <property name="act1" value="transition_teleport spyder_mansion_basement.tmx,7,20,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -107,7 +107,7 @@
   </object>
   <object id="25" name="Teleport to Top" type="event" x="32" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_top.tmx,2,16,0.3"/>
+    <property name="act1" value="transition_teleport spyder_mansion_top.tmx,2,16,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -115,7 +115,7 @@
   </object>
   <object id="27" name="Teleport to Side Route" type="event" x="144" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routea.tmx,6,13,0.3"/>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,6,13,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -123,7 +123,7 @@
   </object>
   <object id="28" name="Teleport to Side Route" type="event" x="160" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routea.tmx,7,13,0.3"/>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,7,13,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -131,7 +131,7 @@
   </object>
   <object id="29" name="Teleport to Basement" type="event" x="240" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,13,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_mansion_basement.tmx,13,3,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
@@ -145,7 +145,7 @@
   </object>
   <object id="32" name="Teleport to Side Route" type="event" x="176" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport routea.tmx,7,13,0.3"/>
+    <property name="act1" value="transition_teleport spyder_routea.tmx,7,13,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -153,7 +153,7 @@
   </object>
   <object id="33" name="Teleport to Basement" type="event" x="256" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport mansion_basement.tmx,13,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_mansion_basement.tmx,13,3,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>

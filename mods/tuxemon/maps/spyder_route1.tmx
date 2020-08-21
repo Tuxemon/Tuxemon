@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="162">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="167">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -57,22 +57,22 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG7wsrAcAWIrwKx3yDEILcRcp8rFd3tTqJZ94hw30CG62mg++4CMcidA+kOQnY/G8Lug6U/WNoB8d3I9A/MDELhhS4/lMMP3S8DwR/K4QdLf8SGGz71o+mPvuXkYWA58RaI35FZXhAb5+SqG8r5glQ/+9MgDkZS+JEa3sSoHw0/ysqjwR5+ABUuFBs=
+   eAG7wsrAcAWIrwKx3yDEILcNZvfdI8J9rlQMV3cSzToNVH8XiEHuHIzxC3PTs1H3URQ/+MJvINPfaPxSJ9/hi19YGBNLUzM9wOzE5z5q2kdq+UeM+2BqBoI+DCz33gLxu0Fa/uGL14EIL3Q7qek+fxrEATXdh+53avBH3UdZ+TwafpSFHwAPdRQz
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlcttAzEMRHVwyknOqSCfAuK04P4riHR4gP3gMWnLhwgQZocaDsm1Fh7jcr0exnib23ipepzZt+KudJy9/c5ttO4a/3gZg/05n88XcftW/NxjPad5rEv8Z8629rX1PntO/ilunzSPdYnf6m/lJP8Ud53uHM6DV/0l/xTHF+zOgd5If9w3Y/JPcft353De4t/zftHfSd8H+uSf4uSB3TnQG+nPcXjyT3HywO4c6I23+vv6R9+v7x08vacU9/y7789+5sk/xZ3fncN5XZ78Uxzf1D9xdLuIXxepl/onjm4X8esi9ap50O1iVcfn1KvmQbeLVR2fU899P4v7f+ReX/pz38/i+IP3+pJXzYVuF6s6PqdeNRe6HVy/dVXH539MH3tv
+   eAGtlEsOwjAMRLOA48CaC/DbsAOuwP1PgLN4Eow6tds0UjQdxx6P26it/a/DrrVjbMX/rPVMdTOunV7h7R1bUfPWctXNuPZx82jeFL/sW2Nf4/l3EXf6Lv6r0Z/dPJrn+DPefd9T6xSenb6Lq051Dq2Dz/nrOU7fxdEFq3OQr5j5c/ourvpujkd8m36nOp5j9/s0tfDHfVN0+i6uPapzaF3n9/CMv4/x7/RdXPtU59A6OP7gik7fxbW+OofWwef83eKdOn0XRxeszkG+Iv703sGdvourfnUOratyp+/i6Dr/xMkbRfSqSD/nnzh5o4heFemXzUPeKGZ99Jx+2TzkjWLWR8/pp7634vqfXqqLP/W9FUcfXKpLXTYXeaOY9dFz+mVzkTeC/VtnffT8C88JfPY=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlN0NwjAMhPPQbsM7E/AjpmAUlmUPYqmWrE91zkBRsRTZZzvnSxq1tZrd51rfr7umqbW5L/pz17e2Lovu0+IPfa+taF6zHHkVjjyj+Nbnq2X71/SNeN+tZedR2qxupvRl/Fn+2XltKdtKn5rDOvVl57C3F23tLVpur/uL2kZ3WdUX+UZx9f4ixxb6su/EPPVFHTG+hu/7jb7IWYmpj/odZ+/N8v4PrMxzvqqnvmxGdmfsz/o8z36FXZ86j/PTk591YjWHdfJnmHMcs9/zmWd/FVM3cXVe1ud58ipc1e/89NzPOjH7q3irc6h5ag7riu9f6tRN/KnO49QecS95FY57LfZ+5vfCrod+Lz2c+wKhyUR6
+   eAHVlN0NwjAMhPPQbsM7E/AjpmAUlmUPYlFL1qdebdGiQiTj+Oycz2lEa/+1hqG1sRv9fdxmDvJmcbXrueubs8uk+zT5Q5/NLC7PRezTvZrn1vtnZj3n9EUtil/hz97XLFuZNsvbyvS9q+q/1Kfm2Eqf4lc49anJ7O3FNfcWDcvuz3VErqU99fl5+sixdJdVfeRXMfVFHWq/Rp/iVDj1qTmu4fuu0af4FU59ag713gz3/0B1dg3u+pR+x9Wdsbeqc9z5qp78KnZ+etYzz5j11Tibh308Jr/jymd9mCe/ilU/1qs6x1lfjambcZUnqyNvFmd8v5L/1hzHoT3ijFkf5uNZ23ue+F6x66HfSw/7vgDtfUAo
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtUkEKwCAM60E/uBf59Okhl0CnQrQ7VJCSGtMQNct1I4Gnms32DR/ejJm3cR65/u4vMpvd2V9Z7mqd4Ke/E6nGanpvyq48HvrMV2Hoc2V9PmfMfBXmOcCsj75Xma/Cq/M8HvoqP6wDfa6rPNxjvgqXYlb73q2q+amTCSgT6H+59b/cZvUFeykt5w==
+   eAHtklEKwDAIQ/PRXnAn6tHXH38euG4g1A4LRWJDtFGpTjkgXX19d/qUvb+d3vyt9tOsM/w1e38ZPDqtB2+m/IfHszz5Udj0GanPd2LyozDrGKa+5b1IfhR+W8/jWT6qH+q0JvV5v0bqFC4HMjgwd3nMXR6reAMp/SO1
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
@@ -97,7 +97,7 @@
   </object>
   <object id="129" name="Teleport to Route1" type="event" x="224" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town,34,4,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town,14,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -105,13 +105,13 @@
   </object>
   <object id="130" name="Teleport to Route1" type="event" x="208" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,33,4,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,13,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="151" name="Encounters" type="event" x="320" y="160" width="128" height="80">
+  <object id="151" name="Encounters" type="event" x="320" y="176" width="128.091" height="63.8636">
    <properties>
     <property name="act1" value="random_encounter route1"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -119,7 +119,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="152" name="Encounters" type="event" x="160" y="160" width="96" height="80">
+  <object id="152" name="Encounters" type="event" x="160" y="176" width="96" height="64">
    <properties>
     <property name="act1" value="random_encounter route1"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -127,7 +127,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="153" name="Encounters" type="event" x="208" y="96" width="112" height="48">
+  <object id="153" name="Encounters" type="event" x="208" y="112" width="112" height="48">
    <properties>
     <property name="act1" value="random_encounter route1"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -135,7 +135,7 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="154" name="Encounters" type="event" x="160" y="32" width="144" height="48">
+  <object id="154" name="Encounters" type="event" x="160" y="48" width="144" height="48">
    <properties>
     <property name="act1" value="random_encounter route1"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -144,11 +144,19 @@
    </properties>
   </object>
   <object id="159" name="Player Spawn" type="event" x="208" y="288" width="16" height="16"/>
-  <object id="161" name="Route 1 Sign" type="interact" x="384" y="272" width="16" height="16">
+  <object id="161" name="Route 1 Sign" type="event" x="384" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="spyder_route1_routesign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#ff0000" id="7" name="Collisions"/>
+ <objectgroup color="#ff0000" id="7" name="Collisions" visible="0">
+  <object id="162" type="collision" x="64" y="0" width="96" height="320"/>
+  <object id="163" type="collision" x="448" y="0" width="192" height="320"/>
+  <object id="164" type="collision" x="160" y="256" width="224" height="32"/>
+  <object id="165" type="collision" x="320" y="32" width="32" height="144"/>
+  <object id="166" type="collision" x="384" y="272" width="16" height="16"/>
+ </objectgroup>
 </map>

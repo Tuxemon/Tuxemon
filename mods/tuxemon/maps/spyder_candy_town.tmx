@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="302">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="302">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -94,7 +94,7 @@
  </layer>
  <layer id="3" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNlzlvVDEQxw00CU24NgpHqKAhCGhIGY6PgJDgm5AgDn8AaKEBxC0RQgUSZ4EEBSQSEggC4ei4ShBI0BD4TdiRRl7v7mP9Hn5P+smesT3+a9bj99a51mdwmfMNaB1p9cwOOCeEz7/E0LXhGrXDdhRt25v6dKxdDPVrq/M1hto63qkN16gdtjaGjqkvtNWvbTge2jov1g42fzddI3ZsXi6f1SXnS+w9/fXRKPlSXXK+xJ5f5/wvyJUzu28sfyPDzm8COy9XP5a//WjbVxN9sfxd6KtH7uQ3i+Uv128Z2zeWv9i83D6rM0f9nhly/jScDDiBbXMjOnPU7ww6puFhwAPs40udPwaik7vQ5ajfn+j4AV8DvmCfGnD+RlMfd7TL8f7YuNr5DbA+YBhb8vamqU/6sedJn7sf85flO4qOI3AYDsEEjMMBKGuPlDhT6LgKk3AFLsMluAgS97rJX476nUPHK5iFF/AcnsFTEH16/qSfo35lX3mWrHG+HxbBb7TNR/TlqN+/6pzbhq5R2AKbYQRkzOaPWljwib8uj9VXF01Wx//UN8W322LO1STttQ7fcfe4l1Wj1Vd1/c6haSv6XtK+7qBPtUlr9eWs33fcczHemvsvZ/3K+59v0oXvAGljz/eK6/cg/w8nYDzyP1He/3xDOW1j+rr57nIn3YHbcAtuFsDGPI+uc3A2os/O67X/GT2f4CN8gPcFsHul6utWv421zq+ClbAClhegTH2x+p0xZ3I3enbBTtgBYwUoU1+sfr8Zfannb5pz9xge9Xj+9nZZl3r+bC6r6Keevyo02Zip58/GSunrXZ4So4q1qivlDi9bl2qSuKrL+nrZL1yfYqsm0aFx1Kd2UY06P1yfauv+7eLoeLe23foG7335Jul1XPf9Azk8bKs=
+   eAHNl0lrFEEUgEu9JF7iNsEtnvRiRL2Yo9tPEEH/iYm49A/Qq15UXAPGeFJwPQh60AQERaNxubkdFQW9GP1enAePNzWZZqrH6oaPqlfrR01VdU8Irc/gslA0oLWmtWRmIATBP34MH/v2Evs2Gvt0BLcdTT+t0/F8rOWaar2O4WNtF0vb9dFyTW1fX+Zj21byvt7Hvr2NB5u/m/aR2Nbnzlsv2V8S7+uvj6Osl3rJ/pJ4bn0ofkPutZP5Y+s3PBSKzVAHv9j6HcTtQE38Yut3qa8eaye/X2z96vC7qkNs/bSuTqn1zHF+z60OxVk47ThFbNdJPHOc32k8puCR4yHxyaWhOAHiyV0YcpzfX3j8hG+Or8RnBkJxs+nHHR1yvD82rQnFRtjgGCKWdXvb9JN87HnaFx7EyqsqO47HMTgKR2AMRuEQVDVHyjiTeFyDCbgK43AFLoOMe8OsX47zO4vHa5iBl/ACnsMzED/df5LPcX5lXnmWrA1FPyyCP7jNRfxynN9/diFsx2sEtsIWGAaps+vHWZgvk/K6PNavLk7W43/6TfLttph9NUF6fYHvuPvcy+po/Xp9fmdx2obfK9I3C/ipm6TWL+f5fc89F+Oduf9ynl95//NNOv8dIGns+dHj83uY/4djMBr5nyjvf76hgqYxv05l97iT7sIduA23SmDHvIjXBTgf8bPtus1/weczfIKP8KEEdq5Uv07nt7EuFKtgJayA5SWo0i92fqfNntyLzx7YDbtgZwmq9Iud3+/GL3X/TbHvnsDjLvff/g79UvefXcte5FP3Xy+c7Jip+8+OlZLXuzxljF70Va+UO7xqL3WScdXLlnUzn++fEquTeOg4WqZxWUdt7/unxjp/u3G0vlParn+D9758k3Rbr/P+BfmAb4E=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -189,77 +189,46 @@
   <object id="290" type="collision" x="208" y="192" width="32" height="32" rotation="-180"/>
   <object id="291" type="collision" x="16" y="512" width="16" height="448" rotation="-180"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
-  <object id="292" name="Play Music" type="event" x="640" y="640" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
-   </properties>
-  </object>
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="293" name="Teleport to Route 6" type="event" x="528" y="16" width="16" height="16" rotation="-180">
    <properties>
-    <property name="act1" value="transition_teleport route6.tmx,7,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="294" name="Teleport to Route 6" type="event" x="512" y="16" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,8,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="295" name="Teleport to Route 6" type="event" x="496" y="16" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,9,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="296" name="Teleport to Route 6" type="event" x="480" y="16" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,10,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="297" name="Teleport to Route 6" type="event" x="464" y="16" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,11,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="298" name="Teleport to Route 6" type="event" x="448" y="16" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,12,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="299" name="Teleport to Route 6" type="event" x="432" y="16" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport route6.tmx,13,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="300" name="Teleport to Sea Route" type="event" x="512" y="144" width="16" height="16" rotation="-180">
-   <properties>
-    <property name="act1" value="transition_teleport routec.tmx,38,5,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,32,19,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="301" name="Player Spawn" type="event" x="496" y="64" width="16" height="16" rotation="-180"/>
+  <object id="294" name="Teleport to Route 6" type="event" x="512" y="16" width="16" height="16" rotation="-180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,31,19,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="295" name="Teleport to Route 6" type="event" x="496" y="16" width="16" height="16" rotation="-180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,30,19,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="296" name="Teleport to Route 6" type="event" x="480" y="16" width="16" height="16" rotation="-180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route6.tmx,29,19,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="300" name="Teleport to Sea Route" type="event" x="608" y="448" width="16" height="112">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routec.tmx,0,8,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

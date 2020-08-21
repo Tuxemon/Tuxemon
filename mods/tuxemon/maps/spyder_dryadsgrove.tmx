@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="118">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="118">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -72,64 +72,28 @@
    eAHt0kEKwCAQQ9E5hqetHr11EXBthKb0C6IuRsKbqcpevdW4np2dMisdZn4/MPQN+WFfgPnbt6PSF2D+PEP56fR++1/16rbep4Teb51f6IZs0rKm5kpzIg8CCCCAAAIIIIAAAgicF7gBypc6wA==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
-  <object id="79" type="collision" x="640" y="320" width="640" height="32" rotation="-180"/>
-  <object id="80" type="collision" x="544" y="32" width="544" height="32" rotation="-180"/>
-  <object id="81" type="collision" x="640" y="288" width="32" height="80" rotation="-180"/>
-  <object id="82" type="collision" x="640" y="176" width="32" height="176" rotation="-180"/>
-  <object id="83" type="collision" x="608" y="64" width="16" height="64" rotation="-180"/>
-  <object id="84" type="collision" x="592" y="32" width="32" height="32" rotation="-180"/>
-  <object id="85" type="collision" x="560" y="16" width="16" height="16" rotation="-180"/>
-  <object id="86" type="collision" x="16" y="288" width="16" height="256" rotation="-180"/>
-  <object id="87" type="collision" x="32" y="224" width="16" height="32" rotation="-180"/>
-  <object id="88" type="collision" x="160" y="160" width="16" height="16" rotation="-180"/>
-  <object id="89" type="collision" x="304" y="192" width="32" height="32" rotation="-180"/>
-  <object id="90" type="collision" x="448" y="224" width="16" height="16" rotation="-180"/>
-  <object id="91" type="collision" x="416" y="256" width="16" height="16" rotation="-180"/>
-  <object id="92" type="collision" x="544" y="48" width="16" height="16" rotation="-180"/>
-  <object id="93" type="collision" x="32" y="64" width="16" height="32" rotation="-180"/>
-  <object id="94" type="collision" x="32" y="288" width="16" height="32" rotation="-180"/>
-  <object id="95" type="collision" x="448" y="256" width="176" height="32" rotation="-180"/>
-  <object id="96" type="collision" x="96" y="288" width="48" height="112" rotation="-180"/>
-  <object id="97" type="collision" x="560" y="80" width="80" height="32" rotation="-180"/>
-  <object id="98" type="collision" x="560" y="48" width="16" height="32" rotation="-180"/>
-  <object id="99" type="collision" x="512" y="192" width="32" height="112" rotation="-180"/>
-  <object id="100" type="collision" x="480" y="192" width="64" height="32" rotation="-180"/>
-  <object id="101" type="collision" x="448" y="224" width="32" height="32" rotation="-180"/>
-  <object id="102" type="collision" x="304" y="224" width="32" height="96" rotation="-180"/>
-  <object id="103" type="collision" x="272" y="160" width="128" height="32" rotation="-180"/>
-  <object id="104" type="collision" x="176" y="128" width="32" height="80" rotation="-180"/>
-  <object id="105" type="collision" x="48" y="256" width="16" height="208" rotation="-180"/>
-  <object id="106" type="collision" x="32" y="192" width="16" height="128" rotation="-180"/>
-  <object id="107" type="collision" x="144" y="64" width="96" height="16" rotation="-180"/>
-  <object id="108" type="collision" x="144" y="192" width="48" height="32" rotation="-180"/>
-  <object id="109" type="collision" x="144" y="160" width="32" height="16" rotation="-180"/>
-  <object id="110" type="collision" x="112" y="48" width="64" height="16" rotation="-180"/>
-  <object id="111" x="112" y="48" height="16" rotation="-180"/>
-  <object id="112" type="collision" x="64" y="176" width="16" height="64" rotation="-180"/>
-  <object id="113" type="collision" x="64" y="80" width="16" height="16" rotation="-180"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
-  <object id="114" name="Play Music" type="event" x="640" y="320" width="16" height="16" rotation="-180">
+ <objectgroup color="#ff0000" id="5" name="Collisions"/>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="114" name="Play Music" type="event" x="240" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music JRPG_mysticIsle.ogg"/>
     <property name="cond1" value="not music_playing JRPG_mysticIsle.ogg"/>
    </properties>
   </object>
-  <object id="115" name="Teleport to Cotton Town" type="event" x="640" y="208" width="16" height="16" rotation="-180">
+  <object id="115" name="Teleport to Cotton Town" type="event" x="624" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_town.tmx,39,7,0.3"/>
-    <property name="act2" value="player_face left"/>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,0,7,0.3"/>
+    <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="116" name="Teleport to Cotton Town" type="event" x="640" y="192" width="16" height="16" rotation="-180">
+  <object id="116" name="Teleport to Cotton Town" type="event" x="624" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_town.tmx,39,8,0.3"/>
-    <property name="act2" value="player_face left"/>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,0,8,0.3"/>
+    <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
   <object id="117" name="Player Spawn" type="event" x="608" y="208" width="16" height="16" rotation="-180"/>

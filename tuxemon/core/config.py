@@ -126,7 +126,6 @@ def get_custom_pygame_keyboard_controls(cfg):
     import pygame.locals
     from tuxemon.core.platform.platform_pygame.events import PygameKeyboardInput
 
-    #custom_controls = PygameKeyboardInput.default_input_map.copy()
     custom_controls = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()   

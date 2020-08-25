@@ -1879,50 +1879,213 @@ msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&
 # spyder dialogs
 
 msgid "spyder_papertown_stopthere" 
-msgstr "Hey! What do you think you're doing?\n"
-"It's not safe to go into the wilds unless you have a tuxemon.\n"
-"Come buy one from our shop." 
-
-msgid "spyder_papertown_homemaker\n" 
-msgstr "How are you, NAME? \n"
-"Quiet and solemn as always, I see." 
-
+msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop." 
+msgid "spyder_papertown_homemaker" 
+msgstr "How are you, NAME? \n Quiet and solemn as always, I see." 
 msgid "spyder_papertown_mom1" 
-msgstr "Good morning sunshine! Rest here any time you like. \n"
-"Why am I saying that? You live here!" 
-
+msgstr "Good morning sunshine! Rest here any time you like. \n Why am I saying that? You live here!" 
 msgid "spyder_papertown_mom2" 
-msgstr "Hello dear. I should get on with my inventing. \n"
-"Can't you occupy yourself? \n"
-"Back in my day, we could amuse ourselves with anything - a stick, a rock, rubbish we found in bins ... " 
-
+msgstr "Hello dear. I should get on with my inventing. \n Can't you occupy yourself? \n Back in my day, we could amuse ourselves with anything - a stick, a rock, rubbish we found in bins ... " 
 msgid "spyder_papertown_mom3" 
-msgstr "Oh, you found yourself a tuxemon. Congratulations! \n"
-Why don't you head over to the next town and explore?" 
-
+msgstr "Oh, you found yourself a tuxemon. Congratulations! \n Why don't you head over to the next town and explore?" 
 msgid "spyder_papertown_mom4" 
 msgstr "Welcome back! Look at you, growing up so fast." 
-
 msgid "spyder_papertown_mom5" 
-msgstr "You know, Granny Piper next door has opened up her Daycare Centre. \n"
-"Well, not everyone can be an inventor, I guess. " 
-
+msgstr "You know, Granny Piper next door has opened up her Daycare Centre. \n Well, not everyone can be an inventor, I guess. " 
 msgid "spyder_papertown_mom6" 
-msgstr "Congratulations! You took down the corporations! \n"
-"Of course, now lots of people don't have a job ... but you did the right thing. I think." 
-
+msgstr "Congratulations! You took down the corporations! \n Of course, now lots of people don't have a job ... but you did the right thing. I think." 
 msgid "spyder_papertown_grannypiper1" 
-msgstr "Oh hello NAME, I didn't see you there among all this hustle and debris! \n"
-"I can't wait till the Daycare Centre is installed!" 
-
+msgstr "Oh hello NAME, I didn't see you there among all this hustle and debris! \n I can't wait till the Daycare Centre is installed!" 
 msgid "spyder_papertown_grannypiper2" 
-msgstr "You know, the Pipers made our fortune in the daycare business! \n"
-"I've been retired for ten years and I'm getting bored. I want to get back into it!" 
-
+msgstr "You know, the Pipers made our fortune in the daycare business! \n I've been retired for ten years and I'm getting bored. I want to get back into it!" 
 msgid "spyder_papertown_danteshop" 
-msgstr "I'm working, boss, I'm working! \n
-"Oh, it's just you. You know, we throw out so much of our stock. \n"
-"It's such a terrible waste. It all goes into the bins behind the back of the Store." 
+msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store." 
+msgid "spyder_papertown_myfirstmon" 
+msgstr "Hey, you came! That's great.\n With the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!\n *rummages* *rumages*\n Here we go, five tuxemon! Which would you like?" 
+msgid "spyder__mymonchoice" 
+msgstr "" 
+msgid "spyder_papertown_rockittenchosen" 
+msgstr "An excellent choice! Rockitten is an Earth tuxemon." 
+msgid "spyder_papertown_lambertchosen" 
+msgstr "A fine choice! Lambert is a Wood tuxemon." 
+msgid "spyder_papertown_nutchosen" 
+msgstr "A magnificent choice! Nut is a Metal tuxemon." 
+msgid "spyder_papertown_tweesherchosen" 
+msgstr "An inspired choice! Tweesher is a Water tuxemon." 
+msgid "spyder_papertown_agnitechosen" 
+msgstr "A great choice! Agnite is a Fire tuxemon." 
+msgid "spyder_papertown_wrapup" 
+msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! And I might keep one for myself. " 
+msgid "spyder_papertown_firstfight" 
+msgstr "Hey, what are you two doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! " 
+msgid "spyder_cottontown_monk" 
+msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do." 
+msgid "spyder_cottontown_hackerintro" 
+msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!" 
+msgid "spyder_cottontown_stopthere" 
+msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!" 
+msgid "spyder_cottontown_enforcer" 
+msgstr "Butt out of it, kid, this is private property!" 
+msgid "spyder_cottoncafe_hackerchat" 
+msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, man." 
+msgid "spyder_cottoncafe_barmaidintro" 
+msgstr "We call ourselves Team Bazaar. Maybe that's a little pretentious. \n We're a group of rogues and scoundrels who like to get together to drink coffee, discuss philosophy and defy our corporate overlords! \n We try to look out for each other. For example, unlike the Cathedral we don't charge for you to heal your tuxemon! \n Would you like me to heal them now? (Y/N)" 
+msgid "spyder_cottoncafe_barmaid" 
+msgstr "Welcome back. Shall I chuck your tuxemon in the healing unit?" 
+msgid "spyder_cottonart_barmaid" 
+msgstr "Do you like my set? \n They capture my early days as a professional tuxemon trainer, before I retired on my winnings. \n  I call them: 'Monsters' Eyes Meet', 'Starry, Starry, Starry Night' and 'Trepidation'. They're for sale! \n Get them while they're hot! Just 1,000 each." 
+msgid "spyder_cottonart_granny" 
+msgstr "I must be getting nostalgic. I almost said \n "Back in my day, things were better!"" 
+msgid "spyder_cottonart_goth" 
+msgstr "I used to enjoy coming here every weekend to look at the paintings. \n Now all the best ones have been sold and the tickets are too expensive. \n But my nanna wanted to come, so ..." 
+msgid "spyder_cottonart_florist" 
+msgstr "What do you think of the blue painting of a ship in the harbour? \n It's in the impressionist style - that means it tries to capture how light looks and behaves. \n See the small red sun reflected along the waves of the water?" 
+
+msgid "spyder_cottonart_intro" 
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend." 
+msgid "spyder_cottonart_shopkeeper" 
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend." 
+msgid "spyder_cottonscoop_shopassistant" 
+msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu." 
+msgid "spyder_cottonscoop_deviceoffer" 
+msgstr "Welcome customer. Today, we're promoting Capture Devices. Do you know what those are? (Y/N)" 
+msgid "spyder_cottonscoop_devicenoexplan" 
+msgstr "     Okay, well here's five as a free sample. If you have any questions about how Capture Devices work, just ask my assistant!" 
+msgid "spyder_cottonscoop_deviceexplan" 
+msgstr "Let my assistant introduce you." 
+msgid "spyder_cottonscoop_deviceexplan2" 
+msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Capture Devices as a free sample. " 
+
+msgid "spyder_cotton_tuxepediaintro" 
+msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. " 
+msgid "spyder_cotton_tuxepediaintro2" 
+msgstr "All it takes to add information is for you to catch that particular tuxemon. It's so cool." 
+msgid "spyder_cotton_tuxepediaintro3" 
+msgstr "You are so engrossed reading the new entries, that you don't notice people leaving." 
+msgid "spyder_cotton_tuxepediaintro4" 
+msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. " 
+
+msgid "spyder_route2_billie" 
+msgstr "Hey cheapskate! Still got your stolen tuxemon?" 
+
+msgid "spyder_route2_billie2" 
+msgstr "This was a fluke. My tuxemon were expensive, and that means that they're high quality." 
+
+msgid "spyder_route2_graf" 
+msgstr "I'm an ace - in battling and tennis!" 
+
+msgid "spyder_route2_marion" 
+msgstr "So many tasty ants around! ... For my Aardorn, I mean." 
+
+msgid "spyder_route2_roddick" 
+msgstr "When I was ambushed on the dunny by SPIGHTER I was pretty creeped out." 
+
+msgid "spyder_route2_roddick2" 
+msgstr "Hey, you didn't seem creeped out at all!" 
+
+msgid "spyder_citypark_maniac" 
+msgstr "Phew, we're pooped!" 
+
+msgid "spyder_citypark_granny" 
+msgstr "We'll walk back to Leather Town after a little rest." 
+
+msgid "spyder_citypark_florist" 
+msgstr "Enjoy the flower display! It's the pride of Leather Town." 
+
+msgid "spyder_citypark2_florist" 
+msgstr "The flowers look okay, don't they? ... Ever since the mining began in Leather Town, the flowers have been under the weather!" 
+
+msgid "spyder_route2_graf2" 
+msgstr "I got served." 
+msgid "spyder_route2_marion2" 
+msgstr "I don't eat ants." 
+
+msgid "spyder_citypark_frances2" 
+msgstr "You must come and visit some time. " 
+
+msgid "spyder_citypark_frances1" 
+msgstr "I have the finest gardens in all the land. That's why these Shybulb keep turning up." 
+
+msgid "spyder_stop_dante" 
+msgstr "Dante" 
+
+msgid "spyder_frolicking_rockitten" 
+msgstr "Rockitten" 
+
+msgid "spyder_frolicking_conileaf" 
+msgstr "Conileaf" 
+
+msgid "spyder_papertown_riverboatcaptain" 
+msgstr "Riverboat Captain" 
+
+msgid "spyder_papertown_homemaker" 
+msgstr "Homemaker" 
+
+msgid "spyder_papertown_mom" 
+msgstr "Mom" 
+
+msgid "spyder_papertown_grannypiper" 
+msgstr "Granny Piper" 
+
+msgid "spyder_papertown_shopkeeper" 
+msgstr "Shopkeeper" 
+
+msgid "spyder_instore_dante" 
+msgstr "Dante" 
+
+msgid "spyder_billie" 
+msgstr "Billie" 
+
+msgid "spyder_cottontown_monk" 
+msgstr "Monk" 
+
+msgid "spyder_cottontown_hacker" 
+msgstr "Hacker" 
+
+msgid "spyder_omnichannel_enforcer" 
+msgstr "Enforcer" 
+
+msgid "spyder_cottontown_barmaid" 
+msgstr "Barmaid" 
+
+msgid "spyder_granny" 
+msgstr "Granny" 
+
+msgid "spyder_goth" 
+msgstr "Goth" 
+
+msgid "spyder_florist" 
+msgstr "Florist" 
+
+msgid "spyder_shopkeeper" 
+msgstr "Shopkeeper" 
+
+msgid "spyder_shopassistant" 
+msgstr "Shop Assistant" 
+
+msgid "spyder_homemaker" 
+msgstr "Homemaker" 
+
+msgid "spyder_route2_billie" 
+msgstr "Billie" 
+
+msgid "spyder_route2_roddick" 
+msgstr "Roddick" 
+
+msgid "spyder_route2_marion" 
+msgstr "Marion" 
+
+msgid "spyder_route2_graf" 
+msgstr "Graf" 
+
+msgid "spyder_maniac" 
+msgstr "Maniac" 
+
+msgid "spyder_citypark_florist" 
+msgstr "Florist" 
+
+msgid "spyder_citypark_frances" 
+msgstr "Frances" 
 
 ## MESSAGE TRANSLATIONS ##
 
@@ -1956,5 +2119,12 @@ msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!" 
 
 msgid "spyder_papertown_tvwatch" 
-msgstr "dialog You watch some TV with your beloved level ${{monster_0_level}} ${{monster_0_name}}." 
+msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out." 
+
+msgid "spyder_papertown_tvwatch" 
+msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out." 
+
+msgid "spyder_citypark_achievement" 
+msgstr "Achievement Maniac's House: Closed" 
+
 

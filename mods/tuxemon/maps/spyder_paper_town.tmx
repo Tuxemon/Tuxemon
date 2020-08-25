@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="418">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="428">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -140,17 +140,17 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG1VjtOQzEQdMH3BDkAn46QkmNQwRUoAFGFCuk1kFNAwiGAK8AdQKJCVHxuwIz0JlhL1jaS/aTReHft3XmbfVaGS6HbAYaGg/OcLYfOCc3dk5XQXSVwiZit59mH0HUAWJ4Xixb7RtuRsbV1ivojQLbla8RsPc/2dNuc/7GpL7Wf+ry61u/pTuXPxUr0eXWt3+qVndOQipfoU50cW72y95zZSulS7AG/330Cd4ipTo6tftVoxbZezrb6W+lSXlsvZ0u/ztfgU8zGSQGOsUf1PZb+GrqYg3M7BrbX/t4xm/BtAOK3gjmU7lr6lGe0QJ9iYupTfY9r90+1F/VPMfIW9Jf07xW/xTMQn62xzvVvt9fn9U3+z/XQtdKoOfPet6R/39DH89T4EqFFT63OkvmzZ2RTr9Yx8+646ME7JI7l1vbO4X7Nv8e5nDb+jm9OPv7f0py0YtUq5cHqrz6e8d67lp81zjGD434OaXvPLfbMzL5WfVNefh9T4Abg+gPgN/3VM236aT8Bj0Csv1afvDw/hGBVkA==
+   eAG1VjlOA0EQnABzvIAHcGQYhzyDyHyBABCRiZA2Ab8CDI/A/oLJCUEiQkQcP6BK2jJWsz0zSDOWSrV9bFftuL1yfyU0e0DfcHA+573QOKVFerwamusIrlCzel58BF9DwPJCbOni0Hg7NrFaJ9AfAIot36Bm9bzY821n/iemv1g//Xm6Nu/5js1P1XL8ebo2b/0qTnmI1XP8SSfF1q/iA2e3Yr5Um+H7m0bwgJp0Umz9S6MWW71UbP3X8qW5Vi8Vy7/uL8Fn2I3TDJygR/oey38JX5zBvR0Bu+t/3zHbyG0B4reMPZTvUv40Z9DhTzUx/Unf49LnJ+2u81ONvAP/Oef31AuBKP1Jnd9+6887N+VfsCvEM1Dao/bMm5tzfrr3tfVZ06+0xDn7p17L9GtzjPnuuGzBd0hXj5ez7xz2af899mZ5+Xf85lTj/y3tSS2WVi5vrv364z3ec5fKf22E5gIYASmP9+i5M321zk1zv6E3AW4BXn8AnwB9kxkzz/gRmAPLz1HqnLw5PwVpVGI=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOAzEQhi3Igmh4BkioODt4Bq4KklCAqIAKIXFVBJaSDgJUXO/BVXEWPATiajhLEAWfJUZYlh2yYrOs9Gnsscf/v7ObQyn3NRWocNJBfUqFUuHbc1Wjwk/4cHBJTurLiQF6KbCjr7bL8Kf3ZOqi6V1/+7P1fHOfDzOfx1PO8mWubyoVbsA6FGENzHVzLP7MXKmxz3e2hB/7vGP8HMEhHMA+2HtkLv58unZe6lxxD51d2IFt2AJ7n37eD+Tv4Q5u4QZ879/7H98/U/8CnXM4g1M4AXNdxvmA5w9ZkFy3MZZcmnc14H5SUG6UWld8w88rvMAzPIH9+XDVxZmT+zC/N+I8/7ezRN8XpV73ZTT4eT6STyqKP9GTuUTdP/E3nKBP0fdF8Wv2bwR/HVUqbIc2aIUWaAbZb8Ym8hlIQyM0gLkex9jsn/Y3hEYecpCFQRgAl1Y/+T7ohR7oBtc+V87XN8nrGv0bZfdvGY0V1paIi1CABejkPdA1cj1Wq3Ce/BzMwgxMg6zHGSfo2ziMQZznljpL+uSLdu1qbXLebO1y5msR/On/X4UI2PoL1Pr6Jnm7Joo/uzaJeTFC/7Qfuc9KxSTu+T81KtU3OfcLbcjftg==
+   eAHFlrlOAzEQhi3Igmh4BkiogIQOniEcFSShAFEBFULiqhJYSjoSoOJ6D66Ks+AhEFfDWYIo+FZihGXZIaskS6RPY896/P8ebyBK2T+znvJnLLTGlC8VrjXXTcr/gk8LV+SkvpLooRcDM7pq+zR/wZpESzi9mx9/pp5r7vKh53N4yhq+9OdbSvmbsAElKIL+XB+LPz1XbuzynSnjx9zvBD/HcASHcADmGpmLP5eumZc6W9xHZw92YQe2wVwX3Pcj+Qe4hzu4Bdf791Hl+6frX6JzAedwBqegP5dxzuP+IQOSS2tjycV5Vz3OE4NKo9Ta4jt+3uAVXuAZzO+Hra6WOTmH/nejlvv/tZfou6LUB32Z8H7vR/JRRfEnejKXGPRP/I1F6FP0XVH86v0bx19Pg/JTkIRu6IJOkPV67CCfgDi0Qxvoz2sx1vsX+BtFIwdZyMAIDINNa4j8IAxAP6TBts6Wc/VN8inuNQlm/1bRWGPDFeIyFCAPvazVdZ4alb9EfhEWYB7mQF9TzTiHnvzvmqZvUzAJ1ewZplb65IrmXuvN0XkztSuZF0P4C35/FUJg6uepdfVN8mZNGH9mbRTzUoj+BX7knPWKUZz5PzXq1TfZ9xtxSuIi
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYCAMWFkYGliAmLDKgVGhB3SbLh735TAwNGQDcRYQZwJxBhDT2qU6eNxDa7uJNX8gwoVYt42qGw2B0RAYDYHREBgNgeEUAlIcpLU9YG0vcunhFHajfhl+IQAATM0Vcw==
+   eAFjYCAMWFkYGliAmLDKgVGhB3SbLh735TAwNGQDcRYQZwJxBhDT2qU6eNxDa7uJNX8gwoVYt42qGw2B0RAYDQFKQ2Cw112U+m9U/9AKASkO0toesPRLLj20QmfUtSMtBABHnxaE
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
@@ -172,7 +172,7 @@
   <object id="370" type="collision" x="480" y="176" width="16" height="32"/>
   <object id="371" type="collision" x="352" y="144" width="16" height="64"/>
   <object id="373" type="collision" x="368" y="208" width="32" height="16"/>
-  <object id="374" type="collision" x="272" y="144" width="80" height="48"/>
+  <object id="374" type="collision" x="272" y="160" width="80" height="32"/>
   <object id="375" type="collision" x="320" y="192" width="32" height="16"/>
   <object id="378" type="collision" x="256" y="192" width="48" height="16"/>
   <object id="379" type="collision" x="240" y="0" width="64" height="16"/>
@@ -190,16 +190,15 @@
   <object id="393" type="collision" x="0" y="96" width="64" height="32"/>
   <object id="394" x="0" y="128" width="32" height="64"/>
   <object id="395" type="collision" x="96" y="160" width="96" height="48"/>
-  <object id="396" x="16" y="192" width="16" height="16"/>
   <object id="397" type="collision" x="64" y="240" width="16" height="16"/>
-  <object id="398" x="0" y="208" width="16" height="32"/>
   <object id="399" type="collision" x="0" y="304" width="192" height="16"/>
-  <object id="400" type="collision" x="16" y="288" width="32" height="16"/>
   <object id="401" type="collision" x="176" y="288" width="16" height="16"/>
   <object id="402" type="collision" x="192" y="192" width="16" height="16"/>
   <object id="412" x="32" y="192" width="16" height="16"/>
   <object id="413" x="32" y="160" width="16" height="16"/>
   <object id="414" x="32" y="128" width="16" height="16"/>
+  <object id="425" type="collision" x="0" y="192" width="32" height="32"/>
+  <object id="427" type="collision" x="0" y="288" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="335" name="Mart Sign" type="event" x="256" y="192">
@@ -342,10 +341,9 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="create_npc spyder_dante,15,8"/>
     <property name="act3" value="pathfind spyder_dante,14,2"/>
-    <property name="act4" value="translated_dialog spyder_paper_stop,name=${{name}}"/>
+    <property name="act4" value="translated_dialog spyder_paper_stop"/>
     <property name="act5" value="pathfind player,13,3"/>
     <property name="act6" value="pathfind spyder_dante,13,14"/>
-    <property name="act7" value="player_resume"/>
     <property name="act8" value="remove_npc spyder_dante"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is party_size less_than,1"/>
@@ -397,10 +395,9 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="create_npc spyder_dante,15,8"/>
     <property name="act3" value="pathfind spyder_dante,14,2"/>
-    <property name="act4" value="translated_dialog spyder_paper_stop,name=${{name}}"/>
+    <property name="act4" value="translated_dialog_chain spyder_paper_stop,name=${{name}}"/>
     <property name="act5" value="pathfind player,14,3"/>
     <property name="act6" value="pathfind spyder_dante,21,7"/>
-    <property name="act7" value="player_resume"/>
     <property name="act8" value="remove_npc spyder_dante"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is party_size less_than,1"/>
@@ -418,7 +415,79 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing left"/>
    </properties>
-   <polygon points="0,0 0,47.5 16,47.5 16,0"/>
+   <polygon points="0,-16 0,47.5 16,47.5 16,-16"/>
+  </object>
+  <object id="418" name="My First Mon" type="event" x="368" y="160" width="144" height="32">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="create_npc spyder_dante,18,14"/>
+    <property name="act3" value="pathfind spyder_dante,26,13"/>
+    <property name="act4" value="translated_dialog spyder_papertown_myfirstmon"/>
+    <property name="act5" value="translated_dialog_choice rockitten:nut:tweesher:agnite:lambert,mymonchoice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="419" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster rockitten,10"/>
+    <property name="act2" value="translated_dialog spyder_papertown_rockittenchosen"/>
+    <property name="act3" value="set_variable firstfightdue:yes"/>
+    <property name="cond1" value="is variable_set mymonchoice:rockitten"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="420" name="Chosen - Lambert" type="event" x="512" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster lambert,10"/>
+    <property name="act2" value="translated_dialog spyder_papertown_lambertchosen"/>
+    <property name="act3" value="set_variable firstfightdue:yes"/>
+    <property name="cond1" value="is variable_set mymonchoice:lambert"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="421" name="Chosen - Nut" type="event" x="512" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster nut,10"/>
+    <property name="act2" value="translated_dialog spyder_papertown_nutchosen"/>
+    <property name="act3" value="set_variable firstfightdue:yes"/>
+    <property name="cond1" value="is variable_set mymonchoice:nut"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="422" name="Chosen - Tweesher" type="event" x="512" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster tweesher,10"/>
+    <property name="act2" value="translated_dialog spyder_papertown_tweesherchosen"/>
+    <property name="act3" value="set_variable firstfightdue:yes"/>
+    <property name="cond1" value="is variable_set mymonchoice:tweesher"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="423" name="Chosen - Agnite" type="event" x="512" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster agnite,10"/>
+    <property name="act2" value="translated_dialog spyder_papertown_agnitechosen"/>
+    <property name="act3" value="set_variable firstfightdue:yes"/>
+    <property name="cond1" value="is variable_set mymonchoice:agnite"/>
+    <property name="cond2" value="is party_size less_than,1"/>
+   </properties>
+  </object>
+  <object id="424" name="First Fight" type="event" x="384" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_wrapup"/>
+    <property name="act2" value="remove_npc spyder_dante"/>
+    <property name="act3" value="screen_transition 1"/>
+    <property name="act4" value="wait 1.0"/>
+    <property name="act5" value="create_npc spyder_billie,13,14"/>
+    <property name="act6" value="pathfind spyder_billie,26,12"/>
+    <property name="act7" value="translated_dialog spyder_papertown_firstfight"/>
+    <property name="act8" value="start_battle spyder_billie"/>
+    <property name="act81" value="translated_dialog spyder_papertown_firstfight2"/>
+    <property name="act9" value="set_variable firstfightdue:no"/>
+    <property name="act91" value="remove_npc spyder_billie"/>
+    <property name="cond1" value="is variable_set firstfightdue:yes"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

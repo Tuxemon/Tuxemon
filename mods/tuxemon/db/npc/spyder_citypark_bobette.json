@@ -1,0 +1,13 @@
+{
+    "slug": "spyder_citypark_bobette",
+    "sprite_name": "catgirl",
+	"monsters": [
+        {
+            "name": "Aardorn",
+            "level": 10, 
+			"slug": "aardorn",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+]}
+

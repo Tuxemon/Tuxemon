@@ -141,7 +141,7 @@
   <object id="40" name="Teleport to Route 3" type="event" x="176" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route3.tmx,2,3,0.3"/>
-    <property name="act2" value="player_face up"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>

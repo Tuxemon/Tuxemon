@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="47">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -25,7 +25,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAGtlktOwzAURU0lmLe7gBFLYz9MWAbpTmAGI5aBr8qRjl7jfFQsue/afu/6xImaTIfWzr1PN8b21z66z2fvt8bKg38ia99dp6e9XMLwt/I4kTX88HTOXn28a+3UO55762v+Y/d62uHHGRGr3xrfTyngjIhlucH31RfWzs9M1vZc43OumaydA9+W+2Ema/tVvuNDa6/31/3U581kHT98/osPH3y3XK+ZrH29+G7xmw6X/5TUW9vPfJ6vOvuZydq58L17smjYzWTtdPg8VzV+ZrJ2Pnyeqxo/M1k7H76l5w4/mOKFtlc0fPjW9Yzxgyle6JqPD7513X5mQlNPnX3CMdcqX3Lgc33m8V/7v4onTPFCx8MNfxi8VjVM8ULXHPjwW7rPZrK25xrfc3+3pGU/M1m/9TW4iPD1pavGGkzxQpMMFzE1o4YfTPFCj2qW5vEzk/Vc7dJ9SH48zcQ5zXl5DhZinkuamTgn1hKpYY4xzzbjxLQ5PjiT47rkj6457zu/3+ILH9F7s388177XkpPrzjcUbEQ8Ge+J+YaCjZi94sl4TxztzRnDWuOobrR3ziLf1Wl4WY/q5s5vtDfzsDN2nDu/0d7Mw87Y8RcaDQQv
+   eAGt1k1OAzEMhuEBCfbtLWDF0bgPG44B3AR2sOIYxFSP9MmadKZSI02dxPbrLz+azvvtsnyM5/1K9nNwvsZzLUvXEs3cz5irp9rzyWz+0pWB5vAwM+bS/uFmWY7jwdzKt6ZZ3MNgPV7As6YZd0vfbxOCg9vcC33fw7Fn/3BwO29LX4/Hwe1++vaeBw5u53V9h/tleblbf47Dh4OLh3MtfTi4e9c700cn7l6edeLisKnP3Jp1l3Bweyx9b90R49SOgxth/136+nyOk4eDm3HVp6/P5zh5OLgZV336Zveu7lzycHA7jz7c7q9x8nBwezwObvd3Hg6ufHnJKR1r7Zy+zK9c/K33lVpdX6+Pnxp6TI6tEzd91acPb3bO9c45937B3dL3NP5bqlnvmr7X4aeLpa9ye0ufdeKKpYtVnz9t8nBwM25vP3k4uDPG7BzqDKrRj2OfTt75Ly1s3cts9Nmn9MkxZ+xuG5fVuj46KybzKn62Zv93ef/oY7N21t/6XqOvvqFoYzGN99paS31D0cbWfDGN99rKm9V2XrR2O8ub1bYfVRMr+7O8tf2b1TZPuzFb9db2b1bbPO3GbPH+AM9QAm0=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 1" width="20" height="40">
@@ -33,34 +33,32 @@
    eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCEgyMjAIATE1AKaQLO0qGgetdw1as5oCIyGACIEANUzAHs=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="4" name="Collision" visible="0">
-  <object id="1" type="collision" x="0" y="0" width="32" height="640"/>
-  <object id="2" type="collision" x="272" y="112" width="48" height="416"/>
+ <objectgroup color="#ff0000" id="4" name="Collision">
   <object id="3" type="collision" x="32" y="0" width="288" height="32"/>
   <object id="4" type="collision" x="32" y="608" width="176" height="32"/>
   <object id="5" type="collision" x="32" y="512" width="32" height="96"/>
   <object id="6" type="collision" x="64" y="576" width="32" height="32"/>
   <object id="7" type="collision" x="64" y="544" width="16" height="32"/>
   <object id="8" type="collision" x="112" y="544" width="208" height="32"/>
-  <object id="9" type="collision" x="304" y="528" width="16" height="16"/>
   <object id="10" type="collision" x="224" y="576" width="96" height="32"/>
   <object id="11" type="collision" x="240" y="608" width="80" height="32"/>
-  <object id="12" type="collision" x="160" y="160" width="112" height="16"/>
+  <object id="12" type="collision" x="160" y="160" width="128" height="16"/>
   <object id="13" type="collision" x="128" y="288" width="112" height="16"/>
-  <object id="14" type="collision" x="160" y="384" width="112" height="16"/>
+  <object id="14" type="collision" x="160" y="384" width="128" height="16"/>
   <object id="15" type="collision" x="128" y="464" width="112" height="16"/>
-  <object id="16" type="collision" x="144" y="512" width="128" height="16"/>
+  <object id="16" type="collision" x="144" y="512" width="144" height="16"/>
   <object id="17" type="collision" x="96" y="64" width="32" height="400"/>
   <object id="19" type="collision" x="64" y="416" width="32" height="32"/>
   <object id="20" type="collision" x="64" y="176" width="32" height="32"/>
-  <object id="21" type="collision" x="32" y="160" width="64" height="16"/>
-  <object id="22" type="collision" x="32" y="288" width="64" height="16"/>
   <object id="23" type="collision" x="32" y="336" width="32" height="32"/>
-  <object id="24" type="collision" x="32" y="384" width="64" height="16"/>
-  <object id="25" type="collision" x="32" y="464" width="64" height="16"/>
-  <object id="26" type="collision" x="288" y="80" width="32" height="32"/>
-  <object id="27" type="collision" x="288" y="32" width="32" height="16"/>
   <object id="28" type="collision" x="128" y="304" width="32" height="32"/>
+  <object id="38" type="collision" x="208" y="608" width="32" height="32"/>
+  <object id="39" type="collision" x="96" y="576" width="32" height="32"/>
+  <object id="40" type="collision" x="80" y="32" width="32" height="32"/>
+  <object id="42" type="collision" x="0" y="0" width="32" height="64"/>
+  <object id="43" type="collision" x="0" y="96" width="32" height="416"/>
+  <object id="44" type="collision" x="0" y="512" width="32" height="32"/>
+  <object id="46" type="collision" x="288" y="64" width="32" height="480"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="31" name="Teleport to Route 3" type="event" x="304" y="48" width="16" height="16">
@@ -73,10 +71,10 @@
   </object>
   <object id="33" name="Teleport to Flower City" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport flower_city.tmx,39,4,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,39,4,0.3"/>
+    <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
   <object id="35" name="Teleport to Flower City" type="event" x="0" y="80" width="16" height="16">
@@ -87,11 +85,12 @@
     <property name="cond2" value="is player_facing left"/>
    </properties>
   </object>
-  <object id="37" name="encounter 3" type="event" x="240" y="240" width="32" height="128">
+  <object id="45" name="Teleport to Route 3" type="event" x="304" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter route4"/>
+    <property name="act1" value="transition_teleport spyder_route3.tmx,0,2,0.3"/>
+    <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>

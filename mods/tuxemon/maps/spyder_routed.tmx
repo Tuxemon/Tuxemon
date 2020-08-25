@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -125,7 +125,7 @@
  </objectgroup>
  <layer id="5" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0DEKACAMA8AM9d8+XZcuLuLgdoUSCJTCJYYAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg8CYwKrP2dp7X3f/K278FYAsREQ==
+   eAHt0LENAEAIA7EU/N6MDs0PgeRIp/ROjAABAgQIECBAgAABAgQIECBAgAABAgQIECBwW+BVurb/AyhIAiM=
   </data>
  </layer>
 </map>

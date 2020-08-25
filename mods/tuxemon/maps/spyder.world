@@ -10,6 +10,21 @@
             "x": 0,
             "y": 640
         },
+		        {
+            "fileName": "spyder_nimrod_bottom.tmx",
+            "x": 0,
+            "y": 320
+        },
+				        {
+            "fileName": "spyder_nimrod_middle.tmx",
+            "x": 320,
+            "y": 320
+        },
+						        {
+            "fileName": "spyder_nimrod_top.tmx",
+            "x": 640,
+            "y": 320
+        },
         {
             "fileName": "spyder_flower_city.tmx",
             "x": 640,
@@ -160,6 +175,11 @@
             "x": 2240,
             "y": 1280
         }, 
+				{
+            "fileName": "spyder_leather_museum.tmx",
+            "x": 2600,
+            "y": 1280
+        }, 
 		{
             "fileName": "spyder_dojo1.tmx",
             "x": -192,
@@ -193,6 +213,11 @@
 		{
             "fileName": "spyder_cotton_cafe.tmx",
             "x": 2880,
+            "y": 1660
+        },
+		{
+            "fileName": "spyder_cotton_artshop.tmx",
+            "x": 3200,
             "y": 1660
         },
 		{

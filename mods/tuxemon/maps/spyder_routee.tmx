@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="156">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -71,12 +71,19 @@
  </layer>
  <layer id="2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYCANlPMh1FcisRGipLEImRcBtAMfjkRzAyHzCLkO3U/0Nm8G0D/oOBrJj9RwHz4/4ZPDFXbIeqrQ4qsaj9uJMQ+XGpA4eljgUovsPlxqSDFvOpY4Qo8zEH8mkt/x2TsqNxoC9AqBu8A0eY+K6RIAa9AflA==
+   eAHtkdEJgDAMRDuB8ykOIuog6nB1E4sp9OAImvTDL6kQkibt85LELoRTLFb6Se7hmylG7pJcEqv1Hq8XlmVD0QD9Hg863zx6gn6Ph/96PNQ93i79aBtLj5kBfbU83GNvabBqzOCY3yxqX6uhnRkcM4/zOtaz0HWcv+ZtDzvSO8vng3qHlubbBP40gRtNrTsW
   </data>
  </layer>
  <layer id="5" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhQHoIAAAGQAAB
+   eAGt0kEKwzAMRFGdoPe/XHITl3rzoAwYLeRA+IwsfwmSqtnzfKre/eLMVrW267tf7HzdXOfY+bq5zpE3ac6pfjrnTeo/1U/nOV/WL6M6quOK7yPrl1Ed1fHZvv//R9bfUT+uZr/Ol/d5bzH903xrL57pPnmf9xbTP8239uKZ7pP3eW8x/dP8Aw6dItw=
   </data>
  </layer>
+ <objectgroup id="6" name="Collision">
+  <object id="151" type="collision" x="0" y="0" width="192" height="32"/>
+  <object id="152" type="collision" x="128" y="32" width="64" height="96"/>
+  <object id="153" type="collision" x="0" y="80" width="80" height="240"/>
+  <object id="154" type="collision" x="80" y="160" width="240" height="160"/>
+  <object id="155" type="collision" x="256" y="0" width="64" height="160"/>
+ </objectgroup>
 </map>

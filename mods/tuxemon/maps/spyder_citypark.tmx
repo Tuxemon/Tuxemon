@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="126">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="235">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -33,82 +33,61 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlk1qFFEQx5/jxix15RUSELyG326TqIy4FnMMR8Wd6HJEj6DgHSLoFRJBvIMb/3+6f1Ap3uvpzHQMiA8qVV1dH79+0/XSpfzb6/KFUq5I/sb6pSb0G6u3xbYjGRuf4077XPQbq6k/Nj7Hkf9fr7cDN5S2J7m1XnqXdYbv/65qP1eX/Ql65Hd702s/vPmKBL5jO8Oix7VZcDbM/G5veu025rsa+OwzI1z0GOKL8eRtqs3hZb7rgY/9g4s+q/iIn0p3dB2fz13/vrDF/fh2qTtf7RsS6lnvDAg9YvyQvaubnt/9Pui0+bXaU/LF+rBZ87vG+2PtmIu9rvb5d1PC+Qcj71Gu2zovo59cPw/2ujqeL7DF/ct1HX+gvpxHZvBq+bu7pRxiSI+xCW/VhYv9i/G189x1an7yfvTGT2lsu1p2H14WjbpwwUm8OZa6eCkdF/68r8T87g3zYdvVsn3v01ZZLi2yT9RVb7jgdLyXOb5Iv98q888S+7zwn6gj/+v+OW7LviN5OCB3dS8u1V+qz9L9cl244CTPHN91oeea6/nm2Z/rPOr5rI8UPCTzPpaa1i/kc79cFy44yTGfz/NXqRb+XCfyee6GpMbXqgsXnP4f7eV4vie876zox2cd+Y50PSQ1vkXoF+vCBSf3zJG/J3yv5Y98ce8+zEr5KIm+zMd81PrBBWfki98Tq/yRL+7dodi+SqIv8zEftX5wwbl3sSPxPtXmqeWH77HS4175f7SvF/r+wP+ka3Hir+ej1g8uOEkyh+epdv7V5gw+5x8F2ZZttuhzTF70y3MHF5zkOd7zWzv/7M91Ih/7ZF3bP3pEvej75bpwwUmO+Ty/tfPP/lzngcJbZ3I+j+mBZj5qdeGCkxzzeZ5q519tzsir6TwPOYb5iHU50+CCk1zzMU9PZ6U8kxxIop/YVXoVn/M9H/SL9eCCk3vxe/uNuN5K3plPAXyH35dd+03vUaTXY/hi3ZgOF5zx3lT2EN+xmtSE3nDBiX9KDZ/nPq4aV/Q5Fi44Y/5KW+/MmFU7j50XWWq25wUuONH05fq8NZxo+Lg+b533B76WzvFnfZ33p8WFP8ef9fXY54dvbPxUcWOfH76x8VPF/QEPvBqR
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt1MEJACAMA8Dgy8UUd3Y5HcKHhQvkH67QRCoL7F55ve0ECFQW8H8qX892AgQIECBAgACBnwRGS+btuhUCBAgQIEDgncABWXgCYA==
+   eAHt1MEJwDAIBVDpqYslZM9miywXr50gGJ7g2c8TjVCVBdZbOb3sBAhUFvB/Km9PdgIECBAg8Bf4noiZrQgQOCPQ8v569nCHZxZgKgECBAhcK7ABcaYDqw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
-  <object id="1" type="collision" x="0" y="224" width="32" height="416"/>
-  <object id="2" type="collision" x="32" y="0" width="496" height="32"/>
-  <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
-  <object id="5" type="collision" x="256" y="32" width="32" height="16"/>
-  <object id="6" type="collision" x="288" y="32" width="224" height="32"/>
-  <object id="7" type="collision" x="512" y="80" width="48" height="112"/>
-  <object id="8" type="collision" x="64" y="224" width="48" height="272"/>
-  <object id="9" type="collision" x="160" y="224" width="48" height="272"/>
-  <object id="10" type="collision" x="208" y="480" width="112" height="16"/>
-  <object id="11" type="collision" x="192" y="544" width="448" height="96"/>
-  <object id="12" type="collision" x="608" y="224" width="32" height="320"/>
-  <object id="13" type="collision" x="32" y="608" width="128" height="32"/>
-  <object id="14" type="collision" x="96" y="544" width="96" height="32"/>
-  <object id="15" type="collision" x="512" y="208" width="48" height="288"/>
-  <object id="16" type="collision" x="256" y="432" width="128" height="16"/>
-  <object id="17" type="collision" x="208" y="208" width="304" height="32"/>
-  <object id="18" type="collision" x="160" y="144" width="320" height="32"/>
-  <object id="19" type="collision" x="32" y="128" width="464" height="16"/>
-  <object id="20" type="collision" x="176" y="112" width="320" height="16"/>
-  <object id="21" type="collision" x="448" y="288" height="112"/>
-  <object id="22" type="collision" x="288" y="288" width="160" height="16"/>
-  <object id="24" type="collision" x="256" y="288" height="144"/>
-  <object id="26" type="collision" x="288" y="304" height="96"/>
-  <object id="28" type="collision" x="384" y="448" height="96"/>
-  <object id="31" type="collision" x="32" y="144" width="112" height="32"/>
-  <object id="32" type="collision" x="608" y="0" width="32" height="160"/>
-  <object id="39" type="collision" x="384" y="384" width="16" height="16"/>
-  <object id="40" type="collision" x="368" y="400" width="16" height="16"/>
-  <object id="41" type="collision" x="384" y="416" width="16" height="16"/>
-  <object id="45" type="collision" x="528" y="0">
-   <polygon points="0,0 0,64 48,64 48,48 64,48 64,64 80,64 80,0"/>
+  <object id="177" type="collision" x="0" y="224" width="32" height="416"/>
+  <object id="178" type="collision" x="32" y="0" width="496" height="32"/>
+  <object id="179" type="collision" x="64" y="32" width="192" height="32"/>
+  <object id="180" type="collision" x="256" y="32" width="32" height="16"/>
+  <object id="181" type="collision" x="288" y="32" width="224" height="32"/>
+  <object id="182" type="collision" x="64" y="224" width="48" height="272"/>
+  <object id="183" type="collision" x="160" y="224" width="48" height="272"/>
+  <object id="184" type="collision" x="608" y="224" width="32" height="320"/>
+  <object id="185" type="collision" x="512" y="208" width="48" height="288"/>
+  <object id="186" type="collision" x="208" y="208" width="304" height="32"/>
+  <object id="187" type="collision" x="160" y="144" width="320" height="32"/>
+  <object id="188" type="collision" x="32" y="128" width="464" height="16"/>
+  <object id="189" type="collision" x="176" y="112" width="320" height="16"/>
+  <object id="190" type="collision" x="288" y="288" width="160" height="16"/>
+  <object id="191" type="collision" x="32" y="144" width="112" height="32"/>
+  <object id="192" type="collision" x="608" y="0" width="32" height="160"/>
+  <object id="193" type="collision" x="384" y="384" width="16" height="16"/>
+  <object id="194" type="collision" x="112" y="288" width="16" height="32"/>
+  <object id="195" type="collision" x="496" y="352" width="16" height="32"/>
+  <object id="196" type="collision" x="496" y="272" width="16" height="32"/>
+  <object id="197" type="collision" x="608" y="160" width="32" height="63.8182"/>
+  <object id="198" type="collision" x="512" y="48" width="16" height="16"/>
+  <object id="199" type="collision" x="32" y="384" width="16" height="16"/>
+  <object id="200" type="collision" x="32" y="224" width="32" height="32"/>
+  <object id="201" type="collision" x="0" y="0" width="32" height="192"/>
+  <object id="202" type="collision" x="352" y="368" width="32" height="16"/>
+  <object id="203" type="collision-line" x="256" y="288">
+   <polyline points="0,0 0,144"/>
   </object>
-  <object id="46" type="collision" x="112" y="464">
-   <polygon points="0,0 0,32 48,32 48,0"/>
+  <object id="204" type="collision-line" x="288" y="304">
+   <polyline points="0,0 0,96"/>
   </object>
-  <object id="50" type="collision" x="352" y="352">
-   <polygon points="0,0 0,32 32,32 32,0"/>
+  <object id="205" type="collision-line" x="448" y="304">
+   <polyline points="0,0 0,96"/>
   </object>
-  <object id="53" type="collision" x="64" y="80">
-   <polygon points="0,0 0,16 448,16 448,0"/>
+  <object id="206" type="collision" x="96" y="544" width="544" height="32"/>
+  <object id="207" type="collision" x="192" y="576" width="448" height="32"/>
+  <object id="208" type="collision" x="192" y="608" width="448" height="32"/>
+  <object id="209" type="collision" x="32" y="544" width="32" height="96"/>
+  <object id="210" type="collision" x="64" y="608" width="96" height="32"/>
+  <object id="212" type="collision" x="112" y="464" width="48" height="32"/>
+  <object id="213" type="collision" x="208" y="480" width="112" height="16"/>
+  <object id="214" type="collision" x="256" y="432" width="128" height="16"/>
+  <object id="215" type="collision-line" x="384" y="448">
+   <polyline points="0,0 0,96"/>
   </object>
-  <object id="54" type="collision" x="560" y="80">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="56" type="collision" x="288" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="57" type="collision" x="336" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="58" type="collision" x="384" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="59" type="collision" x="432" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="92" type="collision" x="112" y="288" width="16" height="32"/>
-  <object id="93" type="collision" x="112" y="416" width="16" height="32"/>
-  <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
-  <object id="95" type="collision" x="496" y="272" width="16" height="32"/>
-  <object id="96" type="collision" x="496" y="432" width="16" height="32"/>
-  <object id="97" type="collision" x="608" y="160" width="32" height="63.8182"/>
-  <object id="98" type="collision" x="512" y="48" width="16" height="16"/>
-  <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
-  <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
-  <object id="123" type="collision" x="32" y="224" width="32" height="32"/>
-  <object id="125" type="collision" x="0" y="0" width="32" height="192"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
@@ -131,14 +110,6 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
    </properties>
-  </object>
-  <object id="48" name="encounter 5" type="event" x="304" y="304">
-   <properties>
-    <property name="act1" value="random_encounter citypark"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
-   </properties>
-   <polygon points="0,0 0,128 128,128 128,0"/>
   </object>
   <object id="60" name="encounter" type="event" x="480" y="496" width="96" height="16">
    <properties>
@@ -356,8 +327,7 @@
   </object>
   <object id="101" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Achievement Maniac's House: Closed"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
+    <property name="act1" value="translated_dialog spyder_citypark_achievement"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -371,99 +341,107 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="111" name="ripjimmy" type="event" x="32" y="400" width="16" height="16">
+  <object id="217" name="Create Maniac" type="event" x="128" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog ripjimmy"/>
+    <property name="act1" value="create_npc spyder_maniac,8,36"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="218" name="Create Granny" type="event" x="144" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_granny,9,36"/>
+    <property name="cond1" value="not npc_exists spyder_granny"/>
+   </properties>
+  </object>
+  <object id="219" name="Create Florist" type="event" x="464" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_florist,29,11"/>
+    <property name="cond1" value="not npc_exists spyder_florist"/>
+   </properties>
+  </object>
+  <object id="220" name="Talk Granny" type="event" x="144" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_granny"/>
+    <property name="behav1" value="talk spyder_granny"/>
+   </properties>
+  </object>
+  <object id="221" name="Talk Maniac" type="event" x="128" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_maniac"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="222" name="Talk Florist" type="event" x="464" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_florist"/>
+    <property name="behav1" value="talk spyder_florist"/>
+   </properties>
+  </object>
+  <object id="223" name="Create Florist2" type="event" x="144" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_florist,9,21"/>
+    <property name="cond1" value="not npc_exists spyder_citypark_florist"/>
+   </properties>
+  </object>
+  <object id="224" name="Talk Florist2" type="event" x="144" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark2_florist"/>
+    <property name="behav1" value="talk spyder_citypark_florist"/>
+   </properties>
+  </object>
+  <object id="225" name="Create Frances" type="event" x="448" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_frances,28,22"/>
+    <property name="cond2" value="not npc_exists spyder_citypark_frances"/>
+   </properties>
+  </object>
+  <object id="226" name="Talk Frances&#10;" type="event" x="448" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_frances1"/>
+    <property name="act2" value="start_battle spyder_citypark_frances"/>
+    <property name="act3" value="translated_dialog spyder_citypark_frances2"/>
+    <property name="act4" value="set_variable citypark_frances:yes"/>
+    <property name="behav1" value="talk spyder_citypark_frances"/>
+    <property name="cond1" value="not variable_set citypark_frances:yes"/>
+   </properties>
+  </object>
+  <object id="230" name="Create Bobette" type="event" x="240" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_bobette,16,17"/>
+    <property name="cond2" value="not npc_exists spyder_citypark_bobette"/>
+   </properties>
+  </object>
+  <object id="231" name="Talk Bobette" type="event" x="240" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
+    <property name="act2" value="start_battle spyder_citypark_bobette"/>
+    <property name="act3" value="translated_dialog spyder_citypark_bobette2"/>
+    <property name="act4" value="set_variable citypark_bobette:yes"/>
+    <property name="behav1" value="talk spyder_citypark_bobette"/>
+    <property name="cond1" value="not variable_set citypark_bobette:yes"/>
+   </properties>
+  </object>
+  <object id="232" name="Create Edith" type="event" x="464" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_edith,36,17"/>
+    <property name="cond2" value="not npc_exists spyder_citypark_edith"/>
+   </properties>
+  </object>
+  <object id="233" name="Talk Edith" type="event" x="464" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_edith1"/>
+    <property name="act2" value="start_battle spyder_citypark_edith"/>
+    <property name="act3" value="translated_dialog spyder_citypark_edith2"/>
+    <property name="act4" value="set_variable citypark_edith:yes"/>
+    <property name="behav1" value="talk spyder_citypark_edith"/>
+    <property name="cond1" value="not variable_set citypark_edith:yes"/>
+   </properties>
+  </object>
+  <object id="234" name="encounter" type="event" x="304" y="304" width="128" height="128">
+   <properties>
+    <property name="act1" value="random_encounter citypark"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="112" name="make npcs" type="event" x="80" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc knight1,12,13,knight,stand"/>
-    <property name="act2" value="npc_face knight1,right"/>
-    <property name="act3" value="set_variable firstgo:no"/>
-    <property name="cond1" value="not npc_exists knight1"/>
-    <property name="cond2" value="not variable_set firstgo:gone"/>
-   </properties>
-  </object>
-  <object id="113" name="hurrytalk" type="event" x="232.667" y="267.333" width="16" height="16">
-   <properties>
-    <property name="act1" value="npc_face knight1,left"/>
-    <property name="act2" value="translated_dialog iamknight"/>
-    <property name="act3" value="set_variable firstgo:yes"/>
-    <property name="act4" value="translated_dialog iamknight2"/>
-    <property name="act5" value="translated_dialog_choice mistaken:thats_me,cityparkchoice"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set firstgo:no"/>
-   </properties>
-  </object>
-  <object id="115" name="hurrytalkmistaken" type="event" x="244.667" y="276.667" width="16" height="16">
-   <properties>
-    <property name="act2" value="translated_dialog mistakenknight"/>
-    <property name="act3" value="set_variable firstgo:gone"/>
-    <property name="act4" value="set_variable secondgo:yes"/>
-    <property name="cond1" value="is variable_set firstgo:yes"/>
-    <property name="cond2" value="is variable_set cityparkchoice:mistaken"/>
-   </properties>
-  </object>
-  <object id="116" name="hurrytalkyes" type="event" x="238" y="262" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable firstgo:gone"/>
-    <property name="act2" value="translated_dialog thatsmeknight"/>
-    <property name="act3" value="set_variable secondgo:yes"/>
-    <property name="cond1" value="is variable_set firstgo:yes"/>
-    <property name="cond2" value="is variable_set cityparkchoice:thats_me"/>
-   </properties>
-  </object>
-  <object id="117" name="hurrytalknow" type="event" x="224" y="276" width="16" height="16">
-   <properties>
-    <property name="act1" value="npc_face knight1,up"/>
-    <property name="act2" value="wait 0.4"/>
-    <property name="act3" value="npc_face knight1,down"/>
-    <property name="act4" value="wait 0.4"/>
-    <property name="act5" value="npc_face knight1,left"/>
-    <property name="act6" value="translated_dialog quicklyknight"/>
-    <property name="act7" value="set_variable secondgo:gone"/>
-    <property name="act8" value="set_variable iamsecret:yes"/>
-    <property name="cond1" value="is variable_set secondgo:yes"/>
-   </properties>
-  </object>
-  <object id="118" name="hurrytalksecret" type="event" x="229.333" y="240.667" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog quicklyknight2"/>
-    <property name="act2" value="npc_face knight1,up"/>
-    <property name="act3" value="wait 0.2"/>
-    <property name="act4" value="npc_face knight1,down"/>
-    <property name="act5" value="wait 0.2"/>
-    <property name="act6" value="npc_face knight1,left"/>
-    <property name="act7" value="translated_dialog quicklyknight3"/>
-    <property name="act8" value="npc_face knight1,right"/>
-    <property name="act9" value="wait 0.3"/>
-    <property name="act91" value="npc_face knight1,left"/>
-    <property name="act92" value="translated_dialog quicklyknight4"/>
-    <property name="act93" value="set_variable iamsecret:ohno"/>
-    <property name="cond1" value="is variable_set iamsecret:yes"/>
-   </properties>
-  </object>
-  <object id="119" name="hurrytalkohno" type="event" x="236" y="245.333" width="16" height="16">
-   <properties>
-    <property name="act2" value="npc_speed knight1, 5"/>
-    <property name="act3" value="pathfind knight1, 3,15"/>
-    <property name="act4" value="translated_dialog omnichannelarrives"/>
-    <property name="act5" value="set_variable omnichannelhere:here"/>
-    <property name="act6" value="player_face left"/>
-    <property name="cond1" value="is variable_set iamsecret:ohno"/>
-   </properties>
-  </object>
-  <object id="122" name="omnichannel npc 1" type="event" x="0" y="256" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc "/>
-    <property name="cond1" value="is variable_set omnichannelhere:here"/>
-    <property name="cond2" value="not npc_exists"/>
+    <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
  </objectgroup>

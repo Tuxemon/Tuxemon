@@ -1,0 +1,20 @@
+{
+    "slug": "spyder_citypark_frances",
+    "sprite_name": "florist",
+	"monsters": [
+        {
+            "name": "Shybulb",
+            "level": 8, 
+			"slug": "shybulb",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+        {
+            "name": "Shybulb",
+            "level": 8,
+			"slug": "shybulb",
+						"exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+]}
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="137">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="164">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -24,6 +24,25 @@
  <tileset firstgid="6085" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
   <image source="../gfx/tilesets/Interiors 2 by Redshrike.PNG" width="112" height="64"/>
  </tileset>
+ <tileset firstgid="6113" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHNkkEOxCAMA/nPvr3dLy4+jGRFQVvaVHBARA7Y09CjtXb29e3r2LDekcnntZrP87M3pO/MXmd3vP92LT4Y2Z1J+ZnuZ96s4Rtl7MgX32y3+a2emc8ne9+rfPjEf0M6vaezf8pXxTHyGfHFmehc1O7MKfORNsMXOXT/01fmM/Kt0pVJLnvGV5U36wOT7lGv4FNmlgvTTnxigtX5pM3O/875mAmPM3lNBho7On6VeuaNP7zaY3amuVc8772qWhnOWuV71effN67mYzZXvucHwvkfNQ==
@@ -31,7 +50,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtlWEOgjAMhfdfkYOo8STAlTiRZ/TVMFOXdmu3RWJCkwbo3tpvZYMQDvvnDlwAHz23jjGEFbovH/Ccm8PHoH3X4bFe98R2FVgQCxgz2d2kqhM9BLaYCWMmm6A6m5R+0QK+efNTwoq+rNaMT6uwQZf20sPXUPYzFX3KmodvQCacqZ+ahw+93cXSfUQ9GgWSGr6aOUJpMUSc3G+i6gju0QHre7fq8J0M8+Y91sPr4oyqxnWaiNgWbdAQl/6bvG6Or/SPamWL+MSonbUc3xQTKFdv3+IeiNfS+qlsjk/B6hYurZ8KeXvQDa4i0QsJqBcx
+   eAHtVVEOgjAM3b8gF/AGavzyGMCVOJFn9JVQUusG61ZNTGzSsHVvr4/nJiH845cdOEI859Z7dCFMwL1ki/nWHrkG7NxH1rzGpO0c0YJawFpWXLNQZaBbRBszYS0reqCaLKQdNELfsORBaYUvUy7jIxdYgdNeWvRVtF23wqfNsOhrwYQ79dWw6IO3H4/m9H6+9Dkij7qIkhJ91j33iL6IlLlEOmVeUkDHOvnH6UjrRkX+cbqRFhClfnf2js9hCqdb4n8yDEvqtZK57Is7ugZ7x+dQ4laQGpC2UdUs09h3U/aV+qR/83inUa02pieNqbsm9Un/aNwzQeJp9Y3PAD9zvtFSn/YvIcutvPf+1Eh6oP1zE+JE9AS/Cy1I
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
@@ -68,9 +87,6 @@
   <object id="12" type="collision" x="512" y="224">
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>
-  <object id="16" type="collision-line" x="288" y="96">
-   <polyline points="0,0 0,-48 96,-48 96,-64 192,-64 192,-48 208,-48 208,-64"/>
-  </object>
   <object id="17" type="collision-line" x="368" y="96">
    <polyline points="0,0 0,64 48,64 48,80 64,80 64,128 112,128 112,144 128,144 128,160 176,160 176,112"/>
   </object>
@@ -90,7 +106,7 @@
   <object id="38" type="collision" x="208" y="256" width="16" height="16"/>
   <object id="39" type="collision" x="224" y="240" width="16" height="16"/>
   <object id="40" type="collision" x="160" y="240" width="32" height="32"/>
-  <object id="41" type="collision" x="64" y="224" width="96" height="32"/>
+  <object id="41" type="collision" x="64" y="224" width="96" height="48"/>
   <object id="42" type="collision" x="96" y="208" width="32" height="16"/>
   <object id="43" type="collision" x="144" y="32" width="16" height="16"/>
   <object id="44" type="collision" x="0" y="32" width="32" height="32"/>
@@ -146,8 +162,41 @@
   <object id="137" type="collision-line" x="512" y="160">
    <polyline points="0,0 96,0"/>
   </object>
+  <object id="137" type="collision" x="16" y="96" width="16" height="16"/>
+  <object id="138" type="collision" x="0" y="64" width="16" height="64"/>
+  <object id="139" type="collision" x="48" y="96" width="16" height="16"/>
+  <object id="140" type="collision-" x="144" y="96">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="142" type="collision-line" x="144" y="160">
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object id="143" type="collision" x="0" y="160" width="16" height="160"/>
+  <object id="144" type="collision" x="16" y="192" width="32" height="128"/>
+  <object id="145" type="collision" x="48" y="256" width="16" height="64"/>
+  <object id="146" type="collision-line" x="144" y="96">
+   <polyline points="0,0 0,48"/>
+  </object>
+  <object id="147" type="collision-line" x="288" y="96">
+   <polyline points="0,0 0,-48"/>
+  </object>
+  <object id="148" type="collision-line" x="384" y="32">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="150" type="collision-line" x="480" y="32">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="151" type="collision-line" x="288" y="48">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object id="152" type="collision-line" x="496" y="32">
+   <polyline points="0,0 0,16"/>
+  </object>
+  <object id="153" type="collision-line" x="496" y="48">
+   <polyline points="0,0 -16,0"/>
+  </object>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events" visible="0">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_citypark.tmx,10,39,0.3"/>
@@ -182,99 +231,23 @@
   </object>
   <object id="83" name="Sign: City Park" type="event" x="144" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog cityparksign\n"/>
+    <property name="act1" value="translated_dialog spyder_citypark_routesign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="84" name="Sign: Column 1" type="event" x="176" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog column1"/>
+    <property name="act1" value="translated_dialog spyder_column1_sign"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is player_facing_tile"/>
    </properties>
   </object>
   <object id="85" name="Sign: Column 2" type="event" x="240" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog column2"/>
+    <property name="act1" value="translated_dialog spyder_column2_sign"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is player_facing_tile"/>
-   </properties>
-  </object>
-  <object id="87" name="create npc" type="event" x="48" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc misa,2,3,misa,stand"/>
-    <property name="act2" value="npc_face misa,up"/>
-    <property name="act3" value="set_variable skadoosh:yes"/>
-    <property name="cond1" value="not npc_exists misa"/>
-   </properties>
-  </object>
-  <object id="88" name="talk to misa" type="event" x="48" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable sadsong:yes"/>
-    <property name="act2" value="play_music JRPG_princess.ogg"/>
-    <property name="act3" value="translated_dialog route2speech"/>
-    <property name="act4" value="npc_face misa,right"/>
-    <property name="act5" value="translated_dialog route2speech2\n"/>
-    <property name="act6" value="npc_face misa,up"/>
-    <property name="act7" value="translated_dialog route2speech3\n"/>
-    <property name="act8" value="set_variable skadoosh:no"/>
-    <property name="act9" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set skadoosh:yes"/>
-    <property name="cond5" value="not variable_set leavemealone:yes"/>
-    <property name="cond6" value="not variable_set sadsong:yes"/>
-   </properties>
-  </object>
-  <object id="89" name="yes to talk" type="event" x="16" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog yestalk"/>
-    <property name="act2" value="set_variable route2choice:again"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond4" value="is variable_set route2choice:sure_i_do"/>
-   </properties>
-  </object>
-  <object id="90" name="no to talk" type="event" x="32" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="npc_face misa,right"/>
-    <property name="act2" value="translated_dialog notalk"/>
-    <property name="act3" value="set_variable route2choice:again"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond4" value="is variable_set route2choice:not_really"/>
-   </properties>
-  </object>
-  <object id="93" name="spill the beans" type="event" x="64" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="npc_face misa,right"/>
-    <property name="act11" value="set_variable yahoo:maybe"/>
-    <property name="act2" value="translated_dialog spillit\n"/>
-    <property name="act22" value="npc_face misa,up"/>
-    <property name="act23" value="translated_dialog spillit3"/>
-    <property name="act231" value="npc_face misa,right"/>
-    <property name="act24" value="translated_dialog spillit4"/>
-    <property name="act25" value="npc_face misa,left"/>
-    <property name="act26" value="wait 1"/>
-    <property name="act27" value="translated_dialog spillit5"/>
-    <property name="act28" value="npc_face misa, down"/>
-    <property name="act29" value="wait 1"/>
-    <property name="act30" value="translated_dialog spillit6"/>
-    <property name="act31" value="npc_face misa,right"/>
-    <property name="act32" value="translated_dialog spillit7"/>
-    <property name="act33" value="npc_face misa,left"/>
-    <property name="act34" value="set_variable leavemealone:yes"/>
-    <property name="act35" value="wait 1"/>
-    <property name="act36" value="translated_dialog leavemealone"/>
-    <property name="act37" value="play_music peasant_kingdom.ogg"/>
-    <property name="act38" value="set_variable sadsong:no"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="not variable_set yahoo:maybe"/>
-    <property name="cond4" value="is variable_set route2choice:again"/>
-    <property name="cond5" value="not variable_set leavemealone:yes"/>
    </properties>
   </object>
   <object id="97" name="random battle" type="event" x="160" y="192" width="16" height="48">
@@ -473,16 +446,71 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="134" name="spilledthebeans" type="event" x="80" y="48" width="16" height="16">
+  <object id="156" name="Billie encounter" type="event" x="32" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
-    <property name="act2" value="wait 1"/>
-    <property name="act3" value="translated_dialog leavemealone"/>
-    <property name="act4" value="player_resume"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set leavemealone:yes"/>
+    <property name="act2" value="create_npc spyder_route2_billie,3,15"/>
+    <property name="act3" value="pathfind spyder_route2_billie,1,9"/>
+    <property name="act4" value="translated_dialog spyder_route2_billie"/>
+    <property name="act7" value="start_battle spyder_route2_billie"/>
+    <property name="act71" value="translated_dialog spyder_route2_billie2"/>
+    <property name="act80" value="remove_npc spyder_route2_billie"/>
+    <property name="act90" value="set_variable route2billie:yes"/>
+    <property name="cond1" value="not variable_set route2billie:yes"/>
+   </properties>
+  </object>
+  <object id="157" name="Sign: Route 2" type="event" x="0" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route2_routesign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="158" name="Create Roddick" type="event" x="192" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route2_roddick,5,3"/>
+    <property name="cond2" value="not npc_exists spyder_route2_roddick"/>
+   </properties>
+  </object>
+  <object id="159" name="Create Marion&#10;" type="event" x="208" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route2_marion,22,9"/>
+    <property name="cond2" value="not npc_exists spyder_route2_marion"/>
+   </properties>
+  </object>
+  <object id="160" name="Create Graf" type="event" x="224" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route2_graf,29,3"/>
+    <property name="cond2" value="not npc_exists spyder_route2_graf"/>
+   </properties>
+  </object>
+  <object id="161" name="Talk roddick&#10;" type="event" x="192" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route2_roddick"/>
+    <property name="act2" value="start_battle spyder_route2_roddick"/>
+    <property name="act3" value="translated_dialog spyder_route2_roddick2"/>
+    <property name="act4" value="set_variable route2roddick:yes"/>
+    <property name="behav1" value="talk spyder_route2_roddick"/>
+    <property name="cond1" value="not variable_set route2roddick:yes"/>
+   </properties>
+  </object>
+  <object id="162" name="Talk marion&#10;" type="event" x="208" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route2_marion"/>
+    <property name="act2" value="start_battle spyder_route2_marion"/>
+    <property name="act3" value="translated_dialog spyder_route2_marion2"/>
+    <property name="act4" value="set_variable route2marion:yes"/>
+    <property name="behav1" value="talk spyder_route2_marion"/>
+    <property name="cond1" value="not variable_set route2marion:yes"/>
+   </properties>
+  </object>
+  <object id="163" name="Talk graf&#10;" type="event" x="224" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route2_graf"/>
+    <property name="act2" value="start_battle spyder_route2_graf"/>
+    <property name="act3" value="translated_dialog spyder_route2_graf2"/>
+    <property name="act4" value="set_variable route2graf:yes"/>
+    <property name="behav1" value="talk spyder_route2_graf"/>
+    <property name="cond1" value="not variable_set route2graf:yes"/>
    </properties>
   </object>
  </objectgroup>

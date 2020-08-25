@@ -30,7 +30,7 @@
  </layer>
  <layer id="3" name="Filler" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+   eAFjYBgYEMDJwKCJBwcC5UbBaAiMhgBpIUAoX2HLc1qjeY20QB5VPRoCoyEADwENHPX4aB0OD6JRBoUhgJzGCNVXsDqQkDoKnTSqnQohAAChxQgB
   </data>
  </layer>
  <layer id="7" name="Above Player" width="20" height="40">
@@ -40,10 +40,10 @@
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlV1uwkAMhANP9CbQ09DbtDeFngbPthNNBttNEFJfQIrys+vPs2Pvsnubpt0/XOfIeWquj42a9jG//b14bZ1f/ln3bOyXz5h/PeTXd3yfNvK6PTlqVfD+2lfZnnsPVqUPuS7Fuqr14vtXoa/T3q25GnsmD97Bi2NcW88f10eWdtWjzIyFmlQeQ4v2gecdnomwjKXx6JnRI78x7o/zvJcy/ZL+5zFy0EPspbFnYiTTxnzal5w/c4UHLmMqbZ5nrQblLdZp+aGBZ0RWN+rTMX5zbfSpu49Y00Ceau4YOuY8XSv6ITtXvO86nvo919AevO86Hsbm9RpHXzMm1+ZjazSC7XHUkdVxLVNrBl7Goh+aT8/oxR6R3hjz5R0ceMCaYu9n+Zhn+CnxzqOf9D1j3dXLePBU9XQsatczy/1j/N1d8tKHBScCXH9bQ+FlPlT/lRnT86r/PsZe0DuY2g961mAec65hKbd79l7wuTe3hWnN
+   eAHtlFFSwzAMRFO+4CbAaeA2cFPa01TrspnNRtI4fNCfZsZxYltP0sr26WVZTndoy8RzJK6nyKF9Dub44JmaD/3ac/IV+pyf83aJ8eWgft3eH3uz4FnV5n8LHnz9FHlV+WL8u+H9lxadhtncR8T8Hu012mcRf2aXjZGlBfgrM2OhJpXGiAc2b7/N/frdlrHUHhzowsf1cZ7XN4ufrLUPPnXEWRpnJiaz2OhP9yXXZzxwaVPF5n5mY1DeJk/JR/Oqzgbj05pyzGMjr+uHrcVAnsbcMXTOeZtcV9H3H8rQb+ep3nvKbcT3XcfD3JpvBYzxjMncfG4mRrhyO8aR1XGWqTUDL2NRD/Wnd/TmjMjeGOvlHxxowPsDZz/zRz9DXrF3HvUc6+KVsXb1ch6Nrc9YtuT2O8lTnamD3n2Auc+2huI306G6DzKm+1X9fY57QXswdT/oXYN19DnDUm737XvB114BIkBhzQ==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="2" type="collision" x="240" y="336">
    <polygon points="0,0 0,16 16,16 16,0"/>
   </object>

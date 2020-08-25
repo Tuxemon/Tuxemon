@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="167">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="179">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -62,12 +62,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlEsOwjAMRLOA48CaC/DbsAOuwP1PgLN4Eow6tds0UjQdxx6P26it/a/DrrVjbMX/rPVMdTOunV7h7R1bUfPWctXNuPZx82jeFL/sW2Nf4/l3EXf6Lv6r0Z/dPJrn+DPefd9T6xSenb6Lq051Dq2Dz/nrOU7fxdEFq3OQr5j5c/ourvpujkd8m36nOp5j9/s0tfDHfVN0+i6uPapzaF3n9/CMv4/x7/RdXPtU59A6OP7gik7fxbW+OofWwef83eKdOn0XRxeszkG+Iv703sGdvourfnUOratyp+/i6Dr/xMkbRfSqSD/nnzh5o4heFemXzUPeKGZ99Jx+2TzkjWLWR8/pp7634vqfXqqLP/W9FUcfXKpLXTYXeaOY9dFz+mVzkTeC/VtnffT8C88JfPY=
+   eAGtls1uwkAMhFcVqC9TQNz6AvxduAE3eu37P0HtwyfRUSbrJKxkTex4xzPLKqK1/2uzam0bofjz2dpXIZ7RM7aUt5cr1z20PSIUtW9urry9XOc4P9o3lB/XrRGneH5d1B2/q79y5LPzo30uv8XZZwyt79Ds+F1deao+dB/5mL7scfyuDi9Y9UG/Yk+f43d15Xc+rvHb5J1KPETkfRpa6OO+KTp+V9cZVR+6L/NLaEbfr9Hv+F1d51R96D5y9JErOn5X1/1VH7qPfEzfOc7U8bs6vGDVB/2K6NN7R+74XV35qz50XzV3/K4Or9NPnb6lCF8Vmef0U6dvKcJXReb1/NC3FHtz9D3zen7oW4q9Ofqeear7Xbl+p6fyok91vyuHP/Ej/rtO5WV/1Rf9c7E6hz7mVH3Rn7iL89hPiO2M8/sDFNGDEw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVlN0NwjAMhPPQbsM7E/AjpmAUlmUPYlFL1qdebdGiQiTj+Oycz2lEa/+1hqG1sRv9fdxmDvJmcbXrueubs8uk+zT5Q5/NLC7PRezTvZrn1vtnZj3n9EUtil/hz97XLFuZNsvbyvS9q+q/1Kfm2Eqf4lc49anJ7O3FNfcWDcvuz3VErqU99fl5+sixdJdVfeRXMfVFHWq/Rp/iVDj1qTmu4fuu0af4FU59ag713gz3/0B1dg3u+pR+x9Wdsbeqc9z5qp78KnZ+etYzz5j11Tibh308Jr/jymd9mCe/ilU/1qs6x1lfjambcZUnqyNvFmd8v5L/1hzHoT3ijFkf5uNZ23ue+F6x66HfSw/7vgDtfUAo
+   eAHVVNsNAjEM60dPLMMfH0zAQ0zBKCzLHjTiLEVWfQn0EFAppHFSx+lVlPJfq9ZSpmbsr9M6czBvFGe7Hpu+np1m3YfZb9tsZn4h57F392qeS+sfmfXs6fNaFL/C762vWbQibZa3Fel7VuV/WZ+aYy19il/hrE9NZm/Pr95bNCy6P+jwXEt71ofz7D3H0l1m9TG/ilmf16H2I/oUp8JZn5rj7L7viD7Fr3DWp+ZQ781w/AeqsyM49Cn9wNWdcW9VBxx8Wc/8KgY/e67nPMdcn42jebgPYuYHrnzUh/PMr2LVj+tVHXCuz8asm+MsT1THvFEc8f1KPpoD+Vf17mu5+TPgyXp/1vY4x/i3Yuhhr/TsNirzGfwBI/FAcw==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -151,12 +151,64 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
+  <object id="172" name="Teleport to Cotton Town" type="event" x="352" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,22,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="174" name="Teleport to Cotton Town" type="event" x="368" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,23,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="175" name="Teleport to Cotton Town" type="event" x="384" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,24,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="176" name="Teleport to Cotton Town" type="event" x="400" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,25,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="177" name="Teleport to Cotton Town" type="event" x="416" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,26,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="178" name="Teleport to Cotton Town" type="event" x="432" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,27,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup color="#ff0000" id="7" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="162" type="collision" x="64" y="0" width="96" height="320"/>
   <object id="163" type="collision" x="448" y="0" width="192" height="320"/>
   <object id="164" type="collision" x="160" y="256" width="224" height="32"/>
   <object id="165" type="collision" x="320" y="32" width="32" height="144"/>
   <object id="166" type="collision" x="384" y="272" width="16" height="16"/>
+  <object id="167" type="collision" x="160" y="288" width="32" height="32"/>
+  <object id="168" type="collision" x="192" y="304" width="16" height="16"/>
+  <object id="169" type="collision" x="240" y="304" width="208" height="16"/>
+  <object id="171" type="collision" x="160" y="0" width="176" height="16"/>
  </objectgroup>
 </map>

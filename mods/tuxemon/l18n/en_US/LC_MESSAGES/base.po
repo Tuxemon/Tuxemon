@@ -1365,7 +1365,7 @@ msgid "professor_dialog6.2"
 msgstr "Professor: A superb choice! Rockitten is an earth Tuxemon."
 
 msgid "professor_dialog6.3"
-msgstr "Professor: A great choice! Fruitera is a woodfire Tuxemon."
+msgstr "Professor: A great choice! Fruitera is a wood Tuxemon."
 
 msgid "professor_dialog7"
 msgstr "Professor: I hope to see you around! I'm about to head on a journey, so maybe we'll meet up sometime."

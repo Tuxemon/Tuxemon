@@ -74,22 +74,14 @@
    eAFjYBh+gE0S4adAKJsDSQwhi8oKAarJFEUVozXvIxZ3SUrhthUAV6cC0w==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="2" type="collision" x="96" y="64">
    <polygon points="0,0 0,32 64,32 64,0"/>
   </object>
   <object id="4" type="collision" x="16" y="144">
    <polygon points="0,0 0,-16 -16,-16 -16,0 0,0"/>
   </object>
-  <object id="5" type="collision" x="0" y="48">
-   <polygon points="0,0 0,96 -16,96 -16,0"/>
-  </object>
-  <object id="7" type="collision" x="32" y="144">
-   <polygon points="0,0 0,16 -16,16 -16,0 0,0"/>
-  </object>
   <object id="8" type="collision" x="0" y="0" width="192" height="48"/>
-  <object id="10" type="collision" x="64" y="144" width="128" height="16"/>
-  <object id="11" type="collision" x="192" y="48" width="16" height="96"/>
   <object id="12" type="collision" x="160" y="80" width="16" height="16"/>
   <object id="13" type="collision" x="80" y="80" width="16" height="16"/>
   <object id="16" type="collision" x="112" y="48" width="32" height="16"/>

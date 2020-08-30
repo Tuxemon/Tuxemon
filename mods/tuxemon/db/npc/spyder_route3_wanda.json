@@ -1,0 +1,47 @@
+{
+    "slug": "spyder_route3_wanda",
+    "sprite_name": "fisher",
+	"monsters": [
+        {
+            "name": "Nudiflot M",
+            "level": 8, 
+			"slug": "nudiflot_male",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Nudiflot F",
+            "level": 8, 
+			"slug": "nudiflot_female",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		        {
+            "name": "Nudiflot M",
+            "level": 8, 
+			"slug": "nudiflot_male",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Nudiflot F",
+            "level": 8, 
+			"slug": "nudiflot_female",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		        {
+            "name": "Nudiflot M",
+            "level": 8, 
+			"slug": "nudiflot_male",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Nudiflot F",
+            "level": 8, 
+			"slug": "nudiflot_female",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+]}

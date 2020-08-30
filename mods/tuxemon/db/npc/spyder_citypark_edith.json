@@ -1,0 +1,20 @@
+{
+    "slug": "spyder_citypark_edith",
+    "sprite_name": "picnicker",
+	"monsters": [
+        {
+            "name": "Squabbit",
+            "level": 8, 
+			"slug": "squabbit",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+        {
+            "name": "Squabbit",
+            "level": 8,
+			"slug": "squabbit",
+						"exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+]}
+

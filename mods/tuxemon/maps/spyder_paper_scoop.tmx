@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="59">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="63">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -55,11 +55,29 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="56" name="employee" type="event" x="32" y="112" width="16" height="16">
+  <object id="59" name="Route Music" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc tuxemart_keeper,2,7,tuxemartemployee,stand"/>
-    <property name="act2" value="npc_face tuxemart_keeper,right"/>
-    <property name="cond1" value="not npc_exists tuxemart_keeper"/>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="60" name="Create Shopkeeper" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_shopkeeper,2,8"/>
+    <property name="act2" value="npc_face spyder_shopkeeper,right"/>
+    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
+   </properties>
+  </object>
+  <object id="61" name="Create Dante" type="event" x="192" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dante,12,7"/>
+    <property name="cond1" value="not npc_exists spyder_dante"/>
+   </properties>
+  </object>
+  <object id="62" name="Talk Dante" type="event" x="192" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_danteresting"/>
+    <property name="behav1" value="talk spyder_dante"/>
    </properties>
   </object>
  </objectgroup>

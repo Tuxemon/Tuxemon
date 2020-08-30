@@ -1,0 +1,12 @@
+{
+    "slug": "spyder_route3_novak",
+    "sprite_name": "tennisplayer",
+	"monsters": [
+        {
+            "name": "Elofly",
+            "level": 13, 
+			"slug": "elofly",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+]}

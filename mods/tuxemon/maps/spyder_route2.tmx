@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="178">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="187">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -93,7 +93,6 @@
   <object id="20" type="collision-line" x="560" y="80">
    <polyline points="0,0 0,32"/>
   </object>
-  <object id="21" type="collision" x="304" y="96" width="64" height="16"/>
   <object id="32" type="collision" x="64" y="272" width="144" height="16"/>
   <object id="33" type="collision" x="240" y="224" width="96" height="16"/>
   <object id="34" type="collision" x="272" y="208" width="16" height="16"/>
@@ -224,6 +223,13 @@
   </object>
   <object id="175" type="collision" x="528" y="208" width="16" height="48"/>
   <object id="177" type="collision" x="16" y="112" width="16" height="16"/>
+  <object id="186" type="collision" x="304" y="96" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">

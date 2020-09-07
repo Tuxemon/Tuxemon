@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="179">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="187">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -90,6 +90,62 @@
   <object id="168" type="collision" x="192" y="304" width="16" height="16"/>
   <object id="169" type="collision" x="240" y="304" width="208" height="16"/>
   <object id="171" type="collision" x="160" y="0" width="176" height="16"/>
+  <object id="179" type="collision" x="352" y="160" width="112" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="180" type="collision" x="160" y="160" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="181" type="collision" x="208" y="96" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="182" type="collision" x="144" y="32" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="183" type="collision" x="352" y="96" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="184" type="collision" x="400" y="32" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="185" type="collision" x="288" y="32" width="80" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="186" type="collision" x="112" y="96" width="80" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="118" name="Teleport to Cotton Town" type="event" x="336" y="0" width="16" height="16">
@@ -108,7 +164,7 @@
   </object>
   <object id="129" name="Teleport to Route1" type="event" x="224" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town,14,0,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,14,0,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

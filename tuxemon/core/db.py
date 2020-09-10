@@ -61,7 +61,7 @@ class JSONDatabase(object):
 
     """
 
-    def __init__(self, dir=None):
+    def __init__(self, dir="all"):
         self.path = None
         self.database = {
             "item": {},
@@ -72,10 +72,9 @@ class JSONDatabase(object):
             "inventory": {},
             "environment": {},
             "sounds": {},
-            "music" : {}
+            "music": {}
         }
-        if dir:
-            self.load(dir)
+        self.load(dir)
 
     def load(self, directory="all"):
         """Loads all data from JSON files located under our data path.
@@ -101,7 +100,6 @@ class JSONDatabase(object):
             self.load_json("music")
         else:
             self.load_json(directory)
-
 
     def load_json(self, directory):
         """Loads all JSON items under a specified path.

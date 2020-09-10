@@ -1,7 +1,6 @@
 #!/bin/bash
-cd dist
-tar xvfz tuxemon*.tar.gz
-cd tuxemon*
+cp dist/* .
+cd tuxemon-*
 debmake -b':py3'
 dpkg-buildpackage -us -uc
 cd ../..

@@ -6,6 +6,8 @@ game with cx_Freeze and Python 3.6
 To build the package on Windows, run the following command on Windows:
     `python build_win32.py build`
 
+"win32" is just the name used by cx_freeze and doesn't mean it is a 32-bit app.
+
 DO NOT RUN FROM A VENV.  YOU WILL BE MET WITH INSURMOUNTABLE SORROW.
 """
 

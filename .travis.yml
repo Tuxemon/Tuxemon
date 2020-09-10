@@ -64,7 +64,7 @@ script:
   - buildconfig/build_tarball.sh
   - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi
   - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
-  - if [ "$BUILD_TYPE" = "win32" ]; then python3 buildconfig/setup_win32.py build ; fi
+  - if [ "$BUILD_TYPE" = "win32" ]; then buildconfig/build_win32.py ; fi
   - if [ "$BUILD_TYPE" = "flatpak" ]; then buildconfig/build_flatpak.sh ; fi
 deploy:
   provider: s3

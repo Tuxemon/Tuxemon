@@ -6,6 +6,7 @@ env:
     - SDL_AUDIODRIVER=disk
 jobs:
   include:
+#    WIP
 #    - os: linux
 #      dist: xenial
 #      python: 3.5
@@ -14,17 +15,16 @@ jobs:
 #      dist: bionic
 #      python: 3.6
 #      env: BUILD_TYPE=deb
-    - os: linux
-      dist: focal
-      python: 3.8
-      env:
-        - BUILD_TYPE=deb
-# WIP
 #    - os: linux
 #      dist: focal
 #      python: 3.8
 #      env:
 #        - BUILD_TYPE=flatpak
+    - os: linux
+      dist: focal
+      python: 3.8
+      env:
+        - BUILD_TYPE=deb
     - os: linux
       dist: focal
       python: 3.8

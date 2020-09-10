@@ -2,6 +2,8 @@ language: python
 env:
   global:
     - BUILD_TYPE=None  # deb, opk, win32
+    - SDL_VIDEODRIVER=dummy
+    - SDL_AUDIODRIVER=disk
 jobs:
   include:
 #    - os: linux

@@ -10,11 +10,20 @@ To build the package on Windows, run the following command on Windows:
 
 DO NOT RUN FROM A VENV.  YOU WILL BE MET WITH INSURMOUNTABLE SORROW.
 """
-
+import os
+import sys
 from cx_Freeze import setup, Executable
 
+# required so that the tuxemon folder can be found
+# when run from the buildscripts folder
+sys.path.append(os.getcwd())
+
+# prevent SDL from opening a window
+os.environ["SDL_VIDEODRIVER"] = "dummy"
+os.environ["SDL_AUDIODRIVER"] = "disk"
+
 includes = ['pkg_resources']
-includefiles = ['tuxemon/tuxemon.cfg']
+includefiles = []
 excludes = ['email', 'tkinter', 'pyglet']
 packages = ['pytmx', 'pyscroll', 'pygame', 'six', 'neteria', 'tuxemon']
 

@@ -1,3 +1,3 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get install sed squashfs-tools curl
+sudo apt-get install -y sed squashfs-tools curl

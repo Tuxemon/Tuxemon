@@ -19,7 +19,6 @@ class InstallAndBuildTranslations(install):
         build_translations()
 
 
-
 # Find all the python modules
 modules = []
 matches = []
@@ -54,6 +53,7 @@ setup(name='tuxemon',
       license="GPLv3",
       long_description='https://github.com/Tuxemon/Tuxemon',
       install_requires=REQUIREMENTS,
+      python_requires='>=3.3',
       entry_points={
           'gui_scripts': [
               'tuxemon = tuxemon.__main__:main'

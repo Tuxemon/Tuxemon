@@ -1,6 +1,6 @@
 #!/bin/bash
-cp dist/* .
 cd tuxemon-*
+cp ../dist/* ..
 debmake -b':py3'
 dpkg-buildpackage -us -uc
 cd ../..

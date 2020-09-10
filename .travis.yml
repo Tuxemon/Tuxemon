@@ -42,6 +42,7 @@ jobs:
 virtualenv:
   system_site_packages: true
 before_install:
+  - mkdir build
   - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/prebuild_deb.sh ; fi
   - if [ "$BUILD_TYPE" = "win32" ]; then buildconfig/prebuild_win32.sh ; fi
 script:

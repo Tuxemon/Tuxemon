@@ -1,4 +1,4 @@
 #!/bin/bash
-sudo dpkg --add-architecture i386
+# sudo dpkg --add-architecture i386
 sudo apt-get update
-sudo apt-get install wget wine wine32 xvfb
+sudo apt-get install wget wine64 xvfb

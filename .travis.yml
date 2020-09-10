@@ -17,6 +17,7 @@ jobs:
       python: 3.8
       env:
         - BUILD_TYPE=deb
+        - BUILD_TYPE=win32
     - os: linux
       dist: trusty
       python: 3.4

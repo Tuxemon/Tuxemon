@@ -1,2 +1,4 @@
 #!/bin/bash
-pip install cx_freeze
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install wget wine wine32 xvfb

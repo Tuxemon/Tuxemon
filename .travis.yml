@@ -50,7 +50,7 @@ script:
   - /.build_tarball.sh
   - if [ "$BUILD_TYPE" = "deb" ]; then ./build_deb.sh ; fi
   - if [ "$BUILD_TYPE" = "opk" ]; then ./build_opk.sh ; fi
-  - if [ "$BUILD_TYPE" = "exe" ]; then ./python3 setup_win32.py ; fi
+  - if [ "$BUILD_TYPE" = "exe" ]; then ./python3 setup_win32.py build ; fi
 deploy:
   provider: s3
   access_key_id: AKIAJCO54X2SZSP2HYCA

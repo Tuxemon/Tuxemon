@@ -55,8 +55,12 @@ class TranslatorPo(object):
 
     def __init__(self):
         self.locale = prepare.CONFIG.locale
-        self.translate = None
+        self.translate = self._lazy_load
         self.languages = []
+
+    def _lazy_load(self):
+        # this is a hack to let cx_freeze work
+        self.collect_languages(prepare.CONFIG.recompile_translations)
 
     def collect_languages(self, recompile_translations=False):
         """Collect languages/locales with available translation files."""

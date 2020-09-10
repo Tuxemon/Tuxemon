@@ -4,10 +4,10 @@ env:
     - BUILD_TYPE=None  # deb, opk, exe
 jobs:
   include:
-    - os: linux
-      dist: xenial
-      python: 3.5
-      env: BUILD_TYPE=deb
+#    - os: linux
+#      dist: xenial
+#      python: 3.5
+#      env: BUILD_TYPE=deb
     - os: linux
       dist: bionic
       python: 3.6

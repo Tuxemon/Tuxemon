@@ -3,6 +3,7 @@ Tuxemon 0.4.25
 
 Tuxemon is a free, open source monster-fighting RPG.
 
+[![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
 Requirements

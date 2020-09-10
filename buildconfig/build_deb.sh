@@ -6,4 +6,4 @@ debmake -b':py3'
 echo "./mods usr/share/tuxemon/" > debian/install
 dpkg-buildpackage -us -uc
 cd ..
-mv tuxemon*.deb build/tuxemon-$TRAVIS_BRANCH.deb
+mv tuxemon*.deb build/tuxemon-$TRAVIS_DIST-$TRAVIS_BRANCH.deb

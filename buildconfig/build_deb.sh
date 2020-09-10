@@ -1,5 +1,6 @@
 #!/bin/bash
 export PYBUILD_DISABLE=test
+buildconfig/build_tarball.sh
 cd tuxemon-*
 cp ../dist/* ..
 debmake -b':py3'

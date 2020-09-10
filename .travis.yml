@@ -16,8 +16,7 @@ jobs:
       dist: focal
       python: 3.8
       env:
-        - BUILD_TYPE=deb
-        - BUILD_TYPE=exe
+        - BUILD_TYPE=deb BUILD_TYPE=exe
     - os: linux
       dist: trusty
       python: 3.4
@@ -43,14 +42,12 @@ jobs:
 virtualenv:
   system_site_packages: true
 before_install:
-  - cd buildconfig
-  - if [ "$BUILD_TYPE" = "deb" ]; then ./prebuild_deb.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/prebuild_deb.sh ; fi
 script:
-  - cd buildconfig
-  - /.build_tarball.sh
-  - if [ "$BUILD_TYPE" = "deb" ]; then ./build_deb.sh ; fi
-  - if [ "$BUILD_TYPE" = "opk" ]; then ./build_opk.sh ; fi
-  - if [ "$BUILD_TYPE" = "exe" ]; then ./python3 setup_win32.py build ; fi
+  - buildconfig/build_tarball.sh
+  - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi
+  - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
+  - if [ "$BUILD_TYPE" = "exe" ]; then python3 buildconfig/setup_win32.py build ; fi
 deploy:
   provider: s3
   access_key_id: AKIAJCO54X2SZSP2HYCA

@@ -1,6 +1,7 @@
 language: python
 env:
   global:
+    - BUILD_SDIST=0
     - BUILD_TYPE=None  # deb, opk, win32, flatpak
     - SDL_VIDEODRIVER=dummy
     - SDL_AUDIODRIVER=disk
@@ -19,22 +20,22 @@ jobs:
 #      dist: focal
 #      python: 3.8
 #      env:
-#        - BUILD_TYPE=flatpak
+#        - BUILD_TYPE=flatpak BUILD_SDIST=1
     - os: linux
       dist: focal
       python: 3.8
       env:
-        - BUILD_TYPE=deb
+        - BUILD_TYPE=deb BUILD_SDIST=1
     - os: linux
       dist: focal
       python: 3.8
       env:
-        - BUILD_TYPE=win32
+        - BUILD_TYPE=win32 BUILD_SDIST=0
     - os: linux
       dist: trusty
       python: 3.4
       language: android
-      env: BUILD_TYPE=opk
+      env: BUILD_TYPE=opk BUILD_SDIST=1
       android:
         components:
           - tools
@@ -45,7 +46,7 @@ jobs:
       dist: trusty
       python: 3.4
       language: android
-      env: BUILD_TYPE=opk
+      env: BUILD_TYPE=opk BUILD_SDIST=1
       android:
         components:
           - tools
@@ -61,6 +62,7 @@ before_install:
   - if [ "$BUILD_TYPE" = "win32" ]; then buildconfig/prebuild_win32.sh ; fi
   - if [ "$BUILD_TYPE" = "flatpak" ]; then buildconfig/prebuild_flatpak.sh ; fi
 script:
+  - if [ "$BUILD_SDIST" = "1" ]; then buildconfig/build_sdist.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi
   - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
   - if [ "$BUILD_TYPE" = "win32" ]; then buildconfig/build_win32.py ; fi

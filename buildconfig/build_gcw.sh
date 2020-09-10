@@ -1,6 +1,4 @@
 #!/bin/bash
-mkdir -p ./build
-sudo apt-get --assume-yes install git curl squashfs-tools
 sed -i 's/resolution_x.*/resolution_x = 320/g' tuxemon/tuxemon.cfg
 sed -i 's/resolution_y.*/resolution_y = 240/g' tuxemon/tuxemon.cfg
 sed -i 's/fullscreen.*/fullscreen = 1/g' tuxemon/tuxemon.cfg

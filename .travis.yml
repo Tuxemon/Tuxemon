@@ -30,6 +30,11 @@ jobs:
       dist: focal
       python: 3.8
       env:
+        - BUILD_TYPE=opk BUILD_SDIST=1
+    - os: linux
+      dist: focal
+      python: 3.8
+      env:
         - BUILD_TYPE=win32 BUILD_SDIST=0
     - os: linux
       dist: trusty

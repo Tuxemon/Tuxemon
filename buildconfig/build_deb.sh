@@ -5,4 +5,4 @@ cp ../dist/* ..
 debmake -b':py3'
 dpkg-buildpackage -us -uc
 cd ..
-mv ./dist/tuxemon*.deb ./build/tuxemon-$TRAVIS_BRANCH.deb
+mv tuxemon*.deb ./build/tuxemon-$TRAVIS_BRANCH.deb

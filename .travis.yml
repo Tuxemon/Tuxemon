@@ -82,6 +82,7 @@ deploy:
   file_glob: true
   file: build/*
   on:
+    tags: true
     repo: Tuxemon/Tuxemon
     branch: development
   skip_cleanup: true

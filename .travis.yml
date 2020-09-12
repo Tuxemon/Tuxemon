@@ -6,12 +6,6 @@ env:
 jobs:
   include:
     - os: linux
-      dist: xenial
-      env: BUILD_TYPE=deb
-    - os: linux
-      dist: bionic
-      env: BUILD_TYPE=deb
-    - os: linux
       dist: focal
       env: BUILD_TYPE=deb
     - os: linux

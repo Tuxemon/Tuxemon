@@ -19,9 +19,10 @@ jobs:
       env: BUILD_TYPE=opk
     - os: linux
       dist: focal
-      env: BUILD_TYPE=wine
+      env: BUILD_TYPE=windows
     - os: windows
       language: bash
+      env: BUILD_TYPE=windows
     - os: linux
       dist: trusty
       language: android
@@ -33,7 +34,7 @@ jobs:
           - build-tools-23.0.5
           - android-23
 install:
-  - if [ "$BUILD_TYPE" = "wine" ]; then buildconfig/install_wine.sh ; fi
+  - if [ "$BUILD_TYPE" = "windows" && "$TRAVIS_OS_NAME" = "linux" ]; then buildconfig/install_wine.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi

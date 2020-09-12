@@ -13,7 +13,7 @@ jobs:
       env: BUILD_TYPE=opk
     - os: linux
       dist: focal
-      env: BUILD_TYPE=wine
+      env: BUILD_TYPE=wine_pyinstaller
     - os: windows
       language: bash
       env: BUILD_TYPE=windows
@@ -33,12 +33,12 @@ install:
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi
 script:
   - mkdir build
+  - if [ "$BUILD_TYPE" = "android" ]; then buildconfig/build_android.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi
   - if [ "$BUILD_TYPE" = "flatpak" ]; then buildconfig/build_flatpak.sh ; fi
   - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
   - if [ "$BUILD_TYPE" = "windows" ]; then travis_wait 15 buildconfig/build_windows.sh ; fi
-  - if [ "$BUILD_TYPE" = "wine" ]; then buildconfig/build_wine.sh ; fi
-  - if [ "$BUILD_TYPE" = "android" ]; then buildconfig/build_android.sh ; fi
+  - if [ "$BUILD_TYPE" = "wine_pyinstaller" ]; then buildconfig/build_wine_pyinstaller.sh ; fi
 deploy:
   provider: releases
   api_key:

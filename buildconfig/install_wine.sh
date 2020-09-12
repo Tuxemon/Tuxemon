@@ -2,7 +2,7 @@
 export WINEARCH=win32
 sudo dpkg --add-architecture i386
 sudo apt-get update
-sudo apt-get install wget xvfb wine winetricks
+sudo apt-get install wget xvfb wine wine32 wine64 winetricks
 # sudo apt-get install -o APT::Immediate-Configure=false wine winetricks
 rm -rf ~/.wine
 xvfb-run wine wineboot

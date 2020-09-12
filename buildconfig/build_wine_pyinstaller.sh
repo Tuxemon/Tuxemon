@@ -10,7 +10,7 @@ xvfb-run wine python-3.8.5.exe /quiet InstallAllUsers=1 PrependPath=1 Include_te
 wine pip install -U setuptools
 wine pip install wheel pyinstaller
 wine pip install -r requirements.txt
-wine pyinstaller buildconfig/tuxemon.spec
+wine pyinstaller buildconfig/pyinstaller/tuxemon.spec
 cd dist
 zip -r tuxemon-windows-$TRAVIS_BRANCH.zip tuxemon
 mv *zip ../build

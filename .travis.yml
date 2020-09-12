@@ -32,8 +32,6 @@ jobs:
           - platform-tools
           - build-tools-23.0.5
           - android-23
-virtualenv:
-  system_site_packages: true
 install:
   - if [ "$BUILD_TYPE" = "wine" ]; then buildconfig/install_wine.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi

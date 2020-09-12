@@ -1,40 +1,24 @@
 import os
 import shutil
-import subprocess
 import sys
-import urllib.error
-import urllib.parse
-import urllib.request
+import zipfile
 
-try:
-    import configparser
-except ImportError:
-    import configparser as configparser
+import requests
 
 sys.argv = [sys.argv[0]]
 RAPT_ARCHIVE = "renpy-6.18.3-rapt.zip"
 RAPT_LINK = "http://www.tuxemon.org/files/" + RAPT_ARCHIVE
-SIX_ARCHIVE = "six-1.9.0.tar.gz"
-SIX_LINK = "https://pypi.python.org/packages/source/s/six/%s#md5=476881ef4012262dfc8adc645ee786c4" % SIX_ARCHIVE
 
 
-def download_rapt():
-    # First, download rapt
-    print("  Downloading rapt...")
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    req = urllib.request.Request(RAPT_LINK, None, headers)
-    data = urllib.request.urlopen(req).read()
-
-    # write the data
-    f = open("build/" + RAPT_ARCHIVE, 'wb')
-    f.write(data)
-    f.close()
+def download_file(url):
+    local_filename = url.split('/')[-1]
+    with requests.get(url, stream=True) as r:
+        with open(local_filename, 'wb') as f:
+            shutil.copyfileobj(r.raw, f)
+    return local_filename
 
 
 def unzip_rapt():
-    import zipfile
-
-    print("  Unzipping", RAPT_ARCHIVE, "...")
     with zipfile.ZipFile("build/" + RAPT_ARCHIVE, "r") as z:
         z.extractall("build")
 
@@ -65,43 +49,9 @@ def modify_rapt():
 
 
 def install_dependencies():
-    if not os.path.exists("tuxemon/neteria"):
-        print("WARNING: Neteria module not found. Networking will be disabled.")
-        print("Copy neteria module to project directory before continuing.")
-
     if not os.path.exists("tuxemon/pytmx"):
         print("  Installing pytmx dependency...")
-        subprocess.call(["git", "clone", "https://github.com/bitcraft/PyTMX.git"])
         os.rename("PyTMX/pytmx", "tuxemon/pytmx")
-
-    if not os.path.exists("tuxemon/six.py"):
-        # Download the SIX module.
-        print("  Installing six dependency...")
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        req = urllib.request.Request(SIX_LINK, None, headers)
-        data = urllib.request.urlopen(req).read()
-
-        # write the data
-        f = open(SIX_ARCHIVE, 'wb')
-        f.write(data)
-        f.close()
-
-        import tarfile
-        tar = tarfile.open(SIX_ARCHIVE)
-        tar.extractall()
-        tar.close()
-
-        os.rename("six-1.9.0/six.py", "tuxemon/six.py")
-
-
-def set_default_config(file_name):
-    config = configparser.ConfigParser()
-    config.read(file_name)
-    config.set("display", "controller_overlay", "1")
-
-    # Writing our configuration file to 'example.cfg'
-    with open(file_name, 'wb') as configfile:
-        config.write(configfile)
 
 
 if __name__ == "__main__":
@@ -113,7 +63,7 @@ if __name__ == "__main__":
 
     print("Checking for rapt...")
     if not os.path.exists("build/rapt"):
-        download_rapt()
+        download_file(RAPT_LINK)
         unzip_rapt()
         os.unlink("build/" + RAPT_ARCHIVE)
 
@@ -128,9 +78,6 @@ if __name__ == "__main__":
     print("Copying icon and splash images...")
     shutil.copyfile("tuxemon/resources/gfx/icon.png", "build/rapt/templates/pygame-icon.png")
     # shutil.copyfile("tuxemon/resources/gfx/presplash.jpg", "build/rapt/templates/pygame-presplash.jpg")
-
-    # Set default config for Android devices.
-    set_default_config("tuxemon/tuxemon.cfg")
 
     print("Executing build...")
     os.chdir("build/rapt")

@@ -20,14 +20,21 @@ jobs:
     - os: linux
       dist: trusty
       language: android
-      env: BUILD_TYPE=android
+      env:
+        - BUILD_TYPE=android
+        # - ANDROIDSDK="$HOME/Documents/android-sdk-27"
+        # - ANDROIDNDK="$HOME/Documents/android-ndk-r19b"
+        - ANDROIDAPI="27"
+        - NDKAPI="21"
+        - ANDROIDNDKVER="r19b"
       android:
         components:
           - tools
           - platform-tools
-          - build-tools-23.0.5
-          - android-23
+          - build-tools-28.0.2
+          - android-27
 install:
+  - if [ "$BUILD_TYPE" = "android" ]; then buildconfig/install_android.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi
@@ -45,7 +52,9 @@ deploy:
     secure: LbDce8fi3QChPRBzM36o7m26IdQ9PySPE6kKXnNK4KrpdzZ5gzBpc/ak4omWKcN5x2XFgzIH075ykEpKiYQP764hvYO3hGi+IcHEzW9A1FofP2Whl/qOLFpmA+afnhl7Uyw4Uo8mo27UUDwrPIrkjIlLW2PPUSiMDVhz6t28cQAsBXcMOBTrDuRFCtUHmkODFq6o6IEbkeoG7eVC/LFVLxO4zGHcxcJCyl6ar1GD9wznFxDomtyQiT7Xwxw9DpzHWUgdPCpYULBvTU+GBTMMQVKPZLROFwmdWy/VMCo9VfmITNNe0EBX7OQWel8CjIZAdqa04bWz23HiTvmvaPnWDYWykCUl/FEy9y6akl/aBhOLCtI2VeKO1jI6jYWQsjI+z4P1zcTBio/xfhwqk7E5a6OesmZLCwLSwyK9R8dtUYdCzp602hkPvxmyWA61gHtsPttROoLmaD+VLIVbvjmkohXqLp72vsgzDIFz59S+19DoBTUmh4kWVSWH9hrG72ynSwl+9RNHTbAlXCZhUNQktBNWCQSltAndyzNCjU0WCohmj2uFJDa0LyIOkE27G8BmwyQ+mRpOp8KByKgawUWXOjYPD5J1gs5X9fHtMdPKWbn4MIaQy66jBj0+lFwxwX2/5J7T3MuRRuxfHzw7GQS+MzrctgRF4s3c6mEAHypAK2Q=
   file_glob: true
   file: build/*
-  on:
+  skip_cleanup: true
+  draft: true
+on:
     tags: true
     repo: Tuxemon/Tuxemon
     branch: development

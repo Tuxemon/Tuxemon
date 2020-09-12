@@ -1,6 +1,5 @@
 #!/bin/bash
 export PYBUILD_DISABLE=test
-pip install -r requirements.txt
 python setup.py sdist --keep-temp
 cd tuxemon-*
 cp ../dist/* ..

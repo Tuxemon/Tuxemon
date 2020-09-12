@@ -19,7 +19,7 @@ jobs:
       env: BUILD_TYPE=opk
     - os: linux
       dist: focal
-      env: BUILD_TYPE=windows
+      env: BUILD_TYPE=wine
     - os: windows
       language: bash
       env: BUILD_TYPE=windows
@@ -34,16 +34,17 @@ jobs:
           - build-tools-23.0.5
           - android-23
 install:
-  - if [ "$BUILD_TYPE" = "windows" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then buildconfig/install_wine.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi
+  - if [ "$BUILD_TYPE" = "wine" ]; then buildconfig/install_wine.sh ; fi
 script:
   - mkdir build
   - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi
   - if [ "$BUILD_TYPE" = "flatpak" ]; then buildconfig/build_flatpak.sh ; fi
   - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
   - if [ "$BUILD_TYPE" = "windows" ]; then buildconfig/build_windows.sh ; fi
+  - if [ "$BUILD_TYPE" = "wine" ]; then buildconfig/build_wine.sh ; fi
   - if [ "$BUILD_TYPE" = "android" ]; then buildconfig/build_android.sh ; fi
 deploy:
   provider: releases

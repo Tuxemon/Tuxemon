@@ -34,10 +34,10 @@ jobs:
           - build-tools-23.0.5
           - android-23
 install:
-  - if [ "$BUILD_TYPE" = "windows" && "$TRAVIS_OS_NAME" = "linux" ]; then buildconfig/install_wine.sh ; fi
-  - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
-  - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
-  - if [ "$BUILD_TYPE" = "deb" && "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi
+  - if [ "$BUILD_TYPE" = "windows" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then buildconfig/install_wine.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi
 script:
   - mkdir build
   - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi

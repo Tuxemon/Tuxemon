@@ -122,9 +122,9 @@ class TuxemonConfig(object):
         # not configurable from the file yet
         self.mods = ["tuxemon"]
 
+
 def get_custom_pygame_keyboard_controls(cfg):
     import pygame.locals
-    from tuxemon.core.platform.platform_pygame.events import PygameKeyboardInput
 
     custom_controls = {None: events.UNICODE}
     for key, values in cfg.items("controls"):

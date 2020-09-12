@@ -146,8 +146,7 @@ class JSONDatabase(object):
         if item['slug'] not in self.database[table]:
             self.database[table][item['slug']] = item
         else:
-            logger.error(item, json)
-            raise Exception("Error: Item with this slug was already loaded.")
+            logger.warning("Error: Item with slug %s was already loaded.", item)
 
     def lookup(self, slug, table="monster"):
         """Looks up a monster, technique, item, or npc based on slug.

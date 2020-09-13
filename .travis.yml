@@ -55,7 +55,7 @@ deploy:
   file: build/*
   skip_cleanup: true
   draft: true
-on:
+  on:
     tags: true
     repo: Tuxemon/Tuxemon
     branch: development

@@ -59,4 +59,3 @@ deploy:
     tags: true
     repo: Tuxemon/Tuxemon
     branch: development
-  skip_cleanup: true

@@ -9,5 +9,7 @@
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         }
-]}
+],
+	    "combat_front": "catgirl.png",
+    "combat_back": "red_back.png"}
 

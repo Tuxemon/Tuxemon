@@ -1,4 +1,6 @@
 {
     "slug": "spyder_maniac",
-    "sprite_name": "maniac" }
+    "sprite_name": "maniac",
+	    "combat_front": "red_front.png",
+    "combat_back": "red_back.png" }
 

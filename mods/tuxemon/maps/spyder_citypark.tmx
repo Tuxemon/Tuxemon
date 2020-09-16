@@ -351,7 +351,7 @@
   <object id="235" name="Route Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music music_city_park"/>
-    <property name="cond1" value="not music_playing music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_city_park"/>
    </properties>
   </object>
   <object id="236" name="encounter" type="event" x="576" y="304" width="16" height="16">

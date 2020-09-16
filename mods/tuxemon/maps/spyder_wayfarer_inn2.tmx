@@ -85,31 +85,6 @@
    eAFjYBj8IFVk8LtxoF1oIcfAYAnElAJhoBlCVDCHUneM6icuBABxyQGI
   </data>
  </layer>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="17" name="Go downstairs" type="event" x="64" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,3,2,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="23" name="Go to the other downstairs" type="event" x="160" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,11,3,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="31" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music JRPG_royalCourt_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_royalCourt_loop.ogg"/>
-   </properties>
-  </object>
-  <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
- </objectgroup>
  <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="2" type="collision" x="0" y="0" width="16" height="256"/>
   <object id="3" type="collision" x="16" y="256" width="96" height="16"/>
@@ -138,5 +113,30 @@
   </object>
   <object id="33" type="collision" x="176" y="96" width="32" height="16"/>
   <object id="34" type="collision" x="144" y="96" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="17" name="Go downstairs" type="event" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,3,2,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="23" name="Go to the other downstairs" type="event" x="160" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,11,3,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="31" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
  </objectgroup>
 </map>

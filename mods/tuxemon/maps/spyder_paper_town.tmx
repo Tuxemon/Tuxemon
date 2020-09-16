@@ -426,8 +426,8 @@
   </object>
   <object id="428" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music town_theme"/>
-    <property name="cond1" value="not music_playing town_theme"/>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
   <object id="430" name="Sign for Sunnyside Manor" type="event" x="192" y="192">

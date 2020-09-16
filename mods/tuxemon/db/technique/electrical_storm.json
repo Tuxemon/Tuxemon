@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Lightning Claw",
+  "animation": "lightning_claw",
   "category": "physical",
   "effects": [
     "damage"

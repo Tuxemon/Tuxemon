@@ -201,149 +201,149 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="1" name="Teleport to map1 (lower)" type="event" x="672" y="80" width="128" height="16">
    <properties>
-    <property name="act1" value="teleport map1.tmx,12,12"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="teleport map1.tmx,12,12"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="2" name="Teleport to map1 (lower)" type="event" x="112" y="624" width="16" height="80">
    <properties>
-    <property name="act1" value="teleport route_rbd_01.tmx,37,10"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="teleport route_rbd_01.tmx,37,10"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="134" name="empty house" type="event" x="624" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog The door won't open"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog The door won't open"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="135" name="empty house" type="event" x="720" y="352" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Maybe some good guys here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Maybe some good guys here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="136" name="empty house" type="event" x="800" y="496" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog The door won't open"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog The door won't open"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="137" name="empty house" type="event" x="624" y="496" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog a mart ..."/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog a mart ..."/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="138" name="empty house" type="event" x="432" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog here you should be able to heal your monsters ... but no one here ..."/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog here you should be able to heal your monsters ... but no one here ..."/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="139" name="empty house" type="event" x="208" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Maybe some good guys here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Maybe some good guys here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="140" name="empty house" type="event" x="384" y="784" width="32" height="16">
    <properties>
-    <property name="act1" value="dialog Currently no one is living here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Currently no one is living here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="141" name="empty house" type="event" x="432" y="768" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Currently no one is living here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Currently no one is living here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="142" name="empty house" type="event" x="448" y="784" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Currently no one is living here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Currently no one is living here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="143" name="empty house" type="event" x="416" y="752" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Currently no one is living here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Currently no one is living here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="144" name="empty house" type="event" x="432" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog maybe someone evil / bad should be here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog maybe someone evil / bad should be here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="145" name="empty house" type="event" x="864" y="688" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog maybe make this door opened and put someone here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog maybe make this door opened and put someone here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="146" name="empty house" type="event" x="240" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog Maybe some good guys here"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog Maybe some good guys here"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="150" name="cave route" type="event" x="480" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog place for a cave route... maybe cave_01.tmx"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog place for a cave route... maybe cave_01.tmx"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="151" name="where_to_go" type="event" x="992" y="704" width="16" height="32">
    <properties>
-    <property name="act1" value="dialog where should this lead to??"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="dialog where should this lead to??"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="156" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+    <property name="act10" value="play_music JRPG_town_loop.ogg"/>
+    <property name="cond10" value="not music_playing JRPG_town_loop.ogg"/>
    </properties>
   </object>
   <object id="169" name="secret place" type="event" x="480" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog this is a secret place that can't be reached yet..."/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog this is a secret place that can't be reached yet..."/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

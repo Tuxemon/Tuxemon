@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid "PROJECT DESCRIPTION\n"
-msgstr ""
+msgstr "<<MISSING>>"
 "Project-Id-Version: Insert package version from somewhere\n"
 "Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
 "POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
@@ -67,6 +67,13 @@ msgstr "Imperial Potion"
 msgid "imperial_potion_description"
 msgstr "Heals a monster by 350 HP."
 
+# Revive
+msgid "revive"
+msgstr "Revive"
+
+msgid "revive_description"
+msgstr "Revives knocked out Tuxemon and restores 20 HP."
+
 # Capture Device
 msgid "capture_device"
 msgstr "Capture Device"
@@ -74,8 +81,24 @@ msgstr "Capture Device"
 msgid "capture_device_description"
 msgstr "Captures a monster."
 
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "tm_avalanche_description"
+msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_blossom"
+msgstr "TM: Blossom"
+
+msgid "tm_blossom_description"
+msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
+
+msgid "item_no_available_target"
+msgstr "{name} cannot be used on any of your Tuxemon right now."
 
 # Allie's Address
 msgid "allies_address"
@@ -241,6 +264,12 @@ msgstr "Saved!"
 
 msgid "save_failure"
 msgstr "There was a problem saving!"
+
+msgid "save_overwrite"
+msgstr "Yes, overwrite this save."
+
+msgid "save_keep"
+msgstr "No, keep this save."
 
 msgid "slot"
 msgstr "Slot"
@@ -683,7 +712,7 @@ msgid "bigfin"
 msgstr "Bigfin"
 
 msgid "bolt_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "bolt"
 msgstr "Bolt"
@@ -773,7 +802,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -809,7 +838,7 @@ msgid "ferricran"
 msgstr "Ferricran"
 
 msgid "firomenis_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "firomenis"
 msgstr "Firomenis"
@@ -821,7 +850,7 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -839,7 +868,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -863,13 +892,13 @@ msgid "legko"
 msgstr "Legko"
 
 msgid "magmaturtle_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "magmaturtle"
 msgstr "Magmaturtle"
 
 msgid "merlicun_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "merlicun"
 msgstr "Merlicun"
@@ -911,13 +940,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot (M)"
 
 msgid "nut_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -929,19 +958,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -953,13 +982,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -971,7 +1000,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -983,7 +1012,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -1010,13 +1039,13 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tux_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tux"
 msgstr "Tux"
@@ -1491,7 +1520,7 @@ msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign\n"
 msgstr "Welcome to Cotton Town: A Growing Force\n"
-"^ Cotton Town --- Route 1 v\n"
+"↑ Cotton Town --- Route 1 ↓\n"
 
 msgid "column1"
 msgstr "A rare and ancient column. This used to be a temple."
@@ -1501,7 +1530,7 @@ msgstr "A rare and ancient column. Other ruins from the same culture can be foun
 
 msgid "cityparksign\n"
 msgstr "Welcome to City Park: A Taste of the Wild\n"
-"^ City Park --- Route 2 v\n"
+"↑ City Park --- Route 2 ↓\n"
 
 msgid "route2speech"
 msgstr "EEK!!!"
@@ -1554,6 +1583,7 @@ msgid "mistakenknight"
 msgstr "Nope, there's no way I'm wrong. It's you!\n"
 "Don't worry, I won't tell anyone."
 
+
 msgid "thatsmeknight"
 msgstr "Oh, Splendid! I knew from the beginning it had to be you\n"
 "Don't worry, I won't tell anyone."
@@ -1576,14 +1606,14 @@ msgid "omnichannelarrives"
 msgstr "STOP"
 
 msgid "omnichannelarrives2"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "yesmaam"
 msgstr "Yes Ma'am"
 
 msgid "firsts"
-msgstr "Watch me whip\n"
-"Watch me nae nae"
+msgstr "♪ Watch me whip ♪\n"
+"♪ Watch me nae nae ♪"
 
 msgid "nopenotyet"
 msgstr "Sorry, someone got injured on the route. It's closed right now."
@@ -1730,6 +1760,58 @@ msgstr "I don't mind being here...\n"
 msgid "wherewasshe"
 msgstr "She didn't tell us the bad news..."
 
+msgid "waitdontgo"
+msgstr "${{name}}! Wait! Don't Leave Yet!"
+
+msgid "thetvbescreamin"
+msgstr "Honey, wait. I turned on the TV and an Omnichannel press conference was happening.\n"
+"We should watch it."
+
+msgid "ipausedit"
+msgstr "I paused the TV, grab a glass of water and then we can watch together."
+
+msgid "announcement1"
+msgstr "HELLO CITIZENS OF THE FONDENT REGION!\n"
+"THANK YOU FOR TUNING IN TO THIS MANDATORY ANNOUNCEMENT"
+
+msgid "announcement2"
+msgstr "WE LOVE YOU ABLE!"
+
+msgid "announcement3"
+msgstr "Thank you. I love you too\n"
+"Now, to the matter at hand."
+
+msgid "announcement4"
+msgstr "To ALL the citizens of the Fondent Region and beyond who are tuning in, I welcome you.\n"
+"My name is Aeble, spelled A-E-B-L-E for those who wonder, and I am the CEO of Omnichannel!\n"
+
+msgid "whythecheering"
+msgstr "Those Omnichannel people are cheering a lot for him. I wonder why?"
+
+msgid "announcement5"
+msgstr "It has been a long, hard road to our current situation here in the Fondent Region.\n"
+"However, it is my pleasure to announce, on this day, the 25th Anniversary of the founding of omnichannel...\n"
+"TUXEMON ARE CONTROLLED!\n"
+"*deafening screaming*\n"
+"Quiet Down! Quiet Down! You're enthusiasm is infectious I must say!\n"
+"In conjunction with the Xero institute, we have stripped away their will to attack!\n"
+"Due to this, we are confident that releasing Tuxemon into the wild is safe.\n"
+"However, curfews must still be enforced, we are not a lawless region after all.\n"
+"After all... WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL!"
+
+msgid "ohnoes"
+msgstr "Well... I don't know how to feel about this..."
+
+msgid "ohnoes2"
+msgstr "Regardless, We need potions from the Tuxemart. You should probably head into town and get some.\n"
+"Make sure you're back before curfew though!"
+
+msgid "depressedmom"
+msgstr "Why would he do something like that... I thought he cared..."
+
+msgid "waterwater"
+msgstr "The water is ice cold and delicious!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
@@ -1872,7 +1954,6 @@ msgid "37707_villager_female_missing"
 msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
 "@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
-
 
 ## DIALOG TRANSLATIONS ##
 
@@ -2286,11 +2367,7 @@ msgstr "Shaft Headquarters: Public Relations Division"
 msgid "spyder_leathercafe_sign" 
 msgstr "Open Air Cafe and Marketplace" 
 msgid "spyder_leathercbd_sign" 
-msgstr "Leather Town Business District" 
+msgstr "Leather Town Business District"
 
-
-
-=======
 msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."
->>>>>>> development

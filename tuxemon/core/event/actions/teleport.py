@@ -54,9 +54,8 @@ class TeleportAction(EventAction):
     ]
 
     def start(self):
-        # Get the player and map from the game
-        player = self.game.player1
-        world = self.game.get_state_name("WorldState")
+        player = self.session.player
+        world = self.session.client.get_state_by_name("WorldState")
         map_name = self.parameters.map_name
 
         # If we're doing a screen transition with this teleport, set the map name that we'll

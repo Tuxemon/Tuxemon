@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid "PROJECT DESCRIPTION\n"
-msgstr ""
+msgstr "<<MISSING>>"
 "Project-Id-Version: Insert package version from somewhere\n"
 "Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
 "POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
@@ -665,7 +665,7 @@ msgid "bigfin"
 msgstr "Bigfin"
 
 msgid "bolt_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "bolt"
 msgstr "Bolt"
@@ -755,7 +755,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -791,7 +791,7 @@ msgid "ferricran"
 msgstr "Ferricran"
 
 msgid "firomenis_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "firomenis"
 msgstr "Firomenis"
@@ -803,7 +803,7 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -821,7 +821,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -845,13 +845,13 @@ msgid "legko"
 msgstr "Legko"
 
 msgid "magmaturtle_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "magmaturtle"
 msgstr "Magmaturtle"
 
 msgid "merlicun_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "merlicun"
 msgstr "Merlicun"
@@ -893,13 +893,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot (M)"
 
 msgid "nut_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -911,19 +911,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -935,13 +935,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -953,7 +953,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -965,7 +965,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -992,13 +992,13 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tux_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tux"
 msgstr "Tux"

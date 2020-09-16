@@ -41,5 +41,5 @@ class ChangeStateAction(EventAction):
 
     def start(self):
         # Don't override previous state if we are still in the state.
-        if self.game.state_name != self.parameters.state_name:
-            self.game.push_state(self.parameters.state_name)
+        if self.session.client.state_name != self.parameters.state_name:
+            self.session.client.push_state(self.parameters.state_name)

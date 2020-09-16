@@ -36,7 +36,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
-import os.path
 from functools import partial
 
 from tuxemon.core import prepare
@@ -44,6 +43,7 @@ from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
 from tuxemon.core.save import get_index_of_latest_save
+from tuxemon.core.session import local_session
 from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)
@@ -77,30 +77,29 @@ class StartState(PopUpMenu):
         super(StartState, self).startup(*args, **kwargs)
 
         def change_state(state, **change_state_kwargs):
-            return partial(self.game.push_state, state, **change_state_kwargs)
+            return partial(self.client.push_state, state, **change_state_kwargs)
 
         def set_player_name(text):
-            world = self.game.get_state_name("WorldState")
-            world.player1.name = text
+            local_session.player.name = text
 
         def new_game():
             # load the starting map
-            state = self.game.replace_state("WorldState")
+            state = self.client.replace_state("WorldState")
             map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
             state.change_map(map_name)
-            self.game.push_state(
+            self.client.push_state(
                 state_name="InputMenu",
                 prompt=T.translate("input_name"),
                 callback=set_player_name,
                 escape_key_exits=False,
             )
-            self.game.push_state("FadeInTransition")
+            self.client.push_state("FadeInTransition")
 
         def options():
             pass
 
         def exit_game():
-            self.game.exit = True
+            self.client.exit = True
 
         menu_items_map = (
             ('menu_new_game', new_game),

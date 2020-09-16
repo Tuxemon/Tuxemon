@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Power Slash",
+  "animation": "slash_power",
   "category": "physical",
   "effects": [
     "damage"

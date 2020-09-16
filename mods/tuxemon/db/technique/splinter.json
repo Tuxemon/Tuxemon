@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Snake Right 64px",
+  "animation": "snake right 64px",
   "category": "physical",
   "effects": [
     "damage"

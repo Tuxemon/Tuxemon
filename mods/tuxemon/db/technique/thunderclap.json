@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Thunderstrike",
+  "animation": "thunderstrike",
   "category": "physical",
   "effects": [
     "damage"

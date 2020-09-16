@@ -1,6 +1,6 @@
 {
   "accuracy": 0.5,
-  "animation": "Spurt",
+  "animation": "water_spurt",
   "category": "physical",
   "effects": [
     "damage"

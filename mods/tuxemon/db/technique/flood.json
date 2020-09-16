@@ -1,6 +1,6 @@
 {
   "accuracy": 0.5,
-  "animation": "Shot",
+  "animation": "shot",
   "category": "physical",
   "effects": [
     "damage"

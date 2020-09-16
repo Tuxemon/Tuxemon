@@ -1,4 +1,6 @@
 {
     "slug": "37707_female",
-    "sprite_name": "37707_female"
+    "sprite_name": "37707_female",
+    "combat_front": "femaletrainer_front.png",
+    "combat_back": "maple_back.png"
 }

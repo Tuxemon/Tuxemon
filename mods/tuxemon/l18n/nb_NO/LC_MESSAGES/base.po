@@ -1,0 +1,17 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Tuxemon Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid "PROJECT DESCRIPTION\n"
+msgstr "<<MISSING>>"
+"Project-Id-Version: Insert package version from somewhere\n"
+"Report-Msgid-Bugs-To: leif.theden@gmail.com\n"
+"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
+"PO-Revision-Date: 2018-10-07 20:58:38+0000\n"
+"Last-Translator:\n"
+"Language-Team: Norwegian Bokmål\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"

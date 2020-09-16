@@ -34,9 +34,9 @@ from __future__ import unicode_literals
 
 import logging
 
+from tuxemon.core import audio
 from tuxemon.core import prepare
 from tuxemon.core import state
-from tuxemon.core import tools
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ class SplashState(state.State):
 
     def fade_out(self):
         self.fading_out = True
-        self.game.push_state("FadeOutTransition", caller=self)
+        self.client.push_state("FadeOutTransition", caller=self)
 
     def startup(self, **kwargs):
         # this task will skip the splash screen after some time
@@ -68,7 +68,7 @@ class SplashState(state.State):
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
         cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
 
-        self.ding = tools.load_sound("sound_ding")
+        self.ding = audio.load_sound("sound_ding")
         self.ding.play()
 
     def process_event(self, event):
@@ -82,7 +82,7 @@ class SplashState(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         # Skip the splash screen if a key is pressed.

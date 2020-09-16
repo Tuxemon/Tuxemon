@@ -32,14 +32,14 @@ class PlayerAtCondition(EventCondition):
     """
     name = "player_at"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Checks to see if the player is at a current position on the map.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -63,9 +63,7 @@ class PlayerAtCondition(EventCondition):
         }
 
         """
-
-        # Get the player object from the game.
-        player = game.player1
+        player = session.player
 
         # Get the condition's rectangle area. If we're on a tile in that area, then this condition
         # should return True.

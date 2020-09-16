@@ -30,7 +30,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 # TODO: move to some other place?
 def collide(condition, tile_position):
     """
-    :type condition: core.event.MapCondition
+    :type condition: tuxemon.core.event.MapCondition
     :param tile_position: tuple
     :rtype: bool
     """
@@ -54,12 +54,12 @@ class PlayerMovedCondition(EventCondition):
     """
     name = "player_moved"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Checks to see the player has just moved into this tile. Using this condition will
         prevent a condition like "player_at" from constantly being true every single frame.
 
-        :type game: core.control.Control
-        :type condition: core.event.MapCondition
+        :type session: tuxemon.core.session.Session
+        :type condition: tuxemon.core.event.MapCondition
 
         :rtype: bool
 
@@ -81,13 +81,13 @@ class PlayerMovedCondition(EventCondition):
 
         """
         # TODO: Eventually generalize command for checking players and npcs
-        return self.generic_test(game, condition, game.player1)
+        return self.generic_test(session, condition, session.player)
 
-    def generic_test(self, game, condition, npc):
+    def generic_test(self, session,  condition, npc):
         """ Eventually, this can be made into own condition or something
 
-        :type game: core.control.Control
-        :type condition: core.event.MapCondition
+        :type session: tuxemon.core.session.Session
+        :type condition: tuxemon.core.event.MapCondition
 
         :rtype: bool
         """
@@ -101,7 +101,7 @@ class PlayerMovedCondition(EventCondition):
         collide_next = False if stopped else collide(condition, move_destination)
 
         # persist is data shared for all player_moved EventConditions
-        persist = self.get_persist(game)
+        persist = self.get_persist(session)
 
         # only test if tile was moved into
         # get previous destination for this particular condition

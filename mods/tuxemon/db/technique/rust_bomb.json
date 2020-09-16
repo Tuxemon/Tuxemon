@@ -1,6 +1,6 @@
 {
   "accuracy": 0.5,
-  "animation": "Puff",
+  "animation": "puff",
   "category": "physical",
   "effects": [
     "damage"

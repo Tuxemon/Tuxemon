@@ -32,14 +32,14 @@ class ButtonReleasedCondition(EventCondition):
     """
     name = "button_released"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a particular key was released
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean

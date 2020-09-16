@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Bolt",
+  "animation": "bolt",
   "category": "physical",
   "effects": [
     "damage"

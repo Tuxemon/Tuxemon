@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" nextobjectid="40">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -52,27 +52,27 @@
    </animation>
   </tile>
  </tileset>
- <layer name="Tile Layer 1" width="40" height="20">
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzNll0OgjAQhMsB0EP6dxAFD6I8gidRTyJcwSVpk804CwVq9GGSRtvu12Vn29o514huovqL41qJzTmKTl6F/69JFHsp30Z0nsB3Fz1Ez0R8WmyOzl0M30vUijr4vT/ndoJ2M/lKvzaGr1HCfcZUzOTTOWRr8sy5lWid/Z7vQfSEvDG+vehKdEjM1xJ1fj3WG/OY9hKegfEF/26MfbEGV9mn+u+KPcn6dlirjA+9bOXMisFyPlZvMXyls72NOevr5WDEiOHDeqsi+GK19/uxPhjLV5A5S/nCmStj7Tf4Lo772vL3UP9KzRe8rPsUetd6BwSx/qTjWb63+HQvD6zYpyw+fY+F+xNjDr1zMNdj74Cc9KmhHo8eR0+n5rPqZM4dGTw9xKd7SjWTD8foH+x5mo29D2I8kXKM+dRs/8CH+dRsvd5T0Obh
+   eAHNld1twkAQhJ0CkhSJSQpJQgrBPAKVYCqxaSEzEiONRmdjE6zkYXSL2Z9vd8+wr6rqAB2h/YI2c0ulWh/4/vOqrysHuZZkcg6x8fTntFfQNzSV7wTfFjpDmeuefpyttCufHRlvza+DTw9dgo991jO0hq+zDfWWfBvEMXZov85HHynzaB9DJ+dwD5/PsNTT81NVvUCvkNh4/gVfi7op3jvnku18b/BpCnrHM83zEfPrkS/Fe8e5rqDaVHrHTvi+hdST91DiY94j5Lk9r3rTHeQeU9wr83gtxelU7Q5+7I89HSJGPnxOJuYU31jurOHxsrOWYnSq9hgfZ1APKGfG++J3g3VUQ0zsTXby5X3bwZf+Y3zq5dbJ3MyXM53DR1/tSD38lk89ky3nMXd+U/m2qNWMyHfInOSSlp7fCbVa0xk2Z+xyhuQjZ/Izls+1uxXs+iq/w0Pz89/yDnG96QLb2Wg73waf1xDrU6ydNZPP4/1eD/F5b2LV71X+/9A385OxNA/WZs1H8jmrbJ6u5PMZuK13eoxP71eDGjtId0C1M3bK8y3yMJ/k9018YmO+rOH9TdnpFKYxH69HPmf7D3w5T+6JXNIPU9Dm4Q==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="40" height="20">
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzFlusJwyAUhSX+7eNvJmmWCe0m3aF0iDadxu7Q7lGFCOZw7iNQyAHRGB+f13vV1IfwzqnokfNnv11+iCEc47K+lovSzLpVfspsQ1zW13LL+YJUJdUHqGN9pDFwnCq0beVk80pzSpysndSGfRehbS0m1DkqPwVGbV+Y0P/YeBbnWj5k0vY4Cfuq8Y1Ou2l8nrWj3aQxvfN7+Biv1J/5nWc+bMu+P10I304e17v+1v88MeXVLvvAnviBJyZaJYhfz7qkf2vsXmTF/xhl+0lzWX7j5cMYm+aEQvtpbIxB2y8v/ySUi9B+Vtxb54PVlzFrfMx+mjx3L9Z72kn7W213JfFrMbKyxrLmTK1ibxeLzWK0eL187N3XanCcX/+4nyWh7Wp+m8/9S+a7d9u/qdk7qz07t35T/wA/Nx3M
+   eAHFlslNBFEMRFtwZbkSCSSDIBNyQATBEs2QA+SBC/GkJ6vdM+LSX/rjrVyuMT0tDjfL8lk357XsW9297NX5slzX9Xz86Dv8ad3L3pa2u7qej2+dH6XVN9pznIvvQy0515ynRg5rHnz0YNFpbvhs8eGe8B2XmLPVAwY9WPKx9GNdw3+ov8MpJxzTpX+ak92xP2PNl/zUT8+WNZd58KmvcWR37A98cPSQw6Z2f+Legs0xFzzkqP8C20ffm8v0w+da98H2PDF1uBzbB49lb8RYeoi3LDPBEH+dLct3XR/z4oM3zr6fv47tsfuO+Rf1DFyuPAfmtD/x+fkLJj3cqWfiPdbX+Y79/vOcT/ubZpG39dzkTzn9N/ZeTbn99P2lzuyOJbaGyZ94jIfPuuyn3vdnbWtc5Cac68zH0gOGvDXZT31tf/St2WkG+d7TtUy46OrawsU78Kne052rzyL2jO6DiXXN8alz0sM7EJ3JbR24PXvLNxc4OFxb860Jncbl/7B+zM28YJzvPf+N0YRO7PPfe/+x9L2UT34vi05svq/fneT3sj8/Nx3M
   </data>
  </layer>
- <layer name="Tile Layer 3" width="40" height="20">
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJyrk2BgqAfiwQ7qBpk7Ye4ZbO4aSqBuNPxGwQCCutF0RxEYzb+UgdHwowyMhh35YKiEHS53DnTZPVTCb7ADABp7D94=
+   eAGrk2BgqAfiwQ7qBpk7Ye6B0YM9/Aaj+0BhNxp+gzFmRoabQGlvFJAfAqP5l/ywA+kcDT/Kw28otF0o8yVtdA+VeheXO0HiAwlwuWsg3TQU7QYAGnsP3g==
   </data>
  </layer>
- <layer name="Above Player" width="40" height="20">
+ <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDDVQJ8HAUC8x0K4Y+mA0HEfBKBgFtASjZQzlAFcYwsTpTY8C6gAA2D0WWA==
+   eAFjYBgFoyEwGgJDLQTqJBgY6oF4FFAWAqPhSFn4jeoeDYHREMAfAqNlDP7wIUYWVxjCxOlNE+PmUTWEQwAA2D0WWA==
   </data>
  </layer>
- <objectgroup color="#ff0000" name="Collisions">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="640" height="32"/>
   <object id="2" type="collision" x="96" y="288" width="544" height="32"/>
   <object id="3" type="collision" x="0" y="32" width="32" height="80"/>
@@ -109,27 +109,27 @@
   <object id="34" type="collision" x="576" y="144" width="16" height="64"/>
   <object id="35" type="collision" x="576" y="240" width="16" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events">
   <object id="36" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_mystic_island"/>
-    <property name="cond1" value="not music_playing music_mystic_island"/>
+    <property name="act10" value="play_music music_mystic_island"/>
+    <property name="cond10" value="not music_playing music_mystic_island"/>
    </properties>
   </object>
   <object id="37" name="Teleport to Cotton Town" type="event" x="0" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_town.tmx,39,7,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport cotton_town.tmx,39,7,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="38" name="Teleport to Cotton Town" type="event" x="0" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_town.tmx,39,8,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport cotton_town.tmx,39,8,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="39" name="Player Spawn" type="event" x="32" y="112" width="16" height="16"/>

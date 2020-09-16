@@ -53,6 +53,8 @@ import time
 import pygame
 
 # setting up constants
+from tuxemon.compat import Rect
+
 PLAYING = 'playing'
 PAUSED = 'paused'
 STOPPED = 'stopped'
@@ -355,11 +357,11 @@ class PygAnimation(object):
         return (maxWidth, maxHeight)
 
     def get_rect(self):
-        # Returns a pygame.Rect object for this animation object.
+        # Returns a Rect object for this animation object.
         # The top and left will be set to 0, 0, and the width and height
         # will be set to what is returned by getMaxSize().
         maxWidth, maxHeight = self.getMaxSize()
-        return pygame.Rect(0, 0, maxWidth, maxHeight)
+        return Rect(0, 0, maxWidth, maxHeight)
 
     def anchor(self, anchorPoint=NORTHWEST):
         # If the Surface objects are of different sizes, align them all to a

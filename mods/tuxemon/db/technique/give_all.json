@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Fire Lion Front",
+  "animation": "fire lion front",
   "category": "physical",
   "effects": [
     "damage"

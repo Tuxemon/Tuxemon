@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Explosion",
+  "animation": "explosion_small",
   "category": "physical",
   "effects": [
     "damage"

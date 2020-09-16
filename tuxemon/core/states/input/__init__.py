@@ -9,5 +9,4 @@ from __future__ import unicode_literals
 
 from tuxemon.core.menu.input import InputMenu
 
-
 assert InputMenu

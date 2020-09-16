@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="123">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="123">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -113,372 +113,365 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="34" name="encounter 2" type="event" x="144" y="144" width="16" height="48">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="35" name="encounter 3" type="event" x="32" y="176" width="112" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="48" name="encounter 5" type="event" x="304" y="304">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
    <polygon points="0,0 0,128 128,128 128,0"/>
   </object>
   <object id="60" name="encounter" type="event" x="480" y="496" width="96" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="61" name="encounter" type="event" x="464" y="512" width="128" height="32">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="62" name="encounter" type="event" x="560" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="63" name="encounter" type="event" x="592" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="64" name="encounter" type="event" x="576" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="65" name="encounter" type="event" x="560" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="66" name="encounter" type="event" x="592" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="67" name="encounter" type="event" x="576" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="68" name="encounter" type="event" x="576" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="69" name="encounter" type="event" x="592" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="70" name="encounter" type="event" x="560" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="71" name="encounter" type="event" x="576" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="72" name="encounter" type="event" x="592" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="73" name="encounter" type="event" x="560" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="74" name="encounter" type="event" x="576" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="75" name="encounter" type="event" x="592" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="76" name="encounter" type="event" x="560" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="77" name="encounter" type="event" x="576" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="78" name="encounter" type="event" x="592" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="79" name="encounter" type="event" x="560" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="80" name="encounter" type="event" x="576" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="81" name="encounter" type="event" x="592" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="82" name="encounter" type="event" x="560" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="83" name="encounter" type="event" x="576" y="336" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="84" name="encounter" type="event" x="592" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="85" name="encounter" type="event" x="560" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter default_encounter"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_moved"/>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
   <object id="86" name="Teleport to Route 2" type="event" x="176" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route2.tmx,11,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route2.tmx,11,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="87" name="Teleport to Route 2" type="event" x="160" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route2.tmx,10,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route2.tmx,10,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="88" name="Teleport to Leather Town" type="event" x="624" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport leather_town.tmx,0,31,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport leather_town.tmx,0,31,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="89" name="Teleport to Leather Town" type="event" x="624" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport leather_town.tmx,0,32,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport leather_town.tmx,0,32,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="90" name="Teleport to Leather Town" type="event" x="624" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport leather_town.tmx,0,33,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport leather_town.tmx,0,33,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="91" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_city_park"/>
-    <property name="cond1" value="not music_playing music_city_park"/>
+    <property name="act10" value="play_music music_city_park"/>
+    <property name="cond10" value="not music_playing music_city_park"/>
    </properties>
   </object>
   <object id="101" name="Sign: Achievement Maniac's House" type="event" x="512" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Achievement Maniac's House: Closed"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog_chain Achievement Maniac's House: Closed"/>
+    <property name="act20" value="dialog_chain ${{end}}"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="102" name="Sign: Leather Town" type="event" x="608" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Leather Town: Proof Beauty and Mining Can Coexist"/>
-    <property name="act2" value="dialog_chain &lt;- City Park ---- Leather Town ---&gt;"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog_chain Leather Town: Proof Beauty and Mining Can Coexist"/>
+    <property name="act20" value="dialog_chain &lt;- City Park ---- Leather Town ---&gt;"/>
+    <property name="act30" value="dialog_chain ${{end}}"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="103" name="Player Spawn" type="event" x="80" y="592" width="16" height="16"/>
   <object id="111" name="ripjimmy" type="event" x="32" y="400" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog ripjimmy"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog ripjimmy"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="112" name="make npcs" type="event" x="48" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc knight1,12,13,knight,stand"/>
-    <property name="act2" value="npc_face knight1,right"/>
-    <property name="act3" value="set_variable firstgo:no"/>
-    <property name="cond1" value="not npc_exists knight1"/>
-    <property name="cond2" value="not variable_set firstgo:gone"/>
+    <property name="act10" value="create_npc knight1,12,13,knight,stand"/>
+    <property name="act20" value="npc_face knight1,right"/>
+    <property name="act30" value="set_variable firstgo:no"/>
+    <property name="cond10" value="not npc_exists knight1"/>
+    <property name="cond20" value="not variable_set firstgo:gone"/>
    </properties>
   </object>
   <object id="113" name="hurrytalk" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face knight1,left"/>
-    <property name="act2" value="translated_dialog iamknight"/>
-    <property name="act3" value="set_variable firstgo:yes"/>
-    <property name="act4" value="translated_dialog iamknight2"/>
-    <property name="act5" value="translated_dialog_choice mistaken:thats_me,cityparkchoice"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is variable_set firstgo:no"/>
+    <property name="act10" value="npc_face knight1,left"/>
+    <property name="act20" value="translated_dialog iamknight"/>
+    <property name="act30" value="set_variable firstgo:yes"/>
+    <property name="act40" value="translated_dialog iamknight2"/>
+    <property name="act50" value="translated_dialog_choice mistaken:thats_me,cityparkchoice"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond40" value="is variable_set firstgo:no"/>
    </properties>
   </object>
   <object id="115" name="hurrytalkmistaken" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog mistakenknight"/>
-    <property name="act3" value="set_variable firstgo:gone"/>
-    <property name="act4" value="set_variable secondgo:yes"/>
-    <property name="cond1" value="is variable_set firstgo:yes"/>
-    <property name="cond2" value="is variable_set cityparkchoice:mistaken"/>
+    <property name="act10" value="translated_dialog mistakenknight"/>
+    <property name="act20" value="set_variable firstgo:gone"/>
+    <property name="act30" value="set_variable secondgo:yes"/>
+    <property name="cond10" value="is variable_set firstgo:yes"/>
+    <property name="cond20" value="is variable_set cityparkchoice:mistaken"/>
    </properties>
   </object>
   <object id="116" name="hurrytalkyes" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable firstgo:gone"/>
-    <property name="act2" value="translated_dialog thatsmeknight"/>
-    <property name="act3" value="set_variable secondgo:yes"/>
-    <property name="cond1" value="is variable_set firstgo:yes"/>
-    <property name="cond2" value="is variable_set cityparkchoice:thats_me"/>
+    <property name="act10" value="set_variable firstgo:gone"/>
+    <property name="act20" value="translated_dialog thatsmeknight"/>
+    <property name="act30" value="set_variable secondgo:yes"/>
+    <property name="cond10" value="is variable_set firstgo:yes"/>
+    <property name="cond20" value="is variable_set cityparkchoice:thats_me"/>
    </properties>
   </object>
   <object id="117" name="hurrytalknow" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face knight1,up"/>
-    <property name="act2" value="wait 0.4"/>
-    <property name="act3" value="npc_face knight1,down"/>
-    <property name="act4" value="wait 0.4"/>
-    <property name="act5" value="npc_face knight1,left"/>
-    <property name="act6" value="translated_dialog quicklyknight"/>
-    <property name="act7" value="set_variable secondgo:gone"/>
-    <property name="act8" value="set_variable iamsecret:yes"/>
-    <property name="cond1" value="is variable_set secondgo:yes"/>
+    <property name="act10" value="npc_face knight1,up"/>
+    <property name="act20" value="wait 0.4"/>
+    <property name="act30" value="npc_face knight1,down"/>
+    <property name="act40" value="wait 0.4"/>
+    <property name="act50" value="npc_face knight1,left"/>
+    <property name="act60" value="translated_dialog quicklyknight"/>
+    <property name="act70" value="set_variable secondgo:gone"/>
+    <property name="act80" value="set_variable iamsecret:yes"/>
+    <property name="cond10" value="is variable_set secondgo:yes"/>
    </properties>
   </object>
   <object id="118" name="hurrytalksecret" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog quicklyknight2"/>
-    <property name="act2" value="npc_face knight1,up"/>
-    <property name="act3" value="wait 0.2"/>
-    <property name="act4" value="npc_face knight1,down"/>
-    <property name="act5" value="wait 0.2"/>
-    <property name="act6" value="npc_face knight1,left"/>
-    <property name="act7" value="translated_dialog quicklyknight3"/>
-    <property name="act8" value="npc_face knight1,right"/>
-    <property name="act9" value="wait 0.3"/>
-    <property name="act91" value="npc_face knight1,left"/>
-    <property name="act92" value="translated_dialog quicklyknight4"/>
-    <property name="act93" value="set_variable iamsecret:ohno"/>
-    <property name="cond1" value="is variable_set iamsecret:yes"/>
+    <property name="act010" value="translated_dialog quicklyknight2"/>
+    <property name="act020" value="npc_face knight1,up"/>
+    <property name="act030" value="wait 0.2"/>
+    <property name="act040" value="npc_face knight1,down"/>
+    <property name="act050" value="wait 0.2"/>
+    <property name="act060" value="npc_face knight1,left"/>
+    <property name="act070" value="translated_dialog quicklyknight3"/>
+    <property name="act080" value="npc_face knight1,right"/>
+    <property name="act090" value="wait 0.3"/>
+    <property name="act100" value="npc_face knight1,left"/>
+    <property name="act110" value="translated_dialog quicklyknight4"/>
+    <property name="act120" value="set_variable iamsecret:ohno"/>
+    <property name="cond10" value="is variable_set iamsecret:yes"/>
    </properties>
   </object>
   <object id="119" name="hurrytalkohno" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act2" value="npc_speed knight1, 5"/>
-    <property name="act3" value="pathfind knight1, 3,15"/>
-    <property name="act4" value="translated_dialog omnichannelarrives"/>
-    <property name="act5" value="set_variable omnichannelhere:here"/>
-    <property name="act6" value="player_face left"/>
-    <property name="cond1" value="is variable_set iamsecret:ohno"/>
-   </properties>
-  </object>
-  <object id="122" name="omnichannel npc 1" type="event" x="0" y="256" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc "/>
-    <property name="cond1" value="is variable_set omnichannelhere:here"/>
-    <property name="cond2" value="not npc_exists"/>
+    <property name="act10" value="npc_speed knight1, 5"/>
+    <property name="act20" value="pathfind knight1, 3,15"/>
+    <property name="act30" value="translated_dialog omnichannelarrives"/>
+    <property name="act40" value="set_variable omnichannelhere:here"/>
+    <property name="act50" value="player_face left"/>
+    <property name="cond10" value="is variable_set iamsecret:ohno"/>
    </properties>
   </object>
  </objectgroup>

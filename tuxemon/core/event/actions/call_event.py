@@ -38,8 +38,8 @@ class CallEventAction(EventAction):
     ]
 
     def start(self):
-        event_engine = self.game.event_engine
-        events = self.game.events
+        event_engine = self.session.client.event_engine
+        events = self.session.client.events
 
         for e in events:
             if e.id == self.parameters.event_id:

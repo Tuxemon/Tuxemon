@@ -43,13 +43,13 @@ class NpcFaceAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
         direction = self.parameters.direction
         if direction not in dirs2:
             if direction == "player":
-                target = self.game.player1
+                target = self.session.player
             else:
-                target = get_npc(self.game, direction)
+                target = get_npc(self.session, direction)
             direction = get_direction(npc.tile_pos, target.tile_pos)
 
         npc.facing = direction

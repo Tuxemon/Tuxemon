@@ -28,7 +28,8 @@ import logging
 
 from tuxemon.core.locale import process_translate_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog, get_avatar
+from tuxemon.core.tools import open_dialog
+from tuxemon.core.graphics import get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -70,20 +71,20 @@ class TranslatedDialogAction(EventAction):
             if "=" in param:
                 replace.append(param)
             else:
-                avatar = get_avatar(self.game, param)
+                avatar = get_avatar(self.session, param)
 
         self.open_dialog(
             process_translate_text(
-                self.game,
+                self.session,
                 key,
                 replace,
             ), avatar
         )
 
     def update(self):
-        if self.game.get_state_name("DialogState") is None:
+        if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()
 
     def open_dialog(self, pages, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.game, pages, avatar)
+        open_dialog(self.session, pages, avatar)

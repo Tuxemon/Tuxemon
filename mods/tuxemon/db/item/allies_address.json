@@ -5,10 +5,6 @@
     "use_item": "combat_used_x",
     "use_success": "generic_success",
     "use_failure": "generic_failure",
-    "effects": [
-        "heal"
-      ],
-    "power": 0,
     "target": {
         "enemy monster": 0,
         "enemy team": 0,
@@ -18,9 +14,9 @@
         "own trainer": 0,
         "item": 0
       },
-    "type": "Consumable",
+    "type": "KeyItem",
     "usable_in": [
-    "WorldState"
+    ""
   ]
 }
   

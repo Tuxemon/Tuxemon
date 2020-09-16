@@ -24,10 +24,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from tuxemon.core.event import MapCondition
 from tuxemon.core.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.core.event.conditions.player_facing_tile import PlayerFacingTileCondition
 from tuxemon.core.event.eventcondition import EventCondition
-from tuxemon.core.map import MapCondition
 
 
 class ToUseTileCondition(EventCondition):
@@ -35,13 +35,13 @@ class ToUseTileCondition(EventCondition):
     """
     name = "to_use_tile"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: The condition details.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: NamedTuple
 
         :rtype: Boolean
@@ -62,9 +62,9 @@ class ToUseTileCondition(EventCondition):
             ...
         }
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(game, condition)
+        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, condition)
         button_pressed = ButtonPressedCondition().test(
-            game,
+            session,
             MapCondition(
                 type="button_pressed",
                 parameters=[

@@ -14,10 +14,9 @@ jobs:
     - os: linux
       dist: focal
       env: BUILD_TYPE=wine_pyinstaller
-    - if: 0  # we want to disable windows builds b/c they take 30 min. and fail
-      os: windows
-      language: bash
-      env: BUILD_TYPE=windows
+#    - os: windows
+#      language: bash
+#      env: BUILD_TYPE=windows
     - os: linux
       dist: trusty
       language: android

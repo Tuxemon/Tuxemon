@@ -34,7 +34,6 @@ jobs:
           - build-tools-28.0.2
           - android-27
 install:
-  - if [ "$BUILD_TYPE" = "android" ]; then buildconfig/install_android.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi

@@ -1829,6 +1829,26 @@ msgid "bobtalk"
 msgstr "It would be nice if more people like you came around to say Hi...\n"
 "By the way, Hello! Have a good day! Today or Tomorrow or any day will be great!"
 
+msgid "professorexists"
+msgstr "I'll take 12 potions please. .... ....Thanks Ben.\n"
+
+msgid "professorexists2"
+msgstr "Why hello there! You must be Callie's kid! I've heard so much about you from your mom.\n"
+"What brings you in here for?\n"
+".... .... ....\n"
+"Potions? Of course, you always need those!\n"
+"Here, have a few on the house, courtesy of me."
+
+msgid "potions"
+"Received 2 potions!
+
+msgid "professorexists3"
+msgstr "Oh! Excuse my manners, I can't believe I never introduced myself!\n"
+"My name is Kay Wren, better known as the Tuxemon Professor.\n"
+"For years now I've been the only person in the Fondent Region allowed to research Tuxemon.\"
+"However, I have a feeling that may change in the near future!\n"
+"We'd better get back home and watch the second announcement, Come on!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

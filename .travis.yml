@@ -18,15 +18,13 @@ jobs:
 #      language: bash
 #      env: BUILD_TYPE=windows
     - os: linux
-      dist: trusty
+      dist: focal
       language: android
       env:
         - BUILD_TYPE=android
-        # - ANDROIDSDK="$HOME/Documents/android-sdk-27"
-        # - ANDROIDNDK="$HOME/Documents/android-ndk-r19b"
-        - ANDROIDAPI="27"
+        - ANDROIDNDK="$ANDROID_HOME/ndk_bundle"
+        - ANDROIDAPI="27"  # SDK version
         - NDKAPI="21"
-        - ANDROIDNDKVER="r19b"
       android:
         components:
           - tools

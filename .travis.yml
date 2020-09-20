@@ -3,6 +3,11 @@ env:
   global:
     - SDL_VIDEODRIVER=dummy
     - SDL_AUDIODRIVER=disk
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache/
 jobs:
   include:
     - os: linux
@@ -19,18 +24,14 @@ jobs:
 #      env: BUILD_TYPE=windows
     - os: linux
       dist: focal
-      language: android
+      language: minimal
       env:
+        - ANDROID_TOOLS=commandlinetools-linux-6609375_latest.zip
         - BUILD_TYPE=android
-        - ANDROIDNDK="$ANDROID_HOME/ndk_bundle"
+        - ANDROID_HOME=/usr/local/android_sdk
+        - ANDROIDNDK=/usr/local/android_sdk/ndk_bundle"
         - ANDROIDAPI="27"  # SDK version
         - NDKAPI="21"
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.2
-          - android-27
 install:
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi

@@ -34,6 +34,7 @@ from __future__ import unicode_literals
 
 import logging
 import random
+import uuid
 
 from tuxemon.core import ai, fusion, graphics
 from tuxemon.core.db import db
@@ -129,6 +130,7 @@ class Monster(object):
         self.name = ""  # The display name of the Tuxemon
         self.category = ""
         self.description = ""
+        self.instance_id = uuid.uuid4()  # unique id for this specific, individual tuxemon
 
         self.armour = 0
         self.dodge = 0
@@ -481,6 +483,8 @@ class Monster(object):
             if getattr(self, attr)
         }
 
+        save_data["instance_id"] = str(self.instance_id)
+
         if self.status:
             save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
@@ -513,6 +517,8 @@ class Monster(object):
                 self.body.set_state(value)
             elif key == "moves" and value:
                 self.moves = [Technique(slug) for slug in value]
+            elif key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 

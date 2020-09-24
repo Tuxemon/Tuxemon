@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.monster Tuxemon monster module
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import random
@@ -103,14 +98,14 @@ MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
 # class definition for tuxemon flairs:
-class Flair(object):
+class Flair:
     def __init__(self, category, name):
         self.category = category
         self.name = name
 
 
 # class definition for first active tuxemon to use in combat:
-class Monster(object):
+class Monster:
     """A class for a Tuxemon monster object. This class acts as a skeleton for
     a Tuxemon, fetching its details from a database.
 
@@ -341,7 +336,7 @@ class Monster(object):
         # Learn New Moves
         for move in self.moveset:
             if move["level_learned"] >= self.level:
-                logger.info("%s learned technique %s!" % (self.name, move["technique"]))
+                logger.info("{} learned technique {}!".format(self.name, move["technique"]))
                 technique = Technique(move["technique"])
                 self.learn(technique)
 
@@ -445,7 +440,7 @@ class Monster(object):
                 full_path = graphics.transform_resource_filename(path)
                 if full_path:
                     return full_path
-        except IOError:
+        except OSError:
             logger.debug("Could not find monster sprite {}".format(sprite))
             return MISSING_IMAGE
 

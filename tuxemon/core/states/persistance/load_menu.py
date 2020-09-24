@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 
 from tuxemon.core import save
@@ -16,7 +11,7 @@ class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
         if 'selected_index' not in kwargs:
             kwargs['selected_index'] = save.slot_number or 0
-        super(LoadMenuState, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
         slot = kwargs.get("load_slot")
         if slot:
             self.selected_index = slot - 1

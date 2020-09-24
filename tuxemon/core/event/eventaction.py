@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -23,10 +22,6 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from collections import namedtuple
@@ -36,7 +31,7 @@ from tuxemon.core.tools import cast_values
 logger = logging.getLogger(__name__)
 
 
-class EventAction(object):
+class EventAction:
     """ EventActions are executed during gameplay.
 
     EventAction subclasses implement "actions" defined in Tuxemon maps.

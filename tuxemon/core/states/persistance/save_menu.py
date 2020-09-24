@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 import os
 from base64 import b64decode
@@ -29,7 +24,7 @@ class SaveMenuState(PopUpMenu):
     def startup(self, *items, **kwargs):
         if 'selected_index' not in kwargs:
             kwargs['selected_index'] = save.slot_number or 0
-        super(SaveMenuState, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
 
     def initialize_items(self):
         empty_image = None

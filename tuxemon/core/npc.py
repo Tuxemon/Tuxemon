@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 # core.npc
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
@@ -88,7 +83,7 @@ class NPC(Entity):
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
     def __init__(self, npc_slug, sprite_name=None,combat_front=None,combat_back=None):
-        super(NPC, self).__init__()
+        super().__init__()
 
         # load initial data from the npc database
         npc_data = db.lookup(npc_slug, table="npc")
@@ -223,10 +218,10 @@ class NPC(Entity):
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
             images = [
-                'sprites/%s_%s.%s.png' % (
+                'sprites/{}_{}.{}.png'.format(
                     self.sprite_name,
                     anim_type,
-                    str(num).rjust(3, str('0'))
+                    str(num).rjust(3, '0')
                 )
                 for num in range(4)
             ]
@@ -504,7 +499,7 @@ class NPC(Entity):
         self.network_notify_location_change()
 
     def network_notify_start_moving(self, direction):
-        """ WIP guesswork ¯\_(ツ)_/¯
+        r""" WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -512,7 +507,7 @@ class NPC(Entity):
             self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
 
     def network_notify_stop_moving(self):
-        """ WIP guesswork ¯\_(ツ)_/¯
+        r""" WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -520,7 +515,7 @@ class NPC(Entity):
             self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
 
     def network_notify_location_change(self):
-        """ WIP guesswork ¯\_(ツ)_/¯
+        r""" WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """

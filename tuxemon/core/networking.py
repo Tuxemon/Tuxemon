@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 """This module contains the Tuxemon server and client.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import pprint
@@ -812,7 +807,7 @@ class TuxemonClient():
         self.client.event(event_data)
 
 
-class DummyNetworking(object):
+class DummyNetworking:
     def __init__(self, *args, **kwargs):
         """The dummy networking object is used when networking is not supported.
         """

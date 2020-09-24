@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 # core.ai Artificial intelligence module.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from random import choice
@@ -42,7 +37,7 @@ logger = logging.getLogger(__name__)
 # Class definition for an AI model.
 # TODO: use ABC meta.  impl. depends on six/future decision
 # TODO: allow AI to target self or own team
-class AI(object):
+class AI:
     """ Base class for an AI model object.
     """
 

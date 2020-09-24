@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division, print_function
-from __future__ import unicode_literals
-
 import logging
 
 from tuxemon.core.menu.interface import MenuItem
@@ -13,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class QuantityMenu(Menu):
     def startup(self, *items, **kwargs):
-        super(QuantityMenu, self).startup()
+        super().startup()
         self.quantity = kwargs.get("quantity", 1)
         self.max_quantity = kwargs.get("max_quantity")
         self.callback = kwargs.get("callback")

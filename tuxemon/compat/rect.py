@@ -5,7 +5,7 @@ def intersect(r1, r2):
              (r1.top <= r2.top < r1.bottom)))
 
 
-class Rect(object):
+class Rect:
     """
     Pure Python Rect class that follows the PyGame API
 

@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from tuxemon.core import tools
 from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import MenuItem
@@ -34,7 +29,7 @@ class ItemMenuState(Menu):
         self.sprites.add(self.item_sprite)
 
         # do not move this line
-        super(ItemMenuState, self).startup(**kwargs)
+        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed
@@ -205,7 +200,7 @@ class ShopMenuState(Menu):
         self.sprites.add(self.item_sprite)
 
         # do not move this line
-        super(ShopMenuState, self).startup(**kwargs)
+        super().startup(**kwargs)
         self.menu_items.line_spacing = tools.scale(7)
 
         # this is the area where the item description is displayed

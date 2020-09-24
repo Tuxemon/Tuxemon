@@ -12,7 +12,6 @@ def build_translations():
 
     T.collect_languages()
 
-
 class InstallAndBuildTranslations(install):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

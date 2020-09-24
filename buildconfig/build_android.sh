@@ -24,7 +24,7 @@ yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" >/dev/null
 yes | sdkmanager "ndk-bundle"
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python3 get-pip.py
-python3 -m pip install setuptools wheel pygame==2.0.0.dev10 Cython
+python3 -m pip install setuptools wheel pygame==2.0.0.dev12 Cython
 python3 -m pip install git+https://github.com/pygame/python-for-android.git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
@@ -33,5 +33,6 @@ p4a apk --name Tuxemon \
   --private tuxemon \
   --version 0.0 \
   --package=org.tuxemon.Tuxemon \
-  --requirements=openssl,libffi,python3==3.7.1,pygame==2.0.0.dev10 \
-  --bootstrap=sdl2
+  --requirements=openssl,libffi,python3==3.7.1,pygame==2.0.0.dev12 \
+  --bootstrap=sdl2,
+  --orientation=landscape,

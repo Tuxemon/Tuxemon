@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from functools import partial
 
 from tuxemon.compat import Rect
@@ -19,7 +12,7 @@ class InputMenu(Menu):
     background = None
     draw_borders = False
 
-    chars = u"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
     alphabet_length = 26
 
     def startup(self, *items, **kwargs):
@@ -34,7 +27,7 @@ class InputMenu(Menu):
         :param kwargs:
         :return:
         """
-        super(InputMenu, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
         self.input_string = kwargs.get("initial", "")
 
         # area where the input will be shown
@@ -88,7 +81,7 @@ class InputMenu(Menu):
         :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
-        event = super(InputMenu, self).process_event(event)
+        event = super().process_event(event)
 
         if event and event.pressed:
             if event.button == events.BACKSPACE:

@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 import math
 from itertools import product
@@ -40,7 +35,7 @@ class GraphicBox(Sprite):
     The border graphic must contain 9 tiles laid out in a box.
     """
     def __init__(self, border=None, background=None, color=None, fill_tiles=False):
-        super(GraphicBox, self).__init__()
+        super().__init__()
         self._background = background
         self._color = color
         self._fill_tiles = fill_tiles
@@ -193,13 +188,11 @@ def constrain_width(text, font, width):
 
 
 def iterate_words(text):
-    for word in text.split(" "):
-        yield word
+    yield from text.split(" ")
 
 
 def iterate_lines(text):
-    for line in text.strip().split("\n"):
-        yield line
+    yield from text.strip().split("\n")
 
 
 def iterate_word_lines(text):

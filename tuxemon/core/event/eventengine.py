@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,10 +23,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from contextlib import contextmanager
@@ -43,7 +38,7 @@ from tuxemon.core.platform.const import buttons
 logger = logging.getLogger(__name__)
 
 
-class RunningEvent(object):
+class RunningEvent:
     """ Manage MapEvents that are used during gameplay
 
     Running events are considered to have all conditions satisfied
@@ -87,7 +82,7 @@ class RunningEvent(object):
         return action
 
 
-class EventEngine(object):
+class EventEngine:
     """ A class for the event engine. The event engine checks to see if a group of
     conditions have been met and then executes a set of actions.
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -31,10 +30,6 @@
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os.path
@@ -99,7 +94,7 @@ if CONFIG.large_gui:
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 elif CONFIG.scaling:
-    SCALE = int((SCREEN_SIZE[0] / NATIVE_RESOLUTION[0]))
+    SCALE = int(SCREEN_SIZE[0] / NATIVE_RESOLUTION[0])
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 else:
@@ -190,4 +185,4 @@ def fetch(*args):
         if os.path.exists(path):
             return path
 
-    raise IOError(relative_path)
+    raise OSError(relative_path)

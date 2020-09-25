@@ -3,10 +3,6 @@ There are quite a few hacks in here to get this working for single player only
 notably, the use of self.game
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from functools import partial
@@ -48,7 +44,7 @@ class CombatAnimations(Menu):
     """
 
     def startup(self, **kwargs):
-        super(CombatAnimations, self).startup(**kwargs)
+        super().startup(**kwargs)
         self._monster_sprite_map = dict()
         self.hud = dict()
         self.is_trainer_battle = None

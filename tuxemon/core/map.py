@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 # core.map Game map module.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from itertools import product
@@ -240,7 +235,7 @@ def extract_region_properties(region):
     return props
 
 
-class PathfindNode(object):
+class PathfindNode:
     """ Used in path finding search
     """
 
@@ -272,7 +267,7 @@ class PathfindNode(object):
         return s
 
 
-class TuxemonMap(object):
+class TuxemonMap:
     """
     Contains collisions geometry and events loaded from a file
 

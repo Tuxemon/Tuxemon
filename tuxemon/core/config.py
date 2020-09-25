@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -31,10 +30,6 @@
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from collections import OrderedDict
 
@@ -46,7 +41,7 @@ from tuxemon.core.platform.const import buttons, events
 Animation.default_transition = 'out_quint'
 
 
-class TuxemonConfig(object):
+class TuxemonConfig:
     """ Handles loading of the configuration file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!

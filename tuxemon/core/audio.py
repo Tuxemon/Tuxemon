@@ -18,7 +18,7 @@ def load_sound(slug):
     :rtype: tuxemon.core.platform.mixer.Sound
     """
 
-    class DummySound(object):
+    class DummySound:
         def play(self):
             pass
 

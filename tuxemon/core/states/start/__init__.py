@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -30,10 +29,6 @@
 #
 """This module contains the Start state.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from functools import partial
@@ -74,7 +69,7 @@ class StartState(PopUpMenu):
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         kwargs['selected_index'] = 0 if index is None else 1
-        super(StartState, self).startup(*args, **kwargs)
+        super().startup(*args, **kwargs)
 
         def change_state(state, **change_state_kwargs):
             return partial(self.client.push_state, state, **change_state_kwargs)

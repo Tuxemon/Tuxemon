@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.plugin Plugin architecture module.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import importlib
 import inspect
@@ -46,7 +41,7 @@ log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
                                         "%(levelname)s - %(message)s"))
 
 
-class Plugin(object):
+class Plugin:
     __slots__ = ('name', 'plugin_object')
 
     def __init__(self, name, module):
@@ -54,7 +49,7 @@ class Plugin(object):
         self.plugin_object = module
 
 
-class PluginManager(object):
+class PluginManager:
     """Yapsy semi-compatible plugin manager.
     """
 

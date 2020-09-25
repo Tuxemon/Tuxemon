@@ -12,7 +12,7 @@ Requirements
 
 Tuxemon uses a number of open source projects to work properly:
 
-* *python* - version 2.7, 3.5+
+* *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
 * *python-six* - python 2 and 3 compatibility library
@@ -125,10 +125,7 @@ Use *Tiled* map editor: http://www.mapeditor.org/
 Python 2.7 Notice
 -----------------
 
-We will be supporing bugfixes and features for python 2.7+ after it
-is EOL starting in 2020.  We do plan on removing support for it
-sometime in the future, but there is currently no roadmap to actively
-stop supporting it at this time.
+Python 2.7 is no longer supported.
 
 License
 -------

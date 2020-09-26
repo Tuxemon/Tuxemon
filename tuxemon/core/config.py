@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -31,10 +30,6 @@
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from collections import OrderedDict
 
@@ -46,7 +41,7 @@ from tuxemon.core.platform.const import buttons, events
 Animation.default_transition = 'out_quint'
 
 
-class TuxemonConfig(object):
+class TuxemonConfig:
     """ Handles loading of the configuration file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!
@@ -122,22 +117,23 @@ class TuxemonConfig(object):
         # not configurable from the file yet
         self.mods = ["tuxemon"]
 
+
 def get_custom_pygame_keyboard_controls(cfg):
     import pygame.locals
-    from tuxemon.core.platform.platform_pygame.events import PygameKeyboardInput
 
-    custom_controls = PygameKeyboardInput.default_input_map.copy()
-    for key, value in cfg.items("controls"):
-        # pygame.locals uses all caps for constants except for letters
-        key = key.lower() if len(key) == 1 else key.upper()
-        value = value.upper()
-        pygame_value = getattr(pygame.locals, "K_" + key, None)
-        button_value = getattr(buttons, value, None)
-        event_value = getattr(events, value, None)
-        if pygame_value is not None and button_value is not None:
-            custom_controls[pygame_value] = button_value
-        elif pygame_value is not None and event_value is not None:
-            custom_controls[pygame_value] = event_value
+    custom_controls = {None: events.UNICODE}
+    for key, values in cfg.items("controls"):
+        key = key.upper()   
+        button_value = getattr(buttons, key, None)
+        event_value = getattr(events, key, None)
+        for each in values.split(", "):
+            # pygame.locals uses all caps for constants except for letters
+            each = each.lower() if len(each) == 1 else each.upper()
+            pygame_value = getattr(pygame.locals, "K_"+each, None)
+            if pygame_value is not None and button_value is not None:
+                custom_controls[pygame_value] = button_value
+            elif pygame_value is not None and event_value is not None:
+                custom_controls[pygame_value] = event_value
 
     return custom_controls
 
@@ -197,10 +193,9 @@ def get_defaults():
             ("down", "down"),
             ("left", "left"),
             ("right", "right"),
-            ("return", "a"),
-            ("rshift", "b"),
-            ("lshift", "b"),
-            ("escape", "back"),
+            ("a", "return"),
+            ("b", "rshift, lshift"),
+            ("back", "escape"),
             ("backspace", "backspace")
         ))),
     ))

@@ -1,10 +1,6 @@
 Tuxemon Unit Tests
 ==================
 
-There is no support for unit testing with python 2.7.  This folder's name is
-"py3_tests", to enforce this convention.  Once python 2.7 support is dropped,
-this will be renamed "tests".
-
 Currently, there is no standard framework for testing any code which requires
 a pygame window.  This code should be handled as part of short playthrough.
 

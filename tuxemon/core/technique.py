@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
@@ -58,7 +53,7 @@ def merge_results(result, meta_result):
     return meta_result
 
 
-class Technique(object):
+class Technique:
     """A technique object is a particular skill that tuxemon monsters can use
     in battle.
     """
@@ -71,6 +66,7 @@ class Technique(object):
         self.carrier = carrier
         self.category = "attack"
         self.effect = []
+        self.icon = None
         self.images = []
         self.is_area = False
         self.is_fast = False
@@ -81,12 +77,16 @@ class Technique(object):
         self.power = 1
         self.range = None
         self.recharge_length = 0
+        self.sfx = None
+        self.sort = None
         self.slug = slug
+        self.target = list()
         self.type1 = "aether"
         self.type2 = None
         self.use_item = None
         self.use_success = None
         self.use_failure = None
+        self.use_tech = None
 
         # If a slug of the technique was provided, autoload it.
         if slug:

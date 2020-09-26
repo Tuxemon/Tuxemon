@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import fnmatch
 import os
@@ -17,7 +17,6 @@ class InstallAndBuildTranslations(install):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         build_translations()
-
 
 
 # Find all the python modules
@@ -54,6 +53,7 @@ setup(name='tuxemon',
       license="GPLv3",
       long_description='https://github.com/Tuxemon/Tuxemon',
       install_requires=REQUIREMENTS,
+      python_requires='>=3.3',
       entry_points={
           'gui_scripts': [
               'tuxemon = tuxemon.__main__:main'
@@ -63,7 +63,6 @@ setup(name='tuxemon',
           "Intended Audience :: End Users/Desktop",
           "Development Status :: 3 - Alpha",
           "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-          "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.3",
           "Programming Language :: Python :: 3.4",
           "Programming Language :: Python :: 3.5",

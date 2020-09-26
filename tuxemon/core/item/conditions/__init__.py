@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2020 William Edwards <shadowapex@gmail.com>,
@@ -21,10 +20,6 @@
 #
 # Adam Chevalier <chevalieradam2@gmail.com>
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 

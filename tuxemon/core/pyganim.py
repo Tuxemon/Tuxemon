@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -41,12 +40,8 @@
 #
 
 
-from __future__ import absolute_import
 # TODO: Feature idea: if the same image file is specified, re-use the Surface object.
 # (Make this optional though.)
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import time
 
@@ -71,7 +66,7 @@ SOUTH = 'south'
 SOUTHEAST = 'southeast'
 
 
-class PygAnimation(object):
+class PygAnimation:
     def __init__(self, frames, loop=True):
         # Constructor function for the animation object. Starts off in the STOPPED state.
         #
@@ -660,7 +655,7 @@ class PygAnimation(object):
     currentFrameNum = property(_propGetCurrentFrameNum, _propSetCurrentFrameNum)
 
 
-class PygConductor(object):
+class PygConductor:
     def __init__(self, *animations):
         self._animations = []
         if animations:

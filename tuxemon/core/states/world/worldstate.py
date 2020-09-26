@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.states.world Handles the world map and player movement.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import itertools
 import logging
@@ -273,7 +268,7 @@ class WorldState(state.State):
         :returns: None
 
         """
-        super(WorldState, self).update(time_delta)
+        super().update(time_delta)
         self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))

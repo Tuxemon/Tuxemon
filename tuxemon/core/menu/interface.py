@@ -1,15 +1,10 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import pygame
 
 from tuxemon.core import tools, graphics
 from tuxemon.core.ui.draw import GraphicBox
 
 
-class Bar(object):
+class Bar:
     """ Common bar class for UI elements.
 
     """
@@ -49,7 +44,7 @@ class HpBar(Bar):
     border_filename = "gfx/ui/monster/hp_bar.png"
 
     def __init__(self, value=1.0):
-        super(HpBar, self).__init__()
+        super().__init__()
 
         self.fg_color = 10, 240, 25
         self.bg_color = 245, 10, 25
@@ -78,7 +73,7 @@ class ExpBar(Bar):
     border_filename = "gfx/ui/monster/exp_bar.png"
 
     def __init__(self, value=1.0):
-        super(ExpBar, self).__init__()
+        super().__init__()
 
         self.fg_color = 31, 239, 255
         # self.bg_color = 15, 95, 127
@@ -102,7 +97,7 @@ class ExpBar(Bar):
 
 class MenuItem(pygame.sprite.Sprite):
     def __init__(self, image, label, description, game_object):
-        super(MenuItem, self).__init__()
+        super().__init__()
         self.image = image
         if image:
             self.rect = image.get_rect()
@@ -127,6 +122,6 @@ class MenuItem(pygame.sprite.Sprite):
 
 class MenuCursor(pygame.sprite.Sprite):
     def __init__(self, image):
-        super(MenuCursor, self).__init__()
+        super().__init__()
         self.image = image
         self.rect = image.get_rect()

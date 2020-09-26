@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import json
 import logging
@@ -55,13 +50,13 @@ def process_targets(json_targets):
     return list(map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True))))
 
 
-class JSONDatabase(object):
+class JSONDatabase:
     """Handles connecting to the game database for resources such as monsters,
     stats, etc.
 
     """
 
-    def __init__(self, dir=None):
+    def __init__(self, dir="all"):
         self.path = None
         self.database = {
             "item": {},
@@ -72,10 +67,9 @@ class JSONDatabase(object):
             "inventory": {},
             "environment": {},
             "sounds": {},
-            "music" : {}
+            "music": {}
         }
-        if dir:
-            self.load(dir)
+        self.load(dir)
 
     def load(self, directory="all"):
         """Loads all data from JSON files located under our data path.
@@ -101,7 +95,6 @@ class JSONDatabase(object):
             self.load_json("music")
         else:
             self.load_json(directory)
-
 
     def load_json(self, directory):
         """Loads all JSON items under a specified path.
@@ -148,8 +141,7 @@ class JSONDatabase(object):
         if item['slug'] not in self.database[table]:
             self.database[table][item['slug']] = item
         else:
-            logger.error(item, json)
-            raise Exception("Error: Item with this slug was already loaded.")
+            logger.warning("Error: Item with slug %s was already loaded.", item)
 
     def lookup(self, slug, table="monster"):
         """Looks up a monster, technique, item, or npc based on slug.

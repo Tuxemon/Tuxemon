@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>
@@ -23,10 +22,6 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -45,7 +40,7 @@ Description = Plugin containing utility functions common to multiple action plug
 """
 
 
-class CommonAction(object):
+class CommonAction:
     name = "Common"
 
     @staticmethod

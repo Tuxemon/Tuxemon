@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,10 +23,6 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import math
@@ -50,7 +45,7 @@ class Sprite(pygame.sprite.DirtySprite):
     dirty = False
 
     def __init__(self, *args, **kwargs):
-        super(Sprite, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.visible = True
         self._rotation = 0
         self._image = None
@@ -168,7 +163,7 @@ class CaptureDeviceSprite(Sprite):
         self.faint =  graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
         self.alive = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
         self.effected = graphics.load_and_scale('gfx/ui/icons/party/party_icon02.png')
-        super(CaptureDeviceSprite, self).__init__()
+        super().__init__()
 
     def update_state(self):
         """ Updates the state of the capture device.
@@ -309,12 +304,12 @@ class RelativeGroup(SpriteGroup):
 
     def __init__(self, **kwargs):
         self.parent = kwargs.get('parent')
-        super(RelativeGroup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def calc_bounding_rect(self):
         """A rect object that contains all sprites of this group
         """
-        rect = super(RelativeGroup, self).calc_bounding_rect()
+        rect = super().calc_bounding_rect()
         # return self.calc_absolute_rect(rect)
         return rect
 
@@ -415,7 +410,7 @@ class VisualSpriteList(RelativeGroup):
     expand = True               # will fill all space of parent, if false, will be more compact
 
     def __init__(self, **kwargs):
-        super(VisualSpriteList, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self._needs_arrange = False
         self._columns = 1
         self.line_spacing = None
@@ -432,7 +427,7 @@ class VisualSpriteList(RelativeGroup):
     def calc_bounding_rect(self):
         if self._needs_arrange:
             self.arrange_menu_items()
-        return super(VisualSpriteList, self).calc_bounding_rect()
+        return super().calc_bounding_rect()
 
     def add(self, item, **kwargs):
         """Add something to the stacker
@@ -440,17 +435,17 @@ class VisualSpriteList(RelativeGroup):
         :param item: stuff to add
         :returns: None
         """
-        super(VisualSpriteList, self).add(item, **kwargs)
+        super().add(item, **kwargs)
         self._needs_arrange = True
 
     def remove(self, *items):
-        super(VisualSpriteList, self).remove(*items)
+        super().remove(*items)
         self._needs_arrange = True
 
     def draw(self, surface):
         if self._needs_arrange:
             self.arrange_menu_items()
-        super(VisualSpriteList, self).draw(surface)
+        super().draw(surface)
 
     def arrange_menu_items(self):
         """ Iterate through menu items and position them in the menu

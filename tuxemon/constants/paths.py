@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2018, Andy Mender <andymenderunix@gmail.com>
@@ -26,10 +25,6 @@
 # core.constants.paths - Central store for local file paths
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import os.path
 

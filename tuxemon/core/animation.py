@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 import sys
 from collections import defaultdict
@@ -62,7 +57,7 @@ class AnimBase(pygame.sprite.Sprite):
     _valid_schedules = []
 
     def __init__(self):
-        super(AnimBase, self).__init__()
+        super().__init__()
         self._callbacks = defaultdict(list)
 
     def schedule(self, func, when=None):
@@ -154,7 +149,7 @@ class Task(AnimBase):
         if times == 0:
             raise ValueError
 
-        super(Task, self).__init__()
+        super().__init__()
         self._interval = interval
         self._loops = times
         self._duration = 0
@@ -316,7 +311,7 @@ class Animation(pygame.sprite.Sprite):
     default_transition = 'linear'
 
     def __init__(self, *targets, **kwargs):
-        super(Animation, self).__init__()
+        super().__init__()
         self.targets = list()
         self._targets = list()      #  used when there is a delay
         self.delay = kwargs.get('delay', 0)
@@ -513,7 +508,7 @@ class Animation(pygame.sprite.Sprite):
         self.update(0)
 
 
-class AnimationTransition(object):
+class AnimationTransition:
     """Collection of animation functions to be used with the Animation object.
     Easing Functions ported to Kivy from the Clutter Project
     http://www.clutter-project.org/docs/clutter/stable/ClutterAlpha.html

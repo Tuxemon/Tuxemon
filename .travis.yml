@@ -1,37 +1,58 @@
 language: python
-dist: xenial
-python:
-  - '2.7'
-before_install:
-  - pip install -r requirements.txt
-  - pip install setuptools
-  - sudo apt-get install -y fakeroot git curl squashfs-tools sed debmake debhelper python-all python3-all python-setuptools python3-setuptools
-  - mkdir -p ./build
+env:
+  global:
+    - SDL_VIDEODRIVER=dummy
+    - SDL_AUDIODRIVER=disk
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache/
+jobs:
+  include:
+    - os: linux
+      dist: focal
+      env: BUILD_TYPE=deb
+    - os: linux
+      dist: focal
+      env: BUILD_TYPE=opk
+    - os: linux
+      dist: focal
+      env: BUILD_TYPE=wine_pyinstaller
+#    - os: windows
+#      language: bash
+#      env: BUILD_TYPE=windows
+    - os: linux
+      dist: focal
+      language: minimal
+      env:
+        - ANDROID_TOOLS=commandlinetools-linux-6609375_latest.zip
+        - BUILD_TYPE=android
+        - ANDROID_HOME=/usr/local/android_sdk
+        - ANDROIDNDK=/usr/local/android_sdk/ndk_bundle"
+        - ANDROIDAPI="27"  # SDK version
+        - NDKAPI="21"
+install:
+  - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "xenial" ]; then buildconfig/install_xenial.sh ; fi
 script:
-  # Debian
-  - python setup.py sdist
-  - cd dist
-  - tar xvfz tuxemon*.tar.gz
-  - cd tuxemon*
-  - debmake -b':py2'
-  - dpkg-buildpackage -us -uc
-  - cd ../..
-  - mv ./dist/tuxemon*.deb ./build/tuxemon-unstable-latest.deb
-  # GCW-Zero
-  - sed -i 's/resolution_x.*/resolution_x = 320/g' tuxemon/tuxemon.cfg
-  - sed -i 's/resolution_y.*/resolution_y = 240/g' tuxemon/tuxemon.cfg
-  - sed -i 's/fullscreen.*/fullscreen = 1/g' tuxemon/tuxemon.cfg
-  - cp tuxemon/resources/gfx/icon_32.png tuxemon/resources/gfx/icon.png
-  - mksquashfs tuxemon ./build/tuxemon-unstable-latest.opk -all-root -noappend -no-exports -no-xattrs
+  - mkdir build
+  - if [ "$BUILD_TYPE" = "android" ]; then buildconfig/build_android.sh ; fi
+  - if [ "$BUILD_TYPE" = "deb" ]; then buildconfig/build_deb.sh ; fi
+  - if [ "$BUILD_TYPE" = "flatpak" ]; then buildconfig/build_flatpak.sh ; fi
+  - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
+  - if [ "$BUILD_TYPE" = "windows" ]; then travis_wait 15 buildconfig/build_windows.sh ; fi
+  - if [ "$BUILD_TYPE" = "wine_pyinstaller" ]; then buildconfig/build_wine_pyinstaller.sh ; fi
 deploy:
-  provider: s3
-  access_key_id: AKIAJCO54X2SZSP2HYCA
-  secret_access_key:
-    secure: IvdL4/le7EuQj7qepYWB4TcQAlkishk8k/B4Dxx2X7jmNSpFW8paoe/K+wTxNdbknikTgoUIqAbi93s8HczIlHPOdKPaCUVFr5YgaP5vRxu0AvSLMrs04ZdOpidVRSXHajGC7oCSe62TQf+lJbNJ/ZXUVjjNApPIPH46x45pZ1E3M3fwGn9bBVP7+ju8q7AZJqZIwalI24A4qk9jHUZoYUuOKToJmPAus9s4Lsp4xKAw3XTaJYdlWKZ/y5st+1+6a/8qBpBBifCYThWDIYq27BhNAK2W4Nvm8+YjYCbkYMpQxRXKZCl1YUO4RzpHcpYniNgKI0kwxWhY6lA9WeXcS98GldH5oJdaIvdorp1JQMU4pyom3FwOmwRMbIoKfKYKW7x9kjTmEzWg5pdfSEDYby1zVciEyjuVtqP1esEnhljMPlKEBjPVObfdz8mZSUcYss46k+y8Fgqfgkng0QP83YCVC8izTPJOCjfdCfn+tirbdMQbKk2MQ5eK0vFQlghgYc232LprJoPYVW6x5lNV25s9IZnppDd7zGo7DUe2ObKEZBzkmdAmM4RANnQrbzr+SEuKA9gbAUnlrpBNK+n1NkdJn7ya1JynvbyiIG5+JfY9Z4R00gHOUu+/Hy3bMg++QnGoSdipn2M9M6NBvzerpqzg754XL6q5pzNM7XmoG5c=
-  bucket: tuxemon
+  provider: releases
+  api_key:
+    secure: LbDce8fi3QChPRBzM36o7m26IdQ9PySPE6kKXnNK4KrpdzZ5gzBpc/ak4omWKcN5x2XFgzIH075ykEpKiYQP764hvYO3hGi+IcHEzW9A1FofP2Whl/qOLFpmA+afnhl7Uyw4Uo8mo27UUDwrPIrkjIlLW2PPUSiMDVhz6t28cQAsBXcMOBTrDuRFCtUHmkODFq6o6IEbkeoG7eVC/LFVLxO4zGHcxcJCyl6ar1GD9wznFxDomtyQiT7Xwxw9DpzHWUgdPCpYULBvTU+GBTMMQVKPZLROFwmdWy/VMCo9VfmITNNe0EBX7OQWel8CjIZAdqa04bWz23HiTvmvaPnWDYWykCUl/FEy9y6akl/aBhOLCtI2VeKO1jI6jYWQsjI+z4P1zcTBio/xfhwqk7E5a6OesmZLCwLSwyK9R8dtUYdCzp602hkPvxmyWA61gHtsPttROoLmaD+VLIVbvjmkohXqLp72vsgzDIFz59S+19DoBTUmh4kWVSWH9hrG72ynSwl+9RNHTbAlXCZhUNQktBNWCQSltAndyzNCjU0WCohmj2uFJDa0LyIOkE27G8BmwyQ+mRpOp8KByKgawUWXOjYPD5J1gs5X9fHtMdPKWbn4MIaQy66jBj0+lFwxwX2/5J7T3MuRRuxfHzw7GQS+MzrctgRF4s3c6mEAHypAK2Q=
+  file_glob: true
+  file: build/*
   skip_cleanup: true
-  acl: 'public_read'
-  local_dir: build
+  draft: true
   on:
+    tags: true
     repo: Tuxemon/Tuxemon
     branch: development

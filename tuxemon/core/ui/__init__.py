@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.ui User interface handling module.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -40,7 +35,7 @@ from tuxemon.core import pyganim
 logger = logging.getLogger(__name__)
 
 
-class UserInterface(object):
+class UserInterface:
     """A basic user interface object.
 
     :param image: Path to the image to load or surface.

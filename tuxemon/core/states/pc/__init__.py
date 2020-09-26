@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -30,10 +29,6 @@
 #
 """ This module contains the PCState state.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from functools import partial
@@ -60,7 +55,7 @@ class PCState(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, *items, **kwargs):
-        super(PCState, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
 
         def change_state(state, **kwargs):
             return partial(self.client.replace_state, state, **kwargs)
@@ -79,7 +74,7 @@ class MultiplayerMenu(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, *items, **kwargs):
-        super(MultiplayerMenu, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
 
         add_menu_items(self, (('multiplayer_host_game', self.host_game),
                               ('multiplayer_scan_games', self.scan_for_games),
@@ -144,7 +139,7 @@ class MultiplayerSelect(PopUpMenu):
     shrink_to_items = True
 
     def startup(self, *items, **kwargs):
-        super(MultiplayerSelect, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
 
         # make a timer to refresh the menu items every second
         self.task(self.reload_items, 1, -1)

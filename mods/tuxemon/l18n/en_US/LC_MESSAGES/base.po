@@ -1830,24 +1830,37 @@ msgstr "It would be nice if more people like you came around to say Hi...\n"
 "By the way, Hello! Have a good day! Today or Tomorrow or any day will be great!"
 
 msgid "professorexists"
-msgstr "I'll take 12 potions please. .... ....Thanks Ben.\n"
+msgstr "I'll take 12 potions please."
+
+msgid "professorexists1"
+msgstr "Thanks Ben."
+
+msgid "professorexists1.5"
+msgstr "Why hello there!"
 
 msgid "professorexists2"
-msgstr "Why hello there! You must be Callie's kid! I've heard so much about you from your mom.\n"
+msgstr "You must be Callie's kid! I've heard so much about you from your mom.\n"
 "What brings you in here for?\n"
 ".... .... ....\n"
 "Potions? Of course, you always need those!\n"
 "Here, have a few on the house, courtesy of me."
 
-msgid "potions"
-"Received 2 potions!
+msgid "potions2"
+msgstr "Received 2 potions!"
 
 msgid "professorexists3"
 msgstr "Oh! Excuse my manners, I can't believe I never introduced myself!\n"
 "My name is Kay Wren, better known as the Tuxemon Professor.\n"
-"For years now I've been the only person in the Fondent Region allowed to research Tuxemon.\"
-"However, I have a feeling that may change in the near future!\n"
-"We'd better get back home and watch the second announcement, Come on!"
+"For years now I've been the only person in the Fondent Region allowed to research Tuxemon."
+
+msgid "professorexists4"
+msgstr "Now, I know what you are thinking, why would they allow me?\n"
+"Unfortunately for you, That secret is for me and me alone!\n"
+"However, Omnichannel should be making a new announcement soon and I think you'll like it.\n"
+"We'd better get you back home and watch the second announcement, Come on!"
+
+msgid "theenergy"
+msgstr "The energy of that man is boundless..."
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

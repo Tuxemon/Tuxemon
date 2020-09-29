@@ -1615,7 +1615,8 @@ msgstr "Yes Ma'am"
 
 msgid "firsts"
 msgstr "♪ Watch me whip ♪\n"
-"♪ Watch me nae nae ♪"
+"♪ Watch me nae nae ♪\n"
+"This song is pretty great right?"
 
 msgid "nopenotyet"
 msgstr "Sorry, someone got injured on the route. It's closed right now."

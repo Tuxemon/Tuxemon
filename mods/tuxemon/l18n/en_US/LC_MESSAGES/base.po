@@ -1863,6 +1863,27 @@ msgstr "Now, I know what you are thinking, why would they allow me?\n"
 msgid "theenergy"
 msgstr "The energy of that man is boundless..."
 
+msgid "hmmm"
+msgstr "I wonder what they're doing over there?"
+
+msgid "hmmm2"
+msgstr "I heard they were making a new park. To \"Greenify the Area\""
+
+msgid "hmmm3"
+msgstr "What's the point? The Route is nearly all grass anyways."
+
+msgid "hmmm4"
+msgstr "Maybe they're making a water park!"
+
+msgid "hmmm5"
+msgstr "Max, as much as you may want one, we've established this. They are not making, and will not make, a water park."
+
+msgid "hmmm6"
+msgstr ".... .... Okay... But it could be..."
+
+msgid "hmmm7"
+msgstr "The Weather is nice though, isn't it?"
+
 msgid "timeforround2"
 msgstr "${{name}}! Hurry! You'll miss the announcement! Apparently Able will be speaking soon, the anthem has already started.\n"
 "Oh! You did get the potions! Thanks! Now we really need to get back."

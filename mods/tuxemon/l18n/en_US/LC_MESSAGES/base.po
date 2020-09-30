@@ -1891,7 +1891,11 @@ msgstr "I am sorry to give you such late notice about this address, but I believ
 "First, you'll have to register your name with your local Omnichannel representative and if you're selected, you'll be sent to Omnichannel training.\n"
 "After successful completion of your training, you will be provided with a Tuxemon and can start participating in The Trial!\n"
 "I look forward to meeting you all! Let's create a new world together!\n"
-"After all... WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL! And now,\n WE\n ARE\n THE\n FUTURE!"
+"After all... WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL! And now,\n"
+"WE \n"
+"ARE \n"
+"THE \n"
+"FUTURE!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

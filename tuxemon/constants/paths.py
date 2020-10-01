@@ -52,6 +52,11 @@ USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
 # mods
 mods_folder = os.path.normpath(os.path.join(BASEDIR, "..", "mods"))
 
+# shared locations
+system_installed_folders = [
+    "/user/share/tuxemon/", # debian
+]
+
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.join(BASEDIR, "core/event/conditions")
 ACTIONS_PATH = os.path.join(BASEDIR, "core/event/actions")

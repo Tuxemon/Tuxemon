@@ -59,6 +59,18 @@ sudo pip install -U -r requirements.txt
 python tuxemon.py
 ```
 
+**Ubuntu 18.04 w/venv**
+
+Use this if you don't want to modify your system packages
+```sh
+sudo apt install git python3-venv
+git clone https://github.com/Tuxemon/Tuxemon.git
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 tuxemon.py
+```
+
 **Debian**
 
 ```sh

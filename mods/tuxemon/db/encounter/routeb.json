@@ -1,0 +1,19 @@
+{"slug": "routeb","monsters": [	
+	
+	
+	
+	
+{ "monster":"txmn_toufigel","encounter_rate":5,"level_range": [16,20]},	
+{ "monster":"txmn_pipis","encounter_rate":15,"level_range": [16,18]},	
+{ "monster":"txmn_strella","encounter_rate":5,"level_range": [18,21]},	
+{ "monster":"txmn_noctula","encounter_rate":15,"level_range": [16,18]},	
+{ "monster":"txmn_noctalo","encounter_rate":5,"level_range": [18,21]},	
+{ "monster":"txmn_cairfrey","encounter_rate":15,"level_range": [16,18]},	
+{ "monster":"txmn_possessun","encounter_rate":5,"level_range": [18,21]},	
+{ "monster":"txmn_rockitten","encounter_rate":5,"level_range": [16,20]}	
+	
+	
+	
+	
+	
+] }	

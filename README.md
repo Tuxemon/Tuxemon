@@ -116,7 +116,7 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 **Fedora Linux**
 
 ```
-sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
 virtualenv venv
 pip install -r requirements.txt
 ```

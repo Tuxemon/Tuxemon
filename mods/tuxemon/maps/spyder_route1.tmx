@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="187">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+  <tile id="839">
+   <animation>
+    <frame tileid="839" duration="200"/>
+    <frame tileid="842" duration="200"/>
+    <frame tileid="845" duration="200"/>
+    <frame tileid="848" duration="200"/>
+   </animation>
+  </tile>
+  <tile id="880">
+   <animation>
+    <frame tileid="880" duration="200"/>
+    <frame tileid="883" duration="200"/>
+    <frame tileid="886" duration="200"/>
+    <frame tileid="889" duration="200"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1313" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1417" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="1521" name="buddha-statues" tilewidth="16" tileheight="16" tilecount="10" columns="5">
+  <image source="../gfx/tilesets/buddha-statues.png" width="80" height="32"/>
+ </tileset>
+ <tileset firstgid="1531" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="1619" name="PastTheFuture_Grass_Sand_Snow" tilewidth="16" tileheight="16" tilecount="360" columns="24">
+  <image source="../gfx/tilesets/PastTheFuture_Grass_Sand_Snow.png" width="384" height="240"/>
+  <tile id="255">
+   <animation>
+    <frame tileid="248" duration="150"/>
+    <frame tileid="249" duration="150"/>
+    <frame tileid="250" duration="150"/>
+    <frame tileid="251" duration="150"/>
+    <frame tileid="252" duration="150"/>
+    <frame tileid="253" duration="150"/>
+    <frame tileid="254" duration="150"/>
+    <frame tileid="255" duration="150"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="1979" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <tileset firstgid="2135" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAG7wsrAcAWIrwKx3yDEILcNZvfdI8J9rlQMV3cSzToNVH8XiEHuHIzxC3PTs1H3URQ/+MJvINPfaPxSJ9/hi19YGBNLUzM9wOzE5z5q2kdq+UeM+2BqBoI+DCz33gLxu0Fa/uGL14EIL3Q7qek+fxrEATXdh+53avBH3UdZ+TwafpSFHwAPdRQz
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAGtlLFuAjEQRFdRUMTHhJofIJAmHVCTKt9AmSj/zbp4UjK6OS9nTrKG3RvPzBrrIv4/r88Rm1yKn6uIa2FdkjP3qG6vVq1TZjvnUlTe0lp1e7X6uHmUN1W/5dmx9nKO9J2+66uPm0d5rj7m2bc19Wwzs9N3fdWpzqH7qOfyNY7Td310weoc8BV7+Zy+66u+m+Mj/5t2pxrucrX7NPWQj/um6PRdXz2qc+i+Vr9nZvJ9mfxO3/XVpzqH7qMmH7Wi03d93V+dQ/dRz+U75Jk6fddHF6zOAV+RfHrvqJ2+66t+dQ7dV62dvuuj6/LThzeK6FURP5efPrxRRK+K+PXmgTeKPR99j19vHnij2PPR9/hp7kfV+p2+V5d8mvtRNfoNn16Wf/+qc/31W/K76gMPj+p5wW/4s474vWN9J7fqA+8GQOuKHw==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHVVNsNAjEM60dPLMMfH0zAQ0zBKCzLHjTiLEVWfQn0EFAppHFSx+lVlPJfq9ZSpmbsr9M6czBvFGe7Hpu+np1m3YfZb9tsZn4h57F392qeS+sfmfXs6fNaFL/C762vWbQibZa3Fel7VuV/WZ+aYy19il/hrE9NZm/Pr95bNCy6P+jwXEt71ofz7D3H0l1m9TG/ilmf16H2I/oUp8JZn5rj7L7viD7Fr3DWp+ZQ781w/AeqsyM49Cn9wNWdcW9VBxx8Wc/8KgY/e67nPMdcn42jebgPYuYHrnzUh/PMr2LVj+tVHXCuz8asm+MsT1THvFEc8f1KPpoD+Vf17mu5+TPgyXp/1vY4x/i3Yuhhr/TsNirzGfwBI/FAcw==
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtklEKwDAIQ/PRXnAn6tHXH38euG4g1A4LRWJDtFGpTjkgXX19d/qUvb+d3vyt9tOsM/w1e38ZPDqtB2+m/IfHszz5Udj0GanPd2LyozDrGKa+5b1IfhR+W8/jWT6qH+q0JvV5v0bqFC4HMjgwd3nMXR6reAMp/SO1
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DERAAAIxLAfmNGMdEwwcamADklEgAABAgQIECBA4E6gK3N3c/omsEFLAJM=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="7" name="Collisions">
+  <object id="162" type="collision" x="64" y="0" width="96" height="320"/>
+  <object id="163" type="collision" x="448" y="0" width="192" height="320"/>
+  <object id="164" type="collision" x="160" y="256" width="224" height="32"/>
+  <object id="165" type="collision" x="320" y="32" width="32" height="144"/>
+  <object id="166" type="collision" x="384" y="272" width="16" height="16"/>
+  <object id="167" type="collision" x="160" y="288" width="32" height="32"/>
+  <object id="168" type="collision" x="192" y="304" width="16" height="16"/>
+  <object id="169" type="collision" x="240" y="304" width="208" height="16"/>
+  <object id="171" type="collision" x="160" y="0" width="176" height="16"/>
+  <object id="179" type="collision" x="352" y="160" width="112" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="180" type="collision" x="160" y="160" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="181" type="collision" x="208" y="96" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="182" type="collision" x="144" y="32" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="183" type="collision" x="352" y="96" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="184" type="collision" x="400" y="32" width="128" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="185" type="collision" x="288" y="32" width="80" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="186" type="collision" x="112" y="96" width="80" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="118" name="Teleport to Cotton Town" type="event" x="336" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,21,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="125" name="Route Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_the_wild_places"/>
+   </properties>
+  </object>
+  <object id="129" name="Teleport to Route1" type="event" x="224" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,14,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="130" name="Teleport to Route1" type="event" x="208" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,13,0,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="151" name="Encounters" type="event" x="320" y="176" width="128.091" height="63.8636">
+   <properties>
+    <property name="act1" value="random_encounter route1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="152" name="Encounters" type="event" x="160" y="176" width="96" height="64">
+   <properties>
+    <property name="act1" value="random_encounter route1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="153" name="Encounters" type="event" x="208" y="112" width="112" height="48">
+   <properties>
+    <property name="act1" value="random_encounter route1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="154" name="Encounters" type="event" x="160" y="48" width="144" height="48">
+   <properties>
+    <property name="act1" value="random_encounter route1"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_moved"/>
+    <property name="cond2" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="159" name="Player Spawn" type="event" x="208" y="288" width="16" height="16"/>
+  <object id="161" name="Route 1 Sign" type="event" x="384" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route1_routesign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="172" name="Teleport to Cotton Town" type="event" x="352" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,22,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="174" name="Teleport to Cotton Town" type="event" x="368" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,23,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="175" name="Teleport to Cotton Town" type="event" x="384" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,24,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="176" name="Teleport to Cotton Town" type="event" x="400" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,25,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="177" name="Teleport to Cotton Town" type="event" x="416" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,26,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="178" name="Teleport to Cotton Town" type="event" x="432" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,27,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

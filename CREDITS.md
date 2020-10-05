@@ -85,6 +85,61 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Sanglorian](https://forum.tuxemon.org/profile.php?id=41)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Fisher"](https://wiki.tuxemon.org/index.php?title=Fisher). Main sprite by Sanglorian. Overland sprite by Sanglorian, hat based on a Catch Challenger sprite.
+
+* ["Scientist"](https://wiki.tuxemon.org/index.php?title=Scientist). Overland sprites by Catch Challenger. Front sprite by Catch Challenger, adapted by Sanglorian.
+
+* ["Rookie"](https://wiki.tuxemon.org/index.php?title=Spyder_Rookie). Overland sprites from Catch Challenger. Front sprite by Sanglorian.
+
+* ["Overseer"](https://wiki.tuxemon.org/index.php?title=Mine_Overseer). Front sprite by tamashihoshi, hat adapted from a sprite by Catch Challenger. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+
+* ["Postboy"](https://wiki.tuxemon.org/index.php?title=Postboy). Overland sprites by Catch Challenger, palette changed by Sanglorian. 
+
+* ["Miner"](https://wiki.tuxemon.org/index.php?title=Miner). Main sprite adapted by Sanglorian from a sprite by Catch Challenger. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+
+* ["Cat Girl"](https://wiki.tuxemon.org/index.php?title=Cat_Girl). Overland sprites by Pboop. Front sprites by Sanglorian and Tamashihoshi. 
+
+* ["Maniac"](https://wiki.tuxemon.org/index.php?title=Maniac). Overland sprites by Catch Challenger.
+
+* ["Picnicker"](https://wiki.tuxemon.org/index.php?title=Picnicker). Main sprite by Catch Challenger, adapted by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Tennis Player"](https://wiki.tuxemon.org/index.php?title=Tennis_Player). Overland sprites by Pboop. Front sprite by Sanglorian. Face sprite by Superpowers Asset Packs. 
+
+* ["Waiter"](https://wiki.tuxemon.org/index.php?title=Shopkeeper). Overland sprites by Catch Challenger.
+
+* ["Florist"](https://wiki.tuxemon.org/index.php?title=Florist). Main sprite by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Goth"](https://wiki.tuxemon.org/index.php?title=Goth). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
+
+* ["Barmaid"](https://wiki.tuxemon.org/index.php?title=Barmaid). Original design by Superpowers Asset Packs. Front sprite by tamashihoshi. Overland sprite by Catch Challenger, tweaked by Sanglorian.
+
+* ["Hacker"](https://wiki.tuxemon.org/index.php?title=Magician). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger, adapted by Sanglorian.
+
+* ["Monk"](https://wiki.tuxemon.org/index.php?title=Monk). Front sprite by Catch Challenger. Overland sprites by Catch Challenger, adapted by Sanglorian.
+
+* ["Granny"](https://wiki.tuxemon.org/index.php?title=Granny). Overland sprites by Pixel Scuba. Face sprite by Superpowers Asset Packs. 
+
+* ["Shop Assistant"](https://wiki.tuxemon.org/index.php?title=Shop_Assistant). Main sprite by Catch Challenger, adapted by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian.
+
+* ["Homemaker"](https://wiki.tuxemon.org/index.php?title=Homemaker). Overland sprites from Catch Challenger.
+
+* ["Yellow Belt"](https://wiki.tuxemon.org/index.php?title=Yellow_Belt). Created by Sanglorian from the [https://telles0808.itch.io/isometric-template Isometric Template] template by KinGabe.
+
+* ["Snugglepot"](https://wiki.tuxemon.org/index.php?title=Snugglepot). Front sprite by Sanglorian. Overland sprites adapted by Sanglorian from CC BY-SA sprites by pboop.
+
+* ["Beachcomber"](https://wiki.tuxemon.org/index.php?title=Beachcomber). Overland sprites from Catch Challenger.
+
+* ["Alchemist"](https://wiki.tuxemon.org/index.php?title=Alchemist). Front sprite by Svetlana Kushnariova.
+
+* ["Soldier"](https://wiki.tuxemon.org/index.php?title=Soldier). Front sprite by Sanglorian. Overland sprites adapted by Sanglorian from sprites by Catch Challenger.
+
+* ["Firefighter"](https://wiki.tuxemon.org/index.php?title=Firefighter). Main sprite by Chickenshowman. Overland sprites by Sanglorian, hat adapted from a Catch Challenger sprite. 
+
+* ["Enforcer Agent"](https://wiki.tuxemon.org/index.php?title=Enforcer_Agent). Design and front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. Face sprites from Superpowers Asset Pack.
+
+
 ### Tilesets
 
 * ["Electronics Tileset"](https://git.tuxemon.org:3000/tuxemon/tuxemon/blob/development/resources/gfx/tilesets/electronics.png)
@@ -179,6 +234,12 @@ is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=
 * ["Superpowers Assets Ninja Tilesheet"](https://wiki.tuxemon.org/index.php?title=File:Superpowers_Tilesheet.png) by Superpower Asset Packs is under CC0.
 
 * ["Updated Ground Tiles"](https://wiki.tuxemon.org/index.php?title=File:Updated_ground_tiles_by_rubberduck.png) by rubberduck, based on original tiles by Buch, commissioned by luke83 (changes and additions by luke83 and Past the Future), and original tiles by George_.
+
+* ["Factory"](https://wiki.tuxemon.org/index.php?title=File:Factory.png) by Keith Karnage is licensed under CC0. 
+
+* ["Warmachine"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_black_and_yellow.png) and ["Warmachine, demilitarised"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_yellow_demilitarised.png) by Drummyfish are licensed under CC0. Demilitarised version adapted by Sanglorian. 
+
+* ["Modern Interiors"](https://limezu.itch.io/moderninteriors), ["Modern Office"](https://limezu.itch.io/modernoffice) and ["Serene Village"](https://limezu.itch.io/serenevillage) by LimeZu are licensed under CC BY. Purchased by Sanglorian.
 
 ### Tuxemon
 
@@ -485,6 +546,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [treetrnk](https://wiki.tuxemon.org/index.php?title=Treetrnk&action=edit&redlink=1) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Conileaf"](https://wiki.tuxemon.org/index.php?title=Conileaf). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites by Sanglorian. Overland sprites by Catch Challenger. 
+
 ### Items
 
 * ["Potions"](http://opengameart.org/content/potions-3)
@@ -534,6 +597,10 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Green Phone Item"](https://forum.tuxemon.org/thread.php?pid=866#p866) by 
 [tamashihoshi](https://forum.tuxemon.org/profile.php?id=48) 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
+
+* ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
 
 * ["Additional Potions"](https://imgur.com/a/MQjhCBR) by 
 [ryanhanli](https://github.com/ryanhanli) with influence from [REXARD Potion Icons](https://assetstore.unity.com/packages/2d/gui/icons/potion-icons-54945)

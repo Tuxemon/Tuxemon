@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="43">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="47">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -222,6 +222,18 @@
     <property name="act1" value="random_encounter route5"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="45" name="Create Granny" type="event" x="416" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_granny,26,5"/>
+    <property name="cond1" value="not npc_exists spyder_granny"/>
+   </properties>
+  </object>
+  <object id="46" name="Talk Granny" type="event" x="416" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_granny"/>
+    <property name="behav1" value="talk spyder_granny"/>
    </properties>
   </object>
  </objectgroup>

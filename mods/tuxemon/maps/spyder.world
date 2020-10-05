@@ -30,6 +30,11 @@
             "x": 640,
             "y": 640
         },
+				{
+		    "fileName": "spyder_flower_petshop.tmx",
+            "x": 640,
+            "y": 1280
+        }, 
         {
             "fileName": "spyder_timber_town.tmx",
             "x": 0,
@@ -175,6 +180,17 @@
             "x": 2240,
             "y": 1280
         }, 
+		{
+		    "fileName": "spyder_leather_house1.tmx",
+            "x": 2240,
+            "y": 1456
+        }, 
+
+		{
+			"fileName": "spyder_leather_house2.tmx",
+            "x": 2400,
+            "y": 1456
+        }, 
 				{
             "fileName": "spyder_leather_museum.tmx",
             "x": 2600,
@@ -225,6 +241,16 @@
             "x": 2880,
             "y": 1920
         }, 
+				{
+            "fileName": "spyder_cotton_house1.tmx",
+            "x": 3200,
+            "y": 1920
+        }, 
+						{
+            "fileName": "spyder_cotton_house2.tmx",
+            "x": 3360,
+            "y": 1920
+        }, 
 		{
             "fileName": "spyder_omnichannel1.tmx",
             "x": 2880,
@@ -238,12 +264,12 @@
 		{
             "fileName": "spyder_omnichannel3.tmx",
             "x": 2880,
-            "y": 2560
+            "y": 2592
         },
 		{
             "fileName": "spyder_omnichannel4.tmx",
             "x": 3200,
-            "y": 2560
+            "y": 2592
         },
         {
             "fileName": "spyder_paper_town.tmx",

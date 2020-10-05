@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="280">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="287">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -52,7 +52,7 @@
    eAHt0MsNgCAUBdG3Fj/F+GuPXhVtwymB1UtMhmR2kEtOhEcBBRTIEXiHqA81uuminOW+laVEnWmikQr1vcy5dfKfg3baaKWcZVcUUEABBRRQQAEFFFBAAQUUUEABBRT4n8AHpDoN5A==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="188" type="collision" x="192" y="0" width="80" height="64"/>
   <object id="189" type="collision" x="288" y="0" width="96" height="64"/>
   <object id="190" type="collision" x="400" y="0" width="32" height="64"/>
@@ -68,7 +68,6 @@
   <object id="202" type="collision" x="192" y="512" width="80" height="48"/>
   <object id="203" type="collision" x="176" y="544" width="16" height="16"/>
   <object id="204" type="collision" x="368" y="400" width="80" height="48"/>
-  <object id="205" type="collision" x="464" y="400" width="96" height="48"/>
   <object id="206" type="collision" x="448" y="432" width="16" height="16"/>
   <object id="207" type="collision" x="272" y="432" width="48" height="16"/>
   <object id="208" type="collision" x="240" y="368" width="32" height="32"/>
@@ -129,6 +128,10 @@
   </object>
   <object id="266" type="collision" x="144" y="384" width="16" height="16"/>
   <object id="267" type="collision" x="288" y="176" width="16" height="16"/>
+  <object id="280" type="collision" x="80" y="16" width="16" height="16"/>
+  <object id="284" type="collision" x="464" y="400" width="16" height="48"/>
+  <object id="285" type="collision" x="480" y="400" width="80" height="32"/>
+  <object id="286" type="collision" x="496" y="432" width="64" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="175" name="Teleport to City Park" type="event" x="624" y="512" width="16" height="16">
@@ -296,6 +299,22 @@
     <property name="act1" value="translated_dialog spyder_shaft2_sign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="282" name="Teleport to Leather House 1" type="event" x="304" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_house1.tmx,1,4,7.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="283" name="Teleport to Leather House 2" type="event" x="480" y="432" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_house2.tmx,2,7,7.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

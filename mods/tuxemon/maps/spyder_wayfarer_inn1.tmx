@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="69">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -153,5 +153,147 @@
    </properties>
   </object>
   <object id="46" name="Player Spawn" type="event" x="176" y="144" width="16" height="16"/>
+  <object id="47" name="Make Shopkeeper" type="event" x="176" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_shopkeeper,11,6"/>
+    <property name="cond1" value="not npc_exists spyder_shopkeeper"/>
+   </properties>
+  </object>
+  <object id="48" name="Heal Tuxemon" type="event" x="192" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act30" value="npc_face spyder_shopkeeper,up"/>
+    <property name="act40" value="wait 1"/>
+    <property name="act50" value="npc_face spyder_shopkeeper,down"/>
+    <property name="act60" value="translated_dialog okaythen2"/>
+    <property name="act70" value="set_variable chooses:none"/>
+    <property name="cond1" value="is variable_set chooses:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Talk Shopkeeper" type="event" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer_shopkeeper"/>
+    <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="cond2" value="not variable_set chooses:yes"/>
+    <property name="cond4" value="is player_at"/>
+    <property name="cond5" value="is player_facing up"/>
+    <property name="cond6" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="50" name="Create Nurse" type="event" x="128" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nurse,8,9"/>
+    <property name="cond1" value="not npc_exists spyder_nurse"/>
+   </properties>
+  </object>
+  <object id="51" name="Talk Nurse" type="event" x="128" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer_nurse"/>
+    <property name="behav1" value="talk spyder_nurse"/>
+   </properties>
+  </object>
+  <object id="52" name="Create Maniac" type="event" x="128" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_maniac,8,3"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="53" name="Talk Maniac 1" type="event" x="128" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_maniac"/>
+    <property name="act2" value="add_monster botbot,10"/>
+    <property name="act3" value="set_variable gotbotbot:yes"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="cond1" value="not variable_set gotbotbot:yes"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Maniac 2" type="event" x="128" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_maniac2"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="55" name="Create Morton" type="event" x="64" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_morton,4,6"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_morton"/>
+   </properties>
+  </object>
+  <object id="56" name="Talk Morton" type="event" x="48" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_wayfarer1_morton1"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_morton"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_morton2"/>
+    <property name="act6" value="set_variable wayfarer1morton:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_morton"/>
+    <property name="cond1" value="not variable_set wayfarer1morton:yes"/>
+   </properties>
+  </object>
+  <object id="57" name="Create Jessie" type="event" x="80" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_jessie,5,15"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_jessie"/>
+   </properties>
+  </object>
+  <object id="58" name="Talk Jessie" type="event" x="64" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_wayfarer1_jessie1"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_jessie"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_jessie2"/>
+    <property name="act6" value="set_variable wayfarer1jessie:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_jessie"/>
+    <property name="cond1" value="not variable_set wayfarer1jessie:yes"/>
+   </properties>
+  </object>
+  <object id="59" name="Create Nightshade" type="event" x="64" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_nightshade,4,13"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_nightshade"/>
+   </properties>
+  </object>
+  <object id="60" name="Talk Nightshade" type="event" x="48" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_wayfarer1_nightshade1"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_nightshade"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_nightshade2"/>
+    <property name="act6" value="set_variable wayfarer1nightshade:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_nightshade"/>
+    <property name="cond1" value="not variable_set wayfarer1nightshade:yes"/>
+   </properties>
+  </object>
+  <object id="61" name="Create Victor" type="event" x="208" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_victor,13,2"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_victor"/>
+   </properties>
+  </object>
+  <object id="62" name="Talk Victor" type="event" x="192" y="32" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_wayfarer1_victor1"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_victor"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_victor2"/>
+    <property name="act6" value="set_variable wayfarer1victor:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_victor"/>
+    <property name="cond1" value="not variable_set wayfarer1victor:yes"/>
+   </properties>
+  </object>
+  <object id="63" name="Create Morningstar" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_morningstar,3,3"/>
+    <property name="cond1" value="not npc_exists spyder_wayfarer1_morningstar"/>
+   </properties>
+  </object>
+  <object id="64" name="Talk Morningstar" type="event" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_wayfarer1_morningstar1"/>
+    <property name="act3" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act4" value="translated_dialog spyder_wayfarer1_morningstar2"/>
+    <property name="act6" value="set_variable wayfarer1morningstar:yes"/>
+    <property name="behav1" value="talk spyder_wayfarer1_morningstar"/>
+    <property name="cond1" value="not variable_set wayfarer1morningstar:yes"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -1,19 +1,15 @@
-from __future__ import absolute_import
-from __future__ import division, print_function
-from __future__ import unicode_literals
-
 import logging
 
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import Menu
-from tuxemon.core.platform.const import buttons
+from tuxemon.core.platform.const import buttons, intentions
 
 logger = logging.getLogger(__name__)
 
 
 class QuantityMenu(Menu):
     def startup(self, *items, **kwargs):
-        super(QuantityMenu, self).startup()
+        super().startup()
         self.quantity = kwargs.get("quantity", 1)
         self.max_quantity = kwargs.get("max_quantity")
         self.callback = kwargs.get("callback")
@@ -30,11 +26,11 @@ class QuantityMenu(Menu):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         if event.pressed:
-            if event.button == buttons.B:
+            if event.button in (buttons.B, buttons.BACK, intentions.MENU_CANCEL):
                 self.close()
                 self.callback(0)
                 return
@@ -72,4 +68,3 @@ class QuantityMenu(Menu):
         formatted_name = label_format(self.quantity, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))
         yield MenuItem(image, formatted_name, None, None)
-

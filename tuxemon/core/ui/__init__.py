@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,20 +26,16 @@
 # core.ui User interface handling module.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
-from tuxemon.core import tools
+from tuxemon.core import graphics
 from tuxemon.core import pyganim
 
 logger = logging.getLogger(__name__)
 
 
-class UserInterface(object):
+class UserInterface:
     """A basic user interface object.
 
     :param image: Path to the image to load or surface.
@@ -62,7 +57,7 @@ class UserInterface(object):
 
         # Handle loading a single image, multiple images, or surfaces
         if images_type == 'str' or images_type == 'unicode':
-            surface = tools.load_and_scale(images)
+            surface = graphics.load_and_scale(images)
             self.images = [(surface, animation_speed)]
 
         elif images_type == 'list' or images_type == 'tuple':
@@ -72,7 +67,7 @@ class UserInterface(object):
                 item_type = type(item).__name__
 
                 if item_type == 'str' or item_type == 'unicode':
-                    surface = tools.load_and_scale(images)
+                    surface = graphics.load_and_scale(images)
                 else:
                     surface = item
                 self.images.append((surface, animation_speed))

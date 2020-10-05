@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="31">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="31">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -17,22 +17,22 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYCANMBKBYUCcCAwDxjiwMhQbE6FWD4qJUYuMaa2WWAAASEoJpg==
+   eAFjYCANMAKVE8IwE8WBDEIYptYYyMCGlYHiIAySgwFs6kBielBMjFpkMwiZS6lamPmEaABISgmm
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYKAuYMYhHgPEcWhifDjUlgBxGZR9EohPEWn3RSC+hCZWS6ReEOgkQe1UJHYiECcBcTIJ+rEBAIa3B60=
+   eAFjYKAuYMZhXAxQPA5Njg+ND+OWABllUM5JIH0KJkGAvgiUv4SmphaNj4/biU8STW4qEj8RyE4C4mQkMXKYAIa3B60=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYKAPWAjEi4hUOx2KSQWXgfgKGfoGCwAAy8EEGQ==
+   eAFjYKAPWAi0ZhGRVk0HqgNhUsFloIYrpGoaROoBy8EEGQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="11" height="9">
   <data encoding="base64" compression="zlib">
-   eJxjYKA/OAzER3DI1aDxTwPxGdo6h+ZAkggMAgCtfQR8
+   eAFjYKA/OAy08ggOa2vQxE8D+WfQxIYaVxLoYEIY5CcArX0EfA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -46,61 +46,61 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="9" name="Go Downstairs" type="event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport maple_house_downstairs.tmx,4,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport maple_house_downstairs.tmx,4,2,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="19" name="Create Maple" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc maple_girl,3,4,boss,stand"/>
-    <property name="act2" value="set_variable maple_bedroom1:true"/>
-    <property name="cond1" value="not variable_set maple_bedroom1:true"/>
-    <property name="cond2" value="not npc_exists maple_girl"/>
+    <property name="act10" value="create_npc maple_girl,3,4,boss,stand"/>
+    <property name="act20" value="set_variable maple_bedroom1:true"/>
+    <property name="cond10" value="not variable_set maple_bedroom1:true"/>
+    <property name="cond20" value="not npc_exists maple_girl"/>
    </properties>
   </object>
   <object id="22" name="Maple Pathfind to Player" type="event" x="128" y="80" width="16" height="48">
    <properties>
-    <property name="act1" value="remove_npc maple_girl"/>
-    <property name="act2" value="player_stop"/>
-    <property name="act3" value="set_variable maple_bedroom2:true"/>
-    <property name="cond1" value="is variable_set maple_bedroom1:true"/>
-    <property name="cond2" value="is player_at"/>
-    <property name="cond3" value="not variable_set maple_bedroom2:true"/>
-    <property name="cond4" value="is npc_exists maple_girl"/>
+    <property name="act10" value="remove_npc maple_girl"/>
+    <property name="act20" value="player_stop"/>
+    <property name="act30" value="set_variable maple_bedroom2:true"/>
+    <property name="cond10" value="is variable_set maple_bedroom1:true"/>
+    <property name="cond20" value="is player_at"/>
+    <property name="cond30" value="not variable_set maple_bedroom2:true"/>
+    <property name="cond40" value="is npc_exists maple_girl"/>
    </properties>
   </object>
   <object id="25" name="Maple talk to Player" type="event" x="96" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Hey, {name}! Guess what?"/>
-    <property name="act2" value="dialog_chain I know you can't afford your own Tuxemon."/>
-    <property name="act3" value="dialog_chain I know where you can get one!!"/>
-    <property name="act4" value="dialog_chain Go to the junkyard behind the Tuxmart. I'll meet you there."/>
-    <property name="act5" value="dialog_chain ${{end}}"/>
-    <property name="act6" value="set_variable maple_bedroom3:true"/>
-    <property name="act7" value="npc_face maple_girl,right"/>
-    <property name="cond1" value="is variable_set maple_bedroom2:true"/>
-    <property name="cond2" value="is npc_at maple_girl"/>
-    <property name="cond3" value="not variable_set maple_bedroom3:true"/>
-    <property name="cond4" value="is npc_exists maple_girl"/>
+    <property name="act10" value="dialog_chain Hey, {name}! Guess what?"/>
+    <property name="act20" value="dialog_chain I know you can't afford your own Tuxemon."/>
+    <property name="act30" value="dialog_chain I know where you can get one!!"/>
+    <property name="act40" value="dialog_chain Go to the junkyard behind the Tuxmart. I'll meet you there."/>
+    <property name="act50" value="dialog_chain ${{end}}"/>
+    <property name="act60" value="set_variable maple_bedroom3:true"/>
+    <property name="act70" value="npc_face maple_girl,right"/>
+    <property name="cond10" value="is variable_set maple_bedroom2:true"/>
+    <property name="cond20" value="is npc_at maple_girl"/>
+    <property name="cond30" value="not variable_set maple_bedroom3:true"/>
+    <property name="cond40" value="is npc_exists maple_girl"/>
    </properties>
   </object>
   <object id="28" name="Maple Pathfind to stairs" type="event" x="95.75" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind maple_girl,8,3"/>
-    <property name="act2" value="player_stop"/>
-    <property name="cond1" value="is variable_set maple_bedroom3:true"/>
-    <property name="cond2" value="not dialog_open"/>
-    <property name="cond3" value="is npc_exists maple_girl"/>
+    <property name="act10" value="pathfind maple_girl,8,3"/>
+    <property name="act20" value="player_stop"/>
+    <property name="cond10" value="is variable_set maple_bedroom3:true"/>
+    <property name="cond20" value="not dialog_open"/>
+    <property name="cond30" value="is npc_exists maple_girl"/>
    </properties>
   </object>
   <object id="29" name="Maple go downstairs" type="event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="remove_npc maple_girl"/>
-    <property name="act2" value="player_resume"/>
-    <property name="cond1" value="is variable_set maple_bedroom3:true"/>
-    <property name="cond2" value="is npc_at maple_girl"/>
+    <property name="act10" value="remove_npc maple_girl"/>
+    <property name="act20" value="player_resume"/>
+    <property name="cond10" value="is variable_set maple_bedroom3:true"/>
+    <property name="cond20" value="is npc_at maple_girl"/>
    </properties>
   </object>
   <object id="30" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>

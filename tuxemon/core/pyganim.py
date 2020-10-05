@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -41,18 +40,16 @@
 #
 
 
-from __future__ import absolute_import
 # TODO: Feature idea: if the same image file is specified, re-use the Surface object.
 # (Make this optional though.)
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import time
 
 import pygame
 
 # setting up constants
+from tuxemon.compat import Rect
+
 PLAYING = 'playing'
 PAUSED = 'paused'
 STOPPED = 'stopped'
@@ -69,7 +66,7 @@ SOUTH = 'south'
 SOUTHEAST = 'southeast'
 
 
-class PygAnimation(object):
+class PygAnimation:
     def __init__(self, frames, loop=True):
         # Constructor function for the animation object. Starts off in the STOPPED state.
         #
@@ -355,11 +352,11 @@ class PygAnimation(object):
         return (maxWidth, maxHeight)
 
     def get_rect(self):
-        # Returns a pygame.Rect object for this animation object.
+        # Returns a Rect object for this animation object.
         # The top and left will be set to 0, 0, and the width and height
         # will be set to what is returned by getMaxSize().
         maxWidth, maxHeight = self.getMaxSize()
-        return pygame.Rect(0, 0, maxWidth, maxHeight)
+        return Rect(0, 0, maxWidth, maxHeight)
 
     def anchor(self, anchorPoint=NORTHWEST):
         # If the Surface objects are of different sizes, align them all to a
@@ -658,7 +655,7 @@ class PygAnimation(object):
     currentFrameNum = property(_propGetCurrentFrameNum, _propSetCurrentFrameNum)
 
 
-class PygConductor(object):
+class PygConductor:
     def __init__(self, *animations):
         self._animations = []
         if animations:

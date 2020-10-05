@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from collections import defaultdict
 
 import pygame as pg
@@ -10,6 +5,7 @@ import pygame as pg
 from tuxemon.core import prepare
 from tuxemon.core.platform.const import buttons, events
 from tuxemon.core.platform.events import InputHandler, PlayerInput, EventQueueHandler
+from tuxemon.core.session import local_session
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -39,12 +35,11 @@ class PygameEventQueueHandler(EventQueueHandler):
                     player_input.process_event(pg_event)
 
             if pg_event.type == pg.QUIT:
-                prepare.GLOBAL_CONTROL.event_engine.execute_action("quit")
+                local_session.client.event_engine.execute_action("quit")
 
         for player, inputs in self._inputs.items():
             for player_input in inputs:
-                for game_event in player_input.get_events():
-                    yield game_event
+                yield from player_input.get_events()
 
 
 class PygameEventHandler(InputHandler):
@@ -81,7 +76,7 @@ class PygameGamepadInput(PygameEventHandler):
     }
 
     def __init__(self, event_map=None, deadzone=.25):
-        super(PygameGamepadInput, self).__init__(event_map)
+        super().__init__(event_map)
         self.deadzone = deadzone
 
     def process_event(self, pg_event):

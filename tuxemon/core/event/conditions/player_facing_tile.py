@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -36,14 +31,14 @@ class PlayerFacingTileCondition(EventCondition):
     """
     name = "player_facing_tile"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Checks to see the player is facing a tile position
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -75,27 +70,27 @@ class PlayerFacingTileCondition(EventCondition):
         # Next, we check the player position and see if we're one tile away from
         # the tile.
         for coordinates in tiles:
-            if coordinates[1] == game.player1.tile_pos[1]:
+            if coordinates[1] == session.player.tile_pos[1]:
                 # Check to see if the tile is to the left of the player
-                if coordinates[0] == game.player1.tile_pos[0] - 1:
+                if coordinates[0] == session.player.tile_pos[0] - 1:
                     logger.debug("Tile is to the left of the player")
                     tile_location = "left"
                 # Check to see if the tile is to the right of the player
-                elif coordinates[0] == game.player1.tile_pos[0] + 1:
+                elif coordinates[0] == session.player.tile_pos[0] + 1:
                     logger.debug("Tile is to the right of the player")
                     tile_location = "right"
 
-            elif coordinates[0] == game.player1.tile_pos[0]:
+            elif coordinates[0] == session.player.tile_pos[0]:
                 # Check to see if the tile is above the player
-                if coordinates[1] == game.player1.tile_pos[1] - 1:
+                if coordinates[1] == session.player.tile_pos[1] - 1:
                     logger.debug("Tile is above the player")
                     tile_location = "up"
-                elif coordinates[1] == game.player1.tile_pos[1] + 1:
+                elif coordinates[1] == session.player.tile_pos[1] + 1:
                     logger.debug("Tile is below the player")
                     tile_location = "down"
 
             # Then we check to see if we're facing the Tile
-            if game.player1.facing == tile_location:
+            if session.player.facing == tile_location:
                 return True
 
         return False

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>
@@ -23,10 +22,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventcontext import EventContext
 from tuxemon.core.tools import open_dialog
@@ -47,9 +42,9 @@ class DialogContext(EventContext):
     def add_menu(self, menu):
         self._menu = menu
 
-    def execute(self, game):
+    def execute(self, session):
         # Open a dialog window in the current scene.
-        open_dialog(game, self._dialog_chain_queue, self._avatar, self._menu)
+        open_dialog(session, self._dialog_chain_queue, self._avatar, self._menu)
         self._dialog_chain_queue = list()
         self._avatar = None
         self._menu = None

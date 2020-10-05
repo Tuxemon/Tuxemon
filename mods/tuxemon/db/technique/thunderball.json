@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Pound",
+  "animation": "pound",
   "category": "physical",
   "effects": [
     "damage"

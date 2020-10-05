@@ -1,6 +1,8 @@
 {
     "slug": "karrianna",
     "sprite_name": "maple",
+    "combat_front": "femaletrainer_front.png",
+    "combat_back": "maple_back.png",
     "monsters": [
         {
             "attack": 39,

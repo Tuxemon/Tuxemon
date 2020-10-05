@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventcondition import EventCondition
 from tuxemon.core.platform.const import intentions
@@ -33,14 +28,14 @@ class ButtonPressedCondition(EventCondition):
     """
     name = "button_pressed"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a particular key was pressed
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -57,7 +52,7 @@ class ButtonPressedCondition(EventCondition):
             raise ValueError("Cannot support key type: {}".format(button))
 
         # Loop through each event
-        for event in game.key_events:
+        for event in session.client.key_events:
             if event.pressed and event.button == button:
                 return True
 

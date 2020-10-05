@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.states.world Handles the world map and player movement.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import itertools
 import logging
@@ -38,14 +33,15 @@ import logging
 import pygame
 from six.moves import map as imap
 
+from tuxemon.compat import Rect
 from tuxemon.core import prepare, state, networking
-from tuxemon.core.db import db
-from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core.map import PathfindNode, TuxemonMap, dirs2, pairs
+from tuxemon.core.map_loader import TMXMapLoader
 from tuxemon.core.platform.const import buttons, events, intentions
+from tuxemon.core.session import local_session
 from tuxemon.core.tools import nearest
 
 logger = logging.getLogger(__name__)
-
 
 direction_map = {
     intentions.UP: "up",
@@ -58,8 +54,6 @@ direction_map = {
 class WorldState(state.State):
     """ The state responsible for the world game play
     """
-
-    preloaded_maps = {}
 
     keymap = {
         buttons.UP: intentions.UP,
@@ -74,7 +68,7 @@ class WorldState(state.State):
 
     def startup(self):
         # Provide access to the screen surface
-        self.screen = self.game.screen
+        self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
@@ -85,7 +79,7 @@ class WorldState(state.State):
 
         self.npcs = {}
         self.npcs_off_map = {}
-        self.player1 = None
+        self.player = None
         self.wants_to_move_player = None
         self.allow_player_movement = True
 
@@ -93,8 +87,6 @@ class WorldState(state.State):
         #                              Map                                   #
         ######################################################################
 
-        # Keep a map of preloaded maps for fast map switching.
-        self.preloaded_maps = {}
         self.current_map = None
 
         ######################################################################
@@ -231,16 +223,16 @@ class WorldState(state.State):
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 
-            self.player1.set_position((self.delayed_x, self.delayed_y))
+            self.player.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
-                self.player1.facing = self.delayed_facing
+                self.player.facing = self.delayed_facing
                 self.delayed_facing = None
 
             self.delayed_teleport = False
 
     def set_transition_surface(self, color=(0, 0, 0)):
-        self.transition_surface = pygame.Surface(self.game.screen.get_size())
+        self.transition_surface = pygame.Surface(self.client.screen.get_size())
         self.transition_surface.fill(color)
 
     def broadcast_player_teleport_change(self):
@@ -249,21 +241,21 @@ class WorldState(state.State):
         :return:
         """
         # Set the transition variable in event_data to false when we're done
-        self.game.event_data["transition"] = False
+        self.client.event_data["transition"] = False
 
         # Update the server/clients of our new map and populate any other players.
-        if self.game.isclient or self.game.ishost:
-            self.game.add_clients_to_map(self.game.client.client.registry)
-            self.game.client.update_player(self.player1.facing)
+        if self.client.isclient or self.client.ishost:
+            self.client.add_clients_to_map(self.client.client.client.registry)
+            self.client.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
         for npc in self.npcs.values():
             char_dict = {"tile_pos": npc.tile_pos}
-            networking.update_client(npc, char_dict, self.game)
+            networking.update_client(npc, char_dict, self.client)
 
         for npc in self.npcs_off_map.values():
             char_dict = {"tile_pos": npc.tile_pos}
-            networking.update_client(npc, char_dict, self.game)
+            networking.update_client(npc, char_dict, self.client)
 
     def update(self, time_delta):
         """The primary game loop that executes the world's game functions every frame.
@@ -276,10 +268,10 @@ class WorldState(state.State):
         :returns: None
 
         """
-        super(WorldState, self).update(time_delta)
+        super().update(time_delta)
         self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
-        logger.debug("Player Variables:" + str(self.player1.game_variables))
+        logger.debug("Player Variables:" + str(self.player.game_variables))
 
     def draw(self, surface):
         """ Draw the game world to the screen
@@ -321,7 +313,7 @@ class WorldState(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         event = self.translate_input_event(event)
@@ -329,12 +321,12 @@ class WorldState(state.State):
         if event.button == intentions.WORLD_MENU:
             if event.pressed:
                 logger.info("Opening main menu!")
-                self.game.release_controls()
-                self.game.push_state("WorldMenuState")
+                self.client.release_controls()
+                self.client.push_state("WorldMenuState")
                 return
 
         # map may not have a player registered
-        if self.player1 is None:
+        if self.player is None:
             return
 
         if event.button == intentions.INTERACT:
@@ -346,9 +338,9 @@ class WorldState(state.State):
 
         if event.button == intentions.RUN:
             if event.held:
-                self.player1.moverate = self.game.config.player_runrate
+                self.player.moverate = self.client.config.player_runrate
             else:
-                self.player1.moverate = self.game.config.player_walkrate
+                self.player.moverate = self.client.config.player_walkrate
 
         # If we receive an arrow key press, set the facing and
         # moving direction to that direction
@@ -366,7 +358,7 @@ class WorldState(state.State):
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
-                self.player1.ignore_collisions = not self.player1.ignore_collisions
+                self.player.ignore_collisions = not self.player.ignore_collisions
                 return
 
         # if we made it this far, return the event for others to use
@@ -389,8 +381,12 @@ class WorldState(state.State):
         # eventually, maybe use pygame sprites or something similar
         world_surfaces = list()
 
+        # temporary
+        if self.current_map.renderer is None:
+            self.current_map.initialize_renderer()
+
         # get player coords to center map
-        cx, cy = nearest(self.project(self.player1.tile_pos))
+        cx, cy = nearest(self.project(self.player.tile_pos))
 
         # offset center point for player sprite
         cx += prepare.TILE_SIZE[0] // 2
@@ -451,13 +447,13 @@ class WorldState(state.State):
         :param player:
         :return:
         """
-        self.player1 = player
+        self.player = player
         self.add_entity(player)
 
     def add_entity(self, entity):
         """
 
-        :type entity: core.entity.Entity
+        :type entity: tuxemon.core.entity.Entity
         :return:
         """
         entity.world = self
@@ -705,8 +701,8 @@ class WorldState(state.State):
         :return:
         """
         self.wants_to_move_player = None
-        self.game.release_controls()
-        self.player1.cancel_movement()
+        self.client.release_controls()
+        self.player.cancel_movement()
 
     def stop_and_reset_player(self):
         """ Reset controls, stop player and abort movement.  Do not lock controls.
@@ -719,8 +715,8 @@ class WorldState(state.State):
         :return:
         """
         self.wants_to_move_player = None
-        self.game.release_controls()
-        self.player1.abort_movement()
+        self.client.release_controls()
+        self.player.abort_movement()
 
     def move_player(self, direction):
         """ Move player in a direction.  Changes facing.
@@ -728,7 +724,7 @@ class WorldState(state.State):
         :param direction:
         :return:
         """
-        self.player1.move_direction = direction
+        self.player.move_direction = direction
 
     def get_pos_from_tilepos(self, tile_position):
         """ Returns the map pixel coordinate based on tile position.
@@ -764,7 +760,7 @@ class WorldState(state.State):
 
             if entity.update_location:
                 char_dict = {"tile_pos": entity.final_move_dest}
-                networking.update_client(entity, char_dict, self.game)
+                networking.update_client(entity, char_dict, self.client)
                 entity.update_location = False
 
         # Move any multiplayer characters that are off map so we know where they should be when we change maps.
@@ -772,20 +768,20 @@ class WorldState(state.State):
             entity.move(time_delta, self)
 
     def _collision_box_to_pgrect(self, box):
-        """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
+        """Returns a Rect (in screen-coords) version of a collision box (in world-coords).
         """
 
         # For readability
         x, y = self.get_pos_from_tilepos(box)
         tw, th = self.tile_size
 
-        return pygame.Rect(x, y, tw, th)
+        return Rect(x, y, tw, th)
 
     def _npc_to_pgrect(self, npc):
-        """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
+        """Returns a Rect (in screen-coords) version of an NPC's bounding box.
         """
         pos = self.get_pos_from_tilepos(npc.tile_pos)
-        return pygame.Rect(pos, self.tile_size)
+        return Rect(pos, self.tile_size)
 
     ####################################################
     #                Debug Drawing                     #
@@ -796,7 +792,7 @@ class WorldState(state.State):
         surface.lock()
 
         # draw events
-        for event in self.game.events:
+        for event in self.client.events:
             topleft = self.get_pos_from_tilepos((event.x, event.y))
             size = self.project((event.w, event.h))
             rect = topleft, size
@@ -909,66 +905,39 @@ class WorldState(state.State):
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
-        if map_name not in self.preloaded_maps.keys():
-            logger.debug("Map was not preloaded. Loading from disk.")
-            map_data = self.load_map(map_name)
-        else:
-            logger.debug("%s was found in preloaded maps." % map_name)
-            map_data = self.preloaded_maps[map_name]
-            self.clear_preloaded_maps()
+        logger.debug("Map was not preloaded. Loading from disk.")
+        map_data = self.load_map(map_name)
 
-        self.current_map = map_data["data"]
-        self.collision_map = map_data["collision_map"]
-        self.collision_lines_map = map_data["collision_lines_map"]
-        self.map_size = map_data["map_size"]
+        self.current_map = map_data
+        self.collision_map = map_data.collision_map
+        self.collision_lines_map = map_data.collision_lines_map
+        self.map_size = map_data.size
 
         # The first coordinates that are out of bounds.
         self.invalid_x = (-1, self.map_size[0])
         self.invalid_y = (-1, self.map_size[1])
 
-        self.game.load_map(map_data)
+        self.client.load_map(map_data)
 
         # Clear out any existing NPCs
         self.npcs = {}
         self.npcs_off_map = {}
-        self.add_player(self.game.player1)
+        self.add_player(local_session.player)
 
         # reset controls and stop moving to prevent player from
-        # moving after the teleport and being out of control
+        # moving after the teleport and being out of game
         self.stop_player()
 
         # move to spawn position, if any
-        for eo in self.game.events:
+        for eo in self.client.events:
             if eo.name.lower() == "player spawn":
-                self.player1.set_position((eo.x, eo.y))
+                self.player.set_position((eo.x, eo.y))
 
     def load_map(self, map_name):
-        """ Returns map data as a dictionary to be used for map changing and preloading
+        """ Returns map data as a dictionary to be used for map changing
+        :rtype: tuxemon.core.map.TuxemonMap
         """
-        map_data = {}
-        map_data["data"] = Map(map_name)
-        map_data["events"] = map_data["data"].events
-        map_data["inits"] = map_data["data"].inits
-        map_data["interacts"] = map_data["data"].interacts
-        map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
-            map_data["data"].loadfile()
-
-        return map_data
-
-    def preload_map(self, map_name):
-        """ Preload a map for quicker access
-
-        :param map_name:
-        :return: None
-        """
-        self.preloaded_maps[map_name] = self.load_map(map_name)
-
-    def clear_preloaded_maps(self):
-        """ Clear the preloaded maps cache
-
-        :return: None
-        """
-        self.preloaded_maps = {}
+        return TMXMapLoader().load(map_name)
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu
@@ -980,14 +949,14 @@ class WorldState(state.State):
         :returns: True if there is an Npc to interact with.
 
         """
-        collision_dict = self.player1.get_collision_map(self)
-        player_tile_pos = nearest(self.player1.tile_pos)
-        collisions = self.player1.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
+        collision_dict = self.player.get_collision_map(self)
+        player_tile_pos = nearest(self.player.tile_pos)
+        collisions = self.player.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
         if not collisions:
             pass
         else:
             for direction in collisions:
-                if self.player1.facing == direction:
+                if self.player.facing == direction:
                     if direction == "up":
                         tile = (player_tile_pos[0], player_tile_pos[1] - 1)
                     elif direction == "down":
@@ -1000,7 +969,7 @@ class WorldState(state.State):
                         tile_pos = (int(round(npc.tile_pos[0])), int(round(npc.tile_pos[1])))
                         if tile_pos == tile:
                             logger.info("Opening interaction menu!")
-                            self.game.push_state("InteractionMenu")
+                            self.client.push_state("InteractionMenu")
                             return True
                         else:
                             continue
@@ -1019,7 +988,7 @@ class WorldState(state.State):
         """
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
-        networking.update_client(target, event_data["char_dict"], self.game)
+        networking.update_client(target, event_data["char_dict"], self.client)
         if event_data["interaction"] == "DUEL":
             if not event_data["response"]:
                 self.interaction_menu.visible = True
@@ -1030,8 +999,8 @@ class WorldState(state.State):
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
-                        world = self.game.current_state
-                        pd = world.player1.__dict__
+                        world = self.client.current_state
+                        pd = local_session.player.__dict__
                         event_data = {"type": "CLIENT_INTERACTION",
                                       "interaction": "START_DUEL",
                                       "target": [event_data["target"]],
@@ -1041,4 +1010,4 @@ class WorldState(state.State):
                                                     }
 
                                       }
-                        self.game.server.notify_client_interaction(cuuid, event_data)
+                        self.client.server.notify_client_interaction(cuuid, event_data)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="280">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="280">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -183,336 +183,336 @@
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="144" name="Teleport to Route 2" type="event" x="0" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route2.tmx,39,9,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route2.tmx,39,9,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="145" name="Teleport to Route 1" type="event" x="160" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,10,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,10,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="146" name="Teleport to Cotton Cathedral" type="event" x="304" y="416" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_cathedral.tmx,7,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport cotton_cathedral.tmx,7,12,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="147" name="Teleport to Cotton Mart" type="event" x="144" y="544" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_scoop.tmx,5,10,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport cotton_scoop.tmx,5,10,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="148" name="Teleport to Omnichannel HQ almost" type="event" x="352" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog itslockedboi"/>
-    <property name="act2" value="translated_dialog hellothere"/>
-    <property name="act3" value="create_npc aeble,14,10,,stand"/>
-    <property name="act4" value="npc_face aeble,right"/>
-    <property name="act5" value="translated_dialog kmere"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not npc_exists aeble"/>
-    <property name="cond5" value="not variable_set donewithyou:yes"/>
+    <property name="act10" value="translated_dialog itslockedboi"/>
+    <property name="act20" value="translated_dialog hellothere"/>
+    <property name="act30" value="create_npc aeble,14,10,,stand"/>
+    <property name="act40" value="npc_face aeble,right"/>
+    <property name="act50" value="translated_dialog kmere"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond40" value="not npc_exists aeble"/>
+    <property name="cond50" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
   <object id="149" name="Teleport to Dryad's Grove" type="event" x="624" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,7,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport dryadsgrove.tmx,0,7,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="160" name="Teleport to Route 1" type="event" x="176" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,11,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,11,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="161" name="Teleport to Route 1" type="event" x="192" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,12,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,12,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="162" name="Teleport to Route 1" type="event" x="208" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,13,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,13,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="163" name="Teleport to Route 1" type="event" x="224" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,14,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,14,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="164" name="Teleport to Route 1" type="event" x="240" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,15,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,15,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="165" name="Teleport to Route 1" type="event" x="256" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,16,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,16,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="166" name="Teleport to Route 1" type="event" x="272" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,17,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,17,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="167" name="Teleport to Route 1" type="event" x="288" y="624" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route1_sanglorian.tmx,18,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport route1_sanglorian.tmx,18,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
   <object id="232" name="Teleport to Route 2" type="event" x="0" y="448" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport route2.tmx,39,8,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act10" value="transition_teleport route2.tmx,39,8,0.3"/>
+    <property name="act20" value="player_face left"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="236" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_town_theme"/>
-    <property name="cond1" value="not music_playing music_town_theme"/>
+    <property name="act10" value="play_music music_town_theme"/>
+    <property name="cond10" value="not music_playing music_town_theme"/>
    </properties>
   </object>
   <object id="239" name="Teleport to Dryad's Grove" type="event" x="624" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport dryadsgrove.tmx,0,8,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act10" value="transition_teleport dryadsgrove.tmx,0,8,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
   <object id="245" name="Sign: Cotton Town" type="event" x="240" y="608" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog Cotton_Town_Sign\n"/>
-    <property name="cond1" value="is player_facing up"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="act10" value="translated_dialog Cotton_Town_Sign\n"/>
+    <property name="cond10" value="is player_facing up"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is player_at"/>
    </properties>
   </object>
   <object id="246" name="Sign: Cotton Scoop" type="event" x="192" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog Cotton_Mart"/>
-    <property name="cond1" value="is player_facing up"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="act10" value="translated_dialog Cotton_Mart"/>
+    <property name="cond10" value="is player_facing up"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is player_at"/>
    </properties>
   </object>
   <object id="247" name="Sign: Omnichannel HQ" type="event" x="272" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="dialog_chain Omnichannel HQ: We Make Headlines"/>
-    <property name="act4" value="dialog_chain ${{end}}"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="dialog_chain Omnichannel HQ: We Make Headlines"/>
+    <property name="act20" value="dialog_chain ${{end}}"/>
+    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="248" name="Sign: Cathedral Centre" type="event" x="352" y="432" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog Cathedral_Center"/>
-    <property name="cond1" value="is player_facing up"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="act10" value="translated_dialog Cathedral_Center"/>
+    <property name="cond10" value="is player_facing up"/>
+    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is player_at"/>
    </properties>
   </object>
   <object id="249" name="Teleport to Cafe" type="event" x="176" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport cotton_cafe.tmx,8,11,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport cotton_cafe.tmx,8,11,0.3"/>
+    <property name="act20" value="player_face up"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
   <object id="252" name="create allie" type="event" x="0" y="352" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc allie,22,10,,stand"/>
-    <property name="cond1" value="not npc_exists allie"/>
-    <property name="cond2" value="not variable_set npcs_are_created:yes"/>
+    <property name="act10" value="create_npc allie,22,10,,stand"/>
+    <property name="cond10" value="not npc_exists allie"/>
+    <property name="cond20" value="not variable_set npcs_are_created:yes"/>
    </properties>
   </object>
   <object id="253" name="Hiya" type="event" x="352" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog mwah\n"/>
-    <property name="act11" value="set_variable npcs_are_created:yes"/>
-    <property name="act9" value="npc_face allie,up"/>
-    <property name="act91" value="translated_dialog mwah2"/>
-    <property name="act92" value="remove_npc allie"/>
-    <property name="behav0" value="talk allie"/>
+    <property name="act10" value="translated_dialog mwah\n"/>
+    <property name="act20" value="set_variable npcs_are_created:yes"/>
+    <property name="act30" value="npc_face allie,up"/>
+    <property name="act40" value="translated_dialog mwah2"/>
+    <property name="act50" value="remove_npc allie"/>
+    <property name="behav10" value="talk allie"/>
    </properties>
   </object>
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog theinfo\n"/>
-    <property name="act2" value="npc_move aeble, down 1, right 8, up 1"/>
-    <property name="act3" value="npc_speed aeble, 0.5"/>
-    <property name="act4" value="pathfind aeble, 22, 10"/>
-    <property name="act5" value="remove_npc aeble"/>
-    <property name="act6" value="remove_npc grace"/>
-    <property name="act7" value="remove_npc tallon"/>
-    <property name="act8" value="set_variable donewithyou:yes"/>
-    <property name="act9" value="set_variable killgrace:yes"/>
-    <property name="behav1" value="talk aeble"/>
-    <property name="cond4" value="not variable_set donewithyou:yes"/>
+    <property name="act10" value="translated_dialog theinfo\n"/>
+    <property name="act20" value="npc_move aeble, down 1, right 8, up 1"/>
+    <property name="act30" value="npc_speed aeble, 0.5"/>
+    <property name="act40" value="pathfind aeble, 22, 10"/>
+    <property name="act50" value="remove_npc aeble"/>
+    <property name="act60" value="remove_npc grace"/>
+    <property name="act70" value="remove_npc tallon"/>
+    <property name="act80" value="set_variable donewithyou:yes"/>
+    <property name="act90" value="set_variable killgrace:yes"/>
+    <property name="behav10" value="talk aeble"/>
+    <property name="cond10" value="not variable_set donewithyou:yes"/>
    </properties>
   </object>
   <object id="259" name="Create liela" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc liela,38,17,,stand"/>
-    <property name="act2" value="npc_face liela,up"/>
-    <property name="cond1" value="not npc_exists liela"/>
+    <property name="act10" value="create_npc liela,38,17,,stand"/>
+    <property name="act20" value="npc_face liela,up"/>
+    <property name="cond10" value="not npc_exists liela"/>
    </properties>
   </object>
   <object id="260" name="door problems" type="event" x="112" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog door_problems"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog door_problems"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="262" name="it's an empty pot" type="event" x="160" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog empty_pot"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog empty_pot"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="263" name="purple flowers1" type="event" x="128" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="act10" value="translated_dialog purple_flowers"/>
+    <property name="cond10" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="264" name="purple flowers2" type="event" x="160" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="act10" value="translated_dialog purple_flowers"/>
+    <property name="cond10" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="265" name="purple flowers3" type="event" x="256" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="act10" value="translated_dialog purple_flowers"/>
+    <property name="cond10" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="266" name="purple flowers4" type="event" x="288" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="act10" value="translated_dialog purple_flowers"/>
+    <property name="cond10" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="267" name="purple flowers5" type="event" x="384" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog purple_flowers"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="act10" value="translated_dialog purple_flowers"/>
+    <property name="cond10" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="269" name="orange flowers" type="event" x="208" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog orange_flowers"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog orange_flowers"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="270" name="talk to liela" type="event" x="592" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog liela_goes_to_battle"/>
-    <property name="act2" value="start_battle liela"/>
-    <property name="behav1" value="talk liela"/>
+    <property name="act10" value="translated_dialog liela_goes_to_battle"/>
+    <property name="act20" value="start_battle liela"/>
+    <property name="behav10" value="talk liela"/>
    </properties>
   </object>
   <object id="271" name="statue1" type="event" x="448" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog famous_statue"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog famous_statue"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="272" name="statue2" type="event" x="512" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog famous_statue2"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog famous_statue2"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="273" name="fountain" type="event" x="464" y="368" width="48" height="32">
    <properties>
-    <property name="act1" value="translated_dialog cotton_town_fountain"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="act10" value="translated_dialog cotton_town_fountain"/>
+    <property name="cond10" value="is to_use_tile"/>
    </properties>
   </object>
   <object id="274" name="tree" type="event" x="144" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog tree"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="act10" value="translated_dialog tree"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="276" name="personhere" type="event" x="16" y="448" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog waithere"/>
-    <property name="behav1" value="talk tallon"/>
+    <property name="act10" value="translated_dialog waithere"/>
+    <property name="behav10" value="talk tallon"/>
    </properties>
   </object>
   <object id="277" name="personhere" type="event" x="16" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog waithere2"/>
-    <property name="behav1" value="talk grace"/>
+    <property name="act10" value="translated_dialog waithere2"/>
+    <property name="behav10" value="talk grace"/>
    </properties>
   </object>
   <object id="278" name="create grace and tallon" type="event" x="0" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc grace,0,29,,stand"/>
-    <property name="act2" value="create_npc tallon,0,28,,stand"/>
-    <property name="act3" value="npc_face grace,left"/>
-    <property name="act4" value="npc_face tallon,left"/>
-    <property name="cond1" value="not npc_exists grace"/>
-    <property name="cond2" value="not variable_set npcs_are_created:yes"/>
-    <property name="cond3" value="not npc_exists tallon"/>
-    <property name="cond4" value="not variable_set killgrace:yes"/>
+    <property name="act10" value="create_npc grace,0,29,,stand"/>
+    <property name="act20" value="create_npc tallon,0,28,,stand"/>
+    <property name="act30" value="npc_face grace,left"/>
+    <property name="act40" value="npc_face tallon,left"/>
+    <property name="cond10" value="not npc_exists grace"/>
+    <property name="cond20" value="not variable_set npcs_are_created:yes"/>
+    <property name="cond30" value="not npc_exists tallon"/>
+    <property name="cond40" value="not variable_set killgrace:yes"/>
    </properties>
   </object>
  </objectgroup>

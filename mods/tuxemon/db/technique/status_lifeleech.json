@@ -4,7 +4,7 @@
   "execute_trans": "combat_state_lifeleech_get",
   "success_trans": "combat_state_lifeleech_success",
   "failure_trans": "combat_state_lifeleech_failure",
-  "animation": "greendrip",
+  "animation": "drip_green",
   "sfx": "sfx_bite",
   "icon": "gfx/ui/icons/status/lifeleech-icon.png",
   "category": "lifeleech",

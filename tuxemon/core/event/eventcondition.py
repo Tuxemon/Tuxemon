@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -26,13 +25,9 @@
 #
 
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 
-class EventCondition(object):
+class EventCondition:
     """
 
     """
@@ -41,16 +36,16 @@ class EventCondition(object):
     def __init__(self):
         pass
 
-    def test(self, game, condition):
+    def test(self, session, condition):
         """ Return True if satisfied, or False if not
 
-        :param game:
-        :param condition:
+        :param tuxemon.core.session.Session session:
+        :param Dict condition:
         :rtype: bool
         """
         pass
 
-    def get_persist(self, game):
+    def get_persist(self, session):
         """ Return dictionary for this event class's data
 
         * This dictionary will be shared across all conditions
@@ -61,10 +56,10 @@ class EventCondition(object):
         # Create a dictionary that will track movement
 
         try:
-            return game.event_persist[self.name]
+            return session.client.event_persist[self.name]
         except KeyError:
             persist = dict()
-            game.event_persist[self.name] = persist
+            session.client.event_persist[self.name] = persist
             return persist
 
     @property

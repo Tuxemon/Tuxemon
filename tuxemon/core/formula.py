@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -26,35 +25,23 @@
 #
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from collections import namedtuple
 
 logger = logging.getLogger(__name__)
 
-type_chart = namedtuple("TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"])
+type_chart = namedtuple(
+    "TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"]
+)
 TYPES = {
     "aether": type_chart(None, None, None, None),
     "normal": type_chart(None, None, None, None),
-    "wood": type_chart(
-        "earth", "fire", "metal", "water"
-    ),
-    "fire": type_chart(
-        "metal", "earth", "water", "wood"
-    ),
-    "earth": type_chart(
-        "water", "metal", "wood", "fire"
-    ),
-    "metal": type_chart(
-        "wood", "water", "fire", "earth"
-    ),
-    "water": type_chart(
-        "fire", "wood", "earth", "metal"
-    ),
+    "wood": type_chart("earth", "fire", "metal", "water"),
+    "fire": type_chart("metal", "earth", "water", "wood"),
+    "earth": type_chart("water", "metal", "wood", "fire"),
+    "metal": type_chart("wood", "water", "fire", "earth"),
+    "water": type_chart("fire", "wood", "earth", "metal"),
 }
 
 
@@ -86,6 +73,7 @@ def simple_damage_multiplier(attack_types, target_types):
     m = max(0.25, m)
     return m
 
+
 def simple_damage_calculate(technique, user, target):
     """ Calculates the damage of a technique based on stats and multiplier.
 
@@ -93,9 +81,9 @@ def simple_damage_calculate(technique, user, target):
     :param user: The user of the technique.
     :param target: The one the technique is being used on.
 
-    :type technique: core.technique.Technique
-    :type user: core.monster.Monster
-    :type target: core.monster.Monster
+    :type technique: tuxemon.core.technique.Technique
+    :type user: tuxemon.core.monster.Monster
+    :type target: tuxemon.core.monster.Monster
 
     :return: damage, multiplier
     """
@@ -115,13 +103,18 @@ def simple_damage_calculate(technique, user, target):
         user_strength = 7 + user.level
         target_resist = 1
     else:
-        logger.error('unhandled damage category %s %s', technique.category, technique.range)
+        logger.error(
+            "unhandled damage category %s %s", technique.category, technique.range
+        )
         raise RuntimeError
 
-    mult = simple_damage_multiplier((technique.type1, technique.type2), (target.type1, target.type2))
+    mult = simple_damage_multiplier(
+        (technique.type1, technique.type2), (target.type1, target.type2)
+    )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
+
 
 def simple_poison(technique, user, target):
     """ Simple poison based on target's full hp.
@@ -130,14 +123,15 @@ def simple_poison(technique, user, target):
     :param user: The user of the technique.
     :param target: The one the technique is being used on.
 
-    :type technique: core.technique.Technique
-    :type user: core.monster.Monster
-    :type target: core.monster.Monster
+    :type technique: tuxemon.core.technique.Technique
+    :type user: tuxemon.core.monster.Monster
+    :type target: tuxemon.core.monster.Monster
 
     :return: damage
     """
     damage = target.hp / 8
     return damage
+
 
 def simple_recover(technique, target):
     """ Simple recover based on target's full hp.
@@ -145,8 +139,8 @@ def simple_recover(technique, target):
     :param technique: The technique causing recover.
     :param target: The one being healed.
 
-    :type technique: core.technique.Technique
-    :type target: core.monster.Monster
+    :type technique: tuxemon.core.technique.Technique
+    :type target: tuxemon.core.monster.Monster
 
     :return: heal
     """
@@ -161,9 +155,9 @@ def simple_lifeleech(technique, user, target):
     :param user: The user of the technique.
     :param target: The one the technique is being used on.
 
-    :type technique: core.technique.Technique
-    :type user: core.monster.Monster
-    :type target: core.monster.Monster
+    :type technique: tuxemon.core.technique.Technique
+    :type user: tuxemon.core.monster.Monster
+    :type target: tuxemon.core.monster.Monster
 
     :return: damage
     """

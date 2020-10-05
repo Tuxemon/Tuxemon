@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,13 +23,9 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 
-class EventContext(object):
+class EventContext:
     def __enter__(self):
         """ When context is placed on the stack
 
@@ -45,5 +40,5 @@ class EventContext(object):
         """
         pass
 
-    def execute(self, game):
+    def execute(self, session):
         pass

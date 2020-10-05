@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 
 import pygame
@@ -25,7 +20,7 @@ class FlashTransition(State):
         self.transition_alpha = 0
         self.max_flash_count = 7
         self.flash_count = 0
-        self.game.rumble.rumble(-1, length=1.5)
+        self.client.rumble.rumble(-1, length=1.5)
 
     def resume(self):
         self.transition_surface = pygame.Surface(prepare.SCREEN_SIZE)
@@ -60,7 +55,7 @@ class FlashTransition(State):
         # transition animation.
         if self.flash_count > self.max_flash_count:
             logger.info("Flashed " + str(self.flash_count) + " times. Stopping transition.")
-            self.game.pop_state()
+            self.client.pop_state()
 
     def draw(self, surface):
         """Draws the start screen to the screen.
@@ -86,7 +81,7 @@ class FlashTransition(State):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         # prevent other states from getting input

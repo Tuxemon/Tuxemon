@@ -1,6 +1,6 @@
 {
   "accuracy": 1,
-  "animation": "Rockshield",
+  "animation": "shield_rock",
   "category": "physical",
   "effects": [],
   "healing_power": 4.0,

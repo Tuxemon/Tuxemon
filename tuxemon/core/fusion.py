@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #               http://www.alexonsager.net/blog/2013/06/04/behind-the-scenes-pokemon-fusion/
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 try:
     from PIL import Image
@@ -40,7 +35,7 @@ except ImportError:
 import json
 
 
-class Body(object):
+class Body:
     """A class that holds sprite, _color, and face position data for use with fusing two sprites
     together.
 
@@ -164,7 +159,7 @@ class Body(object):
 
         # If "file" is set to true, then assume that json_data is a path to a file containing json.
         if file:
-            f = open(json_data, 'r')
+            f = open(json_data)
             json_data = ''.join(f.readlines())
             f.close()
 
@@ -338,7 +333,7 @@ def fuse(body, face, save=True, filename=None):
     # Save the resulting image
     if save:
         if not filename:
-            filename = "fusion/%s%s.png" % (body.prefix, face.suffix)
+            filename = "fusion/{}{}.png".format(body.prefix, face.suffix)
         body_image.save(filename)
 
     return body_image

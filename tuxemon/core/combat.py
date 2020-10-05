@@ -6,10 +6,6 @@ Code here might be shared by states, actions, conditions, etc.
 
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -19,7 +15,7 @@ logger = logging.getLogger()
 def check_battle_legal(player):
     """ Checks to see if the player has any monsters fit for battle.
 
-    :type player: core.player.Player
+    :type player: tuxemon.core.player.Player
 
     :rtype: bool
     """

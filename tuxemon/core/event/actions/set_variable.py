@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 
@@ -49,8 +44,7 @@ class SetVariableAction(EventAction):
     ]
 
     def start(self):
-        # Get the player object from the self.game.
-        player = self.game.player1
+        player = self.session.player
 
         # Split the variable into a key: value pair
         var_list = self.parameters[0].split(":")

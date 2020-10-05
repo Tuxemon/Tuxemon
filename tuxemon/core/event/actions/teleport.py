@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core import prepare
 from tuxemon.core.event.eventaction import EventAction
@@ -54,9 +49,8 @@ class TeleportAction(EventAction):
     ]
 
     def start(self):
-        # Get the player and map from the game
-        player = self.game.player1
-        world = self.game.get_state_name("WorldState")
+        player = self.session.player
+        world = self.session.client.get_state_by_name("WorldState")
         map_name = self.parameters.map_name
 
         # If we're doing a screen transition with this teleport, set the map name that we'll

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from operator import eq, gt, lt, ge, le
 
@@ -56,10 +51,10 @@ class HasItemCondition(EventCondition):
     """
     name = "has_item"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see the player is has a monster in his party
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -85,7 +80,7 @@ class HasItemCondition(EventCondition):
 
         # TODO: handle missing npc, etc
         owner_slug, item_slug = condition.parameters[:2]
-        npc = get_npc(game, owner_slug)
+        npc = get_npc(session, owner_slug)
         item_info = npc.inventory.get(item_slug)
         if item_info is None:  # not found in inventory
             item_quantity = 0

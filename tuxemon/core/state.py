@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -23,10 +22,6 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import inspect
 import logging
@@ -38,9 +33,9 @@ from importlib import import_module
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon.constants import paths
-from tuxemon.core import prepare
-from tuxemon.core import tools
+from tuxemon.core import prepare, graphics
 from tuxemon.core.animation import Animation
 from tuxemon.core.animation import Task
 from tuxemon.core.animation import remove_animations_of
@@ -49,7 +44,7 @@ from tuxemon.core.sprite import SpriteGroup
 logger = logging.getLogger(__name__)
 
 
-class State(object):
+class State:
     """ This is a prototype class for States.
 
     All states should inherit from it. No direct instances of this
@@ -63,26 +58,26 @@ class State(object):
        pause         - Called when state is no longer active
        shutdown      - Called before state is destroyed
 
-    :ivar game: core.control.Control
+    :ivar client: tuxemon.core.session.Client
     :cvar force_draw: If True, state will never be skipped in drawing phase
     :cvar rect: Area of the screen will be drawn on
     """
     __metaclass__ = ABCMeta
 
-    rect = pygame.Rect((0, 0), prepare.SCREEN_SIZE)
+    rect = Rect((0, 0), prepare.SCREEN_SIZE)
     transparent = False   # ignore all background/borders
     force_draw = False    # draw even if completely under another state
 
-    def __init__(self, control):
+    def __init__(self, client):
         """ Do not override this unless there is a special need.
 
         All init for the State, loading of config, images, etc should
         be done in State.startup or State.resume, not here.
 
-        :param control: State Manager / Control / Game... all the same
+        :param tuxemon.core.client.Client client: State Manager / Game Client
         :returns: None
         """
-        self.game = control  # type: tuxemon.core.control.Control
+        self.client = client
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
@@ -95,15 +90,15 @@ class State(object):
     def load_sprite(self, filename, **kwargs):
         """ Load a sprite and add it to this state
 
-        kwargs can be any value used by pygame Rect, or layer
+        kwargs can be any value used by Rect, or layer
 
         :param filename: filename, relative to the resources folder
         :type filename: String
         :param kwargs: Keyword arguments to pass to the Rect constructor
-        :returns: core.sprite.Sprite
+        :returns: tuxemon.core.sprite.Sprite
         """
         layer = kwargs.pop('layer', 0)
-        sprite = tools.load_sprite(filename, **kwargs)
+        sprite = graphics.load_sprite(filename, **kwargs)
         self.sprites.add(sprite, layer=layer)
         return sprite
 
@@ -115,7 +110,7 @@ class State(object):
         :param targets: targets of the Animation
         :type targets: any
         :param kwargs: Attributes and their final value
-        :returns: core.animation.Animation
+        :returns: tuxemon.core.animation.Animation
         """
         ani = Animation(*targets, **kwargs)
         self.animations.add(ani)
@@ -129,7 +124,7 @@ class State(object):
 
         :param args: function to be called
         :param kwargs: kwargs passed to the function
-        :returns: core.animation.Task
+        :returns: tuxemon.core.animation.Task
         """
         task = Task(*args, **kwargs)
         self.animations.add(task)
@@ -154,7 +149,7 @@ class State(object):
 
         You should return None if you have handled input here.
 
-        :type event: core.input.PlayerInput
+        :type event: tuxemon.core.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         return event
@@ -246,8 +241,8 @@ class State(object):
         pass
 
 
-class StateManager(object):
-    """ Mix-in style class for use with Control class.
+class StateManager:
+    """ Mix-in style class for use with Client class.
 
     This is currently undergoing a refactor of sorts, API may not be stable
     """
@@ -314,8 +309,7 @@ class StateManager(object):
         try:
             import_name = self.package + '.' + folder
             import_module(import_name)
-            for state in self.collect_states_from_module(import_name):
-                yield state
+            yield from self.collect_states_from_module(import_name)
         except Exception as e:
             template = "{} failed to load or is not a valid game package"
             logger.error(e)
@@ -394,7 +388,7 @@ class StateManager(object):
 
         :param state_name: name of state to start
         :returns: instanced State
-        :rtype: core.state.State
+        :rtype: tuxemon.core.state.State
         """
         try:
             state = self._state_dict[state_name]
@@ -426,7 +420,7 @@ class StateManager(object):
 
         :param state_name: name of state to start
         :returns: New instance
-        :rtype: core.state.State
+        :rtype: tuxemon.core.state.State
         """
         previous = self._state_stack[0]
         instance = self.push_state(state_name, **kwargs)
@@ -449,7 +443,7 @@ class StateManager(object):
         """ The currently running state
 
         :returns: State
-        :rtype: core.state.State
+        :rtype: tuxemon.core.state.State
         """
         try:
             return self._state_stack[0]

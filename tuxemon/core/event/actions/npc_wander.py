@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import math
 import random
@@ -43,8 +38,8 @@ class NpcWanderAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
-        world = self.game.get_state_name("WorldState")
+        npc = get_npc(self.session, self.parameters.npc_slug)
+        world = self.session.client.get_state_by_name("WorldState")
 
         def move():
             # Don't interrupt existing movement
@@ -53,7 +48,7 @@ class NpcWanderAction(EventAction):
 
             # Suspend wandering if a dialog window is open
             # TODO: this should only be done for the NPC the player is conversing with, not everyone
-            for state in self.game.active_states:
+            for state in self.session.client.active_states:
                 if state.name == "DialogState":
                     return
 

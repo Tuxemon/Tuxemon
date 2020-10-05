@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventcondition import EventCondition
 from tuxemon.core.platform import mixer
@@ -33,14 +28,14 @@ class MusicPlayingCondition(EventCondition):
     """
     name = "music_playing"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a particular piece of music is playing or not.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -67,16 +62,16 @@ class MusicPlayingCondition(EventCondition):
         """
         song = condition.parameters[0]
 
-        # currently no way to query the names of states in the state control stack.
+        # currently no way to query the names of states in the state game stack.
         # so we find names here.  possibly might make api to do this later.
-        names = {i.name for i in game.active_states}
+        names = {i.name for i in session.client.active_states}
         combat_states = {"FlashTransition", "CombatState"}
 
         # means "if any element of combat_states is in names"
         if not names.isdisjoint(combat_states):
             return True
 
-        if game.current_music["song"] == song and mixer.music.get_busy():
+        if session.client.current_music["song"] == song and mixer.music.get_busy():
             return True
         else:
             return False

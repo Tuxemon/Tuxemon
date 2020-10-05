@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 
@@ -38,8 +33,8 @@ class CallEventAction(EventAction):
     ]
 
     def start(self):
-        event_engine = self.game.event_engine
-        events = self.game.events
+        event_engine = self.session.client.event_engine
+        events = self.session.client.events
 
         for e in events:
             if e.id == self.parameters.event_id:

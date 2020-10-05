@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -57,7 +52,7 @@ class PlayMusicAction(EventAction):
             logger.error('unable to play music')
 
         # Keep track of what song we're currently playing
-        if self.game.current_music["song"]:
-            self.game.current_music["previoussong"] = self.game.current_music["song"]
-        self.game.current_music["status"] = "playing"
-        self.game.current_music["song"] = filename
+        if self.session.client.current_music["song"]:
+            self.session.client.current_music["previoussong"] = self.session.client.current_music["song"]
+        self.session.client.current_music["status"] = "playing"
+        self.session.client.current_music["song"] = filename

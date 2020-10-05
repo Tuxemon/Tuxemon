@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -24,13 +23,10 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 # 
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.locale import T
+
 
 class RenameMonsterAction(EventAction):
     """Opens the monster menu and text input screens to rename a selected monster.
@@ -42,26 +38,26 @@ class RenameMonsterAction(EventAction):
 
     def start(self):
         # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
         if not world:
             return
     
         # pull up the monster menu so we know which one we are renaming
-        menu = self.game.push_state("MonsterMenuState")
+        menu = self.session.client.push_state("MonsterMenuState")
         menu.on_menu_selection = self.prompt_for_name
 
     def update(self):
-        if self.game.get_state_name("MonsterMenuState") is None and self.game.get_state_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("MonsterMenuState") is None and self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()
 
     def set_monster_name(self, name):
         self.monster.name = name
-        self.game.get_state_name("MonsterMenuState").refresh_menu_items()
+        self.session.client.get_state_by_name("MonsterMenuState").refresh_menu_items()
 
     def prompt_for_name(self, menu_item):
         self.monster = menu_item.game_object
 
-        self.game.push_state(
+        self.session.client.push_state(
             state_name="InputMenu",
             prompt=T.translate("input_monster_name"),
             callback=self.set_monster_name,

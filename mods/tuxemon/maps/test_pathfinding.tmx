@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -8,17 +8,17 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="15" height="15" visible="0">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDCQAAAOEAAE=
+   eAFjYBgFoyEwGgIDGQIAA4QAAQ==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="15" height="15" visible="0">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDCQAAAOEAAE=
+   eAFjYBgFoyEwGgIDGQIAA4QAAQ==
   </data>
  </layer>
  <layer id="3" name="TIle Layer 3rd" width="15" height="15">
   <data encoding="base64" compression="zlib">
-   eJzzYWBg8KEAswIxG4mYHaqXlwz7+NH0cpCAseklxk5cepmBWAwPZsGjFyYWCMRBQByM5lZeIvRGAnEUEEeToJcbR3wQoxdXmOLTy8qAGuek6EUXI0WvKBDzAbE4Ab3o6kjxLzL2gZqFLz2I49ALAMOCG2k=
+   eAGlksEOgyAQRElaq4nRnlp/yot6Uv//P5xJmGRDgII9TIDNvN2FZXbOzX+oAfuqVOvrDTfqvgO2w7lUMbbk7swfYx+IfzN6+t5irGILPCu0ea/uwrdJ1RW7w3NAZwXbwxvOi/MoqSuPXdmLzrGe9T80c3m5/mLDfDXsB/lHaII44xQb+vQnrd/ubc82zhrMlfsP7MUy2l/Dghtp
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="collision">
@@ -77,14 +77,14 @@
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="26" name="Test Pathfinding" type="event" x="112" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind maple_girl,3,11"/>
-    <property name="cond1" value="is player_at 7,7 "/>
+    <property name="act10" value="pathfind maple_girl,3,11"/>
+    <property name="cond10" value="is player_at 7,7 "/>
    </properties>
   </object>
   <object id="29" name="Create Maple" type="event" x="144" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc maple_girl,9,6,maple,stay"/>
-    <property name="cond1" value="not npc_exists maple_girl"/>
+    <property name="act10" value="create_npc maple_girl,9,6,maple,stay"/>
+    <property name="cond10" value="not npc_exists maple_girl"/>
    </properties>
   </object>
   <object id="36" name="Player Spawn" type="event" x="112" y="96" width="16" height="16"/>

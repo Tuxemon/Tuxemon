@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 
@@ -31,8 +26,7 @@ class TeleportFaintAction(EventAction):
     name = "teleport_faint"
 
     def start(self):
-        # Get the player object from the self.game.
-        player = self.game.player1
+        player = self.session.player
 
         # Start with the default value, override if game variable exists
         teleport = ["healing_center.tmx", 7, 10]
@@ -43,4 +37,4 @@ class TeleportFaintAction(EventAction):
         # self.game.event_engine.execute_action("screen_transition", [.3])
 
         # Call the teleport action
-        self.game.event_engine.execute_action("teleport", teleport)
+        self.session.client.event_engine.execute_action("teleport", teleport)

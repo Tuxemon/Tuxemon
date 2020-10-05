@@ -1,15 +1,8 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 from abc import abstractmethod
 
 import pygame
 
-from tuxemon.core import prepare
-from tuxemon.core.platform import mixer
 from tuxemon.core.state import State
 
 logger = logging.getLogger(__name__)
@@ -30,10 +23,10 @@ class FadeTransitionBase(State):
         self.caller = kwargs.get("caller")
 
     def resume(self):
-        size = self.game.screen.get_size()
+        size = self.client.screen.get_size()
         self.transition_surface = pygame.Surface(size)
         self.transition_surface.fill(self.color)
-        self.task(self.game.pop_state, self.state_duration)
+        self.task(self.client.pop_state, self.state_duration)
         self.create_fade_animation()
 
     def process_event(self, event):
@@ -56,10 +49,10 @@ class FadeOutTransition(FadeTransitionBase):
         self.animate(self.transition_surface, set_alpha=255, initial=0, duration=self.fade_duration)
 
     def shutdown(self):
-        if self.game.current_music["previoussong"]:
-            self.game.event_engine.execute_action("play_music", [self.game.current_music["previoussong"]])
-            self.game.current_music["previoussong"] = None
-        self.game.pop_state(self.caller)
+        if self.client.current_music["previoussong"]:
+            self.client.event_engine.execute_action("play_music", [self.client.current_music["previoussong"]])
+            self.client.current_music["previoussong"] = None
+        self.client.pop_state(self.caller)
 
 
 class FadeInTransition(FadeTransitionBase):

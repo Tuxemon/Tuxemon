@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2018, Andy Mender <andymenderunix@gmail.com>
@@ -26,10 +25,6 @@
 # core.constants.paths - Central store for local file paths
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import os.path
 
@@ -55,8 +50,17 @@ USER_GAME_DATA_DIR = os.path.join(USER_GAME_DIR, "data")
 USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
 
 # mods
-mods_folder = os.path.join(BASEDIR, "..", "mods")
+mods_folder = os.path.normpath(os.path.join(BASEDIR, "..", "mods"))
+
+# shared locations
+system_installed_folders = [
+    "/user/share/tuxemon/", # debian
+]
 
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.join(BASEDIR, "core/event/conditions")
 ACTIONS_PATH = os.path.join(BASEDIR, "core/event/actions")
+
+# item effects/conditions
+ITEM_EFFECT_PATH = os.path.join(BASEDIR, "core/item/effects")
+ITEM_CONDITION_PATH = os.path.join(BASEDIR, "core/item/conditions")

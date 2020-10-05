@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -20,15 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
-from tuxemon.core.event.eventaction import EventAction
 import logging
 
+from tuxemon.core.event.eventaction import EventAction
+
 logger = logging.getLogger(__name__)
+
 
 class WaitForInputAction(EventAction):
     """Pauses the event engine until specified button is pressed
@@ -55,6 +52,6 @@ class WaitForInputAction(EventAction):
 
     def start(self):
         logger.warning("the wait_for_input action has been deprecated, please remove it from your scripts")
-        self.game.event_engine.button = self.parameters.button
-        self.game.event_engine.state = "waiting for input"
-        self.game.event_engine.wait = 2
+        self.session.client.event_engine.button = self.parameters.button
+        self.session.client.event_engine.state = "waiting for input"
+        self.session.client.event_engine.wait = 2

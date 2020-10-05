@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core import monster
 from tuxemon.core.event.eventaction import EventAction
@@ -39,7 +34,7 @@ class EvolveMonstersAction(EventAction):
     ]
 
     def start(self):
-        player = self.game.player1
+        player = self.session.player
         for slot, current_monster in enumerate(player.monsters):
             new_slug = current_monster.get_evolution(self.parameters.path)
             if new_slug:

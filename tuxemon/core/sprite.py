@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,26 +23,29 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
+import logging
 import math
+from functools import partial
 
 import pygame
 from pygame.transform import rotozoom
 from pygame.transform import scale
 
-from tuxemon.core.pyganim import PygAnimation
+from tuxemon.compat import Rect
 from tuxemon.core.platform.const import buttons
+from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core import graphics
+from tuxemon.core.tools import scale as set
+
+logger = logging.getLogger()
 
 
 class Sprite(pygame.sprite.DirtySprite):
     dirty = False
 
     def __init__(self, *args, **kwargs):
-        super(Sprite, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.visible = True
         self._rotation = 0
         self._image = None
@@ -151,6 +153,46 @@ class Sprite(pygame.sprite.DirtySprite):
             self._rotation = value
             self._needs_update = True
 
+class CaptureDeviceSprite(Sprite):
+    def __init__(self,**kwargs):
+        self.tray = kwargs['tray']
+        self.monster = kwargs['monster']
+        self.sprite = kwargs['sprite']
+        self.state = kwargs['state']
+        self.empty = graphics.load_and_scale('gfx/ui/combat/empty_slot_icon.png')
+        self.faint =  graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
+        self.alive = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
+        self.effected = graphics.load_and_scale('gfx/ui/icons/party/party_icon02.png')
+        super().__init__()
+
+    def update_state(self):
+        """ Updates the state of the capture device.
+
+            :return: the new state
+        """
+        if self.state == "empty":
+            self.sprite.image = self.empty
+        elif any(t for t in self.monster.status if t.slug == "status_faint"):
+            self.state = "faint"
+            self.sprite.image = self.faint
+        elif len(self.monster.status) > 0:
+            self.state = "effected"
+            self.sprite.image = self.effected
+        else:
+            self.state = "alive"
+            self.sprite.image = self.alive
+        return self.state
+    def draw(self,animate):
+        """ Animates the capture device in game.
+
+            :param animate: the animation function
+            :return:
+        """
+        sprite = self.sprite
+        sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
+        sprite.image.set_alpha(0)
+        animate(sprite.image, set_alpha=255, initial=0)
+        animate(sprite.rect, bottom=self.tray.rect.top + set(3))
 
 class SpriteGroup(pygame.sprite.LayeredUpdates):
     """ Sane variation of a pygame sprite group
@@ -165,7 +207,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
     Variations from standard group:
     * SpriteGroup.add no longer accepts a sequence, use SpriteGroup.extend
     """
-    _init_rect = pygame.Rect(0, 0, 0, 0)
+    _init_rect = Rect(0, 0, 0, 0)
 
     def __init__(self, *args, **kwargs):
         self._spritelayers = dict()
@@ -249,7 +291,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         if not sprites:
             return self.rect
         elif len(sprites) == 1:
-            return pygame.Rect(sprites[0].rect)
+            return Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
@@ -258,16 +300,16 @@ class RelativeGroup(SpriteGroup):
     """
     Drawing operations are relative to the group's rect
     """
-    rect = pygame.Rect(0, 0, 0, 0)
+    rect = Rect(0, 0, 0, 0)
 
     def __init__(self, **kwargs):
         self.parent = kwargs.get('parent')
-        super(RelativeGroup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def calc_bounding_rect(self):
         """A rect object that contains all sprites of this group
         """
-        rect = super(RelativeGroup, self).calc_bounding_rect()
+        rect = super().calc_bounding_rect()
         # return self.calc_absolute_rect(rect)
         return rect
 
@@ -279,7 +321,7 @@ class RelativeGroup(SpriteGroup):
         try:
             self.rect = self.parent()
         except TypeError:
-            self.rect = pygame.Rect(self.parent.rect)
+            self.rect = Rect(self.parent.rect)
 
     def draw(self, surface):
         self.update_rect_from_parent()
@@ -326,7 +368,7 @@ class MenuSpriteGroup(SpriteGroup):
         The return value will be the newly selected object index
 
         :param index: Index of the item in the list
-        :param event: core.input.PlayerInput
+        :param event: tuxemon.core.input.PlayerInput
 
         :returns: New menu item offset
         :rtype: int
@@ -368,7 +410,7 @@ class VisualSpriteList(RelativeGroup):
     expand = True               # will fill all space of parent, if false, will be more compact
 
     def __init__(self, **kwargs):
-        super(VisualSpriteList, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self._needs_arrange = False
         self._columns = 1
         self.line_spacing = None
@@ -384,9 +426,8 @@ class VisualSpriteList(RelativeGroup):
 
     def calc_bounding_rect(self):
         if self._needs_arrange:
-            self._arrange_menu_items()
-            self._needs_arrange = False
-        return super(VisualSpriteList, self).calc_bounding_rect()
+            self.arrange_menu_items()
+        return super().calc_bounding_rect()
 
     def add(self, item, **kwargs):
         """Add something to the stacker
@@ -394,20 +435,19 @@ class VisualSpriteList(RelativeGroup):
         :param item: stuff to add
         :returns: None
         """
-        super(VisualSpriteList, self).add(item, **kwargs)
+        super().add(item, **kwargs)
         self._needs_arrange = True
 
     def remove(self, *items):
-        super(VisualSpriteList, self).remove(*items)
+        super().remove(*items)
         self._needs_arrange = True
 
     def draw(self, surface):
         if self._needs_arrange:
-            self._arrange_menu_items()
-            self._needs_arrange = False
-        super(VisualSpriteList, self).draw(surface)
+            self.arrange_menu_items()
+        super().draw(surface)
 
-    def _arrange_menu_items(self):
+    def arrange_menu_items(self):
         """ Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
@@ -428,6 +468,7 @@ class VisualSpriteList(RelativeGroup):
         items_per_column = math.ceil(len(self) / self.columns)
 
         if self.expand:
+            logger.debug("expanding menu...")
             # fill available space
             line_spacing = self.line_spacing
             if not line_spacing:
@@ -442,6 +483,8 @@ class VisualSpriteList(RelativeGroup):
         for index, item in enumerate(self.sprites()):
             oy, ox = divmod(index, self.columns)
             item.rect.topleft = ox * column_spacing, oy * line_spacing
+
+        self._needs_arrange = False
 
     def determine_cursor_movement(self, *args):
         """ Given an event, determine a new selected item offset
@@ -479,7 +522,7 @@ class VisualSpriteList(RelativeGroup):
         # if there are 0 or 1 enabled items, then ignore movement
         enabled = len([i for i in self if i.enabled])
         if enabled < 2:
-            return 0
+            return index
 
         if event.pressed:
 

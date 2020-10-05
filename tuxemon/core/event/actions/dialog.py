@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,16 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
 from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog, get_avatar
+from tuxemon.core.tools import open_dialog
+from tuxemon.core.graphics import get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -60,14 +56,14 @@ class DialogAction(EventAction):
     ]
 
     def start(self):
-        text = replace_text(self.game, self.parameters.text)
-        avatar = get_avatar(self.game, self.parameters.avatar)
+        text = replace_text(self.session, self.parameters.text)
+        avatar = get_avatar(self.session, self.parameters.avatar)
         self.open_dialog(text, avatar)
 
     def update(self):
-        if self.game.get_state_name("DialogState") is None:
+        if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()
 
     def open_dialog(self, initial_text, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.game, [initial_text], avatar)
+        open_dialog(self.session, [initial_text], avatar)

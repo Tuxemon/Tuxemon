@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -24,13 +23,10 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 # 
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.locale import T
+
 
 class RenamePlayerAction(EventAction):
     """Opens the text input screen to rename the player.
@@ -40,28 +36,18 @@ class RenamePlayerAction(EventAction):
     name = "rename_player"
     valid_parameters = []
 
-
-    def set_player_name(menu, name):
-        world = menu.game.get_state_name("WorldState")
-        if world:
-            world.player1.name = name
+    def set_player_name(self, name):
+        self.session.player.name = name
 
     def start(self):
-        print("starting rename_player")
-        # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
-        if not world:
-            return
-
-        self.game.push_state(
+        self.session.client.push_state(
             state_name="InputMenu",
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,
-            initial=world.player1.name
+            initial=self.session.player.name
         )
 
     def update(self):
-        if self.game.get_state_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()
-

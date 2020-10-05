@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2016, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.locale Component for handling in-game translations.
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import gettext
 import io
@@ -50,15 +45,20 @@ logger = logging.getLogger(__name__)
 FALLBACK_LOCALE = "en_US"
 
 
-class TranslatorPo(object):
+class TranslatorPo:
     """gettext-based translator class."""
 
     def __init__(self):
         self.locale = prepare.CONFIG.locale
-        self.translate = None
+        self.translate = self._lazy_load
         self.languages = []
 
-    def collect_languages(self):
+    def _lazy_load(self, *args, **kwargs):
+        # this is a hack to let cx_freeze work
+        self.collect_languages(prepare.CONFIG.recompile_translations)
+        return self.translate(*args, **kwargs)
+
+    def collect_languages(self, recompile_translations=False):
         """Collect languages/locales with available translation files."""
         self.languages = []
 
@@ -68,10 +68,10 @@ class TranslatorPo(object):
             if os.path.isdir(ld_full_path):
                 self.languages.append(ld)
 
-        self.build_translations()
+        self.build_translations(recompile_translations)
         self.load_locale(prepare.CONFIG.locale)
 
-    def build_translations(self):
+    def build_translations(self, recompile_translations=False):
         """Create MO files for existing PO translation files."""
 
         for ld in self.languages:
@@ -79,10 +79,11 @@ class TranslatorPo(object):
             outfile = os.path.join(os.path.dirname(infile), "base.mo")
 
             # build only complete translations
-            if os.path.exists(infile) and not os.path.exists(outfile):
-                with io.open(infile, "r", encoding="UTF8") as po_file:
+            if os.path.exists(infile) and (
+                    not os.path.exists(outfile) or recompile_translations):
+                with open(infile, "r", encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
-                with io.open(outfile, "wb") as mo_file:
+                with open(outfile, "wb") as mo_file:
                     write_mo(mo_file, catalog)
 
     def load_locale(self, locale_name="en_US"):
@@ -145,7 +146,7 @@ class TranslatorPo(object):
         else:
             return self.translate(text)
 
-class Translator(object):
+class Translator:
 
     def __init__(self):
         # immediately grab fallback if 'locale' missing in config
@@ -211,7 +212,7 @@ class Translator(object):
                 continue
 
             try:
-                with io.open(locale_file, "r", encoding="UTF-8") as f:
+                with open(locale_file, "r", encoding="UTF-8") as f:
                     data = json.load(f)
 
                 translations.update(data)
@@ -232,7 +233,7 @@ class Translator(object):
         elif key in self.fallback:
             return self.fallback[key]
         else:
-            logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
+            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
             return None
 
 
@@ -277,7 +278,7 @@ class Translator(object):
                            (key, self.locale, FALLBACK_LOCALE))
             translation_text = self.fallback[key]
         else:
-            logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
+            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
             translation_text = "Locale Error"
 
         return self.format(translation_text, parameters)
@@ -286,14 +287,11 @@ class Translator(object):
 T = TranslatorPo()
 
 
-def replace_text(game, text):
-    """ Replaces ${{var}} tiled variables with their in-game value.
+def replace_text(session, text):
+    """ Replaces ${{var}} tiled variables with their in-session value.
 
-    :param game: The main game object that contains all the game's variables.
-    :param text: Raw text from the map
-
-    :type game: core.control.Control
-    :type text: str
+    :param tuxemon.core.session.Session session: Session
+    :param str text: Raw text from the map
 
     :rtype: str
 
@@ -303,11 +301,11 @@ def replace_text(game, text):
     'Red is running away!'
 
     """
-    text = text.replace("${{name}}", game.player1.name)
+    text = text.replace("${{name}}", session.player.name)
     text = text.replace(r"\n", "\n")
 
-    for i in range(len(game.player1.monsters)):
-        monster = game.player1.monsters[i]
+    for i in range(len(session.player.monsters)):
+        monster = session.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
@@ -320,7 +318,7 @@ def replace_text(game, text):
     return text
 
 
-def process_translate_text(game, text_slug, parameters):
+def process_translate_text(session, text_slug, parameters):
     replace_values = {}
 
     # extract INI-style params
@@ -334,7 +332,7 @@ def process_translate_text(game, text_slug, parameters):
             value = trans(value)
         """
         # match special placeholders like ${{name}}
-        replace_values[key] = replace_text(game, value)
+        replace_values[key] = replace_text(session, value)
 
     # generate translation
     text = T.format(text_slug, replace_values)
@@ -346,4 +344,4 @@ def process_translate_text(game, text_slug, parameters):
     pages = text.split("\n")
 
     # generate scrollable text
-    return [replace_text(game, page) for page in pages]
+    return [replace_text(session, page) for page in pages]

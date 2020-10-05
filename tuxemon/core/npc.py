@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,27 +27,23 @@
 #
 # core.npc
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
 from math import hypot
 
-import pygame
-
-from tuxemon.core import monster, pyganim
+from tuxemon.compat import Rect
+from tuxemon.core import pyganim
 from tuxemon.core.db import db
 from tuxemon.core.entity import Entity
-from tuxemon.core.item import Item
-from tuxemon.core.item import decode_inventory, encode_inventory
+from tuxemon.core.item.item import Item
+from tuxemon.core.item.item import decode_inventory, encode_inventory
 from tuxemon.core.locale import T
 from tuxemon.core.map import proj, facing, dirs3, dirs2, get_direction
-from tuxemon.core.monster import decode_monsters, encode_monsters
+from tuxemon.core.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.core.prepare import CONFIG
-from tuxemon.core.tools import nearest, load_and_scale, trunc
+from tuxemon.core.tools import nearest, trunc
+from tuxemon.core.graphics import load_and_scale
 
 logger = logging.getLogger(__name__)
 
@@ -87,8 +82,8 @@ class NPC(Entity):
     """
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
-    def __init__(self, npc_slug, sprite_name=None):
-        super(NPC, self).__init__()
+    def __init__(self, npc_slug, sprite_name=None,combat_front=None,combat_back=None):
+        super().__init__()
 
         # load initial data from the npc database
         npc_data = db.lookup(npc_slug, table="npc")
@@ -101,20 +96,22 @@ class NPC(Entity):
         # use 'animations' passed in
         # Hold on the the string so it can be sent over the network
         self.sprite_name = sprite_name
-
+        self.combat_front = combat_front
+        self.combat_back = combat_back
         if self.sprite_name is None:
             # Try to use the sprites defined in the JSON data
-            try:
-                self.sprite_name = npc_data["sprite_name"]
-            except KeyError:
-                logger.error('Cannot find sprite for {}'.format(npc_slug))
+            self.sprite_name = npc_data["sprite_name"]
+        if self.combat_front is None:
+            self.combat_front = npc_data["combat_front"]
+        if self.combat_back is None:
+            self.combat_back = npc_data["combat_back"]
 
         # general
         self.behavior = "wander"  # not used for now
         self.game_variables = {}  # Tracks the game state
         self.interactions = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters = []  # This is a list of tuxemon the npc has
+        self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
         self.inventory = {}  # The Player's inventory.
         self.storage = {"monsters": [], "items": {}}
 
@@ -152,20 +149,19 @@ class NPC(Entity):
         self.sprite = {}  # Moving animation frames
         self.moveConductor = pyganim.PygConductor()
         self.load_sprites()
-        self.rect = pygame.Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+        self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
-    def get_state(self, game):
+    def get_state(self, session):
         """Prepares a dictionary of the npc to be saved to a file
 
-        :param game: The object that runs the game.
-        :type game: core.control.Control
+        :param tuxemon.core.session.Session session:
 
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the npc
 
         """
         return {
-            'current_map': game.get_map_name(),
+            'current_map': session.client.get_map_name(),
             'facing': self.facing,
             'game_variables': self.game_variables,
             'inventory': encode_inventory(self.inventory),
@@ -178,23 +174,24 @@ class NPC(Entity):
             'tile_pos': nearest(self.tile_pos),
         }
 
-    def set_state(self, save_data):
+    def set_state(self, session,  save_data):
         """Recreates npc from saved data
 
-        :param save_data: Data used to recreate the player
-        :type save_data: Dictionary
+        :param tuxemon.core.session.Session session:
+        :param Dict save_data: Data used to recreate the player
 
         :rtype: None
         :returns: None
 
         """
+
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
-        self.inventory = decode_inventory(save_data)
+        self.inventory = decode_inventory(session, self, save_data)
         self.monsters = decode_monsters(save_data)
         self.name = save_data['player_name']
         self.storage = {
-            'items': decode_inventory(save_data['storage']),
+            'items': decode_inventory(session, self, save_data['storage']),
             'monsters': decode_monsters(save_data['storage']),
         }
 
@@ -221,10 +218,10 @@ class NPC(Entity):
         anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
         for anim_type in anim_types:
             images = [
-                'sprites/%s_%s.%s.png' % (
+                'sprites/{}_{}.{}.png'.format(
                     self.sprite_name,
                     anim_type,
-                    str(num).rjust(3, str('0'))
+                    str(num).rjust(3, '0')
                 )
                 for num in range(4)
             ]
@@ -246,7 +243,7 @@ class NPC(Entity):
 
         Used to render the player
 
-        TODO: Move the 'layer' to the NPC class so characters 
+        TODO: Move the 'layer' to the NPC class so characters
         can define their own drawing layer.
 
         :param layer: The layer to draw the sprite on.
@@ -301,7 +298,6 @@ class NPC(Entity):
 
         :return: None
         """
-        self.network_notify_stop_moving()
         self.velocity3.x = 0
         self.velocity3.y = 0
         self.velocity3.z = 0
@@ -458,7 +454,6 @@ class NPC(Entity):
             # eventually, there will need to be a global clock for the game,
             # not based on wall time, to prevent visual glitches.
             self.moveConductor.play()
-            self.network_notify_start_moving(direction)
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:
@@ -472,7 +467,6 @@ class NPC(Entity):
 
             else:
                 # give up and wait until the target is clear again
-                #logger.error('{} waiting because way is blocked!'.format(self.slug))
                 pass
 
     def check_waypoint(self):
@@ -505,7 +499,7 @@ class NPC(Entity):
         self.network_notify_location_change()
 
     def network_notify_start_moving(self, direction):
-        """ WIP guesswork ¯\_(ツ)_/¯
+        r""" WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -513,7 +507,7 @@ class NPC(Entity):
             self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
 
     def network_notify_stop_moving(self):
-        """ WIP guesswork ¯\_(ツ)_/¯
+        r""" WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -521,7 +515,7 @@ class NPC(Entity):
             self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
 
     def network_notify_location_change(self):
-        """ WIP guesswork ¯\_(ツ)_/¯
+        r""" WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -536,12 +530,13 @@ class NPC(Entity):
 
         :param monster: The core.monster.Monster object to add to the player's party.
 
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
 
         :rtype: None
         :returns: None
 
         """
+        monster.owner = self
         if len(self.monsters) >= self.party_limit:
             self.storage["monsters"].append(monster)
         else:
@@ -554,7 +549,7 @@ class NPC(Entity):
         :param monster_slug: The slug name of the monster
         :type monster_slug: str
 
-        :rtype: core.monster.Monster
+        :rtype: tuxemon.core.monster.Monster
         :returns: Monster found
         """
         for monster in self.monsters:
@@ -566,12 +561,13 @@ class NPC(Entity):
 
         :param monster: Monster to remove from the player's party.
 
-        :type monster: core.monster.Monster
+        :type monster: tuxemon.core.monster.Monster
 
         :rtype: None
         :returns: None
         """
         if monster in self.monsters:
+            monster.owner = None
             self.monsters.remove(monster)
             self.set_party_status()
 
@@ -594,19 +590,22 @@ class NPC(Entity):
         :rtype: None
         :returns: None
         """
+        for monster in self.monsters:
+            self.remove_monster(monster)
+
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
         npc_details = db.database['npc'][self.slug]
         for npc_monster_details in npc_details['monsters']:
-            current_monster = monster.Monster(save_data=npc_monster_details)
-            current_monster.experience_give_modifier = npc_monster_details['exp_give_mod']
-            current_monster.experience_required_modifier = npc_monster_details['exp_req_mod']
-            current_monster.set_level(current_monster.level)
-            current_monster.current_hp = current_monster.hp
+            monster = Monster(save_data=npc_monster_details)
+            monster.experience_give_modifier = npc_monster_details['exp_give_mod']
+            monster.experience_required_modifier = npc_monster_details['exp_req_mod']
+            monster.set_level(monster.level)
+            monster.current_hp = monster.hp
 
             # Add our monster to the NPC's party
-            self.monsters.append(current_monster)
+            self.add_monster(monster)
 
     def set_party_status(self):
         """ Records important information about all monsters in the party.
@@ -617,7 +616,7 @@ class NPC(Entity):
         if not self.isplayer or len(self.monsters) == 0:
             return
 
-        level_lowest = monster.MAX_LEVEL
+        level_lowest = MAX_LEVEL
         level_highest = 0
         level_average = 0
         for npc_monster in self.monsters:
@@ -631,12 +630,15 @@ class NPC(Entity):
         self.game_variables['party_level_highest'] = level_highest
         self.game_variables['party_level_average'] = level_average
 
-    def give_item(self, target, item, quantity):
-        subtract = self.alter_item_quantity(item.slug, -quantity)
-        give = target.alter_item_quantity(item.slug, quantity)
+    def give_item(self, session,  target, item, quantity):
+        subtract = self.alter_item_quantity(session, item.slug, -quantity)
+        give = target.alter_item_quantity(session, item.slug, quantity)
         return subtract and give
 
-    def alter_item_quantity(self, item_slug, amount):
+    def has_item(self, item_slug):
+        return self.inventory.get(item_slug) is not None
+
+    def alter_item_quantity(self, session, item_slug, amount):
         success = True
         item = self.inventory.get(item_slug)
         if amount > 0:
@@ -644,7 +646,7 @@ class NPC(Entity):
                 item['quantity'] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(item_slug),
+                    'item': Item(session, self, item_slug),
                     'quantity': amount,
                 }
         elif amount < 0:
@@ -662,4 +664,3 @@ class NPC(Entity):
 
     def speed_test(self, action):
         return self.speed
-

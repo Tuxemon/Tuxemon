@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Gloop",
+  "animation": "gloop_orange",
   "category": "physical",
   "effects": [
     "damage"

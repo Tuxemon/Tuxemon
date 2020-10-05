@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 import sys
 from collections import defaultdict
@@ -11,6 +6,8 @@ from math import sqrt, cos, sin, pi
 import pygame
 
 __all__ = ('Task', 'Animation', 'remove_animations_of')
+
+from tuxemon.compat import Rect
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +57,7 @@ class AnimBase(pygame.sprite.Sprite):
     _valid_schedules = []
 
     def __init__(self):
-        super(AnimBase, self).__init__()
+        super().__init__()
         self._callbacks = defaultdict(list)
 
     def schedule(self, func, when=None):
@@ -152,7 +149,7 @@ class Task(AnimBase):
         if times == 0:
             raise ValueError
 
-        super(Task, self).__init__()
+        super().__init__()
         self._interval = interval
         self._loops = times
         self._duration = 0
@@ -163,7 +160,7 @@ class Task(AnimBase):
     def chain(self, callback, interval=0, times=1):
         """ Schedule a callback to execute when this one is finished
 
-        If you attempt to chain a task to a task that will will
+        If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
 
         This is convenience to make a new Task and set to it to
@@ -180,7 +177,7 @@ class Task(AnimBase):
     def chain_task(self, *others):
         """ Schedule Task(s) to execute when this one is finished
 
-        If you attempt to chain a task to a task that will will
+        If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
 
         :param others: Task instances
@@ -314,7 +311,7 @@ class Animation(pygame.sprite.Sprite):
     default_transition = 'linear'
 
     def __init__(self, *targets, **kwargs):
-        super(Animation, self).__init__()
+        super().__init__()
         self.targets = list()
         self._targets = list()      #  used when there is a delay
         self.delay = kwargs.get('delay', 0)
@@ -497,7 +494,7 @@ class Animation(pygame.sprite.Sprite):
         self.targets = list()
         for target in self._targets:
             props = dict()
-            if isinstance(target, pygame.Rect):
+            if isinstance(target, Rect):
                 self._round_values = True
             for name, value in self.props.items():
                 initial = self._get_value(target, name)
@@ -511,7 +508,7 @@ class Animation(pygame.sprite.Sprite):
         self.update(0)
 
 
-class AnimationTransition(object):
+class AnimationTransition:
     """Collection of animation functions to be used with the Animation object.
     Easing Functions ported to Kivy from the Clutter Project
     http://www.clutter-project.org/docs/clutter/stable/ClutterAlpha.html

@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Sparks Gold 1",
+  "animation": "sparks_gold_alt",
   "category": "physical",
   "effects": [
     "damage"

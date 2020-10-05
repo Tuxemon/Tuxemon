@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from tuxemon.core.menu.interface import MenuItem
 from tuxemon.core.menu.menu import PopUpMenu
 
@@ -19,7 +14,7 @@ class ChoiceState(PopUpMenu):
     escape_key_exits = None
 
     def startup(self, **kwargs):
-        super(ChoiceState, self).startup(**kwargs)
+        super().startup(**kwargs)
         self.menu = kwargs.get("menu", list())
         self.escape_key_exits = kwargs.get("escape_key_exits", False)
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -31,10 +30,6 @@
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os.path
@@ -47,7 +42,6 @@ logger = logging.getLogger(__name__)
 
 # TODO: refact this out when other platforms supported (such as headless)
 PLATFORM = "pygame"
-
 
 # list of regular expressions to blacklist devices
 joystick_blacklist = [
@@ -77,7 +71,6 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
-ORIGINAL_CAPTION = CONFIG.window_caption
 
 # Set the native tile size so we know how much to scale our maps
 TILE_SIZE = [16, 16]  # 1 tile = 16 pixels
@@ -101,7 +94,7 @@ if CONFIG.large_gui:
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 elif CONFIG.scaling:
-    SCALE = int((SCREEN_SIZE[0] / NATIVE_RESOLUTION[0]))
+    SCALE = int(SCREEN_SIZE[0] / NATIVE_RESOLUTION[0])
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 else:
@@ -130,7 +123,7 @@ def pygame_init():
 
     # Configure locale
     from tuxemon.core.locale import T
-    T.collect_languages()
+    T.collect_languages(CONFIG.recompile_translations)
 
     # Configure databases
     from tuxemon.core.db import db
@@ -138,7 +131,7 @@ def pygame_init():
 
     logger.debug("pygame init")
     pg.init()
-    pg.display.set_caption(ORIGINAL_CAPTION)
+    pg.display.set_caption(CONFIG.window_caption)
 
     fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
@@ -177,23 +170,29 @@ def pygame_init():
 
 # Initialize the game framework
 def init():
-
-    # initialize any platform-specific workarounds before pygame
     from tuxemon.core import platform
     platform.init()
-
-    # Initialize PyGame and our screen surface.
     if PLATFORM == 'pygame':
         pygame_init()
 
 
 # Fetches a resource file
+# note: this has the potential of being a bottle neck doing to all the checking of paths
+# eventually, this should be configured at game launch, or in a config file instead
+# of lookin all over creation for the required files.
 def fetch(*args):
     relative_path = os.path.join(*args)
 
     for mod_name in CONFIG.mods:
+        # when assets are in folder with the source
         path = os.path.join(paths.mods_folder, mod_name, relative_path)
         if os.path.exists(path):
             return path
 
-    raise IOError(relative_path)
+        # when assets are in a system path (like debian and others)
+        for root_path in paths.system_installed_folders:
+            path = os.path.join(root_path, mod_name, relative_path)
+            if os.path.exists(path):
+                return path
+
+    raise OSError(relative_path)

@@ -1,7 +1,9 @@
-Tuxemon 0.4.12
+Tuxemon 0.4.25
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.
+
+[![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
 
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
@@ -10,7 +12,7 @@ Requirements
 
 Tuxemon uses a number of open source projects to work properly:
 
-* *python* - version 2.7, 3.5+
+* *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
 * *python-six* - python 2 and 3 compatibility library
@@ -24,7 +26,13 @@ Tuxemon uses a number of open source projects to work properly:
 Installation
 ------------
 
-**Windows**
+If you want to try the game, its recommended to download and try the master branch
+first. The default development branch is often more up to date, but might have
+breaking bugs. If you want to try the latest version or contribute code changes,
+please use the development branch.
+
+
+**Windows Source**
 
 Install the latest version of python 3 from [here](https://www.python.org/downloads/)
 
@@ -37,12 +45,36 @@ python -m pip install -U -r requirements.txt
 python tuxemon.py
 ```
 
-Windows binaries are also available in the releases.
+**Windows Binary**
+
+Check the release page https://github.com/Tuxemon/Tuxemon/releases for binaries.
 
 **Ubuntu**
 
 ```sh
 sudo apt install python python-pygame python-pip python-imaging python-six git
+git clone https://github.com/Tuxemon/Tuxemon.git
+cd Tuxemon
+sudo pip install -U -r requirements.txt
+python tuxemon.py
+```
+
+**Ubuntu 18.04 w/venv**
+
+Use this if you don't want to modify your system packages
+```sh
+sudo apt install git python3-venv
+git clone https://github.com/Tuxemon/Tuxemon.git
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 tuxemon.py
+```
+
+**Debian**
+
+```sh
+sudo apt-get install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
@@ -56,16 +88,6 @@ sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
 make BACKEND=LINUX; sudo make install BACKEND=LINUX
-```
-
-**Debian**
-
-```sh
-sudo apt-get install python python-pygame python-pip python-imaging git
-git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
-sudo pip install -U -r requirements.txt
-python tuxemon.py
 ```
 
 **Mac OS X (Yosemite)**
@@ -90,6 +112,15 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 **Smartphones**
 * [Android](https://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
 
+
+**Fedora Linux**
+
+```
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
+virtualenv venv
+pip install -r requirements.txt
+```
+
 Controls
 --------
 
@@ -97,6 +128,7 @@ Controls
 * *Arrow Keys* - Movement
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
+* *Shift* - Sprint
 
 ##### Map Editor
 
@@ -105,10 +137,7 @@ Use *Tiled* map editor: http://www.mapeditor.org/
 Python 2.7 Notice
 -----------------
 
-We will be supporing bugfixes and features for python 2.7+ after it
-is EOL starting in 2020.  We do plan on removing support for it
-sometime in the future, but there is currently no roadmap to actively
-stop supporting it at this time.
+Python 2.7 is no longer supported.
 
 License
 -------

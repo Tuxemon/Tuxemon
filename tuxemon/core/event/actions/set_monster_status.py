@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -56,18 +51,18 @@ class SetMonsterStatusAction(EventAction):
             monster.apply_status(status)
 
     def start(self):
-        if not self.game.player1.monsters:
+        if not self.session.player.monsters:
             return
 
         monster_slot = self.parameters[0]
         monster_status = self.parameters[1]
 
         if monster_slot is None:
-            for monster in self.game.player1.monsters:
+            for monster in self.session.player.monsters:
                 self.set_status(monster, monster_status)
         else:
             try:
-                monster = self.game.player1.monsters[monster_slot]
+                monster = self.session.player.monsters[monster_slot]
             except IndexError:
                 logger.error("invalid monster slot")
             else:

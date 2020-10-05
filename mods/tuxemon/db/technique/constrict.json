@@ -1,6 +1,6 @@
 {
   "accuracy": 0.75,
-  "animation": "Metal Tentacle",
+  "animation": "metal tentacle",
   "category": "physical",
   "effects": [
     "damage"

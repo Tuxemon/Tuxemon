@@ -1,6 +1,6 @@
 {
   "accuracy": 0.8,
-  "animation": "Fire Enemy Death 1",
+  "animation": "fire enemy death 1",
   "category": "physical",
   "effects": [
     "damage"

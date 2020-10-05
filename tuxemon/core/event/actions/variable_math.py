@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,15 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+import logging
 
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.tools import number_or_variable
 
-import logging
 logger = logging.getLogger(__name__)
 
 
@@ -44,14 +40,13 @@ class VariableMathAction(EventAction):
     ]
 
     def start(self):
-        # Get the player object from the self.game.
-        player = self.game.player1
+        player = self.session.player
 
         # Read the parameters
         var = self.parameters.var
-        operand1 = number_or_variable(self.game, var)
+        operand1 = number_or_variable(self.session, var)
         operation = self.parameters.operation
-        operand2 = number_or_variable(self.game, self.parameters.value)
+        operand2 = number_or_variable(self.session, self.parameters.value)
 
         # Preform the operation on the variable
         if operation == "+":

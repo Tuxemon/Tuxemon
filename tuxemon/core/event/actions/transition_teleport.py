@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 
@@ -59,7 +54,7 @@ class TransitionTeleportAction(EventAction):
     def start(self):
         # Start the screen transition
         params = [self.parameters.transition_time]
-        self.transition = self.game.event_engine.get_action("screen_transition", params)
+        self.transition = self.session.client.event_engine.get_action("screen_transition", params)
         self.transition.start()
 
     def update(self):
@@ -68,5 +63,5 @@ class TransitionTeleportAction(EventAction):
         if self.transition.done:
             self.transition.cleanup()
             # set the delayed teleport
-            self.game.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
+            self.session.client.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
             self.stop()

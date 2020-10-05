@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,13 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item import Item
 
 
 class AddItemAction(EventAction):
@@ -39,12 +33,5 @@ class AddItemAction(EventAction):
     ]
 
     def start(self):
-        player = self.game.player1
-        item_to_add = Item(self.parameters.item_slug)
-
-        # If the item already exists in the player's inventory, add to its quantity, otherwise
-        # just add the item.
-        if item_to_add.slug in player.inventory:
-            player.inventory[item_to_add.slug]['quantity'] += 1
-        else:
-            player.inventory[item_to_add.slug] = {'item': item_to_add, 'quantity': 1}
+        player = self.session.player
+        player.alter_item_quantity(self.session, self.parameters.item_slug, 1)

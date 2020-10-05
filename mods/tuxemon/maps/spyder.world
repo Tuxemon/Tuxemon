@@ -1,0 +1,255 @@
+{
+    "maps": [
+        {
+            "fileName": "spyder_routea.tmx",
+            "x": 960,
+            "y": 0
+        },
+        {
+            "fileName": "spyder_route5.tmx",
+            "x": 0,
+            "y": 640
+        },
+		        {
+            "fileName": "spyder_nimrod_bottom.tmx",
+            "x": 0,
+            "y": 320
+        },
+				        {
+            "fileName": "spyder_nimrod_middle.tmx",
+            "x": 320,
+            "y": 320
+        },
+						        {
+            "fileName": "spyder_nimrod_top.tmx",
+            "x": 640,
+            "y": 320
+        },
+        {
+            "fileName": "spyder_flower_city.tmx",
+            "x": 640,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_timber_town.tmx",
+            "x": 0,
+            "y": 960
+        },
+        {
+            "fileName": "spyder_route4.tmx",
+            "x": 1280,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_route3.tmx",
+            "x": 1600,
+            "y": 640
+        },
+        {
+            "fileName": "spyder_leather_town.tmx",
+            "x": 1600,
+            "y": 1280
+        },
+        {
+            "fileName": "spyder_cotton_town.tmx",
+            "x": 1600,
+            "y": 1920
+        },
+        {
+            "fileName": "spyder_citypark.tmx",
+            "x": 2240,
+            "y": 1600
+        },
+        {
+            "fileName": "spyder_route2.tmx",
+            "x": 2240,
+            "y": 2240
+        },
+        {
+            "fileName": "spyder_dryadsgrove.tmx",
+            "x": 960,
+            "y": 1920
+        },
+        {
+            "fileName": "spyder_route6.tmx",
+            "x": 320,
+            "y": 1920
+        },
+        {
+            "fileName": "spyder_tunnel.tmx",
+            "x": 0,
+            "y": 1600
+        },
+        {
+            "fileName": "spyder_candy_town.tmx",
+            "x": 320,
+            "y": 2240
+        },
+        {
+            "fileName": "spyder_routec.tmx",
+            "x": 960,
+            "y": 2560
+        },
+        {
+            "fileName": "spyder_route1.tmx",
+            "x": 1600,
+            "y": 2560
+        },
+		        {
+            "fileName": "spyder_routed.tmx",
+            "x": 960,
+            "y": 1280
+        },
+				        {
+            "fileName": "spyder_routee.tmx",
+            "x": 320,
+            "y": 1600
+        },
+						        {
+            "fileName": "spyder_tunnel_below.tmx",
+            "x": -640,
+            "y": 1600
+        },
+								        {
+            "fileName": "spyder_wayfarer_inn1.tmx",
+            "x": 1600,
+            "y": 0
+        },
+										        {
+            "fileName": "spyder_wayfarer_inn2.tmx",
+            "x": 1920,
+            "y": 0
+        },
+												        {
+            "fileName": "spyder_paper_scoop.tmx",
+            "x": 2240,
+            "y": 3240
+        },
+														        {
+            "fileName": "spyder_scoop1.tmx",
+            "x": -640,
+            "y": 960
+        },
+																        {
+            "fileName": "spyder_scoop2.tmx",
+            "x": -640,
+            "y": 1280
+        },
+																		        {
+            "fileName": "spyder_scoop3.tmx",
+            "x": -288,
+            "y": 960
+        },
+																				        {
+            "fileName": "spyder_scoop4.tmx",
+            "x": -320,
+            "y": 1280
+        },
+																        {
+            "fileName": "spyder_bedroom.tmx",
+            "x": 2560,
+            "y": 2560
+        },  
+		{
+            "fileName": "spyder_downstairs.tmx",
+            "x": 2560,
+            "y": 2880
+        },  
+		{
+            "fileName": "spyder_mansion_top.tmx",
+            "x": 960,
+            "y": -672
+        },  
+		{
+            "fileName": "spyder_mansion_basement.tmx",
+            "x": 960,
+            "y": -352
+        },  
+		{
+            "fileName": "spyder_mansion.tmx",
+            "x": 1344,
+            "y": -320
+        },  
+		{
+            "fileName": "spyder_leather_scoop.tmx",
+            "x": 2240,
+            "y": 1280
+        }, 
+				{
+            "fileName": "spyder_leather_museum.tmx",
+            "x": 2600,
+            "y": 1280
+        }, 
+		{
+            "fileName": "spyder_dojo1.tmx",
+            "x": -192,
+            "y": 0
+        },
+		{
+            "fileName": "spyder_dojo2.tmx",
+            "x": 192,
+            "y": 0
+        },
+		{
+            "fileName": "spyder_dojo3.tmx",
+            "x": 576,
+            "y": 0
+        },
+		{
+            "fileName": "spyder_daycare.tmx",
+            "x": 2240,
+            "y": 2880
+        },
+		{
+            "fileName": "spyder_dragonscave.tmx",
+            "x": 320,
+            "y": 2880
+        },
+		{
+            "fileName": "spyder_healing_center.tmx",
+            "x": 2240,
+            "y": 2560
+        },
+		{
+            "fileName": "spyder_cotton_cafe.tmx",
+            "x": 2880,
+            "y": 1660
+        },
+		{
+            "fileName": "spyder_cotton_artshop.tmx",
+            "x": 3200,
+            "y": 1660
+        },
+		{
+            "fileName": "spyder_cotton_scoop.tmx",
+            "x": 2880,
+            "y": 1920
+        }, 
+		{
+            "fileName": "spyder_omnichannel1.tmx",
+            "x": 2880,
+            "y": 2240
+        },
+		{
+            "fileName": "spyder_omnichannel2.tmx",
+            "x": 3200,
+            "y": 2240
+        },
+		{
+            "fileName": "spyder_omnichannel3.tmx",
+            "x": 2880,
+            "y": 2560
+        },
+		{
+            "fileName": "spyder_omnichannel4.tmx",
+            "x": 3200,
+            "y": 2560
+        },
+        {
+            "fileName": "spyder_paper_town.tmx",
+            "x": 1600,
+            "y": 2880
+        }
+    ],
+    "type": "world"
+}

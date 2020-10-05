@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 
@@ -39,7 +34,7 @@ class RemoveNpcAction(EventAction):
 
     def start(self):
         # Get a copy of the world state.
-        world = self.game.get_state_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
         if not world:
             return
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
@@ -39,10 +34,11 @@ import os.path
 import random
 from collections import namedtuple
 
-from tuxemon.core import prepare
 from tuxemon.core import formula
-from tuxemon.core.locale import T
+from tuxemon.core import prepare
 from tuxemon.core.db import db, process_targets
+from tuxemon.core.graphics import animation_frame_files
+from tuxemon.core.locale import T
 
 logger = logging.getLogger(__name__)
 
@@ -57,7 +53,7 @@ def merge_results(result, meta_result):
     return meta_result
 
 
-class Technique(object):
+class Technique:
     """A technique object is a particular skill that tuxemon monsters can use
     in battle.
     """
@@ -70,6 +66,7 @@ class Technique(object):
         self.carrier = carrier
         self.category = "attack"
         self.effect = []
+        self.icon = None
         self.images = []
         self.is_area = False
         self.is_fast = False
@@ -80,12 +77,16 @@ class Technique(object):
         self.power = 1
         self.range = None
         self.recharge_length = 0
+        self.sfx = None
+        self.sort = None
         self.slug = slug
+        self.target = list()
         self.type1 = "aether"
         self.type2 = None
         self.use_item = None
         self.use_success = None
         self.use_failure = None
+        self.use_tech = None
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -141,12 +142,10 @@ class Technique(object):
         # Load the animation sprites that will be used for this technique
         self.animation = results["animation"]
         if self.animation:
-            self.images = []
-            animation_dir = prepare.fetch("animations", "technique")
-            directory = sorted(os.listdir(animation_dir))
-            for image in directory:
-                if self.animation and image.startswith(self.animation):
-                    self.images.append(os.path.join("animations/technique", image))
+            directory = prepare.fetch("animations", "technique")
+            self.images = animation_frame_files(directory, self.animation)
+            if self.animation and not self.images:
+                logger.error("Cannot find animation frames for: {}".format(self.animation))
 
         # Load the sound effect for this technique
         self.sfx = results["sfx"]
@@ -186,8 +185,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        :type user: tuxemon.core.monster.Monster
+        :type target: tuxemon.core.monster.Monster
 
         :rtype: dictionary
         :returns: a dictionary with the effect name, success and misc properties
@@ -247,8 +246,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        :type user: tuxemon.core.monster.Monster
+        :type target: tuxemon.core.monster.Monster
 
         :rtype: tuple(int, str)
         """
@@ -262,8 +261,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        :type user: tuxemon.core.monster.Monster
+        :type target: tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -291,8 +290,8 @@ class Technique(object):
         :param target: The Monster object that we are using this technique on.
         :param slug: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        :type user: tuxemon.core.monster.Monster
+        :type target: tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -313,8 +312,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        :type user: tuxemon.core.monster.Monster
+        :type target: tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -324,7 +323,6 @@ class Technique(object):
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)
             target.apply_status(tech)
-
         return {
             'status': tech,
         }
@@ -364,8 +362,8 @@ class Technique(object):
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
 
-        :type user: core.monster.Monster
-        :type target: core.monster.Monster
+        :type user: tuxemon.core.monster.Monster
+        :type target: tuxemon.core.monster.Monster
 
         :rtype: dict
         """
@@ -388,8 +386,8 @@ class Technique(object):
 
         Position of monster in party will be changed
 
-        :param user: core.monster.Monster
-        :param target: core.monster.Monster
+        :param user: tuxemon.core.monster.Monster
+        :param target: tuxemon.core.monster.Monster
 
         :rtype: dict
         """

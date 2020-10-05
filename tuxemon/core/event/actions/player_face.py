@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
@@ -45,13 +40,13 @@ class PlayerFaceAction(EventAction):
         # Get the parameters to determine what direction the player will face.
         direction = self.parameters.direction
         if direction not in dirs2:
-            target = get_npc(self.game, direction)
-            direction = get_direction(self.game.player1.tilepos, target.tilepos)
+            target = get_npc(self.session, direction)
+            direction = get_direction(self.session.player.tilepos, target.tilepos)
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
-        world_state = self.game.get_state_name("WorldState")
+        world_state = self.session.client.get_state_by_name("WorldState")
         if world_state.in_transition:
             world_state.delayed_facing = direction
         else:
-            self.game.player1.facing = direction
+            self.session.player.facing = direction

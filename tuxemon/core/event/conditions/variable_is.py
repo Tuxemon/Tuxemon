@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,15 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+
+import logging
 
 from tuxemon.core.event.eventcondition import EventCondition
 from tuxemon.core.tools import number_or_variable
 
-import logging
 logger = logging.getLogger(__name__)
 
 
@@ -38,16 +34,16 @@ class VariableIsCondition(EventCondition):
     """
     name = "variable_is"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """ Checks to see if a player game variable meets a given condition. This will look
         for a particular key in the player.game_variables dictionary and see if it exists.
         If it exists, it will return true if the variable is greater than the value.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
         for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -55,13 +51,12 @@ class VariableIsCondition(EventCondition):
 
         Valid Parameters: variable_name, operation, value
         """
-        # Get the player object from the game.
-        player = game.player1
+        player = session.player
 
         # Read the parameters
-        operand1 = number_or_variable(game, condition.parameters[0])
+        operand1 = number_or_variable(session, condition.parameters[0])
         operation = condition.parameters[1]
-        operand2 = number_or_variable(game, condition.parameters[2])
+        operand2 = number_or_variable(session, condition.parameters[2])
 
         # Check if the condition is true
         if operation == "==":

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -42,7 +37,7 @@ class PauseMusicAction(EventAction):
 
     def start(self):
         mixer.music.pause()
-        if self.game.current_music["song"]:
-            self.game.current_music["status"] = "paused"
+        if self.session.client.current_music["song"]:
+            self.session.client.current_music["status"] = "paused"
         else:
             logger.warning("Music cannot be paused, none is playing.")

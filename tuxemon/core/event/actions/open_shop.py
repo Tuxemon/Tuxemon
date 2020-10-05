@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
@@ -35,22 +30,22 @@ class OpenShopAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
 
         def buy_menu():
-            self.game.pop_state()
-            self.game.push_state(
+            self.session.client.pop_state()
+            self.session.client.push_state(
                 "ShopMenuState",
-                buyer=self.game.player1,
+                buyer=self.session.player,
                 seller=npc,
             )
 
         def sell_menu():
-            self.game.pop_state()
-            self.game.push_state(
+            self.session.client.pop_state()
+            self.session.client.push_state(
                 "ShopMenuState",
                 buyer=None,
-                seller=self.game.player1,
+                seller=self.session.player,
             )
 
         var_menu = [
@@ -58,4 +53,4 @@ class OpenShopAction(EventAction):
             ("Sell", "Sell", sell_menu),
         ]
 
-        return self.game.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)
+        return self.session.client.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)

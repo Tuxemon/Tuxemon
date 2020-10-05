@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,16 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from functools import partial
 
-from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.locale import replace_text
 
 logger = logging.getLogger(__name__)
 
@@ -47,13 +42,12 @@ class DialogChoiceAction(EventAction):
     def start(self):
         def set_variable(var_value):
             player.game_variables[self.parameters.variable] = var_value
-            self.game.pop_state()
+            self.session.client.pop_state()
 
-        # Get the player object from the self.game.
-        player = self.game.player1
+        player = self.session.player
 
         # perform text substitutions
-        choices = replace_text(self.game, self.parameters.choices)
+        choices = replace_text(self.session, self.parameters.choices)
 
         # make menu options for each string between the colons
         var_list = choices.split(":")
@@ -61,12 +55,12 @@ class DialogChoiceAction(EventAction):
         for val in var_list:
             var_menu.append((val, val, partial(set_variable, val)))
 
-        self.open_choice_dialog(self.game, var_menu)
+        self.open_choice_dialog(self.session, var_menu)
 
     def update(self):
-        if self.game.get_state_name("ChoiceState") is None:
+        if self.session.client.get_state_by_name("ChoiceState") is None:
             self.stop()
 
-    def open_choice_dialog(self, game, menu):
+    def open_choice_dialog(self, session, menu):
         logger.info("Opening choice window")
-        return game.push_state("ChoiceState", menu=menu)
+        return session.client.push_state("ChoiceState", menu=menu)

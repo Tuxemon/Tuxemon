@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -36,15 +31,15 @@ class PartySizeCondition(EventCondition):
     """
     name = "party_size"
 
-    def test(self, game, condition):
+    def test(self, session,  condition):
         """Perform various checks about the player's party size. With this condition you can see if
         the player's party is less than, greater than, or equal to then number you specify.
 
-        :param game: The main game object that contains all the game's variables.
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type game: core.control.Control
+        :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -74,7 +69,7 @@ class PartySizeCondition(EventCondition):
         """
         check = str(condition.parameters[0])
         number = int(condition.parameters[1])
-        party_size = len(game.player1.monsters)
+        party_size = len(session.player.monsters)
 
         # Check to see if the player's party size equals this number.
         if check == "equals":

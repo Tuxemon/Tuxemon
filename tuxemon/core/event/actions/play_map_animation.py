@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,16 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
 from tuxemon.core import prepare
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import load_animation_from_frames
+from tuxemon.core.graphics import load_animation_from_frames
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +67,7 @@ class PlayMapAnimationAction(EventAction):
 
         # Check to see if this animation has already been loaded.
         # If it has, play the animation using the animation's conductor.
-        world_state = self.game.get_state_name("WorldState")
+        world_state = self.session.client.get_state_by_name("WorldState")
 
         if world_state is None:
             logger.error("Cannot run MapAnimation outside of world state")
@@ -81,7 +76,7 @@ class PlayMapAnimationAction(EventAction):
         # Determine the tile position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
         if self.parameters[3] == "player":
-            position = self.game.player1.tile_pos
+            position = self.session.player.tile_pos
         else:
             position = int(self.parameters.tile_pos_x), int(self.parameters.tile_pos_y)
 

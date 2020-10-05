@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid "PROJECT DESCRIPTION\n"
-msgstr ""
+msgstr "<<MISSING>>"
 "Project-Id-Version: Insert package version from somewhere\n"
 "Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
 "POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
@@ -67,6 +67,13 @@ msgstr "Imperial Potion"
 msgid "imperial_potion_description"
 msgstr "Heals a monster by 350 HP."
 
+# Revive
+msgid "revive"
+msgstr "Revive"
+
+msgid "revive_description"
+msgstr "Revives knocked out Tuxemon and restores 20 HP."
+
 # Capture Device
 msgid "capture_device"
 msgstr "Capture Device"
@@ -74,8 +81,24 @@ msgstr "Capture Device"
 msgid "capture_device_description"
 msgstr "Captures a monster."
 
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "tm_avalanche_description"
+msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_blossom"
+msgstr "TM: Blossom"
+
+msgid "tm_blossom_description"
+msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
+
+msgid "item_no_available_target"
+msgstr "{name} cannot be used on any of your Tuxemon right now."
 
 # Allie's Address
 msgid "allies_address"
@@ -241,6 +264,12 @@ msgstr "Saved!"
 
 msgid "save_failure"
 msgstr "There was a problem saving!"
+
+msgid "save_overwrite"
+msgstr "Yes, overwrite this save."
+
+msgid "save_keep"
+msgstr "No, keep this save."
 
 msgid "slot"
 msgstr "Slot"
@@ -683,7 +712,7 @@ msgid "bigfin"
 msgstr "Bigfin"
 
 msgid "bolt_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "bolt"
 msgstr "Bolt"
@@ -773,7 +802,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -809,7 +838,7 @@ msgid "ferricran"
 msgstr "Ferricran"
 
 msgid "firomenis_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "firomenis"
 msgstr "Firomenis"
@@ -821,7 +850,7 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -839,7 +868,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -863,13 +892,13 @@ msgid "legko"
 msgstr "Legko"
 
 msgid "magmaturtle_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "magmaturtle"
 msgstr "Magmaturtle"
 
 msgid "merlicun_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "merlicun"
 msgstr "Merlicun"
@@ -911,13 +940,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot (M)"
 
 msgid "nut_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -929,19 +958,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -953,13 +982,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -971,7 +1000,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -983,7 +1012,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -1010,13 +1039,13 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tux_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tux"
 msgstr "Tux"
@@ -1491,7 +1520,7 @@ msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign\n"
 msgstr "Welcome to Cotton Town: A Growing Force\n"
-"^ Cotton Town --- Route 1 v\n"
+"↑ Cotton Town --- Route 1 ↓\n"
 
 msgid "column1"
 msgstr "A rare and ancient column. This used to be a temple."
@@ -1501,7 +1530,7 @@ msgstr "A rare and ancient column. Other ruins from the same culture can be foun
 
 msgid "cityparksign\n"
 msgstr "Welcome to City Park: A Taste of the Wild\n"
-"^ City Park --- Route 2 v\n"
+"↑ City Park --- Route 2 ↓\n"
 
 msgid "route2speech"
 msgstr "EEK!!!"
@@ -1554,6 +1583,7 @@ msgid "mistakenknight"
 msgstr "Nope, there's no way I'm wrong. It's you!\n"
 "Don't worry, I won't tell anyone."
 
+
 msgid "thatsmeknight"
 msgstr "Oh, Splendid! I knew from the beginning it had to be you\n"
 "Don't worry, I won't tell anyone."
@@ -1576,14 +1606,14 @@ msgid "omnichannelarrives"
 msgstr "STOP"
 
 msgid "omnichannelarrives2"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "yesmaam"
 msgstr "Yes Ma'am"
 
 msgid "firsts"
-msgstr "Watch me whip\n"
-"Watch me nae nae"
+msgstr "♪ Watch me whip ♪\n"
+"♪ Watch me nae nae ♪"
 
 msgid "nopenotyet"
 msgstr "Sorry, someone got injured on the route. It's closed right now."
@@ -1730,6 +1760,58 @@ msgstr "I don't mind being here...\n"
 msgid "wherewasshe"
 msgstr "She didn't tell us the bad news..."
 
+msgid "waitdontgo"
+msgstr "${{name}}! Wait! Don't Leave Yet!"
+
+msgid "thetvbescreamin"
+msgstr "Honey, wait. I turned on the TV and an Omnichannel press conference was happening.\n"
+"We should watch it."
+
+msgid "ipausedit"
+msgstr "I paused the TV, grab a glass of water and then we can watch together."
+
+msgid "announcement1"
+msgstr "HELLO CITIZENS OF THE FONDENT REGION!\n"
+"THANK YOU FOR TUNING IN TO THIS MANDATORY ANNOUNCEMENT"
+
+msgid "announcement2"
+msgstr "WE LOVE YOU ABLE!"
+
+msgid "announcement3"
+msgstr "Thank you. I love you too\n"
+"Now, to the matter at hand."
+
+msgid "announcement4"
+msgstr "To ALL the citizens of the Fondent Region and beyond who are tuning in, I welcome you.\n"
+"My name is Aeble, spelled A-E-B-L-E for those who wonder, and I am the CEO of Omnichannel!\n"
+
+msgid "whythecheering"
+msgstr "Those Omnichannel people are cheering a lot for him. I wonder why?"
+
+msgid "announcement5"
+msgstr "It has been a long, hard road to our current situation here in the Fondent Region.\n"
+"However, it is my pleasure to announce, on this day, the 25th Anniversary of the founding of omnichannel...\n"
+"TUXEMON ARE CONTROLLED!\n"
+"*deafening screaming*\n"
+"Quiet Down! Quiet Down! You're enthusiasm is infectious I must say!\n"
+"In conjunction with the Xero institute, we have stripped away their will to attack!\n"
+"Due to this, we are confident that releasing Tuxemon into the wild is safe.\n"
+"However, curfews must still be enforced, we are not a lawless region after all.\n"
+"After all... WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL!"
+
+msgid "ohnoes"
+msgstr "Well... I don't know how to feel about this..."
+
+msgid "ohnoes2"
+msgstr "Regardless, We need potions from the Tuxemart. You should probably head into town and get some.\n"
+"Make sure you're back before curfew though!"
+
+msgid "depressedmom"
+msgstr "Why would he do something like that... I thought he cared..."
+
+msgid "waterwater"
+msgstr "The water is ice cold and delicious!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
@@ -1872,3 +1954,420 @@ msgid "37707_villager_female_missing"
 msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
 "@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
+
+## DIALOG TRANSLATIONS ##
+
+# spyder dialogs
+
+msgid "spyder_papertown_stopthere" 
+msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop." 
+msgid "spyder_papertown_homemaker1" 
+msgstr "How are you, ${{name}}? \n Quiet and solemn as always, I see." 
+msgid "spyder_papertown_mom1" 
+msgstr "Good morning sunshine! Rest here any time you like. \n Why am I saying that? You live here!" 
+msgid "spyder_papertown_mom2" 
+msgstr "Hello dear. I should get on with my inventing. \n Can't you occupy yourself? \n Back in my day, we could amuse ourselves with anything - a stick, a rock, rubbish we found in bins ... " 
+msgid "spyder_papertown_mom3" 
+msgstr "Oh, you found yourself a tuxemon. Congratulations! \n Why don't you head over to the next town and explore?" 
+msgid "spyder_papertown_mom4" 
+msgstr "Welcome back! Look at you, growing up so fast." 
+msgid "spyder_papertown_mom5" 
+msgstr "You know, Granny Piper next door has opened up her Daycare Centre. \n Well, not everyone can be an inventor, I guess. " 
+msgid "spyder_papertown_mom6" 
+msgstr "Congratulations! You took down the corporations! \n Of course, now lots of people don't have a job ... but you did the right thing. I think." 
+msgid "spyder_papertown_grannypiper1" 
+msgstr "Oh hello ${{name}}, I didn't see you there among all this hustle and debris! \n I can't wait till the Daycare Centre is installed!" 
+msgid "spyder_papertown_grannypiper2" 
+msgstr "You know, the Pipers made our fortune in the daycare business! \n I've been retired for ten years and I'm getting bored. I want to get back into it!" 
+msgid "spyder_papertown_danteshop" 
+msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store." 
+msgid "spyder_papertown_myfirstmon" 
+msgstr "Hey, you came! That's great.\n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!" 
+msgid "spyder_papertown_myfirstmon1" 
+msgstr "*rummages* *rumages* " 
+msgid "spyder_papertown_myfirstmon2" 
+msgstr "Here we go, five tuxemon! Which would you like?" 
+msgid "spyder_papertown_rockittenchosen" 
+msgstr "An excellent choice! Rockitten is an Earth tuxemon." 
+msgid "spyder_papertown_lambertchosen" 
+msgstr "A fine choice! Lambert is a Wood tuxemon." 
+msgid "spyder_papertown_nutchosen" 
+msgstr "A magnificent choice! Nut is a Metal tuxemon." 
+msgid "spyder_papertown_tweesherchosen" 
+msgstr "An inspired choice! Tweesher is a Water tuxemon." 
+msgid "spyder_papertown_agnitechosen" 
+msgstr "A great choice! Agnite is a Fire tuxemon." 
+msgid "spyder_papertown_wrapup" 
+msgstr "I'll give the rest of these to other kids who missed out on their own tuxemon! And I might keep one for myself. " 
+msgid "spyder_papertown_firstfight" 
+msgstr "Hey, what are you doing rummaging in bins? That's gross - and it's against the rules! \n ... \n What, they were throwing out perfectly good tuxemon? \n ... \n Well, if they were perfectly good, they wouldn't throw them out, would they? \n They must be inferior to the new models. Here, I'll show you! " 
+msgid "spyder_papertown_firstfight2" 
+msgstr "Huh, must be a fluke. There's no way the new model would be worse than the old!" 
+msgid "spyder_cottontown_monk" 
+msgstr "I am assigned by the Dojo of the Five Elements to tend the statues here. \n But Omnichannel is planning to expand its offices into this space. \n I don't know what will happen to the statues when they do." 
+msgid "spyder_cottontown_hackerintro" 
+msgstr "Hey, cool tuxemon! Can I see the receipt? \n ... \n Just kidding, I had a feeling you hadn't picked it up using, ah, official channels. \n For years, the Five Pillars have controlled the strongest tuxemon. Do you think it'd be cool to poke them in the eye? \n ... \n Good! I have a project for you. Meet me in the Cafe!" 
+msgid "spyder_cottontown_stopthere" 
+msgstr "Hey, that's not cool! You have to come to my talk at the cafe before you run off!" 
+msgid "spyder_cottontown_enforcer" 
+msgstr "Butt out of it, kid, this is private property!" 
+msgid "spyder_cottoncafe_hackerchat" 
+msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, man." 
+msgid "spyder_cottoncafe_barmaidintro" 
+msgstr "We call ourselves Team Bazaar. Maybe that's a little pretentious. \n We're a group of rogues and scoundrels who like to get together to drink coffee, discuss philosophy and defy our corporate overlords! \n We try to look out for each other. For example, unlike the Cathedral we don't charge for you to heal your tuxemon! \n Would you like me to heal them now?" 
+msgid "spyder_cottoncafe_barmaid" 
+msgstr "Welcome back. Shall I chuck your tuxemon in the healing unit?" 
+msgid "spyder_cottonart_barmaid" 
+msgstr "Do you like my set? \n They capture my early days as a professional tuxemon trainer, before I retired on my winnings. \n  I call them: 'Monsters' Eyes Meet', 'Starry, Starry, Starry Night' and 'Trepidation'. They're for sale! \n Get them while they're hot! Just 1,000 each." 
+msgid "spyder_cottonart_granny" 
+msgstr "I must be getting nostalgic. I almost said \n "Back in my day, things were better!"" 
+msgid "spyder_cottonart_goth" 
+msgstr "I used to enjoy coming here every weekend to look at the paintings. \n Now all the best ones have been sold and the tickets are too expensive. \n But my nanna wanted to come, so ..." 
+msgid "spyder_cottonart_florist" 
+msgstr "What do you think of the blue painting of a ship in the harbour? \n It's in the impressionist style - that means it tries to capture how light looks and behaves. \n See the small red sun reflected along the waves of the water?" 
+
+msgid "spyder_cottonart_intro" 
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend." 
+msgid "spyder_cottonart_shopkeeper" 
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend." 
+msgid "spyder_cottonscoop_shopassistant" 
+msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu." 
+msgid "spyder_cottonscoop_deviceoffer" 
+msgstr "Welcome customer. Today, we're promoting Capture Devices. Do you know what those are?" 
+msgid "spyder_cottonscoop_devicenoexplan" 
+msgstr "     Okay, well here's five as a free sample. If you have any questions about how Capture Devices work, just ask my assistant!" 
+msgid "spyder_cottonscoop_deviceexplan" 
+msgstr "Let my assistant introduce you." 
+msgid "spyder_cottonscoop_deviceexplan2" 
+msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n Thank you for listening. Here's five Capture Devices as a free sample. " 
+
+msgid "spyder_cotton_tuxepediaintro" 
+msgstr "Currently, the only reliable information about tuxemon is from the expensive and incomplete Encyclopaedia Tuxemon! \n That's not cool; information should be freely available. That's why we're introducing Tuxepedia. \n It's open source, it's free, it's available for everyone to read, write and edit. How cool is that? \n In fact, I've installed it as an app on all your phones just now. " 
+msgid "spyder_cotton_tuxepediaintro2" 
+msgstr "All it takes to add information is for you to catch that particular tuxemon. It's so cool." 
+msgid "spyder_cotton_tuxepediaintro3" 
+msgstr "You are so engrossed reading the new entries, that you don't notice people leaving." 
+msgid "spyder_cotton_tuxepediaintro4" 
+msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. " 
+
+msgid "spyder_route2_billie1" 
+msgstr "Hey cheapskate! Still got your stolen tuxemon?" 
+
+msgid "spyder_route2_billie2" 
+msgstr "This was a fluke. My tuxemon were expensive, and that means that they're high quality." 
+
+msgid "spyder_route2_graf1" 
+msgstr "I'm an ace - in battling and tennis!" 
+
+msgid "spyder_route2_marion1" 
+msgstr "So many tasty ants around! ... For my Aardorn, I mean." 
+
+msgid "spyder_route2_roddick1" 
+msgstr "When I was ambushed on the dunny by SPIGHTER I was pretty creeped out." 
+
+msgid "spyder_route2_roddick2" 
+msgstr "Hey, you didn't seem creeped out at all!" 
+
+msgid "spyder_citypark_maniac" 
+msgstr "Phew, we're pooped!" 
+
+msgid "spyder_citypark_granny" 
+msgstr "We'll walk back to Leather Town after a little rest." 
+
+msgid "spyder_citypark_florist" 
+msgstr "Enjoy the flower display! It's the pride of Leather Town." 
+
+msgid "spyder_citypark2_florist" 
+msgstr "The flowers look okay, don't they? ... Ever since the mining began in Leather Town, the flowers have been under the weather!" 
+
+msgid "spyder_route2_graf2" 
+msgstr "I got served." 
+msgid "spyder_route2_marion2" 
+msgstr "I don't eat ants." 
+
+msgid "spyder_citypark_frances2" 
+msgstr "You must come and visit some time. " 
+
+msgid "spyder_citypark_frances1" 
+msgstr "I have the finest gardens in all the land. That's why these Shybulb keep turning up." 
+
+msgid "spyder_citypark_bobette1" 
+msgstr " I love cats. An Aardorn is basically a cat, right?" 
+msgid "spyder_citypark_bobette2" 
+msgstr " A cat would have won …" 
+msgid "spyder_citypark_edith1" 
+msgstr "Hey, did you say I'm like my tuxemon? I'll fight you for that!" 
+msgid "spyder_citypark_edith2" 
+msgstr "Hmm, you may have a point." 
+msgid "spyder_museum_entrance1" 
+msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of $50?" 
+msgid "spyder_museum_entrance2" 
+msgstr "Please explore our five sections, and make sure to read about our five sponsors" 
+msgid "spyder_museum_entrance3" 
+msgstr "Unfortunately we now need to charge for tickets. $100 please." 
+msgid "spyder_museum_shopkeeper_chat" 
+msgstr "I volunteer to keep the museum as affordable as possible. " 
+msgid "spyder_museum_miner1" 
+msgstr "There used to be a whole section here on the history of our world! \n But when Nimrod became the sponsor, they replaced it with just military history! \n Now everyone is just inventing their own theories of world history!" 
+msgid "spyder_museum_postboy1" 
+msgstr "Did you know that the first spectacles were made of beryl, not glass? \n … \n I learned that last year from a guide at this museum! But there aren't any guides around this place any more." 
+
+msgid "spyder_leather_maniac" 
+msgstr "How is your adventure so far? \n ... \n Wow, so talkative! You are really coming out of your shell." 
+msgid "spyder_route3_drag1" 
+msgstr "AGENT: What happened to the excavation? \n SHAFT BOSS: We got ... interrupted. By ... a kid. \n AGENT: A kid?! \n SHAFT BOSS: But we did manage to recover one ... \n AGENT: Hush! You know that's top secret. Alright, hand it over and scram! \n SHAFT BOSS: Okay, here ... uh!" 
+msgid "spyder_route3_drag2" 
+msgstr "AGENT: What the?! Come with me, you can explain this to HQ!" 
+msgid "spyder_route3_zoolander1" 
+msgstr "A boulder is causing problems for travellers? It's "our fault"? Who cares? We've got urgent work to do!" 
+msgid "spyder_route3_zoolander2" 
+msgstr "Ah, I dropped the keys to my earth-mover!" 
+msgid "spyder_route3_qqq1" 
+msgstr "Ah, the Enforcers weren't meant to let anyone out!" 
+msgid "spyder_route3_qqq2" 
+msgstr "I'll reveal nothing about our plot! In fact, forget I said anything about a plot!" 
+msgid "spyder_route3_novak1" 
+msgstr " My Elofly is a genius! I'm going to collect as many as I can." 
+msgid "spyder_route3_novak2" 
+msgstr "Hmm, not smart enough ..." 
+msgid "spyder_route3_weaver1" 
+msgstr "Hey, butt out of it! This mine site belongs to Shaft!" 
+msgid "spyder_route3_weaver2" 
+msgstr "Go on, get out!" 
+msgid "spyder_route3_curie1" 
+msgstr "Look at my magnificent invention!" 
+msgid "spyder_route3_curie2" 
+msgstr "Why did you do that?" 
+msgid "spyder_route3_connor1" 
+msgstr "My Weavifly is fighting fit now - there was a while there where it couldn't fly." 
+msgid "spyder_route3_connor2" 
+msgstr "Oh well, this will be a learning experience for them." 
+msgid "spyder_route3_roxby1" 
+msgstr "Bring that pile driver over here and be quick! Hey ... you don't look like a miner. " 
+msgid "spyder_route3_roxby2" 
+msgstr "Scram! " 
+msgid "spyder_route3_roxby3" 
+msgstr "I hope Boss is not mad - she gets angry so fast, \n But she is a nice person and has a heart like a diamond." 
+msgid "spyder_route3_surat1" 
+msgstr " They call it the "dark artery" - the fossilised blood and bone of ancient tuxemon beneath the soil. \n And we get to dig it up!" 
+msgid "spyder_route3_surat2" 
+msgstr "I knew you wouldn't understand. " 
+msgid "spyder_route3_surat3" 
+msgstr "Scram! You're getting in our way." 
+msgid "spyder_route3_twig1" 
+msgstr "Some of the stuff we're digging up belongs in a museum! Wait, you don't work here. " 
+msgid "spyder_route3_twig2" 
+msgstr "Don't mention that museum stuff to the boss, okay?" 
+msgid "spyder_route3_twig3" 
+msgstr "I will train more and become as strong as our Boss. \n She worked so hard to become the leader, I wanna be like her someday." 
+msgid "spyder_route3_wanda1" 
+msgstr "All I ever seem to catch is boring Nudiflot!" 
+msgid "spyder_route3_wanda2" 
+msgstr "The fishing's good in Flower City - but who wants to walk that far? \n Here, you can have my Fishing Rod." 
+
+msgid "spyder_papertown_danteresting" 
+msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. It's such a terrible waste. \n It all goes into the bins behind the back of the Store." 
+
+msgid "spyder_cotton_nurse1" 
+msgstr "Welcome to the Cotton Town Cathedral Centre! \n Do you want to heal your Tuxemon?" 
+
+
+
+msgid "spyder_stop_dante" 
+msgstr "Dante" 
+
+msgid "spyder_frolicking_rockitten" 
+msgstr "Rockitten" 
+
+msgid "spyder_frolicking_conileaf" 
+msgstr "Conileaf" 
+
+msgid "spyder_papertown_riverboatcaptain" 
+msgstr "Riverboat Captain" 
+
+msgid "spyder_papertown_homemaker" 
+msgstr "Homemaker" 
+
+msgid "spyder_papertown_mom" 
+msgstr "Mom" 
+
+msgid "spyder_papertown_grannypiper" 
+msgstr "Granny Piper" 
+
+msgid "spyder_papertown_shopkeeper" 
+msgstr "Shopkeeper" 
+
+msgid "spyder_instore_dante" 
+msgstr "Dante" 
+
+msgid "spyder_billie" 
+msgstr "Billie" 
+
+msgid "spyder_cottontown_monk" 
+msgstr "Monk" 
+
+msgid "spyder_cottontown_hacker" 
+msgstr "Hacker" 
+
+msgid "spyder_omnichannel_enforcer" 
+msgstr "Enforcer" 
+
+msgid "spyder_cottontown_barmaid" 
+msgstr "Barmaid" 
+
+msgid "spyder_granny" 
+msgstr "Granny" 
+
+msgid "spyder_goth" 
+msgstr "Goth" 
+
+msgid "spyder_florist" 
+msgstr "Florist" 
+
+msgid "spyder_shopkeeper" 
+msgstr "Shopkeeper" 
+
+msgid "spyder_shopassistant" 
+msgstr "Shop Assistant" 
+
+msgid "spyder_route2_billie" 
+msgstr "Billie" 
+
+msgid "spyder_route2_roddick" 
+msgstr "Roddick" 
+
+msgid "spyder_route2_marion" 
+msgstr "Marion" 
+
+msgid "spyder_route2_graf" 
+msgstr "Graf" 
+
+msgid "spyder_maniac" 
+msgstr "Maniac" 
+
+msgid "spyder_citypark_florist" 
+msgstr "Florist" 
+
+msgid "spyder_citypark_frances" 
+msgstr "Frances" 
+
+msgid "spyder_citypark_bobette" 
+msgstr "Bobette" 
+msgid "spyder_citypark_edith" 
+msgstr "Edith" 
+msgid "spyder_miner" 
+msgstr "Miner" 
+msgid "spyder_postboy" 
+msgstr "Postboy" 
+msgid "spyder_route3_zoolander" 
+msgstr "Zoolander" 
+msgid "spyder_rookie" 
+msgstr "Rookie" 
+msgid "spyder_route3_weaver" 
+msgstr "Weaver" 
+msgid "spyder_route3_qqq" 
+msgstr "???" 
+msgid "spyder_route3_novak" 
+msgstr "Novak" 
+msgid "spyder_route3_curie" 
+msgstr "Curie" 
+msgid "spyder_route3_connor" 
+msgstr "Connor" 
+msgid "spyder_route3_wanda" 
+msgstr "Wanda" 
+msgid "spyder_route3_twig" 
+msgstr "Twig" 
+msgid "spyder_route3_surat" 
+msgstr "Surat" 
+msgid "spyder_route3_roxby" 
+msgstr "Roxby" 
+
+
+
+## MESSAGE TRANSLATIONS ##
+
+# spyder messages
+
+msgid "spyder_multi_underrepairs" 
+msgstr "The sign reads, 'Under repairs'" 
+
+msgid "spyder_papertown_townsign" 
+msgstr "Paper Town: The gateway to Fondent!" 
+
+msgid "spyder_multi_martsign" 
+msgstr "Buy things here" 
+
+msgid "spyder_papertown_daycare1" 
+msgstr "Daycare Centre: Under construction" 
+
+msgid "spyder_route1_routesign" 
+msgstr "Route 1: Take care!" 
+
+msgid "spyder_papertown_daycare2" 
+msgstr "Daycare Centre: Open now!" 
+
+msgid "spyder_papertown_sunnyside" 
+msgstr "Sunnyside Manor: If we are not home leave a message with our housekeeper." 
+
+msgid "spyder_papertown_home" 
+msgstr "Home sweet home!" 
+
+msgid "spyder_papertown_restinbed" 
+msgstr "You awake fully rested!" 
+
+msgid "spyder_papertown_tvwatch" 
+msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out." 
+
+msgid "spyder_papertown_tvwatch" 
+msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out." 
+
+msgid "spyder_citypark_achievement" 
+msgstr "Achievement Maniac's House: Closed" 
+
+msgid "spyder_cottontown_townsign" 
+msgstr "Welcome to Cotton Town: A growing force." 
+msgid "spyder_route2_routesign" 
+msgstr "Welcome to Route 2: The historic path." 
+msgid "spyder_citypark_routesign" 
+msgstr "City Park: A taste of the wild." 
+msgid "spyder_column1_sign" 
+msgstr "A rare ancient column. This was once part of a temple building." 
+msgid "spyder_column2_sign" 
+msgstr "A rare ancient column. Other ruins from the same culture can be found in Route 3. " 
+msgid "spyder_ruby_plaque" 
+msgstr "Ruby is just the term for any corundum that is red! \n When corundum comes in other colours like blue, pink and clear, it is called a sapphire. \n When tuxemon eat rubies, they become passionate and vigorous, making them better at physical attacks like slaps, claws and bites." 
+msgid "spyder_opal_plaque" 
+msgstr "Opals show flashes of coloured light. \n They form in fissues and dips in rock when water evaporates leaving behind silica. \n Tuxemon that eat opals benefit from its magical warding are better able to escape magical distant attacks like blasts, sprays and rays." 
+msgid "spyder_emerald_plaque" 
+msgstr "An emerald is a green variety of beryl. Beryl that is blue is called aquamarine instead. \n A one-carat emerald is larger but less dense than a one-carat diamond. \n Tuxemon that eat emeralds have their sight and intuition heighten, making their ranged attacks like shots, sprays and blasts more potent." 
+msgid "spyder_agate_plaque" 
+msgstr "Agate is a rock, often formed by volcanoes and often banded with parallel lines. \n It features a great variety of colours: browns, greys, creams, reds, oranges and even blues. \n Feeding agate to a tuxemon can increase its speed and agility, making it faster to react in battle." 
+msgid "spyder_diamond_plaque" 
+msgstr "Famously the hardest gemstone in the world, diamonds are great on necklaces, engagement rings and earrings! \n If your fiance doesn't buy a Shaft diamond ring for you, he doesn't love you! \n Feed diamonds to your tuxemon to harden their skin, making them better able to resist physical blows." 
+msgid "spyder_quartz_plaque" 
+msgstr "Quartz is one of the most abundant minerals on the planet, but some of its varieties - like onyx, amethyst and carnelian - are rarer and more precious. \n Quartz is used in clocks to keep very precise time. \n Tuxemon that eat quartz have their fortitude and vitality increased, making them able to endure more attacks before being kocked out. " 
+msgid "spyder_shaft_plaque" 
+msgstr "Sponsored by Shaft. "We dig it!"" 
+msgid "spyder_nimrod_plaque" 
+msgstr "Sponsored by Nimrod. "If we didn't sell them, someone else would!"" 
+msgid "spyder_nimrod2_plaque" 
+msgstr "Tuxemon are powerful weapons that have fought alongside humans for as long as there has been war. \n Rock paintings found in caves show prehistoric humans training sabretoothed Rockats to fight wild Wolffsky." 
+msgid "spyder_nimrod3_plaque" 
+msgstr "The symbol of an ancient empire was the Eaglace, because when the empire invaded from the icy north their generals and scouts rode on Eaglace. \n Today, medic teams in our mighty republic are training with Agnidon for protection and transport. " 
+msgid "spyder_nimrod4_plaque" 
+msgstr "But soon, tuxemon and humans may be rendered obsolete. \n Our corporate sponsors Nimrod are developing robot technology that could make war a bloodless affair. \n In the meantime, sign up for the Nimrod Enforcers for good pay, free education and a life of adventure." 
+msgid "spyder_route3_sign" 
+msgstr "Route 3: Rehabilitation will begin as soon as possible. \n Please stop nagging us." 
+msgid "spyder_leathertown_sign" 
+msgstr "Leather Town: Proof that beauty and mining can co-exist." 
+msgid "spyder_shaft1_sign" 
+msgstr "Shaft Headquarters: Mining Division" 
+msgid "spyder_shaft2_sign" 
+msgstr "Shaft Headquarters: Public Relations Division" 
+msgid "spyder_leathercafe_sign" 
+msgstr "Open Air Cafe and Marketplace" 
+msgid "spyder_leathercbd_sign" 
+msgstr "Leather Town Business District"
+
+msgid "cannot_use_item_monster"
+msgstr "This item cannot be used on this monster."

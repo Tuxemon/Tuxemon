@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
@@ -43,13 +38,13 @@ class NpcFaceAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.game, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
         direction = self.parameters.direction
         if direction not in dirs2:
             if direction == "player":
-                target = self.game.player1
+                target = self.session.player
             else:
-                target = get_npc(self.game, direction)
+                target = get_npc(self.session, direction)
             direction = get_direction(npc.tile_pos, target.tile_pos)
 
         npc.facing = direction

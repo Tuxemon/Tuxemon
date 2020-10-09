@@ -28,11 +28,9 @@ import logging
 from math import cos, sin, pi
 
 import pytmx
-from natsort import natsorted
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare
-from tuxemon.core.event import EventObject, MapAction, MapCondition
 from tuxemon.core.graphics import scaled_image_loader
 from tuxemon.core.map import (
     TuxemonMap,
@@ -43,7 +41,8 @@ from tuxemon.core.map import (
     orientation_by_angle,
     extract_region_properties,
 )
-from tuxemon.core.tools import split_escaped, copy_dict_with_keys
+from tuxemon.core.script.parser import Parser
+from tuxemon.core.tools import copy_dict_with_keys
 from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
@@ -58,36 +57,6 @@ region_properties = [
     "exit_to",
     "continue",
 ]
-
-
-def parse_action_string(text):
-    words = text.split(" ", 1)
-    act_type = words[0]
-    if len(words) > 1:
-        args = split_escaped(words[1])
-    else:
-        args = list()
-    return act_type, args
-
-
-def parse_condition_string(text):
-    words = text.split(" ", 2)
-    operator, cond_type = words[0:2]
-    if len(words) > 2:
-        args = split_escaped(words[2])
-    else:
-        args = list()
-    return operator, cond_type, args
-
-
-def parse_behav_string(behav_string):
-    words = behav_string.split(" ", 1)
-    behav_type = words[0]
-    if len(words) > 1:
-        args = split_escaped(words[1])
-    else:
-        args = list()
-    return behav_type, args
 
 
 class TMXMapLoader:
@@ -127,6 +96,7 @@ class TMXMapLoader:
 
         :rtype: tuxemon.core.map.TuxemonMap
         """
+        parser = Parser()
         data = pytmx.TiledMap(
             filename, image_loader=scaled_image_loader, pixelalpha=True
         )
@@ -177,7 +147,8 @@ class TMXMapLoader:
             filename,
         )
 
-    def process_line(self, line, tile_size):
+    @staticmethod
+    def process_line(line, tile_size):
         """ Identify the tiles on either side of the line and block movement along it
 
         :param line:
@@ -217,52 +188,3 @@ class TMXMapLoader:
         )
         for tile_position in tiles_inside_rect(rect, grid_size):
             yield tile_position, extract_region_properties(region_conditions)
-
-    def load_event(self, obj, tile_size):
-        """ Load an Event from the map
-
-        :param obj:
-        :param tile_size:
-        :rtype: EventObject
-        """
-        conds = []
-        acts = []
-        x = int(obj.x / tile_size[0])
-        y = int(obj.y / tile_size[1])
-        w = int(obj.width / tile_size[0])
-        h = int(obj.height / tile_size[1])
-
-        # Conditions & actions are stored as Tiled properties.
-        # We need to sort them by name, so that "act1" comes before "act2" and so on..
-        for key, value in natsorted(obj.properties.items()):
-            if key.startswith("cond"):
-                operator, cond_type, args = parse_condition_string(value)
-                condition = MapCondition(cond_type, args, x, y, w, h, operator, key)
-                conds.append(condition)
-            elif key.startswith("act"):
-                act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, key)
-                acts.append(action)
-
-        keys = natsorted(obj.properties.keys())
-        for key in keys:
-            if key.startswith("behav"):
-                behav_string = obj.properties[key]
-                behav_type, args = parse_behav_string(behav_string)
-                if behav_type == "talk":
-                    conds.insert(
-                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
-                    )
-                    acts.insert(0, MapAction("npc_face", [args[0], "player"], key))
-                else:
-                    raise Exception
-
-        # add a player_facing_tile condition automatically
-        if obj.type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
-            logger.debug(cond_data)
-            conds.append(cond_data)
-
-        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)

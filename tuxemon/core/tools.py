@@ -36,7 +36,6 @@ if more appropriate.  Ideally this should be kept small.
 """
 
 import logging
-import re
 
 from six.moves import zip_longest
 
@@ -245,32 +244,6 @@ def show_item_result_as_dialog(session, item, result):
     if template:
         message = T.translate(template)
         open_dialog(session, [message])
-
-
-def split_escaped(string_to_split, delim=","):
-    """Splits a string by the specified deliminator excluding escaped
-    deliminators.
-
-    :param string_to_split: The string to split.
-    :param delim: The deliminator to split the string by.
-
-    :type string_to_split: Str
-    :type delim: Str
-
-    :rtype: List
-    :returns: A list of the splitted string.
-
-    """
-    # Split by "," unless it is escaped by a "\"
-    split_list = re.split(r'(?<!\\)' + delim, string_to_split)
-
-    # Remove the escape character from the split list
-    split_list = [w.replace(r'\,', ',') for w in split_list]
-
-    # strip whitespace around each
-    split_list = [i.strip() for i in split_list]
-
-    return split_list
 
 
 def round_to_divisible(x, base=16):

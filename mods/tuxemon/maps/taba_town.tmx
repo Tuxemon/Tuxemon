@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="143">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="145">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -718,6 +718,7 @@
   <object id="140" name="people be blocking" type="event" x="352" y="96" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog hmmm"/>
+    <property name="act11" value="player_stop"/>
     <property name="act2" value="npc_face conworker2,up"/>
     <property name="act3" value="translated_dialog hmmm2"/>
     <property name="act4" value="npc_face conworker1,down"/>
@@ -740,6 +741,34 @@
     <property name="cond2" value="is player_facing left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="143" name="announcement2" type="event" x="576" y="576" width="64" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="create_npc npc_mom,38,41,,stand"/>
+    <property name="act3" value="translated_dialog timeforround2"/>
+    <property name="act4" value="pathfind npc_mom,37,38"/>
+    <property name="act5" value="npc_face npc_mom,up"/>
+    <property name="act51" value="wait 0.5"/>
+    <property name="act52" value="translated_dialog timeforround22"/>
+    <property name="act6" value="set_variable backhome:yes"/>
+    <property name="act7" value="pathfind npc_mom,43,46"/>
+    <property name="act8" value="npc_face npc_mom,up"/>
+    <property name="act9" value="remove_npc npc_mom"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="not variable_set backhome:yes"/>
+   </properties>
+  </object>
+  <object id="144" name="runtohouse" type="event" x="656" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind player,43,46"/>
+    <property name="act2" value="npc_face player,up"/>
+    <property name="act3" value="wait 0.5"/>
+    <property name="act4" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
+    <property name="act5" value="set_variable backhome:no"/>
+    <property name="cond1" value="is variable_set backhome:yes"/>
    </properties>
   </object>
  </objectgroup>

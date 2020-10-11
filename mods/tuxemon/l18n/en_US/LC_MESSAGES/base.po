@@ -1886,8 +1886,13 @@ msgid "hmmm7"
 msgstr "The Weather is nice though, isn't it?"
 
 msgid "timeforround2"
-msgstr "${{name}}! Hurry! You'll miss the announcement! Apparently Able will be speaking soon, the anthem has already started.\n"
-"Oh! You did get the potions! Thanks! Now we really need to get back."
+msgstr "${{name}}! Finally! You're back! I was afraid you would miss the announcement!"
+
+msgid "timeforround22"
+msgstr "Oh! You did get the potions! Good! Now we really need to get back."
+
+msgid "theanthemishere"
+msgstr "Listen! The anthem is starting, we made it just in time. Come and watch!"
 
 msgid "moreannouncement"
 msgstr "ATTENTION, ALL CITIZENS OF THE FONDENT REGION!\n"

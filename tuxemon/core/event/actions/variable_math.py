@@ -57,6 +57,8 @@ class VariableMathAction(EventAction):
             player.game_variables[var] = operand1 * operand2
         elif operation == "/":
             player.game_variables[var] = operand1 / operand2
+        elif operation == "=":
+            player.game_variables[var] = operand2
         else:
             logger.error("invalid operation type {}".format(operation))
             raise ValueError

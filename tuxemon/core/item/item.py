@@ -276,18 +276,18 @@ class Item:
 
 
 def decode_inventory(session, owner, data):
-    """ Reconstruct inventory from save_data
+    """ Reconstruct inventory from a save_data dict
 
     :param session:
     :param owner:
-    :param data: save data
+    :param data: save data inventory
     :type data: Dictionary
 
     :rtype: Dictionary
     :returns: New inventory
     """
     out = {}
-    for slug, quant in (data.get('inventory') or {}).items():
+    for slug, quant in data.items():
         item = {
             'item': Item(session, owner, slug)
         }

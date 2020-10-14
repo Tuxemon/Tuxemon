@@ -47,7 +47,8 @@ class RenameMonsterAction(EventAction):
         menu.on_menu_selection = self.prompt_for_name
 
     def update(self):
-        if self.session.client.get_state_by_name("MonsterMenuState") is None and self.session.client.get_state_by_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("MonsterMenuState") is None \
+           and self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()
 
     def set_monster_name(self, name):

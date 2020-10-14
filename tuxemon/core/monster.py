@@ -182,6 +182,28 @@ class Monster:
         self.set_stats()
         self.set_flairs()
 
+    def __init__(self, mother, father):
+        """Create's a new Monster, with the passed in monsters
+            as parents.
+
+        :param mother: The core.monster.Monster to be father of this
+            monsterous child.
+        :type mother : tuxemon.core.monster.Monster
+        :param father: The core.monster.Monster to be father of this
+            monsterous child.
+        :type father : tuxemon.core.monster.Monster
+        """
+        self.__init__()
+        self.slug = mother.slug
+        self.load_from_db(self.slug)
+        self.set_level(5)
+
+        father_tech_count = father.moves.count()
+        tech_to_replace = random.randrange(0, 2)
+        self.moves[tech_to_replace] = father.moves[random.randrange(0, father_tech_count - 1)]
+
+        pass
+
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.

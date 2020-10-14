@@ -86,11 +86,13 @@ class TuxemonConfig:
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
-        
+
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
-        
+        self.default_monster_storage_box = cfg.getstring("gameplay", "default_monster_storage_box")
+        self.default_item_storage_box = cfg.getstring("gameplay", "default_monster_item_box")
+
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
         self.player_npc = cfg.get("player", "player_npc")
@@ -123,19 +125,20 @@ def get_custom_pygame_keyboard_controls(cfg):
 
     custom_controls = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
-        key = key.upper()   
+        key = key.upper()
         button_value = getattr(buttons, key, None)
         event_value = getattr(events, key, None)
         for each in values.split(", "):
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
-            pygame_value = getattr(pygame.locals, "K_"+each, None)
+            pygame_value = getattr(pygame.locals, "K_" + each, None)
             if pygame_value is not None and button_value is not None:
                 custom_controls[pygame_value] = button_value
             elif pygame_value is not None and event_value is not None:
                 custom_controls[pygame_value] = event_value
 
     return custom_controls
+
 
 def get_defaults():
     """ Generate a config from defaults
@@ -175,7 +178,9 @@ def get_defaults():
         ))),
         ("gameplay", OrderedDict((
             ("items_consumed_on_failure", True),
-            ("encounter_rate_modifier", 1.0)
+            ("encounter_rate_modifier", 1.0),
+            ("default_monster_storage_box", "Kennel"),
+            ("default_item_storage_box", "Locker")
         ))),
         ("player", OrderedDict((
             ("animation_speed", 0.15),

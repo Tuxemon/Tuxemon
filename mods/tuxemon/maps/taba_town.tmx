@@ -656,19 +656,19 @@
   </object>
   <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc npc_taba_greeter,29,12,,stand"/>
-    <property name="act20" value="npc_face npc_taba_greeter,down"/>
-    <property name="cond1" value="not npc_exists npc_taba_greeter"/>
+    <property name="act10" value="create_npc taba_greeter,29,12,,stand"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond1" value="not npc_exists taba_greeter"/>
    </properties>
   </object>
   <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="npc_face npc_taba_greeter,player"/>
+    <property name="act10" value="npc_face taba_greeter,player"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act25" value="translated_dialog taba_greeting2a"/>
     <property name="act30" value="add_item capture_device,5"/>
     <property name="act40" value="translated_dialog gotfivetuxeballs"/>
-    <property name="act60" value="npc_face npc_taba_greeter,down"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
     <property name="act70" value="set_variable greeter_greets:yes"/>
     <property name="cond10" value="not has_item player,capture_device"/>
     <property name="cond20" value="is party_size greater_than,0"/>
@@ -678,10 +678,10 @@
   </object>
   <object id="134" name="greeter_greets2" type="event" x="480" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="npc_face npc_taba_greeter,player"/>
+    <property name="act10" value="npc_face taba_greeter,player"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act30" value="translated_dialog taba_greeting2b"/>
-    <property name="act60" value="npc_face npc_taba_greeter,down"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
     <property name="act70" value="set_variable greeter_greets:yes"/>
     <property name="cond10" value="is has_item player,capture_device"/>
     <property name="cond20" value="is party_size greater_than,0"/>

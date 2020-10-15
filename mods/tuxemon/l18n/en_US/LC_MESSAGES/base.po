@@ -2371,3 +2371,15 @@ msgstr "Leather Town Business District"
 
 msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."
+
+msgid "taba_greeting1"
+msgstr "Greeter Jaime: Hey there ${{name}}! Heard you got a Tuxemon, congrats! If you wanna grow your party, you'll need Tuxeballs."
+
+msgid "taba_greeting2a"
+msgstr "The shop is doing a promo, here's some to get you started. You use them to capture Tuxemon. It's easier if they're weakend first though!"
+
+msgid "taba_greeting2b"
+msgstr "Ah! I see you've already got some. You've got a good head on your shoulders ${{name}}, I'm sure you'll be a champ in no time."
+
+msgid "gotfivetuxeballs"
+msgstr "You got 5 Tuxeballs!"

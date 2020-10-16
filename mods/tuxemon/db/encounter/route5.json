@@ -3,15 +3,11 @@
 
 
 
-{ "monster":"txmn_pharfan","encounter_rate":10,"level_range": [15,18]},
-{ "monster":"txmn_foofle","encounter_rate":10,"level_range": [15,18]},
-{ "monster":"txmn_vamporm","encounter_rate":10,"level_range": [15,18]},
-{ "monster":"txmn_dracune","encounter_rate":5,"level_range": [19,20]},
-{ "monster":"txmn_anoleaf","encounter_rate":10,"level_range": [15,18]},
-{ "monster":"txmn_gectile","encounter_rate":5,"level_range": [19,20]}
-
-
-
+{ "monster": "foofle","encounter_rate":3,"level_range": [19,23]},
+{ "monster": "vamporm","encounter_rate":3,"level_range": [16,20]},
+{ "monster": "dracune","encounter_rate":1,"level_range": [18,22]},
+{ "monster": "anoleaf","encounter_rate":3,"level_range": [16,20]},
+{ "monster": "gectile","encounter_rate":1,"level_range": [20,24]}
 
 
 

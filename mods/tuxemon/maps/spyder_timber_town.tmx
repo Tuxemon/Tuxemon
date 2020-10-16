@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="329">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="332">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -135,6 +135,29 @@
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="329" name="Stop! - Scoop" type="event" x="464" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act3" value="pathfind spyder_dante,29,25"/>
+    <property name="act4" value="translated_dialog spyder_route5_dante2"/>
+    <property name="act5" value="pathfind spyder_dante,24,31"/>
+    <property name="act9" value="set_variable timberdantewarn:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not variable_set timberdantewarn:yes"/>
+   </properties>
+  </object>
+  <object id="330" name="Create Dante" type="event" x="384" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dante,24,31"/>
+    <property name="cond1" value="not npc_exists spyder_dante"/>
+   </properties>
+  </object>
+  <object id="331" name="Talk Dante" type="event" x="384" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_timber_dante1"/>
+    <property name="behav1" value="talk spyder_dante"/>
    </properties>
   </object>
  </objectgroup>

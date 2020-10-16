@@ -1,0 +1,24 @@
+{
+    "slug": "spyder_scoop_turner",
+    "sprite_name": "knight",
+	"monsters": [
+        {
+            "name": "Flacono",
+            "level": 30, 
+			"slug": "flacono",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Squabbit",
+            "level": 30, 
+			"slug": "pigabyte",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "enforcer_rookie.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="52">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -89,7 +89,7 @@
  </layer>
  <layer id="4" name="Above Player" width="12" height="22">
   <data encoding="base64" compression="zlib">
-   eAHNkV0KgEAIhD1AvQW9dre6XHXJEvpgsFY2ikgQ/8dx1+x/Mg5nTtOR6xoz15LobJ/0OYbXwcsws1qJx9383Jotu667Ihl/eqLVe57y1rdkD/9AXGPjHZEjsWLFGa3V+m9gsIu74Xr1ttSYyaxycx889jCrfeS+tBuGOAna
+   eAHVUEEKgDAMywP0Juz/R/WTLodACaX0MAULZe2apNmAf8WxAcxOjAJHDc6lV2lWs46PDubcgWvmPVNR+RfGz/ieL3z7/qz3d7hH9ZHrnDjr1is0fJe8Zn+rmXOyPnpjnemRF3GZztt3D2hABkE=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="12" height="22">
@@ -97,27 +97,7 @@
    eAFjYBgFwykExHiGk28Gn19GWvgCAHKIAEU=
   </data>
  </layer>
- <objectgroup color="#ffff00" id="6" name="Event">
-  <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16"/>
-  <object id="2" name="Teleport to Scoop 3" type="event" x="144" y="336" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_scoop3.tmx,5,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="3" name="Teleport to Timber Town" type="event" x="176" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_timber_town.tmx,17,20,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="29" name="Player Spawn" type="event" x="160" y="320" width="16" height="16"/>
- </objectgroup>
- <objectgroup color="#ff0000" id="7" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="7" name="Collision">
   <object id="4" type="collision" x="0" y="0" width="192" height="48"/>
   <object id="5" type="collision" x="112" y="160" width="80" height="16"/>
   <object id="7" type="collision-line" x="0" y="352">
@@ -150,5 +130,217 @@
   <object id="26" type="collision" x="112" y="80" width="16" height="16"/>
   <object id="27" type="collision" x="112" y="144" width="16" height="16"/>
   <object id="28" type="collision" x="176" y="176" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Event">
+  <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16"/>
+  <object id="2" name="Teleport to Scoop 3" type="event" x="144" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_scoop3.tmx,5,3,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="3" name="Teleport to Timber Town" type="event" x="176" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_timber_town.tmx,17,20,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="30" name="Create Orba" type="event" x="32" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_orba,2,12"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_orba"/>
+    <property name="cond2" value="not variable_set scooporba:yes"/>
+   </properties>
+  </object>
+  <object id="31" name="Talk Orba" type="event" x="16" y="192" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_orba1"/>
+    <property name="act3" value="start_battle spyder_scoop_orba"/>
+    <property name="act4" value="translated_dialog spyder_scoop_orba2"/>
+    <property name="act6" value="set_variable scooporba:yes"/>
+    <property name="behav1" value="talk spyder_scoop_orba"/>
+    <property name="cond1" value="not variable_set scooporba:yes"/>
+   </properties>
+  </object>
+  <object id="32" name="Create Haf" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scientist,11,12"/>
+    <property name="cond1" value="not npc_exists spyder_scientist"/>
+   </properties>
+  </object>
+  <object id="33" name="Talk Haf" type="event" x="176" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_haf1"/>
+    <property name="behav1" value="talk spyder_scientist"/>
+   </properties>
+  </object>
+  <object id="34" name="Create Weaver" type="event" x="128" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_weaver,7,6"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_weaver"/>
+    <property name="cond2" value="not variable_set scooplandrace:yes"/>
+   </properties>
+  </object>
+  <object id="35" name="Talk Weaver" type="event" x="112" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_weaver1"/>
+    <property name="act3" value="start_battle spyder_scoop_weaver"/>
+    <property name="act4" value="translated_dialog spyder_scoop_weaver2"/>
+    <property name="act6" value="set_variable scoopweaver:yes"/>
+    <property name="behav1" value="talk spyder_scoop_weaver"/>
+    <property name="cond1" value="not variable_set scoopweaver:yes"/>
+   </properties>
+  </object>
+  <object id="36" name="Create Arachne" type="event" x="176" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_arachne,11,9"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_arachne"/>
+    <property name="cond2" value="not variable_set scooplandrace:yes"/>
+   </properties>
+  </object>
+  <object id="37" name="Talk Arachne" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_arachne1"/>
+    <property name="act3" value="start_battle spyder_scoop_arachne"/>
+    <property name="act4" value="translated_dialog spyder_scoop_arachne2"/>
+    <property name="act6" value="set_variable scooparachne:yes"/>
+    <property name="behav1" value="talk spyder_scoop_arachne"/>
+    <property name="cond1" value="not variable_set scooparachne:yes"/>
+   </properties>
+  </object>
+  <object id="38" name="Create Landrace" type="event" x="160" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_landrace,10,4"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_landrace"/>
+    <property name="cond2" value="not variable_set scooplandrace:yes"/>
+   </properties>
+  </object>
+  <object id="39" name="Talk Landrace" type="event" x="176" y="64" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_landrace1"/>
+    <property name="act3" value="random_encounter spyder_landrace,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_landrace2"/>
+    <property name="act6" value="set_variable scooplandrace:yes"/>
+    <property name="act61" value="remove_npc spyder_scoop_landrace"/>
+    <property name="act71" value="pathfind spyder_scoop_weaver,11,3 "/>
+    <property name="act81" value="remove_npc spyder_scoop_weaver"/>
+    <property name="act90" value="pathfind spyder_scoop_arachne,10,3"/>
+    <property name="act91" value="translated_dialog spyder_scoop_landrace3"/>
+    <property name="behav1" value="talk spyder_scoop_landrace"/>
+    <property name="cond1" value="not variable_set scooplandrace:yes"/>
+   </properties>
+  </object>
+  <object id="40" name="Create LapinouA" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_lapinoua,2,4"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_lapinoua"/>
+    <property name="cond2" value="not variable_set scooplapinoua:yes"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk LapinouA" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_lapinou1"/>
+    <property name="act3" value="random_encounter spyder_lapinou,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_lapinou2"/>
+    <property name="act6" value="set_variable scooplapinoua:yes"/>
+    <property name="act7" value="remove_npc spyder_scoop_lapinoua"/>
+    <property name="behav1" value="talk spyder_scoop_lapinoua"/>
+    <property name="cond1" value="not variable_set scooplapinoua:yes"/>
+   </properties>
+  </object>
+  <object id="42" name="Create LapinouB" type="event" x="160" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_lapinoub,2,4"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_lapinoub"/>
+    <property name="cond2" value="not variable_set scooplapinoub:yes"/>
+   </properties>
+  </object>
+  <object id="43" name="Talk LapinouB" type="event" x="144" y="256" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_lapinou1"/>
+    <property name="act3" value="random_encounter spyder_lapinou,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_lapinou2"/>
+    <property name="act6" value="set_variable scooplapinoub:yes"/>
+    <property name="act7" value="remove_npc spyder_scoop_lapinoub"/>
+    <property name="behav1" value="talk spyder_scoop_lapinoub"/>
+    <property name="cond1" value="not variable_set scooplapinoub:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="Create LapinouC" type="event" x="32" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_lapinouc,2,16"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_lapinouc"/>
+    <property name="cond2" value="not variable_set scooplapinouc:yes"/>
+   </properties>
+  </object>
+  <object id="45" name="Talk LapinouC" type="event" x="16" y="256" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_lapinou1"/>
+    <property name="act3" value="random_encounter spyder_lapinou,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_lapinou2"/>
+    <property name="act6" value="set_variable scooplapinouc:yes"/>
+    <property name="act7" value="remove_npc spyder_scoop_lapinouc"/>
+    <property name="behav1" value="talk spyder_scoop_lapinouc"/>
+    <property name="cond1" value="not variable_set scooplapinouc:yes"/>
+   </properties>
+  </object>
+  <object id="46" name="Create CochiniA" type="event" x="80" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_cochinia,5,10"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_cochinia"/>
+    <property name="cond2" value="not variable_set scoopcochinia:yes"/>
+   </properties>
+  </object>
+  <object id="47" name="Talk CochiniA" type="event" x="64" y="160" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_cochini1"/>
+    <property name="act3" value="random_encounter spyder_cochini,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_cochini2"/>
+    <property name="act6" value="set_variable scoopcochinia:yes"/>
+    <property name="act7" value="remove_npc spyder_scoop_cochinia"/>
+    <property name="behav1" value="talk spyder_scoop_cochinia"/>
+    <property name="cond1" value="not variable_set scoopcochinia:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Create CochiniB" type="event" x="32" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_cochinib,2,19"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_cochinib"/>
+    <property name="cond2" value="not variable_set scoopcochinib:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Talk CochiniB" type="event" x="16" y="304" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_cochini1"/>
+    <property name="act3" value="random_encounter spyder_cochini,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_cochini2"/>
+    <property name="act6" value="set_variable scoopcochinib:yes"/>
+    <property name="act7" value="remove_npc spyder_scoop_cochinib"/>
+    <property name="behav1" value="talk spyder_scoop_cochinib"/>
+    <property name="cond1" value="not variable_set scoopcochinib:yes"/>
+   </properties>
+  </object>
+  <object id="50" name="Create CochiniC" type="event" x="160" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_cochinic,10,18"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_cochinic"/>
+    <property name="cond2" value="not variable_set scoopcochinic:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Talk CochiniC" type="event" x="144" y="288" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_cochini1"/>
+    <property name="act3" value="random_encounter spyder_cochini,100"/>
+    <property name="act4" value="translated_dialog spyder_scoop_cochini2"/>
+    <property name="act6" value="set_variable scoopcochinic:yes"/>
+    <property name="act7" value="remove_npc spyder_scoop_cochinic"/>
+    <property name="behav1" value="talk spyder_scoop_cochinic"/>
+    <property name="cond1" value="not variable_set scoopcochinic:yes"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

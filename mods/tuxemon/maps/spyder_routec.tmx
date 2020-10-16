@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="199">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="217">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -107,6 +107,159 @@
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="199" name="Create Nigel" type="event" x="544" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_nigel,34,3"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond2" value="not variable_set searoutecnigel:yes"/>
+   </properties>
+  </object>
+  <object id="200" name="Talk Nigel" type="event" x="544" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_nigel1"/>
+    <property name="act3" value="start_battle spyder_searoutec_nigel"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
+    <property name="act6" value="set_variable searoutecnigel:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_nigel"/>
+    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+   </properties>
+  </object>
+  <object id="201" name="Create River" type="event" x="80" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_river,5,7"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_river"/>
+    <property name="cond2" value="not variable_set searoutecriver:yes"/>
+   </properties>
+  </object>
+  <object id="202" name="Talk River" type="event" x="80" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_river1"/>
+    <property name="act3" value="start_battle spyder_searoutec_river"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_river2"/>
+    <property name="act6" value="set_variable searoutecriver:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_river"/>
+    <property name="cond1" value="not variable_set searoutecriver:yes"/>
+   </properties>
+  </object>
+  <object id="203" name="Create Wade" type="event" x="224" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_wade,14,11"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_wade"/>
+    <property name="cond2" value="not variable_set searoutecwade:yes"/>
+   </properties>
+  </object>
+  <object id="204" name="Talk Wade" type="event" x="224" y="160" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_wade1"/>
+    <property name="act3" value="start_battle spyder_searoutec_wade"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_wade2"/>
+    <property name="act6" value="set_variable searoutecwade:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_wade"/>
+    <property name="cond1" value="not variable_set searoutecwade:yes"/>
+   </properties>
+  </object>
+  <object id="205" name="Create Gil" type="event" x="384" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_gil,24,15"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_gil"/>
+    <property name="cond2" value="not variable_set searoutecgil:yes"/>
+   </properties>
+  </object>
+  <object id="206" name="Talk Gil" type="event" x="384" y="224" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_gil1"/>
+    <property name="act3" value="start_battle spyder_searoutec_gil"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_gil2"/>
+    <property name="act6" value="set_variable searoutecgil:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_gil"/>
+    <property name="cond1" value="not variable_set searoutecgil:yes"/>
+   </properties>
+  </object>
+  <object id="207" name="Create Leek" type="event" x="480" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_leek,30,10"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_leek"/>
+    <property name="cond2" value="not variable_set searoutecleek:yes"/>
+   </properties>
+  </object>
+  <object id="208" name="Talk Leek" type="event" x="480" y="144" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_leek1"/>
+    <property name="act3" value="start_battle spyder_searoutec_leek"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_leek2"/>
+    <property name="act6" value="set_variable searoutecleek:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_leek"/>
+    <property name="cond1" value="not variable_set searoutecleek:yes"/>
+   </properties>
+  </object>
+  <object id="209" name="Create Beech" type="event" x="128" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_beech,8,14"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_beech"/>
+    <property name="cond2" value="not variable_set searoutecbeech:yes"/>
+   </properties>
+  </object>
+  <object id="210" name="Talk Beech" type="event" x="128" y="176" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_beech1"/>
+    <property name="act3" value="start_battle spyder_searoutec_beech"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_beech2"/>
+    <property name="act6" value="set_variable searoutecbeech:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_beech"/>
+    <property name="cond1" value="not variable_set searoutecbeech:yes"/>
+   </properties>
+  </object>
+  <object id="211" name="Create Rutherford" type="event" x="544" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_rutherford,34,12"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_rutherford"/>
+    <property name="cond2" value="not variable_set searoutecrutherford:yes"/>
+   </properties>
+  </object>
+  <object id="212" name="Talk Rutherford" type="event" x="544" y="176" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_rutherford1"/>
+    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
+    <property name="act6" value="set_variable searoutecrutherford:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_rutherford"/>
+    <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
+   </properties>
+  </object>
+  <object id="213" name="Create Carstair" type="event" x="400" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_carstair,25,6"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_carstair"/>
+    <property name="cond2" value="not variable_set searouteccarstair:yes"/>
+   </properties>
+  </object>
+  <object id="214" name="Talk Carstair" type="event" x="400" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_carstair1"/>
+    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
+    <property name="act6" value="set_variable searouteccarstair:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_carstair"/>
+    <property name="cond1" value="not variable_set searouteccarstair:yes"/>
+   </properties>
+  </object>
+  <object id="215" name="Create Sandy" type="event" x="80" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_sandy,5,14"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_sandy"/>
+    <property name="cond2" value="not variable_set searoutecsandy:yes"/>
+   </properties>
+  </object>
+  <object id="216" name="Talk Sandy" type="event" x="80" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_sandy1"/>
+    <property name="act3" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_sandy2"/>
+    <property name="act6" value="set_variable searoutecsandy:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_sandy"/>
+    <property name="cond1" value="not variable_set searoutecsandy:yes"/>
    </properties>
   </object>
  </objectgroup>

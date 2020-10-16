@@ -67,7 +67,7 @@
   </object>
   <object id="40" name="Teleport Wherever" type="event" x="0" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,10,5,0.3"/>
+    <property name="act1" value="transition_teleport spyder_route4.tmx,2,5,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -139,7 +139,7 @@
   </object>
   <object id="57" name="Get Mon" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster lambert,50"/>
+    <property name="act1" value="add_monster budaye,50"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

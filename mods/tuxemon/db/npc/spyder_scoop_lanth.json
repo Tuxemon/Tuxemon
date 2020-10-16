@@ -1,0 +1,24 @@
+{
+    "slug": "spyder_scoop_lanth",
+    "sprite_name": "professor",
+	"monsters": [
+        		{
+            "name": "mRmOswitch",
+            "level": 35, 
+			"slug": "mrmoswitch",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "PiCC",
+            "level": 35, 
+			"slug": "picc",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "professor.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

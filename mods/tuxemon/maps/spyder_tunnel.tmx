@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="329">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="339">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -102,6 +102,57 @@
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="333" name="Create Meitner" type="event" x="160" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_tunnelb_meitner,16,18"/>
+    <property name="cond1" value="not npc_exists spyder_tunnelb_meitner"/>
+    <property name="cond2" value="not variable_set tunnelbmeitner:yes"/>
+   </properties>
+  </object>
+  <object id="334" name="Talk Iris" type="event" x="160" y="224" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_tunnelb_iris1"/>
+    <property name="act3" value="start_battle spyder_tunnelb_iris"/>
+    <property name="act4" value="translated_dialog spyder_tunnelb_iris2"/>
+    <property name="act6" value="set_variable tunnelbiris:yes"/>
+    <property name="behav1" value="talk spyder_tunnelb_iris"/>
+    <property name="cond1" value="not variable_set tunnelbiris:yes"/>
+   </properties>
+  </object>
+  <object id="335" name="Create Greta" type="event" x="208" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_tunnelb_greta,13,35"/>
+    <property name="cond1" value="not npc_exists spyder_tunnelb_greta"/>
+    <property name="cond2" value="not variable_set tunnelbgreta:yes"/>
+   </properties>
+  </object>
+  <object id="336" name="Talk Greta" type="event" x="208" y="544" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act3" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act4" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act6" value="set_variable tunnelbgreta:yes"/>
+    <property name="behav1" value="talk spyder_tunnelb_greta"/>
+    <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
+   </properties>
+  </object>
+  <object id="337" name="Create Tommy" type="event" x="224" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_tunnelb_tommy,14,6"/>
+    <property name="cond1" value="not npc_exists spyder_tunnelb_tommy"/>
+    <property name="cond2" value="not variable_set tunnelbtommy:yes"/>
+   </properties>
+  </object>
+  <object id="338" name="Talk Tommy" type="event" x="224" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_tunnelb_tommy1"/>
+    <property name="act3" value="start_battle spyder_tunnelb_tommy"/>
+    <property name="act4" value="translated_dialog spyder_tunnelb_tommy2"/>
+    <property name="act6" value="set_variable tunnelbtommy:yes"/>
+    <property name="behav1" value="talk spyder_tunnelb_tommy"/>
+    <property name="cond1" value="not variable_set tunnelbtommy:yes"/>
    </properties>
   </object>
  </objectgroup>

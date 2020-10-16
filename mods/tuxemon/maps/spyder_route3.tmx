@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="667">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="669">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -36,6 +36,9 @@
  <tileset firstgid="5243" name="Warmachine_yellow_demilitarised" tilewidth="16" tileheight="16" tilecount="30" columns="6">
   <image source="../gfx/tilesets/Warmachine_yellow_demilitarised.png" width="96" height="80"/>
  </tileset>
+ <tileset firstgid="5273" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtllGO1EAMRPcwHJQjcJEFfoDrkSftk0old9LZQTBC+9Gyu1wuV3cSzby+vHz+dqyvx3p9wvwZPeV9ffh77P25c38/j/fzR7yj7O+s7N2du8v7dHj59eaHOe9d+W7t5O/xd8dnc7lvsFxixL7j9pd9mdubGPkOvuK0VurhE2/pDyw5q9xn2/rpI/PkgU+6cuxrf+JTb/uWq0/rV732XfHU9f5896czTJr0ixO7z31GePaAdy5XnBntLzW8E/ndL060Zo/zjeL2TLgacnb9TVo9LzXl69uaePeynzj+H/D7sF+uOuDWxHJ28hNP7llOzb6cs+tv6tUT0Zw5zhLLeavcnqyDTf6a457ocra6Gc3l2A++yu3JOhhr9/vQW2roQX01wa0l/yzPmr19f+JG5tlHNKeenOTp1bo9zWncvX35u+z30Rru6XXpTR048sTkNK6HCc8a9V1/zEpv6qSXnve3/Oll5W/lY4Wr1+dJfWq796de9zvfqCZ78sTVAD/Ls/aoP7XSh76MepX7p/yljtpE86xP/sAmbvad5dRYq++DWp/9jj/7WwP8zHfW7vpbaaemub7oWfVNuP323bm/SU+dq5hzV3nrs/8f/eVd+RzzTrJunvVVDjdr7M/uT+3dqNeJn3NXOX3W1Nrx5++y/yOyh1wtIzPao3PTQ+fuk6uO/6+YJ2a88odvvREf8ZcenU/UX2LmO/7geO5H/TFXrfTADPbeRdb6mU7PWs1/6U/PnKGXZ3sGf3iYlu+fzwDOCuM81j23e6N4vn9qZ83nKwanedTQVZsoP6N1+eqscHjpL7X6PWvN5HbNuc252tOXXuHj78uxvCf2q/xKv+srnQnvXvfe39Rz5nWX//3tDnb5/dzw8Bunqn9w
@@ -43,7 +46,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHlmDly1GAUhAUmYNMoICF07oWDwIzMarPY53A4R+AIcADbCRAAAXACQqo4gYkcEtJdpS53vfq1z3gMTFXX+5e3fHq/Rtb4NMvmv6DTFdqs+kQOLt+4ks1vQqu04oscWpct82w+g6bQA+g+pL3LYJ+A5zH0CHoI7UDk+o6zp13FR2fO2s/BswftQs+gp5CYboNxVukWrM+13mYZp3xdrc6c/gfg2YdeQS+hF5DybFnuexj7XD5tlnFtPnHf+xf3fO48Q/lK8HmPtzGXfN377P1rOrNpde0F7AZ0DOXVml/HIsa8DmdUTu+R1qJl78hGdfGP8V3nrCNf9U090vrPPFtfm2TrG5DWGFfnL59FWOdTH1I8sVZp1xX3FjlP8fXNX4B1Uikfyf07xPfhcw7x0Op7MuZebMqtfm1WPfDaPibHUULkong/xntXudss+3QSxJysp1jVabL6TswQF9WHbfPqeV3WLxP5mN+fL021xdKHQdc9xrKvit+yMdc+3Mnm76F3kHwu0hbg4T2lmrz/cpt/Btcn6KPx/bB9xS3DRjbV8B5+A9dX6IvxyW/Z1s/Vazmfry97fHb9/BxZ67Lxxev/X/jehHOJfRg6/5f7F5/9Q3vUFPc39O8s8axd1fMl9nJM/+7i/wwx35j5tfCuwFxj+MawMPYwcW4xJ/leJ/z8fAvsTxqUJ+JjnaHzErn93Up5nK+ux/KN7xNaX5SNjHz/m1pP2vjIsWxGZ/DesbbvcV73iXF1fkPWnYF13trfK99ryn2RfOTQO2jk4/nrPV92O9wTTdcxZM8ZYh98j7njfpd68b2uS4z7OEOsz70T6Bg6guK+59FYvdd8rHU+fhcnJv426cvnPIXl8rypcQ5fj9XY+bTm1vkif6qOr/lvL8+ZGtfl7pMjlbfL2k5Nb7rEyucPEcpPWA==
+   eAHlmDly1GAUhAUmAIxGAYlD5144CMzI7Kt9DsI5AkeAA9hOgAAIgAuQUsUJTOTQId1V6nLXq1/7jMfAVHW9f3nLp/drZI1Psmz+GzpZoc2qT+Tg8o0r2fwmtEorvsihddkyz+YzaArdg+5C2rsM9hF4HkIPoPvQHkSuHxuro9OZk+A5eJ5BT6En0GNIZLdwf84qrcP6XOttlnHK19XqzOl/AJ596BX0EnoBKc+O5b6Dsc/l02YZ1+YT971/cc/nzjOUrwSf93gXc8nXvc/ev6Yzm1bXXsBuQUdQXq35dSxizOtwRuX0HmktWvaObFQX/xjfdc468lXf1COt/8qzzbVJtrkFaY1xdf7yWYR1PvUhxRNrlXZdcW+R8xRf3/wFWCeV8pHcZyG+D59ziIdW35Mx92JTbvVru+qB1/YxOQ4TIhfF+zHeu8rdZtmn4yDmZD3Fqk6T1XdihrioPmzbV8/rsn6ZyMf8/nxpqi2WPgy67jGWfVX8jo259vF2Nv8AvYfkc5G2AA/vKdXk/Zfb/Au4PkOfjO+n7StuGTayqYb38Du4vkFfjU9+y7Z+rl7L+Xx92ePT6+fnyFqXjS9e///C9zacS+zD0Pm/3L/47B/ao6a4v6F/p4ln7aqeL7GXY/q3gf8zxHxj5tfCuwJzjeEbw8LY14lziznJ9ybh5+dbYH/SoDwRH+sMnZfI7e9WyuN8dT2Wb3yf0PqibGTk+9/UetLGR45lMzqD9461fY/zuk+Mq/Mbsu4MrPPO/l75XlPui+Qjh95BIx/PX+/5srvhnmi6jiF7zhD74HvMHfe71IvvdV1i3McZYn3uHUNH0CEU9z2Pxuq95mOt8/G7ODHxt0lfPucpLJfnTY1z+Hqsxs6nNbfOF/lTdXzNf3t5ztS4LnefHKm8Xdb2anrTJVY+fwClQE7v
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
@@ -53,7 +56,7 @@
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0NsRggAMBdEUQY02oSgI+MQnIJbrlpHBvTPnP9kIZ4H/K7AuIjYoscUOFbKs5pY9GrTocECWHbnlhDMuuKJHlt245Y4HnnjhjSwbuGXEhA9mfOEsYAELWGC5BVZFVMv9zs8sYAELWMACFrCABSxgAQvkLPADW2kTcA==
+   eAHt0MkRgmAQBeEJgoMRkoQKuAPuuxEYp52CB6qmqH5V3xXm7wg3dIHvZOg/+P1/C0yLiBnmqFCjQZYtuGWJFdbYYIss23FLiw499jggy47ccsIZF1xxQ5bdueWBJ1544wNnAQtYwALjLVAW0Yz3db7MAhawgAUsYAELWMACFrBAzgI/4hgULg==
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="40">
@@ -292,6 +295,7 @@
     <property name="exit_to" value="left"/>
    </properties>
   </object>
+  <object id="667" type="collision" x="144" y="48" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="559" type="collision-line" x="176" y="80">
@@ -392,14 +396,14 @@
     <property name="act3" value="pathfind spyder_rookie,9,8"/>
     <property name="act4" value="pathfind spyder_route3_zoolander,7,8"/>
     <property name="act5" value="translated_dialog spyder_route3_drag1"/>
-    <property name="act60" value="play_map_animation dragonbirth,0.1,noloop,8,8"/>
-    <property name="act61" value="wait 1.0"/>
+    <property name="act60" value="play_map_animation dragonbirth,0.1,noloop,6,8"/>
+    <property name="act61" value="wait 3.0"/>
     <property name="act73" value="translated_dialog spyder_route3_drag2"/>
     <property name="act74" value="pathfind spyder_rookie,13,11"/>
     <property name="act75" value="pathfind spyder_route3_zoolander,12,11"/>
     <property name="act81" value="remove_npc spyder_rookie"/>
     <property name="act82" value="remove_npc spyder_route3_zoolander"/>
-    <property name="act83" value="is variable_set shaftscheme:yes"/>
+    <property name="act83" value="set_variable shaftscheme:yes"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="not variable_set shaftscheme:yes"/>
    </properties>
@@ -696,6 +700,13 @@
    <properties>
     <property name="act1" value="play_music music_the_wild_places"/>
     <property name="cond1" value="not music_playing music_the_wild_places"/>
+   </properties>
+  </object>
+  <object id="668" name="Sign: Wayfarer Inn" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarerinn_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

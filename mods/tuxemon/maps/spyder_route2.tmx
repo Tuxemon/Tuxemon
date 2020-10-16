@@ -43,6 +43,9 @@
    </animation>
   </tile>
  </tileset>
+ <tileset firstgid="7425" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHNkkEOxCAMA/nPvr3dLy4+jGRFQVvaVHBARA7Y09CjtXb29e3r2LDekcnntZrP87M3pO/MXmd3vP92LT4Y2Z1J+ZnuZ96s4Rtl7MgX32y3+a2emc8ne9+rfPjEf0M6vaezf8pXxTHyGfHFmehc1O7MKfORNsMXOXT/01fmM/Kt0pVJLnvGV5U36wOT7lGv4FNmlgvTTnxigtX5pM3O/875mAmPM3lNBho7On6VeuaNP7zaY3amuVc8772qWhnOWuV71effN67mYzZXvucHwvkfNQ==
@@ -50,7 +53,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVVEOgjAM3b8gF/AGavzyGMCVOJFn9JVQUusG61ZNTGzSsHVvr4/nJiH845cdOEI859Z7dCFMwL1ki/nWHrkG7NxH1rzGpO0c0YJawFpWXLNQZaBbRBszYS0reqCaLKQdNELfsORBaYUvUy7jIxdYgdNeWvRVtF23wqfNsOhrwYQ79dWw6IO3H4/m9H6+9Dkij7qIkhJ91j33iL6IlLlEOmVeUkDHOvnH6UjrRkX+cbqRFhClfnf2js9hCqdb4n8yDEvqtZK57Is7ugZ7x+dQ4laQGpC2UdUs09h3U/aV+qR/83inUa02pieNqbsm9Un/aNwzQeJp9Y3PAD9zvtFSn/YvIcutvPf+1Eh6oP1zE+JE9AS/Cy1I
+   eAHtlU0KwjAQhbMUbNUDKLgUVHQjuHTppu2VeiLP6JvSKeOYpJm2CoIDQ/PzMvn6TKxz//hlBxaA54y9x9K5GrqXzNGPrZFz0Db7yLGp2sS297BgzGEuKY5JqmGik4eNK2EuKQqosiSlXVSBr2xzrljhS51a8ZEqHKHTXlr4RmzbLYVP0bDw5aiEO/XVsPDB249Htn4/X/ockUdLD8kQPuuai4fPg9IMEafMQ0jYjp83rl4he2TRafKPMyo0Tl4F1120jWUc+cdpXRvTbwXTTrRDa0K/O3vH5zCk03XxP+nKNvUc92fguiWwkV7uizvaBXvH51DqOpFqEFulxixd33dT7iv5pH9Nu2ejsWxcnhhDd03ySf+oXXCBwNPqG58BfqZ8oyWf9i+ANdlw3/vTRtID7d9kIBMVegKa6DOA
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">

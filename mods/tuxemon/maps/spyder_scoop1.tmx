@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="17">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="57">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -95,7 +95,7 @@
    eAFjYBjZYIIwAwMMD/eQgPkTRI+C0RAYaSEAAC7BA9M=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="304" height="48"/>
   <object id="2" type="collision" x="304" y="0" width="32" height="32"/>
   <object id="3" type="collision" x="320" y="32" width="16" height="16"/>
@@ -113,6 +113,132 @@
   </object>
   <object id="15" type="collision-line" x="336" y="48">
    <polyline points="0,0 0,192"/>
+  </object>
+  <object id="29" type="collision" x="0" y="96" width="16" height="144">
+   <properties>
+    <property name="continue" value="up"/>
+    <property name="enter_from" value="down"/>
+    <property name="exit_to" value="up"/>
+   </properties>
+  </object>
+  <object id="30" type="collision" x="192" y="64" width="16" height="80">
+   <properties>
+    <property name="continue" value="up"/>
+    <property name="enter_from" value="down"/>
+    <property name="exit_to" value="up"/>
+   </properties>
+  </object>
+  <object id="31" type="collision" x="208" y="128" width="16" height="16">
+   <properties>
+    <property name="continue" value="up"/>
+    <property name="enter_from" value="down"/>
+    <property name="exit_to" value="up"/>
+   </properties>
+  </object>
+  <object id="32" type="collision" x="112" y="96" width="16" height="80">
+   <properties>
+    <property name="continue" value="up"/>
+    <property name="enter_from" value="down"/>
+    <property name="exit_to" value="up"/>
+   </properties>
+  </object>
+  <object id="33" type="collision" x="32" y="192" width="96" height="16">
+   <properties>
+    <property name="continue" value="right"/>
+    <property name="enter_from" value="left"/>
+    <property name="exit_to" value="right"/>
+   </properties>
+  </object>
+  <object id="34" type="collision" x="48" y="160" width="64" height="16">
+   <properties>
+    <property name="continue" value="right"/>
+    <property name="enter_from" value="left"/>
+    <property name="exit_to" value="right"/>
+   </properties>
+  </object>
+  <object id="35" type="collision" x="208" y="112" width="112" height="16">
+   <properties>
+    <property name="continue" value="right"/>
+    <property name="enter_from" value="left"/>
+    <property name="exit_to" value="right"/>
+   </properties>
+  </object>
+  <object id="36" type="collision" x="192" y="48" width="80" height="16">
+   <properties>
+    <property name="continue" value="right"/>
+    <property name="enter_from" value="left"/>
+    <property name="exit_to" value="right"/>
+   </properties>
+  </object>
+  <object id="37" type="collision" x="16" y="224" width="160" height="16">
+   <properties>
+    <property name="continue" value="left"/>
+    <property name="enter_from" value="right"/>
+    <property name="exit_to" value="left"/>
+   </properties>
+  </object>
+  <object id="38" type="collision" x="208" y="224" width="128" height="16">
+   <properties>
+    <property name="continue" value="left"/>
+    <property name="enter_from" value="right"/>
+    <property name="exit_to" value="left"/>
+   </properties>
+  </object>
+  <object id="39" type="collision" x="128" y="48" width="64" height="16">
+   <properties>
+    <property name="continue" value="left"/>
+    <property name="enter_from" value="right"/>
+    <property name="exit_to" value="left"/>
+   </properties>
+  </object>
+  <object id="40" type="collision" x="176" y="192" width="32" height="16">
+   <properties>
+    <property name="continue" value="left"/>
+    <property name="enter_from" value="right"/>
+    <property name="exit_to" value="left"/>
+   </properties>
+  </object>
+  <object id="41" type="collision" x="32" y="160" width="16" height="32">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="42" type="collision" x="160" y="192" width="16" height="32">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="43" type="collision" x="320" y="112" width="16" height="112">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="44" type="collision" x="192" y="208" width="16" height="32">
+   <properties>
+    <property name="continue" value="up"/>
+    <property name="enter_from" value="down"/>
+    <property name="exit_to" value="up"/>
+   </properties>
+  </object>
+  <object id="45" type="collision" x="272" y="48" width="16" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
+  <object id="48" type="collision" x="0" y="48" width="32" height="16">
+   <properties>
+    <property name="continue" value="right"/>
+    <property name="enter_from" value="left"/>
+    <property name="exit_to" value="right"/>
+   </properties>
   </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Event">
@@ -138,6 +264,85 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="16" name="Player Spawn" type="event" x="304" y="64" width="16" height="16"/>
+  <object id="46" name="Create Lanth" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_lanth,0,4"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_lanth"/>
+   </properties>
+  </object>
+  <object id="47" name="Talk Lanth" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_lanth1"/>
+    <property name="act3" value="start_battle spyder_scoop_lanth"/>
+    <property name="act4" value="translated_dialog spyder_scoop_lanth"/>
+    <property name="act6" value="set_variable scooplanth:yes"/>
+    <property name="behav1" value="talk spyder_scoop_lanth"/>
+    <property name="cond1" value="not variable_set scooplanth:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Create Paine" type="event" x="112" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_paine,6,3"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_paine"/>
+   </properties>
+  </object>
+  <object id="50" name="Talk Paine" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_paine1"/>
+    <property name="act3" value="start_battle spyder_scoop_paine"/>
+    <property name="act4" value="translated_dialog spyder_scoop_paine"/>
+    <property name="act6" value="set_variable scooppaine:yes"/>
+    <property name="behav1" value="talk spyder_scoop_paine"/>
+    <property name="cond1" value="not variable_set scooppaine:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Create Rubid" type="event" x="224" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_rubid,13,10"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_rubid"/>
+   </properties>
+  </object>
+  <object id="52" name="Talk Rubid" type="event" x="208" y="160" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_rubid1"/>
+    <property name="act3" value="start_battle spyder_scoop_rubid"/>
+    <property name="act4" value="translated_dialog spyder_scoop_rubid"/>
+    <property name="act6" value="set_variable scooprubid:yes"/>
+    <property name="behav1" value="talk spyder_scoop_rubid"/>
+    <property name="cond1" value="not variable_set scooprubid:yes"/>
+   </properties>
+  </object>
+  <object id="53" name="Create Berys" type="event" x="320" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_berys,19,4"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_berys"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Berys" type="event" x="304" y="64" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_berys1"/>
+    <property name="act3" value="start_battle spyder_scoop_berys"/>
+    <property name="act4" value="translated_dialog spyder_scoop_berys2"/>
+    <property name="act6" value="set_variable scoopberys:yes"/>
+    <property name="behav1" value="talk spyder_scoop_berys"/>
+    <property name="cond1" value="not variable_set scoopberys:yes"/>
+   </properties>
+  </object>
+  <object id="55" name="Create Turner" type="event" x="32" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_turner,1,9"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_turner"/>
+   </properties>
+  </object>
+  <object id="56" name="Talk Turner" type="event" x="16" y="144" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_turner1"/>
+    <property name="act3" value="start_battle spyder_scoop_turner"/>
+    <property name="act4" value="translated_dialog spyder_scoop_turner2"/>
+    <property name="act6" value="set_variable scoopberys:yes"/>
+    <property name="behav1" value="talk spyder_scoop_berys"/>
+    <property name="cond1" value="not variable_set scoopberys:yes"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

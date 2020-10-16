@@ -130,6 +130,11 @@
             "x": 2240,
             "y": 3240
         },
+		{
+            "fileName": "spyder_cotton_tunnel.tmx",
+            "x": 2580,
+            "y": 3240
+        },
 														        {
             "fileName": "spyder_scoop1.tmx",
             "x": -640,
@@ -259,6 +264,11 @@
 		{
             "fileName": "spyder_omnichannel2.tmx",
             "x": 3200,
+            "y": 2240
+        },
+		{
+            "fileName": "spyder_radiotower.tmx",
+            "x": 3540,
             "y": 2240
         },
 		{

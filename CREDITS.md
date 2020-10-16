@@ -139,6 +139,59 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Enforcer Agent"](https://wiki.tuxemon.org/index.php?title=Enforcer_Agent). Design and front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. Face sprites from Superpowers Asset Pack.
 
+* ["Riverboat Captain"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by pixelartm, adapted by Sanglorian. 
+
+* ["Warrior"](https://wiki.tuxemon.org/index.php?title=Warrior). Front sprite by Antifarea. Overland sprite by isaiah658, reworked by AntumDeluge.
+
+* ["CEO"](https://wiki.tuxemon.org/index.php?title=Riverboat_Captain). Overland sprites by Catch Challenger. Front sprite by Sanglorian.
+
+* ["Rogue"](https://wiki.tuxemon.org/index.php?title=Rogue). Front sprite by tamashihoshi. Overland sprite by Catch Challenger, adapted by Sanglorian. 
+
+* ["Fire Nymph"](https://wiki.tuxemon.org/index.php?title=Fire_Nymph). Front sprite by Svetlana Kushnariova, resized by Sanglorian. Overland sprite by Superpowers Asset Packs. Alternative front sprite by JosephSeraph.
+
+* ["Wood Nymph"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Front sprites by JosephSeraph. Overland sprites by Catch Challenger. 
+
+* ["Child Actor"](https://wiki.tuxemon.org/index.php?title=Wood_Nymph). Overland sprites by pboop. 
+
+* ["Swimmer"](https://wiki.tuxemon.org/index.php?title=Swimmer). Front sprite by Catch Challenger, resized by Sanglorian. Overland sprites by Catch Challenger.
+
+* ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
+
+* ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
+
+* ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
+
+* ["Varmint"](https://wiki.tuxemon.org/index.php?title=Varmint). Overland sprites from the Superpowers Asset Packs.
+
+* ["Land Bird"](https://wiki.tuxemon.org/index.php?title=File:Land_bird.gif). Overland sprites from the Superpowers Asset Packs.
+
+* ["Landrace"](https://wiki.tuxemon.org/index.php?title=Landrace). Overland sprites from the Superpowers Asset Packs.
+
+* ["Spyder Boss"](https://wiki.tuxemon.org/index.php?title=Spyder_Boss). Overland sprites by Catch Challenger. Front sprite by Sanglorian.
+
+* ["Knight Lord"](https://wiki.tuxemon.org/index.php?title=Knight_Lord). Front sprite by Antifarea. Overland sprite by Catch Challenger. 
+
+* ["Cool Dude"](https://wiki.tuxemon.org/index.php?title=Cool_Dude). Front sprite by Sanglorian. Overland sprite by Catch Challenger. 
+
+* ["Robot"](https://wiki.tuxemon.org/index.php?title=Robot). Overland sprites by Catch Challenger.
+
+* ["Metal Nymph"](https://wiki.tuxemon.org/index.php?title=Metal_Nymph). Front sprite by JosephSeraph.
+
+* ["Water Nymph"](https://wiki.tuxemon.org/index.php?title=Water_Nymph). Front sprite by Svetlana Kushnariova. Alternative front sprite by JosephSeraph.
+
+* ["Earth Nymph"](https://wiki.tuxemon.org/index.php?title=Earth_Nymph). Front sprite by Svetlana Kushnariova. Alternative front sprite by JosephSeraph.
+
+* ["Beachgoer"](https://wiki.tuxemon.org/index.php?title=Beachgoer). Front sprites by tamashihoshi. Overland sprites by Catch Challenger. Face sprite by Superpowers Asset Packs. 
+
+* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo). Front sprite by Redshrike. Overland sprites by Catch Challenger. 
+
+* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger. 
+
+* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger. 
+
+* ["Aviator"](https://wiki.tuxemon.org/index.php?title=Aviator). Front sprite by Sanglorian from the AV8R design by Leo. Overland sprites by Catch Challenger.
+
+* ["Enforcer Boss"](https://wiki.tuxemon.org/index.php?title=Enforcer_Boss). Front sprite by Leo. Overland sprite by Superpowers Asset Packs, tweaked by Sanglorian. 
 
 ### Tilesets
 
@@ -240,6 +293,10 @@ is licensed under [XYG Open Source License v1.1](http://kelvinshadewing.net/?id=
 * ["Warmachine"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_black_and_yellow.png) and ["Warmachine, demilitarised"](https://wiki.tuxemon.org/index.php?title=File:Warmachine_yellow_demilitarised.png) by Drummyfish are licensed under CC0. Demilitarised version adapted by Sanglorian. 
 
 * ["Modern Interiors"](https://limezu.itch.io/moderninteriors), ["Modern Office"](https://limezu.itch.io/modernoffice) and ["Serene Village"](https://limezu.itch.io/serenevillage) by LimeZu are licensed under CC BY. Purchased by Sanglorian.
+
+* ["Drokoro"](https://wiki.tuxemon.org/index.php?title=File:Drokoro_overland_update.png) adapted by Sanglorian from a CC BY sprite by CharlesGabriel. 
+
+* ["MK Buildings"](https://wiki.tuxemon.org/index.php?title=File:MK_buildings.png) adapted by Mircea Kitsune from Buildings and Features and Doors by Kelvin Shadewing. Hospital adapted by Sanglorian.  
 
 ### Tuxemon
 

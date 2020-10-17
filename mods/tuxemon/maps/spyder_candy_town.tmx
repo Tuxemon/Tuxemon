@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="381">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="384">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -92,7 +92,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="40" height="40">
@@ -242,9 +242,25 @@
     <property name="cond2" value="is player_moved"/>
    </properties>
   </object>
-  <object id="380" name="Teleport to Scoop" type="event" x="64" y="480" width="16" height="16">
+  <object id="380" name="Teleport to Candy House 1" type="event" x="64" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_house1.tmx,6,7,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="382" name="Teleport to Hospital" type="event" x="224" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_hospital.tmx,4,19,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="383" name="Teleport to Greenwash" type="event" x="512" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash.tmx,4,7,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>

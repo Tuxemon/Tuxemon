@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="9">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="15">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -94,6 +94,57 @@
    </properties>
   </object>
   <object id="8" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
+  <object id="9" name="Create Carnegie" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_carnegie,10,8"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_carnegie"/>
+    <property name="cond2" value="not variable_set omnichannelcarnegie:yes"/>
+   </properties>
+  </object>
+  <object id="10" name="Talk Carnegie" type="event" x="160" y="128" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_carnegie1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_carnegie"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_carnegie2"/>
+    <property name="act6" value="set_variable omnichannelcarnegie:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_carnegie"/>
+    <property name="cond1" value="not variable_set omnichannelcarnegie:yes"/>
+   </properties>
+  </object>
+  <object id="11" name="Create Byrne" type="event" x="192" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_byrne,12,18"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_byrne"/>
+    <property name="cond2" value="not variable_set omnichannelbyrne:yes"/>
+   </properties>
+  </object>
+  <object id="12" name="Talk Byrne" type="event" x="192" y="288" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_byrne1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_byrne"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_byrne2"/>
+    <property name="act6" value="set_variable omnichannelbyrne:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_byrne"/>
+    <property name="cond1" value="not variable_set omnichannelbyrne:yes"/>
+   </properties>
+  </object>
+  <object id="13" name="Create Strauss" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_strauss,3,2"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_strauss"/>
+    <property name="cond2" value="not variable_set omnichannelstrauss:yes"/>
+   </properties>
+  </object>
+  <object id="14" name="Talk Strauss" type="event" x="48" y="32" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_strauss1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_strauss"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_strauss2"/>
+    <property name="act6" value="set_variable omnichannelstrauss:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_strauss"/>
+    <property name="cond1" value="not variable_set omnichannelstrauss:yes"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="4" name="Collision" visible="0">
   <object id="1" type="collision" x="0" y="336">

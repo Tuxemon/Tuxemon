@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="19">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="32">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -98,6 +98,84 @@
     <property name="cond1" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
-  <object id="18" name="Player Spawn" type="event" x="32" y="160" width="16" height="16"/>
+  <object id="19" name="Create Zoolander" type="event" x="112" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route3_zoolander,9,12"/>
+    <property name="cond1" value="not npc_exists spyder_route3_zoolander"/>
+   </properties>
+  </object>
+  <object id="20" name="Talk Zoolander" type="event" x="112" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_zoolander1"/>
+    <property name="behav1" value="talk spyder_route3_zoolander"/>
+   </properties>
+  </object>
+  <object id="21" name="Create Donald" type="event" x="176" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_donald,11,14"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_donald"/>
+   </properties>
+  </object>
+  <object id="22" name="Talk Donald" type="event" x="176" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_donald1"/>
+    <property name="behav1" value="talk spyder_scoop_donald"/>
+   </properties>
+  </object>
+  <object id="25" name="Create Beaverbrook" type="event" x="144" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_beaverbrook,7,14"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_beaverbrook"/>
+    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
+   </properties>
+  </object>
+  <object id="26" name="Talk Beaverbrook" type="event" x="144" y="176" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
+    <property name="act6" value="set_variable omnichannelbeaverbrook:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_beaverbrook"/>
+    <property name="cond1" value="not variable_set omnichannelbeaverbrook:yes"/>
+   </properties>
+  </object>
+  <object id="27" name="Stop!" type="event" x="16" y="256" width="208" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="create_npc spyder_dante,3,18"/>
+    <property name="act3" value="create_npc spyder_billie,2,18"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_billie1"/>
+    <property name="act5" value="pathfind spyder_dante,11,15"/>
+    <property name="act6" value="pathfind spyder_billie,7,15"/>
+    <property name="act7" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
+    <property name="act8" value="pathfind player,9,13"/>
+    <property name="act9" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
+    <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
+   </properties>
+  </object>
+  <object id="28" name="Create Worm" type="event" x="80" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_worm,5,2"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_worm"/>
+   </properties>
+  </object>
+  <object id="30" name="Create The Duke of Dead Air" type="event" x="128" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_thedukeofdeadair,8,2"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_thedukeofdeadair"/>
+   </properties>
+  </object>
+  <object id="31" name="Stop!" type="event" x="16" y="112" width="208" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog spyder_omnichannel_radioannounce"/>
+    <property name="act92" value="set_variable omnichannelradioannounce:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="not variable_set omnichannelradioannounce:yes"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

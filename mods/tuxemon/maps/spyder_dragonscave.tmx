@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="88">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="89">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -307,6 +307,17 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
     <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="88" name="Benden Defeated" type="event" x="64" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind spyder_dragonscave_benden,17,10"/>
+    <property name="act2" value="pathfind player,18,10"/>
+    <property name="act3" value="translated_dialog spyder_omnichannel_mallory3"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_benden4"/>
+    <property name="act6" value="set_variable dragonscavebenden2:yes"/>
+    <property name="cond1" value="is variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="is variable_set dragonscavebenden2:yes"/>
    </properties>
   </object>
  </objectgroup>

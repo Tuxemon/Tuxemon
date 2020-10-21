@@ -30,9 +30,8 @@ class VariableSetCondition(EventCondition):
     name = "variable_set"
 
     def test(self, session,  condition):
-        """ Checks to see if a player game variable has been set. This will look for a particular
-        key in the player.game_variables dictionary and see if it exists. If it exists, it will
-        return true.
+        """ Checks to see if a player game variable has been set to the given value.
+        If the variable doesn't exist this will return false.
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
@@ -54,21 +53,22 @@ class VariableSetCondition(EventCondition):
             "parameters": [
                 "battle_won:yes"
             ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
             ...
         }
 
         """
         player = session.player
 
-        # Split the string by ":" into a list
-        key, value = condition.parameters[0].split(":")
+        parts = condition.parameters[0].split(":")
+        key = parts[0]
+        if len(parts) > 1:
+            value = parts[1]
+        else:
+            value = None
 
-        try:
-            return player.game_variables[key] == value
-        except KeyError:
-            return False
+        exists = key in player.game_variables
+
+        if value is None:
+            return exists
+        else:
+            return exists and player.game_variables[key] == value

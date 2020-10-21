@@ -29,9 +29,9 @@ logger = logging.getLogger(__name__)
 
 
 # noinspection PyAttributeOutsideInit
-class GetPlayerMonsterAction(EventAction):
-    """ Sets the given key in the player.game_variables dictionary
-    to the instance_id of the monster the player selects via monster menu.
+class CopyVariableAction(EventAction):
+    """ Copies the value of var2 into var1,
+    (e.g. var1 = var 2)
 
     Valid Parameters: string variable_name
 
@@ -39,29 +39,22 @@ class GetPlayerMonsterAction(EventAction):
 
     >>> EventAction.__dict__
     {
-        "type": "get_player_monster",
+        "type": "copy_variable",
         "parameters": [
-            "breeding_mother"
+            "var1",
+            "var2"
         ]
     }
 
     """
-    name = "get_player_monster"
+    name = "copy_variable"
     valid_parameters = [
-        (str, "variable_name")
+        (str, "var1"),
+        (str, "var2")
     ]
 
-    def set_var(self, menu_item):
-        self.player.game_variables[self.variable] = menu_item.monster.instance_id
-
     def start(self):
-        self.player = self.session.player
-        self.variable = self.parameters.variable_name
-
-        # pull up the monster menu so we know which one we are saving
-        menu = self.session.client.push_state("MonsterMenuState")
-        menu.on_menu_selection = self.set_var
-
-    def update(self):
-        if self.session.client.get_state_by_name("MonsterMenu") is None:
-            self.stop()
+        player = self.session.player
+        first = self.parameters.var1
+        second = self.parameters.var2
+        player.game_variables[first] = player.game_variables[second]

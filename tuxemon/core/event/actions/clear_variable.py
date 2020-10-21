@@ -29,9 +29,8 @@ logger = logging.getLogger(__name__)
 
 
 # noinspection PyAttributeOutsideInit
-class GetStepCountAction(EventAction):
-    """ Sets the given key in the player.game_variables dictionary
-    to the player's step count.
+class ClearVariableAction(EventAction):
+    """ Clears the value of var from the game.
 
     Valid Parameters: string variable_name
 
@@ -39,19 +38,19 @@ class GetStepCountAction(EventAction):
 
     >>> EventAction.__dict__
     {
-        "type": "get_step_count",
+        "type": "clear_variable",
         "parameters": [
-            "variable_name"
+            "variable"
         ]
     }
 
     """
-    name = "get_step_count"
+    name = "clear_variable"
     valid_parameters = [
-        (str, "variable_name")
+        (str, "variable")
     ]
 
     def start(self):
         player = self.session.player
-        variable = self.parameters.variable_name
-        player.game_variables[variable] = player.game_variables['steps']
+        key = self.parameters.variable
+        player.game_variables.pop(key, None)

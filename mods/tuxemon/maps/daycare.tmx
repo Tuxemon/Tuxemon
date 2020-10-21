@@ -205,7 +205,7 @@
     <property name="act10" value="translated_dialog cotton_breeder6b"/>
     <property name="act20" value="set_variable breeder_state:5"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
-    <property name="cond20" value="is variable_is cotton_breeder_delta,&gt;,500"/>
+    <property name="cond20" value="is variable_is cotton_breeder_delta,&gt;=,500"/>
     <property name="cond30" value="is variable_is cotton_breeder_delta,&lt;,1000"/>
    </properties>
   </object>
@@ -217,7 +217,7 @@
     <property name="act40" value="translated_dialog cotton_breeder_continue"/>
     <property name="act50" value="translated_dialog_choice yes:no,continue"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
-    <property name="cond20" value="is variable_is cotton_breeder_delta,&gt;,1000"/>
+    <property name="cond20" value="is variable_is cotton_breeder_delta,&gt;=,1000"/>
    </properties>
   </object>
   <object id="33" name="breeder state 7a" type="event" x="160" y="128" width="16" height="16">

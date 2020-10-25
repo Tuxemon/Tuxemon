@@ -22,16 +22,16 @@ jobs:
 #    - os: windows
 #      language: bash
 #      env: BUILD_TYPE=windows
-    - os: linux
-      dist: focal
-      language: minimal
-      env:
-        - ANDROID_TOOLS=commandlinetools-linux-6609375_latest.zip
-        - BUILD_TYPE=android
-        - ANDROID_HOME=/usr/local/android_sdk
-        - ANDROIDNDK=/usr/local/android_sdk/ndk_bundle"
-        - ANDROIDAPI="27"  # SDK version
-        - NDKAPI="21"
+#    - os: linux
+#      dist: focal
+#      language: minimal
+#      env:
+#        - ANDROID_TOOLS=commandlinetools-linux-6609375_latest.zip
+#        - BUILD_TYPE=android
+#        - ANDROID_HOME=/usr/local/android_sdk
+#        - ANDROIDNDK=/usr/local/android_sdk/ndk_bundle"
+#        - ANDROIDAPI="27"  # SDK version
+#        - NDKAPI="21"
 install:
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "bionic" ]; then buildconfig/install_bionic.sh ; fi
   - if [ "$BUILD_TYPE" = "deb" ] && [ "$TRAVIS_DIST" = "focal" ]; then buildconfig/install_focal.sh ; fi

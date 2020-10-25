@@ -31,7 +31,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYMAOWNCEbwL5p4D4NBCfAeKTQAwC/BAKTILU3AXic0B8HogvAPFZIEYHIDX4wBE2TNkkVgaGZCBGBm/Q1F0HOrofqGYCmjoRdoQukBsJAZg/sKlbCDRrMdQ8kD8AmScTTA==
+   eAFjYMAOWNCEbwL5p4D4NBCfAeKTQAwC/BAKTILU3AXic0B8HogvAPFZIEYHIDWkgiRWBoZkIEYGb9iQeQwM14GO7geqmYCmToQdoQ7kRkIA5g9s6hYCzVoMNQ/kDwARdRKC
   </data>
  </layer>
  <layer id="7" name="Tile Layer 4" width="10" height="8">
@@ -41,7 +41,7 @@
  </layer>
  <layer id="4" name="Above player" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFlIQAAAFAAAE=
+   eAFjYBh84Ajb4HMTLhcBAIjyAMs=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -52,12 +52,11 @@
   <object id="64" type="collision" x="0" y="96" width="16" height="32"/>
   <object id="65" type="collision" x="32" y="64" width="32" height="32"/>
   <object id="66" type="collision" x="112" y="64" width="16" height="32"/>
-  <object id="67" type="collision" x="112" y="48" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="59" name="Go outside" type="event" x="96" y="112" width="32" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_town.tmx,23,18,0.3"/>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,23,18,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -74,9 +73,10 @@
     <property name="behav1" value="talk spyder_soldier"/>
    </properties>
   </object>
-  <object id="72" name="Create Scientist" type="event" x="128" y="64" width="16" height="16">
+  <object id="72" name="Create Scientist" type="event" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scientist,8,4"/>
+    <property name="act1" value="create_npc spyder_scientist,1,2"/>
+    <property name="act2" value="npc_face spyder_scientist,up"/>
     <property name="cond1" value="not npc_exists spyder_soldier"/>
    </properties>
   </object>

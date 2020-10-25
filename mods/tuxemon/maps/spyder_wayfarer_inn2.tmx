@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="43">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="49">
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
@@ -87,7 +87,6 @@
  </layer>
  <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="2" type="collision" x="0" y="0" width="16" height="256"/>
-  <object id="3" type="collision" x="16" y="256" width="96" height="16"/>
   <object id="4" type="collision" x="32" y="176" width="48" height="48"/>
   <object id="5" type="collision" x="112" y="224" width="16" height="32"/>
   <object id="6" type="collision" x="32" y="112" width="16" height="48"/>
@@ -113,6 +112,8 @@
   </object>
   <object id="33" type="collision" x="176" y="96" width="32" height="16"/>
   <object id="34" type="collision" x="144" y="96" width="32" height="16"/>
+  <object id="44" type="collision" x="16" y="32" width="32" height="16"/>
+  <object id="45" type="collision" x="80" y="208" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="17" name="Go downstairs" type="event" x="64" y="32" width="16" height="16">
@@ -138,9 +139,10 @@
    </properties>
   </object>
   <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
-  <object id="35" name="Create Granny" type="event" x="64" y="240" width="16" height="16">
+  <object id="35" name="Create Granny" type="event" x="80" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_granny,4,15"/>
+    <property name="act2" value="npc_face spyder_granny,up"/>
     <property name="cond1" value="not npc_exists spyder_granny"/>
    </properties>
   </object>
@@ -178,13 +180,13 @@
     <property name="cond1" value="not variable_set wayfarer1bravo:yes"/>
    </properties>
   </object>
-  <object id="41" name="Create Morningstar" type="event" x="208" y="160" width="16" height="16">
+  <object id="41" name="Create James" type="event" x="144" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_wayfarer1_james,13,10"/>
+    <property name="act1" value="create_npc spyder_wayfarer1_james,9,7"/>
     <property name="cond1" value="not npc_exists spyder_wayfarer1_james"/>
    </properties>
   </object>
-  <object id="42" name="Talk James" type="event" x="192" y="160" width="16" height="16">
+  <object id="42" name="Talk James" type="event" x="128" y="112" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_wayfarer1_james1"/>
     <property name="act3" value="start_battle spyder_wayfarer1_james"/>
@@ -192,6 +194,26 @@
     <property name="act6" value="set_variable wayfarer1james:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_james"/>
     <property name="cond1" value="not variable_set wayfarer1james:yes"/>
+   </properties>
+  </object>
+  <object id="43" name="Watch TV" type="event" x="176" y="112" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarerinn_tv1"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond3" value="is player_facing up"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="47" name="Environment" type="event" x="-304" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
+  <object id="48" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
    </properties>
   </object>
  </objectgroup>

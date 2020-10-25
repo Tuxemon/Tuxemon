@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="31">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -45,12 +45,12 @@
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9Aa/GLHT+NRgA0pM2Gl8atBBA9D8RhJxEx43kQt8uMjD6HorycQggM4fBbQH/lTCCdwMDIlAHMdAGYaZQy5YzMzAsISZfP0wcBpoxhkgBgBPlCsn
+   eJxjYBgFQxUoMWGn8alBBw2MDAyNJOImRur7hVqgkos8jK53FNAH+FMJJ3AzMCQCcRwDZRhmDrlgMTMDwxJm8vXDwGmgGWeAGABQFCCK
   </data>
  </layer>
  <layer id="5" name="Tile Layer 4" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMBgBAAWgAAE=
+   eJxjYBgF9Aa/GLHT+NQMd+DDRR5G1zsKRsFwAgAFIAqe
   </data>
  </layer>
  <objectgroup id="6" name="Collisions">
@@ -68,6 +68,11 @@
   <object id="28" type="collision-line" x="32" y="288">
    <polyline points="0,0 0,16"/>
   </object>
+  <object id="31" type="collision" x="48" y="96" width="16" height="16"/>
+  <object id="32" type="collision" x="80" y="96" width="16" height="16"/>
+  <object id="33" type="collision" x="112" y="96" width="16" height="16"/>
+  <object id="34" type="collision" x="192" y="96" width="16" height="16"/>
+  <object id="35" type="collision" x="224" y="96" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="Events">
   <object id="1" name="Teleport to Nimrod Bottom" type="event" x="256" y="288" width="32" height="32">
@@ -81,7 +86,7 @@
   <object id="2" name="Teleport to Nimrod Top" type="event" x="0" y="272" width="32" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_top.tmx,0,17,0.3"/>
-    <property name="act2" value="player_face up"/>
+    <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
@@ -225,6 +230,12 @@
     <property name="act6" value="set_variable nimrodarcher:yes"/>
     <property name="behav1" value="talk spyder_nimrod_archer"/>
     <property name="cond1" value="not variable_set nimrodarcher:yes"/>
+   </properties>
+  </object>
+  <object id="36" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
    </properties>
   </object>
  </objectgroup>

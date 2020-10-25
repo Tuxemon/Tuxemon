@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="21">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -60,21 +60,21 @@
    eAFjYBgYYCZGnr1uZOojz7ZRXaMhMBoCAxECAKVqAKk=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="2" type="collision" x="208" y="0" width="16" height="336"/>
-  <object id="3" type="collision" x="16" y="0" width="192" height="32"/>
-  <object id="4" type="collision" x="80" y="144" width="128" height="32"/>
-  <object id="5" type="collision" x="16" y="80" width="48" height="32"/>
-  <object id="6" type="collision" x="144" y="80" width="64" height="32"/>
-  <object id="7" type="collision" x="96" y="32" width="16" height="80"/>
+  <object id="3" type="collision" x="16" y="0" width="160" height="32"/>
+  <object id="4" type="collision" x="16" y="112" width="128" height="48"/>
+  <object id="5" type="collision" x="16" y="80" width="128" height="32"/>
+  <object id="6" type="collision" x="160" y="80" width="48" height="32"/>
   <object id="8" type="collision" x="16" y="240" width="96" height="32"/>
   <object id="9" type="collision" x="144" y="240" width="64" height="32"/>
   <object id="10" type="collision" x="144" y="240" width="16" height="48"/>
   <object id="11" type="collision" x="80" y="208" width="16" height="48"/>
   <object id="12" type="collision" x="96" y="240" width="16" height="48"/>
-  <object id="13" type="collision-line" x="16" y="336">
-   <polyline points="0,0 192,0"/>
+  <object id="21" type="collision" x="16" y="32" width="32" height="32"/>
+  <object id="22" type="collision-line" x="48" y="208">
+   <polyline points="0,0 0,32"/>
   </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
@@ -100,16 +100,22 @@
   </object>
   <object id="19" name="Teleport to Radio Tower" type="event" x="176" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_radiotower.tmx,1,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_radiotower.tmx,2,17,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
   <object id="20" name="Teleport to Omnichannel 3" type="event" x="192" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,2,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_radiotower.tmx,3,17,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="23" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
    </properties>
   </object>
  </objectgroup>

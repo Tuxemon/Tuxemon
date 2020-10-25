@@ -142,6 +142,7 @@
   <object id="27" name="Make Shopkeeper" type="event" x="32" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_maniac,2,9"/>
+    <property name="act2" value="npc_face spyder_maniac,left"/>
     <property name="cond1" value="not npc_exists spyder_maniac"/>
    </properties>
   </object>
@@ -154,39 +155,39 @@
   <object id="29" name="Pay Option" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_museum_entrance1"/>
-    <property name="act2" value="translated_dialog_choice yes:no,paygallery"/>
+    <property name="act2" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="not variable_set paygallery:yes"/>
-    <property name="cond4" value="not variable_set paygallery:no"/>
+    <property name="cond3" value="not variable_set paymuseum:yes"/>
+    <property name="cond4" value="not variable_set paymuseum:no"/>
     <property name="cond5" value="not variable_set notpaidmuseum:yes"/>
    </properties>
   </object>
-  <object id="30" name="Pay" type="event" x="0" y="96" width="16" height="16">
+  <object id="30" name="Pay" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act41" value="pathfind player,1,8"/>
-    <property name="act42" value="set_variable paygallery:null"/>
+    <property name="act42" value="set_variable paymuseum:null"/>
     <property name="act43" value="translated_dialog spyder_museum_entrance2"/>
-    <property name="cond1" value="is variable_set paygallery:yes"/>
+    <property name="cond1" value="is variable_set paymuseum:yes"/>
    </properties>
   </object>
   <object id="31" name="No Pay (Required)" type="event" x="0" y="112" width="16" height="16">
    <properties>
-    <property name="act40" value="translated_dialog spyder_museum_entrance2"/>
     <property name="act41" value="pathfind player,1,10"/>
-    <property name="act42" value="set_variable paygallery:null"/>
-    <property name="cond1" value="is variable_set paygallery:no"/>
+    <property name="act42" value="set_variable paymuseum:null"/>
+    <property name="cond1" value="is variable_set paymuseum:no"/>
+    <property name="cond2" value="is variable_set notpaidmuseum:yes"/>
    </properties>
   </object>
   <object id="32" name="Pay Requirement" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_museum_entrance3"/>
     <property name="act11" value="npc_face spyder_maniac,up"/>
-    <property name="act20" value="translated_dialog_choice yes:no,paygallery"/>
+    <property name="act20" value="translated_dialog_choice yes:no,paymuseum"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
-    <property name="cond3" value="not variable_set paygallery:yes"/>
-    <property name="cond4" value="not variable_set paygallery:no"/>
+    <property name="cond3" value="not variable_set paymuseum:yes"/>
+    <property name="cond4" value="not variable_set paymuseum:no"/>
     <property name="cond5" value="is variable_set notpaidmuseum:yes"/>
    </properties>
   </object>
@@ -194,9 +195,10 @@
    <properties>
     <property name="act41" value="translated_dialog spyder_museum_entrance2"/>
     <property name="act42" value="pathfind player,1,8"/>
-    <property name="act43" value="set_variable paygallery:null"/>
+    <property name="act43" value="set_variable paymuseum:null"/>
     <property name="act44" value="set_variable notpaidmuseum:yes"/>
-    <property name="cond1" value="is variable_set paygallery:yes"/>
+    <property name="cond1" value="is variable_set paymuseum:no"/>
+    <property name="cond2" value="not variable_set notpaidmuseum:yes"/>
    </properties>
   </object>
   <object id="35" name="Plaque: Ruby" type="event" x="160" y="112" width="16" height="16">

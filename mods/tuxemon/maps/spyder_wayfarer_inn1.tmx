@@ -86,7 +86,6 @@
   <object id="8" type="collision" x="32" y="176" width="96" height="16"/>
   <object id="9" type="collision" x="32" y="192" width="32" height="16"/>
   <object id="10" type="collision" x="112" y="192" width="16" height="64"/>
-  <object id="11" type="collision" x="16" y="256" width="96" height="16"/>
   <object id="12" type="collision" x="128" y="176" width="112" height="16"/>
   <object id="13" type="collision" x="224" y="0" width="16" height="176"/>
   <object id="14" type="collision" x="176" y="0" width="32" height="16"/>
@@ -236,6 +235,7 @@
   <object id="57" name="Create Jessie" type="event" x="80" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_jessie,5,15"/>
+    <property name="act2" value="npc_face spyder_wayfarer1_jessie,up"/>
     <property name="cond1" value="not npc_exists spyder_wayfarer1_jessie"/>
    </properties>
   </object>

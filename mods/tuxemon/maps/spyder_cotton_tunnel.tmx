@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="58">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="64">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -31,7 +31,7 @@
  </layer>
  <layer id="2" name="Pit" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG7z8HAcH8UUxQGqzgZGJoHCV4NdAd6fD4Axu9gAVGD3H2fuUfDj5K0Qkz8GgHTgPEA4ctEpL970PIwGqiWWhg9T5LCR8+/MPeRYgYt1Y66D7PMICW8R8NvNPxISS/UVhsGLYtB5T6oXA7HUkZS205izaNW+Qsyh1g7SVE36j7KwhUA1Q3x/Q==
+   eAG7z8HAcH8UUxQGDFDQzMnAMNAY5BT0+IS5b7DQg9l9n7lHw4/SdDKY4xfkt1H3URbDo+E3Gn6UhQBlukfT38gJv2hgm4paGD3dUINPLbeBzKGGe9DNGOzuAwBInOB8
   </data>
  </layer>
  <layer id="4" name="Wall" width="40" height="20">
@@ -39,7 +39,18 @@
    eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions"/>
+ <layer id="8" name="Tile Layer 4" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFlIbAKk4GhmYgHgxgNRZ3POAYDC6DuCFqkLsPW0iNhh+2UMEuRkz8GgHTgPEA4ctEpL97wPxyH4ijgWqphUHmEYvRQxY9/cHcR6x51FY36j7i4xJb2I+G32j4YUsX9BJDT39h0LIYJA4ql8OBmF5uwWYPuvtG+cM3BACY8RGC
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="58" type="collision" x="96" y="128" width="544" height="192"/>
+  <object id="59" type="collision" x="0" y="272" width="96" height="48"/>
+  <object id="60" type="collision" x="0" y="0" width="16" height="272"/>
+  <object id="61" type="collision" x="16" y="0" width="624" height="48"/>
+  <object id="62" type="collision" x="592" y="48" width="48" height="80"/>
+ </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="49" name="Teleport to Cotton Town" type="event" x="576" y="64" width="16" height="16">
    <properties>
@@ -70,7 +81,9 @@
   <object id="52" name="Create Brute" type="event" x="160" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_angrybrute,10,3"/>
+    <property name="act2" value="npc_face spyder_dragonscave_angrybrute,right"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_angrybrute"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
   <object id="53" name="Talk Brute" type="event" x="160" y="48" width="16" height="16">
@@ -82,7 +95,9 @@
   <object id="54" name="Create Brute" type="event" x="192" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_lazybrute,12,6"/>
+    <property name="act2" value="npc_face spyder_dragonscave_lazybrute,up"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_lazybrute"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
   <object id="55" name="Talk Brute" type="event" x="192" y="96" width="16" height="16">
@@ -94,13 +109,21 @@
   <object id="56" name="Create Brute" type="event" x="208" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_concernedbrute,13,4"/>
+    <property name="act2" value="npc_face spyder_dragonscave_concernedbrute,left"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_concernedbrute"/>
+    <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
   <object id="57" name="Talk Brute" type="event" x="208" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_concernedbrute1"/>
     <property name="behav1" value="talk spyder_dragonscave_concernedbrute"/>
+   </properties>
+  </object>
+  <object id="63" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:cave"/>
+    <property name="cond1" value="not variable_set environment:cave"/>
    </properties>
   </object>
  </objectgroup>

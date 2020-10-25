@@ -157,8 +157,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
 
-* ["Dragonrider"](https://wiki.tuxemon.org/index.php?title=Dragonrider). Front sprite by Catch Challenger, tweaked by Sanglorian. Overland sprite by Catch Challenger.
-
 * ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
 
 * ["Varmint"](https://wiki.tuxemon.org/index.php?title=Varmint). Overland sprites from the Superpowers Asset Packs.
@@ -604,6 +602,12 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Conileaf"](https://wiki.tuxemon.org/index.php?title=Conileaf). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites by Sanglorian. Overland sprites by Catch Challenger. 
+
+* ["Mk01 Alpha"](https://wiki.tuxemon.org/index.php?title=Mk01_Alpha) and ["Mk01 Beta"](https://wiki.tuxemon.org/index.php?title=Mk01_Beta) by Serpexnessie. 
+
+* ["Chrome Robo"](https://wiki.tuxemon.org/index.php?title=Chrome_Robo), ["Dark Robo"](https://wiki.tuxemon.org/index.php?title=Dark_Robo) and ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo) front sprite by Redshrike. Overland sprites by Catch Challenger. 
+
+* ["Xeon"](https://wiki.tuxemon.org/index.php?title=Xeon) and ["Xeon-2"](https://wiki.tuxemon.org/index.php?title=Xeon-2) by Redshrike. 
 
 ### Items
 

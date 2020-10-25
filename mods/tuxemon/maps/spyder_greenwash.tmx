@@ -78,7 +78,7 @@
   </object>
   <object id="46" name="Teleport to Candy Town" type="event" x="48" y="112" width="48" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,32,20,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,31,20,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

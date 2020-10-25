@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="269">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="274">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -21,6 +21,15 @@
  <tileset firstgid="2849" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
+ <tileset firstgid="3005" name="MK_buildings" tilewidth="16" tileheight="16" tilecount="896" columns="32">
+  <image source="../gfx/tilesets/MK_buildings.png" width="512" height="448"/>
+ </tileset>
+ <tileset firstgid="3901" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+  <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
+ </tileset>
+ <tileset firstgid="5213" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHt2LENgDAMRNGIWSihgx0zaVgDM0OEdIhXWGmt89135NFau6qGlw4/9cHjff5/jwPrkq3vVv3tVakc1N+cf46a7Rk831Tf6WvOd/Sjn39F7l6VT/mUT/nEARzAARzAgVwOdPfp2PvUl3NzA2jMmhw=
@@ -28,17 +37,17 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlVsKglAURU9+FX3ZHCySCnrYDHoNodcQeg20nEljaAtuEPHxpSfrXFicq1zYyy2o2xLpAVdxTjsiMzAHCxAA+gzh5QPNuYLPGmzAFuwAfegpimsPnwM4ghM4A3rRU0svbItc4HMFN3AHD0Avemr55eXSi54898TmVRMDhsbTi3NDTHrRM3VU5dKPU6NJL3p6jkgZfZypa9GLeSNkj0uYVOzH/uiUnEV+XXgFYFmxX9InvS/yq7q3tEvymu856icPjd7olXT9tf0b3/5vXg7+Q/+2ir4x2l3QjVPbJyu/CW5NcMzqVvsee+PU9snKr8styqkrK+s57Z41YA1YA9aANWANWAPWgDVQRQMfcZ83Jw==
+   eAHtlFsKglAURU99FX3ZHCySCnrYDHoNodcQeg20nFJbcIMIer/uPUhHWJwrHtyLLRh1RIYgUpyLvsgSrMAapIA+E3glQHNu4bMDe3AAR0AfeoridYLPGVzAFdwAveippZf1RO7weYAneIE3oBc9tfzqculFT+59cPgGYszQYsZFboZJL3pWVlVukyI1n/SiZ9wVcTHCTqiLXsybInvmYO7Zj/3RqTyb/AbwSsHGs1/Zp3pu8vPdW9WlfM/vnPdTh0Zv9Cq72tka8N1A0z/Gd7br/XTjdO1rPG+DWxscNb6dK5O9cbr2NZ6HcstzQmVp9GiZ1oA1YA1YA9aANWANWAP/2cAPwu02Jg==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt1NEJwDAIBUDpVxdLyJ7NFlkuQocIhhP89nGiEaqywHorp5edAIHqAn5Q9Q3KT4AAAQIEfoHviZjZigCBMwIt769nD3d4ZgGmEiBAgMC1AhtumgOr
+   eAHt1MEJwDAIAEDpq4sldM9miywXlwiScIJflRONECcLzPfk6c1OgACBvQJ+5F5f1QkQIEDgHoH/iRiZggCBGoGW99czP3dYswBdCRAgQOBagQX0qwOr
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -64,7 +73,6 @@
   <object id="196" type="collision" x="496" y="272" width="16" height="32"/>
   <object id="197" type="collision" x="608" y="160" width="32" height="63.8182"/>
   <object id="198" type="collision" x="512" y="48" width="16" height="16"/>
-  <object id="199" type="collision" x="32" y="384" width="16" height="16"/>
   <object id="200" type="collision" x="32" y="224" width="32" height="32"/>
   <object id="201" type="collision" x="0" y="0" width="32" height="192"/>
   <object id="202" type="collision" x="352" y="368" width="32" height="16"/>
@@ -131,11 +139,15 @@
     <property name="exit_to" value="down"/>
    </properties>
   </object>
+  <object id="269" type="collision" x="528" y="16" width="80" height="48"/>
+  <object id="270" type="collision" x="512" y="80" width="48" height="112"/>
+  <object id="271" type="collision" x="192" y="208" width="16" height="16"/>
+  <object id="272" type="collision" x="16" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -143,7 +155,7 @@
   </object>
   <object id="34" name="encounter 2" type="event" x="144" y="144" width="16" height="48">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -151,7 +163,7 @@
   </object>
   <object id="35" name="encounter 3" type="event" x="32" y="176" width="112" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -159,7 +171,7 @@
   </object>
   <object id="60" name="encounter" type="event" x="480" y="496" width="96" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -167,7 +179,7 @@
   </object>
   <object id="61" name="encounter" type="event" x="464" y="512" width="128" height="32">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -175,7 +187,7 @@
   </object>
   <object id="83" name="encounter" type="event" x="576" y="336" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -183,7 +195,7 @@
   </object>
   <object id="84" name="encounter" type="event" x="592" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -191,7 +203,7 @@
   </object>
   <object id="85" name="encounter" type="event" x="560" y="320" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -236,7 +248,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="102" name="Sign: Leather Town" type="event" x="16" y="176" width="16" height="16">
+  <object id="102" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
     <property name="cond1" value="is player_facing_tile"/>
@@ -282,6 +294,7 @@
   <object id="223" name="Create Florist2" type="event" x="144" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_florist,9,21"/>
+    <property name="act2" value="npc_face spyder_citypark_florist,right"/>
     <property name="cond1" value="not npc_exists spyder_citypark_florist"/>
    </properties>
   </object>
@@ -291,9 +304,10 @@
     <property name="behav1" value="talk spyder_citypark_florist"/>
    </properties>
   </object>
-  <object id="225" name="Create Frances" type="event" x="448" y="352" width="16" height="16">
+  <object id="225" name="Create Frances" type="event" x="448" y="384" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_citypark_frances,28,22"/>
+    <property name="act1" value="create_npc spyder_citypark_frances,28,24"/>
+    <property name="act2" value="npc_face spyder_citypark_frances,left"/>
     <property name="cond2" value="not npc_exists spyder_citypark_frances"/>
    </properties>
   </object>
@@ -324,13 +338,14 @@
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>
    </properties>
   </object>
-  <object id="232" name="Create Edith" type="event" x="464" y="256" width="16" height="16">
+  <object id="232" name="Create Edith" type="event" x="560" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_citypark_edith,36,17"/>
+    <property name="act1" value="create_npc spyder_citypark_edith,35,17"/>
+    <property name="act2" value="npc_face spyder_citypark_edith,left"/>
     <property name="cond2" value="not npc_exists spyder_citypark_edith"/>
    </properties>
   </object>
-  <object id="233" name="Talk Edith" type="event" x="464" y="272" width="16" height="16">
+  <object id="233" name="Talk Edith" type="event" x="608" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_edith1"/>
     <property name="act2" value="start_battle spyder_citypark_edith"/>
@@ -342,7 +357,7 @@
   </object>
   <object id="234" name="encounter" type="event" x="304" y="304" width="128" height="128">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -356,7 +371,7 @@
   </object>
   <object id="236" name="encounter" type="event" x="576" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -364,7 +379,7 @@
   </object>
   <object id="237" name="encounter" type="event" x="592" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -372,7 +387,7 @@
   </object>
   <object id="238" name="encounter" type="event" x="560" y="288" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -380,7 +395,7 @@
   </object>
   <object id="242" name="encounter" type="event" x="576" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -388,7 +403,7 @@
   </object>
   <object id="243" name="encounter" type="event" x="592" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -396,7 +411,7 @@
   </object>
   <object id="244" name="encounter" type="event" x="560" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -404,7 +419,7 @@
   </object>
   <object id="245" name="encounter" type="event" x="576" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -412,7 +427,7 @@
   </object>
   <object id="246" name="encounter" type="event" x="592" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -420,7 +435,7 @@
   </object>
   <object id="247" name="encounter" type="event" x="560" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -428,7 +443,7 @@
   </object>
   <object id="248" name="encounter" type="event" x="576" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -436,7 +451,7 @@
   </object>
   <object id="249" name="encounter" type="event" x="592" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -444,7 +459,7 @@
   </object>
   <object id="250" name="encounter" type="event" x="560" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -452,7 +467,7 @@
   </object>
   <object id="251" name="encounter" type="event" x="576" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -460,7 +475,7 @@
   </object>
   <object id="252" name="encounter" type="event" x="592" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -468,7 +483,7 @@
   </object>
   <object id="253" name="encounter" type="event" x="560" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -476,7 +491,7 @@
   </object>
   <object id="254" name="encounter" type="event" x="576" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -484,7 +499,7 @@
   </object>
   <object id="255" name="encounter" type="event" x="592" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -492,7 +507,7 @@
   </object>
   <object id="256" name="encounter" type="event" x="560" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -500,7 +515,7 @@
   </object>
   <object id="257" name="encounter" type="event" x="576" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -508,7 +523,7 @@
   </object>
   <object id="258" name="encounter" type="event" x="592" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
@@ -516,10 +531,16 @@
   </object>
   <object id="259" name="encounter" type="event" x="560" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter citypark"/>
+    <property name="act1" value="random_encounter citypark,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="273" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="not variable_set environment:grass"/>
    </properties>
   </object>
  </objectgroup>

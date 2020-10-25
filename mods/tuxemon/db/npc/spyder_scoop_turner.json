@@ -12,7 +12,7 @@
 		{
             "name": "Squabbit",
             "level": 30, 
-			"slug": "pigabyte",
+			"slug": "squabbit",
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         }

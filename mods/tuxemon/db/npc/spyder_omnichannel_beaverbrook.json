@@ -5,14 +5,14 @@
         		{
             "name": "Mk01 Alpha",
             "level": 55, 
-			"slug": "mk01-alpha",
+			"slug": "mk01_alpha",
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         },
 		{
             "name": "Mk01 Beta",
             "level": 55, 
-			"slug": "mk01-beta",
+			"slug": "mk01_beta",
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="29">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -38,12 +38,17 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="23" height="19">
   <data encoding="base64" compression="zlib">
-   eJzzYWBgqKIA5+EQ9wPiaCDupADX4BCPBeISBspADQ5xdLP3sjMwfGGD0OgAlxyxZjsD9bkAsSsWs3HJ1RJpNjmgh4Zm4wIgs2cxUJYGA/CYTWkajMZjNqVhUonkh9lUNruDAeGHLjSziQ3vZUC8HIhXMEDyMyFASnjD3NQB1UeM2eQAZH25UHoGA6o/Z1LBbFieRw73TgZMd+cisdHdgYyrsZiNz350dejuwBb2xJgtxsnAIM6JWx0+QMhsO6C59hSYHcmB3WwAU/Vekw==
+   eJzzYWBgqKIA5+EQ9wPiaCDupADX4BCPBeISBspADQ5xdLP3sjMwfGGD0OgAlxyxZjsD9bkAsSsWs3HJ1RJpNjmgh4Zm4wIgs2cxUJYGA/CYTWkajMZjNqVhUonkh9lUNruDAeGHLjSziQ3vZVA9Kxgg+ZkQICW8YW7qgOojxmxyALK+XCg9gwHVnzOpYDYszyOHeycDprtzkdjo7kDG1VjMxmc/ujp0d2ALe2LMFuNkYBDnxK0OHyBkth3QXHsKzI7kwG42AJBrXew=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="23" height="19">
   <data encoding="base64" compression="zlib">
    eJxjYKAPyGVHpYmVm8fBwDAfiBdw4DZ7KjsqTUiuEWrWQiB9HIgX4zH7MxsDwxcg/sqGXQ4EsMmdBJr5HohP4zF7FNAPLKNhPJwb5HE8Uv3eMIjdRgkA+esnljKHWkARSzlKLeBJQ7NhAAB1/hXu
+  </data>
+ </layer>
+ <layer id="6" name="Tile Layer 4" width="23" height="19">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALsYPlAO2AUjAISAQDKTwCo
   </data>
  </layer>
  <objectgroup color="#ffff00" id="4" name="Events">
@@ -70,6 +75,12 @@
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="32" y="224" width="16" height="16"/>
+  <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="16" height="304"/>

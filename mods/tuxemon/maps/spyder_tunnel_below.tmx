@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="49">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="50">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -31,7 +31,7 @@
  </layer>
  <layer id="2" name="Pit" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlm0KwjAMhoOCvzsV9UQeRzyN7Dj6R8WT+AGiNzCBhcXQrmvsEHGFsGxrnzZZ9rYAfdMZuA4ALmg3NN3cUD+J349xTIE28YzdeuaIE9977JFxrDg7I8+5mnlHxqPinI28mgYgefS8/JBJvCcaxyznsvgz/C4n5HHMMhcWHo3RMVs5PO7fePRNFp7/hfPRX38zA6ytIX1NjYq1NaSvqbyu+ufQebk2q85LhvZzaL1myr1Jv2u6D2nwN3WwTe2mrE/W7hS1znfeSOHJfBLbd96w8iSb/XIE0KVOL5Hf1Ki2Dsr0mWAVYTC/wPMPxTJXFtqDNi25zM95pTr01YqcY52wvlCtSF5X/gua8ji5
+   eAHtlm0KwjAMhoOC4L9NRT2RxxHvoGeQnUEvoX9UPIkfIHoDE1hYjO22ZhMFVwj92Pq0SbN3BWiKjsClBXBGu6LpErX1SHG/h3NitL5j7saxRjHx9Y0dMg4pZ2vkRVHGvCHjnnJORl5GA5A8Gk8qMon3QGOf5VqW9hDP5Yg89lnGwsKjOdpnK4fn/RuPzmTs+F44Hk39HoF5F4Btge1fLKytPn0N3TNrq09fQ3mfep91ns9nXfF8rDqf518dWq/58t+kn+X1fRr8TR0sk7sh+5O5O0Ctk/eNVZofITwZT2K77htWnmRzO+kASJ2umtPM5XqC/LxCubVXpu8E0wIG82O8/5AvI2W+f9CyJJf5ddaUhzJXXOxZwP58ueLi1j32BOU2Ph0=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="40">
@@ -46,7 +46,7 @@
  </layer>
  <layer id="4" name="Wall" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHdltENwjAMRPPLOsA0wDTANLANLESs9klHFLd1GgSiUmgU29e72E5I6bef4yal2njkdXt2+b0f58PK++/Bia9hsnaawDtn2yWPewB3Cg+2EZ6/jme5mcqJaY7otbzMaf423pzmZ6Be5uowqhU8j2MrnpeXNXj0tdbPGjy0a/38I94t15edS4xrnttj52Ov2luzb7r/A7P4GUAuP1F3PflZLth/tNqbuyNyf3hYimvzJbnxsLZjrUR7rrZnykXtS/ipv+ojVu2saU2Uc/UHz7TSD2pvxdO4pXj0aq1GwCtzxXqp0esF9BKn3DRHvfCstr3/ROW34aY8aj5wLznWfMEkpnbXYWvBsxjDtPOUPvHwSj+4qV7lgB4PD1/8euHB0zQx6A2+qbprNvVrmb8AEefgyw==
+   eAHdlusNwjAMhPOXdYBpgGmAaWAbWIic6ElHZOctUTVSSOQ4X32x0xLCutt5F4LVX9GOdojjcZl/Lb+/J2e/xaTtkuFd49ot9mcDN8djtC1xrp2H3ORyAs0tepGXkuZ/80qa3w31UqrDVq3keTH28ry8jPB4r7V+RnjUrvWzRd4j1pfV8H6cVXsj56bnzzi3ykMu7kY+8O3QxtrMjR5LOZjXnKXH2i9xtd45K6cai67XxKf+qo97dZ223NmpP3nQyvug67083VfLQx7wH8KqEfIQr67TbunV51InR+5LfWifxWNtz+Ihfi/GVAu16h7rWzfCgy4w8T7lPfF4qZ8Vn54T9Xg8+tJvFo9xQhM77wafqbqtNfXrmX8Ax5TbZw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -115,9 +115,9 @@
    </properties>
   </object>
   <object id="41" name="Player Spawn" type="event" x="160" y="32" width="16" height="16"/>
-  <object id="42" name="encounter 3" type="event" x="17.3333" y="0" width="302.667" height="640">
+  <object id="42" name="encounter 3" type="event" x="16" y="0" width="302.667" height="640">
    <properties>
-    <property name="act1" value="random_encounter routeb"/>
+    <property name="act1" value="random_encounter routeb,6"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
    </properties>
@@ -126,7 +126,6 @@
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_beryll,9,31"/>
     <property name="cond1" value="not npc_exists spyder_tunnelb_beryll"/>
-    <property name="cond2" value="not variable_set tunnelbberyll:yes"/>
    </properties>
   </object>
   <object id="44" name="Talk Beryll" type="event" x="128" y="496" width="16" height="16">
@@ -142,8 +141,8 @@
   <object id="45" name="Create Lute" type="event" x="176" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_lute,8,37"/>
+    <property name="act2" value="npc_face spyder_tunnelb_lute,up"/>
     <property name="cond1" value="not npc_exists spyder_tunnelb_lute"/>
-    <property name="cond2" value="not variable_set tunnelblute:yes"/>
    </properties>
   </object>
   <object id="46" name="Talk Lute" type="event" x="176" y="576" width="16" height="16">
@@ -159,8 +158,8 @@
   <object id="47" name="Create Meitner" type="event" x="256" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_meitner,16,18"/>
+    <property name="act2" value="npc_face spyder_tunnelb_meitner,up"/>
     <property name="cond1" value="not npc_exists spyder_tunnelb_meitner"/>
-    <property name="cond2" value="not variable_set tunnelbmeitner:yes"/>
    </properties>
   </object>
   <object id="48" name="Talk Meitner" type="event" x="256" y="272" width="16" height="16">
@@ -171,6 +170,12 @@
     <property name="act6" value="set_variable tunnelbmeitner:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_meitner"/>
     <property name="cond1" value="not variable_set tunnelbmeitner:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:cave"/>
+    <property name="cond1" value="not variable_set environment:cave"/>
    </properties>
   </object>
  </objectgroup>

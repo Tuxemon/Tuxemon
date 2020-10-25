@@ -5,14 +5,14 @@
         		{
             "name": "Nudiflot F",
             "level": 22, 
-			"slug": "nudiflot-female",
+			"slug": "nudiflot_female",
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         },
 		{
             "name": "Nudiflot F",
             "level": 22, 
-			"slug": "nudiflot-female",
+			"slug": "nudiflot_female",
 			"exp_give_mod": 3,
             "exp_req_mod": 27			
         },

@@ -65,7 +65,7 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="translated_dialog translated_dialog spyder_hospital_warning1"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="not has_item,aardant"/>
+    <property name="cond2" value="not has_item player,aardant"/>
    </properties>
   </object>
   <object id="36" name="Create Nurse" type="event" x="160" y="288" width="16" height="16">
@@ -82,8 +82,8 @@
   </object>
   <object id="38" name="Teleport to Candy Town" type="event" x="48" y="304" width="48" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,14,35,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act1" value="transition_teleport spyder_candy_center.tmx,1,3,0.3"/>
+    <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -99,10 +99,10 @@
   <object id="41" name="Stop! 2" type="event" x="48" y="240" width="32" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="translated_dialog translated_dialog spyder_hospital_warning2"/>
+    <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
     <property name="act3" value="transition_teleport spyder_hospital_alt.tmx,3,15,0.3"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is has_item,aardant"/>
+    <property name="cond2" value="is has_item player,aardant"/>
    </properties>
   </object>
   <object id="42" name="Stop!" type="event" x="112" y="240" width="32" height="16">
@@ -110,16 +110,16 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="translated_dialog translated_dialog spyder_hospital_warning1"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="not has_item,aardant"/>
+    <property name="cond2" value="not has_item player,aardant"/>
    </properties>
   </object>
   <object id="43" name="Stop! 2" type="event" x="112" y="240" width="32" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act2" value="translated_dialog translated_dialog spyder_hospital_warning2"/>
+    <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
     <property name="act3" value="transition_teleport spyder_hospital_alt.tmx,7,15,0.3"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is has_item,aardant"/>
+    <property name="cond2" value="is has_item player,aardant"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,11 +1,5 @@
 {"slug": "spyder_cochini","monsters": [
 
-
-
-
-{ "monster": "cochini","encounter_rate":100,"level_range": [30,31]}
-
-
-
+{ "monster": "cochini","encounter_rate":1,"level_range": [30,31]}
 
 ] }

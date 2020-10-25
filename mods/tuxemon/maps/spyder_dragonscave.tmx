@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="89">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="92">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -28,7 +28,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0skNgDAMRFGLMxL7vlYC3VAONfNLiHw0Y+ndMlIysVmsKXKzEhVqNGjhnY5sjwEjJszwzkJ2xYYdB05o1IAaUANqwN/Ak/mzSsZu4NZuxP5gx+vexJ24Es85rvD7yAet0AP5
+   eAHt0skJhUAQRdHCnSA4z+PWJDQFfxKGY8xewYVLlQ+2Ug8ObiytfrTIt+I6Ih58BAgR4W5iZhOkyJCjwN2UzFao0aBFB402oA1oA/9qYLJF+t2P59Uc57fvvCGz9YYtdccnGhj1bjxRu9H/XE7eieHke0Yf1tDlVt87Bf8=
   </data>
  </layer>
  <layer id="3" name="Filler" width="20" height="40">
@@ -43,7 +43,7 @@
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlFFSwzAMRFO+4CbAaeA2cFPa01TrspnNRtI4fNCfZsZxYltP0sr26WVZTndoy8RzJK6nyKF9Dub44JmaD/3ac/IV+pyf83aJ8eWgft3eH3uz4FnV5n8LHnz9FHlV+WL8u+H9lxadhtncR8T8Hu012mcRf2aXjZGlBfgrM2OhJpXGiAc2b7/N/frdlrHUHhzowsf1cZ7XN4ufrLUPPnXEWRpnJiaz2OhP9yXXZzxwaVPF5n5mY1DeJk/JR/Oqzgbj05pyzGMjr+uHrcVAnsbcMXTOeZtcV9H3H8rQb+ep3nvKbcT3XcfD3JpvBYzxjMncfG4mRrhyO8aR1XGWqTUDL2NRD/Wnd/TmjMjeGOvlHxxowPsDZz/zRz9DXrF3HvUc6+KVsXb1ch6Nrc9YtuT2O8lTnamD3n2Auc+2huI306G6DzKm+1X9fY57QXswdT/oXYN19DnDUm737XvB114BIkBhzQ==
+   eAHtlUtyAjEMRIeswk2SnCbcBm4aOA2SoafaPW2VJ4tkg6uMx78nqWWbw3FZDv9Ql4myx6+3iKEsO2N88UTNl37lPTmHPtd3X28xvuzUrzr77WwOeJK1+e6Al7Z+BnGN4s3xS8H7Ky0qDd3cd/j8FfUj6mngv9vnxsDiBPyW6ViZk5HG6Y8W9lHfNsfS/akLiuqjPM2v8x+stSW98y61OxOTzjfY43OJ9Y6XsWPPyDe1M+sD87o4KR5ojzfC5Q3+8RzG1DfwqrbtFR/AY58rBs8pr4t1FX37wQz+Vh7rvaU8RvTcVbycW+MdAWPcMRGbzs34mKZ0H/xweZxlcs6S51jQg+3xG93dETobbT31k5MafD5r3n1nD3aavLGms0996NnWxY9jbfJF+zs7gDxbx5Ilj+4kj3WGDvz2JUxtljkku06H0X+lY6pd1kXnkAtuk8nngd+aXAebMyzmVt/ubPH6O/DGX8c=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -115,8 +115,8 @@
   <object id="61" name="Create Tomas" type="event" x="288" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_tomas,18,33"/>
+    <property name="act2" value="npc_face spyder_dragonscave_tomas,left"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_tomas"/>
-    <property name="cond2" value="not variable_set dragonscavetomas:yes"/>
    </properties>
   </object>
   <object id="62" name="Talk Tomas" type="event" x="288" y="512" width="16" height="16">
@@ -133,7 +133,6 @@
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_lessa,16,19"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_lessa"/>
-    <property name="cond2" value="not variable_set dragonscavelessa:yes"/>
    </properties>
   </object>
   <object id="64" name="Talk Lessa" type="event" x="256" y="304" width="16" height="16">
@@ -149,8 +148,8 @@
   <object id="65" name="Create Cailin" type="event" x="112" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_cailin,7,26"/>
+    <property name="act2" value="npc_face spyder_dragonscave_cailin,right"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_cailin"/>
-    <property name="cond2" value="not variable_set dragonscavecailin:yes"/>
    </properties>
   </object>
   <object id="66" name="Talk Cailin" type="event" x="112" y="416" width="16" height="16">
@@ -166,8 +165,8 @@
   <object id="67" name="Create Griffin" type="event" x="112" y="608" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_griffin,7,38"/>
+    <property name="act2" value="npc_face spyder_dragonscave_griffin,up"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_griffin"/>
-    <property name="cond2" value="not variable_set dragonscavegriffin:yes"/>
    </properties>
   </object>
   <object id="68" name="Talk Griffin" type="event" x="112" y="592" width="16" height="16">
@@ -180,44 +179,46 @@
     <property name="cond1" value="not variable_set dragonscavegriffin:yes"/>
    </properties>
   </object>
-  <object id="69" name="Create Daeny" type="event" x="192" y="496" width="16" height="16">
+  <object id="69" name="Create Daenny" type="event" x="192" y="496" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dragonscave_daeny,12,31"/>
-    <property name="cond1" value="not npc_exists spyder_dragonscave_daeny"/>
-    <property name="cond2" value="not variable_set dragonscavedaeny:yes"/>
+    <property name="act1" value="create_npc spyder_dragonscave_daenny,12,31"/>
+    <property name="act2" value="npc_face spyder_dragonscave_daenny,up"/>
+    <property name="cond1" value="not npc_exists spyder_dragonscave_daenny"/>
    </properties>
   </object>
-  <object id="70" name="Talk Daeny" type="event" x="192" y="480" width="16" height="16">
+  <object id="70" name="Talk Daenny" type="event" x="192" y="480" width="16" height="16">
    <properties>
-    <property name="act2" value="translated_dialog spyder_dragonscave_daeny1"/>
-    <property name="act3" value="start_battle spyder_dragonscave_daeny"/>
-    <property name="act4" value="translated_dialog spyder_dragonscave_daeny2"/>
-    <property name="act6" value="set_variable dragonscavedaeny:yes"/>
-    <property name="behav1" value="talk spyder_dragonscave_daeny"/>
-    <property name="cond1" value="not variable_set dragonscavedaeny:yes"/>
+    <property name="act2" value="translated_dialog spyder_dragonscave_daenny1"/>
+    <property name="act3" value="start_battle spyder_dragonscave_daenny"/>
+    <property name="act4" value="translated_dialog spyder_dragonscave_daenny2"/>
+    <property name="act6" value="set_variable dragonscavedaenny:yes"/>
+    <property name="behav1" value="talk spyder_dragonscave_daenny"/>
+    <property name="cond1" value="not variable_set dragonscavedaenny:yes"/>
    </properties>
   </object>
-  <object id="71" name="Create Benden" type="event" x="48" y="288" width="16" height="16">
+  <object id="71" name="Create Benden" type="event" x="64" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dragonscave_benden,3,17"/>
+    <property name="act1" value="create_npc spyder_dragonscave_benden,4,15"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_benden"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
    </properties>
   </object>
-  <object id="72" name="Talk Benden" type="event" x="48" y="272" width="16" height="16">
+  <object id="72" name="Talk Benden" type="event" x="96" y="224" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act3" value="start_battle spyder_dragonscave_benden"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_benden2"/>
-    <property name="act6" value="set_variable dragonscavebenden:yes"/>
+    <property name="act5" value="set_monster_health ,"/>
+    <property name="act7" value="set_monster_status ,"/>
+    <property name="act8" value="set_variable dragonscavebenden:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_benden"/>
     <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
    </properties>
   </object>
   <object id="74" name="Get Drokoro" type="event" x="208" y="48" width="64" height="32">
    <properties>
-    <property name="act1" value="random_encounter spyder_drokoro,100"/>
-    <property name="act2" value="set_variable dragonscavedrokoro:yes"/>
+    <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
+    <property name="act10" value="random_encounter spyder_drokoro,100"/>
+    <property name="act20" value="set_variable dragonscavedrokoro:yes"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
@@ -235,6 +236,7 @@
   <object id="76" name="Create Mal" type="event" x="160" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_mal,10,9"/>
+    <property name="act2" value="npc_face spyder_dragonscave_mal,right"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_mal"/>
     <property name="cond2" value="not variable_set dragonscavemal:yes"/>
    </properties>
@@ -286,6 +288,7 @@
   <object id="82" name="Create Tru" type="event" x="240" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_tru,15,10"/>
+    <property name="act2" value="npc_face spyder_dragonscave_tru,up"/>
     <property name="cond1" value="not npc_exists spyder_dragonscave_tru"/>
     <property name="cond2" value="not variable_set dragonscavetru:yes"/>
    </properties>
@@ -300,24 +303,47 @@
     <property name="cond1" value="not variable_set dragonscavetru:yes"/>
    </properties>
   </object>
-  <object id="87" name="Teleport to Cotton Tunnel" type="event" x="256" y="16" width="16" height="16">
+  <object id="87" name="Teleport to Cotton Tunnel" type="event" x="288" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_tunnel.tmx,3,16,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
-  <object id="88" name="Benden Defeated" type="event" x="64" y="272" width="16" height="16">
+  <object id="88" name="Benden Defeated" type="event" x="112" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="pathfind spyder_dragonscave_benden,17,10"/>
     <property name="act2" value="pathfind player,18,10"/>
-    <property name="act3" value="translated_dialog spyder_omnichannel_mallory3"/>
-    <property name="act4" value="translated_dialog spyder_omnichannel_benden4"/>
+    <property name="act3" value="translated_dialog spyder_dragonscave_mallory3"/>
+    <property name="act4" value="npc_face spyder_dragonscave_benden,right"/>
+    <property name="act5" value="translated_dialog spyder_dragonscave_benden4"/>
     <property name="act6" value="set_variable dragonscavebenden2:yes"/>
     <property name="cond1" value="is variable_set dragonscavebenden:yes"/>
-    <property name="cond2" value="is variable_set dragonscavebenden2:yes"/>
+    <property name="cond2" value="not variable_set dragonscavebenden2:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="encounter 3" type="event" x="16" y="256" width="304" height="384">
+   <properties>
+    <property name="act1" value="random_encounter dragonscave,6"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="90" name="Teleport to Cotton Tunnel" type="event" x="256" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_tunnel.tmx,3,16,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="91" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:cave"/>
+    <property name="cond1" value="not variable_set environment:cave"/>
    </properties>
   </object>
  </objectgroup>

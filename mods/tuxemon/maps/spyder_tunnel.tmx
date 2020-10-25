@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="339">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="341">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -31,7 +31,7 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG9llFOAzEMRBf4AloqwTEAcZJ2r7QfHIJT9IMbcBzgEnjQPjFYTrMUwUrWJLE9GcfZbofh67mfhyCeBwYz+vxtGKbXMNBD4QHxeb7WfH5xMkznYSA5c9zkcx+vQsNutm2g+/J4E/6rsNtOXM5rzUP/1PKxHmfQjSH2P/jeT6NnYez5W303Z8N0HeZ83AkQX0bqvWyckXqrnnInwMzDHD7mGakVXWCOY76UD10g+ULfY4xaerV6bjXOe7Q0UmvFobV4d6Xtmz6tV3z0Qf7WE+/uENpkn+8xcRVfT5tyl+jj3dcdYb8WLtEnXfsFXL6H91frXu+SOp1L40Pndxfa9PuFrRdozfrGyNmFVfewp/cx8rI+9HvdrPX4FJf1kXss31/q20T9nH31DVF/ej1xfVWN1A/2OP38lvCJ9xBn1rePmpSzCmzdG/lbvW7pI76lGb+4/cn68BH/Uz7lP88kngvfGHXnd0Vngp/9K6z4FOfr5KknulvrMNYyep730NdzTtZJPzaxT77DxML3Yv8T4CWGOf1QTvXfQmcFHzlC7tO2Ua9yqv8Wyq340AUqzp+co/3Ze4yx7rYbPnFU5wBfrw7XUI35zsGH/qfi7Kv8vMZ3LvPR92ORM+Jc6Pux+AFYsNLZ
+   eAG1llFOAzEMRAN8AS2V4BiAOEnbK+0Hh+AU/eAGHAe4BB7YJ0aR06QtRLLsje3JxHa7W8rvepxNNJ4njFn780cp03sI2kPBQePzfO3589VZmS5D0OTMcZM/u70IDptZ1qHdh/06G6vw34TcN+KIH9XBf+rFRg32xkQNS9Twe/0FXtSwRA2beJ/n0bOQn4hSTuV3d1Gm2xDHYybQ+KQzfteNGqm36ikzgXa8Q+rHXeGFdryMn/vdBg9eaI/xM7Zxl95dPTez6zNaMwO3DEN71M35aT/Dow/ytxZ1G+HX46YzRvjx21835se5jvATr90AluPuq9/IPR1L9r76PQQ3/X8hywGuNT/N4CYkm8Me3+fIq/nBP5ubHp5ya36n4v0nv1Xcn9pn7xD1p9cT55fVjPuje5hevxE84e7DrPnt4k7KWYRuzY38rV63+BHf4oxf2L5qfviIPxRP+XwfeC5427h3/VtRTfBzfqYzPMX5PnnqiWZrGcJerT3Pe+j7dU7Nk36s4px6hokF782+E8Alhmf6oZzs20K1Ao8caeZp3bivcrJvC+VmePBCK85XnaPzOXsbtmbbBZ8wsjqA17uHc8hs3nPgwf8lqX2WX+/xnqvx6PuxmhpRF/p+rP4CcZPZQw==
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
@@ -104,11 +104,11 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="333" name="Create Meitner" type="event" x="160" y="240" width="16" height="16">
+  <object id="333" name="Create Iris" type="event" x="160" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_tunnelb_meitner,16,18"/>
-    <property name="cond1" value="not npc_exists spyder_tunnelb_meitner"/>
-    <property name="cond2" value="not variable_set tunnelbmeitner:yes"/>
+    <property name="act1" value="create_npc spyder_tunnelb_iris,10,15"/>
+    <property name="act2" value="npc_wander spyder_tunnelb_iris"/>
+    <property name="cond1" value="not npc_exists spyder_tunnelb_iris"/>
    </properties>
   </object>
   <object id="334" name="Talk Iris" type="event" x="160" y="224" width="16" height="16">
@@ -125,7 +125,6 @@
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_greta,13,35"/>
     <property name="cond1" value="not npc_exists spyder_tunnelb_greta"/>
-    <property name="cond2" value="not variable_set tunnelbgreta:yes"/>
    </properties>
   </object>
   <object id="336" name="Talk Greta" type="event" x="208" y="544" width="16" height="16">
@@ -138,11 +137,11 @@
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
    </properties>
   </object>
-  <object id="337" name="Create Tommy" type="event" x="224" y="96" width="16" height="16">
+  <object id="337" name="Create Tommy" type="event" x="208" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_tunnelb_tommy,14,6"/>
+    <property name="act1" value="create_npc spyder_tunnelb_tommy,14,4"/>
+    <property name="act2" value="npc_wander spyder_tunnelb_tommy"/>
     <property name="cond1" value="not npc_exists spyder_tunnelb_tommy"/>
-    <property name="cond2" value="not variable_set tunnelbtommy:yes"/>
    </properties>
   </object>
   <object id="338" name="Talk Tommy" type="event" x="224" y="80" width="16" height="16">
@@ -153,6 +152,12 @@
     <property name="act6" value="set_variable tunnelbtommy:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_tommy"/>
     <property name="cond1" value="not variable_set tunnelbtommy:yes"/>
+   </properties>
+  </object>
+  <object id="340" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="not variable_set environment:grass"/>
    </properties>
   </object>
  </objectgroup>
@@ -201,10 +206,11 @@
   <object id="320" type="collision" x="272" y="464" width="48" height="32"/>
   <object id="321" type="collision" x="256" y="0" width="64" height="32"/>
   <object id="322" type="collision" x="288" y="576" width="32" height="32"/>
-  <object id="323" type="collision" x="288" y="160" width="32" height="288"/>
+  <object id="323" type="collision" x="288" y="80" width="32" height="368"/>
   <object id="324" type="collision" x="176" y="112" width="64" height="64"/>
   <object id="325" type="collision" x="256" y="208" width="32" height="48"/>
   <object id="326" type="collision" x="304" y="448" width="16" height="16"/>
   <object id="328" type="collision" x="160" y="0" width="64" height="32"/>
+  <object id="339" type="collision" x="304" y="32" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="26">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -84,7 +84,7 @@
  </layer>
  <layer id="3" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFAxECe9iIt1WFm4HhJYnqiTedMpUAWB0CEA==
+   eAFjYBgFgz0EVLhJcyGp6kkzHVU1ADKiAF8=
   </data>
  </layer>
  <layer id="4" name="Tile Layer 4" width="12" height="12">
@@ -156,6 +156,7 @@
   <object id="20" name="Create Taggart" type="event" x="112" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_taggart,6,11"/>
+    <property name="act2" value="npc_face spyder_scoop_taggart,up"/>
     <property name="cond1" value="not npc_exists spyder_scoop_taggart"/>
    </properties>
   </object>
@@ -183,6 +184,12 @@
     <property name="act6" value="set_variable scoopdonald:yes"/>
     <property name="behav1" value="talk spyder_scoop_donald"/>
     <property name="cond1" value="not variable_set scoopdonald:yes"/>
+   </properties>
+  </object>
+  <object id="25" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
    </properties>
   </object>
  </objectgroup>

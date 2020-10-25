@@ -11,3 +11,4 @@ Since the game is still being created, there are some concessions/work arounds:
 5. Until there's the ability to pause player input, the campaign relies on players not moving during the scenes. 
 6. Although I have a workaround for picking up items in the overworld, I might wait till the main solution is implemented. 
 7. There's a couple of scenes where the text box cuts off the key speakers. Eventually I think being able to move the viewport is planned, which would address this. Otherwise perhaps a smaller text box?
+8. The campaign talks about a "Spyder Bite" infection that's been spread, but there's no mechanics for it at this point.

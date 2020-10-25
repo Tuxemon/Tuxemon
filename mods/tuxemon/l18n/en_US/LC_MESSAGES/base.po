@@ -2685,6 +2685,13 @@ msgstr "Trick question - it's both!"
 msgid "spyder_scoop_sign" 
 msgstr "Scoop HQ: Almost good enough to eat!" 
 
+msgid "spyder_leatherhouse2_snugglepot2" 
+msgstr "Wow! One day I'm going to be a trainer just like you!" 
+
+msgid "spyder_successful_boulder" 
+msgstr "The sledgehammer smashes the boulder apart." 
+
+
 
 msgid "spyder_stop_dante" 
 msgstr "Dante" 

@@ -69,7 +69,7 @@
   <object id="68" name="Create Firefighter" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_firefighter,1,5"/>
-    <property name="act2" value="npc_face spyder_firefighter,left"/>
+    <property name="act2" value="npc_face spyder_firefighter,right"/>
     <property name="cond1" value="not npc_exists spyder_firefighter"/>
    </properties>
   </object>

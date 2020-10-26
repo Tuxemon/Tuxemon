@@ -280,6 +280,7 @@
   <object id="199" name="Create Maxwell" type="event" x="160" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_route6_maxwell,10,5"/>
+    <property name="act2" value="npc_face spyder_route6_maxwell,left"/>
     <property name="cond1" value="not npc_exists spyder_route6_maxwell"/>
    </properties>
   </object>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="39">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="40">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -156,5 +156,6 @@
   <object id="25" type="collision" x="16" y="64" width="16" height="32"/>
   <object id="26" type="collision" x="32" y="80" width="16" height="16"/>
   <object id="36" type="collision" x="96" y="192" width="48" height="16"/>
+  <object id="39" type="collision" x="176" y="240" width="32" height="16"/>
  </objectgroup>
 </map>

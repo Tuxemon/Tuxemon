@@ -330,6 +330,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_florist,15,30"/>
     <property name="cond1" value="not npc_exists spyder_florist"/>
+    <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="426" name="Talk Florist" type="event" x="256" y="464" width="16" height="16">
@@ -527,6 +528,7 @@
   <object id="463" name="Destination - Timber" type="event" x="128" y="512" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
     <property name="act4" value="player_face up"/>
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>

@@ -62,9 +62,10 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="34" name="Create Dirk" type="event" x="32" y="192" width="16" height="16">
+  <object id="34" name="Create Dirk" type="event" x="64" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_enforcer_rookie,4,19"/>
+    <property name="act2" value="npc_face spyder_enforcer_rookie,up"/>
     <property name="cond1" value="not npc_exists spyder_enforcer_rookie"/>
    </properties>
   </object>
@@ -106,7 +107,7 @@
   </object>
   <object id="42" name="Create Bowie" type="event" x="32" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_nimrod_bowie,3,15"/>
+    <property name="act1" value="create_npc spyder_nimrod_bowie,1,15"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_bowie"/>
    </properties>
   </object>
@@ -123,6 +124,7 @@
   <object id="44" name="Create Tru" type="event" x="16" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_tru,1,18"/>
+    <property name="act2" value="npc_face spyder_nimrod_tru,right"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_tru"/>
    </properties>
   </object>

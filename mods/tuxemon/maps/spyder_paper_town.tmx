@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="447">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="451">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -165,7 +165,7 @@
   <object id="333" type="collision" x="192" y="240" width="336" height="80"/>
   <object id="364" type="collision" x="512" y="0" width="128" height="320"/>
   <object id="365" type="collision" x="432" y="80" width="80" height="16"/>
-  <object id="366" type="collision" x="304" y="0" width="208" height="80"/>
+  <object id="366" type="collision" x="304" y="0" width="48" height="80"/>
   <object id="367" type="collision" x="448" y="96" width="64" height="32"/>
   <object id="368" type="collision" x="336" y="128" width="176" height="16"/>
   <object id="369" type="collision" x="432" y="144" width="64" height="16"/>
@@ -197,6 +197,9 @@
   <object id="425" type="collision" x="0" y="192" width="32" height="32"/>
   <object id="427" type="collision" x="0" y="288" width="48" height="16"/>
   <object id="431" type="collision" x="336" y="144" width="16" height="16"/>
+  <object id="447" type="collision" x="352" y="64" width="112" height="16"/>
+  <object id="448" type="collision" x="352" y="0" width="112" height="16"/>
+  <object id="449" type="collision" x="464" y="0" width="16" height="80"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="335" name="Mart Sign" type="event" x="256" y="192">
@@ -492,13 +495,6 @@
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
-  <object id="444" name="Destination - Timber" type="event" x="112" y="272" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
-   </properties>
-  </object>
   <object id="445" name="Destination - Candy" type="event" x="96" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
@@ -511,6 +507,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set environment:grass"/>
+   </properties>
+  </object>
+  <object id="450" name="Destination - Timber" type="event" x="112" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
+    <property name="act4" value="player_face up"/>
+    <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
  </objectgroup>

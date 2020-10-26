@@ -45,12 +45,12 @@
  </layer>
  <layer id="7" name="Tile Layer 4" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYECA36LY2QhRCItbDCGCzEaIDl6WNtCPOkj+RHcpTN4aqMYGjzqYPAAf2wSn
+   eAFjYECA36LY2QhRCItbDCGCzEaIDn2WNTAsbJDCA91HMHkA4agDpQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYBh4cFeCgeEeEBMCb4Fq3hGhjpA51JQHAI/+A/c=
+   eAFjYBh4cFeCgeEeEBMCb4Fq3hGhDp852qIMDDpAjAsQkkfXBwDOIgT5
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -60,9 +60,9 @@
   <object id="74" type="collision" x="128" y="112" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="59" name="Go outside" type="event" x="79.998" y="112" width="48.002" height="16">
+  <object id="59" name="Go outside" type="event" x="80" y="112" width="48.002" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_candy_town.tmx,3,31,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,4,31,0.3"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
    </properties>
@@ -77,6 +77,7 @@
   <object id="68" name="Create Maniac" type="event" x="48" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_maniac,3,5"/>
+    <property name="act2" value="npc_face spyder_maniac,up"/>
     <property name="cond1" value="not npc_exists spyder_maniac"/>
    </properties>
   </object>

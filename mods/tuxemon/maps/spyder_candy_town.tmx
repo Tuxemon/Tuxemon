@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="413">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="414">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -97,7 +97,7 @@
  </layer>
  <layer id="3" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl88uQ0EUxg+r1oYNQdRC2Kiw0gex4U20IswD8AYWCBLUiqWFpT+JhKDa8g7EokWUbyInbk5m2l733swsOskvZ2Y6d+a7X87M7RBFKw+9RBpZBvpI9QPul23udxVzAW2uNHTWJZpL/+WIj340Rkh9AR+1aU3ZDKlJ4Ku+BWib91hfxz9fMyceXZ39276P6z2k1kDwCRf7tz5IqgZeA7ygvtFL6kToc7F/J4ZIjYPRABnUtW9Voc/k33WKzvTYpMoqtKyAZVAAebAIklov7LxFaDkE+2AP7IIdoOc5Fv652r+30HMP7oCu3wCtz4f80zq+oSc9TKoL6HrDos+Uf/r5pMsUdOXANND1LNBr+uKf7f2lPlf+tavPNi6u/iL+u3Ujtw4Qj5r8jzvF2azXlP4lvX/L0DQDfSXEShN97IfU5+L7obU845wz8STOP5f5h/s74d5OHNnDYEzavyXcDwsgb7gnzkIb7vHEMaiL6638K40RPYIyqIAqCFO2oWsLbBr0hZnHNrYGPXXwDj7AJwhToupLev9G1WfKv6vU71kUxifb2Kj6TPn3FqO+S+TdBTj/Z/6Z/LN54aLf5J8LHbY12T+OtnGu+tk/jq502NZl32S0jY/az98yjnI+2c++ySifi6vN3zKOcl7ZL33jtnzO1ub3jTvyetI3bvPvrSK/b9yR1/0B01HW1w==
+   eAHNl81OFEEQxwu4ABe4aNSwHIyfYOQED+JF30QwRvsB8A08qFETZdEDHjlwRE1MNMDy+Q4QD6DExV+ZlOmUs6zjzthdyS/VPd07/Z9/qme2RXqLjRERxcfZUQlnwK77vl1PlWcibak0/K91F/pFmrAIb+At5BK3hiSsoWcdNqAFm5BLtMck/EBPG05U14BIH+QSkw0JV9BzFa7BdZiAXOIO+m5DLnq8DvVvImN9ufvn/cyt/2v/sodz02V6cqq/R8MS5sG0aU5Rf0fnJBzCQcQ+7ccjEt45fSn8u3xewiUYj2jQVr92nL4i/z4NyorOrSseouUB3Ic5mIW7UNd6Ze/bRMsCvIKX8AKeg95nyfmXav9+Qc86rIG2P4Pqy6H+VMcJeoYuSOgDbbc76CuqP/193XEDXTNwE7Q9CbpmLv51en6vL5V/f6uv07yqrjf5b9RPbb0mL57yP2mZd7Ou6f2re/9uoWkKfS3y9in6zA+vL8X3Q7Xs8Z4rYte9/1LWH+d34dwuls3DONft3z3Oh3MwC/G62p5GG+f439mPa7+bf62LnDdhC7ZhB8rEM3Q9hScF+srcp9PcQ/QcwTf4DsdQJnrVV/f+7VVfUf19HPyzVsp4Fs/tVV9R/X2tUN8H6u49rP5j/RX5Fz9/6naRf6k1xeubf5bjsRza5p/lHDTFGsw3n+M5VbbtW2bZ39tfN9989r+rqt/tm2bjtp73zfo23i3b81adbV3vm/VtvFu2560627o/Af3V3/g=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -107,7 +107,7 @@
  </layer>
  <layer id="7" name="Tile Layer 5" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0DEOQEAQQNE5izg3gnMgOISjKE25xUapkDfJL2aa3bwIQ4AAAQIECBAgQIAAAQIECBD4t0DXRvTZUHQ1EWPuU6U5b1/Oku+t2VZ05//23I9KZ94MAQIECBAg8C7wAGJlFhk=
+   eAHt0DEOgCAQRNGJRzGeW43YeQcl6CE8CqVTUhBKC/InmWK3gX0S6V3gGHq/kPsQQAABBBBAAAEEEEAAAQQQaAvMk7S4a9F3lDbPodLduz9z+r3LjUWz/5c835U+3hEEEEAAAQQQaAt8AT8Wxg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
@@ -356,13 +356,6 @@
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
-  <object id="401" name="Destination - Timber" type="event" x="496" y="496" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
-   </properties>
-  </object>
   <object id="402" name="Destination - Candy" type="event" x="480" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
@@ -391,6 +384,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set environment:grass"/>
+   </properties>
+  </object>
+  <object id="413" name="Destination - Timber" type="event" x="496" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
+    <property name="act4" value="player_face up"/>
+    <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
  </objectgroup>

@@ -2497,7 +2497,7 @@ msgstr "He's so hard on himself, never happy with something he's painted. He's s
 msgid "spyder_flower_muse2" 
 msgstr "What? You have a painting. Oooh - would you let me buy it? I have $2,000." 
 msgid "spyder_flower_artist_clipping" 
-msgstr "A newspaper clipping is on the wall. It begins: \n "The famous art critic has put away his poison pen and picked up the paint brush. After years of tearing down artists, can he do any better himself?"" 
+msgstr "A newspaper clipping is on the wall. It begins: \n "The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?"" 
 msgid "spyder_flower_artist2" 
 msgstr "Magnificent! I didn't know I had it in me. \n I don't know what those artist were complaining about - painting is easy!" 
 msgid "spyder_flower_muse3" 
@@ -3188,7 +3188,8 @@ msgid "candy"
 msgstr "Candy Town" 
 msgid "cotton" 
 msgstr "Cotton Town" 
-
+msgid "leather" 
+msgstr "Leather Town" 
 
 
 

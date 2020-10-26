@@ -67,7 +67,7 @@
   </object>
   <object id="40" name="Teleport Wherever" type="event" x="0" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,1,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,7,27,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>

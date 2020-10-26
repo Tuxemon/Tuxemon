@@ -267,6 +267,7 @@
   <object id="51" name="Create Rubid" type="event" x="224" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_rubid,13,10"/>
+    <property name="act2" value="npc_face spyder_scoop_rubid,left"/>
     <property name="cond1" value="not npc_exists spyder_scoop_rubid"/>
    </properties>
   </object>
@@ -283,6 +284,7 @@
   <object id="53" name="Create Berys" type="event" x="320" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_berys,19,4"/>
+    <property name="act2" value="npc_face spyder_scoop_berys,left"/>
     <property name="cond1" value="not npc_exists spyder_scoop_berys"/>
    </properties>
   </object>

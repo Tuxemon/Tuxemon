@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="356">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="357">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -169,6 +169,7 @@
   <object id="333" name="Create Captain" type="event" x="160" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,8,22"/>
+    <property name="act2" value="npc_face spyder_captain,up"/>
     <property name="cond1" value="not npc_exists spyder_captain"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
@@ -237,13 +238,6 @@
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
-  <object id="349" name="Destination - Timber" type="event" x="80" y="288" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
-   </properties>
-  </object>
   <object id="350" name="Destination - Candy" type="event" x="64" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
@@ -270,6 +264,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set environment:grass"/>
+   </properties>
+  </object>
+  <object id="356" name="Destination - Timber" type="event" x="80" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
+    <property name="act4" value="player_face up"/>
+    <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
  </objectgroup>

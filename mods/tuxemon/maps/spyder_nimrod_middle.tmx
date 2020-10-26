@@ -117,6 +117,7 @@
   <object id="16" name="Create Honour" type="event" x="240" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_honour,15,4"/>
+    <property name="act2" value="npc_face spyder_nimrod_honour,left"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_honour"/>
    </properties>
   </object>
@@ -130,13 +131,13 @@
     <property name="cond1" value="not variable_set nimrodhonour:yes"/>
    </properties>
   </object>
-  <object id="18" name="Create Antimony" type="event" x="160" y="192" width="16" height="16">
+  <object id="18" name="Create Antimony" type="event" x="64" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_antimony,4,11"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_antimony"/>
    </properties>
   </object>
-  <object id="19" name="Talk Antimony" type="event" x="160" y="176" width="16" height="16">
+  <object id="19" name="Talk Antimony" type="event" x="80" y="176" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_antimony1"/>
     <property name="act3" value="start_battle spyder_nimrod_antimony"/>
@@ -146,14 +147,15 @@
     <property name="cond1" value="not variable_set nimrodantimony:yes"/>
    </properties>
   </object>
-  <object id="20" name="Create Chrome Robo" type="event" x="176" y="224" width="16" height="16">
+  <object id="20" name="Create Chrome Robo" type="event" x="144" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_chromerobo,9,11"/>
+    <property name="act2" value="npc_face spyder_nimrod_chromerobo,down"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_chromerobo"/>
     <property name="cond2" value="not variable_set nimrodchromerobo_middle:yes"/>
    </properties>
   </object>
-  <object id="21" name="Talk Chrome Robo" type="event" x="176" y="208" width="16" height="16">
+  <object id="21" name="Talk Chrome Robo" type="event" x="128" y="176" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_chromerobo1"/>
     <property name="act3" value="start_battle spyder_nimrod_chromerobo"/>
@@ -164,14 +166,14 @@
     <property name="cond1" value="not variable_set nimrodchromerobo_middle:yes"/>
    </properties>
   </object>
-  <object id="22" name="Create Birb Robo" type="event" x="208" y="176" width="16" height="16">
+  <object id="22" name="Create Birb Robo" type="event" x="192" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_birbrobo,12,11"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_birbrobo"/>
     <property name="cond2" value="not variable_set nimrodbirbrobo_middle:yes"/>
    </properties>
   </object>
-  <object id="23" name="Talk Birb Robo" type="event" x="192" y="176" width="16" height="16">
+  <object id="23" name="Talk Birb Robo" type="event" x="176" y="176" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_birbrobo1"/>
     <property name="act3" value="start_battle spyder_nimrod_birbrobo"/>
@@ -182,14 +184,15 @@
     <property name="cond1" value="not variable_set nimrodbirbrobo_middle:yes"/>
    </properties>
   </object>
-  <object id="24" name="Create Xeon" type="event" x="272" y="208" width="16" height="16">
+  <object id="24" name="Create Xeon" type="event" x="160" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_xeon,10,14"/>
+    <property name="act2" value="npc_face spyder_nimrod_xeon,up"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_xeon"/>
     <property name="cond2" value="not variable_set nimrodxeon_middle:yes"/>
    </properties>
   </object>
-  <object id="25" name="Talk Xeon" type="event" x="256" y="208" width="16" height="16">
+  <object id="25" name="Talk Xeon" type="event" x="176" y="224" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_xeon1"/>
     <property name="act3" value="start_battle spyder_nimrod_xeon"/>
@@ -200,13 +203,13 @@
     <property name="cond1" value="not variable_set nimrodxeon_middle:yes"/>
    </properties>
   </object>
-  <object id="26" name="Create Argon" type="event" x="224" y="144" width="16" height="16">
+  <object id="26" name="Create Argon" type="event" x="208" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_argon,13,9"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_argon"/>
    </properties>
   </object>
-  <object id="27" name="Talk Argon" type="event" x="208" y="144" width="16" height="16">
+  <object id="27" name="Talk Argon" type="event" x="192" y="144" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_nimrod_argon1"/>
     <property name="act3" value="start_battle spyder_nimrod_argon"/>
@@ -219,6 +222,7 @@
   <object id="29" name="Create Archer" type="event" x="48" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_archer,3,13"/>
+    <property name="act2" value="npc_face spyder_nimrod_archer,right"/>
     <property name="cond1" value="not npc_exists spyder_nimrod_archer"/>
    </properties>
   </object>

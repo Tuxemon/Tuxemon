@@ -71,7 +71,7 @@ class Menu(state.State):
         # holds sprites representing menu items
         self.create_new_menu_items_group()
 
-        self.font_filename = prepare.fetch("fonts", self.font_filename)
+        self.font_filename = prepare.fetch("font", self.font_filename)
         self.set_font()          # load default font
         self.load_graphics()     # load default graphics
         self.reload_sounds()     # load default sounds

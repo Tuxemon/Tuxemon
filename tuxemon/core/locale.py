@@ -58,13 +58,22 @@ class TranslatorPo:
         self.collect_languages(prepare.CONFIG.recompile_translations)
         return self.translate(*args, **kwargs)
 
+    def l18n_folders(self):
+        """Return list of folders containing l18n files"""
+        try:
+            root = prepare.fetch("l18n")
+        except OSError:
+            logger.warning("No localization data found")
+            return []
+
+        for ld in os.listdir(root):
+            yield ld, os.path.join(prepare.fetch("l18n"), ld)
+
     def collect_languages(self, recompile_translations=False):
         """Collect languages/locales with available translation files."""
         self.languages = []
 
-        for ld in os.listdir(prepare.fetch("l18n")):
-            ld_full_path = os.path.join(prepare.fetch("l18n"), ld)
-
+        for ld, ld_full_path in self.l18n_folders():
             if os.path.isdir(ld_full_path):
                 self.languages.append(ld)
 

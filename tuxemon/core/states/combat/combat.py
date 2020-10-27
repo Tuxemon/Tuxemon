@@ -50,8 +50,6 @@ logger = logging.getLogger(__name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
-faint = Technique("status_faint")
-
 # TODO: move to mod config
 MULT_MAP = {
     4: "attack_very_effective",
@@ -756,6 +754,7 @@ class CombatState(CombatAnimations):
         :type monster: tuxemon.core.monster.Monster
         :rtype: None
         """
+        faint = Technique("status_faint")
         monster.current_hp = 0
         monster.status = [faint]
 

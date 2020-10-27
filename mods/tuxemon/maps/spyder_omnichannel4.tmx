@@ -101,14 +101,14 @@
   <object id="19" name="Teleport to Radio Tower" type="event" x="176" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_radiotower.tmx,2,17,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
   <object id="20" name="Teleport to Omnichannel 3" type="event" x="192" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_radiotower.tmx,3,17,0.3"/>
-    <property name="act2" value="player_face down"/>
+    <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>

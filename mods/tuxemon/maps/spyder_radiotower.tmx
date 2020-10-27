@@ -105,6 +105,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_route3_zoolander,7,14"/>
     <property name="cond1" value="not npc_exists spyder_route3_zoolander"/>
+    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
   <object id="20" name="Talk Zoolander" type="event" x="112" y="208" width="16" height="16">
@@ -117,6 +118,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_scoop_donald,11,14"/>
     <property name="cond1" value="not npc_exists spyder_scoop_donald"/>
+    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
   <object id="22" name="Talk Donald" type="event" x="176" y="208" width="16" height="16">
@@ -147,12 +149,14 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="create_npc spyder_dante,3,18"/>
     <property name="act3" value="create_npc spyder_billie,2,18"/>
-    <property name="act4" value="translated_dialog spyder_omnichannel_billie1"/>
-    <property name="act5" value="pathfind spyder_dante,11,15"/>
-    <property name="act6" value="pathfind spyder_billie,7,15"/>
-    <property name="act7" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
-    <property name="act8" value="pathfind player,9,13"/>
-    <property name="act9" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act31" value="npc_face spyder_dante,up"/>
+    <property name="act32" value="npc_face spyder_billie,up"/>
+    <property name="act40" value="translated_dialog spyder_omnichannel_billie1"/>
+    <property name="act50" value="pathfind spyder_dante,11,15"/>
+    <property name="act60" value="pathfind spyder_billie,7,15"/>
+    <property name="act70" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
+    <property name="act80" value="pathfind player,9,13"/>
+    <property name="act90" value="start_battle spyder_omnichannel_beaverbrook"/>
     <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
     <property name="cond1" value="is player_at"/>

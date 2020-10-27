@@ -18,7 +18,7 @@ jobs:
       env: BUILD_TYPE=opk
     - os: linux
       dist: focal
-      env: BUILD_TYPE=wine_pyinstaller
+      env: BUILD_TYPE=wine_cx_freeze
 #    - os: windows
 #      language: bash
 #      env: BUILD_TYPE=windows
@@ -44,6 +44,7 @@ script:
   - if [ "$BUILD_TYPE" = "opk" ]; then buildconfig/build_opk.sh ; fi
   - if [ "$BUILD_TYPE" = "windows" ]; then travis_wait 15 buildconfig/build_windows.sh ; fi
   - if [ "$BUILD_TYPE" = "wine_pyinstaller" ]; then buildconfig/build_wine_pyinstaller.sh ; fi
+  - if [ "$BUILD_TYPE" = "wine_cx_freeze" ]; then buildconfig/build_wine_cx_freeze.sh ; fi
 deploy:
   provider: releases
   api_key:

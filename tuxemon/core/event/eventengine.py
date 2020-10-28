@@ -424,31 +424,36 @@ def add_error_context(event, item, session):
         file_name = session.client.get_map_filepath()
         tree = etree.parse(file_name)
         event_node = tree.find("//object[@id='%s']" % event.id)
-        if item.name is None:
-            # It's an "interact" event, so no condition defined in the map
-            msg = """
-                Error in {file_name}
-                {event}
-                Line {line_number}
-            """.format(
-                file_name=file_name,
-                event=etree.tostring(event_node).decode().split("\n")[0].strip(),
-                line_number=event_node.sourceline,
-            )
-        else:
-            # This is either a condition or an action
-            child_node = event_node.find(".//property[@name='%s']" % (item.name))
-            msg = """
-                Error in {file_name}
-                {event}
-                    ...
-                    {line}
-                Line {line_number}
-            """.format(
-                file_name=file_name,
-                event=etree.tostring(event_node).decode().split("\n")[0].strip(),
-                line=etree.tostring(child_node).decode().strip(),
-                line_number=child_node.sourceline,
-            )
-        print(dedent(msg))
+        msg = None
+        if event_node:
+            if item.name is None:
+                # It's an "interact" event, so no condition defined in the map
+                msg = """
+                    Error in {file_name}
+                    {event}
+                    Line {line_number}
+                """.format(
+                    file_name=file_name,
+                    event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                    line_number=event_node.sourceline,
+                )
+            else:
+                # This is either a condition or an action
+                child_node = event_node.find(".//property[@name='%s']" % (item.name))
+                if child_node:
+                    msg = """
+                        Error in {file_name}
+                        {event}
+                            ...
+                            {line}
+                        Line {line_number}
+                    """.format(
+                        file_name=file_name,
+                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                        line=etree.tostring(child_node).decode().strip(),
+                        line_number=child_node.sourceline,
+                    )
+        if msg:
+            print(dedent(msg))
+
         raise

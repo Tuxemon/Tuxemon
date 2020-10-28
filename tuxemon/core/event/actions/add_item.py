@@ -36,5 +36,7 @@ class AddItemAction(EventAction):
     def start(self):
         player = self.session.player
         if self.parameters.quantity is None:
-            self.parameters.quantity = 1
-        player.alter_item_quantity(self.session, self.parameters.item_slug, self.parameters.quantity)
+            quantity = 1
+        else:
+            quantity = self.parameters.quantity
+        player.alter_item_quantity(self.session, self.parameters.item_slug, quantity)

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="280">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <tileset firstgid="449" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ </tileset>
+ <tileset firstgid="1889" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="3329" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
+  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
+ </tileset>
+ <tileset firstgid="3689" name="Car,_Black_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="36" columns="6">
+  <image source="../gfx/tilesets/Car,_Black_by_Isaiah658.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="3725" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
+  <image source="../gfx/tilesets/Truck-red-all.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="3761" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
+ </tileset>
+ <tileset firstgid="5361" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer id="1" name="Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHVVtuR00AQPL55OQgCuFAuBwyXBlUc8Hs5ID7vcCKSyQMkEQLdhbqqa2pnJetsjD+6dnZ3pqd3ViPp4erqw3fgEXj4D+01mnb/8Dxr9M3V+/qI97AFV8RbrJ1C9xrOO2iJ+Jjou0/Wj/3s/kAecUZtnGf6FDN3v2vqlHE20EO8B6T1C+xtAce69xtwLz2D/D6ZPumM4znqein6vqF+TQF+7+es3y55Jvzez6kv681L0lfr6z3q3wEtoLNqzN4dS9bVHxmX1y/2s+a89xEYgP4C9HlddH5fk61RPqUa1fYY733tvazacfT6vXj29547rDtazF0Ptfg8s2v6/DvI+OyuXd8AvxL6oCfTdx38avrimWr6XqNur4Cfk75fGDkXXsJ2vkxf1BPnzkHb5zV9e/h2wHPoYP1YL2oo8YtTY8lHsdoTP2OYpwVoO0dN3whf6hJ62MrhHM4Z10v+0kd+2fQjv3Nxr6Yv3i/jS/nE6do8b7Q1P1TfLfI3E75idJ4Bc+/jFnPX43Y8A3vS951XdqzfZsrv9WPPkkdc9KE9AtTn6Ke9qIX5Smvi5L40kZf2zRTTY6Sf+9b0iUf3rL7lGHvXORmn2JJW7YmXsc7pXEv0uX8pX9ynD+HrbktfxuW+S/RlPKV1rgmex+2o7x1itgk+Y13ftfj8ice5S5p8fwTfAPQA19kb4lFsnHuNpKU0nkKfNPkZTqmPvRb5PXes36H6/B3XIJeD7zzmInaAdHj+mO9+8tf6U/XxDpl3D3RAC3h+7h0Kj1+ib4scjtgDzJ/xqA5zGl0TfRUnXv/WsA5CC/uuAtVPPD18PRftEpTfff0M2h8R/ybBgHXmm9NHLvLIn3k8b8lmjK/HGGkVb/xX1LeH350GXBnYA3P6NpNP1OD6Mlv6+nAe91/CK57sOenAvwb+L+ua3M70/bYzSd+AtVPgqfXTv4Oei2OPc/83Xs9z2hv0Q7zPOD+nvkc8P1HPH1oML2M=
+  </data>
+ </layer>
+ <layer id="2" name="Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtlltKA0EQRTuCJhF0C4r+asBt6DZcSLYj+KuuwzWIr/jl+/HlveCFoqiZnlce4AxcqrumuvqkZirTKcXX1VaaXkIXUByxXO8ruO6h5w75drbTtI7KKkC+hwXyicXyyxdZ8j1C79BNSzH/bs3akTPiko98L9AYcSNoCG1A6xD9T9AM4m9gnfku0P8DfUNf0Cf0AekdsbXRWPvJyp/jWwPHoIZuwUG+O8ivS8jD/e2e4rBcivH3FNPGst62VlGuiE8skY1yNPWRj89TzzLKEzF4n9bRv/dXd/naWPLxnSvji/J7Ps2j2CY+9fYb2NgX7Pc6ecRDy3V2Ll+dfIplvWw/R33LfsnV0/PYufZqYn1/F/WverdoD8vjx0VrmvjFm+PxuT2TnfvYLuezhP9uKJfT8mjMNRzn1ra5vznAtwfK5RCTtVwzb74cl+5bLj9WzDKtZ7LzZXJpb8vjx4pZFTsxPWHHnu+0wnvt11SdV+3rqvmaxl0P496t2tdN9+3XdVeB/THOaFB3GbvNdAK24xXm6/bX/t9sk1GaHkIHUK4KRxVicjn6+/UrgLNkwrdnZS+cJRO+Pf01xwqcFXzzy7Zc5Hml6ExyXsLdn1fKnl5/r69Auwr8AiST9bU=
+  </data>
+ </layer>
+ <layer id="3" name="Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHFl0lwFFUYx5slgaBFIGFTIEFwgdIQxOWkZAchqLiAS7Q4WYqZyQZKgkqaBMqTnjyoaKkHEsiiJz17cK/Sg/t2UraQhKAeXKv091nzr3p29ZvMTAbpql99/ZZ+7zdfv37dEwRBcCYIwhFQXF8YhFT/51hVFIQrYd20IKxMUTc9CGuhBqqhCtK1zZsbhNlQTH+TmMN8RaC4M8avEbctsI1+do0dbfi0QgskIQH/NnjafikJwnMZMkG/MvyUM407WXT9XsbnJTgML8ILoOvj2paW8luYMwkJaIaeWUFYThQqL6av+SlnGney+Aj5exiayPFH+HwIH8D78B6kazO/Pcy5GzqgHQYifirLTz6HZgfhQVA533EFLua3j9gFnbAXlDfFd3F4B6J+w9QN/Q9+8rCoe+nWjeMw5vhlu/4sr6MzWLcwAqfhFLj5Pkn5BByHH+EHUP5cF91Lqyu8KAgLQO3KX7brzzyWzCT/sAgWwgJw/Uopl8B8mAfFYH513N/o82vPqTmtxa3C8VPfXPLXwHz1UAe1UAOuXzXlKtgAN8NNUGkOEUooW56Us9covwqvgOpyyV8H87VDG7RCC7h+ScoJaIZHYRe47Tq3nJpfd+oZ7qfcB0dAe2U0fzvJ8fNzgvBB4gPQBBov31F+/Sm/YbyGYBDMu5QYzd/T+LyN3yHiQejN0M/2w2z95Rfds+3e6vmI5u8NfF6HYRiCQch2Xrf/Ku7tSrgMVkA5lIH1Mb+4Pdv1i+bPHTsf59twuR1ug1thKzSCjS2/uD07mr9l52lvfgqXJ+EJ2Add0Amun55VN8pP+av3+JVTXwbLPe02T66H8qd3mvnZO8WQn9ZfwjP/Juo3QoOnPVc3u05+eqeZn71TDPkpf8+dh/nH+Z4Zg1E4AyPg/h7z03si+l6pYn/J5ftP4zfxe+5PcZ/nt13Ke/cSWAKLYRHoeovRd0ovedM7xvbsCvyVv6v5pnsIPuE7365dw7lF39GLU0+KAx6/TfhshAaohzrwjWf1dl/Ny85tz7ao9deIz1ncxOZJ/AZxGkhxzOO3B5/d0AHt0AY2Z/Sw50F15mVleSl/2fppvHxEy5s7jpXlJc98+tk9cOfL5Vxe8kznF/d/0zfnRGqNjE3RUV7ybGa9JWEuJGAXyCHu/6baolF+42n8Bnh/HIOj0A99cATcseQlT7dtKueu3/fM+R18C9/A12Bjf0X8Er6Az+Ez+BSsTYe85Kn6uHgvz+c9sMPznLrXuH5FBUE4G2ZBIRSA9Z1JnAHTYZrVwd8RP3nJ050jeh7i1Q37s/S7kXlvgOvhOlgPNva1xHVQCWuhAq4Ba9MhL3mqPi7m4ncx69f2+kz4OGatykuecV6qO0re+qEvi/xpn58sag5F7RXykqfapxqLyZvtAZkwGpM37RXykmemXj/zDfITnIMJOAt27Z+8u/6A3+E3+BWsXsdp+p2Ck3ACjoPa4mLU668M7p2NU868ZbAclsFSsPrVPH9XwZVwBVwOVq9jIf0WQCmUwHxQWz7jVsZthC2wGW4BG387PnfDXXAn3AFWr6OWfjVQDVWwAdSWLu7gf+F2UEzX19q6GLcT9sLj8BhYfQ8+ByCEbtgPVq+jlX4tkIQENIPa4qLWXy9uPaAY1/dC1Gn9KW+KF8Ilbk5f/laTS/Vfw3m6svrlM8pL+bOxlTtFefnKz/L9+AxoLF/Mxdv10vVae4ry8pXfwu1N0Fi+6PPOtN78/gEDq/Ht
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtltkKwjAQRQcV/RX9y+BHuC+vir/l9uq+vXiDDAzURKhoa72Fw2Q6STs5hRIRXjRAA/9kYFwRNwJDMAB9YPffQ94FHdAGLWDrHNMADTwMHMviDmAPdmALNoB+aIAG8m1gXRK3AkuwAHMQ67hZi9dja4tWm6ZwMTNrJmactRv7XX1fNs+6N/9+6+1Znoce2UPSwA3ngCu4gDM4AT+LZ4akK96hARoQCZ1JQv8SdRZap/VfjY2quDrQGNtHmjNJ7HlFqKk3jUXY07f3QHfvGVd/GvVpr3Kd98l4B+QeWGQ=
+  </data>
+ </layer>
+ <layer id="7" name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0MsNgCAUBdG3Fj/F+GuPXhVtwymB1UtMhmR2kEtOhEcBBRTIEXiHqA81uuminOW+laVEnWmikQr1vcy5dfKfg3baaKWcZVcUUEABBRRQQAEFFFBAAQUUUEABBRT4n8AHpDoN5A==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
+  <object id="188" type="collision" x="192" y="0" width="80" height="64"/>
+  <object id="189" type="collision" x="288" y="0" width="96" height="64"/>
+  <object id="190" type="collision" x="400" y="0" width="32" height="64"/>
+  <object id="191" type="collision" x="432" y="0" width="192" height="128"/>
+  <object id="192" type="collision" x="512" y="128" width="112" height="160"/>
+  <object id="193" type="collision" x="624" y="0" width="16" height="160"/>
+  <object id="195" type="collision" x="416" y="512" width="80" height="48"/>
+  <object id="197" type="collision" x="384" y="528" width="32" height="32"/>
+  <object id="198" type="collision" x="320" y="512" width="48" height="48"/>
+  <object id="199" type="collision" x="288" y="512" width="16" height="48"/>
+  <object id="200" type="collision" x="304" y="512" width="16" height="32"/>
+  <object id="201" type="collision" x="272" y="544" width="16" height="16"/>
+  <object id="202" type="collision" x="192" y="512" width="80" height="48"/>
+  <object id="203" type="collision" x="176" y="544" width="16" height="16"/>
+  <object id="204" type="collision" x="368" y="400" width="80" height="48"/>
+  <object id="205" type="collision" x="464" y="400" width="96" height="48"/>
+  <object id="206" type="collision" x="448" y="432" width="16" height="16"/>
+  <object id="207" type="collision" x="272" y="432" width="48" height="16"/>
+  <object id="208" type="collision" x="240" y="368" width="32" height="32"/>
+  <object id="209" type="collision" x="368" y="288" width="80" height="48"/>
+  <object id="210" type="collision" x="352" y="320" width="16" height="16"/>
+  <object id="211" type="collision" x="448" y="304" width="32" height="32"/>
+  <object id="212" type="collision" x="352" y="208" width="32" height="32"/>
+  <object id="213" type="collision" x="384" y="192" width="16" height="48"/>
+  <object id="214" type="collision" x="400" y="192" width="80" height="32"/>
+  <object id="215" type="collision" x="416" y="224" width="64" height="16"/>
+  <object id="216" type="collision" x="336" y="112" width="32" height="48"/>
+  <object id="217" type="collision" x="384" y="112" width="32" height="48"/>
+  <object id="218" type="collision" x="368" y="112" width="16" height="32"/>
+  <object id="219" type="collision" x="208" y="112" width="32" height="48"/>
+  <object id="220" type="collision" x="240" y="112" width="16" height="32"/>
+  <object id="221" type="collision" x="256" y="112" width="32" height="48"/>
+  <object id="222" type="collision" x="272" y="0" width="16" height="48"/>
+  <object id="224" type="collision" x="64" y="144" width="80" height="48"/>
+  <object id="225" type="collision" x="0" y="96" width="32" height="512"/>
+  <object id="226" type="collision" x="16" y="608" width="64" height="32"/>
+  <object id="227" type="collision" x="80" y="624" width="32" height="16"/>
+  <object id="228" type="collision" x="112" y="608" width="32" height="32"/>
+  <object id="229" type="collision" x="144" y="624" width="32" height="16"/>
+  <object id="231" type="collision" x="176" y="608" width="192" height="32"/>
+  <object id="232" type="collision" x="368" y="624" width="256" height="16"/>
+  <object id="233" type="collision" x="576" y="592" width="32" height="32"/>
+  <object id="234" type="collision" x="608" y="544" width="32" height="64"/>
+  <object id="235" type="collision" x="608" y="336" width="32" height="176"/>
+  <object id="236" type="collision" x="576" y="480" width="16" height="16"/>
+  <object id="237" type="collision" x="592" y="336" width="16" height="16"/>
+  <object id="238" type="collision" x="528" y="336" width="16" height="16"/>
+  <object id="240" type="collision" x="560" y="288" width="16" height="32"/>
+  <object id="241" type="collision" x="576" y="320" width="16" height="16"/>
+  <object id="242" type="collision" x="608" y="304" width="16" height="16"/>
+  <object id="243" type="collision" x="32" y="304" width="32" height="16"/>
+  <object id="244" type="collision" x="80" y="304" width="32" height="16"/>
+  <object id="246" type="collision" x="80" y="384" width="32" height="16"/>
+  <object id="247" type="collision" x="32" y="384" width="32" height="16"/>
+  <object id="248" type="collision" x="32" y="512" width="80" height="32"/>
+  <object id="249" type="collision" x="80" y="432" width="32" height="80"/>
+  <object id="250" type="collision" x="112" y="432" width="48" height="32"/>
+  <object id="251" type="collision" x="176" y="432" width="48" height="32"/>
+  <object id="252" type="collision" x="224" y="320" width="48" height="16"/>
+  <object id="253" type="collision" x="192" y="208" width="32" height="224"/>
+  <object id="254" type="collision" x="224" y="208" width="48" height="96"/>
+  <object id="255" type="collision" x="224" y="304" width="16" height="16"/>
+  <object id="256" type="collision" x="144" y="112" width="32" height="128"/>
+  <object id="257" type="collision" x="176" y="208" width="16" height="32"/>
+  <object id="258" type="collision" x="48" y="112" width="96" height="32"/>
+  <object id="259" type="collision" x="48" y="64" width="32" height="48"/>
+  <object id="260" type="collision" x="0" y="64" width="48" height="32"/>
+  <object id="261" type="collision" x="0" y="32" width="32" height="32"/>
+  <object id="262" type="collision" x="16" y="0" width="64" height="32"/>
+  <object id="263" type="collision" x="160" y="0" width="32" height="32"/>
+  <object id="264" type="collision" x="80" y="16" width="16" height="16"/>
+  <object id="265" type="collision-line" x="112" y="320">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object id="266" type="collision" x="144" y="384" width="16" height="16"/>
+  <object id="267" type="collision" x="288" y="176" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="175" name="Teleport to City Park" type="event" x="624" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_citypark.tmx,0,12,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="177" name="Teleport to City Park" type="event" x="624" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_citypark.tmx,0,13,0.3"/>
+    <property name="act2" value="player_face right"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="178" name="Play Music" type="event" x="640" y="32" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
+    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+   </properties>
+  </object>
+  <object id="179" name="Teleport to Route 3" type="event" x="160" y="16" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route3.tmx,9,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="180" name="Teleport to Route 3" type="event" x="144" y="16" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route3.tmx,8,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="181" name="Teleport to Route 3" type="event" x="128" y="16" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route3.tmx,7,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="182" name="Teleport to Route 3" type="event" x="112" y="16" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route3.tmx,6,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="183" name="Teleport to Route 3" type="event" x="96" y="16" width="16" height="16" rotation="180">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route3.tmx,5,39,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="184" name="Teleport to Leather Mart" type="event" x="240" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_scoop.tmx,5,10,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="185" name="Sign: Route 3" type="event" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="186" name="Sign: Open Air" type="event" x="144" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathercafe_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="268" name="Teleport to Leather Museum" type="event" x="400" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_museum.tmx,1,10,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="269" name="Sign: Leather Town" type="event" x="576" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="270" name="Sign: Shaft 1" type="event" x="224" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_shaft1_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="271" name="Sign: Leather CBD" type="event" x="288" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leathercbd_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="272" name="Make Scout" type="event" x="292.667" y="234" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_maniac,18,15"/>
+    <property name="cond1" value="not npc_exists spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="273" name="Scout Talk" type="event" x="308.667" y="218" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_maniac"/>
+    <property name="behav1" value="talk spyder_maniac"/>
+   </properties>
+  </object>
+  <object id="274" name="Make Barmaid" type="event" x="96" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_barmaid,6,10"/>
+    <property name="cond1" value="not npc_exists spyder_barmaid"/>
+   </properties>
+  </object>
+  <object id="276" name="Heal Tuxemon" type="event" x="112" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_health ,"/>
+    <property name="act2" value="set_monster_status ,"/>
+    <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act30" value="npc_face spyder_barmaid,up"/>
+    <property name="act40" value="wait 1"/>
+    <property name="act50" value="npc_face spyder_barmaid,down"/>
+    <property name="act60" value="translated_dialog okaythen2"/>
+    <property name="act70" value="set_variable chooses:none"/>
+    <property name="cond1" value="is variable_set chooses:yes"/>
+   </properties>
+  </object>
+  <object id="277" name="Talk Barmaid (1st)" type="event" x="96" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottoncafe_barmaid"/>
+    <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="cond2" value="not variable_set chooses:yes"/>
+    <property name="cond4" value="is player_at"/>
+    <property name="cond5" value="is player_facing up"/>
+    <property name="cond6" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="278" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="279" name="Sign: Shaft 2" type="event" x="336" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_shaft2_sign"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

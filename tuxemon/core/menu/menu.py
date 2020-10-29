@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division, print_function
-from __future__ import unicode_literals
-
 import logging
 import math
 from functools import partial
@@ -51,7 +47,7 @@ class Menu(state.State):
     unavailable_color = 220, 220, 220 # Font color when the action is unavailable
     background_filename = None        # File to load for image background
     menu_select_sound_filename = "sound_menu_select"
-    font_filename = prepare.fetch("font", "PressStart2P.ttf")
+    font_filename = "PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = .20
@@ -75,6 +71,7 @@ class Menu(state.State):
         # holds sprites representing menu items
         self.create_new_menu_items_group()
 
+        self.font_filename = prepare.fetch("font", self.font_filename)
         self.set_font()          # load default font
         self.load_graphics()     # load default graphics
         self.reload_sounds()     # load default sounds

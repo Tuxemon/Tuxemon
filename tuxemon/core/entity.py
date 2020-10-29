@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -23,16 +22,12 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.euclid import Point2, Vector3, Point3
 from tuxemon.core.world import proj
 
 
-class Entity(object):
+class Entity:
     """ Eventually a class for all things that exist on the
         game map, like NPCs, players, objects, etc
 

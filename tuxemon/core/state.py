@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -23,10 +22,6 @@
 #
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import inspect
 import logging
@@ -49,7 +44,7 @@ from tuxemon.core.sprite import SpriteGroup
 logger = logging.getLogger(__name__)
 
 
-class State(object):
+class State:
     """ This is a prototype class for States.
 
     All states should inherit from it. No direct instances of this
@@ -246,7 +241,7 @@ class State(object):
         pass
 
 
-class StateManager(object):
+class StateManager:
     """ Mix-in style class for use with Client class.
 
     This is currently undergoing a refactor of sorts, API may not be stable
@@ -269,7 +264,7 @@ class StateManager(object):
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = os.path.join(paths.BASEDIR, *self.package.split(".")[1:])
+        state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug("loading game states from {}".format(state_folder))
         for folder in os.listdir(state_folder):
@@ -314,8 +309,7 @@ class StateManager(object):
         try:
             import_name = self.package + '.' + folder
             import_module(import_name)
-            for state in self.collect_states_from_module(import_name):
-                yield state
+            yield from self.collect_states_from_module(import_name)
         except Exception as e:
             template = "{} failed to load or is not a valid game package"
             logger.error(e)

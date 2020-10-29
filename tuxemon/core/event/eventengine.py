@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,10 +23,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from contextlib import contextmanager
@@ -43,7 +38,7 @@ from tuxemon.core.session import local_session
 logger = logging.getLogger(__name__)
 
 
-class RunningEvent(object):
+class RunningEvent:
     """ Manage MapEvents that are used during gameplay
 
     Running events are considered to have all conditions satisfied
@@ -96,8 +91,12 @@ class RunningEvent(object):
         self.action_index += 1
 
 
-class EventEngine(object):
-    """ A class for the event engine.
+class EventEngine:
+    """ A class for the event engine. The event engine checks to see if a group of
+    conditions have been met and then executes a set of actions.
+
+    Actions in the same MapEvent are not run concurrently, and they can be run over
+    one or several frames.  Currently this engine is run in the context of a single map.
 
     The event engine checks to see if a group of conditions have been met
     and then executes a set of actions.
@@ -399,31 +398,36 @@ def add_error_context(event, item, session):
         file_name = session.client.get_map_filepath()
         tree = etree.parse(file_name)
         event_node = tree.find("//object[@id='%s']" % event.id)
-        if item.name is None:
-            # It's an "interact" event, so no condition defined in the map
-            msg = """
-                Error in {file_name}
-                {event}
-                Line {line_number}
-            """.format(
-                file_name=file_name,
-                event=etree.tostring(event_node).decode().split("\n")[0].strip(),
-                line_number=event_node.sourceline,
-            )
-        else:
-            # This is either a condition or an action
-            child_node = event_node.find(".//property[@name='%s']" % (item.name))
-            msg = """
-                Error in {file_name}
-                {event}
-                    ...
-                    {line}
-                Line {line_number}
-            """.format(
-                file_name=file_name,
-                event=etree.tostring(event_node).decode().split("\n")[0].strip(),
-                line=etree.tostring(child_node).decode().strip(),
-                line_number=child_node.sourceline,
-            )
-        print(dedent(msg))
+        msg = None
+        if event_node:
+            if item.name is None:
+                # It's an "interact" event, so no condition defined in the map
+                msg = """
+                    Error in {file_name}
+                    {event}
+                    Line {line_number}
+                """.format(
+                    file_name=file_name,
+                    event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                    line_number=event_node.sourceline,
+                )
+            else:
+                # This is either a condition or an action
+                child_node = event_node.find(".//property[@name='%s']" % (item.name))
+                if child_node:
+                    msg = """
+                        Error in {file_name}
+                        {event}
+                            ...
+                            {line}
+                        Line {line_number}
+                    """.format(
+                        file_name=file_name,
+                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                        line=etree.tostring(child_node).decode().strip(),
+                        line_number=child_node.sourceline,
+                    )
+        if msg:
+            print(dedent(msg))
+
         raise

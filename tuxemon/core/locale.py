@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2016, William Edwards <shadowapex@gmail.com>,
@@ -27,10 +26,6 @@
 # core.locale Component for handling in-game translations.
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import gettext
 import io
@@ -50,21 +45,35 @@ logger = logging.getLogger(__name__)
 FALLBACK_LOCALE = "en_US"
 
 
-class TranslatorPo(object):
+class TranslatorPo:
     """gettext-based translator class."""
 
     def __init__(self):
         self.locale = prepare.CONFIG.locale
-        self.translate = None
+        self.translate = self._lazy_load
         self.languages = []
+
+    def _lazy_load(self, *args, **kwargs):
+        # this is a hack to let cx_freeze work
+        self.collect_languages(prepare.CONFIG.recompile_translations)
+        return self.translate(*args, **kwargs)
+
+    def l18n_folders(self):
+        """Return list of folders containing l18n files"""
+        try:
+            root = prepare.fetch("l18n")
+        except OSError:
+            logger.warning("No localization data found")
+            return []
+
+        for ld in os.listdir(root):
+            yield ld, os.path.join(prepare.fetch("l18n"), ld)
 
     def collect_languages(self, recompile_translations=False):
         """Collect languages/locales with available translation files."""
         self.languages = []
 
-        for ld in os.listdir(prepare.fetch("l18n")):
-            ld_full_path = os.path.join(prepare.fetch("l18n"), ld)
-
+        for ld, ld_full_path in self.l18n_folders():
             if os.path.isdir(ld_full_path):
                 self.languages.append(ld)
 
@@ -81,9 +90,9 @@ class TranslatorPo(object):
             # build only complete translations
             if os.path.exists(infile) and (
                     not os.path.exists(outfile) or recompile_translations):
-                with io.open(infile, "r", encoding="UTF8") as po_file:
+                with open(infile, "r", encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
-                with io.open(outfile, "wb") as mo_file:
+                with open(outfile, "wb") as mo_file:
                     write_mo(mo_file, catalog)
 
     def load_locale(self, locale_name="en_US"):
@@ -146,7 +155,7 @@ class TranslatorPo(object):
         else:
             return self.translate(text)
 
-class Translator(object):
+class Translator:
 
     def __init__(self):
         # immediately grab fallback if 'locale' missing in config
@@ -212,7 +221,7 @@ class Translator(object):
                 continue
 
             try:
-                with io.open(locale_file, "r", encoding="UTF-8") as f:
+                with open(locale_file, "r", encoding="UTF-8") as f:
                     data = json.load(f)
 
                 translations.update(data)
@@ -233,7 +242,7 @@ class Translator(object):
         elif key in self.fallback:
             return self.fallback[key]
         else:
-            logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
+            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
             return None
 
 
@@ -278,7 +287,7 @@ class Translator(object):
                            (key, self.locale, FALLBACK_LOCALE))
             translation_text = self.fallback[key]
         else:
-            logger.error("Key '%s' does not exist in '%s' locale file." % (key, self.locale))
+            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
             translation_text = "Locale Error"
 
         return self.format(translation_text, parameters)

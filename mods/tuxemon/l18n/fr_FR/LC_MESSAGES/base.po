@@ -192,6 +192,12 @@ msgstr "Sauvegardé !"
 msgid "save_failure"
 msgstr "Il y a eu un problème lors de la sauvegarde !"
 
+msgid "save_overwrite"
+msgstr "Oui, écraser cette sauvegarde."
+
+msgid "save_keep"
+msgstr "Non, conserver cette sauvegarde."
+
 msgid "slot"
 msgstr "Emplacement"
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -31,10 +30,6 @@
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os.path
@@ -100,7 +95,7 @@ if CONFIG.large_gui:
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 elif CONFIG.scaling:
-    SCALE = int((SCREEN_SIZE[0] / NATIVE_RESOLUTION[0]))
+    SCALE = int(SCREEN_SIZE[0] / NATIVE_RESOLUTION[0])
     TILE_SIZE[0] *= SCALE
     TILE_SIZE[1] *= SCALE
 else:
@@ -183,12 +178,22 @@ def init():
 
 
 # Fetches a resource file
+# note: this has the potential of being a bottle neck doing to all the checking of paths
+# eventually, this should be configured at game launch, or in a config file instead
+# of lookin all over creation for the required files.
 def fetch(*args):
     relative_path = os.path.join(*args)
 
     for mod_name in CONFIG.mods:
+        # when assets are in folder with the source
         path = os.path.join(paths.mods_folder, mod_name, relative_path)
         if os.path.exists(path):
             return path
 
-    raise IOError(relative_path)
+        # when assets are in a system path (like debian and others)
+        for root_path in paths.system_installed_folders:
+            path = os.path.join(root_path, mod_name, relative_path)
+            if os.path.exists(path):
+                return path
+
+    raise OSError(f"cannot load file {relative_path}")

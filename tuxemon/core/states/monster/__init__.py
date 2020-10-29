@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import pygame
 
 from tuxemon.compat import Rect
@@ -25,7 +20,7 @@ class MonsterMenuState(Menu):
     draw_borders = False
 
     def startup(self, **kwargs):
-        super(MonsterMenuState, self).startup(**kwargs)
+        super().startup(**kwargs)
 
         # make a text area to show messages
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))

@@ -10,7 +10,7 @@
     "current_hp target,==,0"
   ],
   "sort": "food",
-  "sprite": "gfx/items/potion.png",
+  "sprite": "gfx/items/revive.png",
   "target": {
     "enemy monster": 1,
     "enemy team": 0,

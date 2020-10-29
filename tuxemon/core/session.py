@@ -1,4 +1,4 @@
-class Session(object):
+class Session:
     """
 
     Contains Client, World, and Player

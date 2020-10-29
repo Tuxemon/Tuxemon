@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from collections import defaultdict
 
 import pygame as pg
@@ -44,8 +39,7 @@ class PygameEventQueueHandler(EventQueueHandler):
 
         for player, inputs in self._inputs.items():
             for player_input in inputs:
-                for game_event in player_input.get_events():
-                    yield game_event
+                yield from player_input.get_events()
 
 
 class PygameEventHandler(InputHandler):
@@ -82,7 +76,7 @@ class PygameGamepadInput(PygameEventHandler):
     }
 
     def __init__(self, event_map=None, deadzone=.25):
-        super(PygameGamepadInput, self).__init__(event_map)
+        super().__init__(event_map)
         self.deadzone = deadzone
 
     def process_event(self, pg_event):

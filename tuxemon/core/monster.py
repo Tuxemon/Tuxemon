@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,13 +26,10 @@
 # core.monster Tuxemon monster module
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import random
+import uuid
 
 from tuxemon.core import ai, fusion, graphics
 from tuxemon.core.db import db
@@ -102,14 +98,14 @@ MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
 # class definition for tuxemon flairs:
-class Flair(object):
+class Flair:
     def __init__(self, category, name):
         self.category = category
         self.name = name
 
 
 # class definition for first active tuxemon to use in combat:
-class Monster(object):
+class Monster:
     """A class for a Tuxemon monster object. This class acts as a skeleton for
     a Tuxemon, fetching its details from a database.
 
@@ -129,6 +125,7 @@ class Monster(object):
         self.name = ""  # The display name of the Tuxemon
         self.category = ""
         self.description = ""
+        self.instance_id = uuid.uuid4()  # unique id for this specific, individual tuxemon
 
         self.armour = 0
         self.dodge = 0
@@ -339,7 +336,7 @@ class Monster(object):
         # Learn New Moves
         for move in self.moveset:
             if move["level_learned"] >= self.level:
-                logger.info("%s learned technique %s!" % (self.name, move["technique"]))
+                logger.info("{} learned technique {}!".format(self.name, move["technique"]))
                 technique = Technique(move["technique"])
                 self.learn(technique)
 
@@ -443,7 +440,7 @@ class Monster(object):
                 full_path = graphics.transform_resource_filename(path)
                 if full_path:
                     return full_path
-        except IOError:
+        except OSError:
             logger.debug("Could not find monster sprite {}".format(sprite))
             return MISSING_IMAGE
 
@@ -481,6 +478,8 @@ class Monster(object):
             if getattr(self, attr)
         }
 
+        save_data["instance_id"] = str(self.instance_id)
+
         if self.status:
             save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
@@ -513,6 +512,8 @@ class Monster(object):
                 self.body.set_state(value)
             elif key == "moves" and value:
                 self.moves = [Technique(slug) for slug in value]
+            elif key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 
@@ -522,7 +523,10 @@ class Monster(object):
         for move in self.moves:
             move.full_recharge()
 
-        self.status = ["status_faint"] if "status_faint" in self.status else []
+        if "status_faint" in (s.slug for s in self.status):
+            self.status = [Technique("status_faint")]
+        else:
+            self.status = []
 
     def speed_test(self, action):
         if action.technique.is_fast:

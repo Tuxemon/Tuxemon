@@ -3,6 +3,8 @@ Tuxemon 0.4.25
 
 Tuxemon is a free, open source monster-fighting RPG.
 
+[![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
+
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
 Requirements
@@ -10,7 +12,7 @@ Requirements
 
 Tuxemon uses a number of open source projects to work properly:
 
-* *python* - version 2.7, 3.5+
+* *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
 * *python-six* - python 2 and 3 compatibility library
@@ -55,6 +57,18 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
 python tuxemon.py
+```
+
+**Ubuntu 18.04 w/venv**
+
+Use this if you don't want to modify your system packages
+```sh
+sudo apt install git python3-venv
+git clone https://github.com/Tuxemon/Tuxemon.git
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 tuxemon.py
 ```
 
 **Debian**
@@ -102,7 +116,7 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 **Fedora Linux**
 
 ```
-sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
 virtualenv venv
 pip install -r requirements.txt
 ```
@@ -123,10 +137,7 @@ Use *Tiled* map editor: http://www.mapeditor.org/
 Python 2.7 Notice
 -----------------
 
-We will be supporing bugfixes and features for python 2.7+ after it
-is EOL starting in 2020.  We do plan on removing support for it
-sometime in the future, but there is currently no roadmap to actively
-stop supporting it at this time.
+Python 2.7 is no longer supported.
 
 License
 -------

@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 from collections import defaultdict
 from functools import partial
@@ -206,7 +201,7 @@ class CombatTargetMenuState(Menu):
         self.menu_sprites = SpriteGroup()
 
     def startup(self, *args, **kwargs):
-        super(CombatTargetMenuState, self).startup(*args, **kwargs)
+        super().startup(*args, **kwargs)
 
         # used to determine how player can target techniques
         self.user = kwargs.get("user")
@@ -276,7 +271,7 @@ class CombatTargetMenuState(Menu):
                         return
 
         determine_target()
-        super(CombatTargetMenuState, self).refresh_layout()
+        super().refresh_layout()
 
     def on_menu_selection_change(self):
         """ Draw borders around sprites when selection changes

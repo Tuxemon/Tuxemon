@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 # core.npc
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from math import hypot
@@ -85,7 +80,7 @@ class NPC(Entity):
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
     def __init__(self, npc_slug, sprite_name=None,combat_front=None,combat_back=None):
-        super(NPC, self).__init__()
+        super().__init__()
 
         # load initial data from the npc database
         npc_data = db.lookup(npc_slug, table="npc")
@@ -190,6 +185,76 @@ class NPC(Entity):
 
     def move_direction(self, direction):
         self._move_direction = direction
+    def load_sprites(self):
+        """ Load sprite graphics
+
+        :return:
+        """
+        # TODO: refactor animations into renderer
+        # Get all of the player's standing animation images.
+        self.standing = {}
+        for standing_type in facing:
+            filename = "{}_{}.png".format(self.sprite_name, standing_type)
+            path = os.path.join("sprites", filename)
+            self.standing[standing_type] = load_and_scale(path)
+
+        self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
+
+        # avoid cutoff frames when steps don't line up with tile movement
+        frames = 3
+        frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
+
+        # Load all of the player's sprite animations
+        anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
+        for anim_type in anim_types:
+            images = [
+                'sprites/{}_{}.{}.png'.format(
+                    self.sprite_name,
+                    anim_type,
+                    str(num).rjust(3, '0')
+                )
+                for num in range(4)
+            ]
+
+            frames = []
+            for image in images:
+                surface = load_and_scale(image)
+                frames.append((surface, frame_duration))
+
+            self.sprite[anim_type] = pyganim.PygAnimation(frames, loop=True)
+
+        # Have the animation objects managed by a conductor.
+        # With the conductor, we can call play() and stop() on all the animation objects
+        # at the same time, so that way they'll always be in sync with each other.
+        self.moveConductor.add(self.sprite)
+
+    def get_sprites(self, layer):
+        """ Get the surfaces and layers for the sprite
+
+        Used to render the player
+
+        TODO: Move the 'layer' to the NPC class so characters
+        can define their own drawing layer.
+
+        :param layer: The layer to draw the sprite on.
+        :type layer: Int
+
+        :return:
+        """
+
+        def get_frame(d, ani):
+            frame = d[ani]
+            try:
+                surface = frame.getCurrentFrame()
+                frame.rate = self.moverate / CONFIG.player_walkrate
+                return surface
+            except AttributeError:
+                return frame
+
+        # TODO: move out to the world renderer
+        frame_dict = self.sprite if self.moving else self.standing
+        state = animation_mapping[self.moving][self.facing]
+        return [(get_frame(frame_dict, state), self.tile_pos, layer)]
 
     def pathfind(self, destination):
         """ Find a path and also start it
@@ -393,6 +458,37 @@ class NPC(Entity):
             self.check_continue()  # handle "continue" tiles
             if self.path:
                 self.next_waypoint()
+
+    def pos_update(self):
+        """ WIP.  Required to be called after position changes
+
+        :return:
+        """
+        self.tile_pos = proj(self.position3)
+        self.network_notify_location_change()
+
+    def network_notify_start_moving(self, direction):
+        r""" WIP guesswork ¯\_(ツ)_/¯
+
+        :return:
+        """
+        if self.world.game.isclient or self.world.game.ishost:
+            self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
+
+    def network_notify_stop_moving(self):
+        r""" WIP guesswork ¯\_(ツ)_/¯
+
+        :return:
+        """
+        if self.world.game.isclient or self.world.game.ishost:
+            self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
+
+    def network_notify_location_change(self):
+        r""" WIP guesswork ¯\_(ツ)_/¯
+
+        :return:
+        """
+        self.update_location = True
 
     ####################################################
     #                   Monsters                       #

@@ -1,8 +1,10 @@
 #!/bin/bash
-cd dist
-tar xvfz tuxemon*.tar.gz
-cd tuxemon*
+export PYBUILD_DISABLE=test
+python setup.py sdist --keep-temp
+cd tuxemon-*
+cp ../dist/* ..
 debmake -b':py3'
-dpkg-buildpackage -us -uc
-cd ../..
-mv ./dist/tuxemon*.deb ./build/tuxemon-unstable-latest.deb
+echo "./mods usr/share/tuxemon/" > debian/install
+dpkg-buildpackage -us -uc -b
+cd ..
+mv tuxemon*.deb build/tuxemon-$TRAVIS_DIST-$TRAVIS_BRANCH.deb

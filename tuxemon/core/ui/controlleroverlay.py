@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -74,7 +69,7 @@ def blit_alpha(target, source, location, opacity):
     target.blit(temp, location)
 
 
-class ControllerOverlay(object):
+class ControllerOverlay:
     """Handles the controller overlay functionality for mobile versions of the game. This includes
     detecting screen touches of on-screen buttons so they can be translated to keystrokes as well
     as drawing the controller overlay itself.

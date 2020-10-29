@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="132">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="136">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -652,6 +652,52 @@
     <property name="act2" value="player_resume"/>
     <property name="act3" value="set_variable comeinside:done"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
+   </properties>
+  </object>
+  <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc taba_greeter,29,12,,stand"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond1" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act20" value="translated_dialog taba_greeting1"/>
+    <property name="act25" value="translated_dialog taba_greeting2a"/>
+    <property name="act30" value="add_item capture_device,5"/>
+    <property name="act40" value="translated_dialog gotfivetuxeballs"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="act70" value="set_variable greeter_greets:yes"/>
+    <property name="cond10" value="not has_item player,capture_device"/>
+    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond30" value="is player_at"/>
+    <property name="cond40" value="not variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="134" name="greeter_greets2" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act20" value="translated_dialog taba_greeting1"/>
+    <property name="act30" value="translated_dialog taba_greeting2b"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="act70" value="set_variable greeter_greets:yes"/>
+    <property name="cond10" value="is has_item player,capture_device"/>
+    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond30" value="is player_at"/>
+    <property name="cond40" value="not variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="135" name="secret_tuxeball" type="event" x="625" y="240.5" width="16" height="16">
+   <properties>
+    <property name="act10" value="set_variable secret_ball:found"/>
+    <property name="act20" value="add_item capture_device,5"/>
+    <property name="act25" value="translated_dialog gotfivetuxeballs"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+    <property name="cond30" value="not variable_set secret_ball:found"/>
+    <property name="cond40" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

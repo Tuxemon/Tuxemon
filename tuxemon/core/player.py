@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,9 +26,6 @@
 #
 # core.player
 #
-from __future__ import absolute_import, division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -44,7 +40,7 @@ class Player(NPC):
     """
 
     def __init__(self, npc_slug):
-        super(Player, self).__init__(npc_slug)
+        super().__init__(npc_slug)
         self.isplayer = True
 
         # Game variables for use with events

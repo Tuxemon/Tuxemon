@@ -1797,7 +1797,7 @@ msgstr "It has been a long, hard road to our current situation here in the Fonde
 "However, it is my pleasure to announce, on this day, the 25th Anniversary of the founding of omnichannel...\n"
 "TUXEMON ARE CONTROLLED!\n"
 "*deafening screaming*\n"
-"Quiet Down! Quiet Down! You're enthusiasm is infectious I must say!\n"
+"Quiet Down! Quiet Down! Your enthusiasm is infectious I must say!\n"
 "In conjunction with the Xero institute, we have stripped away their will to attack!\n"
 "Due to this, we are confident that releasing Tuxemon into the wild is safe.\n"
 "However, curfews must still be enforced, we are not a lawless region after all.\n"

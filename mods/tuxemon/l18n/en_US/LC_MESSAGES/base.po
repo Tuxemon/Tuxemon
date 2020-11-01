@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 05:41+0200\n"
+"PO-Revision-Date: 2020-11-01 15:27+0000\n"
+"Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
+"Language-Team: English <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"en/>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2-dev\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
@@ -17,7 +33,6 @@ msgstr "<<MISSING>>"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
 msgstr "Apple"
@@ -110,7 +125,6 @@ msgstr "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 "There's a kiss mark next to the address"
 
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_run"
 msgstr "{user} ran away!"
@@ -245,7 +259,7 @@ msgid "generic_failure"
 msgstr "It failed!"
 
 msgid "attempting_capture"
-msgstr "Attempting capture..."
+msgstr "Attempting capture…"
 
 msgid "gotcha"
 msgstr "Gotcha!"
@@ -286,9 +300,7 @@ msgstr "Lifeleech"
 msgid "status_recover"
 msgstr "Recover"
 
-
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "all_in"
 msgstr "All In"
 
@@ -559,9 +571,7 @@ msgstr "Whirlwind"
 msgid "wing_tip"
 msgstr "Wing Tip"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"
@@ -624,7 +634,7 @@ msgid "multiplayer_decline"
 msgstr "Decline"
 
 msgid "multiplayer_duel"
-msgstr "{name} would like to Duel!"
+msgstr "{name} would like to duel!"
 
 msgid "multiplayer_host_game"
 msgstr "Host Game"
@@ -647,9 +657,7 @@ msgstr "No servers found..."
 msgid "multiplayer_join_prompt"
 msgstr "Hostname or IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart_description"
 msgstr "It keeps count of every ant it has eaten, and celebrates significant numbers."
@@ -1216,9 +1224,7 @@ msgstr "Restless"
 msgid "slurpy"
 msgstr "Slurpy"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -1298,9 +1304,7 @@ msgstr "Team Xero Grunt IX"
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Do you want to heal your Tuxemon?"
@@ -1318,7 +1322,7 @@ msgid "door_problems"
 msgstr "The door is stuck and won't open..."
 
 msgid "empty_pot"
-msgstr "It's an empty pot, maybe someone will plant something here"
+msgstr "It's an empty pot, maybe someone will plant something here."
 
 msgid "purple_flowers"
 msgstr "Somebody planted some sweet smelling purple flowers!"
@@ -1333,7 +1337,7 @@ msgid "famous_statue2"
 msgstr "It says: For our beloved friends and heroes of all, the wywen"
 
 msgid "cotton_town_fountain"
-msgstr "It's a fountain. A lot of coins are at the bottom"
+msgstr "It's a fountain. A lot of coins are at the bottom."
 
 msgid "tree"
 msgstr "This tree looks happy and healthy!"
@@ -1403,7 +1407,7 @@ msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
 
 msgid "karrianna_dialog2"
-msgstr "Well... You were the first trainer I've faced..."
+msgstr "Well… You were the first trainer I've faced…"
 
 msgid "xero_hideout1"
 msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
@@ -1467,7 +1471,7 @@ msgid "backstory9"
 msgstr "What do you say? Will you help us?"
 
 msgid "sorryfurthis"
-msgstr "Good Choice. Sorry, this will only sting a little"
+msgstr "Good Choice. Sorry, this will only sting a little."
 
 msgid "mwah\n"
 msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in here even though your clothes are tastefully done.\n"
@@ -1513,7 +1517,7 @@ msgid "liela_goes_to_battle"
 msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
 
 msgid "Cathedral_Center"
-msgstr "Cathedral Center: We Live to Serve"
+msgstr "Cathedral Center: We Live to Serve."
 
 msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
@@ -1567,7 +1571,9 @@ msgid "spillit6"
 msgstr "Anyways... it doesn't concern you. All that matters is bringing down Omnichannel."
 
 msgid "spillit7"
-msgstr "I'm sorry for troubling you with my issues. City Park is up ahead when you want to move on"
+msgstr ""
+"I'm sorry for troubling you with my issues. City Park is up ahead when you "
+"want to move on."
 
 msgid "leavemealone"
 msgstr "We used to play here all the time when we were younger..."
@@ -1593,23 +1599,24 @@ msgstr "I don't have much time left. Omnichannel is coming...\n"
 "I was supposed to meet a contact, but you'll have to do. They're coming."
 
 msgid "quicklyknight2"
-msgstr "Two people control Omnichannel. The board is a joke.\n"
-"I only know one of the names though"
+msgstr ""
+"Two people control Omnichannel. The board is a joke.\n"
+"I only know one of the names though."
 
 msgid "quicklyknight3"
 msgstr "Allie. Allie is the name."
 
 msgid "quicklyknight4"
-msgstr "Sorry, but I should leave now"
+msgstr "Sorry, but I should leave now."
 
 msgid "omnichannelarrives"
-msgstr "STOP"
+msgstr "STOP!"
 
 msgid "omnichannelarrives2"
 msgstr "<<MISSING>>"
 
 msgid "yesmaam"
-msgstr "Yes Ma'am"
+msgstr "Yes Ma'am."
 
 msgid "firsts"
 msgstr "♪ Watch me whip ♪\n"
@@ -1676,8 +1683,10 @@ msgid "hellolovelypeople4"
 msgstr "I'm pretty sure there are houses in Cotton Town larger than this..."
 
 msgid "hellolovelypeople5"
-msgstr "No... Wait... We are missing one person... \n"
-"The lone Tuxemon breeder left in the Fondent region. The one that calls himself the Tuxemon Professor"
+msgstr ""
+"No... Wait... We are missing one person... \n"
+"The lone Tuxemon breeder left in the Fondent region. The one that calls "
+"himself the Tuxemon Professor."
 
 msgid "whereismyhairbrush"
 msgstr "John, Grant, spread out. FIND HIM."
@@ -1689,8 +1698,9 @@ msgid "ourstuffisours"
 msgstr "Why are you actually here?"
 
 msgid "oopsie2"
-msgstr "Why don't we wait for my knights to return. \n"
-"I hate to announce bad news alone"
+msgstr ""
+"Why don't we wait for my knights to return. \n"
+"I hate to announce bad news alone."
 
 msgid "maamiexist"
 msgstr "Ma'am, He isn't in the house."
@@ -1751,7 +1761,7 @@ msgid "seeme"
 msgstr "Make sure you come see me..."
 
 msgid "knight4ispoor"
-msgstr "She's really not a bad person"
+msgstr "She's really not a bad person."
 
 msgid "frowntime"
 msgstr "I don't mind being here...\n"
@@ -1771,8 +1781,9 @@ msgid "ipausedit"
 msgstr "I paused the TV, grab a glass of water and then we can watch together."
 
 msgid "announcement1"
-msgstr "HELLO CITIZENS OF THE FONDENT REGION!\n"
-"THANK YOU FOR TUNING IN TO THIS MANDATORY ANNOUNCEMENT"
+msgstr ""
+"HELLO CITIZENS OF THE FONDENT REGION!\n"
+"THANK YOU FOR TUNING IN TO THIS MANDATORY ANNOUNCEMENT."
 
 msgid "announcement2"
 msgstr "WE LOVE YOU ABLE!"

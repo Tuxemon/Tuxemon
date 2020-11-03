@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-11-01 15:27+0000\n"
+"PO-Revision-Date: 2020-11-04 18:27+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -1969,3 +1969,164 @@ msgstr ""
 
 msgid "cannot_use_item_monster"
 msgstr "Este objeto no puede ser usado en este monstruo."
+
+msgid "spyder_cottonart_florist"
+msgstr ""
+"¿Qué opinas del cuadro azul de un barco en el puerto?\n"
+"Es de estilo impresionista, lo que significa que intenta capturar cómo se ve "
+"y se comporta la luz.\n"
+"¿Ves el sol pequeño y rojo reflejado en las olas del agua?"
+
+msgid "spyder_cottonart_goth"
+msgstr ""
+"Solía gustarme venir aquí cada fin de semana a mirar los cuadros.\n"
+"Ahora los mejores han sido vendidos y las entradas son muy caras.\n"
+"Pero mi abuelita quería venir, así que ..."
+
+msgid "spyder_cottonart_granny"
+msgstr ""
+"Debo estar volviéndome nostálgico. Casi digo:\n"
+"\"¡Antes, en mis tiempos, las cosas eran mejores!\""
+
+msgid "spyder_cottoncafe_barmaidintro"
+msgstr ""
+"Nos hacemos llamar el Equipo Bazar. Quizás es un poco pretencioso.\n"
+"¡Somos un grupo de pícaros y bribones a los que nos gusta juntarnos a beber "
+"café, hablar de filosofía y desafiar a nuestros amos corporativos!\n"
+"Nos gusta cuidarnos entre nosotros. Por ejemplo, al contrario que la "
+"Catedral ¡no cobramos por curar tus Tuxemon!\n"
+"¿Quieres que cure a los tuyos?"
+
+msgid "spyder_cottoncafe_hackerchat"
+msgstr ""
+"Es genial que estés ayudando a la Tuxepedia.\n"
+"...\n"
+"¿Hay algún premio por añadir todos los Tuxemon?\n"
+"Solo la satisfacción de ayudar a la raza humana, hombre."
+
+msgid "spyder_cottontown_enforcer"
+msgstr "¡Largo de aquí, niño, esto es propiedad privada!"
+
+msgid "spyder_cottontown_hackerintro"
+msgstr ""
+"Ey, ¡qué Tuxemon más chulo! ¿Puedo ver el recibo?\n"
+"...\n"
+"Es broma, me parecía que no lo habías obtenido a través de, ehmm, los "
+"canales oficiales.\n"
+"Durante años, los Cinco Pilares han controlado los Tuxemon más fuertes. ¿"
+"Crees que molaría fastidiarles un poco?\n"
+"...\n"
+"¡Bien! Tengo un proyecto para ti. ¡Encuéntrate conmigo en el Café!"
+
+msgid "spyder_cottontown_monk"
+msgstr ""
+"Me ha asignado el Dojo de los Cinco Elementos para cuidar las estatuas aquí."
+"\n"
+"Pero Omnichannel planea expandir sus oficinas a este lugar.\n"
+"No sé qué ocurrirá con las estatuas cuando lo hagan."
+
+msgid "spyder_papertown_firstfight2"
+msgstr ""
+"Ugh, debe ser casualidad. ¡No hay forma de que el nuevo modelo sea peor que "
+"el viejo!"
+
+msgid "spyder_papertown_wrapup"
+msgstr ""
+"¡Le daré el resto de ellos a los otros niños que no tienen su propio "
+"Tuxemon! Y quizás me quede uno para mí. "
+
+msgid "spyder_papertown_lambertchosen"
+msgstr "¡Una buena elección! Lambert es un Tuxemon de Madera."
+
+msgid "spyder_papertown_agnitechosen"
+msgstr "¡Una elección genial! Agnite es un Tuxemon de Fuego."
+
+msgid "spyder_papertown_tweesherchosen"
+msgstr "¡Una elección inspirada! Tweesher es un Tuxemon de Agua."
+
+msgid "spyder_papertown_nutchosen"
+msgstr "¡Una elección magnífica! Nut es un Tuxemon de Metal."
+
+msgid "spyder_papertown_rockittenchosen"
+msgstr "¡Una elección excelente! Rockitten es un Tuxemon de Tierra."
+
+msgid "spyder_papertown_myfirstmon2"
+msgstr "Aquí vamos, ¡cinco Tuxemon! ¿Cuál quieres?"
+
+msgid "spyder_papertown_myfirstmon"
+msgstr ""
+"¡Anda, has venido! Genial.\n"
+"¡Cuando llegan nuevos Tuxemon chulos de la Catedral, simplemente tiramos los "
+"viejos a la basura!\n"
+"¡Parece mucho gasto, especialmente cuando niños como tú no tienen ninguno!"
+
+msgid "spyder_papertown_danteshop"
+msgstr ""
+"¡Estoy trabajando, jefe, estoy trabajando!\n"
+"Oh, si eres tú. Ya sabes, acabamos tirando gran parte de nuestros productos."
+"\n"
+"Es un gasto terrible. Todo acaba en las papeleras de la parte trasera de la "
+"tienda."
+
+msgid "spyder_papertown_grannypiper2"
+msgstr ""
+"Ya sabes, ¡los Pipers hicimos nuestra fortuna en el negocio de las "
+"guarderías!\n"
+"Llevo retirada diez años y estoy empezando a aburrirme. ¡Quiero volver!"
+
+msgid "spyder_papertown_mom6"
+msgstr ""
+"¡Enhorabuena! ¡Derrotaste a las corporaciones!\n"
+"Por supuesto, ahora mucha gente se ha quedado sin empleo... pero hiciste lo "
+"correcto. Creo."
+
+msgid "taba_greeting2b"
+msgstr ""
+"¡Ah! Veo que ya tienes algunas. Se nota que eres un chico sensato, ${{name}}"
+". Estoy seguro de que te convertirás en un campeón pronto."
+
+msgid "taba_greeting2a"
+msgstr ""
+"La tienda está realizando una promoción, aquí tienes algunas para empezar. "
+"Se usan para capturar Tuxemon. ¡Pero es más fácil si los dejas débiles "
+"primero!"
+
+msgid "taba_greeting1"
+msgstr ""
+"Relaciones públicas Jaime: ¡Eh, ${{name}}! He oído que tienes un Tuxemon, ¡"
+"enhorabuena! Si quieres aumentar tu equipo, necesitarás Tuxeballs."
+
+msgid "spyder_papertown_mom4"
+msgstr "¡Bienvenido de nuevo! Mírate, cómo creces tan rápido."
+
+msgid "spyder_papertown_mom3"
+msgstr ""
+"Oh, te has agenciado un Tuxemon. ¡Enhorabuena!\n"
+"¿Por qué no te diriges hacia el siguiente pueblo y exploras un poco?"
+
+msgid "spyder_papertown_mom1"
+msgstr ""
+"¡Buenos días, cielo! Descansa aquí tanto tiempo como necesites.\n"
+"¿Por qué estoy diciendo esto? ¡Si vives aquí!"
+
+msgid "spyder_papertown_homemaker1"
+msgstr ""
+"¿Cómo estás, ${{name}}?\n"
+"Callado y solemne como siempre, ya veo."
+
+## DIALOG TRANSLATIONS ##
+# spyder dialogs
+msgid "spyder_papertown_stopthere"
+msgstr ""
+"¡Eh! ¿Qué te crees que estás haciendo?\n"
+"No es seguro adentrarte en la naturaleza si no tienes un Tuxemon.\n"
+"Ven y compra uno en nuestra tienda."
+
+msgid "gotfivetuxeballs"
+msgstr "¡Obtuviste 5 Tuxeballs!"
+
+msgid "save_keep"
+msgstr "No, conservar esta partida guardada."
+
+msgid "save_overwrite"
+msgstr "Sí, sobrescribir esta partida guardada."

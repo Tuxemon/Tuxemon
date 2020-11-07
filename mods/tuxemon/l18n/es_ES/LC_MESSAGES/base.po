@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-11-04 18:27+0000\n"
+"PO-Revision-Date: 2020-11-08 20:26+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2-dev\n"
+"X-Generator: Weblate 4.3.2\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -2130,3 +2130,326 @@ msgstr "No, conservar esta partida guardada."
 
 msgid "save_overwrite"
 msgstr "Sí, sobrescribir esta partida guardada."
+
+msgid "spyder_leathercbd_sign"
+msgstr "Distrito Comercial de Pueblo Cuero"
+
+msgid "spyder_leathertown_sign"
+msgstr "Pueblo Cuero: Prueba de que la belleza y la minería pueden coexistir."
+
+msgid "spyder_nimrod_plaque"
+msgstr "Patrocinado por Nimrod. \"Si no los vendiéramos, otro lo haría\""
+
+msgid "spyder_column2_sign"
+msgstr ""
+"Una rara columna antigua. Otras ruinas de la misma cultura se pueden "
+"encontrar en la Ruta 3. "
+
+msgid "spyder_column1_sign"
+msgstr "Una rara columna antigua. Esto fue una vez parte de un templo."
+
+msgid "spyder_citypark_routesign"
+msgstr "Parque de la ciudad: Sabor a naturaleza."
+
+msgid "spyder_route2_routesign"
+msgstr "Bienvenido a la Ruta 2: El camino histórico."
+
+#, fuzzy
+msgid "spyder_citypark_achievement"
+msgstr "Casa del Maníaco de los Logros: Cerrado."
+
+msgid "spyder_papertown_restinbed"
+msgstr "¡Te despiertas completamente descansado!"
+
+msgid "spyder_papertown_home"
+msgstr "¡Hogar, dulce hogar!"
+
+msgid "spyder_papertown_daycare2"
+msgstr "Guardería: ¡Ahora abierta!"
+
+msgid "spyder_route1_routesign"
+msgstr "Ruta 1: ¡Ten cuidado!"
+
+#, fuzzy
+msgid "spyder_papertown_daycare1"
+msgstr "Guardería: En construcción."
+
+msgid "spyder_multi_martsign"
+msgstr "Compra cosas aquí."
+
+## MESSAGE TRANSLATIONS ##
+# spyder messages
+msgid "spyder_multi_underrepairs"
+msgstr "El letrero dice: \"En mantenimiento\"."
+
+msgid "spyder_route3_wanda"
+msgstr "Wanda"
+
+msgid "spyder_route3_connor"
+msgstr "Connor"
+
+msgid "spyder_postboy"
+msgstr "Chico del correo"
+
+msgid "spyder_miner"
+msgstr "Minero"
+
+msgid "spyder_citypark_edith"
+msgstr "Edith"
+
+msgid "spyder_route2_graf"
+msgstr "Graf"
+
+msgid "spyder_route2_marion"
+msgstr "Marion"
+
+msgid "spyder_route2_roddick"
+msgstr "Roddick"
+
+msgid "spyder_route2_billie"
+msgstr "Billie"
+
+msgid "spyder_shopassistant"
+msgstr "Dependiente"
+
+msgid "spyder_shopkeeper"
+msgstr "Tendero"
+
+msgid "spyder_florist"
+msgstr "Florista"
+
+msgid "spyder_granny"
+msgstr "Abuelita"
+
+msgid "spyder_cottontown_hacker"
+msgstr "Hacker"
+
+msgid "spyder_billie"
+msgstr "Billie"
+
+msgid "spyder_instore_dante"
+msgstr "Dante"
+
+msgid "spyder_papertown_shopkeeper"
+msgstr "Tendero"
+
+msgid "spyder_papertown_grannypiper"
+msgstr "Abuelita Piper"
+
+msgid "spyder_papertown_mom"
+msgstr "Mamá"
+
+msgid "spyder_papertown_homemaker"
+msgstr "Ama de casa"
+
+msgid "spyder_papertown_riverboatcaptain"
+msgstr "Capitán del barco"
+
+msgid "spyder_frolicking_conileaf"
+msgstr "Conileaf"
+
+msgid "spyder_frolicking_rockitten"
+msgstr "Rockitten"
+
+msgid "spyder_stop_dante"
+msgstr "Dante"
+
+msgid "spyder_cotton_nurse1"
+msgstr ""
+"¡Bienvenido al Centro de la Catedral de Pueblo Algodón!\n"
+"¿Quieres curar tus Tuxemon?"
+
+msgid "spyder_papertown_danteresting"
+msgstr ""
+"¡Estoy trabajando, jefe, estoy trabajando!\n"
+"Oh, si eres tú. Ya sabes, acabamos tirando gran parte de nuestros productos."
+"\n"
+"Todo acaba en las papeleras de la parte trasera de la tienda."
+
+msgid "spyder_route3_wanda2"
+msgstr ""
+"La pesca es buena en Ciudad Flor, ¿pero quién quiere caminar tan lejos?\n"
+"Toma, te puedes quedar mi Caña de Pescar."
+
+msgid "spyder_route3_wanda1"
+msgstr "¡Todo lo que parece que consigo capturar son Nudiflot aburridos!"
+
+msgid "spyder_route3_surat2"
+msgstr "Sabía que no lo entenderías. "
+
+msgid "spyder_route3_roxby3"
+msgstr ""
+"Espero que la Jefa no esté enfadada. Se enfada muy rápido.\n"
+"Pero es buena persona y tiene un corazon de diamante."
+
+msgid "spyder_route3_connor2"
+msgstr "Oh, vaya, esto será una nueva experiencia para ellos."
+
+msgid "spyder_route3_connor1"
+msgstr ""
+"Mi Weavifly está listo para combatir ahora. Hubo un tiempo en el que no "
+"podía volar."
+
+msgid "spyder_route3_curie2"
+msgstr "¿Por qué hiciste eso?"
+
+msgid "spyder_route3_curie1"
+msgstr "¡Mira mi magnífico invento!"
+
+msgid "spyder_route3_novak2"
+msgstr "Mmm, no lo suficientemente listo..."
+
+msgid "spyder_route3_novak1"
+msgstr " ¡Mi Elofly es un genio! Voy a coleccionar tantos como pueda."
+
+msgid "spyder_route3_zoolander1"
+msgstr ""
+"¿Una roca está causando problemas a los viajeros? ¿Es \"culpa nuestra\"? ¿A "
+"quién le importa? ¡Tenemos trabajo urgente que hacer!"
+
+msgid "spyder_museum_postboy1"
+msgstr ""
+"¿Sabías que los primeros anteojos se hacían con berilo y no con cristal?\n"
+"...\n"
+"¡Lo aprendí el último año de un guía en este museo! Pero ya no hay guías en "
+"este lugar."
+
+msgid "spyder_museum_miner1"
+msgstr ""
+"¡Solía haber una sección entera aquí de la historia de nuestro mundo!\n"
+"¡Pero cuando Nimrod se convirtió en patrocinador, la reemplazaron por "
+"historia militar!\n"
+"¡Ahora todo el mundo se inventa sus propias teorías sobre la historia "
+"mundial!"
+
+msgid "spyder_museum_shopkeeper_chat"
+msgstr "Soy voluntario, para mantener el museo tan asequible como sea posible. "
+
+msgid "spyder_museum_entrance3"
+msgstr ""
+"Desafortunadamente ahora necesitamos cobrar por las entradas. Serán 100$, "
+"por favor."
+
+#, fuzzy
+msgid "spyder_museum_entrance2"
+msgstr ""
+"Por favor, explorad nuestras cinco secciones, y aseguraos de leer sobre "
+"nuestros cinco patrocinadores."
+
+msgid "spyder_museum_entrance1"
+msgstr ""
+"¡Bienvenido al museo de historia natural! Es gratis, pero depende de "
+"vuestras generosas donaciones. ¿Considerarías realizar una donación de 50$?"
+
+msgid "spyder_citypark_edith2"
+msgstr "Mmm, quizás tengas algo de razón."
+
+msgid "spyder_citypark_edith1"
+msgstr "Eh, ¿has dicho que soy como mi Tuxemon? ¡Lucharé contigo por decir eso!"
+
+msgid "spyder_citypark_bobette2"
+msgstr " Un gato habría ganado…"
+
+msgid "spyder_citypark_bobette1"
+msgstr " Me gustan los gatos. Un Aardorn es básicamente un gato, ¿verdad?"
+
+msgid "spyder_citypark_frances2"
+msgstr "Deberías venir a visitarnos en algún momento. "
+
+msgid "spyder_route2_marion2"
+msgstr "Yo no como hormigas."
+
+msgid "spyder_citypark_florist"
+msgstr "¡Disfruta de estas vistas con flores! Es el orgullo de Pueblo Cuero."
+
+msgid "spyder_citypark_granny"
+msgstr "Iremos de nuevo a Pueblo Cuero después de un pequeño descanso."
+
+msgid "spyder_route2_marion1"
+msgstr "¡Hay muchas hormigas apetitosas!... Para mi Aardorn, quería decir."
+
+msgid "spyder_route2_graf1"
+msgstr "¡Soy un as, luchando y jugando al tenis!"
+
+msgid "spyder_route2_billie2"
+msgstr ""
+"Ha sido casualidad. Mis Tuxemon eran muy caros, y eso significa que son de "
+"mucha calidad."
+
+msgid "spyder_route2_billie1"
+msgstr "¡Eh, tacaño! ¿Aún tienes tu Tuxemon robado?"
+
+msgid "spyder_cotton_tuxepediaintro3"
+msgstr ""
+"Estás tan absorto leyendo las nuevas entradas, que no te das cuenta de que "
+"la gente se marcha."
+
+msgid "spyder_cotton_tuxepediaintro2"
+msgstr ""
+"Lo único que hace falta para añadir información es capturar ese Tuxemon en "
+"particular. Es genial."
+
+msgid "spyder_cotton_tuxepediaintro"
+msgstr ""
+"¡De momento, la única información fiable sobre los Tuxemon está en la cara e "
+"incompleta Enciclopedia Tuxemon!\n"
+"Eso no está bien, la información debería estar disponible gratuitamente. Por "
+"eso estamos creando la Tuxepedia.\n"
+"Es de código abierto, gratuita, y disponible para que todo el mundo la lea, "
+"escriba y edite. ¿A que es genial?\n"
+"De hecho, la acabo de instalar como una aplicación en todos vuestros "
+"móviles. "
+
+msgid "spyder_cottonscoop_deviceexplan2"
+msgstr ""
+"Los Dispositivos de Captura te permiten capturar Tuxemon y tenerlos como "
+"sirvientes.\n"
+"Son más efectivos cuando se usan en Tuxemon de bajo nivel, o que han "
+"recibido daño. Selecciónalos durante la batalla desde tu menú de Objetos.\n"
+"Gracias por escuchar. Aquí tienes cinco Dispositivos de Captura como muestra "
+"gratuita. "
+
+msgid "spyder_cottonscoop_deviceexplan"
+msgstr "Deja que mi ayudante te explique."
+
+msgid "spyder_cottonscoop_devicenoexplan"
+msgstr ""
+"     Está bien, aquí tienes cinco como muestra gratuita. ¡Si tienes alguna "
+"pregunta sobre cómo funcionan los Dispositivos de Captura, pregunta a mi "
+"ayudante!"
+
+msgid "spyder_cottonscoop_deviceoffer"
+msgstr ""
+"Bienvenido, cliente. Hoy, estamos promocionando los Dispositivos de Captura. "
+"¿Sabes lo que son?"
+
+msgid "spyder_cottonscoop_shopassistant"
+msgstr ""
+"Los Dispositivos de Captura te permiten capturar Tuxemon y tenerlos como "
+"sirvientes.\n"
+"Son más efectivos cuando se usan en Tuxemon de bajo nivel, o que han "
+"recibido daño.\n"
+"Selecciónalos durante la batalla desde tu menú de Objetos."
+
+msgid "spyder_cottonart_shopkeeper"
+msgstr ""
+"Bienvenido a la Galería de Arte de Pueblo Algodón. Ah... ¡quiero decir, a la "
+"Tienda de Arte!\n"
+"Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
+"arte en lugar de solo mostrarlas.\n"
+"La entrada cuesta 50$. Va a los dividendos anuales de la compañía."
+
+msgid "spyder_cottonart_intro"
+msgstr ""
+"Bienvenido a la Galería de Arte de Pueblo Algodón. Ah... ¡quiero decir, a la "
+"Tienda de Arte!\n"
+"Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
+"arte en lugar de solo mostrarlas.\n"
+"La entrada es 50$. Va a los dividendos anuales de la compañía."
+
+msgid "spyder_cottoncafe_barmaid"
+msgstr "Bienvenido de nuevo. ¿Pongo a tus Tuxemon en la unidad de curación?"
+
+msgid "spyder_cottontown_stopthere"
+msgstr ""
+"¡Eh, eso no está bien! ¡Debes venir a mi charla en el café antes de irte!"

@@ -1,0 +1,28 @@
+{
+    "slug": "spyder_route4_wulf",
+    "sprite_name": "maniac",
+	"monsters": [
+        {
+            "name": "Cowpignon",
+            "level": 14, 
+			"slug": "cowpignon",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Cowpignon",
+            "level": 14, 
+			"slug": "cowpignon",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Shybulb",
+            "level": 14, 
+			"slug": "shybulb",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "alchemist.png",
+    "combat_back": "red_back.png"}

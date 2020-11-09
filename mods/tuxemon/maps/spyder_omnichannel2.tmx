@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="13">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="15">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -41,13 +41,10 @@
    eAFjYGBgqCIRA5WDQSeQJAVDtVGd2kymibE00gcLzzyg+TA2iJ6JZN8MJDmYMCwsa4ACMDaIRnZnB5IcTF8xNwNDCRCD9CEDZH3I4jA2TF8tTABKf0Dj4+L2oEmg89Gk6c4V42RgEAdiH6DNyPEwG8kl2OLBDqjHHoijgeo6kXAXkj5s8QCzIx5JHTFMmB3I5qPrK0IXwMFH9+t/HOrQhfH5FV0tMh+kjxxASB8A/qUvGA==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="3" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="224" height="32"/>
   <object id="2" type="collision-line" x="0" y="336">
    <polyline points="0,0 224,0"/>
-  </object>
-  <object id="3" type="collision" x="0" y="32">
-   <polygon points="0,0 0,304 16,304 16,240 64,240 64,208 128,208 128,176 48,176 48,208 16,208 16,96 48,96 48,144 64,144 64,96 112,96 112,144 128,144 128,16 112,16 112,64 16,64 16,0 0,0"/>
   </object>
   <object id="4" type="collision" x="208" y="32">
    <polygon points="0,0 0,64 -48,64 -48,96 0,96 0,176 -48,176 -48,208 0,208 0,304 16,304 16,0 0,0"/>
@@ -91,6 +88,11 @@
     <property name="cond1" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
-  <object id="12" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
+  <object id="14" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

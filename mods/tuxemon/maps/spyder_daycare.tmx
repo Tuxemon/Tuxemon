@@ -102,9 +102,10 @@
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="20" name="Create Granny Piper" type="event" x="48" y="96" width="16" height="16">
+  <object id="20" name="Create Granny Piper" type="event" x="80" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_grannypiper,3,6"/>
+    <property name="act2" value="npc_face spyder_grannypiper,right"/>
     <property name="cond2" value="not npc_exists spyder_grannypiper"/>
    </properties>
   </object>

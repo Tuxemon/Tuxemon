@@ -1,0 +1,14 @@
+{
+    "slug": "spyder_route4_rosamund",
+    "sprite_name": "picnicker",
+	"monsters": [
+        {
+            "name": "Foofle",
+            "level": 18, 
+			"slug": "foofle",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "picnicker.png",
+    "combat_back": "red_back.png"}

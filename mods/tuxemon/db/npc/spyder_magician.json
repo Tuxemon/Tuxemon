@@ -1,0 +1,6 @@
+{
+    "slug": "spyder_magician",
+    "sprite_name": "hacker",
+	    "combat_front": "magician.png",
+    "combat_back": "red_back.png" }
+

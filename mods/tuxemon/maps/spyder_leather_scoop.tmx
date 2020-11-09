@@ -84,14 +84,6 @@
   <object id="5" type="collision" x="160" y="128">
    <polygon points="0,0 0,32 32,32 32,0"/>
   </object>
-  <object id="8" type="collision" x="64" y="176">
-   <polygon points="0,0 16,0 16,16 0,16"/>
-  </object>
-  <object id="9" type="collision" x="0" y="128">
-   <polygon points="0,0 0,32 -16,32 -16,0"/>
-  </object>
-  <object id="10" type="collision" x="112" y="176" width="96" height="16"/>
-  <object id="11" type="collision" x="208" y="48" width="16" height="128"/>
   <object id="12" type="collision" x="0" y="160" width="64" height="16"/>
   <object id="13" type="collision" x="0" y="0" width="48" height="128"/>
   <object id="14" type="collision" x="48" y="0" width="160" height="48"/>

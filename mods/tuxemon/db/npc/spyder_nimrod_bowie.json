@@ -1,0 +1,24 @@
+{
+    "slug": "spyder_nimrod_bowie",
+    "sprite_name": "knight",
+	"monsters": [
+        {
+            "name": "Tigrock",
+            "level": 35, 
+			"slug": "tigrock",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Embazook",
+            "level": 35, 
+			"slug": "embazook",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "enforcer_boss.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

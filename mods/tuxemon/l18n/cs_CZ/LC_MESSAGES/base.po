@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 05:41+0200\n"
+"PO-Revision-Date: 2020-06-12 07:41+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/tuxemon/tuxemon/cs/"
+">\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.1-dev\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
@@ -17,7 +33,6 @@ msgstr "<<MISSING>>"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
 msgstr "Jablko"
@@ -74,9 +89,7 @@ msgstr "Chytací zařízení"
 msgid "capture_device_description"
 msgstr "Chytí tvora."
 
-
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_used_x"
 msgstr "{user} použil {name}!"
@@ -172,7 +185,7 @@ msgid "item_failure"
 msgstr "Selhalo to!"
 
 msgid "attempting_capture"
-msgstr "Pokus o chycení..."
+msgstr "Pokus o chycení…"
 
 msgid "gotcha"
 msgstr "Mám tě!"
@@ -201,9 +214,7 @@ msgstr "Bezvědomý"
 msgid "status_poison"
 msgstr "Otrava"
 
-
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "bite"
 msgstr "Kousnutí"
 
@@ -228,9 +239,7 @@ msgstr "Vichřice"
 msgid "run"
 msgstr "Utéct"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"
@@ -316,9 +325,7 @@ msgstr "Servery nebyly nalezeny..."
 msgid "multiplayer_join_prompt"
 msgstr "Hostname nebo IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart"
 msgstr "Aardart"
@@ -870,9 +877,7 @@ msgstr "Restless"
 msgid "slurpy"
 msgstr "Slurpy"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -952,9 +957,7 @@ msgstr "Team Xero Grunt IX"
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Do you want to heal your Tuxemon?"
@@ -1024,8 +1027,9 @@ msgstr "Profesor: Doufám, že se uvidíme! Jdu se vydat na cestu, takže se mo�
 msgid "karrianna_dialog1"
 msgstr "Karrianna: Trénovala jsem celý měsíc! Zatím mě nikdo neporazil!"
 
+#, fuzzy
 msgid "karrianna_dialog2"
-msgstr "No... Byl jsi první trenér, kterému jsem čelila ..."
+msgstr "No… Byl jsi první trenér, kterému jsem čelila …"
 
 msgid "xero_hideout1"
 msgstr "Institut Xero pro výzkum a vývoj v oblasti Tuxemonů."

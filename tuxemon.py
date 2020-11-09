@@ -35,11 +35,6 @@ To run an individual component (e.g. core/prepare.py):
 `python -m core.prepare`
 
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from argparse import ArgumentParser
 
 if __name__ == '__main__':

@@ -4,12 +4,6 @@ Anything that is rendered to the screen is handled here.
 Any visual representation of a game object should be handled here.
 
 """
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import os
 
 import pyscroll
@@ -142,7 +136,7 @@ class MapView(object):
         """
         self.world = world
         self.map_animations = dict()
-        self.tracked_npc = None
+        self.tracked_entity = None
         self.renderer = None
         self.sprite_layer = 0
         self.tilewidth = None
@@ -158,7 +152,7 @@ class MapView(object):
         self.in_transition = False
 
     def follow(self, entity):
-        self.tracked_npc = entity
+        self.tracked_entity = entity
 
     def draw(self, surface, rect=None):
         """ Draw the view
@@ -170,17 +164,18 @@ class MapView(object):
             rect = surface.get_rect()
 
         # TODO: make more robust to handle no tracking, and tracking other npcs
-        if self.tracked_npc is not None:
-            if self.tracked_npc.map_name != self._current_map:
+        if self.tracked_entity is not None:
+            gamemap = self.world.get_map_for_entity(self.tracked_entity)
+            if gamemap != self._current_map:
                 self.renderer = None
             if self.renderer is None:
-                map_name = self.tracked_npc.map_name
-                filename = prepare.fetch("maps", map_name)
+                gamemap = self.world.get_map_for_entity(self.tracked_entity)
+                filename = prepare.fetch("maps", gamemap.name)
                 size = rect.size if rect else prepare.SCREEN_SIZE
                 self.renderer = self.initialize_map_renderer(size, filename)
 
             # get tracked npc coords to center map
-            cx, cy = nearest(self.project(self.tracked_npc.tile_pos))
+            cx, cy = nearest(self.project(self.tracked_entity.tile_pos))
             cx += self.tilewidth // 2
             cy += self.tileheight // 2
             self.renderer.center((cx, cy))
@@ -191,7 +186,9 @@ class MapView(object):
 
         # get npc surfaces/sprites
         world_surfaces = list()
-        for npc in self.world.get_entities_on_map(self.tracked_npc.map_name):
+        gamemap = self.world.get_map_for_entity(self.tracked_entity)
+        map_name = gamemap.name
+        for npc in self.world.get_entities_on_map(map_name):
             sprite = self.sprites.get(npc.sprite_name)
             world_surfaces.extend(sprite.get_current_npc_surface(npc, self.sprite_layer))
 

@@ -32,7 +32,7 @@ from tuxemon.core import prepare
 from tuxemon.core.client import LocalPygameClient
 from tuxemon.core.npc import NPC
 from tuxemon.core.session import local_session
-from tuxemon.core.world import World
+from tuxemon.core.world import World, Position
 
 logger = logging.getLogger(__name__)
 
@@ -51,9 +51,7 @@ def main(load_slot=None):
 
     # setup game for local single player
     player = NPC(prepare.CONFIG.player_npc)
-    player.map_name = prepare.CONFIG.starting_map
-    player.set_position((5, 5))
-    world.add_entity(player)
+    world.add_entity(player, Position(5, 5, 0, prepare.CONFIG.starting_map))
 
     local_session.client = client
     local_session.world = world

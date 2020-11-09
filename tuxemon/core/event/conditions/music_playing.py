@@ -27,7 +27,7 @@ class MusicPlayingCondition(EventCondition):
     """
     name = "music_playing"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if a particular piece of music is playing or not.
 
         Valid Parameters: music_filename
@@ -48,6 +48,7 @@ class MusicPlayingCondition(EventCondition):
             ...
         }
 
+        :param event:
         :param tuxemon.core.session.Session session:
         :param Dict condition:
         :rtype: Boolean

@@ -27,19 +27,16 @@ class PlayerAtCondition(EventCondition):
     """
     name = "player_at"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if the player is at a current position on the map.
-
-        :param tuxemon.core.session.Session session:
-        :param Dict condition: :py:func:`core.map.Map.loadevents`
-        :rtype: Boolean
+        :param event:
         """
         player = session.player
 
         # Get the condition's rectangle area. If we're on a tile in that area, then this condition
         # should return True.
-        area_x = range(condition.x, condition.x + condition.width)
-        area_y = range(condition.y, condition.y + condition.height)
+        area_x = range(event.rect.left, event.rect.right)
+        area_y = range(event.rect.top, event.rect.bottom)
 
         # If the player is at the coordinates and the operator is set to true then return true
         if round(player.tile_pos[0]) in area_x and round(player.tile_pos[1]) in area_y:

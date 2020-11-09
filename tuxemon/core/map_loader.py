@@ -87,14 +87,13 @@ def parse_behav_string(behav_string):
     return behav_type, args
 
 
-def event_actions_and_conditions(rect, items):
+def event_actions_and_conditions(items):
     """ Return list of acts and conditions from a list of items
 
     :param Rect rect: Area for the event
     :param Iterator[Tuple[str, str]] items: List of [name, value] tuples
     :rtype: Tuple[List, List]
     """
-    x, y, w, h = rect
     conds = []
     acts = []
 
@@ -102,7 +101,7 @@ def event_actions_and_conditions(rect, items):
     for key, value in natsorted(items):
         if key.startswith("cond"):
             operator, cond_type, args = parse_condition_string(value)
-            condition = MapCondition(cond_type, args, w, y, w, h, operator, key)
+            condition = MapCondition(cond_type, args, operator, key)
             conds.append(condition)
         elif key.startswith("act"):
             act_type, args = parse_action_string(value)
@@ -133,11 +132,11 @@ def new_event_object(event_id, name, event_type, rect, properties):
     :param Iterable properties: Iterable of Tuple[key, value] (like Dict.items())
     :rtype: EventObject
     """
-    acts, conds = event_actions_and_conditions(rect, properties)
+    acts, conds = event_actions_and_conditions(properties)
     if event_type == "interact":
         cond = MapCondition("player_facing_tile", list(), "is", None)
         conds.append(cond)
-    return EventObject(event_id, name, rect.x, rect.y, rect.w, rect.h, conds, acts)
+    return EventObject(event_id, name, rect, conds, acts)
 
 
 class TMXMapLoader(object):

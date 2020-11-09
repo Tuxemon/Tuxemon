@@ -25,8 +25,6 @@
 #
 
 
-
-
 class EventCondition:
     """
 
@@ -36,10 +34,12 @@ class EventCondition:
     def __init__(self):
         pass
 
-    def test(self, session, condition):
+    def test(self, session, event, condition):
         """ Return True if satisfied, or False if not
 
+        :param event:
         :param tuxemon.core.session.Session session:
+        :param tuxemon.core.event.EventObject event:
         :param Dict condition:
         :rtype: bool
         """

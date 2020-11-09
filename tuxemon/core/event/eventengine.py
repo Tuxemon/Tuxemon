@@ -167,7 +167,7 @@ class EventEngine:
             if map_condition is None:
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False
-            result = map_condition.test(session, cond_data) == (
+            result = map_condition.test(session, map_event, cond_data) == (
                 cond_data.operator == "is"
             )
             logger.debug(

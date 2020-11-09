@@ -51,9 +51,10 @@ class HasItemCondition(EventCondition):
     """
     name = "has_item"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see the player is has a monster in his party
 
+        :param event:
         :type session: tuxemon.core.session.Session
         :type condition: Dictionary
 

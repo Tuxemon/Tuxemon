@@ -31,10 +31,11 @@ class PartySizeCondition(EventCondition):
     """
     name = "party_size"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Perform various checks about the player's party size. With this condition you can see if
         the player's party is less than, greater than, or equal to then number you specify.
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

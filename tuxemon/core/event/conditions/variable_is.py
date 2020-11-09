@@ -34,11 +34,12 @@ class VariableIsCondition(EventCondition):
     """
     name = "variable_is"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if a player game variable meets a given condition. This will look
         for a particular key in the player.game_variables dictionary and see if it exists.
         If it exists, it will return true if the variable is greater than the value.
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
         for the format of the dictionary.

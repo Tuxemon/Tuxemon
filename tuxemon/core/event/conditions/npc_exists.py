@@ -28,9 +28,10 @@ class NPCExistsCondition(EventCondition):
     """
     name = "npc_exists"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if a particular NPC object exists in the current list of NPCs.
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

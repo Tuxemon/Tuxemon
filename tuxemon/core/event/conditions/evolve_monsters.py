@@ -27,9 +27,10 @@ class EvolveMonstersCondition(EventCondition):
     """
     name = "evolve_monsters"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Checks to see if a monster can be evolved on the specified evolutionary path
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

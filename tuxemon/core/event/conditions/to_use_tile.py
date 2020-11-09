@@ -30,9 +30,10 @@ class ToUseTileCondition(EventCondition):
     """
     name = "to_use_tile"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
 
+        :param event:
         :param session: The session object
         :param condition: The condition details.
 
@@ -57,21 +58,18 @@ class ToUseTileCondition(EventCondition):
             ...
         }
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, condition)
-        button_pressed = ButtonPressedCondition().test(
-            session,
-            MapCondition(
-                type="button_pressed",
-                parameters=[
-                    "K_RETURN",
-                ],
-                operator="is",
-                width=0,
-                height=0,
-                x=0,
-                y=0,
-                name=""
-            )
-        )
+        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, event, condition)
+        button_pressed = ButtonPressedCondition().test(session, event, MapCondition(
+            type="button_pressed",
+            parameters=[
+                "K_RETURN",
+            ],
+            operator="is",
+            width=0,
+            height=0,
+            x=0,
+            y=0,
+            name=""
+        ))
         return player_next_to_and_facing_tile and button_pressed
 

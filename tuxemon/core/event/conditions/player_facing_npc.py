@@ -32,9 +32,10 @@ class PlayerFacingNPCCondition(EventCondition):
     """
     name = "player_facing_npc"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see the player is next to and facing a particular NPC
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

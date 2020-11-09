@@ -28,9 +28,10 @@ class NPCAtCondition(EventCondition):
     """
     name = "npc_at"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if an npc is at a current position on the map.
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

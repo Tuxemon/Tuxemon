@@ -33,10 +33,6 @@ logger = logging.getLogger(__name__)
 condition_fields = [
     "type",
     "parameters",
-    "x",
-    "y",
-    "width",
-    "height",
     "operator",
     "name"]
 
@@ -48,10 +44,7 @@ action_fields = [
 event_fields = [
     "id",
     "name",
-    "x",
-    "y",
-    "w",
-    "h",
+    "rect",
     "conds",
     "acts"]
 

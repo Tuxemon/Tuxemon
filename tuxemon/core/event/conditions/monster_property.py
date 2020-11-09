@@ -27,9 +27,10 @@ class MonsterPropertyCondition(EventCondition):
     """
     name = "monster_property"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Checks to see if a monster property or condition is as asked
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

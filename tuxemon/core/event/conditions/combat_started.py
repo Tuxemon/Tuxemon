@@ -27,9 +27,10 @@ class CombatStartedCondition(EventCondition):
     """
     name = "combat_started"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if combat has been started or not.
 
+            :param event:
             :param session: The session object
             :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
                 for the format of the dictionary.

@@ -27,9 +27,10 @@ class TrueCondition(EventCondition):
     """
     name = "true"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ This function always returns true unless the operator is set to "is_not"
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

@@ -31,9 +31,10 @@ class PlayerFacingTileCondition(EventCondition):
     """
     name = "player_facing_tile"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Checks to see the player is facing a tile position
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
@@ -61,9 +62,9 @@ class PlayerFacingTileCondition(EventCondition):
         """
 
         tiles = [
-            (condition.x + w, condition.y + h)
-            for w in range(0, condition.width)
-            for h in range(0, condition.height)
+            (event.rect.left, event.rect.bottom)
+            for w in range(0, event.rect.width)
+            for h in range(0, event.rect.height)
         ]
         tile_location = None
 

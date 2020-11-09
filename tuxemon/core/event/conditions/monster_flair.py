@@ -27,9 +27,10 @@ class MonsterFlairCondition(EventCondition):
     """
     name = "monster_flair"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Checks to see if the given monster flair matches the expected value
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

@@ -32,9 +32,10 @@ class NPCFacingTileCondition(EventCondition):
     """
     name = "npc_facing_tile"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """ Checks to see if an NPC is facing a tile position
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

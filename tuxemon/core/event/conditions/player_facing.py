@@ -27,9 +27,10 @@ class PlayerFacingCondition(EventCondition):
     """
     name = "player_facing"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Checks to see where the player is facing
 
+        :param event:
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.

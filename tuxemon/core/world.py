@@ -1,12 +1,20 @@
 import logging
 from collections import defaultdict
 
-from tuxemon.compat import Rect
+from core.map import TuxemonMap
 from tuxemon.core import prepare
 from tuxemon.core.euclid import Vector3, Point2
 from tuxemon.core.map_loader import TMXMapLoader
 
 logger = logging.getLogger(__name__)
+
+
+class Position:
+    def __init__(self, x, y, z, map_name):
+        self.x = x
+        self.y = y
+        self.z = z
+        self.map_name = map_name
 
 
 def proj(point):
@@ -37,22 +45,18 @@ class World(object):
         self.maps = dict()
         self.time = 0.0
 
-    def teleport(self, npc, map_name, position):
+    def teleport(self, npc, position):
         """ Used to instantly move NPC to a new position or map
 
         Do not abuse this for small movements.
 
         :param tuxemon.core.npc.NPC npc:
-        :param str map_name:
-        :param Vector3 position: position where to teleport
+        :param tuxemon.core.world.Position position:
         :return:
         """
         npc.abort_movement()
-        npc.map_name = map_name
-        npc.map = self.get_map(map_name)
-        npc.set_position(position)
         self.remove_entity(npc.slug)
-        self.add_entity(npc)
+        self.add_entity(npc, position)
 
     def process_platform_event(self, platform_event):
         """ Handle platform events such as key presses
@@ -75,16 +79,17 @@ class World(object):
         for map_object in list(self.maps.values()):
             map_object.update(time_delta)
 
-    def add_entity(self, entity):
+    def add_entity(self, entity, position):
         """
 
         :type entity: core.entity.Entity
+        :type position: core.world.Position
         :return:
         """
-        if entity.map_name not in self.maps:
-            entity.map = self.get_map(entity.map_name)
+        if position.map_name not in self.maps:
+            entity.map = self.get_map(position.map_name)
         self.entities_by_slug[entity.slug] = entity
-        self.entities_by_map[entity.map_name].add(entity)
+        self.entities_by_map[position.map_name].add(entity)
 
     def remove_entity(self, slug):
         """ Remove an entity by its slug
@@ -129,6 +134,12 @@ class World(object):
         :rtype: Iterator[Entity]
         """
         return self.entities_by_map[map_name]
+
+    def get_map_for_entity(self, entity) -> TuxemonMap:
+        for name, gamemap in self.entities_by_map.items():
+            if entity in gamemap:
+                return self.maps[name]
+        raise RuntimeError
 
     def move_entities(self, time_delta):
         """ Move NPCs and Players around according to their state

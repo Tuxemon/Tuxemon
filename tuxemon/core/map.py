@@ -295,7 +295,6 @@ class TuxemonMap:
         self.interacts = interacts
         self.collision_map = collision_map
         self.collision_lines_map = collisions_lines_map
-        self.npcs = dict()
         self.size = data.width, data.height
         self.inits = inits
         self.events = events
@@ -310,6 +309,7 @@ class TuxemonMap:
         # TODO: remove this invalid_xxx hack
         self.invalid_x = (-1, self.size[0])
         self.invalid_y = (-1, self.size[1])
+        self.name = filename
 
     def update(self, dt):
         self.event_engine.update(dt)

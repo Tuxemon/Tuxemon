@@ -49,10 +49,11 @@ class PlayerMovedCondition(EventCondition):
     """
     name = "player_moved"
 
-    def test(self, session,  condition):
+    def test(self, session, event, condition):
         """Checks to see the player has just moved into this tile. Using this condition will
         prevent a condition like "player_at" from constantly being true every single frame.
 
+        :param event:
         :type session: tuxemon.core.session.Session
         :type condition: tuxemon.core.event.MapCondition
 

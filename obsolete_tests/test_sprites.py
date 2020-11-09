@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import glob
 import json
 from os.path import dirname, join, normpath

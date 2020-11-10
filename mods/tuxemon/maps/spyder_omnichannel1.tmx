@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="24">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="30">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -31,6 +31,18 @@
  <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
+ <tileset firstgid="4301" name="Office_interiors_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="4829" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="5357" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="7949" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
    eAHzYWBg8CER+wHVR5OBY6F69rExMCBjkP3IfHQ2Ln0gN6CrRebj0kdL+2ZhcRMt7UMOgw9QuymxDxavsHCcgeSfmUA2sn0wNdjoDqDaTqheXPGATR+y2FDShy3ekf2CjT2U/EdsvCP7kxL/AQCq2cFM
@@ -41,7 +53,12 @@
    eAFjYGBgqELDeWh8dHmgNBh0AklkXIPGR5YDsXEBkD5ywGDVBwsvP6iniHUnLLxiSdRXzM3AUALEH8jU1wPV9w9Ig9w+G8oHUTOAGOYfJGEUZgeQB3J7F5IoTAxfvCMppwlTjJOBQRyI/YGmw/yATsPiCNkBdkA99kAMiodOHBgWR8j6YGZXIwuisXPQ+CAuzA7k8ENXhk0fuhoQvwhJEBR3+NyCpJShEYkDijt8bkFSiqIPWZwQG9k+bGoBw/ssnw==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="3" name="Collision" visible="0">
+ <layer id="5" name="Tile Layer 3" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAFjYMAO7okyMNwHYlLBO6Ce91j0LRMh1SSI+j1k6rtEQF8C0I0FSO4MQGLjc2kuUF0DEOdBcT6R+vCZOSo3tEJgsKXloRV6xLkWAH9VDM8=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collision">
   <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="2" type="collision" x="16" y="0" width="208" height="16"/>
   <object id="4" type="collision" x="208" y="16" width="16" height="320"/>
@@ -59,23 +76,26 @@
   <object id="20" type="collision-line" x="0" y="336">
    <polyline points="0,0 224,0 0,0"/>
   </object>
+  <object id="26" type="collision" x="96" y="80" width="80" height="16"/>
+  <object id="27" type="collision" x="96" y="64" width="16" height="16"/>
+  <object id="28" type="collision" x="160" y="64" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
-  <object id="18" name="Teleport to Omnichannel 2" type="event" x="16" y="144" width="16" height="16">
+  <object id="18" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel2.tmx,1,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,12,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="19" name="Teleport to Omnichannel 2" type="event" x="32" y="144" width="16" height="16">
+  <object id="19" name="Teleport to Omnichannel 3" type="event" x="32" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel2.tmx,2,12,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,2,12,0.3"/>
     <property name="act2" value="player_face up"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="21" name="Teleport to Omnichannel 1" type="event" x="16" y="208" width="32" height="16">
+  <object id="21" name="Teleport to Cotton Town" type="event" x="16" y="208" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,17,10,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -88,6 +108,28 @@
     <property name="cond1" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
-  <object id="23" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
+  <object id="24" name="Create William" type="event" x="144" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_william,9,4"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_william"/>
+    <property name="cond2" value="not variable_set omnichannelwilliam:yes"/>
+   </properties>
+  </object>
+  <object id="25" name="Talk William" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_william1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_william"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_william2"/>
+    <property name="act6" value="set_variable omnichannelwilliam:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_william"/>
+    <property name="cond1" value="not variable_set omnichannelwilliam:yes"/>
+   </properties>
+  </object>
+  <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

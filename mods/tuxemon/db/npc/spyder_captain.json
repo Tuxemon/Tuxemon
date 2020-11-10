@@ -1,0 +1,6 @@
+{
+    "slug": "spyder_captain",
+    "sprite_name": "captain",
+	    "combat_front": "enforcer_rookie.png",
+    "combat_back": "red_back.png" }
+

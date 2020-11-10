@@ -1,6 +1,6 @@
 {
     "slug": "enduros",
-    "category": "",
+    "category": "defensive",
     "ai": "RandomAI",
     "moveset": [
         {
@@ -16,7 +16,7 @@
             "technique": "rock"
         }
     ],
-    "shape": "",
+    "shape": "Brute",
     "types": [
         "Earth"
     ],

@@ -15,7 +15,6 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *python-six* - python 2 and 3 compatibility library
 * *python-pyscroll* - fast module for animated scrolling maps.
 * *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
 
@@ -52,7 +51,7 @@ Check the release page https://github.com/Tuxemon/Tuxemon/releases for binaries.
 **Ubuntu**
 
 ```sh
-sudo apt install python python-pygame python-pip python-imaging python-six git
+sudo apt install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt

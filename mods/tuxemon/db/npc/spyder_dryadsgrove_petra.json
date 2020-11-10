@@ -1,0 +1,31 @@
+{
+    "slug": "spyder_dryadsgrove_petra",
+    "sprite_name": "woodnymph",
+	"monsters": [
+        		{
+            "name": "Vivitron",
+            "level": 50, 
+			"slug": "vivitron",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Sumchon",
+            "level": 50, 
+			"slug": "sumchon",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Exapode",
+            "level": 50, 
+			"slug": "exapode",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	"combat_front": "earthnymph.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

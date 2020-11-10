@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -38,12 +38,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="22">
   <data encoding="base64" compression="zlib">
-   eAG9lE1Ow1AQgx93AnaFHe0JELBHvQJLJFC75+8ACC7SG3Aj7BaL0ccjQUQw0mRqj8dN5yU9ba3dIq+A0ydPHF3qhXwulffIFXD65ImjS7W3k+G5XpjfVx4oD5Xf6dTaxm/8Z5o8Uh4rf+L/Ip339apM1LlnkdnnW2vXJ8Jz5UJZdYJfIvfvfT2Ubp27E599Vt5yYnPLPV93Ef/g1N6ce+SJrZn9sb+/I8H7z64fJcjO67msM/hRN0XX09O/7jo7r+fyBP8xPf0xPhn+h/8Ndjj0n3KGX3SO2ZxBqt8X7tDPXHbPyudxSOtZ6n17Pc68gz3inerz2uv3uEywRxxdaq8fLudSd57e0Hx6rtRXLueyLAPUExfp9mOvT6768/0lnurP95d4qj/nxzB3YT25up8xP/bt9Q48/21S
+   eAG9lEFOglEMhJ93EnbIDjiBQfeGK7g0gcBewQMYvYg3cOtpmCpf0owViP7QpDQzbYefef/jurW2sLw3TN95x8xRb6Vzp3yyXBqm77xj5qihHekRe1UEf6nsKfvK3+bU+oq/6A+0eaUcKo/Rf9Vc+PWmJPLei0j8/GjtYSQ8Vk6UeU7wR/D84dc6dfPeo3j8zHyMOw5udhGf34E+mFrtRc95xzEzOLF+fAfhz4/XGw3geT6XFYu7+p7mqnnXz17jeT6XZ9M/NO/6tv5veA79uXm47z9lar/oxnY5A2rcF/cw3jm89/pp+oF9JuPq/a04ZCt9elWttCqO3S71OZfseZf6nMuMh1ftUh/ZrO/31zE71Mpr57K+31/H6FJdK3jnsj57x1bXOoX+Fi/XcJo=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="24" height="22">
   <data encoding="base64" compression="zlib">
-   eAFjYCANJDCSph6m2hKPPmS5DVjUIcuDzEPnw+wA0WK8yLyRw7YBhhsI22MJP0pD4RgPA0MK0FwQBtnRSYQd3WhqQGYQA2zR9MH0HAfqp0bc4jIfm/tgaR1kNy0AtrQOs+c9jeyEmT/Q9LsB9h++MmQzWhpEV4vOJyYsccWnHdAuGAblLVg6BIlRE4DMw5X2sdmzCJsgATFQ+TBYQDE3A0MJENMK4DIfX7qmRdmM7D8HGod/OtB89HQMAFaAF3s=
+   eAG1lMsNwjAMhtMzcOUCiyDxGoUDEgPAAj0itmACJHaAXTjACvgX/YUVOW3zqCWT2rE/J62xc3Gyq/rHz1XsQj37BL13M+L0PnJp1z5I7OnEcCa6LH4iykwryV/Ke4NuRCml+I+xc3vhQlHjLAqpf4v5e2liuAlGH1mpPM1/Sn6JbxviW+djr6N2iujzW/lWrzPu06NmF5+s1HVI/lvuF8vX8wR3mlWpN/vPEE3gee4NlzbnDWN9m/62Fd+TPMbBXkstKv5b7EP4YgU8LS9lgKd7X22Zj1fD28ZHOOZDjnTxY9jHkXMn0aEkxEdfh0TP5lBMjn+b+f67ah+E78+lL/t2I6E=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="24" height="22">
@@ -115,6 +115,25 @@
     <property name="cond1" value="not music_playing melody_eternal.ogg"/>
    </properties>
   </object>
-  <object id="39" name="Player Spawn" type="event" x="96" y="336" width="16" height="16"/>
+  <object id="40" name="Create Captain" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_captain,3,2"/>
+    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="cond2" value="not variable_set captainreturns:yes"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Captain" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_captain1"/>
+    <property name="act2" value="set_variable foundcaptain:yes"/>
+    <property name="behav1" value="talk spyder_captain"/>
+   </properties>
+  </object>
+  <object id="42" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

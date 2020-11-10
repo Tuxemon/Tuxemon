@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="280">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="303">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -34,25 +34,25 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlltKA0EQRTuCJhF0C4r+asBt6DZcSLYj+KuuwzWIr/jl+/HlveCFoqiZnlce4AxcqrumuvqkZirTKcXX1VaaXkIXUByxXO8ruO6h5w75drbTtI7KKkC+hwXyicXyyxdZ8j1C79BNSzH/bs3akTPiko98L9AYcSNoCG1A6xD9T9AM4m9gnfku0P8DfUNf0Cf0AekdsbXRWPvJyp/jWwPHoIZuwUG+O8ivS8jD/e2e4rBcivH3FNPGst62VlGuiE8skY1yNPWRj89TzzLKEzF4n9bRv/dXd/naWPLxnSvji/J7Ps2j2CY+9fYb2NgX7Pc6ecRDy3V2Ll+dfIplvWw/R33LfsnV0/PYufZqYn1/F/WverdoD8vjx0VrmvjFm+PxuT2TnfvYLuezhP9uKJfT8mjMNRzn1ra5vznAtwfK5RCTtVwzb74cl+5bLj9WzDKtZ7LzZXJpb8vjx4pZFTsxPWHHnu+0wnvt11SdV+3rqvmaxl0P496t2tdN9+3XdVeB/THOaFB3GbvNdAK24xXm6/bX/t9sk1GaHkIHUK4KRxVicjn6+/UrgLNkwrdnZS+cJRO+Pf01xwqcFXzzy7Zc5Hml6ExyXsLdn1fKnl5/r69Auwr8AiST9bU=
+   eAHtmEtOw0AMhqe82iLBFUCwYQGVuAYsuuIGHKOLitsgdQucgzMgXmXF+7Xht9RfWJaTyYsmEon0yzOOx/PFjcmIEPzrYi2Mz6EzyI+o1/sMrlvosUK+jfUwzqO0CgjfXUa+4WJapt97aWyM0jH0eVb47qFX6CqiEfjSYiT/Zs7aCafHRZ/wPUF9xPWgLrQCLUPif4CmkDyD1FneBfF/QZ/QB/QOvUF8R3RtOOZ+tPTH+BbA0cmha3AI3w1k1wXkkf31nuTQXIyx9xhTxkq9da28XB4fWTzr5SjqEz75Pflbenk8BuvjOvFvzepOXxkrfPLOpfF5+S0f515sER/79gVs0hfS73nykEesrNNz+vLkY6zUS/ez17fSL7F6Wh49515FrO3vpP5l7ybtoXnsOGlNET95Yzw2t2XScxtb5Xwa8LcbiuXUPBzLGhnH1pa5v9rBtweK5SCTtrLmr/liXLyvueyYMXVay6TndXJxb81jx4xpih2ontBjy3ec4b22a7LOs/Z11nxF4y67fu9m7eui+7brqqvAdh9nNKi6jNVmOgTbQYP5qn3aZmUbLs2PZ9AL4z1oF4rtuj+LGc2RL8b0H+7jLBnw7WnshbNkwLen1PWd8f9EpTYpsXin5nf+NOGbz0c6cvjmeV5JOpNMZtwnDl97XuGv19q2AtVX4Af7+vfy
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtltkKwjAQRQcV/RX9y+BHuC+vir/l9uq+vXiDDAzURKhoa72Fw2Q6STs5hRIRXjRAA/9kYFwRNwJDMAB9YPffQ94FHdAGLWDrHNMADTwMHMviDmAPdmALNoB+aIAG8m1gXRK3AkuwAHMQ67hZi9dja4tWm6ZwMTNrJmactRv7XX1fNs+6N/9+6+1Znoce2UPSwA3ngCu4gDM4AT+LZ4akK96hARoQCZ1JQv8SdRZap/VfjY2quDrQGNtHmjNJ7HlFqKk3jUXY07f3QHfvGVd/GvVpr3Kd98l4B+QeWGQ=
+   eAHtlkkKAjEQRQsVvYreMngI52GreC2nrfOw8jdaUoRQQi+StrsaHkklRn+eIkVkjxkwA1UyMG+Qm4EpmIAxkPcfoR6CAeiDHpD7NjcDZuBt4FondwFncAJHcADmxwyYgWIb2NfI7cAWbMAaaIm7LX1fO1u2vWUOFytxZiHmqd3I7zXLJevU2bLPl95CdREyWoawgSd6gQe4g9unL7CeIezKVs1A1Q1oPUnov4R9aef4Nf84dprk2oBH7Q55ehLt/cqwx954LMOdYt+B3eF3SJh/H17nBb/m9dijn8OvU+Xxc/yqY+R8AfM2Wzk=
   </data>
  </layer>
  <layer id="7" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0MsNgCAUBdG3Fj/F+GuPXhVtwymB1UtMhmR2kEtOhEcBBRTIEXiHqA81uuminOW+laVEnWmikQr1vcy5dfKfg3baaKWcZVcUUEABBRRQQAEFFFBAAQUUUEABBRT4n8AHpDoN5A==
+   eAHt1MkJgDAURdEPbsQ4VKAW4dReenUqwa2vhCxCAuEKd6c+PYJmHAgggEAagbcx/6hbXepUaZbDVgZnvledapVTYVemOevQ8+xqU6taVJplVhBAILbAXJuf1Khi35v7IYAAAgjkEfiqPLusIoBAWQL8S8r6nrwNAgjkF/gBY5cRyg==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="188" type="collision" x="192" y="0" width="80" height="64"/>
   <object id="189" type="collision" x="288" y="0" width="96" height="64"/>
   <object id="190" type="collision" x="400" y="0" width="32" height="64"/>
@@ -68,7 +68,6 @@
   <object id="202" type="collision" x="192" y="512" width="80" height="48"/>
   <object id="203" type="collision" x="176" y="544" width="16" height="16"/>
   <object id="204" type="collision" x="368" y="400" width="80" height="48"/>
-  <object id="205" type="collision" x="464" y="400" width="96" height="48"/>
   <object id="206" type="collision" x="448" y="432" width="16" height="16"/>
   <object id="207" type="collision" x="272" y="432" width="48" height="16"/>
   <object id="208" type="collision" x="240" y="368" width="32" height="32"/>
@@ -85,7 +84,7 @@
   <object id="219" type="collision" x="208" y="112" width="32" height="48"/>
   <object id="220" type="collision" x="240" y="112" width="16" height="32"/>
   <object id="221" type="collision" x="256" y="112" width="32" height="48"/>
-  <object id="222" type="collision" x="272" y="0" width="16" height="48"/>
+  <object id="222" type="collision" x="272" y="0" width="16" height="64"/>
   <object id="224" type="collision" x="64" y="144" width="80" height="48"/>
   <object id="225" type="collision" x="0" y="96" width="32" height="512"/>
   <object id="226" type="collision" x="16" y="608" width="64" height="32"/>
@@ -129,6 +128,14 @@
   </object>
   <object id="266" type="collision" x="144" y="384" width="16" height="16"/>
   <object id="267" type="collision" x="288" y="176" width="16" height="16"/>
+  <object id="280" type="collision" x="80" y="16" width="16" height="16"/>
+  <object id="284" type="collision" x="464" y="400" width="16" height="48"/>
+  <object id="285" type="collision" x="480" y="400" width="80" height="32"/>
+  <object id="286" type="collision" x="496" y="432" width="64" height="16"/>
+  <object id="297" type="collision" x="384" y="0" width="16" height="64"/>
+  <object id="299" type="collision" x="32" y="480" width="32" height="32"/>
+  <object id="300" type="collision" x="32" y="544" width="32" height="64"/>
+  <object id="302" type="collision" x="128" y="256" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="175" name="Teleport to City Park" type="event" x="624" y="512" width="16" height="16">
@@ -285,17 +292,119 @@
     <property name="cond6" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="278" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_town_theme"/>
-    <property name="cond1" value="not music_playing music_town_theme"/>
-   </properties>
-  </object>
   <object id="279" name="Sign: Shaft 2" type="event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_shaft2_sign"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="282" name="Teleport to Leather House 1" type="event" x="304" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_house1.tmx,4,7,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="283" name="Teleport to Leather House 2" type="event" x="480" y="432" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_house2.tmx,2,7,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="287" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="288" name="Create Captain" type="event" x="240" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_captain,15,19"/>
+    <property name="act2" value="npc_face spyder_captain,right"/>
+    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="cond2" value="is variable_set captainreturns:yes"/>
+   </properties>
+  </object>
+  <object id="289" name="Talk Captain - Flower" type="event" x="240" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_river_captain2"/>
+    <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
+    <property name="behav1" value="talk spyder_captain"/>
+    <property name="cond1" value="not variable_set seentimber:yes"/>
+   </properties>
+  </object>
+  <object id="290" name="Destination - Flower" type="event" x="224" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act4" value="player_face up"/>
+    <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
+    <property name="cond1" value="is variable_set rivergoto:flower"/>
+   </properties>
+  </object>
+  <object id="291" name="Destination - Leather" type="event" x="208" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
+    <property name="act4" value="player_face right"/>
+    <property name="cond1" value="is variable_set rivergoto:leather"/>
+   </properties>
+  </object>
+  <object id="292" name="Destination - Paper" type="event" x="192" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
+    <property name="act4" value="player_face up"/>
+    <property name="cond1" value="is variable_set rivergoto:paper"/>
+   </properties>
+  </object>
+  <object id="293" name="Talk Captain - Timber" type="event" x="256" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_river_captain2"/>
+    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber,rivergoto"/>
+    <property name="behav1" value="talk spyder_captain"/>
+    <property name="cond1" value="not variable_set seencandy:yes"/>
+    <property name="cond2" value="is variable_set seentimber:yes"/>
+   </properties>
+  </object>
+  <object id="294" name="Destination - Timber" type="event" x="176" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act4" value="player_face up"/>
+    <property name="cond1" value="is variable_set rivergoto:timber"/>
+   </properties>
+  </object>
+  <object id="295" name="Destination - Candy" type="event" x="160" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
+    <property name="act4" value="player_face down"/>
+    <property name="cond1" value="is variable_set rivergoto:candy"/>
+   </properties>
+  </object>
+  <object id="296" name="Talk Captain - Candy" type="event" x="272" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_river_captain2"/>
+    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber:candy,rivergoto"/>
+    <property name="behav1" value="talk spyder_captain"/>
+    <property name="cond1" value="is variable_set seencandy:yes"/>
+   </properties>
+  </object>
+  <object id="298" name="Teleport to Leather Centre" type="event" x="368" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_center.tmx,7,12,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="301" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="not variable_set environment:grass"/>
    </properties>
   </object>
  </objectgroup>

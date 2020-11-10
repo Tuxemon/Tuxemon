@@ -1,0 +1,24 @@
+{
+    "slug": "spyder_omnichannel_strauss",
+    "sprite_name": "warrior",
+	"monsters": [
+        		{
+            "name": "Budaye",
+            "level": 36, 
+			"slug": "budaye",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Frondly",
+            "level": 40, 
+			"slug": "frondly",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	"combat_front": "warrior.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

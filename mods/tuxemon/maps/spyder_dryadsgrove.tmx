@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="147">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="220">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -18,22 +18,22 @@
  <tileset firstgid="3043" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
   <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
  </tileset>
- <tileset firstgid="3403" name="Fancy_House" tilewidth="16" tileheight="16" tilecount="20" columns="5">
-  <image source="../gfx/tilesets/Fancy_House.png" width="80" height="72"/>
+ <tileset firstgid="3403" name="Fancy_House" tilewidth="16" tileheight="16" tilecount="55" columns="11">
+  <image source="../gfx/tilesets/Fancy_House.png" width="176" height="80"/>
  </tileset>
- <tileset firstgid="3423" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
+ <tileset firstgid="3458" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="5023" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
+ <tileset firstgid="5058" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
   <image source="../gfx/tilesets/Truck-red-all.png" width="96" height="96"/>
  </tileset>
- <tileset firstgid="5059" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="5094" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <tileset firstgid="5215" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
+ <tileset firstgid="5250" name="Interiors 2 by Redshrike" tilewidth="16" tileheight="16" tilecount="28" columns="7">
   <image source="../gfx/tilesets/Interiors 2 by Redshrike.PNG" width="112" height="64"/>
  </tileset>
- <tileset firstgid="5243" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
+ <tileset firstgid="5278" name="setPiecesTSR" tilewidth="16" tileheight="16" tilecount="1312" columns="41">
   <image source="../gfx/tilesets/setPiecesTSR.png" width="671" height="512"/>
   <tile id="839">
    <animation>
@@ -52,24 +52,30 @@
    </animation>
   </tile>
  </tileset>
+ <tileset firstgid="6590" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
+ <tileset firstgid="6694" name="volcoli" tilewidth="16" tileheight="16" tilecount="4" columns="2">
+  <image source="../gfx/tilesets/volcoli.png" width="32" height="32"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmOFNwzAUhM0AwJANMAgFBiH9CazQBdpOAqzAXZSrLk9J44QGLMSPkx3Ffu/z+dmp+pJSeoVe8tvtW0pbzNlizrf7D4ixbnXfE3MCl9bxbSZfW4l8G/hUt7ptvaOH5/CPa3fN2Wv3THu7FN/1RdpemS7RH6vLJfmY2/WJ5w/TO/piHmJ1vieMr1qt0Ma14Vl1n9t2+A6IuTft0BczWWM+1oPzseZYL1qT7wX7kQ9rSFjPSdWI16fnNtccPs3xvWA/8mE9aX1ax/sK4zp9eaFcU/w7IJbvg/oz+MTfYSPrEN8G79zveKe84v0bxBY8nf4YH2IlxO6oQgzpEf11qyE+rzeNVas5c/kQO/ka4vo8t3LF/fUx4lLLOTGms7a5G2/pL8Zr/5qWfAO+N3E9t/gOiLOHdhDn+hi/Tyq8W0E5fBjXnFmvDa5ROWMMPlOe+w7PdY88puKR2+WeeR85Gn8wT74d64l8MecNxokt8nH8mCKf7j3e5eRlzB6+1PKNxodfZ+X7BM8H9A7l8nmN+PmkN5EPfh7PcpXRXwWOqXxkUwyuh/mdkfvj++t7Mad/QLw9tINy/GO9cZwLnh33XXx9sebwjcWBFwljOvVHhiE+7e9Y3HOxnuLbgLOG/H4gH9eD/Dwni/eVA54l3Q30j2zOpXcl8LEGI5vONLgX98z3p88/eeUtPWVNYTxr81f3V1zyrALTqkA+eRbPain+/fON17HOxzNq3r9jrMGC/OOZ7PyWK5GPHtYm3nXxO/VL90vjH8+liywl8KkGc7+pP32/lMyHb8PJ/zKG3t9g3tR1cbzPydkHnFP+bpks/o7xXDn9yzCnND6uwdexJB/u8ll18VN8c2qCc/4a3xeyOBAM
+   eAHtluFR6zAQhEUBPIq0eRRCHhSC8xNoIQ0kqQRo4e16vJn1jR3LIgYPw48dyxPp7rvVSc5zSukFes5/7l5T2mHNDms+Pf6HGJtO9wMxZ3Cpjk8zeW1r5NvCp6bT3847engJ/1i7q2Sv3TPt7VJ8N1dp98d0jfFUXy7Jx9yuD7y/m94wFvMYq/M9Yn7dqcIz1oZ39X3us8d3RMyDaY+xmMka87EfnI89x35RTb4XHEc+1JBQz1k1iDekpy5XCZ/W+F5wHPlQT9qc1+m+wrzeWF4o1xz/jojl+6BxAZ/4e2xkHePb4jf3O94pL/j9FeITPL3xFB9iJcTuqUYM6QHjTacxPu83zdVTa0r5EDt5DbE+z61ccX99jrj05JoY01m73K239BfztX/tk3wjvrdxPbf4johzgPYQ1/ocv09q/FZBOXyY155Z7w3WqJwxBt8pz32H92ZAHlPxyO1yz3yMHK0/WCffTv1EvpjzFvPEFvk4f0qRT/ce73LyMuYAX+r4JuPDr4vyfYDnHXqDcvm8R/x80pvIBz9PZ7nOGFeBYy4f2RSD9TC/M3J/fH99L0rGR8Q7QHsoxz/2G+e54Nlp38U3FKuEbyoOvEiY0+s/MozxaX+n4l6K9RzfFpwN5PcD+VgP8vOcLD5WDniWdDfQP7I5l35bAx97MLLpTIN7cc98f4b8k1f+pKfsKcxnb37r/opLntVgqlbIJ8/iWV2Lf798032s8/GEnvfvGHtwRf7xTPb+y62Rjx42Jt518Tv1TfdL6x/PpYssa+BTD+Z+U7/6flkzX4U9xfdhtm6xZm5dnO9rcvYB3zD+b5kt/o/xXDnj67Amh6+EjWtK+FiD17EkH+7y2T3BPvoqvlLffxrff7fYEA4=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmF1O21AQha32tYRXNlH1rd0MLVvxFhCLgFZquxXYQ9kHc5A/6zCae+M4CUEqlq7m556Z+3nAVpJhOO1182EYf3wcRlFchy/r193FMN7GOpWFBcbM8RBs97FOZcV3Nc1PfuaA91fsxRql8Us5z7ufdYp9H1/Wfa9r+XDBO/V4IadvZRFyLrEs+ipX6bNOMVxwtuoir/PmK+tyLCE52cqfm3UcuOD0Xq0yNJyJjpj9Xh4tGmyuhQvO2J/vm5rXsi1mnQ9n5nc2nn3Ptfxenx4HdVnD/Frnkb+0dwC5yub+fi5+rst5xXAxv1yzLY4ez8+N7GO89/8V736ds60P+9K6Hi440VVWDNMa2bfccBaz/VTM18+jrrLoZFlwwVnVkaNmsqSfmedgcqTxXI6rvUoDF5xel/2oF4vu7SAXPFPPeWbeHC44fa/n93r26vz5ynxexx5ccLqm52e++OwzRI/u1Xo/0asqhgvOSlPl6ImNzz56h/L3H70GDZY9Yix5t3DB6Xvyf8b/m1bOK/a+1fzYx9JDMfXkqlg5uOB0vXO57xp85kfsNnh0L6suuOD0Js7kPho/l/lh0bh1ved7PlxwZq24KjbpOE+W+WFzn7UxXHDu0sf5qGN+WPJrLVxw7tIHPq9hfljfW+PDBeeaHlUN86PvvhbO6qw1OeZH330t97eGpap5n181leW59/ktn1Wl/F/nx3P81uy+76dj17+1eWWeY9//vv2rZ3BJLt/n0vgsmm+2rPMlAFs0a+fyOfr+jvUn1t+G/yXyp7oOzafvrf77in4rPo+1KX7PWHLPh+bTmfy+8n1i+hb2a6zW99oe5658T0cNkWI=
+   eAHtmE1u1EAQhS3YkmQbOAA/C5QdnIIb8HMVXwFxCpCAe8AyVyAnIAdIvZE/8yhV94w9EyYSaan1qqurqj+XY2viYTju+PRgGN8/HEZRfAxb6uPn+TD+iHkshQXGzHEdbL9jHkvF92Hqn+zMAe+X2Is5KsaHfO53O8dp7fvYUrc9r2XDBe9U469w6lZKIOeylhJf+ar4HKc1XHBONT10Y4df580j189rBeKTVvZcrGPABafXaqURw5nEsWa/5yeWGDTnwgVn7M/XTc6/0hazzocz8zsbz777WnavTo+DvBxD/1rn4X9r7wB8leb6fi52zst+reGifzln2zpqbJ4b6VW8938V736ds60O+4r1eLjgJK5SMUxzZN98w0n09lHRXz+PvEqJkzLhgrPKw0fOpLg3zPNiMhTjvryu9qoYuOD0vGxHvlh0bQcZ8Ew15555cbjg9L2e3avZy/PnK/N5HntwwekxPTvzxW+fIWp0R+v9RK0qGS44q5jKR000fvvoHcr9Hz2HGJQ91ih+V7jg9D3Zn+PvTTP7tfa6Vf/YR6mhNfn4qrV8cMHp8eJ6+mQYnsVsMRJP/1i7Bo+uZdWAC04vIqbnwfaiwefn0j/U62B7PL5tChecOV6Mrd5xnpT+obnO2jVccC6p43zk0T8U/1qFC84ldeDzHPqH+t4aGy4419SocugfdfdVOKuz1vjoH3X3Va5vDUuVc9+/qiu7++77t3uvqsj/tX88x3dFuTf7vp9uK/8kAE9j3pV+ZY6XUwNv6/r3rQsf93mp5uvddc19071rzbPYexPz8vFSqj/xa/ujvnyN+S3m94Z9Ef5jjUPz6f9W/76ib8VnMU+L7xm7XPOh+XQm31feTUyvQ1/FbP1f2+NcyncD2OfSUA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt07EJACAMBMAfw2l1NUfTEQIBsbjAd/nmQhJDgAABAgTqAmtkz5t6wyYBAr8I+N/eJfjx6wloEyBAgAABAgQIECDwWuAA2+AKtQ==
+   eAHt07EJACAMBMAfw/V1EkfTEQIBsbjAd/nmQhJDgAABAgTqAmtkz5t6wyYBAr8I+N/eJfjx6wloEyBAgAABAgQIECDwWuAAS28LzQ==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlkEKwzAMBPOMvrbp09seFsKCCVgjvAEHgpAdjUfyJefr+Lx/77koHva4h23HpfJNE0v18jmleqZ6PWV+7pmap95zqpffY6pnqteen0+gllfvuVo/sr9y//9Xo+9Wr189Z1yq9aMzu7ij82bXq56qV5z18Dqa53wqpzzFUaz6UZyqx1097SkeFe/8V++rT8pDPCpSXl0c9UnxxaMi5dXFUZ8UXzwqUl5dHKrPLk5X3xS3q2+KS/WZxpmdT1of22dP4MkT+AL13yS0
+   eAHtlkEKwzAMBPOMPrdfaV7a9rAQFkzAGuENOBCE7Gg8ki85X8f783vPRfGwxz1sOy6Vb5pYqpfPKdUz1esp83PP1Dz1nlO9/B5TPVO99vx8ArW8es/V+pH9lfv/vxp9t3r96jnjUq0fndnFHZ03u171VL3irIfX0TznUznlKY5i1Y/iVD3u6mlP8ah45796X31SHuJRkfLq4qhPii8eFSmvLo76pPjiUZHy6uJQfdKcrn5pLt03xaP7TOPNzimtj+2zJ/DkCXwBBLBElQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -97,9 +103,10 @@
   <object id="143" type="collision" x="288" y="336" width="64" height="32"/>
   <object id="145" type="collision" x="256" y="240" width="32" height="64"/>
   <object id="146" type="collision" x="32" y="496" width="608" height="64"/>
+  <object id="210" type="collision" x="96" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="114" name="Play Music" type="event" x="240" y="0" width="16" height="16">
+  <object id="114" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="play_music JRPG_mysticIsle.ogg"/>
     <property name="cond1" value="not music_playing JRPG_mysticIsle.ogg"/>
@@ -121,6 +128,580 @@
     <property name="cond2" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="117" name="Player Spawn" type="event" x="608" y="208" width="16" height="16" rotation="-180"/>
+  <object id="147" name="encounter 3" type="event" x="320" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="148" name="encounter 3" type="event" x="320" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="149" name="encounter 3" type="event" x="384" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="150" name="encounter 3" type="event" x="432" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="151" name="encounter 3" type="event" x="432" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="152" name="encounter 3" type="event" x="448" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="153" name="encounter 3" type="event" x="368" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="154" name="encounter 3" type="event" x="272" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="155" name="encounter 3" type="event" x="288" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="156" name="encounter 3" type="event" x="320" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="157" name="encounter 3" type="event" x="368" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="158" name="encounter 3" type="event" x="192" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="159" name="encounter 3" type="event" x="32" y="48" width="32" height="96">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="160" name="encounter 3" type="event" x="192" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="161" name="encounter 3" type="event" x="240" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="162" name="encounter 3" type="event" x="528" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="163" name="encounter 3" type="event" x="464" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="164" name="encounter 3" type="event" x="576" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="165" name="encounter 3" type="event" x="592" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="166" name="encounter 3" type="event" x="528" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="167" name="encounter 3" type="event" x="576" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="168" name="encounter 3" type="event" x="448" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="169" name="encounter 3" type="event" x="400" y="304" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="170" name="encounter 3" type="event" x="288" y="256" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="171" name="encounter 3" type="event" x="304" y="96" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="172" name="encounter 3" type="event" x="528" y="144" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="173" name="encounter 3" type="event" x="544" y="160" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="174" name="encounter 3" type="event" x="544" y="128" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="175" name="encounter 3" type="event" x="544" y="96" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="176" name="encounter 3" type="event" x="400" y="48" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="177" name="encounter 3" type="event" x="336" y="64" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="178" name="encounter 3" type="event" x="368" y="80" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="179" name="encounter 3" type="event" x="400" y="96" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="180" name="encounter 3" type="event" x="416" y="80" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="181" name="encounter 3" type="event" x="416" y="64" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="182" name="encounter 3" type="event" x="320" y="128" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="183" name="encounter 3" type="event" x="384" y="144" width="80" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="184" name="encounter 3" type="event" x="192" y="224" width="64" height="48">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="185" name="encounter 3" type="event" x="208" y="272" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="186" name="encounter 3" type="event" x="208" y="304" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="187" name="encounter 3" type="event" x="208" y="320" width="48" height="32">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="188" name="encounter 3" type="event" x="208" y="352" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="189" name="encounter 3" type="event" x="128" y="48" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="190" name="encounter 3" type="event" x="128" y="80" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="191" name="encounter 3" type="event" x="176" y="96" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="192" name="encounter 3" type="event" x="112" y="64" width="112" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="193" name="encounter 3" type="event" x="192" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="194" name="encounter 3" type="event" x="256" y="64" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="195" name="encounter 3" type="event" x="336" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="196" name="encounter 3" type="event" x="368" y="160" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="197" name="encounter 3" type="event" x="464" y="208" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="198" name="encounter 3" type="event" x="496" y="208" width="32" height="64">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="199" name="encounter 3" type="event" x="528" y="208" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="200" name="encounter 3" type="event" x="528" y="176" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="201" name="encounter 3" type="event" x="496" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="202" name="encounter 3" type="event" x="560" y="176" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="203" name="encounter 3" type="event" x="368" y="288" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="204" name="encounter 3" type="event" x="368" y="256" width="64" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="205" name="encounter 3" type="event" x="336" y="272" width="64" height="16">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="206" name="encounter 3" type="event" x="144" y="176" width="48" height="48">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="207" name="encounter 3" type="event" x="224" y="160" width="48" height="32">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="208" name="Create Aquemini" type="event" x="544" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dryadsgrove_aquemini,34,15"/>
+    <property name="act2" value="npc_face spyder_dryadsgrove_aquemini,up"/>
+    <property name="cond1" value="not npc_exists spyder_dryadsgrove_aquemini"/>
+    <property name="cond2" value="not variable_set dryadsgroveaquemini:yes"/>
+   </properties>
+  </object>
+  <object id="209" name="Talk Aquemini" type="event" x="544" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_aquemini1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_aquemini"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_aquemini2"/>
+    <property name="act6" value="set_variable dryadsgroveaquemini:yes"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_aquemini"/>
+    <property name="cond1" value="not variable_set dryadsgroveaquemini:yes"/>
+   </properties>
+  </object>
+  <object id="212" name="Get Volcoli" type="event" x="96" y="288" width="32" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_volcoli1"/>
+    <property name="act10" value="random_encounter spyder_volcoli,100"/>
+    <property name="act20" value="set_variable dryadsgrovevolcoli:yes"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set dryadsgrovevolcoli:yes"/>
+   </properties>
+  </object>
+  <object id="213" name="Create Ignatia" type="event" x="384" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dryadsgrove_ignatia,24,8"/>
+    <property name="act2" value="npc_face spyder_dryadsgrove_ignatia,right"/>
+    <property name="cond1" value="not npc_exists spyder_dryadsgrove_ignatia"/>
+    <property name="cond2" value="not variable_set dryadsgroveignatia:yes"/>
+   </properties>
+  </object>
+  <object id="214" name="Talk Ignatia" type="event" x="384" y="112" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_ignatia1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_ignatia"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_ignatia2"/>
+    <property name="act6" value="set_variable dryadsgroveignatia:yes"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_ignatia"/>
+    <property name="cond1" value="not variable_set dryadsgroveignatia:yes"/>
+   </properties>
+  </object>
+  <object id="215" name="Create Petra" type="event" x="240" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dryadsgrove_petra,15,5"/>
+    <property name="cond1" value="not npc_exists spyder_dryadsgrove_petra"/>
+    <property name="cond2" value="not variable_set dryadsgrovepetra:yes"/>
+   </properties>
+  </object>
+  <object id="216" name="Talk Petra" type="event" x="240" y="64" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_petra1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_petra"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_petra2"/>
+    <property name="act6" value="set_variable dryadsgrovepetra:yes"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_petra"/>
+    <property name="cond1" value="not variable_set dryadsgrovepetra:yes"/>
+   </properties>
+  </object>
+  <object id="217" name="Create Sylvia" type="event" x="224" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_dryadsgrove_sylvia,14,14"/>
+    <property name="act2" value="npc_wander spyder_dryadsgrove_sylvia"/>
+    <property name="cond1" value="not npc_exists spyder_dryadsgrove_sylvia"/>
+    <property name="cond2" value="not variable_set dryadsgrovesylvia:yes"/>
+   </properties>
+  </object>
+  <object id="218" name="Talk Sylvia" type="event" x="224" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_sylvia1"/>
+    <property name="act3" value="start_battle spyder_dryadsgrove_sylvia"/>
+    <property name="act4" value="translated_dialog spyder_dryadsgrove_sylvia2"/>
+    <property name="act6" value="set_variable dryadsgrovesylvia:yes"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_sylvia"/>
+    <property name="cond1" value="not variable_set dryadsgrovesylvia:yes"/>
+   </properties>
+  </object>
+  <object id="219" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="not variable_set environment:grass"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

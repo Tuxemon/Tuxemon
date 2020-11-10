@@ -65,9 +65,9 @@
     <property name="cond4" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="40" name="Teleport Wherever" type="event" x="64" y="0" width="16" height="16">
+  <object id="40" name="Teleport Wherever" type="event" x="0" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,17,35,0.3"/>
+    <property name="act1" value="transition_teleport spyder_candy_town.tmx,7,27,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
@@ -101,24 +101,27 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_mom4"/>
     <property name="behav1" value="talk spyder_mompapertown"/>
-    <property name="cond1" value="is variable_set shaftdefeated:yes"/>
+    <property name="cond1" value="is variable_set zoolanderdefeat:yes"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
+    <property name="cond3" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="45" name="Talk mom5" type="event" x="128" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_mom5"/>
     <property name="behav1" value="talk spyder_mompapertown"/>
-    <property name="cond1" value="is variable_set timberreached:yes"/>
+    <property name="cond1" value="is variable_set captainreturns:yes"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
+    <property name="cond3" value="not variable_set omnichannelradioannounce:yes"/>
    </properties>
   </object>
   <object id="46" name="Talk mom6" type="event" x="128" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_mom6"/>
     <property name="behav1" value="talk spyder_mompapertown"/>
-    <property name="cond1" value="is variable_set timberreached:yes"/>
+    <property name="cond1" value="is variable_set captainreturns:yes"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
+    <property name="cond3" value="is variable_set omnichannelradioannounce:yes"/>
    </properties>
   </object>
   <object id="47" name="Talk mom3" type="event" x="128" y="48" width="16" height="16">
@@ -127,6 +130,7 @@
     <property name="behav1" value="talk spyder_mompapertown"/>
     <property name="cond1" value="is party_size greater_than,0"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
+    <property name="cond3" value="not variable_set zoolanderdefeat:yes"/>
    </properties>
   </object>
   <object id="56" name="Go Outside" type="event" x="64" y="96" width="16" height="16">
@@ -137,9 +141,9 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="57" name="Get Mon" type="event" x="48" y="0" width="16" height="16">
+  <object id="57" name="Get Mon" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="add_monster lambert,50"/>
+    <property name="act1" value="add_monster budaye,100"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

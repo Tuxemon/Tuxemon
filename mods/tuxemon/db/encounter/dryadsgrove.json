@@ -1,0 +1,14 @@
+{"slug": "dryadsgrove","monsters": [
+
+
+
+
+{ "monster": "coleorus","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "tourbidi","encounter_rate":1,"level_range": [20,25]},
+{ "monster": "shybulb","encounter_rate":3,"level_range": [25,28]},
+{ "monster": "narcileaf","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "sapsnap","encounter_rate":3,"level_range": [25,28]},
+{ "monster": "lambert","encounter_rate":1,"level_range": [20,25]}
+
+
+] }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="187">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="188">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -43,6 +43,9 @@
    </animation>
   </tile>
  </tileset>
+ <tileset firstgid="7425" name="My_tuxemon_sheet_OLD" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
+ </tileset>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHNkkEOxCAMA/nPvr3dLy4+jGRFQVvaVHBARA7Y09CjtXb29e3r2LDekcnntZrP87M3pO/MXmd3vP92LT4Y2Z1J+ZnuZ96s4Rtl7MgX32y3+a2emc8ne9+rfPjEf0M6vaezf8pXxTHyGfHFmehc1O7MKfORNsMXOXT/01fmM/Kt0pVJLnvGV5U36wOT7lGv4FNmlgvTTnxigtX5pM3O/875mAmPM3lNBho7On6VeuaNP7zaY3amuVc8772qWhnOWuV71effN67mYzZXvucHwvkfNQ==
@@ -50,17 +53,17 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVVEOgjAM3b8gF/AGavzyGMCVOJFn9JVQUusG61ZNTGzSsHVvr4/nJiH845cdOEI859Z7dCFMwL1ki/nWHrkG7NxH1rzGpO0c0YJawFpWXLNQZaBbRBszYS0reqCaLKQdNELfsORBaYUvUy7jIxdYgdNeWvRVtF23wqfNsOhrwYQ79dWw6IO3H4/m9H6+9Dkij7qIkhJ91j33iL6IlLlEOmVeUkDHOvnH6UjrRkX+cbqRFhClfnf2js9hCqdb4n8yDEvqtZK57Is7ugZ7x+dQ4laQGpC2UdUs09h3U/aV+qR/83inUa02pieNqbsm9Un/aNwzQeJp9Y3PAD9zvtFSn/YvIcutvPf+1Eh6oP1zE+JE9AS/Cy1I
+   eAHtlU0KwjAQhbMU/D2AgktBRTeCS5duqlfqiTyjb6RTn0PSTmoVBAOD08nL5OtrakP4j192YAJ4jab7mIZQQvcSY1w3reE5aB/7cK2PfDQPpbCtIyyoBcy5xtalyhcdwLeLsGknzLlGAdXIpcwTiX9X8F2qGBpW+FJ6O6qHNyzw3ldbb/GPNdbLHD7u0zWHT40jh2+MTninvjpy+PR5fhJQzp/tL+eHh3g05UKVd+HLXWPPXwSjLgknx6aeiSf7RShniPisryr+afhW+FRH4jpT7lv9VIl/Gs/q+9mSmFaUpzqnnrt6p+cwpbN98T8ZLlXYOb0egOvkYBM974t3tB7qnZ5D1tUikwjb1dRyLmPfTd6X+di/R96y0bts2l4YU+8a87F/khfaIPGb65ueAf31fKOZz/qXwOqt3Hb/shF7YP3rDaSnRncvxjbO
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFld1NQzEMhQNv5acdBBAbwARtt4B1YIzygARPILFQOwU+JR89snJ/Kl2EJdexfeycONHttpSyC90O2EjvZQg3dX52UspZ6JCF3xBu6vzTaSnPoX8ll9F4nnRRN1PuxRSc8tzDR3D7nJAfe2CvKxc3V+EoT04cXW7D4R48ntdvEXjPwYn98+i3qnpRe4sf86uhTiOOY+RrdkC9xlJ7sK9bOAgtbutQ7vhGwZDW/Lz/D+rwuzkse1f0h18LDEY58RA39Zclp3ieH2eI1F7wscT7LP2d331622DUB37ssazN12H9/ZHnHBX2O3f8LjuPhJT3Lpz2bkkfP3hgvZ4Y1nND61zj88u1Y/jlOXkP1Ws/RN+CPoGb14gf3xDNdWENHO8Y4VDh8/ujhZ9PMfqRxxLnrPiyWcQDjpzf8ayp09vw90dc1vlRh3Uc61ZOsSzaU7IMXTVU3x16CTs0P/LUYKO0KeSxGQS/HMf3ur75wYv54qu+S/I8mIXj/a0tLPFQvz/ww7KvQffLzCv7Gd/ydYf+P9HC5Jh4bULhx74Zx/vL+eyr7i59e73XMRzhhFWfrvkpl+/LfeXHijiOFeemmtY8FM//R4odK489c1UvP29rLUzf/JT/b2F+39stoMk=
+   eAHFlV1Ow0AMhANv5ac9CCBuACdoews4DX/HKA9I8FQkLlROgSfkU0fWZpNKQVhyvesZeyfOKt01TfMdvhuIAbc2xJsanx01zUn4UETfEG9q/Pm4aV7C/8rOo/E8+aI7TNirOTzhvIdtaPucUB9nEC87LR4uYiMcTBrdrmPDe/B8Xr9H4iMnJ96fRr9V52ddb+ljfl2qN0jjGPua7VlvsdQZnOsRDWJL2zqcd3ylZFhpft7/l7X/3eyX1dVDoI+dP/Uw0SBYOqRN/RXBlM/z4xkCao09kXwt0p/5iXub7jYcYejjjKWSYetwv3/gPEdLih/y7PviPAA59108nV2ymj7OI3o9OaJjQ+tc4/PLtWP05Tl5D9XrPEzfgpqhzWukj2+I5rqwBs53jni4+Pn+0cKfTzn6gRPJ86zsFbNJBxp5fuezpk53w+8feUXXRx3ReaxLmHLZdKZsGb4quL479BJ3aH7g1BCjtGjgxExCX86z97ra/NDFfNmrvs/yPJiF8/2uLQy4674/6CNyrlHbZdaV95lf2usd+v9EiZNz0rUJRx/nZh73L+N5r7qb9O31XodoRBNRffrmJyy/L98LH2vSONZcm2pK81A+/x8pd6jdV+aqXv68pbU4tfkJ/29jfj/O46H3
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBj6QIprcPvBfZC7D1/oHRXHJzvwcmcGsfvu8DMwXB7E7kOPvV6gQB8U96NLUsAnNv3TK7wGe3lBQVAPaa3pTIPX+ROAbps4iN23A+i2nUDcNwjdmDYI3TR4U9qoy0ZDYOSEAAAhwAyH
+   eAFjYBj6QIprcPvBfZC7D1/oHRXHJzvwcmcGsfvu8DMwXB7E7qNX7BGb/ukVXoO9vKBXvAw2e9KZBpuLEO6ZAHTbxEHsvh1At+0E4r5B6Ma0QegmRMyOskZDYDQEBioEAGyfCk8=
   </data>
  </layer>
  <layer id="1" name="Above Player" width="40" height="20">
@@ -589,6 +592,12 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_moved"/>
+   </properties>
+  </object>
+  <object id="187" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:grass"/>
+    <property name="cond1" value="not variable_set environment:grass"/>
    </properties>
   </object>
  </objectgroup>

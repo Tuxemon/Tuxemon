@@ -25,7 +25,7 @@ os.environ["SDL_AUDIODRIVER"] = "disk"
 includes = ["pkg_resources"]
 includefiles = ["mods"]
 excludes = ["tkinter", "pyglet"]
-packages = ["pytmx", "pyscroll", "pygame", "six", "neteria", "natsort", "tuxemon"]
+packages = ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"]
 
 namespace_packages = []
 build_exe_options = {

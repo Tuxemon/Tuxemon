@@ -37,8 +37,7 @@ if more appropriate.  Ideally this should be kept small.
 
 import logging
 import re
-
-from six.moves import zip_longest
+from itertools import zip_longest
 
 from tuxemon.compat.rect import Rect
 from tuxemon.core import prepare

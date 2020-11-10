@@ -41,6 +41,7 @@ from tuxemon.core.map import dirs3, dirs2, get_direction
 from tuxemon.core.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.core.prepare import CONFIG
 from tuxemon.core.tools import nearest, trunc
+from tuxemon.core.world import proj
 
 logger = logging.getLogger(__name__)
 

@@ -163,7 +163,7 @@ class EventEngine:
         :rtype: bool
         """
         with add_error_context(map_event, cond_data, session):
-            map_condition = self.get_condition(cond_data.type)
+            map_condition = self.get_condition(cond_data.name)
             if map_condition is None:
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False

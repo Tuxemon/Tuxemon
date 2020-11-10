@@ -31,6 +31,7 @@ class PlayerAtCondition(EventCondition):
         """ Checks to see if the player is at a current position on the map.
         :param event:
         """
+        return
         player = session.player
 
         # Get the condition's rectangle area. If we're on a tile in that area, then this condition

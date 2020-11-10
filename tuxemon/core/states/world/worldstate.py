@@ -31,7 +31,6 @@ import itertools
 import logging
 
 import pygame
-from six.moves import map as imap
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare, state, networking
@@ -800,10 +799,10 @@ class WorldState(state.State):
 
         # We need to iterate over all collidable objects.  So, let's start
         # with the walls/collision boxes.
-        box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
+        box_iter = map(self._collision_box_to_pgrect, self.collision_map)
 
         # Next, deal with solid NPCs.
-        npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
+        npc_iter = map(self._npc_to_pgrect, self.npcs.values())
 
         # draw noc and wall collision tiles
         red = (255, 0, 0, 128)

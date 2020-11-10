@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 
 # Class definition for an AI model.
-# TODO: use ABC meta.  impl. depends on six/future decision
+# TODO: use ABC meta.
 # TODO: allow AI to target self or own team
 class AI:
     """ Base class for an AI model object.

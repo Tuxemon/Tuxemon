@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="31">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
  <tileset firstgid="1" name="floors and walls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -79,10 +79,14 @@
   </object>
   <object id="27" name="Go Outside" type="event" x="80" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport taba_town.tmx,43,46,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at 5,7"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport taba_town.tmx,43,46,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at 5,7"/>
+    <property name="cond20" value="is player_facing down"/>
+    <property name="cond30" value="not variable_set comeinside:done"/>
+    <property name="cond31" value="not variable_set comeinside:donefr"/>
+    <property name="cond32" value="not variable_set backhome:no"/>
+    <property name="cond33" value="not variable_set backhome:tv"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="80" y="64" width="16" height="16"/>
@@ -99,6 +103,18 @@
    <properties>
     <property name="act1" value="translated_dialog firsts"/>
     <property name="behav1" value="talk npc_mom"/>
+   </properties>
+  </object>
+  <object id="39" name="create mom3" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_npc npc_mom"/>
+    <property name="act2" value="create_npc npc_mom,1,6,,stand"/>
+    <property name="act3" value="npc_face npc_mom,right"/>
+    <property name="act4" value="wait 1"/>
+    <property name="act5" value="translated_dialog theanthemishere"/>
+    <property name="act6" value="npc_face npc_mom,up"/>
+    <property name="act99" value="set_variable backhome:tv"/>
+    <property name="cond1" value="is variable_set backhome:no"/>
    </properties>
   </object>
  </objectgroup>

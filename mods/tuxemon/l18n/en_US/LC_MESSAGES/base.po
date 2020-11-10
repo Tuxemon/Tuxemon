@@ -1335,6 +1335,9 @@ msgstr "Yes"
 msgid "no"
 msgstr "No"
 
+msgid "hey"
+msgstr "Hey!"
+
 msgid "door_problems"
 msgstr "The door is stuck and won't open..."
 
@@ -1633,7 +1636,8 @@ msgstr "Yes Ma'am."
 
 msgid "firsts"
 msgstr "♪ Watch me whip ♪\n"
-"♪ Watch me nae nae ♪"
+"♪ Watch me nae nae ♪\n"
+"This song is pretty great right?"
 
 msgid "nopenotyet"
 msgstr "Sorry, someone got injured on the route. It's closed right now."
@@ -1814,7 +1818,7 @@ msgstr "It has been a long, hard road to our current situation here in the Fonde
 "However, it is my pleasure to announce, on this day, the 25th Anniversary of the founding of omnichannel...\n"
 "TUXEMON ARE CONTROLLED!\n"
 "*deafening screaming*\n"
-"Quiet Down! Quiet Down! You're enthusiasm is infectious I must say!\n"
+"Quiet Down! Quiet Down! Your enthusiasm is infectious I must say!\n"
 "In conjunction with the Xero institute, we have stripped away their will to attack!\n"
 "Due to this, we are confident that releasing Tuxemon into the wild is safe.\n"
 "However, curfews must still be enforced, we are not a lawless region after all.\n"
@@ -1832,6 +1836,114 @@ msgstr "Why would he do something like that... I thought he cared..."
 
 msgid "waterwater"
 msgstr "The water is ice cold and delicious!"
+
+msgid "watchmewatchme"
+msgstr "Why are you heading into town, You know there's an early curfew.\n"
+"... ... ... ...\n"
+"... ... ... ...\n"
+"You don't seem like a threat, so you can head on to town...\n"
+"Just don't tell any of those Omnichannel thugs I let you past, M'kay?"
+
+msgid "grumble"
+msgstr "Omnichannel are a bunch of thugs, but we don't have a choice...\n"
+"As she always says, guess we have to work with them..."
+
+msgid "bobtalk"
+msgstr "It would be nice if more people like you came around to say Hi...\n"
+"By the way, Hello! Have a good day! Today or Tomorrow or any day will be great!"
+
+msgid "professorexists"
+msgstr "I'll take 12 potions please."
+
+msgid "professorexists1"
+msgstr "Thanks Ben."
+
+msgid "professorexists1.5"
+msgstr "Why hello there!"
+
+msgid "professorexists2"
+msgstr "You must be Callie's kid! I've heard so much about you from your mom.\n"
+"What brings you in here for?\n"
+".... .... ....\n"
+"Potions? Of course, you always need those!\n"
+"Here, have a few on the house, courtesy of me."
+
+msgid "potions2"
+msgstr "Received 2 potions!"
+
+msgid "professorexists3"
+msgstr "Oh! Excuse my manners, I can't believe I never introduced myself!\n"
+"My name is Kay Wren, better known as the Tuxemon Professor.\n"
+"For years now I've been the only person in the Fondent Region allowed to research Tuxemon."
+
+msgid "professorexists4"
+msgstr "Now, I know what you are thinking, why would they allow me?\n"
+"Unfortunately for you, That secret is for me and me alone!\n"
+"However, Omnichannel should be making a new announcement soon and I think you'll like it.\n"
+"We'd better get you back home and watch the second announcement, Come on!"
+
+msgid "theenergy"
+msgstr "The energy of that man is boundless..."
+
+msgid "hmmm"
+msgstr "I wonder what they're doing over there?"
+
+msgid "hmmm2"
+msgstr "I heard they were making a new park. To \"Greenify the Area\""
+
+msgid "hmmm3"
+msgstr "What's the point? The Route is nearly all grass anyways."
+
+msgid "hmmm4"
+msgstr "Maybe they're making a water park!"
+
+msgid "hmmm5"
+msgstr "Max, as much as you may want one, we've established this. They are not making, and will not make, a water park."
+
+msgid "hmmm6"
+msgstr ".... .... Okay... But it could be..."
+
+msgid "hmmm7"
+msgstr "The Weather is nice though, isn't it?"
+
+msgid "timeforround2"
+msgstr "${{name}}! Finally! You're back! I was afraid you would miss the announcement!"
+
+msgid "timeforround22"
+msgstr "Oh! You did get the potions! Good! Now we really need to get back."
+
+msgid "theanthemishere"
+msgstr "Listen! The anthem is starting, we made it just in time. Come and watch!"
+
+msgid "moreannouncement"
+msgstr "ATTENTION, ALL CITIZENS OF THE FONDENT REGION!\n"
+
+msgid "moreannouncement2"
+msgstr "I am sorry to give you such late notice about this address, but I believed it important before the media leaked it...\n"
+"Well... Heh. We own the media, so I guess it wouldn't matter, but I wanted to share it all the same.\n"
+"After consulting with my advisors, we have decided that the best way to become more comfortable with Tuxemon, is to use them.\n"
+"Now, it will be some time before we can integrate them into the workforce, but in the meantime, we will be releasing them into the wild.\n"
+"I realize this is a shock for everyone, plus I understand that some of you may even be afraid. We all know what happened before...\n"
+"This is not the time to be afraid though, as Omnichannel will be sponsoring the revival of the ancient tradition known as The Trial.\n"
+"Now, for you who are less versed on Fondent region history, a hundred years ago there was a tradition where young men and women would catch and raise Tuxemon.\n"
+"They would then use these Tuxemon to battle others and ascend rank in their town, with the best Tuxemon Trainer gaining status and power.\n"
+"We will be creating a version of this for the modern day. We will be forming battle areas in multiple cities across Fondent.\n"
+"Each Battle Area will need to be completed in order and the most promising trainer, or trainers, will be able to attempt the Championship.\n"
+"The Championship will be held on top of the Omnichannel Tower in Cotton Town once a Tuxemon Trainer has made it through every Battle Area.\n"
+"The Trial is designed as a way to slowly introduce public life to Tuxemon and to encourage travel throughout the region.\n"
+"Who better to demonstrate this than our youth?\n"
+"Each Match will be broadcast live on Omnichannel-T, the newest television station devoted exclusively to Tuxemon-related programming!\n"
+"Don't worry, the addition will be reflected in your bill.\n"
+"Oh, and one more thing, all Tuxemon Trainers will be exempt from the curfew.\n"
+"Before this of course, you will need a Tuxemon! Now, not everyone can be allowed to become a Tuxemon Trainer. That would be pure Chaos!\n"
+"First, you'll have to register your name with your local Omnichannel representative and if you're selected, you'll be sent to Omnichannel training.\n"
+"After successful completion of your training, you will be provided with a Tuxemon and can start participating in The Trial!\n"
+"I look forward to meeting you all! Let's create a new world together!\n"
+"After all... WE ARE SAFETY, WE ARE ORDER, WE ARE OMNICHANNEL! And now,\n"
+"WE \n"
+"ARE \n"
+"THE \n"
+"FUTURE!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

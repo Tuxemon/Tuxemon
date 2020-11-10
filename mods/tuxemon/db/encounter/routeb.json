@@ -1,19 +1,18 @@
-{"slug": "routeb","monsters": [	
-	
-	
-	
-	
-{ "monster":"txmn_toufigel","encounter_rate":5,"level_range": [16,20]},	
-{ "monster":"txmn_pipis","encounter_rate":15,"level_range": [16,18]},	
-{ "monster":"txmn_strella","encounter_rate":5,"level_range": [18,21]},	
-{ "monster":"txmn_noctula","encounter_rate":15,"level_range": [16,18]},	
-{ "monster":"txmn_noctalo","encounter_rate":5,"level_range": [18,21]},	
-{ "monster":"txmn_cairfrey","encounter_rate":15,"level_range": [16,18]},	
-{ "monster":"txmn_possessun","encounter_rate":5,"level_range": [18,21]},	
-{ "monster":"txmn_rockitten","encounter_rate":5,"level_range": [16,20]}	
-	
-	
-	
-	
-	
-] }	
+{"slug": "routeb","monsters": [
+
+
+
+
+{ "monster": "toufigel","encounter_rate":3,"level_range": [25,28]},
+{ "monster": "pipis","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "strella","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "noctula","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "noctalo","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "cairfrey","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "possessun","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "rockitten","encounter_rate":1,"level_range": [20,22]}
+
+
+
+
+] }

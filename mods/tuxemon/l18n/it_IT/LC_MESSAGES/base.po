@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-06-12 07:41+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2020-11-08 20:26+0000\n"
+"Last-Translator: Michael Moroni <michaelmoroni@disroot.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "it/>\n"
 "Language: it_IT\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.3.2\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -90,7 +90,7 @@ msgid "capture_device_description"
 msgstr "Cattura un mostro."
 
 msgid "item_cannot_use_here"
-msgstr "L'oggetto non può essere usato qui!"
+msgstr "{name} non può essere usato qui!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
@@ -110,7 +110,7 @@ msgid "combat_used_x_on_y"
 msgstr "{user} ha usato {name} su {target}!"
 
 msgid "combat_swap"
-msgstr "{user} manda {target} in combattimento!"
+msgstr "{user} manda {target} in campo!"
 
 msgid "combat_call_tuxemon"
 msgstr "Vai, {name}!"
@@ -119,7 +119,7 @@ msgid "combat_opponent_call_tuxemon"
 msgstr "{user} ha scelto {name}!"
 
 msgid "combat_state_poison_get"
-msgstr "{target} è avvelenato"
+msgstr "{target} è avvelenato."
 
 msgid "combat_state_poison_damage"
 msgstr "{name} ha subito danno da avvelenamento!"
@@ -185,7 +185,7 @@ msgid "combat_isactive"
 msgstr "{name} è ancora in campo."
 
 msgid "attack_very_effective"
-msgstr "L'attacco ha fatto molti danni in più!"
+msgstr "L'attacco ha fatto più danni del previsto!"
 
 msgid "attack_effective"
 msgstr "L'attacco ha fatto qualche danno in più!"
@@ -198,7 +198,7 @@ msgstr "L'attacco è stato fortemente difeso!"
 
 # Generic notifications
 msgid "empty_slot"
-msgstr "Slot vuoto"
+msgstr "Posto vuoto"
 
 msgid "exit"
 msgstr "Esci"
@@ -250,7 +250,7 @@ msgid "status_faint"
 msgstr "K.O."
 
 msgid "status_poison"
-msgstr "avvelenamento"
+msgstr "Avvelenamento"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "all_in"
@@ -1515,3 +1515,50 @@ msgstr "Bene, sembra che i tuoi Tuxemon siano pieni di energia! Eccoteli!"
 
 msgid "input_name"
 msgstr "Qual è il tuo nome?"
+
+msgid "combat_can't_run_from_trainer"
+msgstr "Non puoi scappare da una battaglia contro un allenatore!"
+
+msgid "item_no_available_target"
+msgstr "{name} non può essere usato su alcun tuo Tuxemon proprio ora."
+
+msgid "tm_blossom_description"
+msgstr ""
+"Manuale Tecnico che insegna la mossa Fioritura a un Tuxemon di tipo Legno."
+
+msgid "tm_blossom"
+msgstr "MT: Fioritura"
+
+msgid "tm_avalanche_description"
+msgstr ""
+"Manuale Tecnico che insegna la mossa Valanga a un Tuxemon di tipo Terra o "
+"Acqua."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "MT: Valanga"
+
+msgid "revive_description"
+msgstr "Riporta in vita un Tuxemon dandogli 20 PV."
+
+# Revive
+msgid "revive"
+msgstr "Revitalizzatore"
+
+msgid "status_recover"
+msgstr "Ripresa"
+
+msgid "status_lifeleech"
+msgstr "Succhiavita"
+
+msgid "save_keep"
+msgstr "No, mantieni il salvataggio."
+
+msgid "save_overwrite"
+msgstr "Sì, sovrascrivi il salvataggio."
+
+msgid "combat_capturing_success"
+msgstr "Hai catturato {name}!"
+
+msgid "combat_trainer_appeared"
+msgstr "{name} vuole combattere!"

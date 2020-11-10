@@ -195,4 +195,4 @@ def fetch(*args):
             if os.path.exists(path):
                 return path
 
-    raise OSError(relative_path)
+    raise OSError(f"cannot load file {relative_path}")

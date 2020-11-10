@@ -51,7 +51,7 @@ class PartySizeCondition(EventCondition):
 
         **Examples:**
 
-        >>> condition.__dict__
+        >>> EventCondition.__dict__
         {
             "type": "party_size",
             "parameters": [
@@ -96,4 +96,3 @@ class PartySizeCondition(EventCondition):
         else:
             raise Exception("Party size check parameters are incorrect.")
 
-        return False

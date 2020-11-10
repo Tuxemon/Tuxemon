@@ -18,8 +18,6 @@ likely reorder the files and make them less tidy.
 
 - Leif
 """
-from __future__ import print_function
-
 import glob
 import re
 from os.path import normpath, join

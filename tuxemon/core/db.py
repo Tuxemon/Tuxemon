@@ -69,7 +69,7 @@ class JSONDatabase:
             "sounds": {},
             "music": {}
         }
-        self.load(dir)
+        # self.load(dir)
 
     def load(self, directory="all"):
         """Loads all data from JSON files located under our data path.

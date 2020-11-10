@@ -170,6 +170,7 @@
   <object id="22" name="Create Granny (1st)" type="event" x="48" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_granny,3,7"/>
+    <property name="act2" value="npc_face spyder_granny,right"/>
     <property name="cond1" value="not npc_exists spyder_granny"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
@@ -188,9 +189,10 @@
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
-  <object id="25" name="Create Florist (1st)" type="event" x="178.25" y="95.5" width="16" height="16">
+  <object id="25" name="Create Florist (1st)" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_florist,11,6"/>
+    <property name="act2" value="npc_face spyder_florist,left"/>
     <property name="cond1" value="not npc_exists spyder_florist"/>
     <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>

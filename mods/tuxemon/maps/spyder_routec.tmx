@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="199">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="222">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -66,12 +66,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV0sOwiAQZeO23kqj19D4i+7UlTXdeQ6X6iWdl3QSQloKQ2mNGZMJUN7MPIYHxHJiTDmgGfq9C1P5DJgjcToNyItrcJia6lkY47MdYcbiB54rsgvZlQw8UUu05/o75th4XV3tkta0INuSdWF5nn147LZ34oE9ZLtR38WEjJEHa0TdQ/CMwV6+yA/r4m92y3XkWq2F/DY1v31LHjun24evj6OLjx1jP1EHCTfkgu88wT+Wrw8PHTTtZYxmffFT57r0lhq/D/8ULfSRPyTGr+xnCNcxMTgPj5YzkZNX2zm0cwKDe01yb9txJP0QjQODe21GFvuuSDhJfULWIo09tB80MYZeQ9aJOwdv8Yc0C2t6Z0Li5MRAC9Ar+Enf85z8EPuf9Jq7Vhpf9n9A66Z1Uw2oBlQDqgHVgGpANaAakGrgC+7KUKY=
+   eAHtVbsOwjAMzMJa/goEvwHiJdiAiaJufAcj8JPcSbXUpY3rlFRCrnRK1djx+XpJykkIZUYEPO8iVF1gzBGcThl5iQaHaaieRQhd2CFmLH7kuQIuwBUgT2rJ8Vx/55xA+oqNS/S0AGJxzflYzh08+A8FN7w387XvrMMeqbs2h3H8ly/ktfUlOopWayO/Tc1v35MfOTK3i2OffttiqYOFm2g4T8hv42T5HvObZc0hc2J+G7KWda0UL1hrep7t3Ivpxv3wANrOt1i+dV6zDxnDc81yblt5SZ7G44zhuTYD+t4rUifHqOklB48hatATY/hVw30LbryLP/AskXtPaTjSC/Qr+Vnvc02dlJh/8muKDp77mzvPdXVd3QPuAfeAe8A94B5wD7gHUjzwBXdnTtY=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtljEOgkAQRafS2OA5jIneQkVrE+MBjHoDrbZSj2BtySn9AxZLBZlJdBL/Jj9AlmEfj4VF5LttWkjqGnHS45yua1j7Nz3GLrNzhiNJA8Q6nrdOeSskZ8qvOQfb7Id8OQv3aYAG2gbWY0l3pETaPTGOzuBaIMegfGrpALYHEtWh8uk3OqJDnX+3D98J2xizrqFQthWyRKKxKaG+GxG5Ij1DL8uW/y5ehaw3GNgXIk8karuA7UU+8+OhP7O6upD+6M9nwFfN+Ud/PgO+6ivW3l3g9dd3d6ymgf8w8AZ2kC8m
+   eAHtljsOwjAQRLcCpQnnQEhwCyBQgxAHQMANoHIFHIGaklMyCxROlcQrmZUYS6Mkijd+eXY+InnbqJTQNOKwRZ+ma6SeX7YYu4r69AsJPSR1PGud8j6RmCm+5gRs4x/yxSzcpwEaqBtYDCRckQqpn/FxdATXFNk75VNLO7DdEK8OlU/f0R4d6vq7fPkO2PpYdR8KZZsjM8QbmxLqs+GRq8scrosuvfP3XfHfJb90jijbUuSOeG0nsD3Ilzw99Jes7l1If/RnM2Cr5vqjP5sBW/UZ396N4++v7e5YTQP/YeAFB+EvhQ==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="40" height="40">
@@ -81,7 +81,7 @@
  </layer>
  <layer id="6" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0rEJADAIBEALs3dGT3Z4LBJOsHyF0ypFgAABAgQIECBAgACBWYHVtfv27JZ/p/PLbsuPXyaQpf0fv0wgS/u/zE+aAIH3BQ6Frwd4
+   eAHt0kEOgCAMBEAOePCB6nd8uj6BZEmocUi4sS2ZtjWHwDqBY1/Xe6TzVfx/1f3O4n4jO+ANAQIECBAgMEdg6+3u751T7X9V+GUz58cvE8jS9o9fJpCl7V/mJ02AwPcFHnNLCPM=
   </data>
  </layer>
  <objectgroup id="4" name="Events">
@@ -93,7 +93,7 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="155" name="Teleport to Candy Town" type="event" x="0" y="64" width="16" height="192">
+  <object id="155" name="Teleport to Candy Town" type="event" x="0" y="128" width="16" height="128">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,39,28,0.3"/>
     <property name="act2" value="player_face left"/>
@@ -107,6 +107,178 @@
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
+   </properties>
+  </object>
+  <object id="199" name="Create Nigel" type="event" x="528" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_nigel,34,3"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond3" value="is variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="200" name="Talk Nigel" type="event" x="528" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_nigel1"/>
+    <property name="act3" value="start_battle spyder_searoutec_nigel"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
+    <property name="act6" value="set_variable searoutecnigel:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_nigel"/>
+    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+    <property name="cond2" value="is variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="201" name="Create River" type="event" x="80" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_river,5,7"/>
+    <property name="act2" value="npc_wander spyder_searoutec_river"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_river"/>
+   </properties>
+  </object>
+  <object id="202" name="Talk River" type="event" x="80" y="96" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_river1"/>
+    <property name="act3" value="start_battle spyder_searoutec_river"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_river2"/>
+    <property name="act6" value="set_variable searoutecriver:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_river"/>
+    <property name="cond1" value="not variable_set searoutecriver:yes"/>
+   </properties>
+  </object>
+  <object id="203" name="Create Wade" type="event" x="224" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_wade,14,11"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_wade"/>
+   </properties>
+  </object>
+  <object id="204" name="Talk Wade" type="event" x="224" y="160" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_wade1"/>
+    <property name="act3" value="start_battle spyder_searoutec_wade"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_wade2"/>
+    <property name="act6" value="set_variable searoutecwade:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_wade"/>
+    <property name="cond1" value="not variable_set searoutecwade:yes"/>
+   </properties>
+  </object>
+  <object id="205" name="Create Gil" type="event" x="384" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_gil,24,15"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_gil"/>
+   </properties>
+  </object>
+  <object id="206" name="Talk Gil" type="event" x="384" y="224" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_gil1"/>
+    <property name="act3" value="start_battle spyder_searoutec_gil"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_gil2"/>
+    <property name="act6" value="set_variable searoutecgil:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_gil"/>
+    <property name="cond1" value="not variable_set searoutecgil:yes"/>
+   </properties>
+  </object>
+  <object id="207" name="Create Leek" type="event" x="480" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_leek,30,10"/>
+    <property name="act2" value="npc_wander spyder_searoutec_leek"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_leek"/>
+   </properties>
+  </object>
+  <object id="208" name="Talk Leek" type="event" x="480" y="144" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_leek1"/>
+    <property name="act3" value="start_battle spyder_searoutec_leek"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_leek2"/>
+    <property name="act6" value="set_variable searoutecleek:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_leek"/>
+    <property name="cond1" value="not variable_set searoutecleek:yes"/>
+   </properties>
+  </object>
+  <object id="209" name="Create Beech" type="event" x="128" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_beech,8,14"/>
+    <property name="act2" value="npc_wander spyder_searoutec_beech"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_beech"/>
+   </properties>
+  </object>
+  <object id="210" name="Talk Beech" type="event" x="128" y="176" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_beech1"/>
+    <property name="act3" value="start_battle spyder_searoutec_beech"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_beech2"/>
+    <property name="act6" value="set_variable searoutecbeech:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_beech"/>
+    <property name="cond1" value="not variable_set searoutecbeech:yes"/>
+   </properties>
+  </object>
+  <object id="211" name="Create Rutherford" type="event" x="544" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_rutherford,34,12"/>
+    <property name="act2" value="npc_face spyder_searoutec_rutherford,up"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_rutherford"/>
+   </properties>
+  </object>
+  <object id="212" name="Talk Rutherford" type="event" x="544" y="176" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_rutherford1"/>
+    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
+    <property name="act6" value="set_variable searoutecrutherford:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_rutherford"/>
+    <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
+   </properties>
+  </object>
+  <object id="213" name="Create Carstair" type="event" x="400" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_carstair,25,6"/>
+    <property name="act2" value="npc_face spyder_searoutec_carstair,left"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_carstair"/>
+   </properties>
+  </object>
+  <object id="214" name="Talk Carstair" type="event" x="400" y="80" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_carstair1"/>
+    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
+    <property name="act6" value="set_variable searouteccarstair:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_carstair"/>
+    <property name="cond1" value="not variable_set searouteccarstair:yes"/>
+   </properties>
+  </object>
+  <object id="215" name="Create Sandy" type="event" x="80" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_sandy,5,14"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_sandy"/>
+   </properties>
+  </object>
+  <object id="216" name="Talk Sandy" type="event" x="80" y="208" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_sandy1"/>
+    <property name="act3" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act4" value="translated_dialog spyder_searoutec_sandy2"/>
+    <property name="act6" value="set_variable searoutecsandy:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_sandy"/>
+    <property name="cond1" value="not variable_set searoutecsandy:yes"/>
+   </properties>
+  </object>
+  <object id="217" name="Create Nigel" type="event" x="544" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_nigel,33,3"/>
+    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="218" name="Talk Nigel" type="event" x="544" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_nigel3"/>
+    <property name="behav1" value="talk spyder_searoutec_nigel"/>
+    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+    <property name="cond2" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="221" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:water"/>
+    <property name="cond1" value="not variable_set environment:water"/>
    </properties>
   </object>
  </objectgroup>
@@ -128,7 +300,7 @@
   <object id="172" type="collision" x="0" y="16" width="48" height="16"/>
   <object id="173" type="collision" x="16" y="304" width="432" height="16"/>
   <object id="174" type="collision" x="16" y="288" width="32" height="16"/>
-  <object id="175" type="collision" x="0" y="272" width="16" height="16"/>
+  <object id="175" type="collision" x="0" y="256" width="16" height="32"/>
   <object id="176" type="collision" x="64" y="288" width="48" height="16"/>
   <object id="177" type="collision" x="128" y="288" width="48" height="16"/>
   <object id="178" type="collision" x="192" y="288" width="48" height="16"/>
@@ -150,5 +322,7 @@
   <object id="196" type="collision" x="544" y="544" width="16" height="48"/>
   <object id="197" type="collision" x="624" y="96" width="16" height="208"/>
   <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
+  <object id="219" type="collision" x="0" y="32" width="32" height="32"/>
+  <object id="220" type="collision" x="0" y="64" width="16" height="64"/>
  </objectgroup>
 </map>

@@ -264,7 +264,7 @@ class StateManager:
     def auto_state_discovery(self):
         """ Scan a folder, load states found in it, and register them
         """
-        state_folder = os.path.join(paths.BASEDIR, *self.package.split(".")[1:])
+        state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug("loading game states from {}".format(state_folder))
         for folder in os.listdir(state_folder):

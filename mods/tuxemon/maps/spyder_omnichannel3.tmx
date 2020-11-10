@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="9">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="35">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -31,27 +31,64 @@
  <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
+ <tileset firstgid="4301" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="4829" name="Office_interiors_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="5357" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="7949" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAHzYWBg8CER+wHVR5OBY6F69rExMJCCh5K+WUA/kuI3kNqZIyBcQOllOIcLOfFO73Q9lNIZACxVxpE=
+   eAGzl2dgcIBiRyQ2SAyZj8x2AsqlA3EmEGdAMTHsLKDafiCeAMQ7ScCTgGq3A/EOEvSAzB8ofbDwBNHo/kSWg7Fh7oSFJYhG14csB2PD9KGrReZjCzN66wOlF1D8IbsLnY3NnaD0Qo4+evtvoOwbzvkIABhr4rI=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYGBgqMKD87DIAYXAoBNI4sI1WOQguvCTtfilccr24JRBldiMyiWaF0u0StTwnImkzwfIxhbWMCXIYYlsXxZQAbIcjA3TV8zNwFACxCDwAUKByWgkNjYmsj7k8COkD5tZIDFy9c0C6gWFy2yQIUAwA4hBfEIAZB8oLLqgCjugfCiXQYyTgUEciEEAOd4JudMOqMceqg85HgjpQ45b5HgnpK8T6D4YJsU+sMegBHK8VwLFiA1P5HiHhR+u8ES2j9ZsAJn2L8E=
+   eAG1kksOAVEQRWsqRgwY2on2G9gCY3QzkjBC24LvXiQ2I7ESt9LvJuXpT1q4ye16v1PVXa9FfqtJXWQKz4xDjCM4Txvsb+GdcYzxHs7TEfsn78wF86u3lpfjn3vdlkgPVgWInRQnu+/POc4tHBciRikmsaqKrGHq7LiDi1z3o8/d3flbAefneX7JMU/Zepbr10QGsIpj9rtREWnCFNe13gjM2HEcs99tMIHhuK73kCb227/boTufdQ/k/LtdZvRT86vIJbPP58O8p/5zml/ZIs5mst9ahrO1y3C2tnIv4dMvgg==
   </data>
  </layer>
+ <layer id="5" name="Tile Layer 3" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAFjYEAF0oIMDDJA7CfEwOAPxAFIOBDIDgJibMAQqMcIiEcBZgg8k4eIvQDSv4Fh9IdAOGUC1WUAsbkCRB+IFgSGuxAQg+SigXQMjngA6UDWpw5UpwFVWwiki/DoiwfaAwIw/RAeYbJdAaKGVH0wk+mlL45Md8LcB6Nh7iaWJlYfKG7PCjAwnANiEIDFB4gNSju2wLhzANLYwGOgnidQfbD4AKkD2R0M1AdKT6QAkN2ZeNIKLrOQ7calhhhxADqCG4Y=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collision">
+  <object id="15" type="collision" x="0" y="0" width="16" height="336"/>
+  <object id="16" type="collision" x="16" y="0" width="208" height="32"/>
+  <object id="17" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="18" type="collision" x="160" y="256" width="16" height="64"/>
+  <object id="19" type="collision" x="176" y="256" width="32" height="32"/>
+  <object id="20" type="collision" x="112" y="96" width="16" height="192"/>
+  <object id="21" type="collision" x="128" y="96" width="80" height="32"/>
+  <object id="23" type="collision" x="128" y="192" width="32" height="32"/>
+  <object id="24" type="collision" x="176" y="192" width="32" height="32"/>
+  <object id="25" type="collision" x="16" y="96" width="80" height="32"/>
+  <object id="26" type="collision" x="80" y="128" width="16" height="48"/>
+  <object id="28" type="collision" x="80" y="208" width="16" height="64"/>
+  <object id="29" type="collision" x="16" y="240" width="64" height="32"/>
+  <object id="30" type="collision" x="112" y="32" width="16" height="16"/>
+  <object id="31" type="collision" x="176" y="32" width="16" height="16"/>
+  <object id="32" type="collision-line" x="48" y="208">
+   <polyline points="0,0 0,32"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#ffff00" id="3" name="Events">
-  <object id="3" name="Teleport to Omnichannel 2" type="event" x="16" y="208" width="16" height="16">
+  <object id="3" name="Teleport to Omnichannel 1" type="event" x="16" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel2.tmx,1,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,1,10,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
    </properties>
   </object>
-  <object id="4" name="Teleport to Omnichannel 2" type="event" x="32" y="208" width="16" height="16">
+  <object id="4" name="Teleport to Omnichannel 1" type="event" x="32" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel2.tmx,2,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,2,10,0.3"/>
     <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
    </properties>
@@ -77,13 +114,62 @@
    </properties>
   </object>
   <object id="8" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
- </objectgroup>
- <objectgroup color="#ff0000" id="4" name="Collision" visible="0">
-  <object id="1" type="collision" x="0" y="336">
-   <polygon points="0,0 0,-336 224,-336 224,0 208,0 208,-32 176,-32 176,-64 208,-64 208,-128 176,-128 176,-160 208,-160 208,-208 128,-208 128,-160 160,-160 160,-128 128,-128 128,-64 160,-64 160,-32 112,-32 112,-240 208,-240 208,-304 144,-304 144,-272 128,-272 128,-304 16,-304 16,-240 64,-240 64,-272 80,-272 80,-176 64,-176 64,-208 48,-208 16,-208 16,-96 64,-96 64,-128 80,-128 80,-32 64,-32 64,-64 16,-64 16,0 0,0"/>
+  <object id="9" name="Create Carnegie" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_carnegie,10,8"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_carnegie"/>
+    <property name="cond2" value="not variable_set omnichannelcarnegie:yes"/>
+   </properties>
   </object>
-  <object id="2" type="collision-line" x="0" y="336">
-   <polyline points="0,0 224,0"/>
+  <object id="10" name="Talk Carnegie" type="event" x="160" y="128" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_carnegie1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_carnegie"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_carnegie2"/>
+    <property name="act6" value="set_variable omnichannelcarnegie:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_carnegie"/>
+    <property name="cond1" value="not variable_set omnichannelcarnegie:yes"/>
+   </properties>
+  </object>
+  <object id="11" name="Create Byrne" type="event" x="192" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_byrne,12,18"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_byrne"/>
+    <property name="cond2" value="not variable_set omnichannelbyrne:yes"/>
+   </properties>
+  </object>
+  <object id="12" name="Talk Byrne" type="event" x="192" y="288" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_byrne1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_byrne"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_byrne2"/>
+    <property name="act6" value="set_variable omnichannelbyrne:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_byrne"/>
+    <property name="cond1" value="not variable_set omnichannelbyrne:yes"/>
+   </properties>
+  </object>
+  <object id="13" name="Create Strauss" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_strauss,3,2"/>
+    <property name="cond1" value="not npc_exists spyder_omnichannel_strauss"/>
+    <property name="cond2" value="not variable_set omnichannelstrauss:yes"/>
+   </properties>
+  </object>
+  <object id="14" name="Talk Strauss" type="event" x="48" y="32" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_omnichannel_strauss1"/>
+    <property name="act3" value="start_battle spyder_omnichannel_strauss"/>
+    <property name="act4" value="translated_dialog spyder_omnichannel_strauss2"/>
+    <property name="act6" value="set_variable omnichannelstrauss:yes"/>
+    <property name="behav1" value="talk spyder_omnichannel_strauss"/>
+    <property name="cond1" value="not variable_set omnichannelstrauss:yes"/>
+   </properties>
+  </object>
+  <object id="34" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

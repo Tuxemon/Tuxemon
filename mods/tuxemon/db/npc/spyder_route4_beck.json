@@ -1,0 +1,28 @@
+{
+    "slug": "spyder_route4_beck",
+    "sprite_name": "tennisplayer",
+	"monsters": [
+        {
+            "name": "Katapill",
+            "level": 14, 
+			"slug": "katapill",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Tumbleworm",
+            "level": 12, 
+			"slug": "tumbleworm",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Spighter",
+            "level": 12, 
+			"slug": "spighter",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "yellowbelt.png",
+    "combat_back": "red_back.png"}

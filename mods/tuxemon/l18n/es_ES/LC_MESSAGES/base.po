@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 05:41+0200\n"
+"PO-Revision-Date: 2020-11-08 20:26+0000\n"
+"Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"es/>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
@@ -17,7 +33,6 @@ msgstr "<<MISSING>>"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
 msgstr "Manzana"
@@ -110,7 +125,6 @@ msgstr "Habitación 31, Número 2, Torre Omnichannel, Pueblo Algodón\n"
 "Se observa la marca de un beso al lado de la dirección"
 
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_run"
 msgstr "¡{user} se escapó!"
@@ -245,7 +259,7 @@ msgid "generic_failure"
 msgstr "¡Falló!"
 
 msgid "attempting_capture"
-msgstr "Intentando capturar..."
+msgstr "Intentando capturar…"
 
 msgid "gotcha"
 msgstr "¡Atrapado!"
@@ -280,9 +294,7 @@ msgstr "Chupavidas"
 msgid "status_recover"
 msgstr "Recuperado"
 
-
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "all_in"
 msgstr "Con todo"
 
@@ -553,9 +565,7 @@ msgstr "Torbellino"
 msgid "wing_tip"
 msgstr "Punta de Ala"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Información"
@@ -641,9 +651,7 @@ msgstr "No se han encontrado servidores..."
 msgid "multiplayer_join_prompt"
 msgstr "¿Nombre de host o IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart_description"
 msgstr "Lleva la cuenta de todas las hormigas que ha comido, y celebra llegar a números elevados."
@@ -1210,9 +1218,7 @@ msgstr "Inquieto"
 msgid "slurpy"
 msgstr "Chupón"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -1292,9 +1298,7 @@ msgstr "Soldado del equipo Xero IX"
 msgid "xerogrunt10"
 msgstr "Soldado del equipo Xero X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "¿Deseas curar tus Tuxemon?"
@@ -1398,13 +1402,13 @@ msgid "karrianna_dialog1"
 msgstr "Karrianna: ¡He estado entrenando todo este último mes! ¡Nadie me ha derrotado aún!"
 
 msgid "karrianna_dialog2"
-msgstr "Bueno... Eres el primer entrenador al que me he enfrentado..."
+msgstr "Bueno… Eres el primer entrenador al que me he enfrentado…"
 
 msgid "xero_hideout1"
 msgstr "Instituto Xero para la Investigación y Desarrollo de Tuxemon."
 
 msgid "cherry_found"
-msgstr "Has encontrado una cereza"
+msgstr "Has encontrado una cereza."
 
 msgid "xero_grunts_block"
 msgstr "Esta zona está en construcción y será terminada pronto."
@@ -1428,12 +1432,17 @@ msgid "discovered_a_person"
 msgstr "¡Me encontraste! ¡Jajaja!"
 
 msgid "a_serious_discussion\n"
-msgstr "???: Te llevo observando un tiempo. Me alegro de que mis seguidores hayan podido atraparte ileso.\n"
+msgstr ""
+"???: Te llevo observando un tiempo. Me alegro de que mis seguidores hayan "
+"podido atraparte ileso.\n"
 "¡Oh! ¿Dónde están mis modales? \n"
-"Soy Misa, líder del Instituto Xero para la Investigación y Desarrollo de Tuxemon.\n"
+"Soy Misa, líder del Instituto Xero para la Investigación y Desarrollo de "
+"Tuxemon.\n"
 "¿Cómo decías que te llamabas? \n"
 "....  .....  ....\n"
-"Misa: Mmm... Parece un buen nombre para alguien que posee un Tuxemon de forma ilegal.\n"
+"¿${{name}}?\n"
+"Misa: Parece un buen nombre para alguien que posee un Tuxemon de forma "
+"ilegal.\n"
 
 msgid "oops\n"
 msgstr "Oh. Supongo que no lo sabías...\n"
@@ -1605,7 +1614,8 @@ msgid "yesmaam"
 msgstr "Sí, señora."
 
 msgid "firsts"
-msgstr "♪  Watch me whip ♪\n"
+msgstr ""
+"♪ Watch me whip ♪\n"
 "♪ Watch me nae nae ♪"
 
 msgid "nopenotyet"
@@ -1744,7 +1754,7 @@ msgid "seeme"
 msgstr "Asegúrate de venir a verme..."
 
 msgid "knight4ispoor"
-msgstr "Realmente ella no es mala persona."
+msgstr "Ella no es mala persona en realidad."
 
 msgid "frowntime"
 msgstr "No me importa estar aquí...\n"
@@ -1892,7 +1902,7 @@ msgid "37707_house_missing"
 msgstr "N0 h@y nAd@ @qu1. Nunc@ l0 hub0."
 
 msgid "37707_mail_missing"
-msgstr "E$t@ v@ci0 y pu3dE$ v3r l@ n@dA"
+msgstr "E$t@ v@ci0 y pu3dE$ v3r l@ n@dA."
 
 msgid "37707_flower"
 msgstr "Sientes una cálida energía que emana de esta flor. Es lo único de este pueblo que a tus Tuxemon parece gustarle."
@@ -1901,11 +1911,17 @@ msgid "37707_flower_missing"
 msgstr "E330R: Event @ction set_monster_health contains inv@l1d p@r@meter$. He@l1ng aLL Tu+em0n.,."
 
 msgid "37707_computer"
-msgstr "Developer console: This is intended for Tuxemon developers only, for testing an experimental data loading system.\n"
-"The variable for the new loader will now be enabled. Please report any issues you find at https://tuxemon.org\n"
-"Developer note 1: This suppresses crashes for missing maps. The system may attempt to load invalid data!\n"
-"Developer note 2: Do NOT save your game with this enabled, it may result in data corruption.\n"
-"Developer note 3: As of switching to Python 3, data seems to be aggregated and combined in a very unusual manner. Please debug this!"
+msgstr ""
+"Consola de desarrollador: Esto es solo para desarrolladores Tuxemon, para "
+"probar un sistema de carga de datos experimental.\n"
+"La variable del nuevo loader se activará ahora. Por favor, reportad "
+"cualquier problema a https://tuxemon.org.\n"
+"Nota de desarrollador 1: Esto elimina la finalización en caso de mapas "
+"faltantes. ¡El sistema puede intentar cargar datos inválidos!\n"
+"Nota de desarrollador 2: NO guardes tu partida con esto activado, puede "
+"producir corrupción de datos.\n"
+"Nota de desarrollador 3: Al cambiar a Python 3, los datos han sido agregados "
+"y combinados de forma inusual. ¡Por favor depura esto!"
 
 msgid "37707_tower_missing"
 msgstr "N0 pu3de$ 3ntr@r 3n un 3d1fIci0 qu3 n0 e+i$t3."
@@ -1944,9 +1960,496 @@ msgstr "00000: Y0 nunc@ n@cÍ\n"
 "${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}} ${{name}}"
 
 msgid "37707_villager_female_missing"
-msgstr "@*!^: ¡0H... un r3c1En Ll3g@d0! ¿C0mo v1ni$t3 @qu1? <NONE> h3m0$ v1$t0 @ nAd13 nu3v0 d3$De... ()h, d@ dA D@ IGUAAAAAL\n"
-"@*!^: ¡BIenvENidO! Bi3nven1d0 a... 0H N/A: ¡nunc@ le ll3gam0$ a d@r un n0mbr3 a nue$tr0 puebl0 {<1} Nunc@ ll3gam000s {<2} NuNc@ l0 c0n$tru1m0s\n"
-"E TO NO EX ST  EST S C NECT D  A L  N DA D B S IRT  A OR "
+msgstr ""
+"@*!^: ¡0H... un r3c1En Ll3g@d0! ¿C0mo v1ni$t3 @qu1? <NONE> h3m0$ v1$t0 @ "
+"nAd13 nu3v0 d3$De... ()h, d@ dA D@ IGUAAAAAL\n"
+"@*!^: ¡BIenvENidO! Bi3nven1d0 a... 0H N/A: ¡nunc@ le ll3gam0$ a d@r un "
+"n0mbr3 a nue$tr0 puebl0 {<1} Nunc@ ll3gam000s {<2} NuNc@ l0 c0n$tru1m0s\n"
+"E TO NO EX ST  EST S C NECT D  A L  N DA D B S IRT  AH RA"
 
 msgid "cannot_use_item_monster"
 msgstr "Este objeto no puede ser usado en este monstruo."
+
+msgid "spyder_cottonart_florist"
+msgstr ""
+"¿Qué opinas del cuadro azul de un barco en el puerto?\n"
+"Es de estilo impresionista, lo que significa que intenta capturar cómo se ve "
+"y se comporta la luz.\n"
+"¿Ves el sol pequeño y rojo reflejado en las olas del agua?"
+
+msgid "spyder_cottonart_goth"
+msgstr ""
+"Solía gustarme venir aquí cada fin de semana a mirar los cuadros.\n"
+"Ahora los mejores han sido vendidos y las entradas son muy caras.\n"
+"Pero mi abuelita quería venir, así que ..."
+
+msgid "spyder_cottonart_granny"
+msgstr ""
+"Debo estar volviéndome nostálgico. Casi digo:\n"
+"\"¡Antes, en mis tiempos, las cosas eran mejores!\""
+
+msgid "spyder_cottoncafe_barmaidintro"
+msgstr ""
+"Nos hacemos llamar el Equipo Bazar. Quizás es un poco pretencioso.\n"
+"¡Somos un grupo de pícaros y bribones a los que nos gusta juntarnos a beber "
+"café, hablar de filosofía y desafiar a nuestros amos corporativos!\n"
+"Nos gusta cuidarnos entre nosotros. Por ejemplo, al contrario que la "
+"Catedral ¡no cobramos por curar tus Tuxemon!\n"
+"¿Quieres que cure a los tuyos?"
+
+msgid "spyder_cottoncafe_hackerchat"
+msgstr ""
+"Es genial que estés ayudando a la Tuxepedia.\n"
+"...\n"
+"¿Hay algún premio por añadir todos los Tuxemon?\n"
+"Solo la satisfacción de ayudar a la raza humana, hombre."
+
+msgid "spyder_cottontown_enforcer"
+msgstr "¡Largo de aquí, niño, esto es propiedad privada!"
+
+msgid "spyder_cottontown_hackerintro"
+msgstr ""
+"Ey, ¡qué Tuxemon más chulo! ¿Puedo ver el recibo?\n"
+"...\n"
+"Es broma, me parecía que no lo habías obtenido a través de, ehmm, los "
+"canales oficiales.\n"
+"Durante años, los Cinco Pilares han controlado los Tuxemon más fuertes. ¿"
+"Crees que molaría fastidiarles un poco?\n"
+"...\n"
+"¡Bien! Tengo un proyecto para ti. ¡Encuéntrate conmigo en el Café!"
+
+msgid "spyder_cottontown_monk"
+msgstr ""
+"Me ha asignado el Dojo de los Cinco Elementos para cuidar las estatuas aquí."
+"\n"
+"Pero Omnichannel planea expandir sus oficinas a este lugar.\n"
+"No sé qué ocurrirá con las estatuas cuando lo hagan."
+
+msgid "spyder_papertown_firstfight2"
+msgstr ""
+"Ugh, debe ser casualidad. ¡No hay forma de que el nuevo modelo sea peor que "
+"el viejo!"
+
+msgid "spyder_papertown_wrapup"
+msgstr ""
+"¡Le daré el resto de ellos a los otros niños que no tienen su propio "
+"Tuxemon! Y quizás me quede uno para mí. "
+
+msgid "spyder_papertown_lambertchosen"
+msgstr "¡Una buena elección! Lambert es un Tuxemon de Madera."
+
+msgid "spyder_papertown_agnitechosen"
+msgstr "¡Una elección genial! Agnite es un Tuxemon de Fuego."
+
+msgid "spyder_papertown_tweesherchosen"
+msgstr "¡Una elección inspirada! Tweesher es un Tuxemon de Agua."
+
+msgid "spyder_papertown_nutchosen"
+msgstr "¡Una elección magnífica! Nut es un Tuxemon de Metal."
+
+msgid "spyder_papertown_rockittenchosen"
+msgstr "¡Una elección excelente! Rockitten es un Tuxemon de Tierra."
+
+msgid "spyder_papertown_myfirstmon2"
+msgstr "Aquí vamos, ¡cinco Tuxemon! ¿Cuál quieres?"
+
+msgid "spyder_papertown_myfirstmon"
+msgstr ""
+"¡Anda, has venido! Genial.\n"
+"¡Cuando llegan nuevos Tuxemon chulos de la Catedral, simplemente tiramos los "
+"viejos a la basura!\n"
+"¡Parece mucho gasto, especialmente cuando niños como tú no tienen ninguno!"
+
+msgid "spyder_papertown_danteshop"
+msgstr ""
+"¡Estoy trabajando, jefe, estoy trabajando!\n"
+"Oh, si eres tú. Ya sabes, acabamos tirando gran parte de nuestros productos."
+"\n"
+"Es un gasto terrible. Todo acaba en las papeleras de la parte trasera de la "
+"tienda."
+
+msgid "spyder_papertown_grannypiper2"
+msgstr ""
+"Ya sabes, ¡los Pipers hicimos nuestra fortuna en el negocio de las "
+"guarderías!\n"
+"Llevo retirada diez años y estoy empezando a aburrirme. ¡Quiero volver!"
+
+msgid "spyder_papertown_mom6"
+msgstr ""
+"¡Enhorabuena! ¡Derrotaste a las corporaciones!\n"
+"Por supuesto, ahora mucha gente se ha quedado sin empleo... pero hiciste lo "
+"correcto. Creo."
+
+msgid "taba_greeting2b"
+msgstr ""
+"¡Ah! Veo que ya tienes algunas. Se nota que eres un chico sensato, ${{name}}"
+". Estoy seguro de que te convertirás en un campeón pronto."
+
+msgid "taba_greeting2a"
+msgstr ""
+"La tienda está realizando una promoción, aquí tienes algunas para empezar. "
+"Se usan para capturar Tuxemon. ¡Pero es más fácil si los dejas débiles "
+"primero!"
+
+msgid "taba_greeting1"
+msgstr ""
+"Relaciones públicas Jaime: ¡Eh, ${{name}}! He oído que tienes un Tuxemon, ¡"
+"enhorabuena! Si quieres aumentar tu equipo, necesitarás Tuxeballs."
+
+msgid "spyder_papertown_mom4"
+msgstr "¡Bienvenido de nuevo! Mírate, cómo creces tan rápido."
+
+msgid "spyder_papertown_mom3"
+msgstr ""
+"Oh, te has agenciado un Tuxemon. ¡Enhorabuena!\n"
+"¿Por qué no te diriges hacia el siguiente pueblo y exploras un poco?"
+
+msgid "spyder_papertown_mom1"
+msgstr ""
+"¡Buenos días, cielo! Descansa aquí tanto tiempo como necesites.\n"
+"¿Por qué estoy diciendo esto? ¡Si vives aquí!"
+
+msgid "spyder_papertown_homemaker1"
+msgstr ""
+"¿Cómo estás, ${{name}}?\n"
+"Callado y solemne como siempre, ya veo."
+
+## DIALOG TRANSLATIONS ##
+# spyder dialogs
+msgid "spyder_papertown_stopthere"
+msgstr ""
+"¡Eh! ¿Qué te crees que estás haciendo?\n"
+"No es seguro adentrarte en la naturaleza si no tienes un Tuxemon.\n"
+"Ven y compra uno en nuestra tienda."
+
+msgid "gotfivetuxeballs"
+msgstr "¡Obtuviste 5 Tuxeballs!"
+
+msgid "save_keep"
+msgstr "No, conservar esta partida guardada."
+
+msgid "save_overwrite"
+msgstr "Sí, sobrescribir esta partida guardada."
+
+msgid "spyder_leathercbd_sign"
+msgstr "Distrito Comercial de Pueblo Cuero"
+
+msgid "spyder_leathertown_sign"
+msgstr "Pueblo Cuero: Prueba de que la belleza y la minería pueden coexistir."
+
+msgid "spyder_nimrod_plaque"
+msgstr "Patrocinado por Nimrod. \"Si no los vendiéramos, otro lo haría\""
+
+msgid "spyder_column2_sign"
+msgstr ""
+"Una rara columna antigua. Otras ruinas de la misma cultura se pueden "
+"encontrar en la Ruta 3. "
+
+msgid "spyder_column1_sign"
+msgstr "Una rara columna antigua. Esto fue una vez parte de un templo."
+
+msgid "spyder_citypark_routesign"
+msgstr "Parque de la ciudad: Sabor a naturaleza."
+
+msgid "spyder_route2_routesign"
+msgstr "Bienvenido a la Ruta 2: El camino histórico."
+
+#, fuzzy
+msgid "spyder_citypark_achievement"
+msgstr "Casa del Maníaco de los Logros: Cerrado."
+
+msgid "spyder_papertown_restinbed"
+msgstr "¡Te despiertas completamente descansado!"
+
+msgid "spyder_papertown_home"
+msgstr "¡Hogar, dulce hogar!"
+
+msgid "spyder_papertown_daycare2"
+msgstr "Guardería: ¡Ahora abierta!"
+
+msgid "spyder_route1_routesign"
+msgstr "Ruta 1: ¡Ten cuidado!"
+
+#, fuzzy
+msgid "spyder_papertown_daycare1"
+msgstr "Guardería: En construcción."
+
+msgid "spyder_multi_martsign"
+msgstr "Compra cosas aquí."
+
+## MESSAGE TRANSLATIONS ##
+# spyder messages
+msgid "spyder_multi_underrepairs"
+msgstr "El letrero dice: \"En mantenimiento\"."
+
+msgid "spyder_route3_wanda"
+msgstr "Wanda"
+
+msgid "spyder_route3_connor"
+msgstr "Connor"
+
+msgid "spyder_postboy"
+msgstr "Chico del correo"
+
+msgid "spyder_miner"
+msgstr "Minero"
+
+msgid "spyder_citypark_edith"
+msgstr "Edith"
+
+msgid "spyder_route2_graf"
+msgstr "Graf"
+
+msgid "spyder_route2_marion"
+msgstr "Marion"
+
+msgid "spyder_route2_roddick"
+msgstr "Roddick"
+
+msgid "spyder_route2_billie"
+msgstr "Billie"
+
+msgid "spyder_shopassistant"
+msgstr "Dependiente"
+
+msgid "spyder_shopkeeper"
+msgstr "Tendero"
+
+msgid "spyder_florist"
+msgstr "Florista"
+
+msgid "spyder_granny"
+msgstr "Abuelita"
+
+msgid "spyder_cottontown_hacker"
+msgstr "Hacker"
+
+msgid "spyder_billie"
+msgstr "Billie"
+
+msgid "spyder_instore_dante"
+msgstr "Dante"
+
+msgid "spyder_papertown_shopkeeper"
+msgstr "Tendero"
+
+msgid "spyder_papertown_grannypiper"
+msgstr "Abuelita Piper"
+
+msgid "spyder_papertown_mom"
+msgstr "Mamá"
+
+msgid "spyder_papertown_homemaker"
+msgstr "Ama de casa"
+
+msgid "spyder_papertown_riverboatcaptain"
+msgstr "Capitán del barco"
+
+msgid "spyder_frolicking_conileaf"
+msgstr "Conileaf"
+
+msgid "spyder_frolicking_rockitten"
+msgstr "Rockitten"
+
+msgid "spyder_stop_dante"
+msgstr "Dante"
+
+msgid "spyder_cotton_nurse1"
+msgstr ""
+"¡Bienvenido al Centro de la Catedral de Pueblo Algodón!\n"
+"¿Quieres curar tus Tuxemon?"
+
+msgid "spyder_papertown_danteresting"
+msgstr ""
+"¡Estoy trabajando, jefe, estoy trabajando!\n"
+"Oh, si eres tú. Ya sabes, acabamos tirando gran parte de nuestros productos."
+"\n"
+"Todo acaba en las papeleras de la parte trasera de la tienda."
+
+msgid "spyder_route3_wanda2"
+msgstr ""
+"La pesca es buena en Ciudad Flor, ¿pero quién quiere caminar tan lejos?\n"
+"Toma, te puedes quedar mi Caña de Pescar."
+
+msgid "spyder_route3_wanda1"
+msgstr "¡Todo lo que parece que consigo capturar son Nudiflot aburridos!"
+
+msgid "spyder_route3_surat2"
+msgstr "Sabía que no lo entenderías. "
+
+msgid "spyder_route3_roxby3"
+msgstr ""
+"Espero que la Jefa no esté enfadada. Se enfada muy rápido.\n"
+"Pero es buena persona y tiene un corazon de diamante."
+
+msgid "spyder_route3_connor2"
+msgstr "Oh, vaya, esto será una nueva experiencia para ellos."
+
+msgid "spyder_route3_connor1"
+msgstr ""
+"Mi Weavifly está listo para combatir ahora. Hubo un tiempo en el que no "
+"podía volar."
+
+msgid "spyder_route3_curie2"
+msgstr "¿Por qué hiciste eso?"
+
+msgid "spyder_route3_curie1"
+msgstr "¡Mira mi magnífico invento!"
+
+msgid "spyder_route3_novak2"
+msgstr "Mmm, no lo suficientemente listo..."
+
+msgid "spyder_route3_novak1"
+msgstr " ¡Mi Elofly es un genio! Voy a coleccionar tantos como pueda."
+
+msgid "spyder_route3_zoolander1"
+msgstr ""
+"¿Una roca está causando problemas a los viajeros? ¿Es \"culpa nuestra\"? ¿A "
+"quién le importa? ¡Tenemos trabajo urgente que hacer!"
+
+msgid "spyder_museum_postboy1"
+msgstr ""
+"¿Sabías que los primeros anteojos se hacían con berilo y no con cristal?\n"
+"...\n"
+"¡Lo aprendí el último año de un guía en este museo! Pero ya no hay guías en "
+"este lugar."
+
+msgid "spyder_museum_miner1"
+msgstr ""
+"¡Solía haber una sección entera aquí de la historia de nuestro mundo!\n"
+"¡Pero cuando Nimrod se convirtió en patrocinador, la reemplazaron por "
+"historia militar!\n"
+"¡Ahora todo el mundo se inventa sus propias teorías sobre la historia "
+"mundial!"
+
+msgid "spyder_museum_shopkeeper_chat"
+msgstr "Soy voluntario, para mantener el museo tan asequible como sea posible. "
+
+msgid "spyder_museum_entrance3"
+msgstr ""
+"Desafortunadamente ahora necesitamos cobrar por las entradas. Serán 100$, "
+"por favor."
+
+#, fuzzy
+msgid "spyder_museum_entrance2"
+msgstr ""
+"Por favor, explorad nuestras cinco secciones, y aseguraos de leer sobre "
+"nuestros cinco patrocinadores."
+
+msgid "spyder_museum_entrance1"
+msgstr ""
+"¡Bienvenido al museo de historia natural! Es gratis, pero depende de "
+"vuestras generosas donaciones. ¿Considerarías realizar una donación de 50$?"
+
+msgid "spyder_citypark_edith2"
+msgstr "Mmm, quizás tengas algo de razón."
+
+msgid "spyder_citypark_edith1"
+msgstr "Eh, ¿has dicho que soy como mi Tuxemon? ¡Lucharé contigo por decir eso!"
+
+msgid "spyder_citypark_bobette2"
+msgstr " Un gato habría ganado…"
+
+msgid "spyder_citypark_bobette1"
+msgstr " Me gustan los gatos. Un Aardorn es básicamente un gato, ¿verdad?"
+
+msgid "spyder_citypark_frances2"
+msgstr "Deberías venir a visitarnos en algún momento. "
+
+msgid "spyder_route2_marion2"
+msgstr "Yo no como hormigas."
+
+msgid "spyder_citypark_florist"
+msgstr "¡Disfruta de estas vistas con flores! Es el orgullo de Pueblo Cuero."
+
+msgid "spyder_citypark_granny"
+msgstr "Iremos de nuevo a Pueblo Cuero después de un pequeño descanso."
+
+msgid "spyder_route2_marion1"
+msgstr "¡Hay muchas hormigas apetitosas!... Para mi Aardorn, quería decir."
+
+msgid "spyder_route2_graf1"
+msgstr "¡Soy un as, luchando y jugando al tenis!"
+
+msgid "spyder_route2_billie2"
+msgstr ""
+"Ha sido casualidad. Mis Tuxemon eran muy caros, y eso significa que son de "
+"mucha calidad."
+
+msgid "spyder_route2_billie1"
+msgstr "¡Eh, tacaño! ¿Aún tienes tu Tuxemon robado?"
+
+msgid "spyder_cotton_tuxepediaintro3"
+msgstr ""
+"Estás tan absorto leyendo las nuevas entradas, que no te das cuenta de que "
+"la gente se marcha."
+
+msgid "spyder_cotton_tuxepediaintro2"
+msgstr ""
+"Lo único que hace falta para añadir información es capturar ese Tuxemon en "
+"particular. Es genial."
+
+msgid "spyder_cotton_tuxepediaintro"
+msgstr ""
+"¡De momento, la única información fiable sobre los Tuxemon está en la cara e "
+"incompleta Enciclopedia Tuxemon!\n"
+"Eso no está bien, la información debería estar disponible gratuitamente. Por "
+"eso estamos creando la Tuxepedia.\n"
+"Es de código abierto, gratuita, y disponible para que todo el mundo la lea, "
+"escriba y edite. ¿A que es genial?\n"
+"De hecho, la acabo de instalar como una aplicación en todos vuestros "
+"móviles. "
+
+msgid "spyder_cottonscoop_deviceexplan2"
+msgstr ""
+"Los Dispositivos de Captura te permiten capturar Tuxemon y tenerlos como "
+"sirvientes.\n"
+"Son más efectivos cuando se usan en Tuxemon de bajo nivel, o que han "
+"recibido daño. Selecciónalos durante la batalla desde tu menú de Objetos.\n"
+"Gracias por escuchar. Aquí tienes cinco Dispositivos de Captura como muestra "
+"gratuita. "
+
+msgid "spyder_cottonscoop_deviceexplan"
+msgstr "Deja que mi ayudante te explique."
+
+msgid "spyder_cottonscoop_devicenoexplan"
+msgstr ""
+"     Está bien, aquí tienes cinco como muestra gratuita. ¡Si tienes alguna "
+"pregunta sobre cómo funcionan los Dispositivos de Captura, pregunta a mi "
+"ayudante!"
+
+msgid "spyder_cottonscoop_deviceoffer"
+msgstr ""
+"Bienvenido, cliente. Hoy, estamos promocionando los Dispositivos de Captura. "
+"¿Sabes lo que son?"
+
+msgid "spyder_cottonscoop_shopassistant"
+msgstr ""
+"Los Dispositivos de Captura te permiten capturar Tuxemon y tenerlos como "
+"sirvientes.\n"
+"Son más efectivos cuando se usan en Tuxemon de bajo nivel, o que han "
+"recibido daño.\n"
+"Selecciónalos durante la batalla desde tu menú de Objetos."
+
+msgid "spyder_cottonart_shopkeeper"
+msgstr ""
+"Bienvenido a la Galería de Arte de Pueblo Algodón. Ah... ¡quiero decir, a la "
+"Tienda de Arte!\n"
+"Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
+"arte en lugar de solo mostrarlas.\n"
+"La entrada cuesta 50$. Va a los dividendos anuales de la compañía."
+
+msgid "spyder_cottonart_intro"
+msgstr ""
+"Bienvenido a la Galería de Arte de Pueblo Algodón. Ah... ¡quiero decir, a la "
+"Tienda de Arte!\n"
+"Desde que nos cortaron el presupuesto hemos tenido que vender las obras de "
+"arte en lugar de solo mostrarlas.\n"
+"La entrada es 50$. Va a los dividendos anuales de la compañía."
+
+msgid "spyder_cottoncafe_barmaid"
+msgstr "Bienvenido de nuevo. ¿Pongo a tus Tuxemon en la unidad de curación?"
+
+msgid "spyder_cottontown_stopthere"
+msgstr ""
+"¡Eh, eso no está bien! ¡Debes venir a mi charla en el café antes de irte!"

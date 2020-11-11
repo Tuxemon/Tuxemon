@@ -108,13 +108,13 @@ def event_actions_and_conditions(items):
             conds.append(condition)
         elif key.startswith("act"):
             act_type, args = parse_action_string(value)
-            action = MapAction(act_type, args, key)
+            action = MapAction(act_type, args)
             acts.append(action)
         elif key.startswith("behav"):
             behav_type, args = parse_behav_string(value)
             if behav_type == "talk":
-                cond = MapCondition("to_talk", args, "is", key)
-                action = MapAction("npc_face", [args[0], "player"], key)
+                cond = MapCondition("to_talk", "is", args)
+                action = MapAction("npc_face", [args[0], "player"])
                 conds.insert(0, cond)
                 acts.insert(0, action)
             else:

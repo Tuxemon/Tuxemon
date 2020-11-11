@@ -56,14 +56,14 @@ class DialogAction(EventAction):
     ]
 
     def start(self):
-        text = replace_text(self.session, self.parameters.text)
-        avatar = get_avatar(self.session, self.parameters.avatar)
+        text = replace_text(self.context, self.parameters.text)
+        avatar = get_avatar(self.context, self.parameters.avatar)
         self.open_dialog(text, avatar)
 
     def update(self):
-        if self.session.client.get_state_by_name("DialogState") is None:
+        if self.context.client.get_state_by_name("DialogState") is None:
             self.stop()
 
     def open_dialog(self, initial_text, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.session, [initial_text], avatar)
+        open_dialog(self.context, [initial_text], avatar)

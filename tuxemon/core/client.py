@@ -118,7 +118,7 @@ class LocalPygameClient(object):
                 flip()
                 frames += 1
             fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
-            time.sleep(0.001)
+            time.sleep(0.1)
 
         pg.quit()
 

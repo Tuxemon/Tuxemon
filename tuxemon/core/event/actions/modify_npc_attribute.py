@@ -41,7 +41,7 @@ class ModifyNpcAttributeAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.session, self.parameters[0])
+        npc = get_npc(self.context, self.parameters[0])
         attribute = self.parameters[1]
         modifier = self.parameters[2]
         CommonAction.modify_character_attribute(npc, attribute, modifier)

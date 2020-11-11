@@ -37,8 +37,7 @@ condition_fields = [
 
 action_fields = [
     "type",
-    "parameters",
-    "name"]
+    "parameters"]
 
 event_fields = [
     "id",

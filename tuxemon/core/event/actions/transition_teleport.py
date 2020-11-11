@@ -21,6 +21,7 @@
 
 from tuxemon.core.euclid import Vector3
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.world import Position
 
 
 class TransitionTeleportAction(EventAction):
@@ -55,9 +56,9 @@ class TransitionTeleportAction(EventAction):
     def start(self):
         # self.transition = self.session.client.event_engine.get_action("screen_transition", params)
         # self.transition.start()
-        position = Vector3(self.parameters.x, self.parameters.y, 0)
-        self.session.client.release_controls()
-        self.session.world.teleport(self.session.player, self.parameters.map_name, position)
+        position = Position(self.parameters.x, self.parameters.y, 0, self.parameters.map_name)
+        self.context.client.release_controls()
+        self.context.world.teleport(self.context.player, position)
 
     # def update(self):
     #     if not self.transition.done:

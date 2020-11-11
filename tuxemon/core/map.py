@@ -301,6 +301,8 @@ class TuxemonMap:
         self.events = events
         self.renderer = None
         self.event_engine = EventEngine(events)
+        # TODO: remove this hack
+        self.event_engine.map = self
         # TODO: create conditions to clamp the edges according to map/screen size
         self.edges = edges
         self.clamped = self.edges == "clamped"

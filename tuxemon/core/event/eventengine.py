@@ -38,6 +38,18 @@ from tuxemon.core.session import local_session
 logger = logging.getLogger(__name__)
 
 
+class EventContext:
+    engine = None
+    world = None
+    session = None
+    client = None
+    player = None
+    map = None
+
+    def __init__(self):
+        pass
+
+
 class RunningEvent:
     """ Manage MapEvents that are used during gameplay
 
@@ -114,6 +126,10 @@ class EventEngine:
         self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
         self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
 
+        # TODO: remove this hack
+        self.world = None
+        self.map = None
+
     def get_action(self, session, name, parameters=None):
         """ Get an action that is loaded into the engine
 
@@ -133,7 +149,14 @@ class EventEngine:
             error = 'Error: EventAction "{}" not implemented'.format(name)
             raise RuntimeError(error)
         else:
-            return action(session, parameters)
+            context = EventContext()
+            context.session = session
+            context.player = session.player
+            context.client = session.client
+            context.world = session.world
+            context.engine = self
+            context.map = self.map
+            return action(context, parameters)
 
     def get_condition(self, name):
         """ Get a condition that is loaded into the engine
@@ -177,7 +200,7 @@ class EventEngine:
             )
             return result
 
-    def execute_action(self, session, action_name, parameters=None):
+    def execute_action(self, session, action_name, parameters=None, map=None):
         """ Load and execute an action
 
         This will cause the game to hang if an action waits on game changes
@@ -319,7 +342,7 @@ class EventEngine:
                     else:
                         # got an action, so start it
                         action = self.get_action(
-                            e.session, next_action.type, next_action.parameters
+                            e.session, next_action.type, next_action.parameters,
                         )
 
                         if action is None:
@@ -332,7 +355,7 @@ class EventEngine:
 
                         else:
                             # start the action
-                            with add_error_context(e.map_event, next_action, e.session):
+                            with add_error_context(e.map_event, next_action, e.context):
                                 action.start()
 
                             # save the action that is running
@@ -340,7 +363,7 @@ class EventEngine:
 
                 # update the action
                 action = e.current_action
-                with add_error_context(e.map_event, e.current_map_action, e.session):
+                with add_error_context(e.map_event, e.current_map_action, e.context):
                     action.update()
 
                 if action.done:

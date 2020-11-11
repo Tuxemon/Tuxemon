@@ -39,7 +39,7 @@ class NpcWanderAction(EventAction):
     def start(self):
         # TODO: fix me
         return
-        npc = get_npc(self.session, self.parameters.npc_slug)
+        npc = get_npc(self.context, self.parameters.npc_slug)
 
         def move():
             # Don't interrupt existing movement
@@ -48,7 +48,7 @@ class NpcWanderAction(EventAction):
 
             # Suspend wandering if a dialog window is open
             # TODO: this should only be done for the NPC the player is conversing with, not everyone
-            for state in self.session.client.active_states:
+            for state in self.context.client.active_states:
                 if state.name == "DialogState":
                     return
 

@@ -95,13 +95,13 @@ class EventAction:
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, session, parameters):
+    def __init__(self, context, parameters):
         """
 
-        :param tuxemon.core.session.Session session:
+        :param tuxemon.core.event.eventengine.EventContext context:
         :param List parameters:
         """
-        self.session = session
+        self.context = context
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

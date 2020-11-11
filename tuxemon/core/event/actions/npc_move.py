@@ -63,7 +63,7 @@ class NpcMoveAction(EventAction):
 
     def start(self):
         npc_slug = self.raw_parameters[0]
-        self.npc = get_npc(self.session, npc_slug)
+        self.npc = get_npc(self.context, npc_slug)
 
         if self.npc is None:
             return

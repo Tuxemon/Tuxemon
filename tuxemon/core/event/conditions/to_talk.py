@@ -62,16 +62,11 @@ class ToTalkCondition(EventCondition):
         """
         player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, event, condition)
         button_pressed = ButtonPressedCondition().test(session, event, MapCondition(
-            type="button_pressed",
+            name="button_pressed",
+            operator="is",
             parameters=[
                 "K_RETURN",
             ],
-            operator="is",
-            width=0,
-            height=0,
-            x=0,
-            y=0,
-            name="",
         ))
         return player_next_to_and_facing_target and button_pressed
 

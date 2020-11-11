@@ -24,6 +24,7 @@ import logging
 import tuxemon.core.npc
 from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.world import Position
 
 logger = logging.getLogger(__name__)
 
@@ -46,15 +47,13 @@ class CreateNpcAction(EventAction):
         slug = self.parameters.npc_slug
 
         # Ensure that the NPC doesn't already exist
-        if get_npc(self.session, slug) is not None:
+        if get_npc(self.context.session, slug) is not None:
             return
 
         # Create a new NPC object
-        pos_x = self.parameters.tile_pos_x
-        pos_y = self.parameters.tile_pos_y
+        x = self.parameters.tile_pos_x
+        y = self.parameters.tile_pos_y
+        map_name = self.context.map.name
         npc = tuxemon.core.npc.NPC(slug)
-        npc.set_position((pos_x, pos_y))
-
-        # TODO: Get the map name from the event
-        npc.map_name = self.session.player.map_name
-        self.session.world.add_entity(npc)
+        position = Position(x, y, 0, map_name)
+        self.context.world.add_entity(npc, position)

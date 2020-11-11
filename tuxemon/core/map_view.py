@@ -31,11 +31,19 @@ animation_mapping = {
 
 
 class MapSprite(object):
-    """ WIP.  View of an NPC on the map
-
-    This is largely existing code from the NPC class
     """
 
+    MapSprites are a graphics representation of game objects
+    MapSprites contain PyGanim aminations, directions, and static images
+    MapSprites can be reused for other game entities if they look the same
+    MapSprites currently just handle NPC objects
+    Game entities should not represent themselves
+    More game objects should be represented by MapSprites overtime
+    MapSprites are related to, but not the same same pygame Sprites
+
+    TODO: clarify the name sprite
+
+    """
     def __init__(self, sprite_name):
         self.sprite_name = sprite_name
         self.standing = dict()

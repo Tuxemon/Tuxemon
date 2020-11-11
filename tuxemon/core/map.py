@@ -28,9 +28,10 @@
 #
 #
 
-import logging
 from itertools import product
+import logging
 from math import pi, atan2, cos, sin
+import os
 
 from tuxemon.compat import Rect
 from tuxemon.core.euclid import Vector2, Vector3, Point2
@@ -309,7 +310,7 @@ class TuxemonMap:
         # TODO: remove this invalid_xxx hack
         self.invalid_x = (-1, self.size[0])
         self.invalid_y = (-1, self.size[1])
-        self.name = filename
+        self.name = os.path.basename(filename)
 
     def update(self, dt):
         self.event_engine.update(dt)

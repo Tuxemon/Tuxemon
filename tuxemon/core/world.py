@@ -1,9 +1,9 @@
 import logging
 from collections import defaultdict
 
-from tuxemon.core.map import TuxemonMap
 from tuxemon.core import prepare
-from tuxemon.core.euclid import Vector3, Point2
+from tuxemon.core.euclid import Point2
+from tuxemon.core.map import TuxemonMap
 from tuxemon.core.map_loader import TMXMapLoader
 
 logger = logging.getLogger(__name__)
@@ -15,6 +15,9 @@ class Position:
         self.y = y
         self.z = z
         self.map_name = map_name
+
+    def __getitem__(self, index):
+        return (self.x, self.y, self.z)[index]
 
 
 def proj(point):
@@ -86,6 +89,7 @@ class World(object):
         :type position: core.world.Position
         :return:
         """
+        entity.set_position(position)
         if position.map_name not in self.maps:
             entity.map = self.get_map(position.map_name)
         self.entities_by_slug[entity.slug] = entity
@@ -133,6 +137,8 @@ class World(object):
         :param str map_name:
         :rtype: Iterator[Entity]
         """
+        if map_name not in self.entities_by_map:
+            raise Exception
         return self.entities_by_map[map_name]
 
     def get_map_for_entity(self, entity) -> TuxemonMap:

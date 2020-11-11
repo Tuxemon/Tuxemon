@@ -182,34 +182,6 @@ class NPC(Entity):
             'monsters': decode_monsters(save_data['storage']),
         }
 
-    def get_sprites(self, layer):
-        """ Get the surfaces and layers for the sprite
-
-        Used to render the player
-
-        TODO: Move the 'layer' to the NPC class so characters
-        can define their own drawing layer.
-
-        :param layer: The layer to draw the sprite on.
-        :type layer: Int
-
-        :return:
-        """
-
-        def get_frame(d, ani):
-            frame = d[ani]
-            try:
-                surface = frame.getCurrentFrame()
-                frame.rate = self.moverate / CONFIG.player_walkrate
-                return surface
-            except AttributeError:
-                return frame
-
-        # TODO: move out to the world renderer
-        frame_dict = self.sprite if self.moving else self.standing
-        state = animation_mapping[self.moving][self.facing]
-        return [(get_frame(frame_dict, state), self.tile_pos, layer)]
-
     def move_direction(self, direction):
         self._move_direction = direction
 

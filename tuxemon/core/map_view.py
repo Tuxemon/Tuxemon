@@ -142,8 +142,6 @@ class MapView(object):
         self.tilewidth = None
         self.tileheight = None
         self.sprites = SpriteCache()
-
-        # TODO: consider using some event to signify changing this
         self._current_map = None
 
         # TODO: Transitions should be changed to states and not coded in here
@@ -169,7 +167,6 @@ class MapView(object):
             if gamemap != self._current_map:
                 self.renderer = None
             if self.renderer is None:
-                gamemap = self.world.get_map_for_entity(self.tracked_entity)
                 filename = prepare.fetch("maps", gamemap.name)
                 size = rect.size if rect else prepare.SCREEN_SIZE
                 self.renderer = self.initialize_map_renderer(size, filename)
@@ -184,14 +181,6 @@ class MapView(object):
         if self.renderer is None:
             return
 
-        # get npc surfaces/sprites
-        world_surfaces = list()
-        gamemap = self.world.get_map_for_entity(self.tracked_entity)
-        map_name = gamemap.name
-        for npc in self.world.get_entities_on_map(map_name):
-            sprite = self.sprites.get(npc.sprite_name)
-            world_surfaces.extend(sprite.get_current_npc_surface(npc, self.sprite_layer))
-
         # get map_animations
         for anim_data in self.map_animations.values():
             anim = anim_data['animation']
@@ -200,6 +189,12 @@ class MapView(object):
                 world_surfaces.append(frame)
 
         screen_surfaces = list()
+        world_surfaces = self.get_world_surfaces(gamemap)
+
+        assert self.renderer
+        assert self.tracked_entity
+        assert world_surfaces
+
         for frame in world_surfaces:
             s, c, l = frame
 
@@ -219,6 +214,19 @@ class MapView(object):
         # draw the map and sprites
         self.renderer.draw(surface, rect, screen_surfaces)
 
+    def get_world_surfaces(self, gamemap):
+        """
+
+        :param gamemap:
+        :return:
+        """
+        world_surfaces = list()
+        for npc in self.world.get_entities_on_map(gamemap.name):
+            sprite = self.sprites.get(npc.sprite_name)
+            surfaces = sprite.get_current_npc_surface(npc, self.sprite_layer)
+            world_surfaces.extend(surfaces)
+        return world_surfaces
+
     def initialize_map_renderer(self, size, map_name):
         """ Initialize the renderer for the map and sprites
 
@@ -230,7 +238,9 @@ class MapView(object):
         self.sprite_layer = int(map_object.data.properties.get("sprite_layer", 2))
         self.tilewidth, self.tileheight = prepare.TILE_SIZE
         self.map_animations = dict()
-        return pyscroll.BufferedRenderer(visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2)
+        return pyscroll.BufferedRenderer(
+            visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2
+        )
 
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
@@ -245,7 +255,7 @@ class MapView(object):
             self.trigger_fade_in(duration)
             self.task(cleanup, duration)
 
-        # cancel any fades that may be going one
+        # cancel any fades that may be going on
         self.remove_animations_of(self)
         self.remove_animations_of(cleanup)
         self.stop_player()

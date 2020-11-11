@@ -169,67 +169,67 @@ class MapView(object):
         if rect is None:
             rect = surface.get_rect()
 
-        # TODO: make more robust to handle no tracking, and tracking other npcs
+        # TODO: make less awkward
         if self.tracked_entity is not None:
             gamemap = self.world.get_map_for_entity(self.tracked_entity)
             if gamemap != self._current_map:
                 self.renderer = None
             if self.renderer is None:
                 filename = prepare.fetch("maps", gamemap.name)
-                size = rect.size if rect else prepare.SCREEN_SIZE
-                self.renderer = self.initialize_map_renderer(size, filename)
+                self.renderer = self.initialize_map_renderer(rect.size, filename)
 
-            # get tracked npc coords to center map
-            cx, cy = nearest(self.project(self.tracked_entity.tile_pos))
-            cx += self.tilewidth // 2
-            cy += self.tileheight // 2
-            self.renderer.center((cx, cy))
+        if self.renderer:
+            self.center_on_entity(self.tracked_entity)
+            world_surfaces = self.get_world_surfaces(gamemap)
+            screen_surfaces = self.project_world_surfaces(rect, world_surfaces)
+            self.renderer.draw(surface, rect, screen_surfaces)
 
-        # if we are not tacking an npc, we may not have a renderer
-        if self.renderer is None:
-            return
-
-        # get map_animations
-        for anim_data in self.map_animations.values():
-            anim = anim_data['animation']
-            if not anim.isFinished() and anim.visibility:
-                frame = (anim.getCurrentFrame(), anim_data["position"], anim_data['layer'])
-                world_surfaces.append(frame)
-
-        screen_surfaces = list()
-        world_surfaces = self.get_world_surfaces(gamemap)
-
-        for frame in world_surfaces:
-            s, c, l = frame
-
-            # project to pixel/screen coords
-            c = self.get_pos_from_tilepos(c)
-
-            # TODO: better handling of tall sprites
-            h = s.get_height()
-            if h > self.tileheight:
-                # offset for center and image height
-                c = nearest((c[0], c[1] - h // 2))
-            c = c[0] + rect.left, c[1] + rect.top
-
-            # TODO: filter the off-screen sprites so they are not drawn
-            screen_surfaces.append((s, c, l))
-
-        # draw the map and sprites
-        self.renderer.draw(surface, rect, screen_surfaces)
+    def center_on_entity(self, entity):
+        # get tracked npc coords to center map
+        cx, cy = nearest(self.project(entity.tile_pos))
+        cx += self.tilewidth // 2
+        cy += self.tileheight // 2
+        self.renderer.center((cx, cy))
 
     def get_world_surfaces(self, gamemap):
-        """
+        """ Return list of surfaces in world coordinates
+
+        each item is (surface, tile_position, layer)
+        tile position is (x, y), where each is a float
 
         :param gamemap:
         :return:
         """
         world_surfaces = list()
+        # npcs and other entities
         for npc in self.world.get_entities_on_map(gamemap.name):
             sprite = self.sprites.get(npc.sprite_name)
             surfaces = sprite.get_current_npc_surface(npc, self.sprite_layer)
             world_surfaces.extend(surfaces)
+        # "map animations"
+        for anim_data in self.map_animations.values():
+            anim = anim_data['animation']
+            if not anim.isFinished() and anim.visibility:
+                frame = (anim.getCurrentFrame(), anim_data["position"], anim_data['layer'])
+                world_surfaces.append(frame)
         return world_surfaces
+
+    def project_world_surfaces(self, screen_rect, world_surfaces):
+        screen_surfaces = list()
+        left = screen_rect.left
+        top = screen_rect.top
+        for frame in world_surfaces:
+            s, c, l = frame
+            c = self.get_pos_from_tilepos(c)
+            # TODO: better handling of tall sprites
+            h = s.get_height()
+            if h > self.tileheight:
+                # offset for center and image height
+                c = nearest((c[0], c[1] - h // 2))
+            c = c[0] + left, c[1] + top
+            # TODO: filter the off-screen sprites so they are not drawn
+            screen_surfaces.append((s, c, l))
+        return screen_surfaces
 
     def initialize_map_renderer(self, size, map_name):
         """ Initialize the renderer for the map and sprites

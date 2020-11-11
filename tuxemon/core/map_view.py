@@ -41,6 +41,7 @@ class MapSprite(object):
         self.standing = dict()
         self.sprite = dict()
         self.moveConductor = pyganim.PygConductor()
+        self.last_animation_state = None
 
     def load_sprites(self):
         """ Load sprite graphics
@@ -98,6 +99,13 @@ class MapSprite(object):
                 return surface
             except AttributeError:
                 return frame
+
+        if self.last_animation_state != npc.animation:
+            self.last_animation_state = npc.animation
+            if npc.animation == "idle":
+                self.moveConductor.stop()
+            else:
+                self.moveConductor.play()
 
         frame_dict = self.sprite if npc.moving else self.standing
         state = animation_mapping[npc.moving][npc.facing]
@@ -190,10 +198,6 @@ class MapView(object):
 
         screen_surfaces = list()
         world_surfaces = self.get_world_surfaces(gamemap)
-
-        assert self.renderer
-        assert self.tracked_entity
-        assert world_surfaces
 
         for frame in world_surfaces:
             s, c, l = frame

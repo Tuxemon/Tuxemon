@@ -144,6 +144,8 @@ class NPC(Entity):
         self.playerWidth = 16
         # self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
+        self.animation = None
+
     def get_state(self, session):
         """Prepares a dictionary of the npc to be saved to a file
 
@@ -274,6 +276,11 @@ class NPC(Entity):
         """
         # update physics.  eventually move to another class
         self.update_physics(time_passed_seconds)
+
+        if self.moving:
+            self.animation = "walk"
+        else:
+            self.animation = "idle"
 
         if self.pathfinding and not self.path:
             # wants to pathfind, but there was no path last check

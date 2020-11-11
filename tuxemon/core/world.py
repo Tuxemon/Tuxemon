@@ -1,7 +1,7 @@
 import logging
 from collections import defaultdict
 
-from core.map import TuxemonMap
+from tuxemon.core.map import TuxemonMap
 from tuxemon.core import prepare
 from tuxemon.core.euclid import Vector3, Point2
 from tuxemon.core.map_loader import TMXMapLoader

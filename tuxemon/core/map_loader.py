@@ -38,7 +38,10 @@ from tuxemon.core.map import (
     TuxemonMap,
     tiles_inside_rect,
     snap_rect_to_grid,
-    snap_rect_to_tile, angle_of_points, orientation_by_angle, snap_to_grid,
+    snap_rect_to_tile,
+    angle_of_points,
+    orientation_by_angle,
+    snap_to_grid,
 )
 from tuxemon.core.tools import split_escaped, copy_dict_with_keys
 from tuxemon.lib.bresenham import bresenham
@@ -101,7 +104,7 @@ def event_actions_and_conditions(items):
     for key, value in natsorted(items):
         if key.startswith("cond"):
             operator, cond_type, args = parse_condition_string(value)
-            condition = MapCondition(cond_type, args, operator, key)
+            condition = MapCondition(cond_type, operator, args)
             conds.append(condition)
         elif key.startswith("act"):
             act_type, args = parse_action_string(value)
@@ -134,7 +137,7 @@ def new_event_object(event_id, name, event_type, rect, properties):
     """
     acts, conds = event_actions_and_conditions(properties)
     if event_type == "interact":
-        cond = MapCondition("player_facing_tile", list(), "is", None)
+        cond = MapCondition("player_facing_tile", "is", None)
         conds.append(cond)
     return EventObject(event_id, name, rect, conds, acts)
 

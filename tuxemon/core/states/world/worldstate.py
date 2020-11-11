@@ -394,7 +394,7 @@ class WorldState(state.State):
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
-                        world = self.game.current_state
+                        world = self.game.current_statimape
                         pd = world.player1.__dict__
                         event_data = {"type": "CLIENT_INTERACTION",
                                       "interaction": "START_DUEL",

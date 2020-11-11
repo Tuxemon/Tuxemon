@@ -31,10 +31,9 @@ logger = logging.getLogger(__name__)
 
 # Set up map action and condition objects
 condition_fields = [
-    "type",
-    "parameters",
+    "name",
     "operator",
-    "name"]
+    "parameters",]
 
 action_fields = [
     "type",

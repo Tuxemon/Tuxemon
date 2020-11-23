@@ -751,25 +751,16 @@
     <property name="act4" value="pathfind npc_mom,37,38"/>
     <property name="act5" value="npc_face npc_mom,up"/>
     <property name="act6" value="set_variable moveon:yes"/>
+    <property name="act7" value="pathfind player,37,37"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
     <property name="cond3" value="not variable_set moveon:yes"/>
    </properties>
   </object>
-  <object id="144" name="runtohouse" type="event" x="656" y="576" width="16" height="16">
-   <properties>
-    <property name="act1" value="pathfind player,43,46"/>
-    <property name="act2" value="npc_face player,up"/>
-    <property name="act3" value="wait 0.5"/>
-    <property name="act4" value="transition_teleport player_house_downstairs.tmx,5,7,0.5"/>
-    <property name="act5" value="set_variable backhome:no"/>
-    <property name="cond1" value="is variable_set backhome:yes"/>
-   </properties>
-  </object>
   <object id="145" name="anouncement2part2" type="event" x="560" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog timeforround22"/>
-    <property name="act11" value="set_variable backhome:yes"/>
+    <property name="act11" value="set_variable comeinside:yes"/>
     <property name="act2" value="pathfind npc_mom,43,46"/>
     <property name="act3" value="npc_face npc_mom,up"/>
     <property name="act4" value="remove_npc npc_mom"/>

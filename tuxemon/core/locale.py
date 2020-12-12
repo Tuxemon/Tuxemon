@@ -311,6 +311,7 @@ def replace_text(session, text):
 
     """
     text = text.replace("${{name}}", session.player.name)
+    text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
 
     for i in range(len(session.player.monsters)):

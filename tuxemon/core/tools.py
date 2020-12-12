@@ -35,6 +35,7 @@ if more appropriate.  Ideally this should be kept small.
 
 """
 
+import random
 import logging
 import re
 from itertools import zip_longest
@@ -166,7 +167,9 @@ def trunc(l):
 
 def number_or_variable(session, value):
     """ Returns a numeric game variable by its name
-    If value is already a number, convert from string to float and return that
+    If value contains two numbers separated by "~", return a random number between them
+    If not and value is a game property, convert from string to float and return that
+    If not and value is already a number, convert from string to float and return it
 
     :param session:
     :param value: Union[str, float, int]
@@ -176,14 +179,13 @@ def number_or_variable(session, value):
     :raises: ValueError
     """
     player = session.player
-    if value.isdigit():
-        return float(value)
+    values = value.split("~")
+    if len(values) == 2 and values[0].isdigit() and values[1].isdigit():
+        return random.uniform(float(values[0]), float(values[1]))
+    elif value in player.game_variables:
+        return float(player.game_variables[value])
     else:
-        try:
-            return float(player.game_variables[value])
-        except (KeyError, ValueError, TypeError):
-            logger.error("invalid number or game variable {}".format(value))
-            raise ValueError
+        return float(value)
 
 
 def cast_values(parameters, valid_parameters):

@@ -26,6 +26,8 @@
 # core.main Sets up the states and main game loop.
 #
 
+import time
+import random
 import logging
 
 from tuxemon.core import log
@@ -101,6 +103,15 @@ def main(load_slot=None):
 
         for i in range(100):
             action("add_item", ("apple",))
+
+    # read the random seed from game variables, create it if none exists
+    try:
+        seed = new_player.game_variables["random_seed"]
+    except KeyError:
+        seed = int(round(time.time() * 1000))
+        new_player.game_variables["random_seed"] = seed
+        logger.debug("generated new random seed {}".format(seed))
+    random.seed(seed)
 
     client.main()
     pygame.quit()

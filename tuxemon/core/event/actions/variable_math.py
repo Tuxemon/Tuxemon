@@ -41,15 +41,22 @@ class VariableMathAction(EventAction):
 
     def start(self):
         player = self.session.player
+        var = self.parameters.var
+
+        # If the game variable doesn't already exist, initialize it at 0
+        # This ensures the = operation works without needing to set the variable separately
+        if not var in player.game_variables:
+            player.game_variables[var] = 0
 
         # Read the parameters
-        var = self.parameters.var
-        operand1 = number_or_variable(self.session, var)
         operation = self.parameters.operation
+        operand1 = number_or_variable(self.session, var)
         operand2 = number_or_variable(self.session, self.parameters.value)
 
         # Preform the operation on the variable
-        if operation == "+":
+        if operation == "=":
+            player.game_variables[var] = operand2
+        elif operation == "+":
             player.game_variables[var] = operand1 + operand2
         elif operation == "-":
             player.game_variables[var] = operand1 - operand2

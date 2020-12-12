@@ -20,14 +20,16 @@
 #
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.tools import number_or_variable
 
 
 class WaitForSecsAction(EventAction):
     """Pauses the event engine for n number of seconds.
+    The duration can be either a number or the name of a numeric variable
 
     Valid Parameters: duration
 
-    * duration (float): time in seconds for the event engine to wait for
+    * duration (string): time in seconds for the event engine to wait for
 
     **Examples:**
 
@@ -42,10 +44,12 @@ class WaitForSecsAction(EventAction):
     """
     name = "wait_for_secs"
     valid_parameters = [
-        (float, 'seconds')
+        (str, 'seconds')
     ]
 
     def start(self):
-        secs = self.parameters.seconds
+        self.game.event_engine.state = "waiting"
+        self.game.event_engine.wait = secs
+        secs = number_or_variable(self.session, self.parameters.seconds)
         self.session.client.event_engine.state = "waiting"
         self.session.client.event_engine.wait = secs

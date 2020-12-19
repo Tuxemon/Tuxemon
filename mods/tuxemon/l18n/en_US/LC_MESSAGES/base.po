@@ -1968,6 +1968,15 @@ msgstr "I have a little stored away that needs to be put to good use and Omnicha
 "Me!\n"
 "Now, I know it's a lot to process, so I'll be in my lab waiting for your decision."
 
+msgid "hebenice"
+msgstr "He's a nice man, maybe you should at least see what he has to say."
+
+msgid "moverocky"
+msgstr "C'mon Rocky! You can move! I believe!"
+
+msgid "moverocky2"
+msgstr "Well, you move when your ready, I'll be here waiting."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

@@ -363,7 +363,7 @@ class StateManager:
 
         if index == 0:
             logger.debug("resetting controls due to state change")
-            self.release_controls()
+            # self.release_controls()
 
         try:
             previous = self._state_stack.pop(index)

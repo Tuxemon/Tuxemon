@@ -40,13 +40,13 @@ class Entity:
         self.slug = None
         self.world = None
         self.instance_id = None
-        self.body = None
         self.tile_pos = Point2(0, 0)
         self.position3 = Point3(0, 0, 0)
         self.acceleration3 = Vector3(0, 0, 0)  # not used currently, just set velocity
         self.velocity3 = Vector3(0, 0, 0)
         self.update_location = False
 
+    # === PHYSICS START ================================================================
     def stop_moving(self):
         """ Completely stop all movement
 

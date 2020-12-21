@@ -38,16 +38,6 @@ class DialogAction(EventAction):
 
     * ${{name}} - The current player's name.
 
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "dialog",
-        "parameters": [
-            "Red:\\n This is some dialog!"
-        ]
-    }
-
     """
     name = "dialog"
     valid_parameters = [
@@ -58,12 +48,8 @@ class DialogAction(EventAction):
     def start(self):
         text = replace_text(self.context, self.parameters.text)
         avatar = get_avatar(self.context, self.parameters.avatar)
-        self.open_dialog(text, avatar)
+        open_dialog(self.context, [text], avatar)
 
     def update(self):
         if self.context.client.get_state_by_name("DialogState") is None:
             self.stop()
-
-    def open_dialog(self, initial_text, avatar):
-        logger.info("Opening dialog window")
-        open_dialog(self.context, [initial_text], avatar)

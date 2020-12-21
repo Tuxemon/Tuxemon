@@ -10,6 +10,21 @@ logger = logging.getLogger(__name__)
 
 
 class Position:
+    """
+
+    This represents the position of any game entity, including NPCs and Players
+
+    x = left-right
+    y = up-down
+    z = height from the ground
+    map_name = string name of the map they reside on
+
+    x, y, z values are fractional values representing the tile they are on,
+    and are relative to the top-left corner of the map they are on.  There
+    is no unified coordinate system across maps.
+
+    Currently, z axis is unused.
+    """
     def __init__(self, x, y, z, map_name):
         self.x = x
         self.y = y

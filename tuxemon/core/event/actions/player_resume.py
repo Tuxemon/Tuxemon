@@ -27,6 +27,7 @@ class PlayerResumeAction(EventAction):
 
     Valid Parameters: None
     """
+
     name = "player_resume"
     valid_parameters = []
 

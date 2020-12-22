@@ -41,12 +41,9 @@ class TeleportAction(EventAction):
     }
 
     """
+
     name = "teleport"
-    valid_parameters = [
-        (str, "map_name"),
-        (int, "x"),
-        (int, "y")
-    ]
+    valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
 
     def start(self):
         position = Vector3(self.parameters.x, self.parameters.y, 0)

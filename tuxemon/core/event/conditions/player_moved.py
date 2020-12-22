@@ -29,10 +29,12 @@ def collide(condition, tile_position):
     :param tile_position: tuple
     :rtype: bool
     """
-    return condition.x < tile_position[0] + 1 \
-           and condition.y < tile_position[1] + 1 \
-           and condition.x + condition.width > tile_position[0] \
-           and condition.y + condition.height > tile_position[1]
+    return (
+        condition.x < tile_position[0] + 1
+        and condition.y < tile_position[1] + 1
+        and condition.x + condition.width > tile_position[0]
+        and condition.y + condition.height > tile_position[1]
+    )
 
 
 class PlayerMovedCondition(EventCondition):
@@ -47,6 +49,7 @@ class PlayerMovedCondition(EventCondition):
     and is only true once.  Could possibly be better, IDK.
 
     """
+
     name = "player_moved"
 
     def test(self, session, event, condition):
@@ -80,7 +83,7 @@ class PlayerMovedCondition(EventCondition):
         return False
         return self.generic_test(session, condition, session.player)
 
-    def generic_test(self, session,  condition, npc):
+    def generic_test(self, session, condition, npc):
         """ Eventually, this can be made into own condition or something
 
         :type session: tuxemon.core.session.Session

@@ -21,7 +21,7 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
-# 
+#
 
 
 from tuxemon.core.event.eventaction import EventAction
@@ -33,6 +33,7 @@ class RenamePlayerAction(EventAction):
 
     Valid Parameters: None
     """
+
     name = "rename_player"
     valid_parameters = []
 
@@ -45,7 +46,7 @@ class RenamePlayerAction(EventAction):
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,
-            initial=self.context.player.name
+            initial=self.context.player.name,
         )
 
     def update(self):

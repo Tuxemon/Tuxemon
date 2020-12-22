@@ -45,10 +45,9 @@ class StartBattleAction(EventAction):
     }
 
     """
+
     name = "start_battle"
-    valid_parameters = [
-        (str, "npc_slug")
-    ]
+    valid_parameters = [(str, "npc_slug")]
 
     def start(self):
         player = self.context.player
@@ -67,17 +66,18 @@ class StartBattleAction(EventAction):
 
         # Lookup the environment
         env_slug = "grass"
-        if 'environment' in player.game_variables:
-            env_slug = player.game_variables['environment']
+        if "environment" in player.game_variables:
+            env_slug = player.game_variables["environment"]
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         logger.debug("Starting battle!")
-        self.context.client.push_state("CombatState", players=(player, npc), combat_type="trainer",
-                                       graphics=env['battle_graphics'])
+        self.context.client.push_state(
+            "CombatState", players=(player, npc), combat_type="trainer", graphics=env["battle_graphics"]
+        )
 
         # Start some music!
-        filename = env['battle_music']
+        filename = env["battle_music"]
         self.context.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):

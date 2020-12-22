@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class MonsterFlairCondition(EventCondition):
     """ Checks to see if the given monster flair matches the expected value
     """
+
     name = "monster_flair"
 
     def test(self, session, event, condition):

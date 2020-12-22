@@ -28,6 +28,7 @@ class NpcWalk(EventAction):
 
     Valid Parameters: npc_slug
     """
+
     name = "npc_walk"
     valid_parameters = [
         (str, "npc_slug"),

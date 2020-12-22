@@ -39,11 +39,9 @@ class DialogAction(EventAction):
     * ${{name}} - The current player's name.
 
     """
+
     name = "dialog"
-    valid_parameters = [
-        (str, "text"),
-        (str, "avatar")
-    ]
+    valid_parameters = [(str, "text"), (str, "avatar")]
 
     def start(self):
         text = replace_text(self.context, self.parameters.text)

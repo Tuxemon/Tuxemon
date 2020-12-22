@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class TrueCondition(EventCondition):
     """ This function always returns true unless the operator is set to "is_not"
     """
+
     name = "true"
 
     def test(self, session, event, condition):

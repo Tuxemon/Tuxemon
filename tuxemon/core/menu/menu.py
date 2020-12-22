@@ -38,43 +38,44 @@ class Menu(state.State):
     :ivar selected_index: The index position of the currently selected menu item.
     :ivar menu_items: A list of available menu items.
     """
+
     # defaults for the menu
     columns = 1
     min_font_size = 4
     draw_borders = True
-    background = None                 # Image used to draw the background
+    background = None  # Image used to draw the background
     background_color = 248, 248, 248  # The window's background color
-    unavailable_color = 220, 220, 220 # Font color when the action is unavailable
-    background_filename = None        # File to load for image background
+    unavailable_color = 220, 220, 220  # Font color when the action is unavailable
+    background_filename = None  # File to load for image background
     menu_select_sound_filename = "sound_menu_select"
     font_filename = "PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
-    cursor_move_duration = .20
+    cursor_move_duration = 0.20
     default_character_delay = 0.05
-    shrink_to_items = False    # fit the border to contents
-    escape_key_exits = True    # escape key closes menu
-    animate_contents = False   # show contents while window opens
-    touch_aware = True        # if true, then menu items can be selected with the mouse/touch
+    shrink_to_items = False  # fit the border to contents
+    escape_key_exits = True  # escape key closes menu
+    animate_contents = False  # show contents while window opens
+    touch_aware = True  # if true, then menu items can be selected with the mouse/touch
 
     def startup(self, *items, **kwargs):
         self.rect = self.rect.copy()  # do not remove!
-        i = kwargs.get('selected_index', 0)
-        self.selected_index = i       # track which menu item is selected
-        self.state = "closed"         # closed, opening, normal, disabled, closing
-        self.window = None            # draws borders, background
-        self._show_contents = False   # draw menu items, or not
-        self._needs_refresh = False   # refresh layout on next draw
-        self._anchors = dict()        # used to position the menu/state
+        i = kwargs.get("selected_index", 0)
+        self.selected_index = i  # track which menu item is selected
+        self.state = "closed"  # closed, opening, normal, disabled, closing
+        self.window = None  # draws borders, background
+        self._show_contents = False  # draw menu items, or not
+        self._needs_refresh = False  # refresh layout on next draw
+        self._anchors = dict()  # used to position the menu/state
         self.__dict__.update(kwargs)  # may be removed in the future
 
         # holds sprites representing menu items
         self.create_new_menu_items_group()
 
         self.font_filename = prepare.fetch("font", self.font_filename)
-        self.set_font()          # load default font
-        self.load_graphics()     # load default graphics
-        self.reload_sounds()     # load default sounds
+        self.set_font()  # load default font
+        self.load_graphics()  # load default graphics
+        self.reload_sounds()  # load default sounds
 
     def create_new_menu_items_group(self):
         """ Create a new group for menu items to be contained in
@@ -175,7 +176,6 @@ class Menu(state.State):
 
         :return:
         """
-        pass
 
     def is_valid_entry(self, game_object):
         """ Checked when items are loaded/reloaded.  The return value will enable/disable menu items
@@ -213,7 +213,6 @@ class Menu(state.State):
                 self.selected_index = index
                 if item.enabled:
                     break
-
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu
@@ -468,7 +467,7 @@ class Menu(state.State):
                     self.change_selection(index)
 
         # mouse/touch selection
-        if event.button in (buttons.MOUSELEFT, ):
+        if event.button in (buttons.MOUSELEFT,):
             handled_event = True
             # TODO: handling of click/drag, miss-click, etc
             # TODO: eventually, maybe move some handling into menuitems
@@ -500,12 +499,12 @@ class Menu(state.State):
         """
         previous = self.get_selected_item()
         if previous is not None:
-            previous.in_focus = False              # clear the focus flag of old item, if any
-        self.selected_index = index                # update the selection index
-        self.menu_select_sound.play()              # play a sound
-        self.trigger_cursor_update(animate)        # move cursor and [maybe] animate it
-        self.get_selected_item().in_focus = True   # set focus flag of new item
-        self.on_menu_selection_change()            # let subclass know menu has changed
+            previous.in_focus = False  # clear the focus flag of old item, if any
+        self.selected_index = index  # update the selection index
+        self.menu_select_sound.play()  # play a sound
+        self.trigger_cursor_update(animate)  # move cursor and [maybe] animate it
+        self.get_selected_item().in_focus = True  # set focus flag of new item
+        self.on_menu_selection_change()  # let subclass know menu has changed
 
     def search_items(self, game_object):
         """ Non-optimised search through menu_items for a particular thing
@@ -553,6 +552,7 @@ class Menu(state.State):
 
     def resume(self):
         if self.state == "closed":
+
             def show_items():
                 self.state = "normal"
                 self._show_contents = True
@@ -641,10 +641,10 @@ class Menu(state.State):
 
         :rtype: Rect
         """
-        original = self.rect.copy()    # store the original rect
-        self.refresh_layout()          # arrange the menu
-        rect = self.rect.copy()        # store the final rect
-        self.rect = original           # set the original back
+        original = self.rect.copy()  # store the original rect
+        self.refresh_layout()  # arrange the menu
+        rect = self.rect.copy()  # store the final rect
+        self.rect = original  # set the original back
         return rect
 
     def on_open(self):
@@ -652,7 +652,6 @@ class Menu(state.State):
 
         :return:
         """
-        pass
 
     def on_menu_selection(self, item):
         """ Hook for things to happen when player selects a menu option
@@ -671,7 +670,6 @@ class Menu(state.State):
 
         :returns: None
         """
-        pass
 
     def animate_open(self):
         """ Called when menu is going to open
@@ -730,9 +728,9 @@ class PopUpMenu(Menu):
         rect = self.calc_final_rect()
 
         # set rect to a small size for the initial values of the animation
-        self.rect = self.rect.copy()           # required.  do not remove.
-        self.rect.height = int(rect.height * .1)
-        self.rect.width = int(rect.width * .1)
+        self.rect = self.rect.copy()  # required.  do not remove.
+        self.rect.height = int(rect.height * 0.1)
+        self.rect.width = int(rect.width * 0.1)
         self.rect.center = rect.center
 
         # if this statement were removed, then the menu would
@@ -740,6 +738,6 @@ class PopUpMenu(Menu):
         self._needs_refresh = False
 
         # create animation to open window with
-        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=.20)
+        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=0.20)
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani

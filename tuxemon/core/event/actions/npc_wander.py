@@ -30,11 +30,9 @@ class NpcWanderAction(EventAction):
 
     Valid Parameters: npc_slug, frequency
     """
+
     name = "npc_wander"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (float, "frequency")
-    ]
+    valid_parameters = [(str, "npc_slug"), (float, "frequency")]
 
     def start(self):
         # TODO: fix me

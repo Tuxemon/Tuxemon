@@ -29,8 +29,6 @@
 #
 
 import logging
-import os
-import os.path
 import random
 from collections import namedtuple
 
@@ -104,10 +102,10 @@ class Technique:
         """
 
         results = db.lookup(slug, table="technique")
-        self.slug = results["slug"]                             # a short English identifier
-        self.name = T.translate(self.slug)                      # locale-specific string
+        self.slug = results["slug"]  # a short English identifier
+        self.name = T.translate(self.slug)  # locale-specific string
 
-        self.sort = results['sort']
+        self.sort = results["sort"]
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
@@ -120,9 +118,9 @@ class Technique:
         self._combat_counter = 0
         self._life_counter = 0
 
-        if results.get('types'):
+        if results.get("types"):
             self.type1 = results["types"][0]
-            if len(results['types']) > 1:
+            if len(results["types"]) > 1:
                 self.type2 = results["types"][1]
             else:
                 self.type2 = None
@@ -145,7 +143,7 @@ class Technique:
             directory = prepare.fetch("animations", "technique")
             self.images = animation_frame_files(directory, self.animation)
             if self.animation and not self.images:
-                logger.error("Cannot find animation frames for: {}".format(self.animation))
+                logger.error(f"Cannot find animation frames for: {self.animation}")
 
         # Load the sound effect for this technique
         self.sfx = results["sfx"]
@@ -205,11 +203,11 @@ class Technique:
 
         # defaults for the return. items can override these values in their return.
         meta_result = {
-            'name': self.name,
-            'success': False,
-            'should_tackle': False,
-            'capture': False,
-            'statuses': [],
+            "name": self.name,
+            "success": False,
+            "should_tackle": False,
+            "capture": False,
+            "statuses": [],
         }
 
         # TODO: handle conflicting values from multiple technique actions
@@ -278,10 +276,10 @@ class Technique:
             mult = 1
 
         return {
-            'damage': damage,
-            'element_multiplier': mult,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
+            "damage": damage,
+            "element_multiplier": mult,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
         }
 
     def apply_status(self, slug, target):
@@ -303,7 +301,7 @@ class Technique:
             target.apply_status(tech)
 
         return {
-            'status': tech,
+            "status": tech,
         }
 
     def apply_lifeleech(self, user, target):
@@ -324,25 +322,25 @@ class Technique:
             tech = Technique("status_lifeleech", carrier=target, link=user)
             target.apply_status(tech)
         return {
-            'status': tech,
+            "status": tech,
         }
 
     def poison(self, target):
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
         return {
-            'damage': damage,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
         }
 
     def recover(self, target):
         heal = formula.simple_recover(self, target)
         target.current_hp += heal
         return {
-            'damage': heal,
-            'should_tackle': False,
-            'success': bool(heal),
+            "damage": heal,
+            "should_tackle": False,
+            "success": bool(heal),
         }
 
     def lifeleech(self, target):
@@ -351,9 +349,9 @@ class Technique:
         target.current_hp -= damage
         user.current_hp += damage
         return {
-            'damage': damage,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
         }
 
     def faint(self, user, target):
@@ -377,8 +375,8 @@ class Technique:
         target.apply_status(Technique("status_faint"))
 
         return {
-            'should_tackle': False,
-            'success': True,
+            "should_tackle": False,
+            "success": True,
         }
 
     def swap(self, user, target):
@@ -411,12 +409,12 @@ class Technique:
         combat_state.remove_monster_from_play(user, original_monster)
 
         # give a slight delay
-        combat_state.task(swap_add, .75)
-        combat_state.suppress_phase_change(.75)
+        combat_state.task(swap_add, 0.75)
+        combat_state.suppress_phase_change(0.75)
 
         return {
-            'success': True,
-            'should_tackle': False,
+            "success": True,
+            "should_tackle": False,
         }
 
     def get_state(self):

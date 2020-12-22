@@ -27,6 +27,7 @@ class PlayerStopAction(EventAction):
 
     Valid Parameters: None
     """
+
     name = "player_stop"
     valid_parameters = []
 

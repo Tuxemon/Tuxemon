@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class DialogOpenCondition(EventCondition):
     """ Checks to see if a dialog window is open.
     """
+
     name = "dialog_open"
 
     def test(self, session, event, condition):

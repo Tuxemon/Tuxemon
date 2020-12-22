@@ -28,10 +28,9 @@ class EvolveMonstersAction(EventAction):
 
     Valid Parameters: path
     """
+
     name = "evolve_monsters"
-    valid_parameters = [
-        (str, "path")
-    ]
+    valid_parameters = [(str, "path")]
 
     def start(self):
         player = self.context.player

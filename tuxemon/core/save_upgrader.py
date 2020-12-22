@@ -56,8 +56,8 @@ MAP_RENAMES = {
 
 
 def upgrade_save(save_data):
-    if 'steps' not in save_data['game_variables']:
-        save_data['game_variables']['steps'] = 0
+    if "steps" not in save_data["game_variables"]:
+        save_data["game_variables"]["steps"] = 0
 
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
@@ -69,9 +69,9 @@ def upgrade_save(save_data):
 
 def _update_current_map(version, save_data):
     if version in MAP_RENAMES:
-        new_name = MAP_RENAMES[version].get(save_data['current_map'])
+        new_name = MAP_RENAMES[version].get(save_data["current_map"])
         if new_name:
-            save_data['current_map'] = new_name
+            save_data["current_map"] = new_name
 
 
 def _remove_slug_prefixes(save_data):
@@ -80,15 +80,14 @@ def _remove_slug_prefixes(save_data):
     Before: item_potion, txmn_rockitten
     After: potion, rockitten
     """
-    def fix_items(data):
-        return {
-            key.partition("_")[2]: num
-            for key, num in data.items()
-        }
-    chest = save_data.get('storage', {})
-    save_data['inventory'] = fix_items(save_data.get('inventory', {}))
-    chest['items'] = fix_items(chest.get('items', {}))
 
-    for mons in save_data.get('monsters', []), chest.get('monsters', []):
+    def fix_items(data):
+        return {key.partition("_")[2]: num for key, num in data.items()}
+
+    chest = save_data.get("storage", {})
+    save_data["inventory"] = fix_items(save_data.get("inventory", {}))
+    chest["items"] = fix_items(chest.get("items", {}))
+
+    for mons in save_data.get("monsters", []), chest.get("monsters", []):
         for mon in mons:
-            mon['slug'] = mon['slug'].partition("_")[2]
+            mon["slug"] = mon["slug"].partition("_")[2]

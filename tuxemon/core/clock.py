@@ -2,10 +2,7 @@ import collections
 import time
 from heapq import heappush, heapify, heappop, heappushpop
 
-__all__ = (
-    'ScheduledItem',
-    'Scheduler',
-    'Clock')
+__all__ = ("ScheduledItem", "Scheduler", "Clock")
 
 
 class ScheduledItem:
@@ -16,7 +13,8 @@ class ScheduledItem:
 
     If you hold on to instance of this class, do not modify any values of it.
     """
-    __slots__ = ['func', 'interval', 'last_ts', 'next_ts']
+
+    __slots__ = ["func", "interval", "last_ts", "next_ts"]
 
     def __init__(self, func, last_ts, next_ts, interval):
         self.func = func
@@ -86,7 +84,7 @@ class Scheduler:
             next_ts = last_ts
             for i in range(divs - 1):
                 next_ts += dt
-                if not taken(next_ts, dt / 4.):
+                if not taken(next_ts, dt / 4.0):
                     return next_ts
             dt /= 2
             divs *= 2
@@ -146,7 +144,7 @@ class Scheduler:
         """
         last_ts = self._get_nearest_ts()
         if soft:
-            assert (delay > 0.0)
+            assert delay > 0.0
             next_ts = self._get_soft_next_ts(last_ts, delay)
             last_ts = next_ts - delay
         next_ts = last_ts + delay
@@ -327,7 +325,7 @@ class Scheduler:
 
         try:
             next_ts = self._scheduled_items[0].next_ts
-            return max(next_ts - self._time(), 0.)
+            return max(next_ts - self._time(), 0.0)
         except IndexError:
             return None
 
@@ -363,6 +361,7 @@ class Clock(Scheduler):
 
     WIP
     """
+
     @staticmethod
     def _least_squares(gradient=1, offset=0):
         """ source: pyglet.app.App

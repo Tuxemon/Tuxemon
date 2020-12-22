@@ -40,10 +40,9 @@ class WaitForSecsAction(EventAction):
     }
 
     """
+
     name = "wait_for_secs"
-    valid_parameters = [
-        (float, 'seconds')
-    ]
+    valid_parameters = [(float, "seconds")]
 
     def start(self):
         secs = self.parameters.seconds

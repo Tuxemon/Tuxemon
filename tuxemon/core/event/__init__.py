@@ -33,29 +33,18 @@ logger = logging.getLogger(__name__)
 condition_fields = [
     "name",
     "operator",
-    "parameters",]
+    "parameters",
+]
 
-action_fields = [
-    "type",
-    "parameters"]
+action_fields = ["type", "parameters"]
 
-event_fields = [
-    "id",
-    "name",
-    "rect",
-    "conds",
-    "acts"]
+event_fields = ["id", "name", "rect", "conds", "acts"]
 
 MapCondition = namedtuple("condition", condition_fields)
 MapAction = namedtuple("action", action_fields)
 EventObject = namedtuple("eventobject", event_fields)
 
-__all__ = [
-    "EventObject",
-    "MapAction",
-    "MapCondition",
-    "get_npc"
-]
+__all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
 def get_npc(session, slug):

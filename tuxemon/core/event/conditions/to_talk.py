@@ -28,6 +28,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class ToTalkCondition(EventCondition):
     """ Checks if we are attempting to talk to an npc
     """
+
     name = "to_talk"
 
     def test(self, session, event, condition):
@@ -61,12 +62,7 @@ class ToTalkCondition(EventCondition):
         }
         """
         player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, event, condition)
-        button_pressed = ButtonPressedCondition().test(session, event, MapCondition(
-            name="button_pressed",
-            operator="is",
-            parameters=[
-                "K_RETURN",
-            ],
-        ))
+        button_pressed = ButtonPressedCondition().test(
+            session, event, MapCondition(name="button_pressed", operator="is", parameters=["K_RETURN",],)
+        )
         return player_next_to_and_facing_target and button_pressed
-

@@ -31,6 +31,7 @@ class PlayerFaceAction(EventAction):
 
     EventAction parameter can be: "left", "right", "up", or "down"
     """
+
     name = "player_face"
     valid_parameters = [
         (str, "direction"),
@@ -46,6 +47,8 @@ class PlayerFaceAction(EventAction):
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
         world_state = self.context.client.get_state_by_name("WorldState")
+
+
 #         if world_state.in_transition:
 #             world_state.delayed_facing = direction
 #         else:

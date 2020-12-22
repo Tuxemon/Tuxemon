@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class CombatStartedCondition(EventCondition):
     """ Checks to see if combat has been started or not.
     """
+
     name = "combat_started"
 
     def test(self, session, event, condition):

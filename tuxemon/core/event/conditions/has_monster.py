@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class HasMonsterCondition(EventCondition):
     """ Checks to see if an NPC is facing a tile position
     """
+
     name = "has_monster"
 
     def test(self, session, event, condition):

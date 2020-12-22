@@ -31,10 +31,9 @@ class StatusCondition(ItemCondition):
     """Checks against the creature's current statuses.
     Accepts a single parameter and returns whether it is applied.
     """
+
     name = "status"
-    valid_parameters = [
-        (str, "expected")
-    ]
+    valid_parameters = [(str, "expected")]
 
     def test(self, target):
         return self.parameters.expected in target.status

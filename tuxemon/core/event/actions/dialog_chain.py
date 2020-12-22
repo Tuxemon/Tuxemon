@@ -51,15 +51,13 @@ class DialogChainAction(EventAction):
     }
 
     """
+
     name = "dialog_chain"
-    valid_parameters = [
-        (str, "text"),
-        (str, "avatar")
-    ]
+    valid_parameters = [(str, "text"), (str, "avatar")]
 
     def start(self):
         # hack to allow unescaped commas in the dialog string
-        text = ', '.join(self.raw_parameters)
+        text = ", ".join(self.raw_parameters)
         text = replace_text(self.context, text)
 
         # If text is "${{end}}, then close the current dialog
@@ -79,7 +77,7 @@ class DialogChainAction(EventAction):
 
     def update(self):
         # hack to allow unescaped commas in the dialog string
-        text = ', '.join(self.raw_parameters)
+        text = ", ".join(self.raw_parameters)
         if text == "${{end}}":
             if self.context.client.get_state_by_name("DialogState") is None:
                 self.stop()

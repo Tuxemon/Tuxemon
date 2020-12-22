@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class PlayerFacingCondition(EventCondition):
     """ Checks to see where an NPC is facing
     """
+
     name = "player_facing"
 
     def test(self, session, event, condition):

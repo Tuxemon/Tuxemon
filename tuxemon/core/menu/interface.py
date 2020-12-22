@@ -8,6 +8,7 @@ class Bar:
     """ Common bar class for UI elements.
 
     """
+
     border_filename = "gfx/ui/monster/hp_bar.png"
     border = None
 
@@ -37,10 +38,12 @@ class Bar:
         inner.width -= tools.scale(11)
         return inner
 
+
 class HpBar(Bar):
     """ HP bar for UI elements.
 
     """
+
     border_filename = "gfx/ui/monster/hp_bar.png"
 
     def __init__(self, value=1.0):
@@ -70,6 +73,7 @@ class ExpBar(Bar):
     """ EXP bar for UI elements.
 
     """
+
     border_filename = "gfx/ui/monster/exp_bar.png"
 
     def __init__(self, value=1.0):

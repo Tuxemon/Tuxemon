@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class MusicPlayingCondition(EventCondition):
     """ Checks to see if a particular piece of music is playing or not.
     """
+
     name = "music_playing"
 
     def test(self, session, event, condition):

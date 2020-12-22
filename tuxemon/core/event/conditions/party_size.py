@@ -29,6 +29,7 @@ logger = logging.getLogger(__name__)
 class PartySizeCondition(EventCondition):
     """ Checks to see where an NPC is facing
     """
+
     name = "party_size"
 
     def test(self, session, event, condition):
@@ -96,4 +97,3 @@ class PartySizeCondition(EventCondition):
 
         else:
             raise Exception("Party size check parameters are incorrect.")
-

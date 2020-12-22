@@ -17,20 +17,12 @@ from tuxemon.core.tools import nearest
 
 # reference direction and movement states to animation names
 animation_mapping = {
-    True: {
-        'up': 'back_walk',
-        'down': 'front_walk',
-        'left': 'left_walk',
-        'right': 'right_walk'},
-    False: {
-        'up': 'back',
-        'down': 'front',
-        'left': 'left',
-        'right': 'right'}
+    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
 
-class MapSprite(object):
+class MapSprite:
     """
 
     MapSprites are a graphics representation of game objects
@@ -44,6 +36,7 @@ class MapSprite(object):
     TODO: clarify the name sprite
 
     """
+
     def __init__(self, sprite_name):
         self.sprite_name = sprite_name
         self.standing = dict()
@@ -59,7 +52,7 @@ class MapSprite(object):
         # Get all of the standing animation images
         self.standing = {}
         for standing_type in facing:
-            filename = "{}_{}.png".format(self.sprite_name, standing_type)
+            filename = f"{self.sprite_name}_{standing_type}.png"
             path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
 
@@ -68,15 +61,10 @@ class MapSprite(object):
         frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
 
         # Load all of the player's sprite animations
-        anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
+        anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
         for anim_type in anim_types:
             images = [
-                'sprites/%s_%s.%s.png' % (
-                    self.sprite_name,
-                    anim_type,
-                    str(num).rjust(3, str('0'))
-                )
-                for num in range(4)
+                "sprites/{}_{}.{}.png".format(self.sprite_name, anim_type, str(num).rjust(3, "0")) for num in range(4)
             ]
 
             frames = []
@@ -120,7 +108,7 @@ class MapSprite(object):
         return [(get_frame(frame_dict, state), npc.tile_pos, layer)]
 
 
-class SpriteCache(object):
+class SpriteCache:
     """ Cache seen sprites.  Currently memory is never freed.
 
     """
@@ -138,7 +126,7 @@ class SpriteCache(object):
             return sprite
 
 
-class MapView(object):
+class MapView:
     """ Render a map, npcs, etc
 
     use `follow()` to keep the camera on a game object/npc
@@ -216,9 +204,9 @@ class MapView(object):
             world_surfaces.extend(surfaces)
         # "map animations"
         for anim_data in self.map_animations.values():
-            anim = anim_data['animation']
+            anim = anim_data["animation"]
             if not anim.isFinished() and anim.visibility:
-                frame = (anim.getCurrentFrame(), anim_data["position"], anim_data['layer'])
+                frame = (anim.getCurrentFrame(), anim_data["position"], anim_data["layer"])
                 world_surfaces.append(frame)
         return world_surfaces
 
@@ -250,9 +238,7 @@ class MapView(object):
         self.sprite_layer = int(map_object.data.properties.get("sprite_layer", 2))
         self.tilewidth, self.tileheight = prepare.TILE_SIZE
         self.map_animations = dict()
-        return pyscroll.BufferedRenderer(
-            visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2
-        )
+        return pyscroll.BufferedRenderer(visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2)
 
     def fade_and_teleport(self, duration=2):
         """ Fade out, teleport, fade in
@@ -274,7 +260,7 @@ class MapView(object):
         self.in_transition = True
         self.trigger_fade_out(duration)
         task = self.task(self.handle_delayed_teleport, duration)
-        task.chain(fade_in, duration + .5)
+        task.chain(fade_in, duration + 0.5)
 
     def trigger_fade_in(self, duration=2):
         """ World state has own fade code b/c moving maps doesn't change state
@@ -283,7 +269,7 @@ class MapView(object):
         """
         self.set_transition_surface()
         self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
-        self.task(self.unlock_controls, duration - .5)
+        self.task(self.unlock_controls, duration - 0.5)
 
     def trigger_fade_out(self, duration=2):
         """ World state has own fade code b/c moving maps doesn't change state

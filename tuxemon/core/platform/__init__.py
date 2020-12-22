@@ -5,7 +5,7 @@ Put platform specific fixes here
 import logging
 import os.path
 
-__all__ = ('android', 'init', 'mixer', 'get_config_dir')
+__all__ = ("android", "init", "mixer", "get_config_dir")
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +23,7 @@ except ImportError:
 if mixer is None:
     try:
         import pygame.mixer as mixer
+
         _pygame = True
     except ImportError:
         pass

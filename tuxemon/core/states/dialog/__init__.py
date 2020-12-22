@@ -11,7 +11,8 @@ class DialogState(PopUpMenu):
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
     """
-    default_character_delay = .05
+
+    default_character_delay = 0.05
 
     def startup(self, **kwargs):
         super().startup(**kwargs)
@@ -46,7 +47,7 @@ class DialogState(PopUpMenu):
         """
         if event.pressed and event.button == buttons.A:
             if self.text_area.drawing_text:
-                self.character_delay = .001
+                self.character_delay = 0.001
 
             elif self.next_text() is None:
                 if self.menu:

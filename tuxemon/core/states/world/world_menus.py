@@ -1,7 +1,6 @@
 import logging
 from functools import partial
 
-import pygame
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare
@@ -16,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 def adapter(name, *args):
     from collections import namedtuple
+
     nt = namedtuple(name, "parameters")
 
     def func(*args):
@@ -36,6 +36,7 @@ class WorldMenuState(Menu):
     """
     Menu for the world state
     """
+
     shrink_to_items = True  # this menu will shrink, but size is adjusted when opened
     animate_contents = True
 
@@ -49,18 +50,18 @@ class WorldMenuState(Menu):
             self.client.event_engine.execute_action("quit")
 
         def not_implemented_dialog():
-            open_dialog(local_session, [T.translate('not_implemented')])
+            open_dialog(local_session, [T.translate("not_implemented")])
 
         # Main Menu - Allows users to open the main menu in game.
         menu_items_map = (
-            ('menu_journal', not_implemented_dialog),
-            ('menu_monster', self.open_monster_menu),
-            ('menu_bag', change_state("ItemMenuState")),
-            ('menu_player', not_implemented_dialog),
-            ('menu_save', change_state("SaveMenuState")),
-            ('menu_load', change_state("LoadMenuState")),
-            ('menu_options', not_implemented_dialog),
-            ('exit', exit_game)
+            ("menu_journal", not_implemented_dialog),
+            ("menu_monster", self.open_monster_menu),
+            ("menu_bag", change_state("ItemMenuState")),
+            ("menu_player", not_implemented_dialog),
+            ("menu_save", change_state("SaveMenuState")),
+            ("menu_load", change_state("LoadMenuState")),
+            ("menu_options", not_implemented_dialog),
+            ("exit", exit_game),
         )
         add_menu_items(self, menu_items_map)
 
@@ -75,7 +76,7 @@ class WorldMenuState(Menu):
 
             :return: None
             """
-            monster = context.get('monster')
+            monster = context.get("monster")
             if monster:
                 # TODO: maybe some API for re-arranging menu items
                 # at this point, the cursor will have changed
@@ -91,13 +92,13 @@ class WorldMenuState(Menu):
                 index = monster_list.index(original_monster)
 
                 # set the old spot to the old monster
-                monster_list[context['old_index']] = original_monster
+                monster_list[context["old_index"]] = original_monster
 
                 # set the current cursor position to the monster we move
-                monster_list[index] = context['monster']
+                monster_list[index] = context["monster"]
 
                 # store the old index
-                context['old_index'] = index
+                context["old_index"] = index
 
             # call the super class to re-render the menu with new positions
             # TODO: maybe add more hooks to eliminate this runtime patching
@@ -107,25 +108,25 @@ class WorldMenuState(Menu):
             # TODO: API for getting the game player obj
             player = local_session.player
             monster = monster_menu.get_selected_item().game_object
-            context['monster'] = monster
-            context['old_index'] = player.monsters.index(monster)
+            context["monster"] = monster
+            context["old_index"] = player.monsters.index(monster)
             self.client.pop_state()  # close the info/move menu
 
         def open_monster_stats():
-            open_dialog(local_session, [T.translate('not_implemented')])
+            open_dialog(local_session, [T.translate("not_implemented")])
 
         def open_monster_submenu(menu_item):
             menu_items_map = (
-                ('monster_menu_info', open_monster_stats),
-                ('monster_menu_move', select_first_monster),
+                ("monster_menu_info", open_monster_stats),
+                ("monster_menu_move", select_first_monster),
             )
             menu = self.client.push_state("Menu")
             menu.shrink_to_items = True
             add_menu_items(menu, menu_items_map)
 
         def handle_selection(menu_item):
-            if 'monster' in context:
-                del context['monster']
+            if "monster" in context:
+                del context["monster"]
             else:
                 open_monster_submenu(menu_item)
 
@@ -149,18 +150,18 @@ class WorldMenuState(Menu):
         # shrink to get the final width
         # record the width
         # turn off shrink, then adjust size
-        self.shrink_to_items = True     # force shrink of menu
+        self.shrink_to_items = True  # force shrink of menu
         self.menu_items.expand = False  # force shrink of items
-        self.refresh_layout()           # rearrange items
-        width = self.rect.width         # store the ideal width
+        self.refresh_layout()  # rearrange items
+        width = self.rect.width  # store the ideal width
 
-        self.shrink_to_items = False   # force menu to expand
+        self.shrink_to_items = False  # force menu to expand
         self.menu_items.expand = True  # force menu to expand
-        self.refresh_layout()          # rearrange items
+        self.refresh_layout()  # rearrange items
         self.rect = Rect(right, 0, width, height)  # set new rect
 
         # animate the menu sliding in
-        ani = self.animate(self.rect, x=right - width, duration=.50)
+        ani = self.animate(self.rect, x=right - width, duration=0.50)
         ani.callback = lambda: setattr(self, "state", "normal")
         return ani
 
@@ -169,5 +170,5 @@ class WorldMenuState(Menu):
 
         :return:
         """
-        ani = self.animate(self.rect, x=prepare.SCREEN_SIZE[0], duration=.50)
+        ani = self.animate(self.rect, x=prepare.SCREEN_SIZE[0], duration=0.50)
         return ani

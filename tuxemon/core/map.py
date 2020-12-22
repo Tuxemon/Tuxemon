@@ -113,10 +113,7 @@ def tiles_inside_rect(rect, grid_size):
     :param Tuple[int, int] grid_size: size of each tile
     :rtype: Iterator[Tuple[int, int]]
     """
-    for y, x in product(
-            range(rect.top, rect.bottom, grid_size[1]),
-            range(rect.left, rect.right, grid_size[0]),
-    ):
+    for y, x in product(range(rect.top, rect.bottom, grid_size[1]), range(rect.left, rect.right, grid_size[0]),):
         yield x // grid_size[0], y // grid_size[1]
 
 
@@ -264,15 +261,7 @@ class TuxemonMap:
     """
 
     def __init__(
-            self,
-            events,
-            inits,
-            interacts,
-            collision_map,
-            collisions_lines_map,
-            data,
-            edges,
-            filename,
+        self, events, inits, interacts, collision_map, collisions_lines_map, data, edges, filename,
     ):
         """ Constructor
 
@@ -325,7 +314,7 @@ class TuxemonMap:
 
         :return:
         """
-        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set(), )
+        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set(),)
 
         if pathnode:
             # traverse the node to get the path
@@ -363,9 +352,7 @@ class TuxemonMap:
             if node.get_value() == dest:
                 return node
             else:
-                for adj_pos in self.get_exits(
-                        node.get_value(), collision_map, known_nodes
-                ):
+                for adj_pos in self.get_exits(node.get_value(), collision_map, known_nodes):
                     new_node = PathfindNode(adj_pos, node)
                     known_nodes.add(new_node.get_value())
                     queue.append(new_node)
@@ -399,10 +386,10 @@ class TuxemonMap:
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
         for direction, neighbor in (
-                ("down", (position[0], position[1] + 1)),
-                ("right", (position[0] + 1, position[1])),
-                ("up", (position[0], position[1] - 1)),
-                ("left", (position[0] - 1, position[1])),
+            ("down", (position[0], position[1] + 1)),
+            ("right", (position[0] + 1, position[1])),
+            ("up", (position[0], position[1] - 1)),
+            ("left", (position[0] - 1, position[1])),
         ):
             # if exits are defined make sure the neighbor is present there
             if exits and neighbor not in exits:

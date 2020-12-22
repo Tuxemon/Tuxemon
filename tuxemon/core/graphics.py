@@ -136,9 +136,7 @@ def scale_surface(surface, factor):
     :returns: Scaled surface
     :rtype: pygame.Surface
     """
-    return pygame.transform.scale(
-        surface, [int(i * factor) for i in surface.get_size()]
-    )
+    return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
 
 
 def load_frames_files(directory, name):
@@ -167,7 +165,7 @@ def animation_frame_files(directory, name):
     :rtype: List[str]
     """
     frames = list()
-    pattern = r"{}[0-9]*\..*".format(name)
+    pattern = fr"{name}[0-9]*\..*"
     # might be slow on large folders
     for filename in os.listdir(directory):
         if re.match(pattern, filename):
@@ -230,9 +228,7 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(
-        sprite._original_image, sprite.rect.size
-    )
+    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
     sprite._needs_update = True
 
 
@@ -269,7 +265,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
     :return:
     """
     if colorkey:
-        colorkey = pygame.Color("#{}".format(colorkey))
+        colorkey = pygame.Color(f"#{colorkey}")
 
     pixelalpha = kwargs.get("pixelalpha", True)
 

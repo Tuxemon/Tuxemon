@@ -41,13 +41,14 @@ class PlayMapAnimationAction(EventAction):
         player's location.
 
     """
+
     name = "play_map_animation"
     valid_parameters = [
         (str, "animation_name"),
         (float, "duration"),
         (str, "loop"),
         ((int, str), "tile_pos_x"),
-        ((int, None), "tile_pos_y")
+        ((int, None), "tile_pos_y"),
     ]
 
     def start(self):
@@ -62,7 +63,7 @@ class PlayMapAnimationAction(EventAction):
         elif self.parameters.loop == "noloop":
             loop = False
         else:
-            logger.error("animation loop value must be \"loop\" or \"noloop\"")
+            logger.error('animation loop value must be "loop" or "noloop"')
             raise ValueError
 
         # Check to see if this animation has already been loaded.
@@ -87,14 +88,13 @@ class PlayMapAnimationAction(EventAction):
 
         else:
             # Not loaded already, so load it...
-            animation, conductor = load_animation_from_frames(directory,
-                                                              animation_name,
-                                                              duration,
-                                                              loop)
+            animation, conductor = load_animation_from_frames(directory, animation_name, duration, loop)
 
-            animations[animation_name] = {"animation": animation,
-                                          "conductor": conductor,
-                                          "position": position,
-                                          "layer": 4}
+            animations[animation_name] = {
+                "animation": animation,
+                "conductor": conductor,
+                "position": position,
+                "layer": 4,
+            }
 
             conductor.play()

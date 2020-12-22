@@ -26,6 +26,7 @@ from tuxemon.core.platform.const import intentions
 class ButtonPressedCondition(EventCondition):
     """ Checks to see if a particular key was pressed
     """
+
     name = "button_pressed"
 
     def test(self, context, event, condition):
@@ -43,7 +44,7 @@ class ButtonPressedCondition(EventCondition):
         if button == "K_RETURN":
             button = intentions.INTERACT
         else:
-            raise ValueError("Cannot support key type: {}".format(button))
+            raise ValueError(f"Cannot support key type: {button}")
 
         # Loop through each event
         for event in context.client.key_events:

@@ -28,12 +28,9 @@ class DelayedTeleportAction(EventAction):
 
     Only use this if followed by a transition
     """
+
     name = "delayed_teleport"
-    valid_parameters = [
-        (str, "map_name"),
-        (int, "position_x"),
-        (int, "position_y")
-    ]
+    valid_parameters = [(str, "map_name"), (int, "position_x"), (int, "position_y")]
 
     def start(self):
         position = Vector3(self.parameters.x, self.parameters.y, 0)

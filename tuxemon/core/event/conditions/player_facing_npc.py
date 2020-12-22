@@ -30,6 +30,7 @@ logger = logging.getLogger(__name__)
 class PlayerFacingNPCCondition(EventCondition):
     """ Checks to see the player is next to and facing a particular NPC
     """
+
     name = "player_facing_npc"
 
     def test(self, session, event, condition):

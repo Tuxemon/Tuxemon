@@ -35,11 +35,9 @@ class SetMonsterHealthAction(EventAction):
 
     Valid Parameters: slot, health
     """
+
     name = "set_monster_health"
-    valid_parameters = [
-        (int, "slot"),
-        (float, "health")
-    ]
+    valid_parameters = [(int, "slot"), (float, "health")]
 
     @staticmethod
     def set_health(monster, value):

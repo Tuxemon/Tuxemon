@@ -19,7 +19,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from tuxemon.core.euclid import Vector3
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.world import Position
 
@@ -45,6 +44,7 @@ class TransitionTeleportAction(EventAction):
     }
 
     """
+
     name = "transition_teleport"
     valid_parameters = [
         (str, "map_name"),

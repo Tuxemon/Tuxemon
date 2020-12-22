@@ -27,6 +27,7 @@ class VariableSetCondition(EventCondition):
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
     return true.
     """
+
     name = "variable_set"
 
     def test(self, session, event, condition):

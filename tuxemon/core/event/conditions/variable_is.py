@@ -32,6 +32,7 @@ class VariableIsCondition(EventCondition):
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
     return true.
     """
+
     name = "variable_is"
 
     def test(self, session, event, condition):
@@ -73,5 +74,5 @@ class VariableIsCondition(EventCondition):
         elif operation == "<=":
             return operand1 <= operand2
         else:
-            logger.error("invalid operation type {}".format(operation))
+            logger.error(f"invalid operation type {operation}")
             raise ValueError

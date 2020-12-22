@@ -28,6 +28,7 @@ class PlaySoundAction(EventAction):
 
     Valid Parameters: filename
     """
+
     name = "play_sound"
     valid_parameters = [
         (str, "filename"),

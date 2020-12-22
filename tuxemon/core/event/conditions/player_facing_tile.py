@@ -29,6 +29,7 @@ logger = logging.getLogger(__name__)
 class PlayerFacingTileCondition(EventCondition):
     """ Checks to see if an NPC is facing a tile position
     """
+
     name = "player_facing_tile"
 
     def test(self, session, event, condition):

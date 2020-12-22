@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 class FlashTransition(State):
     """ The state responsible for the battle transitions.
     """
+
     force_draw = True
 
     def startup(self, **kwargs):

@@ -28,15 +28,7 @@ from operator import eq, gt, lt, ge, le
 
 from tuxemon.core.item.itemcondition import ItemCondition
 
-cmp_dict = {
-    None: ge,
-    "<": lt,
-    "<=": le,
-    ">": gt,
-    ">=": ge,
-    "==": eq,
-    "=": eq
-}
+cmp_dict = {None: ge, "<": lt, "<=": le, ">": gt, ">=": ge, "==": eq, "=": eq}
 
 
 class CurrentHitPointsCondition(ItemCondition):
@@ -49,11 +41,8 @@ class CurrentHitPointsCondition(ItemCondition):
     would use the condition "current_hp target,<,1.0"
     """
 
-    name = 'current_hp'
-    valid_parameters = [
-        (str, 'comparison'),
-        ((int, float), 'value')
-    ]
+    name = "current_hp"
+    valid_parameters = [(str, "comparison"), ((int, float), "value")]
 
     def test(self, target):
         lhs = target.current_hp

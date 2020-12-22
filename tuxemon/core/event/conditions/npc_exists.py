@@ -26,6 +26,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class NPCExistsCondition(EventCondition):
     """ Checks to see if a particular NPC object exists in the current list of NPCs.
     """
+
     name = "npc_exists"
 
     def test(self, session, event, condition):

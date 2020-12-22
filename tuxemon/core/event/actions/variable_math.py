@@ -32,12 +32,9 @@ class VariableMathAction(EventAction):
 
     Valid Parameters: variable_name, operation, value
     """
+
     name = "variable_math"
-    valid_parameters = [
-        (str, "var"),
-        (str, "operation"),
-        (str, "value")
-    ]
+    valid_parameters = [(str, "var"), (str, "operation"), (str, "value")]
 
     def start(self):
         player = self.context.player
@@ -58,5 +55,5 @@ class VariableMathAction(EventAction):
         elif operation == "/":
             player.game_variables[var] = operand1 / operand2
         else:
-            logger.error("invalid operation type {}".format(operation))
+            logger.error(f"invalid operation type {operation}")
             raise ValueError

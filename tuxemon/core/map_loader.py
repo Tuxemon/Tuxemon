@@ -118,9 +118,9 @@ def event_actions_and_conditions(items):
                 conds.insert(0, cond)
                 acts.insert(0, action)
             else:
-                raise ValueError("Bad event parameter: {}".format(key))
+                raise ValueError(f"Bad event parameter: {key}")
         else:
-            raise ValueError("Bad event parameter: {}".format(key))
+            raise ValueError(f"Bad event parameter: {key}")
 
     return acts, conds
 
@@ -142,7 +142,7 @@ def new_event_object(event_id, name, event_type, rect, properties):
     return EventObject(event_id, name, rect, conds, acts)
 
 
-class TMXMapLoader(object):
+class TMXMapLoader:
     """ Load map from standard tmx files created by Tiled.
 
     Events and collision regions are loaded and put in the appropriate data
@@ -181,9 +181,7 @@ class TMXMapLoader(object):
         :rtype: tuxemon.core.map.TuxemonMap
         """
         # TODO: remove the need to load graphics here
-        data = pytmx.TiledMap(
-            filename, image_loader=scaled_image_loader, pixelalpha=True
-        )
+        data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
@@ -220,16 +218,7 @@ class TMXMapLoader(object):
             elif obj.type == "interact":
                 interacts.append(self.load_event(obj, tile_size))
 
-        return TuxemonMap(
-            events,
-            inits,
-            interacts,
-            collision_map,
-            collision_lines_map,
-            data,
-            edges,
-            filename,
-        )
+        return TuxemonMap(events, inits, interacts, collision_map, collision_lines_map, data, edges, filename,)
 
     def process_line(self, line, tile_size):
         """ Identify the tiles on either side of the line and block movement along it

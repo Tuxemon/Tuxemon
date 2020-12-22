@@ -28,6 +28,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class ToUseTileCondition(EventCondition):
     """ Checks if we are attempting to talk to an npc
     """
+
     name = "to_use_tile"
 
     def test(self, session, event, condition):
@@ -59,17 +60,11 @@ class ToUseTileCondition(EventCondition):
         }
         """
         player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, event, condition)
-        button_pressed = ButtonPressedCondition().test(session, event, MapCondition(
-            type="button_pressed",
-            parameters=[
-                "K_RETURN",
-            ],
-            operator="is",
-            width=0,
-            height=0,
-            x=0,
-            y=0,
-            name=""
-        ))
+        button_pressed = ButtonPressedCondition().test(
+            session,
+            event,
+            MapCondition(
+                type="button_pressed", parameters=["K_RETURN",], operator="is", width=0, height=0, x=0, y=0, name=""
+            ),
+        )
         return player_next_to_and_facing_tile and button_pressed
-

@@ -25,6 +25,7 @@ class Position:
 
     Currently, z axis is unused.
     """
+
     def __init__(self, x, y, z, map_name):
         self.x = x
         self.y = y
@@ -47,7 +48,7 @@ def proj(point):
         return point[0], point[1]
 
 
-class World(object):
+class World:
     """
 
     contains maps and entities
@@ -84,7 +85,6 @@ class World(object):
         """
         # TODO: iterate over loaded maps and process events
         # self.event_engine.process_event(platform_event)
-        pass
 
     def update(self, time_delta):
         """ Update time

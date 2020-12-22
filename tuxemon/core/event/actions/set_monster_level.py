@@ -29,11 +29,9 @@ class SetMonsterLevelAction(EventAction):
 
     Valid Parameters: slot, level
     """
+
     name = "set_monster_level"
-    valid_parameters = [
-        (int, "slot"),
-        (int, "level")
-    ]
+    valid_parameters = [(int, "slot"), (int, "level")]
 
     def start(self):
         if not self.context.player.monsters > 0:

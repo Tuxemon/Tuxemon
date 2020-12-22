@@ -40,10 +40,9 @@ class HealEffect(ItemEffect):
     >>> potion.apply(bulbatux)
     >>> # bulbatux is healed by 50% of it's total hp
     """
-    name = 'heal'
-    valid_parameters = [
-        ((int, float), 'amount')
-    ]
+
+    name = "heal"
+    valid_parameters = [((int, float), "amount")]
 
     def apply(self, target):
         healing_amount = self.parameters.amount
@@ -57,4 +56,4 @@ class HealEffect(ItemEffect):
         if target.current_hp > target.hp:
             target.current_hp = target.hp
 
-        return {'success': True}
+        return {"success": True}

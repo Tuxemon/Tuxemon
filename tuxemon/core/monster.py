@@ -55,39 +55,11 @@ SHAPES = {
     "dragon": {"armour": 7, "dodge": 5, "hp": 6, "melee": 6, "ranged": 6, "speed": 6,},
     "flier": {"armour": 5, "dodge": 7, "hp": 4, "melee": 8, "ranged": 4, "speed": 8,},
     "grub": {"armour": 7, "dodge": 5, "hp": 7, "melee": 4, "ranged": 8, "speed": 5,},
-    "humanoid": {
-        "armour": 5,
-        "dodge": 7,
-        "hp": 4,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 8,
-    },
+    "humanoid": {"armour": 5, "dodge": 7, "hp": 4, "melee": 4, "ranged": 8, "speed": 8,},
     "hunter": {"armour": 4, "dodge": 8, "hp": 5, "melee": 8, "ranged": 4, "speed": 7,},
-    "landrace": {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 8,
-        "ranged": 4,
-        "speed": 4,
-    },
-    "leviathan": {
-        "armour": 8,
-        "dodge": 4,
-        "hp": 8,
-        "melee": 6,
-        "ranged": 6,
-        "speed": 4,
-    },
-    "polliwog": {
-        "armour": 4,
-        "dodge": 8,
-        "hp": 5,
-        "melee": 4,
-        "ranged": 8,
-        "speed": 7,
-    },
+    "landrace": {"armour": 8, "dodge": 4, "hp": 8, "melee": 8, "ranged": 4, "speed": 4,},
+    "leviathan": {"armour": 8, "dodge": 4, "hp": 8, "melee": 6, "ranged": 6, "speed": 4,},
+    "polliwog": {"armour": 4, "dodge": 8, "hp": 5, "melee": 4, "ranged": 8, "speed": 7,},
     "serpent": {"armour": 6, "dodge": 6, "hp": 6, "melee": 4, "ranged": 8, "speed": 6,},
     "sprite": {"armour": 6, "dodge": 6, "hp": 4, "melee": 6, "ranged": 6, "speed": 8,},
     "varmint": {"armour": 6, "dodge": 6, "hp": 6, "melee": 8, "ranged": 4, "speed": 6,},
@@ -136,14 +108,14 @@ class Monster:
         self.hp = 0
         self.level = 0
 
-        self.moves = []       # list of technique objects. Used in combat.
-        self.moveset = []     # list of possible technique objects.
+        self.moves = []  # list of technique objects. Used in combat.
+        self.moveset = []  # list of possible technique objects.
         self.evolutions = []  # list of possible evolution objects.
-        self.flairs = {}      # dictionary of flairs, one is picked randomly.
+        self.flairs = {}  # dictionary of flairs, one is picked randomly.
         self.battle_cry = ""  # slug for a sound file, used primarly when they enter battle
-        self.faint_cry = ""   # slug for a sound file, used when the monster faints
+        self.faint_cry = ""  # slug for a sound file, used when the monster faints
         self.ai = None
-        self.owner = None     # set to NPC instance if they own it
+        self.owner = None  # set to NPC instance if they own it
 
         # The multiplier for experience
         self.experience_required_modifier = 1
@@ -196,13 +168,13 @@ class Monster:
         results = db.lookup(slug, table="monster")
 
         if results is None:
-            logger.error("monster {} is not found".format(slug))
+            logger.error(f"monster {slug} is not found")
             raise RuntimeError
 
-        self.slug = results["slug"]                             # short English identifier
-        self.name = T.translate(results["slug"])                # translated name
+        self.slug = results["slug"]  # short English identifier
+        self.name = T.translate(results["slug"])  # translated name
         self.description = T.translate("{}_description".format(results["slug"]))  # translated description
-        self.category = T.translate(results["category"])        # translated category
+        self.category = T.translate(results["category"])  # translated category
         self.shape = results.get("shape", "landrace").lower()
         types = results.get("types")
         if types:
@@ -234,12 +206,8 @@ class Monster:
         self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        self.combat_call = results.get("sounds", {}).get(
-            "combat_call", "sound_{}_call".format(self.type1)
-        )
-        self.faint_call = results.get("sounds", {}).get(
-            "faint_call", "sound_{}_faint".format(self.type1)
-        )
+        self.combat_call = results.get("sounds", {}).get("combat_call", f"sound_{self.type1}_call")
+        self.faint_call = results.get("sounds", {}).get("faint_call", f"sound_{self.type1}_faint")
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -374,9 +342,9 @@ class Monster:
         :returns: New monster slug if valid, None otherwise
         """
         for evolution in self.evolutions:
-            if evolution['path'] == path:
-                level_over = evolution['at_level'] > 0 and self.level >= evolution['at_level']
-                level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
+            if evolution["path"] == path:
+                level_over = evolution["at_level"] > 0 and self.level >= evolution["at_level"]
+                level_under = evolution["at_level"] < 0 and self.level <= -evolution["at_level"]
                 if level_over or level_under:
                     return evolution["monster_slug"]
         return None
@@ -392,16 +360,13 @@ class Monster:
         elif sprite == "back":
             surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
         elif sprite == "menu":
-            surface = graphics.load_animated_sprite([
-                self.menu_sprite_1,
-                self.menu_sprite_2],
-                0.25, **kwargs)
+            surface = graphics.load_animated_sprite([self.menu_sprite_1, self.menu_sprite_2], 0.25, **kwargs)
         else:
-            raise ValueError("Cannot find sprite for: {}".format(sprite))
+            raise ValueError(f"Cannot find sprite for: {sprite}")
 
         # Apply flairs to the monster sprite
         for flair in self.flairs.values():
-            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
+            flair_path = self.get_sprite_path(f"gfx/sprites/battle/{self.slug}-{sprite}-{flair.name}")
             if flair_path != MISSING_IMAGE:
                 flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
@@ -441,7 +406,7 @@ class Monster:
                 if full_path:
                     return full_path
         except OSError:
-            logger.debug("Could not find monster sprite {}".format(sprite))
+            logger.debug(f"Could not find monster sprite {sprite}")
             return MISSING_IMAGE
 
     def load_sprites(self):
@@ -472,11 +437,7 @@ class Monster:
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the monster
         """
-        save_data = {
-            attr: getattr(self, attr)
-            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
-            if getattr(self, attr)
-        }
+        save_data = {attr: getattr(self, attr) for attr in SIMPLE_PERSISTANCE_ATTRIBUTES if getattr(self, attr)}
 
         save_data["instance_id"] = str(self.instance_id)
 

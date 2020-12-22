@@ -56,6 +56,7 @@ class TranslatedDialogAction(EventAction):
     }
 
     """
+
     name = "translated_dialog"
 
     def start(self):
@@ -68,13 +69,7 @@ class TranslatedDialogAction(EventAction):
             else:
                 avatar = get_avatar(self.context, param)
 
-        self.open_dialog(
-            process_translate_text(
-                self.context,
-                key,
-                replace,
-            ), avatar
-        )
+        self.open_dialog(process_translate_text(self.context, key, replace,), avatar)
 
     def update(self):
         if self.context.client.get_state_by_name("DialogState") is None:

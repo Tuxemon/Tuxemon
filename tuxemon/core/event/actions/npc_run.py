@@ -28,6 +28,7 @@ class NpcRun(EventAction):
 
     Valid Parameters: npc_slug
     """
+
     name = "npc_run"
     valid_parameters = [
         (str, "npc_slug"),

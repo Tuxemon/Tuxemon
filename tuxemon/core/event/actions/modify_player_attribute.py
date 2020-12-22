@@ -32,11 +32,9 @@ class ModifyPlayerAttributeAction(EventAction):
 
     EventAction parameter 'modifier' must be an int (positive or negative)
     """
+
     name = "modify_player_attribute"
-    valid_parameters = [
-        (str, "name"),
-        (float, "value")
-    ]
+    valid_parameters = [(str, "name"), (float, "value")]
 
     def start(self):
         attribute = self.parameters[0]

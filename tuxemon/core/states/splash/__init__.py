@@ -39,6 +39,7 @@ logger = logging.getLogger(__name__)
 class SplashState(state.State):
     """ The state responsible for the splash screen
     """
+
     default_duration = 3
 
     def fade_out(self):

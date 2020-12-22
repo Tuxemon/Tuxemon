@@ -37,7 +37,7 @@ from tuxemon.core.state import StateManager
 logger = logging.getLogger(__name__)
 
 
-class LocalPygameClient(object):
+class LocalPygameClient:
     """ Client to play locally using pygame
 
     * Uses a state manger to handle game states
@@ -178,11 +178,7 @@ class LocalPygameClient(object):
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if (
-                    not state.transparent
-                    and state.rect == full_screen
-                    and not state.force_draw
-            ):
+            if not state.transparent and state.rect == full_screen and not state.force_draw:
                 break
 
         # draw from bottom up for proper layering
@@ -248,7 +244,7 @@ class LocalPygameClient(object):
             if game_event is None:
                 break
         else:
-            logger.debug("got unhandled event: {}".format(game_event))
+            logger.debug(f"got unhandled event: {game_event}")
         return game_event
 
     def update_states(self, dt):

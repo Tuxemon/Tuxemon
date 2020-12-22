@@ -102,8 +102,8 @@ class CommonAction:
             logger.warning("Player attribute '{0}' specified does not exist.", attribute)
             return
 
-        if '%' in modifier:
-            attr *= float(modifier.replace('%', ''))
+        if "%" in modifier:
+            attr *= float(modifier.replace("%", ""))
         else:
             attr += float(modifier)
 

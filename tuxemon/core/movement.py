@@ -205,7 +205,7 @@ class Movement:
 
             if self.pathfinding:
                 # since we are pathfinding, just try a new path
-                logger.error('{} finding new path!'.format(self.slug))
+                logger.error(f"{self.slug} finding new path!")
                 self.pathfind(self.pathfinding)
 
             else:

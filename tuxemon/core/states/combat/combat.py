@@ -85,7 +85,7 @@ class TechniqueAnimationCache:
         """
         if not technique.images:
             return None
-        frame_time = .09
+        frame_time = 0.09
         images = list()
         for fn in technique.images:
             image = graphics.load_and_scale(fn)
@@ -135,6 +135,7 @@ class CombatState(CombatAnimations):
        status icons are created for each status on each monster
        obvs, not ideal, maybe someday make it better? (see transition_phase)
     """
+
     background_filename = "gfx/ui/combat/battle_bg03.png"
     draw_borders = False
     escape_key_exits = False
@@ -157,9 +158,9 @@ class CombatState(CombatAnimations):
         self._round = 0
 
         super().startup(**kwargs)
-        self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
+        self.is_trainer_battle = kwargs.get("combat_type") == "trainer"
         self.players = list(self.players)
-        self.graphics = kwargs.get('graphics')
+        self.graphics = kwargs.get("graphics")
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
@@ -296,11 +297,11 @@ class CombatState(CombatAnimations):
             # record the useful properties of the last monster we fought
             monster_record = self.monsters_in_play[self.players[1]][0]
             if monster_record in self.active_monsters:
-                self.players[0].game_variables['battle_last_monster_name'] = monster_record.name
-                self.players[0].game_variables['battle_last_monster_level'] = monster_record.level
-                self.players[0].game_variables['battle_last_monster_type'] = monster_record.slug
-                self.players[0].game_variables['battle_last_monster_category'] = monster_record.category
-                self.players[0].game_variables['battle_last_monster_shape'] = monster_record.shape
+                self.players[0].game_variables["battle_last_monster_name"] = monster_record.name
+                self.players[0].game_variables["battle_last_monster_level"] = monster_record.level
+                self.players[0].game_variables["battle_last_monster_type"] = monster_record.slug
+                self.players[0].game_variables["battle_last_monster_category"] = monster_record.category
+                self.players[0].game_variables["battle_last_monster_shape"] = monster_record.shape
 
         if phase == "decision phase":
             self.reset_status_icons()
@@ -328,8 +329,8 @@ class CombatState(CombatAnimations):
 
         elif phase == "ran away":
             self.players[0].set_party_status()
-            self.players[0].game_variables['battle_last_result'] = 'ran'
-            self.alert(T.translate('combat_player_run'))
+            self.players[0].game_variables["battle_last_result"] = "ran"
+            self.alert(T.translate("combat_player_run"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
@@ -339,10 +340,10 @@ class CombatState(CombatAnimations):
 
         elif phase == "draw match":
             self.players[0].set_party_status()
-            self.players[0].game_variables['battle_last_result'] = 'draw'
+            self.players[0].game_variables["battle_last_result"] = "draw"
 
             # it is a draw match; both players were defeated in same round
-            self.alert(T.translate('combat_draw'))
+            self.alert(T.translate("combat_draw"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
@@ -354,12 +355,12 @@ class CombatState(CombatAnimations):
             # This assumes that player[0] is the human playing in single player
             self.players[0].set_party_status()
             if self.remaining_players[0] == self.players[0]:
-                self.players[0].game_variables['battle_last_result'] = 'won'
-                self.alert(T.translate('combat_victory'))
+                self.players[0].game_variables["battle_last_result"] = "won"
+                self.alert(T.translate("combat_victory"))
             else:
-                self.players[0].game_variables['battle_last_result'] = 'lost'
-                self.players[0].game_variables['battle_lost_faint'] = 'true'
-                self.alert(T.translate('combat_defeat'))
+                self.players[0].game_variables["battle_last_result"] = "lost"
+                self.players[0].game_variables["battle_lost_faint"] = "true"
+                self.alert(T.translate("combat_defeat"))
 
             # after 3 seconds, push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
@@ -395,7 +396,7 @@ class CombatState(CombatAnimations):
             sort = action.technique.sort
             primary_order = sort_order.index(sort)
 
-            if sort == 'meta':
+            if sort == "meta":
                 # all meta items sorted together
                 # use of 0 leads to undefined sort/probably random
                 return primary_order, 0
@@ -405,7 +406,7 @@ class CombatState(CombatAnimations):
                 return primary_order, action.user.speed_test(action)
 
         # TODO: move to mod config
-        sort_order = ['meta', 'item', 'utility', 'potion', 'food', 'heal', 'damage']
+        sort_order = ["meta", "item", "utility", "potion", "food", "heal", "damage"]
 
         # TODO: Running happens somewhere else, it should be moved here i think.
         # TODO: Eventually make an action queue class?
@@ -506,21 +507,18 @@ class CombatState(CombatAnimations):
         """
         # TODO: refactor some into the combat animations
         self.animate_monster_release(player, monster)
-        self.build_hud(self._layout[player]['hud'][0], monster)
+        self.build_hud(self._layout[player]["hud"][0], monster)
         self.monsters_in_play[player].append(monster)
 
         # TODO: not hardcode
         if player is self.players[0]:
-            self.alert(T.format('combat_call_tuxemon', {"name": monster.name.upper()}))
+            self.alert(T.format("combat_call_tuxemon", {"name": monster.name.upper()}))
         elif self.is_trainer_battle:
             self.alert(
-                T.format('combat_opponent_call_tuxemon', {
-                    "name": monster.name.upper(),
-                    "user": player.name.upper(),
-                })
+                T.format("combat_opponent_call_tuxemon", {"name": monster.name.upper(), "user": player.name.upper(),})
             )
         else:
-            self.alert(T.format('combat_wild_appeared', {"name": monster.name.upper()}))
+            self.alert(T.format("combat_wild_appeared", {"name": monster.name.upper()}))
 
     def reset_status_icons(self):
         """ Update/reset status icons for monsters
@@ -565,7 +563,7 @@ class CombatState(CombatAnimations):
 
         :rtype: None
         """
-        message = T.format('combat_monster_choice', {"name": monster.name})
+        message = T.format("combat_monster_choice", {"name": monster.name})
         self.alert(message)
         x, y, w, h = self.client.screen.get_rect()
         rect = Rect(0, 0, w // 2.5, h // 4)
@@ -667,12 +665,10 @@ class CombatState(CombatAnimations):
 
         if technique.use_item:
             # "Monster used move!"
-            context = {"user": getattr(user, "name", ''),
-                       "name": technique.name,
-                       "target": target.name}
+            context = {"user": getattr(user, "name", ""), "name": technique.name, "target": target.name}
             message = T.format(technique.use_item, context)
         else:
-            message = ''
+            message = ""
 
         # TODO: caching sounds
         audio.load_sound(technique.sfx).play()
@@ -688,33 +684,39 @@ class CombatState(CombatAnimations):
 
             # TODO: a real check or some params to test if should tackle, etc
             if result["should_tackle"]:
-                hit_delay += .5
+                hit_delay += 0.5
                 user_sprite = self._monster_sprite_map[user]
                 self.animate_sprite_tackle(user_sprite)
 
                 if target_sprite:
-                    self.task(partial(self.animate_sprite_take_damage, target_sprite), hit_delay + .2)
-                    self.task(partial(self.blink, target_sprite), hit_delay + .6)
+                    self.task(partial(self.animate_sprite_take_damage, target_sprite), hit_delay + 0.2)
+                    self.task(partial(self.blink, target_sprite), hit_delay + 0.6)
 
                 # TODO: track total damage
                 # Track damage
                 self._damage_map[target].add(user)
 
-                element_damage_key = MULT_MAP.get(result['element_multiplier'])
+                element_damage_key = MULT_MAP.get(result["element_multiplier"])
                 if element_damage_key:
                     m = T.translate(element_damage_key)
                     message += "\n" + m
 
                 for status in result.get("statuses", []):
-                    m = T.format(status.use_item,
-                                 {"name": technique.name, "user": status.link.name if status.link else "", "target": status.carrier.name})
+                    m = T.format(
+                        status.use_item,
+                        {
+                            "name": technique.name,
+                            "user": status.link.name if status.link else "",
+                            "target": status.carrier.name,
+                        },
+                    )
                     message += "\n" + m
 
             else:  # assume this was an item used
 
                 # handle the capture device
                 if result["capture"]:
-                    message += "\n" + T.translate('attempting_capture')
+                    message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
                     self.animate_capture_monster(result["success"], result["num_shakes"], target)
 
@@ -722,13 +724,13 @@ class CombatState(CombatAnimations):
                     # end combat right here
                     if result["success"]:
                         self.task(self.end_combat, action_time + 0.5)  # Display 'Gotcha!' first.
-                        self.task(partial(self.alert, T.translate('gotcha')), action_time)
+                        self.task(partial(self.alert, T.translate("gotcha")), action_time)
                         self._animation_in_progress = True
                         return
 
                 # generic handling of anything else
                 else:
-                    msg_type = 'use_success' if result['success'] else 'use_failure'
+                    msg_type = "use_success" if result["success"] else "use_failure"
                     template = getattr(technique, msg_type)
                     if template:
                         message += "\n" + T.translate(template)
@@ -739,7 +741,7 @@ class CombatState(CombatAnimations):
         else:
             if result["success"]:
                 self.suppress_phase_change()
-                self.alert(T.format('combat_status_damage', {"name": target.name, "status": technique.name}))
+                self.alert(T.format("combat_status_damage", {"name": target.name, "status": technique.name}))
 
         tech_sprite = self._technique_cache.get(technique)
         if result["success"] and target_sprite and tech_sprite:
@@ -783,7 +785,7 @@ class CombatState(CombatAnimations):
         for player, party in self.monsters_in_play.items():
             for monster in party:
                 if fainted(monster):
-                    self.alert(T.format('combat_fainted', {"name": monster.name}))
+                    self.alert(T.format("combat_fainted", {"name": monster.name}))
                     self.animate_monster_faint(monster)
                     self.suppress_phase_change(3)
 

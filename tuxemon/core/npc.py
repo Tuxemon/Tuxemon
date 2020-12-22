@@ -46,16 +46,8 @@ logger = logging.getLogger(__name__)
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
 animation_mapping = {
-    True: {
-        'up': 'back_walk',
-        'down': 'front_walk',
-        'left': 'left_walk',
-        'right': 'right_walk'},
-    False: {
-        'up': 'back',
-        'down': 'front',
-        'left': 'left',
-        'right': 'right'}
+    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
 
@@ -76,9 +68,10 @@ class NPC(Entity):
 
     To move one tile, simply set a path of one item.
     """
+
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
-    def __init__(self, npc_slug, sprite_name=None,combat_front=None,combat_back=None):
+    def __init__(self, npc_slug, sprite_name=None, combat_front=None, combat_back=None):
         super().__init__()
 
         # load initial data from the npc database
@@ -154,34 +147,34 @@ class NPC(Entity):
         :returns: Dictionary containing all the information about the npc
         """
         return {
-            'current_map': self.map,
-            'facing': self.facing,
-            'game_variables': self.game_variables,
-            'inventory': encode_inventory(self.inventory),
-            'monsters': encode_monsters(self.monsters),
-            'player_name': self.name,
-            'storage': {
-                'items': encode_inventory(self.storage['items']),
-                'monsters': encode_monsters(self.storage['monsters']),
+            "current_map": self.map,
+            "facing": self.facing,
+            "game_variables": self.game_variables,
+            "inventory": encode_inventory(self.inventory),
+            "monsters": encode_monsters(self.monsters),
+            "player_name": self.name,
+            "storage": {
+                "items": encode_inventory(self.storage["items"]),
+                "monsters": encode_monsters(self.storage["monsters"]),
             },
-            'tile_pos': nearest(self.tile_pos),
+            "tile_pos": nearest(self.tile_pos),
         }
 
-    def set_state(self, session,  save_data):
+    def set_state(self, session, save_data):
         """Recreates npc from saved data
 
         :param tuxemon.core.session.Session session:
         :param Dict save_data: Data used to recreate the player
         :rtype: None
         """
-        self.facing = save_data.get('facing', 'down')
-        self.game_variables = save_data['game_variables']
+        self.facing = save_data.get("facing", "down")
+        self.game_variables = save_data["game_variables"]
         self.inventory = decode_inventory(session, self, save_data)
         self.monsters = decode_monsters(save_data)
-        self.name = save_data['player_name']
+        self.name = save_data["player_name"]
         self.storage = {
-            'items': decode_inventory(session, self, save_data['storage']),
-            'monsters': decode_monsters(save_data['storage']),
+            "items": decode_inventory(session, self, save_data["storage"]),
+            "monsters": decode_monsters(save_data["storage"]),
         }
 
     def move_direction(self, direction):
@@ -367,7 +360,7 @@ class NPC(Entity):
 
             if self.pathfinding:
                 # since we are pathfinding, just try a new path
-                logger.error('{} finding new path!'.format(self.slug))
+                logger.error(f"{self.slug} finding new path!")
                 self.pathfind(self.pathfinding)
 
             else:
@@ -470,11 +463,11 @@ class NPC(Entity):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npc_details = db.database['npc'][self.slug]
-        for npc_monster_details in npc_details['monsters']:
+        npc_details = db.database["npc"][self.slug]
+        for npc_monster_details in npc_details["monsters"]:
             monster = Monster(save_data=npc_monster_details)
-            monster.experience_give_modifier = npc_monster_details['exp_give_mod']
-            monster.experience_required_modifier = npc_monster_details['exp_req_mod']
+            monster.experience_give_modifier = npc_monster_details["exp_give_mod"]
+            monster.experience_required_modifier = npc_monster_details["exp_req_mod"]
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
 
@@ -500,11 +493,11 @@ class NPC(Entity):
                 level_highest = npc_monster.level
             level_average += npc_monster.level
         level_average = int(round(level_average / len(self.monsters)))
-        self.game_variables['party_level_lowest'] = level_lowest
-        self.game_variables['party_level_highest'] = level_highest
-        self.game_variables['party_level_average'] = level_average
+        self.game_variables["party_level_lowest"] = level_lowest
+        self.game_variables["party_level_highest"] = level_highest
+        self.game_variables["party_level_average"] = level_average
 
-    def give_item(self, session,  target, item, quantity):
+    def give_item(self, session, target, item, quantity):
         subtract = self.alter_item_quantity(session, item.slug, -quantity)
         give = target.alter_item_quantity(session, item.slug, quantity)
         return subtract and give
@@ -517,20 +510,20 @@ class NPC(Entity):
         item = self.inventory.get(item_slug)
         if amount > 0:
             if item:
-                item['quantity'] += amount
+                item["quantity"] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(session, self, item_slug),
-                    'quantity': amount,
+                    "item": Item(session, self, item_slug),
+                    "quantity": amount,
                 }
         elif amount < 0:
             amount = abs(amount)
-            if item is None or item.get('infinite'):
+            if item is None or item.get("infinite"):
                 pass
-            elif item['quantity'] == amount:
+            elif item["quantity"] == amount:
                 del self.inventory[item_slug]
-            elif item['quantity'] > amount:
-                item['quantity'] -= amount
+            elif item["quantity"] > amount:
+                item["quantity"] -= amount
             else:
                 success = False
 

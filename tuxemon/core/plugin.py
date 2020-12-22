@@ -37,12 +37,11 @@ import sys
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
-log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
-                                        "%(levelname)s - %(message)s"))
+log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
 
 
 class Plugin:
-    __slots__ = ('name', 'plugin_object')
+    __slots__ = ("name", "plugin_object")
 
     def __init__(self, name, module):
         self.name = name
@@ -61,7 +60,12 @@ class PluginManager:
         self.modules = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
-        self.include_patterns = ["core.event.actions", "core.event.conditions", "core.item.effects", "core.item.conditions"]
+        self.include_patterns = [
+            "core.event.actions",
+            "core.event.conditions",
+            "core.item.effects",
+            "core.item.conditions",
+        ]
 
     def setPluginPlaces(self, plugin_folders):
         self.folders = plugin_folders
@@ -69,13 +73,13 @@ class PluginManager:
     def collectPlugins(self):
         for folder in self.folders:
             logger.debug("searching for plugins: %s", folder)
-            folder = folder.replace('\\', '/')
+            folder = folder.replace("\\", "/")
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile('tuxemon/core.*$')
+            pattern = re.compile("tuxemon/core.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
                 logger.exception("Unable to determine plugin module path for: ", folder)
-            module_path = matches[0].replace('/', '.')
+            module_path = matches[0].replace("/", ".")
 
             # Look for a ".plugin" in the plugin folder to create a list of modules
             # to import.
@@ -189,9 +193,9 @@ def load_plugins(path, category="plugins"):
     for cls in get_available_classes(plugins):
         name = getattr(cls, "name", None)
         if name is None:
-            logger.error("found incomplete {}: {}".format(category, cls.__name__))
+            logger.error(f"found incomplete {category}: {cls.__name__}")
             continue
         classes[name] = cls
-        logger.info("loaded {}: {}".format(category, cls.name))
+        logger.info(f"loaded {category}: {cls.name}")
 
     return classes

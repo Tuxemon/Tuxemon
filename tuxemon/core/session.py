@@ -6,6 +6,7 @@ class Session:
     Eventually this will be extended to support network sessions
 
     """
+
     def __init__(self, client, world, player):
         """
         :param tuxemon.core.client.LocalPygameClient client: Game session

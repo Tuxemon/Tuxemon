@@ -38,10 +38,9 @@ class SetVariableAction(EventAction):
     }
 
     """
+
     name = "set_variable"
-    valid_parameters = [
-        (str, "var_list")
-    ]
+    valid_parameters = [(str, "var_list")]
 
     def start(self):
         player = self.context.player

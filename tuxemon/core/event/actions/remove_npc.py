@@ -27,10 +27,9 @@ class RemoveNpcAction(EventAction):
 
     Valid Parameters: slug
     """
+
     name = "remove_npc"
-    valid_parameters = [
-        (str, "npc_slug")
-    ]
+    valid_parameters = [(str, "npc_slug")]
 
     def start(self):
         # Get a copy of the world state.

@@ -25,6 +25,7 @@ from tuxemon.core.event.eventcondition import EventCondition
 class ButtonReleasedCondition(EventCondition):
     """ Checks to see if a particular key was released
     """
+
     name = "button_released"
 
     def test(self, session, event, condition):

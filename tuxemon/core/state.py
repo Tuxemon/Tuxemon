@@ -62,11 +62,12 @@ class State:
     :cvar force_draw: If True, state will never be skipped in drawing phase
     :cvar rect: Area of the screen will be drawn on
     """
+
     __metaclass__ = ABCMeta
 
     rect = Rect((0, 0), prepare.SCREEN_SIZE)
-    transparent = False   # ignore all background/borders
-    force_draw = False    # draw even if completely under another state
+    transparent = False  # ignore all background/borders
+    force_draw = False  # draw even if completely under another state
 
     def __init__(self, client):
         """ Do not override this unless there is a special need.
@@ -81,7 +82,7 @@ class State:
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
-        self.sprites = SpriteGroup()             # all sprites that draw on the screen
+        self.sprites = SpriteGroup()  # all sprites that draw on the screen
 
     @property
     def name(self):
@@ -97,7 +98,7 @@ class State:
         :param kwargs: Keyword arguments to pass to the Rect constructor
         :returns: tuxemon.core.sprite.Sprite
         """
-        layer = kwargs.pop('layer', 0)
+        layer = kwargs.pop("layer", 0)
         sprite = graphics.load_sprite(filename, **kwargs)
         self.sprites.add(sprite, layer=layer)
         return sprite
@@ -175,7 +176,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def startup(self, **kwargs):
         """ Called when scene is added to State Stack
@@ -190,7 +190,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def resume(self):
         """ Called before update when state is newly in focus
@@ -207,7 +206,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def pause(self):
         """ Called when state is pushed back in the stack, allowed to pause
@@ -224,7 +222,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def shutdown(self):
         """ Called when state is removed from stack and will be destroyed
@@ -238,7 +235,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
 
 class StateManager:
@@ -266,7 +262,7 @@ class StateManager:
         """
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
-        logger.debug("loading game states from {}".format(state_folder))
+        logger.debug(f"loading game states from {state_folder}")
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
                 continue
@@ -280,7 +276,7 @@ class StateManager:
         :returns: None
         """
         name = state.__name__
-        logger.debug("loading state: {}".format(state.__name__))
+        logger.debug(f"loading state: {state.__name__}")
         self._state_dict[name] = state
 
     @staticmethod
@@ -307,7 +303,7 @@ class StateManager:
         :rtype: collections.Iterable[Class]
         """
         try:
-            import_name = self.package + '.' + folder
+            import_name = self.package + "." + folder
             import_module(import_name)
             yield from self.collect_states_from_module(import_name)
         except Exception as e:
@@ -393,7 +389,7 @@ class StateManager:
         try:
             state = self._state_dict[state_name]
         except KeyError:
-            logger.critical('Cannot find state: {}'.format(state_name))
+            logger.critical(f"Cannot find state: {state_name}")
             raise RuntimeError
 
         previous = self.current_state

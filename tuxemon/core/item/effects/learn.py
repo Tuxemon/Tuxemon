@@ -30,10 +30,9 @@ from tuxemon.core.technique import Technique
 class LearnEffect(ItemEffect):
     """This effect teaches the target the technique in the parameters.
     """
+
     name = "learn"
-    valid_parameters = [
-        (str, "technique")
-    ]
+    valid_parameters = [(str, "technique")]
 
     def apply(self, target):
         tech = Technique()

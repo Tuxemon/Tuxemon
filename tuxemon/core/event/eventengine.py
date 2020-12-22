@@ -175,27 +175,22 @@ class EventEngine:
         else:
             return condition()
 
-    def check_condition(self, session, cond_data, map_event):
+    def check_condition(self, session, condition, map_event):
         """ Check if condition is true of false
 
-        Returns False if the condition is not loaded properly
-
         :param tuxemon.core.session.Session session:
-        :param tuxemon.core.event.MapCondition cond_data:
+        :param tuxemon.core.event.MapCondition condition:
         :param tuxemon.core.event.MapEvent map_event:
         :rtype: bool
         """
-        with add_error_context(map_event, cond_data, session):
-            map_condition = self.get_condition(cond_data.name)
-            if map_condition is None:
-                logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
-                return False
-            result = map_condition.test(session, map_event, cond_data) == (
-                cond_data.operator == "is"
+        with add_error_context(map_event, condition, session):
+            handler = self.get_condition(condition.name)
+            result = handler.test(session, map_event, condition) == (
+                    condition.operator == "is"
             )
             logger.debug(
                 'map condition "{}": {} ({})'.format(
-                    map_condition.name, result, cond_data
+                    handler.name, result, condition
                 )
             )
             return result

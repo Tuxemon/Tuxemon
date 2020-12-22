@@ -19,7 +19,26 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventcondition import EventCondition
+
+
+def entity_at_position(entity, event):
+    """
+    Only true if the entity is exactly in the center of the tile.
+    Partially in/out the tile will be False.
+    """
+    return event.rect.topleft == entity.tile_pos
+
+
+class NPCAtCondition(EventCondition):
+    """ Checks to see if an npc is at a current position on the map.
+    """
+    name = "npc_at"
+
+    def test(self, session, event, condition):
+        entity = get_npc(session, condition.parameters[0])
+        return entity_at_position(entity, event)
 
 
 class PlayerAtCondition(EventCondition):
@@ -28,20 +47,4 @@ class PlayerAtCondition(EventCondition):
     name = "player_at"
 
     def test(self, session, event, condition):
-        """ Checks to see if the player is at a current position on the map.
-        :param event:
-        """
-        player = session.player
-
-        # Get the condition's rectangle area. If we're on a tile in that area, then this condition
-        # should return True.
-        area_x = range(event.rect.left, event.rect.right)
-        area_y = range(event.rect.top, event.rect.bottom)
-
-        # If the player is at the coordinates and the operator is set to true then return true
-        if round(player.tile_pos[0]) in area_x and round(player.tile_pos[1]) in area_y:
-            return True
-
-        # If the player is at the coordinates and the operator is set to false then return false
-        else:
-            return False
+        return entity_at_position(session.player, event)

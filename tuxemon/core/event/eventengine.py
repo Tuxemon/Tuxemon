@@ -37,6 +37,7 @@ from tuxemon.core.session import local_session
 logger = logging.getLogger(__name__)
 
 
+# TODO: rename this or resolve the issue with two classes called "eventcontext"
 class EventContext:
     engine = None
     world = None
@@ -139,7 +140,6 @@ class EventEngine:
         :param List parameters:
         :rtype: tuxemon.core.event.eventaction.EventAction
         """
-        # TODO: make loading of actions and conditions generic
         if parameters is None:
             parameters = list()
         try:
@@ -165,7 +165,6 @@ class EventEngine:
         :param str name:
         :rtype: tuxemon.core.event.eventcondition.EventCondition
         """
-        # TODO: make loading of actions and conditions generic
         try:
             condition = self.conditions[name]
         except KeyError:
@@ -175,7 +174,7 @@ class EventEngine:
             return condition()
 
     def check_condition(self, session, condition, map_event):
-        """ Check if condition is true of false
+        """ Check if condition is true or false
 
         :param tuxemon.core.session.Session session:
         :param tuxemon.core.event.MapCondition condition:

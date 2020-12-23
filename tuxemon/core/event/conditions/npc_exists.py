@@ -29,39 +29,23 @@ class NPCExistsCondition(EventCondition):
 
     name = "npc_exists"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see if a particular NPC object exists in the current list of NPCs.
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
 
         Valid Parameters: npc_slug
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "npc_exists",
-            "parameters": [
-                "npc_oak"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is_not",
-            "x": 0,
-            "y": 0,
-            ...
-        }
         """
-        if get_npc(session, condition.parameters[0]):
+        if get_npc(context, condition.parameters[0]):
             return True
         else:
             return False

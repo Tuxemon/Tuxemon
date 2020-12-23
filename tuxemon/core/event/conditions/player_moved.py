@@ -52,36 +52,22 @@ class PlayerMovedCondition(EventCondition):
 
     name = "player_moved"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """Checks to see the player has just moved into this tile. Using this condition will
         prevent a condition like "player_at" from constantly being true every single frame.
 
         :param event:
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: tuxemon.core.event.MapCondition
 
         :rtype: bool
 
         Valid Parameters: None
 
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_moved",
-            "parameters": [],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         # TODO: Eventually generalize command for checking players and npcs
         return False
-        return self.generic_test(session, condition, session.player)
+        return self.generic_test(context, condition, context.player)
 
     def generic_test(self, session, condition, npc):
         """ Eventually, this can be made into own condition or something

@@ -45,11 +45,11 @@ class HasItemCondition(EventCondition):
 
     name = "has_item"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see the player is has a monster in his party
 
         :param event:
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -75,7 +75,7 @@ class HasItemCondition(EventCondition):
 
         # TODO: handle missing npc, etc
         owner_slug, item_slug = condition.parameters[:2]
-        npc = get_npc(session, owner_slug)
+        npc = get_npc(context, owner_slug)
         item_info = npc.inventory.get(item_slug)
         if item_info is None:  # not found in inventory
             item_quantity = 0

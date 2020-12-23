@@ -28,15 +28,15 @@ class CombatStartedCondition(EventCondition):
 
     name = "combat_started"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see if combat has been started or not.
 
             :param event:
-            :param session: The session object
+            :param context: The session object
             :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
                 for the format of the dictionary.
 
-            :type session: tuxemon.core.session.Session
+            :type context: tuxemon.core.session.Session
             :type condition: Dictionary
 
             :rtype: Boolean
@@ -44,16 +44,5 @@ class CombatStartedCondition(EventCondition):
 
             Valid Parameters: None
 
-            **Examples:**
-
-            >>> condition
-            {'action_id': '9',
-             'id': 9,
-             'operator': 'is_not',
-             'parameters': '',
-             'type': 'combat_started',
-             'x': 1,
-             'y': 11}
-
             """
-        return session.client.current_state.name == "CombatState"
+        return context.client.current_state.name == "CombatState"

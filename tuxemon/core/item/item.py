@@ -230,7 +230,7 @@ class Item:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target, event,)
+            result = result and condition.test(target, event, )
 
         return result
 

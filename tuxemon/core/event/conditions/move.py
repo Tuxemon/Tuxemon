@@ -28,15 +28,15 @@ class TrueCondition(EventCondition):
 
     name = "true"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ This function always returns true unless the operator is set to "is_not"
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean

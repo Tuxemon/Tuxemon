@@ -32,16 +32,16 @@ class PartySizeCondition(EventCondition):
 
     name = "party_size"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """Perform various checks about the player's party size. With this condition you can see if
         the player's party is less than, greater than, or equal to then number you specify.
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -51,27 +51,10 @@ class PartySizeCondition(EventCondition):
 
         The "check" parameter can be one of the following: "equals", "less_than", or "greater_than".
 
-        **Examples:**
-
-        >>> EventCondition.__dict__
-        {
-            "type": "party_size",
-            "parameters": [
-                "less_than",
-                "2"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         check = str(condition.parameters[0])
         number = int(condition.parameters[1])
-        party_size = len(session.player.monsters)
+        party_size = len(context.player.monsters)
 
         # Check to see if the player's party size equals this number.
         if check == "equals":

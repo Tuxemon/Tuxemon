@@ -28,15 +28,15 @@ class ButtonReleasedCondition(EventCondition):
 
     name = "button_released"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see if a particular key was released
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean

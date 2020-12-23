@@ -19,27 +19,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from tuxemon.core.event import get_npc
+from tuxemon.core.event.conditions.position import entity_at_position
 from tuxemon.core.event.eventcondition import EventCondition
-
-
-def entity_at_position(entity, event):
-    """
-    Only true if the entity is exactly in the center of the tile.
-    Partially in/out the tile will be False.
-    """
-    return event.rect.topleft == entity.tile_pos
-
-
-class NPCAtCondition(EventCondition):
-    """ Checks to see if an npc is at a current position on the map.
-    """
-
-    name = "npc_at"
-
-    def test(self, session, event, condition):
-        entity = get_npc(session, condition.parameters[0])
-        return entity_at_position(entity, event)
 
 
 class PlayerAtCondition(EventCondition):
@@ -48,5 +29,5 @@ class PlayerAtCondition(EventCondition):
 
     name = "player_at"
 
-    def test(self, session, event, condition):
-        return entity_at_position(session.player, event)
+    def test(self, context, event, condition):
+        return entity_at_position(context.player, event)

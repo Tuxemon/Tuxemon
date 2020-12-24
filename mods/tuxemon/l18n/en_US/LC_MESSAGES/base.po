@@ -2944,8 +2944,8 @@ msgstr "Rockitten"
 msgid "spyder_frolicking_conileaf"
 msgstr "Conileaf"
 
-msgid "spyder_papertown_riverboatcaptain" 
-msgstr "Riverboat Captain" 
+msgid "spyder_papertown_riverboatcaptain"
+msgstr "Riverboat Captain"
 
 msgid "spyder_papertown_homemaker"
 msgstr "Homemaker"

@@ -312,7 +312,7 @@ def get_avatar(context, avatar):
     If avatar is a string, we're referring to a monster by name
     TODO: If the monster name isn't found, we're referring to an NPC on the map
 
-    :param tuxemon.core.event.eventengine.EventContext context:
+    :param tuxemon.core.event.eventcontext.EventContext context:
     :param str avatar: the avatar to be used
     :rtype: Optional[pygame.Surface]
     :returns: The surface of the monster or NPC avatar sprite

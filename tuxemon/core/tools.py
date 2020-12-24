@@ -142,7 +142,7 @@ def calc_dialog_rect(screen_rect):
 def open_dialog(context, text, avatar=None, menu=None):
     """ Open a dialog with the standard window size
 
-    :param tuxemon.core.event.eventengine.EventContext context:
+    :param tuxemon.core.event.eventcontext.EventContext context:
     :param text: list of strings
     :param avatar: optional avatar sprite
     :param menu: optional menu object

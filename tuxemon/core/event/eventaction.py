@@ -26,6 +26,7 @@
 import logging
 from collections import namedtuple
 
+from tuxemon.core.event.eventcontext import EventContext
 from tuxemon.core.tools import cast_values
 
 logger = logging.getLogger(__name__)
@@ -96,12 +97,7 @@ class EventAction:
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, context, parameters):
-        """
-
-        :param tuxemon.core.event.eventengine.EventContext context:
-        :param List parameters:
-        """
+    def __init__(self, context: EventContext, parameters):
         self.context = context
 
         # TODO: METACLASS
@@ -228,3 +224,4 @@ class EventAction:
 
         :return:
         """
+        pass

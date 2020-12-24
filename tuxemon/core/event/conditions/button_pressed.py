@@ -31,7 +31,7 @@ class ButtonPressedCondition(EventCondition):
 
     def test(self, context, event, condition):
         """
-        :param tuxemon.core.event.eventengine.EventContext context:
+        :param tuxemon.core.event.eventcontext.EventContext context:
         :param event:
         :param dict condition: A dictionary of condition details
         :rtype: Boolean

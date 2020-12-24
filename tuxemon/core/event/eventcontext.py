@@ -23,9 +23,17 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
+from dataclasses import dataclass
+
+from tuxemon.core.client import LocalPygameClient
+from tuxemon.core.event.eventengine import EventEngine
+from tuxemon.core.map import TuxemonMap
+from tuxemon.core.player import Player
+from tuxemon.core.session import Session
+from tuxemon.core.world import World
 
 
-class EventContext:
+class EventContext1:
     def __enter__(self):
         """ When context is placed on the stack
 
@@ -40,3 +48,14 @@ class EventContext:
 
     def execute(self, session):
         pass
+
+
+# TODO: rename this or resolve the issue with two classes called "eventcontext"
+@dataclass
+class EventContext:
+    engine: EventEngine
+    world: World
+    session: Session
+    client: LocalPygameClient
+    player: Player
+    map: TuxemonMap

@@ -69,14 +69,17 @@ class WorldState(state.State):
         self.world = None
         self.player_npc = None
         self.view = None
+        self.session = None
 
     def startup(self, *args, **kwargs):
-        self.world = kwargs["world"]
+        session = kwargs["session"]
+        self.session = session
+        self.world = session.world
         self.player_npc = None
         self.wants_to_move_player = None
         self.allow_player_movement = True
         self.view = MapView(self.world)
-        self.player_npc = kwargs.get("player")
+        self.player_npc = session.player
         self.set_player_npc(self.player_npc)
 
     def resume(self):
@@ -91,10 +94,7 @@ class WorldState(state.State):
         self.stop_player()
 
     def set_player_npc(self, entity):
-        """ Set the npc which is controlled
-
-        :param entity:
-        :return:
+        """ Set the npc which is controlled and set camera to follow them
         """
         self.player_npc = entity
         self.view.follow(entity)
@@ -227,94 +227,12 @@ class WorldState(state.State):
         :param direction:
         :return:
         """
-        if self.player_npc is not None:
-            self.player_npc.move_direction(direction)
+
+        self.world.eventengine.execute_action(self.session, "player_face", [direction])
+        # if self.player_npc is not None:
+        #     self.player_npc.move_direction(direction)
 
     # Below is the boneyard.  Eventually this should be added back in.
-
-    def init_cinematics(self):
-        ######################################################################
-        #                       Fullscreen Animations                        #
-        ######################################################################
-
-        # The cinema bars are used for cinematic moments.
-        # The cinema state can be: "off", "on", "turning on" or "turning off"
-        self.cinema_state = "off"
-        self.cinema_speed = 15 * prepare.SCALE  # Pixels per second speed of the animation.
-
-        self.cinema_top = {}
-        self.cinema_bottom = {}
-
-        # Create a surface that we'll use as black bars for a cinematic
-        # experience
-        self.cinema_top["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
-        self.cinema_bottom["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
-
-        # Fill our empty surface with black
-        self.cinema_top["surface"].fill((0, 0, 0))
-        self.cinema_bottom["surface"].fill((0, 0, 0))
-
-        # When cinema mode is off, this will be the position we'll draw the
-        # black bar.
-        self.cinema_top["off_position"] = [0, -self.cinema_top["surface"].get_height()]
-        self.cinema_bottom["off_position"] = [0, self.resolution[1]]
-        self.cinema_top["position"] = list(self.cinema_top["off_position"])
-        self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
-
-        # When cinema mode is ON, this will be the position we'll draw the
-        # black bar.
-        self.cinema_top["on_position"] = [0, 0]
-        self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
-
-    def midscreen_animations(self, surface):
-        """Handles midscreen animations that will be drawn UNDER menus and dialog.
-
-        NOTE: BROKEN
-
-        :param surface: surface to draw on
-
-        :rtype: None
-        :returns: None
-
-        """
-        raise RuntimeError("deprecated.  refactor!")
-
-        if self.cinema_state == "turning on":
-
-            self.cinema_top["position"][1] += self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom["position"][1] -= self.cinema_speed * self.time_passed_seconds
-
-            # If we've reached our target position, stop the animation.
-            if self.cinema_top["position"] >= self.cinema_top["on_position"]:
-                self.cinema_top["position"] = list(self.cinema_top["on_position"])
-                self.cinema_bottom["position"] = list(self.cinema_bottom["on_position"])
-
-                self.cinema_state = "on"
-
-            # Draw the cinema bars
-            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
-            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
-
-        elif self.cinema_state == "on":
-            # Draw the cinema bars
-            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
-            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
-
-        elif self.cinema_state == "turning off":
-
-            self.cinema_top["position"][1] -= self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom["position"][1] += self.cinema_speed * self.time_passed_seconds
-
-            # If we've reached our target position, stop the animation.
-            if self.cinema_top["position"][1] <= self.cinema_top["off_position"][1]:
-                self.cinema_top["position"] = list(self.cinema_top["off_position"])
-                self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
-
-                self.cinema_state = "off"
-
-            # Draw the cinema bars
-            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
-            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu

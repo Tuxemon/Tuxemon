@@ -98,6 +98,7 @@ class LocalPygameClient:
         screen = self.screen
         flip = pg.display.update
         clock = time.time
+        # frame_length = 1.0 / self.config.fps
         frame_length = 1.0 / self.config.fps
         time_since_draw = 0
         last_update = clock()
@@ -109,9 +110,9 @@ class LocalPygameClient:
             clock_tick = clock() - last_update
             last_update = clock()
             time_since_draw += clock_tick
-            update(clock_tick)
             if time_since_draw >= frame_length:
                 time_since_draw -= frame_length
+                update(frame_length)
                 draw(screen)
                 flip()
                 frames += 1

@@ -19,28 +19,30 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+import logging
+
 from tuxemon.core.event import get_npc
+from tuxemon.core.locale import replace_text
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.map import dirs2, get_direction
+from tuxemon.core.tools import open_dialog
+from tuxemon.core.graphics import get_avatar
+
+logger = logging.getLogger(__name__)
 
 
-class PlayerFaceAction(EventAction):
-    """Makes the player face a certain direction.
+class CameraFollow(EventAction):
+    """ Set camera to follow a game entity, including NPCs, Players, etc
 
-    Valid Parameters: direction
+    NOTE: only one camera is currently supported
+    NOTE: single player only
 
-    EventAction parameter can be: "left", "right", "up", or "down"
+    Valid Parameters: slug
+
     """
-
-    name = "player_face"
-    valid_parameters = [
-        (str, "direction"),
-    ]
+    name = "camera_follow"
+    valid_parameters = [(str, "text")]
 
     def start(self):
-        # Get the parameters to determine what direction the player will face.
-        direction = self.parameters.direction
-        if direction not in dirs2:
-            target = get_npc(self.context, direction)
-            direction = get_direction(self.context.player.tilepos, target.tilepos)
-        self.context.player.facing = direction
+        entity = get_npc(self.context, self.parameters[0])
+        worldstate = self.context.client.get
+        self.context.client

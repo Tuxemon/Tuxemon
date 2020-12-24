@@ -2,7 +2,9 @@ import logging
 from collections import defaultdict
 
 from tuxemon.core import prepare
+from tuxemon.core.clock import Scheduler
 from tuxemon.core.euclid import Point2
+from tuxemon.core.event.eventengine import EventEngine
 from tuxemon.core.map import TuxemonMap
 from tuxemon.core.map_loader import TMXMapLoader
 
@@ -63,6 +65,8 @@ class World:
         self.entities_by_map = defaultdict(set)
         self.maps = dict()
         self.time = 0.0
+        self.clock = Scheduler()
+        self.eventengine = EventEngine([])
 
     def teleport(self, npc, position):
         """ Used to instantly move NPC to a new position or map

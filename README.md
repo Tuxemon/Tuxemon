@@ -141,6 +141,10 @@ Python 2.7 is no longer supported.
 License
 -------
 
+With the exception of the lib folder which may have
+its own license, all code in this project is licenced
+under the GPLv3.
+
 GPL v3+
 
 Copyright (C) 2017 William Edwards <shadowapex@gmail.com>,     

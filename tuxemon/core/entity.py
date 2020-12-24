@@ -24,7 +24,6 @@
 #
 
 from tuxemon.core.euclid import Point2, Vector3, Point3
-from tuxemon.core.world import proj
 
 
 class Entity:
@@ -61,6 +60,7 @@ class Entity:
 
         :return:
         """
+        from tuxemon.core.world import proj
         self.tile_pos = proj(self.position3)
 
     def update_physics(self, td):

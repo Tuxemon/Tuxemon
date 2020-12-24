@@ -59,7 +59,7 @@ def main(load_slot=None):
 
     client.push_state("BackgroundState")
     client.push_state("StartState")
-    client.push_state("WorldState", world=world, player=player)
+    client.push_state("WorldState", session=local_session)
 
     # if load_slot:
     #     control.push_state("LoadMenuState", load_slot=load_slot)

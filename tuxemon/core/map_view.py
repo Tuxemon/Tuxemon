@@ -315,6 +315,91 @@ class MapView:
     def project(self, position):
         return position[0] * self.tilewidth, position[1] * self.tileheight
 
+    def init_cinematics(self):
+        ######################################################################
+        #                       Fullscreen Animations                        #
+        ######################################################################
+
+        # The cinema bars are used for cinematic moments.
+        # The cinema state can be: "off", "on", "turning on" or "turning off"
+        self.cinema_state = "off"
+        self.cinema_speed = 15 * prepare.SCALE  # Pixels per second speed of the animation.
+
+        self.cinema_top = {}
+        self.cinema_bottom = {}
+
+        # Create a surface that we'll use as black bars for a cinematic
+        # experience
+        self.cinema_top["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+        self.cinema_bottom["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+
+        # Fill our empty surface with black
+        self.cinema_top["surface"].fill((0, 0, 0))
+        self.cinema_bottom["surface"].fill((0, 0, 0))
+
+        # When cinema mode is off, this will be the position we'll draw the
+        # black bar.
+        self.cinema_top["off_position"] = [0, -self.cinema_top["surface"].get_height()]
+        self.cinema_bottom["off_position"] = [0, self.resolution[1]]
+        self.cinema_top["position"] = list(self.cinema_top["off_position"])
+        self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
+
+        # When cinema mode is ON, this will be the position we'll draw the
+        # black bar.
+        self.cinema_top["on_position"] = [0, 0]
+        self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
+
+    def midscreen_animations(self, surface):
+        """Handles midscreen animations that will be drawn UNDER menus and dialog.
+
+        NOTE: BROKEN
+
+        :param surface: surface to draw on
+
+        :rtype: None
+        :returns: None
+
+        """
+        raise RuntimeError("deprecated.  refactor!")
+
+        if self.cinema_state == "turning on":
+
+            self.cinema_top["position"][1] += self.cinema_speed * self.time_passed_seconds
+            self.cinema_bottom["position"][1] -= self.cinema_speed * self.time_passed_seconds
+
+            # If we've reached our target position, stop the animation.
+            if self.cinema_top["position"] >= self.cinema_top["on_position"]:
+                self.cinema_top["position"] = list(self.cinema_top["on_position"])
+                self.cinema_bottom["position"] = list(self.cinema_bottom["on_position"])
+
+                self.cinema_state = "on"
+
+            # Draw the cinema bars
+            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
+            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
+
+        elif self.cinema_state == "on":
+            # Draw the cinema bars
+            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
+            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
+
+        elif self.cinema_state == "turning off":
+
+            self.cinema_top["position"][1] -= self.cinema_speed * self.time_passed_seconds
+            self.cinema_bottom["position"][1] += self.cinema_speed * self.time_passed_seconds
+
+            # If we've reached our target position, stop the animation.
+            if self.cinema_top["position"][1] <= self.cinema_top["off_position"][1]:
+                self.cinema_top["position"] = list(self.cinema_top["off_position"])
+                self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
+
+                self.cinema_state = "off"
+
+            # Draw the cinema bars
+            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
+            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
+
+
     def _collision_box_to_pgrect(self, box):
         """Return a Rect (in screen-coords) version of a collision box (in world-coords).
         """

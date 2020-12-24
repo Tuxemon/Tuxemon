@@ -23,6 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
+from __future__ import annotations
 
 import logging
 from contextlib import contextmanager
@@ -32,22 +33,10 @@ from lxml import etree
 
 from tuxemon.constants import paths
 from tuxemon.core import plugin, prepare
+from tuxemon.core.event.eventcontext import EventContext
 from tuxemon.core.session import local_session
 
 logger = logging.getLogger(__name__)
-
-
-# TODO: rename this or resolve the issue with two classes called "eventcontext"
-class EventContext:
-    engine = None
-    world = None
-    session = None
-    client = None
-    player = None
-    map = None
-
-    def __init__(self):
-        pass
 
 
 class RunningEvent:
@@ -325,7 +314,7 @@ class EventEngine:
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(e.session, next_action.type, next_action.parameters,)
+                        action = self.get_action(e.session, next_action.type, next_action.parameters, )
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk

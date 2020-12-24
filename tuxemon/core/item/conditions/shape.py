@@ -31,13 +31,14 @@ class ShapeCondition(ItemCondition):
     """Compares the target Monster's shape against the given types.
     Returns true if its equal to any of the listed types.
     """
+
     name = "shape"
     valid_parameters = [
         (str, "shape1"),
         ((str, None), "shape2"),
         ((str, None), "shape3"),
         ((str, None), "shape4"),
-        ((str, None), "shape5")
+        ((str, None), "shape5"),
     ]
 
     def test(self, target):

@@ -24,14 +24,7 @@ from operator import eq, gt, lt, ge, le
 from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventcondition import EventCondition
 
-cmp_dict = {
-    None: ge,
-    "less_than": lt,
-    "less_or_equal": le,
-    "greater_than": gt,
-    "greater_or_equal": ge,
-    "equals": eq
-}
+cmp_dict = {None: ge, "less_than": lt, "less_or_equal": le, "greater_than": gt, "greater_or_equal": ge, "equals": eq}
 
 
 class HasItemCondition(EventCondition):
@@ -49,20 +42,21 @@ class HasItemCondition(EventCondition):
 
     if quantity is None, then any number of items over 0 will return True ( quantity >= 1 )
     """
+
     name = "has_item"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see the player is has a monster in his party
 
         :param event:
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         """
         try:
             raw_op = condition.parameters[2].lower()
-            if raw_op == '':
+            if raw_op == "":
                 raw_op = None
         except (IndexError, AttributeError):
             raw_op = None
@@ -81,11 +75,11 @@ class HasItemCondition(EventCondition):
 
         # TODO: handle missing npc, etc
         owner_slug, item_slug = condition.parameters[:2]
-        npc = get_npc(session, owner_slug)
+        npc = get_npc(context, owner_slug)
         item_info = npc.inventory.get(item_slug)
         if item_info is None:  # not found in inventory
             item_quantity = 0
         else:
-            item_quantity = item_info['quantity']
+            item_quantity = item_info["quantity"]
 
         return op(item_quantity, q_test)

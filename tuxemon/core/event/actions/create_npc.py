@@ -34,13 +34,14 @@ class CreateNpcAction(EventAction):
 
     Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior
     """
+
     name = "create_npc"
     valid_parameters = [
         (str, "npc_slug"),
         (int, "tile_pos_x"),
         (int, "tile_pos_y"),
         (str, "animations"),
-        (str, "behavior")
+        (str, "behavior"),
     ]
 
     def start(self):

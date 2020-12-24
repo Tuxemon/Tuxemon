@@ -47,7 +47,7 @@ class Player(NPC):
         self.game_variables = {}
 
         # Number of steps
-        self.game_variables['steps'] = 0
+        self.game_variables["steps"] = 0
 
     def move(self, time_passed_seconds):
         """ Move the player around the game world
@@ -71,4 +71,4 @@ class Player(NPC):
         diff_x = abs(after_x - before_x)
         diff_y = abs(after_y - before_y)
 
-        self.game_variables['steps'] += diff_x + diff_y
+        self.game_variables["steps"] += diff_x + diff_y

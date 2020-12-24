@@ -16,6 +16,7 @@ class MonsterMenuState(Menu):
     The monster menu allows you to view monsters in your party,
     teach them moves, and switch them both in and out of combat.
     """
+
     background_filename = "gfx/ui/monster/monster_menu_bg.png"
     draw_borders = False
 
@@ -51,13 +52,15 @@ class MonsterMenuState(Menu):
             monster.load_sprites()
 
     def animate_monster_down(self):
-        ani = self.animate(self.monster_portrait.rect, y=-tools.scale(5),
-                           duration=1, transition='in_out_quad', relative=True)
+        ani = self.animate(
+            self.monster_portrait.rect, y=-tools.scale(5), duration=1, transition="in_out_quad", relative=True
+        )
         ani.callback = self.animate_monster_up
 
     def animate_monster_up(self):
-        ani = self.animate(self.monster_portrait.rect, y=tools.scale(5),
-                           duration=1, transition='in_out_quad', relative=True)
+        ani = self.animate(
+            self.monster_portrait.rect, y=tools.scale(5), duration=1, transition="in_out_quad", relative=True
+        )
         ani.callback = self.animate_monster_down
 
     def calc_menu_items_rect(self):
@@ -129,13 +132,13 @@ class MonsterMenuState(Menu):
 
             item.enabled = (monster is not None) and self.is_valid_entry(item.game_object)
             item.image.fill((0, 0, 0, 0))
-            item.in_focus = ((index == self.selected_index) and item.enabled)
+            item.in_focus = (index == self.selected_index) and item.enabled
             self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)
 
     def draw_monster_info(self, surface, monster, rect):
         # position and draw hp bar
         hp_rect = rect.copy()
-        left = rect.width * .6
+        left = rect.width * 0.6
         right = rect.right - tools.scale(4)
         hp_rect.width = right - left
         hp_rect.left = left
@@ -160,16 +163,16 @@ class MonsterMenuState(Menu):
         for index, status in enumerate(monster.status):
             if status.icon:
                 image = graphics.load_and_scale(status.icon)
-                pos = (rect.width * .4) + (index * tools.scale(32)), rect.y + tools.scale(5)
+                pos = (rect.width * 0.4) + (index * tools.scale(32)), rect.y + tools.scale(5)
                 surface.blit(image, pos)
 
     def determine_border(self, selected, filled):
         if selected:
-            return self.monster_slot_border['active']
+            return self.monster_slot_border["active"]
         elif filled:
-            return self.monster_slot_border['filled']
+            return self.monster_slot_border["filled"]
         else:
-            return self.monster_slot_border['empty']
+            return self.monster_slot_border["empty"]
 
     def on_menu_selection_change(self):
         try:

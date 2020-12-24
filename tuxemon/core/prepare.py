@@ -124,10 +124,12 @@ def pygame_init():
 
     # Configure locale
     from tuxemon.core.locale import T
+
     T.collect_languages(CONFIG.recompile_translations)
 
     # Configure databases
     from tuxemon.core.db import db
+
     db.load()
 
     logger.debug("pygame init")
@@ -153,16 +155,17 @@ def pygame_init():
     # Initialize the individual joysticks themselves.
     for joystick in devices:
         name = joystick.get_name()
-        print("Found joystick: \"{}\"".format(name))
+        print(f'Found joystick: "{name}"')
         blacklisted = any(i.match(name) for i in joystick_blacklist)
         if blacklisted:
-            print("Ignoring joystick: \"{}\"".format(name))
+            print(f'Ignoring joystick: "{name}"')
         else:
-            print("Configuring joystick: \"{}\"".format(name))
+            print(f'Configuring joystick: "{name}"')
             joystick.init()
             JOYSTICKS.append(joystick)
 
     from tuxemon.core.platform import android
+
     # Map the appropriate android keys if we're on android
     if android:
         android.init()
@@ -172,8 +175,9 @@ def pygame_init():
 # Initialize the game framework
 def init():
     from tuxemon.core import platform
+
     platform.init()
-    if PLATFORM == 'pygame':
+    if PLATFORM == "pygame":
         pygame_init()
 
 

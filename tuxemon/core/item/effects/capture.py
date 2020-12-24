@@ -38,10 +38,9 @@ logger = logging.getLogger(__name__)
 class CaptureEffect(ItemEffect):
     """Attempts to capture the target with 'power' capture strength.
     """
+
     name = "capture"
-    valid_parameters = [
-        (int, "power")
-    ]
+    valid_parameters = [(int, "power")]
 
     def apply(self, target):
         # Set up variables for capture equation
@@ -55,19 +54,21 @@ class CaptureEffect(ItemEffect):
         # TODO: debug logging this info
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-        catch_check = (3 * target.hp - 2 * target.current_hp) \
-            * target.catch_rate * item_power * status_modifier / (3 * target.hp)
+        catch_check = (
+            (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
+        )
         shake_check = 65536 / (255 / catch_check) ** 0.1875
 
         logger.debug("--- Capture Variables ---")
-        logger.debug("(3*target.hp - 2*target.current_hp) "
-                     "* target.catch_rate * item_power * status_modifier / (3*target.hp)")
+        logger.debug(
+            "(3*target.hp - 2*target.current_hp) " "* target.catch_rate * item_power * status_modifier / (3*target.hp)"
+        )
 
         msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
         logger.debug(msg.format(target, item_power, status_modifier))
 
         logger.debug("65536 / (255 / catch_check) ** 0.1875")
-        logger.debug("65536 / (255 / {}) ** 0.1875".format(catch_check))
+        logger.debug(f"65536 / (255 / {catch_check}) ** 0.1875")
 
         msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
         logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
@@ -75,16 +76,12 @@ class CaptureEffect(ItemEffect):
         # 4 shakes to give monster chance to escape
         for i in range(0, 4):
             random_num = random.randint(0, 65536)
-            logger.debug("shake check {}: random number {}".format(i, random_num))
+            logger.debug(f"shake check {i}: random number {random_num}")
             if random_num > round(shake_check):
-                return {"success": False,
-                        "capture": True,
-                        "num_shakes": i + 1}
+                return {"success": False, "capture": True, "num_shakes": i + 1}
 
         # add creature to the player's monster list
         self.user.add_monster(target)
 
         # TODO: remove monster from the other party
-        return {"success": True,
-                "capture": True,
-                "num_shakes": 4}
+        return {"success": True, "capture": True, "num_shakes": 4}

@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 
 class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
-        if 'selected_index' not in kwargs:
-            kwargs['selected_index'] = save.slot_number or 0
+        if "selected_index" not in kwargs:
+            kwargs["selected_index"] = save.slot_number or 0
         super().startup(*items, **kwargs)
         slot = kwargs.get("load_slot")
         if slot:
@@ -35,6 +35,6 @@ class LoadMenuState(SaveMenuState):
             self.client.push_state("WorldState")
 
             # teleport the player to the correct position using an event engine action
-            tele_x, tele_y = save_data['tile_pos']
-            params = [save_data['current_map'], tele_x, tele_y]
-            self.client.event_engine.execute_action('teleport', params)
+            tele_x, tele_y = save_data["tile_pos"]
+            params = [save_data["current_map"], tele_x, tele_y]
+            self.client.event_engine.execute_action("teleport", params)

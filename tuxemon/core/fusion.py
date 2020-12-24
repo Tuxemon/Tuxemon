@@ -58,29 +58,39 @@ class Body:
     def __init__(self):
 
         # Name properties
-        self.prefix = ""            # A name prefix to use when fusing sprites
-        self.suffix = ""            # A name suffix to use when fusing sprites
-        self.name = ""              # The full name of the sprite when you concat prefix + suffix
+        self.prefix = ""  # A name prefix to use when fusing sprites
+        self.suffix = ""  # A name suffix to use when fusing sprites
+        self.name = ""  # The full name of the sprite when you concat prefix + suffix
 
         # Face Properties
-        self.face_image_path = ""   # The path to the face image to use.
+        self.face_image_path = ""  # The path to the face image to use.
         self.face_image = ""
 
-        self.face_size = (0, 0)     # The face size can be automatically obtained through self.get_face_size()
-        self.head_size = (0, 0)     # The head size differs from the face size to take beaks, etc. into account.
-        self.face_center = (0, 0)   # The center of the face.
-
+        self.face_size = (0, 0)  # The face size can be automatically obtained through self.get_face_size()
+        self.head_size = (0, 0)  # The head size differs from the face size to take beaks, etc. into account.
+        self.face_center = (0, 0)  # The center of the face.
 
         # Body properties
-        self.body_image_path = ""   # The path to the body image to use.
+        self.body_image_path = ""  # The path to the body image to use.
         self.body_image = ""
-        self.face_position = (0, 0) # The center of the face on the body.
+        self.face_position = (0, 0)  # The center of the face on the body.
 
         # Colors
-        self.primary_colors = [(0,0,0), (0,0,0), (0,0,0), (0,0,0), (0,0,0)]     # 5 primary colors of the sprite
-        self.secondary_colors = [(0,0,0), (0,0,0), (0,0,0), (0,0,0), (0,0,0)]   # 5 secondary colors of the sprite
-        self.tertiary_colors= [(0,0,0), (0,0,0), (0,0,0), (0,0,0), (0,0,0)]     # 5 tertiary colors of the sprite
-
+        self.primary_colors = [(0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0)]  # 5 primary colors of the sprite
+        self.secondary_colors = [
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+        ]  # 5 secondary colors of the sprite
+        self.tertiary_colors = [
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+        ]  # 5 tertiary colors of the sprite
 
     def get_face_size(self):
         """Obtains the size of the face image in pixels and sets the instance's face_size to the returned value.
@@ -98,7 +108,6 @@ class Body:
 
         return self.face_size
 
-
     def to_json(self):
         """Converts the current instance to a dictionary and converts it to json format.
 
@@ -110,11 +119,10 @@ class Body:
         """
 
         body_dict = self.__dict__
-        del body_dict['body_image']
-        del body_dict['face_image']
+        del body_dict["body_image"]
+        del body_dict["face_image"]
 
         return json.dumps(body_dict)
-
 
     def save(self, filename=None):
         """Saves the current instance and all its properties to a file containing json text.
@@ -135,7 +143,6 @@ class Body:
         f = open(filename, "w")
         f.write(output)
         f.close()
-
 
     def load(self, json_data, file=True):
         """Loads and sets all of the properties of this instance to the properties contained within
@@ -160,7 +167,7 @@ class Body:
         # If "file" is set to true, then assume that json_data is a path to a file containing json.
         if file:
             f = open(json_data)
-            json_data = ''.join(f.readlines())
+            json_data = "".join(f.readlines())
             f.close()
 
         # Load the json data and convert it to a dictionary.
@@ -172,19 +179,19 @@ class Body:
         self.name = body_dict["name"]
 
         # Set the face properties from the json data
-        self.face_image_path =  body_dict["face_image_path"]
-        self.face_size =  body_dict["face_size"]
-        self.head_size =  body_dict["head_size"]
-        self.face_center =  body_dict["face_center"]
+        self.face_image_path = body_dict["face_image_path"]
+        self.face_size = body_dict["face_size"]
+        self.head_size = body_dict["head_size"]
+        self.face_center = body_dict["face_center"]
 
         # Set the body properties from the json data
-        self.body_image_path =  body_dict["body_image_path"]
-        self.face_position =  body_dict["face_position"]
+        self.body_image_path = body_dict["body_image_path"]
+        self.face_position = body_dict["face_position"]
 
         # Set the _color properties from the json data
-        self.primary_colors =  body_dict["primary_colors"]
-        self.secondary_colors =  body_dict["secondary_colors"]
-        self.tertiary_colors =  body_dict["tertiary_colors"]
+        self.primary_colors = body_dict["primary_colors"]
+        self.secondary_colors = body_dict["secondary_colors"]
+        self.tertiary_colors = body_dict["tertiary_colors"]
 
         # Load the image files.
         self.body_image = Image.open(self.body_image_path)
@@ -217,7 +224,6 @@ def replace_color(image, original_color, replacement_color):
 
     """
 
-
     img = image.convert("RGBA")
     datas = img.getdata()
 
@@ -239,8 +245,6 @@ def replace_color(image, original_color, replacement_color):
     img.putdata(newData)
 
     return img
-
-
 
 
 def fuse(body, face, save=True, filename=None):
@@ -288,34 +292,30 @@ def fuse(body, face, save=True, filename=None):
     scale = 4
 
     # Scale the images
-    body_image = body_image.resize(
-        (body_image.getdata().size[0] * scale, body_image.getdata().size[1] * scale))
+    body_image = body_image.resize((body_image.getdata().size[0] * scale, body_image.getdata().size[1] * scale))
     face.face_image = face.face_image.resize(
-        (face.face_image.getdata().size[0] * scale, face.face_image.getdata().size[1] * scale))
+        (face.face_image.getdata().size[0] * scale, face.face_image.getdata().size[1] * scale)
+    )
 
     # Update face size after we've performed our scaling.
     face.face_size = (face.face_image.getdata().size[0], face.face_image.getdata().size[1])
 
     # Scale the new face position.
-    body.face_position = (
-        ((body.face_position[0]-1) * scale)+1, ((body.face_position[1]-1) * scale)+1)
+    body.face_position = (((body.face_position[0] - 1) * scale) + 1, ((body.face_position[1] - 1) * scale) + 1)
 
     # Compare the head size of the body and the face so we can scale the face to fit the body.
     ratio_x = float(body.head_size[0]) / float(face.head_size[0])
     ratio_y = float(body.head_size[1]) / float(face.head_size[1])
 
     # Resize the head in ratio with the head size of the body
-    new_size = (int(face.face_image.getdata().size[0] * ratio_x), int(
-        face.face_image.getdata().size[1] * ratio_y))
+    new_size = (int(face.face_image.getdata().size[0] * ratio_x), int(face.face_image.getdata().size[1] * ratio_y))
     face.face_image = face.face_image.resize(new_size)
 
     face.face_size = (face.face_image.getdata().size[0], face.face_image.getdata().size[1])
 
     # Paste the face onto the body
-    position = (body.face_position[0] - \
-        (face.face_size[0]/2), body.face_position[1] - (face.face_size[1]/2))
+    position = (body.face_position[0] - (face.face_size[0] / 2), body.face_position[1] - (face.face_size[1] / 2))
     body_image.paste(face.face_image, position, face.face_image)
-
 
     # For some reason this looks really good.
     # Scale the image back down using Image.ANTIALIAS
@@ -325,17 +325,15 @@ def fuse(body, face, save=True, filename=None):
     body_image = body_image.resize(newsize, Image.ANTIALIAS)
 
     # Scale the image down further to its original size without ANTIALIAS
-    x /= (scale / 2)
-    y /= (scale / 2)
+    x /= scale / 2
+    y /= scale / 2
     newsize = (x, y)
     body_image = body_image.resize(newsize)
 
     # Save the resulting image
     if save:
         if not filename:
-            filename = "fusion/{}{}.png".format(body.prefix, face.suffix)
+            filename = f"fusion/{body.prefix}{face.suffix}.png"
         body_image.save(filename)
 
     return body_image
-
-

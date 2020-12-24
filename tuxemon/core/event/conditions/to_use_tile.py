@@ -28,16 +28,17 @@ from tuxemon.core.event.eventcondition import EventCondition
 class ToUseTileCondition(EventCondition):
     """ Checks if we are attempting to talk to an npc
     """
+
     name = "to_use_tile"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: The condition details.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: NamedTuple
 
         :rtype: Boolean
@@ -45,31 +46,9 @@ class ToUseTileCondition(EventCondition):
 
         Valid Parameters: None
 
-        **Examples:**
-
-        condition.__dict__ = {
-            "type": "to_use_tile",
-            "parameters": [],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 0,
-            "y": 0,
-            ...
-        }
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, event, condition)
-        button_pressed = ButtonPressedCondition().test(session, event, MapCondition(
-            type="button_pressed",
-            parameters=[
-                "K_RETURN",
-            ],
-            operator="is",
-            width=0,
-            height=0,
-            x=0,
-            y=0,
-            name=""
+        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(context, event, condition)
+        button_pressed = ButtonPressedCondition().test(context, event, MapCondition(
+            type="button_pressed", parameters=["K_RETURN", ], operator="is", width=0, height=0, x=0, y=0, name=""
         ))
         return player_next_to_and_facing_tile and button_pressed
-

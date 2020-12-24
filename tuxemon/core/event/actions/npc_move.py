@@ -57,6 +57,7 @@ class NpcMoveAction(EventAction):
 
     Valid Parameters: npc_slug, movement pairs
     """
+
     name = "npc_move"
 
     # parameter checking not supported due to undefined number of parameters

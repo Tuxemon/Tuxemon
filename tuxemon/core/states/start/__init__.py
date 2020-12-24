@@ -61,13 +61,14 @@ class BackgroundState(State):
 class StartState(PopUpMenu):
     """ The state responsible for the start menu.
     """
+
     escape_key_exits = False
     shrink_to_items = True
 
     def startup(self, *args, **kwargs):
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
-        kwargs['selected_index'] = 0 if index is None else 1
+        kwargs["selected_index"] = 0 if index is None else 1
         super().startup(*args, **kwargs)
 
         def change_state(state, **change_state_kwargs):
@@ -79,8 +80,12 @@ class StartState(PopUpMenu):
         def new_game():
             # load the starting map
             state = self.client.replace_state("WorldState")
-            self.push_state = self.client.push_state(state_name="InputMenu", prompt=T.translate("input_name"),
-                                                     callback=set_player_name, escape_key_exits=False)
+            self.push_state = self.client.push_state(
+                state_name="InputMenu",
+                prompt=T.translate("input_name"),
+                callback=set_player_name,
+                escape_key_exits=False,
+            )
             self.client.push_state("FadeInTransition")
 
         def options():
@@ -90,10 +95,10 @@ class StartState(PopUpMenu):
             self.client.exit = True
 
         menu_items_map = (
-            ('menu_new_game', new_game),
-            ('menu_load', change_state("LoadMenuState")),
-            ('menu_options', options),
-            ('exit', exit_game),
+            ("menu_new_game", new_game),
+            ("menu_load", change_state("LoadMenuState")),
+            ("menu_options", options),
+            ("exit", exit_game),
         )
 
         for key, callback in menu_items_map:

@@ -26,7 +26,6 @@
 #
 
 
-
 import logging
 from collections import namedtuple
 
@@ -75,11 +74,12 @@ class ItemCondition:
 
     (Monster, "monster_slug")   => a Monster instance will be created
     """
+
     name = "GenericCondition"
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, context, session,  user, parameters):
+    def __init__(self, context, session, user, parameters):
         """
 
         :type context: str
@@ -111,8 +111,8 @@ class ItemCondition:
                 self.parameters = parameters
 
         except:
-            logger.error("error while parsing for {}".format(self.name))
-            logger.error("cannot parse parameters: {}".format(parameters))
+            logger.error(f"error while parsing for {self.name}")
+            logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.valid_parameters)
             logger.error("please check the parameters and verify they are correct")
             self.parameters = None

@@ -30,16 +30,15 @@ class NpcWanderAction(EventAction):
 
     Valid Parameters: npc_slug, frequency
     """
+
     name = "npc_wander"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (float, "frequency")
-    ]
+    valid_parameters = [(str, "npc_slug"), (float, "frequency")]
 
     def start(self):
-        # TODO: fix me
-        return
         npc = get_npc(self.context, self.parameters.npc_slug)
+
+        # TODO: fix this by moving it out of actions/events
+        return
 
         def move():
             # Don't interrupt existing movement
@@ -48,6 +47,7 @@ class NpcWanderAction(EventAction):
 
             # Suspend wandering if a dialog window is open
             # TODO: this should only be done for the NPC the player is conversing with, not everyone
+            # TODO: this is a hack.  the real fix is to stop the game clock
             for state in self.context.client.active_states:
                 if state.name == "DialogState":
                     return

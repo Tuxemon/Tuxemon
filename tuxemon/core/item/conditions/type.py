@@ -31,13 +31,14 @@ class TypeCondition(ItemCondition):
     """Compares the target Monster's type1 and type2 against the given types.
     Returns true if either is equal to any of the listed types.
     """
+
     name = "type"
     valid_parameters = [
         (str, "type1"),
         ((str, None), "type2"),
         ((str, None), "type3"),
         ((str, None), "type4"),
-        ((str, None), "type5")
+        ((str, None), "type5"),
     ]
 
     def test(self, target):

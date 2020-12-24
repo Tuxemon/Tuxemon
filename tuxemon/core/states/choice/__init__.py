@@ -10,6 +10,7 @@ class ChoiceState(PopUpMenu):
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
     """
+
     shrink_to_items = True
     escape_key_exits = None
 

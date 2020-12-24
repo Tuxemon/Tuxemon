@@ -31,7 +31,6 @@
 
 
 import logging
-import pprint
 
 from tuxemon.core import prepare, graphics
 from tuxemon.core.db import db, process_targets
@@ -65,7 +64,7 @@ class Item:
     effects = dict()
     conditions = dict()
 
-    def __init__(self, session,  user, slug):
+    def __init__(self, session, user, slug):
         self.session = session
         self.user = user
         self.slug = slug
@@ -127,9 +126,9 @@ class Item:
 
         results = db.lookup(slug, table="item")
 
-        self.slug = results["slug"]                                         # short English identifier
-        self.name = T.translate(self.slug)                                  # translated name
-        self.description = T.translate("{}_description".format(self.slug))  # will be locale string
+        self.slug = results["slug"]  # short English identifier
+        self.name = T.translate(self.slug)  # translated name
+        self.description = T.translate(f"{self.slug}_description")  # will be locale string
 
         # item use notifications (translated!)
         self.use_item = T.translate(results["use_item"])
@@ -137,7 +136,7 @@ class Item:
         self.use_failure = T.translate(results["use_failure"])
 
         # misc attributes (not translated!)
-        self.sort = results['sort']
+        self.sort = results["sort"]
         assert self.sort
         self.type = results["type"]
         self.sprite = results["sprite"]
@@ -166,7 +165,7 @@ class Item:
             try:
                 effect = Item.effects[name]
             except KeyError:
-                error = 'Error: ItemEffect "{}" not implemented'.format(name)
+                error = f'Error: ItemEffect "{name}" not implemented'
                 logger.error(error)
             else:
                 ret.append(effect(self.session, self.user, params))
@@ -194,7 +193,7 @@ class Item:
             try:
                 condition = Item.conditions[name]
             except KeyError:
-                error = 'Error: ItemCondition "{}" not implemented'.format(name)
+                error = f'Error: ItemCondition "{name}" not implemented'
                 logger.error(error)
             else:
                 ret.append(condition(context, self.session, self.user, params))
@@ -252,13 +251,7 @@ class Item:
         """
 
         # defaults for the return. items can override these values in their return.
-        meta_result = {
-            'name': self.name,
-            'num_shakes': 0,
-            'capture': False,
-            'should_tackle': False,
-            'success': False
-        }
+        meta_result = {"name": self.name, "num_shakes": 0, "capture": False, "should_tackle": False, "success": False}
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
@@ -267,10 +260,10 @@ class Item:
 
         # If this is a consumable item, remove it from the player's inventory.
         if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
-            if user.inventory[self.slug]['quantity'] <= 1:
+            if user.inventory[self.slug]["quantity"] <= 1:
                 del user.inventory[self.slug]
             else:
-                user.inventory[self.slug]['quantity'] -= 1
+                user.inventory[self.slug]["quantity"] -= 1
 
         return meta_result
 
@@ -287,10 +280,8 @@ def decode_inventory(session, owner, data):
     :returns: New inventory
     """
     out = {}
-    for slug, quant in (data.get('inventory') or {}).items():
-        item = {
-            'item': Item(session, owner, slug)
-        }
+    for slug, quant in (data.get("inventory") or {}).items():
+        item = {"item": Item(session, owner, slug)}
         if quant is None:
             item["quantity"] = 1
             # Infinite is used for shopkeepers
@@ -311,7 +302,4 @@ def encode_inventory(inventory):
     :rtype: Dictionary
     :returns: inventory save_data
     """
-    return {
-        itm['item'].slug: itm['quantity']
-        for itm in inventory.values()
-    }
+    return {itm["item"].slug: itm["quantity"] for itm in inventory.values()}

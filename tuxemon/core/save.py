@@ -62,11 +62,11 @@ def get_save_data(session):
     """
     save_data = session.player.get_state(session)
     screenshot = capture_screenshot(session.client)
-    save_data['screenshot'] = base64.b64encode(pygame.image.tostring(screenshot, "RGB")).decode('utf-8')
-    save_data['screenshot_width'] = screenshot.get_width()
-    save_data['screenshot_height'] = screenshot.get_height()
-    save_data['time'] = datetime.datetime.now().strftime(TIME_FORMAT)
-    save_data['version'] = SAVE_VERSION
+    save_data["screenshot"] = base64.b64encode(pygame.image.tostring(screenshot, "RGB")).decode("utf-8")
+    save_data["screenshot_width"] = screenshot.get_width()
+    save_data["screenshot_height"] = screenshot.get_height()
+    save_data["time"] = datetime.datetime.now().strftime(TIME_FORMAT)
+    save_data["version"] = SAVE_VERSION
     return save_data
 
 
@@ -96,12 +96,12 @@ def save(save_data, slot):
 
     """
     # Save a screenshot of the current frame
-    save_path = prepare.SAVE_PATH + str(slot) + '.save'
+    save_path = prepare.SAVE_PATH + str(slot) + ".save"
     if prepare.SAVE_METHOD == "CBOR":
         text = cbor.dumps(save_data)
     else:
-        text = json.dumps(save_data, indent=4, separators=(',', ': '))
-    with open(save_path, 'w') as f:
+        text = json.dumps(save_data, indent=4, separators=(",", ": "))
+    with open(save_path, "w") as f:
         logger.info("Saving data to save file: " + save_path)
         # Don't dump straight to the file: if we crash it would corrupt the save_data
         f.write(text)
@@ -122,7 +122,7 @@ def load(slot):
 
     """
 
-    save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot)
+    save_path = f"{prepare.SAVE_PATH}{slot}.save"
     save_data = open_save_file(save_path)
     if save_data:
         return upgrade_save(save_data)
@@ -159,10 +159,10 @@ def open_save_file(save_path):
 def get_index_of_latest_save():
     times = []
     for slot_index in range(3):
-        save_path = '{}{}.save'.format(prepare.SAVE_PATH, slot_index + 1)
+        save_path = "{}{}.save".format(prepare.SAVE_PATH, slot_index + 1)
         save_data = open_save_file(save_path)
         if save_data is not None:
-            time_of_save = datetime.datetime.strptime(save_data['time'], TIME_FORMAT)
+            time_of_save = datetime.datetime.strptime(save_data["time"], TIME_FORMAT)
             times.append((slot_index, time_of_save))
     if len(times) > 0:
         s = max(times, key=itemgetter(1))

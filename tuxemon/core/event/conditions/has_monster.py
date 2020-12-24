@@ -25,24 +25,25 @@ from tuxemon.core.event.eventcondition import EventCondition
 class HasMonsterCondition(EventCondition):
     """ Checks to see if an NPC is facing a tile position
     """
+
     name = "has_monster"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """Checks to see the player is has a monster in his party
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
 
         """
-        player = session.player
+        player = context.player
         monster_slug = condition.parameters[0]
         if player.find_monster(monster_slug) is None:
             return False

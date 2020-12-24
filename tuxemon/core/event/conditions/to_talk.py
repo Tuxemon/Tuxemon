@@ -28,16 +28,17 @@ from tuxemon.core.event.eventcondition import EventCondition
 class ToTalkCondition(EventCondition):
     """ Checks if we are attempting to talk to an npc
     """
+
     name = "to_talk"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see the player is next to and facing a particular NPC and that the Return button is pressed.
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: The condition details.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: NamedTuple
 
         :rtype: Boolean
@@ -45,28 +46,9 @@ class ToTalkCondition(EventCondition):
 
         Valid Parameters: npc slug
 
-        **Examples:**
-
-        condition.__dict__ = {
-            "type": "to_talk",
-            "parameters": [
-                "npc_oak"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 0,
-            "y": 0,
-            ...
-        }
         """
-        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, event, condition)
-        button_pressed = ButtonPressedCondition().test(session, event, MapCondition(
-            name="button_pressed",
-            operator="is",
-            parameters=[
-                "K_RETURN",
-            ],
-        ))
+        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(context, event, condition)
+        button_pressed = ButtonPressedCondition().test(context, event,
+                                                       MapCondition(name="button_pressed", operator="is",
+                                                                    parameters=["K_RETURN", ], ))
         return player_next_to_and_facing_target and button_pressed
-

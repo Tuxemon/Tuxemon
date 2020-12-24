@@ -28,6 +28,7 @@ class NpcSpeed(EventAction):
 
     Valid Parameters: npc_slug
     """
+
     name = "npc_speed"
     valid_parameters = [
         (str, "npc_slug"),

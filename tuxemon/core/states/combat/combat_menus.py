@@ -24,14 +24,15 @@ class MainCombatMenuState(PopUpMenu):
     TODO: there needs to be more general use registers in the combat state to query
           what player is doing what.  there's lots of spaghetti right now.
     """
+
     escape_key_exits = False
 
     def initialize_items(self):
         menu_items_map = (
-            ('menu_fight', self.open_technique_menu),
-            ('menu_monster', self.open_swap_menu),
-            ('menu_item', self.open_item_menu),
-            ('menu_run', self.run)
+            ("menu_fight", self.open_technique_menu),
+            ("menu_monster", self.open_swap_menu),
+            ("menu_item", self.open_item_menu),
+            ("menu_run", self.run),
         )
 
         for key, callback in menu_items_map:
@@ -52,11 +53,10 @@ class MainCombatMenuState(PopUpMenu):
         combat_state = self.client.get_state_by_name("CombatState")
 
         if combat_state.is_trainer_battle:
+
             def open_menu():
-                combat_state.task(
-                    partial(combat_state.show_monster_action_menu, self.monster),
-                    1
-                )
+                combat_state.task(partial(combat_state.show_monster_action_menu, self.monster), 1)
+
             combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)
         else:
             combat_state.trigger_player_run(combat_state.players[0])
@@ -70,11 +70,11 @@ class MainCombatMenuState(PopUpMenu):
         def swap_it(menuitem):
             monster = menuitem.game_object
 
-            if monster in self.client.get_state_by_name('CombatState').active_monsters:
-                tools.open_dialog(local_session, [T.format('combat_isactive', {"name": monster.name})])
+            if monster in self.client.get_state_by_name("CombatState").active_monsters:
+                tools.open_dialog(local_session, [T.format("combat_isactive", {"name": monster.name})])
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(local_session, [T.format('combat_fainted', {"name": monster.name})])
+                tools.open_dialog(local_session, [T.format("combat_fainted", {"name": monster.name})])
                 return
             combat_state = self.client.get_state_by_name("CombatState")
             swap = Technique("swap")
@@ -107,18 +107,19 @@ class MainCombatMenuState(PopUpMenu):
         def choose_target(menu_item):
             # open menu to choose target of item
             item = menu_item.game_object
-            self.client.pop_state()   # close the item menu
+            self.client.pop_state()  # close the item menu
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name("CombatState")
-            state = self.client.push_state("CombatTargetMenuState", player=combat_state.players[0],
-                                           user=combat_state.players[0], action=item)
+            state = self.client.push_state(
+                "CombatTargetMenuState", player=combat_state.players[0], user=combat_state.players[0], action=item
+            )
             state.on_menu_selection = partial(enqueue_item, item)
 
         def enqueue_item(item, menu_item):
             target = menu_item.game_object
             # is the item valid to use?
             if not item.validate(target):
-                msg = T.format('cannot_use_item_monster', {'name': item.name})
+                msg = T.format("cannot_use_item_monster", {"name": item.name})
                 tools.open_dialog(local_session, [msg])
                 return
 
@@ -165,12 +166,13 @@ class MainCombatMenuState(PopUpMenu):
             technique = menu_item.game_object
             if technique.next_use > 0:
                 params = {"move": technique.name, "name": self.monster.name}
-                tools.open_dialog(local_session, [T.format('combat_recharging', params)])
+                tools.open_dialog(local_session, [T.format("combat_recharging", params)])
                 return
 
             combat_state = self.client.get_state_by_name("CombatState")
-            state = self.client.push_state("CombatTargetMenuState", player=combat_state.players[0],
-                                           user=self.monster, action=technique)
+            state = self.client.push_state(
+                "CombatTargetMenuState", player=combat_state.players[0], user=self.monster, action=technique
+            )
             state.on_menu_selection = partial(enqueue_technique, technique)
 
         def enqueue_technique(technique, menu_item):
@@ -193,6 +195,7 @@ class CombatTargetMenuState(Menu):
 
     This special menu draws over the combat screen
     """
+
     transparent = True
 
     def create_new_menu_items_group(self):

@@ -91,6 +91,7 @@ class EventAction:
 
     (Monster, "monster_slug")   => a Monster instance will be created
     """
+
     name = "GenericAction"
     valid_parameters = list()
     _param_factory = None
@@ -123,8 +124,8 @@ class EventAction:
                 self.parameters = parameters
 
         except:
-            logger.error("error while parsing for {}".format(self.name))
-            logger.error("cannot parse parameters: {}".format(parameters))
+            logger.error(f"error while parsing for {self.name}")
+            logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.valid_parameters)
             logger.error("please check the parameters and verify they are correct")
             self.parameters = None
@@ -227,4 +228,3 @@ class EventAction:
 
         :return:
         """
-        pass

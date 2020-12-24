@@ -32,7 +32,7 @@ def load_sound(slug):
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
     if not os.path.exists(filename):
-        msg = 'audio file does not exist: {}'.format(filename)
+        msg = f"audio file does not exist: {filename}"
         logger.error(msg)
         return DummySound()
 
@@ -40,7 +40,7 @@ def load_sound(slug):
         return mixer.Sound(filename)
     except MemoryError:
         # raised on some systems if there is no mixer
-        logger.error('memoryerror, unable to load sound')
+        logger.error("memoryerror, unable to load sound")
         return DummySound()
     except pygame.error as e:
         # pick one:
@@ -48,5 +48,5 @@ def load_sound(slug):
         # * sound has invalid path
         # * mixer has no output (device ok, no speakers)
         logger.error(e)
-        logger.error('unable to load sound')
+        logger.error("unable to load sound")
         return DummySound()

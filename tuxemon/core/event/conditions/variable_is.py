@@ -32,19 +32,20 @@ class VariableIsCondition(EventCondition):
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
     return true.
     """
+
     name = "variable_is"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see if a player game variable meets a given condition. This will look
         for a particular key in the player.game_variables dictionary and see if it exists.
         If it exists, it will return true if the variable is greater than the value.
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
         for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -52,12 +53,12 @@ class VariableIsCondition(EventCondition):
 
         Valid Parameters: variable_name, operation, value
         """
-        player = session.player
+        player = context.player
 
         # Read the parameters
-        operand1 = number_or_variable(session, condition.parameters[0])
+        operand1 = number_or_variable(context, condition.parameters[0])
         operation = condition.parameters[1]
-        operand2 = number_or_variable(session, condition.parameters[2])
+        operand2 = number_or_variable(context, condition.parameters[2])
 
         # Check if the condition is true
         if operation == "==":
@@ -73,5 +74,5 @@ class VariableIsCondition(EventCondition):
         elif operation == "<=":
             return operand1 <= operand2
         else:
-            logger.error("invalid operation type {}".format(operation))
+            logger.error(f"invalid operation type {operation}")
             raise ValueError

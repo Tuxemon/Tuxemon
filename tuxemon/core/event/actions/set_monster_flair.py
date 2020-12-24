@@ -27,6 +27,7 @@ class SetMonsterFlairAction(EventAction):
 
     Valid Parameters: slot, name, value
     """
+
     name = "set_monster_flair"
     valid_parameters = [
         (int, "slot"),

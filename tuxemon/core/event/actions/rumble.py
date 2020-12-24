@@ -30,11 +30,9 @@ class RumbleAction(EventAction):
     * duration (float): time in seconds to rumble for
     * power (int): percentage of power to rumble. (1-100)
     """
+
     name = "rumble"
-    valid_parameters = [
-        (float, "duration"),
-        (int, "power")
-    ]
+    valid_parameters = [(float, "duration"), (int, "power")]
 
     def start(self):
         duration = float(self.parameters[0])

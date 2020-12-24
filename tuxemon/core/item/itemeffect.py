@@ -33,7 +33,6 @@
 import logging
 from collections import namedtuple
 
-from tuxemon.core.npc import NPC
 from tuxemon.core.tools import cast_values
 
 logger = logging.getLogger(__name__)
@@ -79,6 +78,7 @@ class ItemEffect:
 
     (Monster, "monster_slug")   => a Monster instance will be created
     """
+
     name = "GenericEffect"
     valid_parameters = list()
     _param_factory = None
@@ -113,8 +113,8 @@ class ItemEffect:
                 self.parameters = parameters
 
         except ValueError:
-            logger.error("error while parsing for {}".format(self.name))
-            logger.error("cannot parse parameters: {}".format(parameters))
+            logger.error(f"error while parsing for {self.name}")
+            logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.valid_parameters)
             logger.error("please check the parameters and verify they are correct")
             self.parameters = None

@@ -46,6 +46,7 @@ class EventQueueHandler:
 class InputHandler:
     """ Enables basic input device with discrete inputs
     """
+
     event_type = None
     default_input_map = None
 
@@ -96,7 +97,7 @@ class InputHandler:
 
 class PlayerInput:
     __slots__ = ("button", "value", "hold_time", "triggered")
-    
+
     def __init__(self, button, value=0, hold_time=0):
         """ Represents a single player input
 
@@ -120,7 +121,7 @@ class PlayerInput:
         self.triggered = False
 
     def __str__(self):
-        return "<PlayerInput: {} {} {} {} {}>".format(self.button, self.value, self.pressed, self.held, self.hold_time)
+        return f"<PlayerInput: {self.button} {self.value} {self.pressed} {self.held} {self.hold_time}>"
 
     @property
     def pressed(self):

@@ -109,10 +109,12 @@ def check_parameters(parameters, required=0, exit=True):
     """
     if len(parameters) < required:
         import inspect
+
         calling_function = inspect.stack()[1][3]
         logger.error("'" + calling_function + "' requires at least " + str(required) + "parameters.")
         if exit:
             import sys
+
             sys.exit(1)
         return False
 
@@ -128,11 +130,11 @@ def calc_dialog_rect(screen_rect):
     """
     rect = screen_rect.copy()
     if prepare.CONFIG.large_gui:
-        rect.height *= .4
+        rect.height *= 0.4
         rect.bottomleft = screen_rect.bottomleft
     else:
-        rect.height *= .25
-        rect.width *= .8
+        rect.height *= 0.25
+        rect.width *= 0.8
         rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
     return rect
 
@@ -182,7 +184,7 @@ def number_or_variable(session, value):
         try:
             return float(player.game_variables[value])
         except (KeyError, ValueError, TypeError):
-            logger.error("invalid number or game variable {}".format(value))
+            logger.error(f"invalid number or game variable {value}")
             raise ValueError
 
 
@@ -214,7 +216,7 @@ def cast_values(parameters, valid_parameters):
             if v is None:
                 return None
 
-            if v == '':
+            if v == "":
                 return None
 
             return t[0](v)
@@ -226,8 +228,8 @@ def cast_values(parameters, valid_parameters):
         return list(map(cast, zip_longest(valid_parameters, parameters)))
     except ValueError:
         logger.error("Invalid parameters passed:")
-        logger.error("expected: {}".format(valid_parameters))
-        logger.error("got: {}".format(parameters))
+        logger.error(f"expected: {valid_parameters}")
+        logger.error(f"got: {parameters}")
         raise
 
 
@@ -239,7 +241,7 @@ def show_item_result_as_dialog(session, item, result):
     :param dict result:
     :return: None
     """
-    msg_type = 'use_success' if result['success'] else 'use_failure'
+    msg_type = "use_success" if result["success"] else "use_failure"
     template = getattr(item, msg_type)
     if template:
         message = T.translate(template)
@@ -261,10 +263,10 @@ def split_escaped(string_to_split, delim=","):
 
     """
     # Split by "," unless it is escaped by a "\"
-    split_list = re.split(r'(?<!\\)' + delim, string_to_split)
+    split_list = re.split(r"(?<!\\)" + delim, string_to_split)
 
     # Remove the escape character from the split list
-    split_list = [w.replace(r'\,', ',') for w in split_list]
+    split_list = [w.replace(r"\,", ",") for w in split_list]
 
     # strip whitespace around each
     split_list = [i.strip() for i in split_list]

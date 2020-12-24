@@ -31,7 +31,7 @@ of the game.
 
 import sys
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from tuxemon.core.main import main
 
     main()

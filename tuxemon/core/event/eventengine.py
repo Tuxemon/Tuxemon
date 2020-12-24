@@ -32,12 +32,12 @@ from lxml import etree
 
 from tuxemon.constants import paths
 from tuxemon.core import plugin, prepare
-from tuxemon.core.platform.const import buttons
 from tuxemon.core.session import local_session
 
 logger = logging.getLogger(__name__)
 
 
+# TODO: rename this or resolve the issue with two classes called "eventcontext"
 class EventContext:
     engine = None
     world = None
@@ -140,13 +140,12 @@ class EventEngine:
         :param List parameters:
         :rtype: tuxemon.core.event.eventaction.EventAction
         """
-        # TODO: make loading of actions and conditions generic
         if parameters is None:
             parameters = list()
         try:
             action = self.actions[name]
         except KeyError:
-            error = 'Error: EventAction "{}" not implemented'.format(name)
+            error = f'Error: EventAction "{name}" not implemented'
             raise RuntimeError(error)
         else:
             context = EventContext()
@@ -166,38 +165,26 @@ class EventEngine:
         :param str name:
         :rtype: tuxemon.core.event.eventcondition.EventCondition
         """
-        # TODO: make loading of actions and conditions generic
         try:
             condition = self.conditions[name]
         except KeyError:
-            error = 'Error: EventCondition "{}" not implemented'.format(name)
+            error = f'Error: EventCondition "{name}" not implemented'
             raise RuntimeError(error)
         else:
             return condition()
 
-    def check_condition(self, session, cond_data, map_event):
-        """ Check if condition is true of false
-
-        Returns False if the condition is not loaded properly
+    def check_condition(self, session, condition, map_event):
+        """ Check if condition is true or false
 
         :param tuxemon.core.session.Session session:
-        :param tuxemon.core.event.MapCondition cond_data:
+        :param tuxemon.core.event.MapCondition condition:
         :param tuxemon.core.event.MapEvent map_event:
         :rtype: bool
         """
-        with add_error_context(map_event, cond_data, session):
-            map_condition = self.get_condition(cond_data.name)
-            if map_condition is None:
-                logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
-                return False
-            result = map_condition.test(session, map_event, cond_data) == (
-                cond_data.operator == "is"
-            )
-            logger.debug(
-                'map condition "{}": {} ({})'.format(
-                    map_condition.name, result, cond_data
-                )
-            )
+        with add_error_context(map_event, condition, session):
+            handler = self.get_condition(condition.name)
+            result = handler.test(session, map_event, condition) == (condition.operator == "is")
+            logger.debug(f'map condition "{handler.name}": {result} ({condition})')
             return result
 
     def execute_action(self, session, action_name, parameters=None, map=None):
@@ -214,7 +201,7 @@ class EventEngine:
 
         action = self.get_action(session, action_name, parameters)
         if action is None:
-            logger.debug('map action "{}" is not loaded'.format(action_name))
+            logger.debug(f'map action "{action_name}" is not loaded')
 
         return action.execute()
 
@@ -229,7 +216,7 @@ class EventEngine:
         # started.  If not checked, then the game would freeze while it tries to run
         # unlimited copies of the same event, forever.
         if map_event.id not in self.running_events:
-            logger.debug("starting map event: {}".format(map_event))
+            logger.debug(f"starting map event: {map_event}")
             logger.debug("Executing action list")
             logger.debug(map_event)
             token = RunningEvent(session, map_event)
@@ -265,10 +252,7 @@ class EventEngine:
 
         else:
             # optimal, less debug
-            if all(
-                self.check_condition(session, cond, map_event)
-                for cond in map_event.conds
-            ):
+            if all(self.check_condition(session, cond, map_event) for cond in map_event.conds):
                 self.start_event(session, map_event)
 
     def process_map_events(self, events):
@@ -341,9 +325,7 @@ class EventEngine:
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(
-                            e.session, next_action.type, next_action.parameters,
-                        )
+                        action = self.get_action(e.session, next_action.type, next_action.parameters,)
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk
@@ -371,7 +353,7 @@ class EventEngine:
                     action.cleanup()
                     e.action_index += 1
                     e.current_action = None
-                    logger.debug("action finished: {}".format(action))
+                    logger.debug(f"action finished: {action}")
 
                 else:
                     # action didn't finish, so move on to next RunningEvent

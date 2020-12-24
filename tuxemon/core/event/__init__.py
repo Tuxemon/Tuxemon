@@ -33,41 +33,29 @@ logger = logging.getLogger(__name__)
 condition_fields = [
     "name",
     "operator",
-    "parameters",]
+    "parameters",
+]
 
-action_fields = [
-    "type",
-    "parameters"]
+action_fields = ["type", "parameters"]
 
-event_fields = [
-    "id",
-    "name",
-    "rect",
-    "conds",
-    "acts"]
+event_fields = ["id", "name", "rect", "conds", "acts"]
 
 MapCondition = namedtuple("condition", condition_fields)
 MapAction = namedtuple("action", action_fields)
 EventObject = namedtuple("eventobject", event_fields)
 
-__all__ = [
-    "EventObject",
-    "MapAction",
-    "MapCondition",
-    "get_npc"
-]
+__all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
-def get_npc(session, slug):
+def get_npc(context, slug):
     """ Gets an NPC object by slug.  None is returned if not found.
 
     Pass "player" to get the player's entity of this session.
-    Name is outdated.  Will return any live game object by the slug.
 
-    :param tuxemon.core.session.Session session: The session object
+    :param tuxemon.core.event.eventengine.EventContext context
     :param str slug: The slug of the NPC that exists on the current map.
-    :rtype: Optional[tuxemon.core.player.Player]
+    :rtype: Optional[tuxemon.core.npc.NPC]
     """
     if slug == "player":
-        return session.player
-    return session.world.get_entity(slug)
+        return context.player
+    return context.world.get_entity(slug)

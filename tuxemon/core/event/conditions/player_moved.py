@@ -29,10 +29,12 @@ def collide(condition, tile_position):
     :param tile_position: tuple
     :rtype: bool
     """
-    return condition.x < tile_position[0] + 1 \
-           and condition.y < tile_position[1] + 1 \
-           and condition.x + condition.width > tile_position[0] \
-           and condition.y + condition.height > tile_position[1]
+    return (
+        condition.x < tile_position[0] + 1
+        and condition.y < tile_position[1] + 1
+        and condition.x + condition.width > tile_position[0]
+        and condition.y + condition.height > tile_position[1]
+    )
 
 
 class PlayerMovedCondition(EventCondition):
@@ -47,40 +49,27 @@ class PlayerMovedCondition(EventCondition):
     and is only true once.  Could possibly be better, IDK.
 
     """
+
     name = "player_moved"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """Checks to see the player has just moved into this tile. Using this condition will
         prevent a condition like "player_at" from constantly being true every single frame.
 
         :param event:
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: tuxemon.core.event.MapCondition
 
         :rtype: bool
 
         Valid Parameters: None
 
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_moved",
-            "parameters": [],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         # TODO: Eventually generalize command for checking players and npcs
         return False
-        return self.generic_test(session, condition, session.player)
+        return self.generic_test(context, condition, context.player)
 
-    def generic_test(self, session,  condition, npc):
+    def generic_test(self, session, condition, npc):
         """ Eventually, this can be made into own condition or something
 
         :type session: tuxemon.core.session.Session

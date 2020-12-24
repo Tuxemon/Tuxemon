@@ -100,7 +100,7 @@ class Entity:
         """
         raise NotImplementedError
 
-    def set_state(self, session,  save_data):
+    def set_state(self, session, save_data):
         """ Recreates entity from saved data
 
         :param tuxemon.core.session.Session session:

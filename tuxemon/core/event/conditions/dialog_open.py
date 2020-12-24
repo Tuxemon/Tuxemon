@@ -25,17 +25,18 @@ from tuxemon.core.event.eventcondition import EventCondition
 class DialogOpenCondition(EventCondition):
     """ Checks to see if a dialog window is open.
     """
+
     name = "dialog_open"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see if a dialog window is open.
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -43,22 +44,8 @@ class DialogOpenCondition(EventCondition):
 
         Valid Parameters: None
 
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "dialog_open",
-            "parameters": []
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
-            ...
-        }
-
         """
-        for state in session.client.active_states:
+        for state in context.client.active_states:
             if state.name == "DialogState":
                 return True
 

@@ -29,21 +29,20 @@ class EventCondition:
     """
 
     """
+
     name = "GenericCondition"
 
     def __init__(self):
         pass
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Return True if satisfied, or False if not
 
-        :param event:
-        :param tuxemon.core.session.Session session:
+        :param tuxemon.core.session.Session context:
         :param tuxemon.core.event.EventObject event:
         :param Dict condition:
         :rtype: bool
         """
-        pass
 
     def get_persist(self, session):
         """ Return dictionary for this event class's data
@@ -53,8 +52,6 @@ class EventCondition:
 
         :return:
         """
-        # Create a dictionary that will track movement
-
         try:
             return session.client.event_persist[self.name]
         except KeyError:

@@ -30,12 +30,9 @@ class PathfindAction(EventAction):
 
     Valid Parameters: npc_slug, tile_pos_x, tile_pos_y
     """
+
     name = "pathfind"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y")
-    ]
+    valid_parameters = [(str, "npc_slug"), (int, "tile_pos_x"), (int, "tile_pos_y")]
 
     def start(self):
         self.npc = get_npc(self.context, self.parameters.npc_slug)

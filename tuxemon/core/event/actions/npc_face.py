@@ -31,11 +31,9 @@ class NpcFaceAction(EventAction):
 
     Direction parameter can be: "left", "right", "up", "down", or "player"
     """
+
     name = "npc_face"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "direction")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "direction")]
 
     def start(self):
         npc = get_npc(self.context, self.parameters.npc_slug)

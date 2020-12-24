@@ -25,31 +25,16 @@ from tuxemon.core.event.eventcondition import EventCondition
 class MusicPlayingCondition(EventCondition):
     """ Checks to see if a particular piece of music is playing or not.
     """
+
     name = "music_playing"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """ Checks to see if a particular piece of music is playing or not.
 
         Valid Parameters: music_filename
 
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "music_playing",
-            "parameters": [
-                "479403_its-a-unix-system.ogg"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
-            ...
-        }
-
         :param event:
-        :param tuxemon.core.session.Session session:
+        :param tuxemon.core.session.Session context:
         :param Dict condition:
         :rtype: Boolean
         """
@@ -59,7 +44,7 @@ class MusicPlayingCondition(EventCondition):
 
         # currently no way to query the names of states in the state game stack.
         # so we find names here.  possibly might make api to do this later.
-        names = {i.name for i in session.client.active_states}
+        names = {i.name for i in context.client.active_states}
         combat_states = {"FlashTransition", "CombatState"}
 
         # means "if any element of combat_states is in names"

@@ -1,8 +1,7 @@
 def intersect(r1, r2):
-    return (((r2.left <= r1.left < r2.right) or
-             (r1.left <= r2.left < r1.right)) and
-            ((r2.top <= r1.top < r2.bottom) or
-             (r1.top <= r2.top < r1.bottom)))
+    return ((r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)) and (
+        (r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom)
+    )
 
 
 class Rect:
@@ -16,7 +15,7 @@ class Rect:
     These rects support floating point and are hashable.
     """
 
-    __slots__ = ['_x', '_y', '_w', '_h']
+    __slots__ = ["_x", "_y", "_w", "_h"]
 
     def __init__(self, arg):
         """
@@ -32,7 +31,7 @@ class Rect:
                 self._w, self._h = arg[1]
             elif len(arg) == 4:
                 self._x, self._y, self._w, self._h = arg
-        elif hasattr(arg, 'rect'):
+        elif hasattr(arg, "rect"):
             self._x, self._y, self._w, self._h = arg.rect
         else:
             self._x, self._y, self._w, self._h = arg
@@ -58,8 +57,7 @@ class Rect:
         return Rect((self._x + x, self._y + y, self._w, self._h))
 
     def inflate(self, x, y):
-        return Rect((self._x - x / 2, self._y - y / 2,
-                     self._w + x, self._h + y))
+        return Rect((self._x - x / 2, self._y - y / 2, self._w + x, self._h + y))
 
     def clamp(self):
         pass
@@ -68,8 +66,9 @@ class Rect:
         raise NotImplementedError
 
     def union(self, other):
-        return Rect((min(self._x, other.left), min(self._y, other.top),
-                     max(self._w, other.right), max(self._h, other.height)))
+        return Rect(
+            (min(self._x, other.left), min(self._y, other.top), max(self._w, other.right), max(self._h, other.height))
+        )
 
     def unionall(self, *rects):
         rects.append(self)
@@ -92,17 +91,18 @@ class Rect:
 
     def contains(self, other):
         other = Rect(other)
-        return ((self._x <= other.left) and
-                (self._y <= other.top) and
-                (self._x + self._w >= other.right) and
-                (self._y + self._h >= other.bottom) and
-                (self._x + self._w > other.left) and
-                (self._y + self._h > other.top))
+        return (
+            (self._x <= other.left)
+            and (self._y <= other.top)
+            and (self._x + self._w >= other.right)
+            and (self._y + self._h >= other.bottom)
+            and (self._x + self._w > other.left)
+            and (self._y + self._h > other.top)
+        )
 
     def collidepoint(self, point):
         x, y = point
-        return self._x <= x < self._x + self._w and \
-               self._y <= y < self._y + self._h
+        return self._x <= x < self._x + self._w and self._y <= y < self._y + self._h
 
     def colliderect(self, other):
         return intersect(self, Rect(other))

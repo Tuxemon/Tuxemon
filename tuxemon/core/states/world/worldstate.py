@@ -46,6 +46,7 @@ logger = logging.getLogger(__name__)
 class WorldState(state.State):
     """ The state responsible for the world movement and interaction
     """
+
     keymap = {
         buttons.UP: intentions.UP,
         buttons.DOWN: intentions.DOWN,
@@ -58,7 +59,7 @@ class WorldState(state.State):
     }
 
     def __init__(self, *args, **kwargs):
-        super(WorldState, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.client = local_session.client
         self.allow_player_movement = None
         self.wants_to_move_player = None
@@ -246,29 +247,24 @@ class WorldState(state.State):
 
         # Create a surface that we'll use as black bars for a cinematic
         # experience
-        self.cinema_top['surface'] = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6))
-        self.cinema_bottom['surface'] = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6))
+        self.cinema_top["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+        self.cinema_bottom["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
 
         # Fill our empty surface with black
-        self.cinema_top['surface'].fill((0, 0, 0))
-        self.cinema_bottom['surface'].fill((0, 0, 0))
+        self.cinema_top["surface"].fill((0, 0, 0))
+        self.cinema_bottom["surface"].fill((0, 0, 0))
 
         # When cinema mode is off, this will be the position we'll draw the
         # black bar.
-        self.cinema_top['off_position'] = [
-            0, -self.cinema_top['surface'].get_height()]
-        self.cinema_bottom['off_position'] = [0, self.resolution[1]]
-        self.cinema_top['position'] = list(self.cinema_top['off_position'])
-        self.cinema_bottom['position'] = list(
-            self.cinema_bottom['off_position'])
+        self.cinema_top["off_position"] = [0, -self.cinema_top["surface"].get_height()]
+        self.cinema_bottom["off_position"] = [0, self.resolution[1]]
+        self.cinema_top["position"] = list(self.cinema_top["off_position"])
+        self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
 
         # When cinema mode is ON, this will be the position we'll draw the
         # black bar.
-        self.cinema_top['on_position'] = [0, 0]
-        self.cinema_bottom['on_position'] = [
-            0, self.resolution[1] - self.cinema_bottom['surface'].get_height()]
+        self.cinema_top["on_position"] = [0, 0]
+        self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
 
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
@@ -285,54 +281,40 @@ class WorldState(state.State):
 
         if self.cinema_state == "turning on":
 
-            self.cinema_top['position'][
-                1] += self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom['position'][
-                1] -= self.cinema_speed * self.time_passed_seconds
+            self.cinema_top["position"][1] += self.cinema_speed * self.time_passed_seconds
+            self.cinema_bottom["position"][1] -= self.cinema_speed * self.time_passed_seconds
 
             # If we've reached our target position, stop the animation.
-            if self.cinema_top['position'] >= self.cinema_top['on_position']:
-                self.cinema_top['position'] = list(
-                    self.cinema_top['on_position'])
-                self.cinema_bottom['position'] = list(
-                    self.cinema_bottom['on_position'])
+            if self.cinema_top["position"] >= self.cinema_top["on_position"]:
+                self.cinema_top["position"] = list(self.cinema_top["on_position"])
+                self.cinema_bottom["position"] = list(self.cinema_bottom["on_position"])
 
                 self.cinema_state = "on"
 
             # Draw the cinema bars
-            surface.blit(
-                self.cinema_top['surface'], self.cinema_top['position'])
-            surface.blit(
-                self.cinema_bottom['surface'], self.cinema_bottom['position'])
+            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
+            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
 
         elif self.cinema_state == "on":
             # Draw the cinema bars
-            surface.blit(
-                self.cinema_top['surface'], self.cinema_top['position'])
-            surface.blit(
-                self.cinema_bottom['surface'], self.cinema_bottom['position'])
+            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
+            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
 
         elif self.cinema_state == "turning off":
 
-            self.cinema_top['position'][1] -= (
-                    self.cinema_speed * self.time_passed_seconds)
-            self.cinema_bottom['position'][
-                1] += self.cinema_speed * self.time_passed_seconds
+            self.cinema_top["position"][1] -= self.cinema_speed * self.time_passed_seconds
+            self.cinema_bottom["position"][1] += self.cinema_speed * self.time_passed_seconds
 
             # If we've reached our target position, stop the animation.
-            if self.cinema_top['position'][1] <= self.cinema_top['off_position'][1]:
-                self.cinema_top['position'] = list(
-                    self.cinema_top['off_position'])
-                self.cinema_bottom['position'] = list(
-                    self.cinema_bottom['off_position'])
+            if self.cinema_top["position"][1] <= self.cinema_top["off_position"][1]:
+                self.cinema_top["position"] = list(self.cinema_top["off_position"])
+                self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
 
                 self.cinema_state = "off"
 
             # Draw the cinema bars
-            surface.blit(
-                self.cinema_top['surface'], self.cinema_top['position'])
-            surface.blit(
-                self.cinema_bottom['surface'], self.cinema_bottom['position'])
+            surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
+            surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu
@@ -396,13 +378,11 @@ class WorldState(state.State):
                     if event_data["response"] == "Accept":
                         world = self.game.current_statimape
                         pd = world.player1.__dict__
-                        event_data = {"type": "CLIENT_INTERACTION",
-                                      "interaction": "START_DUEL",
-                                      "target": [event_data["target"]],
-                                      "response": None,
-                                      "char_dict": {"monsters": pd["monsters"],
-                                                    "inventory": pd["inventory"]
-                                                    }
-
-                                      }
+                        event_data = {
+                            "type": "CLIENT_INTERACTION",
+                            "interaction": "START_DUEL",
+                            "target": [event_data["target"]],
+                            "response": None,
+                            "char_dict": {"monsters": pd["monsters"], "inventory": pd["inventory"]},
+                        }
                         self.game.server.notify_client_interaction(cuuid, event_data)

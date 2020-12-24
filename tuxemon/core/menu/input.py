@@ -48,10 +48,10 @@ class InputMenu(Menu):
         assert self.callback
 
     def calc_internal_rect(self):
-        w = self.rect.width - self.rect.width * .8
-        h = self.rect.height - self.rect.height * .5
+        w = self.rect.width - self.rect.width * 0.8
+        h = self.rect.height - self.rect.height * 0.5
         rect = self.rect.inflate(-w, -h)
-        rect.top = self.rect.centery * .7
+        rect.top = self.rect.centery * 0.7
         return rect
 
     def initialize_items(self):

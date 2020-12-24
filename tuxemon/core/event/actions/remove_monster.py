@@ -27,10 +27,9 @@ class RemoveMonsterAction(EventAction):
 
     Valid Parameters: monster_slug
     """
+
     name = "remove_monster"
-    valid_parameters = [
-        (str, "monster_slug")
-    ]
+    valid_parameters = [(str, "monster_slug")]
 
     def start(self):
         monster_slug = self.parameters.monster_slug

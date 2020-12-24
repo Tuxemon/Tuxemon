@@ -27,10 +27,9 @@ class ScreenTransitionAction(EventAction):
 
     Valid Parameters: transition_time_in_seconds
     """
+
     name = "screen_transition"
-    valid_parameters = [
-        (float, "transition_time")
-    ]
+    valid_parameters = [(float, "transition_time")]
 
     def start(self):
         pass

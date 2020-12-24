@@ -167,20 +167,11 @@ class ControllerOverlay:
 
         """
         blit_alpha(
-            game.screen,
-            self.dpad["surface"],
-            self.dpad["position"],
-            game.config.controller_transparency,
+            game.screen, self.dpad["surface"], self.dpad["position"], game.config.controller_transparency,
         )
         blit_alpha(
-            game.screen,
-            self.a_button["surface"],
-            self.a_button["position"],
-            game.config.controller_transparency,
+            game.screen, self.a_button["surface"], self.a_button["position"], game.config.controller_transparency,
         )
         blit_alpha(
-            game.screen,
-            self.b_button["surface"],
-            self.b_button["position"],
-            game.config.controller_transparency,
+            game.screen, self.b_button["surface"], self.b_button["position"], game.config.controller_transparency,
         )

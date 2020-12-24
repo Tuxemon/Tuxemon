@@ -34,11 +34,9 @@ class SetMonsterStatusAction(EventAction):
 
     Valid Parameters: slot, status
     """
+
     name = "set_monster_status"
-    valid_parameters = [
-        (int, "slot"),
-        (str, "status")
-    ]
+    valid_parameters = [(int, "slot"), (str, "status")]
 
     @staticmethod
     def set_status(monster, value):

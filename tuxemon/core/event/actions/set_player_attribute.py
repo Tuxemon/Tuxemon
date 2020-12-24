@@ -28,12 +28,9 @@ class SetPlayerAttributeAction(EventAction):
 
     Valid Parameters: attribute, value
     """
+
     name = "set_player_attribute"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "name"),
-        (str, "value")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
 
     def start(self):
         attribute = self.parameters[0]

@@ -28,7 +28,6 @@
 
 
 import gettext
-import io
 import json
 import logging
 import os
@@ -88,9 +87,8 @@ class TranslatorPo:
             outfile = os.path.join(os.path.dirname(infile), "base.mo")
 
             # build only complete translations
-            if os.path.exists(infile) and (
-                    not os.path.exists(outfile) or recompile_translations):
-                with open(infile, "r", encoding="UTF8") as po_file:
+            if os.path.exists(infile) and (not os.path.exists(outfile) or recompile_translations):
+                with open(infile, encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
                 with open(outfile, "wb") as mo_file:
                     write_mo(mo_file, catalog)
@@ -103,14 +101,14 @@ class TranslatorPo:
 
         # init and load requested language translation (if exists)
         if locale_name in self.languages:
-            trans = gettext.translation("base", localedir = prepare.fetch("l18n"), languages=[locale_name])
+            trans = gettext.translation("base", localedir=prepare.fetch("l18n"), languages=[locale_name])
 
             # update locale
             self.locale = locale_name
 
         else:
-            logger.warning("Locale {} not found. Using fallback.".format(locale_name))
-            trans = gettext.translation("base", localedir = prepare.fetch("l18n"), languages=[FALLBACK_LOCALE])
+            logger.warning(f"Locale {locale_name} not found. Using fallback.")
+            trans = gettext.translation("base", localedir=prepare.fetch("l18n"), languages=[FALLBACK_LOCALE])
 
             # fall back to default locale
             self.locale = FALLBACK_LOCALE
@@ -136,7 +134,7 @@ class TranslatorPo:
             text = self.translate(text)
         else:
             self.load_locale(self.locale)
-            text = self.translate(text)         # self.load_locale populates self.translate
+            text = self.translate(text)  # self.load_locale populates self.translate
 
         # apply parameters only if non-empty
         if parameters:
@@ -155,8 +153,8 @@ class TranslatorPo:
         else:
             return self.translate(text)
 
-class Translator:
 
+class Translator:
     def __init__(self):
         # immediately grab fallback if 'locale' missing in config
         self.locale = prepare.CONFIG.locale or FALLBACK_LOCALE
@@ -221,7 +219,7 @@ class Translator:
                 continue
 
             try:
-                with open(locale_file, "r", encoding="UTF-8") as f:
+                with open(locale_file, encoding="UTF-8") as f:
                     data = json.load(f)
 
                 translations.update(data)
@@ -242,9 +240,8 @@ class Translator:
         elif key in self.fallback:
             return self.fallback[key]
         else:
-            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
+            logger.error(f"Key '{key}' does not exist in '{self.locale}' locale file.")
             return None
-
 
     def change_locale(self, locale_name):
         """Changes the translator object to the given locale
@@ -283,11 +280,13 @@ class Translator:
         if key in self.translations:
             translation_text = self.translations[key]
         elif key in self.fallback:
-            logger.warning("Key '%s' does not exist in '%s' locale file. Falling back to '%s'." %
-                           (key, self.locale, FALLBACK_LOCALE))
+            logger.warning(
+                "Key '%s' does not exist in '%s' locale file. Falling back to '%s'."
+                % (key, self.locale, FALLBACK_LOCALE)
+            )
             translation_text = self.fallback[key]
         else:
-            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
+            logger.error(f"Key '{key}' does not exist in '{self.locale}' locale file.")
             translation_text = "Locale Error"
 
         return self.format(translation_text, parameters)

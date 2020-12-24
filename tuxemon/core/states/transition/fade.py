@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 class FadeTransitionBase(State):
     """ The state responsible for the battle transitions.
     """
+
     force_draw = True
     state_duration = 1
     fade_duration = 1.5

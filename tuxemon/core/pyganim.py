@@ -50,20 +50,20 @@ import pygame
 # setting up constants
 from tuxemon.compat import Rect
 
-PLAYING = 'playing'
-PAUSED = 'paused'
-STOPPED = 'stopped'
+PLAYING = "playing"
+PAUSED = "paused"
+STOPPED = "stopped"
 
 # These values are used in the anchor() method.
-NORTHWEST = 'northwest'
-NORTH = 'north'
-NORTHEAST = 'northeast'
-WEST = 'west'
-CENTER = 'center'
-EAST = 'east'
-SOUTHWEST = 'southwest'
-SOUTH = 'south'
-SOUTHEAST = 'southeast'
+NORTHWEST = "northwest"
+NORTH = "north"
+NORTHEAST = "northeast"
+WEST = "west"
+CENTER = "center"
+EAST = "east"
+SOUTHWEST = "southwest"
+SOUTH = "south"
+SOUTHEAST = "southeast"
 
 
 class PygAnimation:
@@ -96,24 +96,26 @@ class PygAnimation:
         # and the transformed sprites are kept in _transformedImages.
         self._transformedImages = []
 
-        self._state = STOPPED # The state is always either PLAYING, PAUSED, or STOPPED
-        self._loop = loop # If True, the animation will keep looping. If False, the animation stops after playing once.
-        self._rate = 1.0 # 2.0 means play the animation twice as fast, 0.5 means twice as slow
-        self._visibility = True # If False, then nothing is drawn when the blit() methods are called
+        self._state = STOPPED  # The state is always either PLAYING, PAUSED, or STOPPED
+        self._loop = loop  # If True, the animation will keep looping. If False, the animation stops after playing once.
+        self._rate = 1.0  # 2.0 means play the animation twice as fast, 0.5 means twice as slow
+        self._visibility = True  # If False, then nothing is drawn when the blit() methods are called
 
-        self._playingStartTime = 0 # the time that the play() function was last called.
-        self._pausedStartTime = 0 # the time that the pause() function was last called.
+        self._playingStartTime = 0  # the time that the play() function was last called.
+        self._pausedStartTime = 0  # the time that the pause() function was last called.
 
-        if frames != '_copy': # ('_copy' is passed for frames by the getCopies() method)
+        if frames != "_copy":  # ('_copy' is passed for frames by the getCopies() method)
             self.numFrames = len(frames)
-            assert self.numFrames > 0, 'Must contain at least one frame.'
+            assert self.numFrames > 0, "Must contain at least one frame."
             for i in range(self.numFrames):
                 # load each frame of animation into _images
                 frame = frames[i]
-                assert type(frame) in (list, tuple) and len(frame) == 2, 'Frame %s has incorrect format.' % (i)
+                assert type(frame) in (list, tuple) and len(frame) == 2, "Frame %s has incorrect format." % (i)
                 assert type(frame[0]) in (
-                str, pygame.Surface), 'Frame %s image must be a string filename or a pygame.Surface' % (i)
-                assert frame[1] > 0, 'Frame %s duration must be greater than zero.' % (i)
+                    str,
+                    pygame.Surface,
+                ), "Frame %s image must be a string filename or a pygame.Surface" % (i)
+                assert frame[1] > 0, "Frame %s duration must be greater than zero." % (i)
                 if type(frame[0]) == str:
                     frame = (pygame.image.load(frame[0]), frame[1])
                 self._images.append(frame[0])
@@ -153,7 +155,7 @@ class PygAnimation:
         # copies using constructor function instead.
         retval = []
         for i in range(numCopies):
-            newAnim = PygAnimation('_copy', loop=self.loop)
+            newAnim = PygAnimation("_copy", loop=self.loop)
             newAnim._images = self._images[:]
             newAnim._transformedImages = self._transformedImages[:]
             newAnim._durations = self._durations[:]
@@ -291,7 +293,7 @@ class PygAnimation:
             startTime = time.time()
 
         if self._state == PAUSED:
-            return # do nothing
+            return  # do nothing
         elif self._state == PLAYING:
             self._pausedStartTime = startTime
         elif self._state == STOPPED:
@@ -306,7 +308,7 @@ class PygAnimation:
         # stop() is essentially a setter function for self._state
         # NOTE: Don't adjust the self.state property, only self._state
         if self._state == STOPPED:
-            return # do nothing
+            return  # do nothing
         self._state = STOPPED
 
     def togglePause(self):
@@ -320,7 +322,7 @@ class PygAnimation:
                 # the one exception: if this animation doesn't loop and it
                 # has finished playing, then toggling the pause will cause
                 # the animation to replay from the beginning.
-                #self._playingStartTime = time.time() # effectively the same as calling play()
+                # self._playingStartTime = time.time() # effectively the same as calling play()
                 self.play()
             else:
                 self.pause()
@@ -364,12 +366,12 @@ class PygAnimation:
         #
         # By default, they are all anchored to the NORTHWEST corner.
         if self.areFramesSameSize():
-            return # nothing needs to be anchored
+            return  # nothing needs to be anchored
             # This check also prevents additional calls to anchor() from doing
             # anything, since anchor() sets all the image to the same size.
             # The lesson is, you can only effectively call anchor() once.
 
-        self.clearTransforms() # clears transforms since this method anchors the original images.
+        self.clearTransforms()  # clears transforms since this method anchors the original images.
 
         maxWidth, maxHeight = self.getMaxSize()
         halfMaxWidth = int(maxWidth / 2)
@@ -379,7 +381,8 @@ class PygAnimation:
             # go through and copy all frames to a max-sized Surface object
             # NOTE: This makes changes to the original images in self._images, not the transformed images in self._transformedImages
             newSurf = pygame.Surface(
-                (maxWidth, maxHeight)) # TODO: this is probably going to have errors since I'm using the default depth.
+                (maxWidth, maxHeight)
+            )  # TODO: this is probably going to have errors since I'm using the default depth.
 
             # set the expanded areas to be transparent
             newSurf = newSurf.convert_alpha()
@@ -434,7 +437,7 @@ class PygAnimation:
     def fastForward(self, seconds=None):
         # Set the elapsed time forward relative to the current elapsed time.
         if seconds is None:
-            self.elapsed = self._startTimes[-1] - 0.00002 # done to compensate for rounding errors
+            self.elapsed = self._startTimes[-1] - 0.00002  # done to compensate for rounding errors
         else:
             self.elapsed += seconds
 
@@ -509,35 +512,35 @@ class PygAnimation:
     # but I don't want to make the code even more unreadable.
     def convert(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.convert
-        self._surfaceMethodWrapper('convert', *args, **kwargs)
+        self._surfaceMethodWrapper("convert", *args, **kwargs)
 
     def convert_alpha(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.convert_alpha
-        self._surfaceMethodWrapper('convert_alpha', *args, **kwargs)
+        self._surfaceMethodWrapper("convert_alpha", *args, **kwargs)
 
     def set_alpha(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.set_alpha
-        self._surfaceMethodWrapper('set_alpha', *args, **kwargs)
+        self._surfaceMethodWrapper("set_alpha", *args, **kwargs)
 
     def scroll(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.scroll
-        self._surfaceMethodWrapper('scroll', *args, **kwargs)
+        self._surfaceMethodWrapper("scroll", *args, **kwargs)
 
     def set_clip(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.set_clip
-        self._surfaceMethodWrapper('set_clip', *args, **kwargs)
+        self._surfaceMethodWrapper("set_clip", *args, **kwargs)
 
     def set_colorkey(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.set_colorkey
-        self._surfaceMethodWrapper('set_colorkey', *args, **kwargs)
+        self._surfaceMethodWrapper("set_colorkey", *args, **kwargs)
 
     def lock(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.unlock
-        self._surfaceMethodWrapper('lock', *args, **kwargs)
+        self._surfaceMethodWrapper("lock", *args, **kwargs)
 
     def unlock(self, *args, **kwargs):
         # See http://pygame.org/docs/ref/surface.html#Surface.lock
-        self._surfaceMethodWrapper('unlock', *args, **kwargs)
+        self._surfaceMethodWrapper("unlock", *args, **kwargs)
 
     # Getter and setter methods for properties
     def _propGetRate(self):
@@ -546,7 +549,7 @@ class PygAnimation:
     def _propSetRate(self, rate):
         rate = float(rate)
         if rate < 0:
-            raise ValueError('rate must be greater than 0.')
+            raise ValueError("rate must be greater than 0.")
         self._rate = rate
 
     rate = property(_propGetRate, _propSetRate)
@@ -567,13 +570,13 @@ class PygAnimation:
 
     def _propGetState(self):
         if self.isFinished():
-            self._state = STOPPED # if finished playing, then set state to STOPPED.
+            self._state = STOPPED  # if finished playing, then set state to STOPPED.
 
         return self._state
 
     def _propSetState(self, state):
         if state not in (PLAYING, PAUSED, STOPPED):
-            raise ValueError('state must be one of pyganim.PLAYING, pyganim.PAUSED, or pyganim.STOPPED')
+            raise ValueError("state must be one of pyganim.PLAYING, pyganim.PAUSED, or pyganim.STOPPED")
         if state == PLAYING:
             self.play()
         elif state == PAUSED:
@@ -593,7 +596,7 @@ class PygAnimation:
 
     def _propSetElapsed(self, elapsed):
         # NOTE: Do to floating point rounding errors, this doesn't work precisely.
-        elapsed += 0.00001 # done to compensate for rounding errors
+        elapsed += 0.00001  # done to compensate for rounding errors
         # TODO - I really need to find a better way to handle the floating point thing.
 
         # Set the elapsed time to a specific value.
@@ -606,7 +609,7 @@ class PygAnimation:
         self._playingStartTime = rightNow - (elapsed * self.rate)
 
         if self.state in (PAUSED, STOPPED):
-            self.state = PAUSED # if stopped, then set to paused
+            self.state = PAUSED  # if stopped, then set to paused
             self._pausedStartTime = rightNow
 
     def _propGetElapsed(self):
@@ -634,7 +637,7 @@ class PygAnimation:
             elapsed = elapsed % self._startTimes[-1]
         else:
             elapsed = getInBetweenValue(0, elapsed, self._startTimes[-1])
-        elapsed += 0.00001 # done to compensate for rounding errors
+        elapsed += 0.00001  # done to compensate for rounding errors
         return elapsed
 
     elapsed = property(_propGetElapsed, _propSetElapsed)
@@ -827,8 +830,8 @@ def findStartTime(startTimes, target):
     # For example, if startTimes was [0, 2, 4.5, 7.3, 10] and target was 6,
     # then findStartTime() would return 2. If target was 12, returns 4.
     assert startTimes[0] == 0
-    lb = 0 # "lb" is lower bound
-    ub = len(startTimes) - 1 # "ub" is upper bound
+    lb = 0  # "lb" is lower bound
+    ub = len(startTimes) - 1  # "ub" is upper bound
 
     # handle special cases:
     if not startTimes:

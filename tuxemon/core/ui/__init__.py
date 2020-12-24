@@ -56,17 +56,17 @@ class UserInterface:
         images_type = type(images).__name__
 
         # Handle loading a single image, multiple images, or surfaces
-        if images_type == 'str' or images_type == 'unicode':
+        if images_type == "str" or images_type == "unicode":
             surface = graphics.load_and_scale(images)
             self.images = [(surface, animation_speed)]
 
-        elif images_type == 'list' or images_type == 'tuple':
+        elif images_type == "list" or images_type == "tuple":
             self.images = []
 
             for item in images:
                 item_type = type(item).__name__
 
-                if item_type == 'str' or item_type == 'unicode':
+                if item_type == "str" or item_type == "unicode":
                     surface = graphics.load_and_scale(images)
                 else:
                     surface = item
@@ -89,10 +89,10 @@ class UserInterface:
         self.moving = False
         self.move_destination = (0, 0)
         self.move_delta = [0, 0]
-        self.move_duration = 0.
-        self.move_time = 0.
+        self.move_duration = 0.0
+        self.move_time = 0.0
         self.fading = False
-        self.fade_duration = 0.
+        self.fade_duration = 0.0
         self.shaking = False
 
     def draw(self, surface):
@@ -125,9 +125,8 @@ class UserInterface:
         :type direction: Int or String
 
         """
-        pass
 
-    def fade_in(self, duration=1.):
+    def fade_in(self, duration=1.0):
         """Fades the object in.
 
         :param duration: Fade the object in over n seconds, defaults to 1.
@@ -139,7 +138,7 @@ class UserInterface:
             self.fading = "in"
             self.fade_duration = duration
 
-    def fade_out(self, duration=1.):
+    def fade_out(self, duration=1.0):
         """Fades the object out.
 
         :param duration: Fade the object out over n seconds, defaults to 1.
@@ -151,7 +150,7 @@ class UserInterface:
             self.fading = "out"
             self.fade_duration = duration
 
-    def move(self, destination, duration=1.):
+    def move(self, destination, duration=1.0):
         """Moves the object to position over n seconds.
 
         :param destination: The (x, y) screen destination position to move to.
@@ -165,7 +164,7 @@ class UserInterface:
             self.state = "moving"
             self.moving = True
             self.move_destination = destination
-            self.move_time = 0.
+            self.move_time = 0.0
             # self.move_delta.append(self.position[1] - destination[1])
             # self.move_delta = list(map(operator.sub, self.position, destination))
             # self.move_duration = float(duration)
@@ -179,6 +178,3 @@ class UserInterface:
 
     def scale(self, width_height):
         self.animation.scale(width_height)
-
-
-import tuxemon.core.ui.bar

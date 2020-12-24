@@ -25,17 +25,18 @@ from tuxemon.core.event.eventcondition import EventCondition
 class MonsterPropertyCondition(EventCondition):
     """ Checks to see if a monster property or condition is as asked
     """
+
     name = "monster_property"
 
-    def test(self, session, event, condition):
+    def test(self, context, event, condition):
         """Checks to see if a monster property or condition is as asked
 
         :param event:
-        :param session: The session object
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.core.session.Session
+        :type context: tuxemon.core.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -46,10 +47,10 @@ class MonsterPropertyCondition(EventCondition):
         prop = condition.parameters[1]
         val = condition.parameters[2]
 
-        if int(slot) >= len(session.player.monsters):
+        if int(slot) >= len(context.player.monsters):
             return False
 
-        monster = session.player.monsters[slot]
+        monster = context.player.monsters[slot]
         if prop == "name":
             return monster.name == val
         elif prop == "level":

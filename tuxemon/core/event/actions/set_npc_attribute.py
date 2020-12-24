@@ -41,12 +41,9 @@ class SetNpcAttributeAction(EventAction):
         ]
     }
     """
+
     name = "set_npc_attribute"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "name"),
-        (str, "value")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
 
     def start(self):
         npc = get_npc(self.context, self.parameters[0])

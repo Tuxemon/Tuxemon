@@ -37,7 +37,7 @@ from tuxemon.core.state import StateManager
 logger = logging.getLogger(__name__)
 
 
-class LocalPygameClient(object):
+class LocalPygameClient:
     """ Client to play locally using pygame
 
     * Uses a state manger to handle game states
@@ -82,8 +82,6 @@ class LocalPygameClient(object):
 
         # TODO: phase this out in favor of event-dispatch
         self.key_events = list()
-
-        self.push_state = self.state_manager.push_state
 
     def run(self):
         """ Initiates the main game loop. Since we are using Asteria networking
@@ -143,11 +141,11 @@ class LocalPygameClient(object):
             self.net_server.update()
 
         # get all the input waiting for use
-        events = self.input_manager.process_events()
+        input_events = self.input_manager.process_events()
 
         # process the events and collect the unused ones
-        events = list(self.process_events(events))
-        self.key_events = events
+        input_events = list(self.process_events(input_events))
+        self.key_events = input_events  # TODO: rename this or wrap in a getter
 
         # Update the game engine
         self.world.update(time_delta)
@@ -180,11 +178,7 @@ class LocalPygameClient(object):
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if (
-                    not state.transparent
-                    and state.rect == full_screen
-                    and not state.force_draw
-            ):
+            if not state.transparent and state.rect == full_screen and not state.force_draw:
                 break
 
         # draw from bottom up for proper layering
@@ -250,7 +244,7 @@ class LocalPygameClient(object):
             if game_event is None:
                 break
         else:
-            logger.debug("got unhandled event: {}".format(game_event))
+            logger.debug(f"got unhandled event: {game_event}")
         return game_event
 
     def update_states(self, dt):
@@ -281,3 +275,12 @@ class LocalPygameClient(object):
             if state.__class__.__name__ == name:
                 return state
         return None
+
+    # The following may be refactored later after the "state cleanup"
+
+    @property
+    def state_name(self):
+        return self.state_manager.current_state
+
+    def push_state(self, *args, **kwargs):
+        self.state_manager.push_state(*args, **kwargs)

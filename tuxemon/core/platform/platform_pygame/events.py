@@ -57,6 +57,7 @@ class PygameGamepadInput(PygameEventHandler):
     buttons/directions/axis even if they are released already.  Pressed
     or held inputs will never be duplicated and are always "correct".
     """
+
     event_type = PlayerInput
     # Xbox 360 Controller buttons:
     # A = 0    Start = 7    D-Up = 13
@@ -75,7 +76,7 @@ class PygameGamepadInput(PygameEventHandler):
         7: buttons.START,
     }
 
-    def __init__(self, event_map=None, deadzone=.25):
+    def __init__(self, event_map=None, deadzone=0.25):
         super().__init__(event_map)
         self.deadzone = deadzone
 

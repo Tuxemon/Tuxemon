@@ -33,12 +33,9 @@ class ModifyNpcAttributeAction(EventAction):
 
     EventAction parameter 'modifier' must be a number (positive or negative)
     """
+
     name = "modify_npc_attribute"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "name"),
-        (float, "value")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "name"), (float, "value")]
 
     def start(self):
         npc = get_npc(self.context, self.parameters[0])

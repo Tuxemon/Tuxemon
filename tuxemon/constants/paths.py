@@ -55,7 +55,7 @@ USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
 mods_folder = os.path.normpath(os.path.join(BASEDIR, "mods"))
 
 # shared locations
-system_installed_folders = t git [
+system_installed_folders = [
     "/user/share/tuxemon/",  # debian
 ]
 

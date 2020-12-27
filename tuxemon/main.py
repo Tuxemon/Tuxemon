@@ -21,18 +21,51 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com>
 #
+# main Sets up the states and main game loop.
 #
-# main.py Main game
-#
-"""Executes the main game. Primarily used for Android builds
-of the game.
-"""
 
-import sys
+import logging
 
-if __name__ == "__main__":
-    from tuxemon.core.main import main
+from tuxemon import prepare
+from tuxemon.client import LocalPygameClient
+from tuxemon.npc import NPC
+from tuxemon.session import local_session
+from tuxemon.world import World, Position
 
-    main()
-    sys.exit()
+logger = logging.getLogger(__name__)
+
+
+def main(load_slot=None):
+    """ Start new local game using the pygame interface
+
+    :rtype: None
+    :returns: None
+
+    """
+    prepare.init()
+
+    world = World()
+    client = LocalPygameClient(world, prepare.CONFIG)
+
+    # setup game for local single player
+    player = NPC(prepare.CONFIG.player_npc)
+    world.add_entity(player, Position(5, 5, 0, prepare.CONFIG.starting_map))
+
+    local_session.client = client
+    local_session.world = world
+    local_session.player = player
+
+    client.push_state("BackgroundState")
+    client.push_state("StartState")
+    client.push_state("WorldState", session=local_session)
+
+    # if load_slot:
+    #     control.push_state("LoadMenuState", load_slot=load_slot)
+    # elif prepare.CONFIG.splash:
+    #     # Show the splash screen if it is enabled in the game configuration
+    #     control.push_state("SplashState")
+    #     control.push_state("FadeInTransition")
+
+    client.run()

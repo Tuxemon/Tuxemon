@@ -22,12 +22,12 @@
 # Andy Mender <andymenderunix@gmail.com>
 #
 #
-# core.constants.paths - Central store for local file paths
+# constants.paths - Central store for local file paths
 #
 import os.path
 import sys
 
-from tuxemon.core.platform import get_config_dir
+from tuxemon.platform import get_config_dir
 
 # LIBDIR is where the tuxemon lib is
 LIBDIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -36,7 +36,7 @@ LIBDIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 BASEDIR = sys.path[0]
 
 # main game and config dir
-# TODO: this imports pygame from core.prepare - refactor to avoid this?
+# TODO: this imports pygame from prepare - refactor to avoid this?
 USER_GAME_DIR = get_config_dir()
 
 CONFIG_FILE = "tuxemon.cfg"
@@ -55,14 +55,14 @@ USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
 mods_folder = os.path.normpath(os.path.join(BASEDIR, "mods"))
 
 # shared locations
-system_installed_folders = [
+system_installed_folders = t git [
     "/user/share/tuxemon/",  # debian
 ]
 
 # action/condition plugins (eventually move out of lib folder)
-CONDITIONS_PATH = os.path.join(LIBDIR, "core/event/conditions")
-ACTIONS_PATH = os.path.join(LIBDIR, "core/event/actions")
+CONDITIONS_PATH = os.path.join(LIBDIR, "event/conditions")
+ACTIONS_PATH = os.path.join(LIBDIR, "event/actions")
 
 # item effects/conditions
-ITEM_EFFECT_PATH = os.path.join(LIBDIR, "core/item/effects")
-ITEM_CONDITION_PATH = os.path.join(LIBDIR, "core/item/conditions")
+ITEM_EFFECT_PATH = os.path.join(LIBDIR, "item/effects")
+ITEM_CONDITION_PATH = os.path.join(LIBDIR, "item/conditions")

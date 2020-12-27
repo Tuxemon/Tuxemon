@@ -38,7 +38,7 @@ To run an individual component (e.g. core/prepare.py):
 from argparse import ArgumentParser
 
 if __name__ == '__main__':
-    from tuxemon.core import prepare, main
+    from tuxemon import prepare, main
 
     parser = ArgumentParser()
     parser.add_argument('-m', '--mod', dest='mod', metavar='mymod', type=str, nargs='?',

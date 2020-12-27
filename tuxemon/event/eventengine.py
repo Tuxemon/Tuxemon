@@ -32,12 +32,13 @@ from textwrap import dedent
 
 from lxml import etree
 
-from tuxemon.constants import paths
 from tuxemon import plugin, prepare
+from tuxemon.constants import paths
 # from tuxemon.event.eventcontext import EventContext
 from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
+
 
 # TODO: rename this or resolve the issue with two classes called "eventcontext"
 @dataclass
@@ -48,6 +49,7 @@ class EventContext:
     client: LocalPygameClient
     player: Player
     map: TuxemonMap
+
 
 class RunningEvent:
     """ Manage MapEvents that are used during gameplay
@@ -147,13 +149,14 @@ class EventEngine:
             error = f'Error: EventAction "{name}" not implemented'
             raise RuntimeError(error)
         else:
-            context = EventContext()
-            context.session = session
-            context.player = session.player
-            context.client = session.client
-            context.world = session.world
-            context.engine = self
-            context.map = self.map
+            context = EventContext(
+                engine=self,
+                world=session.world,
+                session=session,
+                client=session.client,
+                player=session.player,
+                map=self.map,
+            )
             return action(context, parameters)
 
     def get_condition(self, name):
@@ -209,7 +212,6 @@ class EventEngine:
 
         :param tuxemon.session.Session session:
         :param tuxemon.event.EventObject map_event:
-        :rtype: None
         """
         # the event id is used to make sure multiple copies of the same event are not
         # started.  If not checked, then the game would freeze while it tries to run
@@ -227,7 +229,6 @@ class EventEngine:
         Actions will be started, but may finish much later.
 
         :param tuxemon.event.EventObject map_event:
-        :rtype: None
         """
         # TODO: support more sessions
         session = local_session
@@ -260,7 +261,6 @@ class EventEngine:
         Simple now, may become more complex
 
         :param List events:
-        :rtype: None
         """
         for event in events:
             self.process_map_event(event)
@@ -269,7 +269,6 @@ class EventEngine:
         """ Check all the MapEvents and start their actions if conditions are OK
 
         :param Float dt: Amount of time passed in seconds since last frame.
-        :rtype: None
         """
         self.partial_events = list()
         # NOTE: there is a potential bug here; if/when a condition here starts
@@ -283,8 +282,6 @@ class EventEngine:
         """ Checks conditions.  If any are satisfied, start the MapActions
 
         Actions may be started during this function
-
-        :rtype: None
         """
         self.process_map_events(self.events)
 
@@ -292,7 +289,6 @@ class EventEngine:
         """ Update the events that are running
 
         :param Float dt: Amount of time passed in seconds since last frame.
-        :rtype: None
         """
         to_remove = set()
 
@@ -393,7 +389,6 @@ def add_error_context(event, item, session):
     :type event: tuxemon.event.EventObject
     :type item: tuxemon.event.MapCondition or event.MapAction
     :type session: tuxemon.session.Session
-    :rtype None
     """
     try:
         yield

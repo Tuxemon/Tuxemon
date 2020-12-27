@@ -27,6 +27,7 @@
 import logging
 import time
 
+from pubsub import pub
 import pygame as pg
 
 from tuxemon import cli, networking
@@ -143,6 +144,8 @@ class LocalPygameClient:
 
         # get all the input waiting for use
         input_events = self.input_manager.process_events()
+        # for event in input_events:
+        #     pub.sendMessage('LocalInput', event=event)
 
         # process the events and collect the unused ones
         input_events = list(self.process_events(input_events))

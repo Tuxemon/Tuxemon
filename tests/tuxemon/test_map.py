@@ -1,7 +1,7 @@
 import unittest
 
 from tuxemon.compat import Rect
-from tuxemon.core.map import snap_to_grid, snap_rect_to_grid, tiles_inside_rect, snap_to_tile
+from tuxemon.map import snap_to_grid, snap_rect_to_grid, tiles_inside_rect, snap_to_tile
 
 
 class TestSnapToGrid(unittest.TestCase):
@@ -43,14 +43,7 @@ class TestSnapToTile(unittest.TestCase):
     def test_round_down(self):
         point = (32, 50)
         grid_size = (16, 16)
-        expected = (2, 3    def rect_from_object(obj):
-        """ Return Rect from TiledObject
-
-        :param obj: TiledObject
-        :rtype: Rect
-        """
-        return Rect(obj.x, obj.y, obj.width, obj.height)
-)
+        expected = (2, 3)
         result = snap_to_tile(point, grid_size)
         self.assertEqual(expected, result)
 

@@ -94,7 +94,6 @@ class World:
         """ Update time
 
         :param float time_delta: Time passed since last frame
-        :return: None
         """
         self.time += time_delta
         self.move_entities(time_delta)

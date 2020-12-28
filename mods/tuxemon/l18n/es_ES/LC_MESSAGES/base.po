@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-12-25 21:29+0000\n"
+"PO-Revision-Date: 2020-12-29 17:29+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -2509,3 +2509,48 @@ msgstr ""
 
 msgid "hey"
 msgstr "¡Hola!"
+
+msgid "moreannouncement"
+msgstr "¡ATENCIÓN, TODOS LOS CIUDADANOS DE LA REGIÓN FONDENT!\n"
+
+msgid "theanthemishere"
+msgstr ""
+"¡Escucha! El himno está comenzando, hemos llegado justo a tiempo. ¡Ven y "
+"observa!"
+
+msgid "timeforround22"
+msgstr "¡Oh! ¡Conseguiste las pociones! ¡Bien! Ahora sí que tenemos que volver."
+
+msgid "timeforround2"
+msgstr ""
+"¡${{name}}! ¡Por fin! ¡Has vuelto! ¡Me temía que te perdieras el anuncio!"
+
+msgid "hmmm7"
+msgstr "El tiempo es bueno no obstante, ¿a que sí?"
+
+msgid "hmmm6"
+msgstr "… … … Bueno… Pero podría ser…"
+
+msgid "hmmm5"
+msgstr ""
+"Max, por mucho que quieras uno, ya hemos hablado de esto. Ni están haciendo "
+"un parque acuático, ni lo van a hacer."
+
+msgid "hmmm4"
+msgstr "¡Quizás están haciendo un parque acuático!"
+
+msgid "hmmm3"
+msgstr ""
+"¿Qué sentido tiene? La ruta está prácticamente cubierta de hierba de todos "
+"modos."
+
+msgid "hmmm2"
+msgstr ""
+"He oído que están haciendo un nuevo parque. Para \"crear espacios verdes en "
+"la zona\"."
+
+msgid "hmmm"
+msgstr "Me pregunto qué están haciendo por aquí..."
+
+msgid "theenergy"
+msgstr "La energía de ese hombre no tiene límite..."

@@ -30,7 +30,7 @@ class Movement:
         self._move_direction = direction
 
     def pathfind(self, destination):
-        """ Find a path and also start it
+        """Find a path and also start it
 
         :param destination:
         :rtype: None
@@ -50,7 +50,7 @@ class Movement:
             pass
 
     def cancel_path(self):
-        """ Stop following a path.
+        """Stop following a path.
 
         NPC may still continue to move if move_direction has been set
 
@@ -61,7 +61,7 @@ class Movement:
         self.path_origin = None
 
     def cancel_movement(self):
-        """ Gracefully stop moving.  If in a path, then will finish tile movement.
+        """Gracefully stop moving.  If in a path, then will finish tile movement.
 
         Generally, use this if you want to stop.  Will stop at a tile coord.
 
@@ -81,7 +81,7 @@ class Movement:
             self.cancel_path()
 
     def abort_movement(self):
-        """ Stop moving, cancel paths, and reset tile position to center
+        """Stop moving, cancel paths, and reset tile position to center
 
         The tile postion will be truncated, so even if there is another
         closer tile, it will always return the the tile where movement
@@ -99,7 +99,7 @@ class Movement:
         self.cancel_path()
 
     def move(self, time_passed_seconds):
-        """ Move the entity around the map
+        """Move the entity around the map
 
         * check if the move_direction variable is set
         * set the movement speed
@@ -152,7 +152,7 @@ class Movement:
             self.animation = "idle"
 
     def move_one_tile(self, direction):
-        """ Ask entity to move one tile
+        """Ask entity to move one tile
 
         :type direction: str
         :param direction: up, down, left right
@@ -162,7 +162,7 @@ class Movement:
         self.path.append(trunc(self.tile_pos + dirs2[direction]))
 
     def valid_movement(self, tile):
-        """ Check the game map to determine if a tile can be moved into
+        """Check the game map to determine if a tile can be moved into
 
         * Only checks adjacent tiles
         * Uses all advanced tile movements, like continue tiles
@@ -174,7 +174,7 @@ class Movement:
 
     @property
     def move_destination(self):
-        """ Only used for the player_moved condition.
+        """Only used for the player_moved condition.
 
         :return:
         """
@@ -184,7 +184,7 @@ class Movement:
             return None
 
     def next_waypoint(self):
-        """ Take the next step of the path, stop if way is blocked
+        """Take the next step of the path, stop if way is blocked
 
         * This must be called after a path is set
         * Not needed to be called if existing path is modified
@@ -213,7 +213,7 @@ class Movement:
                 pass
 
     def check_waypoint(self):
-        """ Check if the waypoint is reached and sets new waypoint if so
+        """Check if the waypoint is reached and sets new waypoint if so
 
         * For most accurate speed, tests distance traveled.
         * Doesn't verify the target position, just distance

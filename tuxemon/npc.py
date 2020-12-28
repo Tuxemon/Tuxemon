@@ -58,7 +58,7 @@ def tile_distance(tile0, tile1):
 
 
 class NPC(Entity):
-    """ Class for humanoid type game objects, NPC, Players, etc
+    """Class for humanoid type game objects, NPC, Players, etc
 
     Currently, all movement is handled by a queue called "path".  This queue
     provides robust movement in a tile based environment.  It supports arbitrary
@@ -66,7 +66,7 @@ class NPC(Entity):
 
     Pathfinding is accomplished by setting the path directly.
 
-    To move one tile, simply set a path of one item.
+    To move one tile, set a path of one item.
     """
 
     party_limit = 6  # The maximum number of tuxemon this npc can hold
@@ -181,7 +181,7 @@ class NPC(Entity):
         self._move_direction = direction
 
     def pathfind(self, destination):
-        """ Find a path and also start it
+        """Find a path and also start it
 
         :param destination:
         :rtype: None
@@ -205,7 +205,7 @@ class NPC(Entity):
             pass
 
     def cancel_path(self):
-        """ Stop following a path.
+        """Stop following a path.
 
         NPC may still continue to move if move_direction has been set
 
@@ -216,7 +216,7 @@ class NPC(Entity):
         self.path_origin = None
 
     def cancel_movement(self):
-        """ Gracefully stop moving.  If in a path, then will finish tile movement.
+        """Gracefully stop moving.  If in a path, then will finish tile movement.
 
         Generally, use this if you want to stop.  Will stop at a tile coord.
 
@@ -236,7 +236,7 @@ class NPC(Entity):
             self.cancel_path()
 
     def abort_movement(self):
-        """ Stop moving, cancel paths, and reset tile position to center
+        """Stop moving, cancel paths, and reset tile position to center
 
         The tile postion will be truncated, so even if there is another
         closer tile, it will always return the the tile where movement
@@ -254,7 +254,7 @@ class NPC(Entity):
         self.cancel_path()
 
     def move(self, time_passed_seconds):
-        """ Move the entity around the game map
+        """Move the entity around the game map
 
         * check if the move_direction variable is set
         * set the movement speed
@@ -276,27 +276,20 @@ class NPC(Entity):
             self.animation = "idle"
 
         if self.pathfinding and not self.path:
-            # wants to pathfind, but there was no path last check
             self.pathfind(self.pathfinding)
 
         if self.path:
             if self.path_origin:
-                # if path origin is set, then npc has started moving
-                # from one tile to another.
                 self.check_waypoint()
             else:
-                # if path origin is not set, then a previous attempt to change
-                # waypoints failed, so try again.
                 self.next_waypoint()
 
-        # does the npc want to move?
         if self._move_direction:
             if self.path and not self.moving:
                 # npc wants to move and has a path, but it is blocked
                 self.cancel_path()
 
             if not self.path:
-                # there is no path, so start a new one
                 self.move_one_tile(self._move_direction)
                 self.next_waypoint()
 
@@ -307,45 +300,37 @@ class NPC(Entity):
             self.cancel_movement()
 
     def move_one_tile(self, direction):
-        """ Ask entity to move one tile
+        """Ask entity to move one tile
 
         :type direction: str
         :param direction: up, down, left right
-
-        :return: None
         """
         self.path.append(trunc(self.tile_pos + dirs2[direction]))
 
     def valid_movement(self, tile):
-        """ Check the game map to determine if a tile can be moved into
+        """Check the game map to determine if a tile can be moved into
 
         * Only checks adjacent tiles
         * Uses all advanced tile movements, like continue tiles
 
         :param tile:
-        :return:
         """
         return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
 
     @property
     def move_destination(self):
-        """ Only used for the player_moved condition.
-
-        :return:
-        """
+        """Only used for the player_moved condition."""
         if self.path:
             return self.path[-1]
         else:
             return None
 
     def next_waypoint(self):
-        """ Take the next step of the path, stop if way is blocked
+        """Take the next step of the path, stop if way is blocked
 
         * This must be called after a path is set
         * Not needed to be called if existing path is modified
         * If the next waypoint is blocked, the waypoint will be removed
-
-        :return: None
         """
         target = self.path[-1]
         direction = get_direction(self.tile_pos, target)
@@ -368,7 +353,7 @@ class NPC(Entity):
                 pass
 
     def check_waypoint(self):
-        """ Check if the waypoint is reached and sets new waypoint if so
+        """Check if the waypoint is reached and sets new waypoint if so
 
         * For most accurate speed, tests distance traveled.
         * Doesn't verify the target position, just distance
@@ -396,12 +381,7 @@ class NPC(Entity):
         will send the monster to PCState archive.
 
         :param monster: The monster.Monster object to add to the player's party.
-
         :type monster: tuxemon.monster.Monster
-
-        :rtype: None
-        :returns: None
-
         """
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
@@ -417,21 +397,16 @@ class NPC(Entity):
         :type monster_slug: str
 
         :rtype: tuxemon.monster.Monster
-        :returns: Monster found
         """
         for monster in self.monsters:
             if monster.slug == monster_slug:
                 return monster
 
     def remove_monster(self, monster):
-        """ Removes a monster from this player's party.
+        """Removes a monster from this player's party.
 
         :param monster: Monster to remove from the player's party.
-
         :type monster: tuxemon.monster.Monster
-
-        :rtype: None
-        :returns: None
         """
         if monster in self.monsters:
             monster.owner = None
@@ -439,24 +414,16 @@ class NPC(Entity):
             self.set_party_status()
 
     def switch_monsters(self, index_1, index_2):
-        """ Swap two monsters in this player's party
+        """Swap two monsters in this player's party
 
         :param index_1/index_2: The indexes of the monsters to switch in the player's party.
-
         :type index_1: int
         :type index_2: int
-
-        :rtype: None
-        :returns: None
         """
         self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
 
     def load_party(self):
-        """ Loads the party of this npc from their npc.json entry.
-
-        :rtype: None
-        :returns: None
-        """
+        """Loads the party of this npc from their npc.json entry."""
         for monster in self.monsters:
             self.remove_monster(monster)
 
@@ -475,11 +442,7 @@ class NPC(Entity):
             self.add_monster(monster)
 
     def set_party_status(self):
-        """ Records important information about all monsters in the party.
-
-        :rtype: None
-        :returns: None
-        """
+        """Records important information about all monsters in the party."""
         if not self.isplayer or len(self.monsters) == 0:
             return
 

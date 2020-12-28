@@ -4,7 +4,7 @@ class Space:
     """
 
     def pos_update(self):
-        """ WIP.  Required to be called after position changes
+        """WIP.  Required to be called after position changes
 
         :return:
         """
@@ -15,7 +15,7 @@ class Space:
 class Body:
     # === PHYSICS START ================================================================
     def stop_moving(self):
-        """ Completely stop all movement
+        """Completely stop all movement
 
         :return: None
         """
@@ -24,14 +24,14 @@ class Body:
         self.velocity3.z = 0
 
     def pos_update(self):
-        """ WIP.  Required to be called after position changes
+        """WIP.  Required to be called after position changes
 
         :return:
         """
         self.tile_pos = proj(self.position3)
 
     def update_physics(self, td):
-        """ Move the entity according to the movement vector
+        """Move the entity according to the movement vector
 
         :param td:
         :return:
@@ -40,7 +40,7 @@ class Body:
         self.pos_update()
 
     def set_position(self, pos):
-        """ Set the entity's position in the game world
+        """Set the entity's position in the game world
 
         :param pos:
         :return:

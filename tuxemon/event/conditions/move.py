@@ -23,13 +23,12 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class TrueCondition(EventCondition):
-    """ This function always returns true unless the operator is set to "is_not"
-    """
+    """This function always returns true unless the operator is set to "is_not" """
 
     name = "true"
 
     def test(self, context, event, condition):
-        """ This function always returns true unless the operator is set to "is_not"
+        """This function always returns true unless the operator is set to "is_not"
 
         :param event:
         :param context: The session object

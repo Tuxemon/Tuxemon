@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 
 def main(load_slot=None):
-    """ Start new local game using the pygame interface
+    """Start new local game using the pygame interface
 
     :rtype: None
     :returns: None

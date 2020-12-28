@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 
 
 class EventAction:
-    """ EventActions are executed during gameplay.
+    """EventActions are executed during gameplay.
 
     EventAction subclasses implement "actions" defined in Tuxemon maps.
     All subclasses, at minimum, must implement the following:
@@ -129,7 +129,7 @@ class EventAction:
         self._done = False
 
     def __enter__(self):
-        """ Called only once, when the action is started
+        """Called only once, when the action is started
 
         Context Protocol
 
@@ -138,7 +138,7 @@ class EventAction:
         self.start()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """ Called only once, when action is stopped and needs to close
+        """Called only once, when action is stopped and needs to close
 
         Context Protocol
 
@@ -147,7 +147,7 @@ class EventAction:
         self.cleanup()
 
     def stop(self):
-        """ Call when the action is done.  EventAction will be removed at end of frame.
+        """Call when the action is done.  EventAction will be removed at end of frame.
 
         If an EventAction overrides update, it must eventually call this method.
 
@@ -156,7 +156,7 @@ class EventAction:
         self._done = True
 
     def execute(self):
-        """ Blocking call to run the action.  Will setup and cleanup action.
+        """Blocking call to run the action.  Will setup and cleanup action.
 
         This may cause the game to hang if an action is waiting on game changes
 
@@ -166,7 +166,7 @@ class EventAction:
             self.run()
 
     def run(self):
-        """ Blocking call to run the action, without start or cleanup
+        """Blocking call to run the action, without start or cleanup
 
         It is better to use EventAction.execute()
 
@@ -179,7 +179,7 @@ class EventAction:
 
     @property
     def done(self):
-        """ Will be true when action is finished.  If you need the
+        """Will be true when action is finished.  If you need the
             action to stop, call EventAction.stop()
 
         :return:
@@ -187,7 +187,7 @@ class EventAction:
         return self._done
 
     def start(self):
-        """ Called only once, when the action is started
+        """Called only once, when the action is started
 
         For all actions, you will need to override this method.
 
@@ -201,7 +201,7 @@ class EventAction:
         raise NotImplementedError
 
     def update(self):
-        """ Called once per frame while action is running, including the
+        """Called once per frame while action is running, including the
             first frame when EventAction is started.
 
         If you do not override this, then the action will stop after it is
@@ -217,11 +217,10 @@ class EventAction:
         self.stop()
 
     def cleanup(self):
-        """ Called only once, when action is stopped and needs to close
+        """Called only once, when action is stopped and needs to close
 
         You do not need to override this, but it may be useful for some
         actions which require special handling before they are closed.
 
         :return:
         """
-        pass

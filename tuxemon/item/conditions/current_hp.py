@@ -33,7 +33,7 @@ cmp_dict = {None: ge, "<": lt, "<=": le, ">": gt, ">=": ge, "==": eq, "=": eq}
 
 class CurrentHitPointsCondition(ItemCondition):
     """Compares the target Monster's current hitpoints against the given value.
-    If an integer is passed, it will compare against the number directly, if a 
+    If an integer is passed, it will compare against the number directly, if a
     decimal between 0.0 and 1.0 is passed it will compare the current hp against
     the total hp.
 

@@ -23,26 +23,25 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class CombatStartedCondition(EventCondition):
-    """ Checks to see if combat has been started or not.
-    """
+    """Checks to see if combat has been started or not."""
 
     name = "combat_started"
 
     def test(self, context, event, condition):
-        """ Checks to see if combat has been started or not.
+        """Checks to see if combat has been started or not.
 
-            :param event:
-            :param context: The session object
-            :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-                for the format of the dictionary.
+        :param event:
+        :param context: The session object
+        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
+            for the format of the dictionary.
 
-            :type context: tuxemon.session.Session
-            :type condition: Dictionary
+        :type context: tuxemon.session.Session
+        :type condition: Dictionary
 
-            :rtype: Boolean
-            :returns: True or False
+        :rtype: Boolean
+        :returns: True or False
 
-            Valid Parameters: None
+        Valid Parameters: None
 
-            """
+        """
         return context.client.current_state.name == "CombatState"

@@ -24,8 +24,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class PlayerAtCondition(EventCondition):
-    """ Checks to see if an npc is at a current position on the map.
-    """
+    """Checks to see if an npc is at a current position on the map."""
 
     name = "player_at"
 

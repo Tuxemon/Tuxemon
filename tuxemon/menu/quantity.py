@@ -16,7 +16,7 @@ class QuantityMenu(Menu):
         self.shrink_to_items = kwargs.get("shrink_to_items", False)
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value

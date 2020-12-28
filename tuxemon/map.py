@@ -77,16 +77,13 @@ facing = "front", "back", "left", "right"
 
 
 def translate_short_path(path, position=(0, 0)):
-    """ Translate condensed path strings into coordinate pairs
+    """Translate condensed path strings into coordinate pairs
 
     Uses a string of U D L R characters; Up Down Left Right.
     Passing a position will make the path relative to that point.
 
-    :param path: string of path directions; ie "uldr"
-    :type path: str
+    :param path:
     :param position: starting point of the path
-
-    :return: list
     """
     position = Point2(*position)
     for char in path.lower():
@@ -107,18 +104,21 @@ def get_direction(base, target):
 
 
 def tiles_inside_rect(rect, grid_size):
-    """ Iterate all tile positions within this rect from left to right, top to bottom
+    """Iterate all tile positions within this rect from left to right, top to bottom
 
     :param Rect rect: area to get tiles in
     :param Tuple[int, int] grid_size: size of each tile
     :rtype: Iterator[Tuple[int, int]]
     """
-    for y, x in product(range(rect.top, rect.bottom, grid_size[1]), range(rect.left, rect.right, grid_size[0]),):
+    for y, x in product(
+        range(rect.top, rect.bottom, grid_size[1]),
+        range(rect.left, rect.right, grid_size[0]),
+    ):
         yield x // grid_size[0], y // grid_size[1]
 
 
 def snap_to_grid(point, grid_size):
-    """ Snap point to nearest grid intersection
+    """Snap point to nearest grid intersection
 
     :param Tuple[int, int] point: point to snap
     :param Tuple[int, int] grid_size: grid size
@@ -131,7 +131,7 @@ def snap_to_grid(point, grid_size):
 
 
 def snap_to_tile(point, grid_size):
-    """ Snap pixel coordinate to grid, then convert to tile coords
+    """Snap pixel coordinate to grid, then convert to tile coords
 
     :param point:
     :param grid_size:
@@ -142,7 +142,7 @@ def snap_to_tile(point, grid_size):
 
 
 def snap_rect_to_grid(rect, grid_size):
-    """ Align all vertices to the nearest point on grid
+    """Align all vertices to the nearest point on grid
 
     :param Rect rect:
     :param Tuple[int, int] grid_size:
@@ -154,7 +154,7 @@ def snap_rect_to_grid(rect, grid_size):
 
 
 def snap_rect_to_tile(rect, grid_size):
-    """ Align all vertices to the nearest point on grid, then convert to tile coords
+    """Align all vertices to the nearest point on grid, then convert to tile coords
 
     :param Rect rect:
     :param Tuple[int, int] grid_size:
@@ -166,7 +166,7 @@ def snap_rect_to_tile(rect, grid_size):
 
 
 def angle_of_points(point0, point1):
-    """ Find angle between two points
+    """Find angle between two points
 
     :param Tuple[int, int] point0:
     :param Tuple[int, int] point1:
@@ -178,7 +178,7 @@ def angle_of_points(point0, point1):
 
 
 def orientation_by_angle(angle):
-    """ Return "horizontal" or "vertical"
+    """Return "horizontal" or "vertical"
 
     :param Float angle:
     :rtype: str
@@ -193,7 +193,7 @@ def orientation_by_angle(angle):
 
 
 def tiles_along_line(points, tile_size):
-    """ Identify the tiles on either side of the line
+    """Identify the tiles on either side of the line
 
     Lines must be exactly horizontal or vertical and have exactly two points.
     Points will be snapped to nearest tile.
@@ -222,8 +222,7 @@ def tiles_along_line(points, tile_size):
 
 
 class PathfindNode:
-    """ Used in path finding search
-    """
+    """Used in path finding search"""
 
     def __init__(self, value, parent=None):
         self.parent = parent
@@ -261,9 +260,17 @@ class TuxemonMap:
     """
 
     def __init__(
-        self, events, inits, interacts, collision_map, collisions_lines_map, data, edges, filename,
+        self,
+        events,
+        inits,
+        interacts,
+        collision_map,
+        collisions_lines_map,
+        data,
+        edges,
+        filename,
     ):
-        """ Constructor
+        """Constructor
 
         Collision lines:
         Player can walk in tiles, but cannot cross from one to another. Items
@@ -307,14 +314,18 @@ class TuxemonMap:
         self.event_engine.update(dt)
 
     def pathfind(self, start, dest):
-        """ Pathfind
+        """Pathfind
 
         :param start:
         :type dest: tuple
 
         :return:
         """
-        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set(),)
+        pathnode = self.pathfind_r(
+            dest,
+            [PathfindNode(start)],
+            set(),
+        )
 
         if pathnode:
             # traverse the node to get the path
@@ -336,7 +347,7 @@ class TuxemonMap:
             )
 
     def pathfind_r(self, dest, queue, known_nodes):
-        """ Breadth first search algorithm
+        """Breadth first search algorithm
 
         :type dest: tuple
         :type queue: list
@@ -358,7 +369,7 @@ class TuxemonMap:
                     queue.append(new_node)
 
     def get_exits(self, position, collision_map=None, skip_nodes=None):
-        """ Return list of tiles which can be moved into
+        """Return list of tiles which can be moved into
 
         This checks for adjacent tiles while checking for walls, NPCs,
         collision lines, one-way tiles, etc
@@ -434,7 +445,7 @@ class TuxemonMap:
         return adjacent_tiles
 
     def get_collision_map(self):
-        """ Return dictionary for collision testing
+        """Return dictionary for collision testing
 
         Returns a dictionary where keys are (x, y) tile tuples and the values
         are tiles or NPCs.
@@ -456,7 +467,7 @@ class TuxemonMap:
 
     @staticmethod
     def get_explicit_tile_exits(position, tile, skip_nodes):
-        """ Check for exits from tile which are defined in the map
+        """Check for exits from tile which are defined in the map
 
         Checks "continue" and "exits" properties of the tile
 

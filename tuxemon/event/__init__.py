@@ -48,7 +48,7 @@ __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
 def get_npc(context, slug):
-    """ Gets an NPC object by slug.  None is returned if not found.
+    """Gets an NPC object by slug.  None is returned if not found.
 
     Pass "player" to get the player's entity of this session.
 

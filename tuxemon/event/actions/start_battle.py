@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 class StartBattleAction(EventAction):
-    """ Start a battle and switch to the combat module. The parameters must
+    """Start a battle and switch to the combat module. The parameters must
     contain an NPC slug in the NPC database.
 
     Valid Parameters: npc_slug

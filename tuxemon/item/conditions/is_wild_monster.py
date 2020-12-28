@@ -28,8 +28,7 @@ from tuxemon.item.itemcondition import ItemCondition
 
 
 class IsWildMonsterCondition(ItemCondition):
-    """ True if not owned by a trainer
-    """
+    """True if not owned by a trainer"""
 
     name = "is_wild_monster"
     valid_parameters = []

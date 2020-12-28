@@ -56,7 +56,7 @@ def get_cell_coordinates(rect, point, size):
 
 
 def transform_resource_filename(*filename):
-    """ Appends the resource folder name to a filename
+    """Appends the resource folder name to a filename
 
     :param filename: String
     :rtype: basestring
@@ -65,7 +65,7 @@ def transform_resource_filename(*filename):
 
 
 def new_scaled_rect(*args, **kwargs):
-    """ Create a new rect and scale it
+    """Create a new rect and scale it
 
     :param args: Normal args for a Rect
     :param kwargs: Normal kwargs for a Rect
@@ -76,7 +76,7 @@ def new_scaled_rect(*args, **kwargs):
 
 
 def scale_rect(rect, factor=prepare.SCALE):
-    """ Scale a rect.  Returns a new object.
+    """Scale a rect.  Returns a new object.
 
     :param rect: Rect
     :param factor: int
@@ -86,7 +86,7 @@ def scale_rect(rect, factor=prepare.SCALE):
 
 
 def scale_sequence(sequence):
-    """ Scale the thing
+    """Scale the thing
 
     :param sequence:
     :rtype: list
@@ -95,7 +95,7 @@ def scale_sequence(sequence):
 
 
 def scale(number):
-    """ Scale the thing
+    """Scale the thing
 
     :param number: int
     :rtype: int
@@ -123,7 +123,7 @@ def check_parameters(parameters, required=0, exit=True):
 
 
 def calc_dialog_rect(screen_rect):
-    """ Return a rect that is the area for a dialog box on the screen
+    """Return a rect that is the area for a dialog box on the screen
 
     :param screen_rect:
     :return:
@@ -140,7 +140,7 @@ def calc_dialog_rect(screen_rect):
 
 
 def open_dialog(context, text, avatar=None, menu=None):
-    """ Open a dialog with the standard window size
+    """Open a dialog with the standard window size
 
     :param tuxemon.event.eventcontext.EventContext context:
     :param text: list of strings
@@ -154,7 +154,7 @@ def open_dialog(context, text, avatar=None, menu=None):
 
 
 def nearest(l):
-    """ Use rounding to find nearest tile
+    """Use rounding to find nearest tile
 
     :param l:
     :return:
@@ -167,7 +167,7 @@ def trunc(l):
 
 
 def number_or_variable(session, value):
-    """ Returns a numeric game variable by its name
+    """Returns a numeric game variable by its name
     If value is already a number, convert from string to float and return that
 
     :param session:
@@ -189,7 +189,7 @@ def number_or_variable(session, value):
 
 
 def cast_values(parameters, valid_parameters):
-    """ Change all the string values to the expected type
+    """Change all the string values to the expected type
 
     This will also check and enforce the correct parameters for actions
 
@@ -234,7 +234,7 @@ def cast_values(parameters, valid_parameters):
 
 
 def show_item_result_as_dialog(session, item, result):
-    """ Show generic dialog if item was used or not
+    """Show generic dialog if item was used or not
 
     :param tuxemon.session.Session session: Session
     :param tuxemon.item.item.Item item: Item
@@ -275,7 +275,7 @@ def split_escaped(string_to_split, delim=","):
 
 
 def round_to_divisible(x, base=16):
-    """ Rounds a number to a divisible base.
+    """Rounds a number to a divisible base.
 
     This is used to round collision areas that aren't defined well. This
     function assists in making sure collisions work if the map creator didn't
@@ -297,7 +297,7 @@ def round_to_divisible(x, base=16):
 
 
 def copy_dict_with_keys(source, keys):
-    """ Return new dict using only the keys/value from `keys`
+    """Return new dict using only the keys/value from `keys`
 
     If key from keys is not present no error is raised
 

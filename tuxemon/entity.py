@@ -27,12 +27,12 @@ from tuxemon.euclid import Point2, Vector3, Point3
 
 
 class Entity:
-    """ Eventually a class for all things that exist on the
-        game map, like NPCs, players, objects, etc
+    """Eventually a class for all things that exist on the
+    game map, like NPCs, players, objects, etc
 
-        Need to refactor in most NPC code to here.
-        Need to refactor -out- all drawing/sprite code.
-        Consider to refactor out world position/movement into "Body" class
+    Need to refactor in most NPC code to here.
+    Need to refactor -out- all drawing/sprite code.
+    Consider to refactor out world position/movement into "Body" class
     """
 
     def __init__(self):
@@ -47,7 +47,7 @@ class Entity:
 
     # === PHYSICS START ================================================================
     def stop_moving(self):
-        """ Completely stop all movement
+        """Completely stop all movement
 
         :return: None
         """
@@ -56,15 +56,16 @@ class Entity:
         self.velocity3.z = 0
 
     def pos_update(self):
-        """ WIP.  Required to be called after position changes
+        """WIP.  Required to be called after position changes
 
         :return:
         """
         from tuxemon.world import proj
+
         self.tile_pos = proj(self.position3)
 
     def update_physics(self, td):
-        """ Move the entity according to the movement vector
+        """Move the entity according to the movement vector
 
         :param td:
         :return:
@@ -73,7 +74,7 @@ class Entity:
         self.pos_update()
 
     def set_position(self, pos):
-        """ Set the entity's position in the game world
+        """Set the entity's position in the game world
 
         :param pos:
         :return:
@@ -86,22 +87,22 @@ class Entity:
 
     @property
     def moving(self):
-        """ Is the entity moving?
+        """Is the entity moving?
 
         :rtype: bool
         """
         return not self.velocity3 == (0, 0, 0)
 
     def get_state(self, session):
-        """ Get Entities internal state for saving/loading
-        
+        """Get Entities internal state for saving/loading
+
         :param tuxemon.session.Session session:
         :rtype: Dict[str, str]
         """
         raise NotImplementedError
 
     def set_state(self, session, save_data):
-        """ Recreates entity from saved data
+        """Recreates entity from saved data
 
         :param tuxemon.session.Session session:
         :param Dict save_data: Data used to recreate the Entity

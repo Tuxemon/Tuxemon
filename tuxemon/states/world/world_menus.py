@@ -69,7 +69,7 @@ class WorldMenuState(Menu):
         from tuxemon.states.monster import MonsterMenuState
 
         def monster_menu_hook():
-            """ Used to rearrange monsters interactively
+            """Used to rearrange monsters interactively
 
             This is slow b/c forces each slot to be re-rendered.
             Probably not an issue except for very slow systems.
@@ -136,7 +136,7 @@ class WorldMenuState(Menu):
         monster_menu.on_menu_selection_change = monster_menu_hook
 
     def animate_open(self):
-        """ Animate the menu sliding in
+        """Animate the menu sliding in
 
         :return:
         """
@@ -166,7 +166,7 @@ class WorldMenuState(Menu):
         return ani
 
     def animate_close(self):
-        """ Animate the menu sliding out
+        """Animate the menu sliding out
 
         :return:
         """

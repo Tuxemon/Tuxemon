@@ -49,20 +49,118 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 )
 
 SHAPES = {
-    "aquatic": {"armour": 8, "dodge": 4, "hp": 8, "melee": 6, "ranged": 6, "speed": 4,},
-    "blob": {"armour": 8, "dodge": 4, "hp": 8, "melee": 4, "ranged": 8, "speed": 4,},
-    "brute": {"armour": 7, "dodge": 5, "hp": 7, "melee": 8, "ranged": 4, "speed": 5,},
-    "dragon": {"armour": 7, "dodge": 5, "hp": 6, "melee": 6, "ranged": 6, "speed": 6,},
-    "flier": {"armour": 5, "dodge": 7, "hp": 4, "melee": 8, "ranged": 4, "speed": 8,},
-    "grub": {"armour": 7, "dodge": 5, "hp": 7, "melee": 4, "ranged": 8, "speed": 5,},
-    "humanoid": {"armour": 5, "dodge": 7, "hp": 4, "melee": 4, "ranged": 8, "speed": 8,},
-    "hunter": {"armour": 4, "dodge": 8, "hp": 5, "melee": 8, "ranged": 4, "speed": 7,},
-    "landrace": {"armour": 8, "dodge": 4, "hp": 8, "melee": 8, "ranged": 4, "speed": 4,},
-    "leviathan": {"armour": 8, "dodge": 4, "hp": 8, "melee": 6, "ranged": 6, "speed": 4,},
-    "polliwog": {"armour": 4, "dodge": 8, "hp": 5, "melee": 4, "ranged": 8, "speed": 7,},
-    "serpent": {"armour": 6, "dodge": 6, "hp": 6, "melee": 4, "ranged": 8, "speed": 6,},
-    "sprite": {"armour": 6, "dodge": 6, "hp": 4, "melee": 6, "ranged": 6, "speed": 8,},
-    "varmint": {"armour": 6, "dodge": 6, "hp": 6, "melee": 8, "ranged": 4, "speed": 6,},
+    "aquatic": {
+        "armour": 8,
+        "dodge": 4,
+        "hp": 8,
+        "melee": 6,
+        "ranged": 6,
+        "speed": 4,
+    },
+    "blob": {
+        "armour": 8,
+        "dodge": 4,
+        "hp": 8,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 4,
+    },
+    "brute": {
+        "armour": 7,
+        "dodge": 5,
+        "hp": 7,
+        "melee": 8,
+        "ranged": 4,
+        "speed": 5,
+    },
+    "dragon": {
+        "armour": 7,
+        "dodge": 5,
+        "hp": 6,
+        "melee": 6,
+        "ranged": 6,
+        "speed": 6,
+    },
+    "flier": {
+        "armour": 5,
+        "dodge": 7,
+        "hp": 4,
+        "melee": 8,
+        "ranged": 4,
+        "speed": 8,
+    },
+    "grub": {
+        "armour": 7,
+        "dodge": 5,
+        "hp": 7,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 5,
+    },
+    "humanoid": {
+        "armour": 5,
+        "dodge": 7,
+        "hp": 4,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 8,
+    },
+    "hunter": {
+        "armour": 4,
+        "dodge": 8,
+        "hp": 5,
+        "melee": 8,
+        "ranged": 4,
+        "speed": 7,
+    },
+    "landrace": {
+        "armour": 8,
+        "dodge": 4,
+        "hp": 8,
+        "melee": 8,
+        "ranged": 4,
+        "speed": 4,
+    },
+    "leviathan": {
+        "armour": 8,
+        "dodge": 4,
+        "hp": 8,
+        "melee": 6,
+        "ranged": 6,
+        "speed": 4,
+    },
+    "polliwog": {
+        "armour": 4,
+        "dodge": 8,
+        "hp": 5,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 7,
+    },
+    "serpent": {
+        "armour": 6,
+        "dodge": 6,
+        "hp": 6,
+        "melee": 4,
+        "ranged": 8,
+        "speed": 6,
+    },
+    "sprite": {
+        "armour": 6,
+        "dodge": 6,
+        "hp": 4,
+        "melee": 6,
+        "ranged": 6,
+        "speed": 8,
+    },
+    "varmint": {
+        "armour": 6,
+        "dodge": 6,
+        "hp": 6,
+        "melee": 8,
+        "ranged": 4,
+        "speed": 6,
+    },
 }
 
 MAX_LEVEL = 999
@@ -259,7 +357,7 @@ class Monster:
             self.level_up()
 
     def apply_status(self, status):
-        """ Apply a status to the monster
+        """Apply a status to the monster
 
         :type status: tuxemon.technique.Technique
         :rtype: None

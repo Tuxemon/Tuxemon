@@ -87,9 +87,12 @@ class SaveMenuState(PopUpMenu):
     def save(self):
         logger.info("Saving!")
         try:
-            save_data = save.get_save_data(local_session,)
+            save_data = save.get_save_data(
+                local_session,
+            )
             save.save(
-                save_data, self.selected_index + 1,
+                save_data,
+                self.selected_index + 1,
             )
             save.slot_number = self.selected_index
         except Exception as e:

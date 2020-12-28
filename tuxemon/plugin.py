@@ -49,8 +49,7 @@ class Plugin:
 
 
 class PluginManager:
-    """Yapsy semi-compatible plugin manager.
-    """
+    """Yapsy semi-compatible plugin manager."""
 
     def __init__(self, base_folders=None):
         if base_folders is None:
@@ -177,7 +176,7 @@ def get_available_classes(plugin_manager):
 
 
 def load_plugins(path, category="plugins"):
-    """ Load classes using plugin system
+    """Load classes using plugin system
 
     :param path: where plugins are stored
     :param category: optional string for debugging info

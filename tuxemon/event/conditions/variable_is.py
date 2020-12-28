@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 class VariableIsCondition(EventCondition):
-    """ Checks to see if a player game variable has been set. This will look for a particular
+    """Checks to see if a player game variable has been set. This will look for a particular
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
     return true.
     """
@@ -36,7 +36,7 @@ class VariableIsCondition(EventCondition):
     name = "variable_is"
 
     def test(self, context, event, condition):
-        """ Checks to see if a player game variable meets a given condition. This will look
+        """Checks to see if a player game variable meets a given condition. This will look
         for a particular key in the player.game_variables dictionary and see if it exists.
         If it exists, it will return true if the variable is greater than the value.
 

@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 class DialogChoiceAction(EventAction):
-    """ Asks the player to make a choice.
+    """Asks the player to make a choice.
 
     Valid Parameters: choice1:choice2, var_key
     """

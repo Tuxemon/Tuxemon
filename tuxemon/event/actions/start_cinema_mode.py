@@ -23,8 +23,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class StartCinemaModeAction(EventAction):
-    """Starts cinema mode by animating moving black bars to narrow the aspect ratio.
-    """
+    """Starts cinema mode by animating moving black bars to narrow the aspect ratio."""
 
     name = "start_cinema_mode"
     valid_parameters = []

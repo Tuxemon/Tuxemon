@@ -6,7 +6,7 @@ __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
 
 class ScheduledItem:
-    """ A class that describes a scheduled callback.
+    """A class that describes a scheduled callback.
 
     This class is never created by the user; instead, pygame creates and
     returns an instance of this class when scheduling a callback.
@@ -30,8 +30,7 @@ class ScheduledItem:
 
 
 class Scheduler:
-    """Class for scheduling functions.
-    """
+    """Class for scheduling functions."""
 
     def __init__(self, time_function=time.perf_counter):
         """Initialise a Clock, with optional custom time function.
@@ -364,7 +363,7 @@ class Clock(Scheduler):
 
     @staticmethod
     def _least_squares(gradient=1, offset=0):
-        """ source: pyglet.app.App
+        """source: pyglet.app.App
 
         :param gradient:
         :param offset:

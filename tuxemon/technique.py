@@ -149,7 +149,7 @@ class Technique:
         self.sfx = results["sfx"]
 
     def advance_round(self, number=1):
-        """ Advance the turn counters for this technique
+        """Advance the turn counters for this technique
 
         Techniques have two counters currently, a "combat counter" and a "life counter".
         Combat counters should be reset with combat begins.
@@ -170,8 +170,7 @@ class Technique:
         self.next_use = 0
 
     def reset_combat_counter(self):
-        """ Reset the combat counter.
-        """
+        """Reset the combat counter."""
         self._combat_counter = 0
 
     def use(self, user, target):
@@ -239,7 +238,7 @@ class Technique:
         return meta_result
 
     def calculate_damage(self, user, target):
-        """ Calc. damage for the damage technique
+        """Calc. damage for the damage technique
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -252,7 +251,7 @@ class Technique:
         return formula.simple_damage_calculate(self, user, target)
 
     def damage(self, user, target):
-        """ This effect applies damage to a target monster. Damage calculations are based upon the
+        """This effect applies damage to a target monster. Damage calculations are based upon the
         original Pokemon battle damage formula. This effect will be applied if "damage" is defined
         in this technique's effect list.
 
@@ -283,7 +282,7 @@ class Technique:
         }
 
     def apply_status(self, slug, target):
-        """ This effect has a chance to apply a status effect to a target monster.
+        """This effect has a chance to apply a status effect to a target monster.
 
         :param target: The Monster object that we are using this technique on.
         :param slug: The Monster object that we are using this technique on.
@@ -305,7 +304,7 @@ class Technique:
         }
 
     def apply_lifeleech(self, user, target):
-        """ This effect has a chance to apply the lifeleech status effect to a target monster.
+        """This effect has a chance to apply the lifeleech status effect to a target monster.
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -355,7 +354,7 @@ class Technique:
         }
 
     def faint(self, user, target):
-        """ Faint this monster.  Typically, called by combat to faint self, not others.
+        """Faint this monster.  Typically, called by combat to faint self, not others.
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -380,7 +379,7 @@ class Technique:
         }
 
     def swap(self, user, target):
-        """ Used just for combat: change order of monsters
+        """Used just for combat: change order of monsters
 
         Position of monster in party will be changed
 

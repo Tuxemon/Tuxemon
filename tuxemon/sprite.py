@@ -55,7 +55,7 @@ class Sprite(pygame.sprite.DirtySprite):
         self._needs_update = False
 
     def draw(self, surface, rect=None):
-        """ Draw the sprite to the surface
+        """Draw the sprite to the surface
 
         This operation does not scale the sprite, so it may exceed
         the size of the area passed.
@@ -166,9 +166,9 @@ class CaptureDeviceSprite(Sprite):
         super().__init__()
 
     def update_state(self):
-        """ Updates the state of the capture device.
+        """Updates the state of the capture device.
 
-            :return: the new state
+        :return: the new state
         """
         if self.state == "empty":
             self.sprite.image = self.empty
@@ -184,10 +184,10 @@ class CaptureDeviceSprite(Sprite):
         return self.state
 
     def draw(self, animate):
-        """ Animates the capture device in game.
+        """Animates the capture device in game.
 
-            :param animate: the animation function
-            :return:
+        :param animate: the animation function
+        :return:
         """
         sprite = self.sprite
         sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
@@ -197,7 +197,7 @@ class CaptureDeviceSprite(Sprite):
 
 
 class SpriteGroup(pygame.sprite.LayeredUpdates):
-    """ Sane variation of a pygame sprite group
+    """Sane variation of a pygame sprite group
 
     Features:
     * Supports Layers
@@ -257,7 +257,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         return dirty
 
     def extend(self, sprites, **kwargs):
-        """ Add a sequence of sprites to the SpriteGroup
+        """Add a sequence of sprites to the SpriteGroup
 
         :param sprites: Sequence (list, set, etc)
         :param kwargs:
@@ -270,7 +270,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             self.add(sprite, **kwargs)
 
     def add(self, sprite, **kwargs):
-        """ Add a sprite to group.  do not pass a sequence or iterator
+        """Add a sprite to group.  do not pass a sequence or iterator
 
         LayeredUpdates.add(*sprites, **kwargs): return None
         If the sprite you add has an attribute _layer, then that layer will be
@@ -288,8 +288,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             raise TypeError
 
     def calc_bounding_rect(self):
-        """A rect object that contains all sprites of this group
-        """
+        """A rect object that contains all sprites of this group"""
         sprites = self.sprites()
         if not sprites:
             return self.rect
@@ -311,8 +310,7 @@ class RelativeGroup(SpriteGroup):
         super().__init__(**kwargs)
 
     def calc_bounding_rect(self):
-        """A rect object that contains all sprites of this group
-        """
+        """A rect object that contains all sprites of this group"""
         rect = super().calc_bounding_rect()
         # return self.calc_absolute_rect(rect)
         return rect
@@ -366,7 +364,7 @@ class MenuSpriteGroup(SpriteGroup):
     """
 
     def determine_cursor_movement(self, index, event):
-        """ Given an event, determine a new selected item offset
+        """Given an event, determine a new selected item offset
 
         You must pass the currently selected object
         The return value will be the newly selected object index
@@ -453,7 +451,7 @@ class VisualSpriteList(RelativeGroup):
         super().draw(surface)
 
     def arrange_menu_items(self):
-        """ Iterate through menu items and position them in the menu
+        """Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
         :returns: None
@@ -492,7 +490,7 @@ class VisualSpriteList(RelativeGroup):
         self._needs_arrange = False
 
     def determine_cursor_movement(self, *args):
-        """ Given an event, determine a new selected item offset
+        """Given an event, determine a new selected item offset
 
         You must pass the currently selected object
         The return value will be the newly selected object index
@@ -507,7 +505,7 @@ class VisualSpriteList(RelativeGroup):
             raise RuntimeError
 
     def _determine_cursor_movement_horizontal(self, index, event):
-        """ Given an event, determine a new selected item offset
+        """Given an event, determine a new selected item offset
 
         You must pass the currently selected object
         The return value will be the newly selected object index

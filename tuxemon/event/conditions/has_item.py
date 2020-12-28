@@ -28,7 +28,7 @@ cmp_dict = {None: ge, "less_than": lt, "less_or_equal": le, "greater_than": gt, 
 
 
 class HasItemCondition(EventCondition):
-    """ Checks to see if a NPC inventory contains something
+    """Checks to see if a NPC inventory contains something
 
     inventory_contains [npc_slug or player] [item slug] [operator] [quantity]
 
@@ -46,7 +46,7 @@ class HasItemCondition(EventCondition):
     name = "has_item"
 
     def test(self, context, event, condition):
-        """ Checks to see the player is has a monster in his party
+        """Checks to see the player is has a monster in his party
 
         :param event:
         :type context: tuxemon.session.Session

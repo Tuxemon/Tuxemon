@@ -41,8 +41,7 @@ logger = logging.getLogger(__name__)
 
 
 class WorldState(state.State):
-    """ The state responsible for the world movement and interaction
-    """
+    """The state responsible for the world movement and interaction"""
 
     keymap = {
         buttons.UP: intentions.UP,
@@ -78,12 +77,11 @@ class WorldState(state.State):
         self.set_player_npc(self.player_npc)
 
     def lock_controls(self):
-        """ Prevent input from moving the player
-        """
+        """Prevent input from moving the player"""
         self.allow_player_movement = False
 
     def unlock_controls(self):
-        """ Allow the player to move
+        """Allow the player to move
 
         If the player was previously holding a direction down,
         then the player will start moving after this is called.
@@ -93,13 +91,12 @@ class WorldState(state.State):
             self.move_player(self.wants_to_move_player)
 
     def set_player_npc(self, entity):
-        """ Set the npc which is controlled and set camera to follow them
-        """
+        """Set the npc which is controlled and set camera to follow them"""
         self.player_npc = entity
         self.view.follow(entity)
 
     def stop_player(self):
-        """ Reset controls and stop player movement at once.  Do not lock controls
+        """Reset controls and stop player movement at once.  Do not lock controls
 
         If player was in a movement when stopped, the player will be moved to end.
         """
@@ -109,7 +106,7 @@ class WorldState(state.State):
             self.player_npc.cancel_movement()
 
     def stop_and_reset_player(self):
-        """ Reset controls, stop player and abort movement.  Do not lock controls.
+        """Reset controls, stop player and abort movement.  Do not lock controls.
 
         Movement is aborted here, so the player will not complete movement
         to a tile.  It will be reset to the tile where movement started.
@@ -122,30 +119,26 @@ class WorldState(state.State):
             self.player_npc.abort_movement()
 
     def move_player(self, direction: str):
-        """ Move player in a direction.  Changes facing.
-        """
+        """Move player in a direction.  Changes facing."""
         self.session.world.eventengine.execute_action(self.session, "player_face", [direction])
         if self.player_npc is not None:
             self.player_npc.move_direction(direction)
 
     def pause(self):
-        """ Called before another state gets focus
-        """
+        """Called before another state gets focus"""
         self.lock_controls()
         self.stop_player()
 
     def resume(self):
-        """ Called after returning focus to this state
-        """
+        """Called after returning focus to this state"""
         self.unlock_controls()
 
     def draw(self, surface):
-        """ Draw the game world to the screen
-        """
+        """Draw the game world to the screen"""
         self.view.draw(surface)
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -196,7 +189,7 @@ class WorldState(state.State):
         return event
 
     def translate_input_event(self, event):
-        """ Translate a key to a game input
+        """Translate a key to a game input
 
         :type event: tuxemon.input.events.PlayerInput
         :rtype: tuxemon.input.events.PlayerInput
@@ -215,8 +208,7 @@ class WorldState(state.State):
     # boneyard
 
     def handle_interaction(self, event_data, registry):
-        """Presents options window when another player has interacted with this player.
-        """
+        """Presents options window when another player has interacted with this player."""
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
         networking.update_client(target, event_data["char_dict"], self.game)

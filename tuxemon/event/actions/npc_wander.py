@@ -26,7 +26,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class NpcWanderAction(EventAction):
-    """ Makes an NPC wander around the map
+    """Makes an NPC wander around the map
 
     Valid Parameters: npc_slug, frequency
     """

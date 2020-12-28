@@ -60,7 +60,7 @@ class AnimBase(pygame.sprite.Sprite):
         self._callbacks = defaultdict(list)
 
     def schedule(self, func, when=None):
-        """ Schedule a callback during operation of Task or Animation
+        """Schedule a callback during operation of Task or Animation
 
         The callback is any callable object.  You can specify different
         times for the callback to be executed, according to the following:
@@ -94,7 +94,7 @@ class AnimBase(pygame.sprite.Sprite):
 
 
 class Task(AnimBase):
-    """ Execute functions at a later time and optionally loop it
+    """Execute functions at a later time and optionally loop it
 
     This is a silly little class meant to make it easy to create
     delayed or looping events without any complicated hooks into
@@ -158,7 +158,7 @@ class Task(AnimBase):
         self.schedule(callback)
 
     def chain(self, callback, interval=0, times=1):
-        """ Schedule a callback to execute when this one is finished
+        """Schedule a callback to execute when this one is finished
 
         If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
@@ -175,7 +175,7 @@ class Task(AnimBase):
         self.chain_task(task)
 
     def chain_task(self, *others):
-        """ Schedule Task(s) to execute when this one is finished
+        """Schedule Task(s) to execute when this one is finished
 
         If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
@@ -192,7 +192,7 @@ class Task(AnimBase):
         return others
 
     def update(self, dt):
-        """ Update the Task
+        """Update the Task
 
         The unit of time passed must match the one used in the
         constructor.
@@ -219,8 +219,7 @@ class Task(AnimBase):
                 self._execute_callbacks("on interval")
 
     def finish(self):
-        """ Force task to finish, while executing callbacks
-        """
+        """Force task to finish, while executing callbacks"""
         if self._state is ANIMATION_RUNNING:
             self._state = ANIMATION_FINISHED
             self._execute_callbacks("on interval")
@@ -229,8 +228,7 @@ class Task(AnimBase):
             self._cleanup()
 
     def abort(self):
-        """ Force task to finish, without executing callbacks
-        """
+        """Force task to finish, without executing callbacks"""
         self._state = ANIMATION_FINISHED
         self._cleanup()
 

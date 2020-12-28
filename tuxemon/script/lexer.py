@@ -13,6 +13,7 @@ class Lexer:
     """
     Lexer for game script
     """
+
     word = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_${}().^-:'\"!\\/?<>"
     whitespace = " \t"
     comma = ","
@@ -24,19 +25,22 @@ class Lexer:
         self.stream = stream
         self.char = ""
         self.state = None
-        self.fsm = SimpleFSM((
-            (CMA, CMA, CMA, "die"),
-            (NUL, WRD, WRD, "store"),
-            (NUL, NUL, NUL, "eof"),
-            (SPC, CMA, CMA, "die"),
-            (SPC, NUL, NUL, "break"),
-            (SPC, SPC, SPC, "whitespace"),
-            (SPC, WRD, WRD, "break"),
-            (WRD, CMA, CMA, "break"),
-            (WRD, NUL, NUL, "break"),
-            (WRD, SPC, SPC, "break"),
-            (WRD, WRD, WRD, "store"),
-        ), initial=NUL)
+        self.fsm = SimpleFSM(
+            (
+                (CMA, CMA, CMA, "die"),
+                (NUL, WRD, WRD, "store"),
+                (NUL, NUL, NUL, "eof"),
+                (SPC, CMA, CMA, "die"),
+                (SPC, NUL, NUL, "break"),
+                (SPC, SPC, SPC, "whitespace"),
+                (SPC, WRD, WRD, "break"),
+                (WRD, CMA, CMA, "break"),
+                (WRD, NUL, NUL, "break"),
+                (WRD, SPC, SPC, "break"),
+                (WRD, WRD, WRD, "store"),
+            ),
+            initial=NUL,
+        )
 
     def __iter__(self):
         return self
@@ -66,7 +70,7 @@ class Lexer:
                 action = self.fsm(CMA)
             else:
                 raise ValueError(f"unexpected character: {self.char}")
-            if 'store' == action:
+            if "store" == action:
                 token += self.char
                 self.char = ""
             elif "break" == action:

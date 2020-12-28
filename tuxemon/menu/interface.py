@@ -5,9 +5,7 @@ from tuxemon.ui.draw import GraphicBox
 
 
 class Bar:
-    """ Common bar class for UI elements.
-
-    """
+    """Common bar class for UI elements."""
 
     border_filename = "gfx/ui/monster/hp_bar.png"
     border = None
@@ -24,7 +22,7 @@ class Bar:
 
     @staticmethod
     def calc_inner_rect(rect):
-        """ Calculate the inner rect to draw fg_color that fills bar
+        """Calculate the inner rect to draw fg_color that fills bar
             The values here are calculated based on game scale and
             the content of the border image file.
 
@@ -40,9 +38,7 @@ class Bar:
 
 
 class HpBar(Bar):
-    """ HP bar for UI elements.
-
-    """
+    """HP bar for UI elements."""
 
     border_filename = "gfx/ui/monster/hp_bar.png"
 
@@ -54,8 +50,8 @@ class HpBar(Bar):
         self.value = value
 
     def load_graphics(self):
-        """ Image become class attribute, so is shared.
-            Eventually, implement some game-wide image caching
+        """Image become class attribute, so is shared.
+        Eventually, implement some game-wide image caching
         """
         image = graphics.load_and_scale(self.border_filename)
         HpBar.border = GraphicBox(image)
@@ -70,9 +66,7 @@ class HpBar(Bar):
 
 
 class ExpBar(Bar):
-    """ EXP bar for UI elements.
-
-    """
+    """EXP bar for UI elements."""
 
     border_filename = "gfx/ui/monster/exp_bar.png"
 
@@ -84,8 +78,8 @@ class ExpBar(Bar):
         self.value = value
 
     def load_graphics(self):
-        """ Image become class attribute, so is shared.
-            Eventually, implement some game-wide image caching
+        """Image become class attribute, so is shared.
+        Eventually, implement some game-wide image caching
         """
         image = graphics.load_and_scale(self.border_filename)
         ExpBar.border = GraphicBox(image)

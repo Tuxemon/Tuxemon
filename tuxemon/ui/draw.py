@@ -24,7 +24,7 @@ layout = layout(prepare.SCALE)
 
 
 class GraphicBox(Sprite):
-    """ Generic class for drawing graphical boxes
+    """Generic class for drawing graphical boxes
 
     Draws a border and can fill in the box with a _color from the border file,
     an external file, or a solid _color.

@@ -24,7 +24,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class SetPlayerAttributeAction(EventAction):
-    """ Sets the given attribute of the player character to the given value.
+    """Sets the given attribute of the player character to the given value.
 
     Valid Parameters: attribute, value
     """

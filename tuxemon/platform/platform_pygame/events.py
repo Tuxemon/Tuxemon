@@ -9,8 +9,7 @@ from tuxemon.session import local_session
 
 
 class PygameEventQueueHandler(EventQueueHandler):
-    """ Handle all events from the pygame event queue
-    """
+    """Handle all events from the pygame event queue"""
 
     def __init__(self):
         # TODO: move this config to the config file
@@ -21,7 +20,7 @@ class PygameEventQueueHandler(EventQueueHandler):
             self._inputs[0].append(PygameMouseInput())
 
     def process_events(self):
-        """ Process all pygame events
+        """Process all pygame events
 
         * Should never return pygame-unique events
         * All events returned should be Tuxemon game specific
@@ -154,7 +153,7 @@ class PygameKeyboardInput(PygameEventHandler):
     }
 
     def process_event(self, pg_event):
-        """ Translate a pg event to an internal game event
+        """Translate a pg event to an internal game event
 
         :type pg_event: pg.event.Event
         """
@@ -187,7 +186,7 @@ class PygameKeyboardInput(PygameEventHandler):
 
 class PygameTouchOverlayInput(PygameEventHandler):
     def get_overlay_event(self, event):
-        """ Process all events from the controller overlay and pass them down to
+        """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
         events for compatibility. This is primarily used for the mobile version
         of Tuxemon.

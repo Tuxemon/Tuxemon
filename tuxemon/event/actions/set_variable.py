@@ -23,7 +23,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class SetVariableAction(EventAction):
-    """ Sets the key in the player.game_variables dictionary.
+    """Sets the key in the player.game_variables dictionary.
 
     Valid Parameters: variable_name:value
 

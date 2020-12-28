@@ -25,7 +25,7 @@ layout = layout(prepare.SCALE)
 
 
 class Menu(state.State):
-    """ A class to create menu objects.
+    """A class to create menu objects.
 
     Menus are a type of game state.  Menus that are the top state
     will receive player input and respond to it.  They may be
@@ -78,7 +78,7 @@ class Menu(state.State):
         self.reload_sounds()  # load default sounds
 
     def create_new_menu_items_group(self):
-        """ Create a new group for menu items to be contained in
+        """Create a new group for menu items to be contained in
 
         Override if you need special placement for the menu items.
 
@@ -92,7 +92,7 @@ class Menu(state.State):
         self.menu_sprites = RelativeGroup(parent=self.menu_items)
 
     def shutdown(self):
-        """ Clear objects likely to cause cyclical references
+        """Clear objects likely to cause cyclical references
 
         :returns: None
         """
@@ -108,7 +108,7 @@ class Menu(state.State):
         del self.menu_sprites
 
     def start_text_animation(self, text_area, callback):
-        """ Start an animation to show textarea, one character at a time
+        """Start an animation to show textarea, one character at a time
 
         :param text_area: TextArea to animate
         :type text_area: tuxemon.ui.text.TextArea
@@ -131,7 +131,7 @@ class Menu(state.State):
         next_character()
 
     def animate_text(self, text_area, text, callback):
-        """ Set and animate a text area
+        """Set and animate a text area
 
         :param text: Test to display
         :type text: basestring
@@ -145,7 +145,7 @@ class Menu(state.State):
         self.start_text_animation(text_area, callback)
 
     def alert(self, message, callback=None):
-        """ Write a message to the first available text area
+        """Write a message to the first available text area
 
         Generally, a state will have just one, if any, text area.
         The first one found will be use to display the message.
@@ -169,7 +169,7 @@ class Menu(state.State):
         self.animate_text(find_textarea(), message, callback)
 
     def initialize_items(self):
-        """ Advanced way to fill in menu items
+        """Advanced way to fill in menu items
 
         For menus that change dynamically, use of this method will
         make changes to the menu easier.
@@ -178,7 +178,7 @@ class Menu(state.State):
         """
 
     def is_valid_entry(self, game_object):
-        """ Checked when items are loaded/reloaded.  The return value will enable/disable menu items
+        """Checked when items are loaded/reloaded.  The return value will enable/disable menu items
 
         WIP.  The value passed should be Item.game_object
 
@@ -188,7 +188,7 @@ class Menu(state.State):
         return True
 
     def reload_items(self):
-        """ Empty all items in the menu and re-add them
+        """Empty all items in the menu and re-add them
 
         Only works if initialize_items is used
 
@@ -215,7 +215,7 @@ class Menu(state.State):
                     break
 
     def build_item(self, label, callback, icon=None):
-        """ Create a menu item and add it to the menu
+        """Create a menu item and add it to the menu
 
         :param label: Some text
         :param icon: pygame surface (not used yet)
@@ -227,7 +227,7 @@ class Menu(state.State):
         self.add(item)
 
     def add(self, item):
-        """ Add a menu item
+        """Add a menu item
 
         :type item: tuxemon.menu.MenuItem
         :return: None
@@ -236,7 +236,7 @@ class Menu(state.State):
         self._needs_refresh = True
 
     def fit_border(self):
-        """ Resize the window border to fit the contents of the menu
+        """Resize the window border to fit the contents of the menu
 
         :return:
         """
@@ -261,14 +261,14 @@ class Menu(state.State):
         self.position_rect()
 
     def reload_sounds(self):
-        """ Reload sounds
+        """Reload sounds
 
         :returns: None
         """
         self.menu_select_sound = audio.load_sound(self.menu_select_sound_filename)
 
     def shadow_text(self, text, bg=(192, 192, 192), fg=None):
-        """ Draw shadowed text
+        """Draw shadowed text
 
         :param text: Text to draw
         :param bg:
@@ -290,8 +290,8 @@ class Menu(state.State):
         return image
 
     def load_graphics(self):
-        """ Loads all the graphical elements of the menu
-            Will load some elements from disk, so needs to be called at least once.
+        """Loads all the graphical elements of the menu
+        Will load some elements from disk, so needs to be called at least once.
         """
         if not self.transparent:
             # load and scale the _background
@@ -312,7 +312,7 @@ class Menu(state.State):
         self.arrow = MenuCursor(image)
 
     def show_cursor(self):
-        """ Show the cursor that indicates the selected object
+        """Show the cursor that indicates the selected object
 
         :returns: None
         """
@@ -322,7 +322,7 @@ class Menu(state.State):
         self.get_selected_item().in_focus = True
 
     def hide_cursor(self):
-        """ Hide the cursor that indicates the selected object
+        """Hide the cursor that indicates the selected object
 
         :returns: None
         """
@@ -333,7 +333,7 @@ class Menu(state.State):
                 selected.in_focus = False
 
     def refresh_layout(self):
-        """ Fit border to contents and hide/show cursor
+        """Fit border to contents and hide/show cursor
 
         :return:
         """
@@ -351,7 +351,7 @@ class Menu(state.State):
             self.fit_border()
 
     def draw(self, surface):
-        """ Draws the menu object to a pygame surface.
+        """Draws the menu object to a pygame surface.
 
         :param surface: Surface to draw on
         :type surface: pygame.Surface
@@ -416,7 +416,7 @@ class Menu(state.State):
         self.font = pygame.font.Font(font, self.font_size)
 
     def calc_internal_rect(self):
-        """ Calculate the area inside the borders, if any.
+        """Calculate the area inside the borders, if any.
         If no borders are present, a copy of the menu rect will be returned
 
         :returns: Rect representing space inside borders, if any
@@ -425,7 +425,7 @@ class Menu(state.State):
         return self.window.calc_inner_rect(self.rect)
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -493,7 +493,7 @@ class Menu(state.State):
             return event
 
     def change_selection(self, index, animate=True):
-        """ Force the menu to be evaluated and move cursor and trigger focus changes
+        """Force the menu to be evaluated and move cursor and trigger focus changes
 
         :return: None
         """
@@ -507,7 +507,7 @@ class Menu(state.State):
         self.on_menu_selection_change()  # let subclass know menu has changed
 
     def search_items(self, game_object):
-        """ Non-optimised search through menu_items for a particular thing
+        """Non-optimised search through menu_items for a particular thing
 
         TODO: address the confusing name "game object"
 
@@ -520,7 +520,7 @@ class Menu(state.State):
         return None
 
     def trigger_cursor_update(self, animate=True):
-        """ Force the menu cursor to move into the correct position
+        """Force the menu cursor to move into the correct position
 
         :param animate: If True, then arrow will move smoothly into position
         :returns: None or Animation
@@ -540,7 +540,7 @@ class Menu(state.State):
             return None
 
     def get_selected_item(self):
-        """ Get the Menu Item that is currently selected
+        """Get the Menu Item that is currently selected
 
         :rtype: MenuItem
         :rtype: tuxemon.menu.interface.MenuItem
@@ -585,7 +585,7 @@ class Menu(state.State):
                 self.client.pop_state()
 
     def anchor(self, attribute, value):
-        """ Set an anchor for the menu window
+        """Set an anchor for the menu window
 
         You can pass any string value that is used in a pygame rect,
         for example: "center", "topleft", and "right".
@@ -608,8 +608,7 @@ class Menu(state.State):
             self._anchors[attribute] = value
 
     def position_rect(self):
-        """ Reposition rect taking in account the anchors
-        """
+        """Reposition rect taking in account the anchors"""
         for attribute, value in self._anchors.items():
             setattr(self.rect, attribute, value)
 
@@ -618,7 +617,7 @@ class Menu(state.State):
     # ============================================================================
 
     def calc_menu_items_rect(self):
-        """ Calculate the area inside the internal rect where items are listed
+        """Calculate the area inside the internal rect where items are listed
 
         :rtype: Rect
         """
@@ -631,7 +630,7 @@ class Menu(state.State):
         return menu_rect
 
     def calc_final_rect(self):
-        """ Calculate the area in the game window where menu is shown
+        """Calculate the area in the game window where menu is shown
 
         This value is the __desired__ location and size, and should not change
         over the lifetime of the menu.  It is used to generate animations
@@ -648,13 +647,13 @@ class Menu(state.State):
         return rect
 
     def on_open(self):
-        """ Hook is called after opening animation has finished
+        """Hook is called after opening animation has finished
 
         :return:
         """
 
     def on_menu_selection(self, item):
-        """ Hook for things to happen when player selects a menu option
+        """Hook for things to happen when player selects a menu option
 
         Override in subclass, if you want to
 
@@ -664,7 +663,7 @@ class Menu(state.State):
             item.game_object()
 
     def on_menu_selection_change(self):
-        """ Hook for things to happen after menu selection changes
+        """Hook for things to happen after menu selection changes
 
         Override in subclass
 
@@ -672,7 +671,7 @@ class Menu(state.State):
         """
 
     def animate_open(self):
-        """ Called when menu is going to open
+        """Called when menu is going to open
 
         Menu will not receive input during the animation
         Menu will only play this animation once
@@ -687,7 +686,7 @@ class Menu(state.State):
         return None
 
     def animate_close(self):
-        """ Called when menu is going to open
+        """Called when menu is going to open
 
         Menu will not receive input during the animation
         Menu will play animation only once
@@ -704,12 +703,10 @@ class Menu(state.State):
 
 
 class PopUpMenu(Menu):
-    """ Menu with "pop up" style animation
-
-    """
+    """Menu with "pop up" style animation"""
 
     def animate_open(self):
-        """ Called when menu is going to open
+        """Called when menu is going to open
 
         Menu will not receive input during the animation
         Menu will only play this animation once

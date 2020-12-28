@@ -23,8 +23,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class MonsterFlairCondition(EventCondition):
-    """ Checks to see if the given monster flair matches the expected value
-    """
+    """Checks to see if the given monster flair matches the expected value"""
 
     name = "monster_flair"
 

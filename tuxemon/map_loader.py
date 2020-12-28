@@ -91,7 +91,7 @@ def parse_behav_string(behav_string):
 
 
 def event_actions_and_conditions(items):
-    """ Return list of acts and conditions from a list of items
+    """Return list of acts and conditions from a list of items
 
     :param Rect rect: Area for the event
     :param Iterator[Tuple[str, str]] items: List of [name, value] tuples
@@ -143,39 +143,16 @@ def new_event_object(event_id, name, event_type, rect, properties):
 
 
 class TMXMapLoader:
-    """ Load map from standard tmx files created by Tiled.
-
-    Events and collision regions are loaded and put in the appropriate data
-    structures for the game to understand.
-
-    **Tiled:** http://www.mapeditor.org/
-
-    """
+    """Load map from standard tmx files created by Tiled."""
 
     def load(self, filename):
-        """ Load map data from a tmx map file
+        """Load map data from a tmx map file
 
         Loading the map data is done using the pytmx library.
-
-        Specifications for the TMX map format can be found here:
-        https://github.com/bjorn/tiled/wiki/TMX-Map-Format
-
-        The list of tiles is structured in a way where you can access an
-        individual tile by index number.
-
-        Tile images and other graphical data should not be loaded here.
 
         The collision map is a set of (x,y) coordinates that the player cannot
         walk through. This set is generated based on collision regions defined
         in the map file.
-
-        **Examples:**
-
-        In each map, there are three types of objects: **collisions**,
-        **conditions**, and *actions**. Here is how an action would be defined
-        using the Tiled map editor:
-
-        .. image:: images/map/map_editor_action01.png
 
         :param str filename: The path to the tmx map file to load.
         :rtype: tuxemon.map.TuxemonMap
@@ -218,10 +195,19 @@ class TMXMapLoader:
             elif obj.type == "interact":
                 interacts.append(self.load_event(obj, tile_size))
 
-        return TuxemonMap(events, inits, interacts, collision_map, collision_lines_map, data, edges, filename,)
+        return TuxemonMap(
+            events,
+            inits,
+            interacts,
+            collision_map,
+            collision_lines_map,
+            data,
+            edges,
+            filename,
+        )
 
     def process_line(self, line, tile_size):
-        """ Identify the tiles on either side of the line and block movement along it
+        """Identify the tiles on either side of the line and block movement along it
         :param line:
         :param tile_size:
         :return:
@@ -240,7 +226,7 @@ class TMXMapLoader:
                 yield i, other, orientation
 
     def region_tiles(self, region, grid_size):
-        """ Apply region properties to individual tiles
+        """Apply region properties to individual tiles
 
         Right now our collisions are defined in our tmx file as large regions
         that the player can't pass through. We need to convert these areas
@@ -250,7 +236,6 @@ class TMXMapLoader:
 
         :param region:
         :param grid_size:
-        :return:
         """
         region_conditions = copy_dict_with_keys(region.properties, region_properties)
         rect = snap_rect_to_grid(self.rect_from_object(region), grid_size)
@@ -258,11 +243,10 @@ class TMXMapLoader:
             yield tile_position, self.extract_region_properties(region_conditions)
 
     def load_event(self, tiled_object, tile_size):
-        """ Return MapEvent for the tiled object
+        """Return MapEvent for the tiled object
 
         :param tiled_object:
         :param tile_size:
-        :return:
         """
         return new_event_object(
             tiled_object.id,
@@ -274,7 +258,7 @@ class TMXMapLoader:
 
     @staticmethod
     def extract_region_properties(region):
-        """ Return Dict of data we need, ignoring what we don't
+        """Return Dict of data we need, ignoring what we don't
 
         :param Dict region:
         :rtype:  Dict
@@ -295,7 +279,7 @@ class TMXMapLoader:
 
     @staticmethod
     def rect_from_object(obj):
-        """ Return Rect from TiledObject
+        """Return Rect from TiledObject
 
         :param obj: TiledObject
         :rtype: Rect

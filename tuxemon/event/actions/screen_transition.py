@@ -23,7 +23,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class ScreenTransitionAction(EventAction):
-    """ Initiates a screen transition
+    """Initiates a screen transition
 
     Valid Parameters: transition_time_in_seconds
     """

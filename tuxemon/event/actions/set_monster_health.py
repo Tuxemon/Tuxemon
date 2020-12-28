@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 
 class SetMonsterHealthAction(EventAction):
-    """ Changes the hp of a monster in the current player's party. The action parameters
+    """Changes the hp of a monster in the current player's party. The action parameters
     may contain a monster slot and the amount of health. If no slot is specified,
     all monsters are healed. If no health is specified, the hp is maxed out.
 

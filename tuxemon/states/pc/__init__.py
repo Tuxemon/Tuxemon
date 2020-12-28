@@ -50,8 +50,7 @@ def add_menu_items(state, items):
 
 
 class PCState(PopUpMenu):
-    """ The state responsible in game settings.
-    """
+    """The state responsible in game settings."""
 
     shrink_to_items = True
 
@@ -73,7 +72,7 @@ class PCState(PopUpMenu):
 
 
 class MultiplayerMenu(PopUpMenu):
-    """ MP Menu
+    """MP Menu
 
     code salvaged from commit 6fa20da714c7b794cbe1e8a22168fa66cda13a9e
     """
@@ -146,8 +145,7 @@ class MultiplayerMenu(PopUpMenu):
 
 
 class MultiplayerSelect(PopUpMenu):
-    """ Menu to show games found by the network game scanner
-    """
+    """Menu to show games found by the network game scanner"""
 
     shrink_to_items = True
 

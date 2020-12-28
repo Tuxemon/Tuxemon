@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class DialogAction(EventAction):
-    """ Opens a single dialog and waits until it is closed.
+    """Opens a single dialog and waits until it is closed.
 
     Valid Parameters: text_to_display
 

@@ -34,6 +34,7 @@ from lxml import etree
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
+
 # from tuxemon.event.eventcontext import EventContext
 from tuxemon.session import local_session
 
@@ -52,7 +53,7 @@ class EventContext:
 
 
 class RunningEvent:
-    """ Manage MapEvents that are used during gameplay
+    """Manage MapEvents that are used during gameplay
 
     Running events are considered to have all conditions satisfied
     Once started, they will eventually execute all actions of the MapEvent
@@ -84,7 +85,7 @@ class RunningEvent:
         self.current_map_action = None
 
     def get_next_action(self):
-        """ Get the next action to execute, if any
+        """Get the next action to execute, if any
 
         Returns MapActions, which are just data from the map, not live objects
 
@@ -105,7 +106,7 @@ class RunningEvent:
 
 
 class EventEngine:
-    """ A class for the event engine. The event engine checks to see if a group of
+    """A class for the event engine. The event engine checks to see if a group of
     conditions have been met and then executes a set of actions.
 
     Actions in the same MapEvent are not run concurrently, and they can be run over
@@ -132,7 +133,7 @@ class EventEngine:
         self.map = None
 
     def get_action(self, session, name, parameters=None):
-        """ Get an action that is loaded into the engine
+        """Get an action that is loaded into the engine
 
         A new instance will be returned each time
 
@@ -160,7 +161,7 @@ class EventEngine:
             return action(context, parameters)
 
     def get_condition(self, name):
-        """ Get a condition that is loaded into the engine
+        """Get a condition that is loaded into the engine
 
         A new instance will be returned each time
 
@@ -176,7 +177,7 @@ class EventEngine:
             return condition()
 
     def check_condition(self, session, condition, map_event):
-        """ Check if condition is true or false
+        """Check if condition is true or false
 
         :param tuxemon.session.Session session:
         :param tuxemon.event.MapCondition condition:
@@ -190,7 +191,7 @@ class EventEngine:
             return result
 
     def execute_action(self, session, action_name, parameters=None, map=None):
-        """ Load and execute an action
+        """Load and execute an action
 
         This will cause the game to hang if an action waits on game changes
 
@@ -208,7 +209,7 @@ class EventEngine:
         return action.execute()
 
     def start_event(self, session, map_event):
-        """ Begins execution of action list.  Conditions are not checked.
+        """Begins execution of action list.  Conditions are not checked.
 
         :param tuxemon.session.Session session:
         :param tuxemon.event.EventObject map_event:
@@ -224,7 +225,7 @@ class EventEngine:
             self.running_events[map_event.id] = token
 
     def process_map_event(self, map_event):
-        """ Check the conditions of an event, and execute actions if all conditions are valid
+        """Check the conditions of an event, and execute actions if all conditions are valid
 
         Actions will be started, but may finish much later.
 
@@ -256,7 +257,7 @@ class EventEngine:
                 self.start_event(session, map_event)
 
     def process_map_events(self, events):
-        """ Check conditions in a list or sequence.  Start actions
+        """Check conditions in a list or sequence.  Start actions
 
         Simple now, may become more complex
 
@@ -266,7 +267,7 @@ class EventEngine:
             self.process_map_event(event)
 
     def update(self, dt):
-        """ Check all the MapEvents and start their actions if conditions are OK
+        """Check all the MapEvents and start their actions if conditions are OK
 
         :param Float dt: Amount of time passed in seconds since last frame.
         """
@@ -279,14 +280,14 @@ class EventEngine:
         self.update_running_events(dt)
 
     def check_conditions(self):
-        """ Checks conditions.  If any are satisfied, start the MapActions
+        """Checks conditions.  If any are satisfied, start the MapActions
 
         Actions may be started during this function
         """
         self.process_map_events(self.events)
 
     def update_running_events(self, dt):
-        """ Update the events that are running
+        """Update the events that are running
 
         :param Float dt: Amount of time passed in seconds since last frame.
         """
@@ -302,11 +303,11 @@ class EventEngine:
                 * if there is an action, then update it
                 * if action is finished, then clear the pointer to the action and inc. the index, cleanup
                 * RunningEvent will be checked next frame
-                
+
                 This loop will execute as many actions as possible for every MapEvent
                 For example, some actions like set_variable do not require several frames,
                 so all of them will be processed this frame.
-                
+
                 If an action is not finished, then this loop breaks and will check another
                 RunningEvent, but the position in the action list is remembered and will be restored.
                 """
@@ -320,7 +321,11 @@ class EventEngine:
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(e.session, next_action.type, next_action.parameters, )
+                        action = self.get_action(
+                            e.session,
+                            next_action.type,
+                            next_action.parameters,
+                        )
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk
@@ -362,7 +367,7 @@ class EventEngine:
                 pass
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value

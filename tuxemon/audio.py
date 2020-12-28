@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 def load_sound(slug):
-    """ Load a sound from disk, identified by it's slug in the db
+    """Load a sound from disk, identified by it's slug in the db
 
     :param slug: slug for the file record to load
     :type slug: String

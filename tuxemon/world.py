@@ -39,7 +39,7 @@ class Position:
 
 
 def proj(point):
-    """ Project 3d coordinates to 2d.
+    """Project 3d coordinates to 2d.
 
     :param Union[Point2, Tuple] point:
     :rtype: Tuple[Float, Float]
@@ -58,8 +58,7 @@ class World:
     """
 
     def __init__(self):
-        """ Constructor
-        """
+        """Constructor"""
         self.entities = None
         self.entities_by_slug = dict()
         self.entities_by_map = defaultdict(set)
@@ -69,7 +68,7 @@ class World:
         self.eventengine = EventEngine([])
 
     def teleport(self, npc, position):
-        """ Used to instantly move NPC to a new position or map
+        """Used to instantly move NPC to a new position or map
 
         Do not abuse this for small movements.
 
@@ -82,7 +81,7 @@ class World:
         self.add_entity(npc, position)
 
     def process_platform_event(self, platform_event):
-        """ Handle platform events such as key presses
+        """Handle platform events such as key presses
 
         :param platform_event:
         :return:
@@ -91,7 +90,7 @@ class World:
         # self.event_engine.process_event(platform_event)
 
     def update(self, time_delta):
-        """ Update time
+        """Update time
 
         :param float time_delta: Time passed since last frame
         """
@@ -114,7 +113,7 @@ class World:
         self.entities_by_map[position.map_name].add(entity)
 
     def remove_entity(self, slug):
-        """ Remove an entity by its slug
+        """Remove an entity by its slug
 
         :type slug: str
         :return:
@@ -135,7 +134,7 @@ class World:
         del self.entities_by_map[map_name]
 
     def get_entity(self, slug):
-        """ Return Entity by its slug.  Returns None if not found.
+        """Return Entity by its slug.  Returns None if not found.
 
         :type slug: str
         :rtype: Optional[tuxemon.entity.Entity]
@@ -143,14 +142,14 @@ class World:
         return self.entities_by_slug.get(slug)
 
     def get_all_entities(self):
-        """ All entities across all maps
+        """All entities across all maps
 
         :rtype: Iterator[Entity]
         """
         return self.entities_by_slug.values()
 
     def get_entities_on_map(self, map_name):
-        """ All entities on a map
+        """All entities on a map
 
         :param str map_name:
         :rtype: Iterator[Entity]
@@ -166,7 +165,7 @@ class World:
         raise RuntimeError
 
     def move_entities(self, time_delta):
-        """ Move NPCs and Players around according to their state
+        """Move NPCs and Players around according to their state
 
         :type time_delta: float
         :return:
@@ -175,7 +174,7 @@ class World:
             entity.move(time_delta)
 
     def load_map(self, map_name):
-        """ Load a map from disk and cache it
+        """Load a map from disk and cache it
 
         * If the map is already loaded, it will be cleared!
 
@@ -188,7 +187,7 @@ class World:
         return map_object
 
     def get_map(self, map_name):
-        """ Return a TuxemonMap, loading if it needed
+        """Return a TuxemonMap, loading if it needed
 
         :param str map_name: Name of map without the filename
         :rtype: TuxemonMap
@@ -241,8 +240,7 @@ class World:
                         del world.entities_by_slug[sprite]
 
     def broadcast_player_teleport_change(self):
-        """ Tell clients/host that player has moved or changed map after teleport
-        """
+        """Tell clients/host that player has moved or changed map after teleport"""
         raise NotImplementedError("npc positions now include map name")
 
         # Set the transition variable in event_data to false when we're done

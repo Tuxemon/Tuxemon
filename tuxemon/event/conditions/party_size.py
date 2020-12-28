@@ -27,8 +27,7 @@ logger = logging.getLogger(__name__)
 
 
 class PartySizeCondition(EventCondition):
-    """ Checks to see where an NPC is facing
-    """
+    """Checks to see where an NPC is facing"""
 
     name = "party_size"
 

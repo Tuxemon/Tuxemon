@@ -796,8 +796,7 @@ class TuxemonClient:
 
 class DummyNetworking:
     def __init__(self, *args, **kwargs):
-        """The dummy networking object is used when networking is not supported.
-        """
+        """The dummy networking object is used when networking is not supported."""
         self.registry = {}
         self.registered = False
         self.discovered_servers = []

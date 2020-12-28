@@ -43,7 +43,7 @@ def parse_path_parameters(origin, move_list):
 
 
 class NpcMoveAction(EventAction):
-    """ Relative tile movement for NPC
+    """Relative tile movement for NPC
 
     This action blocks until the destination is reached.
 

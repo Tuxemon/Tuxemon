@@ -70,7 +70,7 @@ class PlayerMovedCondition(EventCondition):
         return self.generic_test(context, condition, context.player)
 
     def generic_test(self, session, condition, npc):
-        """ Eventually, this can be made into own condition or something
+        """Eventually, this can be made into own condition or something
 
         :type session: tuxemon.session.Session
         :type condition: tuxemon.event.MapCondition

@@ -36,8 +36,7 @@ logger = logging.getLogger(__name__)
 
 
 class CaptureEffect(ItemEffect):
-    """Attempts to capture the target with 'power' capture strength.
-    """
+    """Attempts to capture the target with 'power' capture strength."""
 
     name = "capture"
     valid_parameters = [(int, "power")]

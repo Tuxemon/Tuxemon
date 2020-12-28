@@ -24,7 +24,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class DelayedTeleportAction(EventAction):
-    """ Set teleport information.  Teleport will be triggered during screen transition
+    """Set teleport information.  Teleport will be triggered during screen transition
 
     Only use this if followed by a transition
     """

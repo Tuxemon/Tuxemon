@@ -28,8 +28,7 @@ from tuxemon.technique import Technique
 
 
 class LearnEffect(ItemEffect):
-    """This effect teaches the target the technique in the parameters.
-    """
+    """This effect teaches the target the technique in the parameters."""
 
     name = "learn"
     valid_parameters = [(str, "technique")]

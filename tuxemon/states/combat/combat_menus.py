@@ -41,7 +41,7 @@ class MainCombatMenuState(PopUpMenu):
             yield MenuItem(image, label, None, callback)
 
     def run(self):
-        """ Cause player to run from the battle
+        """Cause player to run from the battle
 
         TODO: only works for player0
 
@@ -62,7 +62,7 @@ class MainCombatMenuState(PopUpMenu):
             combat_state.trigger_player_run(combat_state.players[0])
 
     def open_swap_menu(self):
-        """ Open menus to swap monsters in party
+        """Open menus to swap monsters in party
 
         :return: None
         """
@@ -92,7 +92,7 @@ class MainCombatMenuState(PopUpMenu):
         menu.monster = self.monster
 
     def open_item_menu(self):
-        """ Open menu to choose item to use
+        """Open menu to choose item to use
 
         :return:
         """
@@ -135,7 +135,7 @@ class MainCombatMenuState(PopUpMenu):
         choose_item()
 
     def open_technique_menu(self):
-        """ Open menus to choose a Technique to use
+        """Open menus to choose a Technique to use
 
         :return: None
         """
@@ -256,7 +256,7 @@ class CombatTargetMenuState(Menu):
                 yield item
 
     def refresh_layout(self):
-        """ Before refreshing the layout, determine the optimal target
+        """Before refreshing the layout, determine the optimal target
 
         :return:
         """
@@ -277,7 +277,7 @@ class CombatTargetMenuState(Menu):
         super().refresh_layout()
 
     def on_menu_selection_change(self):
-        """ Draw borders around sprites when selection changes
+        """Draw borders around sprites when selection changes
 
         :return:
         """

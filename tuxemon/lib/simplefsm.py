@@ -20,7 +20,7 @@ Copyright (c) 2018-2020 Leif Theden
 
 from collections import namedtuple
 
-Event = namedtuple('Event', 'src in_event dst out_event')
+Event = namedtuple("Event", "src in_event dst out_event")
 Event.__new__.__defaults__ = (None, None, None, None)
 
 
@@ -39,14 +39,16 @@ class SimpleFSM:
         src = self.state
         graph = self.graph
         try:
-            state, out = ((src in graph[event] and graph[event][src]) or
-                          ('*' in graph[event] and graph[event]['*']) or
-                          (graph['ThisIsMostCertainlyNotHandled!1']))
+            state, out = (
+                (src in graph[event] and graph[event][src])
+                or ("*" in graph[event] and graph[event]["*"])
+                or (graph["ThisIsMostCertainlyNotHandled!1"])
+            )
         except KeyError:
             try:
-                state, out = graph['*'][src]
+                state, out = graph["*"][src]
             except KeyError:
                 raise ValueError(event, self.state)
 
-        self.state = src if state == '=' else state
+        self.state = src if state == "=" else state
         return out

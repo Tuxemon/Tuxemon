@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 def blit_alpha(target, source, location, opacity):
-    """ Blits a surface with alpha that can also have it's overall transparency modified
+    """Blits a surface with alpha that can also have it's overall transparency modified
     Taken from http://nerdparadise.com/tech/python/pygame/blitopacity/
 
     NOTE: This should be removed because of the performance implications
@@ -167,11 +167,20 @@ class ControllerOverlay:
 
         """
         blit_alpha(
-            game.screen, self.dpad["surface"], self.dpad["position"], game.config.controller_transparency,
+            game.screen,
+            self.dpad["surface"],
+            self.dpad["position"],
+            game.config.controller_transparency,
         )
         blit_alpha(
-            game.screen, self.a_button["surface"], self.a_button["position"], game.config.controller_transparency,
+            game.screen,
+            self.a_button["surface"],
+            self.a_button["position"],
+            game.config.controller_transparency,
         )
         blit_alpha(
-            game.screen, self.b_button["surface"], self.b_button["position"], game.config.controller_transparency,
+            game.screen,
+            self.b_button["surface"],
+            self.b_button["position"],
+            game.config.controller_transparency,
         )

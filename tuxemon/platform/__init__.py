@@ -30,8 +30,7 @@ if mixer is None:
 
 
 def init():
-    """ Must be called before pygame.init() to enable low latency sound
-    """
+    """Must be called before pygame.init() to enable low latency sound"""
     # reduce sound latency.  the pygame defaults were ok for 2001,
     # but these values are more acceptable for faster computers
     if _pygame:

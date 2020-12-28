@@ -143,7 +143,7 @@ class TranslatorPo:
             return text
 
     def maybe_translate(self, text):
-        """ Try to translate the text. If None, return empty string
+        """Try to translate the text. If None, return empty string
 
         :param Optional[str] text: Text to translate
         :rtype: str
@@ -296,7 +296,7 @@ T = TranslatorPo()
 
 
 def replace_text(context, text):
-    """ Replaces ${{var}} tiled variables with their in-session value.
+    """Replaces ${{var}} tiled variables with their in-session value.
 
     :param tuxemon.event.eventcontext.EventContext context:
     :param str text: Raw text from the map

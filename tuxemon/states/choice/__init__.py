@@ -3,7 +3,7 @@ from tuxemon.menu.menu import PopUpMenu
 
 
 class ChoiceState(PopUpMenu):
-    """ Game state with a graphic box and some text in it
+    """Game state with a graphic box and some text in it
 
     Pressing the action button:
     * if text is being displayed, will cause text speed to go max

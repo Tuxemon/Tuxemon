@@ -13,7 +13,7 @@ logger = logging.getLogger()
 
 
 def check_battle_legal(player):
-    """ Checks to see if the player has any monsters fit for battle.
+    """Checks to see if the player has any monsters fit for battle.
 
     :type player: tuxemon.player.Player
 
@@ -41,7 +41,7 @@ def fainted(monster):
 
 
 def get_awake_monsters(player):
-    """ Iterate all non-fainted monsters in party
+    """Iterate all non-fainted monsters in party
 
     :param player:
     :return:

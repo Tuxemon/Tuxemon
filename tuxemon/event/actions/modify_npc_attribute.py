@@ -25,7 +25,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class ModifyNpcAttributeAction(EventAction):
-    """ Modifies the given attribute of the npc by modifier. By default
+    """Modifies the given attribute of the npc by modifier. By default
     this is achieved via addition, but prepending a '%' will cause it to be
     multiplied by the attribute.
 

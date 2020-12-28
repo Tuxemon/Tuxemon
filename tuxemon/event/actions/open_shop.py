@@ -35,13 +35,17 @@ class OpenShopAction(EventAction):
         def buy_menu():
             self.context.client.pop_state()
             self.context.client.push_state(
-                "ShopMenuState", buyer=self.context.player, seller=npc,
+                "ShopMenuState",
+                buyer=self.context.player,
+                seller=npc,
             )
 
         def sell_menu():
             self.context.client.pop_state()
             self.context.client.push_state(
-                "ShopMenuState", buyer=None, seller=self.context.player,
+                "ShopMenuState",
+                buyer=None,
+                seller=self.context.player,
             )
 
         var_menu = [

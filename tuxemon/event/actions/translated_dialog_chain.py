@@ -75,7 +75,11 @@ class TranslatedDialogChainAction(EventAction):
 
         self.stop()
 
-        pages = process_translate_text(self.context, key, replace,)
+        pages = process_translate_text(
+            self.context,
+            key,
+            replace,
+        )
 
         dialog = self.context.client.get_state_by_name("DialogState")
         if dialog:

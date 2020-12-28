@@ -201,7 +201,7 @@ class Item:
         return ret
 
     def advance_round(self):
-        """ Advance round for items that take many rounds to use
+        """Advance round for items that take many rounds to use
 
         * This currently has no use, and may not stay.  It is added
           so that the Item class and Technique class are interchangeable.
@@ -230,7 +230,10 @@ class Item:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(target, event, )
+            result = result and condition.test(
+                target,
+                event,
+            )
 
         return result
 
@@ -269,7 +272,7 @@ class Item:
 
 
 def decode_inventory(session, owner, data):
-    """ Reconstruct inventory from save_data
+    """Reconstruct inventory from save_data
 
     :param session:
     :param owner:
@@ -294,7 +297,7 @@ def decode_inventory(session, owner, data):
 
 
 def encode_inventory(inventory):
-    """ Construct JSON encodable dict for saving
+    """Construct JSON encodable dict for saving
 
     :param inventory: the inventory of the player
     :type inventory: Dictionary

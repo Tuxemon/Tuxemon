@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class DialogChainAction(EventAction):
-    """ Opens a dialog and waits.  Other dialog chains will add text to the dialog
+    """Opens a dialog and waits.  Other dialog chains will add text to the dialog
         without closing it.  Dialog chains must be ended with the ${{end}} keyword.
 
     Valid Parameters: text_to_display

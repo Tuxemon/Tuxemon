@@ -13,8 +13,7 @@ assert QuantityMenu
 
 
 class ItemMenuState(Menu):
-    """ The item menu allows you to view and use items in your inventory.
-    """
+    """The item menu allows you to view and use items in your inventory."""
 
     background_filename = "gfx/ui/item/item_menu_bg.png"
     draw_borders = False
@@ -61,7 +60,7 @@ class ItemMenuState(Menu):
         return self.client.active_states[dex + 1].name
 
     def on_menu_selection(self, menu_item):
-        """ Called when player has selected something from the inventory
+        """Called when player has selected something from the inventory
 
         Currently, opens a new menu depending on the state context
 
@@ -81,7 +80,7 @@ class ItemMenuState(Menu):
             self.open_confirm_use_menu(item)
 
     def open_confirm_use_menu(self, item):
-        """ Confirm if player wants to use this item, or not
+        """Confirm if player wants to use this item, or not
 
         :return: None
         """
@@ -124,12 +123,12 @@ class ItemMenuState(Menu):
         open_choice_menu()
 
     def sort_inventory(self, inventory):
-        """ Sort inventory in a usable way.  Expects a list of inventory properties.
-        
+        """Sort inventory in a usable way.  Expects a list of inventory properties.
+
         * Group items by category
         * Sort in groups by name
         * Group order: Potions, Food, Utility Items, Quest/Game Items
-        
+
         :return: Sorted copy of the inventory
         """
 
@@ -144,7 +143,7 @@ class ItemMenuState(Menu):
         return sorted(inventory, key=rank_item, reverse=True)
 
     def initialize_items(self):
-        """ Get all player inventory items and add them to menu
+        """Get all player inventory items and add them to menu
 
         :return:
         """
@@ -167,7 +166,7 @@ class ItemMenuState(Menu):
             yield MenuItem(image, obj.name, obj.description, obj)
 
     def on_menu_selection_change(self):
-        """ Called when menu selection changes
+        """Called when menu selection changes
 
         :return: None
         """
@@ -225,7 +224,7 @@ class ShopMenuState(Menu):
         return rect
 
     def on_menu_selection(self, menu_item):
-        """ Called when player has selected something from the inventory
+        """Called when player has selected something from the inventory
 
         Currently, opens a new menu depending on the state context
 
@@ -250,11 +249,15 @@ class ShopMenuState(Menu):
         item_dict = self.seller.inventory[item.slug]
         max_quantity = None if item_dict.get("infinite") else item_dict["quantity"]
         self.client.push_state(
-            "QuantityMenu", callback=use_item, max_quantity=max_quantity, quantity=1, shrink_to_items=True,
+            "QuantityMenu",
+            callback=use_item,
+            max_quantity=max_quantity,
+            quantity=1,
+            shrink_to_items=True,
         )
 
     def sort_inventory(self, inventory):
-        """ Sort inventory in a usable way.  Expects a list of inventory properties.
+        """Sort inventory in a usable way.  Expects a list of inventory properties.
 
         * Group items by category
         * Sort in groups by name
@@ -274,7 +277,7 @@ class ShopMenuState(Menu):
         return sorted(inventory, key=rank_item, reverse=True)
 
     def initialize_items(self):
-        """ Get all player inventory items and add them to menu
+        """Get all player inventory items and add them to menu
 
         :return:
         """
@@ -306,7 +309,7 @@ class ShopMenuState(Menu):
             yield MenuItem(image, obj.name, obj.description, obj)
 
     def on_menu_selection_change(self):
-        """ Called when menu selection changes
+        """Called when menu selection changes
 
         :return: None
         """

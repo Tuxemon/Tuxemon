@@ -45,7 +45,7 @@ class MapSprite:
         self.last_animation_state = None
 
     def load_sprites(self):
-        """ Load sprite graphics
+        """Load sprite graphics
 
         :return:
         """
@@ -80,7 +80,7 @@ class MapSprite:
         self.moveConductor.add(self.sprite)
 
     def get_current_npc_surface(self, npc, layer):
-        """ Get the surfaces and layers for the sprite
+        """Get the surfaces and layers for the sprite
 
         :param NPC npc: the npc object
         :param int layer: The layer to draw the sprite on.
@@ -109,9 +109,7 @@ class MapSprite:
 
 
 class SpriteCache:
-    """ Cache seen sprites.  Currently memory is never freed.
-
-    """
+    """Cache seen sprites.  Currently memory is never freed."""
 
     def __init__(self):
         self.sprites = dict()
@@ -127,14 +125,14 @@ class SpriteCache:
 
 
 class MapView:
-    """ Render a map, npcs, etc
+    """Render a map, npcs, etc
 
     use `follow()` to keep the camera on a game object/npc
 
     """
 
     def __init__(self, world):
-        """ Constructor
+        """Constructor
 
         :param World world: World to draw
         """
@@ -157,7 +155,7 @@ class MapView:
         self.tracked_entity = entity
 
     def draw(self, surface, rect=None):
-        """ Draw the view
+        """Draw the view
 
         :param Surface surface: Target surface
         :param Rect rect: Area to draw to
@@ -188,7 +186,7 @@ class MapView:
         self.renderer.center((cx, cy))
 
     def get_world_surfaces(self, gamemap):
-        """ Return list of surfaces in world coordinates
+        """Return list of surfaces in world coordinates
 
         each item is (surface, tile_position, layer)
         tile position is (x, y), where each is a float
@@ -228,7 +226,7 @@ class MapView:
         return screen_surfaces
 
     def initialize_map_renderer(self, size, map_name):
-        """ Initialize the renderer for the map and sprites
+        """Initialize the renderer for the map and sprites
 
         :param Tuple[int, int] size: size of rendered area on the screen
         :param str map_name:
@@ -241,7 +239,7 @@ class MapView:
         return pyscroll.BufferedRenderer(visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2)
 
     def fade_and_teleport(self, duration=2):
-        """ Fade out, teleport, fade in
+        """Fade out, teleport, fade in
 
         :return:
         """
@@ -263,7 +261,7 @@ class MapView:
         task.chain(fade_in, duration + 0.5)
 
     def trigger_fade_in(self, duration=2):
-        """ World state has own fade code b/c moving maps doesn't change state
+        """World state has own fade code b/c moving maps doesn't change state
 
         :returns: None
         """
@@ -272,7 +270,7 @@ class MapView:
         self.task(self.unlock_controls, duration - 0.5)
 
     def trigger_fade_out(self, duration=2):
-        """ World state has own fade code b/c moving maps doesn't change state
+        """World state has own fade code b/c moving maps doesn't change state
 
         * will cause player to teleport if set somewhere else
 
@@ -301,7 +299,7 @@ class MapView:
             surface.blit(self.transition_surface, (0, 0))
 
     def get_pos_from_tilepos(self, tile_position):
-        """ Return the screen pixel coordinate based on tile position
+        """Return the screen pixel coordinate based on tile position
 
         :param List tile_position: An [x, y] tile position.
         :rtype: Tuple[int, int]
@@ -399,15 +397,12 @@ class MapView:
             surface.blit(self.cinema_top["surface"], self.cinema_top["position"])
             surface.blit(self.cinema_bottom["surface"], self.cinema_bottom["position"])
 
-
     def _collision_box_to_pgrect(self, box):
-        """Return a Rect (in screen-coords) version of a collision box (in world-coords).
-        """
+        """Return a Rect (in screen-coords) version of a collision box (in world-coords)."""
         x, y = self.get_pos_from_tilepos(box)
         return Rect(x, y, self.tilewidth, self.tileheight)
 
     def _npc_to_pgrect(self, npc):
-        """ Return a Rect (in screen-coords) version of an NPC's bounding box.
-        """
+        """Return a Rect (in screen-coords) version of an NPC's bounding box."""
         x, y = self.get_pos_from_tilepos(npc.tile_pos)
         return Rect(x, y, self.tilewidth, self.tileheight)

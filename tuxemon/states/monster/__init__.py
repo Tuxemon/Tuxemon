@@ -11,7 +11,7 @@ from tuxemon.ui.text import draw_text, TextArea
 
 
 class MonsterMenuState(Menu):
-    """ A class to create monster menu objects.
+    """A class to create monster menu objects.
 
     The monster menu allows you to view monsters in your party,
     teach them moves, and switch them both in and out of combat.
@@ -109,7 +109,7 @@ class MonsterMenuState(Menu):
         return surface
 
     def is_valid_entry(self, monster):
-        """ Used to determine if a given monster should be selectable.
+        """Used to determine if a given monster should be selectable.
             When other code creates a MonsterMenu, it should overwrite this method
             to suit it's needs.
         :param monster:
@@ -118,7 +118,7 @@ class MonsterMenuState(Menu):
         return monster is not None
 
     def refresh_menu_items(self):
-        """ Used to render slots after their 'focus' flags change
+        """Used to render slots after their 'focus' flags change
 
         :return:
         """

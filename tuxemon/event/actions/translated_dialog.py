@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class TranslatedDialogAction(EventAction):
-    """ Opens a dialog window with translated text according to the passed translation key. Parameters
+    """Opens a dialog window with translated text according to the passed translation key. Parameters
     passed to the translation string will also be checked if a translation key exists.
 
     Valid Parameters: dialog_key,[var1=value1,var2=value2]
@@ -69,7 +69,14 @@ class TranslatedDialogAction(EventAction):
             else:
                 avatar = get_avatar(self.context, param)
 
-        self.open_dialog(process_translate_text(self.context, key, replace,), avatar)
+        self.open_dialog(
+            process_translate_text(
+                self.context,
+                key,
+                replace,
+            ),
+            avatar,
+        )
 
     def update(self):
         if self.context.client.get_state_by_name("DialogState") is None:

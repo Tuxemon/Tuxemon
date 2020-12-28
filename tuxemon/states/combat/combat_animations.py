@@ -34,13 +34,13 @@ def scale_area(area):
 
 
 class CombatAnimations(Menu):
-    """ Mixin-ish thing until things are sorted out.
-        Mostly just a collections of methods to animate the sprites
+    """Mixin-ish thing until things are sorted out.
+    Mostly just a collections of methods to animate the sprites
 
-        These methods should not, without [many] exception[s], manipulate
-        game/combat state.  These should just move sprites around
-        the screen, with the occasional creation/removal of sprites....
-        but never game objects.
+    These methods should not, without [many] exception[s], manipulate
+    game/combat state.  These should just move sprites around
+    the screen, with the occasional creation/removal of sprites....
+    but never game objects.
     """
 
     def startup(self, **kwargs):
@@ -81,8 +81,7 @@ class CombatAnimations(Menu):
         self.transition_none_normal()
 
     def transition_none_normal(self):
-        """ From newly opened to normal
-        """
+        """From newly opened to normal"""
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
@@ -284,7 +283,7 @@ class CombatAnimations(Menu):
         self.animate_exp(monster)
 
     def build_hud_text(self, monster):
-        """ Return a string for use on the callout of the monster
+        """Return a string for use on the callout of the monster
 
         :type monster: tuxemon.monster.Monster
         :return:
@@ -292,7 +291,7 @@ class CombatAnimations(Menu):
         return self.shadow_text("{0.name: <12}Lv.{0.level: >2}".format(monster))
 
     def get_side(self, rect):
-        """ [WIP] get 'side' of screen rect is in
+        """[WIP] get 'side' of screen rect is in
 
         :type rect: Rect
         :return: basestring
@@ -353,7 +352,7 @@ class CombatAnimations(Menu):
             self.build_animate_exp_bar(monster)
 
     def animate_party_hud_in(self, player, home):
-        """ Party HUD is the arrow thing with balls.  Yes, that one.
+        """Party HUD is the arrow thing with balls.  Yes, that one.
 
         :param player: the player
         :type home: Rect
@@ -424,7 +423,7 @@ class CombatAnimations(Menu):
             capdev.draw(animate)
 
     def animate_update_party_hud(self, player, home):
-        """ Party HUD is the arrow thing with balls.  Yes, that one.
+        """Party HUD is the arrow thing with balls.  Yes, that one.
 
         This function updates the balls to reflect how many Tuxemon have fainted.
 
@@ -512,7 +511,7 @@ class CombatAnimations(Menu):
         animate(trainer1.rect, front_island.rect, y=y_mod, transition="out_back", relative=True)
 
     def animate_capture_monster(self, is_captured, num_shakes, monster):
-        """ Animation for capturing monsters.
+        """Animation for capturing monsters.
 
         :param is_captured: boolean representing success of capture
         :param num_shakes: number of shakes before animation ends

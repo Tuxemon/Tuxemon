@@ -23,30 +23,20 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from dataclasses import dataclass
-
-from tuxemon.client import LocalPygameClient
-from tuxemon.event.eventengine import EventEngine
-from tuxemon.map import TuxemonMap
-from tuxemon.player import Player
-from tuxemon.session import Session
-from tuxemon.world import World
 
 
 class EventContext1:
     def __enter__(self):
-        """ When context is placed on the stack
+        """When context is placed on the stack
 
-        :return: 
+        :return:
         """
 
     def __exit__(self):
-        """ When context is removed from the stack
+        """When context is removed from the stack
 
-        :return: 
+        :return:
         """
 
     def execute(self, session):
         pass
-
-

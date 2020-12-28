@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 class ItemEffect:
-    """ ItemEffects are executed by items.
+    """ItemEffects are executed by items.
 
     ItemEffect subclasses implement "effects" defined in Tuxemon items.
     All subclasses, at minimum, must implement the following:

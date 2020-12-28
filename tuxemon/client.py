@@ -27,7 +27,6 @@
 import logging
 import time
 
-from pubsub import pub
 import pygame as pg
 
 from tuxemon import cli, networking
@@ -39,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 
 class LocalPygameClient:
-    """ Client to play locally using pygame
+    """Client to play locally using pygame
 
     * Uses a state manger to handle game states
     * Uses pygame for input and output
@@ -48,7 +47,7 @@ class LocalPygameClient:
     """
 
     def __init__(self, world, config):
-        """ Constructor
+        """Constructor
 
         :param tuxemon.world.World world:
         :param tuxemon.config.TuxemonConfig config:
@@ -85,7 +84,7 @@ class LocalPygameClient:
         self.key_events = list()
 
     def run(self):
-        """ Initiates the main game loop. Since we are using Asteria networking
+        """Initiates the main game loop. Since we are using Asteria networking
         to handle network events, we pass this session.Client instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
@@ -126,7 +125,7 @@ class LocalPygameClient:
         self.running = False
 
     def update(self, time_delta):
-        """ This method gets updated at least once per frame
+        """This method gets updated at least once per frame
 
         :type time_delta: float
         :rtype: None
@@ -156,7 +155,7 @@ class LocalPygameClient:
         self.update_states(time_delta)
 
     def release_controls(self):
-        """ Send inputs which release held buttons/axis
+        """Send inputs which release held buttons/axis
 
         Use to prevent player from holding buttons while state changes
 
@@ -166,7 +165,7 @@ class LocalPygameClient:
         self.key_events = list(self.process_events(events))
 
     def draw(self, surface):
-        """ Draw all active states
+        """Draw all active states
 
         :type surface: pg.surface.Surface
         """
@@ -205,7 +204,7 @@ class LocalPygameClient:
         return 0, 0
 
     def process_events(self, events):
-        """ Process all events for this frame.
+        """Process all events for this frame.
 
         Events are first sent to the active state.
         States can choose to keep the events or return them.
@@ -231,7 +230,7 @@ class LocalPygameClient:
                     yield game_event
 
     def _send_event(self, game_event):
-        """ Send event down processing chain
+        """Send event down processing chain
 
         Probably a poorly named method.  Beginning from top state,
         process event, then as long as a new event is returned from
@@ -252,7 +251,7 @@ class LocalPygameClient:
         return game_event
 
     def update_states(self, dt):
-        """ Checks if a state is done or has called for a game quit.
+        """Checks if a state is done or has called for a game quit.
 
         :param Float dt: Time delta - Amount of time passed since last frame
         """
@@ -270,7 +269,7 @@ class LocalPygameClient:
             self.state_manager.state_resume_set.remove(current_state)
 
     def get_state_by_name(self, name):
-        """ Query the state stack for a state by the name supplied
+        """Query the state stack for a state by the name supplied
 
         :str name: str
         :rtype: State, None

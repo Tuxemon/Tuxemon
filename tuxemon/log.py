@@ -35,8 +35,7 @@ from tuxemon import prepare
 
 
 def configure():
-    """Configure logging based on the settings in the config file.
-    """
+    """Configure logging based on the settings in the config file."""
     # Set our logging levels
     LOG_LEVELS = {
         "debug": logging.DEBUG,

@@ -26,9 +26,9 @@ from tuxemon.item.item import decode_inventory
 
 
 class UpdateInventoryAction(EventAction):
-    """ Updates the inventory of the npc or player.
-	Overwrites the quantity of an item if it's already present, but leaves other items alone.
-	"""
+    """Updates the inventory of the npc or player.
+    Overwrites the quantity of an item if it's already present, but leaves other items alone.
+    """
 
     name = "update_inventory"
     valid_parameters = [

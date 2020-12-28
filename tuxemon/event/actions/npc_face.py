@@ -25,7 +25,7 @@ from tuxemon.map import get_direction, dirs2
 
 
 class NpcFaceAction(EventAction):
-    """ Makes the NPC face a certain direction.
+    """Makes the NPC face a certain direction.
 
     Valid Parameters: npc_slug, direction
 

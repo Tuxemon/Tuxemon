@@ -25,7 +25,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class WaitAction(EventAction):
-    """ Blocks event chain for some time
+    """Blocks event chain for some time
 
     Valid Parameters: duration
 

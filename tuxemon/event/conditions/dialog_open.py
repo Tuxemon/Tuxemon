@@ -23,13 +23,12 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class DialogOpenCondition(EventCondition):
-    """ Checks to see if a dialog window is open.
-    """
+    """Checks to see if a dialog window is open."""
 
     name = "dialog_open"
 
     def test(self, context, event, condition):
-        """ Checks to see if a dialog window is open.
+        """Checks to see if a dialog window is open.
 
         :param event:
         :param context: The session object

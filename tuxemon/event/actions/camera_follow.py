@@ -22,16 +22,13 @@
 import logging
 
 from tuxemon.event import get_npc
-from tuxemon.locale import replace_text
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
-from tuxemon.graphics import get_avatar
 
 logger = logging.getLogger(__name__)
 
 
 class CameraFollow(EventAction):
-    """ Set camera to follow a game entity, including NPCs, Players, etc
+    """Set camera to follow a game entity, including NPCs, Players, etc
 
     NOTE: only one camera is currently supported
     NOTE: single player only
@@ -39,6 +36,7 @@ class CameraFollow(EventAction):
     Valid Parameters: slug
 
     """
+
     name = "camera_follow"
     valid_parameters = [(str, "text")]
 

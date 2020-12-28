@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 def process_targets(json_targets):
-    """ Return values in order of preference for targeting things.
+    """Return values in order of preference for targeting things.
 
     example: ["own monster", "enemy monster"]
 

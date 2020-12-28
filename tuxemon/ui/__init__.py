@@ -170,8 +170,7 @@ class UserInterface:
             # self.move_duration = float(duration)
 
     def shake_once(self, destination, duration=0.3):
-        """Moves the object to a position and then back to its original position.
-        """
+        """Moves the object to a position and then back to its original position."""
         if not self.state == "forward" or not self.state == "back":
             self.move(destination, duration)
             self.state = "forward"

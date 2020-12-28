@@ -23,13 +23,12 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class ButtonReleasedCondition(EventCondition):
-    """ Checks to see if a particular key was released
-    """
+    """Checks to see if a particular key was released"""
 
     name = "button_released"
 
     def test(self, context, event, condition):
-        """ Checks to see if a particular key was released
+        """Checks to see if a particular key was released
 
         :param event:
         :param context: The session object

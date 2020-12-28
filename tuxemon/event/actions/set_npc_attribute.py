@@ -25,7 +25,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class SetNpcAttributeAction(EventAction):
-    """ Sets the given attribute of the npc to the given value.
+    """Sets the given attribute of the npc to the given value.
 
     Valid Parameters: slug, attribute, value
 

@@ -23,8 +23,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class EvolveMonstersCondition(EventCondition):
-    """ Checks to see if monsters can be evolved on the specified evolutionary path
-    """
+    """Checks to see if monsters can be evolved on the specified evolutionary path"""
 
     name = "evolve_monsters"
 

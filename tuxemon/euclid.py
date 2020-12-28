@@ -1901,7 +1901,10 @@ class Ray2(Line2):
 class LineSegment2(Line2):
     def __repr__(self):
         return "LineSegment2(<{:.2f}, {:.2f}> to <{:.2f}, {:.2f}>)".format(
-            self.p.x, self.p.y, self.p.x + self.v.x, self.p.y + self.v.y,
+            self.p.x,
+            self.p.y,
+            self.p.x + self.v.x,
+            self.p.y + self.v.y,
         )
 
     def _u_in(self, u):
@@ -2207,7 +2210,12 @@ class Line3:
 
     def __repr__(self):
         return "Line3(<{:.2f}, {:.2f}, {:.2f}> + u<{:.2f}, {:.2f}, {:.2f}>)".format(
-            self.p.x, self.p.y, self.p.z, self.v.x, self.v.y, self.v.z,
+            self.p.x,
+            self.p.y,
+            self.p.z,
+            self.v.x,
+            self.v.y,
+            self.v.z,
         )
 
     p1 = property(lambda self: self.p)
@@ -2250,7 +2258,12 @@ class Line3:
 class Ray3(Line3):
     def __repr__(self):
         return "Ray3(<{:.2f}, {:.2f}, {:.2f}> + u<{:.2f}, {:.2f}, {:.2f}>)".format(
-            self.p.x, self.p.y, self.p.z, self.v.x, self.v.y, self.v.z,
+            self.p.x,
+            self.p.y,
+            self.p.z,
+            self.v.x,
+            self.v.y,
+            self.v.z,
         )
 
     def _u_in(self, u):
@@ -2260,7 +2273,12 @@ class Ray3(Line3):
 class LineSegment3(Line3):
     def __repr__(self):
         return "LineSegment3(<{:.2f}, {:.2f}, {:.2f}> to <{:.2f}, {:.2f}, {:.2f}>)".format(
-            self.p.x, self.p.y, self.p.z, self.p.x + self.v.x, self.p.y + self.v.y, self.p.z + self.v.z,
+            self.p.x,
+            self.p.y,
+            self.p.z,
+            self.p.x + self.v.x,
+            self.p.y + self.v.y,
+            self.p.z + self.v.z,
         )
 
     def _u_in(self, u):

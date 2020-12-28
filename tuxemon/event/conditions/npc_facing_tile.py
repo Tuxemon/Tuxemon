@@ -28,13 +28,12 @@ logger = logging.getLogger(__name__)
 
 
 class NPCFacingTileCondition(EventCondition):
-    """ Checks to see if an NPC is facing a tile position
-    """
+    """Checks to see if an NPC is facing a tile position"""
 
     name = "npc_facing_tile"
 
     def test(self, context, event, condition):
-        """ Checks to see if an NPC is facing a tile position
+        """Checks to see if an NPC is facing a tile position
 
         :param event:
         :param context: The session object

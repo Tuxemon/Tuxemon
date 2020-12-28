@@ -24,8 +24,7 @@ from tuxemon.platform.const import intentions
 
 
 class ButtonPressedCondition(EventCondition):
-    """ Checks to see if a particular key was pressed
-    """
+    """Checks to see if a particular key was pressed"""
 
     name = "button_pressed"
 

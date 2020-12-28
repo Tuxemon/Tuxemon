@@ -22,14 +22,14 @@
 
 
 class EventQueueHandler:
-    """ Event QueueHandler for different platforms
+    """Event QueueHandler for different platforms
 
     * Only one per game
     * Sole manager of platform events of type
     """
 
     def release_controls(self):
-        """ Send virtual input events which release held buttons/axis
+        """Send virtual input events which release held buttons/axis
 
         After this frame, held/triggered inputs will return to previous state
 
@@ -44,8 +44,7 @@ class EventQueueHandler:
 
 
 class InputHandler:
-    """ Enables basic input device with discrete inputs
-    """
+    """Enables basic input device with discrete inputs"""
 
     event_type = None
     default_input_map = None
@@ -63,7 +62,7 @@ class InputHandler:
         raise NotImplementedError
 
     def virtual_stop_events(self):
-        """ Send virtual input events simulating released buttons/axis
+        """Send virtual input events simulating released buttons/axis
 
         This is used to force a state to release inputs without changing input state
 
@@ -99,7 +98,7 @@ class PlayerInput:
     __slots__ = ("button", "value", "hold_time", "triggered")
 
     def __init__(self, button, value=0, hold_time=0):
-        """ Represents a single player input
+        """Represents a single player input
 
         Each instance represents the state of a single input:
         * have float value 0-1
@@ -125,7 +124,7 @@ class PlayerInput:
 
     @property
     def pressed(self):
-        """ This is edge triggered, meaning it will only be true once!
+        """This is edge triggered, meaning it will only be true once!
 
         :rtype: bool
         """
@@ -133,7 +132,7 @@ class PlayerInput:
 
     @property
     def held(self):
-        """ This will be true as long as button is held down
+        """This will be true as long as button is held down
 
         :rtype: bool
         """

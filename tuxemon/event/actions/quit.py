@@ -23,8 +23,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class QuitAction(EventAction):
-    """Completely quit the game
-    """
+    """Completely quit the game"""
 
     name = "quit"
     valid_parameters = []

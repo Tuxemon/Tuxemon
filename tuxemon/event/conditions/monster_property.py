@@ -23,8 +23,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class MonsterPropertyCondition(EventCondition):
-    """ Checks to see if a monster property or condition is as asked
-    """
+    """Checks to see if a monster property or condition is as asked"""
 
     name = "monster_property"
 

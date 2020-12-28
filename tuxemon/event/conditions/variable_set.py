@@ -23,7 +23,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class VariableSetCondition(EventCondition):
-    """ Checks to see if a player game variable has been set. This will look for a particular
+    """Checks to see if a player game variable has been set. This will look for a particular
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
     return true.
     """
@@ -31,7 +31,7 @@ class VariableSetCondition(EventCondition):
     name = "variable_set"
 
     def test(self, context, event, condition):
-        """ Checks to see if a player game variable has been set. This will look for a particular
+        """Checks to see if a player game variable has been set. This will look for a particular
         key in the player.game_variables dictionary and see if it exists. If it exists, it will
         return true.
 

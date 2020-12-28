@@ -39,9 +39,8 @@ class State:
 
 
 class Parser:
-
     def load_event(self, obj, tile_size):
-        """ Load an Event from the map
+        """Load an Event from the map
 
         :param obj:
         :param tile_size:
@@ -75,18 +74,14 @@ class DictReader:
                 behav_string = obj.properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
-                    conds.insert(
-                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
-                    )
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", key))
                     acts.insert(0, MapAction("npc_face", [args[0], "player"], key))
                 else:
                     raise Exception
 
         # add a player_facing_tile condition automatically
         if obj.type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
+            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
             logger.debug(cond_data)
             conds.append(cond_data)
 
@@ -98,6 +93,7 @@ class TestParser1:
     needs events like word, whitespace, comma, quote, etc
     yields game events
     """
+
     # combine all args into a single arg; don't split at whitespace
     treat_args_as_single = ["dialog", "dialog_chain", "music_playing", "play_music"]
 
@@ -107,8 +103,7 @@ class TestParser1:
 
     def parse(self):
         for word in self.words:
-            for token in self.parse_word(word):
-                yield token
+            yield from self.parse_word(word)
 
     def as_string(self):
         tokens = list(self.parse())
@@ -157,12 +152,14 @@ class TestParser2:
     def __init__(self, words):
         self.words = words
         self.state = None
-        self.fsm = SimpleFSM((
-            (None, "act", "actname", "act"),
-            (None, "cdn", "cdnname", "cdn"),
-            ("actname", "str", "str", "actname"),
-            ("cndname", "str", "str", "eof"),
-        ))
+        self.fsm = SimpleFSM(
+            (
+                (None, "act", "actname", "act"),
+                (None, "cdn", "cdnname", "cdn"),
+                ("actname", "str", "str", "actname"),
+                ("cndname", "str", "str", "eof"),
+            )
+        )
 
     def parse(self):
         for word in self.words:

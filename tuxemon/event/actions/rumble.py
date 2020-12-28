@@ -23,7 +23,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class RumbleAction(EventAction):
-    """ Rumbles available controllers with rumble support
+    """Rumbles available controllers with rumble support
 
     Valid Parameters: duration,power
 

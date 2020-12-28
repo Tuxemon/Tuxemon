@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 
 class RandomEncounterAction(EventAction):
-    """ Randomly starts a battle with a monster defined in the "encounter" table in the
+    """Randomly starts a battle with a monster defined in the "encounter" table in the
     "monster.db" database. The chance that this will start a battle depends on the
     "encounter_rate" specified in the database. The "encounter_rate" number is the chance
     walking in to this tile will trigger a battle out of 100.

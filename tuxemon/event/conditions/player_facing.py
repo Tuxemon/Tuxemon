@@ -23,8 +23,7 @@ from tuxemon.event.eventcondition import EventCondition
 
 
 class PlayerFacingCondition(EventCondition):
-    """ Checks to see where an NPC is facing
-    """
+    """Checks to see where an NPC is facing"""
 
     name = "player_facing"
 

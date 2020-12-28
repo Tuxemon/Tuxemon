@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 
 class BackgroundState(State):
-    """ background state is used to prevent other states from
+    """background state is used to prevent other states from
     being required to track dirty screen areas.  for example,
     in the start state, there is a menu on a blank background,
     since menus do not clean up dirty areas, the blank,
@@ -59,8 +59,7 @@ class BackgroundState(State):
 
 
 class StartState(PopUpMenu):
-    """ The state responsible for the start menu.
-    """
+    """The state responsible for the start menu."""
 
     escape_key_exits = False
     shrink_to_items = True

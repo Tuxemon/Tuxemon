@@ -23,7 +23,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class AddItemAction(EventAction):
-    """ Adds an item to the current player's inventory.
+    """Adds an item to the current player's inventory.
 
     The action parameter must contain an item name to look up in the item database.
     """

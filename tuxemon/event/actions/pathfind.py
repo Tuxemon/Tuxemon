@@ -24,7 +24,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class PathfindAction(EventAction):
-    """ Pathfind the player / npc to the given location
+    """Pathfind the player / npc to the given location
 
     This action blocks until the destination is reached.
 

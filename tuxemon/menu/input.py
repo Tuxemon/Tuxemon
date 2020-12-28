@@ -68,7 +68,7 @@ class InputMenu(Menu):
         yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -108,7 +108,7 @@ class InputMenu(Menu):
         self.text_area.text = self.input_string
 
     def confirm(self):
-        """ Confirm the input
+        """Confirm the input
 
         This is called when user selects "End".  Override, maybe?
 

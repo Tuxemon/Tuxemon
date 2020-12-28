@@ -44,7 +44,7 @@ TYPES = {
 
 
 def simple_damage_multiplier(attack_types, target_types):
-    """ Calculates damage multiplier based on strengths and weaknesses
+    """Calculates damage multiplier based on strengths and weaknesses
 
     :param attack_types: The names of the types of the technique.
     :param target_types: The names of the types of the target.
@@ -73,7 +73,7 @@ def simple_damage_multiplier(attack_types, target_types):
 
 
 def simple_damage_calculate(technique, user, target):
-    """ Calculates the damage of a technique based on stats and multiplier.
+    """Calculates the damage of a technique based on stats and multiplier.
 
     :param technique: The technique to calculate for.
     :param user: The user of the technique.
@@ -111,7 +111,7 @@ def simple_damage_calculate(technique, user, target):
 
 
 def simple_poison(technique, user, target):
-    """ Simple poison based on target's full hp.
+    """Simple poison based on target's full hp.
 
     :param technique: The technique causing poison.
     :param user: The user of the technique.
@@ -128,7 +128,7 @@ def simple_poison(technique, user, target):
 
 
 def simple_recover(technique, target):
-    """ Simple recover based on target's full hp.
+    """Simple recover based on target's full hp.
 
     :param technique: The technique causing recover.
     :param target: The one being healed.
@@ -143,7 +143,7 @@ def simple_recover(technique, target):
 
 
 def simple_lifeleech(technique, user, target):
-    """ Simple lifeleech based on a few factors.
+    """Simple lifeleech based on a few factors.
 
     :param technique: The technique causing lifeleech.
     :param user: The user of the technique.

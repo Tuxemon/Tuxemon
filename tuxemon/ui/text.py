@@ -8,8 +8,7 @@ min_font_size = 7
 
 
 class TextArea(Sprite):
-    """ Area of the screen that can draw text
-    """
+    """Area of the screen that can draw text"""
 
     animated = True
 

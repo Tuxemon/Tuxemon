@@ -40,7 +40,7 @@ Animation.default_transition = "out_quint"
 
 
 class TuxemonConfig:
-    """ Handles loading of the configuration file for the primary game and map editor.
+    """Handles loading of the configuration file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!
     """
@@ -137,7 +137,7 @@ def get_custom_pygame_keyboard_controls(cfg):
 
 
 def get_defaults():
-    """ Generate a config from defaults
+    """Generate a config from defaults
 
     When making game changes, do not forget to edit this config!
 
@@ -165,7 +165,15 @@ def get_defaults():
                     )
                 ),
             ),
-            ("sound", OrderedDict((("sound_volume", 1.0), ("music_volume", 1.0),))),
+            (
+                "sound",
+                OrderedDict(
+                    (
+                        ("sound_volume", 1.0),
+                        ("music_volume", 1.0),
+                    )
+                ),
+            ),
             (
                 "game",
                 OrderedDict(
@@ -213,7 +221,7 @@ def get_defaults():
 
 
 def generate_default_config():
-    """ Get new config file from defaults
+    """Get new config file from defaults
 
     :rtype: configparser.ConfigParser
     """
@@ -223,7 +231,7 @@ def generate_default_config():
 
 
 def populate_config(config, data):
-    """ Workaround awful configparser defaults.
+    """Workaround awful configparser defaults.
 
     :type data: dict
     :return:

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-12-29 17:29+0000\n"
+"PO-Revision-Date: 2020-12-31 00:29+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -2554,3 +2554,43 @@ msgstr "Me pregunto qué están haciendo por aquí..."
 
 msgid "theenergy"
 msgstr "La energía de ese hombre no tiene límite..."
+
+msgid "spyder_papertown_mom5"
+msgstr ""
+"Ya sabes, la Abuelita Piper, la vecina de al lado, ha abierto su Guardería.\n"
+"Bueno, supongo que no todo el mundo puede ser inventor. "
+
+msgid "spyder_papertown_mom2"
+msgstr ""
+"Hola cariño, debería seguir con mis inventos.\n"
+"¿Puedes entretenerte tú solo?\n"
+"En mis tiempos, nos podíamos divertir con cualquier cosa: un palo, una roca, "
+"basura que sacábamos de las papeleras... "
+
+msgid "fishing_rod_description"
+msgstr "Atrapa peces."
+
+## Item descriptions ##
+msgid "fishing_rod"
+msgstr "Caña de pescar"
+
+msgid "sledgehammer"
+msgstr "Mazo"
+
+msgid "timber"
+msgstr "Pueblo Madera"
+
+msgid "flower"
+msgstr "Ciudad Flor"
+
+msgid "cotton"
+msgstr "Pueblo Algodón"
+
+msgid "candy"
+msgstr "Pueblo Caramelo"
+
+msgid "paper"
+msgstr "Pueblo Papel"
+
+msgid "leather"
+msgstr "Pueblo Cuero"

@@ -8,8 +8,6 @@ This will check all locales and print locales that do not conform.
 
 Output is JSON, suitable to copy/paste into a locale file.
 """
-from __future__ import print_function
-
 import glob
 import json
 import os

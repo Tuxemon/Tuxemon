@@ -1,0 +1,15 @@
+{"slug": "route5","monsters": [
+
+
+
+
+{ "monster": "foofle","encounter_rate":3,"level_range": [19,23]},
+{ "monster": "vamporm","encounter_rate":3,"level_range": [16,20]},
+{ "monster": "dracune","encounter_rate":1,"level_range": [18,22]},
+{ "monster": "anoleaf","encounter_rate":3,"level_range": [16,20]},
+{ "monster": "gectile","encounter_rate":1,"level_range": [20,24]}
+
+
+
+
+] }

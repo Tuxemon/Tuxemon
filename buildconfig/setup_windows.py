@@ -22,23 +22,27 @@ sys.path.append(os.getcwd())
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "disk"
 
-includes = ['pkg_resources']
-includefiles = []
-excludes = ['email', 'tkinter', 'pyglet']
-packages = ['pytmx', 'pyscroll', 'pygame', 'six', 'neteria', 'tuxemon']
+includes = ["pkg_resources"]
+includefiles = ["mods"]
+excludes = ["tkinter", "pyglet"]
+packages = ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"]
 
 namespace_packages = []
-build_exe_options = {'packages': packages,
-                     'excludes': excludes,
-                     'includes': includes,
-                     'include_files': includefiles,
-                     'namespace_packages': namespace_packages}
+build_exe_options = {
+    "packages": packages,
+    "excludes": excludes,
+    "includes": includes,
+    "include_files": includefiles,
+    "namespace_packages": namespace_packages,
+}
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     setup(
-        name='Tuxemon',
-        version='0.4.2',
-        options={'build_exe': build_exe_options},
-        description='Open source RPG',
-        executables=[Executable('tuxemon.py', icon='tuxemon/resources/gfx/icon.ico')],
+        name="Tuxemon",
+        version="0.4.2",
+        options={"build_exe": build_exe_options},
+        description="Open source RPG",
+        executables=[
+            Executable("tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico")
+        ],
     )

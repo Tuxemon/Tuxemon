@@ -1,0 +1,24 @@
+{
+    "slug": "spyder_route6_ping",
+    "sprite_name": "picnicker",
+	"monsters": [
+        		{
+            "name": "Foofle",
+            "level": 30, 
+			"slug": "foofle",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Foofle",
+            "level": 30, 
+			"slug": "foofle",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "picnicker.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

@@ -15,7 +15,6 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *python-six* - python 2 and 3 compatibility library
 * *python-pyscroll* - fast module for animated scrolling maps.
 * *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
 
@@ -52,11 +51,23 @@ Check the release page https://github.com/Tuxemon/Tuxemon/releases for binaries.
 **Ubuntu**
 
 ```sh
-sudo apt install python python-pygame python-pip python-imaging python-six git
+sudo apt install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
 python tuxemon.py
+```
+
+**Ubuntu 18.04 w/venv**
+
+Use this if you don't want to modify your system packages
+```sh
+sudo apt install git python3-venv
+git clone https://github.com/Tuxemon/Tuxemon.git
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 tuxemon.py
 ```
 
 **Debian**
@@ -104,7 +115,7 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 **Fedora Linux**
 
 ```
-sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
 virtualenv venv
 pip install -r requirements.txt
 ```

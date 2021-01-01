@@ -1,0 +1,18 @@
+{"slug": "routeb","monsters": [
+
+
+
+
+{ "monster": "toufigel","encounter_rate":3,"level_range": [25,28]},
+{ "monster": "pipis","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "strella","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "noctula","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "noctalo","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "cairfrey","encounter_rate":3,"level_range": [20,25]},
+{ "monster": "possessun","encounter_rate":1,"level_range": [25,28]},
+{ "monster": "rockitten","encounter_rate":1,"level_range": [20,22]}
+
+
+
+
+] }

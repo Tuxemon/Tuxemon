@@ -10,8 +10,6 @@ command line arguments to customize
 
 -Leif
 """
-from __future__ import print_function
-
 import json
 from glob import glob
 from os.path import join, normpath

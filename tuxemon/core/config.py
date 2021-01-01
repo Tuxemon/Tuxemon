@@ -30,10 +30,8 @@
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
-
+import configparser
 from collections import OrderedDict
-
-from six.moves import configparser
 
 from tuxemon.core.animation import Animation
 from tuxemon.core.platform.const import buttons, events

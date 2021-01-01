@@ -138,10 +138,12 @@
   </object>
   <object id="23" name="breeder state 2a" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog cotton_breeder2a"/>
-    <property name="act15" value="prompt for monsters"/>
-    <property name="act20" value="set_variable breeder_state:3"/>
-    <property name="act30" value="clear_variable wannabreed"/>
+    <property name="act10" value="translated_dialog cotton_breeder2a_1"/>
+    <property name="act15" value="get_player_monster breeding_mother"/>
+    <property name="act20" value="translated_dialog cotton_breeder2a_2"/>
+    <property name="act30" value="get_player_monster breeding_father"/>
+    <property name="act40" value="set_variable breeder_state:3"/>
+    <property name="act50" value="clear_variable wannabreed"/>
     <property name="cond10" value="is variable_set breeder_state:2"/>
     <property name="cond30" value="is variable_set wannabreed:yes"/>
    </properties>
@@ -154,7 +156,7 @@
     <property name="cond10" value="is variable_set breeder_state:3"/>
    </properties>
   </object>
-  <object id="26" name="breeder state 2a" type="event" x="160" y="48" width="16" height="16">
+  <object id="26" name="breeder state 2b" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder_rejected"/>
     <property name="act20" value="set_variable breeder_state:1"/>
@@ -168,7 +170,8 @@
     <property name="act10" value="translated_dialog cotton_breeder4a"/>
     <property name="act15" value="clear_variable confirm"/>
     <property name="act20" value="set_variable breeder_state:5"/>
-    <property name="act30" value="move mons around"/>
+    <property name="act30" value="store_monster breeding_mother,cotton_breeder"/>
+    <property name="act35" value="store_monster breeding_father,cotton_breeder"/>
     <property name="act40" value="copy_variable cotton_breeder_time,steps"/>
     <property name="cond10" value="is variable_set breeder_state:4"/>
     <property name="cond20" value="is variable_set confirm:yes"/>
@@ -213,14 +216,14 @@
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder6a"/>
     <property name="act20" value="set_variable breeder_state:7"/>
-    <property name="act30" value="spawn_monster mother,father"/>
+    <property name="act30" value="spawn_monster breeding_mother,breeding_father"/>
     <property name="act40" value="translated_dialog cotton_breeder_continue"/>
     <property name="act50" value="translated_dialog_choice yes:no,continue"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
     <property name="cond20" value="is variable_is cotton_breeder_delta,&gt;=,1000"/>
    </properties>
   </object>
-  <object id="33" name="breeder state 7a" type="event" x="160" y="128" width="16" height="16">
+  <object id="33" name="breeder state 7a" type="event" x="144" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder7a"/>
     <property name="act20" value="set_variable breeder_state:5"/>
@@ -231,12 +234,12 @@
     <property name="cond20" value="is variable_set continue:yes"/>
    </properties>
   </object>
-  <object id="34" name="breeder state 7a" type="event" x="176" y="128" width="16" height="16">
+  <object id="34" name="breeder state 7a" type="event" x="160" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder7b"/>
     <property name="act20" value="set_variable breeder_state:1"/>
-    <property name="act30" value="return the mother"/>
-    <property name="act35" value="return the father"/>
+    <property name="act30" value="withdraw_monster breeding_mother"/>
+    <property name="act35" value="withdraw_monster breeding_father"/>
     <property name="act40" value="clear_variable continue"/>
     <property name="act50" value="clear_variable cotton_breeder_delta"/>
     <property name="cond10" value="is variable_set breeder_state:7"/>

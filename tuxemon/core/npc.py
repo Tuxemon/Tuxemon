@@ -570,9 +570,31 @@ class NPC(Entity):
         """Finds a monster in the player's list which has the given instance_id.
 
         :param instance_id: The instance_id of the monster.
+        :type instance_id: uuid.UUID4
+
+        :rtype: tuxemon.core.monster.Monster
         :return: Monster found, or None.
+
         """
         return next((m for m in self.monsters if m.instance_id == instance_id), None)
+
+    def find_monster_in_storage(self, instance_id):
+        """Finds a monster in the player's storage boxes which has the given instance_id.
+
+        :param instance_id: The insance_id of the monster.
+        :type instance_id: uuid.UUID4
+
+        :rtype: tuxemon.core.monster.Monster
+        :return: Monster found, or None.
+
+        """
+        monster = None
+        for box in self.monster_boxes.values():
+            monster = next((m for m in box if m.instance_id == instance_id), None)
+            if monster is not None:
+                break
+
+        return monster
 
     def remove_monster(self, monster):
         """ Removes a monster from this player's party.
@@ -587,6 +609,21 @@ class NPC(Entity):
         if monster in self.monsters:
             self.monsters.remove(monster)
             self.set_party_status()
+
+    def remove_monster_from_storage(self, monster):
+        """ Removes the monster from the player's storage.
+
+        :param monster: Monster to remove from storage.
+        :type monster: tuxemon.core.monster.Monster
+
+        :return: None
+        :rtype: None
+        """
+
+        for box in self.monster_boxes.values():
+            if monster in box:
+                box.remove(monster)
+                return
 
     def switch_monsters(self, index_1, index_2):
         """ Swap two monsters in this player's party

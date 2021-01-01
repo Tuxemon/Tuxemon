@@ -29,41 +29,42 @@ import uuid
 logger = logging.getLogger(__name__)
 
 
-# noinspection PyAttributeOutsideInit
-class StoreMonsterAction(EventAction):
-    """Save the player's monster with the given instance_id to
-    the named storage box, removing it from the player party.
+class WithdrawMonsterAction(EventAction):
+    """
+    Pulls a monster from the given trainer's storage (identified by slug and instance_id respectively)
+    and puts it in their party. Note: If the trainer's party is already full then the monster will be
+    deposited into the default storage box automatically.
 
-    Valid Parameters: string monster_id, string box
+    Valid Parameters: trainer, monster_id
 
     **Examples:**
 
     >>> EventAction.__dict__
     {
-        "type": "store_monster",
+        "type": "withdraw_monster",
         "parameters": [
-            "00112233-4455-6677-8899-aabbccddeeff",
-            "Box 01"
+            "npc_red",
+            "123e4567-e89b-12d3-a456-426614174000"
         ]
     }
 
+
     """
-    name = "store_monster"
+    name = "withdraw_monster"
     valid_parameters = [
-        (str, "monster_id"),
-        (str, "box")
+        (str, "trainer"),
+        (uuid.uuid4, "monster_id")
     ]
-    
+
     def start(self):
-        player = self.session.player
-        instance_id = uuid.UUID(player.game_variables[self.parameters.monster_id])
-        box = self.parameters.box
-        monster = player.find_monster_by_id(instance_id)
-        if monster is None:
-            raise ValueError("No monster found with instance_id {}".format(instance_id))
+        trainer, monster_id = self.parameters
+        world = self.session.client.get_state_by_name("WorldState")
+        if not world:
+            return False
 
-        if player.monster_boxes[box] is None:
-            player.monster_boxes[box] = list()
+        npc = world.get_entity(trainer)
+        instance_id = uuid.UUID(npc.game_variables[monster_id])
+        mon = npc.find_monster_in_storage(instance_id)
 
-        player.monster_boxes[box].append(monster)
-        player.remove_monster(monster)
+        npc.remove_monster_from_storage(mon)
+        npc.add_monster(mon)

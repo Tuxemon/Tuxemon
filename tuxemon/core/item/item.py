@@ -237,9 +237,6 @@ class Item:
 
     def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.
-        This method will execute a function with the same name as the effect defined in the
-        database. If you want to add a new effect, simply create a new function under the Item
-        class with the name of the effect you define in item.db.
 
         :param user: The monster or object that is using this item.
         :param target: The monster or object that we are using this item on.

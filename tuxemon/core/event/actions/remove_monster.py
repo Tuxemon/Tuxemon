@@ -35,7 +35,6 @@ class RemoveMonsterAction(EventAction):
     def start(self):
         instance_id = self.parameters.instance_id
 
-        # TODO: will give unpredictable result with multiple copies of the same monster
         monster = self.session.player.find_monster_by_id(instance_id)
         if monster:
             self.session.player.remove_monster(monster)

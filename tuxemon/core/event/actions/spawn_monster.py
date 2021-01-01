@@ -23,7 +23,9 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.monster import Monster
 import logging
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -31,9 +33,11 @@ logger = logging.getLogger(__name__)
 # noinspection PyAttributeOutsideInit
 class SpawnMonsterAction(EventAction):
     """ Adds a new monster, created by breeding the two
-    given mons (identified by instance_id, may be
-    optionally stored in a variable) and adds it to the
-    given character's party (identified by slug).
+    given mons (identified by instance_id, stored in a
+    variable) and adds it to the given character's party
+    (identified by slug). The parents must be in either
+    the trainer's party, or a storage box owned by the
+    trainer.
 
     Valid Parameters: trainer, breeding_mother, breeding_father
 
@@ -50,12 +54,43 @@ class SpawnMonsterAction(EventAction):
     }
 
     """
-    name = "get_step_count"
+    name = "spawn_monster"
     valid_parameters = [
-        (str, "variable_name")
+        (str, "npc_slug"),
+        (str, "breeding_mother"),
+        (str, "breeding_father")
     ]
 
     def start(self):
-        player = self.session.player
-        variable = self.parameters.variable_name
-        player.game_variables[variable] = player.game_variables['steps']
+        npc_slug, breeding_mother, breeding_father = self.parameters
+        world = self.session.client.get_state_by_name("WorldState")
+        if not world:
+            return False
+
+        trainer = world.get_entity(npc_slug)
+        if trainer is None:
+            logger.error("Could not find NPC corresponding to slug {}".format(npc_slug))
+            return False
+
+        mother_id = trainer.game_variables[breeding_mother]
+        father_id = trainer.game_variables[breeding_father]
+
+        mother = trainer.find_monster_by_id(mother_id)
+        if mother is None:
+            logger.debug("Mother not found in party, searching storage boxes.")
+            mother = trainer.find_monster_in_storage(mother_id)
+
+        father = trainer.find_monster_by_id(father_id)
+        if father is None:
+            logger.debug("Father not found in party, searching storage boxes.")
+            father = trainer.find_monster_in_storage(father_id)
+
+        if mother is None:
+            logger.error("Could not find (mother) monster with instance id {}".format(mother_id))
+            return False
+        if father is None:
+            logger.error("Could not find (father) monster with instance id {}".format(father_id))
+            return False
+
+        new_mon = Monster(mother, father)
+        trainer.add_monster(new_mon)

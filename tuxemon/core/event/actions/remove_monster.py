@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+import uuid
 
 from tuxemon.core.event.eventaction import EventAction
 
@@ -33,7 +34,8 @@ class RemoveMonsterAction(EventAction):
     ]
 
     def start(self):
-        instance_id = self.parameters.instance_id
+        iid = self.session.player.game_variables[self.parameters.instance_id]
+        instance_id = uuid.UUID(iid)
 
         monster = self.session.player.find_monster_by_id(instance_id)
         if monster:

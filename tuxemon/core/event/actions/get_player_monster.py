@@ -52,7 +52,8 @@ class GetPlayerMonsterAction(EventAction):
     ]
 
     def set_var(self, menu_item):
-        self.player.game_variables[self.variable] = menu_item.monster.instance_id
+        self.player.game_variables[self.variable] = menu_item.game_object.instance_id.hex
+        self.session.client.pop_state()
 
     def start(self):
         self.player = self.session.player
@@ -63,5 +64,5 @@ class GetPlayerMonsterAction(EventAction):
         menu.on_menu_selection = self.set_var
 
     def update(self):
-        if self.session.client.get_state_by_name("MonsterMenu") is None:
+        if self.session.client.get_state_by_name("MonsterMenuState") is None:
             self.stop()

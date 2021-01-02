@@ -39,7 +39,7 @@ class RenameMonsterAction(EventAction):
     def start(self):
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name("WorldState")
-        if not world:
+        if world is None:
             return
     
         # pull up the monster menu so we know which one we are renaming

@@ -53,7 +53,7 @@ class WithdrawMonsterAction(EventAction):
     name = "withdraw_monster"
     valid_parameters = [
         (str, "trainer"),
-        (uuid.uuid4, "monster_id")
+        (str, "monster_id")
     ]
 
     def start(self):

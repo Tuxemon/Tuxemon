@@ -3449,7 +3449,7 @@ msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."
 
 msgid "cotton_breeder0"
-msgstr "Hi there, welcome to the Daycare, I breed Tuxemon here.\nI run this place because I love Tuxemon so much!\n
+msgstr "Hi there, welcome to the Daycare, I breed Tuxemon here.\nI run this place because I love Tuxemon so much!\n"
 "If you like, I can breed two of your Tuxemon for you. Just let me know, ok?"
 
 msgid "cotton_breeder1"
@@ -3471,13 +3471,14 @@ msgid "cotton_breeder_rejected"
 msgstr "Oh, alright. You think about it some more and come back to me."
 
 msgid "cotton_breeder5"
-msgstr "Hey ${{name}}, come to check up on your Tuxemon?
+msgstr "Hey ${{name}}, come to check up on your Tuxemon?"
 
 msgid "cotton_breeder6a"
 msgstr "They're still getting acquainted, as it were. Why don't you come back later?"
 
 msgid "cotton_breeder6b"
-msgstr "It's going very well! They're practically inseperable! It shouldn't be too long now before we've got a baby on the way."
+msgstr "It's going very well! They're practically inseperable!\n"
+"It shouldn't be too long now before we've got a baby on the way."
 
 msgid "cotton_breeder6c"
 msgstr "Congratulations! They've had a baby! Here you go, raise it well."
@@ -3501,5 +3502,13 @@ msgstr "The shop is doing a promo, here's some to get you started. You use them 
 msgid "taba_greeting2b"
 msgstr "Ah! I see you've already got some. You've got a good head on your shoulders ${{name}}, I'm sure you'll be a champ in no time."
 
+msgid "taba_greeting3"
+msgstr "Good luck in your adventures ${{name}}, and remember to shop at Ttuxemart for all your adventuring needs!\n"
+"..."
+"Sorry about the sales pitch, it's my job."
+
 msgid "gotfivetuxeballs"
 msgstr "You got 5 Tuxeballs!"
+
+msgid "got_new_tuxemon"
+msgstr "You got a ${{monster_name}}!"

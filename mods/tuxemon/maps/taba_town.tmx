@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="146">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="151">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -649,9 +649,9 @@
   </object>
   <object id="131" name="timetogroove" type="event" x="528" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind player,43,45"/>
-    <property name="act2" value="player_resume"/>
-    <property name="act3" value="set_variable comeinside:done"/>
+    <property name="act10" value="pathfind player,43,45"/>
+    <property name="act15" value="set_variable comeinside:done"/>
+    <property name="act20" value="player_resume"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
@@ -748,10 +748,10 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="create_npc npc_mom,38,41,,stand"/>
     <property name="act3" value="translated_dialog timeforround2"/>
-    <property name="act4" value="pathfind npc_mom,37,38"/>
+    <property name="act4" value="pathfind npc_mom,38,38"/>
     <property name="act5" value="npc_face npc_mom,up"/>
     <property name="act6" value="set_variable moveon:yes"/>
-    <property name="act7" value="pathfind player,37,37"/>
+    <property name="act7" value="pathfind player,38,37"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
     <property name="cond3" value="not variable_set moveon:yes"/>
@@ -767,6 +767,69 @@
     <property name="act5" value="set_variable moveon:bye"/>
     <property name="cond1" value="is variable_set moveon:yes"/>
     <property name="cond2" value="not variable_set backhome:no"/>
+   </properties>
+  </object>
+  <object id="146" name="add jaime" type="event" x="456" y="128" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc taba_greeter,31,12,,stand"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc taba_greeter,29,12,,stand"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond1" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act05" value="set_variable greeter_greets:yes"/>
+    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act20" value="translated_dialog taba_greeting1"/>
+    <property name="act25" value="translated_dialog taba_greeting2a"/>
+    <property name="act30" value="add_item capture_device,5"/>
+    <property name="act40" value="translated_dialog gotfivetuxeballs"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="not has_item player,capture_device"/>
+    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond30" value="is player_at"/>
+    <property name="cond40" value="not variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="134" name="greeter_greets2" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act05" value="set_variable greeter_greets:yes"/>
+    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act20" value="translated_dialog taba_greeting1"/>
+    <property name="act30" value="translated_dialog taba_greeting2b"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="is has_item player,capture_device"/>
+    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond30" value="is player_at"/>
+    <property name="cond40" value="not variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="150" name="jaime3" type="event" x="456" y="176" width="16" height="16">
+   <properties>
+    <property name="act0" value="npc_face taba_greeter,player"/>
+    <property name="act10" value="translated_dialog taba_greeting3"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="act30" value="set_variable announcetwo:done"/>
+    <property name="cond10" value="is to_talk taba_greeter"/>
+    <property name="cond20" value="is variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="135" name="secret_tuxeball" type="event" x="625" y="240.5" width="16" height="16">
+   <properties>
+    <property name="act10" value="set_variable secret_ball:found"/>
+    <property name="act20" value="add_item capture_device,5"/>
+    <property name="act25" value="translated_dialog gotfivetuxeballs"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+    <property name="cond30" value="not variable_set secret_ball:found"/>
+    <property name="cond40" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

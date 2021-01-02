@@ -46,7 +46,7 @@ class VariableMathAction(EventAction):
         player = self.session.player
 
         # Read the parameters
-        var = self.parameters.var
+        var = self.parameters.var1
         result = self.parameters.result
         if result is None:
             result = var
@@ -54,7 +54,7 @@ class VariableMathAction(EventAction):
         operation = self.parameters.operation
         operand2 = number_or_variable(self.session, self.parameters.var2)
 
-        # Preform the operation on the variable
+        # Perform the operation on the variable
         if operation == "+":
             player.game_variables[result] = operand1 + operand2
         elif operation == "-":

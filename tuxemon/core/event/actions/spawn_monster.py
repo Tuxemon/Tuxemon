@@ -21,11 +21,13 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
-
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.monster import Monster
-import logging
 import uuid
+
+from tuxemon.core.locale import process_translate_text
+from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.tools import open_dialog
+from tuxemon.core.graphics import get_avatar
+import logging
 
 logger = logging.getLogger(__name__)
 
@@ -67,13 +69,14 @@ class SpawnMonsterAction(EventAction):
         if not world:
             return False
 
+        npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
             logger.error("Could not find NPC corresponding to slug {}".format(npc_slug))
             return False
 
-        mother_id = trainer.game_variables[breeding_mother]
-        father_id = trainer.game_variables[breeding_father]
+        mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
+        father_id = uuid.UUID(trainer.game_variables[breeding_father])
 
         mother = trainer.find_monster_by_id(mother_id)
         if mother is None:
@@ -92,5 +95,24 @@ class SpawnMonsterAction(EventAction):
             logger.error("Could not find (father) monster with instance id {}".format(father_id))
             return False
 
-        new_mon = Monster(mother, father)
+        new_mon = mother.spawn(father)
         trainer.add_monster(new_mon)
+
+        replace = ["monster_name={}".format(new_mon.name)]
+        avatar = get_avatar(self.session, new_mon.slug)
+
+        self.open_dialog(
+            process_translate_text(
+                self.session,
+                "got_new_tuxemon",
+                replace,
+            ), avatar
+        )
+
+    def update(self):
+        if self.session.client.get_state_by_name("DialogState") is None:
+            self.stop()
+
+    def open_dialog(self, pages, avatar):
+        logger.info("Opening dialog window")
+        open_dialog(self.session, pages, avatar)

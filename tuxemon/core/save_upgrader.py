@@ -113,5 +113,8 @@ def _transfer_storage_boxes(save_data):
     locker = save_data.get('storage', {}).get('items', {})
     kennel = save_data.get('storage', {}).get('monsters', {})
 
+    save_data['monster_boxes'] = dict()
+    save_data['item_boxes'] = dict()
+    
     save_data['monster_boxes'][CONFIG.default_monster_storage_box] = kennel
     save_data['item_boxes'][CONFIG.default_item_storage_box] = locker

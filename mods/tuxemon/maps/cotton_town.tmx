@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="282">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="282">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -76,7 +76,7 @@
    eAHtl01PE0EYx6davOnBT2BMVDRqqnAgiN4JifGgVjQkvgCCHD0JIVExnEA9+VI/gXDVIwHtndg2fgeBcsEDlgD6mzAThkl3t7vd7W5Nn+TXZ2Zndp//PDM7OxUieXYrnTxNpqLzCdfXyp85W/7LSczfn7b9cbitv3d0ew8f4CPkQFvmkBCX4DJ0QCdEYW75WyTgEnxTgfP4vqN7lX703IV7UtdhIQZC0PfbyJuMsmHV9yLv//6iuAKr6lIZ/xR9X44L8RI9U/AKzqJvOgR9KswB5za/Bzo2qFJROdtS3m1+GyTJNUzS8meLbeXPzoi/eq35W+b9/KEo4ItQAmndKSGuQA9chWsgzdwjf9I3qj1Sxtrk+Tehosjit0HaI/QMwhAMw2OQtkP7LvyV/diDUhCVneDZk8Q5iZc8p3wK/5W9cAY9s/Aa3sBbkHaa9jPQDnKPPActiy8DJfVtjU9B/JFH+W6N18CY+r41WvHaEfeIOebwE6x79HN/SvBWL33f0Zb3qS/Nf6i2kP5H2fpeHOOsBlNgmp/8XUDbRbjvsCa6uO41hoy619b3GV1zMF+Hvttoy8IdB30yth6DmYNqZVtfAV1FKNWhr1oc+5oeg33drtv67HZd9zO/+p4wfDPpW+DbbZpZjyt/z1ircn9+4LCWH6r2CYd2czxJL/f+B2NIeo699DX7HFxXa0h7r/H6aS+HeF730me2jwR8L27UcF/QZ5t5e0IcE6e9yrzHLuvzQlBvPy/uuj5faB+lniDvrD5faF9N3z+hJ1/o
   </data>
  </layer>
- <objectgroup color="#ff0000" id="4" name="Collisions" visible="0">
+ <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="124" type="collision" x="256" y="512">
    <polygon points="0,0 0,48 80,48 80,0"/>
   </object>
@@ -114,7 +114,7 @@
   <object id="173" type="collision" x="64" y="48" width="208" height="32"/>
   <object id="174" type="collision" x="272" y="16" width="16" height="32"/>
   <object id="175" type="collision" x="64" y="128" width="48" height="16"/>
-  <object id="176" type="collision" x="112" y="128" width="128" height="16"/>
+  <object id="176" type="collision" x="128" y="128" width="112" height="16"/>
   <object id="177" type="collision" x="240" y="128" width="16" height="16"/>
   <object id="178" type="collision" x="176" y="96" width="80" height="32"/>
   <object id="179" type="collision" x="288" y="16" width="64" height="144"/>

@@ -88,8 +88,8 @@ class TuxemonConfig:
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
-        self.default_monster_storage_box = cfg.getstring("gameplay", "default_monster_storage_box")
-        self.default_item_storage_box = cfg.getstring("gameplay", "default_monster_item_box")
+        self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
+        self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")

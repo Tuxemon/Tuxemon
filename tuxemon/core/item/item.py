@@ -125,7 +125,11 @@ class Item:
         }
         """
 
-        results = db.lookup(slug, table="item")
+        try:
+            results = db.lookup(slug, table="item")
+        except KeyError:
+            logger.error(msg="Failed to find item with slug {}".format(slug))
+            return
 
         self.slug = results["slug"]                                         # short English identifier
         self.name = T.translate(self.slug)                                  # translated name

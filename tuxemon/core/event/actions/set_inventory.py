@@ -40,5 +40,5 @@ class SetInventoryAction(EventAction):
             npc.inventory = {}
             return
 
-        entry = db.database["inventory"][self.parameters.inventory_slug]
+        entry = db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
         npc.inventory = decode_inventory(self.session, npc, entry)

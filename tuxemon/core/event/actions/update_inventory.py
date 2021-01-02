@@ -42,6 +42,6 @@ class UpdateInventoryAction(EventAction):
 
         npc.inventory.update(
             decode_inventory(self.session, npc,
-                             db.database["inventory"][self.parameters.inventory_slug]
+                             db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
                              )
         )

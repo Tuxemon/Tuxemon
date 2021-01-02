@@ -62,6 +62,7 @@ class WithdrawMonsterAction(EventAction):
         if not world:
             return False
 
+        trainer = trainer.replace("player", "npc_red")
         npc = world.get_entity(trainer)
         instance_id = uuid.UUID(npc.game_variables[monster_id])
         mon = npc.find_monster_in_storage(instance_id)

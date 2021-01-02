@@ -237,8 +237,8 @@
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder7b"/>
     <property name="act20" value="set_variable breeder_state:1"/>
-    <property name="act30" value="withdraw_monster breeding_mother"/>
-    <property name="act35" value="withdraw_monster breeding_father"/>
+    <property name="act30" value="withdraw_monster player,breeding_mother"/>
+    <property name="act35" value="withdraw_monster player,breeding_father"/>
     <property name="act40" value="clear_variable continue"/>
     <property name="cond10" value="is variable_set breeder_state:7"/>
     <property name="cond20" value="is variable_set continue:no"/>

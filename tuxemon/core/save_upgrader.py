@@ -101,7 +101,7 @@ def _remove_slug_prefixes(save_data):
 
 def _transfer_storage_boxes(save_data):
     """
-    Item and and monster storage used to be handled in a single
+    Item and monster storage used to be handled in a single
     dictionary, with "item" and "monster" keys. Now they're two
     dictionaries where the keys are "boxes", like in the Pokemon
     games. This also allows "hidden" boxes for scripts to move
@@ -115,6 +115,6 @@ def _transfer_storage_boxes(save_data):
 
     save_data['monster_boxes'] = dict()
     save_data['item_boxes'] = dict()
-    
+
     save_data['monster_boxes'][CONFIG.default_monster_storage_box] = kennel
     save_data['item_boxes'][CONFIG.default_item_storage_box] = locker

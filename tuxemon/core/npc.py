@@ -177,10 +177,10 @@ class NPC(Entity):
             'tile_pos': nearest(self.tile_pos),
         }
 
-        for key in self.monster_boxes.keys():
-            state['monster_boxes'][key] = encode_monsters(self.monster_boxes[key])
-        for key in self.item_boxes.keys():
-            state['item_boxes'][key] = encode_inventory(self.item_boxes[key])
+        for key, value in self.monster_boxes.items():
+            state['monster_boxes'][key] = encode_monsters(value)
+        for key, value in self.item_boxes.items():
+            state['item_boxes'][key] = encode_inventory(value)
 
         return state
 
@@ -200,10 +200,10 @@ class NPC(Entity):
         self.inventory = decode_inventory(session, self, save_data.get('inventory', {}))
         self.monsters = decode_monsters(save_data.get("monsters"))
         self.name = save_data['player_name']
-        for key in save_data['monster_boxes'].keys():
-            self.monster_boxes[key] = decode_monsters(save_data['monster_boxes'][key])
-        for key in save_data['item_boxes'].keys():
-            self.item_boxes[key] = decode_inventory(session, self, save_data['item_boxes'][key])
+        for key, value in save_data['monster_boxes'].items():
+            self.monster_boxes[key] = decode_monsters(value)
+        for key, value in save_data['item_boxes'].items():
+            self.item_boxes[key] = decode_inventory(session, self, value)
 
     def load_sprites(self):
         """ Load sprite graphics

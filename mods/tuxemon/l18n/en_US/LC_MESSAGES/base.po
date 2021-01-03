@@ -3503,8 +3503,8 @@ msgid "taba_greeting2b"
 msgstr "Ah! I see you've already got some. You've got a good head on your shoulders ${{name}}, I'm sure you'll be a champ in no time."
 
 msgid "taba_greeting3"
-msgstr "Good luck in your adventures ${{name}}, and remember to shop at Ttuxemart for all your adventuring needs!\n"
-"..."
+msgstr "Good luck in your adventures ${{name}}, and remember to shop at Tuxemart for all your adventuring needs!\n"
+"...\n"
 "Sorry about the sales pitch, it's my job."
 
 msgid "gotfivetuxeballs"

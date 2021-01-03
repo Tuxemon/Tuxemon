@@ -38,5 +38,5 @@ class RemoveMonsterAction(EventAction):
         instance_id = uuid.UUID(iid)
 
         monster = self.session.player.find_monster_by_id(instance_id)
-        if monster:
+        if monster is not None:
             self.session.player.remove_monster(monster)

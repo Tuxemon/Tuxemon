@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 class VariableMathAction(EventAction):
-    """ Preforms a mathematical operation on the key in the player.game_variables dictionary.
+    """ Performs a mathematical operation on the key in the player.game_variables dictionary.
     Optionally accepts a fourth parameter to store the result, otherwise it is stored in
     variable1.
 

@@ -816,7 +816,6 @@
     <property name="act0" value="npc_face taba_greeter,player"/>
     <property name="act10" value="translated_dialog taba_greeting3"/>
     <property name="act20" value="npc_face taba_greeter,down"/>
-    <property name="act30" value="set_variable announcetwo:done"/>
     <property name="cond10" value="is to_talk taba_greeter"/>
     <property name="cond20" value="is variable_set greeter_greets:yes"/>
    </properties>

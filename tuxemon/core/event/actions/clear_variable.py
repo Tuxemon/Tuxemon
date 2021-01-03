@@ -1,6 +1,6 @@
 #
 # Tuxemon
-# Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
+# Copyright (c) 2020      William Edwards <shadowapex@gmail.com>,
 #                         Benjamin Bean <superman2k5@gmail.com>
 #
 # This file is part of Tuxemon
@@ -18,27 +18,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+# Contributor(s):
+#
+# Adam Chevalier <chevalierAdam2@gmail.com>
 
-from tuxemon.core.db import db
-from tuxemon.core.event import get_npc
 from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item.item import decode_inventory
+import logging
+
+logger = logging.getLogger(__name__)
 
 
-class SetInventoryAction(EventAction):
-    """ Overwrites the inventory of the npc or player.
+# noinspection PyAttributeOutsideInit
+class ClearVariableAction(EventAction):
+    """ Clears the value of var from the game.
+
+    Valid Parameters: string variable_name
+
+    **Examples:**
+
+    >>> EventAction.__dict__
+    {
+        "type": "clear_variable",
+        "parameters": [
+            "variable"
+        ]
+    }
+
     """
-    name = "set_inventory"
+    name = "clear_variable"
     valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
+        (str, "variable")
     ]
 
     def start(self):
-        npc = get_npc(self.session, self.parameters.npc_slug)
-        if self.parameters.inventory_slug == "None":
-            npc.inventory = {}
-            return
-
-        entry = db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
-        npc.inventory = decode_inventory(self.session, npc, entry)
+        player = self.session.player
+        key = self.parameters.variable
+        player.game_variables.pop(key, None)

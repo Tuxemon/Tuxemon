@@ -26,22 +26,22 @@ from tuxemon.core.item.item import decode_inventory
 
 
 class UpdateInventoryAction(EventAction):
-	""" Updates the inventory of the npc or player.
-	Overwrites the quantity of an item if it's already present, but leaves other items alone.
-	"""
-	name = "update_inventory"
-	valid_parameters = [
-		(str, "npc_slug"),
-		(str, "inventory_slug"),
-	]
+    """ Updates the inventory of the npc or player. Overwrites the quantity of an item if it's already present,
+    but leaves other items alone.
+    """
+    name = "update_inventory"
+    valid_parameters = [
+        (str, "npc_slug"),
+        (str, "inventory_slug"),
+    ]
 
-	def start(self):
-		npc = get_npc(self.session, self.parameters.npc_slug)
-		if self.parameters.inventory_slug is None:
-			return
+    def start(self):
+        npc = get_npc(self.session, self.parameters.npc_slug)
+        if self.parameters.inventory_slug is None:
+            return
 
-		npc.inventory.update(
-			decode_inventory(self.session, npc,
-				db.database["inventory"][self.parameters.inventory_slug]
-			)
-		)
+        npc.inventory.update(
+            decode_inventory(self.session, npc,
+                             db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
+                             )
+        )

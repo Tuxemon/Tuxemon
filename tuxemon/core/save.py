@@ -36,7 +36,7 @@ from operator import itemgetter
 
 import pygame
 
-from tuxemon.core import prepare
+from tuxemon.core import prepare, config
 from tuxemon.core.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:

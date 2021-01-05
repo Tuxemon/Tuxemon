@@ -245,7 +245,6 @@ class Translator:
             logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
             return None
 
-
     def change_locale(self, locale_name):
         """Changes the translator object to the given locale
 

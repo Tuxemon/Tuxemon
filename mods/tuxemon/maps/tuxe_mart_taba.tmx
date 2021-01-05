@@ -67,7 +67,7 @@
   </object>
   <object id="56" name="employee" type="event" x="32" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc tuxemart_keeper,2,7,tuxemartemployee,stand"/>
+    <property name="act10" value="create_npc tuxemart_keeper,2,7,,stand"/>
     <property name="act20" value="npc_face tuxemart_keeper,right"/>
     <property name="act30" value="set_inventory tuxemart_keeper,inv_basic_store"/>
     <property name="cond10" value="not npc_exists tuxemart_keeper"/>
@@ -118,7 +118,7 @@
     <property name="cond3" value="not variable_set proftalk2:yes"/>
    </properties>
   </object>
-  <object id="68" name="professor pls2" type="event" x="160" y="192" width="16" height="16">
+  <object id="68" name="professor pls2" type="event" x="176" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="pathfind player, 7,9"/>
     <property name="act2" value="translated_dialog professorexists2"/>

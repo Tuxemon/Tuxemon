@@ -29,34 +29,42 @@ logger = logging.getLogger(__name__)
 
 class VariableMathAction(EventAction):
     """ Performs a mathematical operation on the key in the player.game_variables dictionary.
+    Optionally accepts a fourth parameter to store the result, otherwise it is stored in
+    variable1.
 
-    Valid Parameters: variable_name, operation, value
+    Valid Parameters: variable1, operation, variable2(, result_variable_name)
     """
     name = "variable_math"
     valid_parameters = [
-        (str, "var"),
+        (str, "var1"),
         (str, "operation"),
-        (str, "value")
+        (str, "var2"),
+        ((str, None), "result")
     ]
 
     def start(self):
         player = self.session.player
 
         # Read the parameters
-        var = self.parameters.var
+        var = self.parameters.var1
+        result = self.parameters.result
+        if result is None:
+            result = var
         operand1 = number_or_variable(self.session, var)
         operation = self.parameters.operation
-        operand2 = number_or_variable(self.session, self.parameters.value)
+        operand2 = number_or_variable(self.session, self.parameters.var2)
 
-        # Preform the operation on the variable
+        # Perform the operation on the variable
         if operation == "+":
-            player.game_variables[var] = operand1 + operand2
+            player.game_variables[result] = operand1 + operand2
         elif operation == "-":
-            player.game_variables[var] = operand1 - operand2
+            player.game_variables[result] = operand1 - operand2
         elif operation == "*":
-            player.game_variables[var] = operand1 * operand2
+            player.game_variables[result] = operand1 * operand2
         elif operation == "/":
-            player.game_variables[var] = operand1 / operand2
+            player.game_variables[result] = operand1 / operand2
+        elif operation == "=":
+            player.game_variables[result] = operand2
         else:
             logger.error("invalid operation type {}".format(operation))
             raise ValueError

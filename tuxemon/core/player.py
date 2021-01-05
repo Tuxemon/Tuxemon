@@ -44,10 +44,7 @@ class Player(NPC):
         self.isplayer = True
 
         # Game variables for use with events
-        self.game_variables = {}
-
-        # Number of steps
-        self.game_variables['steps'] = 0
+        self.game_variables = {'steps': 0}
 
     def move(self, time_passed_seconds):
         """ Move the player around the game world

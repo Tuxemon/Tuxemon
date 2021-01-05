@@ -82,7 +82,7 @@ class NPC(Entity):
     """
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
-    def __init__(self, npc_slug, sprite_name=None,combat_front=None,combat_back=None):
+    def __init__(self, npc_slug, sprite_name=None, combat_front=None, combat_back=None):
         super().__init__()
 
         # load initial data from the npc database
@@ -113,7 +113,11 @@ class NPC(Entity):
         self.isplayer = False  # used for various tests, idk
         self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
         self.inventory = {}  # The Player's inventory.
-        self.storage = {"monsters": [], "items": {}}
+        # Variables for long-term item and monster storage
+        # Keeping these seperate so other code can safely
+        # assume that all values are lists
+        self.monster_boxes = dict()
+        self.item_boxes = dict()
 
         # combat related
         self.ai = None  # Whether or not this player has AI associated with it
@@ -160,19 +164,25 @@ class NPC(Entity):
         :returns: Dictionary containing all the information about the npc
 
         """
-        return {
+
+        state = {
             'current_map': session.client.get_map_name(),
             'facing': self.facing,
             'game_variables': self.game_variables,
             'inventory': encode_inventory(self.inventory),
             'monsters': encode_monsters(self.monsters),
             'player_name': self.name,
-            'storage': {
-                'items': encode_inventory(self.storage['items']),
-                'monsters': encode_monsters(self.storage['monsters']),
-            },
+            'monster_boxes': dict(),
+            'item_boxes': dict(),
             'tile_pos': nearest(self.tile_pos),
         }
+
+        for key, value in self.monster_boxes.items():
+            state['monster_boxes'][key] = encode_monsters(value)
+        for key, value in self.item_boxes.items():
+            state['item_boxes'][key] = encode_inventory(value)
+
+        return state
 
     def set_state(self, session,  save_data):
         """Recreates npc from saved data
@@ -187,13 +197,13 @@ class NPC(Entity):
 
         self.facing = save_data.get('facing', 'down')
         self.game_variables = save_data['game_variables']
-        self.inventory = decode_inventory(session, self, save_data)
-        self.monsters = decode_monsters(save_data)
+        self.inventory = decode_inventory(session, self, save_data.get('inventory', {}))
+        self.monsters = decode_monsters(save_data.get("monsters"))
         self.name = save_data['player_name']
-        self.storage = {
-            'items': decode_inventory(session, self, save_data['storage']),
-            'monsters': decode_monsters(save_data['storage']),
-        }
+        for key, value in save_data['monster_boxes'].items():
+            self.monster_boxes[key] = decode_monsters(value)
+        for key, value in save_data['item_boxes'].items():
+            self.item_boxes[key] = decode_inventory(session, self, value)
 
     def load_sprites(self):
         """ Load sprite graphics
@@ -538,7 +548,7 @@ class NPC(Entity):
         """
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
-            self.storage["monsters"].append(monster)
+            self.monster_boxes[CONFIG.default_monster_storage_box].append(monster)
         else:
             self.monsters.append(monster)
             self.set_party_status()
@@ -556,6 +566,36 @@ class NPC(Entity):
             if monster.slug == monster_slug:
                 return monster
 
+    def find_monster_by_id(self, instance_id):
+        """Finds a monster in the player's list which has the given instance_id.
+
+        :param instance_id: The instance_id of the monster.
+        :type instance_id: uuid.UUID4
+
+        :rtype: tuxemon.core.monster.Monster
+        :return: Monster found, or None.
+
+        """
+        return next((m for m in self.monsters if m.instance_id == instance_id), None)
+
+    def find_monster_in_storage(self, instance_id):
+        """Finds a monster in the player's storage boxes which has the given instance_id.
+
+        :param instance_id: The insance_id of the monster.
+        :type instance_id: uuid.UUID4
+
+        :rtype: tuxemon.core.monster.Monster
+        :return: Monster found, or None.
+
+        """
+        monster = None
+        for box in self.monster_boxes.values():
+            monster = next((m for m in box if m.instance_id == instance_id), None)
+            if monster is not None:
+                break
+
+        return monster
+
     def remove_monster(self, monster):
         """ Removes a monster from this player's party.
 
@@ -567,14 +607,29 @@ class NPC(Entity):
         :returns: None
         """
         if monster in self.monsters:
-            monster.owner = None
             self.monsters.remove(monster)
             self.set_party_status()
+
+    def remove_monster_from_storage(self, monster):
+        """ Removes the monster from the player's storage.
+
+        :param monster: Monster to remove from storage.
+        :type monster: tuxemon.core.monster.Monster
+
+        :return: None
+        :rtype: None
+        """
+
+        for box in self.monster_boxes.values():
+            if monster in box:
+                box.remove(monster)
+                return
 
     def switch_monsters(self, index_1, index_2):
         """ Swap two monsters in this player's party
 
-        :param index_1/index_2: The indexes of the monsters to switch in the player's party.
+        :param index_1: The indexes of the monsters to switch in the player's party.
+        :param index_2: The indexes of the monsters to switch in the player's party.
 
         :type index_1: int
         :type index_2: int

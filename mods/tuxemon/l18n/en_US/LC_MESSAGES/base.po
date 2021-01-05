@@ -3480,6 +3480,51 @@ msgstr "Leather Town"
 msgid "cannot_use_item_monster"
 msgstr "This item cannot be used on this monster."
 
+msgid "cotton_breeder0"
+msgstr "Hi there, welcome to the Daycare, I breed Tuxemon here.\nI run this place because I love Tuxemon so much!\n"
+"If you like, I can breed two of your Tuxemon for you. Just let me know, ok?"
+
+msgid "cotton_breeder1"
+msgstr "Do you wanna leave two of your Tuxemon with me to breed them?"
+
+msgid "cotton_breeder2a_1"
+msgstr "Okay, which Tuxemon will be the mother?"
+
+msgid "cotton_breeder2a_2"
+msgstr "Great, how about the father?"
+
+msgid "cotton_breeder3"
+msgstr "Okay, you sure these are the two you want?"
+
+msgid "cotton_breeder4a"
+msgstr "Great! Come back to check in later and I'll let you know how it's going."
+
+msgid "cotton_breeder_rejected"
+msgstr "Oh, alright. You think about it some more and come back to me."
+
+msgid "cotton_breeder5"
+msgstr "Hey ${{name}}, come to check up on your Tuxemon?"
+
+msgid "cotton_breeder6a"
+msgstr "They're still getting acquainted, as it were. Why don't you come back later?"
+
+msgid "cotton_breeder6b"
+msgstr "It's going very well! They're practically inseperable!\n"
+"It shouldn't be too long now before we've got a baby on the way."
+
+msgid "cotton_breeder6c"
+msgstr "Congratulations! They've had a baby! Here you go, raise it well."
+
+msgid "cotton_breeder_continue"
+msgstr "It'll be awhile before they're ready for another, but if you like I can hold onto these two and breed them again."
+
+msgid "cotton_breeder7a"
+msgstr "Great! You take some time with the baby and I'll take care of the parents. Come back later to check up on them."
+
+msgid "cotton_breeder7b"
+msgstr "Good idea, the new family should be kept together at this important stage in the baby's development.\n"
+"Ya'll come back now, y'hear?"
+
 msgid "taba_greeting1"
 msgstr "Greeter Jaime: Hey there ${{name}}! Heard you got a Tuxemon, congrats! If you wanna grow your party, you'll need Tuxeballs."
 
@@ -3489,5 +3534,13 @@ msgstr "The shop is doing a promo, here's some to get you started. You use them 
 msgid "taba_greeting2b"
 msgstr "Ah! I see you've already got some. You've got a good head on your shoulders ${{name}}, I'm sure you'll be a champ in no time."
 
+msgid "taba_greeting3"
+msgstr "Good luck in your adventures ${{name}}, and remember to shop at Tuxemart for all your adventuring needs!\n"
+"...\n"
+"Sorry about the sales pitch, it's my job."
+
 msgid "gotfivetuxeballs"
 msgstr "You got 5 Tuxeballs!"
+
+msgid "got_new_tuxemon"
+msgstr "You got a ${{monster_name}}!"

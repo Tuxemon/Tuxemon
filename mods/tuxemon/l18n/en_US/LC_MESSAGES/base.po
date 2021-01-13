@@ -1977,6 +1977,63 @@ msgstr "C'mon Rocky! You can move! I believe!"
 msgid "moverocky2"
 msgstr "Well, you move when your ready, I'll be here waiting."
 
+msgid "tuxemontime"
+msgstr "Ah, you came! Great!\n"
+"I take it this means you've decided to join the Trial?\n"
+
+msgid "tuxemontimechoiceyes"
+msgstr "Splendid!"
+
+msgid "tuxemontimechoiceno"
+msgstr "Oh... Okay... I'll be here if you change your mind..."
+
+msgid "tuxemontime2"
+msgstr "Now, the first thing to do is get your papers all set..."
+
+msgid "tuxemontime3"
+msgstr "There we go!\n"
+"Here are your registration papers, the first Battle Area will require you to present them in exchange for a Trainer badge.\n"
+"You won't need the papers after that.\n"
+
+msgid "tuxemontime4"
+msgstr "Now for the most important part! Choosing your Tuxemon!\n"
+"Unfortunately, my source of funding has become... hesitant as of late. This leaves you with only three choices of Tuxemon, sorry about that.\n"
+"The three choices are Rockitten, Cardiling, and Tweesher."
+
+msgid "chooseyerfate"
+msgstr "Which Tuxemon do you want?"
+
+msgid "chooseyerfateRockitten"
+msgtsr "A solid choice! Rockitten is an Earth-type Tuxemon. In medieval times, they bred Rockitten's to sit by the door and look cute.\n"
+"Do you want to choose Rockitten?"
+
+msgid "choseRockitten"
+msgstr "Alright, here's your Rockitten! I know that you two will go on great adventures together!\n"
+"First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Cardiling.\n"
+"And... LET'S FIGHT!"
+
+msgid "chooseyerfateCardiling"
+msgstr "An interesting choice, it speaks to the spark inside of you. Cardiling is a Fire-type Tuxemon known for stealing food from friends and enemies alike.\n"
+"Do you want to choose Cardiling?"
+
+msgid "choseCardiling"
+msgstr "Alright, here's your Cardiling! I know that you two will go on great adventures together!\n"
+"First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Tweesher.\n"
+"And... LET'S FIGHT!"
+
+msgid "chooseyerfateTweesher"
+msgstr "A great choice! Tweesher is a Water-type Tuxemon. It's evolution Eagleace is one of the fastest Tuxemon\n"
+"Do you want to choose Tweesher?"
+
+msgid "choseTweesher"
+msgstr "Alright, here's your Cardiling! I know that you two will go on great adventures together!\n"
+"First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Rockitten.\n"
+"And... LET'S FIGHT!"
+
+msgid "wewnicefight"
+msgstr "Wow, that was a good fight!\n"
+"With a little more practice and maybe a few more Tuxemon, you'll definitely be able to take on the Trial."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

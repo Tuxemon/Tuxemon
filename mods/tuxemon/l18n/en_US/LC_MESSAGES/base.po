@@ -1978,8 +1978,10 @@ msgid "moverocky2"
 msgstr "Well, you move when your ready, I'll be here waiting."
 
 msgid "tuxemontime"
-msgstr "Ah, you came! Great!\n"
-"I take it this means you've decided to join the Trial?\n"
+msgstr "Ah, you came! Great!"
+
+msgid "tuxemontime1.5"
+msgstr "I take it this means you've decided to join the Trial?"
 
 msgid "tuxemontimechoiceyes"
 msgstr "Splendid!"

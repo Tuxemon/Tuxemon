@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="98">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="99">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
  <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
@@ -88,7 +91,7 @@
   <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
   <object id="95" name="createprofessor" type="event" x="48" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc professor,7,4,,stand"/>
+    <property name="act1" value="create_npc professor,7,6,,stand"/>
     <property name="act2" value="npc_face professor,up"/>
     <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
     <property name="cond2" value="not npc_exists professor"/>
@@ -98,10 +101,21 @@
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act2" value="translated_dialog tuxemontime"/>
-    <property name="act3" value="pathfind professor,9,11"/>
+    <property name="act3" value="pathfind professor,9,12"/>
+    <property name="act4" value="pathfind player,9,13"/>
+    <property name="act5" value="translated_dialog tuxemontime1.5"/>
+    <property name="act6" value="translated_dialog_choice yes:no,startchoice"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is variable_set dancininthemoonlight:heckyeah"/>
     <property name="cond3" value="is player_facing up"/>
+    <property name="cond4" value="not variable_set startchoice:yes"/>
+    <property name="cond5" value="not variable_set startchoice:no"/>
+   </properties>
+  </object>
+  <object id="98" name="startchoice1" type="event" x="48" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxemontimechoiceno"/>
+    <property name="cond1" value="is variable_set startchoice:no"/>
    </properties>
   </object>
  </objectgroup>

@@ -270,11 +270,6 @@ class NPC(Entity):
         # update physics.  eventually move to another class
         self.update_physics(time_passed_seconds)
 
-        if self.moving:
-            self.animation = "walk"
-        else:
-            self.animation = "idle"
-
         if self.pathfinding and not self.path:
             self.pathfind(self.pathfinding)
 
@@ -336,7 +331,6 @@ class NPC(Entity):
         direction = get_direction(self.tile_pos, target)
         self.facing = direction
         if self.valid_movement(target):
-            self.animation = "walking"
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:

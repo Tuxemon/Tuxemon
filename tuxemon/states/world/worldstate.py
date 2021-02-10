@@ -57,7 +57,6 @@ class WorldState(state.State):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.client = local_session.client
-        self.allow_player_movement = None
         self.wants_to_move_player = None
         self.current_music = {"status": "stopped", "song": None, "previoussong": None}
         self.rumble_manager = rumble.RumbleManager()
@@ -71,24 +70,9 @@ class WorldState(state.State):
         self.session = session
         self.player_npc = None
         self.wants_to_move_player = None
-        self.allow_player_movement = True
         self.view = MapView(self.session.world)
         self.player_npc = session.player
         self.set_player_npc(self.player_npc)
-
-    def lock_controls(self):
-        """Prevent input from moving the player"""
-        self.allow_player_movement = False
-
-    def unlock_controls(self):
-        """Allow the player to move
-
-        If the player was previously holding a direction down,
-        then the player will start moving after this is called.
-        """
-        self.allow_player_movement = True
-        if self.wants_to_move_player:
-            self.move_player(self.wants_to_move_player)
 
     def set_player_npc(self, entity):
         """Set the npc which is controlled and set camera to follow them"""
@@ -121,17 +105,17 @@ class WorldState(state.State):
     def move_player(self, direction: str):
         """Move player in a direction.  Changes facing."""
         self.session.world.eventengine.execute_action(self.session, "player_face", [direction])
-        if self.player_npc is not None:
-            self.player_npc.move_direction(direction)
+        self.session.world.eventengine.execute_action(self.session, "player_move")
 
     def pause(self):
         """Called before another state gets focus"""
-        self.lock_controls()
+        # self.lock_controls()
         self.stop_player()
 
     def resume(self):
         """Called after returning focus to this state"""
-        self.unlock_controls()
+        # self.unlock_controls()
+        pass
 
     def draw(self, surface):
         """Draw the game world to the screen"""
@@ -160,25 +144,23 @@ class WorldState(state.State):
         if event.button == intentions.WORLD_MENU:
             pass
 
-        if event.button == intentions.RUN:
-            if event.held:
-                self.player_npc.moverate = self.client.config.player_runrate
-            else:
-                self.player_npc.moverate = self.client.config.player_walkrate
-
-        # If we receive an arrow key press, set the facing and
-        # moving direction to that direction
-        direction = direction_map.get(event.button)
-        if direction is not None:
-            if event.held:
-                self.wants_to_move_player = direction
-                if self.allow_player_movement:
+        locked_controls = self.player_npc.game_variables.get("CONTROLS_LOCKED")
+        if not locked_controls:
+            if event.button == intentions.RUN:
+                if event.held:
+                    self.player_npc.moverate = self.client.config.player_runrate
+                else:
+                    self.player_npc.moverate = self.client.config.player_walkrate
+            direction = direction_map.get(event.button)
+            if direction is not None:
+                if event.held:
+                    self.wants_to_move_player = direction
                     self.move_player(direction)
-                return
-            elif not event.pressed:
-                if direction == self.wants_to_move_player:
-                    self.stop_player()
                     return
+                elif not event.pressed:
+                    if direction == self.wants_to_move_player:
+                        self.stop_player()
+                        return
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:

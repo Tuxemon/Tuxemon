@@ -44,21 +44,6 @@ logger = logging.getLogger(__name__)
 
 class Item:
     """An item object is an item that can be used either in or out of combat.
-
-    **Example:**
-
-    >>> potion = Item("potion")
-    >>> pprint.pprint(potion.__dict__)
-    {
-        'description': u'Heals a monster by 50 HP.',
-        'effects': [u'heal'],
-        'slug': 'potion',
-        'name': u'potion',
-        'sprite': u'resources/gfx/items/potion.png',
-        'surface': <Surface(66x90x32 SW)>,
-        'surface_size_original': (66, 90),
-        'type': u'Consumable'
-    }
     """
 
     effects = dict()

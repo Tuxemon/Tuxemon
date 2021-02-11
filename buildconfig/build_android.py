@@ -1,3 +1,4 @@
+# outdated, use buildozer
 import os
 import shutil
 import sys

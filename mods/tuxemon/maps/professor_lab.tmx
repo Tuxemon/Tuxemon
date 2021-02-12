@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="99">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="100">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -115,7 +115,14 @@
   <object id="98" name="startchoice1" type="event" x="48" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tuxemontimechoiceno"/>
+    <property name="act2" value="set_variable startchoice:maybe"/>
     <property name="cond1" value="is variable_set startchoice:no"/>
+   </properties>
+  </object>
+  <object id="99" name="startchoice2" type="event" x="48" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxemontimechoiceyes"/>
+    <property name="cond1" value="is variable_set startchoice:yes"/>
    </properties>
   </object>
  </objectgroup>

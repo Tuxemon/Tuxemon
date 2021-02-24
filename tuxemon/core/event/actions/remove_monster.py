@@ -20,22 +20,30 @@
 #
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.event import get_npc
 
 
 class RemoveMonsterAction(EventAction):
-    """Removes a monster to the current player's party if the monster is there.
+    """Removes a monster from the current player's party if the monster is there.
 
     Valid Parameters: monster_slug
     """
     name = "remove_monster"
     valid_parameters = [
-        (str, "monster_slug")
+        (str, "monster_slug"),
+        ((str, None), "trainer_slug")
     ]
 
     def start(self):
         monster_slug = self.parameters.monster_slug
+        trainer_slug = self.parameters.trainer
+
+        if trainer_slug is None:
+            trainer = self.session.player
+        else:
+            trainer = get_npc(trainer_slug)
 
         # TODO: will give unpredictable result with multiple copies of the same monster
-        monster = self.session.player.find_monster(monster_slug)
+        monster = trainer.find_monster(monster_slug)
         if monster:
-            self.session.player.remove_monster(monster)
+            trainer.remove_monster(monster)

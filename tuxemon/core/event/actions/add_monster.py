@@ -41,7 +41,6 @@ class AddMonsterAction(EventAction):
 
         monster_slug, monster_level, trainer_slug = self.parameters
 
-        trainer = {}
         if trainer_slug is None:
             trainer = self.session.player
         else:

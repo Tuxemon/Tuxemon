@@ -1,5 +1,4 @@
 import logging
-import sys
 from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
@@ -15,15 +14,6 @@ ANIMATION_NOT_STARTED = 0
 ANIMATION_RUNNING = 1
 ANIMATION_DELAYED = 2
 ANIMATION_FINISHED = 3
-
-PY2 = sys.version_info[0] == 2
-string_types = None
-text_type = None
-if PY2:
-    string_types = basestring
-    text_type = unicode
-else:
-    string_types = text_type = str
 
 
 def is_number(value):
@@ -312,7 +302,7 @@ class Animation(pygame.sprite.Sprite):
     def __init__(self, *targets, **kwargs):
         super().__init__()
         self.targets = list()
-        self._targets = list()  #  used when there is a delay
+        self._targets = list()
         self.delay = kwargs.get("delay", 0)
         self._state = ANIMATION_NOT_STARTED
         self._round_values = kwargs.get("round_values", False)
@@ -320,7 +310,7 @@ class Animation(pygame.sprite.Sprite):
         self._transition = kwargs.get("transition", self.default_transition)
         self._initial = kwargs.get("initial", None)
         self._relative = kwargs.get("relative", False)
-        if isinstance(self._transition, string_types):
+        if isinstance(self._transition, str):
             self._transition = getattr(AnimationTransition, self._transition)
         self._elapsed = 0.0
         for key in ("duration", "transition", "round_values", "delay", "initial", "relative"):

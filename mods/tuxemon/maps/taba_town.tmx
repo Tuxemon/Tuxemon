@@ -632,7 +632,8 @@
   <object id="130" name="waitdontleave" type="event" x="592" y="624" width="32" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
-    <property name="act10" value="remove_npc npc_mom"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act12" value="remove_npc npc_mom"/>
     <property name="act2" value="translated_dialog waitdontgo"/>
     <property name="act3" value="create_npc npc_mom, 39,46"/>
     <property name="act4" value="pathfind npc_mom,37,40"/>

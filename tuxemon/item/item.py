@@ -74,8 +74,8 @@ class Item:
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects:
-            Item.effects = plugin.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
-            Item.conditions = plugin.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
+            Item.effects = plugin.load_plugins_dict(paths.ITEM_EFFECT_PATH)
+            Item.conditions = plugin.load_plugins_dict(paths.ITEM_CONDITION_PATH)
 
         # If a slug of the item was provided, auto-load it from the item database.
         if slug:
@@ -91,22 +91,6 @@ class Item:
 
         :rtype: None
         :returns: None
-
-        **Examples:**
-
-        >>> potion = Item()
-        >>> potion.load('potion')    # Load an item by slug.
-        >>> pprint.pprint(potion.__dict__)
-        {
-            'description': u'Heals a monster by 50 HP.',
-            'effects': [u'heal'],
-            'slug': 'potion',
-            'name': u'potion',
-            'sprite': u'resources/gfx/items/potion.png',
-            'surface': <Surface(66x90x32 SW)>,
-            'surface_size_original': (66, 90),
-            'type': u'Consumable'
-        }
         """
 
         results = db.lookup(slug, table="item")

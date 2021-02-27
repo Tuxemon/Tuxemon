@@ -28,7 +28,9 @@
 #
 
 import logging
+from functools import partial
 
+import tuxemon
 from tuxemon import prepare, state, networking
 from tuxemon import rumble
 from tuxemon.map import direction_map
@@ -68,7 +70,7 @@ class WorldState(state.State):
     def startup(self, *args, **kwargs):
         session = kwargs["session"]
         self.session = session
-        self.player_npc = None
+        self.player_npc = None  # type: tuxemon.npc.NPC
         self.wants_to_move_player = None
         self.view = MapView(self.session.world)
         self.player_npc = session.player
@@ -104,8 +106,11 @@ class WorldState(state.State):
 
     def move_player(self, direction: str):
         """Move player in a direction.  Changes facing."""
-        self.session.world.eventengine.execute_action(self.session, "player_face", [direction])
-        self.session.world.eventengine.execute_action(self.session, "player_move")
+        # TODO: clean up the event engines so this call is not so horrible
+        do = partial(self.session.world.eventengine.start_action, self.session)
+        print("move")
+        do("player_face", [direction])
+        do("npc_move_tile", ("player", direction))
 
     def pause(self):
         """Called before another state gets focus"""
@@ -140,6 +145,12 @@ class WorldState(state.State):
             return
 
         event = self.translate_input_event(event)
+
+        # has the player pressed the action key?
+        # if event.pressed and event.button == buttons.A:
+        #     for map_event in self.world.interacts:
+        #         self.process_map_event(map_event)
+        #
 
         if event.button == intentions.WORLD_MENU:
             pass

@@ -26,7 +26,7 @@
 import logging
 from collections import namedtuple
 
-from tuxemon.event.eventengine import EventContext
+from tuxemon.event.eventcontext2 import EventContext
 from tuxemon.tools import cast_values
 
 logger = logging.getLogger(__name__)
@@ -132,8 +132,6 @@ class EventAction:
         """Called only once, when the action is started
 
         Context Protocol
-
-        :return:
         """
         self.start()
 
@@ -141,8 +139,6 @@ class EventAction:
         """Called only once, when action is stopped and needs to close
 
         Context Protocol
-
-        :return:
         """
         self.cleanup()
 
@@ -150,8 +146,6 @@ class EventAction:
         """Call when the action is done.  EventAction will be removed at end of frame.
 
         If an EventAction overrides update, it must eventually call this method.
-
-        :return:
         """
         self._done = True
 
@@ -171,8 +165,6 @@ class EventAction:
         It is better to use EventAction.execute()
 
         This may cause the game to hang if an action is waiting on game changes
-
-        :return:
         """
         while not self.done:
             self.update()
@@ -181,8 +173,6 @@ class EventAction:
     def done(self):
         """Will be true when action is finished.  If you need the
             action to stop, call EventAction.stop()
-
-        :return:
         """
         return self._done
 
@@ -195,8 +185,6 @@ class EventAction:
         put all the code here.  If the action will need to run over
         several frames, you can init your action here, then override
         the update method.
-
-        :return:
         """
         raise NotImplementedError
 
@@ -211,8 +199,6 @@ class EventAction:
         until EventAction.stop() is called.  If you do not ever call stop(),
         then this action will block all others in the list and will continue
         to run until the parent EventEngine is stopped.
-
-        :return:
         """
         self.stop()
 
@@ -221,6 +207,5 @@ class EventAction:
 
         You do not need to override this, but it may be useful for some
         actions which require special handling before they are closed.
-
-        :return:
         """
+        pass

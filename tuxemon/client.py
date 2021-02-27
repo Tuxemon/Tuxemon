@@ -30,6 +30,7 @@ import time
 import pygame as pg
 
 from tuxemon import cli, networking
+from tuxemon.clock import Scheduler
 from tuxemon.platform import android
 from tuxemon.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon.state import StateManager
@@ -61,6 +62,7 @@ class LocalPygameClient:
         self.input_manager = PygameEventQueueHandler()
         self.caption = config.window_caption
         self.running = False
+        self.scheduler = Scheduler()
 
         # movie creation
         self.frame_number = 0
@@ -97,27 +99,33 @@ class LocalPygameClient:
         draw = self.draw
         screen = self.screen
         flip = pg.display.update
-        clock = time.time
-        # frame_length = 1.0 / self.config.fps
         frame_length = 1.0 / self.config.fps
-        time_since_draw = 0
-        last_update = clock()
         fps_timer = 0
         frames = 0
 
+        def tick(dt):
+            update(frame_length)
+            draw(screen)
+            flip()
+
+        self.scheduler.schedule(tick, frame_length, True, False)
+
         self.running = True
         while self.running:
-            clock_tick = clock() - last_update
-            last_update = clock()
-            time_since_draw += clock_tick
-            if time_since_draw >= frame_length:
-                time_since_draw -= frame_length
-                update(frame_length)
-                draw(screen)
-                flip()
-                frames += 1
-            fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
-            time.sleep(0.001)
+            self.scheduler.tick()
+
+        # while self.running:
+        #     clock_tick = clock() - last_update
+        #     last_update = clock()
+        #     time_since_draw += clock_tick
+        #     if time_since_draw >= frame_length:
+        #         time_since_draw -= frame_length
+        #         update(frame_length)
+        #         draw(screen)
+        #         flip()
+        #         frames += 1
+        #     fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
+        #     time.sleep(0.001)
 
         pg.quit()
 

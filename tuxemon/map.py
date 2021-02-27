@@ -35,7 +35,6 @@ import os
 
 from tuxemon.compat import Rect
 from tuxemon.euclid import Vector2, Vector3, Point2
-from tuxemon.event.eventengine import EventEngine
 from tuxemon.platform.const import intentions
 from tuxemon.tools import round_to_divisible
 from tuxemon.lib.bresenham import bresenham
@@ -296,9 +295,6 @@ class TuxemonMap:
         self.inits = inits
         self.events = events
         self.renderer = None
-        self.event_engine = EventEngine(events)
-        # TODO: remove this hack; the engine shouldn't have this dependency
-        self.event_engine.map = self
         # TODO: create conditions to clamp the edges according to map/screen size
         self.edges = edges
         self.clamped = self.edges == "clamped"
@@ -309,9 +305,6 @@ class TuxemonMap:
         self.invalid_x = (-1, self.size[0])
         self.invalid_y = (-1, self.size[1])
         self.name = os.path.basename(filename)
-
-    def update(self, dt):
-        self.event_engine.update(dt)
 
     def pathfind(self, start, dest):
         """Pathfind

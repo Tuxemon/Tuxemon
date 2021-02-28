@@ -28,7 +28,6 @@
 
 
 import gettext
-import io
 import json
 import logging
 import os
@@ -46,7 +45,12 @@ FALLBACK_LOCALE = "en_US"
 
 
 class TranslatorPo:
-    """gettext-based translator class."""
+    """gettext-based translator class.
+
+    po files are read and compiled into mo files by gettext
+    the mo files are saved in ~/.tuxemon/cache/l18n
+
+    """
 
     def __init__(self):
         self.locale = prepare.CONFIG.locale
@@ -58,7 +62,7 @@ class TranslatorPo:
         self.collect_languages(prepare.CONFIG.recompile_translations)
         return self.translate(*args, **kwargs)
 
-    def l18n_folders(self):
+    def l18n_source_folders(self):
         """Return list of folders containing l18n files"""
         try:
             root = prepare.fetch("l18n")
@@ -73,7 +77,7 @@ class TranslatorPo:
         """Collect languages/locales with available translation files."""
         self.languages = []
 
-        for ld, ld_full_path in self.l18n_folders():
+        for ld, ld_full_path in self.l18n_source_folders():
             if os.path.isdir(ld_full_path):
                 self.languages.append(ld)
 
@@ -84,42 +88,46 @@ class TranslatorPo:
         """Create MO files for existing PO translation files."""
 
         for ld in self.languages:
-            infile = os.path.join(prepare.fetch("l18n"), ld, "LC_MESSAGES", "base.po")
-            outfile = os.path.join(os.path.dirname(infile), "base.mo")
+            lang_folder = os.path.join(ld, "LC_MESSAGES")
+            outfile_folder = os.path.join(paths.CACHE_DIR, "l18n", lang_folder)
+            infile = os.path.join(prepare.fetch("l18n"), lang_folder, "base.po")
+            outfile = os.path.join(outfile_folder, "base.mo")
 
             # build only complete translations
             if os.path.exists(infile) and (
-                    not os.path.exists(outfile) or recompile_translations):
+                not os.path.exists(outfile) or recompile_translations
+            ):
                 with open(infile, "r", encoding="UTF8") as po_file:
                     catalog = read_po(po_file)
+                os.makedirs(outfile_folder, exist_ok=True)
                 with open(outfile, "wb") as mo_file:
                     write_mo(mo_file, catalog)
+                    logger.debug("writing l18n mo: %s", outfile)
 
     def load_locale(self, locale_name="en_US"):
         """Load a selected locale for translation.
 
         :param locale_name: name of the chosen locale
         """
+        localedir = os.path.join(paths.CACHE_DIR, "l18n")
 
         # init and load requested language translation (if exists)
         if locale_name in self.languages:
-            trans = gettext.translation("base", localedir = prepare.fetch("l18n"), languages=[locale_name])
-
-            # update locale
+            trans = gettext.translation(
+                "base", localedir=localedir, languages=[locale_name]
+            )
             self.locale = locale_name
-
         else:
             logger.warning("Locale {} not found. Using fallback.".format(locale_name))
-            trans = gettext.translation("base", localedir = prepare.fetch("l18n"), languages=[FALLBACK_LOCALE])
-
-            # fall back to default locale
+            trans = gettext.translation(
+                "base", localedir=localedir, languages=[FALLBACK_LOCALE]
+            )
             self.locale = FALLBACK_LOCALE
 
         trans.install()
-
         self.translate = trans.gettext
 
-    def format(self, text, parameters={}):
+    def format(self, text, parameters=None):
         """Replaces variables in a translation string with the given parameters.
 
         :param text: The translation string with parameters.
@@ -128,6 +136,9 @@ class TranslatorPo:
         :returns: The formatted translation string.
 
         """
+        if parameters is None:
+            parameters = dict()
+
         # fix escaped newline symbols
         text = text.replace(r"\n", "\n")
 
@@ -136,7 +147,7 @@ class TranslatorPo:
             text = self.translate(text)
         else:
             self.load_locale(self.locale)
-            text = self.translate(text)         # self.load_locale populates self.translate
+            text = self.translate(text)  # self.load_locale populates self.translate
 
         # apply parameters only if non-empty
         if parameters:
@@ -145,7 +156,7 @@ class TranslatorPo:
             return text
 
     def maybe_translate(self, text):
-        """ Try to translate the text. If None, return empty string
+        """Try to translate the text. If None, return empty string
 
         :param Optional[str] text: Text to translate
         :rtype: str
@@ -155,8 +166,8 @@ class TranslatorPo:
         else:
             return self.translate(text)
 
-class Translator:
 
+class Translator:
     def __init__(self):
         # immediately grab fallback if 'locale' missing in config
         self.locale = prepare.CONFIG.locale or FALLBACK_LOCALE
@@ -201,7 +212,9 @@ class Translator:
             for locale_file in os.listdir(d):
                 locale_file_path = os.path.join(d, locale_file)
 
-                if os.path.isfile(locale_file_path) and locale_file_path.endswith(".json"):
+                if os.path.isfile(locale_file_path) and locale_file_path.endswith(
+                    ".json"
+                ):
                     locale_files.append(locale_file_path)
 
         return locale_files
@@ -242,7 +255,9 @@ class Translator:
         elif key in self.fallback:
             return self.fallback[key]
         else:
-            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
+            logger.error(
+                "Key '{}' does not exist in '{}' locale file.".format(key, self.locale)
+            )
             return None
 
     def change_locale(self, locale_name):
@@ -282,11 +297,15 @@ class Translator:
         if key in self.translations:
             translation_text = self.translations[key]
         elif key in self.fallback:
-            logger.warning("Key '%s' does not exist in '%s' locale file. Falling back to '%s'." %
-                           (key, self.locale, FALLBACK_LOCALE))
+            logger.warning(
+                "Key '%s' does not exist in '%s' locale file. Falling back to '%s'."
+                % (key, self.locale, FALLBACK_LOCALE)
+            )
             translation_text = self.fallback[key]
         else:
-            logger.error("Key '{}' does not exist in '{}' locale file.".format(key, self.locale))
+            logger.error(
+                "Key '{}' does not exist in '{}' locale file.".format(key, self.locale)
+            )
             translation_text = "Locale Error"
 
         return self.format(translation_text, parameters)
@@ -296,7 +315,7 @@ T = TranslatorPo()
 
 
 def replace_text(session, text):
-    """ Replaces ${{var}} tiled variables with their in-session value.
+    """Replaces ${{var}} tiled variables with their in-session value.
 
     :param tuxemon.core.session.Session session: Session
     :param str text: Raw text from the map

@@ -179,19 +179,21 @@ def init():
 # Fetches a resource file
 # note: this has the potential of being a bottle neck doing to all the checking of paths
 # eventually, this should be configured at game launch, or in a config file instead
-# of lookin all over creation for the required files.
+# of looking all over creation for the required files.
 def fetch(*args):
     relative_path = os.path.join(*args)
 
     for mod_name in CONFIG.mods:
         # when assets are in folder with the source
         path = os.path.join(paths.mods_folder, mod_name, relative_path)
+        logger.debug("searching asset: %s", path)
         if os.path.exists(path):
             return path
 
         # when assets are in a system path (like debian and others)
         for root_path in paths.system_installed_folders:
-            path = os.path.join(root_path, mod_name, relative_path)
+            path = os.path.join(root_path, "mods", mod_name, relative_path)
+            logger.debug("searching asset: %s", path)
             if os.path.exists(path):
                 return path
 

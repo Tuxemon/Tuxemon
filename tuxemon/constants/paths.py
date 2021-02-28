@@ -35,45 +35,45 @@ logger = logging.getLogger(__file__)
 
 # LIBDIR is where the tuxemon lib is
 LIBDIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-print("libdir: %s", LIBDIR)
+logger.debug("libdir: %s", LIBDIR)
 
 # BASEDIR is where tuxemon was launched from
 BASEDIR = sys.path[0]
-print("basedir: %s", LIBDIR)
+logger.debug("basedir: %s", LIBDIR)
 
 # main game and config dir
 # TODO: this imports pygame from core.prepare - refactor to avoid this?
 USER_GAME_DIR = get_config_dir()
-print("userdir: %s", USER_GAME_DIR)
+logger.debug("userdir: %s", USER_GAME_DIR)
 
 CONFIG_FILE = "tuxemon.cfg"
 
 # config file paths
 USER_CONFIG_PATH = os.path.join(USER_GAME_DIR, CONFIG_FILE)
-print("user config: %s", USER_CONFIG_PATH)
+logger.debug("user config: %s", USER_CONFIG_PATH)
 
 DEFAULT_CONFIG_PATH = os.path.join(BASEDIR, CONFIG_FILE)
-print("default config: %s", DEFAULT_CONFIG_PATH)
+logger.debug("default config: %s", DEFAULT_CONFIG_PATH)
 
 # game data dir
 USER_GAME_DATA_DIR = os.path.join(USER_GAME_DIR, "data")
-print("user game data: %s", USER_GAME_DATA_DIR)
+logger.debug("user game data: %s", USER_GAME_DATA_DIR)
 
 # game savegame dir
 USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
-print("save games: %s", USER_GAME_SAVE_DIR)
+logger.debug("save games: %s", USER_GAME_SAVE_DIR)
 
 # game savegame dir
 CACHE_DIR = os.path.join(USER_GAME_DIR, "cache")
-print("cache: %s", CACHE_DIR)
+logger.debug("cache: %s", CACHE_DIR)
 
 # game savegame dir
 L18N_MO_FILES = os.path.join(CACHE_DIR, "l18n")
-print("l18: %s", L18N_MO_FILES)
+logger.debug("l18: %s", L18N_MO_FILES)
 
 # mods
 mods_folder = os.path.normpath(os.path.join(LIBDIR, "..", "mods"))
-print("mods: %s", mods_folder)
+logger.debug("mods: %s", mods_folder)
 
 # shared locations
 system_installed_folders = [

@@ -33,11 +33,10 @@ from textwrap import dedent
 from lxml import etree
 
 from tuxemon import prepare
-
 from tuxemon.event import MapCondition, EventObject, MapAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.event.eventcontext2 import EventContext
+from tuxemon.event.eventcontext import EventContext
 from tuxemon.session import local_session, Session
 
 logger = logging.getLogger(__name__)
@@ -76,7 +75,7 @@ class EventEngine:
         for item in actions:
             self.load_action(item)
         for item in conditions:
-            self.load_action(item)
+            self.load_condition(item)
 
     def load_action(self, action: EventAction):
         self.actions[action.name] = action
@@ -91,8 +90,10 @@ class EventEngine:
             error = f'Error: EventAction "{name}" could not be found'
             raise RuntimeError(error)
 
-    def get_instanced_action(self, session: Session, name: str, parameters=None) -> EventAction:
-        """ Get an action that is loaded into the engine
+    def get_instanced_action(
+        self, session: Session, name: str, parameters=None
+    ) -> EventAction:
+        """Get an action that is loaded into the engine
         A new instance will be returned each time
         """
         if parameters is None:
@@ -124,7 +125,9 @@ class EventEngine:
         """Check if condition is satisfied"""
         with add_error_context(map_event, condition, session):
             handler = self.get_condition(condition.name)
-            result = handler.test(session, map_event, condition) == (condition.operator == "is")
+            result = handler.test(session, map_event, condition) == (
+                condition.operator == "is"
+            )
             logger.debug(f'map condition "{handler.name}": {result} ({condition})')
             return result
 
@@ -176,7 +179,9 @@ class EventEngine:
                 if started == len(event.conds):
                     self.start_event(session, event)
             else:
-                if all(self.check_condition(session, cond, event) for cond in event.conds):
+                if all(
+                    self.check_condition(session, cond, event) for cond in event.conds
+                ):
                     self.start_event(session, event)
 
     def update(self, dt: float):
@@ -265,7 +270,10 @@ def add_error_context(event, item, session):
                         Line {line_number}
                     """.format(
                         file_name=file_name,
-                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                        event=etree.tostring(event_node)
+                        .decode()
+                        .split("\n")[0]
+                        .strip(),
                         line=etree.tostring(child_node).decode().strip(),
                         line_number=child_node.sourceline,
                     )

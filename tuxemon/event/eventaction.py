@@ -26,7 +26,7 @@
 import logging
 from collections import namedtuple
 
-from tuxemon.event.eventcontext2 import EventContext
+from tuxemon.event.eventcontext import EventContext
 from tuxemon.tools import cast_values
 
 logger = logging.getLogger(__name__)

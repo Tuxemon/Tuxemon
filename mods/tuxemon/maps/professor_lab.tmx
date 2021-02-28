@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="100">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
  <tileset firstgid="1" name="furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
@@ -24,6 +27,9 @@
  <tileset firstgid="1501" name="plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
  </tileset>
+ <tileset firstgid="1517" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
+  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eAFjYECADawMDKRihG5M1m6geaRiTFMQIseA5pGKEboxWSuA5pGKMU1BiJBqFkg9PjBqHuH4GQ0/RAiMppfhnV4QMT14WACeIKEI
@@ -31,17 +37,22 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6jh/UgK4FBC443QvZZgBQSAAJAeUEgFiKgjlhpUBqQBWJQOqA3AKW7ycAAgmFQGkQGhOSR1dKDvQjovsVIeAmae0l1w1qg/nVIeD2F5u0A6t+JhHdRaB6p/kFX/xBoPydQkAuIuZEka5HchSwPUj/UAAAdIRwp
+   eAFjYBg6gAXoVDYgzgQysoH4KBAfAwmigUPMDAyHgZgQkAEqkANiU1YGBnMgfgc06z2aeU5A+ddAs94QYR4h+2Dy6jAGnelPaH6js/UErbMAxgEhIABUIAjEQoQUEikPSgOyQAxKB/QGoHQ3GRgnMAxKg8iAkDyyWnqwFwHdtxgJL0FzL6luWAvUvw4Jr6fQvB1A/TuR8C4KzSPVP+jqHwLt5wQKcgExN5JkLZK7kOVB6ocaAADjNhwa
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg6wBPoVC8qOleNimaNGjUaAqMhMBoCIy0EAAFoALo=
+   eAFjYBg6wBPoVC8qOleNimaNGoU9BFiAwqxAzIZdelR0NARGQ2AIhwAAO0QAyQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgzUETrIMVpdB3LV7kLuP2qGXCfRvFhLORvM/IXlqu2fUPOqGQAtafBIynVT1hMwbivIAvfQG6Q==
+   eAFjYBgFgzUETrIMVpdB3LWbCPeBlLACMRuVvPITaBgMU8lIoo3JBHomCwlno/mfkDzRFo0qHJAQaEGLT0KOIFU9IfOGojwAhx4J8g==
+  </data>
+ </layer>
+ <layer id="7" name="Above Player 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyFAuxB4z8rAAMPUsOUn0DwYpoZ5o2aMhsBoCJAfAgCfJQXX
   </data>
  </layer>
  <objectgroup color="#ffff00" id="5" name="Events">
@@ -53,13 +64,66 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="69" name="Choose Creature 1" x="192" y="96" width="16" height="16"/>
-  <object id="74" name="Choose Creature 2" x="208" y="96" width="16" height="16"/>
-  <object id="75" name="Choose Creature 3" x="224" y="96" width="16" height="16"/>
+  <object id="69" name="Choose Rockitten" type="event" x="192.091" y="112.035" width="16" height="16">
+   <properties>
+    <property name="act10" value="add_monster rockitten,5"/>
+    <property name="act20" value="dialog you picked RockKitten"/>
+    <property name="act30" value="set_variable dancininthemoonlight:yahboi"/>
+    <property name="cond1" value="not variable_set havetuxemon:yes"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing down"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="74" name="Choose Cardiling" type="event" x="208.309" y="112.035" width="16" height="16">
+   <properties>
+    <property name="act10" value="add_monster cardiling,5"/>
+    <property name="act20" value="dialog you picked Cardiling"/>
+    <property name="act30" value="set_variable dancininthemoonlight:yeahboi"/>
+    <property name="cond1" value="not variable_set havetuxemon:yes"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing down"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="75" name="Choose Tweesher" type="event" x="225.527" y="112.035" width="16" height="16">
+   <properties>
+    <property name="act10" value="add_monster tweesher,5"/>
+    <property name="act20" value="dialog you picked Tweesher"/>
+    <property name="act30" value="set_variable dancininthemoonlight:yeahboih"/>
+    <property name="cond1" value="not variable_set havetuxemon:yes"/>
+    <property name="cond2" value="is player_at"/>
+    <property name="cond3" value="is player_facing down"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
   <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
+  <object id="95" name="createprofessor" type="event" x="48" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc professor,7,6,,stand"/>
+    <property name="act2" value="npc_face professor,up"/>
+    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond2" value="not npc_exists professor"/>
+   </properties>
+  </object>
+  <object id="97" name="whyhellothere" type="event" x="144.218" y="271.564" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog tuxemontime"/>
+    <property name="act3" value="pathfind professor,9,12"/>
+    <property name="act4" value="pathfind player,9,13"/>
+    <property name="act5" value="translated_dialog tuxemontime1.5"/>
+    <property name="act6" value="translated_dialog_choice yes:no,startchoice"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond3" value="is player_facing up"/>
+    <property name="cond4" value="not variable_set startchoice:yes"/>
+    <property name="cond5" value="not variable_set startchoice:no"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collision">
-  <object id="43" type="collision" x="192" y="112" width="48" height="32"/>
+  <object id="43" type="collision" x="192" y="128" width="48" height="16"/>
   <object id="56" type="collision" x="192" y="48" width="48" height="16"/>
   <object id="81" type="collision" x="256" y="-16" width="16" height="320"/>
   <object id="83" type="collision" x="48" y="288" width="208" height="16"/>

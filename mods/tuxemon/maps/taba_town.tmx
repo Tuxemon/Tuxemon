@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="151">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="154">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -51,12 +51,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   eAHtmk1OwzAQRrtBnAzYUQkJWPC3gMKJWMLJALFAXANmJCxcE5LvOY6maoNkBZM3nnkZm4DU5d5isQTj2NhNHsSlht1kd6+NOn3BmG3zp89rl/wfO/YG8T+z+P8GWYewtJ99/Fh/Uncrts+H3pv9//4+Vfu0sr1/3zPUdShHe9zHz/2v7z/tWyu+r5/03pPt3+ditKpzqnWoI+WnqrvVutSH8mPqPLW9NCZeiaU+lFdqiGSoD+Uj3ZTc1IfySg2RDPWhfKSbkpv6UF6pIZKhPpRX3A4a/p4/gmtRH8or/pEM9aF8pJuSm/pQXqkhkqE+lFfc0vlPZ9fnh/AcpzxpjTQfulKfBfwayh99H+pgPNpvKD8WggFD+aPvQx2MK37p/CusM308Pf9YCAaoTlEc1MF4lJeaFwvBALWOKA7qYDzKS82LhWCAWofC+d8qCkcYqINxUksEi4VgQIQTyQl1ME5qiWCxEAyIcCI5oQ7GSS0RLBaCARFOJCfUwTipJYLFQjAgwonkhDoYJ7VEsFgIBkQ4kZxQB+OklggWC8GACCeSE+pgnNRSw/pnBNJnBs8r/j/CQjCgxkmNcfc7G9c/42bH/K8yd38GtzbSXvCrsh9gOzGu9rKGW5njpY3U//Kq7AcsBANqvEhMvgcu7Fnkn6F8sPnQWlAH40P5x97P/ZV+l/mwEAwo87Wez/6/53/u//B5L/cf3M4YL/O1nuf7399/yjsvrwELwYA81xTfl+9APwMvNl6L8WbzrvxQB+NdOVv+zAvyZ5Dee/7O+7Bxsr8+PrfQv6vP3vf3HfHv6nPZ9zTfxv7P/utnPPW669qq/9/QOdU5
+   eAHtmk1KM0EQQHujXsELqSsNCOrCv4VGT+RST6YgIuIttArS2LbtdL2eDhUy+aCYTOZVV72pnsQPMtsKYQbiSNhVDuLSwq6yu/ZGnb5gzrr50/s1Jf+Hwt4g/qeS/1+QdQhL5znEj/Unffdih3zotY3/389T65zmsvfvBsK6DuXojIf4zfzb50/n1osfmie99ij79ymLXn0uax3qSPll9d1rXepD+TF9nsheGpNvyaU+lLf04MlQH8p7ullqUx/KW3rwZKgP5T3dLLWpD+UtPXgy1IfyFre9jp/zB3At6kN5i78nQ30o7+lmqU19KG/pwZOhPpS3uMXnPz67er4Pn+NYJ64Rz2tH6hPgv1p97+tQB+PefrX6WAgm1Op7X4c6GLf4xeffwiozxNPnHwvBBKuTFwd1MO7lZa2LhWCCtQ8vDupg3MvLWhcLwQRrHxZO/1axcISBOhgnvXiwWAgmeDiRmlAH46QXDxYLwQQPJ1IT6mCc9OLBYiGY4OFEakIdjJNePFgsBBM8nEhNqINx0osHi4VggocTqQl1ME568WCxEEzwcCI1oQ7GSS8trP5GIP5m8Kzh/0dYCCa0OFlz1P1W4moR1xPzv0zc9R7cSMS9oEfLfoDjxLh1li3cXBwvJOL886NlP2AhmNDiRXLSPXAu9yL9DeW9nNfWgjoYr9Ufez31t8w7r4eFYEJer/f5xv/n+Z/6/D+3Q9Ao7bF4LT/C7YzxUi8930v3/5t83oWdEA4XR31dDWzEEnq6ltbKvwN3xZkEs+F0qeee72lHeg/i955+571LHMt9SOND3ivV5UYso1Sz13vP4vRSiNeJ+JfmnM48fb2O89/4/37G03nnr3vN/xvkhdFW
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="64" height="60">
@@ -89,7 +89,7 @@
   <object id="9" type="collision" x="640" y="800" width="96" height="32"/>
   <object id="10" type="collision" x="640" y="832" width="64" height="16"/>
   <object id="11" type="collision" x="720" y="832" width="16" height="16"/>
-  <object id="12" type="collision" x="736" y="640" width="96" height="320"/>
+  <object id="12" type="collision" x="736" y="640" width="96" height="207.667"/>
   <object id="13" type="collision" x="720" y="672" width="16" height="16"/>
   <object id="14" type="collision" x="640" y="240" width="192" height="400"/>
   <object id="15" type="collision" x="592" y="224" width="240" height="16"/>
@@ -203,6 +203,7 @@
   <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
   <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
   <object id="141" type="collision" x="352" y="80" width="16" height="16"/>
+  <object id="151" type="collision" x="735.333" y="870.333" width="96" height="91.3333"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -645,6 +646,8 @@
     <property name="cond2" value="not variable_set comeinside:yes"/>
     <property name="cond3" value="is player_at"/>
     <property name="cond4" value="not variable_set comeinside:plsbedone"/>
+    <property name="cond5" value="not variable_set comeinside:dope"/>
+    <property name="cond6" value="not variable_set comeinside:stahp"/>
    </properties>
   </object>
   <object id="131" name="timetogroove" type="event" x="528" y="592" width="16" height="16">
@@ -655,14 +658,14 @@
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
-  <object id="133" name="create traveler" type="event" x="336" y="368" width="16" height="16">
+  <object id="150" name="create traveler" type="event" x="336" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc xerogrund1,22,23,,stand"/>
     <property name="act2" value="npc_face xerogrund1,right"/>
     <property name="cond1" value="not npc_exists xerogrund1"/>
    </properties>
   </object>
-  <object id="134" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
+  <object id="149" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act2" value="translated_dialog hey"/>
@@ -677,7 +680,7 @@
     <property name="cond3" value="not variable_set curfewz:yes"/>
    </properties>
   </object>
-  <object id="135" name="why hello there" type="event" x="368" y="368" width="16" height="16">
+  <object id="136" name="why hello there" type="event" x="368" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="npc_face xerogrund1,right"/>
     <property name="act2" value="translated_dialog grumble"/>
@@ -760,11 +763,11 @@
   <object id="145" name="anouncement2part2" type="event" x="560" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog timeforround22"/>
-    <property name="act11" value="set_variable comeinside:yes"/>
     <property name="act2" value="pathfind npc_mom,43,46"/>
     <property name="act3" value="npc_face npc_mom,up"/>
     <property name="act4" value="remove_npc npc_mom"/>
     <property name="act5" value="set_variable moveon:bye"/>
+    <property name="act6" value="set_variable backhome:no"/>
     <property name="cond1" value="is variable_set moveon:yes"/>
     <property name="cond2" value="not variable_set backhome:no"/>
    </properties>
@@ -776,11 +779,42 @@
     <property name="cond10" value="not npc_exists taba_greeter"/>
    </properties>
   </object>
+  <object id="149" name="timetogroove2" type="event" x="512" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 1.5"/>
+    <property name="act11" value="pathfind player,43,45"/>
+    <property name="act2" value="player_resume"/>
+    <property name="act3" value="set_variable comeinside:stahp"/>
+    <property name="act4" value="set_variable backhome:no"/>
+    <property name="cond1" value="is variable_set comeinside:dope"/>
+   </properties>
+  </object>
   <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc taba_greeter,29,12,,stand"/>
     <property name="act20" value="npc_face taba_greeter,down"/>
     <property name="cond1" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="147" name="mydogishurt" type="event" x="672" y="608" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc postboy,37,38,,stand"/>
+    <property name="act2" value="npc_face postboy,right"/>
+    <property name="act3" value="create_npc rock,38,38,,stand"/>
+    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+   </properties>
+  </object>
+  <object id="148" name="myrock" type="event" x="592" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog moverocky"/>
+    <property name="act2" value="player_stop"/>
+    <property name="act3" value="wait 2"/>
+    <property name="act4" value="translated_dialog moverocky2"/>
+    <property name="act5" value="player_resume"/>
+    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is player_at"/>
    </properties>
   </object>
   <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
@@ -829,6 +863,21 @@
     <property name="cond20" value="is player_facing right"/>
     <property name="cond30" value="not variable_set secret_ball:found"/>
     <property name="cond40" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="152" name="Son of a Witch" type="event" x="812.667" y="872" width="16" height="16">
+   <properties>
+    <property name="act30" value="create_npc unknownwitch,51,53,,stand"/>
+    <property name="act40" value="npc_face unknownwitch,left"/>
+    <property name="cond10" value="not npc_exists unknownwitch"/>
+   </properties>
+  </object>
+  <object id="153" name="Witch Blockter" type="event" x="800" y="850.333" width="16" height="16">
+   <properties>
+    <property name="act10" value="dialog trust me you dont wan in here kid walk away now"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+    <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

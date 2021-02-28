@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="4">
+ <tileset firstgid="1" name="pixil-frame-0(5)" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="../../../../../pixil-frame-0(5).png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="2" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="90" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="200" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="288" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="12" height="12">
+  <data encoding="csv">
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233,
+233,233,233,233,233,233,233,233,233,233,233,233
+</data>
+ </layer>
+ <layer id="3" name="Tile Layer 2" width="12" height="12">
+  <data encoding="csv">
+771,772,773,771,772,773,771,772,773,771,772,773,
+811,812,813,811,812,813,811,812,813,811,812,813,
+225,225,225,225,225,225,225,225,225,0,0,0,
+225,225,225,225,225,225,225,225,225,0,0,0,
+225,225,225,225,225,225,225,225,225,0,0,0,
+225,225,225,225,225,225,225,225,225,0,0,0,
+0,0,0,0,0,0,0,0,0,338,340,0,
+0,0,0,0,0,0,0,0,0,378,380,0,
+0,0,0,0,0,0,0,0,0,418,420,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="Tile Layer 3" width="12" height="12">
+  <data encoding="csv">
+225,225,225,225,225,225,225,225,225,0,0,0,
+774,225,225,225,225,225,225,225,225,0,463,775,
+814,225,225,225,225,225,225,225,225,0,503,815,
+774,225,892,225,225,225,225,225,225,892,543,775,
+814,225,932,225,225,225,225,225,225,932,0,815,
+774,348,349,0,0,0,0,0,0,0,0,775,
+814,388,389,0,0,0,0,0,0,661,0,815,
+774,428,429,0,0,0,0,0,0,0,697,775,
+814,0,0,0,0,0,0,0,0,0,0,815,
+854,0,0,0,0,0,0,0,0,0,0,855,
+894,0,0,0,0,0,0,0,0,0,1,895,
+0,0,0,0,0,0,6,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ffff00" id="5" name="events">
+  <properties>
+   <property name="act10" value="create_npc unknownwitch,9,10,stand"/>
+   <property name="act20" value="npc_face unknownwitch,right"/>
+   <property name="cond10" value="not npc_exists unknownwitch"/>
+  </properties>
+  <object id="2" name="Exit To Azure Town" type="event" x="95.8604" y="175.839" width="16" height="16">
+   <properties>
+    <property name="act10" value="teleport Azure_Town.tmx,9,11"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

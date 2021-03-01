@@ -43,6 +43,6 @@ if __name__ == "__main__":
         options={"build_exe": build_exe_options},
         description="Open source RPG",
         executables=[
-            Executable("tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico")
+            Executable("run_tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico")
         ],
     )

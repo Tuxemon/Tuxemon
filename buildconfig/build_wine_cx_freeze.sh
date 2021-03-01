@@ -1,14 +1,27 @@
 #!/bin/bash
-# for ubuntu 20.04 focal
-export WINEARCH=win32
+# debian 10
+sudo apt install wget
+mkdir -p build/wine_cx_freeze
+cd build/wine_cx_freeze
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+wget -nc https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key
+sudo apt-key add winehq.key
+sudo apt-key add Release.key
+echo "deb https://dl.winehq.org/wine-builds/debian/ buster main" | sudo tee /etc/apt/sources.list.d/wine.list
+echo "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" | sudo tee -a /etc/apt/sources.list.d/wine.list
 sudo dpkg --add-architecture i386
 sudo apt-get update
-sudo apt-get install wget xvfb wine wine32 wine64 winetricks
+sudo apt -y remove wine wine32 wine64 wine-staging
+sudo apt -y autoremove
+sudo apt -y install --install-recommends winehq-stable
+sudo apt -y install xvfb winetricks
+[ -e python-3.9.2-amd64.exe ] || wget -q https://www.python.org/ftp/python/3.9.2/python-3.9.2-amd64.exe
 rm -rf ~/.wine
-xvfb-run wine wineboot
-wget -q https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe
-xvfb-run wine python-3.8.5.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 SimpleInstall=1
+wineboot -u
+xvfb-run winetricks win10
+xvfb-run wine python-3.9.2-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 SimpleInstall=1
+cd ../../
 wine python -m pip install -U setuptools wheel cx_Freeze
 wine python -m pip install -U -r requirements.txt
+find . -name "*pyc" -delete
 wine python buildconfig/setup_windows.py build
-cp -a mods build/exe.win32-3.8/

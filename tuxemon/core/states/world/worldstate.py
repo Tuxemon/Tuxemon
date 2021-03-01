@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,16 +26,11 @@
 # core.states.world Handles the world map and player movement.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import itertools
 import logging
 
 import pygame
-from six.moves import map as imap
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare, state, networking
@@ -273,7 +267,7 @@ class WorldState(state.State):
         :returns: None
 
         """
-        super(WorldState, self).update(time_delta)
+        super().update(time_delta)
         self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
@@ -805,10 +799,10 @@ class WorldState(state.State):
 
         # We need to iterate over all collidable objects.  So, let's start
         # with the walls/collision boxes.
-        box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
+        box_iter = map(self._collision_box_to_pgrect, self.collision_map)
 
         # Next, deal with solid NPCs.
-        npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
+        npc_iter = map(self._npc_to_pgrect, self.npcs.values())
 
         # draw noc and wall collision tiles
         red = (255, 0, 0, 128)

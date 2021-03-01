@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from tuxemon.core.menu.menu import PopUpMenu
 from tuxemon.core.platform.const import buttons
 from tuxemon.core.ui.text import TextArea
@@ -19,7 +14,7 @@ class DialogState(PopUpMenu):
     default_character_delay = .05
 
     def startup(self, **kwargs):
-        super(DialogState, self).startup(**kwargs)
+        super().startup(**kwargs)
         self.text_queue = kwargs.get("text", list())
         self.avatar = kwargs.get("avatar", None)
         self.menu = kwargs.get("menu", None)

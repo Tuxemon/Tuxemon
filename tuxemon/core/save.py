@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import base64
 import datetime
@@ -41,7 +36,7 @@ from operator import itemgetter
 
 import pygame
 
-from tuxemon.core import prepare
+from tuxemon.core import prepare, config
 from tuxemon.core.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:
@@ -142,7 +137,7 @@ def load(slot):
 
 def open_save_file(save_path):
     try:
-        with open(save_path, 'r') as save_file:
+        with open(save_path) as save_file:
             try:
                 return json.load(save_file)
             except ValueError as e:
@@ -155,7 +150,7 @@ def open_save_file(save_path):
 
             return {}
 
-    except IOError as e:
+    except OSError as e:
         logger.info(e)
         return None
 

@@ -4,10 +4,6 @@ General "tools" code for pygame graphics operations that don't
 have a home in any specific place
 
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
@@ -159,7 +155,7 @@ def load_frames_files(directory, name):
 
 
 def animation_frame_files(directory, name):
-    """ Return list of filenames from directory for use in animation
+    r""" Return list of filenames from directory for use in animation
 
     * each filename will have the format: animation_name[0-9]*\..*
     * will be returned in sorted order
@@ -273,7 +269,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
     :return:
     """
     if colorkey:
-        colorkey = pygame.Color("#{0}".format(colorkey))
+        colorkey = pygame.Color("#{}".format(colorkey))
 
     pixelalpha = kwargs.get("pixelalpha", True)
 

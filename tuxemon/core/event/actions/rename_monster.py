@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -24,10 +23,6 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 # 
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.locale import T
@@ -44,7 +39,7 @@ class RenameMonsterAction(EventAction):
     def start(self):
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name("WorldState")
-        if not world:
+        if world is None:
             return
     
         # pull up the monster menu so we know which one we are renaming
@@ -52,7 +47,8 @@ class RenameMonsterAction(EventAction):
         menu.on_menu_selection = self.prompt_for_name
 
     def update(self):
-        if self.session.client.get_state_by_name("MonsterMenuState") is None and self.session.client.get_state_by_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("MonsterMenuState") is None \
+           and self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()
 
     def set_monster_name(self, name):

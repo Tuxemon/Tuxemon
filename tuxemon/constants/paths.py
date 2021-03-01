@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2018, Andy Mender <andymenderunix@gmail.com>
@@ -25,42 +24,66 @@
 #
 # core.constants.paths - Central store for local file paths
 #
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
+import logging
 import os.path
+import sys
 
 from tuxemon.core.platform import get_config_dir
 
-# tuxemon project root dir
-BASEDIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+logger = logging.getLogger(__file__)
+
+
+# LIBDIR is where the tuxemon lib is
+LIBDIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+logger.debug("libdir: %s", LIBDIR)
+
+# BASEDIR is where tuxemon was launched from
+BASEDIR = sys.path[0]
+logger.debug("basedir: %s", BASEDIR)
 
 # main game and config dir
 # TODO: this imports pygame from core.prepare - refactor to avoid this?
 USER_GAME_DIR = get_config_dir()
+logger.debug("userdir: %s", USER_GAME_DIR)
 
 CONFIG_FILE = "tuxemon.cfg"
 
 # config file paths
 USER_CONFIG_PATH = os.path.join(USER_GAME_DIR, CONFIG_FILE)
+logger.debug("user config: %s", USER_CONFIG_PATH)
+
 DEFAULT_CONFIG_PATH = os.path.join(BASEDIR, CONFIG_FILE)
+logger.debug("default config: %s", DEFAULT_CONFIG_PATH)
 
 # game data dir
 USER_GAME_DATA_DIR = os.path.join(USER_GAME_DIR, "data")
+logger.debug("user game data: %s", USER_GAME_DATA_DIR)
 
 # game savegame dir
 USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
+logger.debug("save games: %s", USER_GAME_SAVE_DIR)
+
+# game savegame dir
+CACHE_DIR = os.path.join(USER_GAME_DIR, "cache")
+logger.debug("cache: %s", CACHE_DIR)
+
+# game savegame dir
+L18N_MO_FILES = os.path.join(CACHE_DIR, "l18n")
+logger.debug("l18: %s", L18N_MO_FILES)
 
 # mods
-mods_folder = os.path.normpath(os.path.join(BASEDIR, "..", "mods"))
+mods_folder = os.path.normpath(os.path.join(LIBDIR, "..", "mods"))
+logger.debug("mods: %s", mods_folder)
+
+# shared locations
+system_installed_folders = [
+    "/user/share/tuxemon/",  # debian
+]
 
 # action/condition plugins (eventually move out of lib folder)
-CONDITIONS_PATH = os.path.join(BASEDIR, "core/event/conditions")
-ACTIONS_PATH = os.path.join(BASEDIR, "core/event/actions")
+CONDITIONS_PATH = os.path.join(LIBDIR, "core/event/conditions")
+ACTIONS_PATH = os.path.join(LIBDIR, "core/event/actions")
 
 # item effects/conditions
-ITEM_EFFECT_PATH = os.path.join(BASEDIR, "core/item/effects")
-ITEM_CONDITION_PATH = os.path.join(BASEDIR, "core/item/conditions")
+ITEM_EFFECT_PATH = os.path.join(LIBDIR, "core/item/effects")
+ITEM_CONDITION_PATH = os.path.join(LIBDIR, "core/item/conditions")

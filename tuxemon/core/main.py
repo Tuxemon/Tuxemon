@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -26,10 +25,6 @@
 #
 # core.main Sets up the states and main game loop.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -44,17 +39,13 @@ logger = logging.getLogger(__name__)
 def main(load_slot=None):
     """Add all available states to our scene manager (tools.Client)
     and start the game using the pygame interface.
-
-    :rtype: None
-    :returns: None
-
     """
     log.configure()
+    prepare.init()
 
     import pygame
     from tuxemon.core.client import Client
 
-    prepare.init()
     client = Client(prepare.CONFIG.window_caption)
     client.auto_state_discovery()
 

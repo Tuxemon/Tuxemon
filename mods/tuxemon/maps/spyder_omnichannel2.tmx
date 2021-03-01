@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="15">
+ <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
+  <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
+ </tileset>
+ <tileset firstgid="22" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
+ </tileset>
+ <tileset firstgid="76" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
+ </tileset>
+ <tileset firstgid="286" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="1726" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="2726" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
+  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
+ </tileset>
+ <tileset firstgid="2776" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+  <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
+ </tileset>
+ <tileset firstgid="2860" name="Terrain_by_KelvinShadewing" tilewidth="16" tileheight="16" tilecount="285" columns="19">
+  <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
+ </tileset>
+ <tileset firstgid="3145" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="0" columns="15"/>
+ <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+ </tileset>
+ <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAHzYWBg8CER+wHVR5OBY6F69rExMJCCh5K+WUA/kuI3kNqZIyBcQOmF1HChd7xTEg/kxDu9/TeU7AMA6bbGVQ==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAFjYGBgqCIRA5WDQSeQJAVDtVGd2kymibE00gcLzzyg+TA2iJ6JZN8MJDmYMCwsa4ACMDaIRnZnB5IcTF8xNwNDCRCD9CEDZH3I4jA2TF8tTABKf0Dj4+L2oEmg89Gk6c4V42RgEAdiH6DNyPEwG8kl2OLBDqjHHoijgeo6kXAXkj5s8QCzIx5JHTFMmB3I5qPrK0IXwMFH9+t/HOrQhfH5FV0tMh+kjxxASB8A/qUvGA==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collision">
+  <object id="1" type="collision" x="0" y="0" width="224" height="32"/>
+  <object id="2" type="collision-line" x="0" y="336">
+   <polyline points="0,0 224,0"/>
+  </object>
+  <object id="4" type="collision" x="208" y="32">
+   <polygon points="0,0 0,64 -48,64 -48,96 0,96 0,176 -48,176 -48,208 0,208 0,304 16,304 16,0 0,0"/>
+  </object>
+  <object id="5" type="collision" x="96" y="336">
+   <polygon points="0,0 0,-64 64,-64 64,-80 80,-80 80,-32 16,-32 16,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="6" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,12,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="7" name="Teleport to Omnichannel 3" type="event" x="32" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,12,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="9" name="Teleport to Omnichannel 1" type="event" x="32" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,2,10,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="10" name="Teleport to Omnichannel 1" type="event" x="16" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,1,10,0.3"/>
+    <property name="act2" value="player_face down"/>
+    <property name="cond1" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="11" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_omnichannel"/>
+    <property name="cond1" value="not music_playing music_omnichannel"/>
+   </properties>
+  </object>
+  <object id="14" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import pygame
 
 from tuxemon.compat import Rect
@@ -18,7 +13,7 @@ class TextArea(Sprite):
     animated = True
 
     def __init__(self, font, font_color, bg=(192, 192, 192)):
-        super(TextArea, self).__init__()
+        super().__init__()
         self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
         self.font = font

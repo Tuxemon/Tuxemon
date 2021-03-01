@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,9 +23,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import, division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os.path
@@ -453,72 +449,3 @@ class Client(StateManager):
             if state.__class__.__name__ == name:
                 return state
         return None
-
-
-class HeadlessClient(Client, StateManager):
-    """Client class for headless server. Contains the game loop, and contains
-    the event_loop which passes events to States as needed.
-
-    :param: None
-    :rtype: None
-    :returns: None
-
-    """
-
-    def __init__(self):
-        self.done = False
-
-        self.clock = time.clock()
-        self.fps = 60.0
-        self.current_time = 0.0
-
-        # TODO: move out to state manager
-        self.package = "tuxemon.core.states"
-        self.state_dict = dict()
-        self._state_stack = list()
-
-        self.server = networking.TuxemonServer(self)
-        # self.server_thread = threading.Thread(target=self.server)
-        # self.server_thread.start()
-        self.server.server.listen()
-
-        # Set up our game's configuration from the prepare module.
-        self.config = prepare.HEADLESSCONFIG
-
-        # Set up the command line. This provides a full python shell for
-        # troubleshooting. You can view and manipulate any variables in
-        # the game.
-        self.exit = False  # Allow exit from the CLI
-        if self.config.cli:
-            self.cli = cli.CommandLine(self)
-
-    def update(self):
-        """Main loop for entire game. This method gets update every frame
-        by Asteria Networking's "listen()" function. Every frame we get the
-        amount of time that has passed each frame, check game conditions,
-        and draw the game to the screen.
-
-        :param None:
-
-        :rtype: None
-        :returns: None
-
-        """
-        # Get the amount of time that has passed since the last frame.
-        # self.time_passed_seconds = time.clock() - self.clock
-        # self.server.update()
-
-        if self.exit:
-            self.done = True
-
-    def main(self):
-        """Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this core.session.Client instance to
-        networking which in turn executes the "main_loop" method every frame.
-        This leaves the networking component responsible for the main loop.
-        :param None:
-        :rtype: None
-        :returns: None
-        """
-        while not self.exit:
-            self.update()

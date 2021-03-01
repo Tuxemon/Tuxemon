@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,13 +26,10 @@
 # core.monster Tuxemon monster module
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import random
+import uuid
 
 from tuxemon.core import ai, fusion, graphics
 from tuxemon.core.db import db
@@ -102,14 +98,14 @@ MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
 # class definition for tuxemon flairs:
-class Flair(object):
+class Flair:
     def __init__(self, category, name):
         self.category = category
         self.name = name
 
 
 # class definition for first active tuxemon to use in combat:
-class Monster(object):
+class Monster:
     """A class for a Tuxemon monster object. This class acts as a skeleton for
     a Tuxemon, fetching its details from a database.
 
@@ -129,6 +125,7 @@ class Monster(object):
         self.name = ""  # The display name of the Tuxemon
         self.category = ""
         self.description = ""
+        self.instance_id = uuid.uuid4()  # unique id for this specific, individual tuxemon
 
         self.armour = 0
         self.dodge = 0
@@ -184,6 +181,22 @@ class Monster(object):
         self.set_state(save_data)
         self.set_stats()
         self.set_flairs()
+
+    def spawn(self, father):
+        """Create's a new Monster, with this monster as the mother and the passed in monster as father.
+
+        :param father: The core.monster.Monster to be father of this monsterous child.
+        :type father : tuxemon.core.monster.Monster
+        """
+        child = Monster()
+        child.load_from_db(self.slug)
+        child.set_level(5)
+
+        father_tech_count = len(father.moves)
+        tech_to_replace = random.randrange(0, 2)
+        child.moves[tech_to_replace] = father.moves[random.randrange(0, father_tech_count - 1)]
+
+        return child
 
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
@@ -339,7 +352,7 @@ class Monster(object):
         # Learn New Moves
         for move in self.moveset:
             if move["level_learned"] >= self.level:
-                logger.info("%s learned technique %s!" % (self.name, move["technique"]))
+                logger.info("{} learned technique {}!".format(self.name, move["technique"]))
                 technique = Technique(move["technique"])
                 self.learn(technique)
 
@@ -378,7 +391,7 @@ class Monster(object):
         """
         for evolution in self.evolutions:
             if evolution['path'] == path:
-                level_over = evolution['at_level'] > 0 and self.level >= evolution['at_level']
+                level_over = 0 < evolution['at_level'] <= self.level
                 level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
                 if level_over or level_under:
                     return evolution["monster_slug"]
@@ -443,7 +456,7 @@ class Monster(object):
                 full_path = graphics.transform_resource_filename(path)
                 if full_path:
                     return full_path
-        except IOError:
+        except OSError:
             logger.debug("Could not find monster sprite {}".format(sprite))
             return MISSING_IMAGE
 
@@ -481,6 +494,8 @@ class Monster(object):
             if getattr(self, attr)
         }
 
+        save_data["instance_id"] = self.instance_id.hex
+
         if self.status:
             save_data["status"] = [i.get_state() for i in self.status]
         body = self.body.get_state()
@@ -513,6 +528,8 @@ class Monster(object):
                 self.body.set_state(value)
             elif key == "moves" and value:
                 self.moves = [Technique(slug) for slug in value]
+            elif key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 
@@ -535,7 +552,7 @@ class Monster(object):
 
 
 def decode_monsters(json_data):
-    return [Monster(save_data=mon) for mon in json_data.get("monsters") or []]
+    return [Monster(save_data=mon) for mon in json_data or {}]
 
 
 def encode_monsters(mons):

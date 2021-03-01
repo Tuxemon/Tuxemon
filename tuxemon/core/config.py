@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -31,14 +30,8 @@
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
+import configparser
 from collections import OrderedDict
-
-from six.moves import configparser
 
 from tuxemon.core.animation import Animation
 from tuxemon.core.platform.const import buttons, events
@@ -46,7 +39,7 @@ from tuxemon.core.platform.const import buttons, events
 Animation.default_transition = 'out_quint'
 
 
-class TuxemonConfig(object):
+class TuxemonConfig:
     """ Handles loading of the configuration file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!
@@ -91,11 +84,13 @@ class TuxemonConfig(object):
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
-        
+
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
-        
+        self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
+        self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
+
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
         self.player_npc = cfg.get("player", "player_npc")
@@ -128,19 +123,20 @@ def get_custom_pygame_keyboard_controls(cfg):
 
     custom_controls = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
-        key = key.upper()   
+        key = key.upper()
         button_value = getattr(buttons, key, None)
         event_value = getattr(events, key, None)
         for each in values.split(", "):
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
-            pygame_value = getattr(pygame.locals, "K_"+each, None)
+            pygame_value = getattr(pygame.locals, "K_" + each, None)
             if pygame_value is not None and button_value is not None:
                 custom_controls[pygame_value] = button_value
             elif pygame_value is not None and event_value is not None:
                 custom_controls[pygame_value] = event_value
 
     return custom_controls
+
 
 def get_defaults():
     """ Generate a config from defaults
@@ -180,7 +176,9 @@ def get_defaults():
         ))),
         ("gameplay", OrderedDict((
             ("items_consumed_on_failure", True),
-            ("encounter_rate_modifier", 1.0)
+            ("encounter_rate_modifier", 1.0),
+            ("default_monster_storage_box", "Kennel"),
+            ("default_item_storage_box", "Locker")
         ))),
         ("player", OrderedDict((
             ("animation_speed", 0.15),

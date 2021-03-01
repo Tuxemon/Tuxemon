@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="132">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="151">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -56,7 +56,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="64" height="60">
@@ -202,6 +202,7 @@
   <object id="105" type="collision" x="176" y="160" width="16" height="64"/>
   <object id="106" type="collision" x="816" y="16" width="16" height="208"/>
   <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
+  <object id="141" type="collision" x="352" y="80" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -327,7 +328,7 @@
   </object>
   <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport tuxe_mart.tmx,7,12,0.3"/>
+    <property name="act10" value="transition_teleport tuxe_mart_taba.tmx,7,12,0.3"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
    </properties>
@@ -648,10 +649,186 @@
   </object>
   <object id="131" name="timetogroove" type="event" x="528" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind player,43,45"/>
-    <property name="act2" value="player_resume"/>
-    <property name="act3" value="set_variable comeinside:done"/>
+    <property name="act10" value="pathfind player,43,45"/>
+    <property name="act15" value="set_variable comeinside:done"/>
+    <property name="act20" value="player_resume"/>
     <property name="cond1" value="is variable_set comeinside:yes"/>
+   </properties>
+  </object>
+  <object id="133" name="create traveler" type="event" x="336" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc xerogrund1,22,23,,stand"/>
+    <property name="act2" value="npc_face xerogrund1,right"/>
+    <property name="cond1" value="not npc_exists xerogrund1"/>
+   </properties>
+  </object>
+  <object id="134" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="translated_dialog hey"/>
+    <property name="act3" value="npc_face player,left"/>
+    <property name="act4" value="pathfind xerogrund1,23,23"/>
+    <property name="act5" value="translated_dialog watchmewatchme"/>
+    <property name="act6" value="pathfind xerogrund1,22,23"/>
+    <property name="act7" value="npc_face xerogrund1,down"/>
+    <property name="act99" value="set_variable curfewz:yes"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="not variable_set curfewz:yes"/>
+   </properties>
+  </object>
+  <object id="135" name="why hello there" type="event" x="368" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face xerogrund1,right"/>
+    <property name="act2" value="translated_dialog grumble"/>
+    <property name="act3" value="npc_face xerogrund1,down"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is variable_set curfewz:yes"/>
+   </properties>
+  </object>
+  <object id="137" name="go, wander my children" type="event" x="704" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc bob,45,8,,stand"/>
+    <property name="act2" value="npc_wander bob,2.0"/>
+    <property name="cond1" value="not npc_exists bob"/>
+   </properties>
+  </object>
+  <object id="138" name="talk to bob" type="event" x="720" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog bobtalk"/>
+    <property name="behav1" value="talk bob"/>
+   </properties>
+  </object>
+  <object id="139" name="npc blockers" type="event" x="336" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc conworker1,21,5,,stand"/>
+    <property name="act2" value="create_npc conworker2,21,6,,stand"/>
+    <property name="act3" value="create_npc conworker3,21,7,,stand"/>
+    <property name="act4" value="npc_face conworker1,left"/>
+    <property name="act5" value="npc_face conworker2,left"/>
+    <property name="act6" value="npc_face conworker3,left"/>
+    <property name="cond1" value="not variable_set announcetwo:done"/>
+    <property name="cond2" value="not npc_exists conworker1"/>
+    <property name="cond3" value="not npc_exists conworker2"/>
+    <property name="cond4" value="not npc_exists conworker3"/>
+   </properties>
+  </object>
+  <object id="140" name="people be blocking" type="event" x="352" y="96" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog hmmm"/>
+    <property name="act11" value="player_stop"/>
+    <property name="act2" value="npc_face conworker2,up"/>
+    <property name="act3" value="translated_dialog hmmm2"/>
+    <property name="act4" value="npc_face conworker1,down"/>
+    <property name="act5" value="translated_dialog hmmm3"/>
+    <property name="act6" value="npc_face conworker3,up"/>
+    <property name="act7" value="translated_dialog hmmm4"/>
+    <property name="act8" value="wait 0.5"/>
+    <property name="act81" value="npc_face conworker2,down"/>
+    <property name="act82" value="wait 1"/>
+    <property name="act9" value="translated_dialog hmmm5"/>
+    <property name="act91" value="wait 1.2"/>
+    <property name="act92" value="npc_face conworker3,left"/>
+    <property name="act93" value="wait 0.5"/>
+    <property name="act94" value="translated_dialog hmmm6"/>
+    <property name="act95" value="npc_face conworker1,left"/>
+    <property name="act96" value="npc_face conworker2,left"/>
+    <property name="act97" value="wait 1.2"/>
+    <property name="act98" value="translated_dialog hmmm7"/>
+    <property name="cond1" value="not variable_set announcetwo:done"/>
+    <property name="cond2" value="is player_facing left"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="143" name="announcement2" type="event" x="576" y="576" width="64" height="16">
+   <properties>
+    <property name="act1" value="player_stop"/>
+    <property name="act2" value="create_npc npc_mom,38,41,,stand"/>
+    <property name="act3" value="translated_dialog timeforround2"/>
+    <property name="act4" value="pathfind npc_mom,38,38"/>
+    <property name="act5" value="npc_face npc_mom,up"/>
+    <property name="act6" value="set_variable moveon:yes"/>
+    <property name="act7" value="pathfind player,38,37"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing down"/>
+    <property name="cond3" value="not variable_set moveon:yes"/>
+   </properties>
+  </object>
+  <object id="145" name="anouncement2part2" type="event" x="560" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog timeforround22"/>
+    <property name="act11" value="set_variable comeinside:yes"/>
+    <property name="act2" value="pathfind npc_mom,43,46"/>
+    <property name="act3" value="npc_face npc_mom,up"/>
+    <property name="act4" value="remove_npc npc_mom"/>
+    <property name="act5" value="set_variable moveon:bye"/>
+    <property name="cond1" value="is variable_set moveon:yes"/>
+    <property name="cond2" value="not variable_set backhome:no"/>
+   </properties>
+  </object>
+  <object id="146" name="add jaime" type="event" x="456" y="128" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc taba_greeter,31,12,,stand"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc taba_greeter,29,12,,stand"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond1" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act05" value="set_variable greeter_greets:yes"/>
+    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act20" value="translated_dialog taba_greeting1"/>
+    <property name="act25" value="translated_dialog taba_greeting2a"/>
+    <property name="act30" value="add_item capture_device,5"/>
+    <property name="act40" value="translated_dialog gotfivetuxeballs"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="not has_item player,capture_device"/>
+    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond30" value="is player_at"/>
+    <property name="cond40" value="not variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="134" name="greeter_greets2" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act05" value="set_variable greeter_greets:yes"/>
+    <property name="act10" value="npc_face taba_greeter,player"/>
+    <property name="act20" value="translated_dialog taba_greeting1"/>
+    <property name="act30" value="translated_dialog taba_greeting2b"/>
+    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="is has_item player,capture_device"/>
+    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond30" value="is player_at"/>
+    <property name="cond40" value="not variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="150" name="jaime3" type="event" x="456" y="176" width="16" height="16">
+   <properties>
+    <property name="act0" value="npc_face taba_greeter,player"/>
+    <property name="act10" value="translated_dialog taba_greeting3"/>
+    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="cond10" value="is to_talk taba_greeter"/>
+    <property name="cond20" value="is variable_set greeter_greets:yes"/>
+   </properties>
+  </object>
+  <object id="135" name="secret_tuxeball" type="event" x="625" y="240.5" width="16" height="16">
+   <properties>
+    <property name="act10" value="set_variable secret_ball:found"/>
+    <property name="act20" value="add_item capture_device,5"/>
+    <property name="act25" value="translated_dialog gotfivetuxeballs"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
+    <property name="cond30" value="not variable_set secret_ball:found"/>
+    <property name="cond40" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

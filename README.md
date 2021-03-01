@@ -12,10 +12,9 @@ Requirements
 
 Tuxemon uses a number of open source projects to work properly:
 
-* *python* - version 2.7, 3.5+
+* *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *python-six* - python 2 and 3 compatibility library
 * *python-pyscroll* - fast module for animated scrolling maps.
 * *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
 
@@ -52,11 +51,23 @@ Check the release page https://github.com/Tuxemon/Tuxemon/releases for binaries.
 **Ubuntu**
 
 ```sh
-sudo apt install python python-pygame python-pip python-imaging python-six git
+sudo apt install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
 python tuxemon.py
+```
+
+**Ubuntu 18.04 w/venv**
+
+Use this if you don't want to modify your system packages
+```sh
+sudo apt install git python3-venv
+git clone https://github.com/Tuxemon/Tuxemon.git
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 tuxemon.py
 ```
 
 **Debian**
@@ -104,7 +115,7 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 **Fedora Linux**
 
 ```
-sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel
+sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
 virtualenv venv
 pip install -r requirements.txt
 ```
@@ -122,13 +133,24 @@ Controls
 
 Use *Tiled* map editor: http://www.mapeditor.org/
 
+
+Building
+--------
+
+There are many scripts for various builds in the buildconfig folder.  These
+are meant to be run from the project root directory, for example, to build
+the portable pypy build:
+```
+[user@localhost Tuxemon]$ buildconfig/build_pypy_portable_linux.sh
+```
+There will be a new directory called build, which will have the package if
+everything was successful.
+
+
 Python 2.7 Notice
 -----------------
 
-We will be supporing bugfixes and features for python 2.7+ after it
-is EOL starting in 2020.  We do plan on removing support for it
-sometime in the future, but there is currently no roadmap to actively
-stop supporting it at this time.
+Python 2.7 is no longer supported.
 
 License
 -------
@@ -153,4 +175,3 @@ External links
 * Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
 * YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
-* Google Plus: [+TuxemonOrg](https://plus.google.com/u/0/+TuxemonOrg)

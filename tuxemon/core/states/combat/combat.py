@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 # core.states.combat Combat Start module
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from collections import defaultdict, namedtuple
@@ -55,8 +50,6 @@ logger = logging.getLogger(__name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
-faint = Technique("status_faint")
-
 # TODO: move to mod config
 MULT_MAP = {
     4: "attack_very_effective",
@@ -66,7 +59,7 @@ MULT_MAP = {
 }
 
 
-class TechniqueAnimationCache(object):
+class TechniqueAnimationCache:
     def __init__(self):
         self._sprites = dict()
 
@@ -163,7 +156,7 @@ class CombatState(CombatAnimations):
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
 
-        super(CombatState, self).startup(**kwargs)
+        super().startup(**kwargs)
         self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
         self.players = list(self.players)
         self.graphics = kwargs.get('graphics')
@@ -179,7 +172,7 @@ class CombatState(CombatAnimations):
         * if new phase, then run transition into new one
         * update the new phase, or the current one
         """
-        super(CombatState, self).update(time_delta)
+        super().update(time_delta)
         if not self._animation_in_progress:
             new_phase = self.determine_phase(self.phase)
             if new_phase:
@@ -193,7 +186,7 @@ class CombatState(CombatAnimations):
         :param pygame.surface.Surface surface:
         :rtype: None
         """
-        super(CombatState, self).draw(surface)
+        super().draw(surface)
         self.draw_hp_bars()
         self.draw_exp_bars()
 
@@ -761,6 +754,7 @@ class CombatState(CombatAnimations):
         :type monster: tuxemon.core.monster.Monster
         :rtype: None
         """
+        faint = Technique("status_faint")
         monster.current_hp = 0
         monster.status = [faint]
 
@@ -831,8 +825,7 @@ class CombatState(CombatAnimations):
 
     @property
     def ai_players(self):
-        for player in set(self.active_players) - set(self.human_players):
-            yield player
+        yield from set(self.active_players) - set(self.human_players)
 
     @property
     def active_monsters(self):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import json
 import logging
@@ -55,7 +50,7 @@ def process_targets(json_targets):
     return list(map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True))))
 
 
-class JSONDatabase(object):
+class JSONDatabase:
     """Handles connecting to the game database for resources such as monsters,
     stats, etc.
 
@@ -74,7 +69,7 @@ class JSONDatabase(object):
             "sounds": {},
             "music": {}
         }
-        self.load(dir)
+        # self.load(dir)
 
     def load(self, directory="all"):
         """Loads all data from JSON files located under our data path.
@@ -179,7 +174,7 @@ class JSONDatabase(object):
         """
 
         filename = self.database[table][slug]["file"] or slug
-        if (filename == slug):
+        if filename == slug:
             logger.debug("Could not find a file record for slug {}, did you remember to create a database record?".format(slug))
 
         return filename
@@ -189,6 +184,7 @@ class JSONDatabase(object):
         NOTE: This method has been deprecated. Use the following instead:
         JSONDatabase.database['monster'][slug]['sprites']
 
+        :param table:
         :param slug: The monster ID to look up.
         :type slug: String
         :param slug: The monster slug to look up.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,10 +23,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from math import cos, sin, pi
@@ -95,7 +90,7 @@ def parse_behav_string(behav_string):
     return behav_type, args
 
 
-class TMXMapLoader(object):
+class TMXMapLoader:
     """ Maps are loaded from standard tmx files created from a map editor like Tiled. Events and
     collision regions are loaded and put in the appropriate data structures for the game to
     understand.

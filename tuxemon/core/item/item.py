@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -30,10 +29,6 @@
 #
 #
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import pprint
@@ -48,7 +43,7 @@ from tuxemon.constants import paths
 logger = logging.getLogger(__name__)
 
 
-class Item(object):
+class Item:
     """An item object is an item that can be used either in or out of combat.
 
     **Example:**
@@ -130,7 +125,11 @@ class Item(object):
         }
         """
 
-        results = db.lookup(slug, table="item")
+        try:
+            results = db.lookup(slug, table="item")
+        except KeyError:
+            logger.error(msg="Failed to find item with slug {}".format(slug))
+            return
 
         self.slug = results["slug"]                                         # short English identifier
         self.name = T.translate(self.slug)                                  # translated name
@@ -242,9 +241,6 @@ class Item(object):
 
     def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.
-        This method will execute a function with the same name as the effect defined in the
-        database. If you want to add a new effect, simply create a new function under the Item
-        class with the name of the effect you define in item.db.
 
         :param user: The monster or object that is using this item.
         :param target: The monster or object that we are using this item on.
@@ -281,18 +277,18 @@ class Item(object):
 
 
 def decode_inventory(session, owner, data):
-    """ Reconstruct inventory from save_data
+    """ Reconstruct inventory from a save_data dict
 
     :param session:
     :param owner:
-    :param data: save data
+    :param data: save data inventory
     :type data: Dictionary
 
     :rtype: Dictionary
     :returns: New inventory
     """
     out = {}
-    for slug, quant in (data.get('inventory') or {}).items():
+    for slug, quant in data.items():
         item = {
             'item': Item(session, owner, slug)
         }

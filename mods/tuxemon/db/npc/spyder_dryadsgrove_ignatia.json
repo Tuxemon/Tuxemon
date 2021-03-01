@@ -1,0 +1,31 @@
+{
+    "slug": "spyder_dryadsgrove_ignatia",
+    "sprite_name": "fire",
+	"monsters": [
+        		{
+            "name": "Vivicinder",
+            "level": 50, 
+			"slug": "vivicinder",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Masknake",
+            "level": 50, 
+			"slug": "masknake",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Criniotherme",
+            "level": 50, 
+			"slug": "criniotherme",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	"combat_front": "firenymph.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

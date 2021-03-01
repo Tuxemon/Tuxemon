@@ -197,4 +197,10 @@ def fetch(*args):
             if os.path.exists(path):
                 return path
 
+        # mods folder is in same folder as the launch script
+        path = os.path.join(paths.BASEDIR, "mods", mod_name, relative_path)
+        logger.debug("searching asset: %s", path)
+        if os.path.exists(path):
+            return path
+
     raise OSError(f"cannot load file {relative_path}")

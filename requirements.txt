@@ -1,6 +1,5 @@
 babel
 cbor
-lxml>=4.2.5
 neteria
 pillow
 pygame

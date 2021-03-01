@@ -39,7 +39,7 @@ logger.debug("libdir: %s", LIBDIR)
 
 # BASEDIR is where tuxemon was launched from
 BASEDIR = sys.path[0]
-logger.debug("basedir: %s", LIBDIR)
+logger.debug("basedir: %s", BASEDIR)
 
 # main game and config dir
 # TODO: this imports pygame from core.prepare - refactor to avoid this?

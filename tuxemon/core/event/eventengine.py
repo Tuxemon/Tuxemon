@@ -28,8 +28,6 @@ import logging
 from contextlib import contextmanager
 from textwrap import dedent
 
-from lxml import etree
-
 from tuxemon.constants import paths
 from tuxemon.core import plugin
 from tuxemon.core import prepare
@@ -39,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 
 class RunningEvent:
-    """ Manage MapEvents that are used during gameplay
+    """Manage MapEvents that are used during gameplay
 
     Running events are considered to have all conditions satisfied
     Once started, they will eventually execute all actions of the MapEvent
@@ -52,7 +50,14 @@ class RunningEvent:
     Actions being managed by the RunningEvent class can share information
     using the context dictionary.
     """
-    __slots__ = ('map_event', 'context', 'action_index', 'current_action', 'current_map_action')
+
+    __slots__ = (
+        "map_event",
+        "context",
+        "action_index",
+        "current_action",
+        "current_map_action",
+    )
 
     def __init__(self, map_event):
         self.map_event = map_event
@@ -62,7 +67,7 @@ class RunningEvent:
         self.current_map_action = None
 
     def get_next_action(self):
-        """ Get the next action to execute, if any
+        """Get the next action to execute, if any
 
         Returns MapActions, which are just data from the map, not live objects
 
@@ -83,7 +88,7 @@ class RunningEvent:
 
 
 class EventEngine:
-    """ A class for the event engine. The event engine checks to see if a group of
+    """A class for the event engine. The event engine checks to see if a group of
     conditions have been met and then executes a set of actions.
 
     Actions in the same MapEvent are not run concurrently, and they can be run over
@@ -113,7 +118,7 @@ class EventEngine:
         self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
 
     def reset(self):
-        """ Clear out running events.  Use when changing maps.
+        """Clear out running events.  Use when changing maps.
 
         :return:
         """
@@ -124,7 +129,7 @@ class EventEngine:
         self.button = None
 
     def get_action(self, name, parameters=None):
-        """ Get an action that is loaded into the engine
+        """Get an action that is loaded into the engine
 
         A new instance will be returned each time
 
@@ -151,7 +156,7 @@ class EventEngine:
             return action(self.session, parameters)
 
     def get_condition(self, name):
-        """ Get a condition that is loaded into the engine
+        """Get a condition that is loaded into the engine
 
         A new instance will be returned each time
 
@@ -174,7 +179,7 @@ class EventEngine:
             return condition()
 
     def check_condition(self, cond_data, map_event):
-        """ Check if condition is true of false
+        """Check if condition is true of false
 
         Returns False if the condition is not loaded properly
 
@@ -188,12 +193,18 @@ class EventEngine:
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False
 
-            result = map_condition.test(self.session, cond_data) == (cond_data.operator == 'is')
-            logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
+            result = map_condition.test(self.session, cond_data) == (
+                cond_data.operator == "is"
+            )
+            logger.debug(
+                'map condition "{}": {} ({})'.format(
+                    map_condition.name, result, cond_data
+                )
+            )
             return result
 
     def execute_action(self, action_name, parameters=None):
-        """ Load and execute an action
+        """Load and execute an action
 
         This will cause the game to hang if an action waits on game changes
 
@@ -212,7 +223,7 @@ class EventEngine:
         return action.execute()
 
     def start_event(self, map_event):
-        """ Begins execution of action list.  Conditions are not checked.
+        """Begins execution of action list.  Conditions are not checked.
 
         :param map_event:
         :type map_event: EventObject
@@ -237,7 +248,7 @@ class EventEngine:
             self.running_events[map_event.id] = token
 
     def process_map_event(self, map_event):
-        """ Check the conditions of an event, and execute actions if all conditions are valid
+        """Check the conditions of an event, and execute actions if all conditions are valid
 
         Actions will be started, but may finish much later.
 
@@ -267,7 +278,7 @@ class EventEngine:
                 self.start_event(map_event)
 
     def process_map_events(self, events):
-        """ Check conditions in a list or sequence.  Start actions
+        """Check conditions in a list or sequence.  Start actions
 
         Simple now, may become more complex
 
@@ -278,7 +289,7 @@ class EventEngine:
             self.process_map_event(event)
 
     def update(self, dt):
-        """ Check all the MapEvents and start their actions if conditions are OK
+        """Check all the MapEvents and start their actions if conditions are OK
 
         :param dt: Amount of time passed in seconds since last frame.
         :type dt: float
@@ -291,7 +302,7 @@ class EventEngine:
         self.update_running_events(dt)
 
     def check_conditions(self):
-        """ Checks conditions.  If any are satisfied, start the MapActions
+        """Checks conditions.  If any are satisfied, start the MapActions
 
         Actions may be started during this function
 
@@ -310,7 +321,7 @@ class EventEngine:
         self.process_map_events(self.session.client.events)
 
     def update_running_events(self, dt):
-        """ Update the events that are running
+        """Update the events that are running
 
         :param dt: Amount of time passed in seconds since last frame.
         :type dt: float
@@ -329,11 +340,11 @@ class EventEngine:
                 * if there is an action, then update it
                 * if action is finished, then clear the pointer to the action and inc. the index, cleanup
                 * RunningEvent will be checked next frame
-                
+
                 This loop will execute as many actions as possible for every MapEvent
                 For example, some actions like set_variable do not require several frames,
                 so all of them will be processed this frame.
-                
+
                 If an action is not finished, then this loop breaks and will check another
                 RunningEvent, but the position in the action list is remembered and will be restored.
                 """
@@ -347,7 +358,9 @@ class EventEngine:
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(next_action.type, next_action.parameters)
+                        action = self.get_action(
+                            next_action.type, next_action.parameters
+                        )
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk
@@ -359,16 +372,16 @@ class EventEngine:
 
                         else:
                             # start the action
-                            with add_error_context(e.map_event, next_action, self.session):
-                                action.start()
+                            # with add_error_context(e.map_event, next_action, self.session):
+                            action.start()
 
                             # save the action that is running
                             e.current_action = action
 
                 # update the action
                 action = e.current_action
-                with add_error_context(e.map_event, e.current_map_action, self.session):
-                    action.update()
+                # with add_error_context(e.map_event, e.current_map_action, self.session):
+                action.update()
 
                 if action.done:
                     # action finished, so continue and do the next one, if available
@@ -389,7 +402,7 @@ class EventEngine:
                 pass
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -449,7 +462,10 @@ def add_error_context(event, item, session):
                         Line {line_number}
                     """.format(
                         file_name=file_name,
-                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
+                        event=etree.tostring(event_node)
+                        .decode()
+                        .split("\n")[0]
+                        .strip(),
                         line=etree.tostring(child_node).decode().strip(),
                         line_number=child_node.sourceline,
                     )

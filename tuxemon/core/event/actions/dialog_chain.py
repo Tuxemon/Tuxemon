@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -72,7 +67,7 @@ class DialogChainAction(EventAction):
             self.stop()
 
             # is a dialog already open?
-            dialog = self.session.client.get_state_name("DialogState")
+            dialog = self.session.client.get_state_by_name("DialogState")
 
             if dialog:
                 # yes, so just add text to it
@@ -86,7 +81,7 @@ class DialogChainAction(EventAction):
         # hack to allow unescaped commas in the dialog string
         text = ', '.join(self.raw_parameters)
         if text == "${{end}}":
-            if self.session.client.get_state_name("DialogState") is None:
+            if self.session.client.get_state_by_name("DialogState") is None:
                 self.stop()
 
     def open_dialog(self, initial_text, avatar):

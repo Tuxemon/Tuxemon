@@ -1,1 +1,0 @@
-{"target_version": 14, "orientation": "landscape", "include_pil": true, "expansion": false, "icon_name": "Tuxemon", "include_sqlite": false, "google_play_salt": null, "google_play_key": null, "layout": "internal", "name": "Tuxemon", "package": "org.tuxemon.game", "source": false, "version": "0.3", "permissions": ["VIBRATE", "INTERNET"], "store": "none", "numeric_version": "100"}

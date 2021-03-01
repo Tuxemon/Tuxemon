@@ -1,6 +1,8 @@
 {
     "slug": "maple_girl",
     "sprite_name": "girl1",
+    "combat_front": "femaletrainer_front.png",
+    "combat_back": "maple_back.png",
     "monsters": [
         {
             "attack": 50,

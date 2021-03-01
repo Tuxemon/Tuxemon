@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
  </tileset>
@@ -89,6 +89,7 @@
     <property name="act150" value="remove_npc knight3"/>
     <property name="cond10" value="is variable_set thewifedidspeak:yes"/>
     <property name="cond20" value="not variable_set goodbyeoldknight:yes"/>
+    <property name="cond30" value="not variable_set goodbyeoldknight:finallydone"/>
    </properties>
   </object>
  </objectgroup>

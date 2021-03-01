@@ -1,4 +1,6 @@
 {
     "slug": "npc_mom",
-    "sprite_name": "girl1"
+    "sprite_name": "girl1",
+    "combat_front": "femaletrainer_front.png",
+    "combat_back": "maple_back.png"
 }

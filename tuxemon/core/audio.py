@@ -18,9 +18,12 @@ def load_sound(slug):
     :rtype: tuxemon.core.platform.mixer.Sound
     """
 
-    class DummySound(object):
+    class DummySound:
         def play(self):
             pass
+
+    if slug is None:
+        return DummySound()
 
     # get the filename from the db
     filename = db.lookup_file("sounds", slug)

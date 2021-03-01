@@ -4,7 +4,7 @@
 # Run set_movelist.py after this, as this script 
 # deletes the movelist of every tuxemon.
 
-from tuxemon.core.tuxepedia.api import TuxepediaStore
+from scripts.tuxepedia.api import TuxepediaStore
 
 if __name__ == "__main__":
 

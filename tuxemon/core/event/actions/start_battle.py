@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 
@@ -63,7 +58,7 @@ class StartBattleAction(EventAction):
             logger.debug("battle is not legal, won't start")
             return False
 
-        world = self.session.client.get_state_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
         if not world:
             return False
 
@@ -86,5 +81,5 @@ class StartBattleAction(EventAction):
         self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.session.client.get_state_name("CombatState") is None:
+        if self.session.client.get_state_by_name("CombatState") is None:
             self.stop()

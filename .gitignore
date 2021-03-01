@@ -12,8 +12,6 @@ build/
 develop-eggs/
 dist/
 eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -69,3 +67,5 @@ Thumbs.db
 
 # Mac OS
 *.DS_Store
+mods/tuxemon/maps/~$Map Helper.xlsx
+mods/tuxemon/db/encounter/~$JSON-o-matic for Encounters.ods

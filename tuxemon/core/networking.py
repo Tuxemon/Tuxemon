@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,10 +27,6 @@
 #
 """This module contains the Tuxemon server and client.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import pprint
@@ -522,7 +517,7 @@ class TuxemonClient():
                 del self.client.event_notifies[euuid]
 
             if event_data["type"] == "NOTIFY_CLIENT_INTERACTION":
-                world = self.game.get_state_name("WorldState")
+                world = self.game.get_state_by_name("WorldState")
                 if not world:
                     return
                 world.handle_interaction(event_data, self.client.registry)
@@ -673,7 +668,7 @@ class TuxemonClient():
         :returns: None
 
         """
-        if self.game.current_state != self.game.get_state_name("WorldState"):
+        if self.game.current_state != self.game.get_state_by_name("WorldState"):
             return False
 
         event_type = None
@@ -812,7 +807,7 @@ class TuxemonClient():
         self.client.event(event_data)
 
 
-class DummyNetworking(object):
+class DummyNetworking:
     def __init__(self, *args, **kwargs):
         """The dummy networking object is used when networking is not supported.
         """
@@ -890,7 +885,7 @@ def update_client(sprite, char_dict, game):
     # broken, b/c no global x/y
     return
 
-    world = game.get_state_name("WorldState")
+    world = game.get_state_by_name("WorldState")
     if not world:
         return
 

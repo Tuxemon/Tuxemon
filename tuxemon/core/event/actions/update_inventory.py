@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -19,10 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 from tuxemon.core.db import db
 from tuxemon.core.event import get_npc
@@ -31,22 +26,22 @@ from tuxemon.core.item.item import decode_inventory
 
 
 class UpdateInventoryAction(EventAction):
-	""" Updates the inventory of the npc or player.
-	Overwrites the quantity of an item if it's already present, but leaves other items alone.
-	"""
-	name = "update_inventory"
-	valid_parameters = [
-		(str, "npc_slug"),
-		(str, "inventory_slug"),
-	]
+    """ Updates the inventory of the npc or player. Overwrites the quantity of an item if it's already present,
+    but leaves other items alone.
+    """
+    name = "update_inventory"
+    valid_parameters = [
+        (str, "npc_slug"),
+        (str, "inventory_slug"),
+    ]
 
-	def start(self):
-		npc = get_npc(self.session, self.parameters.npc_slug)
-		if self.parameters.inventory_slug is None:
-			return
+    def start(self):
+        npc = get_npc(self.session, self.parameters.npc_slug)
+        if self.parameters.inventory_slug is None:
+            return
 
-		npc.inventory.update(
-			decode_inventory(self.session, npc,
-				db.database["inventory"][self.parameters.inventory_slug]
-			)
-		)
+        npc.inventory.update(
+            decode_inventory(self.session, npc,
+                             db.database["inventory"][self.parameters.inventory_slug].get("inventory", {})
+                             )
+        )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -28,17 +27,11 @@
 # core.states.combat Combat Start module
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from collections import defaultdict, namedtuple
 from functools import partial
 from itertools import chain
-
-import pygame
 
 from tuxemon.compat import Rect
 from tuxemon.core import audio, state, tools, graphics
@@ -46,25 +39,62 @@ from tuxemon.core.combat import check_status, fainted, get_awake_monsters, defea
 from tuxemon.core.locale import T
 from tuxemon.core.platform.const import buttons
 from tuxemon.core.pyganim import PygAnimation
+from tuxemon.core.session import local_session
 from tuxemon.core.sprite import Sprite
 from tuxemon.core.technique import Technique
 from tuxemon.core.ui.draw import GraphicBox
 from tuxemon.core.ui.text import TextArea
 from .combat_animations import CombatAnimations
-from ...session import local_session
 
 logger = logging.getLogger(__name__)
 
 EnqueuedAction = namedtuple("EnqueuedAction", "user technique target")
 
-faint = Technique("status_faint")
-
+# TODO: move to mod config
 MULT_MAP = {
     4: "attack_very_effective",
     2: "attack_effective",
     0.5: "attack_resisted",
     0.25: "attack_weak",
 }
+
+
+class TechniqueAnimationCache:
+    def __init__(self):
+        self._sprites = dict()
+
+    def get(self, technique):
+        """ Return a sprite usable as a technique animation
+
+        :type technique: tuxemon.core.technique.Technique
+        :rtype: tuxemon.core.sprite.Sprite
+        """
+        try:
+            return self._sprites[technique]
+        except KeyError:
+            sprite = self.load_technique_animation(technique)
+            self._sprites[technique] = sprite
+            return sprite
+
+    @staticmethod
+    def load_technique_animation(technique):
+        """ Return animated sprite from a technique
+
+        :param tuxemon.core.technique.Technique technique:
+        :rtype: tuxemon.core.sprite.Sprite
+        """
+        if not technique.images:
+            return None
+        frame_time = .09
+        images = list()
+        for fn in technique.images:
+            image = graphics.load_and_scale(fn)
+            images.append((image, frame_time))
+        tech = PygAnimation(images, False)
+        sprite = Sprite()
+        sprite.image = tech
+        sprite.rect = tech.get_rect()
+        return sprite
 
 
 class WaitForInputState(state.State):
@@ -114,7 +144,7 @@ class CombatState(CombatAnimations):
         self.phase = None
         self.monsters_in_play = defaultdict(list)
         self._damage_map = defaultdict(set)  # track damage so experience can be awarded later
-        self._technique_cache = dict()  # cache for technique animations
+        self._technique_cache = TechniqueAnimationCache()
         self._decision_queue = list()  # queue for monsters that need decisions
         self._position_queue = list()  # queue for asking players to add a monster into play (subject to change)
         self._action_queue = list()  # queue for techniques, items, and status effects
@@ -126,7 +156,7 @@ class CombatState(CombatAnimations):
         self._animation_in_progress = False  # if true, delay phase change
         self._round = 0
 
-        super(CombatState, self).startup(**kwargs)
+        super().startup(**kwargs)
         self.is_trainer_battle = kwargs.get('combat_type') == "trainer"
         self.players = list(self.players)
         self.graphics = kwargs.get('graphics')
@@ -142,7 +172,7 @@ class CombatState(CombatAnimations):
         * if new phase, then run transition into new one
         * update the new phase, or the current one
         """
-        super(CombatState, self).update(time_delta)
+        super().update(time_delta)
         if not self._animation_in_progress:
             new_phase = self.determine_phase(self.phase)
             if new_phase:
@@ -151,14 +181,19 @@ class CombatState(CombatAnimations):
             self.update_phase()
 
     def draw(self, surface):
-        super(CombatState, self).draw(surface)
+        """ Draw combat state
+
+        :param pygame.surface.Surface surface:
+        :rtype: None
+        """
+        super().draw(surface)
         self.draw_hp_bars()
         self.draw_exp_bars()
 
     def draw_hp_bars(self):
         """ Go through the HP bars and redraw them
 
-        :returns: None
+        :rtype: None
         """
         for monster, hud in self.hud.items():
             rect = Rect(0, 0, tools.scale(70), tools.scale(8))
@@ -169,7 +204,7 @@ class CombatState(CombatAnimations):
     def draw_exp_bars(self):
         """ Go through the EXP bars and redraw them
 
-        :returns: None
+        :rtype: None
         """
         for monster, hud in self.hud.items():
             if hud.player:
@@ -188,7 +223,7 @@ class CombatState(CombatAnimations):
         * Return a phase name and phase will change
         * Return None and phase will not change
 
-        :returns: None or String
+        :rtype: None or String
         """
         if phase == "ready":
             return "housekeeping phase"
@@ -199,7 +234,6 @@ class CombatState(CombatAnimations):
                 positions_available = self.max_positions - len(self.monsters_in_play[player])
                 if positions_available:
                     return
-
             return "decision phase"
 
         elif phase == "decision phase":
@@ -246,13 +280,13 @@ class CombatState(CombatAnimations):
         """ Change from one phase from another.
 
         Part of state machine
-        * Will be run just -once- when phase changes.
-        * Do not change phase.
-        * Execute code only to change into new phase.
+        * Will be run just -once- when phase changes
+        * Do not change phase
+        * Execute code only to change into new phase
         * The phase's update will be executed -after- this
 
-        :param phase:
-        :return:
+        :param str phase: Name of phase to transition to
+        :rtype: None
         """
         if phase == "housekeeping phase":
             self._round += 1
@@ -272,8 +306,7 @@ class CombatState(CombatAnimations):
             self.reset_status_icons()
             if not self._decision_queue:
                 for player in self.human_players:
-                    # the decision queue tracks human players who need to choose an
-                    # action
+                    # tracks human players who need to choose an action
                     self._decision_queue.extend(self.monsters_in_play[player])
 
                 for trainer in self.ai_players:
@@ -341,7 +374,6 @@ class CombatState(CombatAnimations):
         """ Get ai action from a monster and enqueue it
 
         :param monster:
-        :param opponents:
         :return:
         """
         # TODO: parties/teams/etc to choose opponents
@@ -361,11 +393,7 @@ class CombatState(CombatAnimations):
 
         def rank_action(action):
             sort = action.technique.sort
-            try:
-                primary_order = sort_order.index(sort)
-            except IndexError:
-                logger.error("unsortable action: ", action)
-                primary_order = -1
+            primary_order = sort_order.index(sort)
 
             if sort == 'meta':
                 # all meta items sorted together
@@ -376,6 +404,7 @@ class CombatState(CombatAnimations):
                 # TODO: determine the secondary sort element, monster speed, trainer speed, etc
                 return primary_order, action.user.speed_test(action)
 
+        # TODO: move to mod config
         sort_order = ['meta', 'item', 'utility', 'potion', 'food', 'heal', 'damage']
 
         # TODO: Running happens somewhere else, it should be moved here i think.
@@ -386,11 +415,11 @@ class CombatState(CombatAnimations):
         """ Execute/update phase actions
 
         Part of state machine
-        * Do not change phase.
-        * Will be run each iteration phase is active.
-        * Do not test conditions to change phase.
+        * Do not change phase
+        * Will be run each iteration phase is active
+        * Do not test conditions to change phase
 
-        :return: None
+        :rtype: None
         """
         if self.phase == "decision phase":
             # show monster action menu for human players
@@ -409,7 +438,7 @@ class CombatState(CombatAnimations):
     def handle_action_queue(self):
         """ Take one action from the queue and do it
 
-        :return: None
+        :rtype: None
         """
         if self._action_queue:
             action = self._action_queue.pop()
@@ -534,7 +563,7 @@ class CombatState(CombatAnimations):
         :param monster: Monster to choose an action for
         :type monster: tuxemon.core.monster.Monster
 
-        :returns: None
+        :rtype: None
         """
         message = T.format('combat_monster_choice', {"name": monster.name})
         self.alert(message)
@@ -557,10 +586,10 @@ class CombatState(CombatAnimations):
     def enqueue_action(self, user, technique, target=None):
         """ Add some technique or status to the action queue
 
-        :param user:
-        :param technique:
-        :param target:
-        :returns: None
+        :param tuxemon.core.npc.NPC user:
+        :param tuxemon.core.technique.Technique technique:
+        :param Optional[Union[NPC, Monster] target:
+        :rtype: None
         """
         self._action_queue.append(EnqueuedAction(user, technique, target))
 
@@ -595,8 +624,8 @@ class CombatState(CombatAnimations):
 
         This is used mainly for removing actions after monster is fainted
 
-        :type monster: tuxemon.core.monster.Monster
-        :returns: None
+        :param tuxemon.core.monster.Monster monster:
+        :rtype: None
         """
         to_remove = set()
         for action in self._action_queue:
@@ -625,10 +654,10 @@ class CombatState(CombatAnimations):
         """ Do something with the thing: animated
 
         :param user:
-        :param technique: Not a dict: a Technique or Item
+        :param Union[Technique, Item] technique:
         :param target:
 
-        :returns:
+        :rtype: None
         """
         technique.advance_round()
 
@@ -645,10 +674,8 @@ class CombatState(CombatAnimations):
         else:
             message = ''
 
-        try:
-            audio.load_sound(technique.sfx).play()
-        except AttributeError:
-            pass
+        # TODO: caching sounds
+        audio.load_sound(technique.sfx).play()
 
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
@@ -714,8 +741,8 @@ class CombatState(CombatAnimations):
                 self.suppress_phase_change()
                 self.alert(T.format('combat_status_damage', {"name": target.name, "status": technique.name}))
 
-        if result["success"] and target_sprite and technique.images:
-            tech_sprite = self.get_technique_animation(technique)
+        tech_sprite = self._technique_cache.get(technique)
+        if result["success"] and target_sprite and tech_sprite:
             tech_sprite.rect.center = target_sprite.rect.center
             self.task(tech_sprite.image.play, hit_delay)
             self.task(partial(self.sprites.add, tech_sprite, layer=50), hit_delay)
@@ -725,8 +752,9 @@ class CombatState(CombatAnimations):
         """ Instantly make the monster faint (will be removed later)
 
         :type monster: tuxemon.core.monster.Monster
-        :returns: None
+        :rtype: None
         """
+        faint = Technique("status_faint")
         monster.current_hp = 0
         monster.status = [faint]
 
@@ -750,7 +778,7 @@ class CombatState(CombatAnimations):
         * Animation to remove monster is handled here
         TODO: check for faint status, not HP
 
-        :returns: None
+        :rtype: None
         """
         for player, party in self.monsters_in_play.items():
             for monster in party:
@@ -764,7 +792,7 @@ class CombatState(CombatAnimations):
 
         * Monsters will be removed from play here
 
-        :returns: None
+        :rtype: None
         """
         for player, party in self.monsters_in_play.items():
             for monster in party:
@@ -778,42 +806,6 @@ class CombatState(CombatAnimations):
                     # Enemies don't have a bar, doing it for them will cause a crash
                     for monster in self.monsters_in_play[local_session.player]:
                         self.animate_exp(monster)
-
-    def get_technique_animation(self, technique):
-        """ Return a sprite usable as a technique animation
-
-        TODO: move to some generic animation loading thingy
-
-        :type technique: tuxemon.core.technique.Technique
-        :rtype: tuxemon.core.sprite.Sprite
-        """
-        try:
-            return self._technique_cache[technique]
-        except KeyError:
-            sprite = self.load_technique_animation(technique)
-            self._technique_cache[technique] = sprite
-            return sprite
-
-    @staticmethod
-    def load_technique_animation(technique):
-        """
-
-        TODO: move to some generic animation loading thingy
-
-        :param technique:
-        :rtype: tuxemon.core.sprite.Sprite
-        """
-        frame_time = .09
-        images = list()
-        for fn in technique.images:
-            image = graphics.load_and_scale(fn)
-            images.append((image, frame_time))
-
-        tech = PygAnimation(images, False)
-        sprite = Sprite()
-        sprite.image = tech
-        sprite.rect = tech.get_rect()
-        return sprite
 
     @property
     def active_players(self):
@@ -833,8 +825,7 @@ class CombatState(CombatAnimations):
 
     @property
     def ai_players(self):
-        for player in set(self.active_players) - set(self.human_players):
-            yield player
+        yield from set(self.active_players) - set(self.human_players)
 
     @property
     def active_monsters(self):

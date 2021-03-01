@@ -22,10 +22,6 @@
 Documentation and tests are included in the file "euclid.txt", or online
 at http://code.google.com/p/pyeuclid
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import math
 import operator
@@ -107,7 +103,7 @@ class Vector2:
     copy = __copy__
 
     def __repr__(self):
-        return 'Vector2(%.2f, %.2f)' % (self.x, self.y)
+        return 'Vector2({:.2f}, {:.2f})'.format(self.x, self.y)
 
     def __eq__(self, other):
         if isinstance(other, Vector2):
@@ -330,7 +326,7 @@ class Vector3:
     copy = __copy__
 
     def __repr__(self):
-        return 'Vector3(%.2f, %.2f, %.2f)' % (self.x,
+        return 'Vector3({:.2f}, {:.2f}, {:.2f})'.format(self.x,
                                               self.y,
                                               self.z)
 
@@ -1639,11 +1635,11 @@ class Quaternion:
 
 class Geometry:
     def _connect_unimplemented(self, other):
-        print('Cannot connect %s to %s' % (self.__class__, other.__class__))
+        print('Cannot connect {} to {}'.format(self.__class__, other.__class__))
         raise AttributeError
 
     def _intersect_unimplemented(self, other):
-        print('Cannot intersect %s and %s' % (self.__class__, other.__class__))
+        print('Cannot intersect {} and {}'.format(self.__class__, other.__class__))
         raise AttributeError
 
     _intersect_point2 = _intersect_unimplemented
@@ -1801,7 +1797,7 @@ def _connect_circle_circle(A, B):
 
 class Point2(Vector2, Geometry):
     def __repr__(self):
-        return 'Point2(%.2f, %.2f)' % (self.x, self.y)
+        return 'Point2({:.2f}, {:.2f})'.format(self.x, self.y)
 
     def intersect(self, other):
         return other._intersect_point2(self)
@@ -1844,7 +1840,7 @@ class Line2(Geometry):
                 self.p = args[0].copy()
                 self.v = args[1].copy()
             else:
-                print('%r' % (args,))
+                print('{!r}'.format(args))
                 raise AttributeError
 
         elif len(args) == 1:
@@ -1852,10 +1848,10 @@ class Line2(Geometry):
                 self.p = args[0].p.copy()
                 self.v = args[0].v.copy()
             else:
-                print('%r' % (args,))
+                print('{!r}'.format(args))
                 raise AttributeError
         else:
-            print('%r' % (args,))
+            print('{!r}'.format(args))
             raise AttributeError
 
         if not self.v:
@@ -2175,7 +2171,7 @@ def _intersect_plane_plane(A, B):
 
 class Point3(Vector3, Geometry):
     def __repr__(self):
-        return 'Point3(%.2f, %.2f, %.2f)' % (self.x, self.y, self.z)
+        return 'Point3({:.2f}, {:.2f}, {:.2f})'.format(self.x, self.y, self.z)
 
     def intersect(self, other):
         return other._intersect_point3(self)
@@ -2225,17 +2221,17 @@ class Line3:
                 self.p = args[0].copy()
                 self.v = args[1].copy()
             else:
-                print('%r' % (args,))
+                print('{!r}'.format(args))
                 raise AttributeError
         elif len(args) == 1:
             if isinstance(args[0], Line3):
                 self.p = args[0].p.copy()
                 self.v = args[0].v.copy()
             else:
-                print('%r' % (args,))
+                print('{!r}'.format(args))
                 raise AttributeError
         else:
-            print('%r' % (args,))
+            print('{!r}'.format(args))
             raise AttributeError
 
             # XXX This is annoying.
@@ -2392,10 +2388,10 @@ class Plane:
                 self.n = args[0].normalized()
                 self.k = args[1]
             else:
-                print('%r' % (args,))
+                print('{!r}'.format(args))
                 raise AttributeError
         else:
-            print('%r' % (args,))
+            print('{!r}'.format(args))
             raise AttributeError
 
         if not self.n:

@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 from functools import partial
 
@@ -45,7 +40,7 @@ class WorldMenuState(Menu):
     animate_contents = True
 
     def startup(self, *args, **kwargs):
-        super(WorldMenuState, self).startup(*args, **kwargs)
+        super().startup(*args, **kwargs)
 
         def change_state(state, **kwargs):
             return partial(self.client.replace_state, state, **kwargs)

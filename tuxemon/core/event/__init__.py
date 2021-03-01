@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -24,10 +23,6 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from collections import namedtuple
@@ -65,6 +60,7 @@ MapAction = namedtuple("action", action_fields)
 EventObject = namedtuple("eventobject", event_fields)
 
 __all__ = [
+    "EventObject",
     "MapAction",
     "MapCondition",
     "get_npc"
@@ -87,7 +83,7 @@ def get_npc(session, slug):
         return session.player
 
     # Loop through the NPC list and see if the slug matches any in the list
-    world = session.client.get_state_name("WorldState")
+    world = session.client.get_state_by_name("WorldState")
     if world is None:
         logger.error("Cannot search for NPC if world doesn't exist: " + slug)
         return

@@ -1,4 +1,6 @@
 {
     "slug" : "shady_guy",
-    "sprite_name" : "ninja"
+    "sprite_name" : "ninja",
+    "combat_front": "red_front.png",
+    "combat_back": "red_back.png"
 }

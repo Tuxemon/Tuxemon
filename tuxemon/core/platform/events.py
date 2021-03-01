@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (c) 2014-2017 William Edwards <shadowapex@gmail.com>,
@@ -20,13 +19,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 
-class EventQueueHandler(object):
+class EventQueueHandler:
     """ Event QueueHandler for different platforms
 
     * Only one per game
@@ -42,14 +37,13 @@ class EventQueueHandler(object):
         """
         for key, value in self._inputs.items():
             for inp in value:
-                for event in inp.virtual_stop_events():
-                    yield event
+                yield from inp.virtual_stop_events()
 
     def process_events(self):
         raise NotImplementedError
 
 
-class InputHandler(object):
+class InputHandler:
     """ Enables basic input device with discrete inputs
     """
     event_type = None
@@ -100,7 +94,7 @@ class InputHandler(object):
         inp.triggered = True
 
 
-class PlayerInput(object):
+class PlayerInput:
     __slots__ = ("button", "value", "hold_time", "triggered")
     
     def __init__(self, button, value=0, hold_time=0):

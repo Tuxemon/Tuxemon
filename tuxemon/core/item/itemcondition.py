@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,23 +26,16 @@
 #
 
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from collections import namedtuple
 
-from tuxemon.core.client import Client  # for type introspection
 from tuxemon.core.tools import cast_values
-
-assert Client
 
 logger = logging.getLogger(__name__)
 
 
-class ItemCondition(object):
+class ItemCondition:
     """ ItemConditions are evaluated by items.
 
     ItemCondition subclasses implement "conditions" defined in Tuxemon items.

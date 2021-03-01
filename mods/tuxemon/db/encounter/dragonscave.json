@@ -1,0 +1,14 @@
+{"slug": "dragonscave","monsters": [
+
+
+
+
+{ "monster": "agnite","encounter_rate":3,"level_range": [25,28]},
+{ "monster": "agnidon","encounter_rate":1,"level_range": [20,25]},
+{ "monster": "embra","encounter_rate":3,"level_range": [25,28]},
+{ "monster": "ruption","encounter_rate":1,"level_range": [20,25]}
+
+
+
+
+] }

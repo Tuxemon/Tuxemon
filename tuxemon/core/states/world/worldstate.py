@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Tuxemon
 # Copyright (C) 2014, William Edwards <shadowapex@gmail.com>,
@@ -27,26 +26,21 @@
 # core.states.world Handles the world map and player movement.
 #
 #
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import itertools
 import logging
 
 import pygame
-from six.moves import map as imap
 
 from tuxemon.compat import Rect
 from tuxemon.core import prepare, state, networking
-from tuxemon.core.map import PathfindNode, Map, dirs2, pairs
+from tuxemon.core.map import PathfindNode, TuxemonMap, dirs2, pairs
+from tuxemon.core.map_loader import TMXMapLoader
 from tuxemon.core.platform.const import buttons, events, intentions
 from tuxemon.core.session import local_session
 from tuxemon.core.tools import nearest
 
 logger = logging.getLogger(__name__)
-
 
 direction_map = {
     intentions.UP: "up",
@@ -59,8 +53,6 @@ direction_map = {
 class WorldState(state.State):
     """ The state responsible for the world game play
     """
-
-    preloaded_maps = {}
 
     keymap = {
         buttons.UP: intentions.UP,
@@ -94,8 +86,6 @@ class WorldState(state.State):
         #                              Map                                   #
         ######################################################################
 
-        # Keep a map of preloaded maps for fast map switching.
-        self.preloaded_maps = {}
         self.current_map = None
 
         ######################################################################
@@ -277,7 +267,7 @@ class WorldState(state.State):
         :returns: None
 
         """
-        super(WorldState, self).update(time_delta)
+        super().update(time_delta)
         self.move_npcs(time_delta)
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
@@ -389,6 +379,10 @@ class WorldState(state.State):
         # interlace player sprites with tiles surfaces.
         # eventually, maybe use pygame sprites or something similar
         world_surfaces = list()
+
+        # temporary
+        if self.current_map.renderer is None:
+            self.current_map.initialize_renderer()
 
         # get player coords to center map
         cx, cy = nearest(self.project(self.player.tile_pos))
@@ -805,10 +799,10 @@ class WorldState(state.State):
 
         # We need to iterate over all collidable objects.  So, let's start
         # with the walls/collision boxes.
-        box_iter = imap(self._collision_box_to_pgrect, self.collision_map)
+        box_iter = map(self._collision_box_to_pgrect, self.collision_map)
 
         # Next, deal with solid NPCs.
-        npc_iter = imap(self._npc_to_pgrect, self.npcs.values())
+        npc_iter = map(self._npc_to_pgrect, self.npcs.values())
 
         # draw noc and wall collision tiles
         red = (255, 0, 0, 128)
@@ -910,18 +904,13 @@ class WorldState(state.State):
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
-        if map_name not in self.preloaded_maps.keys():
-            logger.debug("Map was not preloaded. Loading from disk.")
-            map_data = self.load_map(map_name)
-        else:
-            logger.debug("%s was found in preloaded maps." % map_name)
-            map_data = self.preloaded_maps[map_name]
-            self.clear_preloaded_maps()
+        logger.debug("Map was not preloaded. Loading from disk.")
+        map_data = self.load_map(map_name)
 
-        self.current_map = map_data["data"]
-        self.collision_map = map_data["collision_map"]
-        self.collision_lines_map = map_data["collision_lines_map"]
-        self.map_size = map_data["map_size"]
+        self.current_map = map_data
+        self.collision_map = map_data.collision_map
+        self.collision_lines_map = map_data.collision_lines_map
+        self.map_size = map_data.size
 
         # The first coordinates that are out of bounds.
         self.invalid_x = (-1, self.map_size[0])
@@ -944,32 +933,10 @@ class WorldState(state.State):
                 self.player.set_position((eo.x, eo.y))
 
     def load_map(self, map_name):
-        """ Returns map data as a dictionary to be used for map changing and preloading
+        """ Returns map data as a dictionary to be used for map changing
+        :rtype: tuxemon.core.map.TuxemonMap
         """
-        map_data = {}
-        map_data["data"] = Map(map_name)
-        map_data["events"] = map_data["data"].events
-        map_data["inits"] = map_data["data"].inits
-        map_data["interacts"] = map_data["data"].interacts
-        map_data["collision_map"], map_data["collision_lines_map"], map_data["map_size"] = \
-            map_data["data"].loadfile()
-
-        return map_data
-
-    def preload_map(self, map_name):
-        """ Preload a map for quicker access
-
-        :param map_name:
-        :return: None
-        """
-        self.preloaded_maps[map_name] = self.load_map(map_name)
-
-    def clear_preloaded_maps(self):
-        """ Clear the preloaded maps cache
-
-        :return: None
-        """
-        self.preloaded_maps = {}
+        return TMXMapLoader().load(map_name)
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu

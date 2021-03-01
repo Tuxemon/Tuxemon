@@ -1,9 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 05:41+0200\n"
+"PO-Revision-Date: 2020-11-08 20:26+0000\n"
+"Last-Translator: Michael Moroni <michaelmoroni@disroot.org>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"it/>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid "PROJECT DESCRIPTION\n"
-msgstr ""
+msgstr "<<MISSING>>"
 "Project-Id-Version: Insert package version from somewhere\n"
 "Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
 "POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
@@ -17,7 +33,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
 msgstr "Mela"
@@ -75,11 +90,9 @@ msgid "capture_device_description"
 msgstr "Cattura un mostro."
 
 msgid "item_cannot_use_here"
-msgstr "L'oggetto non può essere usato qui!"
-
+msgstr "{name} non può essere usato qui!"
 
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_run"
 msgstr "{user} è fuggito!"
@@ -97,7 +110,7 @@ msgid "combat_used_x_on_y"
 msgstr "{user} ha usato {name} su {target}!"
 
 msgid "combat_swap"
-msgstr "{user} manda {target} in combattimento!"
+msgstr "{user} manda {target} in campo!"
 
 msgid "combat_call_tuxemon"
 msgstr "Vai, {name}!"
@@ -106,7 +119,7 @@ msgid "combat_opponent_call_tuxemon"
 msgstr "{user} ha scelto {name}!"
 
 msgid "combat_state_poison_get"
-msgstr "{target} è avvelenato"
+msgstr "{target} è avvelenato."
 
 msgid "combat_state_poison_damage"
 msgstr "{name} ha subito danno da avvelenamento!"
@@ -172,7 +185,7 @@ msgid "combat_isactive"
 msgstr "{name} è ancora in campo."
 
 msgid "attack_very_effective"
-msgstr "L'attacco ha fatto molti danni in più!"
+msgstr "L'attacco ha fatto più danni del previsto!"
 
 msgid "attack_effective"
 msgstr "L'attacco ha fatto qualche danno in più!"
@@ -185,7 +198,7 @@ msgstr "L'attacco è stato fortemente difeso!"
 
 # Generic notifications
 msgid "empty_slot"
-msgstr "Slot vuoto"
+msgstr "Posto vuoto"
 
 msgid "exit"
 msgstr "Esci"
@@ -210,7 +223,7 @@ msgid "generic_failure"
 msgstr "Ha fallito!"
 
 msgid "attempting_capture"
-msgstr "Cattura in corso..."
+msgstr "Cattura in corso…"
 
 msgid "gotcha"
 msgstr "Evvai!"
@@ -237,11 +250,9 @@ msgid "status_faint"
 msgstr "K.O."
 
 msgid "status_poison"
-msgstr "avvelenamento"
-
+msgstr "Avvelenamento"
 
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "all_in"
 msgstr "All In"
 
@@ -512,9 +523,7 @@ msgstr "Turbine"
 msgid "wing_tip"
 msgstr "Colpodala"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Informazioni"
@@ -600,9 +609,7 @@ msgstr "Nessun server trovato..."
 msgid "multiplayer_join_prompt"
 msgstr "Hostname o IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart_description"
 msgstr "Tiene il conto di ogni formica che ha mangiato e fa celebrazioni in onore dei numeri più significativi."
@@ -665,7 +672,7 @@ msgid "bigfin"
 msgstr "Bigfin"
 
 msgid "bolt_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "bolt"
 msgstr "Bolt"
@@ -755,7 +762,7 @@ msgid "dragarbor"
 msgstr "Dragarbor"
 
 msgid "dune_pincher_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "dune_pincher"
 msgstr "Dune Pincher"
@@ -791,7 +798,7 @@ msgid "ferricran"
 msgstr "Ferricran"
 
 msgid "firomenis_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "firomenis"
 msgstr "Firomenis"
@@ -803,7 +810,7 @@ msgid "fluttaflap"
 msgstr "Fluttaflap"
 
 msgid "fruitera_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "fruitera"
 msgstr "Fruitera"
@@ -821,7 +828,7 @@ msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -845,13 +852,13 @@ msgid "legko"
 msgstr "Legko"
 
 msgid "magmaturtle_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "magmaturtle"
 msgstr "Magmaturtle"
 
 msgid "merlicun_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "merlicun"
 msgstr "Merlicun"
@@ -893,13 +900,13 @@ msgid "nudiflot_male"
 msgstr "Nudiflot (M)"
 
 msgid "nut_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "nut"
 msgstr "Nut"
 
 msgid "pigabyte_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "pigabyte"
 msgstr "Pigabyte"
@@ -911,19 +918,19 @@ msgid "possessun"
 msgstr "Possessun"
 
 msgid "propellercat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "propellercat"
 msgstr "Propellercat"
 
 msgid "rockat_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockat"
 msgstr "Rockat"
 
 msgid "rockitten_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "rockitten"
 msgstr "Rockitten"
@@ -935,13 +942,13 @@ msgid "sapragon"
 msgstr "Sapragon"
 
 msgid "selket_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selket"
 msgstr "Selket"
 
 msgid "selmatek_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "selmatek"
 msgstr "Selmatek"
@@ -953,7 +960,7 @@ msgid "sharpfin"
 msgstr "Sharpfin"
 
 msgid "sludgehog_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "sludgehog"
 msgstr "Sludgehog"
@@ -965,7 +972,7 @@ msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -992,13 +999,13 @@ msgid "tigrock"
 msgstr "Tigrock"
 
 msgid "tumbleworm_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tumbleworm"
 msgstr "Tumbleworm"
 
 msgid "tux_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "tux"
 msgstr "Tux"
@@ -1169,9 +1176,7 @@ msgstr "Instancabile"
 msgid "slurpy"
 msgstr "Sorseggiante"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -1251,9 +1256,7 @@ msgstr "Team Xero Grunt IX"
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Vuoi guarire i tuoi Tuxemon?"
@@ -1325,7 +1328,7 @@ msgid "karrianna_dialog1"
 msgstr "Karrianna: Mi sto allenando da mesi! Nessuno mi ha ancora battuta!"
 
 msgid "karrianna_dialog2"
-msgstr "Mh... Eri il primo allenatore che ho incontrato..."
+msgstr "Mh… Eri il primo allenatore che ho incontrato…"
 
 msgid "xero_hideout1"
 msgstr "Istituto Xero per la Ricerca e il Progresso sui Tuxemon più avanti."
@@ -1512,3 +1515,50 @@ msgstr "Bene, sembra che i tuoi Tuxemon siano pieni di energia! Eccoteli!"
 
 msgid "input_name"
 msgstr "Qual è il tuo nome?"
+
+msgid "combat_can't_run_from_trainer"
+msgstr "Non puoi scappare da una battaglia contro un allenatore!"
+
+msgid "item_no_available_target"
+msgstr "{name} non può essere usato su alcun tuo Tuxemon proprio ora."
+
+msgid "tm_blossom_description"
+msgstr ""
+"Manuale Tecnico che insegna la mossa Fioritura a un Tuxemon di tipo Legno."
+
+msgid "tm_blossom"
+msgstr "MT: Fioritura"
+
+msgid "tm_avalanche_description"
+msgstr ""
+"Manuale Tecnico che insegna la mossa Valanga a un Tuxemon di tipo Terra o "
+"Acqua."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "MT: Valanga"
+
+msgid "revive_description"
+msgstr "Riporta in vita un Tuxemon dandogli 20 PV."
+
+# Revive
+msgid "revive"
+msgstr "Revitalizzatore"
+
+msgid "status_recover"
+msgstr "Ripresa"
+
+msgid "status_lifeleech"
+msgstr "Succhiavita"
+
+msgid "save_keep"
+msgstr "No, mantieni il salvataggio."
+
+msgid "save_overwrite"
+msgstr "Sì, sovrascrivi il salvataggio."
+
+msgid "combat_capturing_success"
+msgstr "Hai catturato {name}!"
+
+msgid "combat_trainer_appeared"
+msgstr "{name} vuole combattere!"

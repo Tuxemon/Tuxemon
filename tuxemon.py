@@ -35,14 +35,11 @@ To run an individual component (e.g. core/prepare.py):
 `python -m core.prepare`
 
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from argparse import ArgumentParser
 
 if __name__ == '__main__':
+    print('this file will be removed in the future and replaced with "run_tuxemon.py"')
+    print()
     from tuxemon.core import prepare, main
 
     parser = ArgumentParser()

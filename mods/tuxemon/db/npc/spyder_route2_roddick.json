@@ -1,0 +1,15 @@
+{
+    "slug": "spyder_route2_roddick",
+    "sprite_name": "tennisplayer", 
+	"monsters": [
+        {
+            "name": "Spighter",
+            "level": 8, 
+			"slug": "spighter",
+						"exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+],
+	    "combat_front": "tennisplayer.png",
+    "combat_back": "red_back.png"}
+

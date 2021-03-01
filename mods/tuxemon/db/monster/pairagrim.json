@@ -1,0 +1,28 @@
+{
+    "slug": "pairagrim",
+    "category": "bird",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 2,
+            "technique": "peregrine"
+        }
+    ],
+    "shape": "flier",
+    "types": [
+        "wood"
+    ],
+    "weight": 10
+}

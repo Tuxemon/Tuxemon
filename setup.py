@@ -1,11 +1,22 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from setuptools import setup
 import fnmatch
 import os
 
-#build the translations
-from tuxemon.core.components.locale import T
+from setuptools import setup
+from setuptools.command.install import install
+
+
+def build_translations():
+    from tuxemon.core.locale import T
+
+    T.collect_languages()
+
+
+class InstallAndBuildTranslations(install):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        build_translations()
 
 
 # Find all the python modules
@@ -16,7 +27,7 @@ for root, dirnames, filenames in os.walk('tuxemon'):
         matches.append(os.path.join(root, filename))
 
 for match in matches:
-    match = match.replace(os.sep+"__init__.py", "")
+    match = match.replace(os.sep + "__init__.py", "")
     match = match.replace(os.sep, ".")
     modules.append(match)
 
@@ -42,6 +53,7 @@ setup(name='tuxemon',
       license="GPLv3",
       long_description='https://github.com/Tuxemon/Tuxemon',
       install_requires=REQUIREMENTS,
+      python_requires='>=3.3',
       entry_points={
           'gui_scripts': [
               'tuxemon = tuxemon.__main__:main'
@@ -51,12 +63,12 @@ setup(name='tuxemon',
           "Intended Audience :: End Users/Desktop",
           "Development Status :: 3 - Alpha",
           "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-          "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.3",
           "Programming Language :: Python :: 3.4",
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Topic :: Games/Entertainment",
           "Topic :: Games/Entertainment :: Role-Playing",
-      ]
+      ],
+      cmdclass={'install': InstallAndBuildTranslations}
       )

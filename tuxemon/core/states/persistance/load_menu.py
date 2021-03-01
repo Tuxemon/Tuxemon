@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 
 from tuxemon.core import save
@@ -16,7 +11,7 @@ class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
         if 'selected_index' not in kwargs:
             kwargs['selected_index'] = save.slot_number or 0
-        super(LoadMenuState, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
         slot = kwargs.get("load_slot")
         if slot:
             self.selected_index = slot - 1
@@ -27,7 +22,7 @@ class LoadMenuState(SaveMenuState):
         if save_data and "error" not in save_data:
             local_session.player.set_state(self.client, save_data)
 
-            old_world = self.client.get_state_name("WorldState")
+            old_world = self.client.get_state_by_name("WorldState")
             if old_world is None:
                 # when game is loaded from the start menu
                 self.client.pop_state()  # close this menu

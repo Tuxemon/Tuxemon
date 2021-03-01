@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division, print_function
-from __future__ import unicode_literals
-
 import logging
 import math
 from functools import partial
@@ -51,7 +47,7 @@ class Menu(state.State):
     unavailable_color = 220, 220, 220 # Font color when the action is unavailable
     background_filename = None        # File to load for image background
     menu_select_sound_filename = "sound_menu_select"
-    font_filename = prepare.fetch("font", "PressStart2P.ttf")
+    font_filename = "PressStart2P.ttf"
     borders_filename = "gfx/dialog-borders01.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = .20
@@ -75,6 +71,7 @@ class Menu(state.State):
         # holds sprites representing menu items
         self.create_new_menu_items_group()
 
+        self.font_filename = prepare.fetch("font", self.font_filename)
         self.set_font()          # load default font
         self.load_graphics()     # load default graphics
         self.reload_sounds()     # load default sounds
@@ -199,6 +196,7 @@ class Menu(state.State):
         """
         self._needs_refresh = True
         items = self.initialize_items()
+
         if items:
             self.menu_items.empty()
 
@@ -208,11 +206,14 @@ class Menu(state.State):
 
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()
-
             for index, item in enumerate(self.menu_items):
-                if item.enabled:
+                # TODO: avoid introspection of the items to implement different behavior
+                if item.game_object.__class__.__name__ != "Monster":
                     break
                 self.selected_index = index
+                if item.enabled:
+                    break
+
 
     def build_item(self, label, callback, icon=None):
         """ Create a menu item and add it to the menu
@@ -475,7 +476,7 @@ class Menu(state.State):
             # TODO: generalized widget system
             if self.touch_aware and valid_change:
                 mouse_pos = event.value
-                assert mouse_pos is not 0
+                assert mouse_pos != 0
 
                 try:
                     self.menu_items.update_rect_from_parent()

@@ -4,10 +4,6 @@ General "tools" code for pygame graphics operations that don't
 have a home in any specific place
 
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
@@ -146,24 +142,38 @@ def scale_surface(surface, factor):
 
 
 def load_frames_files(directory, name):
-    """ Load animation that is a collection of frames
+    """ Load frames from filenames
 
     For example, water00.png, water01.png, water03.png
 
     :type directory: str
     :type name: str
-
-    :rtype: generator
+    :rtype: Iterator[pygame.surface.Surface]
     """
-    scale = prepare.SCALE
-    for animation_frame in os.listdir(directory):
-        pattern = r"{}\.[0-9].*".format(name)
-        if re.findall(pattern, animation_frame):
-            frame = pygame.image.load(directory + "/" + animation_frame).convert_alpha()
-            frame = pygame.transform.scale(
-                frame, (frame.get_width() * scale, frame.get_height() * scale)
-            )
-            yield frame
+    for filename in animation_frame_files(directory, name):
+        yield load_and_scale(filename)
+
+
+def animation_frame_files(directory, name):
+    r""" Return list of filenames from directory for use in animation
+
+    * each filename will have the format: animation_name[0-9]*\..*
+    * will be returned in sorted order
+
+    For example, water00.png, water01.png, water02.png
+
+    :param str directory:
+    :param str name:
+    :rtype: List[str]
+    """
+    frames = list()
+    pattern = r"{}[0-9]*\..*".format(name)
+    # might be slow on large folders
+    for filename in os.listdir(directory):
+        if re.match(pattern, filename):
+            frames.append(os.path.join(directory, filename))
+    frames.sort()
+    return frames
 
 
 def create_animation(frames, duration, loop):
@@ -259,7 +269,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
     :return:
     """
     if colorkey:
-        colorkey = pygame.Color("#{0}".format(colorkey))
+        colorkey = pygame.Color("#{}".format(colorkey))
 
     pixelalpha = kwargs.get("pixelalpha", True)
 
@@ -293,7 +303,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
 
 def capture_screenshot(game):
     screenshot = pygame.Surface(game.screen.get_size())
-    world = game.get_state_name("WorldState")
+    world = game.get_state_by_name("WorldState")
     world.draw(screenshot)
     return screenshot
 

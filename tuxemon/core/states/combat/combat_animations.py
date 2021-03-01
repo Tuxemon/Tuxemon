@@ -3,10 +3,6 @@ There are quite a few hacks in here to get this working for single player only
 notably, the use of self.game
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 from functools import partial
@@ -19,7 +15,7 @@ from tuxemon.core.locale import T
 from tuxemon.core.menu.interface import HpBar, ExpBar
 from tuxemon.core.menu.menu import Menu
 from tuxemon.core.pyganim import PygAnimation
-from tuxemon.core.sprite import Sprite
+from tuxemon.core.sprite import Sprite, CaptureDeviceSprite
 from tuxemon.core.tools import scale, scale_sequence
 
 logger = logging.getLogger(__name__)
@@ -48,10 +44,11 @@ class CombatAnimations(Menu):
     """
 
     def startup(self, **kwargs):
-        super(CombatAnimations, self).startup(**kwargs)
+        super().startup(**kwargs)
         self._monster_sprite_map = dict()
         self.hud = dict()
         self.is_trainer_battle = None
+        self.capdevs = list()
 
         # eventually store in a config somewhere
         # is a tuple because more areas is needed for multi monster, etc
@@ -186,9 +183,7 @@ class CombatAnimations(Menu):
         if call_sound:
             self.task(call_sound.play, delay)
 
-        # update tuxemon balls to reflect fainted tuxemon
-        for player, layout in self._layout.items():
-            self.animate_update_party_hud(player, layout['party'][0])
+
 
     def animate_sprite_spin(self, sprite):
         """
@@ -232,6 +227,10 @@ class CombatAnimations(Menu):
                 monsters.remove(monster)
             except ValueError:
                 pass
+
+        # update tuxemon balls to reflect fainted tuxemon
+        for player, layout in self._layout.items():
+            self.animate_update_party_hud(player, layout['party'][0])
 
     def animate_sprite_take_damage(self, sprite):
         """
@@ -371,6 +370,7 @@ class CombatAnimations(Menu):
             self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
             centerx = home.right - scale(13)
             offset = scale(8)
+
         else:
             tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
                                     bottom=home.bottom, left=home.right, layer=hud_layer)
@@ -379,35 +379,44 @@ class CombatAnimations(Menu):
             offset = -scale(8)
 
         for index in range(player.party_limit):
+            status = None
+            #opponent tuxemon should order from left to right
+            if(self.get_side(home) == "left"):
+                pos = len(player.monsters)-index-1
+            else:
+                pos = index
             if len(player.monsters) > index:
                 monster = player.monsters[index]
                 if any(t for t in monster.status if t.slug == "status_faint"):
+                    status = "faint"
                     sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
                                               top=tray.rect.top + scale(1),
-                                              centerx=centerx - index * offset,
+                                              centerx=centerx - pos * offset,
                                               layer=hud_layer)
                 elif len(monster.status) > 0:
+                    status = "effected"
                     sprite = self.load_sprite('gfx/ui/icons/party/party_icon02.png',
                                               top=tray.rect.top + scale(1),
-                                              centerx=centerx - index * offset,
+                                              centerx=centerx - pos * offset,
                                               layer=hud_layer)
                 else:
+                    status = "alive"
                     sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
                                               top=tray.rect.top + scale(1),
-                                              centerx=centerx - index * offset,
+                                              centerx=centerx - pos * offset,
                                               layer=hud_layer)
             else:
+                status = "empty"
+                monster = None
                 sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
                                           top=tray.rect.top + scale(1),
                                           centerx=centerx - index * offset,
                                           layer=hud_layer)
-
-            # convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
-            sprite.image.set_alpha(0)
+            capdev = CaptureDeviceSprite(sprite = sprite, tray = tray, monster = monster, state = status)
+            self.capdevs.append(capdev)
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * .2)
-            animate(sprite.image, set_alpha=255, initial=0)
-            animate(sprite.rect, bottom=tray.rect.top + scale(3))
+            capdev.draw(animate)
+
 
     def animate_update_party_hud(self, player, home):
         """ Party HUD is the arrow thing with balls.  Yes, that one.
@@ -419,49 +428,12 @@ class CombatAnimations(Menu):
         :param slots: Number of slots
         :return:
         """
-        if self.get_side(home) == "left":
-            tray = self.load_sprite('gfx/ui/combat/opponent_party_tray.png',
-                                    bottom=home.bottom, right=0, layer=hud_layer)
-            self.animate(tray.rect, right=home.right, duration=0.1, delay=0.1)
-            centerx = home.right - scale(13)
-            offset = scale(8)
-        else:
-            tray = self.load_sprite('gfx/ui/combat/player_party_tray.png',
-                                    bottom=home.bottom, left=home.right, layer=hud_layer)
-            self.animate(tray.rect, left=home.left, duration=0.1, delay=0.1)
-            centerx = home.left + scale(13)
-            offset = -scale(8)
+        for dev in self.capdevs:
+            prev = dev.state
+            if(prev != dev.update_state()):
+                animate = partial(self.animate, duration=0.1, delay=0.1)
+                dev.draw(animate)
 
-        count_fainted = 0
-
-        for monster in player.monsters:
-            if any(t for t in monster.status if t.slug == "status_faint"):
-                count_fainted += 1
-
-        for index in range(player.party_limit):
-            sprite = None
-            if len(player.monsters) - count_fainted > index:  # render alive Tuxemon balls
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon01.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            elif len(player.monsters) > index:  # render fainted Tuxemon balls
-                sprite = self.load_sprite('gfx/ui/icons/party/party_icon03.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-            else:
-                sprite = self.load_sprite('gfx/ui/combat/empty_slot_icon.png',
-                                          top=tray.rect.top + scale(1),
-                                          centerx=centerx - index * offset,
-                                          layer=hud_layer)
-
-            # convert alpha image to image with a colorkey so we can set_alpha
-            sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
-            sprite.image.set_alpha(0)
-            animate = partial(self.animate, duration=0.1, delay=0.1)
-            animate(sprite.image, set_alpha=255, initial=0)
-            animate(sprite.rect, bottom=tray.rect.top + scale(3))
 
     def animate_parties_in(self):
         # TODO: break out functions here for each
@@ -475,7 +447,6 @@ class CombatAnimations(Menu):
         player, opponent = self.players
         player_home = self._layout[player]['home'][0]
         opp_home = self._layout[opponent]['home'][0]
-
         y_mod = scale(50)
         duration = 3
 
@@ -483,7 +454,7 @@ class CombatAnimations(Menu):
                                        bottom=opp_home.bottom + y_mod, right=0)
 
         if self.is_trainer_battle:
-            enemy = self.load_sprite('gfx/sprites/player/' + opponent.sprite_name + '_front.png',
+            enemy = self.load_sprite('gfx/sprites/player/' + opponent.combat_front,
                                      bottom=back_island.rect.bottom - scale(12),
                                      centerx=back_island.rect.centerx)
             self._monster_sprite_map[opponent] = enemy
@@ -493,9 +464,9 @@ class CombatAnimations(Menu):
                                              centerx=back_island.rect.centerx)
             self._monster_sprite_map[right_monster] = enemy
             self.monsters_in_play[opponent].append(right_monster)
+            self.build_hud(self._layout[opponent]['hud'][0], right_monster)
 
         self.sprites.add(enemy)
-        self.build_hud(self._layout[opponent]['hud'][0], right_monster)
 
         if self.is_trainer_battle:
             self.alert(T.format('combat_trainer_appeared', {"name": opponent.name.upper()}))
@@ -505,7 +476,7 @@ class CombatAnimations(Menu):
         front_island = self.load_sprite('gfx/ui/combat/' + self.graphics['island_front'],
                                         bottom=player_home.bottom - y_mod, left=w)
 
-        trainer1 = self.load_sprite('gfx/sprites/player/' + player.sprite_name + '_back.png',
+        trainer1 = self.load_sprite('gfx/sprites/player/' + player.combat_back,
                                     bottom=front_island.rect.centery + scale(6),
                                     centerx=front_island.rect.centerx)
         self._monster_sprite_map[left_trainer] = trainer1
@@ -516,8 +487,8 @@ class CombatAnimations(Menu):
 
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
-        
-        if not self.is_trainer_battle: # the combat call is handled by fill_battlefield_positions for trainer battles
+
+        if not self.is_trainer_battle:  # the combat call is handled by fill_battlefield_positions for trainer battles
             self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition='out_quad', duration=duration)

@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
 import os
 from base64 import b64decode
@@ -29,7 +24,7 @@ class SaveMenuState(PopUpMenu):
     def startup(self, *items, **kwargs):
         if 'selected_index' not in kwargs:
             kwargs['selected_index'] = save.slot_number or 0
-        super(SaveMenuState, self).startup(*items, **kwargs)
+        super().startup(*items, **kwargs)
 
     def initialize_items(self):
         empty_image = None
@@ -89,7 +84,7 @@ class SaveMenuState(PopUpMenu):
 
         return slot_image
 
-    def on_menu_selection(self, menuitem):
+    def save(self):
         logger.info("Saving!")
         try:
             save_data = save.get_save_data(
@@ -108,5 +103,33 @@ class SaveMenuState(PopUpMenu):
         else:
             open_dialog(local_session, [T.translate('save_success')])
 
-        self.client.pop_state(self)
+
+    def on_menu_selection(self, menuitem):
+        def positive_answer():
+            self.client.pop_state() # close confirmation menu
+            self.client.pop_state() # close save menu
+
+            self.save()
+
+        def negative_answer():
+            self.client.pop_state() # close confirmation menu
+
+        def ask_confirmation():
+            # open menu to confirm the save
+            menu = self.client.push_state("Menu")
+            menu.shrink_to_items = True
+
+            # add choices
+            yes = MenuItem(self.shadow_text(T.translate('save_overwrite')), None, None, positive_answer)
+            no = MenuItem(self.shadow_text(T.translate('save_keep')), None, None, negative_answer)
+
+            menu.add(yes)
+            menu.add(no)
+
+        save_data = save.load(self.selected_index + 1)
+        if save_data:
+            ask_confirmation()
+        else:
+            self.client.pop_state() # close save menu
+            self.save()
 

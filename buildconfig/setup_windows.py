@@ -39,7 +39,7 @@ build_exe_options = {
 if __name__ == "__main__":
     setup(
         name="Tuxemon",
-        version="0.4.25",
+        version="0.4.26",
         options={"build_exe": build_exe_options},
         description="Open source RPG",
         executables=[

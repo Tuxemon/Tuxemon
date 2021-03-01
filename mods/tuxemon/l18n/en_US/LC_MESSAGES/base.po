@@ -1975,7 +1975,7 @@ msgid "moverocky"
 msgstr "C'mon Rocky! You can move! I believe!"
 
 msgid "moverocky2"
-msgstr "Well, you move when your ready, I'll be here waiting."
+msgstr "Well, you move when you're ready, I'll be here waiting."
 
 msgid "tuxemontime"
 msgstr "Ah, you came! Great!"

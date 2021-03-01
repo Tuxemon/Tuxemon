@@ -220,6 +220,7 @@
    <properties>
     <property name="act1" value="create_npc professor,5,7,,stand"/>
     <property name="act2" value="npc_face professor,left"/>
+    <property name="act3" value="translated_dialog iknowyou"/>
     <property name="act4" value="translated_dialog ihaveyourmoney2"/>
     <property name="act5" value="npc_face professor,down"/>
     <property name="act6" value="wait 0.4"/>

@@ -25,4 +25,4 @@ wine python -m pip install -U setuptools wheel cx_Freeze
 wine python -m pip install -U -r requirements.txt
 find . -name "*pyc" -delete
 wine python buildconfig/setup_windows.py build
-cp .wine/drive_c/Program Files/Python39/python39.dll build/exe.win-amd64-3.9/
+cp .wine/drive_c/Program\ Files/Python39/python39.dll build/exe.win-amd64-3.9/

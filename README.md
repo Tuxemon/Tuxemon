@@ -133,6 +133,20 @@ Controls
 
 Use *Tiled* map editor: http://www.mapeditor.org/
 
+
+Building
+--------
+
+There are many scripts for various builds in the buildconfig folder.  These
+are meant to be run from the project root directory, for example, to build
+the portable pypy build:
+```
+[user@localhost Tuxemon]$ buildconfig/build_pypy_portable_linux.sh
+```
+There will be a new directory called build, which will have the package if
+everything was successful.
+
+
 Python 2.7 Notice
 -----------------
 

@@ -21,10 +21,9 @@ sudo apt remove openjre* openjdk*
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
 echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ buster main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.jfrog.io.list
 sudo apt update
-sudo apt install adoptopenjdk-8-hotspot
-
-# sudo apt-get -y remove --purge man-db  # for faster apt on a build box
-sudo apt-get -y install build-essential pkg-config python3.7-dev python3-distutils \
+sudo apt -y remove --purge man-db  # for faster apt on a build box
+sudo apt -y install adoptopenjdk-8-hotspot
+sudo apt -y install build-essential pkg-config python3.7-dev python3-distutils \
   python3.7-venv python3-pip autoconf automake libtool libffi-dev cmake zip unzip git \
   ccache libssl-devel libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 \
   libbz2-1.0:i386

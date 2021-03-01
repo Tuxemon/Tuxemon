@@ -3,7 +3,7 @@
 block_cipher = None
 
 a = Analysis(
-    ["../../tuxemon.py"],
+    ["../../run_tuxemon.py"],
     pathex=["Z:\\home\\travis\\Tuxemon"],
     binaries=[],
     datas=[],

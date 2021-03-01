@@ -146,6 +146,10 @@ the portable pypy build:
 There will be a new directory called build, which will have the package if
 everything was successful.
 
+WARNING!  The build scripts are designed to be run in a VM.  They will
+add and remove packages and could leave you OS in a bad state.  You should
+not use them on your personal computer.  Use in a vm or container.
+
 
 Python 2.7 Notice
 -----------------

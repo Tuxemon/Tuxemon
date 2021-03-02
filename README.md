@@ -46,7 +46,7 @@ python tuxemon.py
 
 **Windows Binary**
 
-Check the release page https://github.com/Tuxemon/Tuxemon/releases for binaries.
+Check the [release page](https://github.com/Tuxemon/Tuxemon/releases) for binaries.
 
 **Ubuntu**
 
@@ -109,7 +109,12 @@ ulimit -n 10000; python tuxemon.py
 Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git/).
 
 **Smartphones**
-* [Android](https://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
+
+Android build are highly experimental.  Download and install the apk from the 
+[releases page](https://github.com/Tuxemon/Tuxemon/releases) and install to your
+device.  You will need to manually install the mods folder.  Connect your device
+to your computer and make a folder called "Tuxemon" in "Internal Storage", then
+copy the mods folder.
 
 
 **Fedora Linux**
@@ -119,6 +124,7 @@ sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-
 virtualenv venv
 pip install -r requirements.txt
 ```
+
 
 Controls
 --------

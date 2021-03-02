@@ -55,6 +55,7 @@ python3 -m pip install -U git+https://github.com/pygame/python-for-android.git
 cp run_tuxemon.py main.py
 # rebuild...
 rm -rf ~/.local/share/python-for-android/dists/unnamed_dist_1__armeabi-v7a/_python_bundle/
+rm ~/.local/share/python-for-android/packages/tuxemon/development.zip
 p4a clean_recipe_build tuxemon
 p4a clean_dists
 p4a apk --name Tuxemon \

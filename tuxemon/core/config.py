@@ -109,6 +109,8 @@ class TuxemonConfig:
         self.debug_logging = cfg.getboolean("logging", "debug_logging")
         self.debug_level = cfg.get("logging", "debug_level")
 
+        self.debug_level = "debug"
+
         # input config (None means use default for the platform)
         self.gamepad_deadzone = .25
         self.gamepad_button_map = None

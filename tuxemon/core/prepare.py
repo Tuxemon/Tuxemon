@@ -136,7 +136,7 @@ def pygame_init():
     from tuxemon.core import platform
 
     if platform.android:
-        fullscreen = True
+        fullscreen = pg.FULLSCREEN
     else:
         fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
@@ -165,12 +165,6 @@ def pygame_init():
             print("Configuring joystick: \"{}\"".format(name))
             joystick.init()
             JOYSTICKS.append(joystick)
-
-    from tuxemon.core.platform import android
-    # Map the appropriate android keys if we're on android
-    if android:
-        android.init()
-        android.map_key(android.KEYCODE_MENU, pg.K_ESCAPE)
 
 
 # Initialize the game framework

@@ -33,7 +33,6 @@ import pygame as pg
 from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon.core import cli, networking, prepare, rumble
 from tuxemon.core.event.eventengine import EventEngine
-from tuxemon.core.platform import android
 from tuxemon.core.session import local_session
 from tuxemon.core.state import StateManager
 
@@ -260,8 +259,8 @@ class Client(StateManager):
 
         """
         # Android-specific check for pause
-        if android and android.check_pause():
-            android.wait_for_resume()
+        # if android and android.check_pause():
+        #     android.wait_for_resume()
 
         # Update our networking
         if self.controller_server:

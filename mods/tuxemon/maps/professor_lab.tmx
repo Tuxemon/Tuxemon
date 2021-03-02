@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="100">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="104">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -102,14 +102,16 @@
     <property name="act1" value="player_stop"/>
     <property name="act2" value="translated_dialog tuxemontime"/>
     <property name="act3" value="pathfind professor,9,12"/>
-    <property name="act4" value="pathfind player,9,13"/>
-    <property name="act5" value="translated_dialog tuxemontime1.5"/>
-    <property name="act6" value="translated_dialog_choice yes:no,startchoice"/>
+    <property name="act4" value="npc_face professor,down"/>
+    <property name="act5" value="pathfind player,9,13"/>
+    <property name="act6" value="translated_dialog tuxemontime1.5"/>
+    <property name="act7" value="translated_dialog_choice yes:no,startchoice"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is variable_set dancininthemoonlight:heckyeah"/>
     <property name="cond3" value="is player_facing up"/>
     <property name="cond4" value="not variable_set startchoice:yes"/>
     <property name="cond5" value="not variable_set startchoice:no"/>
+    <property name="cond6" value="not variable_set stoptalking:now"/>
    </properties>
   </object>
   <object id="98" name="startchoice1" type="event" x="48" y="224" width="16" height="16">
@@ -122,7 +124,48 @@
   <object id="99" name="startchoice2" type="event" x="48" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tuxemontimechoiceyes"/>
+    <property name="act2" value="set_variable startchoice:continue"/>
     <property name="cond1" value="is variable_set startchoice:yes"/>
+   </properties>
+  </object>
+  <object id="100" name="continue" type="event" x="48" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxemontime2"/>
+    <property name="act2" value="set_variable stoptalking:now"/>
+    <property name="act3" value="set_variable wemoving:now"/>
+    <property name="cond1" value="is variable_set startchoice:continue"/>
+    <property name="cond2" value="not variable_set stoptalking:now"/>
+   </properties>
+  </object>
+  <object id="101" name="wemoving" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind professor,3,3"/>
+    <property name="act2" value="npc_face professor,up"/>
+    <property name="cond1" value="is variable_set wemoving:now"/>
+   </properties>
+  </object>
+  <object id="102" name="wemoving2" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 0.7"/>
+    <property name="act2" value="pathfind player,5,6"/>
+    <property name="act3" value="npc_face player,up"/>
+    <property name="act4" value="set_variable wemoving:done"/>
+    <property name="cond1" value="is variable_set wemoving:now"/>
+   </properties>
+  </object>
+  <object id="103" name="wemoving3" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 2"/>
+    <property name="act2" value="translated_dialog tuxemontime3"/>
+    <property name="act3" value="pathfind professor,5,5"/>
+    <property name="act4" value="npc_face professor,down"/>
+    <property name="act5" value="translated_dialog tuxemontime3.1"/>
+    <property name="act6" value="add_item reg_papers"/>
+    <property name="act7" value="translated_dialog obtainedpapers"/>
+    <property name="act8" value="set_variable movingon:now"/>
+    <property name="act9" value="set_variable wemoving:finished"/>
+    <property name="cond1" value="is variable_set wemoving:done"/>
+    <property name="cond2" value="not variable_set movingon:now"/>
    </properties>
   </object>
  </objectgroup>

@@ -115,6 +115,12 @@ msgstr "{name} cannot be used here!"
 msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
 
+msgid "reg_papers"
+msgstr "Registration Papers"
+
+msgid "reg_papers_description"
+msgstr "A packet of registration papers for The Trial"
+
 # Allie's Address
 msgid "allies_address"
 msgstr "Allie's Address"
@@ -1993,9 +1999,14 @@ msgid "tuxemontime2"
 msgstr "Now, the first thing to do is get your papers all set..."
 
 msgid "tuxemontime3"
-msgstr "There we go!\n"
-"Here are your registration papers, the first Battle Area will require you to present them in exchange for a Trainer badge.\n"
+msgstr "There we go!"
+
+msgid "tuxemontime3.1"
+msgstr "Here are your registration papers, the first Battle Area will require you to present them in exchange for a Trainer badge.\n"
 "You won't need the papers after that.\n"
+
+msgid "obtainedpapers"
+msgstr "Received Registration Papers!"
 
 msgid "tuxemontime4"
 msgstr "Now for the most important part! Choosing your Tuxemon!\n"

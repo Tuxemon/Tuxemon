@@ -16,7 +16,7 @@ def build_translations():
 class InstallAndBuildTranslations(install):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        build_translations()
+        # build_translations()
 
 
 # Find all the python modules

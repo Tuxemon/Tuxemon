@@ -28,7 +28,7 @@ import logging
 import os.path
 import sys
 
-from tuxemon.core.platform import get_config_dir
+from tuxemon.core import platform
 
 logger = logging.getLogger(__file__)
 
@@ -43,31 +43,27 @@ logger.debug("basedir: %s", BASEDIR)
 
 # main game and config dir
 # TODO: this imports pygame from core.prepare - refactor to avoid this?
-USER_GAME_DIR = get_config_dir()
-logger.debug("userdir: %s", USER_GAME_DIR)
-
-CONFIG_FILE = "tuxemon.cfg"
+USER_STORAGE_DIR = platform.get_user_storage_dir()
+logger.debug("userdir: %s", USER_STORAGE_DIR)
 
 # config file paths
-USER_CONFIG_PATH = os.path.join(USER_GAME_DIR, CONFIG_FILE)
+CONFIG_FILE = "tuxemon.cfg"
+USER_CONFIG_PATH = os.path.join(USER_STORAGE_DIR, CONFIG_FILE)
 logger.debug("user config: %s", USER_CONFIG_PATH)
 
-DEFAULT_CONFIG_PATH = os.path.join(BASEDIR, CONFIG_FILE)
-logger.debug("default config: %s", DEFAULT_CONFIG_PATH)
-
 # game data dir
-USER_GAME_DATA_DIR = os.path.join(USER_GAME_DIR, "data")
+USER_GAME_DATA_DIR = os.path.join(USER_STORAGE_DIR, "data")
 logger.debug("user game data: %s", USER_GAME_DATA_DIR)
 
 # game savegame dir
-USER_GAME_SAVE_DIR = os.path.join(USER_GAME_DIR, "saves")
+USER_GAME_SAVE_DIR = os.path.join(USER_STORAGE_DIR, "saves")
 logger.debug("save games: %s", USER_GAME_SAVE_DIR)
 
-# game savegame dir
-CACHE_DIR = os.path.join(USER_GAME_DIR, "cache")
+# game cache dir
+CACHE_DIR = os.path.join(USER_STORAGE_DIR, "cache")
 logger.debug("cache: %s", CACHE_DIR)
 
-# game savegame dir
+# game lang dir
 L18N_MO_FILES = os.path.join(CACHE_DIR, "l18n")
 logger.debug("l18: %s", L18N_MO_FILES)
 
@@ -76,21 +72,7 @@ mods_folder = os.path.normpath(os.path.join(LIBDIR, "..", "mods"))
 logger.debug("mods: %s", mods_folder)
 
 # shared locations
-system_installed_folders = [
-    "/user/share/tuxemon/",  # debian
-]
-
-
-def guess_android():
-    # this is a hack.
-    global system_installed_folders
-    from tuxemon.core import platform
-    if platform.android:
-        system_installed_folders.clear()
-        system_installed_folders.append(platform.get_config_dir())
-
-
-guess_android()
+system_installed_folders = platform.get_system_storage_dirs()
 
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.join(LIBDIR, "core/event/conditions")

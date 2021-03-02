@@ -49,8 +49,8 @@ joystick_blacklist = [
 ]
 
 # Create game dir if missing
-if not os.path.isdir(paths.USER_GAME_DIR):
-    os.makedirs(paths.USER_GAME_DIR)
+if not os.path.isdir(paths.USER_STORAGE_DIR):
+    os.makedirs(paths.USER_STORAGE_DIR)
 
 # Create game data dir if missing
 if not os.path.isdir(paths.USER_GAME_DATA_DIR):
@@ -133,7 +133,12 @@ def pygame_init():
     pg.init()
     pg.display.set_caption(CONFIG.window_caption)
 
-    fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
+    from tuxemon.core import platform
+
+    if platform.android:
+        fullscreen = True
+    else:
+        fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
 
     SCREEN = pg.display.set_mode(SCREEN_SIZE, flags)

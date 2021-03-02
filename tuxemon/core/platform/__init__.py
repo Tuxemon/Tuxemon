@@ -5,7 +5,7 @@ Put platform specific fixes here
 import logging
 import os.path
 
-__all__ = ('android', 'init', 'mixer', 'get_config_dir')
+__all__ = ('android', 'init', 'mixer', 'get_user_storage_dir')
 
 logger = logging.getLogger(__name__)
 
@@ -38,10 +38,36 @@ def init():
         mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
 
 
-def get_config_dir():
+def get_user_storage_dir():
+    """
+
+    Mutable storage for things like config, save games, mods, cache
+
+    """
     if android:
-        from android.storage import primary_external_storage_path
-        root = primary_external_storage_path()
-        return os.path.join(root, "org.tuxemon.tuxemon", "files")
+        from android import storage
+        return storage.app_storage_path()
     else:
         return os.path.join(os.path.expanduser("~"), ".tuxemon")
+
+
+def get_system_storage_dirs():
+    """
+
+    Should be immutable storage for things like system installed data
+
+    Android store is still WIP.  should be immutable, but its not...
+
+    The primary user of this storage are packages for operating systems
+    that will install the mods into a folder like /usr/share/tuxemon
+
+    """
+    name = "org.tuxemon.tuxemon"
+    if android:
+        from android import storage
+        return [
+            os.path.join(storage.primary_external_storage_path(), name, "files"),
+            os.path.join(storage.secondary_external_storage_path(), name, "files"),
+        ]
+    else:
+        return ['/usr/share/tuxemon/']

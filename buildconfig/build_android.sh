@@ -53,13 +53,14 @@ python3 -m pip install -U git+https://github.com/pygame/python-for-android.git
 # python3 -m pip install -U python-for-android
 # --requirements=openssl,pygame,libffi,tuxemon \
 cp run_tuxemon.py main.py
-# if you need to rebuild, just run the the p4a command again
+# rebuild...
+rm -rf ~/.local/share/python-for-android/dists/unnamed_dist_1__armeabi-v7a/_python_bundle/
 p4a clean_recipe_build tuxemon
 p4a clean_dists
 p4a apk --name Tuxemon \
   --private tuxemon \
   --version 0.0 \
-  --package=org.tuxemon.Tuxemon \
+  --package=org.tuxemon.tuxemon \
   --requirements=python3,openssl,pygame,libffi,tuxemon,babel,pytmx,pyscroll,natsort,android \
   --bootstrap=sdl2 \
   --orientation=landscape \

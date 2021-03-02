@@ -190,7 +190,7 @@ def fetch(*args):
         if os.path.exists(path):
             return path
 
-        # when assets are in a system path (like debian and others)
+        # when assets are in a system path (like for os packages and android)
         for root_path in paths.system_installed_folders:
             path = os.path.join(root_path, "mods", mod_name, relative_path)
             logger.debug("searching asset: %s", path)

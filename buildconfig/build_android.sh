@@ -53,6 +53,9 @@ python3 -m pip install -U git+https://github.com/pygame/python-for-android.git
 # python3 -m pip install -U python-for-android
 # --requirements=openssl,pygame,libffi,tuxemon \
 cp run_tuxemon.py main.py
+# if you need to rebuild, just run the the p4a command again
+p4a clean_recipe_build tuxemon
+p4a clean_dists
 p4a apk --name Tuxemon \
   --private tuxemon \
   --version 0.0 \

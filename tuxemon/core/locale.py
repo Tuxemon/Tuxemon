@@ -64,33 +64,29 @@ class TranslatorPo:
 
     def l18n_source_folders(self):
         """Return list of folders containing l18n files"""
-        try:
-            root = prepare.fetch("l18n")
-        except OSError:
-            logger.warning("No localization data found")
-            return []
-
-        for ld in os.listdir(root):
-            yield ld, os.path.join(prepare.fetch("l18n"), ld)
+        root = prepare.fetch("l18n")
+        for lang in os.listdir(root):
+            path = os.path.join(root, lang)
+            if os.path.isdir(path):
+                yield lang, path
 
     def collect_languages(self, recompile_translations=False):
         """Collect languages/locales with available translation files."""
         self.languages = []
 
-        for ld, ld_full_path in self.l18n_source_folders():
-            if os.path.isdir(ld_full_path):
-                self.languages.append(ld)
+        for lang, path in self.l18n_source_folders():
+            self.languages.append(lang)
 
         self.build_translations(recompile_translations)
         self.load_locale(prepare.CONFIG.locale)
 
     def build_translations(self, recompile_translations=False):
         """Create MO files for existing PO translation files."""
-
-        for ld in self.languages:
-            lang_folder = os.path.join(ld, "LC_MESSAGES")
+        root = prepare.fetch("l18n")
+        for lang in self.languages:
+            lang_folder = os.path.join(lang, "LC_MESSAGES")
             outfile_folder = os.path.join(paths.CACHE_DIR, "l18n", lang_folder)
-            infile = os.path.join(prepare.fetch("l18n"), lang_folder, "base.po")
+            infile = os.path.join(root, lang_folder, "base.po")
             outfile = os.path.join(outfile_folder, "base.mo")
 
             # build only complete translations

@@ -110,7 +110,7 @@ Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git
 
 **Smartphones**
 
-Android build are highly experimental.  Download and install the apk from the 
+Android builds are highly experimental.  Download and install the apk from the 
 [releases page](https://github.com/Tuxemon/Tuxemon/releases) and install to your
 device.  You will need to manually install the mods folder.  Connect your device
 to your computer and make a folder called "Tuxemon" in "Internal Storage", then

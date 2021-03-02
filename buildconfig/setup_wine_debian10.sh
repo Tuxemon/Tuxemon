@@ -3,10 +3,9 @@
 cd /tmp
 sudo apt-get update
 sudo apt install wget
-wget -nc https://dl.winehq.org/wine-builds/winehq.key
-wget -nc https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key
-sudo apt-key add winehq.key
-sudo apt-key add Release.key
+wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+wget -qO https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key | sudo apt-key add -
 echo "deb https://dl.winehq.org/wine-builds/debian/ buster main" | sudo tee /etc/apt/sources.list.d/wine.list
 echo "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" | sudo tee -a /etc/apt/sources.list.d/wine.list
 sudo dpkg --add-architecture i386

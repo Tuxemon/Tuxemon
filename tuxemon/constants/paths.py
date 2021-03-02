@@ -80,6 +80,18 @@ system_installed_folders = [
     "/user/share/tuxemon/",  # debian
 ]
 
+
+def guess_android():
+    # this is a hack.
+    global system_installed_folders
+    from tuxemon.core import platform
+    if platform.android:
+        system_installed_folders.clear()
+        system_installed_folders.append(platform.get_config_dir())
+
+
+guess_android()
+
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.join(LIBDIR, "core/event/conditions")
 ACTIONS_PATH = os.path.join(LIBDIR, "core/event/actions")

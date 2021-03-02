@@ -40,6 +40,8 @@ def init():
 
 def get_config_dir():
     if android:
-        return "/sdcard/org.tuxemon"
+        from android.storage import primary_external_storage_path
+        root = primary_external_storage_path()
+        return os.path.join(root, "org.tuxemon.tuxemon", "files")
     else:
         return os.path.join(os.path.expanduser("~"), ".tuxemon")

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="60">
+ <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
+ </tileset>
+ <tileset firstgid="449" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
+ </tileset>
+ <tileset firstgid="949" name="Outdoor_odds_and_ends_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="50" columns="10">
+  <image source="../gfx/tilesets/Outdoor_odds_and_ends_by_Isaiah658.png" width="160" height="80"/>
+ </tileset>
+ <tileset firstgid="999" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
+  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
+ </tileset>
+ <tileset firstgid="2439" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
+  <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxbx8DAsA4LVgZiFShWRZN7zAnB2PThwgNp3i0g+zYUU2IezIxHnITdTIx52DA1zSM3/MjBo+YRh1lwYB5G8sxTIQIPpHkuOPCbQRIfo+aNmjdq3qh5tDIPAMS1UdE=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 2" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgeAnEr7DQ2MAjTgT7CSd2NZyMDAxcjJg0Oebhcws55uFzCyHz7kLZ95DEVuHBhMzDBqhp3lVO0s17BdTzGgd+Q4Z5vEDMhwPzk+FfXdzeZdAfgeaRCuhtHqn5l5B5pOZfarvPF4j9cGB/MtwHAmZMuOVIdR8IeOExjxz34QPkuA8foMR92PIRJe7Dlj+p4T5k82DuI6YsIMV95JiHDeBy30Uyw4BW7sPXdgG5FZc6dPW42i4X0TAudejpAwD+dHkx
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="7" name="Collisions">
+  <object id="14" type="collision" x="0" y="224" width="36" height="252"/>
+  <object id="16" type="collision" x="0" y="448" width="323" height="39"/>
+  <object id="20" type="collision" x="304" y="288" width="22" height="171"/>
+  <object id="23" type="collision" x="160" y="0" width="36.0111" height="123.269"/>
+  <object id="27" type="collision" x="208" y="272" width="19" height="29"/>
+  <object id="28" type="collision" x="288" y="272" width="39" height="37"/>
+  <object id="29" x="198.338" y="113.573" height="158.449"/>
+  <object id="32" type="collision" x="192" y="112" width="21" height="164"/>
+  <object id="34" type="collision" x="0" y="32" width="32" height="30"/>
+  <object id="35" type="collision" x="208" y="256" width="29" height="13"/>
+  <object id="37" type="collision" x="272" y="256" width="26" height="11"/>
+ </objectgroup>
+ <layer id="5" name="collision" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAOmDERqZBI4EVl80bdRxkAuY+abgS5D4RfAtmvsMjjEicEOBkZGLgYiRcfBUMTnORgYDgFxKeB+AwHZWZlAfFHoBmfgPgzEH+h0DwQkORkYJACYmkglgFiZWBaV6Eg/1gDzbABYlsgtgNic6BZFlTMj95As3wGcZlmxkTdMs2LyuUZzExqglH3kQ8ozW/ogFb5DQAcsRTt
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="3" x="246.537" y="280.008" height="0.277008">
+   <properties>
+    <property name="act10" value="create_npc knight,15.17,stand"/>
+    <property name="act20" value="npc_face knight.,eft"/>
+    <property name="cond10" value="not npc_exists knight"/>
+   </properties>
+  </object>
+  <object id="6" name="Guarding" type="Event" x="224" y="272" width="55" height="21"/>
+  <object id="12" name="To Timber Town" type="event" x="110.615" y="-0.277008" width="16" height="16">
+   <properties>
+    <property name="act10" value="teleport timber_town.tmx,29,39"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="39" name="SummontheGuards" type="event" x="16" y="288">
+   <properties>
+    <property name="act10" value="create_npc spyder_omnichannel_enforcer,15,17,,stand"/>
+    <property name="act20" value="npc_face spyder_omnichannel_enforcer,down"/>
+    <property name="act30" value="create_npc spyder_omnichannel_enforcertwo,16,17,,stand"/>
+    <property name="act40" value="npc_face spyder_omnichannel_enforcertwo,down"/>
+    <property name="cond10" value="not npc_exists spyder_omnichannel_enforcer"/>
+    <property name="cond20" value="not npc_exists spyder_omnichannel_enforcertwo"/>
+   </properties>
+  </object>
+  <object id="44" name="To Timber Town Also" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="teleport timber_town.tmx,30,39"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing up"/>
+   </properties>
+  </object>
+  <object id="46" name="To Azure Town" type="event" x="0" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="teleport Azure_Town.tmx,48,28"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="47" x="41.8283" y="234.025" height="0.277008"/>
+  <object id="48" x="0" y="208" width="16" height="16"/>
+  <object id="49" name="Azure town Away" type="event" x="9.69529" y="216.851" height="5.81717">
+   <properties>
+    <property name="act10" value="teleport Azure_Town.tmx,48,29"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="54" name="wildone" type="event" x="0" y="64" width="112" height="128">
+   <properties>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="57" name="wildtwo" type="event" x="32" y="384" width="64" height="64">
+   <properties>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="58" name="wilthree" type="event" x="240" y="336" width="32" height="64">
+   <properties>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+   </properties>
+  </object>
+  <object id="59" name="wildfour" type="event" x="272" y="352" width="32" height="48">
+   <properties>
+    <property name="act10" value="random_encounter default_encounter"/>
+    <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

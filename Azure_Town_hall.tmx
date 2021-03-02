@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
+ </tileset>
+ <tileset firstgid="89" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="617" name="Furniture_and_Fittings_by_George" tilewidth="16" tileheight="16" tilecount="110" columns="10">
+  <image source="../gfx/tilesets/Furniture_and_Fittings_by_George.png" width="160" height="176"/>
+ </tileset>
+ <tileset firstgid="727" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
+  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxTZmBgUB7Fo3gUj+JRPIpH8SgexVTDAEl/Ugk=
+  </data>
+ </layer>
+ <layer id="2" name="collisions" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANEhkZGJIY8bPRwVQgnoZEkwOSgWanMOJno4PVQLwGiaaXvQeB+BASTS97qQEGyt5yoNkVjPjZo2DogAB2BoZAdvrbWwu0s24A7B0FAwPIqY+oAUZa+TxU6oVYRlSaXqAYaB8rlCYEAFXIJi0=
+  </data>
+ </layer>
+ <objectgroup id="3" name="events"/>
+</map>

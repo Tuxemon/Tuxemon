@@ -114,8 +114,8 @@ Android builds are highly experimental.  Download and install the apk from the
 [releases page](https://github.com/Tuxemon/Tuxemon/releases) and install to your
 device.  You will need to manually install the mods folder.  Connect your device
 to your computer and make a folder called "Tuxemon" in "Internal Storage", then
-copy the mods folder.
-
+copy the mods folder.  Tuxemon will also need file system permissions, which you
+can set in your phones settings.
 
 **Fedora Linux**
 
@@ -152,15 +152,10 @@ the portable pypy build:
 There will be a new directory called build, which will have the package if
 everything was successful.
 
-WARNING!  The build scripts are designed to be run in a VM.  They will
-add and remove packages and could leave you OS in a bad state.  You should
-not use them on your personal computer.  Use in a vm or container.
+WARNING!  The build scripts are designed to be run in a dedicated VM.  They
+will add and remove packages and could leave you OS in a bad state.  You
+should not use them on your personal computer.  Use in a vm or container.
 
-
-Python 2.7 Notice
------------------
-
-Python 2.7 is no longer supported.
 
 License
 -------

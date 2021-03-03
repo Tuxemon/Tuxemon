@@ -1,2 +1,418 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-03-06 01:50+0000\n"
+"Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"pl/>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.5.1\n"
+
+msgid "clamp_on"
+msgstr "Zacisk"
+
+msgid "chill_mist"
+msgstr "Chłodna Mgła"
+
+msgid "bullet"
+msgstr "Pocisk"
+
+msgid "bubble_trap"
+msgstr "Pułapka bańkowa"
+
+msgid "breathe_fire"
+msgstr "Ognisty oddech"
+
+msgid "boulder"
+msgstr "Głaz"
+
+msgid "blossom"
+msgstr "Kwitnąć"
+
+msgid "blood_bond"
+msgstr "Więzy krwi"
+
+msgid "blade"
+msgstr "Ostrze"
+
+msgid "biting_winds"
+msgstr "Gryzące wiatry"
+
+msgid "berry_description"
+msgstr "Leczy potwora, dając mu 10 HP."
+
+msgid "spyder_papertown_restinbed"
+msgstr "Budzisz się w pełni wypoczęty!"
+
+msgid "spyder_dragonscave_mal1"
+msgstr "Zbyt wiele razy wchodziłeś nam w drogę!"
+
+msgid "spyder_dragonscave_benden2"
+msgstr ""
+"Udowodniłeś, że jesteś godnym przeciwnikiem dla Drokoro.\n"
+" Zaprowadzę cię do świętej komnaty wewnętrznej - po tym, jak cię uleczę."
+
+msgid "spyder_scoop_weaver2"
+msgstr "Yikes! Okazuje się, że zbrodnia nie popłaca!"
+
+msgid "spyder_cotton_tuxepediaintro3"
+msgstr ""
+"Jesteś tak pochłonięty czytaniem nowych wpisów, że nie zauważasz, że ludzie "
+"odchodzą."
+
+msgid "spyder_papertown_mom5"
+msgstr ""
+"Wiesz, Babcia Piper obok otworzyła swój ośrodek opieki dziennej.\n"
+" Cóż, nie każdy może być wynalazcą, jak sądzę. "
+
+msgid "yesmaam"
+msgstr "Tak, proszę pani."
+
+msgid "cherry_found"
+msgstr "Znalazłeś wiśnię."
+
+msgid "xero_hideout1"
+msgstr "Xero Instytut Badań i Rozwoju Tuxemon przed nami."
+
+msgid "beam"
+msgstr "Belka"
+
+msgid "battery_discharge"
+msgstr "Rozładowanie baterii"
+
+msgid "battery_acid"
+msgstr "Kwas akumulatorowy"
+
+msgid "amnesia"
+msgstr "Amnezja"
+
+msgid "status_recover"
+msgstr "Odzyskaj"
+
+msgid "status_lifeleech"
+msgstr "Lifeleech"
+
+msgid "slot"
+msgstr "Slot"
+
+msgid "gotcha"
+msgstr "Mam cię!"
+
+msgid "generic_success"
+msgstr "Zadziałało!"
+
+# Generic notifications
+msgid "empty_slot"
+msgstr "Puste miejsce"
+
+msgid "attack_weak"
+msgstr "Atak został zdecydowanie odparty!"
+
+msgid "combat_status_damage"
+msgstr "{name} otrzymał {status} obrażeń!"
+
+msgid "combat_state_poison_damage"
+msgstr "{name} otrzymał obrażenia od trucizny!"
+
+msgid "item_no_available_target"
+msgstr "{name} nie może być teraz użyty na żadnym z twoich Tuxemonów."
+
+msgid "spyder_route4_wulf"
+msgstr "Wulf"
+
+msgid "_xeon"
+msgstr "Xeon"
+
+msgid "spyder_nimrod_xeon"
+msgstr "Xeon"
+
+msgid "xeon"
+msgstr "Xeon"
+
+msgid "_xeon-2"
+msgstr "Xeon–2"
+
+msgid "xeon_2"
+msgstr "Xeon-2"
+
+msgid "37707_tower_missing"
+msgstr "N1e m0ż3sz w3jść d0 budynku, który n1e 1stn13je."
+
+msgid "spyder_nimrod_antimony2"
+msgstr "Lata pracy, w ciągu kilku minut poszły na marne. "
+
+msgid "yes"
+msgstr "Tak"
+
+msgid "yeti"
+msgstr "Yeti"
+
+msgid "spyder_scoop_orba1"
+msgstr "Yikes! Co ty tu robisz?"
+
+msgid "spyder_dryadsgrove_ignatia2"
+msgstr "Jesteś kimś więcej niż się wydaje."
+
+msgid "discovered_a_person"
+msgstr "Znalazłeś mnie! Haha!"
+
+msgid "gotfivetuxeballs"
+msgstr "Dostałeś 5 Tuxeballi!"
+
+msgid "got_new_tuxemon"
+msgstr "Dostałeś ${{monster_name}}!"
+
+msgid "darnitjohn9"
+msgstr ""
+"TY IMBECYLU!\n"
+"Powiem to raz i tylko raz:\n"
+"IDŹ. PRZESZUKAĆ. DOMY."
+
+msgid "berserk"
+msgstr "Szał"
+
+msgid "avalanche"
+msgstr "Lawina"
+
+## TECHNIQUE TRANSLATIONS ##
+msgid "all_in"
+msgstr "Wszystko w"
+
+msgid "status_poison"
+msgstr "Zatruty"
+
+msgid "status_faint"
+msgstr "Pokonany"
+
+msgid "save_keep"
+msgstr "Nie, zachowaj zapis."
+
+msgid "save_overwrite"
+msgstr "Tak, nadpisz ten zapis."
+
+msgid "save_failure"
+msgstr "Wystąpił problem z zapisaniem postępu!"
+
+msgid "save_success"
+msgstr "Zapisano!"
+
+msgid "received_x"
+msgstr "Otrzymano {name}!"
+
+msgid "receive_happiness"
+msgstr "Otrzymano 5 Urządzeń Łapiących!"
+
+msgid "not_implemented"
+msgstr "Ta funkcja nie jest jeszcze zaimplementowana."
+
+msgid "attempting_capture"
+msgstr "Próbuję schwytać..."
+
+msgid "generic_failure"
+msgstr "Nie zadziałało!"
+
+msgid "item_failure"
+msgstr "Nie zadziałał!"
+
+# TODO same as generic_success and generic_failure - refactor!
+msgid "item_success"
+msgstr "Zadziałało!"
+
+msgid "item_confirm_cancel"
+msgstr "Anuluj"
+
+msgid "item_confirm_use"
+msgstr "Użyj"
+
+msgid "exit"
+msgstr "Wyjdź"
+
+msgid "attack_resisted"
+msgstr "Ten atak został odparty!"
+
+msgid "attack_effective"
+msgstr "Ten atak spowodował dodatkowe obrażenia!"
+
+msgid "attack_very_effective"
+msgstr "Ten atak zadał bardzo dużo obrażeń!"
+
+msgid "combat_isactive"
+msgstr "{name} jest już w walce."
+
+msgid "combat_fainted"
+msgstr "{name} został pokonany!"
+
+msgid "combat_monster_choice"
+msgstr "Co zrobi {name}?"
+
+msgid "combat_wild_appeared"
+msgstr "Pojawił się dziki {name}!"
+
+msgid "combat_replacement_is_fainted"
+msgstr "Ten potwór już został pokonany!"
+
+msgid "combat_replacement"
+msgstr "Wybierz zamiennik!"
+
+msgid "combat_recharging"
+msgstr "{name} potrzebuje przerwy przed ponownym użyciem ruchu {move}…"
+
+msgid "combat_capturing_fail"
+msgstr "{name} się wydostał!"
+
+msgid "combat_capturing_success"
+msgstr "Złapałeś {name}!"
+
+msgid "combat_draw"
+msgstr "Wszystkie strony zostały pokonane!"
+
+msgid "combat_defeat"
+msgstr "Zostałeś pokonany!"
+
+msgid "combat_victory"
+msgstr "Wygrałeś!"
+
+msgid "combat_trainer_appeared"
+msgstr "{name} chce walczyć!"
+
+msgid "combat_state_recover_failure"
+msgstr "{user} nie może się dalej uleczyć."
+
+msgid "combat_state_recover_success"
+msgstr "{user} odzyskał zdrowie!"
+
+msgid "combat_state_recover_get"
+msgstr "{target} zaczął regenerować zdrowie."
+
+msgid "combat_state_lifeleech_failure"
+msgstr "{link} nie może się bardziej uzdrowić."
+
+msgid "combat_state_lifeleech_success"
+msgstr "{user} stracił zdrowie przez wysysenie!"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} wysysa zdrowie z {target}."
+
+msgid "combat_state_poison_get"
+msgstr "{target} jest zatruty."
+
+# TODO: similar to combat_swap - refactor!
+msgid "combat_opponent_call_tuxemon"
+msgstr "{user} wysłał {name}!"
+
+msgid "combat_call_tuxemon"
+msgstr "Choć, {name}!"
+
+msgid "combat_swap"
+msgstr "{user} wysłał {target}!"
+
+msgid "combat_used_x_on_y"
+msgstr "{user} użył {name} na {target}!"
+
+msgid "combat_used_x"
+msgstr "{user} użył {name}!"
+
+msgid "combat_player_run"
+msgstr "Uciekłeś z walki!"
+
+msgid "combat_can't_run_from_trainer"
+msgstr "Nie możesz uciekać z walk trenerskich!"
+
+msgid "combat_miss"
+msgstr "Nie trafił…"
+
+## NOTIFICATION TRANSLATIONS ##
+# Combat notifications
+msgid "combat_run"
+msgstr "{user} uciekł z walki!"
+
+msgid "allies_address_description"
+msgstr ""
+"Pokój 31, blok 2, Omnichannel Tower, Cotton town.\n"
+"\n"
+"Obok adresu znajduje się znak pocałunku"
+
+# Allie's Address
+msgid "allies_address"
+msgstr "Adress Allie"
+
+msgid "item_cannot_use_here"
+msgstr "Przedmiot {name} nie może być użyty tutaj!"
+
+msgid "tm_blossom_description"
+msgstr "Instrukcja ucząca Tuxemony drewna ruchu Kwitnięcia."
+
+msgid "tm_blossom"
+msgstr "TM: Zakwitanie"
+
+msgid "tm_avalanche_description"
+msgstr "Instrukcja nauki ruchu Lawiny dla Tuxemonów Wodnych lub Ziemnych."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Lawina"
+
+msgid "capture_device_description"
+msgstr "Łapie potwora."
+
+# Capture Device
+msgid "capture_device"
+msgstr "Urządzenie łapiące"
+
+msgid "revive_description"
+msgstr "Wskrzesza pokonanego Tuxemona, i uzdrawia 20 HP."
+
+# Revive
+msgid "revive"
+msgstr "Wskrzeszacz"
+
+msgid "imperial_potion_description"
+msgstr "Leczy potwora, dając mu 350 HP."
+
+# Imperial Potion
+msgid "imperial_potion"
+msgstr "Cesarski eliksir"
+
+msgid "super_potion_description"
+msgstr "Leczy potwora, dając mu 150 HP."
+
+# Super Potion
+msgid "super_potion"
+msgstr "Super Eliksir"
+
+msgid "potion_description"
+msgstr "Leczy potwora, dając mu 50 HP."
+
+# Potion
+msgid "potion"
+msgstr "Eliksir"
+
+msgid "orange_description"
+msgstr "Leczy potwora, dając mu 20 HP."
+
+# Orange
+msgid "orange"
+msgstr "Pomarańcza"
+
+msgid "cherry_description"
+msgstr "Leczy potwora, dając mu 10 HP."
+
+# Cherry
+msgid "cherry"
+msgstr "Czereśnia"
+
+# Berry
+msgid "berry"
+msgstr "Jagoda"
+
+msgid "apple_description"
+msgstr "Leczy potwora, dając mu 10 HP."
+
+## ITEM TRANSLATIONS ##
+# Apple
+msgid "apple"
+msgstr "Jabłko"

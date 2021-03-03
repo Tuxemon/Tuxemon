@@ -41,7 +41,7 @@ Run:
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 python -m pip install -U -r requirements.txt
-python tuxemon.py
+python run_tuxemon.py
 ```
 
 **Windows Binary**
@@ -55,7 +55,7 @@ sudo apt install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-python tuxemon.py
+python run_tuxemon.py
 ```
 
 **Ubuntu 18.04 w/venv**
@@ -67,7 +67,7 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python3 tuxemon.py
+python3 run_tuxemon.py
 ```
 
 **Debian**
@@ -77,7 +77,7 @@ sudo apt-get install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-python tuxemon.py
+python run_tuxemon.py
 ```
 
 *Optional rumble support*
@@ -101,7 +101,7 @@ brew install sdl_mixer --with-libvorbis
 sudo pip install git+https://github.com/pygame/pygame.git
 sudo pip install -U -r requirements.txt 
 git clone https://github.com/Tuxemon/Tuxemon.git
-ulimit -n 10000; python tuxemon.py
+ulimit -n 10000; python run_tuxemon.py
 ```
 
 **Arch Linux**

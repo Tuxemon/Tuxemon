@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="104">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="109">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -66,10 +66,13 @@
   </object>
   <object id="69" name="Choose Rockitten" type="event" x="192" y="112" width="16" height="16">
    <properties>
+    <property name="act1" value="translated_dialog chooseyerfateRockitten"/>
+    <property name="act2" value="translated_dialog_choice yes:no,rockittenchoice "/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>
   <object id="74" name="Choose Cardiling" type="event" x="208" y="112" width="16" height="16">
@@ -78,6 +81,7 @@
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>
   <object id="75" name="Choose Tweesher" type="event" x="224" y="112" width="16" height="16">
@@ -86,6 +90,7 @@
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>
   <object id="93" name="Player Spawn" type="event" x="144" y="240" width="16" height="16"/>
@@ -166,6 +171,44 @@
     <property name="act9" value="set_variable wemoving:finished"/>
     <property name="cond1" value="is variable_set wemoving:done"/>
     <property name="cond2" value="not variable_set movingon:now"/>
+   </properties>
+  </object>
+  <object id="104" name="wemoving4" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind professor,15,8"/>
+    <property name="act2" value="npc_face professor,left"/>
+    <property name="act3" value="set_variable wemoving:completenow"/>
+    <property name="act4" value="set_variable gettuxemon:now"/>
+    <property name="cond1" value="is variable_set wemoving:finished"/>
+   </properties>
+  </object>
+  <object id="105" name="wemovingtoo" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 1"/>
+    <property name="act2" value="pathfind player,10,8"/>
+    <property name="cond1" value="is variable_set wemoving:finished"/>
+   </properties>
+  </object>
+  <object id="106" name="chooseyertux" type="event" x="240" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxemontime4"/>
+    <property name="act2" value="translated_dialog chooseyerfate"/>
+    <property name="act3" value="set_variable letmechoose:pls"/>
+    <property name="cond1" value="is variable_set gettuxemon:now"/>
+    <property name="cond2" value="not variable_set letmechoose:pls"/>
+   </properties>
+  </object>
+  <object id="107" name="rockittenYES" type="event" x="192" y="112" width="16" height="16">
+   <properties>
+    <property name="cond1" value="is variable_set rockittenchoice:yes"/>
+   </properties>
+  </object>
+  <object id="108" name="rockittenNO" type="event" x="192" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog nochoiceTuxemon"/>
+    <property name="act2" value="set_variable rockittenchoice:empty"/>
+    <property name="act3" value="set_variable letmechoose:pls"/>
+    <property name="cond1" value="is variable_set rockittenchoice:no"/>
    </properties>
   </object>
  </objectgroup>

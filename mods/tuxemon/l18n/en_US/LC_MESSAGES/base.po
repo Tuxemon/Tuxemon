@@ -2025,6 +2025,9 @@ msgstr "Alright, here's your Rockitten! I know that you two will go on great adv
 "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Cardiling.\n"
 "And... LET'S FIGHT!"
 
+msgid "nochoiceTuxemon"
+msgstr "Okay, why don't you take a look at the other two?"
+
 msgid "chooseyerfateCardiling"
 msgstr "An interesting choice, it speaks to the spark inside of you. Cardiling is a Fire-type Tuxemon known for stealing food from friends and enemies alike.\n"
 "Do you want to choose Cardiling?"

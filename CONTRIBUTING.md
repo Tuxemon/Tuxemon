@@ -40,6 +40,9 @@ Artistic content is defined as image files or sound files.  This includes sprite
 window decorations, fonts, sound effects, music, and anything similar.  All content must
 be under a free license, such as CC0.  For questions about the license, open a github issue.
 
+If you are modifying existing content and making dirivatives, please find the license the
+original asset is released under and me mindful of any requirements the license specifies.
+
 It will be helpful if you tell the team first what you plan on doing, especially with game
 content like art, sounds, and music.  Seeing the difference between these files is difficult
 and unlike game code, changes cannot be automatically merged.  Therefore, it is ideal that
@@ -52,14 +55,26 @@ binary game content.
 - Sounds can be WAV or OGG
 - Add the author, source, and licence to the CREDITS.md file
 - If you rename the asset, include the original file name in the CREDITS.md file
+- If you are adding content, include the filenames and license in the CREDITS.md file
 
 PLEASE NOTE!  All contributions must be submitted with LOWER CASE FILENAMES only!  PRs which
 do not follow this format may be rejected until filenames are renamed.
 
+## Map Files
+We use the Tiled map editor to create the game maps and story content.  There are a few
+guidelines to follow when adding new maps or modifiying existing ones.
+
+- When adding events or collisions, the shape must be aligned to the tile grid.
+  ( use the CTRL key when modifying shapes and they will snap to the grid )
+- Like other assets, the filename must be lower case only
+- You must use `translated_dialog` for all dialogs
+- The "base64 zlib compressed" map format is preferred
+
 ## Compressed Assets
 If you are a content creator, please consider uploading your assets in a uncompressed or
 lossless format.  For sounds or music this would be either a wave (WAV) or FLAC file.
-Images must be PNG.  We will not accept JPG or any variation.
+Images must be PNG.  We will not accept JPG or any variation of lossy compressed images,
+unless it is for a concept or some ancillary purpose.
 
 Note your contributions will be distributed with the game will will very likely be altered
 prior to distribution by compressing or packing them for a smaller size.  However, we would
@@ -72,6 +87,7 @@ different platforms that we support.
 - If you make changes after opening a PR, merge again
 - Rebasing is not needed -- we squash all commits before merging
 - Code should follow PEP-8, but we are not strict
+- Its strongly suggested to use the black code formatter with the defaults
 
 ### Pull Request Checklist
 - Merge the development branch into your branch
@@ -86,6 +102,7 @@ NPCs, navigating the menus, and saving and loading.  Also, you must verify your 
 
 A play test should be conducted from a new game.
 
+It is an honor system, so please keep that in mind as we accept your changes.
 
 Translations
 ------------
@@ -111,8 +128,22 @@ discord.
 - Right-to-left langauges are not supported
 - Only the standard latin alphabet with some accents is supported
 - Our text rendering currently may not support your target language, but you can still
-  submit translations anyway.  When possible, we will add support for your lanaguage
+  submit translations anyway.  When possible, we will add support for your lanaguage.
 - After translation, some dialogs may not look correct because they are too long or short...
   that is a limitation of our game right now and we will fix it sometime.  If possible, 
   please leave the dialogs "long" or overflowing and eventually a fix will be made so they
   fit correctly.
+
+Content Restrictions
+--------------------
+
+The project is developed by and for a worldwide audience of all ages.  We ask that any
+contributions which includes word in text or image format be appropriate for people
+aged roughly 6-14.  Of course older players are included in this, but the game must not
+include inappropriate language or images for a younger demographic.  Examples of content
+which would be rejected are extreme graphic violence, sexual imagery, and crude language.
+
+You are welcome to create your own content that is outside this limitation, but we cannot
+accept it in this repository and we would ask that you are respectful with the "Tuxemon"
+name so that we are not associated with topics that would be covered by the paragraph
+above.  Thank you!

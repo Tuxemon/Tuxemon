@@ -39,17 +39,13 @@ logger = logging.getLogger(__name__)
 def main(load_slot=None):
     """Add all available states to our scene manager (tools.Client)
     and start the game using the pygame interface.
-
-    :rtype: None
-    :returns: None
-
     """
     log.configure()
+    prepare.init()
 
     import pygame
     from tuxemon.core.client import Client
 
-    prepare.init()
     client = Client(prepare.CONFIG.window_caption)
     client.auto_state_discovery()
 

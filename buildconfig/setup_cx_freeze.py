@@ -15,7 +15,7 @@ import sys
 from cx_Freeze import setup, Executable
 
 # required so that the tuxemon folder can be found
-# when run from the buildscripts folder
+# when run from the buildconfig folder
 sys.path.append(os.getcwd())
 
 # prevent SDL from opening a window
@@ -39,10 +39,10 @@ build_exe_options = {
 if __name__ == "__main__":
     setup(
         name="Tuxemon",
-        version="0.4.2",
+        version="0.4.26",
         options={"build_exe": build_exe_options},
         description="Open source RPG",
         executables=[
-            Executable("tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico")
+            Executable("run_tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico")
         ],
     )

@@ -252,6 +252,22 @@ class Monster:
         self.set_stats()
         self.set_flairs()
 
+    def spawn(self, father):
+        """Create's a new Monster, with this monster as the mother and the passed in monster as father.
+
+        :param father: The core.monster.Monster to be father of this monsterous child.
+        :type father : tuxemon.core.monster.Monster
+        """
+        child = Monster()
+        child.load_from_db(self.slug)
+        child.set_level(5)
+
+        father_tech_count = len(father.moves)
+        tech_to_replace = random.randrange(0, 2)
+        child.moves[tech_to_replace] = father.moves[random.randrange(0, father_tech_count - 1)]
+
+        return child
+
     def load_from_db(self, slug):
         """Loads and sets this monster's attributes from the monster.db database.
         The monster is looked up in the database by name.
@@ -440,9 +456,9 @@ class Monster:
         :returns: New monster slug if valid, None otherwise
         """
         for evolution in self.evolutions:
-            if evolution["path"] == path:
-                level_over = evolution["at_level"] > 0 and self.level >= evolution["at_level"]
-                level_under = evolution["at_level"] < 0 and self.level <= -evolution["at_level"]
+            if evolution['path'] == path:
+                level_over = 0 < evolution['at_level'] <= self.level
+                level_under = evolution['at_level'] < 0 and self.level <= -evolution['at_level']
                 if level_over or level_under:
                     return evolution["monster_slug"]
         return None
@@ -537,7 +553,7 @@ class Monster:
         """
         save_data = {attr: getattr(self, attr) for attr in SIMPLE_PERSISTANCE_ATTRIBUTES if getattr(self, attr)}
 
-        save_data["instance_id"] = str(self.instance_id)
+        save_data["instance_id"] = self.instance_id.hex
 
         if self.status:
             save_data["status"] = [i.get_state() for i in self.status]
@@ -595,7 +611,7 @@ class Monster:
 
 
 def decode_monsters(json_data):
-    return [Monster(save_data=mon) for mon in json_data.get("monsters") or []]
+    return [Monster(save_data=mon) for mon in json_data or {}]
 
 
 def encode_monsters(mons):

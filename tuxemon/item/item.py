@@ -93,7 +93,11 @@ class Item:
         :returns: None
         """
 
-        results = db.lookup(slug, table="item")
+        try:
+            results = db.lookup(slug, table="item")
+        except KeyError:
+            logger.error(msg="Failed to find item with slug {}".format(slug))
+            return
 
         self.slug = results["slug"]  # short English identifier
         self.name = T.translate(self.slug)  # translated name
@@ -208,9 +212,6 @@ class Item:
 
     def use(self, user, target):
         """Applies this items's effects as defined in the "effect" column of the item database.
-        This method will execute a function with the same name as the effect defined in the
-        database. If you want to add a new effect, simply create a new function under the Item
-        class with the name of the effect you define in item.db.
 
         :param user: The monster or object that is using this item.
         :param target: The monster or object that we are using this item on.
@@ -241,19 +242,21 @@ class Item:
 
 
 def decode_inventory(session, owner, data):
-    """Reconstruct inventory from save_data
+    """ Reconstruct inventory from a save_data dict
 
     :param session:
     :param owner:
-    :param data: save data
+    :param data: save data inventory
     :type data: Dictionary
 
     :rtype: Dictionary
     :returns: New inventory
     """
     out = {}
-    for slug, quant in (data.get("inventory") or {}).items():
-        item = {"item": Item(session, owner, slug)}
+    for slug, quant in data.items():
+        item = {
+            'item': Item(session, owner, slug)
+        }
         if quant is None:
             item["quantity"] = 1
             # Infinite is used for shopkeepers

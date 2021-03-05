@@ -39,6 +39,8 @@ import pygame
 from tuxemon import prepare
 from tuxemon.graphics import capture_screenshot
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
+from tuxemon import prepare, config
+from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:
     import cbor
@@ -108,18 +110,13 @@ def save(save_data, slot):
 
 
 def load(slot):
-    """Loads gamen state data from a shelved save file.
+    """Loads game state data from a shelved save file.
 
     :param slot: The save slot to load game data from.
     :type slot: Integer
 
     :rtype: Dictionary
     :returns: Dictionary containing game data to load.
-
-    **Examples:**
-
-    >>> load.load(1)
-
     """
 
     save_path = f"{prepare.SAVE_PATH}{slot}.save"

@@ -27,6 +27,8 @@
 #
 #
 
+from tuxemon.core.prepare import CONFIG
+
 """
 This module is for handling breaking changes to the save file.
 
@@ -49,7 +51,7 @@ Other changes:
     - Amend the `upgrade_save` function as necessary
 """
 
-SAVE_VERSION = 1
+SAVE_VERSION = 2
 MAP_RENAMES = {
     # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
 }
@@ -64,6 +66,9 @@ def upgrade_save(save_data):
         _update_current_map(i, save_data)
         if i == 0:
             _remove_slug_prefixes(save_data)
+        if i == 1:
+            _transfer_storage_boxes(save_data)
+
     return save_data
 
 
@@ -91,3 +96,24 @@ def _remove_slug_prefixes(save_data):
     for mons in save_data.get("monsters", []), chest.get("monsters", []):
         for mon in mons:
             mon["slug"] = mon["slug"].partition("_")[2]
+
+
+def _transfer_storage_boxes(save_data):
+    """
+    Item and monster storage used to be handled in a single
+    dictionary, with "item" and "monster" keys. Now they're two
+    dictionaries where the keys are "boxes", like in the Pokemon
+    games. This also allows "hidden" boxes for scripts to move
+    items and monsters around.
+
+    :param save_data: the save data
+    :return:
+    """
+    locker = save_data.get('storage', {}).get('items', {})
+    kennel = save_data.get('storage', {}).get('monsters', {})
+
+    save_data['monster_boxes'] = dict()
+    save_data['item_boxes'] = dict()
+
+    save_data['monster_boxes'][CONFIG.default_monster_storage_box] = kennel
+    save_data['item_boxes'][CONFIG.default_item_storage_box] = locker

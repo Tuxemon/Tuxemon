@@ -183,6 +183,7 @@ class JSONDatabase:
         NOTE: This method has been deprecated. Use the following instead:
         JSONDatabase.database['monster'][slug]['sprites']
 
+        :param table:
         :param slug: The monster ID to look up.
         :type slug: String
         :param slug: The monster slug to look up.

@@ -51,10 +51,16 @@ class VariableSetCondition(EventCondition):
         """
         player = context.player
 
-        # Split the string by ":" into a list
-        key, value = condition.parameters[0].split(":")
+        parts = condition.parameters[0].split(":")
+        key = parts[0]
+        if len(parts) > 1:
+            value = parts[1]
+        else:
+            value = None
 
-        try:
-            return player.game_variables[key] == value
-        except KeyError:
-            return False
+        exists = key in player.game_variables
+
+        if value is None:
+            return exists
+        else:
+            return exists and player.game_variables[key] == value

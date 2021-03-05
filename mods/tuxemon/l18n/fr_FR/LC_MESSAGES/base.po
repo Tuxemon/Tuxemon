@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-03 05:11+0200\n"
-"PO-Revision-Date: 2020-09-25 19:41+0000\n"
-"Last-Translator: Cavalcadeur <martin@memora.tolokoban.org>\n"
+"PO-Revision-Date: 2021-01-14 13:32+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "fr/>\n"
 "Language: fr_FR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -154,7 +154,7 @@ msgid "combat_fainted"
 msgstr "{name} est K.O. !"
 
 msgid "combat_isactive"
-msgstr "{name} is already in play."
+msgstr "{name} est déjà en jeu."
 
 # Generic notifications
 msgid "not_implemented"
@@ -173,10 +173,10 @@ msgid "exit"
 msgstr "Retour"
 
 msgid "item_confirm_use"
-msgstr "Use"
+msgstr "Utiliser"
 
 msgid "item_confirm_cancel"
-msgstr "Cancel"
+msgstr "Annuler"
 
 # TODO same as generic_success and generic_failure - refactor!
 msgid "item_success"
@@ -241,7 +241,7 @@ msgid "water_shot"
 msgstr "Tir d'eau"
 
 msgid "whirlwind"
-msgstr "Whirlwind"
+msgstr "Tourbillon"
 
 msgid "run"
 msgstr "Run"
@@ -252,7 +252,7 @@ msgid "monster_menu_info"
 msgstr "Info"
 
 msgid "monster_menu_move"
-msgstr "Move"
+msgstr "Déplacer"
 
 # Menu notifications
 msgid "log_off"
@@ -312,22 +312,22 @@ msgid "multiplayer_duel"
 msgstr "{name} veut un duel !"
 
 msgid "multiplayer_host_game"
-msgstr "Host Game"
+msgstr "Jeu hôte"
 
 msgid "multiplayer_scan_games"
-msgstr "Scan for Games"
+msgstr "Rechercher des parties"
 
 msgid "multiplayer_join_game"
-msgstr "Join Game"
+msgstr "Rejoindre la partie"
 
 msgid "multiplayer_hosting_ready"
-msgstr "Ready to accept clients!"
+msgstr "Prêt à accepter les clients !"
 
 msgid "multiplayer_already_hosting"
-msgstr "Already hosting!"
+msgstr "Vous hébergez déjà !"
 
 msgid "multiplayer_no_servers"
-msgstr "No servers found..."
+msgstr "Aucun serveur trouvé…"
 
 msgid "multiplayer_join_prompt"
 msgstr "Hostname or IP?"
@@ -982,7 +982,7 @@ msgid "door_problems"
 msgstr "The door is stuck and won't open..."
 
 msgid "empty_pot"
-msgstr "It's an empty pot, maybe someone will plant something here"
+msgstr "C'est un pot vide, peut-être que quelqu'un plantera quelque chose ici."
 
 msgid "purple_flowers"
 msgstr "Somebody planted some sweet smelling purple flowers!"
@@ -997,7 +997,7 @@ msgid "famous_statue2"
 msgstr "It says: For our beloved friends and heroes of all, the wywen"
 
 msgid "cotton_town_fountain"
-msgstr "C'est une fontaine. Il y a beaucoup de pièces au fond"
+msgstr "C'est une fontaine. Il y a beaucoup de pièces au fond."
 
 msgid "tree"
 msgstr "This tree looks happy and healthy!"
@@ -1036,7 +1036,7 @@ msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
 
 msgid "karrianna_dialog2"
-msgstr "Eh bien... Tu es le premier entraîner que j'ai affronté…"
+msgstr "Eh bien… Tu es le premier entraîner que j'ai affronté…"
 
 msgid "xero_hideout1"
 msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
@@ -1090,7 +1090,7 @@ msgid "backstory9"
 msgstr "What do you say? Will you help us?"
 
 msgid "sorryfurthis"
-msgstr "Good Choice. Sorry, this will only sting a little"
+msgstr "Bon choix. Désolé, ça ne fera qu’piquer un peu."
 
 msgid "mwah\n"
 msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in here even though your clothes are tastefully done.\n"
@@ -1136,7 +1136,7 @@ msgid "liela_goes_to_battle"
 msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
 
 msgid "Cathedral_Center"
-msgstr "Cathedral Center: We Live to Serve"
+msgstr "Centre de la cathédrale : nous vivons pour servir."
 
 msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
@@ -1309,19 +1309,18 @@ msgstr ""
 msgid "professor_select"
 msgstr "Lequel préfères-tu ?"
 
-#, fuzzy
 msgid "professor_dialog2\n"
 msgstr ""
-"D'où viennent les tuxemon ?\n"
+"D'où viennent les Tuxemon ?\n"
 "Personne ne sait vraiment, mais ils habitent notre planète depuis au moins "
 "des milliers d'années.\n"
-"Les Tuxemons sont de petits animaux. On apprend beaucoup d'eux, on devient "
+"Les Tuxemon sont de petits animaux. On apprend beaucoup d'eux, on devient "
 "leurs amis, et on les utilise pour affronter d'autres Tuxemon dans des "
 "tournois.\n"
-"Enfin... C'est ce qu'on faisait...\n"
-"Je me demandais... Je viens juste de recevoir trois nouveaux Tuxemon et je "
+"Enfin… C'est ce qu'on faisait…\n"
+"Je me demandais… Je viens juste de recevoir trois nouveaux Tuxemon et je "
 "voudrais étudier comment ils se comportent avec un entraîneur.\n"
-"Ca t'intéresserait d'entraîner un Tuxemon ?"
+"Ça t'intéresserait d'entraîner un Tuxemon ?"
 
 msgid "thats_me"
 msgstr "C'est moi !"
@@ -1415,9 +1414,87 @@ msgstr "L'attaque inflige beaucoup de dégâts supplémentaires !"
 msgid "combat_trainer_appeared"
 msgstr "{name} veut se battre !"
 
-#, fuzzy
 msgid "combat_state_recover_failure"
 msgstr "{user} ne peut pas se soigner davantage."
 
 msgid "combat_state_recover_get"
 msgstr "{target} commence à regagner de la vie."
+
+msgid "uselessnes"
+msgstr ""
+"Tu es absolument inutile John. Je n’arrive pas à croire qu’on ait jamais été "
+"ensemble."
+
+msgid "johnissorry"
+msgstr ""
+"Désolé M'dame… J'ai…\n"
+"Vu…\n"
+"Certaines…\n"
+"Fleurs…"
+
+msgid "darnitjohn10"
+msgstr "TOUT DE SUITE !"
+
+msgid "darnitjohn8"
+msgstr "AAAAAH !!!"
+
+msgid "darnitjohn7"
+msgstr "Je ne suis pas sûr…"
+
+msgid "darnitjohn6"
+msgstr "Euh…"
+
+msgid "darnitjohn5"
+msgstr "Pourquoi es-tu toujours là ?"
+
+msgid "darnitjohn4"
+msgstr "Oui m'dame ?"
+
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "darnitjohn"
+msgstr "Attends… Où est John ?"
+
+msgid "firsts"
+msgstr ""
+"♪ Watch me whip ♪\n"
+"♪ Watch me nae nae ♪\n"
+"Cette chanson est plutôt géniale, non ?"
+
+msgid "yesmaam"
+msgstr "Oui m'dame."
+
+msgid "omnichannelarrives"
+msgstr "ARRÊTEZ !"
+
+msgid "quicklyknight4"
+msgstr "Désolé, mais je devrais partir maintenant."
+
+msgid "quicklyknight3"
+msgstr "Allie, c’est ça. Allie est le nom."
+
+msgid "thatsmeknight"
+msgstr ""
+"Oh, splendide ! Je savais depuis le début que ça devait être toi\n"
+"Ne t'inquiète pas, je ne le dirai à personne."
+
+msgid "mistakenknight"
+msgstr ""
+"Non, je ne me trompe pas. C'est toi !\n"
+"Ne t'inquiète pas, je ne le dirai à personne."
+
+msgid "iamknight2"
+msgstr ""
+"Attends, tu es celui dont ils parlent, n'est-ce pas ? Celui avec le Tuxemon "
+"non déclaré ?"
+
+msgid "professor_turn"
+msgstr "Bien sûr que tu le ferais, de qui je me moque ?"
+
+msgid "professor_no"
+msgstr ""
+"Eh bien, dommage alors. J’ai marché jusqu’ici pour te parler, alors écoute !"
+
+msgid "professor_yes"
+msgstr "Génial !"

@@ -23,22 +23,13 @@
 # Contributor(s):
 #
 # William Edwards <shadowapex@gmail.com>
+# Leif Theden <leif.theden@gmail.com
 #
 #
-# txmn.py Main game
-#
-"""Starts the core.main.main() function which, in turn, initializes
-pygame and starts the game, unless headless is specified.
-
-To run an individual component (e.g. core/prepare.py):
-
-`python -m core.prepare`
-
-"""
 from argparse import ArgumentParser
 
 if __name__ == '__main__':
-    from tuxemon import prepare, main
+    from tuxemon.core import prepare, main
 
     parser = ArgumentParser()
     parser.add_argument('-m', '--mod', dest='mod', metavar='mymod', type=str, nargs='?',

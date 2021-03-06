@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-06 01:50+0000\n"
+"PO-Revision-Date: 2021-03-07 15:50+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -416,3 +416,21 @@ msgstr "Leczy potwora, dając mu 10 HP."
 # Apple
 msgid "apple"
 msgstr "Jabłko"
+
+msgid "feint"
+msgstr "Feint"
+
+msgid "eyebite"
+msgstr "Eyebite"
+
+msgid "energy_field"
+msgstr "Pole energii"
+
+msgid "energy_claws"
+msgstr "Szpony energii"
+
+msgid "electrical_storm"
+msgstr "Burza elektryczna"
+
+msgid "constrict"
+msgstr "Ucisk"

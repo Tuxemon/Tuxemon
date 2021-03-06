@@ -2035,9 +2035,16 @@ msgstr "An interesting choice, it speaks to the spark inside of you. Cardiling i
 "Do you want to choose Cardiling?"
 
 msgid "choseCardiling"
-msgstr "Alright, here's your Cardiling! I know that you two will go on great adventures together!\n"
-"First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Tweesher.\n"
-"And... LET'S FIGHT!"
+msgstr "Alright, here's your Cardiling! I know that you two will go on great adventures together!"
+
+msgid "choseCardiling2"
+msgstr "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Tweesher."
+
+msgid "chosefight"
+msgstr "And... LET'S FIGHT!"
+
+msgid "cardiling!"
+msgstr "Obtained Cardiling!"
 
 msgid "chooseyerfateTweesher"
 msgstr "A great choice! Tweesher is a Water-type Tuxemon. It's evolution Eagleace is one of the fastest Tuxemon\n"

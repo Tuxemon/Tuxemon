@@ -1,0 +1,20 @@
+{
+    "slug": "professor-tweesher",
+    "sprite_name": "professor",
+    "combat_front": "professor_front.png",
+    "combat_back": "red_back.png",
+    "monsters": [
+        {
+            "attack": 9,
+            "defense": 9,
+            "hp": 36,
+            "speed": 11,
+            "special_defense": 12,
+            "name": "Tweesher",
+            "level": 5,
+            "slug": "tweesher",
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="109">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="115">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -66,8 +66,10 @@
   </object>
   <object id="69" name="Choose Rockitten" type="event" x="192" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog chooseyerfateRockitten"/>
-    <property name="act2" value="translated_dialog_choice yes:no,rockittenchoice "/>
+    <property name="act1" value="pathfind professor,12,9"/>
+    <property name="act2" value="npc_face professor,up"/>
+    <property name="act3" value="translated_dialog chooseyerfateRockitten"/>
+    <property name="act4" value="translated_dialog_choice yes:no,rockittenchoice "/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
@@ -77,6 +79,10 @@
   </object>
   <object id="74" name="Choose Cardiling" type="event" x="208" y="112" width="16" height="16">
    <properties>
+    <property name="act1" value="pathfind professor,13,9"/>
+    <property name="act2" value="npc_face professor,up"/>
+    <property name="act3" value="translated_dialog chooseyerfateCardiling"/>
+    <property name="act4" value="translated_dialog_choice yes:no,cardilingchoice "/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
@@ -86,6 +92,10 @@
   </object>
   <object id="75" name="Choose Tweesher" type="event" x="224" y="112" width="16" height="16">
    <properties>
+    <property name="act1" value="pathfind professor,14,9"/>
+    <property name="act2" value="npc_face professor,up"/>
+    <property name="act3" value="translated_dialog chooseyerfateTweesher"/>
+    <property name="act4" value="translated_dialog_choice yes:no,tweesherchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is player_at"/>
     <property name="cond3" value="is player_facing down"/>
@@ -211,13 +221,60 @@
     <property name="cond1" value="is variable_set rockittenchoice:no"/>
    </properties>
   </object>
+  <object id="109" name="cardilingNO" type="event" x="208" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog nochoiceTuxemon"/>
+    <property name="act2" value="set_variable cardilingchoice:empty"/>
+    <property name="act3" value="set_variable letmechoose:pls"/>
+    <property name="cond1" value="is variable_set cardilingchoice:no"/>
+   </properties>
+  </object>
+  <object id="110" name="cardilingYES" type="event" x="208" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog choseCardiling"/>
+    <property name="act2" value="translated_dialog cardiling!"/>
+    <property name="act3" value="add_monster cardiling,5"/>
+    <property name="act4" value="pathfind professor,14,9"/>
+    <property name="act41" value="npc_face professor,up"/>
+    <property name="act5" value="translated_dialog choseCardiling2"/>
+    <property name="act6" value="wait 0.8"/>
+    <property name="act7" value="pathfind professor,9,7"/>
+    <property name="act8" value="pathfind player,9,9"/>
+    <property name="act9" value="translated_dialog chosefight"/>
+    <property name="act97" value="set_variable havetuxemon:yes"/>
+    <property name="act98" value="set_variable cardilingchoice:finished"/>
+    <property name="act99" value="set_variable startfirstbattle:yes"/>
+    <property name="cond1" value="is variable_set cardilingchoice:yes"/>
+   </properties>
+  </object>
+  <object id="111" name="tweesherYES" type="event" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="cond1" value="is variable_set tweesherchoice:yes"/>
+   </properties>
+  </object>
+  <object id="112" name="tweesherNO" type="event" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog nochoiceTuxemon"/>
+    <property name="act2" value="set_variable tweesherchoice:empty"/>
+    <property name="act3" value="set_variable letmechoose:pls"/>
+    <property name="cond1" value="is variable_set tweesherchoice:no"/>
+   </properties>
+  </object>
+  <object id="114" name="start first battle cardiling" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="start_battle professor-tweesher"/>
+    <property name="act2" value="set_variable firstbattledone:yes"/>
+    <property name="cond1" value="is variable_set startfirstbattle:yes"/>
+    <property name="cond2" value="not variable_set firstbattledone:yes"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collision">
   <object id="43" type="collision" x="192" y="128" width="48" height="16"/>
   <object id="56" type="collision" x="192" y="48" width="48" height="16"/>
-  <object id="81" type="collision" x="256" y="-16" width="16" height="320"/>
+  <object id="81" type="collision" x="256" y="0" width="16" height="304"/>
   <object id="83" type="collision" x="48" y="288" width="208" height="16"/>
-  <object id="84" type="collision" x="32" y="-16" width="16" height="320"/>
+  <object id="84" type="collision" x="32" y="0" width="16" height="304"/>
   <object id="85" type="collision" x="48" y="0" width="208" height="48"/>
   <object id="86" type="collision" x="80" y="48" width="64" height="16"/>
   <object id="87" type="collision" x="48" y="96" width="16" height="16"/>

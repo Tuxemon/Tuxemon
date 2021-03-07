@@ -29,8 +29,7 @@
 
 import itertools
 import logging
-from multiprocessing import RLock
-from threading import get_ident
+from threading import Lock
 
 import pygame
 
@@ -50,34 +49,6 @@ direction_map = {
     intentions.LEFT: "left",
     intentions.RIGHT: "right",
 }
-
-class MovementLock:
-    _lock = RLock()
-
-    def lock_movement(self):
-        print('locked on thread ', get_ident())
-        locked = self._lock.acquire(False)
-
-    def unlock_movement(self):
-        print('~ unlocking for thread ', get_ident())
-        if not self.is_locked():
-            return
-
-        print('unlocked on thread ', get_ident())
-
-        self._lock.release()
-
-    def is_locked(self):
-        # will be True if the lock is not already acquired
-        locked = self._lock.acquire(False)
-
-        if locked:
-            print('- was not locked for thread ', get_ident())
-            self._lock.release()
-            return False
-
-        print('- was locked for thread ', get_ident())
-        return True
 
 class WorldState(state.State):
     """ The state responsible for the world game play
@@ -109,10 +80,7 @@ class WorldState(state.State):
         self.npcs_off_map = {}
         self.player = None
         self.wants_to_move_player = None
-        self.player_movement_lock = MovementLock()
-
-        self.player_movement_lock.lock_movement()
-        self.player_movement_lock.is_locked()
+        self.player_movement_lock = Lock()
 
         ######################################################################
         #                              Map                                   #
@@ -379,8 +347,10 @@ class WorldState(state.State):
         if direction is not None:
             if event.held:
                 self.wants_to_move_player = direction
-                if not self.player_movement_lock.is_locked():
+
+                with self.player_movement_lock:
                     self.move_player(direction)
+
                 return
             elif not event.pressed:
                 if direction == self.wants_to_move_player:
@@ -709,7 +679,7 @@ class WorldState(state.State):
 
         :return:
         """
-        self.player_movement_lock.lock_movement()
+        self.player_movement_lock.acquire(False)
 
     def unlock_controls(self):
         """ Allow the player to move
@@ -719,7 +689,7 @@ class WorldState(state.State):
 
         :return:
         """
-        self.player_movement_lock.unlock_movement()
+        self.player_movement_lock.release()
 
         if self.wants_to_move_player:
             self.move_player(self.wants_to_move_player)

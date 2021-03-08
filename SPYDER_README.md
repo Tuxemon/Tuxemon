@@ -4,7 +4,7 @@ The "spyder_" prefix identifies the maps and NPCs that belong to the Spyder in t
 
 Since the game is still being created, there are some concessions/work arounds: 
 
-1. To play, simply rename the current player_house_bedroom.tmx file to something else, and then rename spyder_player_house_bedroom.tmx to player_house_bedroom.tmx.
+1. To play, start the game with argument -s spyder_bedroom.tmx, or rename the current player_house_bedroom.tmx file to something else, and then rename spyder_bedroom.tmx to player_house_bedroom.tmx.
 2. In some parts you can walk on water since surfing hasn't been implemented yet. 
 3. There's a different exit to the right of Drokoro since removing collisions hasn't been implemented yet. 
 4. For some reason, random_encounter didn't work if it was triggered by behaviour "talk", so I've changed that to condition "to_talk". However, that's not present in my version of the game, so I can't test it.

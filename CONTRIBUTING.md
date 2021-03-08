@@ -96,8 +96,9 @@ different platforms that we support.
 - English is preferred
 - Use letters, numbers, underscore (_) and dash (-) only
 
-** WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM **
-** WE MAY ASK YOU TO RENAME ASSETS BEFORE MERGING, SO THIS WILL SAVE YOU TIME **
+**WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM**
+
+**WE MAY ASK YOU TO RENAME ASSETS BEFORE MERGING, SO THIS WILL SAVE YOU TIME**
 
 ### Pull Request Checklist
 - Merge the development branch into your branch

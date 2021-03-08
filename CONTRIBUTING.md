@@ -64,6 +64,7 @@ do not follow this format may be rejected until filenames are renamed.
 We use the Tiled map editor to create the game maps and story content.  There are a few
 guidelines to follow when adding new maps or modifiying existing ones.
 
+- All events and collisions must be grid-aligned
 - When adding events or collisions, the shape must be aligned to the tile grid.
   ( use the CTRL key when modifying shapes and they will snap to the grid )
 - Like other assets, the filename must be lower case only

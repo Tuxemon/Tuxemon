@@ -89,6 +89,16 @@ different platforms that we support.
 - Code should follow PEP-8, but we are not strict
 - Its strongly suggested to use the black code formatter with the defaults
 
+## File names
+- Must be lower case
+- No spaces
+- No special characters
+- English is preferred
+- Use letters, numbers, underscore (_) and dash (-) only
+
+** WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM **
+** WE MAY ASK YOU TO RENAME ASSETS BEFORE MERGING, SO THIS WILL SAVE YOU TIME **
+
 ### Pull Request Checklist
 - Merge the development branch into your branch
 - Fix any conflicts

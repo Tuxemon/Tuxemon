@@ -64,9 +64,7 @@ do not follow this format may be rejected until filenames are renamed.
 We use the Tiled map editor to create the game maps and story content.  There are a few
 guidelines to follow when adding new maps or modifiying existing ones.
 
-- All events and collisions must be grid-aligned
-- When adding events or collisions, the shape must be aligned to the tile grid.
-  ( use the CTRL key when modifying shapes and they will snap to the grid )
+- All events and collisions must be grid-aligned.  (View -> Snap to grid)
 - Like other assets, the filename must be lower case only
 - You must use `translated_dialog` for all dialogs
 - The "base64 zlib compressed" map format is preferred
@@ -94,8 +92,8 @@ different platforms that we support.
 - Must be lower case
 - No spaces
 - No special characters
-- English is preferred
 - Use letters, numbers, underscore (_) and dash (-) only
+- English is preferred because we have contributors who speak many languages
 
 **WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM**
 

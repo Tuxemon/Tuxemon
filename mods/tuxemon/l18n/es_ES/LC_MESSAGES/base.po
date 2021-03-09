@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2020-12-31 00:29+0000\n"
+"PO-Revision-Date: 2021-03-10 22:02+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -2594,3 +2594,35 @@ msgstr "Pueblo Papel"
 
 msgid "leather"
 msgstr "Pueblo Cuero"
+
+msgid "spyder_route3_weaver2"
+msgstr "¡Vamos, sal!"
+
+msgid "spyder_route3_qqq2"
+msgstr ""
+"¡No revelaré nada sobre nuestro plan! ¡De hecho, olvida que he dicho nada "
+"sobre un plan!"
+
+msgid "spyder_route3_zoolander2"
+msgstr "¡Ah, se me ha caído la almádena!"
+
+msgid "spyder_route3_drag2"
+msgstr ""
+"AGENTE: ¡¿Pero qué…?! ¡Ven conmigo, puedes explicar esto en el cuartel "
+"general!"
+
+msgid "spyder_citypark2_florist"
+msgstr ""
+"Las flores se ven bien, ¿verdad? … ¡Desde que empezó la minería en Pueblo "
+"Cuero, las flores han estado expuestas a los elementos!"
+
+msgid "spyder_cotton_tuxepediaintro4"
+msgstr ""
+"Es genial que hayas venido. Aún quedan muchos Tuxemon por añadir. Unos cien, "
+"diría yo.\n"
+"Podrías dedicarte a ello y marcar la diferencia en el mundo. "
+
+msgid "spyder_papertown_grannypiper1"
+msgstr ""
+"¡Oh, hola ${{name}}! ¡No te había visto entre el ajetreo y los escombros!\n"
+"¡No puedo esperar a que la Guardería esté instalada!"

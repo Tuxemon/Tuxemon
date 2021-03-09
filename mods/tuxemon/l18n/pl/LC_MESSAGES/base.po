@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-07 15:50+0000\n"
+"PO-Revision-Date: 2021-03-10 22:03+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -434,3 +434,43 @@ msgstr "Burza elektryczna"
 
 msgid "constrict"
 msgstr "Ucisk"
+
+msgid "goad"
+msgstr "Goad"
+
+msgid "glower"
+msgstr "Glower"
+
+msgid "give_all"
+msgstr "Daj z siebie wszystko"
+
+msgid "fume"
+msgstr "Dym"
+
+msgid "frostbite"
+msgstr "Frostbite"
+
+msgid "font"
+msgstr "Czcionka"
+
+msgid "fluff_up"
+msgstr "Fluff Up"
+
+msgid "flow"
+msgstr "Przepływ"
+
+msgid "flood"
+msgstr "Powódź"
+
+msgid "flamethrower"
+msgstr "Miotacz ognia"
+
+#, fuzzy
+msgid "fire_claw"
+msgstr "Ognisty Pazur"
+
+msgid "fire_ball"
+msgstr "Kula ognia"
+
+msgid "fester"
+msgstr "Fester"

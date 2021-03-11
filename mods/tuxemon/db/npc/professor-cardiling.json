@@ -5,7 +5,12 @@
     "combat_back": "red_back.png",
     "monsters": [
         {
-            "level": 5,
+            "attack": 4,
+            "defense": 7,
+            "hp": 22,
+            "speed": 5,
+            "special_defense": 7,
+            "level": 3,
             "slug": "cardiling",
             "exp_give_mod": 3,
             "exp_req_mod": 27

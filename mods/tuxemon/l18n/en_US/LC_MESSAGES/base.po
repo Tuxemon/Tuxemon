@@ -1282,6 +1282,15 @@ msgstr "Wife NPC"
 msgid "professor"
 msgstr "Professor"
 
+msgid "professor-tweesher"
+msgstr "Professor"
+
+msgid "professor-cardiling"
+msgstr "Professor"
+
+msgid "professor-rockitten"
+msgstr "Professor"
+
 msgid "npc_red"
 msgstr "Red"
 
@@ -2023,9 +2032,13 @@ msgstr "A solid choice! Rockitten is an Earth-type Tuxemon. In medieval times, t
 "Do you want to choose Rockitten?"
 
 msgid "choseRockitten"
-msgstr "Alright, here's your Rockitten! I know that you two will go on great adventures together!\n"
-"First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Cardiling.\n"
-"And... LET'S FIGHT!"
+msgstr "Alright, here's your Rockitten! I know that you two will go on great adventures together!"
+
+msgid "choseRockitten2"
+msgstr "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Cardiling."
+
+msgid "rockitten!"
+msgstr "Obtained Rockitten!"
 
 msgid "nochoiceTuxemon"
 msgstr "Okay, why don't you take a look at the other two?"
@@ -2051,9 +2064,13 @@ msgstr "A great choice! Tweesher is a Water-type Tuxemon. It's evolution Eagleac
 "Do you want to choose Tweesher?"
 
 msgid "choseTweesher"
-msgstr "Alright, here's your Cardiling! I know that you two will go on great adventures together!\n"
-"First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Rockitten.\n"
-"And... LET'S FIGHT!"
+msgstr "Alright, here's your Tweesher! I know that you two will go on great adventures together!"
+
+msgid "choseTweesher2"
+msgstr "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Rockitten."
+
+msgid "tweesher!"
+msgstr "Obtained Tweesher!"
 
 msgid "wewnicefight"
 msgstr "Wow, that was a good fight!\n"

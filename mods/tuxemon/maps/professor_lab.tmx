@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="115">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="117">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -110,6 +110,7 @@
     <property name="act2" value="npc_face professor,up"/>
     <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
     <property name="cond2" value="not npc_exists professor"/>
+    <property name="cond3" value="not variable_set havetuxemon:yes"/>
    </properties>
   </object>
   <object id="97" name="whyhellothere" type="event" x="144" y="272" width="16" height="16">
@@ -262,10 +263,50 @@
   </object>
   <object id="114" name="start first battle cardiling" type="event" x="240" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="start_battle professor-tweesher"/>
-    <property name="act2" value="set_variable firstbattledone:yes"/>
+    <property name="act1" value="remove_npc professor"/>
+    <property name="act2" value="create_npc professor-tweesher,9,7,,stand"/>
+    <property name="act3" value="npc_face professor-tweesher,down"/>
+    <property name="act4" value="start_battle professor-tweesher"/>
+    <property name="act5" value="set_variable firstbattledone:yes"/>
+    <property name="act6" value="remove_npc professor-tweesher"/>
+    <property name="act7" value="create_npc professor,9,7,,stand"/>
+    <property name="act8" value="npc_face professor,down"/>
+    <property name="act9" value="translated_dialog wewnicefight"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
+    <property name="cond3" value="is variable_set cardilingchoice:finished"/>
+   </properties>
+  </object>
+  <object id="115" name="start first battle rockitten" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_npc professor"/>
+    <property name="act2" value="create_npc professor-cardiling,9,7,,stand"/>
+    <property name="act3" value="npc_face professor-cardiling,down"/>
+    <property name="act4" value="start_battle professor-cardiling"/>
+    <property name="act5" value="set_variable firstbattledone:yes"/>
+    <property name="act6" value="remove_npc professor-cardiling"/>
+    <property name="act7" value="create_npc professor,9,7,,stand"/>
+    <property name="act8" value="npc_face professor,down"/>
+    <property name="act9" value="translated_dialog wewnicefight"/>
+    <property name="cond1" value="is variable_set startfirstbattle:yes"/>
+    <property name="cond2" value="not variable_set firstbattledone:yes"/>
+    <property name="cond3" value="is variable_set rockittenchoice:finished"/>
+   </properties>
+  </object>
+  <object id="116" name="start first battle tweesher" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_npc professor"/>
+    <property name="act2" value="create_npc professor-rockitten,9,7,,stand"/>
+    <property name="act3" value="npc_face professor-rockitten,down"/>
+    <property name="act4" value="start_battle professor-rockitten"/>
+    <property name="act5" value="set_variable firstbattledone:yes"/>
+    <property name="act6" value="remove_npc professor-rockitten"/>
+    <property name="act7" value="create_npc professor,9,7,,stand"/>
+    <property name="act8" value="npc_face professor,down"/>
+    <property name="act9" value="translated_dialog wewnicefight"/>
+    <property name="cond1" value="is variable_set startfirstbattle:yes"/>
+    <property name="cond2" value="not variable_set firstbattledone:yes"/>
+    <property name="cond3" value="is variable_set tweesherchoice:finished"/>
    </properties>
   </object>
  </objectgroup>

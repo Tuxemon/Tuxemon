@@ -23,6 +23,7 @@ from tuxemon.core import monster
 from tuxemon.core.event.eventaction import EventAction
 from tuxemon.core.event import get_npc
 
+
 class AddMonsterAction(EventAction):
     """Adds a monster to the current player's party if there is room.
 
@@ -44,7 +45,7 @@ class AddMonsterAction(EventAction):
         if trainer_slug is None:
             trainer = self.session.player
         else:
-            trainer = get_npc(trainer_slug)
+            trainer = get_npc(self.session, trainer_slug)
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)

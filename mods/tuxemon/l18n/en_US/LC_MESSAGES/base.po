@@ -2076,6 +2076,9 @@ msgid "wewnicefight"
 msgstr "Wow, that was a good fight!\n"
 "With a little more practice and maybe a few more Tuxemon, you'll definitely be able to take on the Trial."
 
+msgid "yahaha"
+msgstr "Ah ha! Found you!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

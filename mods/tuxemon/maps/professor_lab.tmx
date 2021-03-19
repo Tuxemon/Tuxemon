@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="117">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="118">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -211,6 +211,21 @@
   </object>
   <object id="107" name="rockittenYES" type="event" x="192" y="112" width="16" height="16">
    <properties>
+    <property name="act1" value="translated_dialog choseRockitten"/>
+    <property name="act2" value="translated_dialog rockitten!"/>
+    <property name="act3" value="add_monster rockitten,5"/>
+    <property name="act4" value="pathfind professor,13,9"/>
+    <property name="act41" value="npc_face professor,up"/>
+    <property name="act5" value="translated_dialog choseRockitten2"/>
+    <property name="act6" value="wait 0.8"/>
+    <property name="act7" value="pathfind professor,9,7"/>
+    <property name="act71" value="npc_face professor,down"/>
+    <property name="act8" value="pathfind player,9,9"/>
+    <property name="act81" value="npc_face player,up"/>
+    <property name="act9" value="translated_dialog chosefight"/>
+    <property name="act97" value="set_variable havetuxemon:yes"/>
+    <property name="act98" value="set_variable rockittenchoice:finished"/>
+    <property name="act99" value="set_variable startfirstbattle:yes"/>
     <property name="cond1" value="is variable_set rockittenchoice:yes"/>
    </properties>
   </object>
@@ -240,7 +255,9 @@
     <property name="act5" value="translated_dialog choseCardiling2"/>
     <property name="act6" value="wait 0.8"/>
     <property name="act7" value="pathfind professor,9,7"/>
+    <property name="act71" value="npc_face professor,down"/>
     <property name="act8" value="pathfind player,9,9"/>
+    <property name="act81" value="npc_face player,up"/>
     <property name="act9" value="translated_dialog chosefight"/>
     <property name="act97" value="set_variable havetuxemon:yes"/>
     <property name="act98" value="set_variable cardilingchoice:finished"/>
@@ -250,6 +267,21 @@
   </object>
   <object id="111" name="tweesherYES" type="event" x="224" y="112" width="16" height="16">
    <properties>
+    <property name="act1" value="translated_dialog choseTweesher"/>
+    <property name="act2" value="translated_dialog tweesher!"/>
+    <property name="act3" value="add_monster tweesher,5"/>
+    <property name="act4" value="pathfind professor,12,9"/>
+    <property name="act5" value="npc_face professor,up"/>
+    <property name="act6" value="translated_dialog choseTweesher2"/>
+    <property name="act61" value="wait 0.8"/>
+    <property name="act7" value="pathfind professor,9,7"/>
+    <property name="act71" value="npc_face professor,down"/>
+    <property name="act8" value="pathfind player,9,9"/>
+    <property name="act81" value="npc_face player,up"/>
+    <property name="act9" value="translated_dialog chosefight"/>
+    <property name="act97" value="set_variable havetuxemon:yes"/>
+    <property name="act98" value="set_variable tweesherchoice:finished"/>
+    <property name="act99" value="set_variable startfirstbattle:yes"/>
     <property name="cond1" value="is variable_set tweesherchoice:yes"/>
    </properties>
   </object>
@@ -272,6 +304,7 @@
     <property name="act7" value="create_npc professor,9,7,,stand"/>
     <property name="act8" value="npc_face professor,down"/>
     <property name="act9" value="translated_dialog wewnicefight"/>
+    <property name="act91" value="set_variable ohnotyou:itsme"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
     <property name="cond3" value="is variable_set cardilingchoice:finished"/>
@@ -288,6 +321,7 @@
     <property name="act7" value="create_npc professor,9,7,,stand"/>
     <property name="act8" value="npc_face professor,down"/>
     <property name="act9" value="translated_dialog wewnicefight"/>
+    <property name="act91" value="set_variable ohnotyou:itsme"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
     <property name="cond3" value="is variable_set rockittenchoice:finished"/>
@@ -304,9 +338,18 @@
     <property name="act7" value="create_npc professor,9,7,,stand"/>
     <property name="act8" value="npc_face professor,down"/>
     <property name="act9" value="translated_dialog wewnicefight"/>
+    <property name="act91" value="set_variable ohnotyou:itsme"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
     <property name="cond3" value="is variable_set tweesherchoice:finished"/>
+   </properties>
+  </object>
+  <object id="117" name="shesarrived" type="event" x="240" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog yahaha"/>
+    <property name="act2" value="create_npc allie,9,15,,stand"/>
+    <property name="act3" value="pathfind allie,7,8"/>
+    <property name="cond1" value="is variable_set ohnotyou:itsme"/>
    </properties>
   </object>
  </objectgroup>

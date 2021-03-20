@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="118">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -346,10 +346,85 @@
   </object>
   <object id="117" name="shesarrived" type="event" x="240" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog yahaha"/>
-    <property name="act2" value="create_npc allie,9,15,,stand"/>
-    <property name="act3" value="pathfind allie,7,8"/>
+    <property name="act10" value="translated_dialog yahaha"/>
+    <property name="act20" value="create_npc allie,9,15,,stand"/>
+    <property name="act30" value="pathfind allie,7,8"/>
+    <property name="act40" value="npc_face allie, right"/>
+    <property name="act50" value="wait 0.7"/>
+    <property name="act60" value="translated_dialog gasp"/>
+    <property name="act70" value="pathfind allie,8,9"/>
+    <property name="act80" value="npc_face allie,right"/>
+    <property name="act81" value="npc_face player,left"/>
+    <property name="act90" value="translated_dialog gasp2"/>
+    <property name="act99" value="set_variable ohnotyou:gasp"/>
     <property name="cond1" value="is variable_set ohnotyou:itsme"/>
+   </properties>
+  </object>
+  <object id="118" name="shesarrived2" type="event" x="240" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog brokethegasp"/>
+    <property name="act20" value="npc_face allie,up"/>
+    <property name="act21" value="npc_face player,up"/>
+    <property name="act30" value="translated_dialog brokethegasp2"/>
+    <property name="act40" value="translated_dialog brokethegasp3"/>
+    <property name="act50" value="wait 1"/>
+    <property name="act60" value="npc_face allie,right"/>
+    <property name="act70" value="wait 1"/>
+    <property name="act71" value="npc_face player,left"/>
+    <property name="act80" value="translated_dialog gasp3"/>
+    <property name="act81" value="wait 1.5"/>
+    <property name="act90" value="translated_dialog gasp4"/>
+    <property name="act99" value="set_variable ohnotyou:gone"/>
+    <property name="cond1" value="is variable_set ohnotyou:gasp"/>
+   </properties>
+  </object>
+  <object id="119" name="shesarrived3" type="event" x="240" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc knight1,10,15,,stand"/>
+    <property name="act2" value="create_npc knight2,10,16,,stand"/>
+    <property name="act3" value="pathfind knight1,8,7"/>
+    <property name="act4" value="pathfind knight2,10,7"/>
+    <property name="act5" value="npc_face knight1,down"/>
+    <property name="act6" value="npc_face knight2,down"/>
+    <property name="act7" value="set_variable timetomove:yes"/>
+    <property name="act8" value="set_variable ohnotyou:removed"/>
+    <property name="act9" value="npc_face allie,up"/>
+    <property name="cond1" value="is variable_set ohnotyou:gone"/>
+   </properties>
+  </object>
+  <object id="120" name="movin" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind knight2,9,17"/>
+    <property name="act2" value="remove_npc knight2"/>
+    <property name="act3" value="set_variable timetomove:done"/>
+    <property name="cond1" value="is variable_set timetomove:yes"/>
+   </properties>
+  </object>
+  <object id="122" name="movin2" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind knight1,9,17"/>
+    <property name="act2" value="remove_npc knight1"/>
+    <property name="act4" value="npc_face allie,right"/>
+    <property name="cond1" value="is variable_set timetomove:yes"/>
+   </properties>
+  </object>
+  <object id="123" name="movin3" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind professor,9,17"/>
+    <property name="act2" value="remove_npc professor"/>
+    <property name="cond1" value="is variable_set timetomove:yes"/>
+   </properties>
+  </object>
+  <object id="124" name="leavin" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="npc_face player,left"/>
+    <property name="act2" value="translated_dialog goodbye"/>
+    <property name="act3" value="pathfind allie,9,17"/>
+    <property name="act4" value="npc_face player,down"/>
+    <property name="act5" value="translated_dialog goodbye2"/>
+    <property name="act6" value="remove_npc allie"/>
+    <property name="act7" value="set_variable timetomove:finite"/>
+    <property name="cond1" value="is variable_set timetomove:done"/>
    </properties>
   </object>
  </objectgroup>

@@ -2079,6 +2079,39 @@ msgstr "Wow, that was a good fight!\n"
 msgid "yahaha"
 msgstr "Ah ha! Found you!"
 
+msgid "gasp"
+msgstr "Wait..."
+
+msgid "gasp2"
+msgstr "What are you doing here with this... Criminal?\n"
+"... .... ....\n... ... ...\n"
+"Joining the trial? You'd really subject yourself to that nonsense?\n"
+"If all you want is a job at Omnichannel, you could have just asked me.\n"
+"I'm sure I can find a... use for you if you're interested."
+
+msgid "brokethegasp"
+msgstr "Now, Miss, if I may, ${{name}} is doing it for more than a job."
+
+msgid "brokethegasp2"
+msgstr "You. Why are you talking? I didn't allow you to speak."
+
+msgid "brokethegasp3"
+msgstr "Please, miss omnichannel ma'am, ${{name}}'s Mother wanted them to join the Trial to see the entire region\n"
+"${{name}} isn't doing it for the job, they're doing it for the experience."
+
+msgid "gasp3"
+msgstr "If that's true, there's more to you than I realized..."
+
+msgid "gasp4"
+msgstr "Fine, I'll let your registration papers stay intact. For now.\n"
+"John, Grant, take the so-called Tuxemon Professor to his new home."
+
+msgid "goodbye"
+msgstr "Don't let the Trial prevent you from coming to see me. In fact... Maybe I'll find you first."
+
+msgid "goodbye2"
+msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

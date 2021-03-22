@@ -256,7 +256,7 @@ class Monster:
         """Create's a new Monster, with this monster as the mother and the passed in monster as father.
 
         :param father: The core.monster.Monster to be father of this monsterous child.
-        :type father : tuxemon.core.monster.Monster
+        :type father : tuxemon.monster.Monster
         """
         child = Monster()
         child.load_from_db(self.slug)

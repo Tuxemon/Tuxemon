@@ -30,11 +30,11 @@ import time
 
 import pygame as pg
 
-from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
-from tuxemon.core import cli, networking, prepare, rumble
-from tuxemon.core.event.eventengine import EventEngine
-from tuxemon.core.session import local_session
-from tuxemon.core.state import StateManager
+from tuxemon.platform.platform_pygame.events import PygameEventQueueHandler
+from tuxemon import cli, networking, prepare, rumble
+from tuxemon.event.eventengine import EventEngine
+from tuxemon.session import local_session
+from tuxemon.state import StateManager
 
 logger = logging.getLogger(__name__)
 
@@ -69,7 +69,7 @@ class Client(StateManager):
         self.interacts = list()
 
         # TODO: move out to state manager
-        self.package = "tuxemon.core.states"
+        self.package = "tuxemon.states"
         self._state_queue = list()
         self._state_dict = dict()
         self._state_stack = list()
@@ -119,7 +119,7 @@ class Client(StateManager):
     def load_map(self, map_data):
         """ Load map
 
-        :param tuxemon.core.map.TuxemonMap map_data:
+        :param tuxemon.map.TuxemonMap map_data:
         :return: None
         """
         self.events = map_data.events

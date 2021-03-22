@@ -22,7 +22,7 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
-from tuxemon.core.event.eventaction import EventAction
+from tuxemon.event.eventaction import EventAction
 import logging
 
 logger = logging.getLogger(__name__)

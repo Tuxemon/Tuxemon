@@ -135,7 +135,7 @@ def pygame_init():
     pg.init()
     pg.display.set_caption(CONFIG.window_caption)
 
-    from tuxemon.core import platform
+    from tuxemon import platform
 
     if platform.android:
         fullscreen = pg.FULLSCREEN

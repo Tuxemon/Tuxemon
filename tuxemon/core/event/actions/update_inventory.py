@@ -19,10 +19,10 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from tuxemon.core.db import db
-from tuxemon.core.event import get_npc
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.item.item import decode_inventory
+from tuxemon.db import db
+from tuxemon.event import get_npc
+from tuxemon.event.eventaction import EventAction
+from tuxemon.item.item import decode_inventory
 
 
 class UpdateInventoryAction(EventAction):

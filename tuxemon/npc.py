@@ -412,7 +412,7 @@ class NPC(Entity):
         :param instance_id: The instance_id of the monster.
         :type instance_id: uuid.UUID4
 
-        :rtype: tuxemon.core.monster.Monster
+        :rtype: tuxemon.monster.Monster
         :return: Monster found, or None.
 
         """
@@ -424,7 +424,7 @@ class NPC(Entity):
         :param instance_id: The insance_id of the monster.
         :type instance_id: uuid.UUID4
 
-        :rtype: tuxemon.core.monster.Monster
+        :rtype: tuxemon.monster.Monster
         :return: Monster found, or None.
 
         """
@@ -450,7 +450,7 @@ class NPC(Entity):
         """ Removes the monster from the player's storage.
 
         :param monster: Monster to remove from storage.
-        :type monster: tuxemon.core.monster.Monster
+        :type monster: tuxemon.monster.Monster
 
         :return: None
         :rtype: None

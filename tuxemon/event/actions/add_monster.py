@@ -21,7 +21,7 @@
 
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
-from tuxemon.core.event import get_npc
+from tuxemon.event import get_npc
 
 
 class AddMonsterAction(EventAction):

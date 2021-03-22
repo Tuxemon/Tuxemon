@@ -28,7 +28,7 @@ import logging
 import os.path
 import sys
 
-from tuxemon.core import platform
+from tuxemon import platform
 
 logger = logging.getLogger(__file__)
 

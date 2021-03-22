@@ -141,8 +141,6 @@ class TranslatorPo:
 
 def replace_text(context, text):
     """Replaces ${{var}} tiled variables with their in-session value.
-def replace_text(session, text):
-    """Replaces ${{var}} tiled variables with their in-session value.
 
     :param tuxemon.event.eventcontext.EventContext context:
     :param str text: Raw text from the map

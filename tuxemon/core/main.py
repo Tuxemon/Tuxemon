@@ -28,10 +28,10 @@
 
 import logging
 
-from tuxemon.core import log
-from tuxemon.core import prepare
-from tuxemon.core.player import Player
-from tuxemon.core.session import local_session
+from tuxemon import log
+from tuxemon import prepare
+from tuxemon.player import Player
+from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +44,7 @@ def main(load_slot=None):
     prepare.init()
 
     import pygame
-    from tuxemon.core.client import Client
+    from tuxemon.client import Client
 
     client = Client(prepare.CONFIG.window_caption)
     client.auto_state_discovery()
@@ -109,7 +109,7 @@ def headless():
     :returns: None
 
     """
-    from tuxemon.core.client import HeadlessClient
+    from tuxemon.client import HeadlessClient
 
     control = HeadlessClient()
     control.auto_state_discovery()

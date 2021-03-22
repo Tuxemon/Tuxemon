@@ -33,8 +33,6 @@ class MapSprite:
     More game objects should be represented by MapSprites overtime
     MapSprites are related to, but not the same same pygame Sprites
 
-    TODO: clarify the name sprite
-
     """
 
     def __init__(self, sprite_name):
@@ -146,7 +144,6 @@ class MapView:
         self.sprites = SpriteCache()
         self._current_map = None
 
-        # TODO: Transitions should be changed to states and not coded in here
         self.transition_alpha = 0
         self.transition_surface = None
         self.in_transition = False

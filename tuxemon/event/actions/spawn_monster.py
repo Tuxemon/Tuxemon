@@ -23,10 +23,10 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 import uuid
 
-from tuxemon.core.locale import process_translate_text
-from tuxemon.core.event.eventaction import EventAction
-from tuxemon.core.tools import open_dialog
-from tuxemon.core.graphics import get_avatar
+from tuxemon.locale import process_translate_text
+from tuxemon.event.eventaction import EventAction
+from tuxemon.tools import open_dialog
+from tuxemon.graphics import get_avatar
 import logging
 
 logger = logging.getLogger(__name__)

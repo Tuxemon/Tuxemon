@@ -27,7 +27,7 @@
 #
 #
 
-from tuxemon.core.prepare import CONFIG
+from tuxemon.prepare import CONFIG
 
 """
 This module is for handling breaking changes to the save file.

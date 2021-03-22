@@ -29,9 +29,9 @@ from contextlib import contextmanager
 from textwrap import dedent
 
 from tuxemon.constants import paths
-from tuxemon.core import plugin
-from tuxemon.core import prepare
-from tuxemon.core.platform.const import buttons
+from tuxemon import plugin
+from tuxemon import prepare
+from tuxemon.platform.const import buttons
 
 logger = logging.getLogger(__name__)
 
@@ -73,7 +73,7 @@ class RunningEvent:
 
         None will be returned if the MapEvent is finished
 
-        :rtype: tuxemon.core.event.MapAction
+        :rtype: tuxemon.event.MapAction
         """
         # if None, then make a new one
         try:
@@ -138,7 +138,7 @@ class EventEngine:
         :param parameters: list
         :type name: str
 
-        :rtype: tuxemon.core.event.eventaction.EventAction
+        :rtype: tuxemon.event.eventaction.EventAction
 
         """
         # TODO: make generic
@@ -164,7 +164,7 @@ class EventEngine:
 
         :type name: str
 
-        :rtype: tuxemon.core.event.eventcondition.EventCondition
+        :rtype: tuxemon.event.eventcondition.EventCondition
 
         """
         # TODO: make generic
@@ -183,8 +183,8 @@ class EventEngine:
 
         Returns False if the condition is not loaded properly
 
-        :type cond_data: tuxemon.core.event.MapCondition
-        :type map_event: tuxemon.core.event.MapEvent
+        :type cond_data: tuxemon.event.MapCondition
+        :type map_event: tuxemon.event.MapEvent
         :rtype: bool
         """
         with add_error_context(map_event, cond_data, self.session):
@@ -252,7 +252,7 @@ class EventEngine:
 
         Actions will be started, but may finish much later.
 
-        :type map_event: tuxemon.core.event.EventObject
+        :type map_event: tuxemon.event.EventObject
         :return: None
         """
         # debugging mode is slower and will check all conditions
@@ -412,7 +412,7 @@ class EventEngine:
 
         You should return None if you have handled input here.
 
-        :type event: tuxemon.core.input.PlayerInput
+        :type event: tuxemon.input.PlayerInput
         :rtype: Optional[core.input.PlayerInput]
         """
         # has the player pressed the action key?
@@ -426,9 +426,9 @@ class EventEngine:
 @contextmanager
 def add_error_context(event, item, session):
     """
-    :type event: tuxemon.core.event.EventObject
-    :type item: tuxemon.core.event.MapCondition or core.event.MapAction
-    :type session: tuxemon.core.session.Session
+    :type event: tuxemon.event.EventObject
+    :type item: tuxemon.event.MapCondition or core.event.MapAction
+    :type session: tuxemon.session.Session
     :rtype None
     """
     try:

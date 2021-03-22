@@ -207,6 +207,9 @@ def cast_values(parameters, valid_parameters):
                 if tt is None:
                     return None
 
+                if v is None:
+                    return None
+
                 try:
                     return tt(v)
                 except ValueError:

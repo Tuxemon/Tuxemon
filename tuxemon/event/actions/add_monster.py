@@ -21,25 +21,37 @@
 
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
+from tuxemon.core.event import get_npc
 
 
 class AddMonsterAction(EventAction):
-    """Adds a monster to the current player's party if there is room.
+    """Adds a monster to the specified trainer's party if there is room.
+    If no is trainer specified it defaults to the current player.
 
     The action parameter must contain a monster slug to look up in the monster database.
 
-    Valid Parameters: monster_slug, level
+    Valid Parameters: monster_slug, level(, trainer_slug)
     """
 
     name = "add_monster"
-    valid_parameters = [(str, "monster_slug"), (int, "monster_level")]
+    valid_parameters = [
+        (str, "monster_slug"),
+        (int, "monster_level"),
+        ((str, None), "trainer_slug")
+    ]
 
     def start(self):
-        monster_slug, monster_level = self.parameters
+
+        monster_slug, monster_level, trainer_slug = self.parameters
+
+        if trainer_slug is None:
+            trainer = self.session.player
+        else:
+            trainer = get_npc(self.session, trainer_slug)
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(monster_level)
         current_monster.current_hp = current_monster.hp
 
-        self.context.player.add_monster(current_monster)
+        trainer.add_monster(current_monster)

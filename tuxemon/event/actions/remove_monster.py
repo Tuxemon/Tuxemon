@@ -21,22 +21,33 @@
 import uuid
 
 from tuxemon.core.event.eventaction import EventAction
+from tuxemon.core.event import get_npc
 
 
 class RemoveMonsterAction(EventAction):
-    """Removes a monster from the current player's party if the monster is there.
+    """Removes a monster from the given trainer's party if the monster is there.
+    Monster is determined by instance_id, which must be passed in a game variable.
+    If no trainer slug is passed it defaults to the current player.
 
     Valid Parameters: instance_id
     """
     name = "remove_monster"
     valid_parameters = [
-        (str, "instance_id")
+        (str, "instance_id"),
+        ((str, None), "trainer_slug")
     ]
 
     def start(self):
         iid = self.session.player.game_variables[self.parameters.instance_id]
         instance_id = uuid.UUID(iid)
+        trainer_slug = self.parameters.trainer
 
-        monster = self.session.player.find_monster_by_id(instance_id)
+        if trainer_slug is None:
+            trainer = self.session.player
+        else:
+            trainer = get_npc(trainer_slug)
+
+        monster = trainer.find_monster_by_id(instance_id)
         if monster is not None:
             self.session.player.remove_monster(monster)
+

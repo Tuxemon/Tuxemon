@@ -89,10 +89,6 @@ class LocalPygameClient:
         to handle network events, we pass this session.Client instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
-
-        :rtype: None
-        :returns: None
-
         """
         update = self.update
         draw = self.draw
@@ -131,12 +127,8 @@ class LocalPygameClient:
     def stop(self):
         self.running = False
 
-    def update(self, time_delta):
+    def update(self, time_delta: float):
         """This method gets updated at least once per frame
-
-        :type time_delta: float
-        :rtype: None
-        :returns: None
         """
         # Android-specific check for pause
         if android and android.check_pause():
@@ -165,16 +157,12 @@ class LocalPygameClient:
         """Send inputs which release held buttons/axis
 
         Use to prevent player from holding buttons while state changes
-
-        :return:
         """
         events = self.input_manager.release_controls()
         self.key_events = list(self.process_events(events))
 
-    def draw(self, surface):
+    def draw(self, surface: pg.surface.Surface):
         """Draw all active states
-
-        :type surface: pg.surface.Surface
         """
         # TODO: refactor into Widget
 
@@ -261,10 +249,8 @@ class LocalPygameClient:
             logger.debug(f"got unhandled event: {game_event}")
         return game_event
 
-    def update_states(self, dt):
-        """Checks if a state is done or has called for a game quit.
-
-        :param Float dt: Time delta - Amount of time passed since last frame
+    def update_states(self, dt: float):
+        """Update time for active states
         """
         for state in self.state_manager.active_states:
             state.update(dt)

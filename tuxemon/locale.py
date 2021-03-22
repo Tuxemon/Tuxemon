@@ -37,8 +37,8 @@ import os.path
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon.constants import paths
 from tuxemon import prepare
+from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 

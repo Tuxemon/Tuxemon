@@ -9,8 +9,8 @@ from functools import partial
 
 import pygame
 
-from tuxemon.compat import Rect
 from tuxemon import audio, graphics, tools
+from tuxemon.compat import Rect
 from tuxemon.locale import T
 from tuxemon.menu.interface import HpBar, ExpBar
 from tuxemon.menu.menu import Menu

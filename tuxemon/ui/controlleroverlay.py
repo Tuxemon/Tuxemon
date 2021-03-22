@@ -32,8 +32,8 @@ import logging
 
 import pygame
 
-from tuxemon.compat import Rect
 from tuxemon import graphics
+from tuxemon.compat import Rect
 
 logger = logging.getLogger(__name__)
 

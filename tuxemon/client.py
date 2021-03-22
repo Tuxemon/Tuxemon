@@ -25,7 +25,6 @@
 #
 
 import logging
-import time
 
 import pygame as pg
 

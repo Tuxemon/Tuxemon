@@ -30,10 +30,11 @@ from math import cos, sin, pi
 import pytmx
 from natsort import natsorted
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.compat import Rect
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
+from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
     TuxemonMap,
     tiles_inside_rect,
@@ -44,7 +45,6 @@ from tuxemon.map import (
     snap_to_grid,
 )
 from tuxemon.tools import split_escaped, copy_dict_with_keys
-from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
 

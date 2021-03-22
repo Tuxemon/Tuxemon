@@ -4,9 +4,9 @@ from base64 import b64decode
 
 import pygame
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
 from tuxemon import save
+from tuxemon.compat import Rect
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu

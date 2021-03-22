@@ -39,8 +39,6 @@ import pygame
 from tuxemon import prepare
 from tuxemon.graphics import capture_screenshot
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
-from tuxemon import prepare, config
-from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:
     import cbor

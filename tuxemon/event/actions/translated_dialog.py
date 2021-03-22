@@ -21,10 +21,10 @@
 
 import logging
 
-from tuxemon.locale import process_translate_text
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
+from tuxemon.locale import process_translate_text
+from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
 

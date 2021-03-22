@@ -1,9 +1,8 @@
 import logging
 from functools import partial
 
-
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.compat import Rect
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu

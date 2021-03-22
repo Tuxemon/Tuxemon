@@ -8,8 +8,8 @@ import os
 
 import pyscroll
 
-from tuxemon.compat import Rect
 from tuxemon import prepare, pyganim
+from tuxemon.compat import Rect
 from tuxemon.graphics import load_and_scale
 from tuxemon.map import facing
 from tuxemon.prepare import CONFIG

@@ -33,12 +33,12 @@ from importlib import import_module
 
 import pygame
 
-from tuxemon.compat import Rect
-from tuxemon.constants import paths
 from tuxemon import prepare, graphics
 from tuxemon.animation import Animation
 from tuxemon.animation import Task
 from tuxemon.animation import remove_animations_of
+from tuxemon.compat import Rect
+from tuxemon.constants import paths
 from tuxemon.sprite import SpriteGroup
 
 logger = logging.getLogger(__name__)

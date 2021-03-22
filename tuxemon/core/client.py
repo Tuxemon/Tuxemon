@@ -30,9 +30,9 @@ import time
 
 import pygame as pg
 
-from tuxemon.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon import cli, networking, prepare, rumble
 from tuxemon.event.eventengine import EventEngine
+from tuxemon.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon.session import local_session
 from tuxemon.state import StateManager
 

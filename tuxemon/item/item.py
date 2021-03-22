@@ -32,12 +32,11 @@
 
 import logging
 
+from tuxemon import plugin
 from tuxemon import prepare, graphics
+from tuxemon.constants import paths
 from tuxemon.db import db, process_targets
 from tuxemon.locale import T
-
-from tuxemon import plugin
-from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 

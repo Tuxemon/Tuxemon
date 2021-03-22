@@ -35,8 +35,8 @@ import logging
 import os.path
 import re
 
-from tuxemon.constants import paths
 from tuxemon import config, log
+from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 

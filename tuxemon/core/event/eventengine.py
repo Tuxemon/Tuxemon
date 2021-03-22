@@ -28,9 +28,9 @@ import logging
 from contextlib import contextmanager
 from textwrap import dedent
 
-from tuxemon.constants import paths
 from tuxemon import plugin
 from tuxemon import prepare
+from tuxemon.constants import paths
 from tuxemon.platform.const import buttons
 
 logger = logging.getLogger(__name__)

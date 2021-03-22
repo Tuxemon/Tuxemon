@@ -4,8 +4,8 @@ from itertools import product
 
 import pygame
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.compat import Rect
 from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)

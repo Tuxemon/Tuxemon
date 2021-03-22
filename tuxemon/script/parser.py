@@ -20,11 +20,13 @@ There is no embedded grammar for arguments, it is up to each method to handle it
 """
 import logging
 import re
+
 from natsort import natsorted
+
 from tuxemon.event import EventObject, MapAction, MapCondition
+from tuxemon.lib.simplefsm import SimpleFSM
 from tuxemon.script.lexer import *
 from tuxemon.script.tokens import *
-from tuxemon.lib.simplefsm import SimpleFSM
 
 logger = logging.getLogger(__name__)
 

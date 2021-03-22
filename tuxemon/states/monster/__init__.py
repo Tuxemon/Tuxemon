@@ -1,8 +1,8 @@
 import pygame
 
-from tuxemon.compat import Rect
 from tuxemon import prepare, graphics
 from tuxemon import tools
+from tuxemon.compat import Rect
 from tuxemon.menu.interface import HpBar, ExpBar, MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.session import local_session

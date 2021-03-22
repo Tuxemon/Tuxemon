@@ -33,9 +33,9 @@ from collections import defaultdict, namedtuple
 from functools import partial
 from itertools import chain
 
-from tuxemon.compat import Rect
 from tuxemon import audio, state, tools, graphics
 from tuxemon.combat import check_status, fainted, get_awake_monsters, defeated
+from tuxemon.compat import Rect
 from tuxemon.locale import T
 from tuxemon.platform.const import buttons
 from tuxemon.pyganim import PygAnimation

@@ -48,7 +48,12 @@ class PluginManager:
     def __init__(self, base_folders=None):
         # TODO: move this to a config option
         if base_folders is None:
-            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "Tuxemon", "/mnt/Tuxemon"]
+            base_folders = [
+                "/data/data/org.tuxemon.game/files",
+                "exe.win32-2.7",
+                "Tuxemon",
+                "/mnt/Tuxemon",
+            ]
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
@@ -100,7 +105,9 @@ class PluginManager:
                     # Only import modules from the list of parent modules
                     if pattern in str(class_obj):
                         logger.debug("Importing: " + str(class_name))
-                        imported_modules.append(Plugin(module + "." + class_name, class_obj))
+                        imported_modules.append(
+                            Plugin(module + "." + class_name, class_obj)
+                        )
 
         return imported_modules
 

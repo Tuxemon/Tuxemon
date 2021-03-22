@@ -58,7 +58,10 @@ class CommandLine(cmd.Cmd):
 
         # Set up the command line prompt itself
         self.prompt = "Tuxemon>> "
-        self.intro = 'Tuxemon CLI\nType "help", "copyright", "credits"' ' or "license" for more information.'
+        self.intro = (
+            'Tuxemon CLI\nType "help", "copyright", "credits"'
+            ' or "license" for more information.'
+        )
 
         # set up a  pretty printer so that shit is formatted nicely
         self.pp = pprint.PrettyPrinter(indent=4)

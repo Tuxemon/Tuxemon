@@ -21,7 +21,11 @@ class Token:
         return f"<{self.__class__.__name__}: {self.args}, {self.kwargs}>"
 
     def __eq__(self, other):
-        return type(self) == type(other) and self.args == other.args and self.kwargs == other.kwargs
+        return (
+            type(self) == type(other)
+            and self.args == other.args
+            and self.kwargs == other.kwargs
+        )
 
     @property
     def value(self):

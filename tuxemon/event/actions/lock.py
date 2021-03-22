@@ -22,8 +22,7 @@ from tuxemon.event.eventaction import EventAction
 
 
 class LockAction(EventAction):
-    """Prevent player from moving their game entity
-    """
+    """Prevent player from moving their game entity"""
 
     name = "lock"
 

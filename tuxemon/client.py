@@ -189,7 +189,11 @@ class LocalPygameClient:
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if not state.transparent and state.rect == full_screen and not state.force_draw:
+            if (
+                not state.transparent
+                and state.rect == full_screen
+                and not state.force_draw
+            ):
                 break
 
         # draw from bottom up for proper layering

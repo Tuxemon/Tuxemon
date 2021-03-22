@@ -97,7 +97,9 @@ class ItemEffect:
         # make a namedtuple class that will generate the parameters
         # the patching of the class attribute should only happen once
         if self.__class__._param_factory is None:
-            self.__class__._param_factory = namedtuple("parameters", [i[1] for i in self.valid_parameters])
+            self.__class__._param_factory = namedtuple(
+                "parameters", [i[1] for i in self.valid_parameters]
+            )
 
         # if you need the parameters before they are processed, use this
         self.raw_parameters = parameters

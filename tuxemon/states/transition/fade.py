@@ -46,15 +46,27 @@ class FadeTransitionBase(State):
 
 class FadeOutTransition(FadeTransitionBase):
     def create_fade_animation(self):
-        self.animate(self.transition_surface, set_alpha=255, initial=0, duration=self.fade_duration)
+        self.animate(
+            self.transition_surface,
+            set_alpha=255,
+            initial=0,
+            duration=self.fade_duration,
+        )
 
     def shutdown(self):
         if self.client.current_music["previoussong"]:
-            self.client.event_engine.execute_action("play_music", [self.client.current_music["previoussong"]])
+            self.client.event_engine.execute_action(
+                "play_music", [self.client.current_music["previoussong"]]
+            )
             self.client.current_music["previoussong"] = None
         self.client.pop_state(self.caller)
 
 
 class FadeInTransition(FadeTransitionBase):
     def create_fade_animation(self):
-        self.animate(self.transition_surface, set_alpha=0, initial=255, duration=self.fade_duration)
+        self.animate(
+            self.transition_surface,
+            set_alpha=0,
+            initial=255,
+            duration=self.fade_duration,
+        )

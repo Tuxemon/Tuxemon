@@ -59,7 +59,9 @@ class InputMenu(Menu):
 
         # add the keys
         for char in self.chars:
-            yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
+            yield MenuItem(
+                self.shadow_text(char), None, None, partial(self.add_input_char, char)
+            )
 
         # backspace key
         yield MenuItem(self.shadow_text("←"), None, None, self.backspace)

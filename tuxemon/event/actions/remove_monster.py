@@ -31,11 +31,9 @@ class RemoveMonsterAction(EventAction):
 
     Valid Parameters: instance_id
     """
+
     name = "remove_monster"
-    valid_parameters = [
-        (str, "instance_id"),
-        ((str, None), "trainer_slug")
-    ]
+    valid_parameters = [(str, "instance_id"), ((str, None), "trainer_slug")]
 
     def start(self):
         iid = self.session.player.game_variables[self.parameters.instance_id]
@@ -50,4 +48,3 @@ class RemoveMonsterAction(EventAction):
         monster = trainer.find_monster_by_id(instance_id)
         if monster is not None:
             self.session.player.remove_monster(monster)
-

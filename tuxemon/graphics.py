@@ -136,7 +136,9 @@ def scale_surface(surface, factor):
     :returns: Scaled surface
     :rtype: pygame.Surface
     """
-    return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
+    return pygame.transform.scale(
+        surface, [int(i * factor) for i in surface.get_size()]
+    )
 
 
 def load_frames_files(directory, name):
@@ -228,7 +230,9 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
+    sprite._original_image = pygame.transform.scale(
+        sprite._original_image, sprite.rect.size
+    )
     sprite._needs_update = True
 
 

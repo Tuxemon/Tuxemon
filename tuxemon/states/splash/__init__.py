@@ -53,7 +53,9 @@ class SplashState(state.State):
         self.fading_out = False
 
         width, height = prepare.SCREEN_SIZE
-        splash_border = prepare.SCREEN_SIZE[0] / 20  # The space between the edge of the screen
+        splash_border = (
+            prepare.SCREEN_SIZE[0] / 20
+        )  # The space between the edge of the screen
 
         # Set up the splash screen logos
         logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")
@@ -61,7 +63,10 @@ class SplashState(state.State):
 
         # Set up the splash screen logos
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
-        cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
+        cc.rect.topleft = (
+            width - splash_border - cc.rect.width,
+            height - splash_border - cc.rect.height,
+        )
 
         self.ding = audio.load_sound("sound_ding")
         self.ding.play()

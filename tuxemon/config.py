@@ -86,9 +86,15 @@ class TuxemonConfig:
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
 
         # [gameplay]
-        self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
-        self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
-        self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
+        self.items_consumed_on_failure = cfg.getboolean(
+            "gameplay", "items_consumed_on_failure"
+        )
+        self.encounter_rate_modifier = cfg.getfloat(
+            "gameplay", "encounter_rate_modifier"
+        )
+        self.default_monster_storage_box = cfg.get(
+            "gameplay", "default_monster_storage_box"
+        )
         self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
 
         # [player]
@@ -145,63 +151,100 @@ def get_defaults():
 
     :rtype: OrderedDict
     """
-    return OrderedDict((
-        ("display", OrderedDict((
-            ("resolution_x", 1280),
-            ("resolution_y", 720),
-            ("splash", True),
-            ("fullscreen", False),
-            ("fps", 60),
-            ("show_fps", False),
-            ("scaling", True),
-            ("collision_map", False),
-            ("large_gui", False),
-            ("controller_overlay", False),
-            ("controller_transparency", 45),
-            ("hide_mouse", True),
-            ("window_caption", "Tuxemon"),
-        ))),
-        ("sound", OrderedDict((
-            ("sound_volume", 1.0),
-            ("music_volume", 1.0),
-        ))),
-        ("game", OrderedDict((
-            ("data", "tuxemon"),
-            ("starting_map", "player_house_bedroom.tmx"),
-            ("cli_enabled", False),
-            ("net_controller_enabled", False),
-            ("locale", "en_US"),
-            ("dev_tools", False),
-            ("recompile_translations", False),
-        ))),
-        ("gameplay", OrderedDict((
-            ("items_consumed_on_failure", True),
-            ("encounter_rate_modifier", 1.0),
-            ("default_monster_storage_box", "Kennel"),
-            ("default_item_storage_box", "Locker")
-        ))),
-        ("player", OrderedDict((
-            ("animation_speed", 0.15),
-            ("player_npc", "npc_red"),
-            ("player_walkrate", 3.75),
-            ("player_runrate", 7.35),
-        ))),
-        ("logging", OrderedDict((
-            ("loggers", "all"),
-            ("debug_logging", True),
-            ("debug_level", "error")
-        ))),
-        ("controls", OrderedDict((
-            ("up", "up"),
-            ("down", "down"),
-            ("left", "left"),
-            ("right", "right"),
-            ("a", "return"),
-            ("b", "rshift, lshift"),
-            ("back", "escape"),
-            ("backspace", "backspace")
-        ))),
-    ))
+    return OrderedDict(
+        (
+            (
+                "display",
+                OrderedDict(
+                    (
+                        ("resolution_x", 1280),
+                        ("resolution_y", 720),
+                        ("splash", True),
+                        ("fullscreen", False),
+                        ("fps", 60),
+                        ("show_fps", False),
+                        ("scaling", True),
+                        ("collision_map", False),
+                        ("large_gui", False),
+                        ("controller_overlay", False),
+                        ("controller_transparency", 45),
+                        ("hide_mouse", True),
+                        ("window_caption", "Tuxemon"),
+                    )
+                ),
+            ),
+            (
+                "sound",
+                OrderedDict(
+                    (
+                        ("sound_volume", 1.0),
+                        ("music_volume", 1.0),
+                    )
+                ),
+            ),
+            (
+                "game",
+                OrderedDict(
+                    (
+                        ("data", "tuxemon"),
+                        ("starting_map", "player_house_bedroom.tmx"),
+                        ("cli_enabled", False),
+                        ("net_controller_enabled", False),
+                        ("locale", "en_US"),
+                        ("dev_tools", False),
+                        ("recompile_translations", False),
+                    )
+                ),
+            ),
+            (
+                "gameplay",
+                OrderedDict(
+                    (
+                        ("items_consumed_on_failure", True),
+                        ("encounter_rate_modifier", 1.0),
+                        ("default_monster_storage_box", "Kennel"),
+                        ("default_item_storage_box", "Locker"),
+                    )
+                ),
+            ),
+            (
+                "player",
+                OrderedDict(
+                    (
+                        ("animation_speed", 0.15),
+                        ("player_npc", "npc_red"),
+                        ("player_walkrate", 3.75),
+                        ("player_runrate", 7.35),
+                    )
+                ),
+            ),
+            (
+                "logging",
+                OrderedDict(
+                    (
+                        ("loggers", "all"),
+                        ("debug_logging", True),
+                        ("debug_level", "error"),
+                    )
+                ),
+            ),
+            (
+                "controls",
+                OrderedDict(
+                    (
+                        ("up", "up"),
+                        ("down", "down"),
+                        ("left", "left"),
+                        ("right", "right"),
+                        ("a", "return"),
+                        ("b", "rshift, lshift"),
+                        ("back", "escape"),
+                        ("backspace", "backspace"),
+                    )
+                ),
+            ),
+        )
+    )
 
 
 def generate_default_config():
@@ -228,4 +271,6 @@ def populate_config(config, data):
         except configparser.DuplicateSectionError:
             pass
         for option, value in v.items():
-            config.set(k, option, str(value))  # yes.  all values must be stored as a string
+            config.set(
+                k, option, str(value)
+            )  # yes.  all values must be stored as a string

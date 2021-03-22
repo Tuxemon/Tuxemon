@@ -163,7 +163,9 @@ class Menu(state.State):
             for sprite in self.sprites:
                 if isinstance(sprite, TextArea):
                     return sprite
-            logger.error("attempted to use 'alert' on state without a TextArea", message)
+            logger.error(
+                "attempted to use 'alert' on state without a TextArea", message
+            )
             raise RuntimeError
 
         self.animate_text(find_textarea(), message, callback)
@@ -449,7 +451,12 @@ class Menu(state.State):
         disabled = True
         if hasattr(self, "menu_items") and event.pressed:
             disabled = all(not i.enabled for i in self.menu_items)
-        valid_change = event.pressed and self.state == "normal" and not disabled and self.menu_items
+        valid_change = (
+            event.pressed
+            and self.state == "normal"
+            and not disabled
+            and self.menu_items
+        )
 
         # confirm selection
         if event.button in (buttons.A, intentions.SELECT):
@@ -462,7 +469,9 @@ class Menu(state.State):
         if event.button in (buttons.UP, buttons.DOWN, buttons.LEFT, buttons.RIGHT):
             handled_event = True
             if valid_change:
-                index = self.menu_items.determine_cursor_movement(self.selected_index, event)
+                index = self.menu_items.determine_cursor_movement(
+                    self.selected_index, event
+                )
                 if not self.selected_index == index:
                     self.change_selection(index)
 
@@ -482,7 +491,9 @@ class Menu(state.State):
                 except AttributeError:
                     pass
                 else:
-                    mouse_pos = [a - b for a, b in zip(mouse_pos, self.menu_items.rect.topleft)]
+                    mouse_pos = [
+                        a - b for a, b in zip(mouse_pos, self.menu_items.rect.topleft)
+                    ]
 
                 for index, item in enumerate([i for i in self.menu_items if i.enabled]):
                     if item.rect.collidepoint(mouse_pos):
@@ -534,7 +545,9 @@ class Menu(state.State):
 
         if animate:
             self.remove_animations_of(self.arrow.rect)
-            return self.animate(self.arrow.rect, right=x, centery=y, duration=self.cursor_move_duration)
+            return self.animate(
+                self.arrow.rect, right=x, centery=y, duration=self.cursor_move_duration
+            )
         else:
             self.arrow.rect.midright = x, y
             return None
@@ -569,7 +582,9 @@ class Menu(state.State):
                     self._show_contents = True
                     # TODO: make some "dirty" or invalidate layout API
                     # this will make sure items are arranged as menu opens
-                    ani.update_callback = partial(setattr, self.menu_items, "_needs_arrange", True)
+                    ani.update_callback = partial(
+                        setattr, self.menu_items, "_needs_arrange", True
+                    )
                 ani.callback = show_items
             else:
                 self.state = "normal"
@@ -735,6 +750,8 @@ class PopUpMenu(Menu):
         self._needs_refresh = False
 
         # create animation to open window with
-        ani = self.animate(self.rect, height=rect.height, width=rect.width, duration=0.20)
+        ani = self.animate(
+            self.rect, height=rect.height, width=rect.width, duration=0.20
+        )
         ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
         return ani

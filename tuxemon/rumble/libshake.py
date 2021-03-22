@@ -30,7 +30,12 @@ class Shake_EffectRumble(Structure):
 
 
 class Shake_Envelope(Structure):
-    _fields_ = [("attackLength", c_int), ("attackLevel", c_int), ("fadeLength", c_int), ("fadeLevel", c_int)]
+    _fields_ = [
+        ("attackLength", c_int),
+        ("attackLevel", c_int),
+        ("fadeLength", c_int),
+        ("fadeLevel", c_int),
+    ]
 
 
 class Shake_EffectPeriodic(Structure):
@@ -84,7 +89,16 @@ class LibShakeRumble(Rumble):
         if target == -1:
             for i in range(self.libShake.Shake_NumOfDevices()):
                 self._start_thread(
-                    i, period, magnitude, length, delay, attack_length, attack_level, fade_length, fade_level, direction
+                    i,
+                    period,
+                    magnitude,
+                    length,
+                    delay,
+                    attack_length,
+                    attack_level,
+                    fade_length,
+                    fade_level,
+                    direction,
                 )
         else:
             self._start_thread(
@@ -172,7 +186,10 @@ class LibShakeRumble(Rumble):
         print("Device #%d" % self.libShake.Shake_DeviceId(device))
         print(" Name:", self.libShake.Shake_DeviceName(device))
         print(" Adjustable gain:", self.libShake.Shake_QueryGainSupport(device))
-        print(" Adjustable autocenter:", self.libShake.Shake_QueryAutocenterSupport(device))
+        print(
+            " Adjustable autocenter:",
+            self.libShake.Shake_QueryAutocenterSupport(device),
+        )
         print(" Effect capacity:", self.libShake.Shake_DeviceEffectCapacity(device))
         print(" Supported effects:")
         if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RUMBLE):
@@ -182,13 +199,17 @@ class LibShakeRumble(Rumble):
             print("  SHAKE_EFFECT_PERIODIC")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SQUARE):
                 print("  * SHAKE_PERIODIC_SQUARE")
-            if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_TRIANGLE):
+            if self.libShake.Shake_QueryWaveformSupport(
+                device, SHAKE_PERIODIC_TRIANGLE
+            ):
                 print("  * SHAKE_PERIODIC_TRIANGLE")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SINE):
                 print("  * SHAKE_PERIODIC_SINE")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SAW_UP):
                 print("  * SHAKE_PERIODIC_SAW_UP")
-            if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_SAW_DOWN):
+            if self.libShake.Shake_QueryWaveformSupport(
+                device, SHAKE_PERIODIC_SAW_DOWN
+            ):
                 print("  * SHAKE_PERIODIC_SAW_DOWN")
             if self.libShake.Shake_QueryWaveformSupport(device, SHAKE_PERIODIC_CUSTOM):
                 print("  * SHAKE_PERIODIC_CUSTOM")

@@ -43,8 +43,7 @@ logger = logging.getLogger(__name__)
 
 
 class Item:
-    """An item object is an item that can be used either in or out of combat.
-    """
+    """An item object is an item that can be used either in or out of combat."""
 
     effects = dict()
     conditions = dict()
@@ -60,7 +59,10 @@ class Item:
         self.sfx = None
         self.sprite = ""  # The path to the sprite to load.
         self.surface = None  # The pygame.Surface object of the item.
-        self.surface_size_original = (0, 0)  # The original size of the image before scaling.
+        self.surface_size_original = (
+            0,
+            0,
+        )  # The original size of the image before scaling.
 
         self.effects = {}
         self.conditions = {}
@@ -101,7 +103,9 @@ class Item:
 
         self.slug = results["slug"]  # short English identifier
         self.name = T.translate(self.slug)  # translated name
-        self.description = T.translate(f"{self.slug}_description")  # will be locale string
+        self.description = T.translate(
+            f"{self.slug}_description"
+        )  # will be locale string
 
         # item use notifications (translated!)
         self.use_item = T.translate(results["use_item"])
@@ -224,7 +228,13 @@ class Item:
         """
 
         # defaults for the return. items can override these values in their return.
-        meta_result = {"name": self.name, "num_shakes": 0, "capture": False, "should_tackle": False, "success": False}
+        meta_result = {
+            "name": self.name,
+            "num_shakes": 0,
+            "capture": False,
+            "should_tackle": False,
+            "success": False,
+        }
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
@@ -232,7 +242,9 @@ class Item:
             meta_result.update(result)
 
         # If this is a consumable item, remove it from the player's inventory.
-        if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
+        if (
+            prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
+        ) and self.type == "Consumable":
             if user.inventory[self.slug]["quantity"] <= 1:
                 del user.inventory[self.slug]
             else:
@@ -242,7 +254,7 @@ class Item:
 
 
 def decode_inventory(session, owner, data):
-    """ Reconstruct inventory from a save_data dict
+    """Reconstruct inventory from a save_data dict
 
     :param session:
     :param owner:
@@ -254,9 +266,7 @@ def decode_inventory(session, owner, data):
     """
     out = {}
     for slug, quant in data.items():
-        item = {
-            'item': Item(session, owner, slug)
-        }
+        item = {"item": Item(session, owner, slug)}
         if quant is None:
             item["quantity"] = 1
             # Infinite is used for shopkeepers

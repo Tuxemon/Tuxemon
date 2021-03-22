@@ -67,7 +67,10 @@ class GraphicBox(Sprite):
         iw, ih = image.get_size()
         tw, th = iw // 3, ih // 3
         self._tile_size = tw, th
-        self._tiles = [image.subsurface((x, y, tw, th)) for x, y in product(range(0, iw, tw), range(0, ih, th))]
+        self._tiles = [
+            image.subsurface((x, y, tw, th))
+            for x, y in product(range(0, iw, tw), range(0, ih, th))
+        ]
 
     def update_image(self):
         rect = Rect((0, 0), self._rect.size)
@@ -90,13 +93,25 @@ class GraphicBox(Sprite):
         # fill center with tiles from the border file
         elif self._fill_tiles:
             tw, th = self._tile_size
-            p = product(range(inner.left, inner.right, tw), range(inner.top, inner.bottom, th))
+            p = product(
+                range(inner.left, inner.right, tw), range(inner.top, inner.bottom, th)
+            )
             [surface.blit(self._tiles[4], pos) for pos in p]
 
         # draw the border
         if self._tiles:
             surface_blit = surface.blit
-            tile_nw, tile_w, tile_sw, tile_n, tile_c, tile_s, tile_ne, tile_e, tile_se = self._tiles
+            (
+                tile_nw,
+                tile_w,
+                tile_sw,
+                tile_n,
+                tile_c,
+                tile_s,
+                tile_ne,
+                tile_e,
+                tile_se,
+            ) = self._tiles
             left, top = rect.topleft
             tw, th = self._tile_size
 

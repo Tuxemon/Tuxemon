@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 # noinspection PyAttributeOutsideInit
 class GetPlayerMonsterAction(EventAction):
-    """ Sets the given key in the player.game_variables dictionary
+    """Sets the given key in the player.game_variables dictionary
     to the instance_id of the monster the player selects via monster menu.
 
     Valid Parameters: string variable_name
@@ -46,13 +46,14 @@ class GetPlayerMonsterAction(EventAction):
     }
 
     """
+
     name = "get_player_monster"
-    valid_parameters = [
-        (str, "variable_name")
-    ]
+    valid_parameters = [(str, "variable_name")]
 
     def set_var(self, menu_item):
-        self.player.game_variables[self.variable] = menu_item.game_object.instance_id.hex
+        self.player.game_variables[
+            self.variable
+        ] = menu_item.game_object.instance_id.hex
         self.session.client.pop_state()
 
     def start(self):

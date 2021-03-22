@@ -73,7 +73,10 @@ class StartBattleAction(EventAction):
         # Add our players and setup combat
         logger.debug("Starting battle!")
         self.context.client.push_state(
-            "CombatState", players=(player, npc), combat_type="trainer", graphics=env["battle_graphics"]
+            "CombatState",
+            players=(player, npc),
+            combat_type="trainer",
+            graphics=env["battle_graphics"],
         )
 
         # Start some music!

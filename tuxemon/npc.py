@@ -46,7 +46,12 @@ logger = logging.getLogger(__name__)
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
 animation_mapping = {
-    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    True: {
+        "up": "back_walk",
+        "down": "front_walk",
+        "left": "left_walk",
+        "right": "right_walk",
+    },
     False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
@@ -100,7 +105,9 @@ class NPC(Entity):
         self.game_variables = {}  # Tracks the game state
         self.interactions = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
+        self.monsters = (
+            []
+        )  # This is a list of tuxemon the npc has. Do not modify directly
         self.inventory = {}  # The Player's inventory.
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
@@ -151,25 +158,25 @@ class NPC(Entity):
         """
 
         state = {
-            'current_map': session.client.get_map_name(),
-            'facing': self.facing,
-            'game_variables': self.game_variables,
-            'inventory': encode_inventory(self.inventory),
-            'monsters': encode_monsters(self.monsters),
-            'player_name': self.name,
-            'monster_boxes': dict(),
-            'item_boxes': dict(),
-            'tile_pos': nearest(self.tile_pos),
+            "current_map": session.client.get_map_name(),
+            "facing": self.facing,
+            "game_variables": self.game_variables,
+            "inventory": encode_inventory(self.inventory),
+            "monsters": encode_monsters(self.monsters),
+            "player_name": self.name,
+            "monster_boxes": dict(),
+            "item_boxes": dict(),
+            "tile_pos": nearest(self.tile_pos),
         }
 
         for key, value in self.monster_boxes.items():
-            state['monster_boxes'][key] = encode_monsters(value)
+            state["monster_boxes"][key] = encode_monsters(value)
         for key, value in self.item_boxes.items():
-            state['item_boxes'][key] = encode_inventory(value)
+            state["item_boxes"][key] = encode_inventory(value)
 
         return state
 
-    def set_state(self, session,  save_data):
+    def set_state(self, session, save_data):
         """Recreates npc from saved data
 
         :param tuxemon.session.Session session:
@@ -177,14 +184,14 @@ class NPC(Entity):
         :rtype: None
         """
 
-        self.facing = save_data.get('facing', 'down')
-        self.game_variables = save_data['game_variables']
-        self.inventory = decode_inventory(session, self, save_data.get('inventory', {}))
+        self.facing = save_data.get("facing", "down")
+        self.game_variables = save_data["game_variables"]
+        self.inventory = decode_inventory(session, self, save_data.get("inventory", {}))
         self.monsters = decode_monsters(save_data.get("monsters"))
-        self.name = save_data['player_name']
-        for key, value in save_data['monster_boxes'].items():
+        self.name = save_data["player_name"]
+        for key, value in save_data["monster_boxes"].items():
             self.monster_boxes[key] = decode_monsters(value)
-        for key, value in save_data['item_boxes'].items():
+        for key, value in save_data["item_boxes"].items():
             self.item_boxes[key] = decode_inventory(session, self, value)
 
     def move_direction(self, direction):
@@ -320,7 +327,9 @@ class NPC(Entity):
 
         :param tile:
         """
-        return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        return (
+            tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        )
 
     @property
     def move_destination(self):
@@ -447,7 +456,7 @@ class NPC(Entity):
             self.set_party_status()
 
     def remove_monster_from_storage(self, monster):
-        """ Removes the monster from the player's storage.
+        """Removes the monster from the player's storage.
 
         :param monster: Monster to remove from storage.
         :type monster: tuxemon.monster.Monster
@@ -469,7 +478,10 @@ class NPC(Entity):
         :type index_1: int
         :type index_2: int
         """
-        self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
+        self.monsters[index_1], self.monsters[index_2] = (
+            self.monsters[index_2],
+            self.monsters[index_1],
+        )
 
     def load_party(self):
         """Loads the party of this npc from their npc.json entry."""

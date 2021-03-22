@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 # noinspection PyAttributeOutsideInit
 class ClearVariableAction(EventAction):
-    """ Clears the value of var from the game.
+    """Clears the value of var from the game.
 
     Valid Parameters: string variable_name
 
@@ -45,10 +45,9 @@ class ClearVariableAction(EventAction):
     }
 
     """
+
     name = "clear_variable"
-    valid_parameters = [
-        (str, "variable")
-    ]
+    valid_parameters = [(str, "variable")]
 
     def start(self):
         player = self.session.player

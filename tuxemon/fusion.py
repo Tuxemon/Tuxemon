@@ -66,8 +66,14 @@ class Body:
         self.face_image_path = ""  # The path to the face image to use.
         self.face_image = ""
 
-        self.face_size = (0, 0)  # The face size can be automatically obtained through self.get_face_size()
-        self.head_size = (0, 0)  # The head size differs from the face size to take beaks, etc. into account.
+        self.face_size = (
+            0,
+            0,
+        )  # The face size can be automatically obtained through self.get_face_size()
+        self.head_size = (
+            0,
+            0,
+        )  # The head size differs from the face size to take beaks, etc. into account.
         self.face_center = (0, 0)  # The center of the face.
 
         # Body properties
@@ -76,7 +82,13 @@ class Body:
         self.face_position = (0, 0)  # The center of the face on the body.
 
         # Colors
-        self.primary_colors = [(0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0)]  # 5 primary colors of the sprite
+        self.primary_colors = [
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+            (0, 0, 0),
+        ]  # 5 primary colors of the sprite
         self.secondary_colors = [
             (0, 0, 0),
             (0, 0, 0),
@@ -284,37 +296,63 @@ def fuse(body, face, save=True, filename=None):
 
     # Replace the _color of the body with the colors of the face.
     for i, color in enumerate(body.primary_colors):
-        body_image = replace_color(body_image, body.primary_colors[i], face.primary_colors[i])
-        body_image = replace_color(body_image, body.secondary_colors[i], face.secondary_colors[i])
-        body_image = replace_color(body_image, body.tertiary_colors[i], face.tertiary_colors[i])
+        body_image = replace_color(
+            body_image, body.primary_colors[i], face.primary_colors[i]
+        )
+        body_image = replace_color(
+            body_image, body.secondary_colors[i], face.secondary_colors[i]
+        )
+        body_image = replace_color(
+            body_image, body.tertiary_colors[i], face.tertiary_colors[i]
+        )
 
     # Set a scale for the images so we can resize them. Scaling results in a better image result.
     scale = 4
 
     # Scale the images
-    body_image = body_image.resize((body_image.getdata().size[0] * scale, body_image.getdata().size[1] * scale))
+    body_image = body_image.resize(
+        (body_image.getdata().size[0] * scale, body_image.getdata().size[1] * scale)
+    )
     face.face_image = face.face_image.resize(
-        (face.face_image.getdata().size[0] * scale, face.face_image.getdata().size[1] * scale)
+        (
+            face.face_image.getdata().size[0] * scale,
+            face.face_image.getdata().size[1] * scale,
+        )
     )
 
     # Update face size after we've performed our scaling.
-    face.face_size = (face.face_image.getdata().size[0], face.face_image.getdata().size[1])
+    face.face_size = (
+        face.face_image.getdata().size[0],
+        face.face_image.getdata().size[1],
+    )
 
     # Scale the new face position.
-    body.face_position = (((body.face_position[0] - 1) * scale) + 1, ((body.face_position[1] - 1) * scale) + 1)
+    body.face_position = (
+        ((body.face_position[0] - 1) * scale) + 1,
+        ((body.face_position[1] - 1) * scale) + 1,
+    )
 
     # Compare the head size of the body and the face so we can scale the face to fit the body.
     ratio_x = float(body.head_size[0]) / float(face.head_size[0])
     ratio_y = float(body.head_size[1]) / float(face.head_size[1])
 
     # Resize the head in ratio with the head size of the body
-    new_size = (int(face.face_image.getdata().size[0] * ratio_x), int(face.face_image.getdata().size[1] * ratio_y))
+    new_size = (
+        int(face.face_image.getdata().size[0] * ratio_x),
+        int(face.face_image.getdata().size[1] * ratio_y),
+    )
     face.face_image = face.face_image.resize(new_size)
 
-    face.face_size = (face.face_image.getdata().size[0], face.face_image.getdata().size[1])
+    face.face_size = (
+        face.face_image.getdata().size[0],
+        face.face_image.getdata().size[1],
+    )
 
     # Paste the face onto the body
-    position = (body.face_position[0] - (face.face_size[0] / 2), body.face_position[1] - (face.face_size[1] / 2))
+    position = (
+        body.face_position[0] - (face.face_size[0] / 2),
+        body.face_position[1] - (face.face_size[1] / 2),
+    )
     body_image.paste(face.face_image, position, face.face_image)
 
     # For some reason this looks really good.

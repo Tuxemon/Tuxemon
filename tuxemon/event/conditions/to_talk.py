@@ -46,7 +46,9 @@ class ToTalkCondition(EventCondition):
         Valid Parameters: npc slug
 
         """
-        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(context, event, condition)
+        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(
+            context, event, condition
+        )
         button_pressed = ButtonPressedCondition().test(
             context,
             event,

@@ -88,7 +88,9 @@ class PlayMapAnimationAction(EventAction):
 
         else:
             # Not loaded already, so load it...
-            animation, conductor = load_animation_from_frames(directory, animation_name, duration, loop)
+            animation, conductor = load_animation_from_frames(
+                directory, animation_name, duration, loop
+            )
 
             animations[animation_name] = {
                 "animation": animation,

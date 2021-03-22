@@ -170,7 +170,9 @@ class Movement:
         :param tile:
         :return:
         """
-        return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        return (
+            tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        )
 
     @property
     def move_destination(self):

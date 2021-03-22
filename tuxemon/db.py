@@ -48,7 +48,13 @@ def process_targets(json_targets):
     """
 
     return list(
-        map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True)))
+        map(
+            itemgetter(0),
+            filter(
+                itemgetter(1),
+                sorted(json_targets.items(), key=itemgetter(1), reverse=True),
+            ),
+        )
     )
 
 
@@ -174,7 +180,9 @@ class JSONDatabase:
 
         filename = self.database[table][slug]["file"] or slug
         if filename == slug:
-            logger.debug(f"Could not find a file record for slug {slug}, did you remember to create a database record?")
+            logger.debug(
+                f"Could not find a file record for slug {slug}, did you remember to create a database record?"
+            )
 
         return filename
 

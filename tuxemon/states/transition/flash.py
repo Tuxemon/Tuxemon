@@ -54,7 +54,9 @@ class FlashTransition(State):
         # If we've hit our max number of flashes, stop the battle
         # transition animation.
         if self.flash_count > self.max_flash_count:
-            logger.info("Flashed " + str(self.flash_count) + " times. Stopping transition.")
+            logger.info(
+                "Flashed " + str(self.flash_count) + " times. Stopping transition."
+            )
             self.client.pop_state()
 
     def draw(self, surface):

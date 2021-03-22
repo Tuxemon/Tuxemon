@@ -175,7 +175,9 @@ class WorldState(state.State):
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
-                self.player_npc.ignore_collisions = not self.player_npc.ignore_collisions
+                self.player_npc.ignore_collisions = (
+                    not self.player_npc.ignore_collisions
+                )
                 return
 
         # if we made it this far, return the event for others to use
@@ -211,7 +213,11 @@ class WorldState(state.State):
                 self.interaction_menu.interactable = True
                 self.interaction_menu.player = target
                 self.interaction_menu.interaction = "DUEL"
-                self.interaction_menu.menu_items = [target_name + " would like to Duel!", "Accept", "Decline"]
+                self.interaction_menu.menu_items = [
+                    target_name + " would like to Duel!",
+                    "Accept",
+                    "Decline",
+                ]
             else:
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
@@ -222,6 +228,9 @@ class WorldState(state.State):
                             "interaction": "START_DUEL",
                             "target": [event_data["target"]],
                             "response": None,
-                            "char_dict": {"monsters": pd["monsters"], "inventory": pd["inventory"]},
+                            "char_dict": {
+                                "monsters": pd["monsters"],
+                                "inventory": pd["inventory"],
+                            },
                         }
                         self.game.server.notify_client_interaction(cuuid, event_data)

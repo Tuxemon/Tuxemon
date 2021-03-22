@@ -75,7 +75,10 @@ class RandomEncounterAction(EventAction):
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
             self.context.client.queue_state(
-                "CombatState", players=(player, npc), combat_type="monster", graphics=env["battle_graphics"]
+                "CombatState",
+                players=(player, npc),
+                combat_type="monster",
+                graphics=env["battle_graphics"],
             )
 
             # stop the player
@@ -117,7 +120,9 @@ def _create_monster_npc(encounter):
     current_monster.load_from_db(encounter["monster"])
     # Set the monster's level based on the specified level range
     if len(encounter["level_range"]) > 1:
-        level = random.randrange(encounter["level_range"][0], encounter["level_range"][1])
+        level = random.randrange(
+            encounter["level_range"][0], encounter["level_range"][1]
+        )
     else:
         level = encounter["level_range"][0]
     # Set the monster's level

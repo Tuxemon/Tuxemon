@@ -313,7 +313,14 @@ class Animation(pygame.sprite.Sprite):
         if isinstance(self._transition, str):
             self._transition = getattr(AnimationTransition, self._transition)
         self._elapsed = 0.0
-        for key in ("duration", "transition", "round_values", "delay", "initial", "relative"):
+        for key in (
+            "duration",
+            "transition",
+            "round_values",
+            "delay",
+            "initial",
+            "relative",
+        ):
             kwargs.pop(key, None)
         if not kwargs:
             raise ValueError

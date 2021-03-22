@@ -42,7 +42,7 @@ class NpcMoveTileAction(EventAction):
         self.npc.velocity3 = self.npc.moverate * dirs3[direction]
 
     def update(self):
-        time_passed_seconds = .016
+        time_passed_seconds = 0.016
         self.update_physics(time_passed_seconds)
 
         if self.path_origin:
@@ -91,7 +91,9 @@ class NpcMoveTileAction(EventAction):
 
     def valid_movement(self, tile):
         return True
-        return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        return (
+            tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        )
 
     @property
     def move_destination(self):

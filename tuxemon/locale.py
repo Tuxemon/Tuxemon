@@ -30,7 +30,6 @@
 
 import dataclasses
 import gettext
-import json
 import logging
 import os
 import os.path
@@ -122,8 +121,7 @@ class TranslatorPo:
         self.translate = trans.gettext
 
     def format(self, text: str, parameters=None) -> str:
-        """Replaces variables in a translation string with the given parameters.
-        """
+        """Replaces variables in a translation string with the given parameters."""
         text = text.replace(r"\n", "\n")
         text = self.translate(text)
         if parameters:
@@ -131,8 +129,7 @@ class TranslatorPo:
         return text
 
     def maybe_translate(self, text: str) -> str:
-        """Try to translate the text. If None, return empty string
-        """
+        """Try to translate the text. If None, return empty string"""
         if text is None:
             return ""
         else:

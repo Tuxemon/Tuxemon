@@ -72,13 +72,13 @@ def get_system_storage_dirs():
             [
                 storage.primary_external_storage_path(),
                 storage.secondary_external_storage_path(),
-            ]
+            ],
         ):
             path = os.path.join(root, "Tuxemon")
             paths.append(path)
 
         # try to guess sd cards
-        blacklist="emulated"
+        blacklist = "emulated"
         for name in os.listdir("/storage"):
             if name not in blacklist:
                 path = os.path.join("storage", name, "Tuxemon")

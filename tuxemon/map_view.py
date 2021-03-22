@@ -17,7 +17,12 @@ from tuxemon.tools import nearest
 
 # reference direction and movement states to animation names
 animation_mapping = {
-    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    True: {
+        "up": "back_walk",
+        "down": "front_walk",
+        "left": "left_walk",
+        "right": "right_walk",
+    },
     False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
@@ -62,7 +67,10 @@ class MapSprite:
         anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
         for anim_type in anim_types:
             images = [
-                "sprites/{}_{}.{}.png".format(self.sprite_name, anim_type, str(num).rjust(3, "0")) for num in range(4)
+                "sprites/{}_{}.{}.png".format(
+                    self.sprite_name, anim_type, str(num).rjust(3, "0")
+                )
+                for num in range(4)
             ]
 
             frames = []
@@ -201,7 +209,11 @@ class MapView:
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
             if not anim.isFinished() and anim.visibility:
-                frame = (anim.getCurrentFrame(), anim_data["position"], anim_data["layer"])
+                frame = (
+                    anim.getCurrentFrame(),
+                    anim_data["position"],
+                    anim_data["layer"],
+                )
                 world_surfaces.append(frame)
         return world_surfaces
 
@@ -233,7 +245,9 @@ class MapView:
         self.sprite_layer = int(map_object.data.properties.get("sprite_layer", 2))
         self.tilewidth, self.tileheight = prepare.TILE_SIZE
         self.map_animations = dict()
-        return pyscroll.BufferedRenderer(visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2)
+        return pyscroll.BufferedRenderer(
+            visual_data, size, clamp_camera=map_object.clamped, tall_sprites=2
+        )
 
     def fade_and_teleport(self, duration=2):
         """Fade out, teleport, fade in
@@ -263,7 +277,9 @@ class MapView:
         :returns: None
         """
         self.set_transition_surface()
-        self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
+        self.animate(
+            self, transition_alpha=0, initial=255, duration=duration, round_values=True
+        )
         self.task(self.unlock_controls, duration - 0.5)
 
     def trigger_fade_out(self, duration=2):
@@ -274,7 +290,9 @@ class MapView:
         :returns: None
         """
         self.set_transition_surface()
-        self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
+        self.animate(
+            self, transition_alpha=255, initial=0, duration=duration, round_values=True
+        )
         self.stop_player()
         self.lock_controls()
 
@@ -318,15 +336,21 @@ class MapView:
         # The cinema bars are used for cinematic moments.
         # The cinema state can be: "off", "on", "turning on" or "turning off"
         self.cinema_state = "off"
-        self.cinema_speed = 15 * prepare.SCALE  # Pixels per second speed of the animation.
+        self.cinema_speed = (
+            15 * prepare.SCALE
+        )  # Pixels per second speed of the animation.
 
         self.cinema_top = {}
         self.cinema_bottom = {}
 
         # Create a surface that we'll use as black bars for a cinematic
         # experience
-        self.cinema_top["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
-        self.cinema_bottom["surface"] = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+        self.cinema_top["surface"] = pygame.Surface(
+            (self.resolution[0], self.resolution[1] / 6)
+        )
+        self.cinema_bottom["surface"] = pygame.Surface(
+            (self.resolution[0], self.resolution[1] / 6)
+        )
 
         # Fill our empty surface with black
         self.cinema_top["surface"].fill((0, 0, 0))
@@ -342,7 +366,10 @@ class MapView:
         # When cinema mode is ON, this will be the position we'll draw the
         # black bar.
         self.cinema_top["on_position"] = [0, 0]
-        self.cinema_bottom["on_position"] = [0, self.resolution[1] - self.cinema_bottom["surface"].get_height()]
+        self.cinema_bottom["on_position"] = [
+            0,
+            self.resolution[1] - self.cinema_bottom["surface"].get_height(),
+        ]
 
     def midscreen_animations(self, surface):
         """Handles midscreen animations that will be drawn UNDER menus and dialog.
@@ -359,8 +386,12 @@ class MapView:
 
         if self.cinema_state == "turning on":
 
-            self.cinema_top["position"][1] += self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom["position"][1] -= self.cinema_speed * self.time_passed_seconds
+            self.cinema_top["position"][1] += (
+                self.cinema_speed * self.time_passed_seconds
+            )
+            self.cinema_bottom["position"][1] -= (
+                self.cinema_speed * self.time_passed_seconds
+            )
 
             # If we've reached our target position, stop the animation.
             if self.cinema_top["position"] >= self.cinema_top["on_position"]:
@@ -380,13 +411,19 @@ class MapView:
 
         elif self.cinema_state == "turning off":
 
-            self.cinema_top["position"][1] -= self.cinema_speed * self.time_passed_seconds
-            self.cinema_bottom["position"][1] += self.cinema_speed * self.time_passed_seconds
+            self.cinema_top["position"][1] -= (
+                self.cinema_speed * self.time_passed_seconds
+            )
+            self.cinema_bottom["position"][1] += (
+                self.cinema_speed * self.time_passed_seconds
+            )
 
             # If we've reached our target position, stop the animation.
             if self.cinema_top["position"][1] <= self.cinema_top["off_position"][1]:
                 self.cinema_top["position"] = list(self.cinema_top["off_position"])
-                self.cinema_bottom["position"] = list(self.cinema_bottom["off_position"])
+                self.cinema_bottom["position"] = list(
+                    self.cinema_bottom["off_position"]
+                )
 
                 self.cinema_state = "off"
 

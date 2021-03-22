@@ -68,19 +68,27 @@ class SaveMenuState(PopUpMenu):
         if "error" in save_data:
             red = (255, 0, 0)
             pygame.draw.line(thumb_image, red, [0, 0], thumb_rect.size, 3)
-            pygame.draw.line(thumb_image, red, [0, thumb_rect.height], [thumb_rect.width, 0], 3)
+            pygame.draw.line(
+                thumb_image, red, [0, thumb_rect.height], [thumb_rect.width, 0], 3
+            )
 
         # Draw the screenshot
         slot_image.blit(thumb_image, (rect.width * 0.20, 0))
 
         # Draw the slot text
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(slot_image, T.translate("slot") + " " + str(slot_num), rect, font=self.font)
+        text.draw_text(
+            slot_image, T.translate("slot") + " " + str(slot_num), rect, font=self.font
+        )
 
         x = int(rect.width * 0.5)
-        text.draw_text(slot_image, save_data["player_name"], (x, 0, 500, 500), font=self.font)
+        text.draw_text(
+            slot_image, save_data["player_name"], (x, 0, 500, 500), font=self.font
+        )
         if "error" not in save_data:
-            text.draw_text(slot_image, save_data["time"], (x, 50, 500, 500), font=self.font)
+            text.draw_text(
+                slot_image, save_data["time"], (x, 50, 500, 500), font=self.font
+            )
 
         return slot_image
 
@@ -119,8 +127,15 @@ class SaveMenuState(PopUpMenu):
             menu.shrink_to_items = True
 
             # add choices
-            yes = MenuItem(self.shadow_text(T.translate("save_overwrite")), None, None, positive_answer)
-            no = MenuItem(self.shadow_text(T.translate("save_keep")), None, None, negative_answer)
+            yes = MenuItem(
+                self.shadow_text(T.translate("save_overwrite")),
+                None,
+                None,
+                positive_answer,
+            )
+            no = MenuItem(
+                self.shadow_text(T.translate("save_keep")), None, None, negative_answer
+            )
 
             menu.add(yes)
             menu.add(no)

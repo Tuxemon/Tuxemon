@@ -54,6 +54,8 @@ class PlayMusicAction(EventAction):
 
         # Keep track of what song we're currently playing
         if self.context.client.current_music["song"]:
-            self.context.client.current_music["previoussong"] = self.context.client.current_music["song"]
+            self.context.client.current_music[
+                "previoussong"
+            ] = self.context.client.current_music["song"]
         self.context.client.current_music["status"] = "playing"
         self.context.client.current_music["song"] = filename

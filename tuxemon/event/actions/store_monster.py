@@ -48,12 +48,10 @@ class StoreMonsterAction(EventAction):
     }
 
     """
+
     name = "store_monster"
-    valid_parameters = [
-        (str, "monster_id"),
-        (str, "box")
-    ]
-    
+    valid_parameters = [(str, "monster_id"), (str, "box")]
+
     def start(self):
         player = self.session.player
         instance_id = uuid.UUID(player.game_variables[self.parameters.monster_id])

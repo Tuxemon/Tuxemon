@@ -98,24 +98,34 @@ class PygAnimation:
 
         self._state = STOPPED  # The state is always either PLAYING, PAUSED, or STOPPED
         self._loop = loop  # If True, the animation will keep looping. If False, the animation stops after playing once.
-        self._rate = 1.0  # 2.0 means play the animation twice as fast, 0.5 means twice as slow
-        self._visibility = True  # If False, then nothing is drawn when the blit() methods are called
+        self._rate = (
+            1.0  # 2.0 means play the animation twice as fast, 0.5 means twice as slow
+        )
+        self._visibility = (
+            True  # If False, then nothing is drawn when the blit() methods are called
+        )
 
         self._playingStartTime = 0  # the time that the play() function was last called.
         self._pausedStartTime = 0  # the time that the pause() function was last called.
 
-        if frames != "_copy":  # ('_copy' is passed for frames by the getCopies() method)
+        if (
+            frames != "_copy"
+        ):  # ('_copy' is passed for frames by the getCopies() method)
             self.numFrames = len(frames)
             assert self.numFrames > 0, "Must contain at least one frame."
             for i in range(self.numFrames):
                 # load each frame of animation into _images
                 frame = frames[i]
-                assert type(frame) in (list, tuple) and len(frame) == 2, "Frame %s has incorrect format." % (i)
+                assert (
+                    type(frame) in (list, tuple) and len(frame) == 2
+                ), "Frame %s has incorrect format." % (i)
                 assert type(frame[0]) in (
                     str,
                     pygame.Surface,
                 ), "Frame %s image must be a string filename or a pygame.Surface" % (i)
-                assert frame[1] > 0, "Frame %s duration must be greater than zero." % (i)
+                assert frame[1] > 0, "Frame %s duration must be greater than zero." % (
+                    i
+                )
                 if type(frame[0]) == str:
                     frame = (pygame.image.load(frame[0]), frame[1])
                 self._images.append(frame[0])
@@ -209,7 +219,10 @@ class PygAnimation:
         self._transformedImages = []
 
     def makeTransformsPermanent(self):
-        self._images = [pygame.Surface(surfObj.get_size(), 0, surfObj) for surfObj in self._transformedImages]
+        self._images = [
+            pygame.Surface(surfObj.get_size(), 0, surfObj)
+            for surfObj in self._transformedImages
+        ]
         for i in range(len(self._transformedImages)):
             self._images[i].blit(self._transformedImages[i], (0, 0))
 
@@ -280,7 +293,9 @@ class PygAnimation:
             self._playingStartTime = startTime
         elif self._state == PAUSED:
             # if animation was paused, start playing from where it was paused
-            self._playingStartTime = startTime - (self._pausedStartTime - self._playingStartTime)
+            self._playingStartTime = startTime - (
+                self._pausedStartTime - self._playingStartTime
+            )
         self._state = PLAYING
 
     def pause(self, startTime=None):
@@ -402,15 +417,26 @@ class PygAnimation:
             elif anchorPoint == WEST:
                 newSurf.blit(self._images[i], (0, halfMaxHeight - halfFrameHeight))
             elif anchorPoint == CENTER:
-                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, halfMaxHeight - halfFrameHeight))
+                newSurf.blit(
+                    self._images[i],
+                    (halfMaxWidth - halfFrameWidth, halfMaxHeight - halfFrameHeight),
+                )
             elif anchorPoint == EAST:
-                newSurf.blit(self._images[i], (maxWidth - frameWidth, halfMaxHeight - halfFrameHeight))
+                newSurf.blit(
+                    self._images[i],
+                    (maxWidth - frameWidth, halfMaxHeight - halfFrameHeight),
+                )
             elif anchorPoint == SOUTHWEST:
                 newSurf.blit(self._images[i], (0, maxHeight - frameHeight))
             elif anchorPoint == SOUTH:
-                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, maxHeight - frameHeight))
+                newSurf.blit(
+                    self._images[i],
+                    (halfMaxWidth - halfFrameWidth, maxHeight - frameHeight),
+                )
             elif anchorPoint == SOUTHEAST:
-                newSurf.blit(self._images[i], (maxWidth - frameWidth, maxHeight - frameHeight))
+                newSurf.blit(
+                    self._images[i], (maxWidth - frameWidth, maxHeight - frameHeight)
+                )
             self._images[i] = newSurf
 
     def nextFrame(self, jump=1):
@@ -437,7 +463,9 @@ class PygAnimation:
     def fastForward(self, seconds=None):
         # Set the elapsed time forward relative to the current elapsed time.
         if seconds is None:
-            self.elapsed = self._startTimes[-1] - 0.00002  # done to compensate for rounding errors
+            self.elapsed = (
+                self._startTimes[-1] - 0.00002
+            )  # done to compensate for rounding errors
         else:
             self.elapsed += seconds
 
@@ -455,7 +483,9 @@ class PygAnimation:
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.flip
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
-            self._transformedImages[i] = pygame.transform.flip(self.getFrame(i), xbool, ybool)
+            self._transformedImages[i] = pygame.transform.flip(
+                self.getFrame(i), xbool, ybool
+            )
 
     def scale(self, width_height):
         # NOTE: Does not support the DestSurface parameter
@@ -463,21 +493,27 @@ class PygAnimation:
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.scale
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
-            self._transformedImages[i] = pygame.transform.scale(self.getFrame(i), width_height)
+            self._transformedImages[i] = pygame.transform.scale(
+                self.getFrame(i), width_height
+            )
 
     def rotate(self, angle):
         # Rotates the image.
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.rotate
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
-            self._transformedImages[i] = pygame.transform.rotate(self.getFrame(i), angle)
+            self._transformedImages[i] = pygame.transform.rotate(
+                self.getFrame(i), angle
+            )
 
     def rotozoom(self, angle, scale):
         # Rotates and scales the image simultaneously.
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.rotozoom
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
-            self._transformedImages[i] = pygame.transform.rotozoom(self.getFrame(i), angle, scale)
+            self._transformedImages[i] = pygame.transform.rotozoom(
+                self.getFrame(i), angle, scale
+            )
 
     def scale2x(self):
         # NOTE: Does not support the DestSurface parameter
@@ -494,7 +530,9 @@ class PygAnimation:
         # See http://pygame.org/docs/ref/transform.html#pygame.transform.smoothscale
         self._makeTransformedSurfacesIfNeeded()
         for i in range(len(self._images)):
-            self._transformedImages[i] = pygame.transform.smoothscale(self.getFrame(i), width_height)
+            self._transformedImages[i] = pygame.transform.smoothscale(
+                self.getFrame(i), width_height
+            )
 
     # pygame.Surface method wrappers
     # These wrappers call their analogous pygame.Surface methods on all Surface objects in this animation.
@@ -576,7 +614,9 @@ class PygAnimation:
 
     def _propSetState(self, state):
         if state not in (PLAYING, PAUSED, STOPPED):
-            raise ValueError("state must be one of pyganim.PLAYING, pyganim.PAUSED, or pyganim.STOPPED")
+            raise ValueError(
+                "state must be one of pyganim.PLAYING, pyganim.PAUSED, or pyganim.STOPPED"
+            )
         if state == PLAYING:
             self.play()
         elif state == PAUSED:
@@ -843,7 +883,9 @@ def findStartTime(startTimes, target):
     while True:
         i = int((ub - lb) / 2) + lb
 
-        if startTimes[i] == target or (startTimes[i] < target and startTimes[i + 1] > target):
+        if startTimes[i] == target or (
+            startTimes[i] < target and startTimes[i + 1] > target
+        ):
             if i == len(startTimes):
                 return i - 1
             else:

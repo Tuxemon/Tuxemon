@@ -30,7 +30,8 @@ import time
 
 import pygame as pg
 
-from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
+from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler, PygameKeyboardInput, \
+    PygameGamepadInput, PygameMouseInput, PygameTouchOverlayInput
 from tuxemon.core import cli, networking, prepare, rumble
 from tuxemon.core.event.eventengine import EventEngine
 from tuxemon.core.session import local_session
@@ -51,14 +52,14 @@ class Client(StateManager):
         :rtype: None
         """
         # Set up our game's configuration from the prepare module.
-        self.config = prepare.CONFIG
+        self.config = config = prepare.CONFIG
 
         # INFO: no need to call superclass for now
         self.screen = pg.display.get_surface()
         self.caption = caption
         self.done = False
-        self.fps = self.config.fps
-        self.show_fps = self.config.show_fps
+        self.fps = config.fps
+        self.show_fps = config.show_fps
         self.current_time = 0.0
         self.ishost = False
         self.isclient = False
@@ -76,7 +77,17 @@ class Client(StateManager):
         self._state_resume_set = set()
         self._remove_queue = list()
 
+        keyboard = PygameKeyboardInput(config.keyboard_button_map)
+        gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)
         self.input_manager = PygameEventQueueHandler()
+        self.input_manager.add_input(0, keyboard)
+        self.input_manager.add_input(0, gamepad)
+        if config.controller_overlay:
+            self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
+            self.controller_overlay.load()
+            self.input_manager.add_input(0, self.controller_overlay)
+        if not config.hide_mouse:
+            self.input_manager.add_input(0, PygameMouseInput())
 
         # movie creation
         self.frame_number = 0
@@ -241,6 +252,8 @@ class Client(StateManager):
             if time_since_draw >= frame_length:
                 time_since_draw -= frame_length
                 draw(screen)
+                if self.controller_overlay:
+                    self.controller_overlay.draw(screen)
                 flip()
                 frames += 1
 

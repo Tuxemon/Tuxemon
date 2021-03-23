@@ -2,10 +2,12 @@ from collections import defaultdict
 
 import pygame as pg
 
-from tuxemon.core import prepare
+from tuxemon.compat import Rect
+from tuxemon.core import prepare, graphics
 from tuxemon.core.platform.const import buttons, events
 from tuxemon.core.platform.events import InputHandler, PlayerInput, EventQueueHandler
 from tuxemon.core.session import local_session
+from tuxemon.core.ui.draw import blit_alpha
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -13,12 +15,10 @@ class PygameEventQueueHandler(EventQueueHandler):
     """
 
     def __init__(self):
-        # TODO: move this config to the config file
         self._inputs = defaultdict(list)  # type Dict[int, List[InputHandler]]
-        self._inputs[0].append(PygameKeyboardInput(prepare.CONFIG.keyboard_button_map))
-        self._inputs[0].append(PygameGamepadInput(prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone))
-        if prepare.CONFIG.hide_mouse is False:
-            self._inputs[0].append(PygameMouseInput())
+
+    def add_input(self, player, handler):
+        self._inputs[player].append(handler)
 
     def process_events(self):
         """ Process all pygame events
@@ -185,33 +185,150 @@ class PygameKeyboardInput(PygameEventHandler):
 
 
 class PygameTouchOverlayInput(PygameEventHandler):
-    def get_overlay_event(self, event):
+    default_input_map = dict()
+
+    def __init__(self, transparency):
+        super().__init__()
+        self.transparency = transparency
+        self.dpad = dict()
+        self.a_button = dict()
+        self.b_button = dict()
+        # TODO: try to simplify this
+        self.buttons[buttons.UP] = PlayerInput(buttons.UP)
+        self.buttons[buttons.DOWN] = PlayerInput(buttons.DOWN)
+        self.buttons[buttons.LEFT] = PlayerInput(buttons.LEFT)
+        self.buttons[buttons.RIGHT] = PlayerInput(buttons.RIGHT)
+        self.buttons[buttons.A] = PlayerInput(buttons.A)
+        self.buttons[buttons.B] = PlayerInput(buttons.B)
+
+    def process_event(self, pg_event):
         """ Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
         events for compatibility. This is primarily used for the mobile version
         of Tuxemon.
 
-        :type event: pg.event.Event
-        """
-        pressed = event.type == pg.MOUSEBUTTONDOWN
-        released = event.type == pg.MOUSEBUTTONUP
+        will probably be janky with multi touch
 
-        if (pressed or released) and event.button == 1:
-            mouse_pos = self.mouse_pos
-            dpad_rect = self.controller.dpad["rect"]
+        """
+        pressed = pg_event.type == pg.MOUSEBUTTONDOWN
+        released = pg_event.type == pg.MOUSEBUTTONUP
+        button = None
+
+        print(pg_event)
+
+        if (pressed or released) and pg_event.button == 1:
+            mouse_pos = pg_event.pos
+            dpad_rect = self.dpad["rect"]
 
             if dpad_rect["up"].collidepoint(mouse_pos):
-                yield PlayerInput(buttons.UP)
-            if dpad_rect["down"].collidepoint(mouse_pos):
-                yield PlayerInput(buttons.DOWN)
-            if dpad_rect["left"].collidepoint(mouse_pos):
-                yield PlayerInput(buttons.LEFT)
-            if dpad_rect["right"].collidepoint(mouse_pos):
-                yield PlayerInput(buttons.RIGHT)
-            if self.controller.a_button["rect"].collidepoint(mouse_pos):
-                yield PlayerInput(buttons.A)
-            if self.controller.b_button["rect"].collidepoint(mouse_pos):
-                yield PlayerInput(buttons.B)
+                button = buttons.UP
+            elif dpad_rect["down"].collidepoint(mouse_pos):
+                button = buttons.DOWN
+            elif dpad_rect["left"].collidepoint(mouse_pos):
+                button = buttons.LEFT
+            elif dpad_rect["right"].collidepoint(mouse_pos):
+                button = buttons.RIGHT
+            elif self.a_button["rect"].collidepoint(mouse_pos):
+                button = buttons.A
+            elif self.b_button["rect"].collidepoint(mouse_pos):
+                button = buttons.B
+
+        if pressed and button:
+            self.press(button)
+        elif released:
+            for button in self.buttons:
+                self.release(button)
+
+    def load(self):
+        from tuxemon.core import prepare
+
+        self.dpad["surface"] = graphics.load_and_scale("gfx/d-pad.png")
+        self.dpad["position"] = (
+            0,
+            prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height(),
+        )
+
+        # Create the collision rectangle objects for the dpad so we can see if we're pressing a button
+        self.dpad["rect"] = {}
+        self.dpad["rect"]["up"] = Rect(
+            self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
+            self.dpad["position"][1],  # Rectangle position_y
+            self.dpad["surface"].get_width() / 3,  # Rectangle size_x
+            self.dpad["surface"].get_height() / 2,
+        )  # Rectangle size_y
+        self.dpad["rect"]["down"] = Rect(
+            self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
+            self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2),
+            self.dpad["surface"].get_width() / 3,
+            self.dpad["surface"].get_height() / 2,
+        )
+        self.dpad["rect"]["left"] = Rect(
+            self.dpad["position"][0],
+            self.dpad["position"][1] + (self.dpad["surface"].get_height() / 3),
+            self.dpad["surface"].get_width() / 2,
+            self.dpad["surface"].get_height() / 3,
+        )
+        self.dpad["rect"]["right"] = Rect(
+            self.dpad["position"][0] + (self.dpad["surface"].get_width() / 2),
+            self.dpad["position"][1] + (self.dpad["surface"].get_height() / 3),
+            self.dpad["surface"].get_width() / 2,
+            self.dpad["surface"].get_height() / 3,
+        )
+
+        # Create the buttons
+        self.a_button["surface"] = graphics.load_and_scale("gfx/a-button.png")
+        self.a_button["position"] = (
+            prepare.SCREEN_SIZE[0] - int(self.a_button["surface"].get_width() * 1.0),
+            (
+                self.dpad["position"][1]
+                + (self.dpad["surface"].get_height() / 2)
+                - (self.a_button["surface"].get_height() / 2)
+            ),
+        )
+        self.a_button["rect"] = Rect(
+            self.a_button["position"][0],
+            self.a_button["position"][1],
+            self.a_button["surface"].get_width(),
+            self.a_button["surface"].get_height(),
+        )
+
+        self.b_button["surface"] = graphics.load_and_scale("gfx/b-button.png")
+        self.b_button["position"] = (
+            prepare.SCREEN_SIZE[0] - int(self.b_button["surface"].get_width() * 2.1),
+            (
+                self.dpad["position"][1]
+                + (self.dpad["surface"].get_height() / 2)
+                - (self.b_button["surface"].get_height() / 2)
+            ),
+        )
+        self.b_button["rect"] = Rect(
+            self.b_button["position"][0],
+            self.b_button["position"][1],
+            self.b_button["surface"].get_width(),
+            self.b_button["surface"].get_height(),
+        )
+
+    def draw(self, screen):
+        """Draws the controller overlay to the screen.
+        """
+        blit_alpha(
+            screen,
+            self.dpad["surface"],
+            self.dpad["position"],
+            self.transparency,
+        )
+        blit_alpha(
+            screen,
+            self.a_button["surface"],
+            self.a_button["position"],
+            self.transparency,
+        )
+        blit_alpha(
+            screen,
+            self.b_button["surface"],
+            self.b_button["position"],
+            self.transparency,
+        )
 
 
 class PygameMouseInput(PygameEventHandler):

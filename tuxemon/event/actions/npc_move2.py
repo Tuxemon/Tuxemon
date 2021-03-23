@@ -45,12 +45,10 @@ class NpcMoveTileAction(EventAction):
         time_passed_seconds = 0.016
         self.update_physics(time_passed_seconds)
 
-        if self.path_origin:
-            self.check_waypoint()
-        elif self.path:
-            self.next_waypoint()
-
-        self.stop()
+        # if self.path_origin:
+        #     self.check_waypoint()
+        # elif self.path:
+        #     self.next_waypoint()
 
     def check_continue(self):
         try:

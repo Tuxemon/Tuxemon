@@ -31,8 +31,7 @@ import logging
 from functools import partial
 
 import tuxemon
-from tuxemon import prepare, state, networking
-from tuxemon import rumble
+from tuxemon import prepare, state
 from tuxemon.map import direction_map
 from tuxemon.map_view import MapView
 from tuxemon.platform.const import buttons, events, intentions
@@ -61,11 +60,10 @@ class WorldState(state.State):
         self.client = local_session.client
         self.wants_to_move_player = None
         self.current_music = {"status": "stopped", "song": None, "previoussong": None}
-        self.rumble_manager = rumble.RumbleManager()
-        self.rumble = self.rumble_manager.rumbler
         self.player_npc = None
         self.view = None
         self.session = None
+        self.walking_id = None
 
     def startup(self, *args, **kwargs):
         session = kwargs["session"]
@@ -89,7 +87,7 @@ class WorldState(state.State):
         self.wants_to_move_player = None
         self.client.release_controls()
         if self.player_npc is not None:
-            self.player_npc.cancel_movement()
+            self.player_npc.stop_moving2()
 
     def stop_and_reset_player(self):
         """Reset controls, stop player and abort movement.  Do not lock controls.
@@ -101,16 +99,12 @@ class WorldState(state.State):
         """
         self.wants_to_move_player = None
         self.client.release_controls()
-        if self.player_npc is not None:
-            self.player_npc.abort_movement()
-
-    def move_player(self, direction: str):
-        """Move player in a direction.  Changes facing."""
-        # TODO: clean up the event engines so this call is not so horrible
-        do = partial(self.session.world.eventengine.start_action, self.session)
-        print("move")
-        do("player_face", [direction])
-        do("npc_move_tile", ("player", direction))
+        # if self.player_npc is not None:
+        #     self.player_npc.abort_movement()
+        if self.walking_id:
+            event = self.session.world.eventengine.get_running_event(self.walking_id)
+            event.running_action.stop()
+            self.walking_id = None
 
     def pause(self):
         """Called before another state gets focus"""
@@ -166,11 +160,15 @@ class WorldState(state.State):
             if direction is not None:
                 if event.held:
                     self.wants_to_move_player = direction
-                    self.move_player(direction)
-                    return
+                    if self.wants_to_move_player is None:
+                        do = partial(self.session.world.eventengine.start_action, self.session)
+                        do("player_face", [direction])
+                        self.walking_id = do("npc_move_tile", ("player", direction))
+                        return
                 elif not event.pressed:
                     if direction == self.wants_to_move_player:
-                        self.stop_player()
+                        do = partial(self.session.world.eventengine.start_action, self.session)
+                        do("npc_stop", ["player"])
                         return
 
         if prepare.DEV_TOOLS:
@@ -199,38 +197,3 @@ class WorldState(state.State):
                 return PlayerInput(intentions.NOCLIP, event.value, event.hold_time)
 
         return event
-
-    # boneyard
-
-    def handle_interaction(self, event_data, registry):
-        """Presents options window when another player has interacted with this player."""
-        target = registry[event_data["target"]]["sprite"]
-        target_name = str(target.name)
-        networking.update_client(target, event_data["char_dict"], self.game)
-        if event_data["interaction"] == "DUEL":
-            if not event_data["response"]:
-                self.interaction_menu.visible = True
-                self.interaction_menu.interactable = True
-                self.interaction_menu.player = target
-                self.interaction_menu.interaction = "DUEL"
-                self.interaction_menu.menu_items = [
-                    target_name + " would like to Duel!",
-                    "Accept",
-                    "Decline",
-                ]
-            else:
-                if self.wants_duel:
-                    if event_data["response"] == "Accept":
-                        world = self.game.current_statimape
-                        pd = world.player1.__dict__
-                        event_data = {
-                            "type": "CLIENT_INTERACTION",
-                            "interaction": "START_DUEL",
-                            "target": [event_data["target"]],
-                            "response": None,
-                            "char_dict": {
-                                "monsters": pd["monsters"],
-                                "inventory": pd["inventory"],
-                            },
-                        }
-                        self.game.server.notify_client_interaction(cuuid, event_data)

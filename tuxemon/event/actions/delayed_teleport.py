@@ -19,7 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from tuxemon.euclid import Vector3
+from tuxemon.lib.euclid import Vector3
 from tuxemon.event.eventaction import EventAction
 
 

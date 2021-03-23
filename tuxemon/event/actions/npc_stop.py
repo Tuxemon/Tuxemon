@@ -19,35 +19,27 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from tuxemon.lib.euclid import Vector3
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 
-class TeleportAction(EventAction):
-    """Teleport the player to a particular map and tile coordinates
+class NpcStopAction(EventAction):
+    name = "npc_stop"
 
-    Valid Parameters: map_name, coordinate_x, coordinate_y
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "teleport",
-        "parameters": [
-            "taba_town.tmx",
-            "5",
-            "5"
-        ]
-    }
-
-    """
-
-    name = "teleport"
-    valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
+    def __init__(self, *args, **kwrags):
+        super().__init__(*args, **kwrags)
+        self.npc = None
+        self.path = None
+        self.path_origin = None
 
     def start(self):
-        position = Vector3(self.parameters.x, self.parameters.y, 0)
-        self.context.client.release_controls()
-        self.context.world.teleport(
-            self.context.player, self.parameters.map_name, position
-        )
+        npc_slug = self.raw_parameters[0]
+        self.npc = get_npc(self.context, npc_slug)
+
+        engine = self.context.engine
+        for task_id, actionlist in engine.running_events.items():
+            action = actionlist.running_action
+            if actionlist.running_action.context.name == "npc_move_tile":
+                action.stop()
+
+        self.context.engine.set_message("player_moved")

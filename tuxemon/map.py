@@ -34,7 +34,7 @@ from itertools import product
 from math import pi, atan2, cos, sin
 
 from tuxemon.compat import Rect
-from tuxemon.euclid import Vector2, Vector3, Point2
+from tuxemon.lib.euclid import Vector2, Vector3, Point2
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.platform.const import intentions
 from tuxemon.tools import round_to_divisible

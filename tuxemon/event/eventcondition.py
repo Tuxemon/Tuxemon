@@ -60,3 +60,6 @@ class EventCondition:
     @property
     def done(self):
         return True
+
+    def program(self, event_condition):
+        pass

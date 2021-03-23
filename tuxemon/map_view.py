@@ -176,6 +176,7 @@ class MapView:
             if self.renderer is None:
                 filename = prepare.fetch("maps", gamemap.name)
                 self.renderer = self.initialize_map_renderer(rect.size, filename)
+                self._current_map = gamemap
 
         if self.renderer:
             self.center_on_entity(self.tracked_entity)

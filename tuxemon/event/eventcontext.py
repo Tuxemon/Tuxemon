@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-
-
-# from tuxemon.event.eventengine import EventEngine
-# from tuxemon.session import Session
+from typing import Any
 
 
 @dataclass
@@ -15,3 +12,5 @@ class EventContext:
     client: LocalPygameClient
     player: Player
     map: TuxemonMap
+    name: str
+    parameters: Any

@@ -28,5 +28,8 @@ class PlayerAtCondition(EventCondition):
 
     name = "player_at"
 
+    def program(self, condition):
+        return "player_moved"
+
     def test(self, context, event, condition):
         return entity_at_position(context.player, event)

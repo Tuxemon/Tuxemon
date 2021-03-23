@@ -27,8 +27,10 @@ from __future__ import annotations
 
 import logging
 import uuid
+from collections import defaultdict
 from contextlib import contextmanager
 from textwrap import dedent
+from typing import List
 
 from lxml import etree
 
@@ -54,7 +56,7 @@ class ActionList:
     def __init__(self, session, actions):
         self.session = session
         self.actions = actions
-        self.context = dict()
+        self.context = None
         self.index = 0
         self.running_action = None
 
@@ -67,6 +69,9 @@ class EventEngine:
         self.running_events = dict()
         self.conditions = dict()
         self.actions = dict()
+
+        self.tags = defaultdict(list)
+        self.messages = set()
 
         # TODO: remove this hack
         self.world = None
@@ -82,6 +87,16 @@ class EventEngine:
 
     def load_condition(self, condition: EventCondition):
         self.conditions[condition.name] = condition
+
+    def load_events(self, events: List):
+        for event in events:
+            for event_condition in event.conds:
+                condition = self.get_condition(event_condition.name)
+                tag = condition.program(event_condition)
+                if tag:
+                    self.tags[tag].append(event)
+                break  # this is a hack
+            self.events.append(event)
 
     def get_action(self, name: str):
         try:
@@ -106,6 +121,8 @@ class EventEngine:
             player=session.player,
             session=session,
             world=session.world,
+            name=name,
+            parameters=parameters,
         )
         return action(context, parameters)
 
@@ -154,11 +171,8 @@ class EventEngine:
             actionlist = ActionList(session, map_event.acts)
             self.running_events[map_event.id] = actionlist
 
-    def process_map_event(self, map_event: EventObject):
-        """Check the conditions of an event execute actions if all conditions are valid
-
-        Actions will be started, but may finish much later.
-        """
+    def get_running_event(self, event_id):
+        return self.running_events[event_id]
 
     def process_map_events(self, events):
         """Check conditions in a list or sequence and starts new actions"""
@@ -166,27 +180,28 @@ class EventEngine:
             # TODO: support more sessions
             session = local_session
 
-            # debugging mode is slower and will check all conditions
-            if prepare.CONFIG.collision_map:
-                started = 0
-                conds = list()
-                for cond in event.conds:
-                    if self.check_condition(session, cond, event):
-                        conds.append((True, cond))
-                        started += 1
-                    else:
-                        conds.append((False, cond))
-                if started == len(event.conds):
-                    self.start_event(session, event)
-            else:
-                if all(
-                    self.check_condition(session, cond, event) for cond in event.conds
-                ):
-                    self.start_event(session, event)
+            if all(
+                self.check_condition(session, cond, event) for cond in event.conds
+            ):
+                self.start_event(session, event)
+
+    def set_message(self, message):
+        self.messages.add(message)
 
     def update(self, dt: float):
         """Check all the MapEvents and start their actions if conditions are OK"""
-        self.check_conditions()
+        # self.check_conditions()
+
+        session = local_session
+        for message in self.messages:
+            for event in self.tags[message]:
+                if all(
+                        self.check_condition(session, cond, event) for cond in event.conds
+                ):
+                    self.start_event(session, event)
+
+        self.messages.clear()
+
         self.update_running_events(dt)
 
     def check_conditions(self):

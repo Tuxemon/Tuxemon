@@ -6,7 +6,7 @@ from tuxemon import prepare
 from tuxemon.clock import Scheduler
 from tuxemon.constants import paths
 from tuxemon.entity import Entity
-from tuxemon.euclid import Point2
+from tuxemon.lib.euclid import Point2
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
 from tuxemon.map_loader import TMXMapLoader
@@ -85,7 +85,7 @@ class World:
 
     def update(self, time_delta: float):
         """Update time"""
-        self.time += time_delta
+        self.clock.tick()
         self.eventengine.update(time_delta)
 
     def add_entity(self, entity: Entity, position: Position):
@@ -141,8 +141,7 @@ class World:
         filename = prepare.fetch("maps", map_name)
         map_object = TMXMapLoader().load(filename)
         self.maps[map_name] = map_object
-        # TODO: safe load
-        self.eventengine.events.extend(map_object.events)
+        self.eventengine.load_events(map_object.events)
         return map_object
 
     def get_map(self, map_name: str) -> TuxemonMap:

@@ -29,6 +29,7 @@
 #
 
 import logging
+from functools import partial
 from math import hypot
 
 from tuxemon.db import db
@@ -148,6 +149,8 @@ class NPC(Entity):
         # self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
 
         self.animation = None
+
+        self.walking_id = None
 
     def get_state(self, session):
         """Prepares a dictionary of the npc to be saved to a file

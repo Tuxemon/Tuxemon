@@ -17,6 +17,7 @@ Tuxemon uses a number of open source projects to work properly:
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
 * *python-pyscroll* - fast module for animated scrolling maps.
 * *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
+* *pypresence* - A complete Discord IPC and Rich Presence wrapper
 
 *Optional*
 

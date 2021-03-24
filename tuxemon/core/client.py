@@ -30,6 +30,9 @@ import time
 
 import pygame as pg
 
+#Rich Presence
+from pypresence import Presence
+
 from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon.core import cli, networking, prepare, rumble
 from tuxemon.core.event.eventengine import EventEngine
@@ -37,6 +40,11 @@ from tuxemon.core.session import local_session
 from tuxemon.core.state import StateManager
 
 logger = logging.getLogger(__name__)
+
+#Rich Presence Implementation Part 1
+client_id = '824398106182811698'  # Put your Client ID here, this is mine lol
+RPC = Presence(client_id)  # Initialize the Presence class
+RPC.connect()  # Start the handshake loop
 
 
 class Client(StateManager):
@@ -261,7 +269,10 @@ class Client(StateManager):
         # Android-specific check for pause
         # if android and android.check_pause():
         #     android.wait_for_resume()
-
+        
+        #PyPrecense Implementation part 2
+        RPC.update(details="Catching Open Source Monsters!")
+        
         # Update our networking
         if self.controller_server:
             self.controller_server.update()

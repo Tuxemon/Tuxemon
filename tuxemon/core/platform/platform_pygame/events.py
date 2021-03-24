@@ -214,8 +214,6 @@ class PygameTouchOverlayInput(PygameEventHandler):
         released = pg_event.type == pg.MOUSEBUTTONUP
         button = None
 
-        print(pg_event)
-
         if (pressed or released) and pg_event.button == 1:
             mouse_pos = pg_event.pos
             dpad_rect = self.dpad["rect"]

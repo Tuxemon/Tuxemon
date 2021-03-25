@@ -198,3 +198,19 @@ def iterate_lines(text):
 def iterate_word_lines(text):
     for line in iterate_lines(text):
         yield iterate_words(line)
+
+
+def blit_alpha(target, source, location, opacity):
+    """ Blits a surface with alpha that can also have it's overall transparency modified
+    Taken from http://nerdparadise.com/tech/python/pygame/blitopacity/
+
+    NOTE: This should be removed because of the performance implications
+    """
+
+    x = location[0]
+    y = location[1]
+    temp = pygame.Surface((source.get_width(), source.get_height())).convert()
+    temp.blit(target, (-x, -y))
+    temp.blit(source, (0, 0))
+    temp.set_alpha(opacity)
+    target.blit(temp, location)

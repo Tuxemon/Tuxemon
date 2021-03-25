@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-10 22:03+0000\n"
+"PO-Revision-Date: 2021-03-26 11:29+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.5.2\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -474,3 +474,12 @@ msgstr "Kula ognia"
 
 msgid "fester"
 msgstr "Fester"
+
+msgid "ice_claw"
+msgstr "Lodowy Pazur"
+
+msgid "hibernate"
+msgstr "Hibernacja"
+
+msgid "headbutt"
+msgstr "Headbutt"

@@ -77,6 +77,7 @@ class CreateNpcAction(EventAction):
         # Set the NPC object's variables
         npc.behavior = behavior
         npc.ai = ai.AI()
+        npc.load_party()
 
         # Add the NPC to the game's NPC list
         world.add_entity(npc)

@@ -82,6 +82,7 @@ class Client(StateManager):
         self.input_manager = PygameEventQueueHandler()
         self.input_manager.add_input(0, keyboard)
         self.input_manager.add_input(0, gamepad)
+        self.controller_overlay = None
         if config.controller_overlay:
             self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
             self.controller_overlay.load()

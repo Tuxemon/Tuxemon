@@ -343,21 +343,22 @@
   </object>
   <object id="119" name="shesarrived3" type="event" x="240" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc knight1,10,15,,stand"/>
-    <property name="act2" value="create_npc knight2,10,16,,stand"/>
-    <property name="act3" value="pathfind knight1,8,7"/>
-    <property name="act4" value="pathfind knight2,10,7"/>
-    <property name="act5" value="npc_face knight1,down"/>
-    <property name="act6" value="npc_face knight2,down"/>
-    <property name="act7" value="set_variable timetomove:yes"/>
-    <property name="act8" value="set_variable ohnotyou:removed"/>
-    <property name="act9" value="npc_face allie,up"/>
+    <property name="act10" value="create_npc knight1,10,15,,stand"/>
+    <property name="act20" value="create_npc knight2,10,16,,stand"/>
+    <property name="act30" value="pathfind knight1,8,7"/>
+    <property name="act40" value="pathfind knight2,10,7"/>
+    <property name="act50" value="npc_face knight1,down"/>
+    <property name="act60" value="npc_face knight2,down"/>
+    <property name="act61" value="wait 0.7"/>
+    <property name="act70" value="set_variable timetomove:yes"/>
+    <property name="act80" value="set_variable ohnotyou:removed"/>
+    <property name="act90" value="npc_face allie,up"/>
     <property name="cond1" value="is variable_set ohnotyou:gone"/>
    </properties>
   </object>
   <object id="120" name="movin" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind knight2,9,17"/>
+    <property name="act1" value="npc_move knight2,down 10,left 1"/>
     <property name="act2" value="remove_npc knight2"/>
     <property name="act3" value="set_variable timetomove:done"/>
     <property name="cond1" value="is variable_set timetomove:yes"/>
@@ -365,7 +366,7 @@
   </object>
   <object id="122" name="movin2" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind knight1,9,17"/>
+    <property name="act1" value="npc_move knight1,right 2,down 10,left 1"/>
     <property name="act2" value="remove_npc knight1"/>
     <property name="act4" value="npc_face allie,right"/>
     <property name="cond1" value="is variable_set timetomove:yes"/>
@@ -373,7 +374,7 @@
   </object>
   <object id="123" name="movin3" type="event" x="144" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,9,17"/>
+    <property name="act1" value="npc_move professor,right 1,down 10,left 1"/>
     <property name="act2" value="remove_npc professor"/>
     <property name="cond1" value="is variable_set timetomove:yes"/>
    </properties>

@@ -19,6 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from collections import defaultdict
 
 
 class EventQueueHandler:
@@ -51,7 +52,6 @@ class InputHandler:
 
     def __init__(self, event_map=None):
         if event_map is None:
-            assert self.default_input_map
             event_map = self.default_input_map.copy()
         self.buttons = dict()
         self.event_map = event_map

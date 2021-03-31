@@ -63,8 +63,9 @@ class StartBattleAction(EventAction):
             return False
 
         npc = world.get_entity(self.parameters.npc_slug)
-        npc.load_party()
-
+        if len(npc.monsters) == 0:
+            return False
+        
         # Lookup the environment
         env_slug = "grass"
         if 'environment' in player.game_variables:

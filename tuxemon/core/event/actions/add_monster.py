@@ -48,6 +48,8 @@ class AddMonsterAction(EventAction):
         else:
             trainer = get_npc(self.session, trainer_slug)
 
+        assert trainer, "No Trainer found with slug '{}'".format(trainer_slug or "player")
+
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)
         current_monster.set_level(monster_level)

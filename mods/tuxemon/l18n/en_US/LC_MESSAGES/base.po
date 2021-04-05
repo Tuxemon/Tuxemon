@@ -115,6 +115,12 @@ msgstr "{name} cannot be used here!"
 msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
 
+msgid "reg_papers"
+msgstr "Registration Papers"
+
+msgid "reg_papers_description"
+msgstr "A packet of registration papers for The Trial"
+
 # Allie's Address
 msgid "allies_address"
 msgstr "Allie's Address"
@@ -1276,6 +1282,15 @@ msgstr "Wife NPC"
 msgid "professor"
 msgstr "Professor"
 
+msgid "professor-tweesher"
+msgstr "Professor"
+
+msgid "professor-cardiling"
+msgstr "Professor"
+
+msgid "professor-rockitten"
+msgstr "Professor"
+
 msgid "npc_red"
 msgstr "Red"
 
@@ -1924,20 +1939,20 @@ msgid "moreannouncement2"
 msgstr "I am sorry to give you such late notice about this address, but I believed it important before the media leaked it...\n"
 "Well... Heh. We own the media, so I guess it wouldn't matter, but I wanted to share it all the same.\n"
 "After consulting with my advisors, we have decided that the best way to become more comfortable with Tuxemon, is to use them.\n"
-"Now, it will be some time before we can integrate them into the workforce, but in the meantime, we will be releasing them into the wild.\n"
+"Now, it will be some time before we can integrate them into the workforce, but in the meantime, as I said before, we will be releasing them into the wild.\n"
 "I realize this is a shock for everyone, plus I understand that some of you may even be afraid. We all know what happened before...\n"
 "This is not the time to be afraid though, as Omnichannel will be sponsoring the revival of the ancient tradition known as The Trial.\n"
-"Now, for you who are less versed on Fondent region history, a hundred years ago there was a tradition where young men and women would catch and raise Tuxemon.\n"
+"Now, for you who are less versed in Fondent region history, a hundred years ago there was a tradition where young men and women would catch and raise Tuxemon.\n"
 "They would then use these Tuxemon to battle others and ascend rank in their town, with the best Tuxemon Trainer gaining status and power.\n"
 "We will be creating a version of this for the modern day. We will be forming battle areas in multiple cities across Fondent.\n"
 "Each Battle Area will need to be completed in order and the most promising trainer, or trainers, will be able to attempt the Championship.\n"
-"The Championship will be held on top of the Omnichannel Tower in Cotton Town once a Tuxemon Trainer has made it through every Battle Area.\n"
+"The Championship will be held on top of the Omnichannel Tower in Cotton Town, but only once a Tuxemon Trainer has made it through every Battle Area.\n"
 "The Trial is designed as a way to slowly introduce public life to Tuxemon and to encourage travel throughout the region.\n"
 "Who better to demonstrate this than our youth?\n"
 "Each Match will be broadcast live on Omnichannel-T, the newest television station devoted exclusively to Tuxemon-related programming!\n"
 "Don't worry, the addition will be reflected in your bill.\n"
 "Oh, and one more thing, all Tuxemon Trainers will be exempt from the curfew.\n"
-"Before this of course, you will need a Tuxemon! Now, not everyone can be allowed to become a Tuxemon Trainer. That would be pure Chaos!\n"
+"Before this of course, you will need a Tuxemon! Now, not everyone can be allowed to become a Tuxemon Trainer. That would be pure chaos!\n"
 "First, you'll have to register your name with your local Omnichannel representative and if you're selected, you'll be sent to Omnichannel training.\n"
 "After successful completion of your training, you will be provided with a Tuxemon and can start participating in The Trial!\n"
 "I look forward to meeting you all! Let's create a new world together!\n"
@@ -1946,6 +1961,156 @@ msgstr "I am sorry to give you such late notice about this address, but I believ
 "ARE \n"
 "THE \n"
 "FUTURE!"
+
+msgid "youneedtodothis"
+msgstr "I... I think you need to look into this...\n"
+"I don't want to lose you, especially when we're just getting settled."
+
+msgid "youneedtodothis2"
+msgstr "But.. I know you've been eager to see the region, and this is your best shot.\n"
+"I know you have the drive in yourself to become the very best, like no one ever was.\n"
+"I just don't know if we can afford the fees\n\nWe'll make something work... Somehow."
+
+msgid "ihaveyourmoney"
+msgstr "Well, maybe I can help with that."
+
+msgid "iknowyou"
+msgstr "Hello Callie, hello ${{name}}, just stopped by to say hi when I overheard you talking about the announcement."
+
+msgid "ihaveyourmoney2"
+msgstr "I have a little stored away that needs to be put to good use and Omnichannel owes me a favor.\n"
+"I'm positive something could be arranged."
+"Getting the qualification papers is the easy part. Getting your first Tuxemon is a little more difficult...\n"
+"Luckily, I happen to know someone who has access to multiple different Tuxemon...\n"
+"Me!\n"
+"Now, I know it's a lot to process, so I'll be in my lab waiting for your decision."
+
+msgid "hebenice"
+msgstr "He's a nice man, maybe you should at least see what he has to say."
+
+msgid "moverocky"
+msgstr "C'mon Rocky! You can move! I believe!"
+
+msgid "moverocky2"
+msgstr "Well, you move when you're ready, I'll be here waiting."
+
+msgid "tuxemontime"
+msgstr "Ah, you came! Great!"
+
+msgid "tuxemontime1.5"
+msgstr "I take it this means you've decided to join the Trial?"
+
+msgid "tuxemontimechoiceyes"
+msgstr "Splendid!"
+
+msgid "tuxemontimechoiceno"
+msgstr "Oh... Okay... I'll be here if you change your mind..."
+
+msgid "tuxemontime2"
+msgstr "Now, the first thing to do is get your papers all set..."
+
+msgid "tuxemontime3"
+msgstr "There we go!"
+
+msgid "tuxemontime3.1"
+msgstr "Here are your registration papers, the first Battle Area will require you to present them in exchange for a Trainer badge.\n"
+"You won't need the papers after that.\n"
+
+msgid "obtainedpapers"
+msgstr "Received Registration Papers!"
+
+msgid "tuxemontime4"
+msgstr "Now for the most important part! Choosing your Tuxemon!\n"
+"Unfortunately, my source of funding has become... hesitant as of late. This leaves you with only three choices of Tuxemon, sorry about that.\n"
+"The three choices are Rockitten, Cardiling, and Tweesher."
+
+msgid "chooseyerfate"
+msgstr "Which Tuxemon do you want?"
+
+msgid "chooseyerfateRockitten"
+msgstr "A solid choice! Rockitten is an Earth-type Tuxemon. In medieval times, they bred Rockittens to sit by the door and look cute.\n"
+"Do you want to choose Rockitten?"
+
+msgid "choseRockitten"
+msgstr "Alright, here's your Rockitten! I know that you two will go on great adventures together!"
+
+msgid "choseRockitten2"
+msgstr "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Cardiling."
+
+msgid "rockitten!"
+msgstr "Obtained Rockitten!"
+
+msgid "nochoiceTuxemon"
+msgstr "Okay, why don't you take a look at the other two?"
+
+msgid "chooseyerfateCardiling"
+msgstr "An interesting choice, it speaks to the spark inside of you. Cardiling is a Fire-type Tuxemon known for stealing food from friends and enemies alike.\n"
+"Do you want to choose Cardiling?"
+
+msgid "choseCardiling"
+msgstr "Alright, here's your Cardiling! I know that you two will go on great adventures together!"
+
+msgid "choseCardiling2"
+msgstr "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Tweesher."
+
+msgid "chosefight"
+msgstr "And... LET'S FIGHT!"
+
+msgid "cardiling!"
+msgstr "Obtained Cardiling!"
+
+msgid "chooseyerfateTweesher"
+msgstr "A great choice! Tweesher is a Water-type Tuxemon. It's evolution Eagleace is one of the fastest Tuxemon\n"
+"Do you want to choose Tweesher?"
+
+msgid "choseTweesher"
+msgstr "Alright, here's your Tweesher! I know that you two will go on great adventures together!"
+
+msgid "choseTweesher2"
+msgstr "First though, let's test your battle prowess with a quick Tuxemon battle.\n Let's see... I'll choose Rockitten."
+
+msgid "tweesher!"
+msgstr "Obtained Tweesher!"
+
+msgid "wewnicefight"
+msgstr "Wow, that was a good fight!\n"
+"With a little more practice and maybe a few more Tuxemon, you'll definitely be able to take on the Trial."
+
+msgid "yahaha"
+msgstr "Ah ha! Found you!"
+
+msgid "gasp"
+msgstr "Wait..."
+
+msgid "gasp2"
+msgstr "What are you doing here with this... Criminal?\n"
+"... .... ....\n... ... ...\n"
+"Joining the trial? You'd really subject yourself to that nonsense?\n"
+"If all you want is a job at Omnichannel, you could have just asked me.\n"
+"I'm sure I can find a... use for you if you're interested."
+
+msgid "brokethegasp"
+msgstr "Now, Miss, if I may, ${{name}} is doing it for more than a job."
+
+msgid "brokethegasp2"
+msgstr "You. Why are you talking? I didn't allow you to speak."
+
+msgid "brokethegasp3"
+msgstr "Please, miss omnichannel ma'am, ${{name}}'s Mother wanted them to join the Trial to see the entire region\n"
+"${{name}} isn't doing it for the job, they're doing it for the experience."
+
+msgid "gasp3"
+msgstr "If that's true, there's more to you than I realized..."
+
+msgid "gasp4"
+msgstr "Fine, I'll let your registration papers stay intact. For now.\n"
+"John, Grant, take the so-called Tuxemon Professor to his new home."
+
+msgid "goodbye"
+msgstr "Don't let the Trial prevent you from coming to see me. In fact... Maybe I'll find you first."
+
+msgid "goodbye2"
+msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"
@@ -2192,10 +2357,10 @@ msgid "spyder_cottonart_florist"
 msgstr "What do you think of the blue painting of a ship in the harbour? \n It's in the impressionist style - that means it tries to capture how light looks and behaves. \n See the small red sun reflected along the waves of the water?"
 
 msgid "spyder_cottonart_intro"
-msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonart_shopkeeper"
-msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is ${{currency}}50. It goes towards the company's annual dividend."
+msgstr "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n Entry is $50. It goes towards the company's annual dividend."
 
 msgid "spyder_cottonscoop_shopassistant"
 msgstr "Capture Devices allow you to capture tuxemon and keep them as servants. \n They're most effective when used on injured and low-level tuxemon. \n Select them during battle from your Item menu."
@@ -2279,7 +2444,7 @@ msgid "spyder_citypark_edith2"
 msgstr "Hmm, you may have a point."
 
 msgid "spyder_museum_entrance1"
-msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of ${{currency}}50?"
+msgstr "Welcome to the museum of natural history! It's free, but depends on your generous donations. Would you consider a donation of $50?"
 
 msgid "spyder_museum_entrance2"
 msgstr ""
@@ -2287,7 +2452,7 @@ msgstr ""
 "sponsors."
 
 msgid "spyder_museum_entrance3"
-msgstr "Unfortunately we now need to charge for tickets. ${{currency}}100 please."
+msgstr "Unfortunately we now need to charge for tickets. $100 please."
 
 msgid "spyder_museum_shopkeeper_chat"
 msgstr "I volunteer to keep the museum as affordable as possible. "
@@ -2741,7 +2906,7 @@ msgstr "Simplistic and clumsy brushstrokes and a pedestrian theme. Bah! Another 
 msgid "spyder_flower_muse1"
 msgstr "He's so hard on himself, never happy with something he's painted. He's so forgetful, too. Perhaps I could buy a painting "
 msgid "spyder_flower_muse2"
-msgstr "What? You have a painting. Oooh - would you let me buy it? I have ${{currency}}2,000."
+msgstr "What? You have a painting. Oooh - would you let me buy it? I have $2,000."
 msgid "spyder_flower_artist_clipping"
 msgstr "A newspaper clipping is on the wall. It begins: \n "The famous art critic has put away his poison pen and picked up the paint brush. \n After years of tearing down artists, can he do any better himself?""
 msgid "spyder_flower_artist2"

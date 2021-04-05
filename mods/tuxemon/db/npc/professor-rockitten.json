@@ -1,0 +1,19 @@
+{
+    "slug": "professor-rockitten",
+    "sprite_name": "professor",
+    "combat_front": "professor_front.png",
+    "combat_back": "red_back.png",
+    "monsters": [
+        {
+            "attack": 3,
+            "defense": 12,
+            "hp": 28,
+            "speed": 2,
+            "special_defense": 12,
+            "level": 3,
+            "slug": "rockitten",
+            "exp_give_mod": 3,
+            "exp_req_mod": 27
+        }
+    ]
+}

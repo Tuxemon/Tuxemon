@@ -652,7 +652,7 @@ class NPC(Entity):
 
         # Look up the NPC's details from our NPC database
         npc_details = db.database['npc'][self.slug]
-        npc_party = npc_details.get('monsters')
+        npc_party = npc_details.get('monsters') or []
         for npc_monster_details in npc_party:
             monster = Monster(save_data=npc_monster_details)
             monster.experience_give_modifier = npc_monster_details['exp_give_mod']

@@ -83,7 +83,6 @@ class EventEngine:
         self.running_events = dict()
         self.conditions = dict()
         self.actions = dict()
-
         self.tags = defaultdict(list)
         self.messages = set()
 
@@ -155,7 +154,10 @@ class EventEngine:
             error = f'Error: EventCondition "{data.name}" could not be found'
             raise RuntimeError(error)
         condition = LoadedCondition(
-            condition=handler, map_condition=data, operator=data.operator == "is", parameters=data.parameters
+            condition=handler,
+            operator=data.operator == "is",
+            parameters=data.parameters,
+            map_condition=data,
         )
         return condition
 
@@ -165,7 +167,10 @@ class EventEngine:
             result = condition.condition.test(session, map_event, condition)
             result = result == condition.operator
             logger.debug(
-                "%s (%s) == %s", condition.map_condition.name, condition.map_condition, result
+                "%s (%s) == %s",
+                condition.map_condition.name,
+                condition.map_condition,
+                result,
             )
             return result
 
@@ -201,13 +206,13 @@ class EventEngine:
     def get_running_event(self, event_id):
         return self.running_events[event_id]
 
-    def check_event(self, session, event):
+    def should_event_start(self, session, event):
         """Return True if event should start"""
         return all(self.check_condition(session, cond, event) for cond in event.conds)
 
     def start_events(self, events):
         for event in events:
-            if self.check_event(local_session, event):
+            if self.should_event_start(local_session, event):
                 self.start_event(local_session, event)
 
     def set_message(self, message):

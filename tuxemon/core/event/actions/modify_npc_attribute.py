@@ -25,7 +25,7 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class ModifyNpcAttributeAction(EventAction):
-    """ Modifies the given attribute of the npc by modifier. By default
+    """Modifies the given attribute of the npc by modifier. By default
     this is achieved via addition, but prepending a '%' will cause it to be
     multiplied by the attribute.
 
@@ -33,12 +33,9 @@ class ModifyNpcAttributeAction(EventAction):
 
     EventAction parameter 'modifier' must be a number (positive or negative)
     """
+
     name = "modify_npc_attribute"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "name"),
-        (float, "value")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "name"), (float, "value")]
 
     def start(self):
         npc = get_npc(self.session, self.parameters[0])

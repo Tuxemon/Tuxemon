@@ -24,12 +24,12 @@ from tuxemon.core.platform import mixer
 
 
 class MusicPlayingCondition(EventCondition):
-    """ Checks to see if a particular piece of music is playing or not.
-    """
+    """Checks to see if a particular piece of music is playing or not."""
+
     name = "music_playing"
 
-    def test(self, session,  condition):
-        """ Checks to see if a particular piece of music is playing or not.
+    def test(self, session, condition):
+        """Checks to see if a particular piece of music is playing or not.
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

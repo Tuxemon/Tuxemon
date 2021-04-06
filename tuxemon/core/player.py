@@ -36,18 +36,17 @@ logger = logging.getLogger(__name__)
 
 # Class definition for the player.
 class Player(NPC):
-    """ Object for Players.  WIP
-    """
+    """Object for Players.  WIP"""
 
     def __init__(self, npc_slug):
         super().__init__(npc_slug)
         self.isplayer = True
 
         # Game variables for use with events
-        self.game_variables = {'steps': 0}
+        self.game_variables = {"steps": 0}
 
     def move(self, time_passed_seconds):
-        """ Move the player around the game world
+        """Move the player around the game world
             Increment the number of steps
 
         :param time_passed_seconds: A float of the time that has passed since the last frame.
@@ -68,4 +67,4 @@ class Player(NPC):
         diff_x = abs(after_x - before_x)
         diff_y = abs(after_y - before_y)
 
-        self.game_variables['steps'] += diff_x + diff_y
+        self.game_variables["steps"] += diff_x + diff_y

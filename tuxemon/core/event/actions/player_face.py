@@ -31,6 +31,7 @@ class PlayerFaceAction(EventAction):
 
     EventAction parameter can be: "left", "right", "up", or "down"
     """
+
     name = "player_face"
     valid_parameters = [
         (str, "direction"),

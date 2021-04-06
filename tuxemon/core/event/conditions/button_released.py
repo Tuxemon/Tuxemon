@@ -23,12 +23,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class ButtonReleasedCondition(EventCondition):
-    """ Checks to see if a particular key was released
-    """
+    """Checks to see if a particular key was released"""
+
     name = "button_released"
 
-    def test(self, session,  condition):
-        """ Checks to see if a particular key was released
+    def test(self, session, condition):
+        """Checks to see if a particular key was released
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

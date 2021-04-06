@@ -10,7 +10,7 @@ from tuxemon.core.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
-__all__ = ('GraphicBox', 'draw_text')
+__all__ = ("GraphicBox", "draw_text")
 
 
 def layout(scale):
@@ -24,7 +24,7 @@ layout = layout(prepare.SCALE)
 
 
 class GraphicBox(Sprite):
-    """ Generic class for drawing graphical boxes
+    """Generic class for drawing graphical boxes
 
     Draws a border and can fill in the box with a _color from the border file,
     an external file, or a solid _color.
@@ -34,6 +34,7 @@ class GraphicBox(Sprite):
 
     The border graphic must contain 9 tiles laid out in a box.
     """
+
     def __init__(self, border=None, background=None, color=None, fill_tiles=False):
         super().__init__()
         self._background = background
@@ -58,7 +59,7 @@ class GraphicBox(Sprite):
     def calc_inner_rect(self, rect):
         if self._tiles:
             tw, th = self._tile_size
-            return rect.inflate(- tw * 2, -th * 2)
+            return rect.inflate(-tw * 2, -th * 2)
         else:
             return rect
 
@@ -66,8 +67,7 @@ class GraphicBox(Sprite):
         iw, ih = image.get_size()
         tw, th = iw // 3, ih // 3
         self._tile_size = tw, th
-        self._tiles = [image.subsurface((x, y, tw, th))
-                       for x, y in product(range(0, iw, tw), range(0, ih, th))]
+        self._tiles = [image.subsurface((x, y, tw, th)) for x, y in product(range(0, iw, tw), range(0, ih, th))]
 
     def update_image(self):
         rect = Rect((0, 0), self._rect.size)
@@ -90,8 +90,7 @@ class GraphicBox(Sprite):
         # fill center with tiles from the border file
         elif self._fill_tiles:
             tw, th = self._tile_size
-            p = product(range(inner.left, inner.right, tw),
-                        range(inner.top, inner.bottom, th))
+            p = product(range(inner.left, inner.right, tw), range(inner.top, inner.bottom, th))
             [surface.blit(self._tiles[4], pos) for pos in p]
 
         # draw the border
@@ -177,7 +176,7 @@ def constrain_width(text, font, width):
             token_width = font.size(test)[0]
             if token_width >= width:
                 if scrap is None:
-                    logger.error('message is too large for width', text)
+                    logger.error("message is too large for width", text)
                     raise RuntimeError
                 yield scrap
                 scrap = word
@@ -201,7 +200,7 @@ def iterate_word_lines(text):
 
 
 def blit_alpha(target, source, location, opacity):
-    """ Blits a surface with alpha that can also have it's overall transparency modified
+    """Blits a surface with alpha that can also have it's overall transparency modified
     Taken from http://nerdparadise.com/tech/python/pygame/blitopacity/
 
     NOTE: This should be removed because of the performance implications

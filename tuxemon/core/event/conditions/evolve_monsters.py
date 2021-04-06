@@ -23,11 +23,11 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class EvolveMonstersCondition(EventCondition):
-    """ Checks to see if monsters can be evolved on the specified evolutionary path
-    """
+    """Checks to see if monsters can be evolved on the specified evolutionary path"""
+
     name = "evolve_monsters"
 
-    def test(self, session,  condition):
+    def test(self, session, condition):
         """Checks to see if a monster can be evolved on the specified evolutionary path
 
         :param session: The session object

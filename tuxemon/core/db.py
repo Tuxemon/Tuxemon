@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 def process_targets(json_targets):
-    """ Return values in order of preference for targeting things.
+    """Return values in order of preference for targeting things.
 
     example: ["own monster", "enemy monster"]
 
@@ -47,7 +47,9 @@ def process_targets(json_targets):
     :return:
     """
 
-    return list(map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True))))
+    return list(
+        map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True)))
+    )
 
 
 class JSONDatabase:
@@ -67,7 +69,7 @@ class JSONDatabase:
             "inventory": {},
             "environment": {},
             "sounds": {},
-            "music": {}
+            "music": {},
         }
         # self.load(dir)
 
@@ -125,7 +127,7 @@ class JSONDatabase:
                     self.load_dict(sub, directory)
             else:
                 self.load_dict(item, directory)
-              
+
     def load_dict(self, item, table):
         """Loads a single json object as a dictionary and adds it to the appropriate db table
 
@@ -138,8 +140,8 @@ class JSONDatabase:
 
         """
 
-        if item['slug'] not in self.database[table]:
-            self.database[table][item['slug']] = item
+        if item["slug"] not in self.database[table]:
+            self.database[table][item["slug"]] = item
         else:
             logger.warning("Error: Item with slug %s was already loaded.", item)
 
@@ -156,10 +158,7 @@ class JSONDatabase:
         :returns: A dictionary from the resulting lookup.
 
         """
-        return set_defaults(
-            self.database[table][slug],
-            table
-        )
+        return set_defaults(self.database[table][slug], table)
 
     def lookup_file(self, table, slug):
         """Does a lookup with the given slug in the given table, expecting a dictionary with two keys, 'slug' and 'file'
@@ -175,7 +174,9 @@ class JSONDatabase:
 
         filename = self.database[table][slug]["file"] or slug
         if filename == slug:
-            logger.debug("Could not find a file record for slug {}, did you remember to create a database record?".format(slug))
+            logger.debug(
+                "Could not find a file record for slug {}, did you remember to create a database record?".format(slug)
+            )
 
         return filename
 
@@ -196,35 +197,32 @@ class JSONDatabase:
         """
 
         logger.warning("lookup_sprite is deprecated. Use JSONDatabase.database")
-        results = {'sprite_battle1': self.database['monster'][slug]['sprites']['battle1'],
-                   'sprite_battle2': self.database['monster'][slug]['sprites']['battle2'],
-                   'sprite_menu1': self.database['monster'][slug]['sprites']['menu1']}
+        results = {
+            "sprite_battle1": self.database["monster"][slug]["sprites"]["battle1"],
+            "sprite_battle2": self.database["monster"][slug]["sprites"]["battle2"],
+            "sprite_menu1": self.database["monster"][slug]["sprites"]["menu1"],
+        }
 
         return results
 
 
 def set_defaults(results, table):
     if table == "monster":
-        name = results['slug']
+        name = results["slug"]
 
-        sprites = results.setdefault(
-            "sprites",
-            {}
-        )
+        sprites = results.setdefault("sprites", {})
 
         for key, view in (
-                ('battle1', 'front'),
-                ('battle2', 'back'),
-                ('menu1', 'menu01'),
-                ('menu2', 'menu02'),
+            ("battle1", "front"),
+            ("battle2", "back"),
+            ("menu1", "menu01"),
+            ("menu2", "menu02"),
         ):
             if not results.get(key):
-                sprites[key] = "gfx/sprites/battle/{}-{}".format(
-                    name,
-                    view
-                )
+                sprites[key] = "gfx/sprites/battle/{}-{}".format(name, view)
 
     return results
+
 
 # Global database container
 db = JSONDatabase()

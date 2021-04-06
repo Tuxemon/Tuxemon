@@ -23,14 +23,13 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class RemoveNpcAction(EventAction):
-    """ Removes an NPC object from the list of NPCs.
+    """Removes an NPC object from the list of NPCs.
 
     Valid Parameters: slug
     """
+
     name = "remove_npc"
-    valid_parameters = [
-        (str, "npc_slug")
-    ]
+    valid_parameters = [(str, "npc_slug")]
 
     def start(self):
         # Get a copy of the world state.

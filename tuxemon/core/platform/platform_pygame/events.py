@@ -11,8 +11,7 @@ from tuxemon.core.ui.draw import blit_alpha
 
 
 class PygameEventQueueHandler(EventQueueHandler):
-    """ Handle all events from the pygame event queue
-    """
+    """Handle all events from the pygame event queue"""
 
     def __init__(self):
         self._inputs = defaultdict(list)  # type Dict[int, List[InputHandler]]
@@ -21,7 +20,7 @@ class PygameEventQueueHandler(EventQueueHandler):
         self._inputs[player].append(handler)
 
     def process_events(self):
-        """ Process all pygame events
+        """Process all pygame events
 
         * Should never return pygame-unique events
         * All events returned should be Tuxemon game specific
@@ -57,6 +56,7 @@ class PygameGamepadInput(PygameEventHandler):
     buttons/directions/axis even if they are released already.  Pressed
     or held inputs will never be duplicated and are always "correct".
     """
+
     event_type = PlayerInput
     # Xbox 360 Controller buttons:
     # A = 0    Start = 7    D-Up = 13
@@ -75,7 +75,7 @@ class PygameGamepadInput(PygameEventHandler):
         7: buttons.START,
     }
 
-    def __init__(self, event_map=None, deadzone=.25):
+    def __init__(self, event_map=None, deadzone=0.25):
         super().__init__(event_map)
         self.deadzone = deadzone
 
@@ -153,7 +153,7 @@ class PygameKeyboardInput(PygameEventHandler):
     }
 
     def process_event(self, pg_event):
-        """ Translate a pg event to an internal game event
+        """Translate a pg event to an internal game event
 
         :type pg_event: pg.event.Event
         """
@@ -202,7 +202,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
         self.buttons[buttons.B] = PlayerInput(buttons.B)
 
     def process_event(self, pg_event):
-        """ Process all events from the controller overlay and pass them down to
+        """Process all events from the controller overlay and pass them down to
         current State. All controller overlay events are converted to keyboard
         events for compatibility. This is primarily used for the mobile version
         of Tuxemon.
@@ -307,8 +307,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
         )
 
     def draw(self, screen):
-        """Draws the controller overlay to the screen.
-        """
+        """Draws the controller overlay to the screen."""
         blit_alpha(
             screen,
             self.dpad["surface"],

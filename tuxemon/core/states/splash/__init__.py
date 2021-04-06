@@ -37,8 +37,8 @@ logger = logging.getLogger(__name__)
 
 
 class SplashState(state.State):
-    """ The state responsible for the splash screen
-    """
+    """The state responsible for the splash screen"""
+
     default_duration = 3
 
     def fade_out(self):
@@ -67,7 +67,7 @@ class SplashState(state.State):
         self.ding.play()
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value

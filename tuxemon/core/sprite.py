@@ -56,7 +56,7 @@ class Sprite(pygame.sprite.DirtySprite):
         self._needs_update = False
 
     def draw(self, surface, rect=None):
-        """ Draw the sprite to the surface
+        """Draw the sprite to the surface
 
         This operation does not scale the sprite, so it may exceed
         the size of the area passed.
@@ -89,7 +89,7 @@ class Sprite(pygame.sprite.DirtySprite):
             self._original_image = None
             return
 
-        if hasattr(self, 'rect'):
+        if hasattr(self, "rect"):
             self.rect.size = image.get_size()
         else:
             self.rect = image.get_rect()
@@ -153,22 +153,23 @@ class Sprite(pygame.sprite.DirtySprite):
             self._rotation = value
             self._needs_update = True
 
+
 class CaptureDeviceSprite(Sprite):
-    def __init__(self,**kwargs):
-        self.tray = kwargs['tray']
-        self.monster = kwargs['monster']
-        self.sprite = kwargs['sprite']
-        self.state = kwargs['state']
-        self.empty = graphics.load_and_scale('gfx/ui/combat/empty_slot_icon.png')
-        self.faint =  graphics.load_and_scale('gfx/ui/icons/party/party_icon03.png')
-        self.alive = graphics.load_and_scale('gfx/ui/icons/party/party_icon01.png')
-        self.effected = graphics.load_and_scale('gfx/ui/icons/party/party_icon02.png')
+    def __init__(self, **kwargs):
+        self.tray = kwargs["tray"]
+        self.monster = kwargs["monster"]
+        self.sprite = kwargs["sprite"]
+        self.state = kwargs["state"]
+        self.empty = graphics.load_and_scale("gfx/ui/combat/empty_slot_icon.png")
+        self.faint = graphics.load_and_scale("gfx/ui/icons/party/party_icon03.png")
+        self.alive = graphics.load_and_scale("gfx/ui/icons/party/party_icon01.png")
+        self.effected = graphics.load_and_scale("gfx/ui/icons/party/party_icon02.png")
         super().__init__()
 
     def update_state(self):
-        """ Updates the state of the capture device.
+        """Updates the state of the capture device.
 
-            :return: the new state
+        :return: the new state
         """
         if self.state == "empty":
             self.sprite.image = self.empty
@@ -182,11 +183,12 @@ class CaptureDeviceSprite(Sprite):
             self.state = "alive"
             self.sprite.image = self.alive
         return self.state
-    def draw(self,animate):
-        """ Animates the capture device in game.
 
-            :param animate: the animation function
-            :return:
+    def draw(self, animate):
+        """Animates the capture device in game.
+
+        :param animate: the animation function
+        :return:
         """
         sprite = self.sprite
         sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
@@ -194,8 +196,9 @@ class CaptureDeviceSprite(Sprite):
         animate(sprite.image, set_alpha=255, initial=0)
         animate(sprite.rect, bottom=self.tray.rect.top + set(3))
 
+
 class SpriteGroup(pygame.sprite.LayeredUpdates):
-    """ Sane variation of a pygame sprite group
+    """Sane variation of a pygame sprite group
 
     Features:
     * Supports Layers
@@ -207,13 +210,14 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
     Variations from standard group:
     * SpriteGroup.add no longer accepts a sequence, use SpriteGroup.extend
     """
+
     _init_rect = Rect(0, 0, 0, 0)
 
     def __init__(self, *args, **kwargs):
         self._spritelayers = dict()
         self._spritelist = list()
         pygame.sprite.AbstractGroup.__init__(self)
-        self._default_layer = kwargs.get('default_layer', 0)
+        self._default_layer = kwargs.get("default_layer", 0)
 
     def __nonzero__(self):
         return bool(self._spritelist)
@@ -233,7 +237,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             if getattr(s, "image", None) is None:
                 continue
 
-            if not getattr(s, 'visible', True):
+            if not getattr(s, "visible", True):
                 continue
 
             if isinstance(s.image, PygAnimation):
@@ -254,20 +258,20 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         return dirty
 
     def extend(self, sprites, **kwargs):
-        """ Add a sequence of sprites to the SpriteGroup
+        """Add a sequence of sprites to the SpriteGroup
 
         :param sprites: Sequence (list, set, etc)
         :param kwargs:
         :returns: None
         """
-        if '_index' in kwargs.keys():
+        if "_index" in kwargs.keys():
             raise KeyError
         for index, sprite in enumerate(sprites):
-            kwargs['_index'] = index
+            kwargs["_index"] = index
             self.add(sprite, **kwargs)
 
     def add(self, sprite, **kwargs):
-        """ Add a sprite to group.  do not pass a sequence or iterator
+        """Add a sprite to group.  do not pass a sequence or iterator
 
         LayeredUpdates.add(*sprites, **kwargs): return None
         If the sprite you add has an attribute _layer, then that layer will be
@@ -276,7 +280,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         neither the sprite nor **kwarg has a 'layer', then the default layer is
         used to add the sprites.
         """
-        layer = kwargs.get('layer')
+        layer = kwargs.get("layer")
         if isinstance(sprite, pygame.sprite.Sprite):
             if not self.has_internal(sprite):
                 self.add_internal(sprite, layer)
@@ -285,8 +289,7 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             raise TypeError
 
     def calc_bounding_rect(self):
-        """A rect object that contains all sprites of this group
-        """
+        """A rect object that contains all sprites of this group"""
         sprites = self.sprites()
         if not sprites:
             return self.rect
@@ -300,15 +303,15 @@ class RelativeGroup(SpriteGroup):
     """
     Drawing operations are relative to the group's rect
     """
+
     rect = Rect(0, 0, 0, 0)
 
     def __init__(self, **kwargs):
-        self.parent = kwargs.get('parent')
+        self.parent = kwargs.get("parent")
         super().__init__(**kwargs)
 
     def calc_bounding_rect(self):
-        """A rect object that contains all sprites of this group
-        """
+        """A rect object that contains all sprites of this group"""
         rect = super().calc_bounding_rect()
         # return self.calc_absolute_rect(rect)
         return rect
@@ -337,7 +340,7 @@ class RelativeGroup(SpriteGroup):
             if s.image is None:
                 continue
 
-            if not getattr(s, 'visible', True):
+            if not getattr(s, "visible", True):
                 continue
 
             r = spritedict[s]
@@ -362,7 +365,7 @@ class MenuSpriteGroup(SpriteGroup):
     """
 
     def determine_cursor_movement(self, index, event):
-        """ Given an event, determine a new selected item offset
+        """Given an event, determine a new selected item offset
 
         You must pass the currently selected object
         The return value will be the newly selected object index
@@ -406,8 +409,9 @@ class VisualSpriteList(RelativeGroup):
     Sprite group which can be configured to arrange the children
     sprites into columns.
     """
-    orientation = 'horizontal'  # default, and only implemented
-    expand = True               # will fill all space of parent, if false, will be more compact
+
+    orientation = "horizontal"  # default, and only implemented
+    expand = True  # will fill all space of parent, if false, will be more compact
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -448,7 +452,7 @@ class VisualSpriteList(RelativeGroup):
         super().draw(surface)
 
     def arrange_menu_items(self):
-        """ Iterate through menu items and position them in the menu
+        """Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
         :returns: None
@@ -487,7 +491,7 @@ class VisualSpriteList(RelativeGroup):
         self._needs_arrange = False
 
     def determine_cursor_movement(self, *args):
-        """ Given an event, determine a new selected item offset
+        """Given an event, determine a new selected item offset
 
         You must pass the currently selected object
         The return value will be the newly selected object index
@@ -496,13 +500,13 @@ class VisualSpriteList(RelativeGroup):
         :param event: pygame.Event
         :returns: New menu item offset
         """
-        if self.orientation == 'horizontal':
+        if self.orientation == "horizontal":
             return self._determine_cursor_movement_horizontal(*args)
         else:
             raise RuntimeError
 
     def _determine_cursor_movement_horizontal(self, index, event):
-        """ Given an event, determine a new selected item offset
+        """Given an event, determine a new selected item offset
 
         You must pass the currently selected object
         The return value will be the newly selected object index

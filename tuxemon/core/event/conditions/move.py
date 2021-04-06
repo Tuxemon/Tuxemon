@@ -23,12 +23,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class TrueCondition(EventCondition):
-    """ This function always returns true unless the operator is set to "is_not"
-    """
+    """This function always returns true unless the operator is set to "is_not" """
+
     name = "true"
 
-    def test(self, session,  condition):
-        """ This function always returns true unless the operator is set to "is_not"
+    def test(self, session, condition):
+        """This function always returns true unless the operator is set to "is_not"
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

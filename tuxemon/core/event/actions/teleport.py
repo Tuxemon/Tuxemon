@@ -41,12 +41,9 @@ class TeleportAction(EventAction):
     }
 
     """
+
     name = "teleport"
-    valid_parameters = [
-        (str, "map_name"),
-        (int, "x"),
-        (int, "y")
-    ]
+    valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
 
     def start(self):
         player = self.session.player
@@ -85,4 +82,3 @@ class TeleportAction(EventAction):
 
             # unlock_controls will reset controls, but start moving if keys are pressed
             world.unlock_controls()
-

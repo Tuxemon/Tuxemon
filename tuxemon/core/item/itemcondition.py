@@ -26,7 +26,6 @@
 #
 
 
-
 import logging
 from collections import namedtuple
 
@@ -36,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 
 class ItemCondition:
-    """ ItemConditions are evaluated by items.
+    """ItemConditions are evaluated by items.
 
     ItemCondition subclasses implement "conditions" defined in Tuxemon items.
     All subclasses, at minimum, must implement the following:
@@ -75,11 +74,12 @@ class ItemCondition:
 
     (Monster, "monster_slug")   => a Monster instance will be created
     """
+
     name = "GenericCondition"
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, context, session,  user, parameters):
+    def __init__(self, context, session, user, parameters):
         """
 
         :type context: str
@@ -120,7 +120,7 @@ class ItemCondition:
         self._done = False
 
     def test(self, target):
-        """ Return True if satisfied, or False if not
+        """Return True if satisfied, or False if not
 
         :param target: the target of the item's use.
         :rtype: bool

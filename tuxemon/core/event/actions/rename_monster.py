@@ -21,7 +21,7 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
-# 
+#
 
 
 from tuxemon.core.event.eventaction import EventAction
@@ -33,6 +33,7 @@ class RenameMonsterAction(EventAction):
 
     Valid Parameters: None
     """
+
     name = "rename_monster"
     valid_parameters = []
 
@@ -41,14 +42,16 @@ class RenameMonsterAction(EventAction):
         world = self.session.client.get_state_by_name("WorldState")
         if world is None:
             return
-    
+
         # pull up the monster menu so we know which one we are renaming
         menu = self.session.client.push_state("MonsterMenuState")
         menu.on_menu_selection = self.prompt_for_name
 
     def update(self):
-        if self.session.client.get_state_by_name("MonsterMenuState") is None \
-           and self.session.client.get_state_by_name("InputMenu") is None:
+        if (
+            self.session.client.get_state_by_name("MonsterMenuState") is None
+            and self.session.client.get_state_by_name("InputMenu") is None
+        ):
             self.stop()
 
     def set_monster_name(self, name):
@@ -63,5 +66,5 @@ class RenameMonsterAction(EventAction):
             prompt=T.translate("input_monster_name"),
             callback=self.set_monster_name,
             escape_key_exits=False,
-            initial=T.translate(self.monster.slug)
+            initial=T.translate(self.monster.slug),
         )

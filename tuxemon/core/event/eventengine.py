@@ -193,14 +193,8 @@ class EventEngine:
                 logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
                 return False
 
-            result = map_condition.test(self.session, cond_data) == (
-                cond_data.operator == "is"
-            )
-            logger.debug(
-                'map condition "{}": {} ({})'.format(
-                    map_condition.name, result, cond_data
-                )
-            )
+            result = map_condition.test(self.session, cond_data) == (cond_data.operator == "is")
+            logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
             return result
 
     def execute_action(self, action_name, parameters=None):
@@ -358,9 +352,7 @@ class EventEngine:
 
                     else:
                         # got an action, so start it
-                        action = self.get_action(
-                            next_action.type, next_action.parameters
-                        )
+                        action = self.get_action(next_action.type, next_action.parameters)
 
                         if action is None:
                             # action was not loaded, so, break?  raise exception, idk
@@ -462,10 +454,7 @@ def add_error_context(event, item, session):
                         Line {line_number}
                     """.format(
                         file_name=file_name,
-                        event=etree.tostring(event_node)
-                        .decode()
-                        .split("\n")[0]
-                        .strip(),
+                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
                         line=etree.tostring(child_node).decode().strip(),
                         line_number=child_node.sourceline,
                     )

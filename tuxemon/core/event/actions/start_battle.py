@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 class StartBattleAction(EventAction):
-    """ Start a battle and switch to the combat module. The parameters must
+    """Start a battle and switch to the combat module. The parameters must
     contain an NPC slug in the NPC database.
 
     Valid Parameters: npc_slug
@@ -45,10 +45,9 @@ class StartBattleAction(EventAction):
     }
 
     """
+
     name = "start_battle"
-    valid_parameters = [
-        (str, "npc_slug")
-    ]
+    valid_parameters = [(str, "npc_slug")]
 
     def start(self):
         player = self.session.player
@@ -65,20 +64,21 @@ class StartBattleAction(EventAction):
         npc = world.get_entity(self.parameters.npc_slug)
         if len(npc.monsters) == 0:
             return False
-        
+
         # Lookup the environment
         env_slug = "grass"
-        if 'environment' in player.game_variables:
-            env_slug = player.game_variables['environment']
+        if "environment" in player.game_variables:
+            env_slug = player.game_variables["environment"]
         env = db.lookup(env_slug, table="environment")
 
         # Add our players and setup combat
         logger.debug("Starting battle!")
-        self.session.client.push_state("CombatState", players=(player, npc), combat_type="trainer",
-                                       graphics=env['battle_graphics'])
+        self.session.client.push_state(
+            "CombatState", players=(player, npc), combat_type="trainer", graphics=env["battle_graphics"]
+        )
 
         # Start some music!
-        filename = env['battle_music']
+        filename = env["battle_music"]
         self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):

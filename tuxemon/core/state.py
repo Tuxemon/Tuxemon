@@ -45,7 +45,7 @@ logger = logging.getLogger(__name__)
 
 
 class State:
-    """ This is a prototype class for States.
+    """This is a prototype class for States.
 
     All states should inherit from it. No direct instances of this
     class should be created. Update must be overloaded in the child class.
@@ -62,14 +62,15 @@ class State:
     :cvar force_draw: If True, state will never be skipped in drawing phase
     :cvar rect: Area of the screen will be drawn on
     """
+
     __metaclass__ = ABCMeta
 
     rect = Rect((0, 0), prepare.SCREEN_SIZE)
-    transparent = False   # ignore all background/borders
-    force_draw = False    # draw even if completely under another state
+    transparent = False  # ignore all background/borders
+    force_draw = False  # draw even if completely under another state
 
     def __init__(self, client):
-        """ Do not override this unless there is a special need.
+        """Do not override this unless there is a special need.
 
         All init for the State, loading of config, images, etc should
         be done in State.startup or State.resume, not here.
@@ -81,14 +82,14 @@ class State:
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
-        self.sprites = SpriteGroup()             # all sprites that draw on the screen
+        self.sprites = SpriteGroup()  # all sprites that draw on the screen
 
     @property
     def name(self):
         return self.__class__.__name__
 
     def load_sprite(self, filename, **kwargs):
-        """ Load a sprite and add it to this state
+        """Load a sprite and add it to this state
 
         kwargs can be any value used by Rect, or layer
 
@@ -97,13 +98,13 @@ class State:
         :param kwargs: Keyword arguments to pass to the Rect constructor
         :returns: tuxemon.core.sprite.Sprite
         """
-        layer = kwargs.pop('layer', 0)
+        layer = kwargs.pop("layer", 0)
         sprite = graphics.load_sprite(filename, **kwargs)
         self.sprites.add(sprite, layer=layer)
         return sprite
 
     def animate(self, *targets, **kwargs):
-        """ Animate something in this state
+        """Animate something in this state
 
         Animations are processed even while state is inactive
 
@@ -117,7 +118,7 @@ class State:
         return ani
 
     def task(self, *args, **kwargs):
-        """ Create a task for this state
+        """Create a task for this state
 
         Tasks are processed even while state is inactive
         If you want to pass positional arguments, use functools.partial
@@ -131,7 +132,7 @@ class State:
         return task
 
     def remove_animations_of(self, target):
-        """ Given and object, remove any animations that it is used with
+        """Given and object, remove any animations that it is used with
 
         :param target: any
         :returns: None
@@ -139,7 +140,7 @@ class State:
         remove_animations_of(target, self.animations)
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -155,7 +156,7 @@ class State:
         return event
 
     def update(self, time_delta):
-        """ Time update function for state.  Must be overloaded in children.
+        """Time update function for state.  Must be overloaded in children.
 
         :param time_delta: amount of time in fractional seconds since last update
         :type time_delta: Float
@@ -165,7 +166,7 @@ class State:
         self.animations.update(time_delta)
 
     def draw(self, surface):
-        """ Render the state to the surface passed.  Must be overloaded in children
+        """Render the state to the surface passed.  Must be overloaded in children
 
         Do not change the state of any game entities.  Every draw should be the same
         for a given game time.  Any game changes should be done during update.
@@ -178,7 +179,7 @@ class State:
         pass
 
     def startup(self, **kwargs):
-        """ Called when scene is added to State Stack
+        """Called when scene is added to State Stack
 
         This will be called:
         * after state is pushed and before next update
@@ -193,7 +194,7 @@ class State:
         pass
 
     def resume(self):
-        """ Called before update when state is newly in focus
+        """Called before update when state is newly in focus
 
         This will be called:
         * before update after being pushed to the stack
@@ -210,7 +211,7 @@ class State:
         pass
 
     def pause(self):
-        """ Called when state is pushed back in the stack, allowed to pause
+        """Called when state is pushed back in the stack, allowed to pause
 
         This will be called:
         * after update when state is pushed back
@@ -227,7 +228,7 @@ class State:
         pass
 
     def shutdown(self):
-        """ Called when state is removed from stack and will be destroyed
+        """Called when state is removed from stack and will be destroyed
 
         This will be called:
         * after update when state is popped
@@ -242,15 +243,15 @@ class State:
 
 
 class StateManager:
-    """ Mix-in style class for use with Client class.
+    """Mix-in style class for use with Client class.
 
     This is currently undergoing a refactor of sorts, API may not be stable
     """
 
     def __init__(self):
-        """ Currently no need to call __init__
-            function is declared to provide IDE with some info on the class only
-            this may change in the future, do not rely on this behaviour
+        """Currently no need to call __init__
+        function is declared to provide IDE with some info on the class only
+        this may change in the future, do not rely on this behaviour
         """
         self.done = False
         self.current_time = 0.0
@@ -262,8 +263,7 @@ class StateManager:
         self._remove_queue = list()
 
     def auto_state_discovery(self):
-        """ Scan a folder, load states found in it, and register them
-        """
+        """Scan a folder, load states found in it, and register them"""
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug("loading game states from {}".format(state_folder))
@@ -274,7 +274,7 @@ class StateManager:
                 self.register_state(state)
 
     def register_state(self, state):
-        """ Add a state class
+        """Add a state class
 
         :param state: any subclass of core.state.State
         :returns: None
@@ -285,7 +285,7 @@ class StateManager:
 
     @staticmethod
     def collect_states_from_module(import_name):
-        """ Given a module, return all classes in it that are a game state
+        """Given a module, return all classes in it that are a game state
 
         Abstract Base Classes, those whose metaclass is abc.ABCMeta, will
         not be included in the state dictionary.
@@ -300,14 +300,14 @@ class StateManager:
                 yield c
 
     def collect_states_from_path(self, folder):
-        """ Load a state from disk, but do not register it
+        """Load a state from disk, but do not register it
 
         :param folder: folder to load from
         :returns: Generator of instanced states
         :rtype: collections.Iterable[Class]
         """
         try:
-            import_name = self.package + '.' + folder
+            import_name = self.package + "." + folder
             import_module(import_name)
             yield from self.collect_states_from_module(import_name)
         except Exception as e:
@@ -317,7 +317,7 @@ class StateManager:
             raise
 
     def query_all_states(self):
-        """ Return a dictionary of all loaded states
+        """Return a dictionary of all loaded states
 
         Keys are state names, values are State classes
 
@@ -327,7 +327,7 @@ class StateManager:
         return self._state_dict.copy()
 
     def queue_state(self, state, **kwargs):
-        """ Queue a state to be pushed after the top state is popped or replaced
+        """Queue a state to be pushed after the top state is popped or replaced
 
         Use this to chain execution of states, without causing a
         state to get instanced before it is on top of the stack.
@@ -338,7 +338,7 @@ class StateManager:
         self._state_queue.append((state, kwargs))
 
     def pop_state(self, state=None):
-        """ Pop some state.  Default is the current one.  The previously running state will resume.
+        """Pop some state.  Default is the current one.  The previously running state will resume.
 
         If there is a queued state, then that state will be resumed, not the previous!
         Game loop will end if the last state is popped.
@@ -384,7 +384,7 @@ class StateManager:
             self._wants_to_exit = True
 
     def push_state(self, state_name, **kwargs):
-        """ Pause currently running state and start new one.
+        """Pause currently running state and start new one.
 
         :param state_name: name of state to start
         :returns: instanced State
@@ -393,7 +393,7 @@ class StateManager:
         try:
             state = self._state_dict[state_name]
         except KeyError:
-            logger.critical('Cannot find state: {}'.format(state_name))
+            logger.critical("Cannot find state: {}".format(state_name))
             raise RuntimeError
 
         previous = self.current_state
@@ -413,7 +413,7 @@ class StateManager:
         return instance
 
     def replace_state(self, state_name, **kwargs):
-        """ Replace the currently running state with a new one
+        """Replace the currently running state with a new one
 
         This is essentially, just a push_state, followed by pop_state(running_state).
         This cannot be used to replace states in the middle of the stack.
@@ -429,7 +429,7 @@ class StateManager:
 
     @property
     def state_name(self):
-        """ Name of state currently running
+        """Name of state currently running
 
         TODO: phase this out?
 
@@ -440,7 +440,7 @@ class StateManager:
 
     @property
     def current_state(self):
-        """ The currently running state
+        """The currently running state
 
         :returns: State
         :rtype: tuxemon.core.state.State
@@ -452,7 +452,7 @@ class StateManager:
 
     @property
     def active_states(self):
-        """ Return list of states that are active
+        """Return list of states that are active
 
         :returns: List of states currently active
         :rtype: List

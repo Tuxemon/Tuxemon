@@ -104,10 +104,10 @@ class Technique:
         """
 
         results = db.lookup(slug, table="technique")
-        self.slug = results["slug"]                             # a short English identifier
-        self.name = T.translate(self.slug)                      # locale-specific string
+        self.slug = results["slug"]  # a short English identifier
+        self.name = T.translate(self.slug)  # locale-specific string
 
-        self.sort = results['sort']
+        self.sort = results["sort"]
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
@@ -120,9 +120,9 @@ class Technique:
         self._combat_counter = 0
         self._life_counter = 0
 
-        if results.get('types'):
+        if results.get("types"):
             self.type1 = results["types"][0]
-            if len(results['types']) > 1:
+            if len(results["types"]) > 1:
                 self.type2 = results["types"][1]
             else:
                 self.type2 = None
@@ -151,7 +151,7 @@ class Technique:
         self.sfx = results["sfx"]
 
     def advance_round(self, number=1):
-        """ Advance the turn counters for this technique
+        """Advance the turn counters for this technique
 
         Techniques have two counters currently, a "combat counter" and a "life counter".
         Combat counters should be reset with combat begins.
@@ -172,8 +172,7 @@ class Technique:
         self.next_use = 0
 
     def reset_combat_counter(self):
-        """ Reset the combat counter.
-        """
+        """Reset the combat counter."""
         self._combat_counter = 0
 
     def use(self, user, target):
@@ -205,11 +204,11 @@ class Technique:
 
         # defaults for the return. items can override these values in their return.
         meta_result = {
-            'name': self.name,
-            'success': False,
-            'should_tackle': False,
-            'capture': False,
-            'statuses': [],
+            "name": self.name,
+            "success": False,
+            "should_tackle": False,
+            "capture": False,
+            "statuses": [],
         }
 
         # TODO: handle conflicting values from multiple technique actions
@@ -241,7 +240,7 @@ class Technique:
         return meta_result
 
     def calculate_damage(self, user, target):
-        """ Calc. damage for the damage technique
+        """Calc. damage for the damage technique
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -254,7 +253,7 @@ class Technique:
         return formula.simple_damage_calculate(self, user, target)
 
     def damage(self, user, target):
-        """ This effect applies damage to a target monster. Damage calculations are based upon the
+        """This effect applies damage to a target monster. Damage calculations are based upon the
         original Pokemon battle damage formula. This effect will be applied if "damage" is defined
         in this technique's effect list.
 
@@ -278,14 +277,14 @@ class Technique:
             mult = 1
 
         return {
-            'damage': damage,
-            'element_multiplier': mult,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
+            "damage": damage,
+            "element_multiplier": mult,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
         }
 
     def apply_status(self, slug, target):
-        """ This effect has a chance to apply a status effect to a target monster.
+        """This effect has a chance to apply a status effect to a target monster.
 
         :param target: The Monster object that we are using this technique on.
         :param slug: The Monster object that we are using this technique on.
@@ -303,11 +302,11 @@ class Technique:
             target.apply_status(tech)
 
         return {
-            'status': tech,
+            "status": tech,
         }
 
     def apply_lifeleech(self, user, target):
-        """ This effect has a chance to apply the lifeleech status effect to a target monster.
+        """This effect has a chance to apply the lifeleech status effect to a target monster.
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -324,25 +323,25 @@ class Technique:
             tech = Technique("status_lifeleech", carrier=target, link=user)
             target.apply_status(tech)
         return {
-            'status': tech,
+            "status": tech,
         }
 
     def poison(self, target):
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
         return {
-            'damage': damage,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
         }
 
     def recover(self, target):
         heal = formula.simple_recover(self, target)
         target.current_hp += heal
         return {
-            'damage': heal,
-            'should_tackle': False,
-            'success': bool(heal),
+            "damage": heal,
+            "should_tackle": False,
+            "success": bool(heal),
         }
 
     def lifeleech(self, target):
@@ -351,13 +350,13 @@ class Technique:
         target.current_hp -= damage
         user.current_hp += damage
         return {
-            'damage': damage,
-            'should_tackle': bool(damage),
-            'success': bool(damage),
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
         }
 
     def faint(self, user, target):
-        """ Faint this monster.  Typically, called by combat to faint self, not others.
+        """Faint this monster.  Typically, called by combat to faint self, not others.
 
         :param user: The Monster object that used this technique.
         :param target: The Monster object that we are using this technique on.
@@ -377,12 +376,12 @@ class Technique:
         target.apply_status(Technique("status_faint"))
 
         return {
-            'should_tackle': False,
-            'success': True,
+            "should_tackle": False,
+            "success": True,
         }
 
     def swap(self, user, target):
-        """ Used just for combat: change order of monsters
+        """Used just for combat: change order of monsters
 
         Position of monster in party will be changed
 
@@ -411,12 +410,12 @@ class Technique:
         combat_state.remove_monster_from_play(user, original_monster)
 
         # give a slight delay
-        combat_state.task(swap_add, .75)
-        combat_state.suppress_phase_change(.75)
+        combat_state.task(swap_add, 0.75)
+        combat_state.suppress_phase_change(0.75)
 
         return {
-            'success': True,
-            'should_tackle': False,
+            "success": True,
+            "should_tackle": False,
         }
 
     def get_state(self):

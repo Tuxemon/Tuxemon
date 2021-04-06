@@ -24,12 +24,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class NPCAtCondition(EventCondition):
-    """ Checks to see if an npc is at a current position on the map.
-    """
+    """Checks to see if an npc is at a current position on the map."""
+
     name = "npc_at"
 
-    def test(self, session,  condition):
-        """ Checks to see if an npc is at a current position on the map.
+    def test(self, session, condition):
+        """Checks to see if an npc is at a current position on the map.
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

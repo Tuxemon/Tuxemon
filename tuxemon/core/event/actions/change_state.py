@@ -29,10 +29,9 @@ class ChangeStateAction(EventAction):
 
     * state_name (str): The state name to switch to.
     """
+
     name = "change_state"
-    valid_parameters = [
-        (str, "state_name")
-    ]
+    valid_parameters = [(str, "state_name")]
 
     def start(self):
         # Don't override previous state if we are still in the state.

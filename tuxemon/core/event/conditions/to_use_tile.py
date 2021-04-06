@@ -26,12 +26,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class ToUseTileCondition(EventCondition):
-    """ Checks if we are attempting to talk to an npc
-    """
+    """Checks if we are attempting to talk to an npc"""
+
     name = "to_use_tile"
 
-    def test(self, session,  condition):
-        """ Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
+    def test(self, session, condition):
+        """Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
 
         :param session: The session object
         :param condition: The condition details.
@@ -70,8 +70,7 @@ class ToUseTileCondition(EventCondition):
                 height=0,
                 x=0,
                 y=0,
-                name=""
-            )
+                name="",
+            ),
         )
         return player_next_to_and_facing_tile and button_pressed
-

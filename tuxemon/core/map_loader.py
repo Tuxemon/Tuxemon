@@ -91,7 +91,7 @@ def parse_behav_string(behav_string):
 
 
 class TMXMapLoader:
-    """ Maps are loaded from standard tmx files created from a map editor like Tiled. Events and
+    """Maps are loaded from standard tmx files created from a map editor like Tiled. Events and
     collision regions are loaded and put in the appropriate data structures for the game to
     understand.
 
@@ -100,7 +100,7 @@ class TMXMapLoader:
     """
 
     def load(self, filename):
-        """ Load map data from a tmx map file
+        """Load map data from a tmx map file
 
         Loading the map data is done using the pytmx library.
 
@@ -127,9 +127,7 @@ class TMXMapLoader:
 
         :rtype: tuxemon.core.map.TuxemonMap
         """
-        data = pytmx.TiledMap(
-            filename, image_loader=scaled_image_loader, pixelalpha=True
-        )
+        data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
@@ -178,7 +176,7 @@ class TMXMapLoader:
         )
 
     def process_line(self, line, tile_size):
-        """ Identify the tiles on either side of the line and block movement along it
+        """Identify the tiles on either side of the line and block movement along it
 
         :param line:
         :param tile_size:
@@ -199,7 +197,7 @@ class TMXMapLoader:
 
     @staticmethod
     def region_tiles(region, grid_size):
-        """ Apply region properties to individual tiles
+        """Apply region properties to individual tiles
 
         Right now our collisions are defined in our tmx file as large regions
         that the player can't pass through. We need to convert these areas
@@ -212,14 +210,12 @@ class TMXMapLoader:
         :return:
         """
         region_conditions = copy_dict_with_keys(region.properties, region_properties)
-        rect = snap_rect(
-            Rect(region.x, region.y, region.width, region.height), grid_size
-        )
+        rect = snap_rect(Rect(region.x, region.y, region.width, region.height), grid_size)
         for tile_position in tiles_inside_rect(rect, grid_size):
             yield tile_position, extract_region_properties(region_conditions)
 
     def load_event(self, obj, tile_size):
-        """ Load an Event from the map
+        """Load an Event from the map
 
         :param obj:
         :param tile_size:
@@ -250,18 +246,14 @@ class TMXMapLoader:
                 behav_string = obj.properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
-                    conds.insert(
-                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
-                    )
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", key))
                     acts.insert(0, MapAction("npc_face", [args[0], "player"], key))
                 else:
                     raise Exception
 
         # add a player_facing_tile condition automatically
         if obj.type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
+            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
             logger.debug(cond_data)
             conds.append(cond_data)
 

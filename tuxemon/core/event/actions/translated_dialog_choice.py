@@ -37,10 +37,7 @@ class TranslatedDialogChoiceAction(EventAction):
 
     name = "translated_dialog_choice"
 
-    valid_parameters = [
-        (str, "choices"),
-        (str, "variable")
-    ]
+    valid_parameters = [(str, "choices"), (str, "variable")]
 
     def start(self):
         def set_variable(var_value):
@@ -65,6 +62,6 @@ class TranslatedDialogChoiceAction(EventAction):
         if self.session.client.get_state_by_name("ChoiceState") is None:
             self.stop()
 
-    def open_choice_dialog(self, session,  menu):
+    def open_choice_dialog(self, session, menu):
         logger.info("Opening choice window")
         return session.client.push_state("ChoiceState", menu=menu)

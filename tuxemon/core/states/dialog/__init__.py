@@ -4,14 +4,15 @@ from tuxemon.core.ui.text import TextArea
 
 
 class DialogState(PopUpMenu):
-    """ Game state with a graphic box and some text in it
+    """Game state with a graphic box and some text in it
 
     Pressing the action button:
     * if text is being displayed, will cause text speed to go max
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
     """
-    default_character_delay = .05
+
+    default_character_delay = 0.05
 
     def startup(self, **kwargs):
         super().startup(**kwargs)
@@ -31,7 +32,7 @@ class DialogState(PopUpMenu):
         self.next_text()
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -46,7 +47,7 @@ class DialogState(PopUpMenu):
         """
         if event.pressed and event.button == buttons.A:
             if self.text_area.drawing_text:
-                self.character_delay = .001
+                self.character_delay = 0.001
 
             elif self.next_text() is None:
                 if self.menu:

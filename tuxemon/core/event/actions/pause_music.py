@@ -32,6 +32,7 @@ class PauseMusicAction(EventAction):
 
     Valid Parameters: None
     """
+
     name = "pause_music"
     valid_parameters = []
 

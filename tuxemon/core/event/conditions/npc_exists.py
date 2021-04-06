@@ -24,12 +24,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class NPCExistsCondition(EventCondition):
-    """ Checks to see if a particular NPC object exists in the current list of NPCs.
-    """
+    """Checks to see if a particular NPC object exists in the current list of NPCs."""
+
     name = "npc_exists"
 
-    def test(self, session,  condition):
-        """ Checks to see if a particular NPC object exists in the current list of NPCs.
+    def test(self, session, condition):
+        """Checks to see if a particular NPC object exists in the current list of NPCs.
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

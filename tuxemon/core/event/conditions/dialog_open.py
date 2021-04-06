@@ -23,12 +23,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class DialogOpenCondition(EventCondition):
-    """ Checks to see if a dialog window is open.
-    """
+    """Checks to see if a dialog window is open."""
+
     name = "dialog_open"
 
-    def test(self, session,  condition):
-        """ Checks to see if a dialog window is open.
+    def test(self, session, condition):
+        """Checks to see if a dialog window is open.
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

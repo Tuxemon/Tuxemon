@@ -23,11 +23,11 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class MonsterFlairCondition(EventCondition):
-    """ Checks to see if the given monster flair matches the expected value
-    """
+    """Checks to see if the given monster flair matches the expected value"""
+
     name = "monster_flair"
 
-    def test(self, session,  condition):
+    def test(self, session, condition):
         """Checks to see if the given monster flair matches the expected value
 
         :param session: The session object

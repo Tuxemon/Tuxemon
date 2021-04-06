@@ -31,17 +31,15 @@ class VariableCondition(ItemCondition):
     """Checks against the variables of the context.
     Accepts two parameters; variable name and expected value.
     """
+
     name = "variable"
-    valid_parameters = [
-        (str, "var_name"),
-        ((str, int, None), "expected")
-    ]
+    valid_parameters = [(str, "var_name"), ((str, int, None), "expected")]
 
     def test(self, target):
         var_name = self.parameters.var_name
         expect = self.parameters.expected
 
-        if self.context == 'target':
+        if self.context == "target":
             context = target
         else:
             context = self.user

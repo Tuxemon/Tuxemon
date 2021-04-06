@@ -28,18 +28,20 @@ from tuxemon.core.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
 
+
 class CreateNpcAction(EventAction):
     """Creates an NPC object and adds it to the game's current list of NPC's.
 
     Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior
     """
+
     name = "create_npc"
     valid_parameters = [
         (str, "npc_slug"),
         (int, "tile_pos_x"),
         (int, "tile_pos_y"),
         (str, "animations"),
-        (str, "behavior")
+        (str, "behavior"),
     ]
 
     def start(self):
@@ -65,10 +67,10 @@ class CreateNpcAction(EventAction):
             logger.warning(
                 "%s: setting npc sprites within a map is deprecated, and may be removed in the future. "
                 "Sprites should be defined in JSON before loading.",
-                slug
+                slug,
             )
         else:
-            sprite = db.database['npc'][slug].get('sprite_name')
+            sprite = db.database["npc"][slug].get("sprite_name")
 
         # Create a new NPC object
         npc = tuxemon.core.npc.NPC(slug, sprite_name=sprite)

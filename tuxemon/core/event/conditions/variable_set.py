@@ -23,14 +23,15 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class VariableSetCondition(EventCondition):
-    """ Checks to see if a player game variable has been set. This will look for a particular
+    """Checks to see if a player game variable has been set. This will look for a particular
     key in the player.game_variables dictionary and see if it exists. If it exists, it will
     return true.
     """
+
     name = "variable_set"
 
-    def test(self, session,  condition):
-        """ Checks to see if a player game variable has been set to the given value.
+    def test(self, session, condition):
+        """Checks to see if a player game variable has been set to the given value.
         If the variable doesn't exist this will return false.
 
         :param session: The session object

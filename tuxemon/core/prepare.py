@@ -109,8 +109,7 @@ DEV_TOOLS = CONFIG.dev_tools
 
 
 def pygame_init():
-    """ Eventually refactor out of prepare
-    """
+    """Eventually refactor out of prepare"""
     global JOYSTICKS
     global FONTS
     global MUSIC
@@ -123,10 +122,12 @@ def pygame_init():
 
     # Configure locale
     from tuxemon.core.locale import T
+
     T.collect_languages(CONFIG.recompile_translations)
 
     # Configure databases
     from tuxemon.core.db import db
+
     db.load()
 
     logger.debug("pygame init")
@@ -157,12 +158,12 @@ def pygame_init():
     # Initialize the individual joysticks themselves.
     for joystick in devices:
         name = joystick.get_name()
-        print("Found joystick: \"{}\"".format(name))
+        print('Found joystick: "{}"'.format(name))
         blacklisted = any(i.match(name) for i in joystick_blacklist)
         if blacklisted:
-            print("Ignoring joystick: \"{}\"".format(name))
+            print('Ignoring joystick: "{}"'.format(name))
         else:
-            print("Configuring joystick: \"{}\"".format(name))
+            print('Configuring joystick: "{}"'.format(name))
             joystick.init()
             JOYSTICKS.append(joystick)
 
@@ -170,8 +171,9 @@ def pygame_init():
 # Initialize the game framework
 def init():
     from tuxemon.core import platform
+
     platform.init()
-    if PLATFORM == 'pygame':
+    if PLATFORM == "pygame":
         pygame_init()
 
 

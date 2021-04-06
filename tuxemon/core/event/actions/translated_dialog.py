@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class TranslatedDialogAction(EventAction):
-    """ Opens a dialog window with translated text according to the passed translation key. Parameters
+    """Opens a dialog window with translated text according to the passed translation key. Parameters
     passed to the translation string will also be checked if a translation key exists.
 
     Valid Parameters: dialog_key,[var1=value1,var2=value2]
@@ -56,6 +56,7 @@ class TranslatedDialogAction(EventAction):
     }
 
     """
+
     name = "translated_dialog"
 
     def start(self):
@@ -73,7 +74,8 @@ class TranslatedDialogAction(EventAction):
                 self.session,
                 key,
                 replace,
-            ), avatar
+            ),
+            avatar,
         )
 
     def update(self):

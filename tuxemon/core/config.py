@@ -36,11 +36,11 @@ from collections import OrderedDict
 from tuxemon.core.animation import Animation
 from tuxemon.core.platform.const import buttons, events
 
-Animation.default_transition = 'out_quint'
+Animation.default_transition = "out_quint"
 
 
 class TuxemonConfig:
-    """ Handles loading of the configuration file for the primary game and map editor.
+    """Handles loading of the configuration file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!
     """
@@ -110,9 +110,9 @@ class TuxemonConfig:
         self.debug_level = cfg.get("logging", "debug_level")
 
         # input config (None means use default for the platform)
-        self.gamepad_deadzone = .25
+        self.gamepad_deadzone = 0.25
         self.gamepad_button_map = None
-        self.keyboard_button_map = get_custom_pygame_keyboard_controls(cfg);
+        self.keyboard_button_map = get_custom_pygame_keyboard_controls(cfg)
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
@@ -139,73 +139,101 @@ def get_custom_pygame_keyboard_controls(cfg):
 
 
 def get_defaults():
-    """ Generate a config from defaults
+    """Generate a config from defaults
 
     When making game changes, do not forget to edit this config!
 
     :rtype: OrderedDict
     """
-    return OrderedDict((
-        ("display", OrderedDict((
-            ("resolution_x", 1280),
-            ("resolution_y", 720),
-            ("splash", True),
-            ("fullscreen", False),
-            ("fps", 60),
-            ("show_fps", False),
-            ("scaling", True),
-            ("collision_map", False),
-            ("large_gui", False),
-            ("controller_overlay", False),
-            ("controller_transparency", 45),
-            ("hide_mouse", True),
-            ("window_caption", "Tuxemon"),
-        ))),
-        ("sound", OrderedDict((
-            ("sound_volume", 1.0),
-            ("music_volume", 1.0),
-        ))),
-        ("game", OrderedDict((
-            ("data", "tuxemon"),
-            ("starting_map", "player_house_bedroom.tmx"),
-            ("cli_enabled", False),
-            ("net_controller_enabled", False),
-            ("locale", "en_US"),
-            ("dev_tools", False),
-            ("recompile_translations", False),
-        ))),
-        ("gameplay", OrderedDict((
-            ("items_consumed_on_failure", True),
-            ("encounter_rate_modifier", 1.0),
-            ("default_monster_storage_box", "Kennel"),
-            ("default_item_storage_box", "Locker")
-        ))),
-        ("player", OrderedDict((
-            ("animation_speed", 0.15),
-            ("player_npc", "npc_red"),
-            ("player_walkrate", 3.75),
-            ("player_runrate", 7.35),
-        ))),
-        ("logging", OrderedDict((
-            ("loggers", "all"),
-            ("debug_logging", True),
-            ("debug_level", "error")
-        ))),
-        ("controls", OrderedDict((
-            ("up", "up"),
-            ("down", "down"),
-            ("left", "left"),
-            ("right", "right"),
-            ("a", "return"),
-            ("b", "rshift, lshift"),
-            ("back", "escape"),
-            ("backspace", "backspace")
-        ))),
-    ))
+    return OrderedDict(
+        (
+            (
+                "display",
+                OrderedDict(
+                    (
+                        ("resolution_x", 1280),
+                        ("resolution_y", 720),
+                        ("splash", True),
+                        ("fullscreen", False),
+                        ("fps", 60),
+                        ("show_fps", False),
+                        ("scaling", True),
+                        ("collision_map", False),
+                        ("large_gui", False),
+                        ("controller_overlay", False),
+                        ("controller_transparency", 45),
+                        ("hide_mouse", True),
+                        ("window_caption", "Tuxemon"),
+                    )
+                ),
+            ),
+            (
+                "sound",
+                OrderedDict(
+                    (
+                        ("sound_volume", 1.0),
+                        ("music_volume", 1.0),
+                    )
+                ),
+            ),
+            (
+                "game",
+                OrderedDict(
+                    (
+                        ("data", "tuxemon"),
+                        ("starting_map", "player_house_bedroom.tmx"),
+                        ("cli_enabled", False),
+                        ("net_controller_enabled", False),
+                        ("locale", "en_US"),
+                        ("dev_tools", False),
+                        ("recompile_translations", False),
+                    )
+                ),
+            ),
+            (
+                "gameplay",
+                OrderedDict(
+                    (
+                        ("items_consumed_on_failure", True),
+                        ("encounter_rate_modifier", 1.0),
+                        ("default_monster_storage_box", "Kennel"),
+                        ("default_item_storage_box", "Locker"),
+                    )
+                ),
+            ),
+            (
+                "player",
+                OrderedDict(
+                    (
+                        ("animation_speed", 0.15),
+                        ("player_npc", "npc_red"),
+                        ("player_walkrate", 3.75),
+                        ("player_runrate", 7.35),
+                    )
+                ),
+            ),
+            ("logging", OrderedDict((("loggers", "all"), ("debug_logging", True), ("debug_level", "error")))),
+            (
+                "controls",
+                OrderedDict(
+                    (
+                        ("up", "up"),
+                        ("down", "down"),
+                        ("left", "left"),
+                        ("right", "right"),
+                        ("a", "return"),
+                        ("b", "rshift, lshift"),
+                        ("back", "escape"),
+                        ("backspace", "backspace"),
+                    )
+                ),
+            ),
+        )
+    )
 
 
 def generate_default_config():
-    """ Get new config file from defaults
+    """Get new config file from defaults
 
     :rtype: configparser.ConfigParser
     """
@@ -215,7 +243,7 @@ def generate_default_config():
 
 
 def populate_config(config, data):
-    """ Workaround awful configparser defaults.
+    """Workaround awful configparser defaults.
 
     :type data: dict
     :return:

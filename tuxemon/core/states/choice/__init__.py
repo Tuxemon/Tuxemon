@@ -3,13 +3,14 @@ from tuxemon.core.menu.menu import PopUpMenu
 
 
 class ChoiceState(PopUpMenu):
-    """ Game state with a graphic box and some text in it
+    """Game state with a graphic box and some text in it
 
     Pressing the action button:
     * if text is being displayed, will cause text speed to go max
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
     """
+
     shrink_to_items = True
     escape_key_exits = None
 

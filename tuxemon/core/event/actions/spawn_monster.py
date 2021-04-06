@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 # noinspection PyAttributeOutsideInit
 class SpawnMonsterAction(EventAction):
-    """ Adds a new monster, created by breeding the two
+    """Adds a new monster, created by breeding the two
     given mons (identified by instance_id, stored in a
     variable) and adds it to the given character's party
     (identified by slug). The parents must be in either
@@ -56,12 +56,9 @@ class SpawnMonsterAction(EventAction):
     }
 
     """
+
     name = "spawn_monster"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "breeding_mother"),
-        (str, "breeding_father")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "breeding_mother"), (str, "breeding_father")]
 
     def start(self):
         npc_slug, breeding_mother, breeding_father = self.parameters
@@ -106,7 +103,8 @@ class SpawnMonsterAction(EventAction):
                 self.session,
                 "got_new_tuxemon",
                 replace,
-            ), avatar
+            ),
+            avatar,
         )
 
     def update(self):

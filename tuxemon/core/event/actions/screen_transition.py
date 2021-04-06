@@ -23,14 +23,13 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class ScreenTransitionAction(EventAction):
-    """ Initiates a screen transition
+    """Initiates a screen transition
 
     Valid Parameters: transition_time_in_seconds
     """
+
     name = "screen_transition"
-    valid_parameters = [
-        (float, "transition_time")
-    ]
+    valid_parameters = [(float, "transition_time")]
 
     def start(self):
         pass

@@ -24,10 +24,11 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class NpcWalk(EventAction):
-    """ Sets the NPC movement speed to the global walk speed
+    """Sets the NPC movement speed to the global walk speed
 
     Valid Parameters: npc_slug
     """
+
     name = "npc_walk"
     valid_parameters = [
         (str, "npc_slug"),

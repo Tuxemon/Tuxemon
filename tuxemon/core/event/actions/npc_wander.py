@@ -27,15 +27,13 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class NpcWanderAction(EventAction):
-    """ Makes an NPC wander around the map
+    """Makes an NPC wander around the map
 
     Valid Parameters: npc_slug, frequency
     """
+
     name = "npc_wander"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (float, "frequency")
-    ]
+    valid_parameters = [(str, "npc_slug"), (float, "frequency")]
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 
 class ItemEffect:
-    """ ItemEffects are executed by items.
+    """ItemEffects are executed by items.
 
     ItemEffect subclasses implement "effects" defined in Tuxemon items.
     All subclasses, at minimum, must implement the following:
@@ -79,6 +79,7 @@ class ItemEffect:
 
     (Monster, "monster_slug")   => a Monster instance will be created
     """
+
     name = "GenericEffect"
     valid_parameters = list()
     _param_factory = None

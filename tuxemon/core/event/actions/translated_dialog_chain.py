@@ -56,6 +56,7 @@ class TranslatedDialogChainAction(EventAction):
     }
 
     """
+
     name = "translated_dialog_chain"
 
     def start(self):

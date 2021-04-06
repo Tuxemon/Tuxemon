@@ -31,9 +31,7 @@ from collections import namedtuple
 
 logger = logging.getLogger(__name__)
 
-type_chart = namedtuple(
-    "TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"]
-)
+type_chart = namedtuple("TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"])
 TYPES = {
     "aether": type_chart(None, None, None, None),
     "normal": type_chart(None, None, None, None),
@@ -46,7 +44,7 @@ TYPES = {
 
 
 def simple_damage_multiplier(attack_types, target_types):
-    """ Calculates damage multiplier based on strengths and weaknesses
+    """Calculates damage multiplier based on strengths and weaknesses
 
     :param attack_types: The names of the types of the technique.
     :param target_types: The names of the types of the target.
@@ -75,7 +73,7 @@ def simple_damage_multiplier(attack_types, target_types):
 
 
 def simple_damage_calculate(technique, user, target):
-    """ Calculates the damage of a technique based on stats and multiplier.
+    """Calculates the damage of a technique based on stats and multiplier.
 
     :param technique: The technique to calculate for.
     :param user: The user of the technique.
@@ -103,21 +101,17 @@ def simple_damage_calculate(technique, user, target):
         user_strength = 7 + user.level
         target_resist = 1
     else:
-        logger.error(
-            "unhandled damage category %s %s", technique.category, technique.range
-        )
+        logger.error("unhandled damage category %s %s", technique.category, technique.range)
         raise RuntimeError
 
-    mult = simple_damage_multiplier(
-        (technique.type1, technique.type2), (target.type1, target.type2)
-    )
+    mult = simple_damage_multiplier((technique.type1, technique.type2), (target.type1, target.type2))
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
 
 
 def simple_poison(technique, user, target):
-    """ Simple poison based on target's full hp.
+    """Simple poison based on target's full hp.
 
     :param technique: The technique causing poison.
     :param user: The user of the technique.
@@ -134,7 +128,7 @@ def simple_poison(technique, user, target):
 
 
 def simple_recover(technique, target):
-    """ Simple recover based on target's full hp.
+    """Simple recover based on target's full hp.
 
     :param technique: The technique causing recover.
     :param target: The one being healed.
@@ -149,7 +143,7 @@ def simple_recover(technique, target):
 
 
 def simple_lifeleech(technique, user, target):
-    """ Simple lifeleech based on a few factors.
+    """Simple lifeleech based on a few factors.
 
     :param technique: The technique causing lifeleech.
     :param user: The user of the technique.

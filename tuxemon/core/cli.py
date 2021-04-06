@@ -51,14 +51,14 @@ class CommandLine(cmd.Cmd):
     ...     self.cli = core.cli.CommandLine(self)
 
     """
+
     def __init__(self, app):
         # Initiate the parent class
         cmd.Cmd.__init__(self)
 
         # Set up the command line prompt itself
         self.prompt = "Tuxemon>> "
-        self.intro = ('Tuxemon CLI\nType "help", "copyright", "credits"'
-                      ' or "license" for more information.')
+        self.intro = 'Tuxemon CLI\nType "help", "copyright", "credits"' ' or "license" for more information.'
 
         # set up a  pretty printer so that shit is formatted nicely
         self.pp = pprint.PrettyPrinter(indent=4)
@@ -126,7 +126,9 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-        print("Tuxemon\nCopyright (C) 2014, William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>")
+        print(
+            "Tuxemon\nCopyright (C) 2014, William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>"
+        )
 
     def do_credits(self, line):
         """Print the copyright information if "credits" was entered.

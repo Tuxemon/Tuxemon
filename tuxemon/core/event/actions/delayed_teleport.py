@@ -23,16 +23,13 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class DelayedTeleportAction(EventAction):
-    """ Set teleport information.  Teleport will be triggered during screen transition
+    """Set teleport information.  Teleport will be triggered during screen transition
 
     Only use this if followed by a transition
     """
+
     name = "delayed_teleport"
-    valid_parameters = [
-        (str, "map_name"),
-        (int, "position_x"),
-        (int, "position_y")
-    ]
+    valid_parameters = [(str, "map_name"), (int, "position_x"), (int, "position_y")]
 
     def start(self):
         # Get the world object from the session

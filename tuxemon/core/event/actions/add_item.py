@@ -23,15 +23,13 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class AddItemAction(EventAction):
-    """ Adds an item to the current player's inventory.
+    """Adds an item to the current player's inventory.
 
     The action parameter must contain an item name to look up in the item database.
     """
+
     name = "add_item"
-    valid_parameters = [
-        (str, "item_slug"),
-        ((int, None), "quantity")
-    ]
+    valid_parameters = [(str, "item_slug"), ((int, None), "quantity")]
 
     def start(self):
         player = self.session.player

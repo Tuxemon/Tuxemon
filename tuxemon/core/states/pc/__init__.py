@@ -50,8 +50,8 @@ def add_menu_items(state, items):
 
 
 class PCState(PopUpMenu):
-    """ The state responsible in game settings.
-    """
+    """The state responsible in game settings."""
+
     shrink_to_items = True
 
     def startup(self, *items, **kwargs):
@@ -60,32 +60,43 @@ class PCState(PopUpMenu):
         def change_state(state, **kwargs):
             return partial(self.client.replace_state, state, **kwargs)
 
-        add_menu_items(self, (('menu_monsters', change_state('MonsterMenuState')),
-                              ('menu_items', change_state('ItemMenuState')),
-                              ('menu_multiplayer', change_state('MultiplayerMenu')),
-                              ('log_off', self.client.pop_state)))
+        add_menu_items(
+            self,
+            (
+                ("menu_monsters", change_state("MonsterMenuState")),
+                ("menu_items", change_state("ItemMenuState")),
+                ("menu_multiplayer", change_state("MultiplayerMenu")),
+                ("log_off", self.client.pop_state),
+            ),
+        )
 
 
 class MultiplayerMenu(PopUpMenu):
-    """ MP Menu
+    """MP Menu
 
     code salvaged from commit 6fa20da714c7b794cbe1e8a22168fa66cda13a9e
     """
+
     shrink_to_items = True
 
     def startup(self, *items, **kwargs):
         super().startup(*items, **kwargs)
 
-        add_menu_items(self, (('multiplayer_host_game', self.host_game),
-                              ('multiplayer_scan_games', self.scan_for_games),
-                              ('multiplayer_join_game', self.join_by_ip)))
+        add_menu_items(
+            self,
+            (
+                ("multiplayer_host_game", self.host_game),
+                ("multiplayer_scan_games", self.scan_for_games),
+                ("multiplayer_join_game", self.join_by_ip),
+            ),
+        )
 
     def host_game(self):
 
         # check if server is already hosting a game
         if self.game.server.listening:
             self.game.pop_state(self)
-            open_dialog(local_session, [T.translate('multiplayer_already_hosting')])
+            open_dialog(local_session, [T.translate("multiplayer_already_hosting")])
 
         # not hosting, so start the process
         elif not self.game.isclient:
@@ -109,7 +120,7 @@ class MultiplayerMenu(PopUpMenu):
             self.game.pop_state(self)
 
             # inform player that hosting is ready
-            open_dialog(local_session, [T.translate('multiplayer_hosting_ready')])
+            open_dialog(local_session, [T.translate("multiplayer_hosting_ready")])
 
     def scan_for_games(self):
         # start the game scanner
@@ -134,8 +145,8 @@ class MultiplayerMenu(PopUpMenu):
 
 
 class MultiplayerSelect(PopUpMenu):
-    """ Menu to show games found by the network game scanner
-    """
+    """Menu to show games found by the network game scanner"""
+
     shrink_to_items = True
 
     def startup(self, *items, **kwargs):
@@ -151,7 +162,7 @@ class MultiplayerSelect(PopUpMenu):
                 label = self.shadow_text(server)
                 yield MenuItem(label, None, None, None)
         else:
-            label = self.shadow_text(T.translate('multiplayer_no_servers'))
+            label = self.shadow_text(T.translate("multiplayer_no_servers"))
             item = MenuItem(label, None, None, None)
             item.enabled = False
             yield item

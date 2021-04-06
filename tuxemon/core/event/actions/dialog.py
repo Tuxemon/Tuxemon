@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class DialogAction(EventAction):
-    """ Opens a single dialog and waits until it is closed.
+    """Opens a single dialog and waits until it is closed.
 
     Valid Parameters: text_to_display
 
@@ -49,11 +49,9 @@ class DialogAction(EventAction):
     }
 
     """
+
     name = "dialog"
-    valid_parameters = [
-        (str, "text"),
-        (str, "avatar")
-    ]
+    valid_parameters = [(str, "text"), (str, "avatar")]
 
     def start(self):
         text = replace_text(self.session, self.parameters.text)

@@ -25,19 +25,16 @@
 #
 
 
-
-
 class EventCondition:
-    """
+    """"""
 
-    """
     name = "GenericCondition"
 
     def __init__(self):
         pass
 
     def test(self, session, condition):
-        """ Return True if satisfied, or False if not
+        """Return True if satisfied, or False if not
 
         :param tuxemon.core.session.Session session:
         :param Dict condition:
@@ -46,7 +43,7 @@ class EventCondition:
         pass
 
     def get_persist(self, session):
-        """ Return dictionary for this event class's data
+        """Return dictionary for this event class's data
 
         * This dictionary will be shared across all conditions
         * This dictionary will be saved when game is saved

@@ -28,12 +28,12 @@ logger = logging.getLogger(__name__)
 
 
 class NPCFacingTileCondition(EventCondition):
-    """ Checks to see if an NPC is facing a tile position
-    """
+    """Checks to see if an NPC is facing a tile position"""
+
     name = "npc_facing_tile"
 
-    def test(self, session,  condition):
-        """ Checks to see if an NPC is facing a tile position
+    def test(self, session, condition):
+        """Checks to see if an NPC is facing a tile position
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
@@ -65,9 +65,7 @@ class NPCFacingTileCondition(EventCondition):
             return False
 
         tiles = [
-            (condition.x + w, condition.y + h)
-            for w in range(0, condition.width)
-            for h in range(0, condition.height)
+            (condition.x + w, condition.y + h) for w in range(0, condition.width) for h in range(0, condition.height)
         ]
         tile_location = None
 

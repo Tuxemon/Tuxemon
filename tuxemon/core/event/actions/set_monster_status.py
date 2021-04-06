@@ -28,17 +28,15 @@ logger = logging.getLogger(__name__)
 
 
 class SetMonsterStatusAction(EventAction):
-    """ Changes the status of a monster in the current player's party. The action parameters
+    """Changes the status of a monster in the current player's party. The action parameters
     may contain a monster slot and the new status to be appended. If no slot is specified,
     all monsters are modified. If no status is specified, the status is cleared.
 
     Valid Parameters: slot, status
     """
+
     name = "set_monster_status"
-    valid_parameters = [
-        (int, "slot"),
-        (str, "status")
-    ]
+    valid_parameters = [(int, "slot"), (str, "status")]
 
     @staticmethod
     def set_status(monster, value):

@@ -58,19 +58,14 @@ dirs2 = {
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
 
 # complimentary directions
-pairs = {
-    "up": "down",
-    "down": "up",
-    "left": "right",
-    "right": "left"
-}
+pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
 
 # what directions entities can face
 facing = "front", "back", "left", "right"
 
 
 def translate_short_path(path, position=(0, 0)):
-    """ Translate condensed path strings into coordinate pairs
+    """Translate condensed path strings into coordinate pairs
 
     Uses a string of U D L R characters; Up Down Left Right.
     Passing a position will make the path relative to that point.
@@ -100,7 +95,7 @@ def get_direction(base, target):
 
 
 def proj(point):
-    """ Project 3d coordinates to 2d.
+    """Project 3d coordinates to 2d.
 
     Not necessarily for use on a screen.
 
@@ -115,7 +110,7 @@ def proj(point):
 
 
 def tiles_inside_rect(rect, grid_size):
-    """ Iterate all tile positions within this rect
+    """Iterate all tile positions within this rect
 
     The positions will be changed from pixel/map coords to tile coords
 
@@ -125,8 +120,8 @@ def tiles_inside_rect(rect, grid_size):
     """
     # scan order is left->right, top->bottom
     for y, x in product(
-            range(rect.top, rect.bottom, grid_size[1]),
-            range(rect.left, rect.right, grid_size[0]),
+        range(rect.top, rect.bottom, grid_size[1]),
+        range(rect.left, rect.right, grid_size[0]),
     ):
         yield x // grid_size[0], y // grid_size[1]
 
@@ -145,7 +140,7 @@ def snap_interval(value, interval):
 
 
 def snap_outer_point(point, grid_size):
-    """ Snap point to nearest grid intersection
+    """Snap point to nearest grid intersection
 
     * If point is rounded up, the coords are 1 less on each axis
 
@@ -153,23 +148,21 @@ def snap_outer_point(point, grid_size):
     :param Tuple[int, int] grid_size: grid size
     :rtype: Tuple[int, int]
     """
-    return (snap_interval(point[0], grid_size[0]),
-            snap_interval(point[1], grid_size[1]))
+    return (snap_interval(point[0], grid_size[0]), snap_interval(point[1], grid_size[1]))
 
 
 def snap_point(point, grid_size):
-    """ Snap point to nearest grid intersection
+    """Snap point to nearest grid intersection
 
     :param Tuple[int, int] point: point to snap
     :param Tuple[int, int] grid_size: grid size
     :rtype: Tuple[int, int]
     """
-    return (round_to_divisible(point[0], grid_size[0]),
-            round_to_divisible(point[1], grid_size[1]))
+    return (round_to_divisible(point[0], grid_size[0]), round_to_divisible(point[1], grid_size[1]))
 
 
 def point_to_grid(point, grid_size):
-    """ Snap pixel coordinate to grid, then convert to tile coords
+    """Snap pixel coordinate to grid, then convert to tile coords
 
     :param point:
     :param grid_size:
@@ -180,7 +173,7 @@ def point_to_grid(point, grid_size):
 
 
 def angle_of_points(point0, point1):
-    """ Find angle between two points
+    """Find angle between two points
 
     :param Tuple[int, int] point0:
     :param Tuple[int, int] point1:
@@ -192,7 +185,7 @@ def angle_of_points(point0, point1):
 
 
 def snap_rect(rect, grid_size):
-    """ Align all vertices to the nearest point
+    """Align all vertices to the nearest point
 
     :param rect:
     :param grid_size:
@@ -204,7 +197,7 @@ def snap_rect(rect, grid_size):
 
 
 def orientation_by_angle(angle):
-    """ Return "horizontal" or "vertical"
+    """Return "horizontal" or "vertical"
 
     :param Float angle:
     :rtype: str
@@ -236,8 +229,7 @@ def extract_region_properties(region):
 
 
 class PathfindNode:
-    """ Used in path finding search
-    """
+    """Used in path finding search"""
 
     def __init__(self, value, parent=None):
         self.parent = parent
@@ -275,7 +267,7 @@ class TuxemonMap:
     """
 
     def __init__(self, events, inits, interacts, collision_map, collisions_lines_map, raw_data, edges, filename):
-        """ Constructor
+        """Constructor
 
         Collision lines
         Player can walk in tiles, but cannot cross
@@ -309,17 +301,17 @@ class TuxemonMap:
         self.filename = filename
 
     def initialize_renderer(self):
-        """ Initialize the renderer for the map and sprites
+        """Initialize the renderer for the map and sprites
 
         :rtype: pyscroll.BufferedRenderer
         """
         # TODO: Use self.edges == "stitched" here when implementing seamless maps
         visual_data = pyscroll.data.TiledMapData(self.data)
-        clamp = (self.edges == "clamped")
+        clamp = self.edges == "clamped"
         self.renderer = pyscroll.BufferedRenderer(visual_data, prepare.SCREEN_SIZE, clamp_camera=clamp, tall_sprites=2)
 
     def pathfind(self, start, dest):
-        """ Pathfind
+        """Pathfind
 
         :param start:
         :type dest: tuple
@@ -343,12 +335,16 @@ class TuxemonMap:
 
         else:
             # TODO: get current map name for a more useful error
-            logger.error("Pathfinding failed to find a path from " +
-                         str(start) + " to " + str(dest) +
-                         ". Are you sure that an obstacle-free path exists?")
+            logger.error(
+                "Pathfinding failed to find a path from "
+                + str(start)
+                + " to "
+                + str(dest)
+                + ". Are you sure that an obstacle-free path exists?"
+            )
 
     def pathfind_r(self, dest, queue, known_nodes):
-        """ Breadth first search algorithm
+        """Breadth first search algorithm
 
         :type dest: tuple
         :type queue: list
@@ -370,7 +366,7 @@ class TuxemonMap:
                     queue.append(new_node)
 
     def get_explicit_tile_exits(self, position, tile, skip_nodes):
-        """ Check for exits from tile which are defined in the map
+        """Check for exits from tile which are defined in the map
 
         This will return exits which were defined by the map creator
 
@@ -387,7 +383,7 @@ class TuxemonMap:
 
         # does the tile define continue movements?
         try:
-            return [tuple(dirs2[tile['continue']] + position)]
+            return [tuple(dirs2[tile["continue"]] + position)]
         except KeyError:
             pass
 
@@ -405,7 +401,7 @@ class TuxemonMap:
             pass
 
     def get_pos_from_tilepos(self, tile_position):
-        """ Returns the map pixel coordinate based on tile position.
+        """Returns the map pixel coordinate based on tile position.
 
         USE this to draw to the screen
 
@@ -423,8 +419,7 @@ class TuxemonMap:
         return x, y
 
     def _collision_box_to_rect(self, box):
-        """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords).
-        """
+        """Returns a pygame.Rect (in screen-coords) version of a collision box (in world-coords)."""
 
         # For readability
         x, y = self.get_pos_from_tilepos(box)
@@ -433,7 +428,6 @@ class TuxemonMap:
         return Rect(x, y, tw, th)
 
     def _npc_to_rect(self, npc):
-        """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box.
-        """
+        """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box."""
         pos = self.get_pos_from_tilepos(npc.tile_pos)
         return Rect(pos, self.tile_size)

@@ -8,8 +8,8 @@ min_font_size = 7
 
 
 class TextArea(Sprite):
-    """ Area of the screen that can draw text
-    """
+    """Area of the screen that can draw text"""
+
     animated = True
 
     def __init__(self, font, font_color, bg=(192, 192, 192)):
@@ -60,12 +60,10 @@ class TextArea(Sprite):
     def _start_text_animation(self):
         self.drawing_text = True
         self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)
-        self._iter = draw.iter_render_text(self._text, self.font, self.font_color,
-                                           self.font_bg, self.image.get_rect())
+        self._iter = draw.iter_render_text(self._text, self.font, self.font_color, self.font_bg, self.image.get_rect())
 
 
-def draw_text(surface, text=None, rect=None, justify="left", align=None,
-              font=None, font_size=None, font_color=None):
+def draw_text(surface, text=None, rect=None, justify="left", align=None, font=None, font_size=None, font_color=None):
     """Draws text to a surface. If the text exceeds the rect size, it will
     autowrap. To place text on a new line, put TWO newline characters (\\n)  in your text.
 
@@ -132,7 +130,7 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None,
             # Loop through the list and every time we encounter a blank string, then that is
             # a new line. So we append the current line and reset the word list for a new line
             for item in w:
-                if item == '':
+                if item == "":
                     # This is a new line!
                     lines.append(" ".join(wordlist))
                     wordlist = []
@@ -161,14 +159,13 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None,
                 wordlist.append(word)
 
     # If the last line is not blank, then append it to the list
-    if " ".join(wordlist) != '':
+    if " ".join(wordlist) != "":
         lines.append(" ".join(wordlist))
 
     # If the justification was set, handle the position of the text automatically
     if justify == "center":
         if lines:
-            left = (left + (width / 2)) - \
-                    ((len(lines[0]) * pixels_per_letter) / 2)
+            left = (left + (width / 2)) - ((len(lines[0]) * pixels_per_letter) / 2)
         else:
             left = 0
 
@@ -177,8 +174,7 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None,
 
     # If text alignment was set, handle the position of the text automatically
     if align == "middle":
-        top = (top + (height / 2)) - \
-                ((text_surface.get_height() * len(lines)) / 2)
+        top = (top + (height / 2)) - ((text_surface.get_height() * len(lines)) / 2)
 
     elif align == "bottom":
         raise NotImplementedError("Needs to be implemented")

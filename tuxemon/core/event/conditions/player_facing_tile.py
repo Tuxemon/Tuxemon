@@ -27,11 +27,11 @@ logger = logging.getLogger(__name__)
 
 
 class PlayerFacingTileCondition(EventCondition):
-    """ Checks to see if an NPC is facing a tile position
-    """
+    """Checks to see if an NPC is facing a tile position"""
+
     name = "player_facing_tile"
 
-    def test(self, session,  condition):
+    def test(self, session, condition):
         """Checks to see the player is facing a tile position
 
         :param session: The session object
@@ -61,9 +61,7 @@ class PlayerFacingTileCondition(EventCondition):
         """
 
         tiles = [
-            (condition.x + w, condition.y + h)
-            for w in range(0, condition.width)
-            for h in range(0, condition.height)
+            (condition.x + w, condition.y + h) for w in range(0, condition.width) for h in range(0, condition.height)
         ]
         tile_location = None
 

@@ -23,11 +23,11 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class PlayerAtCondition(EventCondition):
-    """ Checks to see if an npc is at a current position on the map.
-    """
+    """Checks to see if an npc is at a current position on the map."""
+
     name = "player_at"
 
-    def test(self, session,  condition):
+    def test(self, session, condition):
         """Checks to see if the player is at a current position on the map.
 
         :param session: The session object

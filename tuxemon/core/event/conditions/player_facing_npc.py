@@ -28,12 +28,12 @@ logger = logging.getLogger(__name__)
 
 
 class PlayerFacingNPCCondition(EventCondition):
-    """ Checks to see the player is next to and facing a particular NPC
-    """
+    """Checks to see the player is next to and facing a particular NPC"""
+
     name = "player_facing_npc"
 
-    def test(self, session,  condition):
-        """ Checks to see the player is next to and facing a particular NPC
+    def test(self, session, condition):
+        """Checks to see the player is next to and facing a particular NPC
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

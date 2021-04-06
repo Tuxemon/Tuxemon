@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 # noinspection PyAttributeOutsideInit
 class CopyVariableAction(EventAction):
-    """ Copies the value of var2 into var1,
+    """Copies the value of var2 into var1,
     (e.g. var1 = var 2)
 
     Valid Parameters: string variable_name
@@ -47,11 +47,9 @@ class CopyVariableAction(EventAction):
     }
 
     """
+
     name = "copy_variable"
-    valid_parameters = [
-        (str, "var1"),
-        (str, "var2")
-    ]
+    valid_parameters = [(str, "var1"), (str, "var2")]
 
     def start(self):
         player = self.session.player

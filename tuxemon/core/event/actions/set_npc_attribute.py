@@ -25,7 +25,7 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class SetNpcAttributeAction(EventAction):
-    """ Sets the given attribute of the npc to the given value.
+    """Sets the given attribute of the npc to the given value.
 
     Valid Parameters: slug, attribute, value
 
@@ -41,12 +41,9 @@ class SetNpcAttributeAction(EventAction):
         ]
     }
     """
+
     name = "set_npc_attribute"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "name"),
-        (str, "value")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
 
     def start(self):
         npc = get_npc(self.session, self.parameters[0])

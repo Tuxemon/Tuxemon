@@ -23,11 +23,11 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class HasMonsterCondition(EventCondition):
-    """ Checks to see if an NPC is facing a tile position
-    """
+    """Checks to see if an NPC is facing a tile position"""
+
     name = "has_monster"
 
-    def test(self, session,  condition):
+    def test(self, session, condition):
         """Checks to see the player is has a monster in his party
 
         :param session: The session object

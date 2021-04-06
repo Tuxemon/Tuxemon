@@ -27,10 +27,9 @@ class CallEventAction(EventAction):
 
     Valid Parameters: event_id
     """
+
     name = "call_event"
-    valid_parameters = [
-        (int, "event_id")
-    ]
+    valid_parameters = [(int, "event_id")]
 
     def start(self):
         event_engine = self.session.client.event_engine

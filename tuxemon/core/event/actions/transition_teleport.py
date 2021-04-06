@@ -43,6 +43,7 @@ class TransitionTeleportAction(EventAction):
     }
 
     """
+
     name = "transition_teleport"
     valid_parameters = [
         (str, "map_name"),

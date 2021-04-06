@@ -24,12 +24,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class NPCFacingCondition(EventCondition):
-    """ Checks to see where an NPC is facing
-    """
+    """Checks to see where an NPC is facing"""
+
     name = "npc_facing"
 
-    def test(self, session,  condition):
-        """ Checks to see where an NPC is facing
+    def test(self, session, condition):
+        """Checks to see where an NPC is facing
 
         :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`

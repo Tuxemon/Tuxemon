@@ -25,16 +25,15 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class WaitAction(EventAction):
-    """ Blocks event chain for some time
+    """Blocks event chain for some time
 
     Valid Parameters: duration
 
     * duration (float): time in seconds to wait for
     """
+
     name = "wait"
-    valid_parameters = [
-        (float, 'seconds')
-    ]
+    valid_parameters = [(float, "seconds")]
 
     # TODO: use event loop time, not wall clock
     def start(self):

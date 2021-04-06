@@ -24,17 +24,14 @@ SHAKE_PERIODIC_SAW_DOWN = Shake_PeriodicWaveform(4)
 SHAKE_PERIODIC_CUSTOM = Shake_PeriodicWaveform(5)
 SHAKE_PERIODIC_COUNT = Shake_PeriodicWaveform(6)
 
+
 class Shake_EffectRumble(Structure):
-    _fields_ = [
-        ("strongMagnitude", c_int),
-        ("weakMagnitude", c_int)]
+    _fields_ = [("strongMagnitude", c_int), ("weakMagnitude", c_int)]
+
 
 class Shake_Envelope(Structure):
-    _fields_ = [
-        ("attackLength", c_int),
-        ("attackLevel", c_int),
-        ("fadeLength", c_int),
-        ("fadeLevel", c_int)]
+    _fields_ = [("attackLength", c_int), ("attackLevel", c_int), ("fadeLength", c_int), ("fadeLevel", c_int)]
+
 
 class Shake_EffectPeriodic(Structure):
     _fields_ = [
@@ -43,61 +40,95 @@ class Shake_EffectPeriodic(Structure):
         ("magnitude", c_int),
         ("offset", c_int),
         ("phase", c_int),
-        ("envelope", Shake_Envelope)]
+        ("envelope", Shake_Envelope),
+    ]
+
 
 class Shake_Union(Union):
-    _fields_ = [
-        ("rumble", Shake_EffectRumble),
-        ("periodic", Shake_EffectPeriodic)]
+    _fields_ = [("rumble", Shake_EffectRumble), ("periodic", Shake_EffectPeriodic)]
+
 
 class Shake_Effect(Structure):
-    _anonymous_ = ('u')
+    _anonymous_ = "u"
     _fields_ = [
         ("type", Shake_EffectType),
         ("id", c_int),
         ("direction", c_int),
         ("length", c_int),
         ("delay", c_int),
-        ("u", Shake_Union)]
+        ("u", Shake_Union),
+    ]
+
 
 class LibShakeRumble(Rumble):
-    def __init__(self, library='libshake.so'):
+    def __init__(self, library="libshake.so"):
         self.libShake = cdll.LoadLibrary(library)
         self.libShake.Shake_Init()
         self.effect_type = SHAKE_EFFECT_PERIODIC
         self.periodic_waveform = SHAKE_PERIODIC_SINE
 
-    def rumble(self, target=0, period=25, magnitude=24576, length=2, delay=0,
-            attack_length=256, attack_level=0, fade_length=256, fade_level=0,
-            direction=16384):
+    def rumble(
+        self,
+        target=0,
+        period=25,
+        magnitude=24576,
+        length=2,
+        delay=0,
+        attack_length=256,
+        attack_level=0,
+        fade_length=256,
+        fade_level=0,
+        direction=16384,
+    ):
         # Target -1 will target all available devices
         if target == -1:
             for i in range(self.libShake.Shake_NumOfDevices()):
-                self._start_thread(i, period, magnitude, length, delay, attack_length,
-                                   attack_level, fade_length, fade_level, direction)
+                self._start_thread(
+                    i, period, magnitude, length, delay, attack_length, attack_level, fade_length, fade_level, direction
+                )
         else:
-            self._start_thread(target, period, magnitude, length, delay, attack_length,
-                               attack_level, fade_length, fade_level, direction)
+            self._start_thread(
+                target,
+                period,
+                magnitude,
+                length,
+                delay,
+                attack_length,
+                attack_level,
+                fade_length,
+                fade_level,
+                direction,
+            )
 
-    def _rumble_thread(self, target=0, period=25, magnitude=24576, length=2, delay=0,
-            attack_length=256, attack_level=0, fade_length=256, fade_level=0,
-            direction=16384):
+    def _rumble_thread(
+        self,
+        target=0,
+        period=25,
+        magnitude=24576,
+        length=2,
+        delay=0,
+        attack_length=256,
+        attack_level=0,
+        fade_length=256,
+        fade_level=0,
+        direction=16384,
+    ):
         if self.libShake.Shake_NumOfDevices() > 0:
             device = self.libShake.Shake_Open(target)
 
             effect = Shake_Effect()
             self.libShake.Shake_InitEffect(pointer(effect), self.effect_type)
             if self.effect_type == SHAKE_EFFECT_PERIODIC:
-                effect.periodic.waveform               = self.periodic_waveform
-                effect.periodic.period                 = period
-                effect.periodic.magnitude              = magnitude
+                effect.periodic.waveform = self.periodic_waveform
+                effect.periodic.period = period
+                effect.periodic.magnitude = magnitude
                 effect.periodic.envelope.attackLengeth = attack_length
-                effect.periodic.envelope.attackLevel   = attack_level
-                effect.periodic.envelope.fadeLength    = fade_length
-                effect.periodic.envelope.fadeLevel     = fade_level
-            effect.direction                       = direction
-            effect.length                          = int(length * 1000)
-            effect.delay                           = delay
+                effect.periodic.envelope.attackLevel = attack_level
+                effect.periodic.envelope.fadeLength = fade_length
+                effect.periodic.envelope.fadeLevel = fade_level
+            effect.direction = direction
+            effect.length = int(length * 1000)
+            effect.delay = delay
 
             id = self.libShake.Shake_UploadEffect(device, pointer(effect))
             self.libShake.Shake_Play(device, id)
@@ -106,12 +137,34 @@ class LibShakeRumble(Rumble):
             self.libShake.Shake_EraseEffect(device, id)
             self.libShake.Shake_Close(device)
 
-    def _start_thread(self, target=0, period=25, magnitude=24576, length=2, delay=0,
-            attack_length=256, attack_level=0, fade_length=256, fade_level=0,
-            direction=16384):
-        t = Thread(target=self._rumble_thread,
-                   args=(target, period, magnitude, length, delay, attack_length,
-                         attack_level, fade_length, fade_level, direction))
+    def _start_thread(
+        self,
+        target=0,
+        period=25,
+        magnitude=24576,
+        length=2,
+        delay=0,
+        attack_length=256,
+        attack_level=0,
+        fade_length=256,
+        fade_level=0,
+        direction=16384,
+    ):
+        t = Thread(
+            target=self._rumble_thread,
+            args=(
+                target,
+                period,
+                magnitude,
+                length,
+                delay,
+                attack_length,
+                attack_level,
+                fade_length,
+                fade_level,
+                direction,
+            ),
+        )
         t.daemon = True
         t.start()
 
@@ -158,5 +211,3 @@ class LibShakeRumble(Rumble):
 
     def quit(self):
         self.libShake.Shake_Quit()
-
-

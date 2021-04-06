@@ -24,7 +24,7 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class ModifyPlayerAttributeAction(EventAction):
-    """ Modifies the given attribute of the player character by modifier. By default
+    """Modifies the given attribute of the player character by modifier. By default
     this is achieved via addition, but prepending a '%' will cause it to be
     multiplied by the attribute.
 
@@ -32,11 +32,9 @@ class ModifyPlayerAttributeAction(EventAction):
 
     EventAction parameter 'modifier' must be an int (positive or negative)
     """
+
     name = "modify_player_attribute"
-    valid_parameters = [
-        (str, "name"),
-        (float, "value")
-    ]
+    valid_parameters = [(str, "name"), (float, "value")]
 
     def start(self):
         attribute = self.parameters[0]

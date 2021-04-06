@@ -23,17 +23,15 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class SetMonsterLevelAction(EventAction):
-    """ Changes the level of a monster in the current player's party. The action parameters
+    """Changes the level of a monster in the current player's party. The action parameters
     may contain a monster slot and the amount by which to level. If no slot is specified,
     all monsters are leveled. If no level is specified, the level is reverted to 1.
 
     Valid Parameters: slot, level
     """
+
     name = "set_monster_level"
-    valid_parameters = [
-        (int, "slot"),
-        (int, "level")
-    ]
+    valid_parameters = [(int, "slot"), (int, "level")]
 
     def start(self):
         if not self.session.player.monsters > 0:

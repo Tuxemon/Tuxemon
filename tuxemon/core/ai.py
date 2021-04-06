@@ -38,11 +38,10 @@ logger = logging.getLogger(__name__)
 # TODO: use ABC meta.
 # TODO: allow AI to target self or own team
 class AI:
-    """ Base class for an AI model object.
-    """
+    """Base class for an AI model object."""
 
     def make_decision(self, npc, opponents):
-        """ Given a npc, and list of opponents, decide an action to take
+        """Given a npc, and list of opponents, decide an action to take
 
         :param npc: The monster whose decision is being decided
         :param opponents: List of possible targets
@@ -52,11 +51,10 @@ class AI:
 
 
 class SimpleAI(AI):
-    """ Very simple AI.  Always uses first technique against first opponent.
-    """
+    """Very simple AI.  Always uses first technique against first opponent."""
 
     def make_decision(self, npc, opponents):
-        """ Given a npc, and list of opponents, decide an action to take
+        """Given a npc, and list of opponents, decide an action to take
 
         :param npc: The monster whose decision is being decided
         :param opponents: List of possible targets
@@ -66,11 +64,10 @@ class SimpleAI(AI):
 
 
 class RandomAI(AI):
-    """ AI will use random technique against random opponent
-    """
+    """AI will use random technique against random opponent"""
 
     def make_decision(self, npc, opponents):
-        """ Given a npc, and list of opponents, decide an action to take
+        """Given a npc, and list of opponents, decide an action to take
 
         :param npc: The monster whose decision is being decided
         :param opponents: List of possible targets

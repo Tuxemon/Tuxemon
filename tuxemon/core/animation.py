@@ -5,7 +5,7 @@ from math import sqrt, cos, sin, pi
 
 import pygame
 
-__all__ = ('Task', 'Animation', 'remove_animations_of')
+__all__ = ("Task", "Animation", "remove_animations_of")
 
 from tuxemon.compat import Rect
 
@@ -48,8 +48,7 @@ def remove_animations_of(target, group):
     :returns: None
     """
     animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
-    to_remove = [ani for ani in animations
-                 if target in [i[0] for i in ani.targets]]
+    to_remove = [ani for ani in animations if target in [i[0] for i in ani.targets]]
     group.remove(*to_remove)
 
 
@@ -61,7 +60,7 @@ class AnimBase(pygame.sprite.Sprite):
         self._callbacks = defaultdict(list)
 
     def schedule(self, func, when=None):
-        """ Schedule a callback during operation of Task or Animation
+        """Schedule a callback during operation of Task or Animation
 
         The callback is any callable object.  You can specify different
         times for the callback to be executed, according to the following:
@@ -80,8 +79,8 @@ class AnimBase(pygame.sprite.Sprite):
             when = self._valid_schedules[0]
 
         if when not in self._valid_schedules:
-            logger.critical('invalid time to schedule a callback')
-            logger.critical('valid:', self._valid_schedules)
+            logger.critical("invalid time to schedule a callback")
+            logger.critical("valid:", self._valid_schedules)
             raise ValueError
         self._callbacks[when].append(func)
 
@@ -95,7 +94,7 @@ class AnimBase(pygame.sprite.Sprite):
 
 
 class Task(AnimBase):
-    """ Execute functions at a later time and optionally loop it
+    """Execute functions at a later time and optionally loop it
 
     This is a silly little class meant to make it easy to create
     delayed or looping events without any complicated hooks into
@@ -140,7 +139,8 @@ class Task(AnimBase):
 
         When chaining tasks, do not add the chained tasks to a group.
     """
-    _valid_schedules = ('on interval', 'on finish', 'on abort')
+
+    _valid_schedules = ("on interval", "on finish", "on abort")
 
     def __init__(self, callback, interval=0, times=1):
         if not callable(callback):
@@ -158,7 +158,7 @@ class Task(AnimBase):
         self.schedule(callback)
 
     def chain(self, callback, interval=0, times=1):
-        """ Schedule a callback to execute when this one is finished
+        """Schedule a callback to execute when this one is finished
 
         If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
@@ -175,7 +175,7 @@ class Task(AnimBase):
         self.chain_task(task)
 
     def chain_task(self, *others):
-        """ Schedule Task(s) to execute when this one is finished
+        """Schedule Task(s) to execute when this one is finished
 
         If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
@@ -192,7 +192,7 @@ class Task(AnimBase):
         return others
 
     def update(self, dt):
-        """ Update the Task
+        """Update the Task
 
         The unit of time passed must match the one used in the
         constructor.
@@ -211,16 +211,15 @@ class Task(AnimBase):
             self._duration -= self._interval
             if self._loops >= 0:
                 self._loops -= 1
-                if self._loops == 0: # loops counter is zero, finish now
+                if self._loops == 0:  # loops counter is zero, finish now
                     self.finish()
-                else:                # not finished, but still are iterations left
+                else:  # not finished, but still are iterations left
                     self._execute_callbacks("on interval")
-            else:                    # loops == -1, run forever
+            else:  # loops == -1, run forever
                 self._execute_callbacks("on interval")
 
     def finish(self):
-        """ Force task to finish, while executing callbacks
-        """
+        """Force task to finish, while executing callbacks"""
         if self._state is ANIMATION_RUNNING:
             self._state = ANIMATION_FINISHED
             self._execute_callbacks("on interval")
@@ -229,8 +228,7 @@ class Task(AnimBase):
             self._cleanup()
 
     def abort(self):
-        """ Force task to finish, without executing callbacks
-        """
+        """Force task to finish, without executing callbacks"""
         self._state = ANIMATION_FINISHED
         self._cleanup()
 
@@ -307,25 +305,25 @@ class Animation(pygame.sprite.Sprite):
     The 'round_values' paramenter will be set to True automatically
     if pygame rects are used as an animation target.
     """
-    default_duration = 1000.
-    default_transition = 'linear'
+
+    default_duration = 1000.0
+    default_transition = "linear"
 
     def __init__(self, *targets, **kwargs):
         super().__init__()
         self.targets = list()
-        self._targets = list()      #  used when there is a delay
-        self.delay = kwargs.get('delay', 0)
+        self._targets = list()  #  used when there is a delay
+        self.delay = kwargs.get("delay", 0)
         self._state = ANIMATION_NOT_STARTED
-        self._round_values = kwargs.get('round_values', False)
-        self._duration = float(kwargs.get('duration', self.default_duration))
-        self._transition = kwargs.get('transition', self.default_transition)
-        self._initial = kwargs.get('initial', None)
-        self._relative = kwargs.get('relative', False)
+        self._round_values = kwargs.get("round_values", False)
+        self._duration = float(kwargs.get("duration", self.default_duration))
+        self._transition = kwargs.get("transition", self.default_transition)
+        self._initial = kwargs.get("initial", None)
+        self._relative = kwargs.get("relative", False)
         if isinstance(self._transition, string_types):
             self._transition = getattr(AnimationTransition, self._transition)
-        self._elapsed = 0.
-        for key in ('duration', 'transition', 'round_values', 'delay',
-                    'initial', 'relative'):
+        self._elapsed = 0.0
+        for key in ("duration", "transition", "round_values", "delay", "initial", "relative"):
             kwargs.pop(key, None)
         if not kwargs:
             raise ValueError
@@ -408,15 +406,15 @@ class Animation(pygame.sprite.Sprite):
                 self.delay = 0
             return
 
-        p = min(1., self._elapsed / self._duration)
+        p = min(1.0, self._elapsed / self._duration)
         t = self._transition(p)
         for target, props in self.targets:
             for name, values in props.items():
                 a, b = values
-                value = (a * (1. - t)) + (b * t)
+                value = (a * (1.0 - t)) + (b * t)
                 self._set_value(target, name, value)
 
-        if hasattr(self, 'update_callback'):
+        if hasattr(self, "update_callback"):
             self.update_callback()
 
         if p >= 1:
@@ -444,7 +442,7 @@ class Animation(pygame.sprite.Sprite):
                     a, b = values
                     self._set_value(target, name, b)
 
-        if hasattr(self, 'update_callback'):
+        if hasattr(self, "update_callback"):
             self.update_callback()
 
         self.abort()
@@ -468,7 +466,7 @@ class Animation(pygame.sprite.Sprite):
         self._state = ANIMATION_FINISHED
         self.targets = None
         self.kill()
-        if hasattr(self, 'callback'):
+        if hasattr(self, "callback"):
             self.callback()
 
     def start(self, *targets, **kwargs):
@@ -615,7 +613,7 @@ class AnimationTransition:
     def in_out_expo(progress):
         if progress == 0:
             return 0.0
-        if progress == 1.:
+        if progress == 1.0:
             return 1.0
         p = progress * 2
         if p < 1:
@@ -642,7 +640,7 @@ class AnimationTransition:
 
     @staticmethod
     def in_elastic(progress):
-        p = .3
+        p = 0.3
         s = p / 4.0
         q = progress
         if q == 1:
@@ -652,7 +650,7 @@ class AnimationTransition:
 
     @staticmethod
     def out_elastic(progress):
-        p = .3
+        p = 0.3
         s = p / 4.0
         q = progress
         if q == 1:
@@ -661,17 +659,17 @@ class AnimationTransition:
 
     @staticmethod
     def in_out_elastic(progress):
-        p = .3 * 1.5
+        p = 0.3 * 1.5
         s = p / 4.0
         q = progress * 2
         if q == 2:
             return 1.0
         if q < 1:
             q -= 1.0
-            return -.5 * (pow(2, 10 * q) * sin((q - s) * (2.0 * pi) / p))
+            return -0.5 * (pow(2, 10 * q) * sin((q - s) * (2.0 * pi) / p))
         else:
             q -= 1.0
-            return pow(2, -10 * q) * sin((q - s) * (2.0 * pi) / p) * .5 + 1.0
+            return pow(2, -10 * q) * sin((q - s) * (2.0 * pi) / p) * 0.5 + 1.0
 
     @staticmethod
     def in_back(progress):
@@ -684,7 +682,7 @@ class AnimationTransition:
 
     @staticmethod
     def in_out_back(progress):
-        p = progress * 2.
+        p = progress * 2.0
         s = 1.70158 * 1.525
         if p < 1:
             return 0.5 * (p * p * ((s + 1.0) * p - s))
@@ -697,14 +695,14 @@ class AnimationTransition:
         if p < (1.0 / 2.75):
             return 7.5625 * p * p
         elif p < (2.0 / 2.75):
-            p -= (1.5 / 2.75)
-            return 7.5625 * p * p + .75
+            p -= 1.5 / 2.75
+            return 7.5625 * p * p + 0.75
         elif p < (2.5 / 2.75):
-            p -= (2.25 / 2.75)
-            return 7.5625 * p * p + .9375
+            p -= 2.25 / 2.75
+            return 7.5625 * p * p + 0.9375
         else:
-            p -= (2.625 / 2.75)
-            return 7.5625 * p * p + .984375
+            p -= 2.625 / 2.75
+            return 7.5625 * p * p + 0.984375
 
     @staticmethod
     def _in_bounce_internal(t, d):
@@ -712,15 +710,15 @@ class AnimationTransition:
 
     @staticmethod
     def in_bounce(progress):
-        return AnimationTransition._in_bounce_internal(progress, 1.)
+        return AnimationTransition._in_bounce_internal(progress, 1.0)
 
     @staticmethod
     def out_bounce(progress):
-        return AnimationTransition._out_bounce_internal(progress, 1.)
+        return AnimationTransition._out_bounce_internal(progress, 1.0)
 
     @staticmethod
     def in_out_bounce(progress):
-        p = progress * 2.
-        if p < 1.:
-            return AnimationTransition._in_bounce_internal(p, 1.) * .5
-        return AnimationTransition._out_bounce_internal(p - 1., 1.) * .5 + .5
+        p = progress * 2.0
+        if p < 1.0:
+            return AnimationTransition._in_bounce_internal(p, 1.0) * 0.5
+        return AnimationTransition._out_bounce_internal(p - 1.0, 1.0) * 0.5 + 0.5

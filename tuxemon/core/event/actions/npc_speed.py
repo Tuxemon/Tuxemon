@@ -24,10 +24,11 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class NpcSpeed(EventAction):
-    """ Sets the NPC movement speed to a custom value
+    """Sets the NPC movement speed to a custom value
 
     Valid Parameters: npc_slug
     """
+
     name = "npc_speed"
     valid_parameters = [
         (str, "npc_slug"),

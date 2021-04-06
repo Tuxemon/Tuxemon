@@ -30,8 +30,13 @@ import time
 
 import pygame as pg
 
-from tuxemon.core.platform.platform_pygame.events import PygameEventQueueHandler, PygameKeyboardInput, \
-    PygameGamepadInput, PygameMouseInput, PygameTouchOverlayInput
+from tuxemon.core.platform.platform_pygame.events import (
+    PygameEventQueueHandler,
+    PygameKeyboardInput,
+    PygameGamepadInput,
+    PygameMouseInput,
+    PygameTouchOverlayInput,
+)
 from tuxemon.core import cli, networking, prepare, rumble
 from tuxemon.core.event.eventengine import EventEngine
 from tuxemon.core.session import local_session
@@ -41,7 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 class Client(StateManager):
-    """ Client class for entire project. Contains the game loop, and contains
+    """Client class for entire project. Contains the game loop, and contains
     the event_loop which passes events to States as needed.
     """
 
@@ -129,7 +134,7 @@ class Client(StateManager):
         self.rumble = self.rumble_manager.rumbler
 
     def load_map(self, map_data):
-        """ Load map
+        """Load map
 
         :param tuxemon.core.map.TuxemonMap map_data:
         :return: None
@@ -141,7 +146,7 @@ class Client(StateManager):
         self.event_engine.current_map = map_data
 
     def draw_event_debug(self):
-        """ Very simple overlay of event data.  Needs some love.
+        """Very simple overlay of event data.  Needs some love.
 
         :return:
         """
@@ -155,7 +160,7 @@ class Client(StateManager):
         for event in self.event_engine.partial_events:
             w = 0
             for valid, item in event:
-                p = ' '.join(item.parameters)
+                p = " ".join(item.parameters)
                 text = "{} {}: {}".format(item.operator, item.type, p)
                 if valid:
                     color = (0, 255, 0)
@@ -176,7 +181,7 @@ class Client(StateManager):
             yy = y
 
     def process_events(self, events):
-        """ Process all events for this frame.
+        """Process all events for this frame.
 
         Events are first sent to the active state.
         States can choose to keep the events or return them.
@@ -202,7 +207,7 @@ class Client(StateManager):
                     yield game_event
 
     def _send_event(self, game_event):
-        """ Send event down processing chain
+        """Send event down processing chain
 
         Probably a poorly named method.  Beginning from top state,
         process event, then as long as a new event is returned from
@@ -225,7 +230,7 @@ class Client(StateManager):
         return game_event
 
     def main(self):
-        """ Initiates the main game loop. Since we are using Asteria networking
+        """Initiates the main game loop. Since we are using Asteria networking
         to handle network events, we pass this core.session.Client instance to
         networking which in turn executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
@@ -239,7 +244,7 @@ class Client(StateManager):
         screen = self.screen
         flip = pg.display.update
         clock = time.time
-        frame_length = (1. / self.fps)
+        frame_length = 1.0 / self.fps
         time_since_draw = 0
         last_update = clock()
         fps_timer = 0
@@ -259,7 +264,7 @@ class Client(StateManager):
                 frames += 1
 
             fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
-            time.sleep(.001)
+            time.sleep(0.001)
 
     def update(self, time_delta):
         """Main loop for entire game. This method gets update every frame
@@ -311,7 +316,7 @@ class Client(StateManager):
             self.done = True
 
     def release_controls(self):
-        """ Send inputs which release held buttons/axis
+        """Send inputs which release held buttons/axis
 
         Use to prevent player from holding buttons while state changes
 
@@ -321,7 +326,7 @@ class Client(StateManager):
         self.key_events = list(self.process_events(events))
 
     def update_states(self, dt):
-        """ Checks if a state is done or has called for a game quit.
+        """Checks if a state is done or has called for a game quit.
 
         :param dt: Time delta - Amount of time passed since last frame.
 
@@ -342,7 +347,7 @@ class Client(StateManager):
             self._state_resume_set.remove(current_state)
 
     def draw(self, surface):
-        """ Draw all active states
+        """Draw all active states
 
         :type surface: pg.surface.Surface
         """
@@ -358,9 +363,7 @@ class Client(StateManager):
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if (not state.transparent
-                    and state.rect == full_screen
-                    and not state.force_draw):
+            if not state.transparent and state.rect == full_screen and not state.force_draw:
                 break
 
         # draw from bottom up for proper layering
@@ -453,7 +456,7 @@ class Client(StateManager):
         return os.path.basename(map_path)
 
     def get_state_by_name(self, name):
-        """ Query the state stack for a state by the name supplied
+        """Query the state stack for a state by the name supplied
 
         :str name: str
         :rtype: State, None

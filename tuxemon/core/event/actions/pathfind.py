@@ -24,18 +24,15 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class PathfindAction(EventAction):
-    """ Pathfind the player / npc to the given location
+    """Pathfind the player / npc to the given location
 
     This action blocks until the destination is reached.
 
     Valid Parameters: npc_slug, tile_pos_x, tile_pos_y
     """
+
     name = "pathfind"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y")
-    ]
+    valid_parameters = [(str, "npc_slug"), (int, "tile_pos_x"), (int, "tile_pos_y")]
 
     def start(self):
         self.npc = get_npc(self.session, self.parameters.npc_slug)

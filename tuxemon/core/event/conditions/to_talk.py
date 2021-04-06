@@ -26,12 +26,12 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class ToTalkCondition(EventCondition):
-    """ Checks if we are attempting to talk to an npc
-    """
+    """Checks if we are attempting to talk to an npc"""
+
     name = "to_talk"
 
-    def test(self, session,  condition):
-        """ Checks to see the player is next to and facing a particular NPC and that the Return button is pressed.
+    def test(self, session, condition):
+        """Checks to see the player is next to and facing a particular NPC and that the Return button is pressed.
 
         :param session: The session object
         :param condition: The condition details.
@@ -73,7 +73,6 @@ class ToTalkCondition(EventCondition):
                 x=0,
                 y=0,
                 name="",
-            )
+            ),
         )
         return player_next_to_and_facing_target and button_pressed
-

@@ -50,16 +50,8 @@ logger = logging.getLogger(__name__)
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
 animation_mapping = {
-    True: {
-        'up': 'back_walk',
-        'down': 'front_walk',
-        'left': 'left_walk',
-        'right': 'right_walk'},
-    False: {
-        'up': 'back',
-        'down': 'front',
-        'left': 'left',
-        'right': 'right'}
+    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
 
@@ -70,7 +62,7 @@ def tile_distance(tile0, tile1):
 
 
 class NPC(Entity):
-    """ Class for humanoid type game objects, NPC, Players, etc
+    """Class for humanoid type game objects, NPC, Players, etc
 
     Currently, all movement is handled by a queue called "path".  This queue
     provides robust movement in a tile based environment.  It supports arbitrary
@@ -80,6 +72,7 @@ class NPC(Entity):
 
     To move one tile, simply set a path of one item.
     """
+
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
     def __init__(self, npc_slug, sprite_name=None, combat_front=None, combat_back=None):
@@ -166,25 +159,25 @@ class NPC(Entity):
         """
 
         state = {
-            'current_map': session.client.get_map_name(),
-            'facing': self.facing,
-            'game_variables': self.game_variables,
-            'inventory': encode_inventory(self.inventory),
-            'monsters': encode_monsters(self.monsters),
-            'player_name': self.name,
-            'monster_boxes': dict(),
-            'item_boxes': dict(),
-            'tile_pos': nearest(self.tile_pos),
+            "current_map": session.client.get_map_name(),
+            "facing": self.facing,
+            "game_variables": self.game_variables,
+            "inventory": encode_inventory(self.inventory),
+            "monsters": encode_monsters(self.monsters),
+            "player_name": self.name,
+            "monster_boxes": dict(),
+            "item_boxes": dict(),
+            "tile_pos": nearest(self.tile_pos),
         }
 
         for key, value in self.monster_boxes.items():
-            state['monster_boxes'][key] = encode_monsters(value)
+            state["monster_boxes"][key] = encode_monsters(value)
         for key, value in self.item_boxes.items():
-            state['item_boxes'][key] = encode_inventory(value)
+            state["item_boxes"][key] = encode_inventory(value)
 
         return state
 
-    def set_state(self, session,  save_data):
+    def set_state(self, session, save_data):
         """Recreates npc from saved data
 
         :param tuxemon.core.session.Session session:
@@ -195,18 +188,18 @@ class NPC(Entity):
 
         """
 
-        self.facing = save_data.get('facing', 'down')
-        self.game_variables = save_data['game_variables']
-        self.inventory = decode_inventory(session, self, save_data.get('inventory', {}))
+        self.facing = save_data.get("facing", "down")
+        self.game_variables = save_data["game_variables"]
+        self.inventory = decode_inventory(session, self, save_data.get("inventory", {}))
         self.monsters = decode_monsters(save_data.get("monsters"))
-        self.name = save_data['player_name']
-        for key, value in save_data['monster_boxes'].items():
+        self.name = save_data["player_name"]
+        for key, value in save_data["monster_boxes"].items():
             self.monster_boxes[key] = decode_monsters(value)
-        for key, value in save_data['item_boxes'].items():
+        for key, value in save_data["item_boxes"].items():
             self.item_boxes[key] = decode_inventory(session, self, value)
 
     def load_sprites(self):
-        """ Load sprite graphics
+        """Load sprite graphics
 
         :return:
         """
@@ -225,15 +218,10 @@ class NPC(Entity):
         frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
 
         # Load all of the player's sprite animations
-        anim_types = ['front_walk', 'back_walk', 'left_walk', 'right_walk']
+        anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
         for anim_type in anim_types:
             images = [
-                'sprites/{}_{}.{}.png'.format(
-                    self.sprite_name,
-                    anim_type,
-                    str(num).rjust(3, '0')
-                )
-                for num in range(4)
+                "sprites/{}_{}.{}.png".format(self.sprite_name, anim_type, str(num).rjust(3, "0")) for num in range(4)
             ]
 
             frames = []
@@ -249,7 +237,7 @@ class NPC(Entity):
         self.moveConductor.add(self.sprite)
 
     def get_sprites(self, layer):
-        """ Get the surfaces and layers for the sprite
+        """Get the surfaces and layers for the sprite
 
         Used to render the player
 
@@ -277,7 +265,7 @@ class NPC(Entity):
         return [(get_frame(frame_dict, state), self.tile_pos, layer)]
 
     def pathfind(self, destination):
-        """ Find a path and also start it
+        """Find a path and also start it
 
         Queries the world for a valid path
 
@@ -300,7 +288,7 @@ class NPC(Entity):
             pass
 
     def stop_moving(self):
-        """ Completely stop all movement
+        """Completely stop all movement
 
         Be careful, if stopped while in the path, it might not be tile-aligned.
 
@@ -313,7 +301,7 @@ class NPC(Entity):
         self.velocity3.z = 0
 
     def cancel_path(self):
-        """ Stop following a path.
+        """Stop following a path.
 
         NPC may still continue to move if move_direction has been set
 
@@ -324,7 +312,7 @@ class NPC(Entity):
         self.path_origin = None
 
     def cancel_movement(self):
-        """ Gracefully stop moving.  If in a path, then will finish tile movement.
+        """Gracefully stop moving.  If in a path, then will finish tile movement.
 
         Generally, use this if you want to stop.  Will stop at a tile coord.
 
@@ -344,7 +332,7 @@ class NPC(Entity):
             self.cancel_path()
 
     def abort_movement(self):
-        """ Stop moving, cancel paths, and reset tile position to center
+        """Stop moving, cancel paths, and reset tile position to center
 
         The tile postion will be truncated, so even if there is another
         closer tile, it will always return the the tile where movement
@@ -362,7 +350,7 @@ class NPC(Entity):
         self.cancel_path()
 
     def move(self, time_passed_seconds):
-        """ Move the entity around the game world
+        """Move the entity around the game world
 
         * check if the move_direction variable is set
         * set the movement speed
@@ -411,7 +399,7 @@ class NPC(Entity):
             self.moveConductor.stop()
 
     def move_one_tile(self, direction):
-        """ Ask entity to move one tile
+        """Ask entity to move one tile
 
         :type direction: str
         :param direction: up, down, left right
@@ -421,7 +409,7 @@ class NPC(Entity):
         self.path.append(trunc(self.tile_pos + dirs2[direction]))
 
     def valid_movement(self, tile):
-        """ Check the game map to determine if a tile can be moved into
+        """Check the game map to determine if a tile can be moved into
 
         * Only checks adjacent tiles
         * Uses all advanced tile movements, like continue tiles
@@ -433,7 +421,7 @@ class NPC(Entity):
 
     @property
     def move_destination(self):
-        """ Only used for the player_moved condition.
+        """Only used for the player_moved condition.
 
         :return:
         """
@@ -443,7 +431,7 @@ class NPC(Entity):
             return None
 
     def next_waypoint(self):
-        """ Take the next step of the path, stop if way is blocked
+        """Take the next step of the path, stop if way is blocked
 
         * This must be called after a path is set
         * Not needed to be called if existing path is modified
@@ -472,7 +460,7 @@ class NPC(Entity):
 
             if self.pathfinding:
                 # since we are pathfinding, just try a new path
-                logger.error('{} finding new path!'.format(self.slug))
+                logger.error("{} finding new path!".format(self.slug))
                 self.pathfind(self.pathfinding)
 
             else:
@@ -480,7 +468,7 @@ class NPC(Entity):
                 pass
 
     def check_waypoint(self):
-        """ Check if the waypoint is reached and sets new waypoint if so
+        """Check if the waypoint is reached and sets new waypoint if so
 
         * For most accurate speed, tests distance traveled.
         * Doesn't verify the target position, just distance
@@ -501,7 +489,7 @@ class NPC(Entity):
                 self.next_waypoint()
 
     def pos_update(self):
-        """ WIP.  Required to be called after position changes
+        """WIP.  Required to be called after position changes
 
         :return:
         """
@@ -509,7 +497,7 @@ class NPC(Entity):
         self.network_notify_location_change()
 
     def network_notify_start_moving(self, direction):
-        r""" WIP guesswork ¯\_(ツ)_/¯
+        r"""WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -517,7 +505,7 @@ class NPC(Entity):
             self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
 
     def network_notify_stop_moving(self):
-        r""" WIP guesswork ¯\_(ツ)_/¯
+        r"""WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -525,7 +513,7 @@ class NPC(Entity):
             self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
 
     def network_notify_location_change(self):
-        r""" WIP guesswork ¯\_(ツ)_/¯
+        r"""WIP guesswork ¯\_(ツ)_/¯
 
         :return:
         """
@@ -597,7 +585,7 @@ class NPC(Entity):
         return monster
 
     def remove_monster(self, monster):
-        """ Removes a monster from this player's party.
+        """Removes a monster from this player's party.
 
         :param monster: Monster to remove from the player's party.
 
@@ -611,7 +599,7 @@ class NPC(Entity):
             self.set_party_status()
 
     def remove_monster_from_storage(self, monster):
-        """ Removes the monster from the player's storage.
+        """Removes the monster from the player's storage.
 
         :param monster: Monster to remove from storage.
         :type monster: tuxemon.core.monster.Monster
@@ -626,7 +614,7 @@ class NPC(Entity):
                 return
 
     def switch_monsters(self, index_1, index_2):
-        """ Swap two monsters in this player's party
+        """Swap two monsters in this player's party
 
         :param index_1: The indexes of the monsters to switch in the player's party.
         :param index_2: The indexes of the monsters to switch in the player's party.
@@ -640,7 +628,7 @@ class NPC(Entity):
         self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
 
     def load_party(self):
-        """ Loads the party of this npc from their npc.json entry.
+        """Loads the party of this npc from their npc.json entry.
 
         :rtype: None
         :returns: None
@@ -651,12 +639,12 @@ class NPC(Entity):
         self.monsters = []
 
         # Look up the NPC's details from our NPC database
-        npc_details = db.database['npc'][self.slug]
-        npc_party = npc_details.get('monsters') or []
+        npc_details = db.database["npc"][self.slug]
+        npc_party = npc_details.get("monsters") or []
         for npc_monster_details in npc_party:
             monster = Monster(save_data=npc_monster_details)
-            monster.experience_give_modifier = npc_monster_details['exp_give_mod']
-            monster.experience_required_modifier = npc_monster_details['exp_req_mod']
+            monster.experience_give_modifier = npc_monster_details["exp_give_mod"]
+            monster.experience_required_modifier = npc_monster_details["exp_req_mod"]
             monster.set_level(monster.level)
             monster.current_hp = monster.hp
 
@@ -664,7 +652,7 @@ class NPC(Entity):
             self.add_monster(monster)
 
     def set_party_status(self):
-        """ Records important information about all monsters in the party.
+        """Records important information about all monsters in the party.
 
         :rtype: None
         :returns: None
@@ -682,11 +670,11 @@ class NPC(Entity):
                 level_highest = npc_monster.level
             level_average += npc_monster.level
         level_average = int(round(level_average / len(self.monsters)))
-        self.game_variables['party_level_lowest'] = level_lowest
-        self.game_variables['party_level_highest'] = level_highest
-        self.game_variables['party_level_average'] = level_average
+        self.game_variables["party_level_lowest"] = level_lowest
+        self.game_variables["party_level_highest"] = level_highest
+        self.game_variables["party_level_average"] = level_average
 
-    def give_item(self, session,  target, item, quantity):
+    def give_item(self, session, target, item, quantity):
         subtract = self.alter_item_quantity(session, item.slug, -quantity)
         give = target.alter_item_quantity(session, item.slug, quantity)
         return subtract and give
@@ -699,20 +687,20 @@ class NPC(Entity):
         item = self.inventory.get(item_slug)
         if amount > 0:
             if item:
-                item['quantity'] += amount
+                item["quantity"] += amount
             else:
                 self.inventory[item_slug] = {
-                    'item': Item(session, self, item_slug),
-                    'quantity': amount,
+                    "item": Item(session, self, item_slug),
+                    "quantity": amount,
                 }
         elif amount < 0:
             amount = abs(amount)
-            if item is None or item.get('infinite'):
+            if item is None or item.get("infinite"):
                 pass
-            elif item['quantity'] == amount:
+            elif item["quantity"] == amount:
                 del self.inventory[item_slug]
-            elif item['quantity'] > amount:
-                item['quantity'] -= amount
+            elif item["quantity"] > amount:
+                item["quantity"] -= amount
             else:
                 success = False
 

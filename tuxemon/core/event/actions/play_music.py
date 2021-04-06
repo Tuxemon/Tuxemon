@@ -34,6 +34,7 @@ class PlayMusicAction(EventAction):
 
     Valid Parameters: filename
     """
+
     name = "play_music"
     valid_parameters = [
         (str, "filename"),
@@ -41,7 +42,7 @@ class PlayMusicAction(EventAction):
 
     def start(self):
         filename = self.parameters.filename
-        
+
         try:
             path = prepare.fetch("music", db.lookup_file("music", filename))
             mixer.music.load(path)
@@ -49,7 +50,7 @@ class PlayMusicAction(EventAction):
             mixer.music.play(-1)
         except Exception as e:
             logger.error(e)
-            logger.error('unable to play music')
+            logger.error("unable to play music")
 
         # Keep track of what song we're currently playing
         if self.session.client.current_music["song"]:

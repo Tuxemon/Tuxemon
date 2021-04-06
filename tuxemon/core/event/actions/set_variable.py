@@ -23,7 +23,7 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class SetVariableAction(EventAction):
-    """ Sets the key in the player.game_variables dictionary.
+    """Sets the key in the player.game_variables dictionary.
 
     Valid Parameters: variable_name:value
 
@@ -38,10 +38,9 @@ class SetVariableAction(EventAction):
     }
 
     """
+
     name = "set_variable"
-    valid_parameters = [
-        (str, "var_list")
-    ]
+    valid_parameters = [(str, "var_list")]
 
     def start(self):
         player = self.session.player

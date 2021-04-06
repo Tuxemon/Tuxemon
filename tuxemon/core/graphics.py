@@ -56,7 +56,7 @@ def cursor_from_image(image):
 
 
 def load_and_scale(filename):
-    """ Load an image and scale it according to game settings
+    """Load an image and scale it according to game settings
 
     * Filename will be transformed to be loaded from game resource folder
     * Will be converted if needed.
@@ -69,7 +69,7 @@ def load_and_scale(filename):
 
 
 def load_image(filename):
-    """ Load image from the resources folder
+    """Load image from the resources folder
 
     * Filename will be transformed to be loaded from game resource folder
     * Will be converted if needed.
@@ -86,7 +86,7 @@ def load_image(filename):
 
 
 def load_sprite(filename, **rect_kwargs):
-    """ Load an image from disk and return a pygame sprite
+    """Load an image from disk and return a pygame sprite
 
     Image name will be transformed and converted
     Rect attribute will be set
@@ -104,7 +104,7 @@ def load_sprite(filename, **rect_kwargs):
 
 
 def load_animated_sprite(filenames, delay, **rect_kwargs):
-    """ Load a set of images and return an animated pygame sprite
+    """Load a set of images and return an animated pygame sprite
 
     Image name will be transformed and converted
     Rect attribute will be set
@@ -131,18 +131,16 @@ def load_animated_sprite(filenames, delay, **rect_kwargs):
 
 
 def scale_surface(surface, factor):
-    """ Scale a surface.  Just a shortcut.
+    """Scale a surface.  Just a shortcut.
 
     :returns: Scaled surface
     :rtype: pygame.Surface
     """
-    return pygame.transform.scale(
-        surface, [int(i * factor) for i in surface.get_size()]
-    )
+    return pygame.transform.scale(surface, [int(i * factor) for i in surface.get_size()])
 
 
 def load_frames_files(directory, name):
-    """ Load frames from filenames
+    """Load frames from filenames
 
     For example, water00.png, water01.png, water03.png
 
@@ -155,7 +153,7 @@ def load_frames_files(directory, name):
 
 
 def animation_frame_files(directory, name):
-    r""" Return list of filenames from directory for use in animation
+    r"""Return list of filenames from directory for use in animation
 
     * each filename will have the format: animation_name[0-9]*\..*
     * will be returned in sorted order
@@ -177,7 +175,7 @@ def animation_frame_files(directory, name):
 
 
 def create_animation(frames, duration, loop):
-    """ Create animation from frames, a list of surfaces
+    """Create animation from frames, a list of surfaces
 
     :param frames:
     :param duration:
@@ -191,7 +189,7 @@ def create_animation(frames, duration, loop):
 
 
 def load_animation_from_frames(directory, name, duration, loop=False):
-    """ Load animation from a collection of frame files
+    """Load animation from a collection of frame files
 
     :param directory:
     :param name:
@@ -205,7 +203,7 @@ def load_animation_from_frames(directory, name, duration, loop=False):
 
 
 def scale_tile(surface, tile_size):
-    """ Scales a map tile based on resolution.
+    """Scales a map tile based on resolution.
 
     :type surface: pygame.Surface
     :type tile_size: int
@@ -220,7 +218,7 @@ def scale_tile(surface, tile_size):
 
 
 def scale_sprite(sprite, ratio):
-    """ Scale a sprite's image in place
+    """Scale a sprite's image in place
 
     :type sprite: pygame.Sprite
     :param ratio: amount to scale by
@@ -230,14 +228,12 @@ def scale_sprite(sprite, ratio):
     sprite.rect.width *= ratio
     sprite.rect.height *= ratio
     sprite.rect.center = center
-    sprite._original_image = pygame.transform.scale(
-        sprite._original_image, sprite.rect.size
-    )
+    sprite._original_image = pygame.transform.scale(sprite._original_image, sprite.rect.size)
     sprite._needs_update = True
 
 
 def convert_alpha_to_colorkey(surface, colorkey=(255, 0, 255)):
-    """ Convert image with perpixel alpha to normal surface with colorkey
+    """Convert image with perpixel alpha to normal surface with colorkey
 
     This is a crude hack that only works well with images that do not
     have alpha blended antialiased edges.  Using this function on such
@@ -259,7 +255,7 @@ def convert_alpha_to_colorkey(surface, colorkey=(255, 0, 255)):
 
 
 def scaled_image_loader(filename, colorkey, **kwargs):
-    """ pytmx image loader for pygame
+    """pytmx image loader for pygame
 
     Modified to load images at a scaled size
 

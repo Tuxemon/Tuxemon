@@ -28,19 +28,15 @@ logger = logging.getLogger(__name__)
 
 
 class VariableMathAction(EventAction):
-    """ Performs a mathematical operation on the key in the player.game_variables dictionary.
+    """Performs a mathematical operation on the key in the player.game_variables dictionary.
     Optionally accepts a fourth parameter to store the result, otherwise it is stored in
     variable1.
 
     Valid Parameters: variable1, operation, variable2(, result_variable_name)
     """
+
     name = "variable_math"
-    valid_parameters = [
-        (str, "var1"),
-        (str, "operation"),
-        (str, "var2"),
-        ((str, None), "result")
-    ]
+    valid_parameters = [(str, "var1"), (str, "operation"), (str, "var2"), ((str, None), "result")]
 
     def start(self):
         player = self.session.player

@@ -23,35 +23,35 @@ from tuxemon.core.event.eventcondition import EventCondition
 
 
 class CombatStartedCondition(EventCondition):
-    """ Checks to see if combat has been started or not.
-    """
+    """Checks to see if combat has been started or not."""
+
     name = "combat_started"
 
-    def test(self, session,  condition):
-        """ Checks to see if combat has been started or not.
+    def test(self, session, condition):
+        """Checks to see if combat has been started or not.
 
-            :param session: The session object
-            :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
-                for the format of the dictionary.
+        :param session: The session object
+        :param condition: A dictionary of condition details. See :py:func:`core.map.Map.loadevents`
+            for the format of the dictionary.
 
-            :type session: tuxemon.core.session.Session
-            :type condition: Dictionary
+        :type session: tuxemon.core.session.Session
+        :type condition: Dictionary
 
-            :rtype: Boolean
-            :returns: True or False
+        :rtype: Boolean
+        :returns: True or False
 
-            Valid Parameters: None
+        Valid Parameters: None
 
-            **Examples:**
+        **Examples:**
 
-            >>> condition
-            {'action_id': '9',
-             'id': 9,
-             'operator': 'is_not',
-             'parameters': '',
-             'type': 'combat_started',
-             'x': 1,
-             'y': 11}
+        >>> condition
+        {'action_id': '9',
+         'id': 9,
+         'operator': 'is_not',
+         'parameters': '',
+         'type': 'combat_started',
+         'x': 1,
+         'y': 11}
 
-            """
+        """
         return session.client.current_state.name == "CombatState"

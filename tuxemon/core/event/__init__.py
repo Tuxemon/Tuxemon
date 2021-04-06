@@ -30,45 +30,21 @@ from collections import namedtuple
 logger = logging.getLogger(__name__)
 
 # Set up map action and condition objects
-condition_fields = [
-    "type",
-    "parameters",
-    "x",
-    "y",
-    "width",
-    "height",
-    "operator",
-    "name"]
+condition_fields = ["type", "parameters", "x", "y", "width", "height", "operator", "name"]
 
-action_fields = [
-    "type",
-    "parameters",
-    "name"]
+action_fields = ["type", "parameters", "name"]
 
-event_fields = [
-    "id",
-    "name",
-    "x",
-    "y",
-    "w",
-    "h",
-    "conds",
-    "acts"]
+event_fields = ["id", "name", "x", "y", "w", "h", "conds", "acts"]
 
 MapCondition = namedtuple("condition", condition_fields)
 MapAction = namedtuple("action", action_fields)
 EventObject = namedtuple("eventobject", event_fields)
 
-__all__ = [
-    "EventObject",
-    "MapAction",
-    "MapCondition",
-    "get_npc"
-]
+__all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
 def get_npc(session, slug):
-    """ Gets an NPC object by slug.
+    """Gets an NPC object by slug.
 
     :param session: The session object
     :param slug: The slug of the NPC that exists on the current map.

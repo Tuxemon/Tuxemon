@@ -50,11 +50,9 @@ class WithdrawMonsterAction(EventAction):
 
 
     """
+
     name = "withdraw_monster"
-    valid_parameters = [
-        (str, "trainer"),
-        (str, "monster_id")
-    ]
+    valid_parameters = [(str, "trainer"), (str, "monster_id")]
 
     def start(self):
         trainer, monster_id = self.parameters

@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 class FlashTransition(State):
-    """ The state responsible for the battle transitions.
-    """
+    """The state responsible for the battle transitions."""
+
     force_draw = True
 
     def startup(self, **kwargs):
@@ -27,7 +27,7 @@ class FlashTransition(State):
         self.transition_surface.fill((255, 255, 255))
 
     def update(self, time_delta):
-        """ Update function for state.
+        """Update function for state.
 
         :param time_delta: Time since last update in seconds
         :type time_delta: Float
@@ -71,7 +71,7 @@ class FlashTransition(State):
         surface.blit(self.transition_surface, (0, 0))
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value

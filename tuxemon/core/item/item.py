@@ -65,7 +65,7 @@ class Item:
     effects = dict()
     conditions = dict()
 
-    def __init__(self, session,  user, slug):
+    def __init__(self, session, user, slug):
         self.session = session
         self.user = user
         self.slug = slug
@@ -131,8 +131,8 @@ class Item:
             logger.error(msg="Failed to find item with slug {}".format(slug))
             return
 
-        self.slug = results["slug"]                                         # short English identifier
-        self.name = T.translate(self.slug)                                  # translated name
+        self.slug = results["slug"]  # short English identifier
+        self.name = T.translate(self.slug)  # translated name
         self.description = T.translate("{}_description".format(self.slug))  # will be locale string
 
         # item use notifications (translated!)
@@ -141,7 +141,7 @@ class Item:
         self.use_failure = T.translate(results["use_failure"])
 
         # misc attributes (not translated!)
-        self.sort = results['sort']
+        self.sort = results["sort"]
         assert self.sort
         self.type = results["type"]
         self.sprite = results["sprite"]
@@ -206,7 +206,7 @@ class Item:
         return ret
 
     def advance_round(self):
-        """ Advance round for items that take many rounds to use
+        """Advance round for items that take many rounds to use
 
         * This currently has no use, and may not stay.  It is added
           so that the Item class and Technique class are interchangeable.
@@ -253,13 +253,7 @@ class Item:
         """
 
         # defaults for the return. items can override these values in their return.
-        meta_result = {
-            'name': self.name,
-            'num_shakes': 0,
-            'capture': False,
-            'should_tackle': False,
-            'success': False
-        }
+        meta_result = {"name": self.name, "num_shakes": 0, "capture": False, "should_tackle": False, "success": False}
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
@@ -268,16 +262,16 @@ class Item:
 
         # If this is a consumable item, remove it from the player's inventory.
         if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
-            if user.inventory[self.slug]['quantity'] <= 1:
+            if user.inventory[self.slug]["quantity"] <= 1:
                 del user.inventory[self.slug]
             else:
-                user.inventory[self.slug]['quantity'] -= 1
+                user.inventory[self.slug]["quantity"] -= 1
 
         return meta_result
 
 
 def decode_inventory(session, owner, data):
-    """ Reconstruct inventory from a save_data dict
+    """Reconstruct inventory from a save_data dict
 
     :param session:
     :param owner:
@@ -289,9 +283,7 @@ def decode_inventory(session, owner, data):
     """
     out = {}
     for slug, quant in data.items():
-        item = {
-            'item': Item(session, owner, slug)
-        }
+        item = {"item": Item(session, owner, slug)}
         if quant is None:
             item["quantity"] = 1
             # Infinite is used for shopkeepers
@@ -304,7 +296,7 @@ def decode_inventory(session, owner, data):
 
 
 def encode_inventory(inventory):
-    """ Construct JSON encodable dict for saving
+    """Construct JSON encodable dict for saving
 
     :param inventory: the inventory of the player
     :type inventory: Dictionary
@@ -312,7 +304,4 @@ def encode_inventory(inventory):
     :rtype: Dictionary
     :returns: inventory save_data
     """
-    return {
-        itm['item'].slug: itm['quantity']
-        for itm in inventory.values()
-    }
+    return {itm["item"].slug: itm["quantity"] for itm in inventory.values()}

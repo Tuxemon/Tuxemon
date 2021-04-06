@@ -27,16 +27,16 @@
 
 class EventContext:
     def __enter__(self):
-        """ When context is placed on the stack
+        """When context is placed on the stack
 
-        :return: 
+        :return:
         """
         pass
 
     def __exit__(self):
-        """ When context is removed from the stack
+        """When context is removed from the stack
 
-        :return: 
+        :return:
         """
         pass
 

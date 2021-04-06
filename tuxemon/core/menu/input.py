@@ -48,10 +48,10 @@ class InputMenu(Menu):
         assert self.callback
 
     def calc_internal_rect(self):
-        w = self.rect.width - self.rect.width * .8
-        h = self.rect.height - self.rect.height * .5
+        w = self.rect.width - self.rect.width * 0.8
+        h = self.rect.height - self.rect.height * 0.5
         rect = self.rect.inflate(-w, -h)
-        rect.top = self.rect.centery * .7
+        rect.top = self.rect.centery * 0.7
         return rect
 
     def initialize_items(self):
@@ -68,7 +68,7 @@ class InputMenu(Menu):
         yield MenuItem(self.shadow_text("END"), None, None, self.confirm)
 
     def process_event(self, event):
-        """ Handles player input events. This function is only called when the
+        """Handles player input events. This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
@@ -108,7 +108,7 @@ class InputMenu(Menu):
         self.text_area.text = self.input_string
 
     def confirm(self):
-        """ Confirm the input
+        """Confirm the input
 
         This is called when user selects "End".  Override, maybe?
 

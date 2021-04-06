@@ -37,12 +37,11 @@ import sys
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
-log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - "
-                                        "%(levelname)s - %(message)s"))
+log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
 
 
 class Plugin:
-    __slots__ = ('name', 'plugin_object')
+    __slots__ = ("name", "plugin_object")
 
     def __init__(self, name, module):
         self.name = name
@@ -50,8 +49,7 @@ class Plugin:
 
 
 class PluginManager:
-    """Yapsy semi-compatible plugin manager.
-    """
+    """Yapsy semi-compatible plugin manager."""
 
     def __init__(self, base_folders=None):
         if base_folders is None:
@@ -61,7 +59,12 @@ class PluginManager:
         self.modules = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
-        self.include_patterns = ["core.event.actions", "core.event.conditions", "core.item.effects", "core.item.conditions"]
+        self.include_patterns = [
+            "core.event.actions",
+            "core.event.conditions",
+            "core.item.effects",
+            "core.item.conditions",
+        ]
 
     def setPluginPlaces(self, plugin_folders):
         self.folders = plugin_folders
@@ -69,13 +72,13 @@ class PluginManager:
     def collectPlugins(self):
         for folder in self.folders:
             logger.debug("searching for plugins: %s", folder)
-            folder = folder.replace('\\', '/')
+            folder = folder.replace("\\", "/")
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile('tuxemon/core.*$')
+            pattern = re.compile("tuxemon/core.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
                 logger.exception("Unable to determine plugin module path for: ", folder)
-            module_path = matches[0].replace('/', '.')
+            module_path = matches[0].replace("/", ".")
 
             # Look for a ".plugin" in the plugin folder to create a list of modules
             # to import.
@@ -173,7 +176,7 @@ def get_available_classes(plugin_manager):
 
 
 def load_plugins(path, category="plugins"):
-    """ Load classes using plugin system
+    """Load classes using plugin system
 
     :param path: where plugins are stored
     :param category: optional string for debugging info

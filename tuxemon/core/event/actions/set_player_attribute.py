@@ -24,16 +24,13 @@ from tuxemon.core.event.eventaction import EventAction
 
 
 class SetPlayerAttributeAction(EventAction):
-    """ Sets the given attribute of the player character to the given value.
+    """Sets the given attribute of the player character to the given value.
 
     Valid Parameters: attribute, value
     """
+
     name = "set_player_attribute"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "name"),
-        (str, "value")
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
 
     def start(self):
         attribute = self.parameters[0]

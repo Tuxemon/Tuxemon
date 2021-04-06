@@ -62,6 +62,7 @@ class LoadedAction:
 class LoadedCondition:
     condition: callable
     operator: bool
+    parameters: List
     map_condition: MapCondition
 
 
@@ -150,22 +151,21 @@ class EventEngine:
         """Get a condition that is loaded into the engine"""
         try:
             handler = self.conditions[data.name]
-            condition = LoadedCondition(
-                condition=handler, map_condition=data, operator=data.operator == "is"
-            )
         except KeyError:
             error = f'Error: EventCondition "{data.name}" could not be found'
             raise RuntimeError(error)
-        else:
-            return condition
+        condition = LoadedCondition(
+            condition=handler, map_condition=data, operator=data.operator == "is", parameters=data.parameters
+        )
+        return condition
 
-    def check_condition(self, session: Session, condition: LoadedCondition, map_event):
-        """Check if condition is satisfied"""
+    @staticmethod
+    def check_condition(session: Session, condition: LoadedCondition, map_event):
         with add_error_context(map_event, condition, session):
             result = condition.condition.test(session, map_event, condition)
             result = result == condition.operator
             logger.debug(
-                f'map condition "{condition.map_condition.name}": {result} ({condition})'
+                "%s (%s) == %s", condition.map_condition.name, condition.map_condition, result
             )
             return result
 
@@ -201,29 +201,23 @@ class EventEngine:
     def get_running_event(self, event_id):
         return self.running_events[event_id]
 
-    def process_map_events(self, events):
-        """Check conditions in a list or sequence and starts new actions"""
-        for event in events:
-            # TODO: support more sessions
-            session = local_session
+    def check_event(self, session, event):
+        """Return True if event should start"""
+        return all(self.check_condition(session, cond, event) for cond in event.conds)
 
-            if all(self.check_condition(session, cond, event) for cond in event.conds):
-                self.start_event(session, event)
+    def start_events(self, events):
+        for event in events:
+            if self.check_event(local_session, event):
+                self.start_event(local_session, event)
 
     def set_message(self, message):
         self.messages.add(message)
 
     def update(self, dt: float):
         """Check all the MapEvents and start their actions if conditions are OK"""
-        session = local_session
-        # self.process_map_events(self.events)
+        # self.start_events(self.events)
         for message in self.messages:
-            for event in self.tags[message]:
-                if all(
-                    self.check_condition(session, cond, event) for cond in event.conds
-                ):
-                    self.start_event(session, event)
-
+            self.start_events(self.tags[message])
         self.messages.clear()
         self.update_running_events(dt)
 

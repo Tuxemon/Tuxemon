@@ -128,8 +128,7 @@ class LocalPygameClient:
         self.running = False
 
     def update(self, time_delta: float):
-        """This method gets updated at least once per frame
-        """
+        """This method gets updated at least once per frame"""
         # Android-specific check for pause
         if android and android.check_pause():
             android.wait_for_resume()
@@ -162,8 +161,7 @@ class LocalPygameClient:
         self.key_events = list(self.process_events(events))
 
     def draw(self, surface: pg.surface.Surface):
-        """Draw all active states
-        """
+        """Draw all active states"""
         # TODO: refactor into Widget
 
         # iterate through layers and determine optimal drawing strategy
@@ -250,8 +248,7 @@ class LocalPygameClient:
         return game_event
 
     def update_states(self, dt: float):
-        """Update time for active states
-        """
+        """Update time for active states"""
         for state in self.state_manager.active_states:
             state.update(dt)
 

@@ -161,13 +161,17 @@ class WorldState(state.State):
                 if event.held:
                     self.wants_to_move_player = direction
                     if self.wants_to_move_player is None:
-                        do = partial(self.session.world.eventengine.start_action, self.session)
+                        do = partial(
+                            self.session.world.eventengine.start_action, self.session
+                        )
                         do("player_face", [direction])
                         self.walking_id = do("npc_move_tile", ("player", direction))
                         return
                 elif not event.pressed:
                     if direction == self.wants_to_move_player:
-                        do = partial(self.session.world.eventengine.start_action, self.session)
+                        do = partial(
+                            self.session.world.eventengine.start_action, self.session
+                        )
                         do("npc_stop", ["player"])
                         return
 

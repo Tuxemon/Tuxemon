@@ -43,8 +43,7 @@ def fainted(monster):
 
 
 def get_awake_monsters(player: tuxemon.player.Player):
-    """Iterate all non-fainted monsters in party
-    """
+    """Iterate all non-fainted monsters in party"""
     for monster in player.monsters:
         if not fainted(monster):
             yield monster

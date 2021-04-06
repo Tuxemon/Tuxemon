@@ -105,8 +105,7 @@ class JSONDatabase:
             self.load_json(directory)
 
     def load_json(self, directory: str):
-        """Loads all JSON items under a specified path.
-        """
+        """Loads all JSON items under a specified path."""
 
         for json_item in os.listdir(os.path.join(self.path, directory)):
 
@@ -129,8 +128,7 @@ class JSONDatabase:
                 self.load_dict(item, directory)
 
     def load_dict(self, item: Dict, table: str):
-        """Loads a single json object as a dictionary and adds it to the appropriate db table
-        """
+        """Loads a single json object as a dictionary and adds it to the appropriate db table"""
 
         if item["slug"] not in self.database[table]:
             self.database[table][item["slug"]] = item
@@ -138,8 +136,7 @@ class JSONDatabase:
             logger.warning("Error: Item with slug %s was already loaded.", item)
 
     def lookup(self, slug: str, table="monster") -> Dict:
-        """Looks up a monster, technique, item, or npc based on slug.
-        """
+        """Looks up a monster, technique, item, or npc based on slug."""
         return set_defaults(self.database[table][slug], table)
 
     def lookup_file(self, table, slug):

@@ -29,12 +29,10 @@ import logging
 import uuid
 from collections import defaultdict
 from contextlib import contextmanager
+from dataclasses import dataclass
 from textwrap import dedent
 from typing import List
 
-from lxml import etree
-
-from tuxemon import prepare
 from tuxemon.event import MapCondition, EventObject, MapAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
@@ -44,21 +42,36 @@ from tuxemon.session import local_session, Session
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class ActionList:
-    __slots__ = (
-        "session",
-        "actions",
-        "context",
-        "index",
-        "running_action",
-    )
+    session: Session
+    actions: List
+    context: EventContext
+    index: int
+    running_action: callable
 
-    def __init__(self, session, actions):
-        self.session = session
-        self.actions = actions
-        self.context = None
-        self.index = 0
-        self.running_action = None
+
+@dataclass
+class LoadedAction:
+    func: callable
+    operator: str
+    parameters: list
+
+
+@dataclass
+class LoadedCondition:
+    condition: callable
+    operator: bool
+    map_condition: MapCondition
+
+
+@dataclass
+class LoadedEvent:
+    id: str
+    name: str
+    rect: str
+    conds: List[LoadedCondition]
+    acts: List[LoadedAction]
 
 
 class EventEngine:
@@ -83,37 +96,44 @@ class EventEngine:
             self.load_condition(item)
 
     def load_action(self, action: EventAction):
+        if action.name in self.actions:
+            raise RuntimeError(action.name)
         self.actions[action.name] = action
 
     def load_condition(self, condition: EventCondition):
-        self.conditions[condition.name] = condition
+        if condition.name in self.conditions:
+            raise RuntimeError(condition.name)
+        instance = condition()
+        self.conditions[condition.name] = instance
 
-    def load_events(self, events: List):
+    def load_events(self, events: List[EventObject]):
         for event in events:
+            conds = list()
+            triggers = set()
             for event_condition in event.conds:
-                condition = self.get_condition(event_condition.name)
-                tag = condition.program(event_condition)
+                condition = self.get_condition(event_condition)
+                conds.append(condition)
+                tag = condition.condition.program(event_condition)
                 if tag:
-                    self.tags[tag].append(event)
-                break  # this is a hack
-            self.events.append(event)
+                    triggers.add(tag)
+            new_event = LoadedEvent(
+                id=event.id,
+                name=event.name,
+                rect=event.rect,
+                conds=conds,
+                acts=event.acts,
+            )
+            self.events.append(new_event)
+            for tag in triggers:
+                self.tags[tag].append(new_event)
 
-    def get_action(self, name: str):
-        try:
-            return self.actions[name]
-        except KeyError:
-            error = f'Error: EventAction "{name}" could not be found'
-            raise RuntimeError(error)
-
-    def get_instanced_action(
-        self, session: Session, name: str, parameters=None
-    ) -> EventAction:
+    def get_action(self, session: Session, name: str, parameters=None) -> EventAction:
         """Get an action that is loaded into the engine
         A new instance will be returned each time
         """
         if parameters is None:
             parameters = list()
-        action = self.get_action(name)
+        action = self.actions[name]
         context = EventContext(
             client=session.client,
             engine=self,
@@ -126,39 +146,46 @@ class EventEngine:
         )
         return action(context, parameters)
 
-    def get_condition(self, name: str) -> EventCondition:
-        """Get a condition that is loaded into the engine
-        A new instance will be returned each time
-        """
+    def get_condition(self, data: MapCondition) -> LoadedCondition:
+        """Get a condition that is loaded into the engine"""
         try:
-            condition = self.conditions[name]
+            handler = self.conditions[data.name]
+            condition = LoadedCondition(
+                condition=handler, map_condition=data, operator=data.operator == "is"
+            )
         except KeyError:
-            error = f'Error: EventCondition "{name}" could not be found'
+            error = f'Error: EventCondition "{data.name}" could not be found'
             raise RuntimeError(error)
         else:
-            return condition()
+            return condition
 
-    def check_condition(self, session: Session, condition: MapCondition, map_event):
+    def check_condition(self, session: Session, condition: LoadedCondition, map_event):
         """Check if condition is satisfied"""
         with add_error_context(map_event, condition, session):
-            handler = self.get_condition(condition.name)
-            result = handler.test(session, map_event, condition) == (
-                condition.operator == "is"
+            result = condition.condition.test(session, map_event, condition)
+            result = result == condition.operator
+            logger.debug(
+                f'map condition "{condition.map_condition.name}": {result} ({condition})'
             )
-            logger.debug(f'map condition "{handler.name}": {result} ({condition})')
             return result
 
     def start_action(self, session, action_name, parameters=None, map=None):
         """ Begin execution of a single event"""
         event_id = str(uuid.uuid4())
         action_token = MapAction(action_name, parameters)
-        actionlist = ActionList(session, [action_token])
+        actionlist = ActionList(
+            session=session,
+            actions=[action_token],
+            context=None,
+            index=0,
+            running_action=None,
+        )
         self.running_events[event_id] = actionlist
         return event_id
 
     def execute_action(self, session, action_name, parameters=None, map=None):
         """Load and execute an action.  Blocks until action is complete."""
-        action = self.get_instanced_action(session, action_name, parameters)
+        action = self.get_action(session, action_name, parameters)
         return action.execute()
 
     def start_event(self, session: Session, map_event: EventObject):
@@ -180,9 +207,7 @@ class EventEngine:
             # TODO: support more sessions
             session = local_session
 
-            if all(
-                self.check_condition(session, cond, event) for cond in event.conds
-            ):
+            if all(self.check_condition(session, cond, event) for cond in event.conds):
                 self.start_event(session, event)
 
     def set_message(self, message):
@@ -190,26 +215,17 @@ class EventEngine:
 
     def update(self, dt: float):
         """Check all the MapEvents and start their actions if conditions are OK"""
-        # self.check_conditions()
-
         session = local_session
+        # self.process_map_events(self.events)
         for message in self.messages:
             for event in self.tags[message]:
                 if all(
-                        self.check_condition(session, cond, event) for cond in event.conds
+                    self.check_condition(session, cond, event) for cond in event.conds
                 ):
                     self.start_event(session, event)
 
         self.messages.clear()
-
         self.update_running_events(dt)
-
-    def check_conditions(self):
-        """Checks conditions.  If any are satisfied, start the MapActions
-
-        Actions may be started during this function
-        """
-        self.process_map_events(self.events)
 
     def update_running_events(self, dt: float):
         """Update the events that are running"""
@@ -219,7 +235,7 @@ class EventEngine:
             action = actionlist.running_action
             if action is None:
                 name, parameters = actionlist.actions[actionlist.index]
-                action = self.get_instanced_action(
+                action = self.get_action(
                     actionlist.session,
                     name,
                     parameters,

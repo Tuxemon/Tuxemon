@@ -152,14 +152,17 @@ def get_available_classes(plugin_manager: PluginManager):
 
 def load_plugins(path: str) -> List:
     """Load classes using plugin system"""
+    seen = set()
     plugins = load_directory(path)
     for cls in get_available_classes(plugins):
         name = getattr(cls, "name", None)
         if name is None:
             logger.error(f"found incomplete plugin: {cls.__name__}")
             continue
-        logger.info(f"loaded plugin: {cls.name}")
-        yield cls
+        if cls not in seen:
+            logger.info(f"loaded plugin: {cls.name}")
+            seen.add(cls)
+            yield cls
 
 
 def load_plugins_dict(path: str) -> Dict:

@@ -84,6 +84,7 @@ class TuxemonConfig:
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
+        self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
 
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
@@ -182,6 +183,7 @@ def get_defaults():
                     (
                         ("data", "tuxemon"),
                         ("starting_map", "player_house_bedroom.tmx"),
+                        ("skip_titlescreen", False),
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),

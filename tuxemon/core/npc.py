@@ -31,6 +31,7 @@
 import logging
 import os
 from math import hypot
+from typing import List
 
 from tuxemon.compat import Rect
 from tuxemon.core import pyganim
@@ -264,17 +265,19 @@ class NPC(Entity):
         state = animation_mapping[self.moving][self.facing]
         return [(get_frame(frame_dict, state), self.tile_pos, layer)]
 
-    def pathfind(self, destination):
+    def pathfind(self, destination) -> List:
         """Find a path and also start it
 
-        Queries the world for a valid path
+        If asked to pathfind, an NPC will pathfind until it:
+        * reaches the destination
+        * NPC.cancel_movement() is called
 
-        :param destination:
-        :return:
+        If blocked, the NPC will wait until it is able to move
+
+        Queries the world for a valid path
         """
-        # TODO: handle invalid paths
         self.pathfinding = destination
-        path = self.world.pathfind(tuple(self.tile_pos), destination)
+        path = self.world.pathfind(tuple(int(i) for i in self.tile_pos), destination)
         if path:
             self.path = path
             self.next_waypoint()
@@ -369,6 +372,7 @@ class NPC(Entity):
         if self.pathfinding and not self.path:
             # wants to pathfind, but there was no path last check
             self.pathfind(self.pathfinding)
+            return
 
         if self.path:
             if self.path_origin:

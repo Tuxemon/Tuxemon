@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -77,14 +77,20 @@
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="26" name="Test Pathfinding" type="event" x="112" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="pathfind maple_girl,3,11"/>
+    <property name="act10" value="pathfind aeble,3,11"/>
+    <property name="act20" value="pathfind allie,3,11"/>
+    <property name="act30" value="pathfind bob,3,11"/>
+    <property name="act40" value="pathfind grace,3,11"/>
     <property name="cond10" value="is player_at 7,7 "/>
    </properties>
   </object>
-  <object id="29" name="Create Maple" type="event" x="144" y="96" width="16" height="16">
+  <object id="29" name="Create NPCs" type="event" x="244.428" y="53.6729" width="16" height="16">
    <properties>
-    <property name="act10" value="create_npc maple_girl,9,6,maple,stay"/>
-    <property name="cond10" value="not npc_exists maple_girl"/>
+    <property name="act10" value="create_npc aeble,10,6"/>
+    <property name="act20" value="create_npc allie,11,6"/>
+    <property name="act30" value="create_npc bob,10,7"/>
+    <property name="act40" value="create_npc grace,11,7"/>
+    <property name="cond10" value="not npc_exists aeble"/>
    </properties>
   </object>
   <object id="36" name="Player Spawn" type="event" x="112" y="96" width="16" height="16"/>

@@ -601,6 +601,7 @@ class WorldState(state.State):
 
         :rtype: list
         """
+        # TODO: rename this
         # get tile-level and npc/entity blockers
         if collision_map is None:
             collision_map = self.get_collision_map()
@@ -634,7 +635,8 @@ class WorldState(state.State):
 
             # We only need to check the perimeter,
             # as there is no way to get further out of bounds
-            if neighbor[0] in self.invalid_x or neighbor[1] in self.invalid_y:
+            if (not (self.invalid_x[0] <= neighbor[0] <= self.invalid_x[1]) or
+                not (self.invalid_y[0] <= neighbor[1] <= self.invalid_y[1])):
                 continue
 
             # check to see if this tile is separated by a wall

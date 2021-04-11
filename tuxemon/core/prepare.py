@@ -46,6 +46,7 @@ PLATFORM = "pygame"
 # list of regular expressions to blacklist devices
 joystick_blacklist = [
     re.compile(r"Microsoft.*Transceiver.*"),
+    re.compile(r".*Synaptics.*", re.I),
 ]
 
 # Create game dir if missing

@@ -65,9 +65,10 @@ Thumbs.db
 *.iml
 .idea/*
 
-# Eric
+# Eric6
 *.epj
 /__init__.py
+.eric6project
 
 # Mac OS
 *.DS_Store

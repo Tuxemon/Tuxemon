@@ -109,43 +109,11 @@
     <property name="cond20" value="is player_moved"/>
    </properties>
   </object>
-  <object id="46" name="create Karrianna and grunts" type="event" x="496" y="416" width="64" height="16">
-   <properties>
-    <property name="act010" value="create_npc xerogrunt3,26,32,teamxerogrunt1,stand"/>
-    <property name="act020" value="npc_face xerogrunt3,right"/>
-    <property name="act030" value="create_npc xerogrunt4,26,33,teamxerogrunt1,stand"/>
-    <property name="act040" value="npc_face xerogrunt4,right"/>
-    <property name="act050" value="create_npc xerogrunt5,26,34,teamxerogrunt1,stand"/>
-    <property name="act060" value="npc_face xerogrunt5,right"/>
-    <property name="act070" value="create_npc xerogrunt6,26,35,teamxerogrunt1,stand"/>
-    <property name="act080" value="npc_face xerogrunt6,right"/>
-    <property name="act090" value="create_npc xerogrunt7,26,36,teamxerogrunt1,stand"/>
-    <property name="act100" value="npc_face xerogrunt7,right"/>
-    <property name="act110" value="create_npc xerogrunt8,26,37,teamxerogrunt1,stand"/>
-    <property name="act120" value="npc_face xerogrunt8,right"/>
-    <property name="act130" value="create_npc xerogrunt9,26,38,teamxerogrunt1,stand"/>
-    <property name="act140" value="npc_face xerogrunt9,right"/>
-    <property name="act150" value="create_npc xerogrunt10,26,39,teamxerogrunt1,stand"/>
-    <property name="act160" value="npc_face xerogrunt10,right"/>
-    <property name="act170" value="create_npc xerogrunt1,26,30,teamxerogrunt1,stand"/>
-    <property name="act180" value="npc_face xerogrunt1,right"/>
-    <property name="act190" value="create_npc xerogrunt2,26,31,teamxerogrunt1,stand"/>
-    <property name="act200" value="npc_face xerogrunt2,right"/>
-   </properties>
-  </object>
   <object id="57" name="Establish hideout" type="event" x="240" y="352" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog xero_hideout1"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="62" name="blocking the way" type="event" x="432" y="480" width="16" height="160">
-   <properties>
-    <property name="act10" value="translated_dialog xero_grunts_block"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

@@ -1452,9 +1452,6 @@ msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
 msgid "cherry_found"
 msgstr "You found a cherry."
 
-msgid "xero_grunts_block"
-msgstr "No way kid, you're not getting through here. The area up ahead is ‘under construction’. Try again later."
-
 msgid "waiting_for_misa"
 msgstr "Our leader would like to talk with you. When you are ready, talk to my friend next to me."
 

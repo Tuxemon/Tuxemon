@@ -34,7 +34,7 @@
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="656" y="272" width="96" height="160"/>
-  <object id="2" type="collision" x="720" y="128" width="32" height="96"/>
+  <object id="2" type="collision" x="720" y="128" width="48" height="96"/>
   <object id="3" type="collision" x="592" y="128" width="16" height="208"/>
   <object id="4" type="collision" x="624" y="336" width="32" height="96"/>
   <object id="5" type="collision" x="592" y="368" width="32" height="64"/>
@@ -47,7 +47,7 @@
   <object id="13" type="collision" x="-16" y="64" width="144" height="640"/>
   <object id="14" type="collision" x="128" y="640" width="816" height="64"/>
   <object id="15" type="collision" x="-16" y="16" width="960" height="48"/>
-  <object id="18" type="collision" x="752" y="128" width="64" height="16"/>
+  <object id="18" type="collision" x="752" y="128" width="64"/>
   <object id="20" type="collision" x="816" y="80" width="64" height="16"/>
   <object id="21" type="collision" x="880" y="64" height="16"/>
   <object id="22" type="collision" x="944" y="-32" width="32" height="688"/>

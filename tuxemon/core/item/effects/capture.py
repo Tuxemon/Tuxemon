@@ -39,12 +39,19 @@ class CaptureEffect(ItemEffect):
     """Attempts to capture the target with 'power' capture strength."""
 
     name = "capture"
-    valid_parameters = [(int, "power")]
+    valid_parameters = [(int, "power")]   
 
     def apply(self, target):
         # Set up variables for capture equation
         status_modifier = 0
         item_power = self.parameters.power
+        # The number of shakes that o tuxemon can do to escape. 
+        total_shakes = 4;
+        # The max catch rate. 
+        max_cactch_rate = 255;
+        # In every shake a random number form [0-65536] we be produced.
+        shake_constant = 65536;
+
 
         # Check if target has any status effects
         if not target.status == "Normal":
@@ -53,10 +60,12 @@ class CaptureEffect(ItemEffect):
         # TODO: debug logging this info
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
+        # Specifically the catch rate is based on the Generation III-IV and the shake_check on the Generation VI
         catch_check = (
             (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         )
-        shake_check = 65536 / (255 / catch_check) ** 0.1875
+        
+        shake_check = shake_constant / (max_cactch_rate / catch_check) ** 0.1875
 
         logger.debug("--- Capture Variables ---")
         logger.debug(
@@ -70,11 +79,11 @@ class CaptureEffect(ItemEffect):
         logger.debug("65536 / (255 / {}) ** 0.1875".format(catch_check))
 
         msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
-        logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
+        logger.debug(msg.format(round((shake_constant - shake_check) / shake_constant, 2), round(shake_check)))
 
         # 4 shakes to give monster chance to escape
-        for i in range(0, 4):
-            random_num = random.randint(0, 65536)
+        for i in range(0, total_shakes):
+            random_num = random.randint(0, shake_constant)
             logger.debug("shake check {}: random number {}".format(i, random_num))
             if random_num > round(shake_check):
                 return {"success": False, "capture": True, "num_shakes": i + 1}

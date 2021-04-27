@@ -2093,6 +2093,9 @@ msgstr "Don't let the Trial prevent you from coming to see me. In fact... Maybe 
 msgid "goodbye2"
 msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 
+msgid "tabatownbattlearea"
+msgstr "Omnichannel Certified battle area - Taba Town"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

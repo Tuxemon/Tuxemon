@@ -2094,7 +2094,7 @@ msgid "goodbye2"
 msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 
 msgid "tabatownbattlearea"
-msgstr "Omnichannel Certified battle area - Taba Town"
+msgstr "Omnichannel Certified Battle Area - Taba Town"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

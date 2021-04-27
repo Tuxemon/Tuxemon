@@ -2094,7 +2094,11 @@ msgid "goodbye2"
 msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 
 msgid "tabatownbattlearea"
+<<<<<<< HEAD
 msgstr "Omnichannel Certified Battle Area - Taba Town"
+=======
+msgstr "Omnichannel Certified battle area - Taba Town"
+>>>>>>> 61930af6... Battle area has been created!
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

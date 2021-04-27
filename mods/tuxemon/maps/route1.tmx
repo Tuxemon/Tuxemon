@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="97">
 =======
 <map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="91">
 >>>>>>> 1c788d40... Change the color of the roof
+=======
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="97">
+>>>>>>> 61930af6... Battle area has been created!
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -27,10 +31,14 @@
  <layer id="2" name="Tile Layer 2" width="59" height="42">
   <data encoding="base64" compression="zlib">
 <<<<<<< HEAD
+<<<<<<< HEAD
    eAHlWcuOTVEQPR49xUcIE91GGBIfYIZf8IiBNsIIE4k5A2n9AXpCxIiBRHcwFAaGEo9fMCGqkrNiZeXUrTr7uH11nKRSVXvXXrVX1d7n3pu7vLfrVkyWF6S7bXzOGcfzJovSSnWe+/gf+ol6zrOOs84L8m+nXmRfj9jd4cd9l6dLufC6yH5uOK9MHu/uug2TRfV1yTidFa7uu0Rcn1ANlN89m3s0IA9s7IPx/GiS9VUxK36GifkIK+LK47rWOemDsZ/G81ehr7q+4lfPSgWrGgNeHI+xQ3u67rAJahxpXttqK3aEc9x6MyQn+p6hr2vm63ld72Nwlu+b72N+X1/2c1kPon3NGldumgPzioFxvceIA1fc66E49BJrXG8a1y0T4Ecaax7aef+x64+smc+ybj6eiBtyYB7x0Bjf6PuAcWhwxfta3+MeN4sr8CONPK+NyybJVm+7dnljEj2KHcWBy7OE69i+Ih9qHWnEnTQup0y+mpw2+WbypddufzeJngwb66pcx/b1U187rbn62McF43LRZJ+9zy6b3m+a5YD50aOY8DW+ynVsX8E1qjnGdT8tPrCg31md35u8pbPKY9EZ1tz6LnYf72OOBVfUONK8ptVWbHBWvKyvGl/1wRV5I814V61uqyTXqC8cp7Zig7vGzZsr8kaa93PduN0guVnkqtiMyXbEVWs11m/payvXaG/M0+2Iq9ZqrP+570m2jvfTyjXKwdizuEa1qo4jTxaPONetXDUHYw7ZL+RuRLWqjiNHFo84161cNQe4M/aQjbipGtgZDuJct3LVHODO2EM24qZqYGc4iHPdylVzMOaQrbWZ6iNHhoM4161coxyMzbbWZqoP7AwHca5buUY5GNvtqCZTx5Enw0Gc61aumoMx2Y5qMnUcOTIcxLlu5ao5wJ2xp9rL8jk1hIe8keY1rVwVG9wZe6pd4Yq8keY9tHJVbGBmvyXwnTHTjpdxPWp915qrj325buXKGGw73iUS/S2RccS8Y1a4as3V1721/M5hDLYzrhyb2RWu2kf1Ocd295VzZ7ZzvWISPX6GtY/q89p/mesx43JQuHKvx97XW4Z1m+SOYOu7ZtXmZ8ldm591X7nOFdv5+v8G/j/Bigl8jGkf1a/kQAzfP77XmX3G9uWi7ybg/i2t91P9MXn+da7aR/XnzRU9HeorPlMyXd2j9lH9Ko7H6X3mu12x9f5nHDFf3aP2Uf0qzk6I0z7uVL9Sa+3jTvUrXH8DWtT3BQ==
 =======
    eAHlWLluFUEQXA6nwCdwk2BCCEF8ABnwCxwRJgJHQIJEDgEyjridgBARBEjYAgLANgQWEfcnYE5RLW2JUmt7Z3aW54fNSqXunump3pre2XeMrq2qXcDokGy1hNchaDwMDMt6qYO8j/+hn9zPQe5j2/PC+ktph9nXnTg7ellsuDuShq6L/PvgeQTcXl1VU8Cw+joCTQedVosNkdY7sgde3wXMXWnAJYy9gs7XQKqvnjMnTnFyPuKKtOq4X2ua/MWxn9D5K6Ovfn1OnPus5HDl5lCX5nNs+5qq2gFwjyOra0t9zx3x7EZvmrCn7hn7OoHYP6+TdQ6f5YuIbczO68N6LtWD6L7axr02X4PznoPj/hwzj1p5rpvy2EuuMTsNrTMA+SPLNZfxvC+u+oMJxIpJxLwibazBeebTcnyq7gPHaamV72v/Hre8Nq3kjyzrPIaWacFM7Zs1PAGiy3NHedRyL6G1a19Zj3sdWebthZZ9wEdgP/AJ+FBb8z8D0ZXi5rpcrV37ulDvnd9zH/M+jkDLUWAd3mfHYdfDKjYgji7Pydjn52rt2ldqjfac4/5+SmJy0T7DPs8BT+VZ1bHoGfa1/bvYYr6PNZdauceR1TWlvuemZs+X6qvPz42plXUjq3wnsG9jgpPSF83zvuemdp83aK2sG1m9n1PQdlownqnVcyun+pFWv1dd45K+lmqN7k11mh9p9XvVNX5b9yS1Tu+nVGtUQ7nbtEZ7lTvOOql85pkt1eprKGeT/8CdjWivcsdZI5XPPLOlWn0NalfuJp95fS25UzzMM1uq1degduVu8pnX15I7xcM8s6VafQ3lbPL93vSNWSPFwzyzpVqjGsqtvt+bvjG5UzzMM1uqNaqh3OZHe9J3nHVSPMwzW6rV11BO9aM96TvOGike5pkt1eprULty9/Vn8Tk114J5zLFuZPUeSrV6bmpX7r7+Qv2ZfBW/N68B14EbwE3gFvAG86wbWb2HUq2em5yp3xL8zpiyxketz6HrBfASmAXmgHnAtPo99zHvy2ypVuVQ3/iOCfxviZRGzhsntX6BrkXgK/AN+A78AJaqr6pP/UFo3Yj/RzYBm4EtwFZgG7AS+6p7qf5K7KvqU79rX8/gbJ0VnIOvl3/XjGG+Decx/7fPq96P+l37qmubfD1/+v9Fyj8AzYZxQC++e1LW1vDdpOvV79pXXdvk/+ta/Wefj5s0RWMlWtnT5dZXf571bOf4/vynnl3O297nPMO+jz6Oevivjedo9d+Tlmuco9X3cbnG9r/ouxa8x9xvZhZS8w==
 >>>>>>> 1c788d40... Change the color of the roof
+=======
+   eAHlWcuOTVEQPR49xUcIE91GGBIfYIZf8IiBNsIIE4k5A2n9AXpCxIiBRHcwFAaGEo9fMCGqkrNiZeXUrTr7uH11nKRSVXvXXrVX1d7n3pu7vLfrVkyWF6S7bXzOGcfzJovSSnWe+/gf+ol6zrOOs84L8m+nXmRfj9jd4cd9l6dLufC6yH5uOK9MHu/uug2TRfV1yTidFa7uu0Rcn1ANlN89m3s0IA9s7IPx/GiS9VUxK36GifkIK+LK47rWOemDsZ/G81ehr7q+4lfPSgWrGgNeHI+xQ3u67rAJahxpXttqK3aEc9x6MyQn+p6hr2vm63ld72Nwlu+b72N+X1/2c1kPon3NGldumgPzioFxvceIA1fc66E49BJrXG8a1y0T4Ecaax7aef+x64+smc+ybj6eiBtyYB7x0Bjf6PuAcWhwxfta3+MeN4sr8CONPK+NyybJVm+7dnljEj2KHcWBy7OE69i+Ih9qHWnEnTQup0y+mpw2+WbypddufzeJngwb66pcx/b1U187rbn62McF43LRZJ+9zy6b3m+a5YD50aOY8DW+ynVsX8E1qjnGdT8tPrCg31md35u8pbPKY9EZ1tz6LnYf72OOBVfUONK8ptVWbHBWvKyvGl/1wRV5I814V61uqyTXqC8cp7Zig7vGzZsr8kaa93PduN0guVnkqtiMyXbEVWs11m/payvXaG/M0+2Iq9ZqrP+570m2jvfTyjXKwdizuEa1qo4jTxaPONetXDUHYw7ZL+RuRLWqjiNHFo84161cNQe4M/aQjbipGtgZDuJct3LVHODO2EM24qZqYGc4iHPdylVzMOaQrbWZ6iNHhoM4161coxyMzbbWZqoP7AwHca5buUY5GNvtqCZTx5Enw0Gc61aumoMx2Y5qMnUcOTIcxLlu5ao5wJ2xp9rL8jk1hIe8keY1rVwVG9wZe6pd4Yq8keY9tHJVbGBmvyXwnTHTjpdxPWp915qrj325buXKGGw73iUS/S2RccS8Y1a4as3V1721/M5hDLYzrhyb2RWu2kf1Ocd295VzZ7ZzvWISPX6GtY/q89p/mesx43JQuHKvx97XW4Z1m+SOYOu7ZtXmZ8ldm591X7nOFdv5+v8G/j/Bigl8jGkf1a/kQAzfP77XmX3G9uWi7ybg/i2t91P9MXn+da7aR/XnzRU9HeorPlMyXd2j9lH9Ko7H6X3mu12x9f5nHDFf3aP2Uf0qzk6I0z7uVL9Sa+3jTvUrXH8DWtT3BQ==
+>>>>>>> 61930af6... Battle area has been created!
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="59" height="42">

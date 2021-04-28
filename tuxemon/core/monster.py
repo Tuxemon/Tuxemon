@@ -229,8 +229,13 @@ class Monster:
 
         self.weight = 0
 
-        # the multiplier for checks when a monster ball is thrown.
-        self.catch_rate = 1
+        # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
+        # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system calculations.
+        # This is based on the pokemon calculation and can be found at https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
+        self.catch_rate = 125
+        # Multiplier that defines the likeluhood of a monster beeing resisting being caught. 
+        # TODO find a dynamic way of producing this value
+        # self.catch_resistance= 1
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -297,6 +302,7 @@ class Monster:
                 self.type2 = results["types"][1].lower()
 
         self.weight = results["weight"]
+        #self.catch_rate = results["catch_rate"]
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         moveset = results.get("moveset")

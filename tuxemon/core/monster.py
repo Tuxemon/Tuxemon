@@ -302,7 +302,7 @@ class Monster:
                 self.type2 = results["types"][1].lower()
 
         self.weight = results["weight"]
-        #self.catch_rate = results["catch_rate"]
+        self.catch_rate = results["catch_rate"]
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         moveset = results.get("moveset")

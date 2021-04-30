@@ -21,5 +21,6 @@
         "Metal",
         "Fire"
     ],
-    "weight": 25
+    "weight": 25,
+    "catch_rate": 85.0
 }

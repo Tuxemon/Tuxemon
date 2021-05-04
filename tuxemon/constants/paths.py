@@ -22,13 +22,13 @@
 # Andy Mender <andymenderunix@gmail.com>
 #
 #
-# core.constants.paths - Central store for local file paths
+# constants.paths - Central store for local file paths
 #
 import logging
 import os.path
 import sys
 
-from tuxemon.core import platform
+from tuxemon import platform
 
 logger = logging.getLogger(__file__)
 
@@ -42,7 +42,7 @@ BASEDIR = sys.path[0]
 logger.debug("basedir: %s", BASEDIR)
 
 # main game and config dir
-# TODO: this imports pygame from core.prepare - refactor to avoid this?
+# TODO: this imports pygame from prepare - refactor to avoid this?
 USER_STORAGE_DIR = platform.get_user_storage_dir()
 logger.debug("userdir: %s", USER_STORAGE_DIR)
 
@@ -75,9 +75,9 @@ logger.debug("mods: %s", mods_folder)
 system_installed_folders = platform.get_system_storage_dirs()
 
 # action/condition plugins (eventually move out of lib folder)
-CONDITIONS_PATH = os.path.join(LIBDIR, "core/event/conditions")
-ACTIONS_PATH = os.path.join(LIBDIR, "core/event/actions")
+CONDITIONS_PATH = os.path.join(LIBDIR, "event/conditions")
+ACTIONS_PATH = os.path.join(LIBDIR, "event/actions")
 
 # item effects/conditions
-ITEM_EFFECT_PATH = os.path.join(LIBDIR, "core/item/effects")
-ITEM_CONDITION_PATH = os.path.join(LIBDIR, "core/item/conditions")
+ITEM_EFFECT_PATH = os.path.join(LIBDIR, "item/effects")
+ITEM_CONDITION_PATH = os.path.join(LIBDIR, "item/conditions")

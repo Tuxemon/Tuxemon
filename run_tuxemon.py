@@ -29,7 +29,7 @@
 from argparse import ArgumentParser
 
 if __name__ == '__main__':
-    from tuxemon.core import prepare, main
+    from tuxemon import prepare, main
     config = prepare.CONFIG
 
     parser = ArgumentParser()

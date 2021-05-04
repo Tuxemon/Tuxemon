@@ -4,7 +4,7 @@ import mock
 import pygame as pg
 
 from tuxemon.core import prepare
-from tuxemon.core.states.world import WorldState
+from tuxemon.states.world import WorldState
 
 pg.display.set_mode((1, 1), 0, 0)
 control = mock.MagicMock()

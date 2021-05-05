@@ -31,7 +31,7 @@ import logging
 import random
 from math import sqrt
 
-from tuxemon.core.item.itemeffect import ItemEffect
+from tuxemon.item.itemeffect import ItemEffect
 
 logger = logging.getLogger(__name__)
 

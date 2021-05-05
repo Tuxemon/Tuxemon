@@ -23,7 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
-# core.monster Tuxemon monster module
+# monster Tuxemon monster module
 #
 #
 
@@ -31,10 +31,10 @@ import logging
 import random
 import uuid
 
-from tuxemon.core import ai, fusion, graphics
-from tuxemon.core.db import db
-from tuxemon.core.locale import T
-from tuxemon.core.technique import Technique
+from tuxemon import ai, fusion, graphics
+from tuxemon.db import db
+from tuxemon.locale import T
+from tuxemon.technique import Technique
 
 logger = logging.getLogger(__name__)
 
@@ -260,8 +260,8 @@ class Monster:
     def spawn(self, father):
         """Create's a new Monster, with this monster as the mother and the passed in monster as father.
 
-        :param father: The core.monster.Monster to be father of this monsterous child.
-        :type father : tuxemon.core.monster.Monster
+        :param father: The monster.Monster to be father of this monsterous child.
+        :type father : tuxemon.monster.Monster
         """
         child = Monster()
         child.load_from_db(self.slug)
@@ -340,10 +340,10 @@ class Monster:
     def learn(self, technique):
         """Adds a technique to this tuxemon's moveset.
 
-        :param technique: The core.monster.Technique object for
+        :param technique: The monster.Technique object for
             the monster to learn.
 
-        :type technique: tuxemon.core.monster.Technique
+        :type technique: tuxemon.monster.Technique
 
         :rtype: None
         :returns: None
@@ -381,7 +381,7 @@ class Monster:
     def apply_status(self, status):
         """Apply a status to the monster
 
-        :type status: tuxemon.core.technique.Technique
+        :type status: tuxemon.technique.Technique
         :rtype: None
         """
         self.status.append(status)

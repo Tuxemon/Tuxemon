@@ -91,6 +91,7 @@ class TuxemonConfig:
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
         self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
         self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
+        self.default_monster_catch_rate = cfg.get("gameplay", "default_monster_catch_rate")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
@@ -200,6 +201,7 @@ def get_defaults():
                         ("encounter_rate_modifier", 1.0),
                         ("default_monster_storage_box", "Kennel"),
                         ("default_item_storage_box", "Locker"),
+                        ("default_monster_catch_rate", 125),
                     )
                 ),
             ),

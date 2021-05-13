@@ -26,12 +26,12 @@
 #
 # __main__.py Main game
 #
-"""Starts the core.main.main() function which, in turn, initializes
+"""Starts the main.main() function which, in turn, initializes
 pygame and starts the game, unless headless is specified.
 
-To run an individual component (e.g. core/prepare.py):
+To run an individual component (e.g. prepare.py):
 
-`python -m core.prepare`
+`python -m prepare`
 
 """
 
@@ -52,12 +52,12 @@ def main(args=None):
             server = True
 
     if server:
-        from tuxemon.core.main import headless
+        from tuxemon.main import headless
 
         headless()
 
     else:
-        from tuxemon.core.main import main
+        from tuxemon.main import main
 
         main()
 

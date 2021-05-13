@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 
-from tuxemon.core.event.eventengine import EventEngine, RunningEvent
+from tuxemon.event import EventEngine, RunningEvent
 
 
 class TestRunningEvent(unittest.TestCase):

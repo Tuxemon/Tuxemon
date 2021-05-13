@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-03-10 22:02+0000\n"
+"PO-Revision-Date: 2021-04-28 11:32+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -2626,3 +2626,198 @@ msgid "spyder_papertown_grannypiper1"
 msgstr ""
 "¡Oh, hola ${{name}}! ¡No te había visto entre el ajetreo y los escombros!\n"
 "¡No puedo esperar a que la Guardería esté instalada!"
+
+msgid "spyder_tunnelb_lute2"
+msgstr "… aunque no necesariamente los mejores luchadores."
+
+msgid "spyder_tunnelb_lute1"
+msgstr "¡Los murciélagos son las mejores mascotas!"
+
+msgid "spyder_tunnelb_beryll2"
+msgstr "¡Ah! ¡Se me ha caído mi colección de rocas!"
+
+msgid "spyder_tunnelb_beryll1"
+msgstr "Me gusta coleccionar rocas y piedras."
+
+msgid "spyder_nimrod_honour2"
+msgstr "¡Deja esos prototipos en paz!"
+
+msgid "spyder_nimrod_honour1"
+msgstr "¡No te atrevas a tocar esos prototipos! "
+
+msgid "spyder_cottonhouse2_catgirl"
+msgstr ""
+"¿Has conocido al anciano en el Parque de la Ciudad? ¡Está obsesionado con "
+"batir récords!"
+
+msgid "spyder_route4_roger2"
+msgstr "¡Podría aprender mucho sobre estrategia de ti!"
+
+msgid "spyder_route4_roger1"
+msgstr "Podemos aprender mucho sobre estrategia de los Tuxemon."
+
+msgid "gasp"
+msgstr "Espera…"
+
+msgid "yahaha"
+msgstr "¡Ajá! ¡Te encontré!"
+
+msgid "professor-rockitten"
+msgstr "Profesor"
+
+msgid "professor-cardiling"
+msgstr "Profesor"
+
+msgid "professor-tweesher"
+msgstr "Profesor"
+
+msgid "reg_papers"
+msgstr "Papeles de Registro"
+
+msgid "tweesher!"
+msgstr "¡Tweesher obtenido!"
+
+msgid "choseTweesher2"
+msgstr ""
+"Primero, no obstante, vamos a ver tus proezas en batalla con un combate "
+"rápido de Tuxemon.\n"
+"Veamos… Escogeré a Rockitten."
+
+msgid "choseTweesher"
+msgstr ""
+"¡De acuerdo, aquí está tu Tweesher! ¡Sé que ambos viviréis grandes aventuras "
+"juntos!"
+
+msgid "chooseyerfateTweesher"
+msgstr ""
+"¡Una gran elección! Tweesher es un Tuxemon de tipo Agua. Su evolución "
+"Eagleace es uno de los Tuxemon más rápidos.\n"
+"¿Quieres elegir a Tweesher?"
+
+msgid "cardiling!"
+msgstr "¡Cardiling obtenido!"
+
+msgid "chosefight"
+msgstr "Y… ¡LUCHEMOS!"
+
+msgid "choseCardiling2"
+msgstr ""
+"Primero, no obstante, vamos a ver tus proezas en batalla con un combate "
+"rápido de Tuxemon.\n"
+"Veamos… Escogeré a Tweesher."
+
+msgid "choseCardiling"
+msgstr ""
+"¡De acuerdo, aquí está tu Cardiling! ¡Sé que ambos viviréis grandes "
+"aventuras juntos!"
+
+msgid "chooseyerfateCardiling"
+msgstr ""
+"Una elección interesante, y que deja entrever una chispa en tu interior. "
+"Cardiling es un Tuxemon de tipo Fuego, conocido por robar comida tanto de "
+"amigos como de enemigos.\n"
+"¿Quieres elegir a Cardiling?"
+
+msgid "nochoiceTuxemon"
+msgstr "Vale, ¿por qué no le echas un vistazo a los otros dos?"
+
+msgid "rockitten!"
+msgstr "¡Rockitten obtenido!"
+
+msgid "choseRockitten2"
+msgstr ""
+"Primero, no obstante, vamos a ver tus proezas en batalla con un combate "
+"rápido de Tuxemon.\n"
+"Veamos… Escogeré a Cardiling."
+
+msgid "choseRockitten"
+msgstr ""
+"¡De acuerdo, aquí está tu Rockitten! ¡Sé que ambos viviréis grandes "
+"aventuras juntos!"
+
+msgid "chooseyerfateRockitten"
+msgstr ""
+"¡Una elección sólida! Rockitten es un Tuxemon de tipo Tierra. En la época "
+"medieval, criaban Rockittens para que se sentaran al lado de la puerta y "
+"quedaran bonitos.\n"
+"¿Quieres elegir a Rockitten?"
+
+msgid "chooseyerfate"
+msgstr "¿Qué Tuxemon quieres?"
+
+msgid "tuxemontime4"
+msgstr ""
+"¡Ahora la parte más importante! ¡Escoger tu Tuxemon!\n"
+"Desafortunadamente, mi fuente de financiación se ha vuelto… reacia "
+"recientemente. Esto te deja solo con tres opciones de Tuxemon, lo siento por "
+"ello.\n"
+"Las tres opciones son Rockitten, Cardiling y Tweesher."
+
+msgid "obtainedpapers"
+msgstr "¡Papeles de Registro recibidos!"
+
+msgid "tuxemontime3.1"
+msgstr ""
+"Aquí están tus papeles de registro. Tendrás que presentarlos en la primera "
+"Área de Batalla para que te den una medalla de Entrenador.\n"
+"No los necesitarás después de eso.\n"
+
+msgid "tuxemontime3"
+msgstr "¡Allá vamos!"
+
+msgid "tuxemontime2"
+msgstr "Ahora, la primera cosa es tener tus papeles en regla…"
+
+msgid "tuxemontimechoiceno"
+msgstr "Oh… Vale… Estaré aquí si cambias de opinión."
+
+msgid "tuxemontimechoiceyes"
+msgstr "¡Espléndido!"
+
+msgid "tuxemontime"
+msgstr "¡Ah, viniste! ¡Genial!"
+
+msgid "moverocky2"
+msgstr "Bueno, ya te moverás cuando estés listo. Estaré esperándote aquí."
+
+msgid "moverocky"
+msgstr "¡Vamos Rocky! ¡Puedes moverte! ¡Yo creo en ti!"
+
+msgid "hebenice"
+msgstr ""
+"Es un hombre simpático, quizás deberías por lo menos ver qué tiene que decir."
+
+msgid "ihaveyourmoney2"
+msgstr ""
+"Tengo un poco guardado que necesita que le den buen uso, y Omnichannel me "
+"debe un favor.\n"
+"Estoy seguro de que podemos arreglar algo. Obtener los permisos es la parte "
+"fácil. Conseguir tu primer Tuxemon es un poco más difícil…\n"
+"Afortunadamente, resulta que conozco a alguien con acceso a muchos Tuxemon "
+"diferentes…\n"
+"¡Yo mismo!\n"
+"Ahora, sé que es mucho que procesar, así que estaré en mi laboratorio "
+"esperando tu decisión."
+
+msgid "iknowyou"
+msgstr ""
+"¡Hola Callie! ¡Hola ${{name}}! Solo me paré para saludar cuando os oí "
+"hablando sobre el anuncio."
+
+msgid "ihaveyourmoney"
+msgstr "Bueno, quizás pueda ayudarte con eso."
+
+msgid "youneedtodothis2"
+msgstr ""
+"Pero… sé que estabas ansioso por ver la región, y esta es tu mejor "
+"oportunidad.\n"
+"Sé que tienes el impulso dentro de ti de ser el mejor, como nunca nadie haya "
+"sido.\n"
+"Lo único es que no sé si podemos permitirnos el coste.\n"
+"\n"
+"Lograremos hacer algo… de alguna manera."
+
+msgid "youneedtodothis"
+msgstr ""
+"Creo… creo que deberías ver esto…\n"
+"No quiero perderte, especialmente ahora que nos estábamos asentando."

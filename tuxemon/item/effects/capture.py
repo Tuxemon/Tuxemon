@@ -29,6 +29,7 @@
 
 import logging
 import random
+
 from math import sqrt
 
 from tuxemom.item.itemeffect import ItemEffect
@@ -46,6 +47,7 @@ class CaptureEffect(ItemEffect):
     def apply(self, target):
         # Set up variables for capture equation
         status_modifier = 0
+
         # TODO: Item power is set to 1 in order to not effect the calculations
         # Research the proper item_powers of pokeballs to use it as a multiplier.
         item_power = 1
@@ -77,6 +79,7 @@ class CaptureEffect(ItemEffect):
         logger.debug(
             "(3*target.hp - 2*target.current_hp) " "* target.catch_rate * item_power * status_modifier / (3*target.hp)"
         )
+
         msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
         
         logger.debug(msg.format(target, item_power, status_modifier))
@@ -89,6 +92,7 @@ class CaptureEffect(ItemEffect):
         # 4 shakes to give monster chance to escape
         for i in range(0, total_shakes):
             random_num = random.randint(0, max_shake_rate)
+
             logger.debug("shake check {}: random number {}".format(i, random_num))
             if random_num > round(shake_check):
                 return {"success": False, "capture": True, "num_shakes": i + 1}
@@ -98,3 +102,4 @@ class CaptureEffect(ItemEffect):
 
         # TODO: remove monster from the other party
         return {"success": True, "capture": True, "num_shakes": 4}
+

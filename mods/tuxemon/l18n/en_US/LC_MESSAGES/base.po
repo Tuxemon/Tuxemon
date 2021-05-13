@@ -1424,22 +1424,6 @@ msgstr "Where did Tuxemon come from?\n"
 msgid "professor_turn"
 msgstr "Of course you would, who am I kidding?"
 
-msgid "professor_select"
-msgstr "Which one would you like?"
-
-msgid "professor_dialog6.1"
-msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."
-
-msgid "professor_dialog6.2"
-msgstr "Professor: A superb choice! Rockitten is an earth Tuxemon."
-
-msgid "professor_dialog6.3"
-msgstr "Professor: A great choice! Fruitera is a wood Tuxemon."
-
-msgid "professor_dialog7"
-msgstr "Professor: Well that’s really all I have time for! I’m late heading out for an expedition,\n"
-"but I will be in touch to see how you are getting along."
-
 msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
 
@@ -1451,9 +1435,6 @@ msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
 
 msgid "cherry_found"
 msgstr "You found a cherry."
-
-msgid "xero_grunts_block"
-msgstr "No way kid, you're not getting through here. The area up ahead is ‘under construction’. Try again later."
 
 msgid "waiting_for_misa"
 msgstr "Our leader would like to talk with you. When you are ready, talk to my friend next to me."
@@ -2111,6 +2092,9 @@ msgstr "Don't let the Trial prevent you from coming to see me. In fact... Maybe 
 
 msgid "goodbye2"
 msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
+
+msgid "tabatownbattlearea"
+msgstr "Omnichannel Certified Battle Area - Taba Town"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

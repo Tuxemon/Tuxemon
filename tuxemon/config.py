@@ -24,7 +24,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
-# core.config Configuration parser.
+# config Configuration parser.
 #
 #
 """
@@ -33,8 +33,8 @@ NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 import configparser
 from collections import OrderedDict
 
-from tuxemon.core.animation import Animation
-from tuxemon.core.platform.const import buttons, events
+from tuxemon.animation import Animation
+from tuxemon.platform.const import buttons, events
 
 Animation.default_transition = "out_quint"
 
@@ -103,7 +103,7 @@ class TuxemonConfig:
         # Log levels can be: debug, info, warning, error, or critical
         # Setting loggers to "all" will enable debug logging for all modules.
         #   Some available loggers:
-        #     core.states.combat, core.states.world, core.event,
+        #     states.combat, states.world, event,
         #     neteria.server, neteria.client, neteria.core
         # Comma-seperated list of which modules to enable logging on
         self.loggers = cfg.get("logging", "loggers")

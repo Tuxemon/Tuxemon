@@ -71,9 +71,7 @@ class CaptureEffect(ItemEffect):
             (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         )
         shake_check = shake_constant/(sqrt(sqrt(max_catch_rate/catch_check))*8)
-        print(target.catch_rate)
-        print(shake_check)
-        print(catch_check)
+       
         # Debug section
         logger.debug("--- Capture Variables ---")
         logger.debug(

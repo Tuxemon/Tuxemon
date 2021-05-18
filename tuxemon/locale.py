@@ -109,7 +109,7 @@ class TranslatorPo:
         """Load a selected locale for translation."""
         localedir = os.path.join(paths.CACHE_DIR, "l18n")
         for info in self.search_locales():
-            if info.locale == locale_name and info.locale == domain:
+            if info.locale == locale_name and info.domain == domain:
                 trans = gettext.translation(info.domain, localedir, [locale_name])
                 break
         else:

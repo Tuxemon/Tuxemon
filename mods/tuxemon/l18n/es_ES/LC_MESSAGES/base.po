@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-04-28 11:32+0000\n"
+"PO-Revision-Date: 2021-05-19 14:33+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -2821,3 +2821,46 @@ msgid "youneedtodothis"
 msgstr ""
 "Creo… creo que deberías ver esto…\n"
 "No quiero perderte, especialmente ahora que nos estábamos asentando."
+
+msgid "spyder_cottonhouse1_tvwatch"
+msgstr ""
+"Es el último reality show: unas personas y sus Tuxemon realizan desafíos en "
+"una isla remota."
+
+msgid "spyder_scoop_cochini2"
+msgstr "Oink."
+
+msgid "spyder_scoop_cochini1"
+msgstr "¡Oink! ¡Oink! "
+
+msgid "spyder_route4_beck2"
+msgstr "Juego, set y partido."
+
+msgid "spyder_route4_beck1"
+msgstr "¡Tú sacas!"
+
+msgid "spyder_wayfarer1_ratcher2"
+msgstr "¡Ahora el que necesita un descanso soy yo!"
+
+msgid "spyder_wayfarer1_ratcher1"
+msgstr "¡Debes dejar descansar a los pacientes!"
+
+msgid "spyder_wayfarer1_victor2"
+msgstr "¡Párate ahí mismo! O… bueno…"
+
+msgid "spyder_wayfarer1_victor1"
+msgstr "¡Hey! ¡No vas a salir con Tuxemon potencialmente infectados!"
+
+msgid "spyder_wayfarer1_morton2"
+msgstr "¡Ahora ya no puedo hacer nada de nada!"
+
+msgid "spyder_wayfarer1_morton1"
+msgstr ""
+"Debo quedarme en esta habitación hasta que mis Tuxemon se recuperen, ¡así "
+"que no puedo hacer nada excepto combatir!"
+
+msgid "spyder_wayfarer1_morningstar2"
+msgstr "Ven a verme después. ¡Siguiente paciente, por favor!"
+
+msgid "spyder_wayfarer1_morningstar1"
+msgstr "No me sorprende verte aquí. "

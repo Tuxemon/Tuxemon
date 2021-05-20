@@ -65,7 +65,7 @@ class WorldMenuState(Menu):
         add_menu_items(self, menu_items_map)
 
     def open_monster_menu(self):
-        from tuxemon.states import MonsterMenuState
+        from tuxemon.states.monster import MonsterMenuState
 
         def monster_menu_hook():
             """Used to rearrange monsters interactively

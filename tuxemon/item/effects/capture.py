@@ -30,7 +30,10 @@
 import logging
 import random
 
-from tuxemon.item.itemeffect import ItemEffect
+from math import sqrt
+
+from tuxemom.item.itemeffect import ItemEffect
+
 
 logger = logging.getLogger(__name__)
 
@@ -44,37 +47,52 @@ class CaptureEffect(ItemEffect):
     def apply(self, target):
         # Set up variables for capture equation
         status_modifier = 0
-        item_power = self.parameters.power
 
+        # TODO: Item power is set to 1 in order to not effect the calculations
+        # Research the proper item_powers of pokeballs to use it as a multiplier.
+        item_power = 1
+        # The number of shakes that a tuxemon can do to escape. 
+        total_shakes = 4;
+        # The max catch rate. 
+        max_catch_rate = 255;
+        # In every shake a random number form [0-65536] will be produced.
+        max_shake_rate = 65536;
+        # Constant used in shake_check calculations
+        shake_constant = 524325;
         # Check if target has any status effects
         if not target.status == "Normal":
-            status_modifier = 1.5
-
+            status_modifier = 1.2
+               
         # TODO: debug logging this info
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
+        # Specifically the catch rate and the shake_check is based on the Generation III-IV
+        # The rate of which a tuxemon is caught is approximetly catch_check/255
+
         catch_check = (
             (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         )
-        shake_check = 65536 / (255 / catch_check) ** 0.1875
-
+        shake_check = shake_constant/(sqrt(sqrt(max_catch_rate/catch_check))*8)
+       
+        # Debug section
         logger.debug("--- Capture Variables ---")
         logger.debug(
             "(3*target.hp - 2*target.current_hp) " "* target.catch_rate * item_power * status_modifier / (3*target.hp)"
         )
 
         msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
+        
         logger.debug(msg.format(target, item_power, status_modifier))
+        logger.debug("shake_constant/(sqrt(sqrt(max_catch_rate/catch_check))*8)")
+        logger.debug("524325/(sqrt(sqrt(255/{}))*8)".format(catch_check))
 
-        logger.debug("65536 / (255 / catch_check) ** 0.1875")
-        logger.debug("65536 / (255 / {}) ** 0.1875".format(catch_check))
-
-        msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
-        logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
+        msg = "Each shake has a {}/65536 chance of breaking the creature free. (shake_check = {})"
+        logger.debug(msg.format(round((shake_constant - shake_check) / shake_constant, 2), round(shake_check)))
 
         # 4 shakes to give monster chance to escape
-        for i in range(0, 4):
-            random_num = random.randint(0, 65536)
+        for i in range(0, total_shakes):
+            random_num = random.randint(0, max_shake_rate)
+
             logger.debug("shake check {}: random number {}".format(i, random_num))
             if random_num > round(shake_check):
                 return {"success": False, "capture": True, "num_shakes": i + 1}
@@ -84,3 +102,4 @@ class CaptureEffect(ItemEffect):
 
         # TODO: remove monster from the other party
         return {"success": True, "capture": True, "num_shakes": 4}
+

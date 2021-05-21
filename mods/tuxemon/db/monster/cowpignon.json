@@ -21,5 +21,6 @@
         "Wood",
         "Earth"
     ],
-    "weight": 25
+    "weight": 25,
+    "catch_rate": 120.0
 }

@@ -35,6 +35,8 @@ from tuxemon import ai, fusion, graphics
 from tuxemon.db import db
 from tuxemon.locale import T
 from tuxemon.technique import Technique
+from tuxemon.config import TuxemonConfig
+
 
 logger = logging.getLogger(__name__)
 
@@ -229,8 +231,12 @@ class Monster:
 
         self.weight = 0
 
-        # the multiplier for checks when a monster ball is thrown.
-        self.catch_rate = 1
+
+        # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
+        # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system calculations.
+        # This is based on the pokemon calculation and can be found at https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
+        self.catch_rate = TuxemonConfig().default_monster_catch_rate
+
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -297,6 +303,8 @@ class Monster:
                 self.type2 = results["types"][1].lower()
 
         self.weight = results["weight"]
+        self.catch_rate = results.get("catch_rate", TuxemonConfig().default_monster_catch_rate)
+
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         moveset = results.get("moveset")

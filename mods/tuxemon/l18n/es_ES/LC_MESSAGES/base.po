@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-05-19 14:33+0000\n"
+"PO-Revision-Date: 2021-05-21 11:31+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -1985,7 +1985,7 @@ msgstr ""
 
 msgid "spyder_cottonart_granny"
 msgstr ""
-"Debo estar volviéndome nostálgico. Casi digo:\n"
+"Debo estar volviéndome nostálgica. Casi digo:\n"
 "\"¡Antes, en mis tiempos, las cosas eran mejores!\""
 
 msgid "spyder_cottoncafe_barmaidintro"
@@ -2864,3 +2864,208 @@ msgstr "Ven a verme después. ¡Siguiente paciente, por favor!"
 
 msgid "spyder_wayfarer1_morningstar1"
 msgstr "No me sorprende verte aquí. "
+
+msgid "spyder_searoutec_nigel2"
+msgstr ""
+"¡Vale, no la estoy custodiando! ¡Los otros jinetes de dragón no me dejan "
+"unirme a ellos!"
+
+msgid "spyder_searoutec_nigel1"
+msgstr ""
+"¡Ésta es la Cueva del Dragón! Estoy aquí fuera porque… uh, porque la estoy "
+"custodiando."
+
+msgid "spyder_flower_artist_clipping"
+msgstr ""
+"Un recorte de periódico está en la pared. Comienza así:\n"
+"\"El famoso crítico de arte ha dejado su pluma envenenada y ha tomado el "
+"pincel.\n"
+"Después de años de demoler artistas, ¿podrá hacerlo él mejor?\""
+
+msgid "spyder_flower_artist1"
+msgstr ""
+"Trazos simples y torpes y un tema pedestre. ¡Bah! Otro lienzo arruinado."
+
+msgid "spyder_route6_rigel2"
+msgstr "Ahora ya no hay nada que hacer."
+
+msgid "spyder_route6_rigel1"
+msgstr "Podríamos combatir. ¡No hay nada más que hacer de momento!"
+
+msgid "spyder_route6_richard2"
+msgstr "Peor. Día. De mi vida."
+
+msgid "spyder_route6_richard1"
+msgstr ""
+"Tío, el único día que dejo el ordenador para ir a pasear, ¡y ocurre esto!"
+
+msgid "spyder_tunnelb_tommy2"
+msgstr "¡Mi hambre me ha despistado!"
+
+msgid "spyder_tunnelb_tommy1"
+msgstr "¿Has visto mi sándwich?"
+
+msgid "spyder_scoop_orba2"
+msgstr "¿Qué estoy haciendo yo aquí, de hecho?"
+
+msgid "spyder_scoop_orba1"
+msgstr "¡Ay! ¿Qué estás haciendo aquí?"
+
+msgid "spyder_scoop_alyssa2"
+msgstr "¡Te lo estoy diciendo: mantuvimos la enfermedad bajo control!"
+
+msgid "spyder_scoop_alyssa1"
+msgstr ""
+"Tan pronto como la enfermedad fue detectada, movimos a los Tuxemon "
+"infectados a esta unidad de contención."
+
+msgid "spyder_scoop_rubid2"
+msgstr ""
+"Los estudios muestran que los Tuxemon encuentran los combates más "
+"estresantes que vivir en estas condiciones. "
+
+msgid "spyder_scoop_rubid1"
+msgstr "Esta es de hecho la forma más humana de mantener Tuxemon."
+
+msgid "spyder_route5_cleo2"
+msgstr "¡Oh, ancestros, os he fallado!"
+
+msgid "spyder_route5_cleo1"
+msgstr ""
+"Madre dice que podemos trazar nuestra ascendencia hasta los reyes que "
+"gobernaban este país tiempo atrás."
+
+msgid "spyder_route5_hunter2"
+msgstr "Volveremos."
+
+msgid "spyder_route5_hunter1"
+msgstr "Mantener un equipo unido requiere mucho esfuerzo."
+
+msgid "spyder_searoutec_beech2"
+msgstr "De acuerdo, te creo."
+
+msgid "spyder_searoutec_beech1"
+msgstr "Hey, ¿has hecho algo en el agua?"
+
+msgid "spyder_nimrod_maverick2"
+msgstr "Ojalá conociera alguien con el que pudiera tocar."
+
+msgid "spyder_nimrod_maverick1"
+msgstr "De noche toco la guitarra yo solo."
+
+msgid "spyder_leatherhouse2_tv"
+msgstr ""
+"Un pequeño monstruo verde está levantando un barco y sacándolo de un pantano."
+
+msgid "spyder_route4_rosamund2"
+msgstr "La venganza se sirve mejor fría. "
+
+msgid "spyder_route4_rosamund1"
+msgstr "¡Intenta combatir conmigo y recibirás tu merecido!"
+
+msgid "spyder_flower_cady_willtrade"
+msgstr "¡Bien, genial! Allá vamos."
+
+msgid "spyder_flower_cady_nogrintot"
+msgstr "Oh, no importa. Veo que no tienes un Grintot. "
+
+msgid "spyder_flower_cady1"
+msgstr ""
+"Oh, me encantaría tener un souvenir para traer a casa conmigo.\n"
+"Adoro a esos dulces y pequeños Grintot. ¿Podrías conseguirme uno?\n"
+"Te podría dar mi Hampotamos a cambio."
+
+msgid "spyder_flower_fez_willtrade"
+msgstr "¡Bien, genial! Allá vamos."
+
+msgid "spyder_flower_fez_noignibus"
+msgstr "Oh, no importa. Puedo ver que no tienes un Ignibus."
+
+msgid "spyder_flower_fez1"
+msgstr ""
+"Todo el mundo en nuestra región debe escoger de entre los mismos cinco "
+"Tuxemon aburridos.\n"
+"Conozco como un centenar de personas con un Foxfire…\n"
+"Hey, ¿quieres intercambiar? ¿Mi Foxfire por un Ignibus?"
+
+msgid "spyder_flower_mieke_willtrade"
+msgstr "¡Bien, genial! Allá vamos."
+
+msgid "spyder_flower_mieke_nobudaye"
+msgstr "Oh, no importa. Veo que no tienes un Budaye."
+
+msgid "spyder_flower_mieke1"
+msgstr ""
+"¡Es tan excitante para nosotros visitar la región de Fondant! Tenéis algunos "
+"Tuxemon tan únicos aquí…\n"
+"Hey, ¿quieres intercambiar? Mi Conileaf por una criatura que no tenemos allá "
+"en casa…\n"
+"¿Qué tal Budaye?"
+
+msgid "spyder_route4_marshall2"
+msgstr "Puede que aún necesite algo de trabajo."
+
+msgid "spyder_route4_marshall1"
+msgstr "¡Estoy trabajando en un cañón gigante!"
+
+msgid "spyder_wayfarer1_james2"
+msgstr "¡Me alegro de que Jessie no me viera perder así!"
+
+msgid "spyder_wayfarer1_james1"
+msgstr ""
+"¡Me pregunto cómo los Ejecutores llegaron tan rápido! La Enfermera Jessie "
+"debió haberlos llamado."
+
+msgid "spyder_wayfarer1_bravo2"
+msgstr ""
+"Por favor no dejes que mi desempeño en combate afecte tu opinión sobre "
+"Omnichannel: Las Únicas Noticias Que Necesitas. "
+
+msgid "spyder_wayfarer1_bravo1"
+msgstr ""
+"Esta ejecución está patrocinada por Omnichannel: Las Únicas Noticias Que "
+"Necesitas. "
+
+msgid "spyder_wayfarer1_nightshade2"
+msgstr "Supongo que tenemos mucho que aprender sobre el cuidado de los Tuxemon."
+
+msgid "spyder_wayfarer1_nightshade1"
+msgstr ""
+"Es embarazoso. Todos los Tuxemon de las Enfermeras se pusieron enfermos, ¡"
+"pero los Tuxemon de los Ejecutores están en forma!"
+
+msgid "spyder_wayfarer1_jessie2"
+msgstr "No eres tan servicial como un Ejecutor. Ni tan atractivo. "
+
+msgid "spyder_wayfarer1_jessie1"
+msgstr ""
+"¡Los Ejecutores han sido tán rápidos y serviciales! Supongo que el "
+"Científico James les alertó tan pronto como fue posible."
+
+msgid "spyder_wayfarer1_maniac2"
+msgstr "¡Un poco de privacidad, por favor! "
+
+msgid "spyder_wayfarer1_maniac"
+msgstr ""
+"Hey, amigo, ¿quieres my Botbot?\n"
+"No sé cuánto tiempo voy a estar atrapado aquí, así que mientras podría "
+"explorar contigo."
+
+msgid "spyder_wayfarer_granny"
+msgstr ""
+"No me lo explico… ¡en un momento mi Cairfrey estaba sano, y al siguiente se "
+"puso enfermo!\n"
+"Por lo menos los Ejecutores llegaron rápido. "
+
+msgid "spyder_wayfarer_nurse"
+msgstr ""
+"Hay Tuxemon enfermos en el edificio. Mejor será dejar a los Ejecutores que "
+"arreglen las cosas.\n"
+"Si decides continuar, no puedo asegurarte cómo se lo van a tomar. "
+
+msgid "spyder_wayfarer_shopkeeper"
+msgstr ""
+"Lo siento, colega, no hay habitaciones disponibles.\n"
+"Los Ejecutores dicen que una enfermedad rara se ha propagado entre los "
+"Tuxemon de algunos huéspedes, así que estamos bajo cuarentena.\n"
+"Puedo curar tus Tuxemon, no obstante. ¿Quieres?"

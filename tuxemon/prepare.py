@@ -47,6 +47,7 @@ PLATFORM = "pygame"
 joystick_blacklist = [
     re.compile(r"Microsoft.*Transceiver.*"),
     re.compile(r".*Synaptics.*", re.I),
+    re.compile(r"Wacom*.", re.I)
 ]
 
 # Create game dir if missing

@@ -75,10 +75,10 @@ lossless format.  For sounds or music this would be either a wave (WAV) or FLAC 
 Images must be PNG.  We will not accept JPG or any variation of lossy compressed images,
 unless it is for a concept or some ancillary purpose.
 
-Note your contributions will be distributed with the game will will very likely be altered
-prior to distribution by compressing or packing them for a smaller size.  However, we would
-ideally have the originals to allow us to target a balance for size and quality for 
-different platforms that we support.
+Note your contributions will be distributed with the game will very likely be altered prior
+to distribution by compressing or packing them for a smaller size.  However, we would ideally
+have the originals to allow us to target a balance for size and quality for different platforms
+that we support.
 
 ## Pull Request Guidelines
 - !important!: we use use "git squash -- you should make your PR from your own branch (see below)

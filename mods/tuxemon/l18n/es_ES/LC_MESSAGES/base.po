@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-05-21 11:31+0000\n"
+"PO-Revision-Date: 2021-05-23 11:31+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -2917,7 +2917,7 @@ msgstr "¡Te lo estoy diciendo: mantuvimos la enfermedad bajo control!"
 msgid "spyder_scoop_alyssa1"
 msgstr ""
 "Tan pronto como la enfermedad fue detectada, movimos a los Tuxemon "
-"infectados a esta unidad de contención."
+"infectados a esta unidad de confinamiento."
 
 msgid "spyder_scoop_rubid2"
 msgstr ""
@@ -3069,3 +3069,57 @@ msgstr ""
 "Los Ejecutores dicen que una enfermedad rara se ha propagado entre los "
 "Tuxemon de algunos huéspedes, así que estamos bajo cuarentena.\n"
 "Puedo curar tus Tuxemon, no obstante. ¿Quieres?"
+
+msgid "spyder_scoop_turner2"
+msgstr "Recuerda, ¡no tenemos nada que ver con que la enfermedad saliera!"
+
+msgid "spyder_scoop_turner1"
+msgstr ""
+"Algunas de estas personas te dirán que los Ejecutores dejamos que la "
+"enfermedad saliera. ¡No les creas!"
+
+msgid "spyder_scoop_taggart2"
+msgstr "Si tú no robaste las Restricciones Extremas, ¿quién fue? "
+
+msgid "spyder_scoop_taggart1"
+msgstr ""
+"¡Alguien robó las Restricciones Extremas que inventamos para mantener "
+"Tuxemon en la unidad de confinamiento! ¿Has sido tú?"
+
+msgid "spyder_route6_frances2"
+msgstr "Deberías visitarnos en algún momento."
+
+msgid "spyder_route6_frances1"
+msgstr "Mi Narcileaf mantiene el jardín más exquisito de todo el mundo."
+
+msgid "spyder_searoutec_gil2"
+msgstr ""
+"Por supuesto… ¡succionar el veneno hace que Nudiflot se vuelva venenoso!"
+
+msgid "spyder_searoutec_gil1"
+msgstr "Si te pica un Manosting, Nudiflot puede succionarte el veneno."
+
+msgid "spyder_dryadsgrove_ignatia2"
+msgstr "Eres más de lo que aparentas."
+
+msgid "spyder_dryadsgrove_ignatia1"
+msgstr "Somos más de lo que aparentamos."
+
+msgid "spyder_leatherhouse2_snugglepot2"
+msgstr "¡Guau! ¡Algún día seré un entrenador como tú!"
+
+msgid "spyder_papertown_tvwatch"
+msgstr ""
+"¿Qué hay en la tele? Una reina del baile de un instituto está rompiendo su "
+"corona en pedazos y repartiéndolos."
+
+msgid "spyder_route3_sign"
+msgstr ""
+"Ruta 3: La rehabilitación comenzará tan pronto como sea posible.\n"
+"Por favor, dejen de molestarnos."
+
+msgid "spyder_papertown_townsign"
+msgstr "Pueblo Papel: ¡La puerta a Fondent!"
+
+msgid "got_new_tuxemon"
+msgstr "¡Obtuviste un ${{monster_name}}!"

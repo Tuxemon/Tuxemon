@@ -55,11 +55,11 @@ class TranslatedDialogAction(EventAction):
             if "=" in param:
                 replace.append(param)
             else:
-                avatar = get_avatar(self.session, param)
+                avatar = get_avatar(self.context, param)
 
         self.open_dialog(
             process_translate_text(
-                self.session,
+                self.context,
                 key,
                 replace,
             ),
@@ -67,9 +67,9 @@ class TranslatedDialogAction(EventAction):
         )
 
     def update(self):
-        if self.session.client.get_state_by_name("DialogState") is None:
+        if self.context.client.get_state_by_name("DialogState") is None:
             self.stop()
 
     def open_dialog(self, pages, avatar):
         logger.info("Opening dialog window")
-        open_dialog(self.session, pages, avatar)
+        open_dialog(self.context, pages, avatar)

@@ -20,23 +20,21 @@
 #
 # Contributor(s):
 #
-# William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any
 
 
+@dataclass
 class EventContext:
-    def __enter__(self):
-        """When context is placed on the stack
-
-        :return:
-        """
-
-    def __exit__(self):
-        """When context is removed from the stack
-
-        :return:
-        """
-
-    def execute(self, session):
-        pass
+    engine: EventEngine
+    world: World
+    session: Session
+    client: LocalPygameClient
+    player: Player
+    map: TuxemonMap
+    name: str
+    parameters: Any

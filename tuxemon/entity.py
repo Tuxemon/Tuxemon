@@ -24,7 +24,6 @@
 #
 
 from tuxemon.lib.euclid import Point2, Vector3, Point3
-from tuxemon.map import proj
 
 
 class Entity:
@@ -42,7 +41,7 @@ class Entity:
         self.instance_id = None
         self.tile_pos = Point2(0, 0)
         self.position3 = Point3(0, 0, 0)
-        self.acceleration3 = Vector3(0, 0, 0)  # not used currently, just set velocity
+        # self.acceleration3 = Vector3(0, 0, 0)  # TODO: implement acceleration
         self.velocity3 = Vector3(0, 0, 0)
         self.update_location = False
 
@@ -61,6 +60,8 @@ class Entity:
 
         :return:
         """
+        from tuxemon.world import proj
+
         self.tile_pos = proj(self.position3)
 
     def update_physics(self, td):

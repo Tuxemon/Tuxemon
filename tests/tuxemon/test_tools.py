@@ -1,6 +1,6 @@
 import unittest
 
-from tuxemon.core.tools import round_to_divisible, copy_dict_with_keys
+from tuxemon.tools import round_to_divisible, copy_dict_with_keys
 
 
 class TestRoundToDivisible(unittest.TestCase):

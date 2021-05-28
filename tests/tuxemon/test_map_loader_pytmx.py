@@ -3,7 +3,7 @@ from itertools import combinations
 from operator import is_not
 from unittest.mock import Mock
 
-from tuxemon.core.map_loader import TMXMapLoader
+from tuxemon.map_loader import TMXMapLoader
 
 
 class TestTMXMapLoaderRegionTiles(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
         self.properties = {"a": 1, "enter": 2, "b": 3, "exit": 4, "continue": 5}
         self.region = Mock(x=0, y=16, width=32, height=48, properties=self.properties)
         self.grid_size = (16, 16)
-        self.result = list(TMXMapLoader.region_tiles(self.region, self.grid_size))
+        self.result = list(TMXMapLoader().region_tiles(self.region, self.grid_size))
 
     def test_result_is_point_and_properties_tuple(self):
         point = self.result[0][0]

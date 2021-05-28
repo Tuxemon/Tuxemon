@@ -74,8 +74,8 @@ class Item:
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects:
-            Item.effects = plugin.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
-            Item.conditions = plugin.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
+            Item.effects = plugin.load_plugins_dict(paths.ITEM_EFFECT_PATH)
+            Item.conditions = plugin.load_plugins_dict(paths.ITEM_CONDITION_PATH)
 
         # If a slug of the item was provided, auto-load it from the item database.
         if slug:

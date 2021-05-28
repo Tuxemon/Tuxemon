@@ -304,7 +304,7 @@ def capture_screenshot(game):
     return screenshot
 
 
-def get_avatar(session, avatar):
+def get_avatar(context, avatar):
     """Gets the avatar sprite of a monster or NPC.
 
     Used to parse the string values for dialog event actions
@@ -312,9 +312,8 @@ def get_avatar(session, avatar):
     If avatar is a string, we're referring to a monster by name
     TODO: If the monster name isn't found, we're referring to an NPC on the map
 
-    :param tuxemon.session.Session session:
-    :param avatar: the avatar to be used
-    :type avatar: string
+    :param tuxemon.event.eventcontext.EventContext context:
+    :param str avatar: the avatar to be used
     :rtype: Optional[pygame.Surface]
     :returns: The surface of the monster or NPC avatar sprite
     """
@@ -323,7 +322,7 @@ def get_avatar(session, avatar):
 
     if avatar and avatar.isdigit():
         try:
-            player = session.player
+            player = context.player
             slot = int(avatar)
             return player.monsters[slot].get_sprite("menu")
         except IndexError:

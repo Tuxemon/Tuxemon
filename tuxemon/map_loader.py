@@ -37,11 +37,11 @@ from tuxemon.graphics import scaled_image_loader
 from tuxemon.map import (
     TuxemonMap,
     tiles_inside_rect,
-    snap_rect,
-    point_to_grid,
+    snap_rect_to_grid,
+    snap_rect_to_tile,
     angle_of_points,
     orientation_by_angle,
-    extract_region_properties,
+    snap_to_grid,
 )
 from tuxemon.tools import split_escaped, copy_dict_with_keys
 from tuxemon.lib.bresenham import bresenham
@@ -90,43 +90,74 @@ def parse_behav_string(behav_string):
     return behav_type, args
 
 
-class TMXMapLoader:
-    """Maps are loaded from standard tmx files created from a map editor like Tiled. Events and
-    collision regions are loaded and put in the appropriate data structures for the game to
-    understand.
+def event_actions_and_conditions(items):
+    """Return list of acts and conditions from a list of items
 
-    **Tiled:** http://www.mapeditor.org/
-
+    :param Rect rect: Area for the event
+    :param Iterator[Tuple[str, str]] items: List of [name, value] tuples
+    :rtype: Tuple[List, List]
     """
+    conds = []
+    acts = []
+
+    # We need to sort them by name, so that "act1" comes before "act2" and so on...
+    for key, value in natsorted(items):
+        if key.startswith("cond"):
+            operator, cond_type, args = parse_condition_string(value)
+            condition = MapCondition(cond_type, operator, args)
+            conds.append(condition)
+        elif key.startswith("act"):
+            act_type, args = parse_action_string(value)
+            action = MapAction(act_type, args)
+            acts.append(action)
+        elif key.startswith("behav"):
+            behav_type, args = parse_behav_string(value)
+            if behav_type == "talk":
+                cond = MapCondition("to_talk", "is", args)
+                action = MapAction("npc_face", [args[0], "player"])
+                conds.insert(0, cond)
+                acts.insert(0, action)
+            else:
+                raise ValueError(f"Bad event parameter: {key}")
+        else:
+            raise ValueError(f"Bad event parameter: {key}")
+
+    return acts, conds
+
+
+def new_event_object(event_id, name, event_type, rect, properties):
+    """
+
+    :param str event_id: Unique ID of the event
+    :param str name: Name of the Event
+    :param str event_type: Special purpose
+    :param Rect rect: Area of map where event is triggered; must be in tile coords
+    :param Iterable properties: Iterable of Tuple[key, value] (like Dict.items())
+    :rtype: EventObject
+    """
+    acts, conds = event_actions_and_conditions(properties)
+    if event_type == "interact":
+        cond = MapCondition("player_facing_tile", "is", None)
+        conds.append(cond)
+    return EventObject(event_id, name, rect, conds, acts)
+
+
+class TMXMapLoader:
+    """Load map from standard tmx files created by Tiled."""
 
     def load(self, filename):
         """Load map data from a tmx map file
 
         Loading the map data is done using the pytmx library.
 
-        Specifications for the TMX map format can be found here:
-        https://github.com/bjorn/tiled/wiki/TMX-Map-Format
-
-        The list of tiles is structured in a way where you can access an
-        individual tile by index number.
-
         The collision map is a set of (x,y) coordinates that the player cannot
         walk through. This set is generated based on collision regions defined
         in the map file.
 
-        **Examples:**
-
-        In each map, there are three types of objects: **collisions**,
-        **conditions**, and *actions**. Here is how an action would be defined
-        using the Tiled map editor:
-
-        .. image:: images/map/map_editor_action01.png
-
-        :param filename: The path to the tmx map file to load.
-        :type filename: String
-
+        :param str filename: The path to the tmx map file to load.
         :rtype: tuxemon.map.TuxemonMap
         """
+        # TODO: remove the need to load graphics here
         data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
@@ -177,7 +208,6 @@ class TMXMapLoader:
 
     def process_line(self, line, tile_size):
         """Identify the tiles on either side of the line and block movement along it
-
         :param line:
         :param tile_size:
         :return:
@@ -185,8 +215,8 @@ class TMXMapLoader:
         if len(line.points) < 2:
             raise ValueError("Error: collision lines must be at least 2 points")
         for point_0, point_1 in zip(line.points, line.points[1:]):
-            p0 = point_to_grid(point_0, tile_size)
-            p1 = point_to_grid(point_1, tile_size)
+            p0 = snap_to_grid(point_0, tile_size)
+            p1 = snap_to_grid(point_1, tile_size)
             p0, p1 = sorted((p0, p1))
             angle = angle_of_points(p0, p1)
             orientation = orientation_by_angle(angle)
@@ -195,8 +225,7 @@ class TMXMapLoader:
                 other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
                 yield i, other, orientation
 
-    @staticmethod
-    def region_tiles(region, grid_size):
+    def region_tiles(self, region, grid_size):
         """Apply region properties to individual tiles
 
         Right now our collisions are defined in our tmx file as large regions
@@ -207,54 +236,52 @@ class TMXMapLoader:
 
         :param region:
         :param grid_size:
-        :return:
         """
         region_conditions = copy_dict_with_keys(region.properties, region_properties)
-        rect = snap_rect(Rect(region.x, region.y, region.width, region.height), grid_size)
+        rect = snap_rect_to_grid(self.rect_from_object(region), grid_size)
         for tile_position in tiles_inside_rect(rect, grid_size):
-            yield tile_position, extract_region_properties(region_conditions)
+            yield tile_position, self.extract_region_properties(region_conditions)
 
-    def load_event(self, obj, tile_size):
-        """Load an Event from the map
+    def load_event(self, tiled_object, tile_size):
+        """Return MapEvent for the tiled object
 
-        :param obj:
+        :param tiled_object:
         :param tile_size:
-        :rtype: EventObject
         """
-        conds = []
-        acts = []
-        x = int(obj.x / tile_size[0])
-        y = int(obj.y / tile_size[1])
-        w = int(obj.width / tile_size[0])
-        h = int(obj.height / tile_size[1])
+        return new_event_object(
+            tiled_object.id,
+            tiled_object.name,
+            tiled_object.type,
+            snap_rect_to_tile(self.rect_from_object(tiled_object), tile_size),
+            tiled_object.properties.items(),
+        )
 
-        # Conditions & actions are stored as Tiled properties.
-        # We need to sort them by name, so that "act1" comes before "act2" and so on..
-        for key, value in natsorted(obj.properties.items()):
-            if key.startswith("cond"):
-                operator, cond_type, args = parse_condition_string(value)
-                condition = MapCondition(cond_type, args, x, y, w, h, operator, key)
-                conds.append(condition)
-            elif key.startswith("act"):
-                act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, key)
-                acts.append(action)
+    @staticmethod
+    def extract_region_properties(region):
+        """Return Dict of data we need, ignoring what we don't
 
-        keys = natsorted(obj.properties.keys())
-        for key in keys:
-            if key.startswith("behav"):
-                behav_string = obj.properties[key]
-                behav_type, args = parse_behav_string(behav_string)
-                if behav_type == "talk":
-                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", key))
-                    acts.insert(0, MapAction("npc_face", [args[0], "player"], key))
-                else:
-                    raise Exception
+        :param Dict region:
+        :rtype:  Dict
+        """
+        props = dict()
+        enter = []
+        exit = []
+        props["enter"] = enter
+        props["exit"] = exit
+        for key in region:
+            if "enter" in key:
+                enter.extend(region[key].split())
+            elif "exit" in key:
+                exit.extend(region[key].split())
+            elif "continue" in key:
+                props["continue"] = region[key]
+        return props
 
-        # add a player_facing_tile condition automatically
-        if obj.type == "interact":
-            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
-            logger.debug(cond_data)
-            conds.append(cond_data)
+    @staticmethod
+    def rect_from_object(obj):
+        """Return Rect from TiledObject
 
-        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)
+        :param obj: TiledObject
+        :rtype: Rect
+        """
+        return Rect(obj.x, obj.y, obj.width, obj.height)

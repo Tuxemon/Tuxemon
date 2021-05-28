@@ -33,6 +33,7 @@ import logging
 import os
 import re
 import sys
+from typing import Dict, List
 
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
@@ -52,6 +53,7 @@ class PluginManager:
     """Yapsy semi-compatible plugin manager."""
 
     def __init__(self, base_folders=None):
+        # TODO: move this to a config option
         if base_folders is None:
             base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "Tuxemon", "/mnt/Tuxemon"]
         self.folders = []
@@ -115,31 +117,24 @@ class PluginManager:
         return members
 
 
-def load_directory(plugin_folder):
+def load_directory(plugin_folder: str):
     """Loads and imports a directory of plugins.
-
-    :param plugin_folder: The folder to look for plugin files.
-    :type plugin_folder: String
 
     :rtype: Dictionary
     :returns: A dictionary of imported plugins.
-
     """
     manager = PluginManager()
     manager.setPluginPlaces([plugin_folder])
     manager.collectPlugins()
-
     return manager
 
 
-def get_available_methods(plugin_manager):
+def get_available_methods(plugin_manager: PluginManager):
     """Gets the available methods in a dictionary of plugins.
-
-    :param plugin_manager: A dictionary of modules.
-    :type plugin_manager: yapsy.PluginManager
 
     :rtype: Dictionary
     :returns: A dictionary containing the methods from loaded plugins.
+
     """
     methods = {}
     for plugin in plugin_manager.getAllPlugins():
@@ -150,38 +145,27 @@ def get_available_methods(plugin_manager):
     return methods
 
 
-def get_available_classes(plugin_manager):
-    """Gets the available methods in a dictionary of plugins.
-
-    :param plugin_manager: A dictionary of modules.
-    :type plugin_manager: yapsy.PluginManager
-
-    :rtype: list
-    :returns: A list containing the classes from loaded plugins.
-    """
-    classes = []
+def get_available_classes(plugin_manager: PluginManager):
+    """Gets the available methods in a dictionary of plugins"""
     for plugin in plugin_manager.getAllPlugins():
-        classes.append(plugin.plugin_object)
-
-    return classes
+        yield plugin.plugin_object
 
 
-def load_plugins(path, category="plugins"):
-    """Load classes using plugin system
-
-    :param str path: where plugins are stored
-    :param str category: optional string for debugging info
-    :rtype: dict
-    """
-    classes = dict()
+def load_plugins(path: str) -> List:
+    """Load classes using plugin system"""
+    seen = set()
     plugins = load_directory(path)
-
     for cls in get_available_classes(plugins):
         name = getattr(cls, "name", None)
         if name is None:
-            logger.error(f"found incomplete {category}: {cls.__name__}")
+            logger.error(f"found incomplete plugin: {cls.__name__}")
             continue
-        classes[name] = cls
-        logger.info(f"loaded {category}: {cls.name}")
+        if cls not in seen:
+            logger.info(f"loaded plugin: {cls.name}")
+            seen.add(cls)
+            yield cls
 
-    return classes
+
+def load_plugins_dict(path: str) -> Dict:
+    """Load classes using plugin system"""
+    return {cls.name: cls for cls in load_plugins(path)}

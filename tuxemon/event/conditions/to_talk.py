@@ -30,34 +30,32 @@ class ToTalkCondition(EventCondition):
 
     name = "to_talk"
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Checks to see the player is next to and facing a particular NPC and that the Return button is pressed.
 
-        :param session: The session object
+        :param event:
+        :param context: The session object
         :param condition: The condition details.
 
-        :type session: tuxemon.session.Session
+        :type context: tuxemon.session.Session
         :type condition: NamedTuple
 
         :rtype: Boolean
         :returns: True or False
 
         Valid Parameters: npc slug
+
         """
-        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, condition)
+        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(context, event, condition)
         button_pressed = ButtonPressedCondition().test(
-            session,
+            context,
+            event,
             MapCondition(
-                type="button_pressed",
+                name="button_pressed",
+                operator="is",
                 parameters=[
                     "K_RETURN",
                 ],
-                operator="is",
-                width=0,
-                height=0,
-                x=0,
-                y=0,
-                name="",
             ),
         )
         return player_next_to_and_facing_target and button_pressed

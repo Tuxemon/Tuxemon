@@ -134,10 +134,10 @@ class TranslatorPo:
             return self.translate(text)
 
 
-def replace_text(session, text):
+def replace_text(context, text):
     """Replaces ${{var}} tiled variables with their in-session value.
 
-    :param tuxemon.session.Session session: Session
+    :param tuxemon.event.eventcontext.EventContext context:
     :param str text: Raw text from the map
 
     :rtype: str
@@ -145,12 +145,12 @@ def replace_text(session, text):
     'Red is running away!'
 
     """
-    text = text.replace("${{name}}", session.player.name)
+    text = text.replace("${{name}}", context.player.name)
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
 
-    for i in range(len(session.player.monsters)):
-        monster = session.player.monsters[i]
+    for i in range(len(context.player.monsters)):
+        monster = context.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)

@@ -32,21 +32,22 @@ class NPCFacingTileCondition(EventCondition):
 
     name = "npc_facing_tile"
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Checks to see if an NPC is facing a tile position
 
-        :param session: The session object
+        :param event:
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.session.Session
+        :type context: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
         """
         # Get the npc object from the game.
-        npc = get_npc(session, condition.parameters[0])
+        npc = get_npc(context, condition.parameters[0])
         if not npc:
             return False
 

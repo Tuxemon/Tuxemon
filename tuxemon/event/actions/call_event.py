@@ -32,8 +32,8 @@ class CallEventAction(EventAction):
     valid_parameters = [(int, "event_id")]
 
     def start(self):
-        event_engine = self.session.client.event_engine
-        events = self.session.client.events
+        event_engine = self.context.client.event_engine
+        events = self.context.client.events
 
         for e in events:
             if e.id == self.parameters.event_id:

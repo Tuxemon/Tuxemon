@@ -7,7 +7,6 @@ from tuxemon import graphics
 from tuxemon.platform.const import buttons, events
 from tuxemon.platform.events import InputHandler, PlayerInput, EventQueueHandler
 from tuxemon.session import local_session
-from tuxemon.ui.draw import blit_alpha
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -34,7 +33,7 @@ class PygameEventQueueHandler(EventQueueHandler):
                     player_input.process_event(pg_event)
 
             if pg_event.type == pg.QUIT:
-                local_session.client.event_engine.execute_action("quit")
+                local_session.client.stop()
 
         for player, inputs in self._inputs.items():
             for player_input in inputs:

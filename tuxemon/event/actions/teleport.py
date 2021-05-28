@@ -19,7 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from tuxemon import prepare
+from tuxemon.lib.euclid import Vector3
 from tuxemon.event.eventaction import EventAction
 
 
@@ -33,39 +33,6 @@ class TeleportAction(EventAction):
     valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
 
     def start(self):
-        player = self.session.player
-        world = self.session.client.get_state_by_name("WorldState")
-        map_name = self.parameters.map_name
-
-        # If we're doing a screen transition with this teleport, set the map name that we'll
-        # load during the apex of the transition.
-        # TODO: This only needs to happen once.
-        if world.in_transition:
-            world.delayed_mapname = map_name
-
-        # Check to see if we're also performing a transition. If we are, wait to perform the
-        # teleport at the apex of the transition
-        if world.in_transition:
-            # the world state will handle the teleport/transition, hopefully
-            world.delayed_teleport = True
-            world.delayed_x = self.parameters.x
-            world.delayed_y = self.parameters.y
-
-        else:
-            # If we're not doing a transition, then just do the teleport
-            map_path = prepare.fetch("maps", map_name)
-
-            if world.current_map is None:
-                world.change_map(map_path)
-
-            elif map_path != world.current_map.filename:
-                world.change_map(map_path)
-
-            # Stop the player's movement so they don't continue their move after they teleported.
-            player.cancel_path()
-
-            # must change position after the map is loaded
-            player.set_position((self.parameters.x, self.parameters.y))
-
-            # unlock_controls will reset controls, but start moving if keys are pressed
-            world.unlock_controls()
+        position = Vector3(self.parameters.x, self.parameters.y, 0)
+        self.context.client.release_controls()
+        self.context.world.teleport(self.context.player, self.parameters.map_name, position)

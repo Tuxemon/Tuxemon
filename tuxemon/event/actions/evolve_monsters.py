@@ -33,7 +33,7 @@ class EvolveMonstersAction(EventAction):
     valid_parameters = [(str, "path")]
 
     def start(self):
-        player = self.session.player
+        player = self.context.player
         for slot, current_monster in enumerate(player.monsters):
             new_slug = current_monster.get_evolution(self.parameters.path)
             if new_slug:

@@ -25,161 +25,157 @@
 #
 
 import logging
-import os.path
-import time
 
 import pygame as pg
 
-from tuxemon.platform.platform_pygame.events import (
-    PygameEventQueueHandler,
-    PygameKeyboardInput,
-    PygameGamepadInput,
-    PygameMouseInput,
-    PygameTouchOverlayInput,
-)
-from tuxemon import cli, networking, prepare
-from tuxemon import rumble
-from tuxemon.event.eventengine import EventEngine
-from tuxemon.session import local_session
+from tuxemon import cli, networking
+from tuxemon.clock import Scheduler
+from tuxemon.platform import android
+from tuxemon.platform.platform_pygame.events import PygameEventQueueHandler
 from tuxemon.state import StateManager
 
 logger = logging.getLogger(__name__)
 
 
-class Client(StateManager):
-    """Client class for entire project. Contains the game loop, and contains
-    the event_loop which passes events to States as needed.
+class LocalPygameClient:
+    """Client to play locally using pygame
+
+    * Uses a state manger to handle game states
+    * Uses pygame for input and output
+    * Has a game window, requires a screen
+
     """
 
-    def __init__(self, caption):
-        """
-        :param caption: The window caption to use for the game itself.
-        :type caption: str
-        :rtype: None
-        """
-        # Set up our game's configuration from the prepare module.
-        self.config = config = prepare.CONFIG
+    def __init__(self, world, config):
+        """Constructor
 
-        # INFO: no need to call superclass for now
+        :param tuxemon.world.World world:
+        :param tuxemon.config.TuxemonConfig config:
+        """
+        self.world = world
+        self.config = config
+
+        self.state_manager = StateManager()
+        self.state_manager.auto_state_discovery()
         self.screen = pg.display.get_surface()
-        self.caption = caption
-        self.done = False
-        self.fps = config.fps
-        self.show_fps = config.show_fps
-        self.current_time = 0.0
-        self.ishost = False
-        self.isclient = False
-
-        # somehow this value is being patched somewhere
-        self.events = list()
-        self.inits = list()
-        self.interacts = list()
-
-        # TODO: move out to state manager
-        self.package = "tuxemon.states"
-        self._state_queue = list()
-        self._state_dict = dict()
-        self._state_stack = list()
-        self._state_resume_set = set()
-        self._remove_queue = list()
-
-        keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)
         self.input_manager = PygameEventQueueHandler()
-        self.input_manager.add_input(0, keyboard)
-        self.input_manager.add_input(0, gamepad)
-        self.controller_overlay = None
-        if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(config.controller_transparency)
-            self.controller_overlay.load()
-            self.input_manager.add_input(0, self.controller_overlay)
-        if not config.hide_mouse:
-            self.input_manager.add_input(0, PygameMouseInput())
+        self.caption = config.window_caption
+        self.running = False
+        self.scheduler = Scheduler()
 
         # movie creation
         self.frame_number = 0
         self.save_to_disk = False
 
-        # Set up our networking for multiplayer.
-        self.server = networking.TuxemonServer(self)
-        self.client = networking.TuxemonClient(self)
-        self.controller_server = None
-
-        # Set up our combat engine and router.
-        # self.combat_engine = CombatEngine(self)
-        # self.combat_router = CombatRouter(self, self.combat_engine)
-
-        # Set up our game's event engine which executes actions based on
-        # conditions defined in map files.
-        self.event_engine = EventEngine(local_session)
-        self.event_conditions = {}
-        self.event_actions = {}
-        self.event_persist = {}
+        # Set up our networking for multiplayer
+        self.net_server = networking.TuxemonServer(self)
+        self.net_client = networking.TuxemonClient(self)
+        self.ishost = False
+        self.isclient = False
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = {"status": "stopped", "song": None, "previoussong": None}
 
         # Set up the command line. This provides a full python shell for
-        # troubleshooting. You can view and manipulate any variables in
-        # the game.
-        self.exit = False  # Allow exit from the CLI
+        # troubleshooting and you can view and manipulate any variables.
         if self.config.cli:
             self.cli = cli.CommandLine(self)
 
-        # Set up our networked controller if enabled.
-        if self.config.net_controller_enabled:
-            self.controller_server = networking.ControllerServer(self)
+        # TODO: phase this out in favor of event-dispatch
+        self.key_events = list()
 
-        # Set up rumble support for gamepads
-        self.rumble_manager = rumble.RumbleManager()
-        self.rumble = self.rumble_manager.rumbler
-
-    def load_map(self, map_data):
-        """Load map
-
-        :param tuxemon.map.TuxemonMap map_data:
-        :return: None
+    def run(self):
+        """Run the game
         """
-        self.events = map_data.events
-        self.inits = map_data.inits
-        self.interacts = map_data.interacts
-        self.event_engine.reset()
-        self.event_engine.current_map = map_data
+        flip = pg.display.update
+        frame_length = 1.0 / self.config.fps
 
-    def draw_event_debug(self):
-        """Very simple overlay of event data.  Needs some love.
+        def tick(dt):
+            self.update(frame_length)
+            self.draw(self.screen)
+            flip()
 
-        :return:
+        self.scheduler.schedule(tick, frame_length, True, False)
+
+        self.running = True
+        while self.running:
+            # fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
+            self.scheduler.tick()
+
+        pg.quit()
+
+    def stop(self):
+        self.running = False
+
+    def update(self, time_delta: float):
+        """This method gets updated at least once per frame"""
+        # Android-specific check for pause
+        if android and android.check_pause():
+            android.wait_for_resume()
+
+        # Update our networking
+        if self.net_client.listening:
+            self.net_client.update(time_delta)
+        if self.net_server.listening:
+            self.net_server.update()
+
+        # get all the input waiting for use
+        input_events = self.input_manager.process_events()
+        # for event in input_events:
+        #     pub.sendMessage('LocalInput', event=event)
+
+        # process the events and collect the unused ones
+        input_events = list(self.process_events(input_events))
+        # TODO: rename this or wrap in a getter
+        self.key_events = input_events
+
+        # Update the game engine
+        self.world.update(time_delta)
+        self.update_states(time_delta)
+
+    def release_controls(self):
+        """Send inputs which release held buttons/axis
+
+        Use to prevent player from holding buttons while state changes
         """
-        y = 20
-        x = 4
+        events = self.input_manager.release_controls()
+        self.key_events = list(self.process_events(events))
 
-        yy = y
-        xx = x
+    def draw(self, surface: pg.surface.Surface):
+        """Draw all active states"""
+        # TODO: refactor into Widget
 
-        font = pg.font.Font(pg.font.get_default_font(), 15)
-        for event in self.event_engine.partial_events:
-            w = 0
-            for valid, item in event:
-                p = " ".join(item.parameters)
-                text = f"{item.operator} {item.type}: {p}"
-                if valid:
-                    color = (0, 255, 0)
-                else:
-                    color = (255, 0, 0)
-                image = font.render(text, 1, color)
-                self.screen.blit(image, (xx, yy))
-                ww, hh = image.get_size()
-                yy += hh
-                w = max(w, ww)
+        # iterate through layers and determine optimal drawing strategy
+        # this is a big performance boost for states covering other states
+        # force_draw is used for transitions, mostly
+        to_draw = list()
+        full_screen = surface.get_rect()
+        for state in self.state_manager.active_states:
+            to_draw.append(state)
 
-            xx += w + 20
+            # if this state covers the screen
+            # break here so lower screens are not drawn
+            if not state.transparent and state.rect == full_screen and not state.force_draw:
+                break
 
-            if xx > 1000:
-                xx = x
-                y += 200
+        # draw from bottom up for proper layering
+        for state in reversed(to_draw):
+            state.draw(surface)
 
-            yy = y
+        if self.save_to_disk:
+            filename = "snapshot%05d.tga" % self.frame_number
+            self.frame_number += 1
+            pg.image.save(self.screen, filename)
+
+    def handle_fps(self, clock_tick, fps_timer, frames):
+        if self.config.show_fps:
+            fps_timer += clock_tick
+            if fps_timer >= 1:
+                with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
+                pg.display.set_caption(with_fps)
+                return 0, 0
+            return fps_timer, frames
+        return 0, 0
 
     def process_events(self, events):
         """Process all events for this frame.
@@ -217,244 +213,31 @@ class Client(StateManager):
 
         The final destination for the event will be the event engine.
 
-        :returns: Game Event
         :rtype: pg.event.Event
 
         """
-        for state in self.active_states:
+        for state in self.state_manager.active_states:
             game_event = state.process_event(game_event)
             if game_event is None:
                 break
         else:
-            game_event = self.event_engine.process_event(game_event)
-
+            logger.debug(f"got unhandled event: {game_event}")
         return game_event
 
-    def main(self):
-        """Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this session.Client instance to
-        networking which in turn executes the "main_loop" method every frame.
-        This leaves the networking component responsible for the main loop.
-
-        :rtype: None
-        :returns: None
-
-        """
-        update = self.update
-        draw = self.draw
-        screen = self.screen
-        flip = pg.display.update
-        clock = time.time
-        frame_length = 1.0 / self.fps
-        time_since_draw = 0
-        last_update = clock()
-        fps_timer = 0
-        frames = 0
-
-        while not self.exit:
-            clock_tick = clock() - last_update
-            last_update = clock()
-            time_since_draw += clock_tick
-            update(clock_tick)
-            if time_since_draw >= frame_length:
-                time_since_draw -= frame_length
-                draw(screen)
-                if self.controller_overlay:
-                    self.controller_overlay.draw(screen)
-                flip()
-                frames += 1
-
-            fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
-            time.sleep(0.001)
-
-    def update(self, time_delta):
-        """Main loop for entire game. This method gets update every frame
-        by Asteria Networking's "listen()" function. Every frame we get the
-        amount of time that has passed each frame, check game conditions,
-        and draw the game to the screen.
-
-        :type time_delta: float
-        :rtype: None
-        :returns: None
-
-        """
-        # Android-specific check for pause
-        # if android and android.check_pause():
-        #     android.wait_for_resume()
-
-        # Update our networking
-        if self.controller_server:
-            self.controller_server.update()
-
-        if self.client.listening:
-            self.client.update(time_delta)
-            self.add_clients_to_map(self.client.client.registry)
-
-        if self.server.listening:
-            self.server.update()
-
-        # get all the input waiting for use
-        events = self.input_manager.process_events()
-
-        # process the events and collect the unused ones
-        events = list(self.process_events(events))
-
-        # TODO: phase this out in favor of event-dispatch
-        self.key_events = events
-
-        # Run our event engine which will check to see if game conditions
-        # are met and run an action associated with that condition.
-        self.event_data = {}
-        self.event_engine.update(time_delta)
-
-        if self.event_data:
-            logger.debug("Event Data:" + str(self.event_data))
-
-        # Update the game engine
-        self.update_states(time_delta)
-
-        if self.exit:
-            self.done = True
-
-    def release_controls(self):
-        """Send inputs which release held buttons/axis
-
-        Use to prevent player from holding buttons while state changes
-
-        :return:
-        """
-        events = self.input_manager.release_controls()
-        self.key_events = list(self.process_events(events))
-
-    def update_states(self, dt):
-        """Checks if a state is done or has called for a game quit.
-
-        :param dt: Time delta - Amount of time passed since last frame.
-
-        :type dt: Float
-        """
-
-        for state in self.active_states:
+    def update_states(self, dt: float):
+        """Update time for active states"""
+        for state in self.state_manager.active_states:
             state.update(dt)
 
-        current_state = self.current_state
+        current_state = self.state_manager.current_state
 
         # handle case where the top state has been dismissed
         if current_state is None:
-            self.exit = True
+            self.running = False
 
-        if current_state in self._state_resume_set:
+        if current_state in self.state_manager.state_resume_set:
             current_state.resume()
-            self._state_resume_set.remove(current_state)
-
-    def draw(self, surface):
-        """Draw all active states
-
-        :type surface: pg.surface.Surface
-        """
-        # TODO: refactor into Widget
-
-        # iterate through layers and determine optimal drawing strategy
-        # this is a big performance boost for states covering other states
-        # force_draw is used for transitions, mostly
-        to_draw = list()
-        full_screen = surface.get_rect()
-        for state in self.active_states:
-            to_draw.append(state)
-
-            # if this state covers the screen
-            # break here so lower screens are not drawn
-            if not state.transparent and state.rect == full_screen and not state.force_draw:
-                break
-
-        # draw from bottom up for proper layering
-        for state in reversed(to_draw):
-            state.draw(surface)
-
-        if self.config.collision_map:
-            self.draw_event_debug()
-
-        if self.save_to_disk:
-            filename = "snapshot%05d.tga" % self.frame_number
-            self.frame_number += 1
-            pg.image.save(self.screen, filename)
-
-    def handle_fps(self, clock_tick, fps_timer, frames):
-        if self.show_fps:
-            fps_timer += clock_tick
-            if fps_timer >= 1:
-                with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
-                pg.display.set_caption(with_fps)
-                return 0, 0
-            return fps_timer, frames
-        return 0, 0
-
-    def add_clients_to_map(self, registry):
-        """Checks to see if clients are supposed to be displayed on the current map. If
-        they are on the same map as the host then it will add them to the npc's list.
-        If they are still being displayed and have left the map it will remove them from
-        the map.
-
-        :param registry: Locally hosted Neteria client/server registry.
-
-        :type registry: Dictionary
-
-        :rtype: None
-        :returns: None
-
-        """
-        world = self.get_state_by_name("WorldState")
-        if not world:
-            return
-
-        world.npcs = {}
-        world.npcs_off_map = {}
-        for client in registry:
-            if "sprite" in registry[client]:
-                sprite = registry[client]["sprite"]
-                client_map = registry[client]["map_name"]
-                current_map = self.get_map_name()
-
-                # Add the player to the screen if they are on the same map.
-                if client_map == current_map:
-                    if sprite.slug not in world.npcs:
-                        world.npcs[sprite.slug] = sprite
-                    if sprite.slug in world.npcs_off_map:
-                        del world.npcs_off_map[sprite.slug]
-
-                # Remove player from the map if they have changed maps.
-                elif client_map != current_map:
-                    if sprite.slug not in world.npcs_off_map:
-                        world.npcs_off_map[sprite.slug] = sprite
-                    if sprite.slug in world.npcs:
-                        del world.npcs[sprite]
-
-    def get_map_filepath(self):
-        """Gets the filepath of the current map
-
-        :rtype: String
-        :returns: filepath
-
-        """
-        world = self.get_state_by_name("WorldState")
-        if not world:
-            return
-
-        return world.current_map.filename
-
-    def get_map_name(self):
-        """Gets the map of the player.
-
-        :rtype: String
-        :returns: map_name
-
-        """
-        map_path = self.get_map_filepath()
-        if map_path is None:
-            return
-
-        # extract map name from path
-        return os.path.basename(map_path)
+            self.state_manager.state_resume_set.remove(current_state)
 
     def get_state_by_name(self, name):
         """Query the state stack for a state by the name supplied
@@ -462,7 +245,16 @@ class Client(StateManager):
         :str name: str
         :rtype: State, None
         """
-        for state in self.active_states:
+        for state in self.state_manager.active_states:
             if state.__class__.__name__ == name:
                 return state
         return None
+
+    # The following may be refactored later after the "state cleanup"
+
+    @property
+    def state_name(self):
+        return self.state_manager.current_state
+
+    def push_state(self, *args, **kwargs):
+        self.state_manager.push_state(*args, **kwargs)

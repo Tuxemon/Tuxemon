@@ -20,6 +20,7 @@
 #
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.world import Position
 
 
 class TransitionTeleportAction(EventAction):
@@ -38,16 +39,17 @@ class TransitionTeleportAction(EventAction):
     ]
 
     def start(self):
-        # Start the screen transition
-        params = [self.parameters.transition_time]
-        self.transition = self.session.client.event_engine.get_action("screen_transition", params)
-        self.transition.start()
+        # self.transition = self.session.client.event_engine.get_action("screen_transition", params)
+        # self.transition.start()
+        position = Position(self.parameters.x, self.parameters.y, 0, self.parameters.map_name)
+        self.context.client.release_controls()
+        self.context.world.teleport(self.context.player, position)
 
-    def update(self):
-        if not self.transition.done:
-            self.transition.update()
-        if self.transition.done:
-            self.transition.cleanup()
-            # set the delayed teleport
-            self.session.client.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
-            self.stop()
+    # def update(self):
+    #     if not self.transition.done:
+    #         self.transition.update()
+    #     if self.transition.done:
+    #         self.transition.cleanup()
+    #         # set the delayed teleport
+    #         self.session.client.event_engine.execute_action("delayed_teleport", self.raw_parameters[:-1])
+    #         self.stop()

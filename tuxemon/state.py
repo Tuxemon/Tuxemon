@@ -250,7 +250,8 @@ class StateManager:
         """
         self.done = False
         self.current_time = 0.0
-        self.package = ""
+        self.package = "tuxemon.states"
+        self.state_resume_set = set()
         self._state_queue = list()
         self._state_stack = list()
         self._state_dict = dict()
@@ -393,7 +394,7 @@ class StateManager:
 
         previous = self.current_state
         logger.debug("resetting controls due to state change")
-        self.release_controls()
+        # self.release_controls()
 
         if previous is not None:
             previous.pause()
@@ -453,3 +454,14 @@ class StateManager:
         :rtype: List
         """
         return self._state_stack[:]
+
+    def get_state_name(self, name):
+        """Query the state stack for a state by the name supplied
+
+        :str name: str
+        :rtype: State, None
+        """
+        for state in self.active_states:
+            if state.__class__.__name__ == name:
+                return state
+        return None

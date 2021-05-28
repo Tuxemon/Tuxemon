@@ -1,9 +1,12 @@
 babel
 cbor
+lxml>=4.2.5
 neteria
 pillow
-pygame==2.0.0
+pygame>=1.9.6
+pypubsub==4.0.3
 pyscroll>=2.19.2
 pytmx>=3.22.2
 requests>=2.19.1
 natsort
+click

@@ -27,21 +27,22 @@ class HasMonsterCondition(EventCondition):
 
     name = "has_monster"
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Checks to see the player is has a monster in his party
 
-        :param session: The session object
+        :param event:
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.session.Session
+        :type context: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
 
         """
-        player = session.player
+        player = context.player
         monster_slug = condition.parameters[0]
         if player.find_monster(monster_slug) is None:
             return False

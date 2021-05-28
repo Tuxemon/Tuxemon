@@ -34,16 +34,14 @@ from tuxemon.npc import NPC
 logger = logging.getLogger(__name__)
 
 
-# Class definition for the player.
 class Player(NPC):
     """Object for Players.  WIP"""
 
     def __init__(self, npc_slug):
         super().__init__(npc_slug)
         self.isplayer = True
-
-        # Game variables for use with events
-        self.game_variables = {"steps": 0}
+        self.game_variables = dict()
+        self.game_variables["steps"] = 0
 
     def move(self, time_passed_seconds):
         """Move the player around the game world

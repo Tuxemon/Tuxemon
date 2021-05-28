@@ -20,6 +20,7 @@
 #
 
 from tuxemon.event import get_npc
+from tuxemon.event.conditions.position import entity_at_position
 from tuxemon.event.eventcondition import EventCondition
 
 
@@ -28,32 +29,6 @@ class NPCAtCondition(EventCondition):
 
     name = "npc_at"
 
-    def test(self, session, condition):
-        """Checks to see if an npc is at a current position on the map.
-
-        :param session: The session object
-        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
-            for the format of the dictionary.
-
-        :type session: tuxemon.session.Session
-        :type condition: Dictionary
-
-        :rtype: Boolean
-        :returns: True or False
-        """
-        player = get_npc(session, condition.parameters[0])
-        if not player:
-            return False
-
-        # Get the condition's rectangle area. If we're on a tile in that area, then this condition
-        # should return True.
-        area_x = range(condition.x, condition.x + condition.width)
-        area_y = range(condition.y, condition.y + condition.height)
-
-        # If the player is at the coordinates and the operator is set to true then return true
-        if round(player.tile_pos[0]) in area_x and round(player.tile_pos[1]) in area_y:
-            return True
-
-        # If the player is at the coordinates and the operator is set to false then return false
-        else:
-            return False
+    def test(self, context, event, condition):
+        entity = get_npc(context, condition.parameters[0])
+        return entity_at_position(entity, event)

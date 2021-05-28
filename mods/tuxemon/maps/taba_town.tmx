@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="151">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="152">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -645,6 +645,8 @@
     <property name="cond2" value="not variable_set comeinside:yes"/>
     <property name="cond3" value="is player_at"/>
     <property name="cond4" value="not variable_set comeinside:plsbedone"/>
+    <property name="cond5" value="not variable_set comeinside:dope"/>
+    <property name="cond6" value="not variable_set comeinside:stahp"/>
    </properties>
   </object>
   <object id="131" name="timetogroove" type="event" x="528" y="592" width="16" height="16">
@@ -655,14 +657,14 @@
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
-  <object id="133" name="create traveler" type="event" x="336" y="368" width="16" height="16">
+  <object id="150" name="create traveler" type="event" x="336" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc xerogrund1,22,23,,stand"/>
     <property name="act2" value="npc_face xerogrund1,right"/>
     <property name="cond1" value="not npc_exists xerogrund1"/>
    </properties>
   </object>
-  <object id="134" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
+  <object id="149" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="player_stop"/>
     <property name="act2" value="translated_dialog hey"/>
@@ -677,7 +679,7 @@
     <property name="cond3" value="not variable_set curfewz:yes"/>
    </properties>
   </object>
-  <object id="135" name="why hello there" type="event" x="368" y="368" width="16" height="16">
+  <object id="136" name="why hello there" type="event" x="368" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="npc_face xerogrund1,right"/>
     <property name="act2" value="translated_dialog grumble"/>
@@ -760,11 +762,11 @@
   <object id="145" name="anouncement2part2" type="event" x="560" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog timeforround22"/>
-    <property name="act11" value="set_variable comeinside:yes"/>
     <property name="act2" value="pathfind npc_mom,43,46"/>
     <property name="act3" value="npc_face npc_mom,up"/>
     <property name="act4" value="remove_npc npc_mom"/>
     <property name="act5" value="set_variable moveon:bye"/>
+    <property name="act6" value="set_variable backhome:no"/>
     <property name="cond1" value="is variable_set moveon:yes"/>
     <property name="cond2" value="not variable_set backhome:no"/>
    </properties>
@@ -776,11 +778,43 @@
     <property name="cond10" value="not npc_exists taba_greeter"/>
    </properties>
   </object>
+  <object id="149" name="timetogroove2" type="event" x="512" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 1.5"/>
+    <property name="act11" value="pathfind player,43,45"/>
+    <property name="act2" value="player_resume"/>
+    <property name="act3" value="set_variable comeinside:stahp"/>
+    <property name="act4" value="set_variable backhome:no"/>
+    <property name="cond1" value="is variable_set comeinside:dope"/>
+   </properties>
+  </object>
   <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc taba_greeter,29,12,,stand"/>
     <property name="act20" value="npc_face taba_greeter,down"/>
     <property name="cond1" value="not npc_exists taba_greeter"/>
+   </properties>
+  </object>
+  <object id="147" name="mydogishurt" type="event" x="672" y="608" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc postboy,37,38,,stand"/>
+    <property name="act2" value="npc_face postboy,right"/>
+    <property name="act3" value="create_npc rock,38,38,,stand"/>
+    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond2" value="not variable_set havetuxemon:yes"/>
+   </properties>
+  </object>
+  <object id="148" name="myrock" type="event" x="592" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog moverocky"/>
+    <property name="act2" value="player_stop"/>
+    <property name="act3" value="wait 2"/>
+    <property name="act4" value="translated_dialog moverocky2"/>
+    <property name="act5" value="player_resume"/>
+    <property name="cond1" value="is variable_set dancininthemoonlight:heckyeah"/>
+    <property name="cond2" value="is player_facing up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is player_at"/>
    </properties>
   </object>
   <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
@@ -829,6 +863,14 @@
     <property name="cond20" value="is player_facing right"/>
     <property name="cond30" value="not variable_set secret_ball:found"/>
     <property name="cond40" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="151" name="removerocky" type="event" x="800" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_npc postboy"/>
+    <property name="act2" value="remove_npc rock"/>
+    <property name="cond1" value="is variable_set havetuxemon:yes"/>
+    <property name="cond2" value="is npc_exists postboy"/>
    </properties>
   </object>
  </objectgroup>

@@ -10,7 +10,7 @@
             "name": "Snowball",
             "special_attack": 9,
             "level": 5,
-            "monster": "bamboon",
+            "slug": "bamboon",
             "hp": 50,
             "speed": 7,
             "special_defense": 7,

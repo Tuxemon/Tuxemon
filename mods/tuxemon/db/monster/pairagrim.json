@@ -24,5 +24,6 @@
     "types": [
         "wood"
     ],
-    "weight": 10
+    "weight": 10,
+    "catch_rate": 120.0
 }

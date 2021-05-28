@@ -43,21 +43,6 @@ class ToTalkCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: npc slug
-
-        **Examples:**
-
-        condition.__dict__ = {
-            "type": "to_talk",
-            "parameters": [
-                "npc_oak"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 0,
-            "y": 0,
-            ...
-        }
         """
         player_next_to_and_facing_target = PlayerFacingNPCCondition().test(session, condition)
         button_pressed = ButtonPressedCondition().test(

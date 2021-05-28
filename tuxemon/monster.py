@@ -182,11 +182,6 @@ class Monster:
     a Tuxemon, fetching its details from a database.
 
     :param: None
-
-    **Example:**
-
-    >>> bulbatux = Monster()
-    >>> bulbatux.load_from_db("Bulbatux")
     """
 
     def __init__(self, save_data=None):
@@ -533,12 +528,6 @@ class Monster:
 
         :rtype: Boolean
         :returns: True if the sprites are already loaded.
-
-        **Examples:**
-
-        >>> bulbatux.load_sprites()
-        >>> bulbatux.sprites
-
         """
         if len(self.sprites):
             return True

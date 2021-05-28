@@ -114,11 +114,6 @@ def load(slot):
 
     :rtype: Dictionary
     :returns: Dictionary containing game data to load.
-
-    **Examples:**
-
-    >>> load.load(1)
-
     """
 
     save_path = f"{prepare.SAVE_PATH}{slot}.save"

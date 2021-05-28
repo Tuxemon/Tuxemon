@@ -46,22 +46,6 @@ class PlayerFacingNPCCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: slug
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "facing_npc",
-            "parameters": [
-                "npc_oak"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 0,
-            "y": 0,
-            ...
-        }
         """
         npc_location = None
 

@@ -27,21 +27,6 @@ class TransitionTeleportAction(EventAction):
     screen transition. Useful for allowing the player to go to different maps.
 
     Valid Parameters: map_name,coordinate_x,coordinate_y,transition_time_in_seconds
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "transition_teleport",
-        "parameters": [
-            "taba_town.tmx",
-            "5",
-            "5",
-            "2",
-            "2"
-        ]
-    }
-
     """
 
     name = "transition_teleport"

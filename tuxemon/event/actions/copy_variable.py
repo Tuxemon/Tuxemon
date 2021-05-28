@@ -34,18 +34,6 @@ class CopyVariableAction(EventAction):
     (e.g. var1 = var 2)
 
     Valid Parameters: string variable_name
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "copy_variable",
-        "parameters": [
-            "var1",
-            "var2"
-        ]
-    }
-
     """
 
     name = "copy_variable"

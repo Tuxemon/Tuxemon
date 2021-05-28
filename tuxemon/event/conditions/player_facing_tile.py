@@ -43,21 +43,6 @@ class PlayerFacingTileCondition(EventCondition):
 
         :rtype: Boolean
         :returns: True or False
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_facing_tile",
-            "parameters": [],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
 
         tiles = [

@@ -45,18 +45,6 @@ class VariableSetCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: variable_name:value
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "variable_set",
-            "parameters": [
-                "battle_won:yes"
-            ],
-            ...
-        }
-
         """
         player = session.player
 

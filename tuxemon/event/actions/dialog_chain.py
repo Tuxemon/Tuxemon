@@ -39,17 +39,6 @@ class DialogChainAction(EventAction):
 
     * ${{name}} - The current player's name.
     * ${{end}} - Ends the dialog chain.
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "dialog_chain",
-        "parameters": [
-            "Red:\\n This is some dialog!"
-        ]
-    }
-
     """
 
     name = "dialog_chain"

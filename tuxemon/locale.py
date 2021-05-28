@@ -141,9 +141,6 @@ def replace_text(session, text):
     :param str text: Raw text from the map
 
     :rtype: str
-
-    **Examples:**
-
     >>> replace_text("${{name}} is running away!")
     'Red is running away!'
 

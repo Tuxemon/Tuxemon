@@ -140,16 +140,6 @@ def get_available_methods(plugin_manager):
 
     :rtype: Dictionary
     :returns: A dictionary containing the methods from loaded plugins.
-
-    **Example**
-
-    >>> plugins = plugin.load_directory("components/menu")
-    {'player_facing': <module 'player_facing' from 'components/event/player_facing.pyc'>}
-    >>> plugin.get_available_methods(plugins)
-    {'do_nothing': {'method': <function do_nothing at 0x7f20e1bec398>,
-                    'module': 'player_facing'},
-     'player_facing': {'method': <function player_facing at 0x7f20e1bec320>,
-                       'module': 'player_facing'}}
     """
     methods = {}
     for plugin in plugin_manager.getAllPlugins():

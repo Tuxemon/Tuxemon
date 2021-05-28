@@ -222,14 +222,8 @@ class EventEngine:
         :param map_event:
         :type map_event: EventObject
 
-        Here is an example of what an action list might look like:
-
-        >>> map_event
-        [<class 'map.action'>, <class 'map.action'>]
-
         :rtype: None
         :returns: None
-
         """
         # the event id is used to make sure multiple copies of the same event are not
         # started.  If not checked, then the game would freeze while it tries to run

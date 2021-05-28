@@ -36,19 +36,6 @@ class WithdrawMonsterAction(EventAction):
     deposited into the default storage box automatically.
 
     Valid Parameters: trainer, monster_id
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "withdraw_monster",
-        "parameters": [
-            "npc_red",
-            "123e4567-e89b-12d3-a456-426614174000"
-        ]
-    }
-
-
     """
 
     name = "withdraw_monster"

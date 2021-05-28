@@ -44,20 +44,6 @@ class NPCFacingTileCondition(EventCondition):
 
         :rtype: Boolean
         :returns: True or False
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "facing_tile",
-            "parameters": ["npc_maple"],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
         """
         # Get the npc object from the game.
         npc = get_npc(session, condition.parameters[0])

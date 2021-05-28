@@ -26,8 +26,6 @@
 
 
 class EventCondition:
-    """ """
-
     name = "GenericCondition"
 
     def __init__(self):

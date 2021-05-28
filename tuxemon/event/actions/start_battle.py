@@ -33,17 +33,6 @@ class StartBattleAction(EventAction):
     contain an NPC slug in the NPC database.
 
     Valid Parameters: npc_slug
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "start_battle",
-        "parameters": [
-            "npc_hiker1"
-        ]
-    }
-
     """
 
     name = "start_battle"

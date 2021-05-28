@@ -62,21 +62,6 @@ class PlayerMovedCondition(EventCondition):
         :rtype: bool
 
         Valid Parameters: None
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_moved",
-            "parameters": [],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         # TODO: Eventually generalize command for checking players and npcs
         return self.generic_test(session, condition, session.player)

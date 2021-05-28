@@ -75,18 +75,32 @@ lossless format.  For sounds or music this would be either a wave (WAV) or FLAC 
 Images must be PNG.  We will not accept JPG or any variation of lossy compressed images,
 unless it is for a concept or some ancillary purpose.
 
-Note your contributions will be distributed with the game will will very likely be altered
-prior to distribution by compressing or packing them for a smaller size.  However, we would
-ideally have the originals to allow us to target a balance for size and quality for 
-different platforms that we support.
+Note your contributions will be distributed with the game will very likely be altered prior
+to distribution by compressing or packing them for a smaller size.  However, we would ideally
+have the originals to allow us to target a balance for size and quality for different platforms
+that we support.
 
 ## Pull Request Guidelines
+- !important!: we use use "git squash -- you should make your PR from your own branch (see below)
 - You must target the development branch
 - Merge the development branch before opening a pr
 - If you make changes after opening a PR, merge again
 - Rebasing is not needed -- we squash all commits before merging
 - Code should follow PEP-8, but we are not strict
 - Its strongly suggested to use the black code formatter with the defaults
+
+## Branches ##
+We use git squash as a convenience for developers when making PRs.  Before merging your changes
+git squash will combine them all into a single commit.  This keeps our history simple and a developer
+doesn't need to rebase, squash, or merge anything on their own, and we don't worry about having 1 or 
+1000 new commits.
+
+In order for this to work well though, you the developer should not be making a PR from your
+development branch into our development branch.  It will create a headache for you later.  Before you
+make a single change, make a new git branch from development and work from that.  When finished, merge
+development if needed and then open a PR from your feature branch to our development branch.
+
+TL;DR: work from a feature branch, not the development branch
 
 ## File names
 - Must be lower case

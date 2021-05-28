@@ -27,7 +27,7 @@ def make_test(parameters, inventory):
     player = npc_nt(inventory)
     game.player1 = player
     test = HasItemCondition()
-    return test.test(game, event, condition)
+    return test.test(game, condition)
 
 
 @nottest

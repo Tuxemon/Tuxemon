@@ -65,6 +65,11 @@ Thumbs.db
 *.iml
 .idea/*
 
+# Eric6
+*.epj
+/__init__.py
+.eric6project
+
 # Mac OS
 *.DS_Store
 mods/tuxemon/maps/~$Map Helper.xlsx

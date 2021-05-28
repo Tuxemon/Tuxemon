@@ -80,8 +80,8 @@
   </object>
   <object id="28" name="Heal Tuxemon" type="event" x="96" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="set_monster_health ,"/>
-    <property name="act20" value="set_monster_status ,"/>
+    <property name="act10" value="set_monster_health"/>
+    <property name="act20" value="set_monster_status"/>
     <property name="act30" value="translated_dialog okaythen"/>
     <property name="act40" value="npc_face cottonnurse,up"/>
     <property name="act50" value="wait 1"/>

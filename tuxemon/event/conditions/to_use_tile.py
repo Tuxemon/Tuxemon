@@ -44,7 +44,6 @@ class ToUseTileCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: None
-
         """
         player_next_to_and_facing_tile = PlayerFacingTileCondition().test(context, event, condition)
         button_pressed = ButtonPressedCondition().test(

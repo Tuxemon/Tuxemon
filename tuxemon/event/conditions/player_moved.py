@@ -63,7 +63,6 @@ class PlayerMovedCondition(EventCondition):
         :rtype: bool
 
         Valid Parameters: None
-
         """
         # TODO: Eventually generalize command for checking players and npcs
         return False

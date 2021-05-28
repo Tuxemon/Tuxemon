@@ -33,17 +33,6 @@ class ClearVariableAction(EventAction):
     """Clears the value of var from the game.
 
     Valid Parameters: string variable_name
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "clear_variable",
-        "parameters": [
-            "variable"
-        ]
-    }
-
     """
 
     name = "clear_variable"

@@ -29,11 +29,7 @@ class ButtonPressedCondition(EventCondition):
     name = "button_pressed"
 
     def test(self, context, event, condition):
-        """
-        :param tuxemon.event.eventcontext.EventContext context:
-        :param event:
-        :param dict condition: A dictionary of condition details
-        :rtype: Boolean
+        """Checks to see if a particular key was pressed
 
         Valid Parameters: A button/intention key (E.g. "INTERACT")
         """

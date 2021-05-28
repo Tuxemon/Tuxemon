@@ -132,6 +132,8 @@ class EventAction:
         """Called only once, when the action is started
 
         Context Protocol
+
+        :return:
         """
         self.start()
 
@@ -139,6 +141,8 @@ class EventAction:
         """Called only once, when action is stopped and needs to close
 
         Context Protocol
+
+        :return:
         """
         self.cleanup()
 
@@ -146,6 +150,8 @@ class EventAction:
         """Call when the action is done.  EventAction will be removed at end of frame.
 
         If an EventAction overrides update, it must eventually call this method.
+
+        :return:
         """
         self._done = True
 

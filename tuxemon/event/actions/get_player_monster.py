@@ -22,9 +22,8 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
-import logging
-
 from tuxemon.event.eventaction import EventAction
+import logging
 
 logger = logging.getLogger(__name__)
 
@@ -35,17 +34,6 @@ class GetPlayerMonsterAction(EventAction):
     to the instance_id of the monster the player selects via monster menu.
 
     Valid Parameters: string variable_name
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "get_player_monster",
-        "parameters": [
-            "breeding_mother"
-        ]
-    }
-
     """
 
     name = "get_player_monster"

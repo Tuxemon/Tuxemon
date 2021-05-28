@@ -43,18 +43,6 @@ class TranslatedDialogChainAction(EventAction):
     If a parameter is var1=value1, it represents a value replacement.
     If it's a single value (an integer or a string), it will be used as an avatar image.
     TODO: This is a hack and should be fixed later on, ideally without overloading the parameters.
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "translated_dialog_chain",
-        "parameters": [
-            "received_x",
-            "name=Potion"
-        ]
-    }
-
     """
 
     name = "translated_dialog_chain"

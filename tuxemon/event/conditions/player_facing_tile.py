@@ -44,7 +44,6 @@ class PlayerFacingTileCondition(EventCondition):
 
         :rtype: Boolean
         :returns: True or False
-
         """
 
         tiles = [

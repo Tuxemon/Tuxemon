@@ -42,21 +42,6 @@ class DialogOpenCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: None
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "dialog_open",
-            "parameters": []
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
-            ...
-        }
-
         """
         for state in context.client.active_states:
             if state.name == "DialogState":

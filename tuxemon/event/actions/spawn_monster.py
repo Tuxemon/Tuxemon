@@ -42,19 +42,6 @@ class SpawnMonsterAction(EventAction):
     trainer.
 
     Valid Parameters: trainer, breeding_mother, breeding_father
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "spawn_monster",
-        "parameters": [
-            "npc_red",
-            "123e4567-e89b-12d3-a456-426614174000",
-            "123e4567-e89b-12d3-a456-426614174001"
-        ]
-    }
-
     """
 
     name = "spawn_monster"

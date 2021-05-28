@@ -27,19 +27,6 @@ class TeleportAction(EventAction):
     """Teleport the player to a particular map and tile coordinates
 
     Valid Parameters: map_name, coordinate_x, coordinate_y
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "teleport",
-        "parameters": [
-            "taba_town.tmx",
-            "5",
-            "5"
-        ]
-    }
-
     """
 
     name = "teleport"

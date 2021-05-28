@@ -21,10 +21,7 @@
 
 import logging
 
-from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.npc import NPC
-from tuxemon.world import Position
 
 logger = logging.getLogger(__name__)
 

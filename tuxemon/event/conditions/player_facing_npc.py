@@ -47,7 +47,6 @@ class PlayerFacingNPCCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: slug
-
         """
         npc_location = None
 

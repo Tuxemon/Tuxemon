@@ -49,7 +49,6 @@ class PartySizeCondition(EventCondition):
         Valid Parameters: check,party_size
 
         The "check" parameter can be one of the following: "equals", "less_than", or "greater_than".
-
         """
         check = str(condition.parameters[0])
         number = int(condition.parameters[1])

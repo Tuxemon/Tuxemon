@@ -21,10 +21,10 @@
 
 import logging
 
-from tuxemon.event.eventaction import EventAction
-from tuxemon.graphics import get_avatar
 from tuxemon.locale import replace_text
+from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
+from tuxemon.graphics import get_avatar
 
 logger = logging.getLogger(__name__)
 
@@ -37,17 +37,6 @@ class DialogAction(EventAction):
     You may also use special variables in dialog events. Here is a list of available variables:
 
     * ${{name}} - The current player's name.
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "dialog",
-        "parameters": [
-            "Red:\\n This is some dialog!"
-        ]
-    }
-
     """
 
     name = "dialog"

@@ -45,7 +45,6 @@ class NPCFacingTileCondition(EventCondition):
 
         :rtype: Boolean
         :returns: True or False
-
         """
         # Get the npc object from the game.
         npc = get_npc(context, condition.parameters[0])

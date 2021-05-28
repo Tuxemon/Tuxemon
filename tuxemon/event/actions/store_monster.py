@@ -35,18 +35,6 @@ class StoreMonsterAction(EventAction):
     the named storage box, removing it from the player party.
 
     Valid Parameters: string monster_id, string box
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "store_monster",
-        "parameters": [
-            "00112233-4455-6677-8899-aabbccddeeff",
-            "Box 01"
-        ]
-    }
-
     """
 
     name = "store_monster"

@@ -33,6 +33,7 @@
 import logging
 from functools import partial
 
+from tuxemon import prepare
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
@@ -79,7 +80,9 @@ class StartState(PopUpMenu):
         def new_game():
             # load the starting map
             state = self.client.replace_state("WorldState")
-            self.push_state = self.client.push_state(
+            map_name = prepare.fetch("maps", prepare.CONFIG.starting_map)
+            state.change_map(map_name)
+            self.client.push_state(
                 state_name="InputMenu",
                 prompt=T.translate("input_name"),
                 callback=set_player_name,

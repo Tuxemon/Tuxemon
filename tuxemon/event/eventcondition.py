@@ -26,8 +26,6 @@
 
 
 class EventCondition:
-    """ """
-
     name = "GenericCondition"
 
     def __init__(self):
@@ -50,6 +48,8 @@ class EventCondition:
 
         :return:
         """
+        # Create a dictionary that will track movement
+
         try:
             return session.client.event_persist[self.name]
         except KeyError:

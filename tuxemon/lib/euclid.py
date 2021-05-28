@@ -426,50 +426,34 @@ class Vector3:
 
     def __div__(self, other):
         assert type(other) in (int, float)
-        return Vector3(
-            operator.div(self.x, other),
-            operator.div(self.y, other),
-            operator.div(self.z, other),
-        )
+        return Vector3(operator.div(self.x, other), operator.div(self.y, other), operator.div(self.z, other))
 
     def __rdiv__(self, other):
         assert type(other) in (int, float)
-        return Vector3(
-            operator.div(other, self.x),
-            operator.div(other, self.y),
-            operator.div(other, self.z),
-        )
+        return Vector3(operator.div(other, self.x), operator.div(other, self.y), operator.div(other, self.z))
 
     def __floordiv__(self, other):
         assert type(other) in (int, float)
         return Vector3(
-            operator.floordiv(self.x, other),
-            operator.floordiv(self.y, other),
-            operator.floordiv(self.z, other),
+            operator.floordiv(self.x, other), operator.floordiv(self.y, other), operator.floordiv(self.z, other)
         )
 
     def __rfloordiv__(self, other):
         assert type(other) in (int, float)
         return Vector3(
-            operator.floordiv(other, self.x),
-            operator.floordiv(other, self.y),
-            operator.floordiv(other, self.z),
+            operator.floordiv(other, self.x), operator.floordiv(other, self.y), operator.floordiv(other, self.z)
         )
 
     def __truediv__(self, other):
         assert type(other) in (int, float)
         return Vector3(
-            operator.truediv(self.x, other),
-            operator.truediv(self.y, other),
-            operator.truediv(self.z, other),
+            operator.truediv(self.x, other), operator.truediv(self.y, other), operator.truediv(self.z, other)
         )
 
     def __rtruediv__(self, other):
         assert type(other) in (int, float)
         return Vector3(
-            operator.truediv(other, self.x),
-            operator.truediv(other, self.y),
-            operator.truediv(other, self.z),
+            operator.truediv(other, self.x), operator.truediv(other, self.y), operator.truediv(other, self.z)
         )
 
     def __neg__(self):
@@ -1733,10 +1717,7 @@ def _intersect_line2_circle(L, C):
     if u1 == u2:
         return Point2(L.p.x + u1 * L.v.x, L.p.y + u1 * L.v.y)
 
-    return LineSegment2(
-        Point2(L.p.x + u1 * L.v.x, L.p.y + u1 * L.v.y),
-        Point2(L.p.x + u2 * L.v.x, L.p.y + u2 * L.v.y),
-    )
+    return LineSegment2(Point2(L.p.x + u1 * L.v.x, L.p.y + u1 * L.v.y), Point2(L.p.x + u2 * L.v.x, L.p.y + u2 * L.v.y))
 
 
 def _connect_point2_line2(P, L):
@@ -1775,10 +1756,7 @@ def _connect_line2_line2(A, B):
     if not B._u_in(ub):
         ub = max(min(ub, 1.0), 0.0)
 
-    return LineSegment2(
-        Point2(A.p.x + ua * A.v.x, A.p.y + ua * A.v.y),
-        Point2(B.p.x + ub * B.v.x, B.p.y + ub * B.v.y),
-    )
+    return LineSegment2(Point2(A.p.x + ua * A.v.x, A.p.y + ua * A.v.y), Point2(B.p.x + ub * B.v.x, B.p.y + ub * B.v.y))
 
 
 def _connect_circle_line2(C, L):
@@ -1807,8 +1785,7 @@ def _connect_circle_circle(A, B):
         s1, s2 = +1, -1
     v.normalize()
     return LineSegment2(
-        Point2(A.c.x + s1 * v.x * A.r, A.c.y + s1 * v.y * A.r),
-        Point2(B.c.x + s2 * v.x * B.r, B.c.y + s2 * v.y * B.r),
+        Point2(A.c.x + s1 * v.x * A.r, A.c.y + s1 * v.y * A.r), Point2(B.c.x + s2 * v.x * B.r, B.c.y + s2 * v.y * B.r)
     )
 
 
@@ -2156,10 +2133,7 @@ def _intersect_plane_plane(A, B):
         return None
     c1 = (A.k * n2_m - B.k * n1d2) / det
     c2 = (B.k * n1_m - A.k * n1d2) / det
-    return Line3(
-        Point3(c1 * A.n.x + c2 * B.n.x, c1 * A.n.y + c2 * B.n.y, c1 * A.n.z + c2 * B.n.z),
-        A.n.cross(B.n),
-    )
+    return Line3(Point3(c1 * A.n.x + c2 * B.n.x, c1 * A.n.y + c2 * B.n.y, c1 * A.n.z + c2 * B.n.z), A.n.cross(B.n))
 
 
 class Point3(Vector3, Geometry):

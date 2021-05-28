@@ -2,7 +2,8 @@ import logging
 
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
-from tuxemon.platform.const import buttons, intentions
+from tuxemon.platform.const import intentions
+from tuxemon.platform.const import buttons
 
 logger = logging.getLogger(__name__)
 

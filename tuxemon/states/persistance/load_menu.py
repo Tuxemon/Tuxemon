@@ -2,7 +2,7 @@ import logging
 
 from tuxemon import save
 from .save_menu import SaveMenuState
-from ...session import local_session
+from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
 

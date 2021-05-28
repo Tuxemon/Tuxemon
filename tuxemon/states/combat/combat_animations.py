@@ -9,8 +9,8 @@ from functools import partial
 
 import pygame
 
-from tuxemon import audio, graphics, tools
 from tuxemon.compat import Rect
+from tuxemon import audio, graphics, tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import HpBar, ExpBar
 from tuxemon.menu.menu import Menu
@@ -157,13 +157,7 @@ class CombatAnimations(Menu):
 
         # position monster_sprite off screen and set animation to move it back to final spot
         monster_sprite.rect.top = self.client.screen.get_height()
-        self.animate(
-            monster_sprite.rect,
-            bottom=feet[1],
-            transition="out_back",
-            duration=0.9,
-            delay=fall_time + 0.5,
-        )
+        self.animate(monster_sprite.rect, bottom=feet[1], transition="out_back", duration=0.9, delay=fall_time + 0.5)
 
         # capdev opening animation
         images = list()
@@ -209,13 +203,7 @@ class CombatAnimations(Menu):
             delta = -scale(14)
 
         self.animate(sprite.rect, x=original_x + delta, duration=duration, transition="out_circ")
-        self.animate(
-            sprite.rect,
-            x=original_x,
-            duration=duration,
-            transition="in_out_circ",
-            delay=0.35,
-        )
+        self.animate(sprite.rect, x=original_x, duration=duration, transition="in_out_circ", delay=0.35)
 
     def animate_monster_faint(self, monster):
         # TODO: rename to distinguish fainting/leaving
@@ -280,13 +268,7 @@ class CombatAnimations(Menu):
         """
         target_previous = monster.experience_required()
         target_next = monster.experience_required(1)
-        value = max(
-            0,
-            min(
-                1,
-                (monster.total_experience - target_previous) / (target_next - target_previous),
-            ),
-        )
+        value = max(0, min(1, (monster.total_experience - target_previous) / (target_next - target_previous)))
         exp_bar = self._exp_bars[monster]
         self.animate(exp_bar, value=value, duration=0.7, transition="out_quint")
 
@@ -379,10 +361,7 @@ class CombatAnimations(Menu):
         """
         if self.get_side(home) == "left":
             tray = self.load_sprite(
-                "gfx/ui/combat/opponent_party_tray.png",
-                bottom=home.bottom,
-                right=0,
-                layer=hud_layer,
+                "gfx/ui/combat/opponent_party_tray.png", bottom=home.bottom, right=0, layer=hud_layer
             )
             self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
             centerx = home.right - scale(13)
@@ -390,10 +369,7 @@ class CombatAnimations(Menu):
 
         else:
             tray = self.load_sprite(
-                "gfx/ui/combat/player_party_tray.png",
-                bottom=home.bottom,
-                left=home.right,
-                layer=hud_layer,
+                "gfx/ui/combat/player_party_tray.png", bottom=home.bottom, left=home.right, layer=hud_layer
             )
             self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
             centerx = home.left + scale(13)
@@ -478,9 +454,7 @@ class CombatAnimations(Menu):
         duration = 3
 
         back_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["island_back"],
-            bottom=opp_home.bottom + y_mod,
-            right=0,
+            "gfx/ui/combat/" + self.graphics["island_back"], bottom=opp_home.bottom + y_mod, right=0
         )
 
         if self.is_trainer_battle:
@@ -492,9 +466,7 @@ class CombatAnimations(Menu):
             self._monster_sprite_map[opponent] = enemy
         else:
             enemy = right_monster.get_sprite(
-                "front",
-                bottom=back_island.rect.bottom - scale(12),
-                centerx=back_island.rect.centerx,
+                "front", bottom=back_island.rect.bottom - scale(12), centerx=back_island.rect.centerx
             )
             self._monster_sprite_map[right_monster] = enemy
             self.monsters_in_play[opponent].append(right_monster)
@@ -508,9 +480,7 @@ class CombatAnimations(Menu):
             self.alert(T.format("combat_wild_appeared", {"name": right_monster.name.upper()}))
 
         front_island = self.load_sprite(
-            "gfx/ui/combat/" + self.graphics["island_front"],
-            bottom=player_home.bottom - y_mod,
-            left=w,
+            "gfx/ui/combat/" + self.graphics["island_front"], bottom=player_home.bottom - y_mod, left=w
         )
 
         trainer1 = self.load_sprite(
@@ -538,13 +508,7 @@ class CombatAnimations(Menu):
 
         # bottom trainer
         animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
-        animate(
-            trainer1.rect,
-            front_island.rect,
-            y=y_mod,
-            transition="out_back",
-            relative=True,
-        )
+        animate(trainer1.rect, front_island.rect, y=y_mod, transition="out_back", relative=True)
 
     def animate_capture_monster(self, is_captured, num_shakes, monster):
         """Animation for capturing monsters.
@@ -589,20 +553,10 @@ class CombatAnimations(Menu):
             animate = partial(self.animate, duration=0.1, transition="linear", delay=initial_delay)
             animate(capdev.rect, y=scale(3), relative=True)
 
-            animate = partial(
-                self.animate,
-                duration=0.2,
-                transition="linear",
-                delay=initial_delay + 0.1,
-            )
+            animate = partial(self.animate, duration=0.2, transition="linear", delay=initial_delay + 0.1)
             animate(capdev.rect, y=-scale(6), relative=True)
 
-            animate = partial(
-                self.animate,
-                duration=0.1,
-                transition="linear",
-                delay=initial_delay + 0.3,
-            )
+            animate = partial(self.animate, duration=0.1, transition="linear", delay=initial_delay + 0.3)
             animate(capdev.rect, y=scale(3), relative=True)
 
         for i in range(0, num_shakes):

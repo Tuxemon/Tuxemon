@@ -1,7 +1,7 @@
 from functools import partial
 
-from tuxemon import tools
 from tuxemon.compat import Rect
+from tuxemon import tools
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import events

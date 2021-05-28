@@ -61,10 +61,7 @@ class SplashState(state.State):
 
         # Set up the splash screen logos
         cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
-        cc.rect.topleft = (
-            width - splash_border - cc.rect.width,
-            height - splash_border - cc.rect.height,
-        )
+        cc.rect.topleft = width - splash_border - cc.rect.width, height - splash_border - cc.rect.height
 
         self.ding = audio.load_sound("sound_ding")
         self.ding.play()

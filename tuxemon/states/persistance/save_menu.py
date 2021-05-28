@@ -4,9 +4,9 @@ from base64 import b64decode
 
 import pygame
 
+from tuxemon.compat import Rect
 from tuxemon import prepare
 from tuxemon import save
-from tuxemon.compat import Rect
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
@@ -119,12 +119,7 @@ class SaveMenuState(PopUpMenu):
             menu.shrink_to_items = True
 
             # add choices
-            yes = MenuItem(
-                self.shadow_text(T.translate("save_overwrite")),
-                None,
-                None,
-                positive_answer,
-            )
+            yes = MenuItem(self.shadow_text(T.translate("save_overwrite")), None, None, positive_answer)
             no = MenuItem(self.shadow_text(T.translate("save_keep")), None, None, negative_answer)
 
             menu.add(yes)

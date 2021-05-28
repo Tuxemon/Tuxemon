@@ -51,7 +51,6 @@ class InputHandler:
 
     def __init__(self, event_map=None):
         if event_map is None:
-            assert self.default_input_map
             event_map = self.default_input_map.copy()
         self.buttons = dict()
         self.event_map = event_map

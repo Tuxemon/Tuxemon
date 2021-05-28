@@ -1,4 +1,5 @@
 import logging
+import sys
 from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
@@ -14,6 +15,15 @@ ANIMATION_NOT_STARTED = 0
 ANIMATION_RUNNING = 1
 ANIMATION_DELAYED = 2
 ANIMATION_FINISHED = 3
+
+PY2 = sys.version_info[0] == 2
+string_types = None
+text_type = None
+if PY2:
+    string_types = basestring
+    text_type = unicode
+else:
+    string_types = text_type = str
 
 
 def is_number(value):

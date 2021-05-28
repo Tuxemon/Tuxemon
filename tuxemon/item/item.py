@@ -32,17 +32,19 @@
 
 import logging
 
-from tuxemon import plugin
 from tuxemon import prepare, graphics
-from tuxemon.constants import paths
 from tuxemon.db import db, process_targets
 from tuxemon.locale import T
+
+from tuxemon import plugin
+from tuxemon.constants import paths
 
 logger = logging.getLogger(__name__)
 
 
 class Item:
-    """An item object is an item that can be used either in or out of combat."""
+    """An item object is an item that can be used either in or out of combat.
+    """
 
     effects = dict()
     conditions = dict()
@@ -58,10 +60,7 @@ class Item:
         self.sfx = None
         self.sprite = ""  # The path to the sprite to load.
         self.surface = None  # The pygame.Surface object of the item.
-        self.surface_size_original = (
-            0,
-            0,
-        )  # The original size of the image before scaling.
+        self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
         self.effects = {}
         self.conditions = {}
@@ -204,10 +203,7 @@ class Item:
         result = True
 
         for condition in self.conditions:
-            result = result and condition.test(
-                target,
-                event,
-            )
+            result = result and condition.test(target)
 
         return result
 
@@ -225,13 +221,7 @@ class Item:
         """
 
         # defaults for the return. items can override these values in their return.
-        meta_result = {
-            "name": self.name,
-            "num_shakes": 0,
-            "capture": False,
-            "should_tackle": False,
-            "success": False,
-        }
+        meta_result = {"name": self.name, "num_shakes": 0, "capture": False, "should_tackle": False, "success": False}
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:

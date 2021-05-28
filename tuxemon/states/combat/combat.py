@@ -33,9 +33,9 @@ from collections import defaultdict, namedtuple
 from functools import partial
 from itertools import chain
 
+from tuxemon.compat import Rect
 from tuxemon import audio, state, tools, graphics
 from tuxemon.combat import check_status, fainted, get_awake_monsters, defeated
-from tuxemon.compat import Rect
 from tuxemon.locale import T
 from tuxemon.platform.const import buttons
 from tuxemon.pyganim import PygAnimation
@@ -456,15 +456,9 @@ class CombatState(CombatAnimations):
         def add(menuitem):
             monster = menuitem.game_object
             if monster.current_hp == 0:
-                tools.open_dialog(
-                    local_session,
-                    [T.format("combat_fainted", parameters={"name": monster.name})],
-                )
+                tools.open_dialog(local_session, [T.format("combat_fainted", parameters={"name": monster.name})])
             elif monster in self.active_monsters:
-                tools.open_dialog(
-                    local_session,
-                    [T.format("combat_isactive", parameters={"name": monster.name})],
-                )
+                tools.open_dialog(local_session, [T.format("combat_isactive", parameters={"name": monster.name})])
                 msg = T.translate("combat_replacement_is_fainted")
                 tools.open_dialog(local_session, [msg])
             else:
@@ -675,11 +669,7 @@ class CombatState(CombatAnimations):
 
         if technique.use_item:
             # "Monster used move!"
-            context = {
-                "user": getattr(user, "name", ""),
-                "name": technique.name,
-                "target": target.name,
-            }
+            context = {"user": getattr(user, "name", ""), "name": technique.name, "target": target.name}
             message = T.format(technique.use_item, context)
         else:
             message = ""
@@ -703,10 +693,7 @@ class CombatState(CombatAnimations):
                 self.animate_sprite_tackle(user_sprite)
 
                 if target_sprite:
-                    self.task(
-                        partial(self.animate_sprite_take_damage, target_sprite),
-                        hit_delay + 0.2,
-                    )
+                    self.task(partial(self.animate_sprite_take_damage, target_sprite), hit_delay + 0.2)
                     self.task(partial(self.blink, target_sprite), hit_delay + 0.6)
 
                 # TODO: track total damage
@@ -758,12 +745,7 @@ class CombatState(CombatAnimations):
         else:
             if result["success"]:
                 self.suppress_phase_change()
-                self.alert(
-                    T.format(
-                        "combat_status_damage",
-                        {"name": target.name, "status": technique.name},
-                    )
-                )
+                self.alert(T.format("combat_status_damage", {"name": target.name, "status": technique.name}))
 
         tech_sprite = self._technique_cache.get(technique)
         if result["success"] and target_sprite and tech_sprite:

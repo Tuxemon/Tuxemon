@@ -111,10 +111,7 @@ class MainCombatMenuState(PopUpMenu):
             # TODO: don't hardcode to player0
             combat_state = self.client.get_state_by_name("CombatState")
             state = self.client.push_state(
-                "CombatTargetMenuState",
-                player=combat_state.players[0],
-                user=combat_state.players[0],
-                action=item,
+                "CombatTargetMenuState", player=combat_state.players[0], user=combat_state.players[0], action=item
             )
             state.on_menu_selection = partial(enqueue_item, item)
 
@@ -153,10 +150,7 @@ class MainCombatMenuState(PopUpMenu):
                 if tech.next_use <= 0:
                     image = self.shadow_text(tech.name)
                 else:
-                    image = self.shadow_text(
-                        "%s %d" % (tech.name, abs(tech.next_use)),
-                        fg=self.unavailable_color,
-                    )
+                    image = self.shadow_text("%s %d" % (tech.name, abs(tech.next_use)), fg=self.unavailable_color)
                 item = MenuItem(image, None, None, tech)
                 menu.add(item)
 
@@ -177,10 +171,7 @@ class MainCombatMenuState(PopUpMenu):
 
             combat_state = self.client.get_state_by_name("CombatState")
             state = self.client.push_state(
-                "CombatTargetMenuState",
-                player=combat_state.players[0],
-                user=self.monster,
-                action=technique,
+                "CombatTargetMenuState", player=combat_state.players[0], user=self.monster, action=technique
             )
             state.on_menu_selection = partial(enqueue_technique, technique)
 

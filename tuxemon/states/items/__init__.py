@@ -111,10 +111,7 @@ class ItemMenuState(Menu):
             menu = self.client.push_state("Menu")
             menu.shrink_to_items = True
 
-            menu_items_map = (
-                ("item_confirm_use", confirm),
-                ("item_confirm_cancel", cancel),
-            )
+            menu_items_map = (("item_confirm_use", confirm), ("item_confirm_cancel", cancel))
 
             # add our options to the menu
             for key, callback in menu_items_map:

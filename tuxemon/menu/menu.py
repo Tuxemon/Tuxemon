@@ -6,7 +6,8 @@ import pygame
 
 from tuxemon import audio, prepare, state, tools, graphics
 from tuxemon.menu.interface import MenuCursor, MenuItem
-from tuxemon.platform.const import buttons, intentions
+from tuxemon.platform.const import intentions
+from tuxemon.platform.const import buttons
 from tuxemon.sprite import RelativeGroup, VisualSpriteList
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea

@@ -46,9 +46,7 @@ class ToUseTileCondition(EventCondition):
         Valid Parameters: None
 
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(
-            context, event, condition
-        )
+        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(context, event, condition)
         button_pressed = ButtonPressedCondition().test(
             context,
             event,

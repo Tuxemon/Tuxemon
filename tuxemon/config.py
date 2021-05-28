@@ -86,15 +86,9 @@ class TuxemonConfig:
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
 
         # [gameplay]
-        self.items_consumed_on_failure = cfg.getboolean(
-            "gameplay", "items_consumed_on_failure"
-        )
-        self.encounter_rate_modifier = cfg.getfloat(
-            "gameplay", "encounter_rate_modifier"
-        )
-        self.default_monster_storage_box = cfg.get(
-            "gameplay", "default_monster_storage_box"
-        )
+        self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
+        self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
+        self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
         self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
 
         # [player]
@@ -271,6 +265,4 @@ def populate_config(config, data):
         except configparser.DuplicateSectionError:
             pass
         for option, value in v.items():
-            config.set(
-                k, option, str(value)
-            )  # yes.  all values must be stored as a string
+            config.set(k, option, str(value))  # yes.  all values must be stored as a string

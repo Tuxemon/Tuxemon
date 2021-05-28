@@ -88,9 +88,7 @@ class MonsterMenuState(Menu):
 
         # position and animate the monster portrait
         width, height = prepare.SCREEN_SIZE
-        self.monster_portrait.rect = image.get_rect(
-            centerx=width // 4, top=height // 12
-        )
+        self.monster_portrait.rect = image.get_rect(centerx=width // 4, top=height // 12)
         self.sprites.add(self.monster_portrait)
         self.animations.empty()
         self.animate_monster_down()
@@ -140,14 +138,10 @@ class MonsterMenuState(Menu):
                 monster = None
             item.game_object = monster
 
-            item.enabled = (monster is not None) and self.is_valid_entry(
-                item.game_object
-            )
+            item.enabled = (monster is not None) and self.is_valid_entry(item.game_object)
             item.image.fill((0, 0, 0, 0))
             item.in_focus = (index == self.selected_index) and item.enabled
-            self.render_monster_slot(
-                item.image, item.image.get_rect(), item.game_object, item.in_focus
-            )
+            self.render_monster_slot(item.image, item.image.get_rect(), item.game_object, item.in_focus)
 
     def draw_monster_info(self, surface, monster, rect):
         # position and draw hp bar
@@ -177,9 +171,7 @@ class MonsterMenuState(Menu):
         for index, status in enumerate(monster.status):
             if status.icon:
                 image = graphics.load_and_scale(status.icon)
-                pos = (rect.width * 0.4) + (
-                    index * tools.scale(32)
-                ), rect.y + tools.scale(5)
+                pos = (rect.width * 0.4) + (index * tools.scale(32)), rect.y + tools.scale(5)
                 surface.blit(image, pos)
 
     def determine_border(self, selected, filled):

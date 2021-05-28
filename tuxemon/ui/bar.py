@@ -87,10 +87,7 @@ class Bar(UserInterface):
         if key == "value":
             if value:
                 width = int(self.rect.width * (value * 0.01))
-                logger.debug(
-                    "Scaling bar to size: %i * (%f * 0.01) = %i"
-                    % (self.width, value, width)
-                )
+                logger.debug("Scaling bar to size: %i * (%f * 0.01) = %i" % (self.width, value, width))
                 height = self.rect.height
                 if width <= 0:
                     width = 1

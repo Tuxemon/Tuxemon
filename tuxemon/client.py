@@ -174,11 +174,7 @@ class LocalPygameClient:
 
             # if this state covers the screen
             # break here so lower screens are not drawn
-            if (
-                not state.transparent
-                and state.rect == full_screen
-                and not state.force_draw
-            ):
+            if not state.transparent and state.rect == full_screen and not state.force_draw:
                 break
 
         # draw from bottom up for proper layering
@@ -194,7 +190,7 @@ class LocalPygameClient:
         if self.config.show_fps:
             fps_timer += clock_tick
             if fps_timer >= 1:
-                with_fps = "{} - {:.2f} FPS".format(self.caption, frames / fps_timer)
+                with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
                 pg.display.set_caption(with_fps)
                 return 0, 0
             return fps_timer, frames

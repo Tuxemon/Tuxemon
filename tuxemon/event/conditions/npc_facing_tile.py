@@ -53,9 +53,7 @@ class NPCFacingTileCondition(EventCondition):
             return False
 
         tiles = [
-            (condition.x + w, condition.y + h)
-            for w in range(0, condition.width)
-            for h in range(0, condition.height)
+            (condition.x + w, condition.y + h) for w in range(0, condition.width) for h in range(0, condition.height)
         ]
         tile_location = None
 

@@ -54,18 +54,13 @@ class CaptureEffect(ItemEffect):
 
         # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
         catch_check = (
-            (3 * target.hp - 2 * target.current_hp)
-            * target.catch_rate
-            * item_power
-            * status_modifier
-            / (3 * target.hp)
+            (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         )
         shake_check = 65536 / (255 / catch_check) ** 0.1875
 
         logger.debug("--- Capture Variables ---")
         logger.debug(
-            "(3*target.hp - 2*target.current_hp) "
-            "* target.catch_rate * item_power * status_modifier / (3*target.hp)"
+            "(3*target.hp - 2*target.current_hp) " "* target.catch_rate * item_power * status_modifier / (3*target.hp)"
         )
 
         msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
@@ -75,9 +70,7 @@ class CaptureEffect(ItemEffect):
         logger.debug(f"65536 / (255 / {catch_check}) ** 0.1875")
 
         msg = "Each shake has a {} chance of breaking the creature free. (shake_check = {})"
-        logger.debug(
-            msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check))
-        )
+        logger.debug(msg.format(round((65536 - shake_check) / 65536, 2), round(shake_check)))
 
         # 4 shakes to give monster chance to escape
         for i in range(0, 4):

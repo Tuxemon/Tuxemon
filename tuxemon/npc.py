@@ -29,7 +29,6 @@
 #
 
 import logging
-from functools import partial
 from math import hypot
 
 from tuxemon.db import db
@@ -106,9 +105,7 @@ class NPC(Entity):
         self.game_variables = {}  # Tracks the game state
         self.interactions = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters = (
-            []
-        )  # This is a list of tuxemon the npc has. Do not modify directly
+        self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
         self.inventory = {}  # The Player's inventory.
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
@@ -330,9 +327,7 @@ class NPC(Entity):
 
         :param tile:
         """
-        return (
-            tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
-        )
+        return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
 
     @property
     def move_destination(self):

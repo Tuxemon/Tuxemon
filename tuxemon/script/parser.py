@@ -76,18 +76,14 @@ class DictReader:
                 behav_string = obj.properties[key]
                 behav_type, args = parse_behav_string(behav_string)
                 if behav_type == "talk":
-                    conds.insert(
-                        0, MapCondition("to_talk", args, x, y, w, h, "is", key)
-                    )
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", key))
                     acts.insert(0, MapAction("npc_face", [args[0], "player"], key))
                 else:
                     raise Exception
 
         # add a player_facing_tile condition automatically
         if obj.type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
+            cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
             logger.debug(cond_data)
             conds.append(cond_data)
 
@@ -116,14 +112,14 @@ class TestParser1:
         types = {type(i) for i in tokens}
         if ActionNameToken in types:
             if tokens[0].value in self.treat_args_as_single:
-                return tokens[0].value, [" ".join([i.value for i in tokens[1:]])]
+                return tokens[0].value, [" ".join(i.value for i in tokens[1:])]
             return tokens[0].value, [i.value for i in tokens[1:]]
         if ConditionNameToken in types:
             if tokens[1].value in self.treat_args_as_single:
                 return (
                     tokens[0].value,
                     tokens[1].value,
-                    [" ".join([i.value for i in tokens[2:]])],
+                    [" ".join(i.value for i in tokens[2:])],
                 )
             return tokens[0].value, tokens[1].value, [i.value for i in tokens[2:]]
         raise ValueError
@@ -185,14 +181,14 @@ class TestParser2:
 
         if ActionNameToken in types:
             if tokens[0].value in self.treat_args_as_single:
-                return tokens[0].value, [" ".join([i.value for i in tokens[1:]])]
+                return tokens[0].value, [" ".join(i.value for i in tokens[1:])]
             return tokens[0].value, [i.value for i in tokens[1:]]
         if ConditionNameToken in types:
             if tokens[1].value in self.treat_args_as_single:
                 return (
                     tokens[0].value,
                     tokens[1].value,
-                    [" ".join([i.value for i in tokens[2:]])],
+                    [" ".join(i.value for i in tokens[2:])],
                 )
             return tokens[0].value, tokens[1].value, [i.value for i in tokens[2:]]
         raise ValueError

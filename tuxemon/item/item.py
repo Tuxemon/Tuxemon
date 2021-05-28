@@ -97,14 +97,12 @@ class Item:
         try:
             results = db.lookup(slug, table="item")
         except KeyError:
-            logger.error(msg="Failed to find item with slug {}".format(slug))
+            logger.error(msg=f"Failed to find item with slug {slug}")
             return
 
         self.slug = results["slug"]  # short English identifier
         self.name = T.translate(self.slug)  # translated name
-        self.description = T.translate(
-            f"{self.slug}_description"
-        )  # will be locale string
+        self.description = T.translate(f"{self.slug}_description")  # will be locale string
 
         # item use notifications (translated!)
         self.use_item = T.translate(results["use_item"])
@@ -241,9 +239,7 @@ class Item:
             meta_result.update(result)
 
         # If this is a consumable item, remove it from the player's inventory.
-        if (
-            prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
-        ) and self.type == "Consumable":
+        if (prepare.CONFIG.items_consumed_on_failure or meta_result["success"]) and self.type == "Consumable":
             if user.inventory[self.slug]["quantity"] <= 1:
                 del user.inventory[self.slug]
             else:

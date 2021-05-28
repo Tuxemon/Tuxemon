@@ -26,7 +26,7 @@
 
 
 class EventCondition:
-    """"""
+    """ """
 
     name = "GenericCondition"
 

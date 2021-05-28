@@ -53,6 +53,4 @@ class OpenShopAction(EventAction):
             ("Sell", "Sell", sell_menu),
         ]
 
-        return self.context.client.push_state(
-            "ChoiceState", menu=var_menu, escape_key_exits=True
-        )
+        return self.context.client.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)

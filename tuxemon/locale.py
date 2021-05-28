@@ -90,9 +90,7 @@ class TranslatorPo:
         # l18n/locale/LC_category/domain_name.mo
         cache = os.path.join(paths.CACHE_DIR, "l18n")
         for info in self.search_locales():
-            mo_path = os.path.join(
-                cache, info.locale, info.category, info.domain + ".mo"
-            )
+            mo_path = os.path.join(cache, info.locale, info.category, info.domain + ".mo")
             if recompile_translations or not os.path.exists(mo_path):
                 self.compile_gettext(info.path, mo_path)
 
@@ -101,7 +99,7 @@ class TranslatorPo:
         """compile po into mo"""
         mofolder = os.path.dirname(mo_path)
         os.makedirs(mofolder, exist_ok=True)
-        with open(po_path, "r", encoding="UTF8") as po_file:
+        with open(po_path, encoding="UTF8") as po_file:
             catalog = read_po(po_file)
         with open(mo_path, "wb") as mo_file:
             write_mo(mo_file, catalog)
@@ -115,7 +113,7 @@ class TranslatorPo:
                 trans = gettext.translation(info.domain, localedir, [locale_name])
                 break
         else:
-            logger.warning("Locale {} not found. Using fallback.".format(locale_name))
+            logger.warning(f"Locale {locale_name} not found. Using fallback.")
             trans = gettext.translation("base", localedir, [FALLBACK_LOCALE])
         trans.install()
         self.translate = trans.gettext

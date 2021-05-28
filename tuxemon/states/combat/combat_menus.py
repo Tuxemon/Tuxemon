@@ -55,9 +55,7 @@ class MainCombatMenuState(PopUpMenu):
         if combat_state.is_trainer_battle:
 
             def open_menu():
-                combat_state.task(
-                    partial(combat_state.show_monster_action_menu, self.monster), 1
-                )
+                combat_state.task(partial(combat_state.show_monster_action_menu, self.monster), 1)
 
             combat_state.alert(T.translate("combat_can't_run_from_trainer"), open_menu)
         else:
@@ -73,14 +71,10 @@ class MainCombatMenuState(PopUpMenu):
             monster = menuitem.game_object
 
             if monster in self.client.get_state_by_name("CombatState").active_monsters:
-                tools.open_dialog(
-                    local_session, [T.format("combat_isactive", {"name": monster.name})]
-                )
+                tools.open_dialog(local_session, [T.format("combat_isactive", {"name": monster.name})])
                 return
             elif monster.current_hp < 1:
-                tools.open_dialog(
-                    local_session, [T.format("combat_fainted", {"name": monster.name})]
-                )
+                tools.open_dialog(local_session, [T.format("combat_fainted", {"name": monster.name})])
                 return
             combat_state = self.client.get_state_by_name("CombatState")
             swap = Technique("swap")
@@ -178,9 +172,7 @@ class MainCombatMenuState(PopUpMenu):
             technique = menu_item.game_object
             if technique.next_use > 0:
                 params = {"move": technique.name, "name": self.monster.name}
-                tools.open_dialog(
-                    local_session, [T.format("combat_recharging", params)]
-                )
+                tools.open_dialog(local_session, [T.format("combat_recharging", params)])
                 return
 
             combat_state = self.client.get_state_by_name("CombatState")

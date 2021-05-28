@@ -296,23 +296,15 @@ def fuse(body, face, save=True, filename=None):
 
     # Replace the _color of the body with the colors of the face.
     for i, color in enumerate(body.primary_colors):
-        body_image = replace_color(
-            body_image, body.primary_colors[i], face.primary_colors[i]
-        )
-        body_image = replace_color(
-            body_image, body.secondary_colors[i], face.secondary_colors[i]
-        )
-        body_image = replace_color(
-            body_image, body.tertiary_colors[i], face.tertiary_colors[i]
-        )
+        body_image = replace_color(body_image, body.primary_colors[i], face.primary_colors[i])
+        body_image = replace_color(body_image, body.secondary_colors[i], face.secondary_colors[i])
+        body_image = replace_color(body_image, body.tertiary_colors[i], face.tertiary_colors[i])
 
     # Set a scale for the images so we can resize them. Scaling results in a better image result.
     scale = 4
 
     # Scale the images
-    body_image = body_image.resize(
-        (body_image.getdata().size[0] * scale, body_image.getdata().size[1] * scale)
-    )
+    body_image = body_image.resize((body_image.getdata().size[0] * scale, body_image.getdata().size[1] * scale))
     face.face_image = face.face_image.resize(
         (
             face.face_image.getdata().size[0] * scale,

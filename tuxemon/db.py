@@ -153,9 +153,7 @@ class JSONDatabase:
 
         filename = self.database[table][slug]["file"] or slug
         if filename == slug:
-            logger.debug(
-                f"Could not find a file record for slug {slug}, did you remember to create a database record?"
-            )
+            logger.debug(f"Could not find a file record for slug {slug}, did you remember to create a database record?")
 
         return filename
 

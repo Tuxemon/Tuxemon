@@ -293,11 +293,7 @@ class Technique:
         :rtype: dict
         """
         already_applied = any(t for t in target.status if t.slug == slug)
-        success = (
-            not already_applied
-            and self.can_apply_status
-            and self.potency >= random.random()
-        )
+        success = not already_applied and self.can_apply_status and self.potency >= random.random()
         tech = None
         if success:
             tech = Technique(slug, carrier=target)
@@ -319,11 +315,7 @@ class Technique:
         :rtype: dict
         """
         already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
-        success = (
-            not already_applied
-            and self.can_apply_status
-            and self.potency >= random.random()
-        )
+        success = not already_applied and self.can_apply_status and self.potency >= random.random()
         tech = None
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)

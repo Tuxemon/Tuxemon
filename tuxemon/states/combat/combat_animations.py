@@ -151,9 +151,7 @@ class CombatAnimations(Menu):
         self.task(capdev.kill, fall_time + delay + fade_duration)
 
         # load monster and set in final position
-        monster_sprite = monster.get_sprite(
-            "back" if npc.isplayer else "front", midbottom=feet
-        )
+        monster_sprite = monster.get_sprite("back" if npc.isplayer else "front", midbottom=feet)
         self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
@@ -194,9 +192,7 @@ class CombatAnimations(Menu):
         :type sprite: tuxemon.sprite.Sprite
         :return:
         """
-        self.animate(
-            sprite, rotation=360, initial=0, duration=0.8, transition="in_out_quint"
-        )
+        self.animate(sprite, rotation=360, initial=0, duration=0.8, transition="in_out_quint")
 
     def animate_sprite_tackle(self, sprite):
         """
@@ -212,9 +208,7 @@ class CombatAnimations(Menu):
         else:
             delta = -scale(14)
 
-        self.animate(
-            sprite.rect, x=original_x + delta, duration=duration, transition="out_circ"
-        )
+        self.animate(sprite.rect, x=original_x + delta, duration=duration, transition="out_circ")
         self.animate(
             sprite.rect,
             x=original_x,
@@ -252,9 +246,7 @@ class CombatAnimations(Menu):
         :return:
         """
         original_x, original_y = sprite.rect.topleft
-        animate = partial(
-            self.animate, sprite.rect, duration=1, transition="in_out_elastic"
-        )
+        animate = partial(self.animate, sprite.rect, duration=1, transition="in_out_elastic")
         ani = animate(x=original_x, initial=original_x + scale(400))
         ani._elapsed = 0.735  # just want the end of the animation, not the entire thing
         ani = animate(y=original_y, initial=original_y - scale(400))
@@ -292,8 +284,7 @@ class CombatAnimations(Menu):
             0,
             min(
                 1,
-                (monster.total_experience - target_previous)
-                / (target_next - target_previous),
+                (monster.total_experience - target_previous) / (target_next - target_previous),
             ),
         )
         exp_bar = self._exp_bars[monster]
@@ -351,9 +342,7 @@ class CombatAnimations(Menu):
         """
 
         def build_left_hud():
-            hud = self.load_sprite(
-                "gfx/ui/combat/hp_opponent_nohp.png", layer=hud_layer
-            )
+            hud = self.load_sprite("gfx/ui/combat/hp_opponent_nohp.png", layer=hud_layer)
             hud.image.blit(text, scale_sequence((5, 5)))
             hud.rect.bottomright = 0, home.bottom
             hud.player = False
@@ -452,9 +441,7 @@ class CombatAnimations(Menu):
                     centerx=centerx - index * offset,
                     layer=hud_layer,
                 )
-            capdev = CaptureDeviceSprite(
-                sprite=sprite, tray=tray, monster=monster, state=status
-            )
+            capdev = CaptureDeviceSprite(sprite=sprite, tray=tray, monster=monster, state=status)
             self.capdevs.append(capdev)
             animate = partial(self.animate, duration=1.5, delay=2.2 + index * 0.2)
             capdev.draw(animate)
@@ -516,13 +503,9 @@ class CombatAnimations(Menu):
         self.sprites.add(enemy)
 
         if self.is_trainer_battle:
-            self.alert(
-                T.format("combat_trainer_appeared", {"name": opponent.name.upper()})
-            )
+            self.alert(T.format("combat_trainer_appeared", {"name": opponent.name.upper()}))
         else:
-            self.alert(
-                T.format("combat_wild_appeared", {"name": right_monster.name.upper()})
-            )
+            self.alert(T.format("combat_wild_appeared", {"name": right_monster.name.upper()}))
 
         front_island = self.load_sprite(
             "gfx/ui/combat/" + self.graphics["island_front"],
@@ -544,20 +527,14 @@ class CombatAnimations(Menu):
         flip()  # flip images to opposite
         self.task(flip, 1.5)  # flip the images to proper direction
 
-        if (
-            not self.is_trainer_battle
-        ):  # the combat call is handled by fill_battlefield_positions for trainer battles
-            self.task(
-                audio.load_sound(right_monster.combat_call).play, 1.5
-            )  # play combat call when it turns back
+        if not self.is_trainer_battle:  # the combat call is handled by fill_battlefield_positions for trainer battles
+            self.task(audio.load_sound(right_monster.combat_call).play, 1.5)  # play combat call when it turns back
 
         animate = partial(self.animate, transition="out_quad", duration=duration)
 
         # top trainer
         animate(enemy.rect, back_island.rect, centerx=opp_home.centerx)
-        animate(
-            enemy.rect, back_island.rect, y=-y_mod, transition="out_back", relative=True
-        )
+        animate(enemy.rect, back_island.rect, y=-y_mod, transition="out_back", relative=True)
 
         # bottom trainer
         animate(trainer1.rect, front_island.rect, centerx=player_home.centerx)
@@ -584,9 +561,7 @@ class CombatAnimations(Menu):
         capdev.rect.center = scale(0), scale(0)
         animate(x=monster_sprite.rect.centerx)
         animate(y=monster_sprite.rect.centery)
-        self.task(
-            partial(toggle_visible, monster_sprite), 1.0
-        )  # make the monster go away temporarily
+        self.task(partial(toggle_visible, monster_sprite), 1.0)  # make the monster go away temporarily
 
         def kill():
             self._monster_sprite_map[monster].kill()
@@ -611,9 +586,7 @@ class CombatAnimations(Menu):
         sprite.rect.midbottom = monster_sprite.rect.midbottom
 
         def shake_ball(initial_delay):
-            animate = partial(
-                self.animate, duration=0.1, transition="linear", delay=initial_delay
-            )
+            animate = partial(self.animate, duration=0.1, transition="linear", delay=initial_delay)
             animate(capdev.rect, y=scale(3), relative=True)
 
             animate = partial(
@@ -639,9 +612,7 @@ class CombatAnimations(Menu):
             self.task(kill, 2 + num_shakes)
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
-            self.task(
-                partial(toggle_visible, monster_sprite), breakout_delay
-            )  # make the monster appear again!
+            self.task(partial(toggle_visible, monster_sprite), breakout_delay)  # make the monster appear again!
             self.task(audio.load_sound(monster.combat_call).play, breakout_delay)
             self.task(tech.play, breakout_delay)
             self.task(capdev.kill, breakout_delay)

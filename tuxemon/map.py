@@ -356,9 +356,7 @@ class TuxemonMap:
             if node.get_value() == dest:
                 return node
             else:
-                for adj_pos in self.get_exits(
-                    node.get_value(), collision_map, known_nodes
-                ):
+                for adj_pos in self.get_exits(node.get_value(), collision_map, known_nodes):
                     new_node = PathfindNode(adj_pos, node)
                     known_nodes.add(new_node.get_value())
                     queue.append(new_node)

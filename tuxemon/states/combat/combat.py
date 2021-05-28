@@ -143,14 +143,10 @@ class CombatState(CombatAnimations):
         self.max_positions = 1  # TODO: make dependant on match type
         self.phase = None
         self.monsters_in_play = defaultdict(list)
-        self._damage_map = defaultdict(
-            set
-        )  # track damage so experience can be awarded later
+        self._damage_map = defaultdict(set)  # track damage so experience can be awarded later
         self._technique_cache = TechniqueAnimationCache()
         self._decision_queue = list()  # queue for monsters that need decisions
-        self._position_queue = (
-            list()
-        )  # queue for asking players to add a monster into play (subject to change)
+        self._position_queue = list()  # queue for asking players to add a monster into play (subject to change)
         self._action_queue = list()  # queue for techniques, items, and status effects
         self._status_icons = list()  # list of sprites that are status icons
         self._monster_sprite_map = dict()  # monster => sprite
@@ -235,9 +231,7 @@ class CombatState(CombatAnimations):
         elif phase == "housekeeping phase":
             # this will wait for players to fill battleground positions
             for player in self.active_players:
-                positions_available = self.max_positions - len(
-                    self.monsters_in_play[player]
-                )
+                positions_available = self.max_positions - len(self.monsters_in_play[player])
                 if positions_available:
                     return
             return "decision phase"
@@ -302,21 +296,11 @@ class CombatState(CombatAnimations):
             # record the useful properties of the last monster we fought
             monster_record = self.monsters_in_play[self.players[1]][0]
             if monster_record in self.active_monsters:
-                self.players[0].game_variables[
-                    "battle_last_monster_name"
-                ] = monster_record.name
-                self.players[0].game_variables[
-                    "battle_last_monster_level"
-                ] = monster_record.level
-                self.players[0].game_variables[
-                    "battle_last_monster_type"
-                ] = monster_record.slug
-                self.players[0].game_variables[
-                    "battle_last_monster_category"
-                ] = monster_record.category
-                self.players[0].game_variables[
-                    "battle_last_monster_shape"
-                ] = monster_record.shape
+                self.players[0].game_variables["battle_last_monster_name"] = monster_record.name
+                self.players[0].game_variables["battle_last_monster_level"] = monster_record.level
+                self.players[0].game_variables["battle_last_monster_type"] = monster_record.slug
+                self.players[0].game_variables["battle_last_monster_category"] = monster_record.category
+                self.players[0].game_variables["battle_last_monster_shape"] = monster_record.shape
 
         if phase == "decision phase":
             self.reset_status_icons()
@@ -506,9 +490,7 @@ class CombatState(CombatAnimations):
         # TODO: integrate some values for different match types
         released = False
         for player in self.active_players:
-            positions_available = self.max_positions - len(
-                self.monsters_in_play[player]
-            )
+            positions_available = self.max_positions - len(self.monsters_in_play[player])
             if positions_available:
                 available = get_awake_monsters(player)
                 for i in range(positions_available):
@@ -753,19 +735,13 @@ class CombatState(CombatAnimations):
                 if result["capture"]:
                     message += "\n" + T.translate("attempting_capture")
                     action_time = result["num_shakes"] + 1.8
-                    self.animate_capture_monster(
-                        result["success"], result["num_shakes"], target
-                    )
+                    self.animate_capture_monster(result["success"], result["num_shakes"], target)
 
                     # TODO: Don't end combat right away; only works with SP, and 1 member parties
                     # end combat right here
                     if result["success"]:
-                        self.task(
-                            self.end_combat, action_time + 0.5
-                        )  # Display 'Gotcha!' first.
-                        self.task(
-                            partial(self.alert, T.translate("gotcha")), action_time
-                        )
+                        self.task(self.end_combat, action_time + 0.5)  # Display 'Gotcha!' first.
+                        self.task(partial(self.alert, T.translate("gotcha")), action_time)
                         self._animation_in_progress = True
                         return
 
@@ -813,11 +789,7 @@ class CombatState(CombatAnimations):
         """
         if monster in self._damage_map:
             # Award Experience
-            awarded_exp = (
-                monster.total_experience
-                / monster.level
-                / len(self._damage_map[monster])
-            )
+            awarded_exp = monster.total_experience / monster.level / len(self._damage_map[monster])
             for winners in self._damage_map[monster]:
                 winners.give_experience(awarded_exp)
 
@@ -849,9 +821,7 @@ class CombatState(CombatAnimations):
         for player, party in self.monsters_in_play.items():
             for monster in party:
                 self.animate_hp(monster)
-                if monster.current_hp <= 0 and not check_status(
-                    monster, "status_faint"
-                ):
+                if monster.current_hp <= 0 and not check_status(monster, "status_faint"):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)
 

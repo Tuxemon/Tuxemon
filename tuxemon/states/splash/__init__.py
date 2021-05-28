@@ -53,9 +53,7 @@ class SplashState(state.State):
         self.fading_out = False
 
         width, height = prepare.SCREEN_SIZE
-        splash_border = (
-            prepare.SCREEN_SIZE[0] / 20
-        )  # The space between the edge of the screen
+        splash_border = prepare.SCREEN_SIZE[0] / 20  # The space between the edge of the screen
 
         # Set up the splash screen logos
         logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")

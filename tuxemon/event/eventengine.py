@@ -31,7 +31,6 @@ from collections import defaultdict
 from contextlib import contextmanager
 from dataclasses import dataclass
 from textwrap import dedent
-from typing import List
 
 from tuxemon.event import MapCondition, EventObject, MapAction
 from tuxemon.event.eventaction import EventAction
@@ -45,7 +44,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class ActionList:
     session: Session
-    actions: List
+    actions: list
     context: EventContext
     index: int
     running_action: callable
@@ -62,7 +61,7 @@ class LoadedAction:
 class LoadedCondition:
     condition: callable
     operator: bool
-    parameters: List
+    parameters: list
     map_condition: MapCondition
 
 
@@ -71,12 +70,12 @@ class LoadedEvent:
     id: str
     name: str
     rect: str
-    conds: List[LoadedCondition]
-    acts: List[LoadedAction]
+    conds: list[LoadedCondition]
+    acts: list[LoadedAction]
 
 
 class EventEngine:
-    """The event engine watches conditions and executes sets of actions """
+    """The event engine watches conditions and executes sets of actions"""
 
     def __init__(self, conditions, actions):
         self.events = list()
@@ -106,7 +105,7 @@ class EventEngine:
         instance = condition()
         self.conditions[condition.name] = instance
 
-    def load_events(self, events: List[EventObject]):
+    def load_events(self, events: list[EventObject]):
         for event in events:
             conds = list()
             triggers = set()
@@ -175,7 +174,7 @@ class EventEngine:
             return result
 
     def start_action(self, session, action_name, parameters=None, map=None):
-        """ Begin execution of a single event"""
+        """Begin execution of a single event"""
         event_id = str(uuid.uuid4())
         action_token = MapAction(action_name, parameters)
         actionlist = ActionList(
@@ -300,10 +299,7 @@ def add_error_context(event, item, session):
                         Line {line_number}
                     """.format(
                         file_name=file_name,
-                        event=etree.tostring(event_node)
-                        .decode()
-                        .split("\n")[0]
-                        .strip(),
+                        event=etree.tostring(event_node).decode().split("\n")[0].strip(),
                         line=etree.tostring(child_node).decode().strip(),
                         line_number=child_node.sourceline,
                     )

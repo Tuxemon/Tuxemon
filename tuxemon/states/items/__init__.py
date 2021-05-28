@@ -44,9 +44,7 @@ class ItemMenuState(Menu):
 
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
-        self.load_sprite(
-            "gfx/ui/item/backpack.png", center=self.backpack_center, layer=100
-        )
+        self.load_sprite("gfx/ui/item/backpack.png", center=self.backpack_center, layer=100)
 
     def calc_internal_rect(self):
         # area in the screen where the item list is
@@ -72,9 +70,7 @@ class ItemMenuState(Menu):
         item = menu_item.game_object
         state = self.determine_state_called_from()
 
-        if not any(
-            menu_item.game_object.validate(m) for m in local_session.player.monsters
-        ):
+        if not any(menu_item.game_object.validate(m) for m in local_session.player.monsters):
             msg = T.format("item_no_available_target", {"name": item.name})
             tools.open_dialog(local_session, [msg])
         elif state not in item.usable_in:
@@ -168,9 +164,7 @@ class ItemMenuState(Menu):
 
         for properties in self.sort_inventory(inventory):
             obj = properties["item"]
-            formatted_name = label_format(
-                obj.name, properties["quantity"], name_len=name_len, count_len=count_len
-            )
+            formatted_name = label_format(obj.name, properties["quantity"], name_len=name_len, count_len=count_len)
             image = self.shadow_text(formatted_name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 
@@ -185,9 +179,7 @@ class ItemMenuState(Menu):
             image = item.game_object.surface
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.backpack_center)
-            self.animate(
-                self.item_sprite.rect, centery=self.item_center[1], duration=0.2
-            )
+            self.animate(self.item_sprite.rect, centery=self.item_center[1], duration=0.2)
 
             # show item description
             self.alert(item.description)
@@ -315,9 +307,7 @@ class ShopMenuState(Menu):
                 label = label_format_2
             else:
                 label = label_format_1
-            formatted_name = label(
-                obj.name, properties["quantity"], name_len=name_len, count_len=count_len
-            )
+            formatted_name = label(obj.name, properties["quantity"], name_len=name_len, count_len=count_len)
             image = self.shadow_text(formatted_name, bg=(128, 128, 128))
             yield MenuItem(image, obj.name, obj.description, obj)
 

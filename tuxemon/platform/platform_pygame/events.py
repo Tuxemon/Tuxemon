@@ -15,11 +15,7 @@ class PygameEventQueueHandler(EventQueueHandler):
         # TODO: move this config to the config file
         self._inputs = defaultdict(list)  # type Dict[int, List[InputHandler]]
         self._inputs[0].append(PygameKeyboardInput(prepare.CONFIG.keyboard_button_map))
-        self._inputs[0].append(
-            PygameGamepadInput(
-                prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone
-            )
-        )
+        self._inputs[0].append(PygameGamepadInput(prepare.CONFIG.gamepad_button_map, prepare.CONFIG.gamepad_deadzone))
         if prepare.CONFIG.hide_mouse is False:
             self._inputs[0].append(PygameMouseInput())
 

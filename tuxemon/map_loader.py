@@ -158,9 +158,7 @@ class TMXMapLoader:
         :rtype: tuxemon.map.TuxemonMap
         """
         # TODO: remove the need to load graphics here
-        data = pytmx.TiledMap(
-            filename, image_loader=scaled_image_loader, pixelalpha=True
-        )
+        data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()

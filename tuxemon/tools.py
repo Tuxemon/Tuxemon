@@ -111,13 +111,7 @@ def check_parameters(parameters, required=0, exit=True):
         import inspect
 
         calling_function = inspect.stack()[1][3]
-        logger.error(
-            "'"
-            + calling_function
-            + "' requires at least "
-            + str(required)
-            + "parameters."
-        )
+        logger.error("'" + calling_function + "' requires at least " + str(required) + "parameters.")
         if exit:
             import sys
 
@@ -156,9 +150,7 @@ def open_dialog(context, text, avatar=None, menu=None):
     :rtype: tuxemon.states.dialog.DialogState
     """
     rect = calc_dialog_rect(context.client.screen.get_rect())
-    return context.client.push_state(
-        "DialogState", text=text, avatar=avatar, rect=rect, menu=menu
-    )
+    return context.client.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
 
 
 def nearest(l):

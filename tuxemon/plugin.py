@@ -105,9 +105,7 @@ class PluginManager:
                     # Only import modules from the list of parent modules
                     if pattern in str(class_obj):
                         logger.debug("Importing: " + str(class_name))
-                        imported_modules.append(
-                            Plugin(module + "." + class_name, class_obj)
-                        )
+                        imported_modules.append(Plugin(module + "." + class_name, class_obj))
 
         return imported_modules
 

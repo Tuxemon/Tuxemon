@@ -42,9 +42,7 @@ class TextArea(Sprite):
         if self.animated:
             self._start_text_animation()
         else:
-            self.image = draw.shadow_text(
-                self.font, self.font_color, self.font_bg, self._text
-            )
+            self.image = draw.shadow_text(self.font, self.font_color, self.font_bg, self._text)
 
     def __next__(self):
         if self.animated:
@@ -62,9 +60,7 @@ class TextArea(Sprite):
     def _start_text_animation(self):
         self.drawing_text = True
         self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)
-        self._iter = draw.iter_render_text(
-            self._text, self.font, self.font_color, self.font_bg, self.image.get_rect()
-        )
+        self._iter = draw.iter_render_text(self._text, self.font, self.font_color, self.font_bg, self.image.get_rect())
 
 
 def draw_text(

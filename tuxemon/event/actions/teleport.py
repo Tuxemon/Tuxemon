@@ -48,6 +48,4 @@ class TeleportAction(EventAction):
     def start(self):
         position = Vector3(self.parameters.x, self.parameters.y, 0)
         self.context.client.release_controls()
-        self.context.world.teleport(
-            self.context.player, self.parameters.map_name, position
-        )
+        self.context.world.teleport(self.context.player, self.parameters.map_name, position)

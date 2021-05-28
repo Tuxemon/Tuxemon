@@ -65,9 +65,7 @@ class CommonAction:
         try:
             attr = getattr(character, attribute)
         except AttributeError:
-            logger.warning(
-                "Player attribute '{0}' specified does not exist.", attribute
-            )
+            logger.warning("Player attribute '{0}' specified does not exist.", attribute)
             return
 
         try:
@@ -104,9 +102,7 @@ class CommonAction:
         try:
             attr = getattr(character, attribute)
         except AttributeError:
-            logger.warning(
-                "Player attribute '{0}' specified does not exist.", attribute
-            )
+            logger.warning("Player attribute '{0}' specified does not exist.", attribute)
             return
 
         if "%" in modifier:

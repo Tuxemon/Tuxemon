@@ -120,9 +120,7 @@ def _create_monster_npc(encounter):
     current_monster.load_from_db(encounter["monster"])
     # Set the monster's level based on the specified level range
     if len(encounter["level_range"]) > 1:
-        level = random.randrange(
-            encounter["level_range"][0], encounter["level_range"][1]
-        )
+        level = random.randrange(encounter["level_range"][0], encounter["level_range"][1])
     else:
         level = encounter["level_range"][0]
     # Set the monster's level

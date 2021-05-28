@@ -41,17 +41,5 @@ class CombatStartedCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: None
-
-        **Examples:**
-
-        >>> condition
-        {'action_id': '9',
-         'id': 9,
-         'operator': 'is_not',
-         'parameters': '',
-         'type': 'combat_started',
-         'x': 1,
-         'y': 11}
-
         """
         return session.client.current_state.name == "CombatState"

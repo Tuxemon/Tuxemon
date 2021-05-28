@@ -31,14 +31,12 @@ class EventContext:
 
         :return:
         """
-        pass
 
     def __exit__(self):
         """When context is removed from the stack
 
         :return:
         """
-        pass
 
     def execute(self, session):
         pass

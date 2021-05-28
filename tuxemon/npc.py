@@ -208,7 +208,7 @@ class NPC(Entity):
         # Get all of the player's standing animation images.
         self.standing = {}
         for standing_type in facing:
-            filename = "{}_{}.png".format(self.sprite_name, standing_type)
+            filename = f"{self.sprite_name}_{standing_type}.png"
             path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
 
@@ -464,7 +464,7 @@ class NPC(Entity):
 
             if self.pathfinding:
                 # since we are pathfinding, just try a new path
-                logger.error("{} finding new path!".format(self.slug))
+                logger.error(f"{self.slug} finding new path!")
                 self.pathfind(self.pathfinding)
 
             else:

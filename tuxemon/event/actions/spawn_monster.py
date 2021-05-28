@@ -42,19 +42,6 @@ class SpawnMonsterAction(EventAction):
     trainer.
 
     Valid Parameters: trainer, breeding_mother, breeding_father
-
-    **Examples:**
-
-    >>> EventAction.__dict__
-    {
-        "type": "spawn_monster",
-        "parameters": [
-            "npc_red",
-            "123e4567-e89b-12d3-a456-426614174000",
-            "123e4567-e89b-12d3-a456-426614174001"
-        ]
-    }
-
     """
 
     name = "spawn_monster"
@@ -69,7 +56,7 @@ class SpawnMonsterAction(EventAction):
         npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
-            logger.error("Could not find NPC corresponding to slug {}".format(npc_slug))
+            logger.error(f"Could not find NPC corresponding to slug {npc_slug}")
             return False
 
         mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
@@ -86,16 +73,16 @@ class SpawnMonsterAction(EventAction):
             father = trainer.find_monster_in_storage(father_id)
 
         if mother is None:
-            logger.error("Could not find (mother) monster with instance id {}".format(mother_id))
+            logger.error(f"Could not find (mother) monster with instance id {mother_id}")
             return False
         if father is None:
-            logger.error("Could not find (father) monster with instance id {}".format(father_id))
+            logger.error(f"Could not find (father) monster with instance id {father_id}")
             return False
 
         new_mon = mother.spawn(father)
         trainer.add_monster(new_mon)
 
-        replace = ["monster_name={}".format(new_mon.name)]
+        replace = [f"monster_name={new_mon.name}"]
         avatar = get_avatar(self.session, new_mon.slug)
 
         self.open_dialog(

@@ -41,22 +41,6 @@ class ButtonReleasedCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: A pygame key (E.g. "K_RETURN")
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "button_released",
-            "parameters": [
-                "K_RETURN"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
-            ...
-        }
         """
         # no longer in use
         # TODO: Cleanup or remove this action

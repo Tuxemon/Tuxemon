@@ -182,11 +182,6 @@ class Monster:
     a Tuxemon, fetching its details from a database.
 
     :param: None
-
-    **Example:**
-
-    >>> bulbatux = Monster()
-    >>> bulbatux.load_from_db("Bulbatux")
     """
 
     def __init__(self, save_data=None):
@@ -231,12 +226,10 @@ class Monster:
 
         self.weight = 0
 
-
         # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system calculations.
         # This is based on the pokemon calculation and can be found at https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
         self.catch_rate = TuxemonConfig().default_monster_catch_rate
-
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -288,7 +281,7 @@ class Monster:
         results = db.lookup(slug, table="monster")
 
         if results is None:
-            logger.error("monster {} is not found".format(slug))
+            logger.error(f"monster {slug} is not found")
             raise RuntimeError
 
         self.slug = results["slug"]  # short English identifier
@@ -304,7 +297,6 @@ class Monster:
 
         self.weight = results["weight"]
         self.catch_rate = results.get("catch_rate", TuxemonConfig().default_monster_catch_rate)
-
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         moveset = results.get("moveset")
@@ -328,8 +320,8 @@ class Monster:
         self.menu_sprite_2 = self.get_sprite_path(results["sprites"]["menu2"])
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        self.combat_call = results.get("sounds", {}).get("combat_call", "sound_{}_call".format(self.type1))
-        self.faint_call = results.get("sounds", {}).get("faint_call", "sound_{}_faint".format(self.type1))
+        self.combat_call = results.get("sounds", {}).get("combat_call", f"sound_{self.type1}_call")
+        self.faint_call = results.get("sounds", {}).get("faint_call", f"sound_{self.type1}_faint")
 
         # Load the monster AI
         # TODO: clean up AI 'core' loading and what not
@@ -484,11 +476,11 @@ class Monster:
         elif sprite == "menu":
             surface = graphics.load_animated_sprite([self.menu_sprite_1, self.menu_sprite_2], 0.25, **kwargs)
         else:
-            raise ValueError("Cannot find sprite for: {}".format(sprite))
+            raise ValueError(f"Cannot find sprite for: {sprite}")
 
         # Apply flairs to the monster sprite
         for flair in self.flairs.values():
-            flair_path = self.get_sprite_path("gfx/sprites/battle/{}-{}-{}".format(self.slug, sprite, flair.name))
+            flair_path = self.get_sprite_path(f"gfx/sprites/battle/{self.slug}-{sprite}-{flair.name}")
             if flair_path != MISSING_IMAGE:
                 flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
@@ -528,7 +520,7 @@ class Monster:
                 if full_path:
                     return full_path
         except OSError:
-            logger.debug("Could not find monster sprite {}".format(sprite))
+            logger.debug(f"Could not find monster sprite {sprite}")
             return MISSING_IMAGE
 
     def load_sprites(self):
@@ -536,12 +528,6 @@ class Monster:
 
         :rtype: Boolean
         :returns: True if the sprites are already loaded.
-
-        **Examples:**
-
-        >>> bulbatux.load_sprites()
-        >>> bulbatux.sprites
-
         """
         if len(self.sprites):
             return True

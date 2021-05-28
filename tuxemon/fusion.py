@@ -333,7 +333,7 @@ def fuse(body, face, save=True, filename=None):
     # Save the resulting image
     if save:
         if not filename:
-            filename = "fusion/{}{}.png".format(body.prefix, face.suffix)
+            filename = f"fusion/{body.prefix}{face.suffix}.png"
         body_image.save(filename)
 
     return body_image

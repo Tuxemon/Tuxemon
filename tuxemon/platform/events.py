@@ -19,7 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-from collections import defaultdict
 
 
 class EventQueueHandler:
@@ -120,7 +119,7 @@ class PlayerInput:
         self.triggered = False
 
     def __str__(self):
-        return "<PlayerInput: {} {} {} {} {}>".format(self.button, self.value, self.pressed, self.held, self.hold_time)
+        return f"<PlayerInput: {self.button} {self.value} {self.pressed} {self.held} {self.hold_time}>"
 
     @property
     def pressed(self):

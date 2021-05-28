@@ -140,16 +140,6 @@ def get_available_methods(plugin_manager):
 
     :rtype: Dictionary
     :returns: A dictionary containing the methods from loaded plugins.
-
-    **Example**
-
-    >>> plugins = plugin.load_directory("components/menu")
-    {'player_facing': <module 'player_facing' from 'components/event/player_facing.pyc'>}
-    >>> plugin.get_available_methods(plugins)
-    {'do_nothing': {'method': <function do_nothing at 0x7f20e1bec398>,
-                    'module': 'player_facing'},
-     'player_facing': {'method': <function player_facing at 0x7f20e1bec320>,
-                       'module': 'player_facing'}}
     """
     methods = {}
     for plugin in plugin_manager.getAllPlugins():
@@ -189,9 +179,9 @@ def load_plugins(path, category="plugins"):
     for cls in get_available_classes(plugins):
         name = getattr(cls, "name", None)
         if name is None:
-            logger.error("found incomplete {}: {}".format(category, cls.__name__))
+            logger.error(f"found incomplete {category}: {cls.__name__}")
             continue
         classes[name] = cls
-        logger.info("loaded {}: {}".format(category, cls.name))
+        logger.info(f"loaded {category}: {cls.name}")
 
     return classes

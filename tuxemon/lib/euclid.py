@@ -103,7 +103,7 @@ class Vector2:
     copy = __copy__
 
     def __repr__(self):
-        return "Vector2({:.2f}, {:.2f})".format(self.x, self.y)
+        return f"Vector2({self.x:.2f}, {self.y:.2f})"
 
     def __eq__(self, other):
         if isinstance(other, Vector2):
@@ -136,7 +136,7 @@ class Vector2:
 
     def __getattr__(self, name):
         try:
-            return tuple([(self.x, self.y)["xy".index(c)] for c in name])
+            return tuple((self.x, self.y)["xy".index(c)] for c in name)
         except ValueError:
             print(name)
             raise AttributeError
@@ -303,7 +303,7 @@ class Vector3:
     copy = __copy__
 
     def __repr__(self):
-        return "Vector3({:.2f}, {:.2f}, {:.2f})".format(self.x, self.y, self.z)
+        return f"Vector3({self.x:.2f}, {self.y:.2f}, {self.z:.2f})"
 
     def __eq__(self, other):
         if isinstance(other, Vector3):
@@ -334,7 +334,7 @@ class Vector3:
 
     def __getattr__(self, name):
         try:
-            return tuple([(self.x, self.y, self.z)["xyz".index(c)] for c in name])
+            return tuple((self.x, self.y, self.z)["xyz".index(c)] for c in name)
         except ValueError:
             print(name)
             raise AttributeError
@@ -1341,7 +1341,7 @@ class Quaternion:
     copy = __copy__
 
     def __repr__(self):
-        return "Quaternion(real=%.2f, imag=<%.2f, %.2f, %.2f>)" % (self.w, self.x, self.y, self.z)
+        return f"Quaternion(real={self.w:.2f}, imag=<{self.x:.2f}, {self.y:.2f}, {self.z:.2f}>)"
 
     def __mul__(self, other):
         if isinstance(other, Quaternion):
@@ -1641,11 +1641,11 @@ class Quaternion:
 
 class Geometry:
     def _connect_unimplemented(self, other):
-        print("Cannot connect {} to {}".format(self.__class__, other.__class__))
+        print(f"Cannot connect {self.__class__} to {other.__class__}")
         raise AttributeError
 
     def _intersect_unimplemented(self, other):
-        print("Cannot intersect {} and {}".format(self.__class__, other.__class__))
+        print(f"Cannot intersect {self.__class__} and {other.__class__}")
         raise AttributeError
 
     _intersect_point2 = _intersect_unimplemented
@@ -1791,7 +1791,7 @@ def _connect_circle_circle(A, B):
 
 class Point2(Vector2, Geometry):
     def __repr__(self):
-        return "Point2({:.2f}, {:.2f})".format(self.x, self.y)
+        return f"Point2({self.x:.2f}, {self.y:.2f})"
 
     def intersect(self, other):
         return other._intersect_point2(self)
@@ -1832,7 +1832,7 @@ class Line2(Geometry):
                 self.p = args[0].copy()
                 self.v = args[1].copy()
             else:
-                print("{!r}".format(args))
+                print(f"{args!r}")
                 raise AttributeError
 
         elif len(args) == 1:
@@ -1840,10 +1840,10 @@ class Line2(Geometry):
                 self.p = args[0].p.copy()
                 self.v = args[0].v.copy()
             else:
-                print("{!r}".format(args))
+                print(f"{args!r}")
                 raise AttributeError
         else:
-            print("{!r}".format(args))
+            print(f"{args!r}")
             raise AttributeError
 
         if not self.v:
@@ -1856,7 +1856,7 @@ class Line2(Geometry):
     copy = __copy__
 
     def __repr__(self):
-        return "Line2(<%.2f, %.2f> + u<%.2f, %.2f>)" % (self.p.x, self.p.y, self.v.x, self.v.y)
+        return f"Line2(<{self.p.x:.2f}, {self.p.y:.2f}> + u<{self.v.x:.2f}, {self.v.y:.2f}>)"
 
     p1 = property(lambda self: self.p)
     p2 = property(lambda self: Point2(self.p.x + self.v.x, self.p.y + self.v.y))
@@ -1892,7 +1892,7 @@ class Line2(Geometry):
 
 class Ray2(Line2):
     def __repr__(self):
-        return "Ray2(<%.2f, %.2f> + u<%.2f, %.2f>)" % (self.p.x, self.p.y, self.v.x, self.v.y)
+        return f"Ray2(<{self.p.x:.2f}, {self.p.y:.2f}> + u<{self.v.x:.2f}, {self.v.y:.2f}>)"
 
     def _u_in(self, u):
         return u >= 0.0
@@ -1900,7 +1900,7 @@ class Ray2(Line2):
 
 class LineSegment2(Line2):
     def __repr__(self):
-        return "LineSegment2(<%.2f, %.2f> to <%.2f, %.2f>)" % (
+        return "LineSegment2(<{:.2f}, {:.2f}> to <{:.2f}, {:.2f}>)".format(
             self.p.x,
             self.p.y,
             self.p.x + self.v.x,
@@ -1939,7 +1939,7 @@ class Circle(Geometry):
     copy = __copy__
 
     def __repr__(self):
-        return "Circle(<%.2f, %.2f>, radius=%.2f)" % (self.c.x, self.c.y, self.r)
+        return f"Circle(<{self.c.x:.2f}, {self.c.y:.2f}>, radius={self.r:.2f})"
 
     def _apply_transform(self, t):
         self.c = t * self.c
@@ -2138,7 +2138,7 @@ def _intersect_plane_plane(A, B):
 
 class Point3(Vector3, Geometry):
     def __repr__(self):
-        return "Point3({:.2f}, {:.2f}, {:.2f})".format(self.x, self.y, self.z)
+        return f"Point3({self.x:.2f}, {self.y:.2f}, {self.z:.2f})"
 
     def intersect(self, other):
         return other._intersect_point3(self)
@@ -2186,17 +2186,17 @@ class Line3:
                 self.p = args[0].copy()
                 self.v = args[1].copy()
             else:
-                print("{!r}".format(args))
+                print(f"{args!r}")
                 raise AttributeError
         elif len(args) == 1:
             if isinstance(args[0], Line3):
                 self.p = args[0].p.copy()
                 self.v = args[0].v.copy()
             else:
-                print("{!r}".format(args))
+                print(f"{args!r}")
                 raise AttributeError
         else:
-            print("{!r}".format(args))
+            print(f"{args!r}")
             raise AttributeError
 
             # XXX This is annoying.
@@ -2209,7 +2209,7 @@ class Line3:
     copy = __copy__
 
     def __repr__(self):
-        return "Line3(<%.2f, %.2f, %.2f> + u<%.2f, %.2f, %.2f>)" % (
+        return "Line3(<{:.2f}, {:.2f}, {:.2f}> + u<{:.2f}, {:.2f}, {:.2f}>)".format(
             self.p.x,
             self.p.y,
             self.p.z,
@@ -2257,7 +2257,7 @@ class Line3:
 
 class Ray3(Line3):
     def __repr__(self):
-        return "Ray3(<%.2f, %.2f, %.2f> + u<%.2f, %.2f, %.2f>)" % (
+        return "Ray3(<{:.2f}, {:.2f}, {:.2f}> + u<{:.2f}, {:.2f}, {:.2f}>)".format(
             self.p.x,
             self.p.y,
             self.p.z,
@@ -2272,7 +2272,7 @@ class Ray3(Line3):
 
 class LineSegment3(Line3):
     def __repr__(self):
-        return "LineSegment3(<%.2f, %.2f, %.2f> to <%.2f, %.2f, %.2f>)" % (
+        return "LineSegment3(<{:.2f}, {:.2f}, {:.2f}> to <{:.2f}, {:.2f}, {:.2f}>)".format(
             self.p.x,
             self.p.y,
             self.p.z,
@@ -2313,7 +2313,7 @@ class Sphere:
     copy = __copy__
 
     def __repr__(self):
-        return "Sphere(<%.2f, %.2f, %.2f>, radius=%.2f)" % (self.c.x, self.c.y, self.c.z, self.r)
+        return f"Sphere(<{self.c.x:.2f}, {self.c.y:.2f}, {self.c.z:.2f}>, radius={self.r:.2f})"
 
     def _apply_transform(self, t):
         self.c = t * self.c
@@ -2365,10 +2365,10 @@ class Plane:
                 self.n = args[0].normalized()
                 self.k = args[1]
             else:
-                print("{!r}".format(args))
+                print(f"{args!r}")
                 raise AttributeError
         else:
-            print("{!r}".format(args))
+            print(f"{args!r}")
             raise AttributeError
 
         if not self.n:
@@ -2381,7 +2381,7 @@ class Plane:
     copy = __copy__
 
     def __repr__(self):
-        return "Plane(<%.2f, %.2f, %.2f>.p = %.2f)" % (self.n.x, self.n.y, self.n.z, self.k)
+        return f"Plane(<{self.n.x:.2f}, {self.n.y:.2f}, {self.n.z:.2f}>.p = {self.k:.2f})"
 
     def _get_point(self):
         # Return an arbitrary point on the plane

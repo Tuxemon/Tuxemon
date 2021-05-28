@@ -91,10 +91,6 @@ def draw_text(surface, text=None, rect=None, justify="left", align=None, font=No
     :rtype: None
     :returns: None
 
-    **Examples:**
-
-    >>> draw_text(screen "boo", justify="center", align="middle")
-
     .. image:: images/menu/justify_center.png
 
     """

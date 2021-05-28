@@ -32,7 +32,7 @@ def load_sound(slug):
     # on some platforms, pygame will silently fail loading
     # a sound if the filename is incorrect so we check here
     if not os.path.exists(filename):
-        msg = "audio file does not exist: {}".format(filename)
+        msg = f"audio file does not exist: {filename}"
         logger.error(msg)
         return DummySound()
 

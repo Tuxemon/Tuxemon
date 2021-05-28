@@ -28,18 +28,6 @@ class SetNpcAttributeAction(EventAction):
     """Sets the given attribute of the npc to the given value.
 
     Valid Parameters: slug, attribute, value
-
-    **Example:**
-
-    >>> action.__dict__
-    {
-        "type": "set_npc_attribute",
-        "parameters": [
-            "npc_maple"
-            "party_limit",
-            "8"
-        ]
-    }
     """
 
     name = "set_npc_attribute"

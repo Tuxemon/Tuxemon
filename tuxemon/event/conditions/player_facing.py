@@ -41,23 +41,6 @@ class PlayerFacingCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: direction ("up", "down", "left" or "right")
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_facing",
-            "parameters": [
-                "up"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         player = session.player
         facing = condition.parameters[0]

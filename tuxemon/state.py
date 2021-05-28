@@ -176,7 +176,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def startup(self, **kwargs):
         """Called when scene is added to State Stack
@@ -191,7 +190,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def resume(self):
         """Called before update when state is newly in focus
@@ -208,7 +206,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def pause(self):
         """Called when state is pushed back in the stack, allowed to pause
@@ -225,7 +222,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
     def shutdown(self):
         """Called when state is removed from stack and will be destroyed
@@ -239,7 +235,6 @@ class State:
         :returns: None
         :rtype: None
         """
-        pass
 
 
 class StateManager:
@@ -266,7 +261,7 @@ class StateManager:
         """Scan a folder, load states found in it, and register them"""
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
-        logger.debug("loading game states from {}".format(state_folder))
+        logger.debug(f"loading game states from {state_folder}")
         for folder in os.listdir(state_folder):
             if any(folder.endswith(end) for end in exclude_endings):
                 continue
@@ -280,7 +275,7 @@ class StateManager:
         :returns: None
         """
         name = state.__name__
-        logger.debug("loading state: {}".format(state.__name__))
+        logger.debug(f"loading state: {state.__name__}")
         self._state_dict[name] = state
 
     @staticmethod
@@ -393,7 +388,7 @@ class StateManager:
         try:
             state = self._state_dict[state_name]
         except KeyError:
-            logger.critical("Cannot find state: {}".format(state_name))
+            logger.critical(f"Cannot find state: {state_name}")
             raise RuntimeError
 
         previous = self.current_state

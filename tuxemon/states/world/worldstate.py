@@ -636,8 +636,9 @@ class WorldState(state.State):
 
             # We only need to check the perimeter,
             # as there is no way to get further out of bounds
-            if (not (self.invalid_x[0] <= neighbor[0] <= self.invalid_x[1]) or
-                not (self.invalid_y[0] <= neighbor[1] <= self.invalid_y[1])):
+            if not (self.invalid_x[0] <= neighbor[0] <= self.invalid_x[1]) or not (
+                self.invalid_y[0] <= neighbor[1] <= self.invalid_y[1]
+            ):
                 continue
 
             # check to see if this tile is separated by a wall

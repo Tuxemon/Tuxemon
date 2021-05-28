@@ -49,7 +49,7 @@ class ButtonPressedCondition(EventCondition):
         if button == "K_RETURN":
             button = intentions.INTERACT
         else:
-            raise ValueError("Cannot support key type: {}".format(button))
+            raise ValueError(f"Cannot support key type: {button}")
 
         # Loop through each event
         for event in session.client.key_events:

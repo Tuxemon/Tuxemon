@@ -39,24 +39,6 @@ class PlayerAtCondition(EventCondition):
 
         :rtype: Boolean
         :returns: True or False
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "player_at",
-            "parameters": [
-                "6",
-                "9"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
-
         """
         player = session.player
 

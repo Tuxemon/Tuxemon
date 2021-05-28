@@ -162,7 +162,7 @@ class Client(StateManager):
             w = 0
             for valid, item in event:
                 p = " ".join(item.parameters)
-                text = "{} {}: {}".format(item.operator, item.type, p)
+                text = f"{item.operator} {item.type}: {p}"
                 if valid:
                     color = (0, 255, 0)
                 else:
@@ -383,7 +383,7 @@ class Client(StateManager):
         if self.show_fps:
             fps_timer += clock_tick
             if fps_timer >= 1:
-                with_fps = "{} - {:.2f} FPS".format(self.caption, frames / fps_timer)
+                with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
                 pg.display.set_caption(with_fps)
                 return 0, 0
             return fps_timer, frames

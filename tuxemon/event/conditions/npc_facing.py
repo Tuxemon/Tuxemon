@@ -42,23 +42,6 @@ class NPCFacingCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: npc_slug, direction ("up", "down", "left" or "right")
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "npc_facing",
-            "parameters": [
-                "npc_maple",
-                "up"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
         """
         player = get_npc(session, condition.parameters[0])
         if not player:

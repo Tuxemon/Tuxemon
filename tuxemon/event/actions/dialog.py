@@ -37,17 +37,6 @@ class DialogAction(EventAction):
     You may also use special variables in dialog events. Here is a list of available variables:
 
     * ${{name}} - The current player's name.
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "dialog",
-        "parameters": [
-            "Red:\\n This is some dialog!"
-        ]
-    }
-
     """
 
     name = "dialog"

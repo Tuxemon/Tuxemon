@@ -26,17 +26,6 @@ class SetVariableAction(EventAction):
     """Sets the key in the player.game_variables dictionary.
 
     Valid Parameters: variable_name:value
-
-    **Examples:**
-
-    >>> action.__dict__
-    {
-        "type": "set_variable",
-        "parameters": [
-            "battle_won:yes"
-        ]
-    }
-
     """
 
     name = "set_variable"

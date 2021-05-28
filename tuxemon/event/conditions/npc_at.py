@@ -40,24 +40,6 @@ class NPCAtCondition(EventCondition):
 
         :rtype: Boolean
         :returns: True or False
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "npc_at",
-            "parameters": [
-                "npc_maple",
-                "6",
-                "9"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 6,
-            "y": 9,
-            ...
-        }
         """
         player = get_npc(session, condition.parameters[0])
         if not player:

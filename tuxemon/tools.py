@@ -184,7 +184,7 @@ def number_or_variable(session, value):
         try:
             return float(player.game_variables[value])
         except (KeyError, ValueError, TypeError):
-            logger.error("invalid number or game variable {}".format(value))
+            logger.error(f"invalid number or game variable {value}")
             raise ValueError
 
 
@@ -231,8 +231,8 @@ def cast_values(parameters, valid_parameters):
         return list(map(cast, zip_longest(valid_parameters, parameters)))
     except ValueError:
         logger.error("Invalid parameters passed:")
-        logger.error("expected: {}".format(valid_parameters))
-        logger.error("got: {}".format(parameters))
+        logger.error(f"expected: {valid_parameters}")
+        logger.error(f"got: {parameters}")
         raise
 
 
@@ -284,11 +284,6 @@ def round_to_divisible(x, base=16):
     function assists in making sure collisions work if the map creator didn't
     set the collision areas to round numbers.
 
-    **Examples:**
-    >>> round_to_divisible(31.23, base=16)
-    32
-    >>> round_to_divisible(17.8, base=16)
-    16
     :param x: The number we want to round.
     :param base: The base that we want our number to be divisible by. (Default: 16)
     :type x: Float

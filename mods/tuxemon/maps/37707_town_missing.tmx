@@ -590,7 +590,7 @@
   <object id="211" name="Flower" type="event" x="384" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_flower_missing"/>
-    <property name="act20" value="set_monster_health ,"/>
+    <property name="act20" value="set_monster_health"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

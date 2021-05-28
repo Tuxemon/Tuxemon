@@ -72,10 +72,10 @@ class Rect:
 
     def unionall(self, *rects):
         rects.append(self)
-        left = min([r.left for r in rects])
-        top = min([r.top for r in rects])
-        right = max([r.right for r in rects])
-        bottom = max([r.bottom for r in rects])
+        left = min(r.left for r in rects)
+        top = min(r.top for r in rects)
+        right = max(r.right for r in rects)
+        bottom = max(r.bottom for r in rects)
         return Rect(left, top, right, bottom)
 
     def fit(self):

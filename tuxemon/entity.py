@@ -23,7 +23,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
-from tuxemon.euclid import Point2, Vector3, Point3
+from tuxemon.lib.euclid import Point2, Vector3, Point3
 from tuxemon.map import proj
 
 

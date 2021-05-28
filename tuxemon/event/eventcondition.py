@@ -26,8 +26,6 @@
 
 
 class EventCondition:
-    """"""
-
     name = "GenericCondition"
 
     def __init__(self):
@@ -40,7 +38,6 @@ class EventCondition:
         :param Dict condition:
         :rtype: bool
         """
-        pass
 
     def get_persist(self, session):
         """Return dictionary for this event class's data

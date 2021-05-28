@@ -79,7 +79,6 @@ class CommandLine(cmd.Cmd):
         :returns: None
 
         """
-        pass
 
     def do_exit(self, line):
         """If "exit" was typed on the command line, set the app's exit variable to True.

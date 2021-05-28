@@ -47,7 +47,7 @@ PLATFORM = "pygame"
 joystick_blacklist = [
     re.compile(r"Microsoft.*Transceiver.*"),
     re.compile(r".*Synaptics.*", re.I),
-    re.compile(r"Wacom*.", re.I)
+    re.compile(r"Wacom*.", re.I),
 ]
 
 # Create game dir if missing
@@ -160,12 +160,12 @@ def pygame_init():
     # Initialize the individual joysticks themselves.
     for joystick in devices:
         name = joystick.get_name()
-        print('Found joystick: "{}"'.format(name))
+        print(f'Found joystick: "{name}"')
         blacklisted = any(i.match(name) for i in joystick_blacklist)
         if blacklisted:
-            print('Ignoring joystick: "{}"'.format(name))
+            print(f'Ignoring joystick: "{name}"')
         else:
-            print('Configuring joystick: "{}"'.format(name))
+            print(f'Configuring joystick: "{name}"')
             joystick.init()
             JOYSTICKS.append(joystick)
 

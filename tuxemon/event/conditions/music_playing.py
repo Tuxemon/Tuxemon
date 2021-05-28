@@ -42,23 +42,6 @@ class MusicPlayingCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: music_filename
-
-        **Examples:**
-
-        >>> condition.__dict__
-        {
-            "type": "music_playing",
-            "parameters": [
-                "479403_its-a-unix-system.ogg"
-            ],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 2,
-            "y": 2,
-            ...
-        }
-
         """
         song = condition.parameters[0]
 

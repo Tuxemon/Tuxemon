@@ -160,6 +160,10 @@ should not use them on your personal computer.  Use in a vm or container.
 License
 -------
 
+With the exception of the lib folder which may have
+its own license, all code in this project is licenced
+under the GPLv3.
+
 GPL v3+
 
 Copyright (C) 2017 William Edwards <shadowapex@gmail.com>,     

@@ -149,7 +149,7 @@ class EventEngine:
             action = self.actions[name]
 
         except KeyError:
-            error = 'Error: EventAction "{}" not implemented'.format(name)
+            error = f'Error: EventAction "{name}" not implemented'
             logger.error(error)
 
         else:
@@ -172,7 +172,7 @@ class EventEngine:
             condition = self.conditions[name]
 
         except KeyError:
-            error = 'Error: EventCondition "{}" not implemented'.format(name)
+            error = f'Error: EventCondition "{name}" not implemented'
             logger.error(error)
 
         else:
@@ -190,11 +190,11 @@ class EventEngine:
         with add_error_context(map_event, cond_data, self.session):
             map_condition = self.get_condition(cond_data.type)
             if map_condition is None:
-                logger.debug('map condition "{}" is not loaded'.format(cond_data.type))
+                logger.debug(f'map condition "{cond_data.type}" is not loaded')
                 return False
 
             result = map_condition.test(self.session, cond_data) == (cond_data.operator == "is")
-            logger.debug('map condition "{}": {} ({})'.format(map_condition.name, result, cond_data))
+            logger.debug(f'map condition "{map_condition.name}": {result} ({cond_data})')
             return result
 
     def execute_action(self, action_name, parameters=None):
@@ -212,7 +212,7 @@ class EventEngine:
 
         action = self.get_action(action_name, parameters)
         if action is None:
-            logger.debug('map action "{}" is not loaded'.format(action_name))
+            logger.debug(f'map action "{action_name}" is not loaded')
 
         return action.execute()
 
@@ -222,20 +222,14 @@ class EventEngine:
         :param map_event:
         :type map_event: EventObject
 
-        Here is an example of what an action list might look like:
-
-        >>> map_event
-        [<class 'map.action'>, <class 'map.action'>]
-
         :rtype: None
         :returns: None
-
         """
         # the event id is used to make sure multiple copies of the same event are not
         # started.  If not checked, then the game would freeze while it tries to run
         # unlimited copies of the same event, forever.
         if map_event.id not in self.running_events:
-            logger.debug("starting map event: {}".format(map_event))
+            logger.debug(f"starting map event: {map_event}")
             logger.debug("Executing action list")
             logger.debug(map_event)
             token = RunningEvent(map_event)
@@ -380,7 +374,7 @@ class EventEngine:
                     action.cleanup()
                     e.action_index += 1
                     e.current_action = None
-                    logger.debug("action finished: {}".format(action))
+                    logger.debug(f"action finished: {action}")
 
                 else:
                     # action didn't finish, so move on to next RunningEvent

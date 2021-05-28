@@ -36,7 +36,7 @@ from operator import itemgetter
 
 import pygame
 
-from tuxemon import prepare, config
+from tuxemon import prepare
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 
 try:
@@ -114,14 +114,9 @@ def load(slot):
 
     :rtype: Dictionary
     :returns: Dictionary containing game data to load.
-
-    **Examples:**
-
-    >>> load.load(1)
-
     """
 
-    save_path = "{}{}.save".format(prepare.SAVE_PATH, slot)
+    save_path = f"{prepare.SAVE_PATH}{slot}.save"
     save_data = open_save_file(save_path)
     if save_data:
         return upgrade_save(save_data)
@@ -158,7 +153,7 @@ def open_save_file(save_path):
 def get_index_of_latest_save():
     times = []
     for slot_index in range(3):
-        save_path = "{}{}.save".format(prepare.SAVE_PATH, slot_index + 1)
+        save_path = f"{prepare.SAVE_PATH}{slot_index + 1}.save"
         save_data = open_save_file(save_path)
         if save_data is not None:
             time_of_save = datetime.datetime.strptime(save_data["time"], TIME_FORMAT)

@@ -174,9 +174,7 @@ class JSONDatabase:
 
         filename = self.database[table][slug]["file"] or slug
         if filename == slug:
-            logger.debug(
-                "Could not find a file record for slug {}, did you remember to create a database record?".format(slug)
-            )
+            logger.debug(f"Could not find a file record for slug {slug}, did you remember to create a database record?")
 
         return filename
 
@@ -219,7 +217,7 @@ def set_defaults(results, table):
             ("menu2", "menu02"),
         ):
             if not results.get(key):
-                sprites[key] = "gfx/sprites/battle/{}-{}".format(name, view)
+                sprites[key] = f"gfx/sprites/battle/{name}-{view}"
 
     return results
 

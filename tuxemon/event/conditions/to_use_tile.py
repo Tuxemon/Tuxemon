@@ -43,19 +43,6 @@ class ToUseTileCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: None
-
-        **Examples:**
-
-        condition.__dict__ = {
-            "type": "to_use_tile",
-            "parameters": [],
-            "width": 1,
-            "height": 1,
-            "operator": "is",
-            "x": 0,
-            "y": 0,
-            ...
-        }
         """
         player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, condition)
         button_pressed = ButtonPressedCondition().test(

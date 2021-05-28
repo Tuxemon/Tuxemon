@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="125">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -302,7 +302,9 @@
     <property name="act5" value="set_variable firstbattledone:yes"/>
     <property name="act8" value="npc_face professor,down"/>
     <property name="act9" value="translated_dialog wewnicefight"/>
-    <property name="act91" value="set_variable ohnotyou:itsme"/>
+    <property name="act91" value="set_monster_health"/>
+    <property name="act92" value="set_monster_status"/>
+    <property name="act93" value="set_variable ohnotyou:itsme"/>
     <property name="cond1" value="is variable_set startfirstbattle:yes"/>
     <property name="cond2" value="not variable_set firstbattledone:yes"/>
    </properties>

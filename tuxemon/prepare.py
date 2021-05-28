@@ -35,8 +35,8 @@ import logging
 import os.path
 import re
 
-from tuxemon import config, log
 from tuxemon.constants import paths
+from tuxemon import config
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +46,8 @@ PLATFORM = "pygame"
 # list of regular expressions to blacklist devices
 joystick_blacklist = [
     re.compile(r"Microsoft.*Transceiver.*"),
+    re.compile(r".*Synaptics.*", re.I),
+    re.compile(r"Wacom*.", re.I),
 ]
 
 # Create game dir if missing
@@ -65,7 +67,6 @@ config.generate_default_config()
 
 # Read "tuxemon.cfg" config from disk, update and write back
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
-log.configure()
 
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)

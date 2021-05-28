@@ -39,8 +39,8 @@ import logging
 import re
 from itertools import zip_longest
 
-from tuxemon import prepare
 from tuxemon.compat.rect import Rect
+from tuxemon import prepare
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
@@ -284,11 +284,6 @@ def round_to_divisible(x, base=16):
     function assists in making sure collisions work if the map creator didn't
     set the collision areas to round numbers.
 
-    **Examples:**
-    >>> round_to_divisible(31.23, base=16)
-    32
-    >>> round_to_divisible(17.8, base=16)
-    16
     :param x: The number we want to round.
     :param base: The base that we want our number to be divisible by. (Default: 16)
     :type x: Float

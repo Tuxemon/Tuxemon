@@ -718,11 +718,7 @@ class TuxemonClient:
                     self.client.event(event_data)
 
             elif event_type == "CLIENT_KEYUP" or event_type == "CLIENT_KEYDOWN":
-                event_data = {
-                    "type": event_type,
-                    "event_number": self.event_list[event_type],
-                    "kb_key": kb_key,
-                }
+                event_data = {"type": event_type, "event_number": self.event_list[event_type], "kb_key": kb_key}
                 self.event_list[event_type] += 1
                 self.client.event(event_data)
 
@@ -837,7 +833,7 @@ def populate_client(cuuid, event_data, game, registry):
     # TODO: move NPC from actions make make a common core class
     # needs to use actions, or update classes
     raise NotImplementedError
-    from tuxemon.event.actions.npc import Npc
+    from tuxemon.event.actions import Npc
 
     char_dict = event_data["char_dict"]
     sn = str(event_data["sprite_name"])
@@ -846,11 +842,7 @@ def populate_client(cuuid, event_data, game, registry):
     tile_pos_y = int(char_dict["tile_pos"][1])
 
     sprite = Npc().create_npc(
-        game,
-        (
-            None,
-            str(nm) + "," + str(tile_pos_x) + "," + str(tile_pos_y) + "," + str(sn) + ",network",
-        ),
+        game, (None, str(nm) + "," + str(tile_pos_x) + "," + str(tile_pos_y) + "," + str(sn) + ",network")
     )
     sprite.isplayer = True
     sprite.final_move_dest = sprite.tile_pos
@@ -891,14 +883,8 @@ def update_client(sprite, char_dict, game):
         # Get the pixel position of our tile position.
         if item == "tile_pos":
             tile_size = prepare.TILE_SIZE
-            position = [
-                char_dict["tile_pos"][0] * tile_size[0],
-                char_dict["tile_pos"][1] * tile_size[1],
-            ]
+            position = [char_dict["tile_pos"][0] * tile_size[0], char_dict["tile_pos"][1] * tile_size[1]]
             global_x = world.global_x
             global_y = world.global_y
-            abs_position = [
-                position[0] + global_x,
-                position[1] + (global_y - tile_size[1]),
-            ]
+            abs_position = [position[0] + global_x, position[1] + (global_y - tile_size[1])]
             sprite.__dict__["position"] = abs_position

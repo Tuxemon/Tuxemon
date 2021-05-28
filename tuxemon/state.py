@@ -33,12 +33,12 @@ from importlib import import_module
 
 import pygame
 
+from tuxemon.compat import Rect
+from tuxemon.constants import paths
 from tuxemon import prepare, graphics
 from tuxemon.animation import Animation
 from tuxemon.animation import Task
 from tuxemon.animation import remove_animations_of
-from tuxemon.compat import Rect
-from tuxemon.constants import paths
 from tuxemon.sprite import SpriteGroup
 
 logger = logging.getLogger(__name__)
@@ -255,6 +255,7 @@ class StateManager:
         self._state_queue = list()
         self._state_stack = list()
         self._state_dict = dict()
+        self._state_resume_set = set()
         self._remove_queue = list()
 
     def auto_state_discovery(self):
@@ -358,7 +359,7 @@ class StateManager:
 
         if index == 0:
             logger.debug("resetting controls due to state change")
-            # self.release_controls()
+            self.release_controls()
 
         try:
             previous = self._state_stack.pop(index)
@@ -393,7 +394,7 @@ class StateManager:
 
         previous = self.current_state
         logger.debug("resetting controls due to state change")
-        # self.release_controls()
+        self.release_controls()
 
         if previous is not None:
             previous.pause()
@@ -403,7 +404,7 @@ class StateManager:
 
         instance.controller = self
         instance.startup(**kwargs)
-        self.state_resume_set.add(instance)
+        self._state_resume_set.add(instance)
 
         return instance
 

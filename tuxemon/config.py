@@ -84,12 +84,14 @@ class TuxemonConfig:
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean("game", "recompile_translations")
+        self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
 
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean("gameplay", "items_consumed_on_failure")
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
         self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
         self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
+        self.default_monster_catch_rate = cfg.get("gameplay", "default_monster_catch_rate")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
@@ -182,6 +184,7 @@ def get_defaults():
                     (
                         ("data", "tuxemon"),
                         ("starting_map", "player_house_bedroom.tmx"),
+                        ("skip_titlescreen", False),
                         ("cli_enabled", False),
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
@@ -198,6 +201,7 @@ def get_defaults():
                         ("encounter_rate_modifier", 1.0),
                         ("default_monster_storage_box", "Kennel"),
                         ("default_item_storage_box", "Locker"),
+                        ("default_monster_catch_rate", 125),
                     )
                 ),
             ),
@@ -212,16 +216,7 @@ def get_defaults():
                     )
                 ),
             ),
-            (
-                "logging",
-                OrderedDict(
-                    (
-                        ("loggers", "all"),
-                        ("debug_logging", True),
-                        ("debug_level", "error"),
-                    )
-                ),
-            ),
+            ("logging", OrderedDict((("loggers", "all"), ("debug_logging", True), ("debug_level", "error")))),
             (
                 "controls",
                 OrderedDict(

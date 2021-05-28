@@ -12,8 +12,8 @@ import re
 import pygame
 from pytmx.util_pygame import smart_convert, handle_transformation
 
-from tuxemon import prepare
 from tuxemon.compat import Rect
+from tuxemon import prepare
 from tuxemon.pyganim import PygAnimation, PygConductor
 from tuxemon.sprite import Sprite
 from tuxemon.tools import transform_resource_filename, scale_sequence, scale_rect

@@ -37,8 +37,8 @@ import os.path
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import prepare
 from tuxemon.constants import paths
+from tuxemon import prepare
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +109,7 @@ class TranslatorPo:
         """Load a selected locale for translation."""
         localedir = os.path.join(paths.CACHE_DIR, "l18n")
         for info in self.search_locales():
-            if info.locale == locale_name and info.locale == domain:
+            if info.locale == locale_name and info.domain == domain:
                 trans = gettext.translation(info.domain, localedir, [locale_name])
                 break
         else:
@@ -141,9 +141,6 @@ def replace_text(context, text):
     :param str text: Raw text from the map
 
     :rtype: str
-
-    **Examples:**
-
     >>> replace_text("${{name}} is running away!")
     'Red is running away!'
 

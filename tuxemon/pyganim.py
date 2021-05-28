@@ -402,22 +402,13 @@ class PygAnimation:
             elif anchorPoint == WEST:
                 newSurf.blit(self._images[i], (0, halfMaxHeight - halfFrameHeight))
             elif anchorPoint == CENTER:
-                newSurf.blit(
-                    self._images[i],
-                    (halfMaxWidth - halfFrameWidth, halfMaxHeight - halfFrameHeight),
-                )
+                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, halfMaxHeight - halfFrameHeight))
             elif anchorPoint == EAST:
-                newSurf.blit(
-                    self._images[i],
-                    (maxWidth - frameWidth, halfMaxHeight - halfFrameHeight),
-                )
+                newSurf.blit(self._images[i], (maxWidth - frameWidth, halfMaxHeight - halfFrameHeight))
             elif anchorPoint == SOUTHWEST:
                 newSurf.blit(self._images[i], (0, maxHeight - frameHeight))
             elif anchorPoint == SOUTH:
-                newSurf.blit(
-                    self._images[i],
-                    (halfMaxWidth - halfFrameWidth, maxHeight - frameHeight),
-                )
+                newSurf.blit(self._images[i], (halfMaxWidth - halfFrameWidth, maxHeight - frameHeight))
             elif anchorPoint == SOUTHEAST:
                 newSurf.blit(self._images[i], (maxWidth - frameWidth, maxHeight - frameHeight))
             self._images[i] = newSurf

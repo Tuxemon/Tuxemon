@@ -288,12 +288,17 @@ class NPC(Entity):
         self.update_physics(time_passed_seconds)
 
         if self.pathfinding and not self.path:
+            # wants to pathfind, but there was no path last check
             self.pathfind(self.pathfinding)
 
         if self.path:
             if self.path_origin:
+                # if path origin is set, then npc has started moving
+                # from one tile to another.
                 self.check_waypoint()
             else:
+                # if path origin is not set, then a previous attempt to change
+                # waypoints failed, so try again.
                 self.next_waypoint()
 
         if self._move_direction:
@@ -316,6 +321,8 @@ class NPC(Entity):
 
         :type direction: str
         :param direction: up, down, left right
+
+        :return: None
         """
         self.path.append(trunc(self.tile_pos + dirs2[direction]))
 
@@ -326,12 +333,16 @@ class NPC(Entity):
         * Uses all advanced tile movements, like continue tiles
 
         :param tile:
+        :return:
         """
         return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
 
     @property
     def move_destination(self):
-        """Only used for the player_moved condition."""
+        """Only used for the player_moved condition.
+
+        :return:
+        """
         if self.path:
             return self.path[-1]
         else:
@@ -392,7 +403,12 @@ class NPC(Entity):
         will send the monster to PCState archive.
 
         :param monster: The monster.Monster object to add to the player's party.
+
         :type monster: tuxemon.monster.Monster
+
+        :rtype: None
+        :returns: None
+
         """
         monster.owner = self
         if len(self.monsters) >= self.party_limit:
@@ -408,6 +424,7 @@ class NPC(Entity):
         :type monster_slug: str
 
         :rtype: tuxemon.monster.Monster
+        :returns: Monster found
         """
         for monster in self.monsters:
             if monster.slug == monster_slug:
@@ -447,7 +464,11 @@ class NPC(Entity):
         """Removes a monster from this player's party.
 
         :param monster: Monster to remove from the player's party.
+
         :type monster: tuxemon.monster.Monster
+
+        :rtype: None
+        :returns: None
         """
         if monster in self.monsters:
             self.monsters.remove(monster)
@@ -473,16 +494,21 @@ class NPC(Entity):
 
         :param index_1: The indexes of the monsters to switch in the player's party.
         :param index_2: The indexes of the monsters to switch in the player's party.
+
         :type index_1: int
         :type index_2: int
+
+        :rtype: None
+        :returns: None
         """
-        self.monsters[index_1], self.monsters[index_2] = (
-            self.monsters[index_2],
-            self.monsters[index_1],
-        )
+        self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
 
     def load_party(self):
-        """Loads the party of this npc from their npc.json entry."""
+        """Loads the party of this npc from their npc.json entry.
+
+        :rtype: None
+        :returns: None
+        """
         for monster in self.monsters:
             self.remove_monster(monster)
 
@@ -490,7 +516,8 @@ class NPC(Entity):
 
         # Look up the NPC's details from our NPC database
         npc_details = db.database["npc"][self.slug]
-        for npc_monster_details in npc_details["monsters"]:
+        npc_party = npc_details.get("monsters") or []
+        for npc_monster_details in npc_party:
             monster = Monster(save_data=npc_monster_details)
             monster.experience_give_modifier = npc_monster_details["exp_give_mod"]
             monster.experience_required_modifier = npc_monster_details["exp_req_mod"]
@@ -501,7 +528,11 @@ class NPC(Entity):
             self.add_monster(monster)
 
     def set_party_status(self):
-        """Records important information about all monsters in the party."""
+        """Records important information about all monsters in the party.
+
+        :rtype: None
+        :returns: None
+        """
         if not self.isplayer or len(self.monsters) == 0:
             return
 

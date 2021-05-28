@@ -31,10 +31,10 @@ import pygame
 from pygame.transform import rotozoom
 from pygame.transform import scale
 
-from tuxemon import graphics
 from tuxemon.compat import Rect
 from tuxemon.platform.const import buttons
 from tuxemon.pyganim import PygAnimation
+from tuxemon import graphics
 from tuxemon.tools import scale as set
 
 logger = logging.getLogger()

@@ -23,15 +23,22 @@
 # William Edwards <shadowapex@gmail.com>
 #
 #
+# plugin Plugin architecture module.
+#
+#
 
 import importlib
 import inspect
 import logging
 import os
 import re
+import sys
 from typing import Dict, List
 
 logger = logging.getLogger(__name__)
+log_hdlr = logging.StreamHandler(sys.stdout)
+log_hdlr.setLevel(logging.DEBUG)
+log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
 
 
 class Plugin:
@@ -48,12 +55,7 @@ class PluginManager:
     def __init__(self, base_folders=None):
         # TODO: move this to a config option
         if base_folders is None:
-            base_folders = [
-                "/data/data/org.tuxemon.game/files",
-                "exe.win32-2.7",
-                "Tuxemon",
-                "/mnt/Tuxemon",
-            ]
+            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "Tuxemon", "/mnt/Tuxemon"]
         self.folders = []
         self.base_folders = base_folders
         self.modules = []
@@ -74,10 +76,11 @@ class PluginManager:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
             # Take the plugin folder and create a base module path based on it.
-            pattern = re.compile("tuxemon.*$")
+            pattern = re.compile("tuxemon/.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
-                logger.exception("Unable to determine plugin module path for: ", folder)
+                logger.exception("Unable to determine plugin module path for: %s", folder)
+                raise RuntimeError
             module_path = matches[0].replace("/", ".")
 
             # Look for a ".plugin" in the plugin folder to create a list of modules

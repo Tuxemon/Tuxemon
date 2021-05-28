@@ -1,5 +1,4 @@
 import logging
-import sys
 from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
@@ -15,15 +14,6 @@ ANIMATION_NOT_STARTED = 0
 ANIMATION_RUNNING = 1
 ANIMATION_DELAYED = 2
 ANIMATION_FINISHED = 3
-
-PY2 = sys.version_info[0] == 2
-string_types = None
-text_type = None
-if PY2:
-    string_types = basestring
-    text_type = unicode
-else:
-    string_types = text_type = str
 
 
 def is_number(value):
@@ -211,11 +201,14 @@ class Task(AnimBase):
             self._duration -= self._interval
             if self._loops >= 0:
                 self._loops -= 1
-                if self._loops == 0:  # loops counter is zero, finish now
+                if self._loops == 0:
+                    # loops counter is zero, finish now
                     self.finish()
-                else:  # not finished, but still are iterations left
+                else:
+                    # not finished, but still are iterations left
                     self._execute_callbacks("on interval")
-            else:  # loops == -1, run forever
+            else:
+                # loops == -1, run forever
                 self._execute_callbacks("on interval")
 
     def finish(self):
@@ -323,14 +316,7 @@ class Animation(pygame.sprite.Sprite):
         if isinstance(self._transition, str):
             self._transition = getattr(AnimationTransition, self._transition)
         self._elapsed = 0.0
-        for key in (
-            "duration",
-            "transition",
-            "round_values",
-            "delay",
-            "initial",
-            "relative",
-        ):
+        for key in ("duration", "transition", "round_values", "delay", "initial", "relative"):
             kwargs.pop(key, None)
         if not kwargs:
             raise ValueError

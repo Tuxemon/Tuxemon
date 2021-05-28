@@ -20,8 +20,8 @@
 #
 import uuid
 
-from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.event import get_npc
 
 
 class RemoveMonsterAction(EventAction):

@@ -71,10 +71,7 @@ class CommonAction:
         try:
             val = type(attr)(value)
         except TypeError:
-            logger.warning(
-                "The value given cannot be parsed into the correct type for '{0}'",
-                attribute,
-            )
+            logger.warning("The value given cannot be parsed into the correct type for '{0}'", attribute)
             return
 
         setattr(character, attribute, val)

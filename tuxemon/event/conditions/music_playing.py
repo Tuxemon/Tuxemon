@@ -20,6 +20,7 @@
 #
 
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.platform import mixer
 
 
 class MusicPlayingCondition(EventCondition):
@@ -30,12 +31,34 @@ class MusicPlayingCondition(EventCondition):
     def test(self, context, event, condition):
         """Checks to see if a particular piece of music is playing or not.
 
+        :param session: The session object
+        :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
+            for the format of the dictionary.
+
+        :type session: tuxemon.session.Session
+        :type condition: Dictionary
+
+        :rtype: Boolean
+        :returns: True or False
+
         Valid Parameters: music_filename
 
-        :param event:
-        :param tuxemon.session.Session context:
-        :param Dict condition:
-        :rtype: Boolean
+        **Examples:**
+
+        >>> condition.__dict__
+        {
+            "type": "music_playing",
+            "parameters": [
+                "479403_its-a-unix-system.ogg"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is",
+            "x": 2,
+            "y": 2,
+            ...
+        }
+
         """
         # todo fix this
         return True

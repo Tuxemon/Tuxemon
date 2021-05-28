@@ -67,12 +67,7 @@ class Rect:
 
     def union(self, other):
         return Rect(
-            (
-                min(self._x, other.left),
-                min(self._y, other.top),
-                max(self._w, other.right),
-                max(self._h, other.height),
-            )
+            (min(self._x, other.left), min(self._y, other.top), max(self._w, other.right), max(self._h, other.height))
         )
 
     def unionall(self, *rects):

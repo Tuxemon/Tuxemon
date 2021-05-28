@@ -29,6 +29,16 @@ class WaitForSecsAction(EventAction):
 
     * duration (float): time in seconds for the event engine to wait for
 
+    **Examples:**
+
+    >>> action.__dict__
+    {
+        "type": "wait_for_secs",
+        "parameters": [
+            "2.0"
+        ]
+    }
+
     """
 
     name = "wait_for_secs"

@@ -43,6 +43,22 @@ class NPCExistsCondition(EventCondition):
         :returns: True or False
 
         Valid Parameters: npc_slug
+
+        **Examples:**
+
+        >>> condition.__dict__
+        {
+            "type": "npc_exists",
+            "parameters": [
+                "npc_oak"
+            ],
+            "width": 1,
+            "height": 1,
+            "operator": "is_not",
+            "x": 0,
+            "y": 0,
+            ...
+        }
         """
         if get_npc(context, condition.parameters[0]):
             return True

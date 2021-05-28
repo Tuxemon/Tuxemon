@@ -20,8 +20,8 @@
 #
 
 from tuxemon import monster
-from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.event import get_npc
 
 
 class AddMonsterAction(EventAction):
@@ -34,11 +34,7 @@ class AddMonsterAction(EventAction):
     """
 
     name = "add_monster"
-    valid_parameters = [
-        (str, "monster_slug"),
-        (int, "monster_level"),
-        ((str, None), "trainer_slug"),
-    ]
+    valid_parameters = [(str, "monster_slug"), (int, "monster_level"), ((str, None), "trainer_slug")]
 
     def start(self):
 
@@ -48,6 +44,8 @@ class AddMonsterAction(EventAction):
             trainer = self.session.player
         else:
             trainer = get_npc(self.session, trainer_slug)
+
+        assert trainer, "No Trainer found with slug '{}'".format(trainer_slug or "player")
 
         current_monster = monster.Monster()
         current_monster.load_from_db(monster_slug)

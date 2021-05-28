@@ -24,14 +24,7 @@ from operator import eq, gt, lt, ge, le
 from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 
-cmp_dict = {
-    None: ge,
-    "less_than": lt,
-    "less_or_equal": le,
-    "greater_than": gt,
-    "greater_or_equal": ge,
-    "equals": eq,
-}
+cmp_dict = {None: ge, "less_than": lt, "less_or_equal": le, "greater_than": gt, "greater_or_equal": ge, "equals": eq}
 
 
 class HasItemCondition(EventCondition):

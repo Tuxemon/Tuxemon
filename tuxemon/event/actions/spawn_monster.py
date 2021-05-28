@@ -21,13 +21,13 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
-import logging
 import uuid
 
-from tuxemon.event.eventaction import EventAction
-from tuxemon.graphics import get_avatar
 from tuxemon.locale import process_translate_text
+from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
+from tuxemon.graphics import get_avatar
+import logging
 
 logger = logging.getLogger(__name__)
 
@@ -58,11 +58,7 @@ class SpawnMonsterAction(EventAction):
     """
 
     name = "spawn_monster"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "breeding_mother"),
-        (str, "breeding_father"),
-    ]
+    valid_parameters = [(str, "npc_slug"), (str, "breeding_mother"), (str, "breeding_father")]
 
     def start(self):
         npc_slug, breeding_mother, breeding_father = self.parameters

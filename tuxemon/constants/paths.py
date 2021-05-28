@@ -42,7 +42,7 @@ BASEDIR = sys.path[0]
 logger.debug("basedir: %s", BASEDIR)
 
 # main game and config dir
-# TODO: this imports pygame from core.prepare - refactor to avoid this?
+# TODO: this imports pygame from prepare - refactor to avoid this?
 USER_STORAGE_DIR = platform.get_user_storage_dir()
 logger.debug("userdir: %s", USER_STORAGE_DIR)
 

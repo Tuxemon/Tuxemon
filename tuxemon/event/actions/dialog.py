@@ -38,6 +38,16 @@ class DialogAction(EventAction):
 
     * ${{name}} - The current player's name.
 
+    **Examples:**
+
+    >>> action.__dict__
+    {
+        "type": "dialog",
+        "parameters": [
+            "Red:\\n This is some dialog!"
+        ]
+    }
+
     """
 
     name = "dialog"

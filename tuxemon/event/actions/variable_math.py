@@ -36,12 +36,7 @@ class VariableMathAction(EventAction):
     """
 
     name = "variable_math"
-    valid_parameters = [
-        (str, "var1"),
-        (str, "operation"),
-        (str, "var2"),
-        ((str, None), "result"),
-    ]
+    valid_parameters = [(str, "var1"), (str, "operation"), (str, "var2"), ((str, None), "result")]
 
     def start(self):
         player = self.context.player
@@ -51,9 +46,9 @@ class VariableMathAction(EventAction):
         result = self.parameters.result
         if result is None:
             result = var
-        operand1 = number_or_variable(self.session, var)
+        operand1 = number_or_variable(self.context, var)
         operation = self.parameters.operation
-        operand2 = number_or_variable(self.session, self.parameters.var2)
+        operand2 = number_or_variable(self.context, self.parameters.var2)
 
         # Perform the operation on the variable
         if operation == "+":

@@ -73,3 +73,7 @@ def configure():
             logger.addHandler(log_hdlr)
 
             loggers[logger_name] = logger
+
+            # prevent pyscroll redraw warnings
+            pyscroll_logger = logging.getLogger("orthographic")
+            pyscroll_logger.setLevel(logging.ERROR)

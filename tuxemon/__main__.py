@@ -28,11 +28,6 @@
 #
 """Starts the main.main() function which, in turn, initializes
 pygame and starts the game, unless headless is specified.
-
-To run an individual component (e.g. prepare.py):
-
-`python -m prepare`
-
 """
 
 import getopt

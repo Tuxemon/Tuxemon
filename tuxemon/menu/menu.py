@@ -177,7 +177,6 @@ class Menu(state.State):
 
         :return:
         """
-        pass
 
     def is_valid_entry(self, game_object):
         """Checked when items are loaded/reloaded.  The return value will enable/disable menu items
@@ -653,7 +652,6 @@ class Menu(state.State):
 
         :return:
         """
-        pass
 
     def on_menu_selection(self, item):
         """Hook for things to happen when player selects a menu option
@@ -672,7 +670,6 @@ class Menu(state.State):
 
         :returns: None
         """
-        pass
 
     def animate_open(self):
         """Called when menu is going to open

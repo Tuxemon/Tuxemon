@@ -165,7 +165,7 @@ def animation_frame_files(directory, name):
     :rtype: List[str]
     """
     frames = list()
-    pattern = r"{}[0-9]*\..*".format(name)
+    pattern = fr"{name}[0-9]*\..*"
     # might be slow on large folders
     for filename in os.listdir(directory):
         if re.match(pattern, filename):
@@ -265,7 +265,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
     :return:
     """
     if colorkey:
-        colorkey = pygame.Color("#{}".format(colorkey))
+        colorkey = pygame.Color(f"#{colorkey}")
 
     pixelalpha = kwargs.get("pixelalpha", True)
 

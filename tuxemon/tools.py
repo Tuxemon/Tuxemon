@@ -184,7 +184,7 @@ def number_or_variable(session, value):
         try:
             return float(player.game_variables[value])
         except (KeyError, ValueError, TypeError):
-            logger.error("invalid number or game variable {}".format(value))
+            logger.error(f"invalid number or game variable {value}")
             raise ValueError
 
 
@@ -231,8 +231,8 @@ def cast_values(parameters, valid_parameters):
         return list(map(cast, zip_longest(valid_parameters, parameters)))
     except ValueError:
         logger.error("Invalid parameters passed:")
-        logger.error("expected: {}".format(valid_parameters))
-        logger.error("got: {}".format(parameters))
+        logger.error(f"expected: {valid_parameters}")
+        logger.error(f"got: {parameters}")
         raise
 
 

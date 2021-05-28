@@ -189,9 +189,9 @@ def load_plugins(path, category="plugins"):
     for cls in get_available_classes(plugins):
         name = getattr(cls, "name", None)
         if name is None:
-            logger.error("found incomplete {}: {}".format(category, cls.__name__))
+            logger.error(f"found incomplete {category}: {cls.__name__}")
             continue
         classes[name] = cls
-        logger.info("loaded {}: {}".format(category, cls.name))
+        logger.info(f"loaded {category}: {cls.name}")
 
     return classes

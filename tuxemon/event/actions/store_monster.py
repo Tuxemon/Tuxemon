@@ -58,7 +58,7 @@ class StoreMonsterAction(EventAction):
         box = self.parameters.box
         monster = player.find_monster_by_id(instance_id)
         if monster is None:
-            raise ValueError("No monster found with instance_id {}".format(instance_id))
+            raise ValueError(f"No monster found with instance_id {instance_id}")
 
         if box not in player.monster_boxes.keys():
             player.monster_boxes[box] = list()

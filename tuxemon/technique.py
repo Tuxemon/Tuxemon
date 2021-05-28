@@ -29,8 +29,6 @@
 #
 
 import logging
-import os
-import os.path
 import random
 from collections import namedtuple
 
@@ -145,7 +143,7 @@ class Technique:
             directory = prepare.fetch("animations", "technique")
             self.images = animation_frame_files(directory, self.animation)
             if self.animation and not self.images:
-                logger.error("Cannot find animation frames for: {}".format(self.animation))
+                logger.error(f"Cannot find animation frames for: {self.animation}")
 
         # Load the sound effect for this technique
         self.sfx = results["sfx"]

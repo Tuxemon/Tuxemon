@@ -31,7 +31,6 @@
 
 
 import logging
-import pprint
 
 from tuxemon import prepare, graphics
 from tuxemon.db import db, process_targets
@@ -128,12 +127,12 @@ class Item:
         try:
             results = db.lookup(slug, table="item")
         except KeyError:
-            logger.error(msg="Failed to find item with slug {}".format(slug))
+            logger.error(msg=f"Failed to find item with slug {slug}")
             return
 
         self.slug = results["slug"]  # short English identifier
         self.name = T.translate(self.slug)  # translated name
-        self.description = T.translate("{}_description".format(self.slug))  # will be locale string
+        self.description = T.translate(f"{self.slug}_description")  # will be locale string
 
         # item use notifications (translated!)
         self.use_item = T.translate(results["use_item"])
@@ -170,7 +169,7 @@ class Item:
             try:
                 effect = Item.effects[name]
             except KeyError:
-                error = 'Error: ItemEffect "{}" not implemented'.format(name)
+                error = f'Error: ItemEffect "{name}" not implemented'
                 logger.error(error)
             else:
                 ret.append(effect(self.session, self.user, params))
@@ -198,7 +197,7 @@ class Item:
             try:
                 condition = Item.conditions[name]
             except KeyError:
-                error = 'Error: ItemCondition "{}" not implemented'.format(name)
+                error = f'Error: ItemCondition "{name}" not implemented'
                 logger.error(error)
             else:
                 ret.append(condition(context, self.session, self.user, params))

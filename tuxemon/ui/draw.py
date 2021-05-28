@@ -10,8 +10,6 @@ from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
-__all__ = ("GraphicBox", "draw_text")
-
 
 def layout(scale):
     def func(area):

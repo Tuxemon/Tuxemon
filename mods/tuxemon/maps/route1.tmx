@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="97">
 =======
 <map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="91">
@@ -12,6 +13,9 @@
 =======
 <map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="97">
 >>>>>>> 2868a48c... Remove more of old story
+=======
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="98">
+>>>>>>> 5e6eca33... Block the xero institute for now
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -171,6 +175,12 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="97" name="block the door" type="event" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc xerogrund1,12,14,,stand"/>
+    <property name="cond1" value="not npc_exists xerogrund1"/>
    </properties>
   </object>
  </objectgroup>

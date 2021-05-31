@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="97">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="98">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -121,51 +121,6 @@
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="68" name="talk to me" type="event" x="160" y="112" width="16" height="16">
-   <properties>
-    <property name="act10" value="create_npc xerogrund1,32,14,teamxerogrunt1,stand"/>
-    <property name="act20" value="create_npc xerogrund2,33,14,teamxerogrunt1,stand"/>
-    <property name="cond10" value="not npc_exists xerogrund1"/>
-    <property name="cond20" value="not npc_exists xerogrund2"/>
-    <property name="cond30" value="not variable_set jumponwards:booyaa"/>
-   </properties>
-  </object>
-  <object id="69" name="talkin" type="event" x="512" y="240" width="16" height="16">
-   <properties>
-    <property name="act10" value="translated_dialog waiting_for_misa"/>
-    <property name="act20" value="set_variable been_talking:yes"/>
-    <property name="act30" value="set_variable jumponwards:hi"/>
-    <property name="behav10" value="talk xerogrund1"/>
-    <property name="cond10" value="not variable_set been_talkin:yes"/>
-   </properties>
-  </object>
-  <object id="70" name="teleportin" type="event" x="528" y="240" width="16" height="16">
-   <properties>
-    <property name="act10" value="translated_dialog teleport?"/>
-    <property name="act20" value="translated_dialog_choice yes:no,jumponwards"/>
-    <property name="behav10" value="talk xerogrund2"/>
-    <property name="cond10" value="is variable_set been_talking:yes"/>
-    <property name="cond20" value="is variable_set jumponwards:hi"/>
-   </properties>
-  </object>
-  <object id="82" name="yes we be" type="event" x="528" y="240" width="16" height="16">
-   <properties>
-    <property name="act10" value="translated_dialog ouch"/>
-    <property name="act20" value="set_variable jumponwards:booyaa"/>
-    <property name="act30" value="transition_teleport meet_misa.tmx,9,7,0.6"/>
-    <property name="cond10" value="is variable_set jumponwards:yes"/>
-    <property name="cond20" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="83" name="no we aint" type="event" x="528" y="240" width="16" height="16">
-   <properties>
-    <property name="act10" value="translated_dialog maybe_sometime_again?"/>
-    <property name="act20" value="set_variable jumponwards:hi"/>
-    <property name="cond10" value="is variable_set jumponwards:no"/>
-    <property name="cond20" value="is player_at"/>
-    <property name="cond30" value="is player_facing up"/>
-   </properties>
-  </object>
   <object id="84" name="Player Spawn" type="event" x="524" y="95" width="16" height="16"/>
   <object id="85" name="Teleport to route1a" type="event" x="512" y="64" width="16" height="16">
    <properties>
@@ -196,6 +151,12 @@
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="97" name="block the door" type="event" x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc xerogrund1,12,14,,stand"/>
+    <property name="cond1" value="not npc_exists xerogrund1"/>
    </properties>
   </object>
  </objectgroup>

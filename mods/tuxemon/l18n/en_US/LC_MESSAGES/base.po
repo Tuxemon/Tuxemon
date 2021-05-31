@@ -1402,27 +1402,6 @@ msgid "capture_devices_in_shop"
 msgstr "Capture devices. How do they make these?"
 
 # NPC dialogs
-msgid "professor_dialog\n"
-msgstr "Professor: Ah, yes. The very person I've been wanting to meet.\n"
-"I've heard that you want to learn about Tuxemon. Is that the case?"
-
-msgid "professor_yes"
-msgstr "Great!"
-
-msgid "professor_no"
-msgstr "Well, too bad then. I trekked all the way up here to talk to you, so you'll just have to listen!"
-
-msgid "professor_dialog2\n"
-msgstr "Where did Tuxemon come from?\n"
-"Nobody really knows, but they have inhabited our planet for thousands of years at the very least.\n"
-"Tuxemon are little animals. We befriend them, learn from them, and use them to battle other Tuxemon in sport.\n"
-"Well... at least we used to...\n"
-"I was wondering, I just received three new Tuxemon and I need more data on how these particular Tuxemon\n"
-"interact and bond with their traineers.\n"
-"Would you be interested in one?"
-
-msgid "professor_turn"
-msgstr "Of course you would, who am I kidding?"
 
 msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
@@ -1435,18 +1414,6 @@ msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
 
 msgid "cherry_found"
 msgstr "You found a cherry."
-
-msgid "waiting_for_misa"
-msgstr "Our leader would like to talk with you. When you are ready, talk to my friend next to me."
-
-msgid "teleport?"
-msgstr "Are you ready to meet our leader?"
-
-msgid "ouch"
-msgstr "Sorry, but this may hurt a bit..."
-
-msgid "maybe_sometime_again?"
-msgstr "Okay, I'll be here when you are ready."
 
 msgid "youcantleave"
 msgstr "The doors are locked from the outside... Is there a key somewhere?"
@@ -2055,7 +2022,9 @@ msgstr "Obtained Tweesher!"
 
 msgid "wewnicefight"
 msgstr "Wow, that was a good fight!\n"
-"With a little more practice and maybe a few more Tuxemon, you'll definitely be able to take on the Trial."
+"Let me heal your Tuxemon real quick...\n"
+"And... There! All set!\n"
+"With a little more practice and maybe a few more Tuxemon, you'll definitely be able to take on the Trial.\n"
 
 msgid "yahaha"
 msgstr "Ah ha! Found you!"
@@ -2095,6 +2064,7 @@ msgstr "So long ${{name}}! And good luck in the Trial, you'll need it."
 
 msgid "tabatownbattlearea"
 msgstr "Omnichannel Certified Battle Area - Taba Town"
+
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-20 07:29+0000\n"
+"PO-Revision-Date: 2021-06-22 09:27+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -604,3 +604,270 @@ msgstr "Niezwyciężony"
 
 msgid "icicle_spear"
 msgstr "Lodowa Włócznia"
+
+msgid "spyder_route4_beck1"
+msgstr "Twoja służba!"
+
+msgid "spyder_route4_rosamund2"
+msgstr "Zemsta najlepiej smakuje na zimno. "
+
+msgid "spyder_route4_rosamund1"
+msgstr "Spróbuj ze mną walczyć, a dostaniesz swoje sprawiedliwe desery!"
+
+msgid "spyder_route4_rincewind2"
+msgstr "To nie było aż tak przydatne."
+
+msgid "spyder_route4_rincewind1"
+msgstr "Wreszcie jakieś zastosowanie dla K9!"
+
+msgid "spyder_route4_wulf2"
+msgstr "Och, czuję się taki wykastrowany!"
+
+msgid "spyder_route4_wulf1"
+msgstr "Ah, tylko zbieram trochę suplementów leczniczych"
+
+msgid "spyder_route4_roger2"
+msgstr "Mógłbym się od Ciebie wiele nauczyć na temat strategii!"
+
+msgid "spyder_route4_roger1"
+msgstr "Od tuxemonów możemy się wiele nauczyć o strategii."
+
+msgid "spyder_route4_marshall2"
+msgstr "To może wymagać trochę pracy."
+
+msgid "spyder_route4_marshall1"
+msgstr "Pracuję nad gigantycznym działem!"
+
+msgid "spyder_wayfarer1_ratcher2"
+msgstr "Teraz muszę odpocząć!"
+
+msgid "spyder_wayfarer1_ratcher1"
+msgstr "Powinnaś pozwolić pacjentom odpocząć!"
+
+msgid "spyder_wayfarer1_bismuth2"
+msgstr "Porażka!"
+
+msgid "spyder_wayfarer1_bismuth1"
+msgstr ""
+"Mam nadzieję, że to nie jest związane z tymi chorymi tuxemonami w Scoop "
+"Farms!"
+
+msgid "spyder_wayfarer1_james2"
+msgstr "Cieszę się, że Jessie nie widziała mojej przegranej w ten sposób!"
+
+msgid "spyder_wayfarer1_james1"
+msgstr ""
+"Zastanawiam się, jak Egzekutorzy dotarli tu tak szybko! Pielęgniarka Jessie "
+"musiała ich wezwać."
+
+msgid "spyder_wayfarer1_bravo2"
+msgstr ""
+"Proszę, nie pozwól, aby moje wyniki w bitwie wpłynęły na Twoją opinię o "
+"Omnichannel: Jedyne potrzebne ci wiadomości. "
+
+msgid "spyder_wayfarer1_bravo1"
+msgstr ""
+"Ta akcja jest sponsorowana przez Omnichannel: Jedyne potrzebne ci "
+"wiadomości. "
+
+msgid "spyder_wayfarer1_morningstar2"
+msgstr "Wróć i zobacz mnie później - kolejny pacjent proszę!"
+
+msgid "spyder_wayfarer1_morningstar1"
+msgstr "Nie jestem zaskoczony, że cię tu widzę. "
+
+msgid "spyder_wayfarer1_victor2"
+msgstr "Zatrzymaj się! Albo, hm..."
+
+msgid "spyder_wayfarer1_victor1"
+msgstr "Hej, nie wyjdziesz z potencjalnie zainfekowanym tuxemonem!"
+
+msgid "spyder_wayfarer1_nightshade2"
+msgstr "Myślę, że mamy jeszcze wiele do nauczenia się o pielęgnacji tuxemonów."
+
+msgid "spyder_wayfarer1_nightshade1"
+msgstr ""
+"To żenujące. Wszystkie pielęgniarki zachorowały, ale tuxemony egzekutorów są "
+"w dobrej formie!"
+
+msgid "spyder_wayfarer1_jessie2"
+msgstr "Nie jesteś tak pomocny jak Egzekutor. Ani tak przystojny. "
+
+msgid "spyder_wayfarer1_jessie1"
+msgstr ""
+"Egzekutorzy byli tacy szybcy i pomocni! Domyślam się, że Naukowiec James "
+"zaalarmował ich tak szybko, jak to możliwe."
+
+msgid "spyder_wayfarer1_morton2"
+msgstr "Teraz nie mam nic do roboty!"
+
+msgid "spyder_wayfarer1_morton1"
+msgstr ""
+"Utknąłem w tym pokoju, dopóki mój tuxemon nie wyzdrowieje, więc nie mam nic "
+"do roboty poza walką!"
+
+msgid "spyder_citypark_florist"
+msgstr "Ciesz się wystawą kwiatów! To duma Leather Town."
+
+msgid "taba_greeting2b"
+msgstr ""
+"Ah! Widzę, że już masz kilka. Masz dobrą głowę na karku ${{name}}, jestem "
+"pewien, że będziesz mistrzem w nie długim czasie."
+
+msgid "taba_greeting3"
+msgstr ""
+"Powodzenia w swoich przygodach ${{name}}, i pamiętaj, aby kupować w Tuxemart "
+"wszystkie potrzebne ci rzeczy!\n"
+"...\n"
+"Przepraszam za nachalną sprzedaż, to moja praca."
+
+msgid "professor-rockitten"
+msgstr "Profesor"
+
+msgid "youneedtodothis"
+msgstr ""
+"Ja... Myślę, że trzeba spojrzeć na to bardziej...\n"
+"Nie chcę cię stracić, zwłaszcza gdy dopiero się rozliczamy."
+
+msgid "youneedtodothis2"
+msgstr ""
+"Ale... Wiem, że bardzo chciałeś zobaczyć ten region, a to jest twoja "
+"najlepsza szansa.\n"
+"Wiem, że masz w sobie chęć, by stać się najlepszym, jak nikt inny.\n"
+"Nie wiem tylko, czy stać nas na opłaty.\n"
+"\n"
+"Coś z tego będzie... Jakoś."
+
+msgid "ihaveyourmoney"
+msgstr "Cóż, może ja mogę w tym pomóc."
+
+msgid "iknowyou"
+msgstr ""
+"Witaj Callie, witaj ${{name}}, właśnie wpadłem, żeby się przywitać, kiedy "
+"podsłuchałem, jak mówisz o ogłoszeniu."
+
+msgid "ihaveyourmoney2"
+msgstr ""
+"Mam trochę zapasów, które trzeba dobrze wykorzystać, a Omnichannel jest mi "
+"winien przysługę.\n"
+"Jestem pewien, że coś da się załatwić. Zdobycie dokumentów kwalifikacyjnych "
+"to łatwa część. Zdobycie swojego pierwszego Tuxemona jest trochę "
+"trudniejsze...\n"
+"Na szczęście znam kogoś, kto ma dostęp do wielu różnych Tuxemonów...\n"
+"To Ja!\n"
+"Wiem, że to dużo do przetworzenia, więc będę w moim laboratorium czekał na "
+"twoją decyzję."
+
+msgid "hebenice"
+msgstr ""
+"To miły człowiek, może powinieneś przynajmniej zobaczyć, co ma do "
+"powiedzenia."
+
+msgid "moverocky"
+msgstr "Dalej, Rocky! Możesz się poruszać! Wierzę w ciebie!"
+
+msgid "moverocky2"
+msgstr "Cóż, ruszysz się, kiedy będziesz gotowa, ja będę tu czekał."
+
+msgid "tuxemontime"
+msgstr "Ach, przyszedłeś! Wspaniale!"
+
+msgid "tuxemontime1.5"
+msgstr "Rozumiem, że to oznacza, że zdecydowałeś się dołączyć do Próby?"
+
+msgid "sting"
+msgstr "Żądło"
+
+msgid "static_field"
+msgstr "Pole statyczne"
+
+msgid "starfall"
+msgstr "Starfall"
+
+msgid "stampede"
+msgstr "Popłoch"
+
+msgid "spray"
+msgstr "Spray"
+
+msgid "splinter"
+msgstr "Splinter"
+
+msgid "snowstorm"
+msgstr "Zamieć"
+
+msgid "sleeping_powder"
+msgstr "Proch Usypiający"
+
+msgid "sleep_bomb"
+msgstr "Bomba usypiająca"
+
+msgid "shuriken"
+msgstr "Shuriken"
+
+msgid "shrapnel"
+msgstr "Shrapnel"
+
+msgid "shadow_boxing"
+msgstr "Shadow Boxing"
+
+msgid "sand_spray"
+msgstr "Spray piaskowy"
+
+msgid "salamander"
+msgstr "Salamandra"
+
+msgid "rust_bomb"
+msgstr "Bomba rdzy"
+
+msgid "rot"
+msgstr "Gnić"
+
+msgid "rock"
+msgstr "Skała"
+
+msgid "refresh"
+msgstr "Odświeżenie"
+
+msgid "ram"
+msgstr "Baran"
+
+msgid "quicksand"
+msgstr "Ruchome piaski"
+
+msgid "pseudopod"
+msgstr "Pseudopod"
+
+msgid "probiscus"
+msgstr "Probiscus"
+
+msgid "petrify"
+msgstr "Petryfikacja"
+
+msgid "perfect_cut"
+msgstr "Perfekcyjne cięcie"
+
+msgid "peregrine"
+msgstr "Sokół wędrowny"
+
+msgid "overgrowth"
+msgstr "Przerost"
+
+msgid "one_two"
+msgstr "Jeden–dwa"
+
+msgid "mudslide"
+msgstr "Mudslide"
+
+msgid "muddle"
+msgstr "Muddle"
+
+msgid "midnight_mantle"
+msgstr "Płaszcz północy"
+
+#, fuzzy
+msgid "reg_papers_description"
+msgstr "Pakiet papierów rejestracyjnych do The Trial"
+
+msgid "reg_papers"
+msgstr "Papiery rejestracyjne"

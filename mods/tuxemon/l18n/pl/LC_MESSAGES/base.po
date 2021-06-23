@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-22 09:27+0000\n"
+"PO-Revision-Date: 2021-06-23 07:28+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -871,3 +871,109 @@ msgstr "Pakiet papierów rejestracyjnych do The Trial"
 
 msgid "reg_papers"
 msgstr "Papiery rejestracyjne"
+
+msgid "agnigon"
+msgstr "Agnigon"
+
+msgid "agnigon_description"
+msgstr ""
+"Jest on nazywany \"fałszywym smokiem\", ponieważ wygląda jak smok, ale w "
+"rzeczywistości wyewoluował z innej linii starożytnych gadów."
+
+msgid "agnidon"
+msgstr "Agnidon"
+
+msgid "agnidon_description"
+msgstr ""
+"Preferuje stanie na czterech nogach, ale może on stać na dwóch żeby otwierać "
+"drzwi, popychać drzewa czy trzymać rzeczy."
+
+msgid "aardorn"
+msgstr "Aardorn"
+
+msgid "aardorn_description"
+msgstr ""
+"Po urodzeniu jest on wkładany w mrowisku, musząc przegryść swoją drogę do "
+"wyjścia."
+
+msgid "aardart"
+msgstr "Aardart"
+
+## MONSTER TRANSLATIONS ##
+# Monster details
+msgid "aardart_description"
+msgstr "Liczy każdą zjedzoną mrówkę, i świętuje znaczące liczby."
+
+msgid "menu_fight"
+msgstr "Walka"
+
+msgid "menu_bag"
+msgstr "Plecak"
+
+msgid "menu_item"
+msgstr "Rzecz"
+
+msgid "menu_items"
+msgstr "Rzeczy"
+
+# TODO: duplicate of menu_monster?
+msgid "menu_monsters"
+msgstr "Potwory"
+
+msgid "menu_monster"
+msgstr "Tuxemon"
+
+msgid "menu_journal"
+msgstr "Dziennik"
+
+msgid "menu_multiplayer"
+msgstr "Gra Wieloosobowa"
+
+msgid "multiplayer_join_prompt"
+msgstr "Nazwa hosta czy adres IP?"
+
+msgid "multiplayer_no_servers"
+msgstr "Nie znaleziono serwerów…"
+
+msgid "multiplayer_already_hosting"
+msgstr "Gra jest już hostowana!"
+
+msgid "multiplayer_hosting_ready"
+msgstr "Gotowy na akceptowanie graczy!"
+
+msgid "multiplayer_join_game"
+msgstr "Dołącz do gry"
+
+msgid "multiplayer_scan_games"
+msgstr "Szukaj gier"
+
+msgid "multiplayer_host_game"
+msgstr "Hostuj grę"
+
+msgid "multiplayer_duel"
+msgstr "{name} wyzywa cię na pojedynek!"
+
+msgid "multiplayer_decline"
+msgstr "Odrzuć"
+
+# Multiplayer notifications
+msgid "multiplayer_accept"
+msgstr "Akceptuj"
+
+msgid "menu_save"
+msgstr "Zapisz"
+
+msgid "menu_run"
+msgstr "Uciekaj"
+
+msgid "menu_player"
+msgstr "Gracz"
+
+msgid "menu_options"
+msgstr "Opcje"
+
+msgid "menu_new_game"
+msgstr "Nowa Gra"
+
+msgid "menu_load"
+msgstr "Wczytaj"

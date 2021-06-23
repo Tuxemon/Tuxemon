@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-23 07:28+0000\n"
+"PO-Revision-Date: 2021-06-23 07:59+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -977,3 +977,203 @@ msgstr "Nowa Gra"
 
 msgid "menu_load"
 msgstr "Wczytaj"
+
+msgid "announcement3"
+msgstr ""
+"Dziękuję. Ja też cię kocham\n"
+"Teraz, do rzeczy."
+
+msgid "announcement2"
+msgstr "KOCHAMY CIĘ AEBLE!"
+
+msgid "announcement1"
+msgstr ""
+"WITAJCIE MIESZKAŃCY REGIONU FONDENT!\n"
+"DZIĘKUJEMY ZA WYSŁUCHANIE TEGO OBOWIĄZKOWEGO OGŁOSZENIA."
+
+msgid "ipausedit"
+msgstr ""
+"Zapauzowałam telewizor, podaj mi proszę szklankę wody, a potem możemy razem "
+"pooglądać."
+
+msgid "thetvbescreamin"
+msgstr ""
+"Kochanie, poczekaj. Włączyłem telewizor i leciała konferencja prasowa "
+"Omnichannel.\n"
+"Powinniśmy ją obejrzeć."
+
+msgid "waitdontgo"
+msgstr "${{name}}! Czekaj! Nie odchodź jeszcze!"
+
+msgid "wherewasshe"
+msgstr "Ona nie powiedziała nam złych wieści..."
+
+msgid "frowntime"
+msgstr ""
+"Nie przeszkadza mi to, że tu jestem...\n"
+"Tylko czasami jestem samotny..."
+
+msgid "knight4ispoor"
+msgstr "Ona naprawdę nie jest złą osobą."
+
+msgid "seeme"
+msgstr "Upewnij się, że przyjdziesz mnie zobaczysz..."
+
+msgid "solongjohn2"
+msgstr "Chodź Grant, mamy harmonogram do utrzymania."
+
+msgid "solongjohn"
+msgstr ""
+"John, powinieneś tu zostać, żeby zachować spokój.\n"
+"I tak nie chcę cię w pobliżu."
+
+msgid "maamnothing6"
+msgstr ""
+"... ... ... ...\n"
+"... Dobrze. Powinniśmy chyba wrócić do kwatery głównej i złożyć raport."
+
+msgid "maamnothing5"
+msgstr "Proszę pani, ja też go nie znalazłam."
+
+msgid "maamnothing4"
+msgstr "Świetnie. Dzięki za informację."
+
+msgid "maamnothing3"
+msgstr "Ja… ja… Nic nie znalazłem."
+
+msgid "maamnothing2"
+msgstr ""
+"Niech to szlag John! Mieliśmy chwilę czasu!\n"
+"Czego chcesz?"
+
+msgid "maamnothing"
+msgstr "Proszę pani...\n"
+
+msgid "itsmyaurababe3"
+msgstr "Mam nadzieję, że jeszcze się spotkamy. "
+
+msgid "itsmyduhduhduh"
+msgstr "Otrzymano adres Allie!"
+
+msgid "itsmyaurababe2"
+msgstr ""
+"Hmm, teraz gdy na ciebie patrzę, masz dość tajemniczą aurę.\n"
+"... ... ... ...\n"
+"Powinniśmy kiedyś porozmawiać. Może zobaczymy się w Cotton Town?"
+
+msgid "itsmyaurababe"
+msgstr "A teraz, kim ty jesteś?"
+
+msgid "maamiexist4"
+msgstr ""
+"Nie, zostaw to. Ci ludzie mają najwyraźniej fatalny gust i gardzą "
+"użytecznością i prostotą...\n"
+"Sprawdź teraz laboratorium, Grant. Ja poczekam na Johna."
+
+msgid "maamiexist3"
+msgstr ""
+"Jest tam komputer z Ubuntu.\n"
+"Miałem zamiar go skonfiskować, ale wiem, że Gnome nie jest w twoim stylu..."
+
+msgid "maamiexist2"
+msgstr "Czy było tam coś interesującego?"
+
+msgid "maamiexist"
+msgstr "Proszę pani, nie ma go w domu."
+
+msgid "oopsie2"
+msgstr ""
+"Dlaczego nie zaczekamy na powrót moich rycerzy.\n"
+"Nienawidzę ogłaszać złych wieści samemu."
+
+msgid "ourstuffisours"
+msgstr "Dlaczego właściwie tu jesteś?"
+
+msgid "oopsie"
+msgstr ""
+"Przykro mi, że musiałeś to zobaczyć. Czasami jest po prostu taaak bardzo "
+"bezużyteczny."
+
+msgid "whereismyhairbrush"
+msgstr "John, Grant, rozproszcie się. ZNAJDZCIE GO."
+
+msgid "hellolovelypeople5"
+msgstr ""
+"Nie... Czekaj... Brakuje nam jednej osoby...\n"
+"Jedynego hodowcy Tuxemonów, który pozostał w regionie Fondent. Tego, który "
+"nazywa siebie Profesorem Tuxemonów"
+
+msgid "hellolovelypeople4"
+msgstr "Jestem pewien, że w Cotton Town są domy większe od tego..."
+
+msgid "hellolovelypeople3"
+msgstr ""
+"Czy naprawdę jesteście jedynymi ludźmi w tym mieście? Nie ma tu nikogo! To "
+"musi być najmniejsze miasto w regionie Fondent."
+
+msgid "hellolovelypeople2"
+msgstr ""
+"Wiem, że pewnie zastanawiacie się, dlaczego ja i moi Omni Rycerze tu "
+"jesteśmy.\n"
+"Czekaj..."
+
+msgid "cometomepls"
+msgstr ""
+"TERAZ, PROSZĘ WSZYSTKICH O PRZYBYCIE DO CENTRUM MIASTA. OMNICHANNEL PRAGNIE "
+"ZWRÓCIĆ SIĘ DO WAS!"
+
+msgid "uselessnes"
+msgstr ""
+"Jesteś absolutnie bezużyteczny, John. Nie mogę uwierzyć, że kiedykolwiek "
+"byliśmy razem."
+
+msgid "johnissorry"
+msgstr ""
+"Przepraszam panią... Ja...\n"
+"Widziałem...\n"
+"Kilka...\n"
+"Kwiatów..."
+
+msgid "darnitjohn10"
+msgstr "TERAZ!"
+
+msgid "darnitjohn8"
+msgstr "AAAAAGH!!!"
+
+msgid "darnitjohn7"
+msgstr "Nie jestem pewien…"
+
+msgid "darnitjohn6"
+msgstr "Uhh…"
+
+msgid "darnitjohn5"
+msgstr "Dlaczego wciąż tu jesteś?"
+
+msgid "darnitjohn4"
+msgstr "Tak, proszę pani?"
+
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "darnitjohn2"
+msgstr "NIECH MNIE SZLAG TRAFI! WYŁAŹ STAMTĄD!"
+
+msgid "darnitjohn"
+msgstr "Chwileczka, gdzie jest John?"
+
+msgid "hellolovelypeople"
+msgstr "WITAJCIE MIESZKAŃCY MIASTA TABA!"
+
+msgid "bothofyou"
+msgstr ""
+"Obaj wyjdźcie na zewnątrz. Przedstawiciel Omnnichannel chce zwrócić się do "
+"miasta."
+
+msgid "professorswife"
+msgstr ""
+"O nie! Właśnie go przegapiłeś. Chyba jednak pojechał do miasta. Może sprawdź "
+"tam?"
+
+msgid "nopenotyet"
+msgstr ""
+"Niestety, ktoś został ranny na tej trasie. W tej chwili jest ona zamknięta."

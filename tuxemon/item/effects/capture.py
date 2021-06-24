@@ -73,7 +73,10 @@ class CaptureEffect(ItemEffect):
             (3 * target.hp - 2 * target.current_hp) * target.catch_rate * item_power * status_modifier / (3 * target.hp)
         )
         shake_check = shake_constant / (sqrt(sqrt(max_catch_rate / catch_check)) * 8)
-
+        #Catch_resistance is calculated 
+        catch_resistance = random.randrange(target.lower_catch_resistance, target.upper_catch_resistance)
+        #Catch_resistance is applied
+        shake_check = shake_check * catch_resistance
         # Debug section
         logger.debug("--- Capture Variables ---")
         logger.debug(

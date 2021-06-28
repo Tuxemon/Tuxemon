@@ -22,5 +22,7 @@
         "Metal"
     ],
     "weight": 25,
-    "catch_rate": 85.0
+    "catch_rate": 85.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
 }

@@ -68,23 +68,44 @@ def modify_json(input_folder, output_folder, variable_name, variable_value):
     variable_value: Float
         The value of the variable we want to create
     """
-    # if the output_folder does not exist it is created via code
-    if not os.path.exists(output_folder):
-        os.mkdir(output_folder)
+    try:
+        jsons = os.listdir(input_folder)
+    except FileNotFoundError:
+        print('Input file cannot be found or does not exist')
+        sys.exit(1)
+    if len(jsons) < 1:
+        try:
+            raise Exception()
+        except Exception:
+            print("Input directory is empty")
+            sys.exit(1)
+    else:
+        # if the output_folder does not exist it is created via code
+        if not os.path.exists(output_folder):
+            os.mkdir(output_folder)
 
-    jsons = os.listdir(input_folder)
-
-    for jfile in jsons:
-        jfile_path = os.path.join(input_folder, jfile)
-        jdict = json_to_dict(jfile_path)
-        jdict[variable_name] = variable_value
-        save_path = os.path.join(output_folder, jfile)
-        save_dict(jdict, save_path)
+        for jfile in jsons:
+            jfile_path = os.path.join(input_folder, jfile)
+            jdict = json_to_dict(jfile_path)
+            jdict[variable_name] = variable_value
+            save_path = os.path.join(output_folder, jfile)
+            save_dict(jdict, save_path)
+        print('Folder <' + output_folder + '> was created')
 
 
 if __name__ == '__main__':
+    try:
+        if len(sys.argv) != 5:
+            raise Exception()
+    except Exception:
+        print('The number of arguments should be 4')
+        sys.exit(1)
     input_folder = sys.argv[1]
     output_folder = sys.argv[2]
     variable_name = sys.argv[3]
-    variable_value = float(sys.argv[4])
+    try:
+        variable_value = float(sys.argv[4])
+    except ValueError:
+        print("Argument number 4 should be a number")
+        sys.exit(1)
     modify_json(input_folder, output_folder, variable_name, variable_value)

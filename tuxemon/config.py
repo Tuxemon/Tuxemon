@@ -92,6 +92,8 @@ class TuxemonConfig:
         self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
         self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
         self.default_monster_catch_rate = cfg.get("gameplay", "default_monster_catch_rate")
+        self.default_upper_monster_catch_resistance = cfg.get("gameplay", "default_upper_monster_catch_resistance")
+        self.default_lower_monster_catch_resistance = cfg.get("gameplay", "default_lower_monster_catch_resistance")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
@@ -202,6 +204,8 @@ def get_defaults():
                         ("default_monster_storage_box", "Kennel"),
                         ("default_item_storage_box", "Locker"),
                         ("default_monster_catch_rate", 125),
+                        ("default_upper_monster_catch_resistance", 1),
+                        ("default_lower_monster_catch_resistance", 1),
                     )
                 ),
             ),

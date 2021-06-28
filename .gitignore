@@ -48,6 +48,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+docs/autogen/
 
 # Logs
 *.log
@@ -74,3 +75,4 @@ Thumbs.db
 *.DS_Store
 mods/tuxemon/maps/~$Map Helper.xlsx
 mods/tuxemon/db/encounter/~$JSON-o-matic for Encounters.ods
+/.mypy_cache/

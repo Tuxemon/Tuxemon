@@ -25,7 +25,8 @@
 #
 # main Sets up the states and main game loop.
 #
-
+from __future__ import annotations
+from typing import Optional
 import logging
 
 from tuxemon import log
@@ -36,9 +37,18 @@ from tuxemon.session import local_session
 logger = logging.getLogger(__name__)
 
 
-def main(load_slot=None):
-    """Add all available states to our scene manager (tools.Client)
+def main(
+    load_slot: Optional[int] = None,
+) -> None:
+    """
+    Configure and start the game.
+
+    Add all available states to our scene manager (:class:`tools.Client`)
     and start the game using the pygame interface.
+
+    Parameters:
+        load_slot: Number of the save slot to load, if any.
+
     """
     log.configure()
     prepare.init()
@@ -107,13 +117,8 @@ def main(load_slot=None):
     pygame.quit()
 
 
-def headless():
-    """Sets up out headless server and start the game.
-
-    :rtype: None
-    :returns: None
-
-    """
+def headless() -> None:
+    """Sets up out headless server and start the game."""
     from tuxemon.client import HeadlessClient
 
     control = HeadlessClient()

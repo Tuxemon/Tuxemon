@@ -3,7 +3,7 @@ from itertools import combinations
 from operator import is_not
 from unittest.mock import Mock
 
-from tuxemon.core.map_loader import TMXMapLoader
+from tuxemon.map_loader import TMXMapLoader
 
 
 class TestTMXMapLoaderRegionTiles(unittest.TestCase):

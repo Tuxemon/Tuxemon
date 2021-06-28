@@ -12,9 +12,11 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+from __future__ import annotations
 import sys
 import os
 import shlex
+from typing import Any, List
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -33,6 +35,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -356,3 +359,28 @@ epub_exclude_files = ['search.html']
 
 # If false, no index is generated.
 #epub_use_index = True
+
+autodoc_typehints = "description"
+
+# Apidoc call to generate automatic reference docs. Taken from
+# https://github.com/readthedocs/readthedocs.org/issues/1139#issuecomment-398083449
+def run_apidoc(_: Any) -> None:
+    ignore_paths: List[str] = []
+
+    argv = [
+        "-f",
+        "-e",
+        "-M",
+        "-o",
+        "autogen",
+        ".."
+    ] + ignore_paths
+
+
+    # Sphinx 1.7+
+    from sphinx.ext import apidoc
+    apidoc.main(argv)
+
+
+def setup(app: Any) -> None:
+    app.connect('builder-inited', run_apidoc)

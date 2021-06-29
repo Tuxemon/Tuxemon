@@ -141,7 +141,8 @@ class World:
         filename = prepare.fetch("maps", map_name)
         map_object = TMXMapLoader().load(filename)
         self.maps[map_name] = map_object
-        self.eventengine.load_events(map_object.events)
+        for event in map_object.events:
+            self.eventengine.load_event(event)
         return map_object
 
     def get_map(self, map_name: str) -> TuxemonMap:

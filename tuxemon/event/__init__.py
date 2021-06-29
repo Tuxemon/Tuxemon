@@ -26,6 +26,9 @@
 
 import logging
 from collections import namedtuple
+from dataclasses import dataclass
+
+from tuxemon.compat import Rect
 
 logger = logging.getLogger(__name__)
 
@@ -38,11 +41,22 @@ condition_fields = [
 
 action_fields = ["type", "parameters"]
 
-event_fields = ["id", "name", "rect", "conds", "acts"]
 
 MapCondition = namedtuple("condition", condition_fields)
 MapAction = namedtuple("action", action_fields)
-EventObject = namedtuple("eventobject", event_fields)
+
+# event_fields = ["id", "name", "rect", "conds", "acts"]
+# EventObject = namedtuple("eventobject", event_fields)
+
+
+@dataclass(frozen=True, order=True)
+class EventObject:
+    id: str
+    name: str
+    rect: Rect
+    conds: list
+    acts: list
+
 
 __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 

@@ -79,7 +79,7 @@ class CaptureEffect(ItemEffect):
         catch_resistance = random.uniform(target.lower_catch_resistance, target.upper_catch_resistance)
         # Catch_resistance is applied to the shake_check
         shake_check = shake_check * catch_resistance
-        
+
         # Debug section
         logger.debug("--- Capture Variables ---")
         logger.debug(

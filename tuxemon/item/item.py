@@ -43,8 +43,7 @@ logger = logging.getLogger(__name__)
 
 
 class Item:
-    """An item object is an item that can be used either in or out of combat.
-    """
+    """An item object is an item that can be used either in or out of combat."""
 
     effects = dict()
     conditions = dict()

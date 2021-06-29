@@ -31,7 +31,9 @@ from collections import defaultdict
 from contextlib import contextmanager
 from dataclasses import dataclass
 from textwrap import dedent
+from typing import List
 
+from tuxemon.compat import Rect
 from tuxemon.event import MapCondition, EventObject, MapAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
@@ -69,9 +71,9 @@ class LoadedCondition:
 class LoadedEvent:
     id: str
     name: str
-    rect: str
-    conds: list[LoadedCondition]
-    acts: list[LoadedAction]
+    rect: Rect
+    conds: List[LoadedCondition]
+    acts: List[LoadedAction]
 
 
 class EventEngine:
@@ -105,26 +107,32 @@ class EventEngine:
         instance = condition()
         self.conditions[condition.name] = instance
 
-    def load_events(self, events: list[EventObject]):
-        for event in events:
-            conds = list()
-            triggers = set()
-            for event_condition in event.conds:
-                condition = self.get_condition(event_condition)
-                conds.append(condition)
-                tag = condition.condition.program(event_condition)
-                if tag:
-                    triggers.add(tag)
-            new_event = LoadedEvent(
-                id=event.id,
-                name=event.name,
-                rect=event.rect,
-                conds=conds,
-                acts=event.acts,
-            )
-            self.events.append(new_event)
-            for tag in triggers:
-                self.tags[tag].append(new_event)
+    def load_event(self, event: EventObject):
+        self._load_event(event.id, event.name, event.rect, event.conds, event.acts)
+
+    def _load_event(self, event_id: str, name: str, rect: Rect, conditions: List, actions: List):
+        instanced_conds = list()
+        triggers = set()
+        for event_condition in conditions:
+            condition = self.get_condition(event_condition)
+            instanced_conds.append(condition)
+            tag = condition.condition.program(event_condition)
+            if tag:
+                triggers.add(tag)
+        new_event = LoadedEvent(
+            id=event_id,
+            name=name,
+            rect=rect,
+            conds=instanced_conds,
+            acts=actions,
+        )
+        self.events.append(new_event)
+        if not triggers:
+            # HACK
+            if name not in ("Player Spawn",):
+                raise Exception(name)
+        for tag in triggers:
+            self.tags[tag].append(new_event)
 
     def get_action(self, session: Session, name: str, parameters=None) -> EventAction:
         """Get an action that is loaded into the engine
@@ -211,10 +219,12 @@ class EventEngine:
 
     def start_events(self, events):
         for event in events:
+            print(event)
             if self.should_event_start(local_session, event):
                 self.start_event(local_session, event)
 
     def set_message(self, message):
+        """WIP message is a hint that a condition should be checked"""
         self.messages.add(message)
 
     def update(self, dt: float):

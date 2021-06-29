@@ -85,8 +85,7 @@ class LocalPygameClient:
         self.key_events = list()
 
     def run(self):
-        """Run the game
-        """
+        """Run the game"""
         flip = pg.display.update
         frame_length = 1.0 / self.config.fps
 

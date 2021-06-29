@@ -22,5 +22,7 @@
         "Water"
     ],
     "weight": 25,
-    "catch_rate": 45.0
+    "catch_rate": 45.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
 }

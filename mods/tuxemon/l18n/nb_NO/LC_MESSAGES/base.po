@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-12 07:41+0000\n"
+"PO-Revision-Date: 2021-06-18 19:32+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/tuxemon/"
 "tuxemon/nb_NO/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1-dev\n"
+"X-Generator: Weblate 4.7\n"
 
 msgid "save_success"
 msgstr "Lagret!"
@@ -359,3 +359,215 @@ msgstr "Nett"
 
 msgid "wall_of_steel"
 msgstr "Stålvegg"
+
+# Potion
+msgid "potion"
+msgstr "Krukke"
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Tuxemon Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid "PROJECT DESCRIPTION\n"
+msgstr ""
+"Project-Id-Version: Insert package version from somewhere\n"
+"Report-Msgid-Bugs-To: epost@anotheragency.no\n"
+"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
+"PO-Revision-Date: 2021-06-17 21:05:38+0100\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Liberium\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+msgid "multiplayer_already_hosting"
+msgstr "Vertstjener allerede."
+
+msgid "multiplayer_hosting_ready"
+msgstr "Klar til å ta imot klienter."
+
+msgid "multiplayer_host_game"
+msgstr "Vertstjen spill"
+
+msgid "menu_items"
+msgstr "Elementer"
+
+msgid "menu_item"
+msgstr "Element"
+
+msgid "monster_menu_move"
+msgstr "Flytt"
+
+msgid "venomous_tentacle"
+msgstr "Giftig tentakkel"
+
+msgid "tonguespear"
+msgstr "Tungespyd"
+
+msgid "thunderball"
+msgstr "Tordenball"
+
+msgid "static_field"
+msgstr "Statisk felt"
+
+msgid "spray"
+msgstr "Spray"
+
+msgid "splinter"
+msgstr "Flis"
+
+msgid "snowstorm"
+msgstr "Snøstorm"
+
+msgid "sleeping_powder"
+msgstr "Søvnpulver"
+
+msgid "sleep_bomb"
+msgstr "Søvnbombe"
+
+msgid "shadow_boxing"
+msgstr "Skyggeboksing"
+
+msgid "sand_spray"
+msgstr "Sandspray"
+
+msgid "salamander"
+msgstr "Salamander"
+
+msgid "rust_bomb"
+msgstr "Rustbombe"
+
+msgid "rock"
+msgstr "Stein"
+
+msgid "quicksand"
+msgstr "Kvikksand"
+
+msgid "perfect_cut"
+msgstr "Perfekt kutt"
+
+msgid "mudslide"
+msgstr "Jordskred"
+
+msgid "kindling_flame"
+msgstr "Opptenningsflamme"
+
+msgid "icicle_spear"
+msgstr "Istappspyd"
+
+msgid "ice_claw"
+msgstr "Isklo"
+
+msgid "frostbite"
+msgstr "Frostbitt"
+
+msgid "flow"
+msgstr "Flyt"
+
+msgid "flamethrower"
+msgstr "Flammekaster"
+
+msgid "fire_claw"
+msgstr "Ildklo"
+
+msgid "fire_ball"
+msgstr "Ildball"
+
+msgid "eyebite"
+msgstr "Øyebitt"
+
+msgid "energy_field"
+msgstr "Energifelt"
+
+msgid "energy_claws"
+msgstr "Energiklør"
+
+msgid "electrical_storm"
+msgstr "Elektrostorm"
+
+msgid "bullet"
+msgstr "Kule"
+
+msgid "bubble_trap"
+msgstr "Boblefelle"
+
+msgid "breathe_fire"
+msgstr "Fyrpust"
+
+msgid "boulder"
+msgstr "Kampestein"
+
+msgid "blossom"
+msgstr "Blomstring"
+
+msgid "blood_bond"
+msgstr "Blodsbånd"
+
+msgid "biting_winds"
+msgstr "Bitende vind"
+
+msgid "berserk"
+msgstr "Berserkergang"
+
+msgid "beam"
+msgstr "Stråle"
+
+#, fuzzy
+msgid "avalanche"
+msgstr "Skred"
+
+msgid "slot"
+msgstr "Plass"
+
+msgid "save_keep"
+msgstr "Nei, behold denne lagringen."
+
+msgid "save_overwrite"
+msgstr "Ja, overskriv denne lagringen."
+
+msgid "save_failure"
+msgstr "Klarte ikke å lagre."
+
+msgid "received_x"
+msgstr "Mottok {name}!"
+
+msgid "not_implemented"
+msgstr "Denne funksjonen er ikke implementert enda."
+
+msgid "gotcha"
+msgstr "Fikk deg!"
+
+msgid "attempting_capture"
+msgstr "Forsøker fanging …"
+
+# Generic notifications
+msgid "empty_slot"
+msgstr "Tom plass"
+
+msgid "combat_player_run"
+msgstr "Du har sprunget unna!"
+
+#, fuzzy
+msgid "tm_avalanche_description"
+msgstr "Teknikkmanual som lærer vann- og jord-tuxemon-er skred-teknikken."
+
+msgid "revive_description"
+msgstr "Vekker ubevisste Tuxemon og helbreder 20 HP."
+
+msgid "imperial_potion_description"
+msgstr "Helbreder et monster med 350 HP."
+
+# Imperial Potion
+#, fuzzy
+msgid "imperial_potion"
+msgstr "Imperial krukke"
+
+# Super Potion
+#, fuzzy
+msgid "super_potion"
+msgstr "Superkrukke"
+
+msgid "potion_description"
+msgstr "Helbreder et monster med 50 HP."

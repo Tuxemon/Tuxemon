@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-05-23 11:31+0000\n"
+"PO-Revision-Date: 2021-06-15 15:32+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -3123,3 +3123,24 @@ msgstr "Pueblo Papel: ¡La puerta a Fondent!"
 
 msgid "got_new_tuxemon"
 msgstr "¡Obtuviste un ${{monster_name}}!"
+
+msgid "spyder_searoutec_leek2"
+msgstr "Solo ganaste porque te di _alga_ de ventaja."
+
+msgid "spyder_searoutec_leek1"
+msgstr "Déjame ganar. ¡No seas _pescado_!"
+
+msgid "spyder_searoutec_rutherford2"
+msgstr "… y ni una gota que puedas tragar."
+
+msgid "spyder_searoutec_rutherford1"
+msgstr "¡Agua, agua por todas partes! Realmente te hace pensar…"
+
+msgid "spyder_dryadsgrove_petra2"
+msgstr "Hombre ingrato."
+
+msgid "spyder_dryadsgrove_petra1"
+msgstr "¡Rompe los moldes de la naturaleza!"
+
+msgid "professorexists1.5"
+msgstr "¡Eh, hola!"

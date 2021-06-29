@@ -25,7 +25,8 @@
 #
 # main Sets up the states and main game loop.
 #
-
+from __future__ import annotations
+from typing import Optional
 import logging
 
 from tuxemon import prepare
@@ -37,11 +38,17 @@ from tuxemon.world import World, Position
 logger = logging.getLogger(__name__)
 
 
-def main(load_slot=None):
-    """Start new local game using the pygame interface
+def main(
+    load_slot: Optional[int] = None,
+) -> None:
+    """
+    Configure and start the game.
 
-    :rtype: None
-    :returns: None
+    Add all available states to our scene manager (:class:`tools.Client`)
+    and start the game using the pygame interface.
+
+    Parameters:
+        load_slot: Number of the save slot to load, if any.
 
     """
     prepare.init()

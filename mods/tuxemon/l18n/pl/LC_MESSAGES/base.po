@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-20 07:29+0000\n"
+"PO-Revision-Date: 2021-06-23 09:52+0000\n"
 "Last-Translator: vXtreniusX <michal2008vxv@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "pl/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 msgid "clamp_on"
 msgstr "Zacisk"
@@ -604,3 +604,910 @@ msgstr "Niezwyciężony"
 
 msgid "icicle_spear"
 msgstr "Lodowa Włócznia"
+
+msgid "spyder_route4_beck1"
+msgstr "Twoja służba!"
+
+msgid "spyder_route4_rosamund2"
+msgstr "Zemsta najlepiej smakuje na zimno. "
+
+msgid "spyder_route4_rosamund1"
+msgstr "Spróbuj ze mną walczyć, a dostaniesz swoje sprawiedliwe desery!"
+
+msgid "spyder_route4_rincewind2"
+msgstr "To nie było aż tak przydatne."
+
+msgid "spyder_route4_rincewind1"
+msgstr "Wreszcie jakieś zastosowanie dla K9!"
+
+msgid "spyder_route4_wulf2"
+msgstr "Och, czuję się taki wykastrowany!"
+
+msgid "spyder_route4_wulf1"
+msgstr "Ah, tylko zbieram trochę suplementów leczniczych"
+
+msgid "spyder_route4_roger2"
+msgstr "Mógłbym się od Ciebie wiele nauczyć na temat strategii!"
+
+msgid "spyder_route4_roger1"
+msgstr "Od tuxemonów możemy się wiele nauczyć o strategii."
+
+msgid "spyder_route4_marshall2"
+msgstr "To może wymagać trochę pracy."
+
+msgid "spyder_route4_marshall1"
+msgstr "Pracuję nad gigantycznym działem!"
+
+msgid "spyder_wayfarer1_ratcher2"
+msgstr "Teraz muszę odpocząć!"
+
+msgid "spyder_wayfarer1_ratcher1"
+msgstr "Powinnaś pozwolić pacjentom odpocząć!"
+
+msgid "spyder_wayfarer1_bismuth2"
+msgstr "Porażka!"
+
+msgid "spyder_wayfarer1_bismuth1"
+msgstr ""
+"Mam nadzieję, że to nie jest związane z tymi chorymi tuxemonami w Scoop "
+"Farms!"
+
+msgid "spyder_wayfarer1_james2"
+msgstr "Cieszę się, że Jessie nie widziała mojej przegranej w ten sposób!"
+
+msgid "spyder_wayfarer1_james1"
+msgstr ""
+"Zastanawiam się, jak Egzekutorzy dotarli tu tak szybko! Pielęgniarka Jessie "
+"musiała ich wezwać."
+
+msgid "spyder_wayfarer1_bravo2"
+msgstr ""
+"Proszę, nie pozwól, aby moje wyniki w bitwie wpłynęły na Twoją opinię o "
+"Omnichannel: Jedyne potrzebne ci wiadomości. "
+
+msgid "spyder_wayfarer1_bravo1"
+msgstr ""
+"Ta akcja jest sponsorowana przez Omnichannel: Jedyne potrzebne ci "
+"wiadomości. "
+
+msgid "spyder_wayfarer1_morningstar2"
+msgstr "Wróć i zobacz mnie później - kolejny pacjent proszę!"
+
+msgid "spyder_wayfarer1_morningstar1"
+msgstr "Nie jestem zaskoczony, że cię tu widzę. "
+
+msgid "spyder_wayfarer1_victor2"
+msgstr "Zatrzymaj się! Albo, hm..."
+
+msgid "spyder_wayfarer1_victor1"
+msgstr "Hej, nie wyjdziesz z potencjalnie zainfekowanym tuxemonem!"
+
+msgid "spyder_wayfarer1_nightshade2"
+msgstr "Myślę, że mamy jeszcze wiele do nauczenia się o pielęgnacji tuxemonów."
+
+msgid "spyder_wayfarer1_nightshade1"
+msgstr ""
+"To żenujące. Wszystkie pielęgniarki zachorowały, ale tuxemony egzekutorów są "
+"w dobrej formie!"
+
+msgid "spyder_wayfarer1_jessie2"
+msgstr "Nie jesteś tak pomocny jak Egzekutor. Ani tak przystojny. "
+
+msgid "spyder_wayfarer1_jessie1"
+msgstr ""
+"Egzekutorzy byli tacy szybcy i pomocni! Domyślam się, że Naukowiec James "
+"zaalarmował ich tak szybko, jak to możliwe."
+
+msgid "spyder_wayfarer1_morton2"
+msgstr "Teraz nie mam nic do roboty!"
+
+msgid "spyder_wayfarer1_morton1"
+msgstr ""
+"Utknąłem w tym pokoju, dopóki mój tuxemon nie wyzdrowieje, więc nie mam nic "
+"do roboty poza walką!"
+
+msgid "spyder_citypark_florist"
+msgstr "Ciesz się wystawą kwiatów! To duma Leather Town."
+
+msgid "taba_greeting2b"
+msgstr ""
+"Ah! Widzę, że już masz kilka. Masz dobrą głowę na karku ${{name}}, jestem "
+"pewien, że będziesz mistrzem w nie długim czasie."
+
+msgid "taba_greeting3"
+msgstr ""
+"Powodzenia w swoich przygodach ${{name}}, i pamiętaj, aby kupować w Tuxemart "
+"wszystkie potrzebne ci rzeczy!\n"
+"...\n"
+"Przepraszam za nachalną sprzedaż, to moja praca."
+
+msgid "professor-rockitten"
+msgstr "Profesor"
+
+msgid "youneedtodothis"
+msgstr ""
+"Ja... Myślę, że trzeba spojrzeć na to bardziej...\n"
+"Nie chcę cię stracić, zwłaszcza gdy dopiero się rozliczamy."
+
+msgid "youneedtodothis2"
+msgstr ""
+"Ale... Wiem, że bardzo chciałeś zobaczyć ten region, a to jest twoja "
+"najlepsza szansa.\n"
+"Wiem, że masz w sobie chęć, by stać się najlepszym, jak nikt inny.\n"
+"Nie wiem tylko, czy stać nas na opłaty.\n"
+"\n"
+"Coś z tego będzie... Jakoś."
+
+msgid "ihaveyourmoney"
+msgstr "Cóż, może ja mogę w tym pomóc."
+
+msgid "iknowyou"
+msgstr ""
+"Witaj Callie, witaj ${{name}}, właśnie wpadłem, żeby się przywitać, kiedy "
+"podsłuchałem, jak mówisz o ogłoszeniu."
+
+msgid "ihaveyourmoney2"
+msgstr ""
+"Mam trochę zapasów, które trzeba dobrze wykorzystać, a Omnichannel jest mi "
+"winien przysługę.\n"
+"Jestem pewien, że coś da się załatwić. Zdobycie dokumentów kwalifikacyjnych "
+"to łatwa część. Zdobycie swojego pierwszego Tuxemona jest trochę "
+"trudniejsze...\n"
+"Na szczęście znam kogoś, kto ma dostęp do wielu różnych Tuxemonów...\n"
+"To Ja!\n"
+"Wiem, że to dużo do przetworzenia, więc będę w moim laboratorium czekał na "
+"twoją decyzję."
+
+msgid "hebenice"
+msgstr ""
+"To miły człowiek, może powinieneś przynajmniej zobaczyć, co ma do "
+"powiedzenia."
+
+msgid "moverocky"
+msgstr "Dalej, Rocky! Możesz się poruszać! Wierzę w ciebie!"
+
+msgid "moverocky2"
+msgstr "Cóż, ruszysz się, kiedy będziesz gotowa, ja będę tu czekał."
+
+msgid "tuxemontime"
+msgstr "Ach, przyszedłeś! Wspaniale!"
+
+msgid "tuxemontime1.5"
+msgstr "Rozumiem, że to oznacza, że zdecydowałeś się dołączyć do Próby?"
+
+msgid "sting"
+msgstr "Żądło"
+
+msgid "static_field"
+msgstr "Pole statyczne"
+
+msgid "starfall"
+msgstr "Starfall"
+
+msgid "stampede"
+msgstr "Popłoch"
+
+msgid "spray"
+msgstr "Spray"
+
+msgid "splinter"
+msgstr "Splinter"
+
+msgid "snowstorm"
+msgstr "Zamieć"
+
+msgid "sleeping_powder"
+msgstr "Proch Usypiający"
+
+msgid "sleep_bomb"
+msgstr "Bomba usypiająca"
+
+msgid "shuriken"
+msgstr "Shuriken"
+
+msgid "shrapnel"
+msgstr "Shrapnel"
+
+msgid "shadow_boxing"
+msgstr "Shadow Boxing"
+
+msgid "sand_spray"
+msgstr "Spray piaskowy"
+
+msgid "salamander"
+msgstr "Salamandra"
+
+msgid "rust_bomb"
+msgstr "Bomba rdzy"
+
+msgid "rot"
+msgstr "Gnić"
+
+msgid "rock"
+msgstr "Skała"
+
+msgid "refresh"
+msgstr "Odświeżenie"
+
+msgid "ram"
+msgstr "Baran"
+
+msgid "quicksand"
+msgstr "Ruchome piaski"
+
+msgid "pseudopod"
+msgstr "Pseudopod"
+
+msgid "probiscus"
+msgstr "Probiscus"
+
+msgid "petrify"
+msgstr "Petryfikacja"
+
+msgid "perfect_cut"
+msgstr "Perfekcyjne cięcie"
+
+msgid "peregrine"
+msgstr "Sokół wędrowny"
+
+msgid "overgrowth"
+msgstr "Przerost"
+
+msgid "one_two"
+msgstr "Jeden–dwa"
+
+msgid "mudslide"
+msgstr "Mudslide"
+
+msgid "muddle"
+msgstr "Muddle"
+
+msgid "midnight_mantle"
+msgstr "Płaszcz północy"
+
+#, fuzzy
+msgid "reg_papers_description"
+msgstr "Pakiet papierów rejestracyjnych do The Trial"
+
+msgid "reg_papers"
+msgstr "Papiery rejestracyjne"
+
+msgid "agnigon"
+msgstr "Agnigon"
+
+msgid "agnigon_description"
+msgstr ""
+"Jest on nazywany \"fałszywym smokiem\", ponieważ wygląda jak smok, ale w "
+"rzeczywistości wyewoluował z innej linii starożytnych gadów."
+
+msgid "agnidon"
+msgstr "Agnidon"
+
+msgid "agnidon_description"
+msgstr ""
+"Preferuje stanie na czterech nogach, ale może on stać na dwóch żeby otwierać "
+"drzwi, popychać drzewa czy trzymać rzeczy."
+
+msgid "aardorn"
+msgstr "Aardorn"
+
+msgid "aardorn_description"
+msgstr ""
+"Po urodzeniu jest on wkładany w mrowisku, musząc przegryść swoją drogę do "
+"wyjścia."
+
+msgid "aardart"
+msgstr "Aardart"
+
+## MONSTER TRANSLATIONS ##
+# Monster details
+msgid "aardart_description"
+msgstr "Liczy każdą zjedzoną mrówkę, i świętuje znaczące liczby."
+
+msgid "menu_fight"
+msgstr "Walka"
+
+msgid "menu_bag"
+msgstr "Plecak"
+
+msgid "menu_item"
+msgstr "Rzecz"
+
+msgid "menu_items"
+msgstr "Rzeczy"
+
+# TODO: duplicate of menu_monster?
+msgid "menu_monsters"
+msgstr "Potwory"
+
+msgid "menu_monster"
+msgstr "Tuxemon"
+
+msgid "menu_journal"
+msgstr "Dziennik"
+
+msgid "menu_multiplayer"
+msgstr "Gra Wieloosobowa"
+
+msgid "multiplayer_join_prompt"
+msgstr "Nazwa hosta czy adres IP?"
+
+msgid "multiplayer_no_servers"
+msgstr "Nie znaleziono serwerów…"
+
+msgid "multiplayer_already_hosting"
+msgstr "Gra jest już hostowana!"
+
+msgid "multiplayer_hosting_ready"
+msgstr "Gotowy na akceptowanie graczy!"
+
+msgid "multiplayer_join_game"
+msgstr "Dołącz do gry"
+
+msgid "multiplayer_scan_games"
+msgstr "Szukaj gier"
+
+msgid "multiplayer_host_game"
+msgstr "Hostuj grę"
+
+msgid "multiplayer_duel"
+msgstr "{name} wyzywa cię na pojedynek!"
+
+msgid "multiplayer_decline"
+msgstr "Odrzuć"
+
+# Multiplayer notifications
+msgid "multiplayer_accept"
+msgstr "Akceptuj"
+
+msgid "menu_save"
+msgstr "Zapisz"
+
+msgid "menu_run"
+msgstr "Uciekaj"
+
+msgid "menu_player"
+msgstr "Gracz"
+
+msgid "menu_options"
+msgstr "Opcje"
+
+msgid "menu_new_game"
+msgstr "Nowa Gra"
+
+msgid "menu_load"
+msgstr "Wczytaj"
+
+msgid "announcement3"
+msgstr ""
+"Dziękuję. Ja też cię kocham\n"
+"Teraz, do rzeczy."
+
+msgid "announcement2"
+msgstr "KOCHAMY CIĘ AEBLE!"
+
+msgid "announcement1"
+msgstr ""
+"WITAJCIE MIESZKAŃCY REGIONU FONDENT!\n"
+"DZIĘKUJEMY ZA WYSŁUCHANIE TEGO OBOWIĄZKOWEGO OGŁOSZENIA."
+
+msgid "ipausedit"
+msgstr ""
+"Zapauzowałam telewizor, podaj mi proszę szklankę wody, a potem możemy razem "
+"pooglądać."
+
+msgid "thetvbescreamin"
+msgstr ""
+"Kochanie, poczekaj. Włączyłem telewizor i leciała konferencja prasowa "
+"Omnichannel.\n"
+"Powinniśmy ją obejrzeć."
+
+msgid "waitdontgo"
+msgstr "${{name}}! Czekaj! Nie odchodź jeszcze!"
+
+msgid "wherewasshe"
+msgstr "Ona nie powiedziała nam złych wieści..."
+
+msgid "frowntime"
+msgstr ""
+"Nie przeszkadza mi to, że tu jestem...\n"
+"Tylko czasami jestem samotny..."
+
+msgid "knight4ispoor"
+msgstr "Ona naprawdę nie jest złą osobą."
+
+msgid "seeme"
+msgstr "Upewnij się, że przyjdziesz mnie zobaczysz..."
+
+msgid "solongjohn2"
+msgstr "Chodź Grant, mamy harmonogram do utrzymania."
+
+msgid "solongjohn"
+msgstr ""
+"John, powinieneś tu zostać, żeby zachować spokój.\n"
+"I tak nie chcę cię w pobliżu."
+
+msgid "maamnothing6"
+msgstr ""
+"... ... ... ...\n"
+"... Dobrze. Powinniśmy chyba wrócić do kwatery głównej i złożyć raport."
+
+msgid "maamnothing5"
+msgstr "Proszę pani, ja też go nie znalazłam."
+
+msgid "maamnothing4"
+msgstr "Świetnie. Dzięki za informację."
+
+msgid "maamnothing3"
+msgstr "Ja… ja… Nic nie znalazłem."
+
+msgid "maamnothing2"
+msgstr ""
+"Niech to szlag John! Mieliśmy chwilę czasu!\n"
+"Czego chcesz?"
+
+msgid "maamnothing"
+msgstr "Proszę pani...\n"
+
+msgid "itsmyaurababe3"
+msgstr "Mam nadzieję, że jeszcze się spotkamy. "
+
+msgid "itsmyduhduhduh"
+msgstr "Otrzymano adres Allie!"
+
+msgid "itsmyaurababe2"
+msgstr ""
+"Hmm, teraz gdy na ciebie patrzę, masz dość tajemniczą aurę.\n"
+"... ... ... ...\n"
+"Powinniśmy kiedyś porozmawiać. Może zobaczymy się w Cotton Town?"
+
+msgid "itsmyaurababe"
+msgstr "A teraz, kim ty jesteś?"
+
+msgid "maamiexist4"
+msgstr ""
+"Nie, zostaw to. Ci ludzie mają najwyraźniej fatalny gust i gardzą "
+"użytecznością i prostotą...\n"
+"Sprawdź teraz laboratorium, Grant. Ja poczekam na Johna."
+
+msgid "maamiexist3"
+msgstr ""
+"Jest tam komputer z Ubuntu.\n"
+"Miałem zamiar go skonfiskować, ale wiem, że Gnome nie jest w twoim stylu..."
+
+msgid "maamiexist2"
+msgstr "Czy było tam coś interesującego?"
+
+msgid "maamiexist"
+msgstr "Proszę pani, nie ma go w domu."
+
+msgid "oopsie2"
+msgstr ""
+"Dlaczego nie zaczekamy na powrót moich rycerzy.\n"
+"Nienawidzę ogłaszać złych wieści samemu."
+
+msgid "ourstuffisours"
+msgstr "Dlaczego właściwie tu jesteś?"
+
+msgid "oopsie"
+msgstr ""
+"Przykro mi, że musiałeś to zobaczyć. Czasami jest po prostu taaak bardzo "
+"bezużyteczny."
+
+msgid "whereismyhairbrush"
+msgstr "John, Grant, rozproszcie się. ZNAJDZCIE GO."
+
+msgid "hellolovelypeople5"
+msgstr ""
+"Nie... Czekaj... Brakuje nam jednej osoby...\n"
+"Jedynego hodowcy Tuxemonów, który pozostał w regionie Fondent. Tego, który "
+"nazywa siebie Profesorem Tuxemonów"
+
+msgid "hellolovelypeople4"
+msgstr "Jestem pewien, że w Cotton Town są domy większe od tego..."
+
+msgid "hellolovelypeople3"
+msgstr ""
+"Czy naprawdę jesteście jedynymi ludźmi w tym mieście? Nie ma tu nikogo! To "
+"musi być najmniejsze miasto w regionie Fondent."
+
+msgid "hellolovelypeople2"
+msgstr ""
+"Wiem, że pewnie zastanawiacie się, dlaczego ja i moi Omni Rycerze tu "
+"jesteśmy.\n"
+"Czekaj..."
+
+msgid "cometomepls"
+msgstr ""
+"TERAZ, PROSZĘ WSZYSTKICH O PRZYBYCIE DO CENTRUM MIASTA. OMNICHANNEL PRAGNIE "
+"ZWRÓCIĆ SIĘ DO WAS!"
+
+msgid "uselessnes"
+msgstr ""
+"Jesteś absolutnie bezużyteczny, John. Nie mogę uwierzyć, że kiedykolwiek "
+"byliśmy razem."
+
+msgid "johnissorry"
+msgstr ""
+"Przepraszam panią... Ja...\n"
+"Widziałem...\n"
+"Kilka...\n"
+"Kwiatów..."
+
+msgid "darnitjohn10"
+msgstr "TERAZ!"
+
+msgid "darnitjohn8"
+msgstr "AAAAAGH!!!"
+
+msgid "darnitjohn7"
+msgstr "Nie jestem pewien…"
+
+msgid "darnitjohn6"
+msgstr "Uhh…"
+
+msgid "darnitjohn5"
+msgstr "Dlaczego wciąż tu jesteś?"
+
+msgid "darnitjohn4"
+msgstr "Tak, proszę pani?"
+
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "darnitjohn2"
+msgstr "NIECH MNIE SZLAG TRAFI! WYŁAŹ STAMTĄD!"
+
+msgid "darnitjohn"
+msgstr "Chwileczka, gdzie jest John?"
+
+msgid "hellolovelypeople"
+msgstr "WITAJCIE MIESZKAŃCY MIASTA TABA!"
+
+msgid "bothofyou"
+msgstr ""
+"Obaj wyjdźcie na zewnątrz. Przedstawiciel Omnnichannel chce zwrócić się do "
+"miasta."
+
+msgid "professorswife"
+msgstr ""
+"O nie! Właśnie go przegapiłeś. Chyba jednak pojechał do miasta. Może sprawdź "
+"tam?"
+
+msgid "nopenotyet"
+msgstr ""
+"Niestety, ktoś został ranny na tej trasie. W tej chwili jest ona zamknięta."
+
+msgid "hmmm2"
+msgstr "Słyszałem, że robią nowy park. Aby \"zazielenić okolicę\""
+
+msgid "hmmm"
+msgstr "Ciekawe, co oni tam robią?"
+
+msgid "theenergy"
+msgstr "Energia tego człowieka jest bezgraniczna..."
+
+msgid "professorexists4"
+msgstr ""
+"Teraz wiem, co myślisz, dlaczego mieliby mi pozwolić?\n"
+"Niestety dla Ciebie, ten sekret jest dla mnie i tylko dla mnie!\n"
+"Jednakże, Omnichannel powinien wkrótce ogłosić nowe ogłoszenie i myślę, że "
+"Ci się spodoba.\n"
+"Lepiej wróć do domu i obejrzyj drugą zapowiedź, No dalej!"
+
+msgid "professorexists3"
+msgstr ""
+"Przepraszam za moje maniery, nie mogę uwierzyć, że nigdy się nie "
+"przedstawiłam!\n"
+"Nazywam się Kay Wren, lepiej znana jako Profesor Tuxemon.\n"
+"Od lat jestem jedyną osobą w regionie Fondent, która może badać Tuxemona."
+
+msgid "potions2"
+msgstr "Otrzymano 2 eliksiry!"
+
+msgid "professorexists2"
+msgstr ""
+"Ty musisz być dzieckiem Callie! Tyle o tobie słyszałam od twojej mamy.\n"
+"Co cię tu sprowadza?\n"
+".... .... ....\n"
+"Mikstury? Oczywiście, zawsze ich potrzebujesz!\n"
+"Proszę, weź kilka na mój koszt, dzięki mojej uprzejmości."
+
+msgid "professorexists1.5"
+msgstr "Witam!"
+
+msgid "professorexists1"
+msgstr "Dzięki, Ben."
+
+msgid "professorexists"
+msgstr "Poproszę 12 eliksirów."
+
+msgid "bobtalk"
+msgstr ""
+"Byłoby miło, gdyby więcej ludzi takich jak ty przychodziło się przywitać...\n"
+"Przy okazji, witaj! Miłego dnia! Dziś lub jutro lub jakikolwiek dzień będzie "
+"wielki!"
+
+msgid "grumble"
+msgstr ""
+"Omnichannel to banda oprychów, ale nie mamy wyboru...\n"
+"Jak zawsze mówi, chyba musimy z nimi współpracować..."
+
+msgid "watchmewatchme"
+msgstr ""
+"Dlaczego idziesz do miasta? Wiesz, że jest wczesna godzina policyjna.\n"
+"... ... ... ...\n"
+"... ... ... ...\n"
+"Nie wyglądasz na zagrożenie, więc możesz jechać do miasta...\n"
+"Tylko nie mów żadnemu z tych Omnichannelowych zbirów, że cię przepuściłem, "
+"dobrze?"
+
+msgid "waterwater"
+msgstr "Woda jest lodowato zimna i pyszna!"
+
+msgid "depressedmom"
+msgstr "Dlaczego miałby zrobić coś takiego... Myślałam, że mu zależy..."
+
+msgid "ohnoes2"
+msgstr ""
+"Teraz, gdy to się skończyło... potrzebujemy jeszcze eliksirów z Tuxemartu.\n"
+"Upewnijcie się, że wrócicie przed godziną policyjną!"
+
+msgid "ohnoes"
+msgstr "Cóż… Nie wiem jak się z tym czuć…"
+
+msgid "whythecheering"
+msgstr "Ci z Omnichannel bardzo mu kibicują. Ciekawe dlaczego?"
+
+msgid "announcement4"
+msgstr ""
+"Do WSZYSTKICH mieszkańców regionu Fondent i nie tylko, którzy są tutaj "
+"obecni.\n"
+"Nazywam się Aeble, dla tych, którzy się zastanawiają, piszę się A-E-B-L-E i "
+"jestem dyrektorem generalnym Omnichannel!\n"
+
+msgid "okaythen2"
+msgstr "Wygląda na to, że twoje Tuxemony czują się teraz lepiej! Proszę bardzo!"
+
+msgid "okaythen"
+msgstr "W porządku! Po prostu daj mi sekundę, a wyleczę twojego Tuxemona!"
+
+msgid "cottonnurse_dialog"
+msgstr "Witamy w Cotton Town Tuxecenter!"
+
+msgid "ripjimmy"
+msgstr ""
+"Napis na grobie mówi:\n"
+"„Tu leży Jimmy. Przyjaciel, rycerz i… ogólnie zły człowiek. Jednak... "
+"nigdy... ... Pomocy!”…\n"
+"Reszta jest zniszczona przez pogodę."
+
+msgid "tabatownbattlearea"
+msgstr "Certyfikowany obszar walki — Taba Town"
+
+msgid "goodbye2"
+msgstr ""
+"Powodzenia w The Trial, ${{name}}! I dużo szczęścia — będziesz go bardzo "
+"potrzebować."
+
+msgid "goodbye"
+msgstr ""
+"Nie pozwól, aby The Trial uniemożliwiła ci przybycie do mnie. W zasadzie... "
+"Może znajdę cię najpierw."
+
+msgid "gasp4"
+msgstr ""
+"Dobra, twoje dokumenty rejestracyjne pozostaną nienaruszone. Na razie.\n"
+"John, Grant, zabierz tak zwanego Tuxemon Professor do jego nowego domu."
+
+msgid "gasp3"
+msgstr "Jeśli to prawda, jest w tobie coś więcej, niż sądziłam..."
+
+msgid "brokethegasp3"
+msgstr ""
+"Proszę, proszę pani z omnichannel, Matka ${{name}} chciała, aby dołączyli do "
+"The Trial, aby zobaczyć cały region\n"
+"${{name}} nie robi tego dla pracy, tylko dla doświadczenia."
+
+msgid "brokethegasp2"
+msgstr "Ty. Dlaczego mówisz? Nie pozwoliłem ci mówić."
+
+msgid "brokethegasp"
+msgstr "Teraz pani, jeśli mogę, ${{name}} robi to nie tylko dla pracy."
+
+msgid "gasp2"
+msgstr ""
+"Co ty tu robisz z tym... przestępcą?\n"
+"... .... ....\n"
+"... ... ...\n"
+"Dołączasz do The Trial? Naprawdę poddałbyś się tym nonsensom?\n"
+"Jeśli chcesz tylko pracy w Omnichannel, mogłeś mnie po prostu zapytać.\n"
+"Jestem pewien, że znajdę dla ciebie... zastosowanie, jeśli jesteś "
+"zainteresowany."
+
+msgid "gasp"
+msgstr "Chwila…"
+
+msgid "yahaha"
+msgstr "Ach ha! Znalazłam cię!"
+
+msgid "wewnicefight"
+msgstr ""
+"Wow, to była dobra walka!\n"
+"Pozwól mi szybciutko uzdrowić twojego Tuxemona...\n"
+"i... Wszystko gotowe!\n"
+"Z trochę więcej praktyki i może kilka Tuxemonów, na pewno będziesz w stanie "
+"podjąć się procesu.\n"
+
+msgid "tweesher!"
+msgstr "Zdobyto Tweeshera!"
+
+msgid "choseTweesher2"
+msgstr ""
+"Najpierw jednak sprawdźmy twoją sprawność bojową w szybkiej walce z "
+"Tuxemonem.\n"
+" Zobaczmy... Wybieram Rockitten."
+
+msgid "choseTweesher"
+msgstr ""
+"Dobra, oto twój Tweesher! Wiem, że przeżyjecie razem wspaniałe przygody!"
+
+msgid "chooseyerfateTweesher"
+msgstr ""
+"Świetny wybór! Tweesher jest Tuxemonem wodnym. Ta ewolucja Eagleace jest "
+"jednym z najszybszych Tuxemon\n"
+"Czy chcesz wybrać Tweeshera?"
+
+msgid "cardiling!"
+msgstr "Zdobyto Cardilinga!"
+
+msgid "chosefight"
+msgstr "I... CZAS NA WALKĘ!"
+
+msgid "choseCardiling2"
+msgstr ""
+"Najpierw jednak sprawdźmy twoją sprawność bojową w szybkiej walce z "
+"Tuxemonem.\n"
+" Zobaczmy... Wybieram Tweeshera."
+
+msgid "choseCardiling"
+msgstr ""
+"W porządku, oto twój Cardiling! Wiem, że przeżyjecie razem wspaniałe "
+"przygody!"
+
+msgid "chooseyerfateCardiling"
+msgstr ""
+"Ciekawy wybór, przemawia do iskry wewnątrz ciebie. Cardiling jest Tuxemonem "
+"typu fire, znanego z kradzieży jedzenia zarówno przyjaciołom, jak i wrogom.\n"
+"Czy chcesz wybrać Cardilinga?"
+
+msgid "nochoiceTuxemon"
+msgstr "Dobra, może spojrzysz na pozostałe dwa?"
+
+msgid "rockitten!"
+msgstr "Zdobyto Rockittena!"
+
+msgid "choseRockitten2"
+msgstr ""
+"Najpierw jednak sprawdźmy twoją sprawność bojową w szybkiej walce z "
+"Tuxemonem.\n"
+" Zobaczmy... Wybieram Cardiling."
+
+msgid "choseRockitten"
+msgstr ""
+"Dobra, oto twój Rockitten! Wiem, że przeżyjecie razem wspaniałe przygody!"
+
+msgid "chooseyerfateRockitten"
+msgstr ""
+"Solidny wybór! Rockitten jest Tuxemonem typu earth. W średniowieczu ludzie "
+"hodowali Rockitteny, aby siedziały przy drzwiach i wyglądały słodko.\n"
+"Czy chcesz wybrać Rockitten?"
+
+msgid "chooseyerfate"
+msgstr "Którego Tuxemona chcesz?"
+
+msgid "tuxemontime4"
+msgstr ""
+"Teraz najważniejsza część! Wybór Tuxemona!\n"
+"Niestety, ostatnio moje źródło finansowania stało się… niepewne. To "
+"pozostawia ci tylko trzy opcje Tuxemonów, przepraszam za to.\n"
+"Te trzy opcje to Rockitten, Cardiling i Tweesher."
+
+msgid "obtainedpapers"
+msgstr "Otrzymano dokumenty rejestracyjne!"
+
+msgid "tuxemontime3.1"
+msgstr ""
+"Oto twoje dokumenty rejestracyjne. W pierwszym obszarze bitwy będziesz "
+"musiał je przedstawić w zamian za odznakę Trenera.\n"
+"Później dokumenty nie będą Ci potrzebne.\n"
+
+msgid "tuxemontime3"
+msgstr "No i proszę!"
+
+msgid "tuxemontime2"
+msgstr "Pierwszą rzeczą do zrobienia jest przygotowanie dokumentów..."
+
+msgid "tuxemontimechoiceno"
+msgstr "Och... W porządku... Będę tu, jeśli zmienisz zdanie..."
+
+msgid "tuxemontimechoiceyes"
+msgstr "Wspaniałe!"
+
+msgid "moreannouncement2"
+msgstr ""
+"Przepraszam, że tak późno informuję o tym adresie, ale uważałem go za ważny, "
+"zanim wyciekł do mediów...\n"
+"Cóż... Heh. Jesteśmy właścicielami mediów, więc to chyba nie ma znaczenia, "
+"ale chciałem się tym podzielić.\n"
+"Po konsultacji z moimi doradcami, zdecydowaliśmy, że najlepszym sposobem, "
+"aby stać się bardziej komfortowym z Tuxemonem, jest użycie go.\n"
+"Minie trochę czasu, zanim będziemy mogli zintegrować je z pracownikami, ale "
+"w międzyczasie, jak już mówiłem, wypuścimy je na wolność.\n"
+"Zdaję sobie sprawę, że jest to szok dla wszystkich, rozumiem też, że "
+"niektórzy z was mogą się nawet bać. Wszyscy wiemy, co się stało wcześniej..."
+"\n"
+"Nie czas się bać, ponieważ Omnichannel będzie sponsorował odrodzenie "
+"starożytnej tradycji znanej jako The Trial.\n"
+"Teraz, dla tych, którzy są mniej zorientowani w historii regionu Fondent, "
+"sto lat temu istniała tradycja, w której młodzi ludzie łapali i hodowali "
+"Tuxemona.\n"
+"Następnie używali tych Tuxemonów do walki z innymi i podnosili rangę w swoim "
+"mieście, a najlepszy Trener Tuxemonów zyskiwał status i władzę.\n"
+"Stworzymy wersję tego w dzisiejszych czasach. Utworzymy obszary bitewne w "
+"wielu miastach na terenie Fondentu.\n"
+"Każdy obszar bitewny będzie musiał być ukończony w kolejności, a najbardziej "
+"obiecujący trener lub trenerzy będą mogli wziąć udział w Mistrzostwach.\n"
+"Mistrzostwa odbędą się na szczycie Wieży Omnichannel w Cotton Town, ale "
+"tylko wtedy, gdy Trener Tuxemon przejdzie przez wszystkie obszary bitewne.\n"
+"Próba jest zaprojektowana jako sposób na powolne wprowadzenie do życia "
+"publicznego Tuxemonów i zachęcenie do podróżowania po regionie.\n"
+"Kto może to lepiej zademonstrować niż nasza młodzież?\n"
+"Każdy mecz będzie transmitowany na żywo na kanale Omnichannel-T, najnowszej "
+"stacji telewizyjnej poświęconej wyłącznie programom związanym z Tuxemon!\n"
+"Nie martw się, dodatek będzie odzwierciedlony w Twoim rachunku.\n"
+"Aha, i jeszcze jedno, wszyscy Trenerzy Tuxemonów będą zwolnieni z godziny "
+"policyjnej.\n"
+"Przed tym oczywiście będziesz potrzebował Tuxemona! Nie każdy może zostać "
+"Trenerem Tuxemonów. To byłby czysty chaos!\n"
+"Po pierwsze, musisz zarejestrować swoje imię u lokalnego przedstawiciela "
+"Omnichannel i jeśli zostaniesz wybrany, zostaniesz wysłany na szkolenie "
+"Omnichannel.\n"
+"Po pomyślnym ukończeniu szkolenia, otrzymasz Tuxemona i będziesz mógł "
+"rozpocząć udział w Próbie!\n"
+"Nie mogę się doczekać, aby Was wszystkich poznać! Stwórzmy razem nowy świat!"
+"\n"
+"W końcu... JESTEŚMY BEZPIECZEŃSTWEM, JESTEŚMY PORZĄDKIEM, JESTEŚMY "
+"OMNICHANNEL! A teraz,\n"
+"MY\n"
+"JESTEŚMY\n"
+"PRZYSZŁOŚCIĄ!"
+
+msgid "moreannouncement"
+msgstr "UWAGA WSZYSCY OBYWATELE REGIONU FONDENT!\n"
+
+msgid "theanthemishere"
+msgstr "Słuchaj! Hymn się zaczyna, zdążyliśmy w samą porę. Chodź i oglądaj!"
+
+msgid "timeforround22"
+msgstr "Och! Zdobyłeś eliksiry! Dobrze! Teraz naprawdę musimy wracać."
+
+msgid "timeforround2"
+msgstr "${{name}}! Nareszcie! Wróciłeś! Bałem się, że przegapisz ogłoszenie!"
+
+msgid "hmmm7"
+msgstr "Ale pogoda jest ładna, prawda?"
+
+msgid "hmmm6"
+msgstr ".... .... Okej... Ale to może być..."
+
+msgid "hmmm5"
+msgstr ""
+"Max, tak bardzo jak możesz tego chcieć, ustaliliśmy to. Oni nie robią i nie "
+"zrobią parku wodnego."
+
+msgid "hmmm4"
+msgstr "Może robią park wodny!"
+
+msgid "hmmm3"
+msgstr "Jaki to ma sens? Trasa i tak jest prawie cała w trawie."

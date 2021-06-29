@@ -23,6 +23,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
 import inspect
 import logging
 import os
@@ -30,8 +31,8 @@ import os.path
 import sys
 from abc import ABCMeta
 from importlib import import_module
-
 import pygame
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.compat import Rect
 from tuxemon.constants import paths
@@ -39,9 +40,13 @@ from tuxemon import prepare, graphics
 from tuxemon.animation import Animation
 from tuxemon.animation import Task
 from tuxemon.animation import remove_animations_of
-from tuxemon.sprite import SpriteGroup
+from tuxemon.sprite import SpriteGroup, Sprite
+from tuxemon.platform.events import PlayerInput
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from tuxemon.client import Client
 
 
 class State:
@@ -58,9 +63,11 @@ class State:
        pause         - Called when state is no longer active
        shutdown      - Called before state is destroyed
 
-    :ivar client: tuxemon.session.Client
-    :cvar force_draw: If True, state will never be skipped in drawing phase
-    :cvar rect: Area of the screen will be drawn on
+    Attributes:
+        client: The client class that this state belongs to.
+        force_draw: If True, state will never be skipped in drawing phase.
+        rect: Area of the screen will be drawn on.
+
     """
 
     __metaclass__ = ABCMeta
@@ -69,14 +76,16 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, client):
-        """Do not override this unless there is a special need.
+    def __init__(self, client: Client) -> None:
+        """
+        Do not override this unless there is a special need.
 
         All init for the State, loading of config, images, etc should
         be done in State.startup or State.resume, not here.
 
-        :param tuxemon.client.Client client: State Manager / Game Client
-        :returns: None
+        Parameters:
+            client: State Manager / Game Client.
+
         """
         self.client = client
         self.start_time = 0.0
@@ -85,145 +94,169 @@ class State:
         self.sprites = SpriteGroup()  # all sprites that draw on the screen
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__class__.__name__
 
-    def load_sprite(self, filename, **kwargs):
-        """Load a sprite and add it to this state
+    def load_sprite(self, filename: str, **kwargs: Any) -> Sprite:
+        """
+        Load a sprite and add it to this state.
 
-        kwargs can be any value used by Rect, or layer
+        Parameters:
+            filename: Filename, relative to the resources folder.
+            kwargs: Keyword arguments to pass to the Rect constructor. Can be
+                any value used by Rect, or layer.
 
-        :param filename: filename, relative to the resources folder
-        :type filename: String
-        :param kwargs: Keyword arguments to pass to the Rect constructor
-        :returns: tuxemon.sprite.Sprite
+        Returns:
+            Loaded sprite.
+
         """
         layer = kwargs.pop("layer", 0)
         sprite = graphics.load_sprite(filename, **kwargs)
         self.sprites.add(sprite, layer=layer)
         return sprite
 
-    def animate(self, *targets, **kwargs):
-        """Animate something in this state
+    def animate(self, *targets: Any, **kwargs: Any) -> Animation:
+        """
+        Animate something in this state.
 
-        Animations are processed even while state is inactive
+        Animations are processed even while state is inactive.
 
-        :param targets: targets of the Animation
-        :type targets: any
-        :param kwargs: Attributes and their final value
-        :returns: tuxemon.animation.Animation
+        Parameters:
+            targets: Targets of the Animation.
+            kwargs: Attributes and their final value.
+
+        Returns:
+            Resulting animation.
+
         """
         ani = Animation(*targets, **kwargs)
         self.animations.add(ani)
         return ani
 
-    def task(self, *args, **kwargs):
-        """Create a task for this state
+    def task(self, *args: Any, **kwargs: Any) -> Task:
+        """
+        Create a task for this state
 
-        Tasks are processed even while state is inactive
-        If you want to pass positional arguments, use functools.partial
+        Tasks are processed even while state is inactive.
+        If you want to pass positional arguments, use functools.partial.
 
-        :param args: function to be called
-        :param kwargs: kwargs passed to the function
-        :returns: tuxemon.animation.Task
+        Parameters:
+            args: Function to be called.
+            kwargs: Keyword parameters passed to the task.
+
+        Returns:
+            The created task.
+
         """
         task = Task(*args, **kwargs)
         self.animations.add(task)
         return task
 
-    def remove_animations_of(self, target):
-        """Given and object, remove any animations that it is used with
+    def remove_animations_of(self, target: Any) -> None:
+        """
+        Given and object, remove any animations that it is used with.
 
-        :param target: any
-        :returns: None
+        Parameters:
+            target: Object whose animations should be removed.
+
         """
         remove_animations_of(target, self.animations)
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        """
+        Handles player input events.
+
+        This function is only called when the
         player provides input such as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning None
+        from this method becomes input for the next one. Returning None
         signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
+        exclusively. Return the event and others can use it as well.
 
         You should return None if you have handled input here.
 
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
+        Parameters:
+            event: Player input event.
+
+        Returns:
+            ``None`` if the event should not be passed to the next
+            handlers. Otherwise, return the input event.
+
         """
         return event
 
-    def update(self, time_delta):
-        """Time update function for state.  Must be overloaded in children.
+    def update(self, time_delta: float) -> None:
+        """
+        Time update function for state. Must be overloaded in children.
 
-        :param time_delta: amount of time in fractional seconds since last update
-        :type time_delta: Float
-        :returns: None
-        :rtype: None
+        Parameters:
+            time_delta: amount of time in fractional seconds since last update
+
         """
         self.animations.update(time_delta)
 
-    def draw(self, surface):
-        """Render the state to the surface passed.  Must be overloaded in children
+    def draw(self, surface: pygame.surface.Surface) -> None:
+        """
+        Render the state to the surface passed. Must be overloaded in children.
 
-        Do not change the state of any game entities.  Every draw should be the same
-        for a given game time.  Any game changes should be done during update.
+        Do not change the state of any game entities. Every draw should be the
+        same for a given game time. Any game changes should be done during
+        update.
 
-        :param surface: Surface to be rendered onto
-        :type surface: pygame.Surface
-        :returns: None
-        :rtype: None
+        Parameters:
+            surface: Surface to be rendered onto.
+
         """
 
-    def startup(self, **kwargs):
-        """Called when scene is added to State Stack
+    def startup(self, **kwargs: Any) -> None:
+        """
+        Called when scene is added to State Stack.
 
         This will be called:
         * after state is pushed and before next update
         * just once during the life of a state
 
-        Example uses: loading images, configuration, sounds.
+        Example uses: loading images, configuration, sounds, etc.
 
-        :param kwargs: Configuration options
-        :returns: None
-        :rtype: None
+        Parameters:
+            kwargs: Configuration options
+
         """
 
-    def resume(self):
-        """Called before update when state is newly in focus
+    def resume(self) -> None:
+        """
+        Called before update when state is newly in focus.
 
         This will be called:
         * before update after being pushed to the stack
         * before update after state has been paused
 
-        After being called, state will begin to receive player input
-        Could be called several times over lifetime of state
+        After being called, state will begin to receive player input.
+        Could be called several times over lifetime of state.
 
-        Example uses: starting music, open menu, starting animations, timers, etc
+        Example uses: starting music, open menu, starting animations,
+        timers, etc.
 
-        :returns: None
-        :rtype: None
         """
 
-    def pause(self):
-        """Called when state is pushed back in the stack, allowed to pause
+    def pause(self) -> None:
+        """
+        Called when state is pushed back in the stack, allowed to pause.
 
         This will be called:
         * after update when state is pushed back
         * before being shutdown
 
-        After being called, state will no longer receive player input
-        Could be called several times over lifetime of state
+        After being called, state will no longer receive player input.
+        Could be called several times over lifetime of state.
 
-        Example uses: stopping music, sounds, fading out, making state graphics dim
+        Example uses: stopping music, sounds, fading out, making state
+        graphics dim, etc.
 
-        :returns: None
-        :rtype: None
         """
 
-    def shutdown(self):
+    def shutdown(self) -> None:
         """Called when state is removed from stack and will be destroyed
 
         This will be called:
@@ -232,8 +265,6 @@ class State:
         Make sure to release any references to objects that may cause
         cyclical dependencies.
 
-        :returns: None
-        :rtype: None
         """
 
 
@@ -243,7 +274,7 @@ class StateManager:
     This is currently undergoing a refactor of sorts, API may not be stable
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Currently no need to call __init__
         function is declared to provide IDE with some info on the class only
         this may change in the future, do not rely on this behaviour
@@ -257,7 +288,7 @@ class StateManager:
         self._state_resume_set = set()
         self._remove_queue = list()
 
-    def auto_state_discovery(self):
+    def auto_state_discovery(self) -> None:
         """Scan a folder, load states found in it, and register them"""
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")

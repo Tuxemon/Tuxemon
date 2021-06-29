@@ -88,7 +88,6 @@ class Client(StateManager):
         self._state_dict = dict()
         self._state_stack = list()
         self._state_resume_set = set()
-        self._remove_queue = list()
 
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
         gamepad = PygameGamepadInput(config.gamepad_button_map, config.gamepad_deadzone)

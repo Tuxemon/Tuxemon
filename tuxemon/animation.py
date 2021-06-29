@@ -4,7 +4,8 @@ from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
 import pygame
-from typing import Any, Optional, Callable, Sequence, DefaultDict, List
+from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple,\
+    Mapping
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 
@@ -20,7 +21,7 @@ ANIMATION_DELAYED = 2
 ANIMATION_FINISHED = 3
 
 
-def check_number(value: Any) -> None:
+def check_number(value: Any) -> float:
     """
     Test if an object is a number.
 
@@ -32,17 +33,19 @@ def check_number(value: Any) -> None:
     """
     try:
         float(value)
+        return value
     except (ValueError, TypeError):
         raise ValueError
 
 
-def remove_animations_of(target, group):
+def remove_animations_of(target: object, group: pygame.sprite.Group) -> None:
     """
-    Find animations that target objects and remove those animations
+    Find animations that target objects and remove those animations.
 
-    :param target: any
-    :param group: pygame.sprite.Group
-    :returns: None
+    Parameters:
+        target: Object whose animations should be removed.
+        group: Pygame group where to remove the animations.
+
     """
     animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
     to_remove = [ani for ani in animations if target in [i[0] for i in ani.targets]]
@@ -174,7 +177,7 @@ class Task(TaskBase):
         self._interval = interval
         self._loops = times
         self._duration: float = 0
-        self._chain = List[Task]()
+        self._chain: List[Task] = list()
         self._state = ANIMATION_RUNNING
         self.schedule(callback)
 
@@ -282,40 +285,46 @@ class Task(TaskBase):
 
 
 class Animation(pygame.sprite.Sprite):
-    """Change numeric values over time
+    """
+    Change numeric values over time.
 
     To animate a target sprite/object's position, simply specify
     the target x/y values where you want the widget positioned at
     the end of the animation.  Then call start while passing the
     target as the only parameter.
-        ani = Animation(x=100, y=100, duration=1000)
-        ani.start(sprite)
+
+        >>> ani = Animation(x=100, y=100, duration=1000)
+        >>> ani.start(sprite)
 
     The shorthand method of starting animations is to pass the
     targets as positional arguments in the constructor.
-        ani = Animation(sprite.rect, x=100, y=0)
+
+        >>> ani = Animation(sprite.rect, x=100, y=0)
 
     If you would rather specify relative values, then pass the
     relative keyword and the values will be adjusted for you:
-        ani = Animation(x=100, y=100, duration=1000)
-        ani.start(sprite, relative=True)
+
+        >>> ani = Animation(x=100, y=100, duration=1000)
+        >>> ani.start(sprite, relative=True)
 
     You can also specify a callback that will be executed when the
     animation finishes:
-        ani.callback = my_function
+
+        >>> ani.callback = my_function
 
     Another optional callback is available that is called after
     each update:
-        ani.update_callback = post_update_function
+
+        >>> ani.update_callback = post_update_function
 
     Animations must be added to a sprite group in order for them
     to be updated.  If the sprite group that contains them is
     drawn then an exception will be raised, so you should create
     a sprite group only for containing Animations.
 
-    You can cancel the animation by calling Animation.abort().
+    You can cancel the animation by calling ``Animation.abort()``.
 
-    When the Animation has finished, then it will remove itself
+    When the animation has finished, then it will remove itself
     from the sprite group that contains it.
 
     You can optionally delay the start of the animation using the
@@ -341,17 +350,18 @@ class Animation(pygame.sprite.Sprite):
     Pygame Rects
     ============
 
-    The 'round_values' paramenter will be set to True automatically
+    The 'round_values' parameter will be set to True automatically
     if pygame rects are used as an animation target.
+
     """
 
     default_duration = 1000.0
     default_transition = "linear"
 
-    def __init__(self, *targets, **kwargs):
+    def __init__(self, *targets: object, **kwargs: Any) -> None:
         super().__init__()
-        self.targets = list()
-        self._targets = list()
+        self.targets: List[Tuple[object, Mapping[str, Any]]] = list()
+        self._targets: Sequence[object] = list()
         self.delay = kwargs.get("delay", 0)
         self._state = ANIMATION_NOT_STARTED
         self._round_values = kwargs.get("round_values", False)
@@ -371,12 +381,17 @@ class Animation(pygame.sprite.Sprite):
         if targets:
             self.start(*targets)
 
-    def _get_value(self, target, name):
-        """Get value of an attribute, even if it is callable
+    def _get_value(self, target: object, name: str) -> float:
+        """
+        Get value of an attribute, even if it is a callable.
 
-        :param target: object than contains attribute
-        :param name: name of attribute to get value from
-        :returns: Any
+        Parameters:
+            target: Object that contains the attribute.
+            name: Name of the attribute to get the value from.
+
+        Returns:
+            Attribute value.
+
         """
         if self._initial is None:
             value = getattr(target, name)
@@ -386,11 +401,11 @@ class Animation(pygame.sprite.Sprite):
         if callable(value):
             value = value()
 
-        check_number(value)
-        return value
+        return check_number(value)
 
-    def _set_value(self, target, name, value):
-        """Set a value on some other object
+    def _set_value(self, target: object, name: str, value: float) -> None:
+        """
+        Set a value on some other object.
 
         If the name references a callable type, then
         the object of that name will be called with 'value'
@@ -401,10 +416,11 @@ class Animation(pygame.sprite.Sprite):
         an initial value in the constructor as a value or
         reference to a callable object.
 
-        :param target: object to be modified
-        :param name: name of attribute to be modified
-        :param value: value
-        :returns: None
+        Parameters:
+            target: Object to be modified.
+            name: Name of attribute to be modified.
+            value: New value of the attribute.
+
         """
         if self._round_values:
             value = int(round(value, 0))
@@ -415,8 +431,9 @@ class Animation(pygame.sprite.Sprite):
         else:
             setattr(target, name, value)
 
-    def update(self, dt):
-        """Update the animation
+    def update(self, dt: float) -> None:
+        """
+        Update the animation.
 
         The unit of time passed must match the one used in the
         constructor.
@@ -427,8 +444,9 @@ class Animation(pygame.sprite.Sprite):
         Will raise RuntimeError if animation is updated after
         it has finished.
 
-        :param dt: Time passed since last update.
-        :raises: RuntimeError
+        Parameters:
+            dt: Time passed since last update.
+
         """
         if self._state is ANIMATION_FINISHED:
             return
@@ -459,18 +477,14 @@ class Animation(pygame.sprite.Sprite):
         if p >= 1:
             self.finish()
 
-    def finish(self):
-        """Force animation to finish, apply transforms, and execute callbacks
+    def finish(self) -> None:
+        """Force animation to finish, apply transforms, and execute callbacks.
 
-        Update callback will be called because the value is changed
-        Final callback ('callback') will be called
-        Final values will be applied
-        Animation will be removed from group
+        Update callback will be called because the value is changed.
+        Final callback ('callback') will be called.
+        Final values will be applied.
+        Animation will be removed from group.
 
-        Will raise RuntimeError if animation has not been started
-
-        :returns: None
-        :raises: RuntimeError
         """
         # if self._state is not ANIMATION_RUNNING:
         #     raise RuntimeError
@@ -486,36 +500,37 @@ class Animation(pygame.sprite.Sprite):
 
         self.abort()
 
-    def abort(self):
-        """Force animation to finish, without any cleanup
+    def abort(self) -> None:
+        """Force animation to finish, without any cleanup.
 
-        Update callback will not be executed
-        Final callback will be executed
-        Values will not change
-        Animation will be removed from group
+        Update callback will not be executed.
+        Final callback will be executed.
+        Values will not change.
+        Animation will be removed from group.
 
-        Will raise RuntimeError if animation has not been started
-
-        :returns: None
-        :raises: RuntimeError
         """
         # if self._state is not ANIMATION_RUNNING:
         #     raise RuntimeError
 
         self._state = ANIMATION_FINISHED
-        self.targets = None
+        self.targets = []
         self.kill()
         if hasattr(self, "callback"):
             self.callback()
 
-    def start(self, *targets, **kwargs):
-        """Start the animation on a target sprite/object
+    def start(self, *targets: object, **kwargs: Any) -> None:
+        """Start the animation on a target sprite/object.
 
         Targets must have the attributes that were set when
         this animation was created.
 
-        :param targets: Any valid python object
-        :raises: RuntimeError
+        Parameters:
+            targets: Any valid python objects.
+            kwargs: Ignored.
+
+        Raises:
+            RuntimeError: If the animation is already started.
+
         """
         # TODO: weakref the targets
         if self._state is not ANIMATION_NOT_STARTED:
@@ -527,7 +542,7 @@ class Animation(pygame.sprite.Sprite):
         if self.delay == 0:
             self._gather_initial_values()
 
-    def _gather_initial_values(self):
+    def _gather_initial_values(self) -> None:
         self.targets = list()
         for target in self._targets:
             props = dict()
@@ -546,7 +561,9 @@ class Animation(pygame.sprite.Sprite):
 
 
 class AnimationTransition:
-    """Collection of animation functions to be used with the Animation object.
+    """
+    Collection of animation functions to be used with the Animation object.
+
     Easing Functions ported to Kivy from the Clutter Project
     http://www.clutter-project.org/docs/clutter/stable/ClutterAlpha.html
 
@@ -554,19 +571,19 @@ class AnimationTransition:
     """
 
     @staticmethod
-    def linear(progress):
+    def linear(progress: float) -> float:
         return progress
 
     @staticmethod
-    def in_quad(progress):
+    def in_quad(progress: float) -> float:
         return progress * progress
 
     @staticmethod
-    def out_quad(progress):
+    def out_quad(progress: float) -> float:
         return -1.0 * progress * (progress - 2.0)
 
     @staticmethod
-    def in_out_quad(progress):
+    def in_out_quad(progress: float) -> float:
         p = progress * 2
         if p < 1:
             return 0.5 * p * p
@@ -574,16 +591,16 @@ class AnimationTransition:
         return -0.5 * (p * (p - 2.0) - 1.0)
 
     @staticmethod
-    def in_cubic(progress):
+    def in_cubic(progress: float) -> float:
         return progress * progress * progress
 
     @staticmethod
-    def out_cubic(progress):
+    def out_cubic(progress: float) -> float:
         p = progress - 1.0
         return p * p * p + 1.0
 
     @staticmethod
-    def in_out_cubic(progress):
+    def in_out_cubic(progress: float) -> float:
         p = progress * 2
         if p < 1:
             return 0.5 * p * p * p
@@ -591,16 +608,16 @@ class AnimationTransition:
         return 0.5 * (p * p * p + 2.0)
 
     @staticmethod
-    def in_quart(progress):
+    def in_quart(progress: float) -> float:
         return progress * progress * progress * progress
 
     @staticmethod
-    def out_quart(progress):
+    def out_quart(progress: float) -> float:
         p = progress - 1.0
         return -1.0 * (p * p * p * p - 1.0)
 
     @staticmethod
-    def in_out_quart(progress):
+    def in_out_quart(progress: float) -> float:
         p = progress * 2
         if p < 1:
             return 0.5 * p * p * p * p
@@ -608,16 +625,16 @@ class AnimationTransition:
         return -0.5 * (p * p * p * p - 2.0)
 
     @staticmethod
-    def in_quint(progress):
+    def in_quint(progress: float) -> float:
         return progress * progress * progress * progress * progress
 
     @staticmethod
-    def out_quint(progress):
+    def out_quint(progress: float) -> float:
         p = progress - 1.0
         return p * p * p * p * p + 1.0
 
     @staticmethod
-    def in_out_quint(progress):
+    def in_out_quint(progress: float) -> float:
         p = progress * 2
         if p < 1:
             return 0.5 * p * p * p * p * p
@@ -625,31 +642,31 @@ class AnimationTransition:
         return 0.5 * (p * p * p * p * p + 2.0)
 
     @staticmethod
-    def in_sine(progress):
+    def in_sine(progress: float) -> float:
         return -1.0 * cos(progress * (pi / 2.0)) + 1.0
 
     @staticmethod
-    def out_sine(progress):
+    def out_sine(progress: float) -> float:
         return sin(progress * (pi / 2.0))
 
     @staticmethod
-    def in_out_sine(progress):
+    def in_out_sine(progress: float) -> float:
         return -0.5 * (cos(pi * progress) - 1.0)
 
     @staticmethod
-    def in_expo(progress):
+    def in_expo(progress: float) -> float:
         if progress == 0:
             return 0.0
         return pow(2, 10 * (progress - 1.0))
 
     @staticmethod
-    def out_expo(progress):
+    def out_expo(progress: float) -> float:
         if progress == 1.0:
             return 1.0
         return -pow(2, -10 * progress) + 1.0
 
     @staticmethod
-    def in_out_expo(progress):
+    def in_out_expo(progress: float) -> float:
         if progress == 0:
             return 0.0
         if progress == 1.0:
@@ -661,16 +678,16 @@ class AnimationTransition:
         return 0.5 * (-pow(2, -10 * p) + 2.0)
 
     @staticmethod
-    def in_circ(progress):
+    def in_circ(progress: float) -> float:
         return -1.0 * (sqrt(1.0 - progress * progress) - 1.0)
 
     @staticmethod
-    def out_circ(progress):
+    def out_circ(progress: float) -> float:
         p = progress - 1.0
         return sqrt(1.0 - p * p)
 
     @staticmethod
-    def in_out_circ(progress):
+    def in_out_circ(progress: float) -> float:
         p = progress * 2
         if p < 1:
             return -0.5 * (sqrt(1.0 - p * p) - 1.0)
@@ -678,7 +695,7 @@ class AnimationTransition:
         return 0.5 * (sqrt(1.0 - p * p) + 1.0)
 
     @staticmethod
-    def in_elastic(progress):
+    def in_elastic(progress: float) -> float:
         p = 0.3
         s = p / 4.0
         q = progress
@@ -688,7 +705,7 @@ class AnimationTransition:
         return -(pow(2, 10 * q) * sin((q - s) * (2 * pi) / p))
 
     @staticmethod
-    def out_elastic(progress):
+    def out_elastic(progress: float) -> float:
         p = 0.3
         s = p / 4.0
         q = progress
@@ -697,7 +714,7 @@ class AnimationTransition:
         return pow(2, -10 * q) * sin((q - s) * (2 * pi) / p) + 1.0
 
     @staticmethod
-    def in_out_elastic(progress):
+    def in_out_elastic(progress: float) -> float:
         p = 0.3 * 1.5
         s = p / 4.0
         q = progress * 2
@@ -711,16 +728,16 @@ class AnimationTransition:
             return pow(2, -10 * q) * sin((q - s) * (2.0 * pi) / p) * 0.5 + 1.0
 
     @staticmethod
-    def in_back(progress):
+    def in_back(progress: float) -> float:
         return progress * progress * ((1.70158 + 1.0) * progress - 1.70158)
 
     @staticmethod
-    def out_back(progress):
+    def out_back(progress: float) -> float:
         p = progress - 1.0
         return p * p * ((1.70158 + 1) * p + 1.70158) + 1.0
 
     @staticmethod
-    def in_out_back(progress):
+    def in_out_back(progress: float) -> float:
         p = progress * 2.0
         s = 1.70158 * 1.525
         if p < 1:
@@ -729,7 +746,7 @@ class AnimationTransition:
         return 0.5 * (p * p * ((s + 1.0) * p + s) + 2.0)
 
     @staticmethod
-    def _out_bounce_internal(t, d):
+    def _out_bounce_internal(t: float, d: float) -> float:
         p = t / d
         if p < (1.0 / 2.75):
             return 7.5625 * p * p
@@ -744,19 +761,19 @@ class AnimationTransition:
             return 7.5625 * p * p + 0.984375
 
     @staticmethod
-    def _in_bounce_internal(t, d):
+    def _in_bounce_internal(t: float, d: float) -> float:
         return 1.0 - AnimationTransition._out_bounce_internal(d - t, d)
 
     @staticmethod
-    def in_bounce(progress):
+    def in_bounce(progress: float) -> float:
         return AnimationTransition._in_bounce_internal(progress, 1.0)
 
     @staticmethod
-    def out_bounce(progress):
+    def out_bounce(progress: float) -> float:
         return AnimationTransition._out_bounce_internal(progress, 1.0)
 
     @staticmethod
-    def in_out_bounce(progress):
+    def in_out_bounce(progress: float) -> float:
         p = progress * 2.0
         if p < 1.0:
             return AnimationTransition._in_bounce_internal(p, 1.0) * 0.5

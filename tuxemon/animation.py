@@ -1,12 +1,16 @@
+from __future__ import annotations
 import logging
 from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
 import pygame
+from typing import Any, Optional, Callable, Sequence, DefaultDict, List
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 
 from tuxemon.compat import Rect
+
+ScheduledFunction = Callable[[], Any]
 
 logger = logging.getLogger(__name__)
 
@@ -16,22 +20,25 @@ ANIMATION_DELAYED = 2
 ANIMATION_FINISHED = 3
 
 
-def is_number(value):
-    """Test if an object is a number.
-    :param value: some object
-    :returns: True
-    :raises: ValueError
+def check_number(value: Any) -> None:
+    """
+    Test if an object is a number.
+
+    Raises ``ValueError`` when ``value`` is not a number.
+
+    Parameters:
+        value: Some object.
+
     """
     try:
         float(value)
     except (ValueError, TypeError):
         raise ValueError
 
-    return True
-
 
 def remove_animations_of(target, group):
-    """Find animations that target objects and remove those animations
+    """
+    Find animations that target objects and remove those animations
 
     :param target: any
     :param group: pygame.sprite.Group
@@ -42,28 +49,37 @@ def remove_animations_of(target, group):
     group.remove(*to_remove)
 
 
-class AnimBase(pygame.sprite.Sprite):
-    _valid_schedules = []
+class TaskBase(pygame.sprite.Sprite):
+    _valid_schedules: Sequence[str] = []
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self._callbacks = defaultdict(list)
+        self._callbacks: DefaultDict[
+            str,
+            List[ScheduledFunction],
+        ] = defaultdict(list)
 
-    def schedule(self, func, when=None):
-        """Schedule a callback during operation of Task or Animation
+    def schedule(
+        self,
+        func: ScheduledFunction,
+        when: Optional[str] = None,
+    ) -> None:
+        """
+        Schedule a callback during operation of Task or Animation.
 
         The callback is any callable object.  You can specify different
         times for the callback to be executed, according to the following:
 
-        * "on update": called each time the Task/Animation is updated
-        * "on finish": called when the Task/Animation completes normally
-        * "on abort": called if the Task/Animation is aborted
+        * "on update": called each time the Task/Animation is updated.
+        * "on finish": called when the Task/Animation completes normally.
+        * "on abort": called if the Task/Animation is aborted.
 
         If when is not passed, it will be "on finish":
 
-        :type func: callable
-        :type when: basestring
-        :return:
+        Parameters:
+            func: Callable to schedule.
+            when: Time when ``func`` is going to be called.
+
         """
         if when is None:
             when = self._valid_schedules[0]
@@ -74,7 +90,7 @@ class AnimBase(pygame.sprite.Sprite):
             raise ValueError
         self._callbacks[when].append(func)
 
-    def _execute_callbacks(self, when):
+    def _execute_callbacks(self, when: str) -> None:
         try:
             callbacks = self._callbacks[when]
         except KeyError:
@@ -83,8 +99,9 @@ class AnimBase(pygame.sprite.Sprite):
             [cb() for cb in callbacks]
 
 
-class Task(AnimBase):
-    """Execute functions at a later time and optionally loop it
+class Task(TaskBase):
+    """
+    Execute functions at a later time and optionally loop it.
 
     This is a silly little class meant to make it easy to create
     delayed or looping events without any complicated hooks into
@@ -98,41 +115,55 @@ class Task(AnimBase):
     on the next update.
 
     Because the pygame clock returns milliseconds, the examples
-    below use milliseconds.  However, you are free to use what-
-    ever time unit you wish, as long as it is used consistently
+    below use milliseconds.  However, you are free to use whatever
+    time unit you wish, as long as it is used consistently.
 
-        task_group = pygame.sprite.Group()
+    Examples:
+        >>> task_group = pygame.sprite.Group()
 
-        # like a delay
-        def call_later():
-            pass
-        task = Task(call_later, 1000)
-        task_group.add(task)
+        >>> # like a delay
+        >>> def call_later():
+        ...    pass
+        >>> task = Task(call_later, 1000)
+        >>> task_group.add(task)
 
-        # do something 24 times at 1 second intervals
-        task = Task(call_later, 1000, 24)
+        >>> # do something 24 times at 1 second intervals
+        >>> task = Task(call_later, 1000, 24)
 
-        # do something every 2.5 seconds forever
-        task = Task(call_later, 2500, -1)
+        >>> # do something every 2.5 seconds forever
+        >>> task = Task(call_later, 2500, -1)
 
-        # pass arguments using functools.partial
-        from functools import partial
-        task = Task(partial(call_later(1,2,3, key=value)), 1000)
+        >>> # pass arguments using functools.partial
+        >>> from functools import partial
+        >>> task = Task(partial(call_later(1,2,3, key=value)), 1000)
 
-        # a task must have at lease on callback, but others can be added
-        task = Task(call_later, 2500, -1)
-        task.schedule(some_thing_else)
+        >>> # a task must have at lease on callback, but others can be added
+        >>> task = Task(call_later, 2500, -1)
+        >>> task.schedule(some_thing_else)
 
-        # chain tasks: when one task finishes, start another one
-        task = Task(call_later, 2500)
-        task.chain(Task(something_else))
+        >>> # chain tasks: when one task finishes, start another one
+        >>> task = Task(call_later, 2500)
+        >>> task.chain(Task(something_else))
 
         When chaining tasks, do not add the chained tasks to a group.
-    """
 
+    """
     _valid_schedules = ("on interval", "on finish", "on abort")
 
-    def __init__(self, callback, interval=0, times=1):
+    def __init__(
+        self,
+        callback: ScheduledFunction,
+        interval: float = 0,
+        times: int = 1,
+    ) -> None:
+        """
+        Task constructor.
+
+        Parameters:
+            callback: Function to execute each interval.
+            interval: Time between callbacks.
+            times: Number of intervals.
+        """
         if not callable(callback):
             raise ValueError
 
@@ -142,13 +173,19 @@ class Task(AnimBase):
         super().__init__()
         self._interval = interval
         self._loops = times
-        self._duration = 0
-        self._chain = list()
+        self._duration: float = 0
+        self._chain = List[Task]()
         self._state = ANIMATION_RUNNING
         self.schedule(callback)
 
-    def chain(self, callback, interval=0, times=1):
-        """Schedule a callback to execute when this one is finished
+    def chain(
+        self,
+        callback: ScheduledFunction,
+        interval: float = 0,
+        times: int = 1,
+    ) -> None:
+        """
+        Schedule a callback to execute when this one is finished
 
         If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
@@ -156,22 +193,28 @@ class Task(AnimBase):
         This is convenience to make a new Task and set to it to
         be added to the "on_finish" list.
 
-        :param interval: Time between callbacks
-        :param callback: Function to execute each interval
-        :param times: Number of intervals
-        :returns: Task
+        Parameters:
+            callback: Function to execute each interval.
+            interval: Time between callbacks.
+            times: Number of intervals.
+
         """
         task = Task(callback, interval, times)
         self.chain_task(task)
 
-    def chain_task(self, *others):
-        """Schedule Task(s) to execute when this one is finished
+    def chain_task(self, *others: Task) -> Sequence[Task]:
+        """
+        Schedule Task(s) to execute when this one is finished.
 
         If you attempt to chain a task to a task that will
         never end, RuntimeError will be raised.
 
-        :param others: Task instances
-        :returns: Tasks
+        Parameters:
+            others: Task instances.
+
+        Returns:
+            The sequence of added Tasks.
+
         """
         if self._loops <= -1:
             raise RuntimeError
@@ -181,8 +224,9 @@ class Task(AnimBase):
             self._chain.append(task)
         return others
 
-    def update(self, dt):
-        """Update the Task
+    def update(self, dt: float) -> None:
+        """
+        Update the Task.
 
         The unit of time passed must match the one used in the
         constructor.
@@ -191,7 +235,9 @@ class Task(AnimBase):
         was skipped because of a lagging clock, then callbacks
         will not be made to account for the missed ones.
 
-        :param dt: Time passed since last update.
+        Parameters:
+            dt: Time passed since last update.
+
         """
         if self._state is not ANIMATION_RUNNING:
             raise RuntimeError
@@ -211,8 +257,8 @@ class Task(AnimBase):
                 # loops == -1, run forever
                 self._execute_callbacks("on interval")
 
-    def finish(self):
-        """Force task to finish, while executing callbacks"""
+    def finish(self) -> None:
+        """Force task to finish, while executing callbacks."""
         if self._state is ANIMATION_RUNNING:
             self._state = ANIMATION_FINISHED
             self._execute_callbacks("on interval")
@@ -220,16 +266,16 @@ class Task(AnimBase):
             self._execute_chain()
             self._cleanup()
 
-    def abort(self):
-        """Force task to finish, without executing callbacks"""
+    def abort(self) -> None:
+        """Force task to finish, without executing callbacks."""
         self._state = ANIMATION_FINISHED
         self._cleanup()
 
-    def _cleanup(self):
-        self._chain = None
+    def _cleanup(self) -> None:
+        self._chain = []
         self.kill()
 
-    def _execute_chain(self):
+    def _execute_chain(self) -> None:
         groups = self.groups()
         for task in self._chain:
             task.add(*groups)
@@ -340,7 +386,7 @@ class Animation(pygame.sprite.Sprite):
         if callable(value):
             value = value()
 
-        is_number(value)
+        check_number(value)
         return value
 
     def _set_value(self, target, name, value):
@@ -489,8 +535,8 @@ class Animation(pygame.sprite.Sprite):
                 self._round_values = True
             for name, value in self.props.items():
                 initial = self._get_value(target, name)
-                is_number(initial)
-                is_number(value)
+                check_number(initial)
+                check_number(value)
                 if self._relative:
                     value += initial
                 props[name] = initial, value

@@ -23,7 +23,7 @@
 # William Edwards <shadowapex@gmail.com>
 # Leif Theden <leif.theden@gmail.com>
 #
-
+from __future__ import annotations
 import logging
 import os.path
 import time
@@ -41,21 +41,28 @@ from tuxemon import cli, networking, prepare
 from tuxemon import rumble
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.session import local_session
-from tuxemon.state import StateManager
+from tuxemon.state import StateManager, State
+from tuxemon.map import TuxemonMap
+from typing import Iterable, Generator, Optional, Tuple, Mapping, Any
 
 logger = logging.getLogger(__name__)
 
 
 class Client(StateManager):
-    """Client class for entire project. Contains the game loop, and contains
+    """
+    Client class for entire project.
+
+    Contains the game loop, and contains
     the event_loop which passes events to States as needed.
     """
 
-    def __init__(self, caption):
+    def __init__(self, caption: str) -> None:
         """
-        :param caption: The window caption to use for the game itself.
-        :type caption: str
-        :rtype: None
+        Client constructor.
+
+        Parameters:
+            caption: The window caption to use for the game itself.
+
         """
         # Set up our game's configuration from the prepare module.
         self.config = config = prepare.CONFIG
@@ -134,11 +141,13 @@ class Client(StateManager):
         self.rumble_manager = rumble.RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
-    def load_map(self, map_data):
-        """Load map
+    def load_map(self, map_data: TuxemonMap) -> None:
+        """
+        Load a map.
 
-        :param tuxemon.map.TuxemonMap map_data:
-        :return: None
+        Parameters:
+            map_data: The map to load.
+
         """
         self.events = map_data.events
         self.inits = map_data.inits
@@ -146,10 +155,10 @@ class Client(StateManager):
         self.event_engine.reset()
         self.event_engine.current_map = map_data
 
-    def draw_event_debug(self):
-        """Very simple overlay of event data.  Needs some love.
+    def draw_event_debug(self) -> None:
+        """
+        Very simple overlay of event data.  Needs some love.
 
-        :return:
         """
         y = 20
         x = 4
@@ -181,24 +190,33 @@ class Client(StateManager):
 
             yy = y
 
-    def process_events(self, events):
-        """Process all events for this frame.
+    def process_events(
+        self,
+        events: Iterable[pg.event.Event],
+    ) -> Generator[pg.event.Event, None, None]:
+        """
+        Process all events for this frame.
 
         Events are first sent to the active state.
         States can choose to keep the events or return them.
-        If they are kept, no other state nor the event engine will get that event.
+        If they are kept, no other state nor the event engine will get that
+        event.
         If they are returned, they will be passed to the next state.
         Kept or returned, the state may process it.
-        Eventually, if all states have returned the event, it will go to the event engine.
+        Eventually, if all states have returned the event, it will go to the
+        event engine.
         The event engine also can keep or return the event.
         All unused events will be added to Client.key_events each frame.
         Conditions in the the event system can then check that list.
 
-        States can "keep" events by simply returning None from State.process_event
+        States can "keep" events by simply returning None from
+        State.process_event
 
-        :param events: Sequence of pg events
-        :returns: Iterator of game events
-        :rtype: collections.Iterable[pg.event.Event]
+        Parameters:
+            events: Sequence of Pygame events]
+
+        Yields:
+            Unprocessed event.
 
         """
         for game_event in events:
@@ -207,8 +225,12 @@ class Client(StateManager):
                 if game_event:
                     yield game_event
 
-    def _send_event(self, game_event):
-        """Send event down processing chain
+    def _send_event(
+        self,
+        game_event: pg.event.Event,
+    ) -> Optional[pg.event.Event]:
+        """
+        Send event down processing chain
 
         Probably a poorly named method.  Beginning from top state,
         process event, then as long as a new event is returned from
@@ -217,8 +239,12 @@ class Client(StateManager):
 
         The final destination for the event will be the event engine.
 
-        :returns: Game Event
-        :rtype: pg.event.Event
+        Parameters:
+            game_event: Event to process.
+
+        Returns:
+            The event if no state keeps it. If some state keeps the
+            event then the return value is ``None``.
 
         """
         for state in self.active_states:
@@ -230,14 +256,14 @@ class Client(StateManager):
 
         return game_event
 
-    def main(self):
-        """Initiates the main game loop. Since we are using Asteria networking
-        to handle network events, we pass this session.Client instance to
-        networking which in turn executes the "main_loop" method every frame.
-        This leaves the networking component responsible for the main loop.
+    def main(self) -> None:
+        """
+        Initiates the main game loop.
 
-        :rtype: None
-        :returns: None
+        Since we are using Asteria networking to handle network events,
+        we pass this session.Client instance to networking which in turn
+        executes the "main_loop" method every frame.
+        This leaves the networking component responsible for the main loop.
 
         """
         update = self.update
@@ -246,9 +272,9 @@ class Client(StateManager):
         flip = pg.display.update
         clock = time.time
         frame_length = 1.0 / self.fps
-        time_since_draw = 0
+        time_since_draw = 0.0
         last_update = clock()
-        fps_timer = 0
+        fps_timer = 0.0
         frames = 0
 
         while not self.exit:
@@ -267,15 +293,17 @@ class Client(StateManager):
             fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
             time.sleep(0.001)
 
-    def update(self, time_delta):
-        """Main loop for entire game. This method gets update every frame
+    def update(self, time_delta: float) -> None:
+        """
+        Main loop for entire game.
+
+        This method gets update every frame
         by Asteria Networking's "listen()" function. Every frame we get the
         amount of time that has passed each frame, check game conditions,
         and draw the game to the screen.
 
-        :type time_delta: float
-        :rtype: None
-        :returns: None
+        Parameters:
+            time_delta: Elapsed time since last frame.
 
         """
         # Android-specific check for pause
@@ -316,24 +344,24 @@ class Client(StateManager):
         if self.exit:
             self.done = True
 
-    def release_controls(self):
-        """Send inputs which release held buttons/axis
+    def release_controls(self) -> None:
+        """
+        Send inputs which release held buttons/axis
 
-        Use to prevent player from holding buttons while state changes
+        Use to prevent player from holding buttons while state changes.
 
-        :return:
         """
         events = self.input_manager.release_controls()
         self.key_events = list(self.process_events(events))
 
-    def update_states(self, dt):
-        """Checks if a state is done or has called for a game quit.
-
-        :param dt: Time delta - Amount of time passed since last frame.
-
-        :type dt: Float
+    def update_states(self, dt: float) -> None:
         """
+        Checks if a state is done or has called for a game quit.
 
+        Parameters:
+            dt: Time delta - Amount of time passed since last frame.
+
+        """
         for state in self.active_states:
             state.update(dt)
 
@@ -347,10 +375,13 @@ class Client(StateManager):
             current_state.resume()
             self._state_resume_set.remove(current_state)
 
-    def draw(self, surface):
-        """Draw all active states
+    def draw(self, surface: pg.surface.Surface) -> None:
+        """
+        Draw all active states.
 
-        :type surface: pg.surface.Surface
+        Parameters:
+            surface: Surface where the drawing takes place.
+
         """
         # TODO: refactor into Widget
 
@@ -379,7 +410,34 @@ class Client(StateManager):
             self.frame_number += 1
             pg.image.save(self.screen, filename)
 
-    def handle_fps(self, clock_tick, fps_timer, frames):
+    def handle_fps(
+        self,
+        clock_tick: float,
+        fps_timer: float,
+        frames: int,
+    ) -> Tuple[float, int]:
+        """
+        Compute and print the frames per second.
+
+        This function only prints FPS if that option has been set in the
+        config.
+        In order to have a long enough time interval to accurately compute the
+        FPS, it only prints the FPS if at least one second has elapsed since
+        last time it printed them.
+
+        Parameters:
+            clock_tick: Seconds elapsed since the last ``update`` call.
+            fps_timer: Number of seconds elapsed since the last time the FPS
+                were printed.
+            frames: Number of frames printed since the last time the FPS were
+                printed.
+
+        Returns:
+            Updated values of ``fps_timer`` and ``frames``. They will be the
+            same as the valued passed unless the FPS are printed, in wich case
+            they are reset to 0.
+
+        """
         if self.show_fps:
             fps_timer += clock_tick
             if fps_timer >= 1:
@@ -389,18 +447,17 @@ class Client(StateManager):
             return fps_timer, frames
         return 0, 0
 
-    def add_clients_to_map(self, registry):
-        """Checks to see if clients are supposed to be displayed on the current map. If
-        they are on the same map as the host then it will add them to the npc's list.
-        If they are still being displayed and have left the map it will remove them from
-        the map.
+    def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
+        """
+        Add players in the current map as npcs.
 
-        :param registry: Locally hosted Neteria client/server registry.
+        Checks to see if clients are supposed to be displayed on the current
+        map. If they are on the same map as the host then it will add them to
+        the npc's list. If they are still being displayed and have left the
+        map it will remove them from the map.
 
-        :type registry: Dictionary
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            registry: Locally hosted Neteria client/server registry.
 
         """
         world = self.get_state_by_name("WorldState")
@@ -429,40 +486,48 @@ class Client(StateManager):
                     if sprite.slug in world.npcs:
                         del world.npcs[sprite]
 
-    def get_map_filepath(self):
-        """Gets the filepath of the current map
+    def get_map_filepath(self) -> Optional[str]:
+        """
+        Gets the filepath of the current map.
 
-        :rtype: String
-        :returns: filepath
+        Returns:
+            File path of the current map, if there is one.
 
         """
         world = self.get_state_by_name("WorldState")
         if not world:
-            return
+            return None
 
         return world.current_map.filename
 
-    def get_map_name(self):
-        """Gets the map of the player.
+    def get_map_name(self) -> Optional[str]:
+        """
+        Gets the name of the current map.
 
-        :rtype: String
-        :returns: map_name
+        Returns:
+            Name of the current map, if there is one.
 
         """
         map_path = self.get_map_filepath()
         if map_path is None:
-            return
+            return None
 
         # extract map name from path
         return os.path.basename(map_path)
 
-    def get_state_by_name(self, name):
-        """Query the state stack for a state by the name supplied
+    def get_state_by_name(self, name: str) -> Optional[State]:
+        """
+        Query the state stack for a state by the name supplied.
 
-        :str name: str
-        :rtype: State, None
+        Parameters:
+            name: Name of a state.
+
+        Returns:
+            State with that name, if one exist. ``None`` otherwise.
+
         """
         for state in self.active_states:
             if state.__class__.__name__ == name:
                 return state
+
         return None

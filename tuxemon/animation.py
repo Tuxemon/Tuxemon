@@ -513,12 +513,13 @@ class Animation(pygame.sprite.Sprite):
             self.finish()
 
     def finish(self) -> None:
-        """Force animation to finish, apply transforms, and execute callbacks.
+        """
+        Force animation to finish, apply transforms, and execute callbacks.
 
-        Update callback will be called because the value is changed.
-        Final callback ('callback') will be called.
-        Final values will be applied.
-        Animation will be removed from group.
+        * Update callback will be called because the value is changed.
+        * Final callback ('callback') will be called.
+        * Final values will be applied.
+        * Animation will be removed from group.
 
         """
         # if self._state is not ANIMATION_RUNNING:
@@ -536,12 +537,13 @@ class Animation(pygame.sprite.Sprite):
         self.abort()
 
     def abort(self) -> None:
-        """Force animation to finish, without any cleanup.
+        """
+        Force animation to finish, without any cleanup.
 
-        Update callback will not be executed.
-        Final callback will be executed.
-        Values will not change.
-        Animation will be removed from group.
+        * Update callback will not be executed.
+        * Final callback will be executed.
+        * Values will not change.
+        * Animation will be removed from group.
 
         """
         # if self._state is not ANIMATION_RUNNING:
@@ -554,7 +556,8 @@ class Animation(pygame.sprite.Sprite):
             self.callback()
 
     def start(self, *targets: object, **kwargs: Any) -> None:
-        """Start the animation on a target sprite/object.
+        """
+        Start the animation on a target sprite/object.
 
         Targets must have the attributes that were set when
         this animation was created.

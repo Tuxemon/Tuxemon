@@ -43,7 +43,9 @@ from tuxemon.event.eventengine import EventEngine
 from tuxemon.session import local_session
 from tuxemon.state import StateManager, State
 from tuxemon.map import TuxemonMap
+from tuxemon.platform.events import PlayerInput
 from typing import Iterable, Generator, Optional, Tuple, Mapping, Any
+
 
 logger = logging.getLogger(__name__)
 
@@ -189,7 +191,7 @@ class Client(StateManager):
 
     def process_events(
         self,
-        events: Iterable[pg.event.Event],
+        events: Iterable[PlayerInput],
     ) -> Generator[pg.event.Event, None, None]:
         """
         Process all events for this frame.
@@ -210,12 +212,14 @@ class Client(StateManager):
         State.process_event
 
         Parameters:
-            events: Sequence of Pygame events.
+            events: Sequence of events.
 
         Yields:
             Unprocessed event.
 
         """
+        game_event: Optional[PlayerInput]
+
         for game_event in events:
             if game_event:
                 game_event = self._send_event(game_event)
@@ -224,8 +228,8 @@ class Client(StateManager):
 
     def _send_event(
         self,
-        game_event: pg.event.Event,
-    ) -> Optional[pg.event.Event]:
+        game_event: PlayerInput,
+    ) -> Optional[PlayerInput]:
         """
         Send event down processing chain
 
@@ -245,13 +249,13 @@ class Client(StateManager):
 
         """
         for state in self.active_states:
-            game_event = state.process_event(game_event)
-            if game_event is None:
+            game_event_returned = state.process_event(game_event)
+            if game_event_returned is None:
                 break
         else:
-            game_event = self.event_engine.process_event(game_event)
+            game_event_returned = self.event_engine.process_event(game_event)
 
-        return game_event
+        return game_event_returned
 
     def main(self) -> None:
         """

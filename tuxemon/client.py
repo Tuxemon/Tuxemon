@@ -54,16 +54,14 @@ class Client(StateManager):
 
     Contains the game loop, and contains
     the event_loop which passes events to States as needed.
+
+    Parameters:
+        caption: The window caption to use for the game itself.
+
     """
 
     def __init__(self, caption: str) -> None:
-        """
-        Client constructor.
 
-        Parameters:
-            caption: The window caption to use for the game itself.
-
-        """
         # Set up our game's configuration from the prepare module.
         self.config = config = prepare.CONFIG
 

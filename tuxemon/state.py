@@ -61,8 +61,10 @@ class State:
        pause         - Called when state is no longer active
        shutdown      - Called before state is destroyed
 
-    Attributes:
+    Parameters:
         client: The client class that this state belongs to.
+
+    Attributes:
         force_draw: If True, state will never be skipped in drawing phase.
         rect: Area of the screen will be drawn on.
 
@@ -80,9 +82,6 @@ class State:
 
         All init for the State, loading of config, images, etc should
         be done in State.startup or State.resume, not here.
-
-        Parameters:
-            client: State Manager / Game Client.
 
         """
         self.client = client
@@ -269,13 +268,14 @@ class State:
 class StateManager:
     """Mix-in style class for use with Client class.
 
-    This is currently undergoing a refactor of sorts, API may not be stable
+    This is currently undergoing a refactor of sorts, API may not be stable.
+
     """
 
     def __init__(self) -> None:
         """Currently no need to call __init__
         function is declared to provide IDE with some info on the class only
-        this may change in the future, do not rely on this behaviour
+        this may change in the future, do not rely on this behaviour.
         """
         self.done = False
         self.current_time = 0.0

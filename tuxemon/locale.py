@@ -27,6 +27,7 @@
 # locale Component for handling in-game translations.
 #
 
+from __future__ import annotations
 
 import dataclasses
 import gettext
@@ -39,6 +40,9 @@ from babel.messages.pofile import read_po
 
 from tuxemon.constants import paths
 from tuxemon import prepare
+from tuxemon.session import Session
+from typing import Generator, Optional, Mapping, Any, Iterable, Sequence,\
+    Callable
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +51,7 @@ FALLBACK_LOCALE = "en_US"
 
 @dataclasses.dataclass(frozen=True, order=True)
 class LocaleInfo:
+    """Information about a locale."""
     locale: str
     category: str
     domain: str
@@ -54,19 +59,26 @@ class LocaleInfo:
 
 
 class TranslatorPo:
-    """gettext-based translator class.
+    """
+    gettext-based translator class.
 
-    po files are read and compiled into mo files by gettext
-    the mo files are saved in ~/.tuxemon/cache/l18n
+    po files are read and compiled into mo files by gettext.
+    the mo files are saved in ~/.tuxemon/cache/l18n.
 
     """
 
-    def __init__(self):
-        self.translate = None
+    def __init__(self) -> None:
+        self.translate: Callable[[str], str] = lambda x: x
 
     @staticmethod
-    def search_locales():
-        """Search local folder and return LocaleInfo objects"""
+    def search_locales() -> Generator[LocaleInfo, None, None]:
+        """
+        Search local folder and return LocaleInfo objects.
+
+        Yields:
+            The information of each locale.
+
+        """
         root = prepare.fetch("l18n")
         for locale in os.listdir(root):
             locale_path = os.path.join(root, locale)
@@ -78,25 +90,58 @@ class TranslatorPo:
                             path = os.path.join(category_path, name)
                             if os.path.isfile(path) and name.endswith(".po"):
                                 domain = name[:-3]
-                                yield LocaleInfo(locale, category, domain, path)
+                                yield LocaleInfo(
+                                    locale,
+                                    category,
+                                    domain,
+                                    path,
+                                )
 
-    def collect_languages(self, recompile_translations=False):
-        """Collect languages/locales with available translation files."""
+    def collect_languages(self, recompile_translations: bool = False) -> None:
+        """
+        Collect languages/locales with available translation files.
+
+        Parameters:
+            recompile_translations: ``True`` if the translations should be
+                recompiled (useful for testing local changes to the
+                translations).
+
+        """
         self.build_translations(recompile_translations)
         self.load_translator(prepare.CONFIG.locale)
 
-    def build_translations(self, recompile_translations=False):
-        """Create MO files for existing PO translation files."""
+    def build_translations(self, recompile_translations: bool = False) -> None:
+        """
+        Create MO files for existing PO translation files.
+
+        Parameters:
+            recompile_translations: ``True`` if the translations should be
+                recompiled (useful for testing local changes to the
+                translations).
+
+        """
         # l18n/locale/LC_category/domain_name.mo
         cache = os.path.join(paths.CACHE_DIR, "l18n")
         for info in self.search_locales():
-            mo_path = os.path.join(cache, info.locale, info.category, info.domain + ".mo")
+            mo_path = os.path.join(
+                cache,
+                info.locale,
+                info.category,
+                info.domain + ".mo",
+            )
             if recompile_translations or not os.path.exists(mo_path):
                 self.compile_gettext(info.path, mo_path)
 
     @staticmethod
-    def compile_gettext(po_path, mo_path):
-        """compile po into mo"""
+    def compile_gettext(po_path: str, mo_path: str) -> None:
+        """
+        Compile po file into mo file.
+
+        Parameters:
+            po_path: Path of the po file.
+            mo_path: Path of the mo file.
+
+        """
         mofolder = os.path.dirname(mo_path)
         os.makedirs(mofolder, exist_ok=True)
         with open(po_path, encoding="UTF8") as po_file:
@@ -105,12 +150,27 @@ class TranslatorPo:
             write_mo(mo_file, catalog)
             logger.debug("writing l18n mo: %s", mo_path)
 
-    def load_translator(self, locale_name="en_US", domain="base"):
-        """Load a selected locale for translation."""
+    def load_translator(
+        self,
+        locale_name: str = "en_US",
+        domain: str = "base",
+    ) -> None:
+        """
+        Load a selected locale for translation.
+
+        Parameters:
+            locale_name: Name of the locale.
+            domain: Name of the domain.
+
+        """
         localedir = os.path.join(paths.CACHE_DIR, "l18n")
         for info in self.search_locales():
             if info.locale == locale_name and info.domain == domain:
-                trans = gettext.translation(info.domain, localedir, [locale_name])
+                trans = gettext.translation(
+                    info.domain,
+                    localedir,
+                    [locale_name],
+                )
                 break
         else:
             logger.warning(f"Locale {locale_name} not found. Using fallback.")
@@ -118,31 +178,55 @@ class TranslatorPo:
         trans.install()
         self.translate = trans.gettext
 
-    def format(self, text: str, parameters=None) -> str:
-        """Replaces variables in a translation string with the given parameters."""
+    def format(
+        self,
+        text: str,
+        parameters: Optional[Mapping[str, Any]] = None,
+    ) -> str:
+        """
+        Replaces variables in a translation string with the given parameters.
+
+        Parameters:
+            text: String to format.
+            parameters: Parameters to format into the string.
+
+        Returns:
+            The formatted string.
+
+        """
         text = text.replace(r"\n", "\n")
         text = self.translate(text)
         if parameters:
             text = text.format(**parameters)
         return text
 
-    def maybe_translate(self, text: str) -> str:
-        """Try to translate the text. If None, return empty string"""
+    def maybe_translate(self, text: Optional[str]) -> str:
+        """
+        Try to translate the text. If ``None``, return empty string.
+
+        Parameters:
+            text: String to translate.
+
+        Returns:
+            Translated string.
+        """
         if text is None:
             return ""
         else:
             return self.translate(text)
 
 
-def replace_text(session, text):
-    """Replaces ${{var}} tiled variables with their in-session value.
+def replace_text(session: Session, text: str) -> str:
+    """
+    Replaces ``${{var}}`` tiled variables with their in-session value.
 
-    :param tuxemon.session.Session session: Session
-    :param str text: Raw text from the map
+    Parameters:
+        session: Session containing the information to fill the variables.
+        text: Text whose references to variables should be substituted.
 
-    :rtype: str
-    >>> replace_text("${{name}} is running away!")
-    'Red is running away!'
+    Examples:
+        >>> replace_text(session, "${{name}} is running away!")
+        'Red is running away!'
 
     """
     text = text.replace("${{name}}", session.player.name)
@@ -163,7 +247,21 @@ def replace_text(session, text):
     return text
 
 
-def process_translate_text(session, text_slug, parameters):
+def process_translate_text(
+    session: Session,
+    text_slug: str,
+    parameters: Iterable[str],
+) -> Sequence[str]:
+    """
+    Translate a dialog to a sequence of pages of text.
+
+    Parameters:
+        session: Session containing the information to fill the variables.
+        text_slug: Text to translate.
+        parameters: A sequence of parameters in the format ``"key=value"`` used
+            to format the string.
+
+    """
     replace_values = {}
 
     # extract INI-style params

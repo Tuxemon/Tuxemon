@@ -387,6 +387,7 @@ class Animation(pygame.sprite.Sprite):
             relative: If the values are relative to the initial value. That is,
                 in order to find the actual value one has to add the initial
                 one.
+            kwargs: Properties of the ``targets`` to be used, and their values.
 
         """
         super().__init__()

@@ -212,7 +212,7 @@ class Client(StateManager):
         State.process_event
 
         Parameters:
-            events: Sequence of Pygame events]
+            events: Sequence of Pygame events.
 
         Yields:
             Unprocessed event.

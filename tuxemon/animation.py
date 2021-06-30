@@ -5,7 +5,7 @@ from math import sqrt, cos, sin, pi
 
 import pygame
 from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple,\
-    Mapping
+    Mapping, Union
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 
@@ -166,6 +166,7 @@ class Task(TaskBase):
             callback: Function to execute each interval.
             interval: Time between callbacks.
             times: Number of intervals.
+
         """
         if not callable(callback):
             raise ValueError
@@ -358,22 +359,61 @@ class Animation(pygame.sprite.Sprite):
     default_duration = 1000.0
     default_transition = "linear"
 
-    def __init__(self, *targets: object, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        *targets: object,
+        delay: float = 0,
+        round_values: bool = False,
+        duration: Optional[float] = None,
+        transition: Union[str, Callable[[float], float], None] = None,
+        initial: Union[float, Callable[[], float], None] = None,
+        relative: bool = False,
+        **kwargs: Any,
+    ) -> None:
+        """
+        Animation constructor.
+
+        Parameters:
+            targets: Any valid python objects.
+            delay: Delay time before the animation starts.
+            round_values: Wether the values must be rounded to the nearest
+                integer before being set.
+            duration: Time duration of the animation.
+            transition: Transition to use in the animation. Can be the name
+                of a method of :class:`AnimationTransition` or a callable
+                with the same signature.
+            initial: Initial value. Can be numeric or a callable that
+                returns a numeric value. If ``None`` the value itself is used.
+            relative: If the values are relative to the initial value. That is,
+                in order to find the actual value one has to add the initial
+                one.
+
+        """
         super().__init__()
-        self.targets: List[Tuple[object, Mapping[str, Any]]] = list()
+        self.targets: List[
+            Tuple[object, Mapping[str, Tuple[float, float]]]
+        ] = list()
         self._targets: Sequence[object] = list()
-        self.delay = kwargs.get("delay", 0)
+        self.delay = delay
         self._state = ANIMATION_NOT_STARTED
-        self._round_values = kwargs.get("round_values", False)
-        self._duration = float(kwargs.get("duration", self.default_duration))
-        self._transition = kwargs.get("transition", self.default_transition)
-        self._initial = kwargs.get("initial", None)
-        self._relative = kwargs.get("relative", False)
-        if isinstance(self._transition, str):
-            self._transition = getattr(AnimationTransition, self._transition)
+        self._round_values = round_values
+
+        self._duration = (
+            self.default_duration if duration is None else duration
+        )
+
+        if transition is None:
+            transition = self.default_transition
+
+        if isinstance(transition, str):
+            transition = getattr(AnimationTransition, transition)
+            assert callable(transition)
+
+        self._transition = transition
+        self._initial = initial
+        self._relative = relative
         self._elapsed = 0.0
-        for key in ("duration", "transition", "round_values", "delay", "initial", "relative"):
-            kwargs.pop(key, None)
+
         if not kwargs:
             raise ValueError
         self.props = kwargs

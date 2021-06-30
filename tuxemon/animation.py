@@ -121,6 +121,11 @@ class Task(TaskBase):
     below use milliseconds.  However, you are free to use whatever
     time unit you wish, as long as it is used consistently.
 
+    Parameters:
+        callback: Function to execute each interval.
+        interval: Time between callbacks.
+        times: Number of intervals.
+
     Examples:
         >>> task_group = pygame.sprite.Group()
 
@@ -159,15 +164,7 @@ class Task(TaskBase):
         interval: float = 0,
         times: int = 1,
     ) -> None:
-        """
-        Task constructor.
 
-        Parameters:
-            callback: Function to execute each interval.
-            interval: Time between callbacks.
-            times: Number of intervals.
-
-        """
         if not callable(callback):
             raise ValueError
 
@@ -354,6 +351,22 @@ class Animation(pygame.sprite.Sprite):
     The 'round_values' parameter will be set to True automatically
     if pygame rects are used as an animation target.
 
+    Parameters:
+        targets: Any valid python objects.
+        delay: Delay time before the animation starts.
+        round_values: Wether the values must be rounded to the nearest
+            integer before being set.
+        duration: Time duration of the animation.
+        transition: Transition to use in the animation. Can be the name
+            of a method of :class:`AnimationTransition` or a callable
+            with the same signature.
+        initial: Initial value. Can be numeric or a callable that
+            returns a numeric value. If ``None`` the value itself is used.
+        relative: If the values are relative to the initial value. That is,
+            in order to find the actual value one has to add the initial
+            one.
+        kwargs: Properties of the ``targets`` to be used, and their values.
+
     """
 
     default_duration = 1000.0
@@ -370,26 +383,7 @@ class Animation(pygame.sprite.Sprite):
         relative: bool = False,
         **kwargs: Any,
     ) -> None:
-        """
-        Animation constructor.
 
-        Parameters:
-            targets: Any valid python objects.
-            delay: Delay time before the animation starts.
-            round_values: Wether the values must be rounded to the nearest
-                integer before being set.
-            duration: Time duration of the animation.
-            transition: Transition to use in the animation. Can be the name
-                of a method of :class:`AnimationTransition` or a callable
-                with the same signature.
-            initial: Initial value. Can be numeric or a callable that
-                returns a numeric value. If ``None`` the value itself is used.
-            relative: If the values are relative to the initial value. That is,
-                in order to find the actual value one has to add the initial
-                one.
-            kwargs: Properties of the ``targets`` to be used, and their values.
-
-        """
         super().__init__()
         self.targets: List[
             Tuple[object, Mapping[str, Tuple[float, float]]]

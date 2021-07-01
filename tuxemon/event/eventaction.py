@@ -67,8 +67,7 @@ class EventAction:
     if the action will block forever, as it will freeze the game.
 
 
-    Parameters
-    ==========
+    **Parameters**
 
     ** this is a work-in-progress feature, that may change in time **
 

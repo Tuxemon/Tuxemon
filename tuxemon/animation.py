@@ -329,8 +329,7 @@ class Animation(pygame.sprite.Sprite):
     delay keyword.
 
 
-    Callable Attributes
-    ===================
+    **Callable Attributes**
 
     Target values can also be callable.  In this case, there is
     no way to determine the initial value unless it is specified
@@ -345,8 +344,7 @@ class Animation(pygame.sprite.Sprite):
           limitation won't be resolved for a while.
 
 
-    Pygame Rects
-    ============
+    **Pygame Rects**
 
     The 'round_values' parameter will be set to True automatically
     if pygame rects are used as an animation target.

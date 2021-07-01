@@ -361,6 +361,7 @@ epub_exclude_files = ['search.html']
 #epub_use_index = True
 
 autodoc_typehints = "description"
+napoleon_numpy_docstring = False
 
 # Apidoc call to generate automatic reference docs. Taken from
 # https://github.com/readthedocs/readthedocs.org/issues/1139#issuecomment-398083449

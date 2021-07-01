@@ -29,13 +29,14 @@
 
 import itertools
 import logging
+import os
 
 import pygame
 
 from tuxemon.compat import Rect
 from tuxemon import prepare, state, networking
 from tuxemon.map import PathfindNode, dirs2, pairs
-from tuxemon.map_loader import TMXMapLoader
+from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons, events
 from tuxemon.session import local_session
@@ -916,11 +917,16 @@ class WorldState(state.State):
             if eo.name.lower() == "player spawn":
                 self.player.set_position((eo.x, eo.y))
 
-    def load_map(self, map_name):
+    def load_map(self, path):
         """Returns map data as a dictionary to be used for map changing
         :rtype: tuxemon.map.TuxemonMap
         """
-        return TMXMapLoader().load(map_name)
+        txmn_map = TMXMapLoader().load(path)
+        yaml_path = path[:-4] + ".yaml"
+        # TODO: merge the events from both sources
+        if os.path.exists(yaml_path):
+            txmn_map.events.extend(YAMLEventLoader().load_events(yaml_path))
+        return txmn_map
 
     def check_interactable_space(self):
         """Checks to see if any Npc objects around the player are interactable. It then populates a menu

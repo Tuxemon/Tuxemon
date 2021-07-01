@@ -249,13 +249,14 @@ class Client(StateManager):
 
         """
         for state in self.active_states:
-            game_event = state.process_event(game_event)
-            if game_event is None:
+            maybe_game_event = state.process_event(game_event)
+            if maybe_game_event is None:
                 break
+            game_event = maybe_game_event
         else:
-            game_event = self.event_engine.process_event(game_event)
+            maybe_game_event = self.event_engine.process_event(game_event)
 
-        return game_event
+        return maybe_game_event
 
     def main(self) -> None:
         """

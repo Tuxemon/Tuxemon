@@ -90,6 +90,9 @@ def rewrite_events(filename: str, sorting_method):
                 value = xml_event_object.attrib.get(name, None)
                 if value is not None:
                     event_node[name] = int(value) // divisor
+        event_type = xml_event_object.get("type")
+        if event_type is not None:
+            event_node["type"] = event_type
         if properties:
             xml_event_object.remove(properties)
             children = renumber_event(properties, sorting_method)

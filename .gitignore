@@ -42,10 +42,6 @@ coverage.xml
 # Rope
 .ropeproject
 
-# Django stuff:
-*.log
-
-
 # Sphinx documentation
 docs/_build/
 docs/autogen/
@@ -70,6 +66,11 @@ Thumbs.db
 *.epj
 /__init__.py
 .eric6project
+
+# KDevelop
+.*.kate-swp
+*.kdev4
+/.kdev4
 
 # Mac OS
 *.DS_Store

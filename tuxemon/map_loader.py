@@ -114,6 +114,7 @@ class YAMLEventLoader:
             y = event_data.get("y")
             w = event_data.get("width")
             h = event_data.get("height")
+            event_type = event_data.get("type")
 
             for value in event_data.get("actions", []):
                 act_type, args = parse_action_string(value)
@@ -130,10 +131,9 @@ class YAMLEventLoader:
                     acts.insert(0, MapAction("npc_face", [args[0], "player"], None))
                 else:
                     raise Exception
-            # if obj.type == "interact":
-            #     cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
-            #     logger.debug(cond_data)
-            #     conds.append(cond_data)
+            if event_type == "interact":
+                cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
+                conds.append(cond_data)
 
             yield EventObject(None, name, x, y, w, h, conds, acts)
 

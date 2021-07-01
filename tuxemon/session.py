@@ -1,3 +1,12 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from tuxemon.client import Client
+    from tuxemon.player import Player
+
+
 class Session:
     """
 
@@ -7,7 +16,7 @@ class Session:
 
     """
 
-    def __init__(self, client, world, player):
+    def __init__(self, client: Client, world, player: Player) -> None:
         """
         :param tuxemon.client.Client client: Game session
         :param tuxemon.world.World world: Game world

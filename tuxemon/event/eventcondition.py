@@ -24,38 +24,52 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
+from tuxemon.session import Session
+from tuxemon.event import MapCondition
+from typing import Mapping, Any
+
 
 class EventCondition:
     name = "GenericCondition"
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
-    def test(self, session, condition):
-        """Return True if satisfied, or False if not
-
-        :param tuxemon.session.Session session:
-        :param Dict condition:
-        :rtype: bool
+    def test(self, session: Session, condition: MapCondition) -> bool:
         """
+        Return ``True`` if the condition is satisfied, or ``False`` if not.
 
-    def get_persist(self, session):
-        """Return dictionary for this event class's data
+        Parameters:
+            session: Object containing the session information.
+            condition: Condition defined in the map.
+
+        Returns:
+            Value of the condition.
+
+        """
+        pass
+
+    def get_persist(self, session: Session) -> Mapping[str, Any]:
+        """
+        Return dictionary for this event class's data.
 
         * This dictionary will be shared across all conditions
         * This dictionary will be saved when game is saved
 
-        :return:
+        Returns:
+            Dictionary with the persisting information.
+
         """
         # Create a dictionary that will track movement
 
         try:
             return session.client.event_persist[self.name]
         except KeyError:
-            persist = dict()
+            persist: Mapping[str, Any] = dict()
             session.client.event_persist[self.name] = persist
             return persist
 
     @property
-    def done(self):
+    def done(self) -> bool:
         return True

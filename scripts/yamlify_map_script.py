@@ -15,7 +15,6 @@ import logging
 import os
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from itertools import count
 import yaml
 
 import click
@@ -24,7 +23,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__file__)
 
 
-def renumber_event(event_node, sorting_method):
+def renumber_event(event_node):
     groups = (
         ("act", list()),
         ("cond", list()),
@@ -42,24 +41,15 @@ def renumber_event(event_node, sorting_method):
 
     children = defaultdict(list)
     for tag, items in groups:
-        items = sorting_method(items)
-        num_digits = len(str(len(items) * 10))
-        name_template = tag + "{:0%d}" % num_digits
-
-        for i, action in zip(count(10, 10), items):
-            name, value = action
-            name = name_template.format(i)
-            for tag, items in groups:
-                if name.startswith(tag):
-                    break
-            else:
-                raise ValueError(tag)
+        items.sort()
+        for item in items:
+            index, value = item
             children[tag].append(value)
 
     return children
 
 
-def rewrite_events(filename: str, sorting_method):
+def rewrite_events(filename: str):
     tree = ET.parse(filename)
     root = tree.getroot()
     yaml_filename = filename[:-4] + ".yaml"
@@ -95,7 +85,7 @@ def rewrite_events(filename: str, sorting_method):
             event_node["type"] = event_type
         if properties:
             xml_event_object.remove(properties)
-            children = renumber_event(properties, sorting_method)
+            children = renumber_event(properties)
             for cname, tname in mapping:
                 if tname in children:
                     event_node[cname] = children.pop(tname)
@@ -108,9 +98,9 @@ def rewrite_events(filename: str, sorting_method):
     tree.write(filename, encoding="UTF-8", xml_declaration=True)
 
 
-def process_tmxmap(filename, sort_method):
+def process_tmxmap(filename):
     logging.info("processing file %s", filename)
-    rewrite_events(filename, sorted)
+    rewrite_events(filename)
     # python's xml export changes formatting, so use tiled
     # to export the map again and fix formatting
     tiled_exe = "/home/ltheden/Downloads/Tiled-1.7.0-x86_64.AppImage"
@@ -119,12 +109,10 @@ def process_tmxmap(filename, sort_method):
 
 
 @click.command()
-@click.option("--ascii", "method", flag_value="ascii")
-@click.option("--natural", "method", flag_value="natural", default=True)
 @click.argument("filename", nargs=-1)
-def click_shim(method, filename):
+def click_shim(filename):
     for fn in filename:
-        process_tmxmap(fn, method)
+        process_tmxmap(fn)
 
 
 if __name__ == "__main__":

@@ -26,8 +26,10 @@
 
 import logging
 from math import cos, sin, pi
+from typing import List, Iterator
 
 import pytmx
+import yaml
 from natsort import natsorted
 
 from tuxemon.compat import Rect
@@ -88,6 +90,52 @@ def parse_behav_string(behav_string):
     else:
         args = list()
     return behav_type, args
+
+
+class YAMLEventLoader:
+    """
+    Support for reading game events from a YAML file
+    """
+    def load_events(self, path: str) -> Iterator[EventObject]:
+        """
+        Load EventObjects from YAML file
+
+        Parameters:
+            path: Path to the file
+
+        """
+        with open(path) as fp:
+            yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
+
+        for name, event_data in yaml_data["events"].items():
+            conds = []
+            acts = []
+            x = event_data.get("x")
+            y = event_data.get("y")
+            w = event_data.get("width")
+            h = event_data.get("height")
+            event_type = event_data.get("type")
+
+            for value in event_data.get("actions", []):
+                act_type, args = parse_action_string(value)
+                action = MapAction(act_type, args, None)
+                acts.append(action)
+            for value in event_data.get("conditions", []):
+                operator, cond_type, args = parse_condition_string(value)
+                condition = MapCondition(cond_type, args, x, y, w, h, operator, None)
+                conds.append(condition)
+            for value in event_data.get("behav", []):
+                behav_type, args = parse_behav_string(value)
+                if behav_type == "talk":
+                    conds.insert(0, MapCondition("to_talk", args, x, y, w, h, "is", None))
+                    acts.insert(0, MapAction("npc_face", [args[0], "player"], None))
+                else:
+                    raise Exception
+            if event_type == "interact":
+                cond_data = MapCondition("player_facing_tile", list(), x, y, w, h, "is", None)
+                conds.append(cond_data)
+
+            yield EventObject(None, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:

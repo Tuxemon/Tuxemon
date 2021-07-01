@@ -1,10 +1,18 @@
 """
 
-Move the scripts from tmx file to a YAML file
+Move the scripts from TMX file to a YAML file
 
 * the YAML file will have same name as map
-* the TMX map will have the event, but not the script
-* events are referenced by name, not id
+* the TMX file will have the events, but the data will be removed
+
+Run this script with one or more files as the argument(s).  YAML files will be
+generated in the same folder with the same name as the map, and will contain
+the event data.
+
+The event data will be removed from the TMX map, but the rects will still be in
+the events group.  They can be deleted, if desired.
+
+... at some point I may make it remove the group if no events are in it.
 
 USAGE
 
@@ -15,9 +23,9 @@ import logging
 import os
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-import yaml
 
 import click
+import yaml
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__file__)

@@ -1,96 +1,76 @@
 import unittest
 
 from tuxemon.compat import Rect
-from tuxemon.map import snap_interval, snap_point, snap_rect, tiles_inside_rect, point_to_grid
+from tuxemon.map import snap_to_grid, snap_rect_to_grid, tiles_inside_rect, snap_to_tile
 
 
-class TestSnapInterval(unittest.TestCase):
-    def test_round_up(self):
-        value = 14
-        interval = 16
-        expected = 15
-        result = snap_interval(value, interval)
-        self.assertEqual(expected, result)
-
-    def test_round_down(self):
-        value = 1
-        interval = 16
-        expected = 0
-        result = snap_interval(value, interval)
-        self.assertEqual(expected, result)
-
-    def test_result_is_int(self):
-        result = snap_interval(0, 16)
-        self.assertIsInstance(result, int)
-
-
-class TestSnapPoint(unittest.TestCase):
+class TestSnapToGrid(unittest.TestCase):
     def test_round_up(self):
         point = (14, 15)
         grid_size = (16, 16)
         expected = (16, 16)
-        result = snap_point(point, grid_size)
+        result = snap_to_grid(point, grid_size)
         self.assertEqual(expected, result)
 
     def test_round_down(self):
         point = (1, 2)
         grid_size = (16, 16)
         expected = (0, 0)
-        result = snap_point(point, grid_size)
+        result = snap_to_grid(point, grid_size)
         self.assertEqual(expected, result)
 
     def test_result_is_tuple(self):
         point = (9, 9)
         grid_size = (16, 16)
-        result = snap_point(point, grid_size)
+        result = snap_to_grid(point, grid_size)
         self.assertIsInstance(result, tuple)
 
     def test_result_is_int(self):
         point = (9, 9)
         grid_size = (16, 16)
-        result = snap_point(point, grid_size)
+        result = snap_to_grid(point, grid_size)
         self.assertTrue(all(isinstance(i, int) for i in result))
 
 
-class TestPointToGrid(unittest.TestCase):
+class TestSnapToTile(unittest.TestCase):
     def test_round_up(self):
         point = (32, 44)
         grid_size = (16, 16)
         expected = (2, 3)
-        result = point_to_grid(point, grid_size)
+        result = snap_to_tile(point, grid_size)
         self.assertEqual(expected, result)
 
     def test_round_down(self):
         point = (32, 50)
         grid_size = (16, 16)
         expected = (2, 3)
-        result = point_to_grid(point, grid_size)
+        result = snap_to_tile(point, grid_size)
         self.assertEqual(expected, result)
 
     def test_result_is_tuple(self):
         point = (32, 32)
         grid_size = (16, 16)
-        result = point_to_grid(point, grid_size)
+        result = snap_to_tile(point, grid_size)
         self.assertIsInstance(result, tuple)
 
     def test_result_is_int(self):
         point = (32, 32)
         grid_size = (16, 16)
-        result = point_to_grid(point, grid_size)
+        result = snap_to_tile(point, grid_size)
         self.assertTrue(all(isinstance(i, int) for i in result))
 
 
-class TestSnapRect(unittest.TestCase):
+class TestSnapRectToGrid(unittest.TestCase):
     def test_snap_rect_result_is_rect(self):
         rect = Rect(1, 1, 14, 14)
         grid_size = (16, 16)
-        result = snap_rect(rect, grid_size)
+        result = snap_rect_to_grid(rect, grid_size)
         self.assertIsInstance(result, Rect)
 
     def test_snap_x_axis(self):
         rect = Rect(1, 16, 30, 16)
         grid_size = (16, 16)
-        result = snap_rect(rect, grid_size)
+        result = snap_rect_to_grid(rect, grid_size)
         self.assertEqual(0, result.x)
         self.assertEqual(16, result.y)
         self.assertEqual(32, result.w)
@@ -99,7 +79,7 @@ class TestSnapRect(unittest.TestCase):
     def test_snap_y_axis(self):
         rect = Rect(1, 16, 16, 30)
         grid_size = (16, 16)
-        result = snap_rect(rect, grid_size)
+        result = snap_rect_to_grid(rect, grid_size)
         self.assertEqual(0, result.x)
         self.assertEqual(16, result.y)
         self.assertEqual(16, result.w)

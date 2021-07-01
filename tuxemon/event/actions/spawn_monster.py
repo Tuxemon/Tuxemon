@@ -45,7 +45,11 @@ class SpawnMonsterAction(EventAction):
     """
 
     name = "spawn_monster"
-    valid_parameters = [(str, "npc_slug"), (str, "breeding_mother"), (str, "breeding_father")]
+    valid_parameters = [
+        (str, "npc_slug"),
+        (str, "breeding_mother"),
+        (str, "breeding_father"),
+    ]
 
     def start(self):
         npc_slug, breeding_mother, breeding_father = self.parameters

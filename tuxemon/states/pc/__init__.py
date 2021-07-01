@@ -48,8 +48,10 @@ def add_menu_items(state, items):
 
         state.build_item(label, callback)
 
+
 def not_implemented_dialog():
-            open_dialog(local_session, [T.translate("not_implemented")])
+    open_dialog(local_session, [T.translate("not_implemented")])
+
 
 class PCState(PopUpMenu):
     """The state responsible in game settings."""
@@ -67,7 +69,7 @@ class PCState(PopUpMenu):
             (
                 ("menu_monsters", change_state("MonsterMenuState")),
                 ("menu_items", change_state("ItemMenuState")),
-                ("menu_multiplayer", not_implemented_dialog), #change_state("MultiplayerMenu")),
+                ("menu_multiplayer", not_implemented_dialog),  # change_state("MultiplayerMenu")),
                 ("log_off", self.client.pop_state),
             ),
         )

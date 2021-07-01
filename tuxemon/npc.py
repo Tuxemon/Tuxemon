@@ -29,29 +29,29 @@
 #
 
 import logging
-import os
 from math import hypot
-from typing import List
 
-from tuxemon.compat import Rect
-from tuxemon import pyganim
 from tuxemon.db import db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item
 from tuxemon.item.item import decode_inventory, encode_inventory
 from tuxemon.locale import T
-from tuxemon.map import proj, facing, dirs3, dirs2, get_direction
+from tuxemon.map import dirs3, dirs2, get_direction
 from tuxemon.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.tools import nearest, trunc
-from tuxemon.graphics import load_and_scale
 
 logger = logging.getLogger(__name__)
 
 # reference direction and movement states to animation names
 # this dictionary is kinda wip, idk
 animation_mapping = {
-    True: {"up": "back_walk", "down": "front_walk", "left": "left_walk", "right": "right_walk"},
+    True: {
+        "up": "back_walk",
+        "down": "front_walk",
+        "left": "left_walk",
+        "right": "right_walk",
+    },
     False: {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
@@ -71,7 +71,7 @@ class NPC(Entity):
 
     Pathfinding is accomplished by setting the path directly.
 
-    To move one tile, simply set a path of one item.
+    To move one tile, set a path of one item.
     """
 
     party_limit = 6  # The maximum number of tuxemon this npc can hold
@@ -130,7 +130,7 @@ class NPC(Entity):
         self.path_origin = None
 
         # movement related
-        self.move_direction = None  # Set this value to move the npc (see below)
+        self._move_direction = None  # Set this value to move the npc (see below)
         self.facing = "down"  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
@@ -140,23 +140,21 @@ class NPC(Entity):
         # To move the npc, change the value to one of four directions: left, right, up or down.
         # The npc will then move one tile in that direction until it is set to None.
 
-        # TODO: move sprites into renderer so class can be used headless
-        self.playerHeight = 0
-        self.playerWidth = 0
-        self.standing = {}  # Standing animation frames
-        self.sprite = {}  # Moving animation frames
-        self.moveConductor = pyganim.PygConductor()
-        self.load_sprites()
-        self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+        # TODO: pull values from the sprite, json, or some default
+        self.playerHeight = 16
+        self.playerWidth = 16
+        # self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+
+        self.animation = None
+
+        self.walking_id = None
 
     def get_state(self, session):
         """Prepares a dictionary of the npc to be saved to a file
 
         :param tuxemon.session.Session session:
-
         :rtype: Dictionary
         :returns: Dictionary containing all the information about the npc
-
         """
 
         state = {
@@ -183,10 +181,7 @@ class NPC(Entity):
 
         :param tuxemon.session.Session session:
         :param Dict save_data: Data used to recreate the player
-
         :rtype: None
-        :returns: None
-
         """
 
         self.facing = save_data.get("facing", "down")
@@ -199,109 +194,32 @@ class NPC(Entity):
         for key, value in save_data["item_boxes"].items():
             self.item_boxes[key] = decode_inventory(session, self, value)
 
-    def load_sprites(self):
-        """Load sprite graphics
+    def move_direction(self, direction):
+        self._move_direction = direction
 
-        :return:
-        """
-        # TODO: refactor animations into renderer
-        # Get all of the player's standing animation images.
-        self.standing = {}
-        for standing_type in facing:
-            filename = f"{self.sprite_name}_{standing_type}.png"
-            path = os.path.join("sprites", filename)
-            self.standing[standing_type] = load_and_scale(path)
-
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
-
-        # avoid cutoff frames when steps don't line up with tile movement
-        frames = 3
-        frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
-
-        # Load all of the player's sprite animations
-        anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
-        for anim_type in anim_types:
-            images = [
-                "sprites/{}_{}.{}.png".format(self.sprite_name, anim_type, str(num).rjust(3, "0")) for num in range(4)
-            ]
-
-            frames = []
-            for image in images:
-                surface = load_and_scale(image)
-                frames.append((surface, frame_duration))
-
-            self.sprite[anim_type] = pyganim.PygAnimation(frames, loop=True)
-
-        # Have the animation objects managed by a conductor.
-        # With the conductor, we can call play() and stop() on all the animation objects
-        # at the same time, so that way they'll always be in sync with each other.
-        self.moveConductor.add(self.sprite)
-
-    def get_sprites(self, layer):
-        """Get the surfaces and layers for the sprite
-
-        Used to render the player
-
-        TODO: Move the 'layer' to the NPC class so characters
-        can define their own drawing layer.
-
-        :param layer: The layer to draw the sprite on.
-        :type layer: Int
-
-        :return:
-        """
-
-        def get_frame(d, ani):
-            frame = d[ani]
-            try:
-                surface = frame.getCurrentFrame()
-                frame.rate = self.moverate / CONFIG.player_walkrate
-                return surface
-            except AttributeError:
-                return frame
-
-        # TODO: move out to the world renderer
-        frame_dict = self.sprite if self.moving else self.standing
-        state = animation_mapping[self.moving][self.facing]
-        return [(get_frame(frame_dict, state), self.tile_pos, layer)]
-
-    def pathfind(self, destination) -> List:
+    def pathfind(self, destination):
         """Find a path and also start it
 
-        If asked to pathfind, an NPC will pathfind until it:
-        * reaches the destination
-        * NPC.cancel_movement() is called
-
-        If blocked, the NPC will wait until it is able to move
-
-        Queries the world for a valid path
+        :param destination:
+        :rtype: None
         """
         self.pathfinding = destination
-        path = self.world.pathfind(tuple(int(i) for i in self.tile_pos), destination)
+        path = self.map.pathfind(tuple(self.tile_pos), destination)
         if path:
             self.path = path
             self.next_waypoint()
 
     def check_continue(self):
+        """
+
+        :return:
+        """
         try:
             pos = tuple(int(i) for i in self.tile_pos)
-            direction_next = self.world.collision_map[pos]["continue"]
+            direction_next = self.map.collision_map[pos]["continue"]
             self.move_one_tile(direction_next)
         except (KeyError, TypeError):
             pass
-
-    def stop_moving(self):
-        """Completely stop all movement
-
-        Be careful, if stopped while in the path, it might not be tile-aligned.
-
-        May continue if move_direction is set
-
-        :return: None
-        """
-        self.velocity3.x = 0
-        self.velocity3.y = 0
-        self.velocity3.z = 0
 
     def cancel_path(self):
         """Stop following a path.
@@ -321,7 +239,7 @@ class NPC(Entity):
 
         :return:
         """
-        self.move_direction = None
+        self._move_direction = None
         if self.tile_pos == self.path_origin:
             # we *just* started a new path; discard it and stop
             self.abort_movement()
@@ -348,12 +266,12 @@ class NPC(Entity):
         """
         if self.path_origin is not None:
             self.tile_pos = tuple(self.path_origin)
-        self.move_direction = None
+        self._move_direction = None
         self.stop_moving()
         self.cancel_path()
 
     def move(self, time_passed_seconds):
-        """Move the entity around the game world
+        """Move the entity around the game map
 
         * check if the move_direction variable is set
         * set the movement speed
@@ -372,7 +290,6 @@ class NPC(Entity):
         if self.pathfinding and not self.path:
             # wants to pathfind, but there was no path last check
             self.pathfind(self.pathfinding)
-            return
 
         if self.path:
             if self.path_origin:
@@ -384,15 +301,13 @@ class NPC(Entity):
                 # waypoints failed, so try again.
                 self.next_waypoint()
 
-        # does the npc want to move?
-        if self.move_direction:
+        if self._move_direction:
             if self.path and not self.moving:
                 # npc wants to move and has a path, but it is blocked
                 self.cancel_path()
 
             if not self.path:
-                # there is no path, so start a new one
-                self.move_one_tile(self.move_direction)
+                self.move_one_tile(self._move_direction)
                 self.next_waypoint()
 
         # TODO: determine way to tell if another force is moving the entity
@@ -400,7 +315,6 @@ class NPC(Entity):
         # TODO: its not possible to move the entity with physics b/c this stops that
         if not self.path:
             self.cancel_movement()
-            self.moveConductor.stop()
 
     def move_one_tile(self, direction):
         """Ask entity to move one tile
@@ -421,7 +335,7 @@ class NPC(Entity):
         :param tile:
         :return:
         """
-        return tile in self.world.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        return tile in self.map.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
 
     @property
     def move_destination(self):
@@ -440,22 +354,11 @@ class NPC(Entity):
         * This must be called after a path is set
         * Not needed to be called if existing path is modified
         * If the next waypoint is blocked, the waypoint will be removed
-
-        :return: None
         """
         target = self.path[-1]
         direction = get_direction(self.tile_pos, target)
         self.facing = direction
         if self.valid_movement(target):
-            # pyganim has horrible clock drift.  even after one animation
-            # cycle, the time will be off.  drift causes the walking steps to not
-            # align with tiles and some frames will only last one game frame.
-            # using play to start each tile will reset the pyganim timer
-            # and prevent the walking animation frames from coming out of sync.
-            # it still occasionally happens though!
-            # eventually, there will need to be a global clock for the game,
-            # not based on wall time, to prevent visual glitches.
-            self.moveConductor.play()
             self.path_origin = tuple(self.tile_pos)
             self.velocity3 = self.moverate * dirs3[direction]
         else:
@@ -491,37 +394,6 @@ class NPC(Entity):
             self.check_continue()  # handle "continue" tiles
             if self.path:
                 self.next_waypoint()
-
-    def pos_update(self):
-        """WIP.  Required to be called after position changes
-
-        :return:
-        """
-        self.tile_pos = proj(self.position3)
-        self.network_notify_location_change()
-
-    def network_notify_start_moving(self, direction):
-        r"""WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
-        if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
-
-    def network_notify_stop_moving(self):
-        r"""WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
-        if self.world.game.isclient or self.world.game.ishost:
-            self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
-
-    def network_notify_location_change(self):
-        r"""WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
-        self.update_location = True
 
     ####################################################
     #                   Monsters                       #

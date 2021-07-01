@@ -28,7 +28,7 @@ class ButtonPressedCondition(EventCondition):
 
     name = "button_pressed"
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Checks to see if a particular key was pressed
 
         :param session: The session object
@@ -52,7 +52,7 @@ class ButtonPressedCondition(EventCondition):
             raise ValueError(f"Cannot support key type: {button}")
 
         # Loop through each event
-        for event in session.client.key_events:
+        for event in context.client.key_events:
             if event.pressed and event.button == button:
                 return True
 

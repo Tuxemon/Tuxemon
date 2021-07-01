@@ -30,7 +30,6 @@ from argparse import ArgumentParser
 
 if __name__ == '__main__':
     from tuxemon import prepare, main
-    config = prepare.CONFIG
 
     parser = ArgumentParser()
     parser.add_argument('-m', '--mod', dest='mod', metavar='mymod', type=str, nargs='?',
@@ -39,17 +38,11 @@ if __name__ == '__main__':
                         default=None, help='The index of the save file to load')
     parser.add_argument('-s', '--starting-map', dest='starting_map', metavar='map.tmx', type=str, nargs='?',
                         default=None, help='The starting map')
-    parser.add_argument('-t', '--test-map', dest='test_map', type=str, nargs='?',
-                        default=None, help='Skip title screen and load map directly')
     args = parser.parse_args()
 
     if args.mod:
-        config.mods.insert(0, args.mod)
+        prepare.CONFIG.mods.insert(0, args.mod)
     if args.starting_map:
-        config.starting_map = args.starting_map
-    if args.test_map:
-        config.starting_map = args.test_map
-        config.skip_titlescreen = True
-        config.splash = False
+        prepare.CONFIG.starting_map = args.starting_map
 
     main.main(load_slot=args.slot)

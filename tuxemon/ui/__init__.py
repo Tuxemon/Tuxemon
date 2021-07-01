@@ -178,6 +178,3 @@ class UserInterface:
 
     def scale(self, width_height):
         self.animation.scale(width_height)
-
-
-import tuxemon.ui.bar

@@ -35,5 +35,5 @@ class NpcWalk(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.session, self.parameters.npc_slug)
-        npc.moverate = self.session.client.config.player_walkrate
+        npc = get_npc(self.context, self.parameters.npc_slug)
+        npc.moverate = self.context.client.config.player_walkrate

@@ -31,10 +31,11 @@ class EventCondition:
     def __init__(self):
         pass
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Return True if satisfied, or False if not
 
-        :param tuxemon.session.Session session:
+        :param tuxemon.session.Session context:
+        :param tuxemon.event.EventObject event:
         :param Dict condition:
         :rtype: bool
         """
@@ -59,3 +60,6 @@ class EventCondition:
     @property
     def done(self):
         return True
+
+    def program(self, event_condition):
+        pass

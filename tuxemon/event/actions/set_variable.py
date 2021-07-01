@@ -32,7 +32,7 @@ class SetVariableAction(EventAction):
     valid_parameters = [(str, "var_list")]
 
     def start(self):
-        player = self.session.player
+        player = self.context.player
 
         # Split the variable into a key: value pair
         var_list = self.parameters[0].split(":")

@@ -26,43 +26,50 @@
 
 import logging
 from collections import namedtuple
+from dataclasses import dataclass
+
+from tuxemon.compat import Rect
 
 logger = logging.getLogger(__name__)
 
 # Set up map action and condition objects
-condition_fields = ["type", "parameters", "x", "y", "width", "height", "operator", "name"]
+condition_fields = [
+    "name",
+    "operator",
+    "parameters",
+]
 
-action_fields = ["type", "parameters", "name"]
+action_fields = ["type", "parameters"]
 
-event_fields = ["id", "name", "x", "y", "w", "h", "conds", "acts"]
 
 MapCondition = namedtuple("condition", condition_fields)
 MapAction = namedtuple("action", action_fields)
-EventObject = namedtuple("eventobject", event_fields)
+
+# event_fields = ["id", "name", "rect", "conds", "acts"]
+# EventObject = namedtuple("eventobject", event_fields)
+
+
+@dataclass(frozen=True, order=True)
+class EventObject:
+    id: str
+    name: str
+    rect: Rect
+    conds: list
+    acts: list
+
 
 __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
-def get_npc(session, slug):
-    """Gets an NPC object by slug.
+def get_npc(context, slug):
+    """Gets an NPC object by slug.  None is returned if not found.
 
-    :param session: The session object
-    :param slug: The slug of the NPC that exists on the current map.
+    Pass "player" to get the player's entity of this session.
 
-    :type session: tuxemon.session.Session
-    :type slug: str
-
-    :rtype: tuxemon.player.Player
-    :returns: The NPC object or None if the NPC is not found.
+    :param tuxemon.event.eventengine.EventContext context
+    :param str slug: The slug of the NPC that exists on the current map.
+    :rtype: Optional[tuxemon.npc.NPC]
     """
     if slug == "player":
-        return session.player
-
-    # Loop through the NPC list and see if the slug matches any in the list
-    world = session.client.get_state_by_name("WorldState")
-    if world is None:
-        logger.error("Cannot search for NPC if world doesn't exist: " + slug)
-        return
-
-    # logger.error("Unable to find NPC: " + slug)
-    return world.get_entity(slug)
+        return context.player
+    return context.world.get_entity(slug)

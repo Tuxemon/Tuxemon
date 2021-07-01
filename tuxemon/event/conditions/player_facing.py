@@ -27,22 +27,24 @@ class PlayerFacingCondition(EventCondition):
 
     name = "player_facing"
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Checks to see where the player is facing
 
-        :param session: The session object
+        :param event:
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.session.Session
+        :type context: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
         :returns: True or False
 
         Valid Parameters: direction ("up", "down", "left" or "right")
+
         """
-        player = session.player
+        player = context.player
         facing = condition.parameters[0]
 
         if player.facing == facing:

@@ -9,14 +9,14 @@ class Session:
 
     def __init__(self, client, world, player):
         """
-        :param tuxemon.client.Client client: Game session
+        :param tuxemon.client.LocalPygameClient client: Game session
         :param tuxemon.world.World world: Game world
-        :param tuxemon.player.Player player: Player object
+        :param tuxemon.npc.NPC player: Player NPC object
         """
         self.client = client
         self.world = world
         self.player = player
 
 
-# WIP will be filled in later when game starts
+# will be filled in later when game starts
 local_session = Session(None, None, None)

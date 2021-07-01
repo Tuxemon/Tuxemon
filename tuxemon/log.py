@@ -47,6 +47,9 @@ def configure():
     config = prepare.CONFIG
     loggers = {}
 
+    config.debug_level = "debug"
+    config.debug_logging = True
+
     if config.debug_level in LOG_LEVELS:
         log_level = LOG_LEVELS[config.debug_level]
     else:

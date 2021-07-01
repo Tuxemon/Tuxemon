@@ -35,4 +35,4 @@ class SetPlayerAttributeAction(EventAction):
     def start(self):
         attribute = self.parameters[0]
         value = self.parameters[1]
-        CommonAction.set_character_attribute(self.session.player, attribute, value)
+        CommonAction.set_character_attribute(self.context.player, attribute, value)

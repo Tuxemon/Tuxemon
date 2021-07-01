@@ -107,7 +107,7 @@ def save(save_data, slot):
 
 
 def load(slot):
-    """Loads gamen state data from a shelved save file.
+    """Loads game state data from a shelved save file.
 
     :param slot: The save slot to load game data from.
     :type slot: Integer

@@ -34,7 +34,7 @@ class SetNpcAttributeAction(EventAction):
     valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
 
     def start(self):
-        npc = get_npc(self.session, self.parameters[0])
+        npc = get_npc(self.context, self.parameters[0])
         attribute = self.parameters[1]
         value = self.parameters[2]
         CommonAction.set_character_attribute(npc, attribute, value)

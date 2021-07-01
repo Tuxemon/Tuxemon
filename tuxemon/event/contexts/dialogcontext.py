@@ -23,7 +23,7 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
-from tuxemon.event import EventContext
+from tuxemon.event.eventcontext import EventContext
 from tuxemon.tools import open_dialog
 
 

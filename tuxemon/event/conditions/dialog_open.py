@@ -27,14 +27,15 @@ class DialogOpenCondition(EventCondition):
 
     name = "dialog_open"
 
-    def test(self, session, condition):
+    def test(self, context, event, condition):
         """Checks to see if a dialog window is open.
 
-        :param session: The session object
+        :param event:
+        :param context: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type session: tuxemon.session.Session
+        :type context: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -42,7 +43,7 @@ class DialogOpenCondition(EventCondition):
 
         Valid Parameters: None
         """
-        for state in session.client.active_states:
+        for state in context.client.active_states:
             if state.name == "DialogState":
                 return True
 

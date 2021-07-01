@@ -19,6 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from tuxemon.lib.euclid import Vector3
 from tuxemon.event.eventaction import EventAction
 
 
@@ -32,14 +33,6 @@ class DelayedTeleportAction(EventAction):
     valid_parameters = [(str, "map_name"), (int, "position_x"), (int, "position_y")]
 
     def start(self):
-        # Get the world object from the session
-        world = self.session.client.get_state_by_name("WorldState")
-
-        # give up if there is a teleport in progress
-        if world.delayed_teleport:
-            return
-
-        world.delayed_teleport = True
-        world.delayed_mapname = self.parameters.map_name
-        world.delayed_x = self.parameters.position_x
-        world.delayed_y = self.parameters.position_y
+        position = Vector3(self.parameters.x, self.parameters.y, 0)
+        self.context.client.release_controls()
+        self.context.world.teleport(self.context.player, self.parameters.map_name, position)

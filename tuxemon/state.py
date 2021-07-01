@@ -279,11 +279,11 @@ class StateManager:
         """
         self.done = False
         self.current_time = 0.0
-        self.package = ""
+        self.package = "tuxemon.states"
+        self.state_resume_set: Set[State] = set()
         self._state_queue: List[Tuple[str, Mapping[str, Any]]] = list()
         self._state_stack: List[State] = list()
         self._state_dict: Dict[str, Type[State]] = dict()
-        self._state_resume_set: Set[State] = set()
 
     def auto_state_discovery(self) -> None:
         """Scan a folder, load states found in it, and register them."""
@@ -457,7 +457,7 @@ class StateManager:
 
         previous = self.current_state
         logger.debug("resetting controls due to state change")
-        self.release_controls()
+        # self.release_controls()
 
         if previous is not None:
             previous.pause()
@@ -520,3 +520,14 @@ class StateManager:
 
         """
         return self._state_stack[:]
+
+    def get_state_name(self, name):
+        """Query the state stack for a state by the name supplied
+
+        :str name: str
+        :rtype: State, None
+        """
+        for state in self.active_states:
+            if state.__class__.__name__ == name:
+                return state
+        return None

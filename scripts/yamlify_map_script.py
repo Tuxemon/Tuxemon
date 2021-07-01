@@ -58,6 +58,26 @@ def renumber_event(event_node):
 
 
 def rewrite_events(filename: str):
+    def do_the_thing():
+        properties = xml_event_object.find("properties")
+        event_node = dict()
+        for names, divisor in [[["x", "width"], tw], [["y", "height"], th]]:
+            for name in names:
+                value = xml_event_object.attrib.get(name, None)
+                if value is not None:
+                    event_node[name] = int(value) // divisor
+        event_type = xml_event_object.get("type")
+        if event_type not in [None, "event"]:
+            event_node["type"] = event_type
+        if properties:
+            xml_event_object.remove(properties)
+            children = renumber_event(properties)
+            for cname, tname in mapping:
+                if tname in children:
+                    event_node[cname] = children.pop(tname)
+            assert not children
+        yaml_doc["events"][xml_event_object.attrib["name"]] = event_node
+
     tree = ET.parse(filename)
     root = tree.getroot()
     yaml_filename = filename[:-4] + ".yaml"
@@ -79,25 +99,10 @@ def rewrite_events(filename: str):
     tw = int(root.get("tilewidth"))
     th = int(root.get("tileheight"))
 
+    for xml_event_object in root.findall(".//object[@type='interact']"):
+        do_the_thing()
     for xml_event_object in root.findall(".//object[@type='event']"):
-        properties = xml_event_object.find("properties")
-        event_node = dict()
-        for names, divisor in [[["x", "width"], tw], [["y", "height"], th]]:
-            for name in names:
-                value = xml_event_object.attrib.get(name, None)
-                if value is not None:
-                    event_node[name] = int(value) // divisor
-        event_type = xml_event_object.get("type")
-        if event_type is not None:
-            event_node["type"] = event_type
-        if properties:
-            xml_event_object.remove(properties)
-            children = renumber_event(properties)
-            for cname, tname in mapping:
-                if tname in children:
-                    event_node[cname] = children.pop(tname)
-            assert not children
-        yaml_doc["events"][xml_event_object.attrib["name"]] = event_node
+        do_the_thing()
 
     with open(yaml_filename, "w") as fp:
         fp.write(yaml.dump(yaml_doc, Dumper=yaml.SafeDumper))

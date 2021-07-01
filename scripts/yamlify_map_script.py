@@ -56,7 +56,6 @@ def rewrite_events(filename: str):
 
     # if there is an existing yaml, try to load it so it is updated instead of replaced
     try:
-        # http://yaml.org/faq.html
         with open(yaml_filename) as fp:
             yaml_doc = yaml.load(fp, Loader=yaml.SafeLoader)
     except FileNotFoundError:

@@ -19,7 +19,16 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class TransitionTeleportActionParameters(NamedTuple):
+    map_name: str
+    x: int
+    y: int
+    transition_time: float
 
 
 class TransitionTeleportAction(EventAction):
@@ -36,6 +45,7 @@ class TransitionTeleportAction(EventAction):
         (int, "y"),
         (float, "transition_time"),
     ]
+    _param_factory = TransitionTeleportActionParameters
 
     def start(self):
         # Start the screen transition

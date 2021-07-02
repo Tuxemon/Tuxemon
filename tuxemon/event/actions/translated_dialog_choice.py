@@ -19,14 +19,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 from functools import partial
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class TranslatedDialogChoiceActionParameters(NamedTuple):
+    choices: str
+    variable: str
 
 
 class TranslatedDialogChoiceAction(EventAction):
@@ -38,6 +45,7 @@ class TranslatedDialogChoiceAction(EventAction):
     name = "translated_dialog_choice"
 
     valid_parameters = [(str, "choices"), (str, "variable")]
+    _param_factory = TranslatedDialogChoiceActionParameters
 
     def start(self):
         def set_variable(var_value):

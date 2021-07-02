@@ -19,14 +19,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.locale import replace_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class DialogChainActionParameters(NamedTuple):
+    text: str
+    avatar: str
 
 
 class DialogChainAction(EventAction):
@@ -43,6 +50,7 @@ class DialogChainAction(EventAction):
 
     name = "dialog_chain"
     valid_parameters = [(str, "text"), (str, "avatar")]
+    _param_factory = DialogChainActionParameters
 
     def start(self):
         # hack to allow unescaped commas in the dialog string

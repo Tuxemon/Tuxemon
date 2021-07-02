@@ -19,9 +19,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import dirs2
+from typing import NamedTuple
 
 
 def simple_path(origin, direction, tiles):
@@ -42,6 +44,10 @@ def parse_path_parameters(origin, move_list):
         origin = point
 
 
+class NpcMoveActionParameters(NamedTuple):
+    pass
+
+
 class NpcMoveAction(EventAction):
     """Relative tile movement for NPC
 
@@ -59,6 +65,7 @@ class NpcMoveAction(EventAction):
     """
 
     name = "npc_move"
+    _param_factory = NpcMoveActionParameters
 
     # parameter checking not supported due to undefined number of parameters
 

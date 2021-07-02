@@ -22,11 +22,18 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
 import uuid
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class StoreMonsterActionParameters(NamedTuple):
+    monster_id: str
+    box: str
 
 
 # noinspection PyAttributeOutsideInit
@@ -39,6 +46,7 @@ class StoreMonsterAction(EventAction):
 
     name = "store_monster"
     valid_parameters = [(str, "monster_id"), (str, "box")]
+    _param_factory = StoreMonsterActionParameters
 
     def start(self):
         player = self.session.player

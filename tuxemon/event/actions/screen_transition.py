@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class ScreenTransitionActionParameters(NamedTuple):
+    transition_time: float
 
 
 class ScreenTransitionAction(EventAction):
@@ -30,6 +36,7 @@ class ScreenTransitionAction(EventAction):
 
     name = "screen_transition"
     valid_parameters = [(float, "transition_time")]
+    _param_factory = ScreenTransitionActionParameters
 
     def start(self):
         pass

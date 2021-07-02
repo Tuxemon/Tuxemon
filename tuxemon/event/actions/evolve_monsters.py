@@ -19,8 +19,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class EvolveMonstersActionParameters(NamedTuple):
+    path: str
 
 
 class EvolveMonstersAction(EventAction):
@@ -31,6 +37,7 @@ class EvolveMonstersAction(EventAction):
 
     name = "evolve_monsters"
     valid_parameters = [(str, "path")]
+    _param_factory = EvolveMonstersActionParameters
 
     def start(self):
         player = self.session.player

@@ -19,7 +19,15 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class DelayedTeleportActionParameters(NamedTuple):
+    map_name: str
+    position_x: int
+    position_y: int
 
 
 class DelayedTeleportAction(EventAction):
@@ -30,6 +38,7 @@ class DelayedTeleportAction(EventAction):
 
     name = "delayed_teleport"
     valid_parameters = [(str, "map_name"), (int, "position_x"), (int, "position_y")]
+    _param_factory = DelayedTeleportActionParameters
 
     def start(self):
         # Get the world object from the session

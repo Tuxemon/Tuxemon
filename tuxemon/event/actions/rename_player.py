@@ -23,9 +23,14 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 #
 
-
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from typing import NamedTuple
+
+
+class RenamePlayerActionParameters(NamedTuple):
+    pass
 
 
 class RenamePlayerAction(EventAction):
@@ -36,6 +41,7 @@ class RenamePlayerAction(EventAction):
 
     name = "rename_player"
     valid_parameters = []
+    _param_factory = RenamePlayerActionParameters
 
     def set_player_name(self, name):
         self.session.player.name = name

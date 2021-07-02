@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class PlayerResumeActionParameters(NamedTuple):
+    pass
 
 
 class PlayerResumeAction(EventAction):
@@ -30,6 +36,7 @@ class PlayerResumeAction(EventAction):
 
     name = "player_resume"
     valid_parameters = []
+    _param_factory = PlayerResumeActionParameters
 
     def start(self):
         # Get a copy of the world state.

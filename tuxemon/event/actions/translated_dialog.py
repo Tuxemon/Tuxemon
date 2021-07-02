@@ -19,14 +19,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.locale import process_translate_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class TranslatedDialogActionParameters(NamedTuple):
+    pass
 
 
 class TranslatedDialogAction(EventAction):
@@ -46,6 +52,7 @@ class TranslatedDialogAction(EventAction):
     """
 
     name = "translated_dialog"
+    _param_factory = TranslatedDialogActionParameters
 
     def start(self):
         key = self.raw_parameters[0]

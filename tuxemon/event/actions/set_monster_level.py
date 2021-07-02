@@ -19,7 +19,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class SetMonsterLevelActionParameters(NamedTuple):
+    slot: int
+    level: int
 
 
 class SetMonsterLevelAction(EventAction):
@@ -32,6 +39,7 @@ class SetMonsterLevelAction(EventAction):
 
     name = "set_monster_level"
     valid_parameters = [(int, "slot"), (int, "level")]
+    _param_factory = SetMonsterLevelActionParameters
 
     def start(self):
         if not self.session.player.monsters > 0:

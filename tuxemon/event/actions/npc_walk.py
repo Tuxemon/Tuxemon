@@ -19,8 +19,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class NpcWalkActionParameters(NamedTuple):
+    npc_slug: str
 
 
 class NpcWalk(EventAction):
@@ -33,6 +39,7 @@ class NpcWalk(EventAction):
     valid_parameters = [
         (str, "npc_slug"),
     ]
+    _param_factory = NpcWalkActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

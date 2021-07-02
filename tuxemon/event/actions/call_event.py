@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class CallEventActionParameters(NamedTuple):
+    event_id: int
 
 
 class CallEventAction(EventAction):
@@ -30,6 +36,7 @@ class CallEventAction(EventAction):
 
     name = "call_event"
     valid_parameters = [(int, "event_id")]
+    _param_factory = CallEventActionParameters
 
     def start(self):
         event_engine = self.session.client.event_engine

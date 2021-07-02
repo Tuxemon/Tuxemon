@@ -19,7 +19,15 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, Union
+
+
+class SetMonsterFlairActionParameters(NamedTuple):
+    slot: int
+    category: str
+    name: str
 
 
 class SetMonsterFlairAction(EventAction):
@@ -34,6 +42,7 @@ class SetMonsterFlairAction(EventAction):
         (str, "category"),
         (str, "name"),
     ]
+    _param_factory = SetMonsterFlairActionParameters
 
     def start(self):
         monster = session.player.monsters[self.parameters.slot]

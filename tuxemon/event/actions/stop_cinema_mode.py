@@ -19,11 +19,17 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class StopCinemaModeActionParameters(NamedTuple):
+    pass
 
 
 class StopCinemaModeAction(EventAction):
@@ -31,6 +37,7 @@ class StopCinemaModeAction(EventAction):
 
     name = "stop_cinema_mode"
     valid_parameters = []
+    _param_factory = StopCinemaModeActionParameters
 
     def start(self):
         world = self.session.client.current_state

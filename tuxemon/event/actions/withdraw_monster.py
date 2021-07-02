@@ -22,11 +22,18 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
 import uuid
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class WithdrawMonsterActionParameters(NamedTuple):
+    trainer: str
+    monster_id: str
 
 
 class WithdrawMonsterAction(EventAction):
@@ -40,6 +47,7 @@ class WithdrawMonsterAction(EventAction):
 
     name = "withdraw_monster"
     valid_parameters = [(str, "trainer"), (str, "monster_id")]
+    _param_factory = WithdrawMonsterActionParameters
 
     def start(self):
         trainer, monster_id = self.parameters

@@ -19,10 +19,17 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
+from typing import NamedTuple, Union
+
+
+class SetInventoryActionParameters(NamedTuple):
+    npc_slug: str
+    inventory_slug: Union[str, None]
 
 
 class SetInventoryAction(EventAction):
@@ -33,6 +40,7 @@ class SetInventoryAction(EventAction):
         (str, "npc_slug"),
         ((str, None), "inventory_slug"),
     ]
+    _param_factory = SetInventoryActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

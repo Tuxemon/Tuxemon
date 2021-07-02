@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class StartCinemaModeActionParameters(NamedTuple):
+    pass
 
 
 class StartCinemaModeAction(EventAction):
@@ -27,6 +33,7 @@ class StartCinemaModeAction(EventAction):
 
     name = "start_cinema_mode"
     valid_parameters = []
+    _param_factory = StartCinemaModeActionParameters
 
     def start(self):
         world = self.session.client.current_state

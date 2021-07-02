@@ -19,9 +19,17 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
+from typing import Union, NamedTuple
+
+
+class AddMonsterActionParameters(NamedTuple):
+    monster_slug: str
+    monster_level: int
+    trainer_slug: Union[str, None]
 
 
 class AddMonsterAction(EventAction):
@@ -35,6 +43,7 @@ class AddMonsterAction(EventAction):
 
     name = "add_monster"
     valid_parameters = [(str, "monster_slug"), (int, "monster_level"), ((str, None), "trainer_slug")]
+    _param_factory = AddMonsterActionParameters
 
     def start(self):
 

@@ -18,15 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 
 import tuxemon.npc
 from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class CreateNpcActionParameters(NamedTuple):
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
+    animations: str
+    behavior: str
 
 
 class CreateNpcAction(EventAction):
@@ -43,6 +52,7 @@ class CreateNpcAction(EventAction):
         (str, "animations"),
         (str, "behavior"),
     ]
+    _param_factory = CreateNpcActionParameters
 
     def start(self):
         # Get a copy of the world state.

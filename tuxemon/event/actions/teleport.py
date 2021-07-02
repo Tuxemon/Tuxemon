@@ -19,8 +19,16 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class TeleportActionParameters(NamedTuple):
+    map_name: str
+    x: int
+    y: int
 
 
 class TeleportAction(EventAction):
@@ -31,6 +39,7 @@ class TeleportAction(EventAction):
 
     name = "teleport"
     valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
+    _param_factory = TeleportActionParameters
 
     def start(self):
         player = self.session.player

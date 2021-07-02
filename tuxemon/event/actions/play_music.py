@@ -19,14 +19,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class PlayMusicActionParameters(NamedTuple):
+    filename: str
 
 
 class PlayMusicAction(EventAction):
@@ -39,6 +45,7 @@ class PlayMusicAction(EventAction):
     valid_parameters = [
         (str, "filename"),
     ]
+    _param_factory = PlayMusicActionParameters
 
     def start(self):
         filename = self.parameters.filename

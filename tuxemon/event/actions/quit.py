@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class QuitActionParameters(NamedTuple):
+    pass
 
 
 class QuitAction(EventAction):
@@ -27,6 +33,7 @@ class QuitAction(EventAction):
 
     name = "quit"
     valid_parameters = []
+    _param_factory = QuitActionParameters
 
     def start(self):
         # TODO: API

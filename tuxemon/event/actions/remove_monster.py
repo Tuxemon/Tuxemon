@@ -18,10 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 import uuid
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
+from typing import Union, NamedTuple
+
+
+class RemoveMonsterActionParameters(NamedTuple):
+    instance_id: str
+    trainer_slug: Union[str, None]
 
 
 class RemoveMonsterAction(EventAction):
@@ -34,6 +41,7 @@ class RemoveMonsterAction(EventAction):
 
     name = "remove_monster"
     valid_parameters = [(str, "instance_id"), ((str, None), "trainer_slug")]
+    _param_factory = RemoveMonsterActionParameters
 
     def start(self):
         iid = self.session.player.game_variables[self.parameters.instance_id]

@@ -19,12 +19,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class FadeoutMusicActionParameters(NamedTuple):
+    duration: int
 
 
 class FadeoutMusicAction(EventAction):
@@ -35,6 +41,7 @@ class FadeoutMusicAction(EventAction):
 
     name = "fadeout_music"
     valid_parameters = [(int, "duration")]
+    _param_factory = FadeoutMusicActionParameters
 
     def start(self):
         time = self.parameters.duration

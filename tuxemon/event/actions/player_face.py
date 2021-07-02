@@ -19,9 +19,15 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import dirs2, get_direction
+from typing import NamedTuple
+
+
+class PlayerFaceActionParameters(NamedTuple):
+    direction: str
 
 
 class PlayerFaceAction(EventAction):
@@ -36,6 +42,7 @@ class PlayerFaceAction(EventAction):
     valid_parameters = [
         (str, "direction"),
     ]
+    _param_factory = PlayerFaceActionParameters
 
     def start(self):
         # Get the parameters to determine what direction the player will face.

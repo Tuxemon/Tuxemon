@@ -22,10 +22,16 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class ClearVariableActionParameters(NamedTuple):
+    variable: str
 
 
 # noinspection PyAttributeOutsideInit
@@ -37,6 +43,7 @@ class ClearVariableAction(EventAction):
 
     name = "clear_variable"
     valid_parameters = [(str, "variable")]
+    _param_factory = ClearVariableActionParameters
 
     def start(self):
         player = self.session.player

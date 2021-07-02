@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class SetVariableActionParameters(NamedTuple):
+    var_list: str
 
 
 class SetVariableAction(EventAction):
@@ -30,6 +36,7 @@ class SetVariableAction(EventAction):
 
     name = "set_variable"
     valid_parameters = [(str, "var_list")]
+    _param_factory = SetVariableActionParameters
 
     def start(self):
         player = self.session.player

@@ -35,7 +35,7 @@ class CallEventAction(EventAction):
     """
 
     name = "call_event"
-    _param_factory = CallEventActionParameters
+    param_class = CallEventActionParameters
 
     def start(self):
         event_engine = self.session.client.event_engine

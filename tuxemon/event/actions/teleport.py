@@ -38,7 +38,7 @@ class TeleportAction(EventAction):
     """
 
     name = "teleport"
-    _param_factory = TeleportActionParameters
+    param_class = TeleportActionParameters
 
     def start(self):
         player = self.session.player

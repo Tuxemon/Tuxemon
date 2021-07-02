@@ -44,7 +44,7 @@ class CopyVariableAction(EventAction):
     """
 
     name = "copy_variable"
-    _param_factory = CopyVariableActionParameters
+    param_class = CopyVariableActionParameters
 
     def start(self):
         player = self.session.player

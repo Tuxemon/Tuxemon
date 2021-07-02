@@ -49,7 +49,7 @@ class DialogChainAction(EventAction):
     """
 
     name = "dialog_chain"
-    _param_factory = DialogChainActionParameters
+    param_class = DialogChainActionParameters
 
     def start(self):
         # hack to allow unescaped commas in the dialog string

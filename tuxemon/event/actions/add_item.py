@@ -36,7 +36,7 @@ class AddItemAction(EventAction):
     """
 
     name = "add_item"
-    _param_factory = AddItemActionParameters
+    param_class = AddItemActionParameters
 
     def start(self):
         player = self.session.player

@@ -36,7 +36,7 @@ class EvolveMonstersAction(EventAction):
     """
 
     name = "evolve_monsters"
-    _param_factory = EvolveMonstersActionParameters
+    param_class = EvolveMonstersActionParameters
 
     def start(self):
         player = self.session.player

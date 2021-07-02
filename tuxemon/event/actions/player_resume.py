@@ -35,7 +35,7 @@ class PlayerResumeAction(EventAction):
     """
 
     name = "player_resume"
-    _param_factory = PlayerResumeActionParameters
+    param_class = PlayerResumeActionParameters
 
     def start(self):
         # Get a copy of the world state.

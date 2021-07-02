@@ -44,7 +44,7 @@ class SetMonsterHealthAction(EventAction):
     """
 
     name = "set_monster_health"
-    _param_factory = SetMonsterHealthActionParameters
+    param_class = SetMonsterHealthActionParameters
 
     @staticmethod
     def set_health(monster, value):

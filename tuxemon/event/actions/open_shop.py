@@ -31,7 +31,7 @@ class OpenShopActionParameters(NamedTuple):
 
 class OpenShopAction(EventAction):
     name = "open_shop"
-    _param_factory = OpenShopActionParameters
+    param_class = OpenShopActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

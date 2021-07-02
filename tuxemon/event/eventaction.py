@@ -105,7 +105,7 @@ class EventAction:
     """
 
     name = "GenericAction"
-    _param_factory: Type[NamedTupleProtocol] = EventActionParameters
+    param_class: Type[NamedTupleProtocol] = EventActionParameters
  
     def __init__(
         self,
@@ -120,17 +120,17 @@ class EventAction:
 
         # parse parameters
         try:
-            if self._param_factory._fields:
+            if self.param_class._fields:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                self.parameters = cast_parameters_to_namedtuple(parameters, self._param_factory)
+                self.parameters = cast_parameters_to_namedtuple(parameters, self.param_class)
             else:
                 self.parameters = parameters
 
         except:
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self._param_factory)
+            logger.error(self.param_class)
             logger.error("please check the parameters and verify they are correct")
             self.parameters = None
 

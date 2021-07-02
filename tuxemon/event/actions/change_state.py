@@ -37,7 +37,7 @@ class ChangeStateAction(EventAction):
     """
 
     name = "change_state"
-    _param_factory = ChangeStateActionParameters
+    param_class = ChangeStateActionParameters
 
     def start(self):
         # Don't override previous state if we are still in the state.

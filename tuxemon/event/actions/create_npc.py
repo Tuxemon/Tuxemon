@@ -45,7 +45,7 @@ class CreateNpcAction(EventAction):
     """
 
     name = "create_npc"
-    _param_factory = CreateNpcActionParameters
+    param_class = CreateNpcActionParameters
 
     def start(self):
         # Get a copy of the world state.

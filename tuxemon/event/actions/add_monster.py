@@ -42,7 +42,7 @@ class AddMonsterAction(EventAction):
     """
 
     name = "add_monster"
-    _param_factory = AddMonsterActionParameters
+    param_class = AddMonsterActionParameters
 
     def start(self):
 

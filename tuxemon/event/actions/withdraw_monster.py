@@ -46,7 +46,7 @@ class WithdrawMonsterAction(EventAction):
     """
 
     name = "withdraw_monster"
-    _param_factory = WithdrawMonsterActionParameters
+    param_class = WithdrawMonsterActionParameters
 
     def start(self):
         trainer, monster_id = self.parameters

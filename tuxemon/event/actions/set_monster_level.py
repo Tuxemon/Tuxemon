@@ -38,7 +38,7 @@ class SetMonsterLevelAction(EventAction):
     """
 
     name = "set_monster_level"
-    _param_factory = SetMonsterLevelActionParameters
+    param_class = SetMonsterLevelActionParameters
 
     def start(self):
         if not self.session.player.monsters > 0:

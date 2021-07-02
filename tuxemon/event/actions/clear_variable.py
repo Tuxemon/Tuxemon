@@ -42,7 +42,7 @@ class ClearVariableAction(EventAction):
     """
 
     name = "clear_variable"
-    _param_factory = ClearVariableActionParameters
+    param_class = ClearVariableActionParameters
 
     def start(self):
         player = self.session.player

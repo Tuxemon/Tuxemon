@@ -37,7 +37,7 @@ class SetMonsterFlairAction(EventAction):
     """
 
     name = "set_monster_flair"
-    _param_factory = SetMonsterFlairActionParameters
+    param_class = SetMonsterFlairActionParameters
 
     def start(self):
         monster = session.player.monsters[self.parameters.slot]

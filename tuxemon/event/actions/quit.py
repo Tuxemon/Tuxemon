@@ -32,7 +32,7 @@ class QuitAction(EventAction):
     """Completely quit the game"""
 
     name = "quit"
-    _param_factory = QuitActionParameters
+    param_class = QuitActionParameters
 
     def start(self):
         # TODO: API

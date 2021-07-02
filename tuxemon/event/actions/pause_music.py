@@ -40,7 +40,7 @@ class PauseMusicAction(EventAction):
     """
 
     name = "pause_music"
-    _param_factory = PauseMusicActionParameters
+    param_class = PauseMusicActionParameters
 
     def start(self):
         mixer.music.pause()

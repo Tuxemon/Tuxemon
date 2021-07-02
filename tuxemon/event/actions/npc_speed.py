@@ -37,7 +37,7 @@ class NpcSpeed(EventAction):
     """
 
     name = "npc_speed"
-    _param_factory = NpcSpeedActionParameters
+    param_class = NpcSpeedActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

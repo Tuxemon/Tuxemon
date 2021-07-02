@@ -40,7 +40,7 @@ class RenamePlayerAction(EventAction):
     """
 
     name = "rename_player"
-    _param_factory = RenamePlayerActionParameters
+    param_class = RenamePlayerActionParameters
 
     def set_player_name(self, name):
         self.session.player.name = name

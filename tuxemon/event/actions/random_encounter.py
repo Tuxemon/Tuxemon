@@ -50,7 +50,7 @@ class RandomEncounterAction(EventAction):
     """
 
     name = "random_encounter"
-    _param_factory = RandomEncounterActionParameters
+    param_class = RandomEncounterActionParameters
 
     def start(self):
         player = self.session.player

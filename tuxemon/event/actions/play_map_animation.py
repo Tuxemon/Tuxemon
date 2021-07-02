@@ -53,7 +53,7 @@ class PlayMapAnimationAction(EventAction):
     """
 
     name = "play_map_animation"
-    _param_factory = PlayMapAnimationActionParameters
+    param_class = PlayMapAnimationActionParameters
 
     def start(self):
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)

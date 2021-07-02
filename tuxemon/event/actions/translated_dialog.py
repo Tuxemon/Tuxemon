@@ -52,7 +52,7 @@ class TranslatedDialogAction(EventAction):
     """
 
     name = "translated_dialog"
-    _param_factory = TranslatedDialogActionParameters
+    param_class = TranslatedDialogActionParameters
 
     def start(self):
         key = self.raw_parameters[0]

@@ -65,7 +65,7 @@ class NpcMoveAction(EventAction):
     """
 
     name = "npc_move"
-    _param_factory = NpcMoveActionParameters
+    param_class = NpcMoveActionParameters
 
     # parameter checking not supported due to undefined number of parameters
 

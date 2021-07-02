@@ -39,7 +39,7 @@ class PlayerFaceAction(EventAction):
     """
 
     name = "player_face"
-    _param_factory = PlayerFaceActionParameters
+    param_class = PlayerFaceActionParameters
 
     def start(self):
         # Get the parameters to determine what direction the player will face.

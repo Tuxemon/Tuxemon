@@ -30,7 +30,7 @@ class TeleportFaintActionParameters(NamedTuple):
 
 class TeleportFaintAction(EventAction):
     name = "teleport_faint"
-    _param_factory = TeleportFaintActionParameters
+    param_class = TeleportFaintActionParameters
 
     def start(self):
         player = self.session.player

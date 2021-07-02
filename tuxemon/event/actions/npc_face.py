@@ -40,7 +40,7 @@ class NpcFaceAction(EventAction):
     """
 
     name = "npc_face"
-    _param_factory = NpcFaceActionParameters
+    param_class = NpcFaceActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

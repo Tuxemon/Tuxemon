@@ -32,7 +32,7 @@ class StartCinemaModeAction(EventAction):
     """Starts cinema mode by animating moving black bars to narrow the aspect ratio."""
 
     name = "start_cinema_mode"
-    _param_factory = StartCinemaModeActionParameters
+    param_class = StartCinemaModeActionParameters
 
     def start(self):
         world = self.session.client.current_state

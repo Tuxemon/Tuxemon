@@ -35,7 +35,7 @@ class SetVariableAction(EventAction):
     """
 
     name = "set_variable"
-    _param_factory = SetVariableActionParameters
+    param_class = SetVariableActionParameters
 
     def start(self):
         player = self.session.player

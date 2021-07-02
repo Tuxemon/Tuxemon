@@ -35,7 +35,7 @@ class PlayerStopAction(EventAction):
     """
 
     name = "player_stop"
-    _param_factory = PlayerStopActionParameters
+    param_class = PlayerStopActionParameters
 
     def start(self):
         # Get a copy of the world state.

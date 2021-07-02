@@ -38,7 +38,7 @@ class UpdateInventoryAction(EventAction):
     """
 
     name = "update_inventory"
-    _param_factory = UpdateInventoryActionParameters
+    param_class = UpdateInventoryActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

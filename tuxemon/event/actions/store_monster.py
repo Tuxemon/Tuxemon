@@ -45,7 +45,7 @@ class StoreMonsterAction(EventAction):
     """
 
     name = "store_monster"
-    _param_factory = StoreMonsterActionParameters
+    param_class = StoreMonsterActionParameters
 
     def start(self):
         player = self.session.player

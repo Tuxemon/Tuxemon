@@ -40,7 +40,7 @@ class RemoveMonsterAction(EventAction):
     """
 
     name = "remove_monster"
-    _param_factory = RemoveMonsterActionParameters
+    param_class = RemoveMonsterActionParameters
 
     def start(self):
         iid = self.session.player.game_variables[self.parameters.instance_id]

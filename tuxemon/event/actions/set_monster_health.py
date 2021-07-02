@@ -23,7 +23,7 @@ from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,8 @@ class SetMonsterHealthActionParameters(NamedTuple):
     health: float
 
 
-class SetMonsterHealthAction(EventAction):
+@final
+class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
     """Changes the hp of a monster in the current player's party. The action parameters
     may contain a monster slot and the amount of health. If no slot is specified,
     all monsters are healed. If no health is specified, the hp is maxed out.
@@ -57,7 +58,7 @@ class SetMonsterHealthAction(EventAction):
 
             monster.current_hp = int(monster.hp * value)
 
-    def start(self):
+    def start(self) -> None:
         if not self.session.player.monsters:
             return
 

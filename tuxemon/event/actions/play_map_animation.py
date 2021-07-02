@@ -25,7 +25,7 @@ import logging
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import load_animation_from_frames
-from typing import NamedTuple, Union
+from typing import NamedTuple, Union, final
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,8 @@ class PlayMapAnimationActionParameters(NamedTuple):
     tile_pos_y: Union[int, None]
 
 
-class PlayMapAnimationAction(EventAction):
+@final
+class PlayMapAnimationAction(EventAction[PlayMapAnimationActionParameters]):
     """Plays a map animation at a given position in the world map.
 
     Valid Parameters: animation_name, duration, loop, tile_pos_x, tile_pos_y
@@ -55,7 +56,7 @@ class PlayMapAnimationAction(EventAction):
     name = "play_map_animation"
     param_class = PlayMapAnimationActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
         animation_name = self.parameters.animation_name

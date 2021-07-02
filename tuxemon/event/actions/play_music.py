@@ -26,7 +26,7 @@ from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,8 @@ class PlayMusicActionParameters(NamedTuple):
     filename: str
 
 
-class PlayMusicAction(EventAction):
+@final
+class PlayMusicAction(EventAction[PlayMusicActionParameters]):
     """Plays a music file from "resources/music/"
 
     Valid Parameters: filename
@@ -44,7 +45,7 @@ class PlayMusicAction(EventAction):
     name = "play_music"
     param_class = PlayMusicActionParameters
 
-    def start(self):
+    def start(self) -> None:
         filename = self.parameters.filename
 
         try:

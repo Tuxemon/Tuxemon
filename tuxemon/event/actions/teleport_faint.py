@@ -21,18 +21,19 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class TeleportFaintActionParameters(NamedTuple):
     pass
 
 
-class TeleportFaintAction(EventAction):
+@final
+class TeleportFaintAction(EventAction[TeleportFaintActionParameters]):
     name = "teleport_faint"
     param_class = TeleportFaintActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Start with the default value, override if game variable exists

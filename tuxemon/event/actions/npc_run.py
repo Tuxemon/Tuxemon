@@ -21,14 +21,15 @@
 from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class NpcRunActionParameters(NamedTuple):
     npc_slug: str
 
 
-class NpcRun(EventAction):
+@final
+class NpcRun(EventAction[NpcRunActionParameters]):
     """Sets the NPC movement speed to the global run speed
 
     Valid Parameters: npc_slug
@@ -37,6 +38,6 @@ class NpcRun(EventAction):
     name = "npc_run"
     param_class = NpcRunActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
         npc.moverate = self.session.client.config.player_runrate

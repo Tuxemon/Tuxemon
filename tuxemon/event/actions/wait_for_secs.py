@@ -21,14 +21,15 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class WaitForSecsActionParameters(NamedTuple):
     seconds: float
 
 
-class WaitForSecsAction(EventAction):
+@final
+class WaitForSecsAction(EventAction[WaitForSecsActionParameters]):
     """Pauses the event engine for n number of seconds.
 
     Valid Parameters: duration
@@ -39,7 +40,7 @@ class WaitForSecsAction(EventAction):
     name = "wait_for_secs"
     param_class = WaitForSecsActionParameters
 
-    def start(self):
+    def start(self) -> None:
         secs = self.parameters.seconds
         self.session.client.event_engine.state = "waiting"
         self.session.client.event_engine.wait = secs

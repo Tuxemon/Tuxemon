@@ -24,7 +24,7 @@ import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique import Technique
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,8 @@ class SetMonsterStatusActionParameters(NamedTuple):
     status: str
 
 
-class SetMonsterStatusAction(EventAction):
+@final
+class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
     """Changes the status of a monster in the current player's party. The action parameters
     may contain a monster slot and the new status to be appended. If no slot is specified,
     all monsters are modified. If no status is specified, the status is cleared.
@@ -55,7 +56,7 @@ class SetMonsterStatusAction(EventAction):
             status = Technique(value)
             monster.apply_status(status)
 
-    def start(self):
+    def start(self) -> None:
         if not self.session.player.monsters:
             return
 

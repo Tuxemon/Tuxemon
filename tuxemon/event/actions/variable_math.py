@@ -24,7 +24,7 @@ import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import number_or_variable
-from typing import Union, NamedTuple
+from typing import Union, NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,8 @@ class VariableMathActionParameters(NamedTuple):
     result: Union[str, None]
 
 
-class VariableMathAction(EventAction):
+@final
+class VariableMathAction(EventAction[VariableMathActionParameters]):
     """Performs a mathematical operation on the key in the player.game_variables dictionary.
     Optionally accepts a fourth parameter to store the result, otherwise it is stored in
     variable1.
@@ -47,7 +48,7 @@ class VariableMathAction(EventAction):
     name = "variable_math"
     param_class = VariableMathActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Read the parameters

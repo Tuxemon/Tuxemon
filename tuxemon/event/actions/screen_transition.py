@@ -21,14 +21,15 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class ScreenTransitionActionParameters(NamedTuple):
     transition_time: float
 
 
-class ScreenTransitionAction(EventAction):
+@final
+class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
     """Initiates a screen transition
 
     Valid Parameters: transition_time_in_seconds
@@ -37,10 +38,10 @@ class ScreenTransitionAction(EventAction):
     name = "screen_transition"
     param_class = ScreenTransitionActionParameters
 
-    def start(self):
+    def start(self) -> None:
         pass
 
-    def update(self):
+    def update(self) -> None:
         world = self.session.client.get_state_by_name("WorldState")
 
         if world is not None:

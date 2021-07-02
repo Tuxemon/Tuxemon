@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import Union, NamedTuple
+from typing import Union, NamedTuple, final
 
 
 class AddItemActionParameters(NamedTuple):
@@ -29,16 +29,19 @@ class AddItemActionParameters(NamedTuple):
     quantity: Union[int, None]
 
 
-class AddItemAction(EventAction):
-    """Adds an item to the current player's inventory.
+@final
+class AddItemAction(EventAction[AddItemActionParameters]):
+    """
+    Adds an item to the current player's inventory.
 
-    The action parameter must contain an item name to look up in the item database.
+    The action parameter must contain an item name to look up in the item
+    database.
     """
 
     name = "add_item"
     param_class = AddItemActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         if self.parameters.quantity is None:
             quantity = 1

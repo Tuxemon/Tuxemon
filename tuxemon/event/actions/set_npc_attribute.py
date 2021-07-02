@@ -23,7 +23,7 @@ from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class SetNpcAttributeActionParameters(NamedTuple):
@@ -32,7 +32,8 @@ class SetNpcAttributeActionParameters(NamedTuple):
     value: str
 
 
-class SetNpcAttributeAction(EventAction):
+@final
+class SetNpcAttributeAction(EventAction[SetNpcAttributeActionParameters]):
     """Sets the given attribute of the npc to the given value.
 
     Valid Parameters: slug, attribute, value
@@ -41,7 +42,7 @@ class SetNpcAttributeAction(EventAction):
     name = "set_npc_attribute"
     param_class = SetNpcAttributeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters[0])
         attribute = self.parameters[1]
         value = self.parameters[2]

@@ -21,20 +21,21 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class StartCinemaModeActionParameters(NamedTuple):
     pass
 
 
-class StartCinemaModeAction(EventAction):
+@final
+class StartCinemaModeAction(EventAction[StartCinemaModeActionParameters]):
     """Starts cinema mode by animating moving black bars to narrow the aspect ratio."""
 
     name = "start_cinema_mode"
     param_class = StartCinemaModeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         world = self.session.client.current_state
 
         if world.cinema_state == "off":

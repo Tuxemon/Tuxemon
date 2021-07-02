@@ -24,7 +24,7 @@ from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class UpdateInventoryActionParameters(NamedTuple):
@@ -32,7 +32,8 @@ class UpdateInventoryActionParameters(NamedTuple):
     inventory_slug: str
 
 
-class UpdateInventoryAction(EventAction):
+@final
+class UpdateInventoryAction(EventAction[UpdateInventoryActionParameters]):
     """Updates the inventory of the npc or player. Overwrites the quantity of an item if it's already present,
     but leaves other items alone.
     """
@@ -40,7 +41,7 @@ class UpdateInventoryAction(EventAction):
     name = "update_inventory"
     param_class = UpdateInventoryActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
         if self.parameters.inventory_slug is None:
             return

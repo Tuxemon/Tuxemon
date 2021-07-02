@@ -25,7 +25,7 @@ import logging
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,8 @@ class StartBattleActionParameters(NamedTuple):
     npc_slug: str
 
 
-class StartBattleAction(EventAction):
+@final
+class StartBattleAction(EventAction[StartBattleActionParameters]):
     """Start a battle and switch to the combat module. The parameters must
     contain an NPC slug in the NPC database.
 
@@ -44,7 +45,7 @@ class StartBattleAction(EventAction):
     name = "start_battle"
     param_class = StartBattleActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
@@ -76,6 +77,6 @@ class StartBattleAction(EventAction):
         filename = env["battle_music"]
         self.session.client.event_engine.execute_action("play_music", [filename])
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name("CombatState") is None:
             self.stop()

@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class DelayedTeleportActionParameters(NamedTuple):
@@ -30,16 +30,20 @@ class DelayedTeleportActionParameters(NamedTuple):
     position_y: int
 
 
-class DelayedTeleportAction(EventAction):
-    """Set teleport information.  Teleport will be triggered during screen transition
+@final
+class DelayedTeleportAction(EventAction[DelayedTeleportActionParameters]):
+    """
+    Set teleport information.
 
-    Only use this if followed by a transition
+    Teleport will be triggered during screen transition.
+
+    Only use this if followed by a transition.
     """
 
     name = "delayed_teleport"
     param_class = DelayedTeleportActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get the world object from the session
         world = self.session.client.get_state_by_name("WorldState")
 

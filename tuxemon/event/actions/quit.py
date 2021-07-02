@@ -21,20 +21,21 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class QuitActionParameters(NamedTuple):
     pass
 
 
-class QuitAction(EventAction):
+@final
+class QuitAction(EventAction[QuitActionParameters]):
     """Completely quit the game"""
 
     name = "quit"
     param_class = QuitActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # TODO: API
         self.session.client._wants_to_exit = True
         self.session.client.exit = True

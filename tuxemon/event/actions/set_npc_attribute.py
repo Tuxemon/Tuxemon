@@ -19,9 +19,17 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class SetNpcAttributeActionParameters(NamedTuple):
+    npc_slug: str
+    name: str
+    value: str
 
 
 class SetNpcAttributeAction(EventAction):
@@ -32,6 +40,7 @@ class SetNpcAttributeAction(EventAction):
 
     name = "set_npc_attribute"
     valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
+    _param_factory = SetNpcAttributeActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters[0])

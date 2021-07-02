@@ -23,15 +23,20 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
 import logging
 from collections import namedtuple
 
-from tuxemon.tools import cast_values
-from typing import Optional, Type, Sequence, Any, Tuple
+from tuxemon.tools import cast_values, ValidParameterTypes
+from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union
 from types import TracebackType
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
+
+
+class EventActionParameters(NamedTuple):
+    pass
 
 
 class EventAction:
@@ -100,8 +105,8 @@ class EventAction:
     """
 
     name = "GenericAction"
-    valid_parameters: Sequence[Tuple[Type[Any], str]] = list()
-    _param_factory = None
+    valid_parameters: Sequence[Tuple[ValidParameterTypes, str]] = list()
+    _param_factory: Type[Any] = EventActionParameters
 
     def __init__(
         self,
@@ -114,7 +119,7 @@ class EventAction:
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters
         # the patching of the class attribute should only happen once
-        if self.__class__._param_factory is None:
+        if self.__class__._param_factory is EventActionParameters:
             self.__class__._param_factory = namedtuple("parameters", [i[1] for i in self.valid_parameters])
 
         # if you need the parameters before they are processed, use this

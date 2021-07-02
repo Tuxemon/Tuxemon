@@ -19,6 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 import random
 
@@ -27,8 +28,14 @@ from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
+from typing import NamedTuple, Union
 
 logger = logging.getLogger(__name__)
+
+
+class RandomEncounterActionParameters(NamedTuple):
+    encounter_slug: str
+    total_prob: Union[float, None]
 
 
 class RandomEncounterAction(EventAction):
@@ -47,6 +54,7 @@ class RandomEncounterAction(EventAction):
         (str, "encounter_slug"),
         ((float, None), "total_prob"),
     ]
+    _param_factory = RandomEncounterActionParameters
 
     def start(self):
         player = self.session.player

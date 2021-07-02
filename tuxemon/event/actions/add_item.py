@@ -19,7 +19,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import Union, NamedTuple
+
+
+class AddItemActionParameters(NamedTuple):
+    item_slug: str
+    quantity: Union[int, None]
 
 
 class AddItemAction(EventAction):
@@ -30,6 +37,7 @@ class AddItemAction(EventAction):
 
     name = "add_item"
     valid_parameters = [(str, "item_slug"), ((int, None), "quantity")]
+    _param_factory = AddItemActionParameters
 
     def start(self):
         player = self.session.player

@@ -19,9 +19,15 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import time
 
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class WaitActionParameters(NamedTuple):
+    seconds: float
 
 
 class WaitAction(EventAction):
@@ -34,6 +40,7 @@ class WaitAction(EventAction):
 
     name = "wait"
     valid_parameters = [(float, "seconds")]
+    _param_factory = WaitActionParameters
 
     # TODO: use event loop time, not wall clock
     def start(self):

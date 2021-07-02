@@ -19,8 +19,16 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class PathfindActionParameters(NamedTuple):
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
 
 
 class PathfindAction(EventAction):
@@ -33,6 +41,7 @@ class PathfindAction(EventAction):
 
     name = "pathfind"
     valid_parameters = [(str, "npc_slug"), (int, "tile_pos_x"), (int, "tile_pos_y")]
+    _param_factory = PathfindActionParameters
 
     def start(self):
         self.npc = get_npc(self.session, self.parameters.npc_slug)

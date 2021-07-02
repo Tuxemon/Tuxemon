@@ -19,14 +19,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.locale import replace_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class DialogActionParameters(NamedTuple):
+    text: str
+    avatar: str
 
 
 class DialogAction(EventAction):
@@ -41,6 +48,7 @@ class DialogAction(EventAction):
 
     name = "dialog"
     valid_parameters = [(str, "text"), (str, "avatar")]
+    _param_factory = DialogActionParameters
 
     def start(self):
         text = replace_text(self.session, self.parameters.text)

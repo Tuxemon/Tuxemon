@@ -19,12 +19,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class PauseMusicActionParameters(NamedTuple):
+    pass
 
 
 class PauseMusicAction(EventAction):
@@ -35,6 +41,7 @@ class PauseMusicAction(EventAction):
 
     name = "pause_music"
     valid_parameters = []
+    _param_factory = PauseMusicActionParameters
 
     def start(self):
         mixer.music.pause()

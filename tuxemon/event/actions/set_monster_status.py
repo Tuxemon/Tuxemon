@@ -19,12 +19,19 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique import Technique
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class SetMonsterStatusActionParameters(NamedTuple):
+    slot: int
+    status: str
 
 
 class SetMonsterStatusAction(EventAction):
@@ -37,6 +44,7 @@ class SetMonsterStatusAction(EventAction):
 
     name = "set_monster_status"
     valid_parameters = [(int, "slot"), (str, "status")]
+    _param_factory = SetMonsterStatusActionParameters
 
     @staticmethod
     def set_status(monster, value):

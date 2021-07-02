@@ -19,13 +19,19 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class StartBattleActionParameters(NamedTuple):
+    npc_slug: str
 
 
 class StartBattleAction(EventAction):
@@ -37,6 +43,7 @@ class StartBattleAction(EventAction):
 
     name = "start_battle"
     valid_parameters = [(str, "npc_slug")]
+    _param_factory = StartBattleActionParameters
 
     def start(self):
         player = self.session.player

@@ -25,6 +25,9 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
+from __future__ import annotations
+from typing import Sequence, Any, Type, Tuple, Union, Optional
+
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -44,6 +47,12 @@ from tuxemon import prepare
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
+
+ValidParameterSingleType = Optional[Type[Any]]
+ValidParameterTypes = Union[
+    ValidParameterSingleType,
+    Sequence[ValidParameterSingleType],
+]
 
 
 def get_cell_coordinates(rect, point, size):
@@ -188,7 +197,10 @@ def number_or_variable(session, value):
             raise ValueError
 
 
-def cast_values(parameters, valid_parameters):
+def cast_values(
+    parameters: Sequence[Any],
+    valid_parameters: Sequence[Tuple[ValidParameterTypes, str]],
+) -> Sequence[Any]:
     """Change all the string values to the expected type
 
     This will also check and enforce the correct parameters for actions
@@ -199,7 +211,9 @@ def cast_values(parameters, valid_parameters):
     """
 
     # TODO: stability/testing
-    def cast(i):
+    def cast(
+        i: Tuple[Tuple[ValidParameterTypes, str], Any],
+    ) -> Any:
         ve = False
         t, v = i
         try:

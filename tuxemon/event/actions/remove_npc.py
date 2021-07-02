@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class RemoveNpcActionParameters(NamedTuple):
+    npc_slug: str
 
 
 class RemoveNpcAction(EventAction):
@@ -30,6 +36,7 @@ class RemoveNpcAction(EventAction):
 
     name = "remove_npc"
     valid_parameters = [(str, "npc_slug")]
+    _param_factory = RemoveNpcActionParameters
 
     def start(self):
         # Get a copy of the world state.

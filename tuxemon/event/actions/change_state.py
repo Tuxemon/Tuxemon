@@ -19,7 +19,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class ChangeStateActionParameters(NamedTuple):
+    state_name: str
 
 
 class ChangeStateAction(EventAction):
@@ -32,6 +38,7 @@ class ChangeStateAction(EventAction):
 
     name = "change_state"
     valid_parameters = [(str, "state_name")]
+    _param_factory = ChangeStateActionParameters
 
     def start(self):
         # Don't override previous state if we are still in the state.

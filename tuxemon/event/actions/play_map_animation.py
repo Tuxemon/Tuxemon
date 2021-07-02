@@ -19,13 +19,23 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import load_animation_from_frames
+from typing import NamedTuple, Union
 
 logger = logging.getLogger(__name__)
+
+
+class PlayMapAnimationActionParameters(NamedTuple):
+    animation_name: str
+    duration: float
+    loop: str
+    tile_pos_x: Union[int, str]
+    tile_pos_y: Union[int, None]
 
 
 class PlayMapAnimationAction(EventAction):
@@ -50,6 +60,7 @@ class PlayMapAnimationAction(EventAction):
         ((int, str), "tile_pos_x"),
         ((int, None), "tile_pos_y"),
     ]
+    _param_factory = PlayMapAnimationActionParameters
 
     def start(self):
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)

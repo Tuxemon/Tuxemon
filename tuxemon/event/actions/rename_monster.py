@@ -23,9 +23,14 @@
 # Adam Chevalier <chevalierAdam2@gmail.com>
 #
 
-
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from typing import NamedTuple
+
+
+class RenameMonsterActionParameters(NamedTuple):
+    pass
 
 
 class RenameMonsterAction(EventAction):
@@ -36,6 +41,7 @@ class RenameMonsterAction(EventAction):
 
     name = "rename_monster"
     valid_parameters = []
+    _param_factory = RenameMonsterActionParameters
 
     def start(self):
         # Get a copy of the world state.

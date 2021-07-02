@@ -19,12 +19,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import number_or_variable
+from typing import Union, NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class VariableMathActionParameters(NamedTuple):
+    var1: str
+    operation: str
+    var2: str
+    result: Union[str, None]
 
 
 class VariableMathAction(EventAction):
@@ -37,6 +46,7 @@ class VariableMathAction(EventAction):
 
     name = "variable_math"
     valid_parameters = [(str, "var1"), (str, "operation"), (str, "var2"), ((str, None), "result")]
+    _param_factory = VariableMathActionParameters
 
     def start(self):
         player = self.session.player

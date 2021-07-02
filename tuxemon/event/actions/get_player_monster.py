@@ -22,10 +22,16 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class GetPlayerMonsterActionParameters(NamedTuple):
+    variable_name: str
 
 
 # noinspection PyAttributeOutsideInit
@@ -38,6 +44,7 @@ class GetPlayerMonsterAction(EventAction):
 
     name = "get_player_monster"
     valid_parameters = [(str, "variable_name")]
+    _param_factory = GetPlayerMonsterActionParameters
 
     def set_var(self, menu_item):
         self.player.game_variables[self.variable] = menu_item.game_object.instance_id.hex

@@ -19,8 +19,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon import audio
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
+
+
+class PlaySoundActionParameters(NamedTuple):
+    filename: str
 
 
 class PlaySoundAction(EventAction):
@@ -33,6 +39,7 @@ class PlaySoundAction(EventAction):
     valid_parameters = [
         (str, "filename"),
     ]
+    _param_factory = PlaySoundActionParameters
 
     def start(self):
         filename = self.parameters.filename

@@ -18,14 +18,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 from functools import partial
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import replace_text
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class DialogChoiceActionParameters(NamedTuple):
+    choices: str
+    variable: str
 
 
 class DialogChoiceAction(EventAction):
@@ -36,6 +42,7 @@ class DialogChoiceAction(EventAction):
 
     name = "dialog_choice"
     valid_parameters = [(str, "choices"), (str, "variable")]
+    _param_factory = DialogChoiceActionParameters
 
     def start(self):
         def set_variable(var_value):

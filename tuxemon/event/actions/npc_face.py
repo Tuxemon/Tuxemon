@@ -19,9 +19,16 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import get_direction, dirs2
+from typing import NamedTuple
+
+
+class NpcFaceActionParameters(NamedTuple):
+    npc_slug: str
+    direction: str
 
 
 class NpcFaceAction(EventAction):
@@ -34,6 +41,7 @@ class NpcFaceAction(EventAction):
 
     name = "npc_face"
     valid_parameters = [(str, "npc_slug"), (str, "direction")]
+    _param_factory = NpcFaceActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

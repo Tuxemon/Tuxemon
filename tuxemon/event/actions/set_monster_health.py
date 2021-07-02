@@ -19,11 +19,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple
 
 logger = logging.getLogger(__name__)
+
+
+class SetMonsterHealthActionParameters(NamedTuple):
+    slot: int
+    health: float
 
 
 class SetMonsterHealthAction(EventAction):
@@ -38,6 +45,7 @@ class SetMonsterHealthAction(EventAction):
 
     name = "set_monster_health"
     valid_parameters = [(int, "slot"), (float, "health")]
+    _param_factory = SetMonsterHealthActionParameters
 
     @staticmethod
     def set_health(monster, value):

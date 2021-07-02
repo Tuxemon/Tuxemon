@@ -45,13 +45,6 @@ class CreateNpcAction(EventAction):
     """
 
     name = "create_npc"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y"),
-        (str, "animations"),
-        (str, "behavior"),
-    ]
     _param_factory = CreateNpcActionParameters
 
     def start(self):

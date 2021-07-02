@@ -37,7 +37,6 @@ class DelayedTeleportAction(EventAction):
     """
 
     name = "delayed_teleport"
-    valid_parameters = [(str, "map_name"), (int, "position_x"), (int, "position_y")]
     _param_factory = DelayedTeleportActionParameters
 
     def start(self):

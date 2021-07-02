@@ -36,7 +36,6 @@ class EvolveMonstersAction(EventAction):
     """
 
     name = "evolve_monsters"
-    valid_parameters = [(str, "path")]
     _param_factory = EvolveMonstersActionParameters
 
     def start(self):

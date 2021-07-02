@@ -39,12 +39,6 @@ class TransitionTeleportAction(EventAction):
     """
 
     name = "transition_teleport"
-    valid_parameters = [
-        (str, "map_name"),
-        (int, "x"),
-        (int, "y"),
-        (float, "transition_time"),
-    ]
     _param_factory = TransitionTeleportActionParameters
 
     def start(self):

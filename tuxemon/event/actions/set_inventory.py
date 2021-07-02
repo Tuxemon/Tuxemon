@@ -36,10 +36,6 @@ class SetInventoryAction(EventAction):
     """Overwrites the inventory of the npc or player."""
 
     name = "set_inventory"
-    valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
-    ]
     _param_factory = SetInventoryActionParameters
 
     def start(self):

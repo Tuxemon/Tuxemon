@@ -40,7 +40,6 @@ class RenameMonsterAction(EventAction):
     """
 
     name = "rename_monster"
-    valid_parameters = []
     _param_factory = RenameMonsterActionParameters
 
     def start(self):

@@ -45,7 +45,6 @@ class StoreMonsterAction(EventAction):
     """
 
     name = "store_monster"
-    valid_parameters = [(str, "monster_id"), (str, "box")]
     _param_factory = StoreMonsterActionParameters
 
     def start(self):

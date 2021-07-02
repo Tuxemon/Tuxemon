@@ -43,7 +43,6 @@ class ModifyNpcAttributeAction(EventAction):
     """
 
     name = "modify_npc_attribute"
-    valid_parameters = [(str, "npc_slug"), (str, "name"), (float, "value")]
     _param_factory = ModifyNpcAttributeActionParameters
 
     def start(self):

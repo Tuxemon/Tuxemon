@@ -53,13 +53,6 @@ class PlayMapAnimationAction(EventAction):
     """
 
     name = "play_map_animation"
-    valid_parameters = [
-        (str, "animation_name"),
-        (float, "duration"),
-        (str, "loop"),
-        ((int, str), "tile_pos_x"),
-        ((int, None), "tile_pos_y"),
-    ]
     _param_factory = PlayMapAnimationActionParameters
 
     def start(self):

@@ -41,7 +41,6 @@ class ModifyPlayerAttributeAction(EventAction):
     """
 
     name = "modify_player_attribute"
-    valid_parameters = [(str, "name"), (float, "value")]
     _param_factory = ModifyPlayerAttributeActionParameters
 
     def start(self):

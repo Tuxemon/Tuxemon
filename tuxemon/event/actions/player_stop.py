@@ -35,7 +35,6 @@ class PlayerStopAction(EventAction):
     """
 
     name = "player_stop"
-    valid_parameters = []
     _param_factory = PlayerStopActionParameters
 
     def start(self):

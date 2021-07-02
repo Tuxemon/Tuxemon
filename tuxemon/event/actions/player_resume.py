@@ -35,7 +35,6 @@ class PlayerResumeAction(EventAction):
     """
 
     name = "player_resume"
-    valid_parameters = []
     _param_factory = PlayerResumeActionParameters
 
     def start(self):

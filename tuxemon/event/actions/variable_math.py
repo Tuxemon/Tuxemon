@@ -45,7 +45,6 @@ class VariableMathAction(EventAction):
     """
 
     name = "variable_math"
-    valid_parameters = [(str, "var1"), (str, "operation"), (str, "var2"), ((str, None), "result")]
     _param_factory = VariableMathActionParameters
 
     def start(self):

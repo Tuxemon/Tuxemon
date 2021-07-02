@@ -37,10 +37,6 @@ class NpcSpeed(EventAction):
     """
 
     name = "npc_speed"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (float, "speed"),
-    ]
     _param_factory = NpcSpeedActionParameters
 
     def start(self):

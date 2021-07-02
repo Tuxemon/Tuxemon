@@ -40,7 +40,6 @@ class PathfindAction(EventAction):
     """
 
     name = "pathfind"
-    valid_parameters = [(str, "npc_slug"), (int, "tile_pos_x"), (int, "tile_pos_y")]
     _param_factory = PathfindActionParameters
 
     def start(self):

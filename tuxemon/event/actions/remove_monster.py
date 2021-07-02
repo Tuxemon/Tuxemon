@@ -40,7 +40,6 @@ class RemoveMonsterAction(EventAction):
     """
 
     name = "remove_monster"
-    valid_parameters = [(str, "instance_id"), ((str, None), "trainer_slug")]
     _param_factory = RemoveMonsterActionParameters
 
     def start(self):

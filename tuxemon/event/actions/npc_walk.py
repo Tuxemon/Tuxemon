@@ -36,9 +36,6 @@ class NpcWalk(EventAction):
     """
 
     name = "npc_walk"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
     _param_factory = NpcWalkActionParameters
 
     def start(self):

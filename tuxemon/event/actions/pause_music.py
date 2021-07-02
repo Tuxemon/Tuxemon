@@ -40,7 +40,6 @@ class PauseMusicAction(EventAction):
     """
 
     name = "pause_music"
-    valid_parameters = []
     _param_factory = PauseMusicActionParameters
 
     def start(self):

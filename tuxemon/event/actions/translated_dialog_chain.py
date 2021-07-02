@@ -26,7 +26,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar
 from tuxemon.locale import process_translate_text
 from tuxemon.tools import open_dialog
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,8 @@ class TranslatedDialogChainActionParameters(NamedTuple):
     pass
 
 
-class TranslatedDialogChainAction(EventAction):
+@final
+class TranslatedDialogChainAction(EventAction[TranslatedDialogChainActionParameters]):
     """Opens a chain of dialogs in order. Dialog chain must be ended with the ${{end}} keyword.
 
     Valid Parameters: text_to_display
@@ -54,7 +55,7 @@ class TranslatedDialogChainAction(EventAction):
     name = "translated_dialog_chain"
     param_class = TranslatedDialogChainActionParameters
 
-    def start(self):
+    def start(self) -> None:
         key = self.raw_parameters[0]
         replace = []
         avatar = None
@@ -82,7 +83,7 @@ class TranslatedDialogChainAction(EventAction):
         else:
             self.open_dialog(pages, avatar)
 
-    def update(self):
+    def update(self) -> None:
         key = self.raw_parameters[0]
         if key == "${{end}}":
             if self.session.client.get_state_by_name("DialogState") is None:

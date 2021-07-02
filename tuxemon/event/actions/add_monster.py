@@ -23,7 +23,7 @@ from __future__ import annotations
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
-from typing import Union, NamedTuple
+from typing import Union, NamedTuple, final
 
 
 class AddMonsterActionParameters(NamedTuple):
@@ -32,11 +32,13 @@ class AddMonsterActionParameters(NamedTuple):
     trainer_slug: Union[str, None]
 
 
-class AddMonsterAction(EventAction):
+@final
+class AddMonsterAction(EventAction[AddMonsterActionParameters]):
     """Adds a monster to the specified trainer's party if there is room.
     If no is trainer specified it defaults to the current player.
 
-    The action parameter must contain a monster slug to look up in the monster database.
+    The action parameter must contain a monster slug to look up in the monster
+    database.
 
     Valid Parameters: monster_slug, level(, trainer_slug)
     """
@@ -44,7 +46,7 @@ class AddMonsterAction(EventAction):
     name = "add_monster"
     param_class = AddMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
 
         monster_slug, monster_level, trainer_slug = self.parameters
 

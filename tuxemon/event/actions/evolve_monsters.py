@@ -22,14 +22,15 @@
 from __future__ import annotations
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class EvolveMonstersActionParameters(NamedTuple):
     path: str
 
 
-class EvolveMonstersAction(EventAction):
+@final
+class EvolveMonstersAction(EventAction[EvolveMonstersActionParameters]):
     """Evolves all monsters in the player's party for the specified evolutionary path.
 
     Valid Parameters: path
@@ -38,7 +39,7 @@ class EvolveMonstersAction(EventAction):
     name = "evolve_monsters"
     param_class = EvolveMonstersActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         for slot, current_monster in enumerate(player.monsters):
             new_slug = current_monster.get_evolution(self.parameters.path)

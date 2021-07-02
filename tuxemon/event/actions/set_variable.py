@@ -21,14 +21,15 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class SetVariableActionParameters(NamedTuple):
     var_list: str
 
 
-class SetVariableAction(EventAction):
+@final
+class SetVariableAction(EventAction[SetVariableActionParameters]):
     """Sets the key in the player.game_variables dictionary.
 
     Valid Parameters: variable_name:value
@@ -37,7 +38,7 @@ class SetVariableAction(EventAction):
     name = "set_variable"
     param_class = SetVariableActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Split the variable into a key: value pair

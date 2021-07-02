@@ -25,7 +25,7 @@ import tuxemon.npc
 from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -38,16 +38,17 @@ class CreateNpcActionParameters(NamedTuple):
     behavior: str
 
 
-class CreateNpcAction(EventAction):
+@final
+class CreateNpcAction(EventAction[CreateNpcActionParameters]):
     """Creates an NPC object and adds it to the game's current list of NPC's.
 
-    Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior
+    Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior.
     """
 
     name = "create_npc"
     param_class = CreateNpcActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name("WorldState")
         if not world:

@@ -21,14 +21,15 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class PlayerStopActionParameters(NamedTuple):
     pass
 
 
-class PlayerStopAction(EventAction):
+@final
+class PlayerStopAction(EventAction[PlayerStopActionParameters]):
     """Makes the player stop moving.
 
     Valid Parameters: None
@@ -37,7 +38,7 @@ class PlayerStopAction(EventAction):
     name = "player_stop"
     param_class = PlayerStopActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name("WorldState")
         if not world:

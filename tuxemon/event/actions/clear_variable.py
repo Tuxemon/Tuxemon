@@ -25,7 +25,7 @@
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,8 @@ class ClearVariableActionParameters(NamedTuple):
 
 
 # noinspection PyAttributeOutsideInit
-class ClearVariableAction(EventAction):
+@final
+class ClearVariableAction(EventAction[ClearVariableActionParameters]):
     """Clears the value of var from the game.
 
     Valid Parameters: string variable_name
@@ -44,7 +45,7 @@ class ClearVariableAction(EventAction):
     name = "clear_variable"
     param_class = ClearVariableActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         key = self.parameters.variable
         player.game_variables.pop(key, None)

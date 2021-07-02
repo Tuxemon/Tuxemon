@@ -24,7 +24,7 @@ import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,8 @@ class PauseMusicActionParameters(NamedTuple):
     pass
 
 
-class PauseMusicAction(EventAction):
+@final
+class PauseMusicAction(EventAction[PauseMusicActionParameters]):
     """Pauses the current music playback
 
     Valid Parameters: None
@@ -42,7 +43,7 @@ class PauseMusicAction(EventAction):
     name = "pause_music"
     param_class = PauseMusicActionParameters
 
-    def start(self):
+    def start(self) -> None:
         mixer.music.pause()
         if self.session.client.current_music["song"]:
             self.session.client.current_music["status"] = "paused"

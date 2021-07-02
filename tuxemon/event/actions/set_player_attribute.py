@@ -22,7 +22,7 @@
 from __future__ import annotations
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class SetPlayerAttributeActionParameters(NamedTuple):
@@ -31,7 +31,8 @@ class SetPlayerAttributeActionParameters(NamedTuple):
     value: str
 
 
-class SetPlayerAttributeAction(EventAction):
+@final
+class SetPlayerAttributeAction(EventAction[SetPlayerAttributeActionParameters]):
     """Sets the given attribute of the player character to the given value.
 
     Valid Parameters: attribute, value
@@ -40,7 +41,7 @@ class SetPlayerAttributeAction(EventAction):
     name = "set_player_attribute"
     param_class = SetPlayerAttributeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         attribute = self.parameters[0]
         value = self.parameters[1]
         CommonAction.set_character_attribute(self.session.player, attribute, value)

@@ -25,7 +25,7 @@
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,8 @@ class GetPlayerMonsterActionParameters(NamedTuple):
 
 
 # noinspection PyAttributeOutsideInit
-class GetPlayerMonsterAction(EventAction):
+@final
+class GetPlayerMonsterAction(EventAction[GetPlayerMonsterActionParameters]):
     """Sets the given key in the player.game_variables dictionary
     to the instance_id of the monster the player selects via monster menu.
 
@@ -45,11 +46,11 @@ class GetPlayerMonsterAction(EventAction):
     name = "get_player_monster"
     param_class = GetPlayerMonsterActionParameters
 
-    def set_var(self, menu_item):
+    def set_var(self, menu_item) -> None:
         self.player.game_variables[self.variable] = menu_item.game_object.instance_id.hex
         self.session.client.pop_state()
 
-    def start(self):
+    def start(self) -> None:
         self.player = self.session.player
         self.variable = self.parameters.variable_name
 
@@ -57,6 +58,6 @@ class GetPlayerMonsterAction(EventAction):
         menu = self.session.client.push_state("MonsterMenuState")
         menu.on_menu_selection = self.set_var
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name("MonsterMenuState") is None:
             self.stop()

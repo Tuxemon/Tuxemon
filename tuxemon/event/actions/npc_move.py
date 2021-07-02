@@ -23,7 +23,7 @@ from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import dirs2
-from typing import NamedTuple
+from typing import NamedTuple, final, Sequence
 
 
 def simple_path(origin, direction, tiles):
@@ -33,7 +33,10 @@ def simple_path(origin, direction, tiles):
         yield tuple(int(i) for i in origin)
 
 
-def parse_path_parameters(origin, move_list):
+def parse_path_parameters(
+    origin,
+    move_list: Sequence[str],
+):
     for move in move_list:
         try:
             direction, tiles = move.strip().split()
@@ -48,7 +51,8 @@ class NpcMoveActionParameters(NamedTuple):
     pass
 
 
-class NpcMoveAction(EventAction):
+@final
+class NpcMoveAction(EventAction[NpcMoveActionParameters]):
     """Relative tile movement for NPC
 
     This action blocks until the destination is reached.
@@ -69,7 +73,7 @@ class NpcMoveAction(EventAction):
 
     # parameter checking not supported due to undefined number of parameters
 
-    def start(self):
+    def start(self) -> None:
         npc_slug = self.raw_parameters[0]
         self.npc = get_npc(self.session, npc_slug)
 
@@ -81,7 +85,7 @@ class NpcMoveAction(EventAction):
         self.npc.path = path
         self.npc.next_waypoint()
 
-    def update(self):
+    def update(self) -> None:
         if self.npc is None:
             self.stop()
             return

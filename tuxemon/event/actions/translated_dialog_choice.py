@@ -26,7 +26,7 @@ from functools import partial
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,8 @@ class TranslatedDialogChoiceActionParameters(NamedTuple):
     variable: str
 
 
-class TranslatedDialogChoiceAction(EventAction):
+@final
+class TranslatedDialogChoiceAction(EventAction[TranslatedDialogChoiceActionParameters]):
     """Asks the player to make a choice.
 
     Valid Parameters: choice1:choice2,var_key
@@ -46,7 +47,7 @@ class TranslatedDialogChoiceAction(EventAction):
 
     param_class = TranslatedDialogChoiceActionParameters
 
-    def start(self):
+    def start(self) -> None:
         def set_variable(var_value):
             player.game_variables[self.parameters.variable] = var_value
             self.session.client.pop_state()
@@ -65,7 +66,7 @@ class TranslatedDialogChoiceAction(EventAction):
 
         self.open_choice_dialog(self.session, var_menu)
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name("ChoiceState") is None:
             self.stop()
 

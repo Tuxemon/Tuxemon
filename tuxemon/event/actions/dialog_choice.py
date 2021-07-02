@@ -24,7 +24,9 @@ from functools import partial
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import replace_text
-from typing import NamedTuple
+from tuxemon.session import Session
+from tuxemon.state import State
+from typing import NamedTuple, final, Tuple, Callable, Sequence
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +36,8 @@ class DialogChoiceActionParameters(NamedTuple):
     variable: str
 
 
-class DialogChoiceAction(EventAction):
+@final
+class DialogChoiceAction(EventAction[DialogChoiceActionParameters]):
     """Asks the player to make a choice.
 
     Valid Parameters: choice1:choice2, var_key
@@ -43,8 +46,8 @@ class DialogChoiceAction(EventAction):
     name = "dialog_choice"
     param_class = DialogChoiceActionParameters
 
-    def start(self):
-        def set_variable(var_value):
+    def start(self) -> None:
+        def set_variable(var_value: str) -> None:
             player.game_variables[self.parameters.variable] = var_value
             self.session.client.pop_state()
 
@@ -61,10 +64,14 @@ class DialogChoiceAction(EventAction):
 
         self.open_choice_dialog(self.session, var_menu)
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name("ChoiceState") is None:
             self.stop()
 
-    def open_choice_dialog(self, session, menu):
+    def open_choice_dialog(
+        self,
+        session: Session,
+        menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    ) -> State:
         logger.info("Opening choice window")
         return session.client.push_state("ChoiceState", menu=menu)

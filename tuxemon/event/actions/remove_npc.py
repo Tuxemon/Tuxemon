@@ -21,14 +21,15 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 
 class RemoveNpcActionParameters(NamedTuple):
     npc_slug: str
 
 
-class RemoveNpcAction(EventAction):
+@final
+class RemoveNpcAction(EventAction[RemoveNpcActionParameters]):
     """Removes an NPC object from the list of NPCs.
 
     Valid Parameters: slug
@@ -37,7 +38,7 @@ class RemoveNpcAction(EventAction):
     name = "remove_npc"
     param_class = RemoveNpcActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name("WorldState")
         if not world:

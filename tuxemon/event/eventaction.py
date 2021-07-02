@@ -27,19 +27,20 @@ from __future__ import annotations
 import logging
 from collections import namedtuple
 
-from tuxemon.tools import cast_parameters_to_namedtuple, ValidParameterTypes, NamedTupleProtocol
-from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union
+from tuxemon.tools import cast_parameters_to_namedtuple, NamedTupleProtocol
+from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union,\
+    TypeVar, Generic
 from types import TracebackType
 from tuxemon.session import Session
+from abc import ABC, abstractmethod
 
 logger = logging.getLogger(__name__)
 
 
-class EventActionParameters(NamedTuple):
-    pass
+ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
 
 
-class EventAction:
+class EventAction(ABC, Generic[ParameterClass]):
     """EventActions are executed during gameplay.
 
     EventAction subclasses implement "actions" defined in Tuxemon maps.
@@ -105,8 +106,7 @@ class EventAction:
     """
 
     name = "GenericAction"
-    param_class: Type[NamedTupleProtocol] = EventActionParameters
- 
+
     def __init__(
         self,
         session: Session,
@@ -123,7 +123,10 @@ class EventAction:
             if self.param_class._fields:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                self.parameters = cast_parameters_to_namedtuple(parameters, self.param_class)
+                self.parameters = cast_parameters_to_namedtuple(
+                    parameters,
+                    self.param_class,
+                )
             else:
                 self.parameters = parameters
 
@@ -135,6 +138,11 @@ class EventAction:
             self.parameters = None
 
         self._done = False
+
+    @property
+    @abstractmethod
+    def param_class(self) -> Type[ParameterClass]:
+        raise NotImplementedError
 
     def __enter__(self) -> None:
         """
@@ -205,6 +213,7 @@ class EventAction:
         """
         return self._done
 
+    @abstractmethod
     def start(self) -> None:
         """
         Called only once, when the action is started.

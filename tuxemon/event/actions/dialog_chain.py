@@ -26,7 +26,7 @@ from tuxemon.locale import replace_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
-from typing import NamedTuple
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
@@ -36,13 +36,18 @@ class DialogChainActionParameters(NamedTuple):
     avatar: str
 
 
-class DialogChainAction(EventAction):
-    """Opens a dialog and waits.  Other dialog chains will add text to the dialog
-        without closing it.  Dialog chains must be ended with the ${{end}} keyword.
+@final
+class DialogChainAction(EventAction[DialogChainActionParameters]):
+    """
+    Opens a dialog and waits.
+
+    Other dialog chains will add text to the dialog
+    without closing it. Dialog chains must be ended with the ${{end}} keyword.
 
     Valid Parameters: text_to_display
 
-    You may also use special variables in dialog events. Here is a list of available variables:
+    You may also use special variables in dialog events. Here is a list of
+    available variables:
 
     * ${{name}} - The current player's name.
     * ${{end}} - Ends the dialog chain.
@@ -51,7 +56,7 @@ class DialogChainAction(EventAction):
     name = "dialog_chain"
     param_class = DialogChainActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # hack to allow unescaped commas in the dialog string
         text = ", ".join(self.raw_parameters)
         text = replace_text(self.session, text)
@@ -71,7 +76,7 @@ class DialogChainAction(EventAction):
                 avatar = get_avatar(self.session, self.parameters.avatar)
                 self.open_dialog(text, avatar)
 
-    def update(self):
+    def update(self) -> None:
         # hack to allow unescaped commas in the dialog string
         text = ", ".join(self.raw_parameters)
         if text == "${{end}}":

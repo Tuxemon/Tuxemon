@@ -42,7 +42,6 @@ class AddMonsterAction(EventAction):
     """
 
     name = "add_monster"
-    valid_parameters = [(str, "monster_slug"), (int, "monster_level"), ((str, None), "trainer_slug")]
     _param_factory = AddMonsterActionParameters
 
     def start(self):

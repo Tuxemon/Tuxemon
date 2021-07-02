@@ -39,9 +39,6 @@ class PlayerFaceAction(EventAction):
     """
 
     name = "player_face"
-    valid_parameters = [
-        (str, "direction"),
-    ]
     _param_factory = PlayerFaceActionParameters
 
     def start(self):

@@ -43,7 +43,6 @@ class GetPlayerMonsterAction(EventAction):
     """
 
     name = "get_player_monster"
-    valid_parameters = [(str, "variable_name")]
     _param_factory = GetPlayerMonsterActionParameters
 
     def set_var(self, menu_item):

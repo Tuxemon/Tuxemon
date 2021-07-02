@@ -35,7 +35,6 @@ class RemoveNpcAction(EventAction):
     """
 
     name = "remove_npc"
-    valid_parameters = [(str, "npc_slug")]
     _param_factory = RemoveNpcActionParameters
 
     def start(self):

@@ -35,9 +35,6 @@ class NpcRun(EventAction):
     """
 
     name = "npc_run"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
     _param_factory = NpcRunActionParameters
 
     def start(self):

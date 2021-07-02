@@ -49,7 +49,6 @@ class DialogChainAction(EventAction):
     """
 
     name = "dialog_chain"
-    valid_parameters = [(str, "text"), (str, "avatar")]
     _param_factory = DialogChainActionParameters
 
     def start(self):

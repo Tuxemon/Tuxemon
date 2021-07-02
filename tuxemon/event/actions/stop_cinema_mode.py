@@ -36,7 +36,6 @@ class StopCinemaModeAction(EventAction):
     """Stops cinema mode by animating moving black bars to back to the normal aspect ratio."""
 
     name = "stop_cinema_mode"
-    valid_parameters = []
     _param_factory = StopCinemaModeActionParameters
 
     def start(self):

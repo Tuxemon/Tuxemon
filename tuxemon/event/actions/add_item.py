@@ -36,7 +36,6 @@ class AddItemAction(EventAction):
     """
 
     name = "add_item"
-    valid_parameters = [(str, "item_slug"), ((int, None), "quantity")]
     _param_factory = AddItemActionParameters
 
     def start(self):

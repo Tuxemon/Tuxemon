@@ -43,7 +43,6 @@ class SetMonsterStatusAction(EventAction):
     """
 
     name = "set_monster_status"
-    valid_parameters = [(int, "slot"), (str, "status")]
     _param_factory = SetMonsterStatusActionParameters
 
     @staticmethod

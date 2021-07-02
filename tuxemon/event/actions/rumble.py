@@ -39,7 +39,6 @@ class RumbleAction(EventAction):
     """
 
     name = "rumble"
-    valid_parameters = [(float, "duration"), (int, "power")]
     _param_factory = RumbleActionParameters
 
     def start(self):

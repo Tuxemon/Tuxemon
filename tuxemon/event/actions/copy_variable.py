@@ -44,7 +44,6 @@ class CopyVariableAction(EventAction):
     """
 
     name = "copy_variable"
-    valid_parameters = [(str, "var1"), (str, "var2")]
     _param_factory = CopyVariableActionParameters
 
     def start(self):

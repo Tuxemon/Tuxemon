@@ -37,11 +37,6 @@ class SetMonsterFlairAction(EventAction):
     """
 
     name = "set_monster_flair"
-    valid_parameters = [
-        (int, "slot"),
-        (str, "category"),
-        (str, "name"),
-    ]
     _param_factory = SetMonsterFlairActionParameters
 
     def start(self):

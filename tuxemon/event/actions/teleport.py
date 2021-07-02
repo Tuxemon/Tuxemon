@@ -38,7 +38,6 @@ class TeleportAction(EventAction):
     """
 
     name = "teleport"
-    valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
     _param_factory = TeleportActionParameters
 
     def start(self):

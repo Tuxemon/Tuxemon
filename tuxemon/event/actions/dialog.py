@@ -47,7 +47,6 @@ class DialogAction(EventAction):
     """
 
     name = "dialog"
-    valid_parameters = [(str, "text"), (str, "avatar")]
     _param_factory = DialogActionParameters
 
     def start(self):

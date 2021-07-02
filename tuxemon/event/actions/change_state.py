@@ -37,7 +37,6 @@ class ChangeStateAction(EventAction):
     """
 
     name = "change_state"
-    valid_parameters = [(str, "state_name")]
     _param_factory = ChangeStateActionParameters
 
     def start(self):

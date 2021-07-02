@@ -42,7 +42,6 @@ class StartBattleAction(EventAction):
     """
 
     name = "start_battle"
-    valid_parameters = [(str, "npc_slug")]
     _param_factory = StartBattleActionParameters
 
     def start(self):

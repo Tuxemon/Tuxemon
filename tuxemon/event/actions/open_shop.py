@@ -31,9 +31,6 @@ class OpenShopActionParameters(NamedTuple):
 
 class OpenShopAction(EventAction):
     name = "open_shop"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
     _param_factory = OpenShopActionParameters
 
     def start(self):

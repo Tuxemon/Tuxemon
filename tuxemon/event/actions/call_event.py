@@ -35,7 +35,6 @@ class CallEventAction(EventAction):
     """
 
     name = "call_event"
-    valid_parameters = [(int, "event_id")]
     _param_factory = CallEventActionParameters
 
     def start(self):

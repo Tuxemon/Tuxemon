@@ -35,7 +35,6 @@ class SetVariableAction(EventAction):
     """
 
     name = "set_variable"
-    valid_parameters = [(str, "var_list")]
     _param_factory = SetVariableActionParameters
 
     def start(self):

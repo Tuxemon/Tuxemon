@@ -42,7 +42,6 @@ class ClearVariableAction(EventAction):
     """
 
     name = "clear_variable"
-    valid_parameters = [(str, "variable")]
     _param_factory = ClearVariableActionParameters
 
     def start(self):

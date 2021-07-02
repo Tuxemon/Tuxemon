@@ -38,7 +38,6 @@ class SetPlayerAttributeAction(EventAction):
     """
 
     name = "set_player_attribute"
-    valid_parameters = [(str, "npc_slug"), (str, "name"), (str, "value")]
     _param_factory = SetPlayerAttributeActionParameters
 
     def start(self):

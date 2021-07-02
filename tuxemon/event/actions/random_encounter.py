@@ -50,10 +50,6 @@ class RandomEncounterAction(EventAction):
     """
 
     name = "random_encounter"
-    valid_parameters = [
-        (str, "encounter_slug"),
-        ((float, None), "total_prob"),
-    ]
     _param_factory = RandomEncounterActionParameters
 
     def start(self):

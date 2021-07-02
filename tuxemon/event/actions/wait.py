@@ -39,7 +39,6 @@ class WaitAction(EventAction):
     """
 
     name = "wait"
-    valid_parameters = [(float, "seconds")]
     _param_factory = WaitActionParameters
 
     # TODO: use event loop time, not wall clock

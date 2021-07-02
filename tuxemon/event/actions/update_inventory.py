@@ -38,10 +38,6 @@ class UpdateInventoryAction(EventAction):
     """
 
     name = "update_inventory"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (str, "inventory_slug"),
-    ]
     _param_factory = UpdateInventoryActionParameters
 
     def start(self):

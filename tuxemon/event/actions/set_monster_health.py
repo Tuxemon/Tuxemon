@@ -44,7 +44,6 @@ class SetMonsterHealthAction(EventAction):
     """
 
     name = "set_monster_health"
-    valid_parameters = [(int, "slot"), (float, "health")]
     _param_factory = SetMonsterHealthActionParameters
 
     @staticmethod

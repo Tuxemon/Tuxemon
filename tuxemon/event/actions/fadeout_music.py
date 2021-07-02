@@ -40,7 +40,6 @@ class FadeoutMusicAction(EventAction):
     """
 
     name = "fadeout_music"
-    valid_parameters = [(int, "duration")]
     _param_factory = FadeoutMusicActionParameters
 
     def start(self):

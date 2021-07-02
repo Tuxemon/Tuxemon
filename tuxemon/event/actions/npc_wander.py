@@ -39,7 +39,6 @@ class NpcWanderAction(EventAction):
     """
 
     name = "npc_wander"
-    valid_parameters = [(str, "npc_slug"), (float, "frequency")]
     _param_factory = NpcWanderActionParameters
 
     def start(self):

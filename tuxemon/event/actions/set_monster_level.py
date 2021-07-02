@@ -38,7 +38,6 @@ class SetMonsterLevelAction(EventAction):
     """
 
     name = "set_monster_level"
-    valid_parameters = [(int, "slot"), (int, "level")]
     _param_factory = SetMonsterLevelActionParameters
 
     def start(self):

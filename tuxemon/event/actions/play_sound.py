@@ -36,9 +36,6 @@ class PlaySoundAction(EventAction):
     """
 
     name = "play_sound"
-    valid_parameters = [
-        (str, "filename"),
-    ]
     _param_factory = PlaySoundActionParameters
 
     def start(self):

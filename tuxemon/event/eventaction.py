@@ -27,7 +27,7 @@ from __future__ import annotations
 import logging
 from collections import namedtuple
 
-from tuxemon.tools import cast_values, ValidParameterTypes
+from tuxemon.tools import cast_parameters_to_namedtuple, ValidParameterTypes, NamedTupleProtocol
 from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union
 from types import TracebackType
 from tuxemon.session import Session
@@ -106,8 +106,8 @@ class EventAction:
 
     name = "GenericAction"
     valid_parameters: Sequence[Tuple[ValidParameterTypes, str]] = list()
-    _param_factory: Type[Any] = EventActionParameters
-
+    _param_factory: Type[NamedTupleProtocol] = EventActionParameters
+ 
     def __init__(
         self,
         session: Session,
@@ -124,8 +124,7 @@ class EventAction:
             if self.valid_parameters:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                values = cast_values(parameters, self.valid_parameters)
-                self.parameters = self._param_factory(*values)
+                self.parameters = cast_parameters_to_namedtuple(parameters, self._param_factory)
             else:
                 self.parameters = parameters
 

@@ -26,7 +26,9 @@
 #
 #
 from __future__ import annotations
-from typing import Sequence, Any, Type, Tuple, Union, Optional
+from typing import Sequence, Any, Type, Tuple, Union, Optional, Protocol,\
+    Mapping, Dict, TypeVar
+import typing
 
 """
 
@@ -53,6 +55,17 @@ ValidParameterTypes = Union[
     ValidParameterSingleType,
     Sequence[ValidParameterSingleType],
 ]
+
+
+class NamedTupleProtocol(Protocol):
+    """Protocol for arbitrary NamedTuple objects."""
+
+    @property
+    def _fields(self) -> Tuple[str, ...]:
+        pass
+
+
+NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
 
 
 def get_cell_coordinates(rect, point, size):
@@ -248,6 +261,29 @@ def cast_values(
         logger.error(f"expected: {valid_parameters}")
         logger.error(f"got: {parameters}")
         raise
+
+
+def get_types_tuple(
+    param_type: ValidParameterSingleType,
+) -> Sequence[ValidParameterSingleType]:
+    if typing.get_origin(param_type) is Union:
+        return typing.get_args(param_type)
+    else:
+        return (param_type,)
+
+
+def cast_parameters_to_namedtuple(
+    parameters: Sequence[Any],
+    namedtuple_class: Type[NamedTupleTypeVar],
+) -> NamedTupleTypeVar:
+    valid_parameters = [
+        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f)
+        for f in namedtuple_class._fields
+    ]
+
+    values = cast_values(parameters, valid_parameters)
+    return namedtuple_class(*values)
+
 
 
 def show_item_result_as_dialog(session, item, result):

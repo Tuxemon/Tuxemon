@@ -27,6 +27,9 @@ import logging
 from collections import namedtuple
 
 from tuxemon.tools import cast_values
+from typing import Optional, Type, Sequence, Any, Tuple
+from types import TracebackType
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -64,8 +67,7 @@ class EventAction:
     if the action will block forever, as it will freeze the game.
 
 
-    Parameters
-    ==========
+    **Parameters**
 
     ** this is a work-in-progress feature, that may change in time **
 
@@ -90,18 +92,23 @@ class EventAction:
     ((int, float, None), "duration") => is optional
 
     (Monster, "monster_slug")   => a Monster instance will be created
+
+    Parameters:
+        session: Object containing the session information.
+        parameters: Parameters of the action.
+
     """
 
     name = "GenericAction"
-    valid_parameters = list()
+    valid_parameters: Sequence[Tuple[Type[Any], str]] = list()
     _param_factory = None
 
-    def __init__(self, session, parameters):
-        """
+    def __init__(
+        self,
+        session: Session,
+        parameters: Sequence[Any],
+    ) -> None:
 
-        :param tuxemon.session.Session session:
-        :param List parameters:
-        """
         self.session = session
 
         # TODO: METACLASS
@@ -132,66 +139,78 @@ class EventAction:
 
         self._done = False
 
-    def __enter__(self):
-        """Called only once, when the action is started
+    def __enter__(self) -> None:
+        """
+        Called only once, when the action is started.
 
-        Context Protocol
+        Context Protocol.
 
-        :return:
         """
         self.start()
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """Called only once, when action is stopped and needs to close
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
+    ) -> None:
+        """
+        Called only once, when action is stopped and needs to close.
 
-        Context Protocol
+        Context Protocol.
 
-        :return:
         """
         self.cleanup()
 
-    def stop(self):
-        """Call when the action is done.  EventAction will be removed at end of frame.
+    def stop(self) -> None:
+        """
+        Call when the action is done.
 
-        If an EventAction overrides update, it must eventually call this method.
+        EventAction will be removed at end of frame.
 
-        :return:
+        If an EventAction overrides update, it must eventually call this
+        method.
+
         """
         self._done = True
 
-    def execute(self):
-        """Blocking call to run the action.  Will setup and cleanup action.
+    def execute(self) -> None:
+        """
+        Blocking call to run the action. Will setup and cleanup action.
 
-        This may cause the game to hang if an action is waiting on game changes
+        This may cause the game to hang if an action is waiting on game
+        changes.
 
-        :return:
         """
         with self:
             self.run()
 
-    def run(self):
-        """Blocking call to run the action, without start or cleanup
+    def run(self) -> None:
+        """
+        Blocking call to run the action, without start or cleanup.
 
-        It is better to use EventAction.execute()
+        It is better to use EventAction.execute().
 
-        This may cause the game to hang if an action is waiting on game changes
+        This may cause the game to hang if an action is waiting on game
+        changes.
 
-        :return:
         """
         while not self.done:
             self.update()
 
     @property
-    def done(self):
-        """Will be true when action is finished.  If you need the
-            action to stop, call EventAction.stop()
+    def done(self) -> bool:
+        """
+        Will be true when action is finished.
 
-        :return:
+        If you need the action to stop, call EventAction.stop().
+
         """
         return self._done
 
-    def start(self):
-        """Called only once, when the action is started
+    def start(self) -> None:
+        """
+        Called only once, when the action is started.
 
         For all actions, you will need to override this method.
 
@@ -200,13 +219,14 @@ class EventAction:
         several frames, you can init your action here, then override
         the update method.
 
-        :return:
         """
         raise NotImplementedError
 
-    def update(self):
-        """Called once per frame while action is running, including the
-            first frame when EventAction is started.
+    def update(self) -> None:
+        """
+        Called once per frame while action is running.
+
+        It is also called on the first frame when EventAction is started.
 
         If you do not override this, then the action will stop after it is
         started, and live for only one frame.
@@ -216,15 +236,15 @@ class EventAction:
         then this action will block all others in the list and will continue
         to run until the parent EventEngine is stopped.
 
-        :return:
         """
         self.stop()
 
-    def cleanup(self):
-        """Called only once, when action is stopped and needs to close
+    def cleanup(self) -> None:
+        """
+        Called only once, when action is stopped and needs to close.
 
         You do not need to override this, but it may be useful for some
         actions which require special handling before they are closed.
 
-        :return:
         """
+        pass

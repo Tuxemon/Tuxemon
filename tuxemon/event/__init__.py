@@ -24,26 +24,48 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
 import logging
 from collections import namedtuple
+from typing import NamedTuple, Sequence, Optional
+from tuxemon.player import Player
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
-# Set up map action and condition objects
-condition_fields = ["type", "parameters", "x", "y", "width", "height", "operator", "name"]
 
-action_fields = ["type", "parameters", "name"]
+class MapCondition(NamedTuple):
+    type: str
+    parameters: Sequence[str]
+    x: int
+    y: int
+    width: int
+    height: int
+    operator: str
+    name: str
 
-event_fields = ["id", "name", "x", "y", "w", "h", "conds", "acts"]
 
-MapCondition = namedtuple("condition", condition_fields)
-MapAction = namedtuple("action", action_fields)
-EventObject = namedtuple("eventobject", event_fields)
+class MapAction(NamedTuple):
+    type: str
+    parameters: Sequence[str]
+    name: str
+
+
+class EventObject(NamedTuple):
+    id: int
+    name: str
+    x: int
+    y: int
+    w: int
+    h: int
+    conds: Sequence[MapCondition]
+    acts: Sequence[MapAction]
+
 
 __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
-def get_npc(session, slug):
+def get_npc(session: Session, slug: str) -> Optional[Player]:
     """Gets an NPC object by slug.
 
     :param session: The session object
@@ -62,7 +84,7 @@ def get_npc(session, slug):
     world = session.client.get_state_by_name("WorldState")
     if world is None:
         logger.error("Cannot search for NPC if world doesn't exist: " + slug)
-        return
+        return None
 
     # logger.error("Unable to find NPC: " + slug)
     return world.get_entity(slug)

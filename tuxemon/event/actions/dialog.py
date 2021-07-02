@@ -47,7 +47,7 @@ class DialogAction(EventAction):
     """
 
     name = "dialog"
-    _param_factory = DialogActionParameters
+    param_class = DialogActionParameters
 
     def start(self):
         text = replace_text(self.session, self.parameters.text)

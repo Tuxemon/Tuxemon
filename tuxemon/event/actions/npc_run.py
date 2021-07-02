@@ -35,7 +35,7 @@ class NpcRun(EventAction):
     """
 
     name = "npc_run"
-    _param_factory = NpcRunActionParameters
+    param_class = NpcRunActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

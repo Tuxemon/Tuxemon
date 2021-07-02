@@ -43,7 +43,7 @@ class SetMonsterStatusAction(EventAction):
     """
 
     name = "set_monster_status"
-    _param_factory = SetMonsterStatusActionParameters
+    param_class = SetMonsterStatusActionParameters
 
     @staticmethod
     def set_status(monster, value):

@@ -40,7 +40,7 @@ class PathfindAction(EventAction):
     """
 
     name = "pathfind"
-    _param_factory = PathfindActionParameters
+    param_class = PathfindActionParameters
 
     def start(self):
         self.npc = get_npc(self.session, self.parameters.npc_slug)

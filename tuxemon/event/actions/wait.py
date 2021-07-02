@@ -39,7 +39,7 @@ class WaitAction(EventAction):
     """
 
     name = "wait"
-    _param_factory = WaitActionParameters
+    param_class = WaitActionParameters
 
     # TODO: use event loop time, not wall clock
     def start(self):

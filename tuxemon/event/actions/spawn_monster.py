@@ -53,7 +53,7 @@ class SpawnMonsterAction(EventAction):
     """
 
     name = "spawn_monster"
-    _param_factory = SpawnMonsterActionParameters
+    param_class = SpawnMonsterActionParameters
 
     def start(self):
         npc_slug, breeding_mother, breeding_father = self.parameters

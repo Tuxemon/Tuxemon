@@ -44,7 +44,7 @@ class TranslatedDialogChoiceAction(EventAction):
 
     name = "translated_dialog_choice"
 
-    _param_factory = TranslatedDialogChoiceActionParameters
+    param_class = TranslatedDialogChoiceActionParameters
 
     def start(self):
         def set_variable(var_value):

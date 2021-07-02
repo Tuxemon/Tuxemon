@@ -41,7 +41,7 @@ class DialogChoiceAction(EventAction):
     """
 
     name = "dialog_choice"
-    _param_factory = DialogChoiceActionParameters
+    param_class = DialogChoiceActionParameters
 
     def start(self):
         def set_variable(var_value):

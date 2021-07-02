@@ -37,7 +37,7 @@ class WaitForSecsAction(EventAction):
     """
 
     name = "wait_for_secs"
-    _param_factory = WaitForSecsActionParameters
+    param_class = WaitForSecsActionParameters
 
     def start(self):
         secs = self.parameters.seconds

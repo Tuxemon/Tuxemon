@@ -42,7 +42,7 @@ class StartBattleAction(EventAction):
     """
 
     name = "start_battle"
-    _param_factory = StartBattleActionParameters
+    param_class = StartBattleActionParameters
 
     def start(self):
         player = self.session.player

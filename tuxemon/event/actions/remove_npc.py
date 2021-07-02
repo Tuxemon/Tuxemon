@@ -35,7 +35,7 @@ class RemoveNpcAction(EventAction):
     """
 
     name = "remove_npc"
-    _param_factory = RemoveNpcActionParameters
+    param_class = RemoveNpcActionParameters
 
     def start(self):
         # Get a copy of the world state.

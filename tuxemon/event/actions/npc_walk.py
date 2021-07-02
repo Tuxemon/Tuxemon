@@ -36,7 +36,7 @@ class NpcWalk(EventAction):
     """
 
     name = "npc_walk"
-    _param_factory = NpcWalkActionParameters
+    param_class = NpcWalkActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

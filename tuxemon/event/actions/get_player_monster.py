@@ -43,7 +43,7 @@ class GetPlayerMonsterAction(EventAction):
     """
 
     name = "get_player_monster"
-    _param_factory = GetPlayerMonsterActionParameters
+    param_class = GetPlayerMonsterActionParameters
 
     def set_var(self, menu_item):
         self.player.game_variables[self.variable] = menu_item.game_object.instance_id.hex

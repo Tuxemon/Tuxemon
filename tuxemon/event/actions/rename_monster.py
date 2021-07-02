@@ -40,7 +40,7 @@ class RenameMonsterAction(EventAction):
     """
 
     name = "rename_monster"
-    _param_factory = RenameMonsterActionParameters
+    param_class = RenameMonsterActionParameters
 
     def start(self):
         # Get a copy of the world state.

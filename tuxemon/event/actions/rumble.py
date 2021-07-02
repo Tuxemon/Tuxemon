@@ -39,7 +39,7 @@ class RumbleAction(EventAction):
     """
 
     name = "rumble"
-    _param_factory = RumbleActionParameters
+    param_class = RumbleActionParameters
 
     def start(self):
         duration = float(self.parameters[0])

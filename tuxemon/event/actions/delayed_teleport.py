@@ -37,7 +37,7 @@ class DelayedTeleportAction(EventAction):
     """
 
     name = "delayed_teleport"
-    _param_factory = DelayedTeleportActionParameters
+    param_class = DelayedTeleportActionParameters
 
     def start(self):
         # Get the world object from the session

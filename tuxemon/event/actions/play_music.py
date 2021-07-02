@@ -42,7 +42,7 @@ class PlayMusicAction(EventAction):
     """
 
     name = "play_music"
-    _param_factory = PlayMusicActionParameters
+    param_class = PlayMusicActionParameters
 
     def start(self):
         filename = self.parameters.filename

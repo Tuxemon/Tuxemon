@@ -39,7 +39,7 @@ class NpcWanderAction(EventAction):
     """
 
     name = "npc_wander"
-    _param_factory = NpcWanderActionParameters
+    param_class = NpcWanderActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters.npc_slug)

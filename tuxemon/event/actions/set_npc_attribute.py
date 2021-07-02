@@ -39,7 +39,7 @@ class SetNpcAttributeAction(EventAction):
     """
 
     name = "set_npc_attribute"
-    _param_factory = SetNpcAttributeActionParameters
+    param_class = SetNpcAttributeActionParameters
 
     def start(self):
         npc = get_npc(self.session, self.parameters[0])

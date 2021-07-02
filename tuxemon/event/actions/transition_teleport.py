@@ -39,7 +39,7 @@ class TransitionTeleportAction(EventAction):
     """
 
     name = "transition_teleport"
-    _param_factory = TransitionTeleportActionParameters
+    param_class = TransitionTeleportActionParameters
 
     def start(self):
         # Start the screen transition

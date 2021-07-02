@@ -45,7 +45,7 @@ class VariableMathAction(EventAction):
     """
 
     name = "variable_math"
-    _param_factory = VariableMathActionParameters
+    param_class = VariableMathActionParameters
 
     def start(self):
         player = self.session.player

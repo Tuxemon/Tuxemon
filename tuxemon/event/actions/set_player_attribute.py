@@ -38,7 +38,7 @@ class SetPlayerAttributeAction(EventAction):
     """
 
     name = "set_player_attribute"
-    _param_factory = SetPlayerAttributeActionParameters
+    param_class = SetPlayerAttributeActionParameters
 
     def start(self):
         attribute = self.parameters[0]

@@ -4,7 +4,7 @@ echo This script is intended to be run in wine, or with nsis already installed i
 
 rem Set the installer and the build path ----------------------
 
-set ScriptPath=%cd%\setup_windows_non_mui.nsi
+set ScriptPath=%cd%\setup_windows.nsi
 
 rem Propably terrible way to get build folder
 cd ..

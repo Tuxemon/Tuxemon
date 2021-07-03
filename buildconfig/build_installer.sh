@@ -7,9 +7,7 @@ wget $NSIS_DOWNLOAD_LINK -O nsis.exe
 
 wine nsis.exe /S # Should silently install nsis
 
-wine start /wait /d $PWD build_installer.bat /b
+echo "build_installer.bat" | wine cmd
 
 mkdir ../dist/
 mv tuxemon-installer.exe ../dist/.
-
-

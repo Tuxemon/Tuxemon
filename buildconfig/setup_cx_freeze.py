@@ -23,7 +23,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "disk"
 
 includes = ["pkg_resources"]
-includefiles = ["mods"."LICENSE"]
+includefiles = ["mods","LICENSE"]
 excludes = ["tkinter", "pyglet"]
 packages = ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"]
 

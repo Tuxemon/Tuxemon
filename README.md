@@ -1,4 +1,4 @@
-Tuxemon 0.4.25
+Tuxemon 0.4.26
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -15,7 +15,6 @@ Tuxemon uses a number of open source projects to work properly:
 * *python* - version 3.6+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
-* *python-six* - python 2 and 3 compatibility library
 * *python-pyscroll* - fast module for animated scrolling maps.
 * *[neteria](https://github.com/ShadowBlip/Neteria)* - Game networking framework for Python.
 
@@ -42,21 +41,21 @@ Run:
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 python -m pip install -U -r requirements.txt
-python tuxemon.py
+python run_tuxemon.py
 ```
 
 **Windows Binary**
 
-Check the release page https://github.com/Tuxemon/Tuxemon/releases for binaries.
+Check the [release page](https://github.com/Tuxemon/Tuxemon/releases) for binaries.
 
 **Ubuntu**
 
 ```sh
-sudo apt install python python-pygame python-pip python-imaging python-six git
+sudo apt install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-python tuxemon.py
+python run_tuxemon.py
 ```
 
 **Ubuntu 18.04 w/venv**
@@ -68,7 +67,7 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python3 tuxemon.py
+python3 run_tuxemon.py
 ```
 
 **Debian**
@@ -78,7 +77,7 @@ sudo apt-get install python python-pygame python-pip python-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 sudo pip install -U -r requirements.txt
-python tuxemon.py
+python run_tuxemon.py
 ```
 
 *Optional rumble support*
@@ -102,7 +101,7 @@ brew install sdl_mixer --with-libvorbis
 sudo pip install git+https://github.com/pygame/pygame.git
 sudo pip install -U -r requirements.txt 
 git clone https://github.com/Tuxemon/Tuxemon.git
-ulimit -n 10000; python tuxemon.py
+ulimit -n 10000; python run_tuxemon.py
 ```
 
 **Arch Linux**
@@ -110,8 +109,13 @@ ulimit -n 10000; python tuxemon.py
 Tuxemon is available in the [AUR](https://aur.archlinux.org/packages/tuxemon-git/).
 
 **Smartphones**
-* [Android](https://www.tuxemon.org/files/builds/tuxemon-unstable-latest.apk) (APK file)
 
+Android builds are highly experimental.  Download and install the apk from the 
+[releases page](https://github.com/Tuxemon/Tuxemon/releases) and install to your
+device.  You will need to manually install the mods folder.  Connect your device
+to your computer and make a folder called "Tuxemon" in "Internal Storage", then
+copy the mods folder.  Tuxemon will also need file system permissions, which you
+can set in your phones settings.
 
 **Fedora Linux**
 
@@ -120,6 +124,7 @@ sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-
 virtualenv venv
 pip install -r requirements.txt
 ```
+
 
 Controls
 --------
@@ -134,13 +139,30 @@ Controls
 
 Use *Tiled* map editor: http://www.mapeditor.org/
 
-Python 2.7 Notice
------------------
 
-Python 2.7 is no longer supported.
+Building
+--------
+
+There are many scripts for various builds in the buildconfig folder.  These
+are meant to be run from the project root directory, for example, to build
+the portable pypy build:
+```
+[user@localhost Tuxemon]$ buildconfig/build_pypy_portable_linux.sh
+```
+There will be a new directory called build, which will have the package if
+everything was successful.
+
+WARNING!  The build scripts are designed to be run in a dedicated VM.  They
+will add and remove packages and could leave you OS in a bad state.  You
+should not use them on your personal computer.  Use in a vm or container.
+
 
 License
 -------
+
+With the exception of the lib folder which may have
+its own license, all code in this project is licenced
+under the GPLv3.
 
 GPL v3+
 
@@ -162,4 +184,3 @@ External links
 * Discord: [Tuxemon](https://discord.gg/3ZffZwz)
 * Reddit: [/r/Tuxemon](https://www.reddit.com/r/tuxemon)
 * YouTube: [Tuxemon](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
-* Google Plus: [+TuxemonOrg](https://plus.google.com/u/0/+TuxemonOrg)

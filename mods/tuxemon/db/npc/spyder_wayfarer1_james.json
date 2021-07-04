@@ -1,0 +1,21 @@
+{
+    "slug": "spyder_wayfarer1_james",
+    "sprite_name": "scientist",
+	"monsters": [
+        {
+            "name": "Botbot",
+            "level": 12, 
+			"slug": "botbot",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "PiCC",
+            "level": 12, 
+			"slug": "picc",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	    "combat_front": "scientist.png",
+    "combat_back": "red_back.png"}

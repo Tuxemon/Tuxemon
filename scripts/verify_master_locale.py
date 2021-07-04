@@ -10,8 +10,6 @@ will be listed on the bottom.  Eventually will add what are missing....
 
 Program output is suitable to use as JSON in the master locale.
 """
-from __future__ import print_function
-
 import glob
 import json
 import re

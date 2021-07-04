@@ -49,8 +49,8 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="16" name="Heal Tuxemon" type="event" x="112" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="set_monster_health ,"/>
-    <property name="act20" value="set_monster_status ,"/>
+    <property name="act10" value="set_monster_health"/>
+    <property name="act20" value="set_monster_status"/>
     <property name="act30" value="dialog Your tuxemon are now at full health!"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>

@@ -1,0 +1,27 @@
+{
+    "slug": "birb-robo",
+    "category": "threat",
+    "ai": "RandomAI",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shrapnel"
+        }
+    ],
+    "shape": "Flier",
+    "types": [
+        "Metal"
+    ],
+    "weight": 100,
+    "catch_rate": 120.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

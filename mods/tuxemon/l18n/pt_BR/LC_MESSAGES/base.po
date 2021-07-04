@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-03-06 01:50+0000\n"
+"Last-Translator: Marcelo da Silva Janke <marcelo.janke@benner.com.br>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"tuxemon/tuxemon/pt_BR/>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.5.1\n"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} está sugando saúde de {target}."
+
+msgid "combat_state_poison_damage"
+msgstr "{name} sofreu dano de veneno!"
+
+msgid "combat_state_poison_get"
+msgstr "{target} está envenenado."
+
+msgid "combat_miss"
+msgstr "Errou ..."
+
+# TODO: similar to combat_swap - refactor!
+msgid "combat_opponent_call_tuxemon"
+msgstr "{user} enviou {name}!"
+
+msgid "combat_call_tuxemon"
+msgstr "Vai {name}!"
+
+msgid "combat_swap"
+msgstr "{user} enviou {target}!"
+
+msgid "combat_used_x_on_y"
+msgstr "{user} usou {name} em {target}!"
+
+msgid "combat_used_x"
+msgstr "{user} usou {name}!"
+
+msgid "combat_player_run"
+msgstr "Você fugiu!"
+
+## NOTIFICATION TRANSLATIONS ##
+# Combat notifications
+msgid "combat_run"
+msgstr "{user} fugiu!"
+
+# Allie's Address
+msgid "allies_address"
+msgstr "Endereço do Allie"
+
+msgid "combat_can't_run_from_trainer"
+msgstr "Não pode fugir de batalhas de treinadores!"
+
+msgid "item_no_available_target"
+msgstr "{name} não pode ser usado em nenhum dos seus Tuxemon neste momento."
+
+msgid "item_cannot_use_here"
+msgstr "{name} não pode ser usado aqui!"
+
+msgid "tm_blossom_description"
+msgstr ""
+"Manual de técnica que ensina a um Tuxemon de madeira a técnica de Florecer."
+
+msgid "allies_address_description"
+msgstr ""
+"Quarto 31, Bloco 2, Torre Omnichannel, Cotton Town\n"
+"\n"
+"Há uma marca de beijo ao lado do endereço"
+
+msgid "tm_blossom"
+msgstr "TM: Florescer"
+
+msgid "tm_avalanche_description"
+msgstr ""
+"Manual de Técnica que ensina a um Tuxemon de Água ou Terra a técnica "
+"Avalanche."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "TM: Avalanche"
+
+msgid "capture_device_description"
+msgstr "Captura um monstro."
+
+# Capture Device
+msgid "capture_device"
+msgstr "Dispositivo de Captura"
+
+msgid "revive_description"
+msgstr "Revive o Tuxemon nocauteado e restaura 20 HP."
+
+# Revive
+msgid "revive"
+msgstr "Reviver"
+
+msgid "imperial_potion_description"
+msgstr "Cura um monstro em 350 HP."
+
+# Imperial Potion
+msgid "imperial_potion"
+msgstr "Poção Imperial"
+
+msgid "super_potion_description"
+msgstr "Cura um monstro em 150 HP."
+
+# Super Potion
+msgid "super_potion"
+msgstr "Super Poção"
+
+msgid "potion_description"
+msgstr "Cura um monstro em 50 HP."
+
+# Potion
+msgid "potion"
+msgstr "Poção"
+
+msgid "orange_description"
+msgstr "Cura um monstro em 20 HP."
+
+# Berry
+msgid "berry"
+msgstr "Baga"
+
+# Orange
+msgid "orange"
+msgstr "Laranja"
+
+msgid "cherry_description"
+msgstr "Cura um monstro em 10 HP."
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Tuxemon Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid "PROJECT DESCRIPTION\n"
+msgstr ""
+"Project-Id-Version: Insert package version from somewhere\n"
+"Report-Msgid-Bugs-To: andymenderunix@gmail.com\n"
+"POT-Creation-Date: 2018-10-07 20:58:38+0000\n"
+"PO-Revision-Date: 2018-10-07 20:58:38+0000\n"
+"Last-Translator: Marcelo Janke <marcelojanke123456@gmail.com>\n"
+"Language-Team: Portuguese\n"
+"Language: pt-BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+# Cherry
+msgid "cherry"
+msgstr "Cereja"
+
+msgid "berry_description"
+msgstr "Cura um monstro em 10 HP."
+
+msgid "apple_description"
+msgstr "Cura um monstro em 10 HP."
+
+## ITEM TRANSLATIONS ##
+# Apple
+msgid "apple"
+msgstr "Maçã"

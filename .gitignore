@@ -42,12 +42,9 @@ coverage.xml
 # Rope
 .ropeproject
 
-# Django stuff:
-*.log
-
-
 # Sphinx documentation
 docs/_build/
+docs/autogen/
 
 # Logs
 *.log
@@ -65,7 +62,18 @@ Thumbs.db
 *.iml
 .idea/*
 
+# Eric6
+*.epj
+/__init__.py
+.eric6project
+
+# KDevelop
+.*.kate-swp
+*.kdev4
+/.kdev4
+
 # Mac OS
 *.DS_Store
 mods/tuxemon/maps/~$Map Helper.xlsx
 mods/tuxemon/db/encounter/~$JSON-o-matic for Encounters.ods
+/.mypy_cache/

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="32">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="53">
  <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
   <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
  </tileset>
@@ -24,6 +24,12 @@
  <tileset firstgid="2841" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
   <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
  </tileset>
+ <tileset firstgid="3126" name="Office_interiors_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="3654" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBhcoJhxFI/iUTyKRzEIAwDeSJLR
@@ -31,16 +37,16 @@
  </layer>
  <layer id="2" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJzFk0sOgjAQhicgK05huIDhAsYL+GTlCwm6NHgP8TTKDbyFHsbporH+TAsREyf50tKZfumENiGi5AfkDnYhURbW5xKu0Htx/s+YBURzZhE01/aZicCJWfL+FbNmjkJNZHgGzFYgBc9GqInBk3tEe+DgfXqwRuXRc+a1B/M0xgt4VE0Jecnj+0Q9/z3aPGb+2/PoXNnxPDpn81x57QZU4MGaCjyF5f5E8N+lezY1PEPL/YnBI92zFDxSjMBjq+vqMftUMab6u2rjucM3vhvdc5Mnc3bZvi8zXnv5Xas=
+   eJzVk0sKwjAQhofWrnsGEdSl6NYHXsBnV76KtF0K3sN6Gu0NvIUexgkkOI6TULQbAx8tmT8fSZhEABBVQFIR/zbmAcACWQbuXB2ZWjgiK1y/RjbIQcg0tKeD7CzEzLMVMl3iUSPxAFJG5r17eEbVueeEc3fkQb5n5lGZnNUlj+8D1PzX1+ah9W/3Y2r5j/sxNZvngnNXRsE8PFMQz8TSO6YvqEfqtZnOST1B+4J6pF6LwT3GgmfkyJu30wwB2kgrLO+h5zSZPq4fIgPt6cHn++KeG/lPsZ4Jb1ndG39f3LN3nJOPsvfzBB/2XOs=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYIAADwbiQAgUO+OQDyTSnGQoxqU+nEhzCKlPQ2I7EWEOTD0+tfj8iK4Pn9oEEuSWo/GNmTH1oIth46O7JxooxoekzoQZIoau5hkThM0HlSc2ngmBUXPoY84VKpkzXEECNwNDIvfgMQcGAAxPDy8=
+   eJxjYIAADwbiQAgUO+OQDyTSnGQoxqU+nEhzCKlPQ2I7EWEOTD0+tfj8iK4Pn9oEEuSWo/GNmTH1oIth46O7JxooxoekzoQZIoau5hkThM0HlSc2ngmBUXPoY84VKpkzFMAcfgaGufyk6UngZmBI5EYV2wQ0YzMVzKEEAADfShIJ
   </data>
  </layer>
  <objectgroup id="4" name="Events">
-  <object id="1" name="Teleport to Nimrod" type="event" x="128" y="304" width="48" height="16">
+  <object id="1" name="Teleport to Flower City" type="event" x="128" y="304" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,19,10,0.3"/>
     <property name="act2" value="player_face down"/>
@@ -50,67 +56,125 @@
   </object>
   <object id="2" name="Teleport to Nimrod Middle" type="event" x="256" y="272" width="32" height="32">
    <properties>
-    <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,16,17,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="29" name="Teleport to Nimrod Middle" type="event" x="112" y="16" width="32" height="32">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,7,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="30" name="Teleport to Nimrod Middle" type="event" x="160" y="16" width="32" height="32">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,10,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="31" name="Teleport to Flower City Outside" type="event" x="112" y="176" width="32" height="32">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,11,4,0.3"/>
+    <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,15,18,0.3"/>
     <property name="act2" value="player_face left"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
+  <object id="34" name="Create Dirk" type="event" x="64" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_enforcer_rookie,4,19"/>
+    <property name="act2" value="npc_face spyder_enforcer_rookie,up"/>
+    <property name="cond1" value="not npc_exists spyder_enforcer_rookie"/>
+   </properties>
+  </object>
+  <object id="35" name="Talk Dirk" type="event" x="32" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_dirk1"/>
+    <property name="behav1" value="talk spyder_enforcer_rookie"/>
+   </properties>
+  </object>
+  <object id="38" name="Create Guard" type="event" x="112" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_soldier,7,19"/>
+    <property name="act2" value="npc_face spyder_soldier,right"/>
+    <property name="cond1" value="not npc_exists spyder_soldier"/>
+    <property name="cond2" value="not variable_set nimrodtru:yes"/>
+   </properties>
+  </object>
+  <object id="39" name="Talk Guard" type="event" x="96" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_guard1"/>
+    <property name="behav1" value="talk spyder_soldier"/>
+   </properties>
+  </object>
+  <object id="40" name="Create Rebel" type="event" x="208" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_rebel,12,15"/>
+    <property name="cond1" value="not npc_exists spyder_nimrod_rebel"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Rebel" type="event" x="192" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_rebel1"/>
+    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
+    <property name="act6" value="set_variable nimrodrebel:yes"/>
+    <property name="behav1" value="talk spyder_nimrod_rebel"/>
+    <property name="cond1" value="not variable_set nimrodrebel:yes"/>
+   </properties>
+  </object>
+  <object id="42" name="Create Bowie" type="event" x="32" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_bowie,1,15"/>
+    <property name="cond1" value="not npc_exists spyder_nimrod_bowie"/>
+   </properties>
+  </object>
+  <object id="43" name="Talk Bowie" type="event" x="16" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_bowie1"/>
+    <property name="act3" value="start_battle spyder_nimrod_bowie"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_bowie2"/>
+    <property name="act6" value="set_variable nimrodbowie:yes"/>
+    <property name="behav1" value="talk spyder_nimrod_bowie"/>
+    <property name="cond1" value="not variable_set nimrodbowie:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="Create Tru" type="event" x="16" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_tru,1,18"/>
+    <property name="act2" value="npc_face spyder_nimrod_tru,right"/>
+    <property name="cond1" value="not npc_exists spyder_nimrod_tru"/>
+   </properties>
+  </object>
+  <object id="45" name="Talk Tru" type="event" x="32" y="288" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_nimrod_tru1"/>
+    <property name="act3" value="start_battle spyder_nimrod_tru"/>
+    <property name="act4" value="translated_dialog spyder_nimrod_tru2"/>
+    <property name="act6" value="set_variable nimrodtru:yes"/>
+    <property name="act7" value="pathfind spyder_soldier,0,17"/>
+    <property name="act8" value="remove_npc spyder_soldier"/>
+    <property name="behav1" value="talk spyder_nimrod_tru"/>
+    <property name="cond1" value="not variable_set nimrodtru:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Teleport to  Flower City" type="event" x="0" y="256" width="16" height="48">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_flower_city.tmx,11,4,0.3"/>
+    <property name="act2" value="player_face left"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing left"/>
+   </properties>
+  </object>
+  <object id="49" type="collision" x="32" y="256" width="48" height="32"/>
+  <object id="52" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
-  <object id="5" type="collision" x="32" y="288" width="64" height="16"/>
-  <object id="6" type="collision" x="32" y="224" width="96" height="16"/>
-  <object id="7" type="collision" x="112" y="240" width="16" height="80"/>
-  <object id="8" type="collision" x="176" y="224" width="16" height="96"/>
-  <object id="9" type="collision" x="192" y="224" width="80" height="16"/>
-  <object id="11" type="collision" x="176" y="96" width="80" height="16"/>
+  <object id="6" type="collision" x="16" y="224" width="96" height="16"/>
+  <object id="7" type="collision" x="96" y="224" width="16" height="80"/>
+  <object id="8" type="collision" x="176" y="208" width="16" height="112"/>
+  <object id="9" type="collision" x="192" y="208" width="80" height="32"/>
+  <object id="11" type="collision" x="176" y="80" width="80" height="32"/>
   <object id="12" type="collision" x="176" y="112" width="32" height="16"/>
   <object id="13" type="collision" x="224" y="112" width="32" height="16"/>
-  <object id="14" type="collision" x="32" y="96" width="96" height="16"/>
-  <object id="17" type="collision" x="192" y="80" width="16" height="16"/>
-  <object id="18" type="collision" x="256" y="64" width="16" height="160"/>
-  <object id="19" type="collision" x="16" y="96" width="16" height="208"/>
-  <object id="20" type="collision" x="80" y="64" width="16" height="32"/>
+  <object id="14" type="collision" x="16" y="80" width="112" height="32"/>
+  <object id="17" type="collision" x="192" y="64" width="16" height="16"/>
+  <object id="18" type="collision" x="256" y="48" width="16" height="176"/>
+  <object id="20" type="collision" x="80" y="48" width="16" height="32"/>
   <object id="21" type="collision" x="32" y="32" width="16" height="32"/>
   <object id="22" type="collision" x="224" y="32" width="16" height="32"/>
   <object id="23" type="collision" x="32" y="112" width="32" height="16"/>
   <object id="24" type="collision" x="96" y="112" width="32" height="16"/>
-  <object id="25" type="collision-line" x="112" y="32">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="26" type="collision-line" x="144" y="32">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="27" type="collision-line" x="160" y="32">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="28" type="collision-line" x="192" y="32">
-   <polyline points="0,0 0,16"/>
-  </object>
+  <object id="46" type="collision" x="0" y="80" width="16" height="144"/>
+  <object id="50" type="collision" x="240" y="256" width="16" height="48"/>
+  <object id="51" type="collision" x="256" y="256" width="32" height="16"/>
  </objectgroup>
 </map>

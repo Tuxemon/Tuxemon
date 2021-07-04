@@ -17,8 +17,6 @@ Checking is done with slugs.
 
 - Leif
 """
-from __future__ import print_function
-
 import json
 from glob import glob
 from os.path import join, basename, normpath, exists

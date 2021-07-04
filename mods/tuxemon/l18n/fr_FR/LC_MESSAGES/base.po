@@ -1,3 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-03 05:11+0200\n"
+"PO-Revision-Date: 2021-04-21 22:29+0000\n"
+"Last-Translator: David De Filippi <david.defilippi@hotmail.be>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
+"fr/>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
 # This file is distributed under the same license as the PACKAGE package.
@@ -17,34 +33,33 @@ msgstr "<<MISSING>>"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 ## ITEM TRANSLATIONS ##
-
 # Apple
 msgid "apple"
-msgstr "Apple"
+msgstr "Pomme"
 
 msgid "apple_description"
-msgstr "Heals a monster by 10 HP."
+msgstr "Restaure 10 PV d'un monstre."
 
 # Berry
 msgid "berry"
-msgstr "Berry"
+msgstr "Baie"
 
 msgid "berry_description"
-msgstr "Heals a monster by 10 HP."
+msgstr "Restaure 10 PV d'un monstre."
 
 # Cherry
 msgid "cherry"
-msgstr "Cherry"
+msgstr "Cerise"
 
 msgid "cherry_description"
-msgstr "Heals a monster by 10 HP."
+msgstr "Restaure 50 PV d'un monstre."
 
 # Orange
 msgid "orange"
 msgstr "Orange"
 
 msgid "orange_description"
-msgstr "Heals a monster by 20 HP."
+msgstr "Restaure 20 PV d'un monstre."
 
 # Potion
 msgid "potion"
@@ -55,17 +70,17 @@ msgstr "Restaure 50 PV d'un monstre."
 
 # Super Potion
 msgid "super_potion"
-msgstr "Super Potion"
+msgstr "Super potion"
 
 msgid "super_potion_description"
 msgstr "Restaure 150 PV d'un monstre."
 
 # Imperial Potion
 msgid "imperial_potion"
-msgstr "Imperial Potion"
+msgstr "Potion impériale"
 
 msgid "imperial_potion_description"
-msgstr "Heals a monster by 350 HP."
+msgstr "Restaure 350 PV d'un monstre."
 
 # Capture Device
 msgid "capture_device"
@@ -74,9 +89,7 @@ msgstr "Dispositif de capture"
 msgid "capture_device_description"
 msgstr "Capture un monstre."
 
-
 ## NOTIFICATION TRANSLATIONS ##
-
 # Combat notifications
 msgid "combat_used_x"
 msgstr "{user} utilise {name} !"
@@ -91,10 +104,10 @@ msgid "combat_used_x_on_y"
 msgstr "{user} utilise {name} sur {target} !"
 
 msgid "combat_swap"
-msgstr "{user} sent out {target}!"
+msgstr "{user} a envoyé {target} !"
 
 msgid "combat_call_tuxemon"
-msgstr "{name} ! Go !"
+msgstr "Allez {name} !"
 
 # TODO: similar to combat_swap - refactor!
 msgid "combat_opponent_call_tuxemon"
@@ -113,7 +126,7 @@ msgid "combat_defeat"
 msgstr "Tu as perdu !"
 
 msgid "combat_draw"
-msgstr "All parties have fainted!"
+msgstr "Tout le monde s'est évanoui !"
 
 msgid "combat_capturing_success"
 msgstr "Tu as capturé un {name} !"
@@ -121,14 +134,15 @@ msgstr "Tu as capturé un {name} !"
 msgid "combat_capturing_fail"
 msgstr "{name} s'est libéré !"
 
+#, fuzzy
 msgid "combat_recharging"
-msgstr "{name} needs a break before using {move} again..."
+msgstr "{name} a besoin d'une pause avant d'utiliser {move} à nouveau..."
 
 msgid "combat_replacement"
 msgstr "Choisis un remplacement !"
 
 msgid "combat_replacement_is_fainted"
-msgstr "That monster has fainted already!"
+msgstr "Ce monstre s'est déjà évanoui !"
 
 msgid "combat_wild_appeared"
 msgstr "Un {name} sauvage apparait !"
@@ -140,17 +154,17 @@ msgid "combat_fainted"
 msgstr "{name} est K.O. !"
 
 msgid "combat_isactive"
-msgstr "{name} is already in play."
+msgstr "{name} est déjà en jeu."
 
 # Generic notifications
 msgid "not_implemented"
 msgstr "Cette fonction n'existe pas encore."
 
 msgid "generic_success"
-msgstr "It worked!"
+msgstr "Ça a marché !"
 
 msgid "generic_failure"
-msgstr "It failed!"
+msgstr "Ça a échoué !"
 
 msgid "empty_slot"
 msgstr "Emplacement Vide"
@@ -159,10 +173,10 @@ msgid "exit"
 msgstr "Retour"
 
 msgid "item_confirm_use"
-msgstr "Use"
+msgstr "Utiliser"
 
 msgid "item_confirm_cancel"
-msgstr "Cancel"
+msgstr "Annuler"
 
 # TODO same as generic_success and generic_failure - refactor!
 msgid "item_success"
@@ -172,25 +186,25 @@ msgid "item_failure"
 msgstr "Cela fonctionne !"
 
 msgid "attempting_capture"
-msgstr "Attempting capture..."
+msgstr "Tentative de capture…"
 
 msgid "gotcha"
-msgstr "Gotcha!"
+msgstr "Je t'ai eu !"
 
 msgid "item_cannot_use_here"
-msgstr "{name} cannot be used here!"
+msgstr "{name} ne peut pas être utilisé ici !"
 
 msgid "receive_happiness"
-msgstr "Received 5 Capture Devices!"
+msgstr "Tu as reçu 5 appareils de capture !"
 
 msgid "received_x"
 msgstr "{name} reçu !"
 
 msgid "save_success"
-msgstr "Sauvegardé !"
+msgstr "Enregistré !"
 
 msgid "save_failure"
-msgstr "Il y a eu un problème lors de la sauvegarde !"
+msgstr "Il y a eu un problème lors de l'enregistrement !"
 
 msgid "save_overwrite"
 msgstr "Oui, écraser cette sauvegarde."
@@ -207,9 +221,7 @@ msgstr "K.O."
 msgid "status_poison"
 msgstr "Poison"
 
-
 ## TECHNIQUE TRANSLATIONS ##
-
 msgid "bite"
 msgstr "Morsure"
 
@@ -229,20 +241,18 @@ msgid "water_shot"
 msgstr "Tir d'eau"
 
 msgid "whirlwind"
-msgstr "Whirlwind"
+msgstr "Tourbillon"
 
 msgid "run"
 msgstr "Run"
 
-
 ## MENU TRANSLATIONS ##
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"
 
 msgid "monster_menu_move"
-msgstr "Move"
+msgstr "Déplacer"
 
 # Menu notifications
 msgid "log_off"
@@ -302,29 +312,27 @@ msgid "multiplayer_duel"
 msgstr "{name} veut un duel !"
 
 msgid "multiplayer_host_game"
-msgstr "Host Game"
+msgstr "Jeu hôte"
 
 msgid "multiplayer_scan_games"
-msgstr "Scan for Games"
+msgstr "Rechercher des parties"
 
 msgid "multiplayer_join_game"
-msgstr "Join Game"
+msgstr "Rejoindre la partie"
 
 msgid "multiplayer_hosting_ready"
-msgstr "Ready to accept clients!"
+msgstr "Prêt à accepter les clients !"
 
 msgid "multiplayer_already_hosting"
-msgstr "Already hosting!"
+msgstr "Vous hébergez déjà !"
 
 msgid "multiplayer_no_servers"
-msgstr "No servers found..."
+msgstr "Aucun serveur trouvé…"
 
 msgid "multiplayer_join_prompt"
 msgstr "Hostname or IP?"
 
-
 ## MONSTER TRANSLATIONS ##
-
 # Monster details
 msgid "aardart"
 msgstr "Aardart"
@@ -876,9 +884,7 @@ msgstr "Restless"
 msgid "slurpy"
 msgstr "Slurpy"
 
-
 ## NPC TRANSLATIONS ##
-
 # NPC slugs and names
 msgid "aeble"
 msgstr "Aeble"
@@ -958,9 +964,7 @@ msgstr "Team Xero Grunt IX"
 msgid "xerogrunt10"
 msgstr "Team Xero Grunt X"
 
-
 ## DIALOG TRANSLATIONS ##
-
 # general dialogs
 msgid "healmytuxemon"
 msgstr "Do you want to heal your Tuxemon?"
@@ -978,7 +982,7 @@ msgid "door_problems"
 msgstr "The door is stuck and won't open..."
 
 msgid "empty_pot"
-msgstr "It's an empty pot, maybe someone will plant something here"
+msgstr "C'est un pot vide, peut-être que quelqu'un plantera quelque chose ici."
 
 msgid "purple_flowers"
 msgstr "Somebody planted some sweet smelling purple flowers!"
@@ -993,7 +997,7 @@ msgid "famous_statue2"
 msgstr "It says: For our beloved friends and heroes of all, the wywen"
 
 msgid "cotton_town_fountain"
-msgstr "It's a fountain. A lot of coins are at the bottom"
+msgstr "C'est une fontaine. Il y a beaucoup de pièces au fond."
 
 msgid "tree"
 msgstr "This tree looks happy and healthy!"
@@ -1032,7 +1036,7 @@ msgid "karrianna_dialog1"
 msgstr "Karrianna: I've been training for the past month! Nobody has beaten me yet!"
 
 msgid "karrianna_dialog2"
-msgstr "Well... You were the first trainer I've faced..."
+msgstr "Eh bien… Tu es le premier entraîner que j'ai affronté…"
 
 msgid "xero_hideout1"
 msgstr "Xero Institute for Tuxemon Research and Advancement ahead."
@@ -1086,7 +1090,7 @@ msgid "backstory9"
 msgstr "What do you say? Will you help us?"
 
 msgid "sorryfurthis"
-msgstr "Good Choice. Sorry, this will only sting a little"
+msgstr "Bon choix. Désolé, ça ne fera qu’piquer un peu."
 
 msgid "mwah\n"
 msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in here even though your clothes are tastefully done.\n"
@@ -1132,14 +1136,15 @@ msgid "liela_goes_to_battle"
 msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
 
 msgid "Cathedral_Center"
-msgstr "Cathedral Center: We Live to Serve"
+msgstr "Centre de la cathédrale : nous vivons pour servir."
 
 msgid "Cotton_Mart"
 msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign\n"
-msgstr "Welcome to Cotton Town: A Growing Force\n"
-"^ Cotton Town --- Route 1 v\n"
+msgstr ""
+"Bienvenue à Cotonville : Une force grandissante\n"
+"^ Cotonville --- Route 1 v\n"
 
 msgid "column1"
 msgstr "A rare and ancient column. This used to be a temple."
@@ -1205,7 +1210,7 @@ msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
 
 msgid "cottonnurse_dialog"
-msgstr "Welcome to the Cotton Town Tuxecenter!"
+msgstr "Bienvenue au Tuxecentre de Contonville !"
 
 msgid "tabanurse_dialog\n"
 msgstr "Welcome to the Taba Town Tuxecenter!\n"
@@ -1219,3 +1224,283 @@ msgstr "Well, it looks like your Tuxemon are full of energy! Here they are!"
 
 msgid "input_name"
 msgstr "Name?"
+
+msgid "amnesia"
+msgstr "Amnésie"
+
+msgid "battery_acid"
+msgstr "Acide de batterie"
+
+msgid "avalanche"
+msgstr "Avalanche"
+
+# Revive
+msgid "revive"
+msgstr "Ranimer"
+
+msgid "revive_description"
+msgstr "Ranime le Tuxemon et restaure 20 HP."
+
+msgid "tm_blossom_description"
+msgstr "Manuel technique qui enseigne la technique Floraison à un Tuxemon Bois."
+
+# TMs
+msgid "tm_avalanche"
+msgstr "MT : Avalanche"
+
+msgid "tm_blossom"
+msgstr "MT : Floraison"
+
+msgid "tm_avalanche_description"
+msgstr ""
+"Manuel technique qui enseigne la technique Avalanche à un Tuxemon Eau ou "
+"Terre."
+
+msgid "item_no_available_target"
+msgstr "{name} ne peut être utilisé sur aucun de vos Tuxemon actuellement."
+
+msgid "allies_address_description"
+msgstr ""
+"Chambre 31, Bloc 2, Tour Omnichannel Cotonville\n"
+"\n"
+"Il y a une marque de baiser à côté de l'adresse"
+
+# Allie's Address
+msgid "allies_address"
+msgstr "Adresse d'Allie"
+
+msgid "combat_miss"
+msgstr "Ça a raté…"
+
+msgid "itsmyaurababe2"
+msgstr ""
+"Hmm, maintenant que je te regarde, tu as une aura plutôt mystérieuse.\n"
+"...   ...   ...   ...\n"
+"On devrait discuter un de ces jours. On se verra peut-être à Contonville ?"
+
+msgid "hellolovelypeople4"
+msgstr ""
+"Je suis assez sûr qu'il y a des maisons à Contonville plus grande que ça…"
+
+msgid "combat_state_recover_success"
+msgstr "{user} a récupéré ses PV !"
+
+msgid "combat_state_lifeleech_get"
+msgstr "{user} aspire les PV de {target}."
+
+msgid "combat_state_poison_get"
+msgstr "{target} est empoisonné."
+
+msgid "combat_can't_run_from_trainer"
+msgstr "On ne peut pas s'enfuir d'une bataille d'entraîneurs !"
+
+msgid "hellolovelypeople"
+msgstr "BOOOOOOOOOONJOUR CITOYENS DE TABA !"
+
+msgid "nopenotyet"
+msgstr ""
+"Désolé, il y a eu un accident sur la route. Elle est fermée pour le moment."
+
+msgid "iamknight"
+msgstr ""
+"AHHH!!!\n"
+"Je pensais que tu étais quelqu'un d'autre. Désolé d'avoir hurlé."
+
+msgid "professor_select"
+msgstr "Lequel préfères-tu ?"
+
+msgid "professor_dialog2\n"
+msgstr ""
+"D'où viennent les Tuxemon ?\n"
+"Personne ne sait vraiment, mais ils habitent notre planète depuis au moins "
+"des milliers d'années.\n"
+"Les Tuxemon sont de petits animaux. On apprend beaucoup d'eux, on devient "
+"leurs amis, et on les utilise pour affronter d'autres Tuxemon dans des "
+"tournois.\n"
+"Enfin… C'est ce qu'on faisait…\n"
+"Je me demandais… Je viens juste de recevoir trois nouveaux Tuxemon et je "
+"voudrais étudier comment ils se comportent avec un entraîneur.\n"
+"Ça t'intéresserait d'entraîner un Tuxemon ?"
+
+msgid "thats_me"
+msgstr "C'est moi !"
+
+msgid "template_description"
+msgstr "Insérer description ici"
+
+msgid "katacoon_description"
+msgstr ""
+"Il reste dans sa chrysalide pour méditer, ne bougeant que pour frapper ses "
+"ennemis."
+
+msgid "eruptibus"
+msgstr "Eruptibus"
+
+msgid "eruptibus_description"
+msgstr "Les forgerons utilisent sa caldeira pour faire chauffer le métal."
+
+msgid "web"
+msgstr "Toile"
+
+msgid "wall_of_steel"
+msgstr "Mur d'acier"
+
+msgid "venomous_tentacle"
+msgstr "Tentacule venimeux"
+
+msgid "snowstorm"
+msgstr "Tempête de neige"
+
+msgid "sleeping_powder"
+msgstr "Poudre de sommeil"
+
+msgid "shuriken"
+msgstr "Shuriken"
+
+msgid "quicksand"
+msgstr "Sable mouvant"
+
+msgid "levitate"
+msgstr "Levitation"
+
+#, fuzzy
+msgid "headbutt"
+msgstr "Coup de boule"
+
+msgid "flood"
+msgstr "Inondation"
+
+msgid "flamethrower"
+msgstr "Lance-flammes"
+
+#, fuzzy
+msgid "fire_claw"
+msgstr "Griffes enflammées"
+
+msgid "fire_ball"
+msgstr "Boule de feu"
+
+msgid "energy_field"
+msgstr "Champ d'énergie"
+
+msgid "electrical_storm"
+msgstr "Orage électrique"
+
+#, fuzzy
+msgid "chill_mist"
+msgstr "Brouillard glacial"
+
+msgid "blood_bond"
+msgstr "Lien de sang"
+
+msgid "blade"
+msgstr "Lame"
+
+msgid "berserk"
+msgstr "Furie Berserk"
+
+msgid "beam"
+msgstr "Rayon"
+
+msgid "battery_discharge"
+msgstr "Décharge électrique"
+
+msgid "attack_effective"
+msgstr "L'attaque inflige des dégâts supplémentaires !"
+
+msgid "attack_very_effective"
+msgstr "L'attaque inflige beaucoup de dégâts supplémentaires !"
+
+msgid "combat_trainer_appeared"
+msgstr "{name} veut se battre !"
+
+msgid "combat_state_recover_failure"
+msgstr "{user} ne peut pas se soigner davantage."
+
+msgid "combat_state_recover_get"
+msgstr "{target} commence à regagner de la vie."
+
+msgid "uselessnes"
+msgstr ""
+"Tu es absolument inutile John. Je n’arrive pas à croire qu’on ait jamais été "
+"ensemble."
+
+msgid "johnissorry"
+msgstr ""
+"Désolé M'dame… J'ai…\n"
+"Vu…\n"
+"Certaines…\n"
+"Fleurs…"
+
+msgid "darnitjohn10"
+msgstr "TOUT DE SUITE !"
+
+msgid "darnitjohn8"
+msgstr "AAAAAH !!!"
+
+msgid "darnitjohn7"
+msgstr "Je ne suis pas sûr…"
+
+msgid "darnitjohn6"
+msgstr "Euh…"
+
+msgid "darnitjohn5"
+msgstr "Pourquoi es-tu toujours là ?"
+
+msgid "darnitjohn4"
+msgstr "Oui m'dame ?"
+
+msgid "darnitjohn3"
+msgstr "John."
+
+msgid "darnitjohn"
+msgstr "Attends… Où est John ?"
+
+msgid "firsts"
+msgstr ""
+"♪ Watch me whip ♪\n"
+"♪ Watch me nae nae ♪\n"
+"Cette chanson est plutôt géniale, non ?"
+
+msgid "yesmaam"
+msgstr "Oui m'dame."
+
+msgid "omnichannelarrives"
+msgstr "ARRÊTEZ !"
+
+msgid "quicklyknight4"
+msgstr "Désolé, mais je devrais partir maintenant."
+
+msgid "quicklyknight3"
+msgstr "Allie, c’est ça. Allie est le nom."
+
+msgid "thatsmeknight"
+msgstr ""
+"Oh, splendide ! Je savais depuis le début que ça devait être toi\n"
+"Ne t'inquiète pas, je ne le dirai à personne."
+
+msgid "mistakenknight"
+msgstr ""
+"Non, je ne me trompe pas. C'est toi !\n"
+"Ne t'inquiète pas, je ne le dirai à personne."
+
+msgid "iamknight2"
+msgstr ""
+"Attends, tu es celui dont ils parlent, n'est-ce pas ? Celui avec le Tuxemon "
+"non déclaré ?"
+
+msgid "professor_turn"
+msgstr "Bien sûr que tu le ferais, de qui je me moque ?"
+
+msgid "professor_no"
+msgstr ""
+"Eh bien, dommage alors. J’ai marché jusqu’ici pour te parler, alors écoute !"
+
+msgid "professor_yes"
+msgstr "Génial !"
+
+msgid "combat_state_lifeleech_success"
+msgstr "Les PV de {user} sont aspirés!"
+
+msgid "reg_papers"
+msgstr "Documents d'inscription"

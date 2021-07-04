@@ -1,0 +1,31 @@
+{
+    "slug": "spyder_dryadsgrove_sylvia",
+    "sprite_name": "woodnymph",
+	"monsters": [
+        		{
+            "name": "Viviphyta",
+            "level": 50, 
+			"slug": "viviphyta",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Dandylion",
+            "level": 50, 
+			"slug": "dandylion",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        },
+		{
+            "name": "Narcileaf",
+            "level": 50, 
+			"slug": "narcileaf",
+			"exp_give_mod": 3,
+            "exp_req_mod": 27			
+        }
+],
+	"combat_front": "woodnymph.png",
+    "combat_back": "red_back.png"}
+	
+	
+	

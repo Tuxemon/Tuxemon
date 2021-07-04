@@ -1,0 +1,6 @@
+{
+    "slug": "postboy",
+    "sprite_name": "postboy",
+    "combat_front": "red_front.png",
+    "combat_back": "red_back.png"
+}

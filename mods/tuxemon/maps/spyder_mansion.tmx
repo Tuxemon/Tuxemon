@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -33,17 +33,17 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAGzZmBgsKYyLqGSeYPNHGqH06h51E97o2E6GqaUpAEAooRLWA==
+   eAGzZmBgsKYyLkEzLw2NT6x96OYQqw9dHbXMQTd3lE/9tDMapqNhOpBpAABrd0uD
   </data>
  </layer>
  <layer id="2" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAHFkjEOwkAMBK+j4LnwBApIS8MrgBcgIB/DU1hylr0gQAhLVmJ7b+yzrrX/22rZ2jr8W9sGYwjfCEhjKU9CtMdgnH/I2U86zgdo5+ZhXvUkar7HoYfz5Gitx2H/uzf81NnzLfJ34+jTtT5GjftW0/tnzPy1d+brVzm6A7TKcRrl1Jh/x3GamuOMszqPq+s54sviWfkJRymv7nWIvm4e5bDTOg9xtavhqAY9uXxXvJWe5gH59lpd
+   eAHFkk0OwkAIRseVC4/QY+oRXGi3bjyF9gTGn4vJiyGlX5kaa4wkpAN882BIS/m/rVelbMy/tZ0xWvOtgDSW8iBEezJG90POYdBxOkA7NQ/zqjtR8zUOPTJ3jtZqHPa//8DPlT3fLH9PHL271h9W473RmsV4N2iYP/bWPSmHWHeQcTJNnEe51DJOvOOamMs41OO7ot7Peo/4svRq/53D6W+/Tu/edbS+2TzKYadxHuJo14SjGvTk/L/iX6lpnhTVWfU=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAGtk71KA2EQRaczUWt9DfUB9C0UY28pgkEsxSXaiwQrfyKKwVeQYCerIFjbqJ2Nz+C5uAPDsFFZHLjsnfm+OZkks6WZbU2ZddEyfuWP2gn3OvgSOaeLP2mZnaIzdIXWqbleJ8ze0DvaDnX1iVMwS08z4c/pHaAL9IRitMjbaBKJ4+GcIYybilNy5wE9ohxz1ObRAhLnY/pbdZzcOy7/bZ5xfbn+E6fIl8kvQ20QfC/4/L0Ow5nbIzc843msZ84nv1uTyBwx7huwMme1Zhjtagzd6fC/ryGPZ7Nd7aHvz74fhOdB8LLK92AUFUc7r77M2WDnY/Rjgld+Te+w4mjn6zj9xEmY2vQ/OJt8rnNuebdGSPkozfOSJsh55My0zWaRODlyLefHYZ5FGEsNOXcV5wsAlmGG
+   eAG9k7tKA2EQhcfKRK210IdQH8C8hYL2liKYwsJCXNQ+SLDyElEMvoIE21UQrW3UzrfwG9yBw7Dxhjhw2DPz//Nllp2UZrYxbtZGi/ilb2pT7s2MmJXCaeOPGmbH6ARdoFVqoedRsxf0irak7t45BbPs+kz4U3p76AzdI40GeRONIe+NCE4fxlXFKblzi+5Qjllqc2geee/bxIfqOLl3WP7VPMP6cv0zTpEvk59LrSf+QXx+r46chT0Iw1PPtZ450vIj+58c31WNafJlvvsKing02/Y9jP3ZiwN57ot36/kOjKLi+M57X+assfMaXU3wnl/S2684vvN1nG7iJExt+hecdX43ONf8twbI80Ga5ylNkHPlTDbNppBzcuRazg9lngUYrV9ybirOO7S5X1o=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="18" height="18">
@@ -51,14 +51,12 @@
    eAFjYBgFoyEwGgL0CoE8durYRC1zqOMa0k0poFI4kG4zfh0ApwoBYg==
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collision" visible="0">
+ <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="1" type="collision" x="48" y="0" width="16" height="128"/>
   <object id="2" type="collision" x="64" y="0" width="224" height="32"/>
   <object id="3" type="collision" x="64" y="96" width="80" height="32"/>
   <object id="4" type="collision" x="224" y="32" width="16" height="96"/>
   <object id="5" type="collision" x="176" y="96" width="48" height="32"/>
-  <object id="6" type="collision" x="48" y="128" width="16" height="16"/>
-  <object id="7" type="collision" x="64" y="144" width="16" height="16"/>
   <object id="8" type="collision" x="272" y="32" width="16" height="256"/>
   <object id="9" type="collision" x="256" y="240" width="16" height="32"/>
   <object id="10" type="collision" x="192" y="160" width="80" height="32"/>
@@ -159,6 +157,58 @@
     <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="160" y="160" width="16" height="16"/>
+  <object id="37" name="Create Drinking Buddy A" type="event" x="64" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_mansion_drinkingbuddya,4,8"/>
+    <property name="act2" value="npc_face spyder_mansion_drinkingbuddya,left"/>
+    <property name="cond1" value="not npc_exists spyder_mansion_drinkingbuddya"/>
+    <property name="cond2" value="not variable_set captainreturns:yes"/>
+   </properties>
+  </object>
+  <object id="38" name="Talk Drinking Buddy A" type="event" x="64" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_drinkingbuddya1"/>
+    <property name="behav1" value="talk spyder_mansion_drinkingbuddya"/>
+   </properties>
+  </object>
+  <object id="39" name="Create Drinking Buddy B" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_mansion_drinkingbuddyb,3,9"/>
+    <property name="act2" value="npc_face spyder_mansion_drinkingbuddyb,right"/>
+    <property name="cond1" value="not npc_exists spyder_mansion_drinkingbuddyb"/>
+    <property name="cond2" value="not variable_set captainreturns:yes"/>
+   </properties>
+  </object>
+  <object id="40" name="Talk Drinking Buddy B" type="event" x="48" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_drinkingbuddyb1"/>
+    <property name="behav1" value="talk spyder_mansion_drinkingbuddyb"/>
+   </properties>
+  </object>
+  <object id="41" name="Captain Returns" type="event" x="16" y="208" width="32" height="16">
+   <properties>
+    <property name="act2" value="set_variable captainreturns:yes"/>
+    <property name="act3" value="create_npc spyder_captain,2,16"/>
+    <property name="act4" value="pathfind spyder_captain,2,9"/>
+    <property name="act41" value="npc_face spyder_captain,right"/>
+    <property name="act42" value="npc_face spyder_mansion_drinkingbuddyb,left"/>
+    <property name="act50" value="translated_dialog spyder_mansion_drinkingbuddya2"/>
+    <property name="act60" value="pathfind spyder_mansion_drinkingbuddya,12,9"/>
+    <property name="act70" value="pathfind spyder_mansion_drinkingbuddyb,12,8"/>
+    <property name="act80" value="pathfind spyder_captain,11,8"/>
+    <property name="act90" value="remove_npc spyder_captain"/>
+    <property name="act91" value="remove_npc spyder_mansion_drinkingbuddya"/>
+    <property name="act92" value="remove_npc spyder_mansion_drinkingbuddyb"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is variable_set foundcaptain:yes"/>
+    <property name="cond3" value="not variable_set captainreturns:yes"/>
+   </properties>
+  </object>
+  <object id="42" name="Environment" type="event" x="0" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:snow"/>
+    <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -26,13 +26,8 @@
 #
 # __main__.py Main game
 #
-"""Starts the core.main.main() function which, in turn, initializes
+"""Starts the main.main() function which, in turn, initializes
 pygame and starts the game, unless headless is specified.
-
-To run an individual component (e.g. core/prepare.py):
-
-`python -m core.prepare`
-
 """
 
 import getopt
@@ -43,8 +38,8 @@ def main(args=None):
     server = False
     opts, args = getopt.getopt(sys.argv[1:], "hs", ["help", "server"])
     for opt, arg in opts:
-        if opt == '-h':
-            print(sys.argv[0], '[--server]')
+        if opt == "-h":
+            print(sys.argv[0], "[--server]")
             print("  -h              Display this help message")
             print("  -s, --headless  Start a headless server")
             sys.exit()
@@ -52,12 +47,12 @@ def main(args=None):
             server = True
 
     if server:
-        from tuxemon.core.main import headless
+        from tuxemon.main import headless
 
         headless()
 
     else:
-        from tuxemon.core.main import main
+        from tuxemon.main import main
 
         main()
 

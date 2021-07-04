@@ -33,17 +33,24 @@ import logging
 import os
 import re
 import sys
+from typing import Mapping, Sequence, Any, Optional, List, Iterable,\
+    Tuple, Type
+from types import ModuleType
 
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
-log_hdlr.setFormatter(logging.Formatter("%(asctime)s - %(name)s - " "%(levelname)s - %(message)s"))
+log_hdlr.setFormatter(
+    logging.Formatter(
+        "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s",
+    ),
+)
 
 
 class Plugin:
     __slots__ = ("name", "plugin_object")
 
-    def __init__(self, name, module):
+    def __init__(self, name: str, module: Type[object]) -> None:
         self.name = name
         self.plugin_object = module
 
@@ -51,12 +58,20 @@ class Plugin:
 class PluginManager:
     """Yapsy semi-compatible plugin manager."""
 
-    def __init__(self, base_folders=None):
+    def __init__(
+        self,
+        base_folders: Optional[Sequence[str]] = None,
+    ) -> None:
         if base_folders is None:
-            base_folders = ["/data/data/org.tuxemon.game/files", "exe.win32-2.7", "Tuxemon", "/mnt/Tuxemon"]
-        self.folders = []
+            base_folders = [
+                "/data/data/org.tuxemon.game/files",
+                "exe.win32-2.7",
+                "Tuxemon",
+                "/mnt/Tuxemon",
+            ]
+        self.folders: Sequence[str] = []
         self.base_folders = base_folders
-        self.modules = []
+        self.modules: List[str] = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
         self.include_patterns = [
@@ -66,10 +81,10 @@ class PluginManager:
             "item.conditions",
         ]
 
-    def setPluginPlaces(self, plugin_folders):
+    def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:
         self.folders = plugin_folders
 
-    def collectPlugins(self):
+    def collectPlugins(self) -> None:
         for folder in self.folders:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
@@ -77,12 +92,12 @@ class PluginManager:
             pattern = re.compile("tuxemon/.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
-                logger.exception("Unable to determine plugin module path for: %s", folder)
+                logger.exception(f"Unable to determine plugin module path for: %s", folder)
                 raise RuntimeError
             module_path = matches[0].replace("/", ".")
 
-            # Look for a ".plugin" in the plugin folder to create a list of modules
-            # to import.
+            # Look for a ".plugin" in the plugin folder to create a list
+            # of modules to import.
             modules = []
             for f in os.listdir(folder):
                 if f.endswith(self.file_extension):
@@ -90,7 +105,7 @@ class PluginManager:
             self.modules += modules
         logger.debug("Modules to load: " + str(self.modules))
 
-    def getAllPlugins(self):
+    def getAllPlugins(self) -> Sequence[Plugin]:
         imported_modules = []
         for module in self.modules:
             logger.debug("Searching module: " + str(module))
@@ -106,16 +121,20 @@ class PluginManager:
                     # Only import modules from the list of parent modules
                     if pattern in str(class_obj):
                         logger.debug("Importing: " + str(class_name))
-                        imported_modules.append(Plugin(module + "." + class_name, class_obj))
+                        imported_modules.append(
+                            Plugin(module + "." + class_name, class_obj),
+                        )
 
         return imported_modules
 
-    def _getClassesFromModule(self, module):
+    def _getClassesFromModule(
+        self, module: ModuleType,
+    ) -> Iterable[Tuple[str, Type[object]]]:
         members = inspect.getmembers(module, predicate=inspect.isclass)
         return members
 
 
-def load_directory(plugin_folder):
+def load_directory(plugin_folder: str) -> PluginManager:
     """Loads and imports a directory of plugins.
 
     :param plugin_folder: The folder to look for plugin files.
@@ -132,7 +151,9 @@ def load_directory(plugin_folder):
     return manager
 
 
-def get_available_methods(plugin_manager):
+def get_available_methods(
+    plugin_manager: PluginManager,
+) -> Mapping[str, Mapping[str, Any]]:
     """Gets the available methods in a dictionary of plugins.
 
     :param plugin_manager: A dictionary of modules.
@@ -143,14 +164,19 @@ def get_available_methods(plugin_manager):
     """
     methods = {}
     for plugin in plugin_manager.getAllPlugins():
-        items = inspect.getmembers(plugin.plugin_object, predicate=inspect.ismethod)
+        items = inspect.getmembers(
+            plugin.plugin_object,
+            predicate=inspect.ismethod,
+        )
         for method in items:
             methods[method[0]] = {"method": method[1], "module": plugin.name}
 
     return methods
 
 
-def get_available_classes(plugin_manager):
+def get_available_classes(
+    plugin_manager: PluginManager,
+) -> Sequence[Type[object]]:
     """Gets the available methods in a dictionary of plugins.
 
     :param plugin_manager: A dictionary of modules.
@@ -166,7 +192,10 @@ def get_available_classes(plugin_manager):
     return classes
 
 
-def load_plugins(path, category="plugins"):
+def load_plugins(
+    path: str,
+    category: str = "plugins",
+) -> Mapping[str, Type[object]]:
     """Load classes using plugin system
 
     :param str path: where plugins are stored

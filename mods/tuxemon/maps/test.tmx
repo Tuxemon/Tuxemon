@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
- <tileset firstgid="1" source="core_outdoor.tsx"/>
- <tileset firstgid="2295" source="Pacheesi Tiles.tsx"/>
- <tileset firstgid="2316" source="core_set pieces..tsx"/>
- <tileset firstgid="3060" source="core_buildings.tsx"/>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2295" source="../gfx/tilesets/Pacheesi Tiles.tsx"/>
+ <tileset firstgid="2316" source="../gfx/tilesets/core_set pieces..tsx"/>
+ <tileset firstgid="3060" source="../gfx/tilesets/core_buildings.tsx"/>
  <layer id="1" name="Tile Layer 1" width="32" height="32">
   <data encoding="csv">
 112,114,114,112,113,112,113,112,114,112,112,114,114,113,114,112,112,112,114,112,112,113,114,114,113,114,113,114,114,114,112,113,

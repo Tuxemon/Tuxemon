@@ -19,17 +19,24 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.locale import process_translate_text
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class TranslatedDialogAction(EventAction):
+class TranslatedDialogActionParameters(NamedTuple):
+    pass
+
+
+@final
+class TranslatedDialogAction(EventAction[TranslatedDialogActionParameters]):
     """Opens a dialog window with translated text according to the passed translation key. Parameters
     passed to the translation string will also be checked if a translation key exists.
 
@@ -46,8 +53,9 @@ class TranslatedDialogAction(EventAction):
     """
 
     name = "translated_dialog"
+    param_class = TranslatedDialogActionParameters
 
-    def start(self):
+    def start(self) -> None:
         key = self.raw_parameters[0]
         replace = []
         avatar = None
@@ -66,7 +74,7 @@ class TranslatedDialogAction(EventAction):
             avatar,
         )
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()
 

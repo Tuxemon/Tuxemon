@@ -22,15 +22,23 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
 import uuid
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
+class StoreMonsterActionParameters(NamedTuple):
+    monster_id: str
+    box: str
+
+
 # noinspection PyAttributeOutsideInit
-class StoreMonsterAction(EventAction):
+@final
+class StoreMonsterAction(EventAction[StoreMonsterActionParameters]):
     """Save the player's monster with the given instance_id to
     the named storage box, removing it from the player party.
 
@@ -38,9 +46,9 @@ class StoreMonsterAction(EventAction):
     """
 
     name = "store_monster"
-    valid_parameters = [(str, "monster_id"), (str, "box")]
+    param_class = StoreMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         instance_id = uuid.UUID(player.game_variables[self.parameters.monster_id])
         box = self.parameters.box

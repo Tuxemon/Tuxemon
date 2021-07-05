@@ -19,11 +19,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class PathfindAction(EventAction):
+class PathfindActionParameters(NamedTuple):
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
+
+
+@final
+class PathfindAction(EventAction[PathfindActionParameters]):
     """Pathfind the player / npc to the given location
 
     This action blocks until the destination is reached.
@@ -32,12 +41,12 @@ class PathfindAction(EventAction):
     """
 
     name = "pathfind"
-    valid_parameters = [(str, "npc_slug"), (int, "tile_pos_x"), (int, "tile_pos_y")]
+    param_class = PathfindActionParameters
 
-    def start(self):
+    def start(self) -> None:
         self.npc = get_npc(self.session, self.parameters.npc_slug)
         self.npc.pathfind((self.parameters.tile_pos_x, self.parameters.tile_pos_y))
 
-    def update(self):
+    def update(self) -> None:
         if not self.npc.moving and not self.npc.path:
             self.stop()

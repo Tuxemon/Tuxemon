@@ -19,26 +19,34 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import random
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class NpcWanderAction(EventAction):
+class NpcWanderActionParameters(NamedTuple):
+    npc_slug: str
+    frequency: float
+
+
+@final
+class NpcWanderAction(EventAction[NpcWanderActionParameters]):
     """Makes an NPC wander around the map
 
     Valid Parameters: npc_slug, frequency
     """
 
     name = "npc_wander"
-    valid_parameters = [(str, "npc_slug"), (float, "frequency")]
+    param_class = NpcWanderActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
         world = self.session.client.get_state_by_name("WorldState")
 
-        def move():
+        def move() -> None:
             # Don't interrupt existing movement
             if npc.moving or npc.path:
                 return
@@ -56,7 +64,7 @@ class NpcWanderAction(EventAction):
                 npc.path = [random.choice(exits)]
                 npc.next_waypoint()
 
-        def schedule():
+        def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency parameter
             # Frequency can be set to 0 to indicate that we want to stop wandering
             world.remove_animations_of(schedule)

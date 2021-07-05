@@ -19,20 +19,27 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon import monster
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class EvolveMonstersAction(EventAction):
+class EvolveMonstersActionParameters(NamedTuple):
+    path: str
+
+
+@final
+class EvolveMonstersAction(EventAction[EvolveMonstersActionParameters]):
     """Evolves all monsters in the player's party for the specified evolutionary path.
 
     Valid Parameters: path
     """
 
     name = "evolve_monsters"
-    valid_parameters = [(str, "path")]
+    param_class = EvolveMonstersActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         for slot, current_monster in enumerate(player.monsters):
             new_slug = current_monster.get_evolution(self.parameters.path)

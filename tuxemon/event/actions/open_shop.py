@@ -19,20 +19,25 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class OpenShopAction(EventAction):
+class OpenShopActionParameters(NamedTuple):
+    npc_slug: str
+
+
+@final
+class OpenShopAction(EventAction[OpenShopActionParameters]):
     name = "open_shop"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
+    param_class = OpenShopActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
 
-        def buy_menu():
+        def buy_menu() -> None:
             self.session.client.pop_state()
             self.session.client.push_state(
                 "ShopMenuState",
@@ -40,7 +45,7 @@ class OpenShopAction(EventAction):
                 seller=npc,
             )
 
-        def sell_menu():
+        def sell_menu() -> None:
             self.session.client.pop_state()
             self.session.client.push_state(
                 "ShopMenuState",
@@ -53,4 +58,8 @@ class OpenShopAction(EventAction):
             ("Sell", "Sell", sell_menu),
         ]
 
-        return self.session.client.push_state("ChoiceState", menu=var_menu, escape_key_exits=True)
+        self.session.client.push_state(
+            "ChoiceState",
+            menu=var_menu,
+            escape_key_exits=True,
+        )

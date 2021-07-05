@@ -19,16 +19,23 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class StartCinemaModeAction(EventAction):
+class StartCinemaModeActionParameters(NamedTuple):
+    pass
+
+
+@final
+class StartCinemaModeAction(EventAction[StartCinemaModeActionParameters]):
     """Starts cinema mode by animating moving black bars to narrow the aspect ratio."""
 
     name = "start_cinema_mode"
-    valid_parameters = []
+    param_class = StartCinemaModeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         world = self.session.client.current_state
 
         if world.cinema_state == "off":

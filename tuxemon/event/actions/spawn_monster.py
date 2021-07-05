@@ -21,6 +21,7 @@
 # Contributor(s):
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
+from __future__ import annotations
 import uuid
 
 from tuxemon.locale import process_translate_text
@@ -28,12 +29,20 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
 import logging
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
+class SpawnMonsterActionParameters(NamedTuple):
+    npc_slug: str
+    breeding_mother: str
+    breeding_father: str
+
+
 # noinspection PyAttributeOutsideInit
-class SpawnMonsterAction(EventAction):
+@final
+class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
     """Adds a new monster, created by breeding the two
     given mons (identified by instance_id, stored in a
     variable) and adds it to the given character's party
@@ -45,9 +54,9 @@ class SpawnMonsterAction(EventAction):
     """
 
     name = "spawn_monster"
-    valid_parameters = [(str, "npc_slug"), (str, "breeding_mother"), (str, "breeding_father")]
+    param_class = SpawnMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc_slug, breeding_mother, breeding_father = self.parameters
         world = self.session.client.get_state_by_name("WorldState")
         if not world:
@@ -94,7 +103,7 @@ class SpawnMonsterAction(EventAction):
             avatar,
         )
 
-    def update(self):
+    def update(self) -> None:
         if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()
 

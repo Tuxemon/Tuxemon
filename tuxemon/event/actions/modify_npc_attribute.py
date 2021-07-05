@@ -19,12 +19,23 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class ModifyNpcAttributeAction(EventAction):
+class ModifyNpcAttributeActionParameters(NamedTuple):
+    npc_slug: str
+    name: str
+    value: float
+
+
+@final
+class ModifyNpcAttributeAction(
+    EventAction[ModifyNpcAttributeActionParameters],
+):
     """Modifies the given attribute of the npc by modifier. By default
     this is achieved via addition, but prepending a '%' will cause it to be
     multiplied by the attribute.
@@ -35,9 +46,9 @@ class ModifyNpcAttributeAction(EventAction):
     """
 
     name = "modify_npc_attribute"
-    valid_parameters = [(str, "npc_slug"), (str, "name"), (float, "value")]
+    param_class = ModifyNpcAttributeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters[0])
         attribute = self.parameters[1]
         modifier = self.parameters[2]

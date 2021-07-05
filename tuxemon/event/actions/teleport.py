@@ -19,20 +19,29 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class TeleportAction(EventAction):
+class TeleportActionParameters(NamedTuple):
+    map_name: str
+    x: int
+    y: int
+
+
+@final
+class TeleportAction(EventAction[TeleportActionParameters]):
     """Teleport the player to a particular map and tile coordinates
 
     Valid Parameters: map_name, coordinate_x, coordinate_y
     """
 
     name = "teleport"
-    valid_parameters = [(str, "map_name"), (int, "x"), (int, "y")]
+    param_class = TeleportActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         world = self.session.client.get_state_by_name("WorldState")
         map_name = self.parameters.map_name

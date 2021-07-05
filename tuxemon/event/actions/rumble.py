@@ -19,10 +19,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class RumbleAction(EventAction):
+class RumbleActionParameters(NamedTuple):
+    duration: float
+    power: int
+
+
+@final
+class RumbleAction(EventAction[RumbleActionParameters]):
     """Rumbles available controllers with rumble support
 
     Valid Parameters: duration,power
@@ -32,9 +40,9 @@ class RumbleAction(EventAction):
     """
 
     name = "rumble"
-    valid_parameters = [(float, "duration"), (int, "power")]
+    param_class = RumbleActionParameters
 
-    def start(self):
+    def start(self) -> None:
         duration = float(self.parameters[0])
         power = int(self.parameters[1])
 

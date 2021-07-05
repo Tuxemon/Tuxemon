@@ -19,6 +19,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 import random
 
@@ -27,11 +28,18 @@ from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
+from typing import NamedTuple, Union, final
 
 logger = logging.getLogger(__name__)
 
 
-class RandomEncounterAction(EventAction):
+class RandomEncounterActionParameters(NamedTuple):
+    encounter_slug: str
+    total_prob: Union[float, None]
+
+
+@final
+class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
     """Randomly starts a battle with a monster defined in the "encounter" table in the
     "monster.db" database. The chance that this will start a battle depends on the
     "encounter_rate" specified in the database. The "encounter_rate" number is the chance
@@ -43,12 +51,9 @@ class RandomEncounterAction(EventAction):
     """
 
     name = "random_encounter"
-    valid_parameters = [
-        (str, "encounter_slug"),
-        ((float, None), "total_prob"),
-    ]
+    param_class = RandomEncounterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
@@ -95,7 +100,7 @@ class RandomEncounterAction(EventAction):
             self.stop()
 
 
-def _choose_encounter(encounters, total_prob):
+def _choose_encounter(encounters, total_prob: Union[float, None]):
     total = 0
     roll = random.random() * 100
     if total_prob is not None:

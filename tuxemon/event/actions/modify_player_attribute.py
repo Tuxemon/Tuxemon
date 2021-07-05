@@ -19,11 +19,21 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class ModifyPlayerAttributeAction(EventAction):
+class ModifyPlayerAttributeActionParameters(NamedTuple):
+    name: str
+    value: float
+
+
+@final
+class ModifyPlayerAttributeAction(
+    EventAction[ModifyPlayerAttributeActionParameters],
+):
     """Modifies the given attribute of the player character by modifier. By default
     this is achieved via addition, but prepending a '%' will cause it to be
     multiplied by the attribute.
@@ -34,9 +44,9 @@ class ModifyPlayerAttributeAction(EventAction):
     """
 
     name = "modify_player_attribute"
-    valid_parameters = [(str, "name"), (float, "value")]
+    param_class = ModifyPlayerAttributeActionParameters
 
-    def start(self):
+    def start(self) -> None:
         attribute = self.parameters[0]
         modifier = self.parameters[1]
         CommonAction.modify_character_attribute(self.session.player, attribute, modifier)

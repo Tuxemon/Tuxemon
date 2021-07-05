@@ -19,22 +19,29 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class ScreenTransitionAction(EventAction):
+class ScreenTransitionActionParameters(NamedTuple):
+    transition_time: float
+
+
+@final
+class ScreenTransitionAction(EventAction[ScreenTransitionActionParameters]):
     """Initiates a screen transition
 
     Valid Parameters: transition_time_in_seconds
     """
 
     name = "screen_transition"
-    valid_parameters = [(float, "transition_time")]
+    param_class = ScreenTransitionActionParameters
 
-    def start(self):
+    def start(self) -> None:
         pass
 
-    def update(self):
+    def update(self) -> None:
         world = self.session.client.get_state_by_name("WorldState")
 
         if world is not None:

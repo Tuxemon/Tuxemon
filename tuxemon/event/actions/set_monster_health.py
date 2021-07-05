@@ -19,14 +19,22 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class SetMonsterHealthAction(EventAction):
+class SetMonsterHealthActionParameters(NamedTuple):
+    slot: int
+    health: float
+
+
+@final
+class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
     """Changes the hp of a monster in the current player's party. The action parameters
     may contain a monster slot and the amount of health. If no slot is specified,
     all monsters are healed. If no health is specified, the hp is maxed out.
@@ -37,7 +45,7 @@ class SetMonsterHealthAction(EventAction):
     """
 
     name = "set_monster_health"
-    valid_parameters = [(int, "slot"), (float, "health")]
+    param_class = SetMonsterHealthActionParameters
 
     @staticmethod
     def set_health(monster, value):
@@ -50,7 +58,7 @@ class SetMonsterHealthAction(EventAction):
 
             monster.current_hp = int(monster.hp * value)
 
-    def start(self):
+    def start(self) -> None:
         if not self.session.player.monsters:
             return
 

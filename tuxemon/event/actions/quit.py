@@ -19,16 +19,23 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class QuitAction(EventAction):
+class QuitActionParameters(NamedTuple):
+    pass
+
+
+@final
+class QuitAction(EventAction[QuitActionParameters]):
     """Completely quit the game"""
 
     name = "quit"
-    valid_parameters = []
+    param_class = QuitActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # TODO: API
         self.session.client._wants_to_exit = True
         self.session.client.exit = True

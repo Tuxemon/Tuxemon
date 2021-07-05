@@ -19,10 +19,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class TransitionTeleportAction(EventAction):
+class TransitionTeleportActionParameters(NamedTuple):
+    map_name: str
+    x: int
+    y: int
+    transition_time: float
+
+
+@final
+class TransitionTeleportAction(EventAction[TransitionTeleportActionParameters]):
     """Combines the "teleport" and "screen_transition" actions to perform a teleport with a
     screen transition. Useful for allowing the player to go to different maps.
 
@@ -30,20 +40,15 @@ class TransitionTeleportAction(EventAction):
     """
 
     name = "transition_teleport"
-    valid_parameters = [
-        (str, "map_name"),
-        (int, "x"),
-        (int, "y"),
-        (float, "transition_time"),
-    ]
+    param_class = TransitionTeleportActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Start the screen transition
         params = [self.parameters.transition_time]
         self.transition = self.session.client.event_engine.get_action("screen_transition", params)
         self.transition.start()
 
-    def update(self):
+    def update(self) -> None:
         if not self.transition.done:
             self.transition.update()
         if self.transition.done:

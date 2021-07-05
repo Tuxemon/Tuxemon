@@ -4,8 +4,7 @@ from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
 import pygame
-from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple,\
-    Mapping, Union
+from typing import Any, Callable, DefaultDict, Mapping, Sequence
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 

@@ -27,6 +27,7 @@
 import logging
 from collections import namedtuple
 from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon.compat import Rect
 
@@ -51,7 +52,7 @@ MapAction = namedtuple("action", action_fields)
 
 @dataclass(frozen=True, order=True)
 class EventObject:
-    id: str
+    id: Optional[str]
     name: str
     rect: Rect
     conds: list

@@ -1,7 +1,22 @@
+from __future__ import annotations
+
+from typing import Union, Tuple, Any
+
+
 def intersect(r1, r2):
     return ((r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)) and (
         (r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom)
     )
+
+
+RectParameterType = Union[
+    int,
+    Tuple[int, int, int, int],
+    Tuple[int, int],
+    Tuple[Tuple[int, int], Tuple[int, int]],
+    # Rect,
+    Any,  # must have a `rect` attribute
+]
 
 
 class Rect:
@@ -17,7 +32,7 @@ class Rect:
 
     __slots__ = ["_x", "_y", "_w", "_h"]
 
-    def __init__(self, arg):
+    def __init__(self, *arg: RectParameterType):
         """
         should accept rect like object or tuple of two tuples or one tuple
         of four numbers, store :x,y,h,w

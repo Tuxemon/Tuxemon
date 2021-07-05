@@ -32,6 +32,7 @@ import logging
 import os
 from itertools import product
 from math import pi, atan2, cos, sin
+from typing import Iterator, Tuple
 
 from tuxemon.compat import Rect
 from tuxemon.lib.euclid import Vector2, Vector3, Point2
@@ -57,6 +58,18 @@ dirs2 = {
     "right": Vector2(1, 0),
 }
 
+# TODO: standardize and document these values
+# modify how movement works over tiles
+region_properties = [
+    "enter",
+    "enter_from",
+    "enter_to",
+    "exit",
+    "exit_from",
+    "exit_to",
+    "continue",
+]
+
 # just the first letter of the direction => vector
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
 
@@ -75,7 +88,7 @@ direction_map = {
 facing = "front", "back", "left", "right"
 
 
-def translate_short_path(path, position=(0, 0)):
+def translate_short_path(path: str, position: Tuple[int, int]=(0, 0)) -> Iterator[str]:
     """Translate condensed path strings into coordinate pairs
 
     Uses a string of U D L R characters; Up Down Left Right.

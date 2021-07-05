@@ -84,5 +84,5 @@ class Lexer:
                 continue
             else:
                 raise ValueError(f"unexpected action: {action}")
-        print("token:", prev_state, token)
+
         return prev_state, token

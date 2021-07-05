@@ -36,7 +36,6 @@ if more appropriate.  Ideally this should be kept small.
 """
 
 import logging
-import re
 from itertools import zip_longest
 
 from tuxemon.compat.rect import Rect
@@ -251,32 +250,6 @@ def show_item_result_as_dialog(session, item, result):
         open_dialog(session, [message])
 
 
-def split_escaped(string_to_split, delim=","):
-    """Splits a string by the specified deliminator excluding escaped
-    deliminators.
-
-    :param string_to_split: The string to split.
-    :param delim: The deliminator to split the string by.
-
-    :type string_to_split: Str
-    :type delim: Str
-
-    :rtype: List
-    :returns: A list of the splitted string.
-
-    """
-    # Split by "," unless it is escaped by a "\"
-    split_list = re.split(r"(?<!\\)" + delim, string_to_split)
-
-    # Remove the escape character from the split list
-    split_list = [w.replace(r"\,", ",") for w in split_list]
-
-    # strip whitespace around each
-    split_list = [i.strip() for i in split_list]
-
-    return split_list
-
-
 def round_to_divisible(x, base=16):
     """Rounds a number to a divisible base.
 
@@ -304,3 +277,11 @@ def copy_dict_with_keys(source, keys):
     :rtype: Dict
     """
     return {k: source[k] for k in keys if k in source}
+
+
+def maybe_get_as_type(name, source, cast):
+    try:
+        v = source[name]
+    except KeyError:
+        return None
+    return cast(v)

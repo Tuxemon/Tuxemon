@@ -181,7 +181,7 @@ class TranslatorPo:
     def format(
         self,
         text: str,
-        parameters: Optional[Mapping[str, Any]] = None,
+        parameters: Mapping[str, Any] | None = None,
     ) -> str:
         """
         Replaces variables in a translation string with the given parameters.
@@ -200,7 +200,7 @@ class TranslatorPo:
             text = text.format(**parameters)
         return text
 
-    def maybe_translate(self, text: Optional[str]) -> str:
+    def maybe_translate(self, text: str | None) -> str:
         """
         Try to translate the text. If ``None``, return empty string.
 

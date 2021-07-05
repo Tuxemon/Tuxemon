@@ -20,7 +20,6 @@
 #
 
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.platform import mixer
 
 
 class MusicPlayingCondition(EventCondition):

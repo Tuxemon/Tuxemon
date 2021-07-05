@@ -4,7 +4,7 @@
 # consider using before opening a PR
 
 pip install -U black autoflake pyupgrade
-black -t py36 -l 120 tuxemon
-find tuxemon/ -name "*.py" -type f | parallel pyupgrade --py36
+black -t py38 -l 120 tuxemon
+find tuxemon/ -name "*.py" -type f | parallel pyupgrade --py38-plus
 autoflake -r -i --remove-all-unused-imports --exclude "*/__init__.py" tuxemon/
-black -t py36 -l 120 tuxemon
+black -t py38 -l 120 tuxemon

@@ -26,114 +26,52 @@
 
 import logging
 from math import cos, sin, pi
+from typing import Tuple, Iterator, Dict, List
 
 import pytmx
-from natsort import natsorted
+import yaml
 
-from tuxemon.compat import Rect
 from tuxemon import prepare
+from tuxemon.compat import Rect
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
+from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
     TuxemonMap,
-    tiles_inside_rect,
-    snap_rect_to_grid,
-    snap_rect_to_tile,
     angle_of_points,
     orientation_by_angle,
+    region_properties,
+    snap_rect_to_grid,
+    snap_rect_to_tile,
     snap_to_grid,
+    tiles_inside_rect,
 )
-from tuxemon.tools import split_escaped, copy_dict_with_keys
-from tuxemon.lib.bresenham import bresenham
+from tuxemon.script.oldparser import (
+    event_actions_and_conditions,
+    parse_action_string,
+    parse_condition_string,
+    parse_behav_string,
+    process_behav_string,
+    process_condition_string,
+    process_action_string,
+)
+from tuxemon.tools import copy_dict_with_keys, maybe_get_as_type
 
 logger = logging.getLogger(__name__)
 
-# TODO: standardize and document these values
-region_properties = [
-    "enter",
-    "enter_from",
-    "enter_to",
-    "exit",
-    "exit_from",
-    "exit_to",
-    "continue",
-]
 
-
-def parse_action_string(text):
-    words = text.split(" ", 1)
-    act_type = words[0]
-    if len(words) > 1:
-        args = split_escaped(words[1])
-    else:
-        args = list()
-    return act_type, args
-
-
-def parse_condition_string(text):
-    words = text.split(" ", 2)
-    operator, cond_type = words[0:2]
-    if len(words) > 2:
-        args = split_escaped(words[2])
-    else:
-        args = list()
-    return operator, cond_type, args
-
-
-def parse_behav_string(behav_string):
-    words = behav_string.split(" ", 1)
-    behav_type = words[0]
-    if len(words) > 1:
-        args = split_escaped(words[1])
-    else:
-        args = list()
-    return behav_type, args
-
-
-def event_actions_and_conditions(items):
-    """Return list of acts and conditions from a list of items
-
-    :param Rect rect: Area for the event
-    :param Iterator[Tuple[str, str]] items: List of [name, value] tuples
-    :rtype: Tuple[List, List]
+def new_event_object(
+    event_id: str, name: str, event_type: str, rect: Rect, properties: List
+) -> EventObject:
     """
-    conds = []
-    acts = []
+    Return a new EventObject
 
-    # We need to sort them by name, so that "act1" comes before "act2" and so on...
-    for key, value in natsorted(items):
-        if key.startswith("cond"):
-            operator, cond_type, args = parse_condition_string(value)
-            condition = MapCondition(cond_type, operator, args)
-            conds.append(condition)
-        elif key.startswith("act"):
-            act_type, args = parse_action_string(value)
-            action = MapAction(act_type, args)
-            acts.append(action)
-        elif key.startswith("behav"):
-            behav_type, args = parse_behav_string(value)
-            if behav_type == "talk":
-                cond = MapCondition("to_talk", "is", args)
-                action = MapAction("npc_face", [args[0], "player"])
-                conds.insert(0, cond)
-                acts.insert(0, action)
-            else:
-                raise ValueError(f"Bad event parameter: {key}")
-        else:
-            raise ValueError(f"Bad event parameter: {key}")
-
-    return acts, conds
-
-
-def new_event_object(event_id, name, event_type, rect, properties):
-    """
-
-    :param str event_id: Unique ID of the event
-    :param str name: Name of the Event
-    :param str event_type: Special purpose
-    :param Rect rect: Area of map where event is triggered; must be in tile coords
-    :param Iterable properties: Iterable of Tuple[key, value] (like Dict.items())
-    :rtype: EventObject
+    Parameters:
+        event_id: Unique ID of the event
+        name: Name of the Event
+        event_type: Special purpose
+        rect: Area of map where event is triggered; must be in tile coords
+        properties: Iterable of Tuple[key, value] (like Dict.items())
     """
     acts, conds = event_actions_and_conditions(properties)
     if event_type == "interact":
@@ -142,23 +80,64 @@ def new_event_object(event_id, name, event_type, rect, properties):
     return EventObject(event_id, name, rect, conds, acts)
 
 
+class YAMLEventLoader:
+    """
+    Support for reading game events from a YAML file
+    """
+
+    def load_events(self, path: str) -> Iterator[EventObject]:
+        """
+        Load EventObjects from YAML file
+
+        Parameters:
+            path: Path to the file
+        """
+        with open(path) as fp:
+            yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
+
+        for name, event_data in yaml_data["events"].items():
+            conds = []
+            acts = []
+            rect = self.rect_from_event(event_data)
+
+            for section, func in (
+                ("actions", process_action_string),
+                ("conditions", process_condition_string),
+                ("behav", process_behav_string),
+            ):
+                for value in event_data.get(section, []):
+                    _conds, _acts = func(value)
+                    conds.extend(_conds)
+                    acts.extend(_acts)
+
+            yield EventObject(None, name, rect, conds, acts)
+
+    def rect_from_event(self, event_data: Dict):
+        x = maybe_get_as_type("x", event_data, int)
+        y = maybe_get_as_type("y", event_data, int)
+        w = maybe_get_as_type("width", event_data, int)
+        h = maybe_get_as_type("height", event_data, int)
+
+        # TODO: better handling
+        if all(isinstance(i, int) for i in (x, y, w, h)):
+            return Rect(x, y, w, h)
+        else:
+            raise ValueError
+
+
 class TMXMapLoader:
     """Load map from standard tmx files created by Tiled."""
 
-    def load(self, filename):
-        """Load map data from a tmx map file
+    def load(self, filepath: str) -> TuxemonMap:
+        """
+        Load map data from a tmx map file
 
         Loading the map data is done using the pytmx library.
-
-        The collision map is a set of (x,y) coordinates that the player cannot
-        walk through. This set is generated based on collision regions defined
-        in the map file.
-
-        :param str filename: The path to the tmx map file to load.
-        :rtype: tuxemon.map.TuxemonMap
         """
         # TODO: remove the need to load graphics here
-        data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
+        data = pytmx.TiledMap(
+            filepath, image_loader=scaled_image_loader, pixelalpha=True
+        )
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
@@ -203,14 +182,15 @@ class TMXMapLoader:
             collision_lines_map,
             data,
             edges,
-            filename,
+            filepath,
         )
 
-    def process_line(self, line, tile_size):
+    def process_line(self, line, tile_size: Tuple[int, int]):
         """Identify the tiles on either side of the line and block movement along it
-        :param line:
-        :param tile_size:
-        :return:
+
+        Parameters:
+            line: pytmx TiledLine object
+            tile_size:
         """
         if len(line.points) < 2:
             raise ValueError("Error: collision lines must be at least 2 points")
@@ -225,8 +205,9 @@ class TMXMapLoader:
                 other = int(round(cos(angle1) + i[0])), int(round(sin(angle1) + i[1]))
                 yield i, other, orientation
 
-    def region_tiles(self, region, grid_size):
-        """Apply region properties to individual tiles
+    def region_tiles(self, region, grid_size: Tuple[int, int]):
+        """
+        Apply region properties to individual tiles
 
         Right now our collisions are defined in our tmx file as large regions
         that the player can't pass through. We need to convert these areas
@@ -234,8 +215,9 @@ class TMXMapLoader:
         Loop through all of the collision objects in our tmx file. The
         region's bounding box will be snapped to the nearest tile coordinates.
 
-        :param region:
-        :param grid_size:
+        Parameters:
+            region: pytmx TiledObject
+            grid_size:
         """
         region_conditions = copy_dict_with_keys(region.properties, region_properties)
         rect = snap_rect_to_grid(self.rect_from_object(region), grid_size)
@@ -257,11 +239,9 @@ class TMXMapLoader:
         )
 
     @staticmethod
-    def extract_region_properties(region):
-        """Return Dict of data we need, ignoring what we don't
-
-        :param Dict region:
-        :rtype:  Dict
+    def extract_region_properties(region) -> Dict:
+        """
+        Return Dict of data we need, ignoring what we don't
         """
         props = dict()
         enter = []
@@ -278,10 +258,9 @@ class TMXMapLoader:
         return props
 
     @staticmethod
-    def rect_from_object(obj):
-        """Return Rect from TiledObject
+    def rect_from_object(obj) -> Rect:
+        """
+        Return Rect from TiledObject
 
-        :param obj: TiledObject
-        :rtype: Rect
         """
         return Rect(obj.x, obj.y, obj.width, obj.height)

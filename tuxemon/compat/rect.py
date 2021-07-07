@@ -32,7 +32,7 @@ class Rect:
 
     __slots__ = ["_x", "_y", "_w", "_h"]
 
-    def __init__(self, *arg: RectParameterType):
+    def __init__(self, arg: RectParameterType):
         """
         should accept rect like object or tuple of two tuples or one tuple
         of four numbers, store :x,y,h,w
@@ -40,12 +40,15 @@ class Rect:
 
         if isinstance(arg, Rect):
             self._x, self._y, self._w, self._h = arg
-        elif isinstance(arg, list) or isinstance(arg, tuple):
+        elif isinstance(arg, (list, tuple)):
             if len(arg) == 2:
                 self._x, self._y = arg[0]
                 self._w, self._h = arg[1]
             elif len(arg) == 4:
                 self._x, self._y, self._w, self._h = arg
+            else:
+                print(len(arg))
+                raise ValueError("must be 2 or 4 length tuple or list")
         elif hasattr(arg, "rect"):
             self._x, self._y, self._w, self._h = arg.rect
         else:

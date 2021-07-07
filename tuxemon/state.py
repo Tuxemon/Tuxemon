@@ -467,7 +467,7 @@ class StateManager:
 
         instance.controller = self
         instance.startup(**kwargs)
-        self._state_resume_set.add(instance)
+        self.state_resume_set.add(instance)
 
         return instance
 

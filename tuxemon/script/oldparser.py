@@ -98,6 +98,7 @@ def event_actions_and_conditions(items: List[Tuple[str, str]]):
                 _conds, _acts = func(value)
                 conds.extend(_conds)
                 acts.extend(_acts)
+                break
         else:
             raise ValueError(f"Bad event parameter: {key}")
     return acts, conds

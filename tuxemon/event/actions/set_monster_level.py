@@ -19,10 +19,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class SetMonsterLevelAction(EventAction):
+class SetMonsterLevelActionParameters(NamedTuple):
+    slot: int
+    level: int
+
+
+@final
+class SetMonsterLevelAction(EventAction[SetMonsterLevelActionParameters]):
     """Changes the level of a monster in the current player's party. The action parameters
     may contain a monster slot and the amount by which to level. If no slot is specified,
     all monsters are leveled. If no level is specified, the level is reverted to 1.
@@ -31,9 +39,9 @@ class SetMonsterLevelAction(EventAction):
     """
 
     name = "set_monster_level"
-    valid_parameters = [(int, "slot"), (int, "level")]
+    param_class = SetMonsterLevelActionParameters
 
-    def start(self):
+    def start(self) -> None:
         if not self.session.player.monsters > 0:
             return
 

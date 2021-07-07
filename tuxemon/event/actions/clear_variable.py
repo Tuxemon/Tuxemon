@@ -22,23 +22,30 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
+class ClearVariableActionParameters(NamedTuple):
+    variable: str
+
+
 # noinspection PyAttributeOutsideInit
-class ClearVariableAction(EventAction):
+@final
+class ClearVariableAction(EventAction[ClearVariableActionParameters]):
     """Clears the value of var from the game.
 
     Valid Parameters: string variable_name
     """
 
     name = "clear_variable"
-    valid_parameters = [(str, "variable")]
+    param_class = ClearVariableActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
         key = self.parameters.variable
         player.game_variables.pop(key, None)

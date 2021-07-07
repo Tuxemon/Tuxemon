@@ -25,6 +25,11 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 #
+from __future__ import annotations
+from typing import Sequence, Any, Type, Tuple, Union, Optional, Protocol,\
+    Mapping, Dict, TypeVar
+import typing
+
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -44,6 +49,23 @@ from tuxemon import prepare
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
+
+ValidParameterSingleType = Optional[Type[Any]]
+ValidParameterTypes = Union[
+    ValidParameterSingleType,
+    Sequence[ValidParameterSingleType],
+]
+
+
+class NamedTupleProtocol(Protocol):
+    """Protocol for arbitrary NamedTuple objects."""
+
+    @property
+    def _fields(self) -> Tuple[str, ...]:
+        pass
+
+
+NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
 
 
 def get_cell_coordinates(rect, point, size):
@@ -188,7 +210,10 @@ def number_or_variable(session, value):
             raise ValueError
 
 
-def cast_values(parameters, valid_parameters):
+def cast_values(
+    parameters: Sequence[Any],
+    valid_parameters: Sequence[Tuple[ValidParameterTypes, str]],
+) -> Sequence[Any]:
     """Change all the string values to the expected type
 
     This will also check and enforce the correct parameters for actions
@@ -199,7 +224,9 @@ def cast_values(parameters, valid_parameters):
     """
 
     # TODO: stability/testing
-    def cast(i):
+    def cast(
+        i: Tuple[Tuple[ValidParameterTypes, str], Any],
+    ) -> Any:
         ve = False
         t, v = i
         try:
@@ -234,6 +261,29 @@ def cast_values(parameters, valid_parameters):
         logger.error(f"expected: {valid_parameters}")
         logger.error(f"got: {parameters}")
         raise
+
+
+def get_types_tuple(
+    param_type: ValidParameterSingleType,
+) -> Sequence[ValidParameterSingleType]:
+    if typing.get_origin(param_type) is Union:
+        return typing.get_args(param_type)
+    else:
+        return (param_type,)
+
+
+def cast_parameters_to_namedtuple(
+    parameters: Sequence[Any],
+    namedtuple_class: Type[NamedTupleTypeVar],
+) -> NamedTupleTypeVar:
+    valid_parameters = [
+        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f)
+        for f in namedtuple_class._fields
+    ]
+
+    values = cast_values(parameters, valid_parameters)
+    return namedtuple_class(*values)
+
 
 
 def show_item_result_as_dialog(session, item, result):

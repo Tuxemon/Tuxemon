@@ -19,15 +19,23 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique import Technique
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class SetMonsterStatusAction(EventAction):
+class SetMonsterStatusActionParameters(NamedTuple):
+    slot: int
+    status: str
+
+
+@final
+class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
     """Changes the status of a monster in the current player's party. The action parameters
     may contain a monster slot and the new status to be appended. If no slot is specified,
     all monsters are modified. If no status is specified, the status is cleared.
@@ -36,7 +44,7 @@ class SetMonsterStatusAction(EventAction):
     """
 
     name = "set_monster_status"
-    valid_parameters = [(int, "slot"), (str, "status")]
+    param_class = SetMonsterStatusActionParameters
 
     @staticmethod
     def set_status(monster, value):
@@ -48,7 +56,7 @@ class SetMonsterStatusAction(EventAction):
             status = Technique(value)
             monster.apply_status(status)
 
-    def start(self):
+    def start(self) -> None:
         if not self.session.player.monsters:
             return
 

@@ -19,24 +19,32 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class FadeoutMusicAction(EventAction):
-    """Fades out the music over a set amount of time in milliseconds
+class FadeoutMusicActionParameters(NamedTuple):
+    duration: int
+
+
+@final
+class FadeoutMusicAction(EventAction[FadeoutMusicActionParameters]):
+    """
+    Fades out the music over a set amount of time in milliseconds.
 
     Valid Parameters: time_milliseconds
     """
 
     name = "fadeout_music"
-    valid_parameters = [(int, "duration")]
+    param_class = FadeoutMusicActionParameters
 
-    def start(self):
+    def start(self) -> None:
         time = self.parameters.duration
         mixer.music.fadeout(time)
         if self.session.client.current_music["song"]:

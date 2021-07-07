@@ -18,13 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import annotations
 import uuid
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event import get_npc
+from typing import Union, NamedTuple, final
 
 
-class RemoveMonsterAction(EventAction):
+class RemoveMonsterActionParameters(NamedTuple):
+    instance_id: str
+    trainer_slug: Union[str, None]
+
+
+@final
+class RemoveMonsterAction(EventAction[RemoveMonsterActionParameters]):
     """Removes a monster from the given trainer's party if the monster is there.
     Monster is determined by instance_id, which must be passed in a game variable.
     If no trainer slug is passed it defaults to the current player.
@@ -33,9 +41,9 @@ class RemoveMonsterAction(EventAction):
     """
 
     name = "remove_monster"
-    valid_parameters = [(str, "instance_id"), ((str, None), "trainer_slug")]
+    param_class = RemoveMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         iid = self.session.player.game_variables[self.parameters.instance_id]
         instance_id = uuid.UUID(iid)
         trainer_slug = self.parameters.trainer

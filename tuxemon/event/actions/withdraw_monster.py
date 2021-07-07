@@ -22,14 +22,22 @@
 #
 # Adam Chevalier <chevalierAdam2@gmail.com>
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 import logging
 import uuid
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class WithdrawMonsterAction(EventAction):
+class WithdrawMonsterActionParameters(NamedTuple):
+    trainer: str
+    monster_id: str
+
+
+@final
+class WithdrawMonsterAction(EventAction[WithdrawMonsterActionParameters]):
     """
     Pulls a monster from the given trainer's storage (identified by slug and instance_id respectively)
     and puts it in their party. Note: If the trainer's party is already full then the monster will be
@@ -39,9 +47,9 @@ class WithdrawMonsterAction(EventAction):
     """
 
     name = "withdraw_monster"
-    valid_parameters = [(str, "trainer"), (str, "monster_id")]
+    param_class = WithdrawMonsterActionParameters
 
-    def start(self):
+    def start(self) -> None:
         trainer, monster_id = self.parameters
         world = self.session.client.get_state_by_name("WorldState")
         if not world:

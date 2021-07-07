@@ -19,19 +19,26 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class SetVariableAction(EventAction):
+class SetVariableActionParameters(NamedTuple):
+    var_list: str
+
+
+@final
+class SetVariableAction(EventAction[SetVariableActionParameters]):
     """Sets the key in the player.game_variables dictionary.
 
     Valid Parameters: variable_name:value
     """
 
     name = "set_variable"
-    valid_parameters = [(str, "var_list")]
+    param_class = SetVariableActionParameters
 
-    def start(self):
+    def start(self) -> None:
         player = self.session.player
 
         # Split the variable into a key: value pair

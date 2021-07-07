@@ -19,22 +19,27 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import decode_inventory
+from typing import NamedTuple, Union, final
 
 
-class SetInventoryAction(EventAction):
+class SetInventoryActionParameters(NamedTuple):
+    npc_slug: str
+    inventory_slug: Union[str, None]
+
+
+@final
+class SetInventoryAction(EventAction[SetInventoryActionParameters]):
     """Overwrites the inventory of the npc or player."""
 
     name = "set_inventory"
-    valid_parameters = [
-        (str, "npc_slug"),
-        ((str, None), "inventory_slug"),
-    ]
+    param_class = SetInventoryActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
         if self.parameters.inventory_slug == "None":
             npc.inventory = {}

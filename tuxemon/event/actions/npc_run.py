@@ -18,22 +18,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 
-class NpcRun(EventAction):
+class NpcRunActionParameters(NamedTuple):
+    npc_slug: str
+
+
+@final
+class NpcRun(EventAction[NpcRunActionParameters]):
     """Sets the NPC movement speed to the global run speed
 
     Valid Parameters: npc_slug
     """
 
     name = "npc_run"
-    valid_parameters = [
-        (str, "npc_slug"),
-    ]
+    param_class = NpcRunActionParameters
 
-    def start(self):
+    def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
         npc.moverate = self.session.client.config.player_runrate

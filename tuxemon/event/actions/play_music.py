@@ -19,28 +19,33 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import annotations
 import logging
 
 from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform import mixer
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class PlayMusicAction(EventAction):
+class PlayMusicActionParameters(NamedTuple):
+    filename: str
+
+
+@final
+class PlayMusicAction(EventAction[PlayMusicActionParameters]):
     """Plays a music file from "resources/music/"
 
     Valid Parameters: filename
     """
 
     name = "play_music"
-    valid_parameters = [
-        (str, "filename"),
-    ]
+    param_class = PlayMusicActionParameters
 
-    def start(self):
+    def start(self) -> None:
         filename = self.parameters.filename
 
         try:

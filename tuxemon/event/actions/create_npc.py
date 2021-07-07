@@ -18,33 +18,37 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+from __future__ import annotations
 import logging
 
 import tuxemon.npc
 from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+from typing import NamedTuple, final
 
 logger = logging.getLogger(__name__)
 
 
-class CreateNpcAction(EventAction):
+class CreateNpcActionParameters(NamedTuple):
+    npc_slug: str
+    tile_pos_x: int
+    tile_pos_y: int
+    animations: str
+    behavior: str
+
+
+@final
+class CreateNpcAction(EventAction[CreateNpcActionParameters]):
     """Creates an NPC object and adds it to the game's current list of NPC's.
 
-    Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior
+    Valid Parameters: slug, tile_pos_x, tile_pos_y, animations, behavior.
     """
 
     name = "create_npc"
-    valid_parameters = [
-        (str, "npc_slug"),
-        (int, "tile_pos_x"),
-        (int, "tile_pos_y"),
-        (str, "animations"),
-        (str, "behavior"),
-    ]
+    param_class = CreateNpcActionParameters
 
-    def start(self):
+    def start(self) -> None:
         # Get a copy of the world state.
         world = self.session.client.get_state_by_name("WorldState")
         if not world:

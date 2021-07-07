@@ -125,8 +125,6 @@ class EventEngine:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-        self.conditions: Mapping[str, Type[EventCondition]] = dict()
-        self.actions: Mapping[str, Type[EventAction]] = dict()
         self.running_events: Dict[int, RunningEvent] = dict()
         self.name = "Event"
         self.current_map = None
@@ -137,8 +135,17 @@ class EventEngine:
         # debug
         self.partial_events: List[Sequence[Tuple[bool, MapCondition]]] = list()
 
-        self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
-        self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
+        self.conditions = plugin.load_plugins(
+            paths.CONDITIONS_PATH,
+            "conditions",
+            interface=EventCondition,
+        )
+
+        self.actions = plugin.load_plugins(
+            paths.ACTIONS_PATH,
+            "actions",
+            interface=EventAction,
+        )
 
     def reset(self) -> None:
         """Clear out running events.  Use when changing maps."""

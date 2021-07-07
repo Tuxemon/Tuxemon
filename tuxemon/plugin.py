@@ -27,6 +27,7 @@
 #
 #
 
+from __future__ import annotations
 import importlib
 import inspect
 import logging
@@ -34,7 +35,7 @@ import os
 import re
 import sys
 from typing import Mapping, Sequence, Any, Optional, List, Iterable,\
-    Tuple, Type
+    Protocol, Tuple, Type, TypeVar, Generic, overload, Union
 from types import ModuleType
 
 logger = logging.getLogger(__name__)
@@ -47,10 +48,17 @@ log_hdlr.setFormatter(
 )
 
 
-class Plugin:
+class PluginObject(Protocol):
+    name: str
+
+
+Interface = TypeVar("Interface", bound=Type[PluginObject])
+
+
+class Plugin(Generic[Interface]):
     __slots__ = ("name", "plugin_object")
 
-    def __init__(self, name: str, module: Type[object]) -> None:
+    def __init__(self, name: str, module: Interface) -> None:
         self.name = name
         self.plugin_object = module
 
@@ -92,7 +100,10 @@ class PluginManager:
             pattern = re.compile("tuxemon/.*$")
             matches = pattern.findall(folder)
             if len(matches) == 0:
-                logger.exception(f"Unable to determine plugin module path for: %s", folder)
+                logger.exception(
+                    f"Unable to determine plugin module path for: %s",
+                    folder,
+                )
                 raise RuntimeError
             module_path = matches[0].replace("/", ".")
 
@@ -105,12 +116,15 @@ class PluginManager:
             self.modules += modules
         logger.debug("Modules to load: " + str(self.modules))
 
-    def getAllPlugins(self) -> Sequence[Plugin]:
+    def getAllPlugins(
+        self,
+        interface: Interface,
+    ) -> Sequence[Plugin[Interface]]:
         imported_modules = []
         for module in self.modules:
             logger.debug("Searching module: " + str(module))
             m = importlib.import_module(module)
-            for c in self._getClassesFromModule(m):
+            for c in self._getClassesFromModule(m, interface=interface):
                 class_name = c[0]
                 class_obj = c[1]
                 for pattern in self.include_patterns:
@@ -128,9 +142,14 @@ class PluginManager:
         return imported_modules
 
     def _getClassesFromModule(
-        self, module: ModuleType,
-    ) -> Iterable[Tuple[str, Type[object]]]:
-        members = inspect.getmembers(module, predicate=inspect.isclass)
+        self,
+        module: ModuleType,
+        interface: Interface,
+    ) -> Iterable[Tuple[str, Interface]]:
+        members = inspect.getmembers(
+            module,
+            predicate=lambda c: inspect.isclass(c) and isinstance(c, interface)
+        )
         return members
 
 
@@ -153,6 +172,7 @@ def load_directory(plugin_folder: str) -> PluginManager:
 
 def get_available_methods(
     plugin_manager: PluginManager,
+    interface: Type[PluginObject] = PluginObject
 ) -> Mapping[str, Mapping[str, Any]]:
     """Gets the available methods in a dictionary of plugins.
 
@@ -163,7 +183,7 @@ def get_available_methods(
     :returns: A dictionary containing the methods from loaded plugins.
     """
     methods = {}
-    for plugin in plugin_manager.getAllPlugins():
+    for plugin in plugin_manager.getAllPlugins(interface=interface):
         items = inspect.getmembers(
             plugin.plugin_object,
             predicate=inspect.ismethod,
@@ -176,7 +196,8 @@ def get_available_methods(
 
 def get_available_classes(
     plugin_manager: PluginManager,
-) -> Sequence[Type[object]]:
+    interface: Interface,
+) -> Sequence[Interface]:
     """Gets the available methods in a dictionary of plugins.
 
     :param plugin_manager: A dictionary of modules.
@@ -186,16 +207,38 @@ def get_available_classes(
     :returns: A list containing the classes from loaded plugins.
     """
     classes = []
-    for plugin in plugin_manager.getAllPlugins():
+    for plugin in plugin_manager.getAllPlugins(interface=interface):
         classes.append(plugin.plugin_object)
 
     return classes
 
 
+# Overloads until https://github.com/python/mypy/issues/3737 is fixed
+
+@overload
 def load_plugins(
     path: str,
     category: str = "plugins",
-) -> Mapping[str, Type[object]]:
+) -> Mapping[str, Type[PluginObject]]:
+    pass
+
+
+@overload
+def load_plugins(
+    path: str,
+    category: str = "plugins",
+    *,
+    interface: Interface
+) -> Mapping[str, Interface]:
+    pass
+
+
+def load_plugins(
+    path: str,
+    category: str = "plugins",
+    *,
+    interface: Union[Interface, Type[PluginObject]] = PluginObject
+) -> Mapping[str, Union[Interface, Type[PluginObject]]]:
     """Load classes using plugin system
 
     :param str path: where plugins are stored
@@ -205,7 +248,7 @@ def load_plugins(
     classes = dict()
     plugins = load_directory(path)
 
-    for cls in get_available_classes(plugins):
+    for cls in get_available_classes(plugins, interface=interface):
         name = getattr(cls, "name", None)
         if name is None:
             logger.error(f"found incomplete {category}: {cls.__name__}")

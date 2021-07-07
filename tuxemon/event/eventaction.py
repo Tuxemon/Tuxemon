@@ -29,7 +29,7 @@ from collections import namedtuple
 
 from tuxemon.tools import cast_parameters_to_namedtuple, NamedTupleProtocol
 from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union,\
-    TypeVar, Generic
+    TypeVar, Generic, ClassVar
 from types import TracebackType
 from tuxemon.session import Session
 from abc import ABC, abstractmethod
@@ -105,7 +105,8 @@ class EventAction(ABC, Generic[ParameterClass]):
 
     """
 
-    name = "GenericAction"
+    name: ClassVar[str] = "GenericAction"
+    param_class: ClassVar[Type[ParameterClass]]
 
     def __init__(
         self,
@@ -138,11 +139,6 @@ class EventAction(ABC, Generic[ParameterClass]):
             self.parameters = None
 
         self._done = False
-
-    @property
-    @abstractmethod
-    def param_class(self) -> Type[ParameterClass]:
-        raise NotImplementedError
 
     def __enter__(self) -> None:
         """

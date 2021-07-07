@@ -27,11 +27,11 @@
 from __future__ import annotations
 from tuxemon.session import Session
 from tuxemon.event import MapCondition
-from typing import Mapping, Any
+from typing import Mapping, Any, ClassVar
 
 
 class EventCondition:
-    name = "GenericCondition"
+    name: ClassVar[str] = "GenericCondition"
 
     def __init__(self) -> None:
         pass

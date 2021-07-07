@@ -34,8 +34,11 @@ import logging
 import os
 import re
 import sys
-from typing import Mapping, Sequence, Any, Optional, List, Iterable,\
-    Protocol, Tuple, Type, TypeVar, Generic, overload, Union
+from typing import (
+    Mapping, Sequence, Any, Optional, List, Iterable,
+    Protocol, Tuple, Type, TypeVar, Generic, overload, Union,
+    ClassVar, Callable, runtime_checkable
+)
 from types import ModuleType
 
 logger = logging.getLogger(__name__)
@@ -48,8 +51,9 @@ log_hdlr.setFormatter(
 )
 
 
+@runtime_checkable
 class PluginObject(Protocol):
-    name: str
+    name: ClassVar[str]
 
 
 Interface = TypeVar("Interface", bound=Type[PluginObject])
@@ -146,9 +150,20 @@ class PluginManager:
         module: ModuleType,
         interface: Interface,
     ) -> Iterable[Tuple[str, Interface]]:
+
+        # This is required because of
+        # https://github.com/python/typing/issues/822
+        #
+        # The typing error in issubclass will be solved
+        # in https://github.com/python/typeshed/pull/5658
+        predicate = (
+            inspect.isclass if interface is PluginObject
+            else lambda c: inspect.isclass(c) and issubclass(c, interface)
+        )
+
         members = inspect.getmembers(
             module,
-            predicate=lambda c: inspect.isclass(c) and isinstance(c, interface)
+            predicate=predicate
         )
         return members
 

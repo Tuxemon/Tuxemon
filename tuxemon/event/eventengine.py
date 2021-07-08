@@ -141,6 +141,10 @@ class EventEngine:
             interface=EventCondition,
         )
 
+        # Mypy fails to typecheck here because
+        # https://github.com/python/mypy/issues/4717
+        # The workarounds are ugly, so we will wait
+        # for that to be fixed.
         self.actions = plugin.load_plugins(
             paths.ACTIONS_PATH,
             "actions",

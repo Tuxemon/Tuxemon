@@ -37,7 +37,7 @@ import sys
 from typing import (
     Mapping, Sequence, Any, Optional, List, Iterable,
     Protocol, Tuple, Type, TypeVar, Generic, overload, Union,
-    ClassVar, Callable, runtime_checkable
+    ClassVar, runtime_checkable
 )
 from types import ModuleType
 
@@ -56,13 +56,15 @@ class PluginObject(Protocol):
     name: ClassVar[str]
 
 
-Interface = TypeVar("Interface", bound=Type[PluginObject])
+T = TypeVar("T")
+InterfaceValue = TypeVar("InterfaceValue", bound=PluginObject)
+Interface = Type[InterfaceValue]
 
 
-class Plugin(Generic[Interface]):
+class Plugin(Generic[T]):
     __slots__ = ("name", "plugin_object")
 
-    def __init__(self, name: str, module: Interface) -> None:
+    def __init__(self, name: str, module: T) -> None:
         self.name = name
         self.plugin_object = module
 
@@ -122,8 +124,8 @@ class PluginManager:
 
     def getAllPlugins(
         self,
-        interface: Interface,
-    ) -> Sequence[Plugin[Interface]]:
+        interface: Type[InterfaceValue],
+    ) -> Sequence[Plugin[Type[InterfaceValue]]]:
         imported_modules = []
         for module in self.modules:
             logger.debug("Searching module: " + str(module))
@@ -148,8 +150,8 @@ class PluginManager:
     def _getClassesFromModule(
         self,
         module: ModuleType,
-        interface: Interface,
-    ) -> Iterable[Tuple[str, Interface]]:
+        interface: Type[InterfaceValue],
+    ) -> Iterable[Tuple[str, Type[InterfaceValue]]]:
 
         # This is required because of
         # https://github.com/python/typing/issues/822
@@ -211,8 +213,8 @@ def get_available_methods(
 
 def get_available_classes(
     plugin_manager: PluginManager,
-    interface: Interface,
-) -> Sequence[Interface]:
+    interface: Type[InterfaceValue],
+) -> Sequence[Type[InterfaceValue]]:
     """Gets the available methods in a dictionary of plugins.
 
     :param plugin_manager: A dictionary of modules.
@@ -243,8 +245,8 @@ def load_plugins(
     path: str,
     category: str = "plugins",
     *,
-    interface: Interface
-) -> Mapping[str, Interface]:
+    interface: Type[InterfaceValue]
+) -> Mapping[str, Type[InterfaceValue]]:
     pass
 
 
@@ -252,8 +254,8 @@ def load_plugins(
     path: str,
     category: str = "plugins",
     *,
-    interface: Union[Interface, Type[PluginObject]] = PluginObject
-) -> Mapping[str, Union[Interface, Type[PluginObject]]]:
+    interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject
+) -> Mapping[str, Union[Type[InterfaceValue], Type[PluginObject]]]:
     """Load classes using plugin system
 
     :param str path: where plugins are stored

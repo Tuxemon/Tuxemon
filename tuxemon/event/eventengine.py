@@ -78,7 +78,7 @@ class RunningEvent:
         self.map_event = map_event
         self.context: Dict[str, Any] = dict()
         self.action_index = 0
-        self.current_action: Optional[EventAction] = None
+        self.current_action: Optional[EventAction[Any]] = None
         self.current_map_action = None
 
     def get_next_action(self) -> Optional[MapAction]:
@@ -125,8 +125,6 @@ class EventEngine:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-        self.conditions: Mapping[str, Type[EventCondition]] = dict()
-        self.actions: Mapping[str, Type[EventAction]] = dict()
         self.running_events: Dict[int, RunningEvent] = dict()
         self.name = "Event"
         self.current_map = None
@@ -137,8 +135,21 @@ class EventEngine:
         # debug
         self.partial_events: List[Sequence[Tuple[bool, MapCondition]]] = list()
 
-        self.conditions = plugin.load_plugins(paths.CONDITIONS_PATH, "conditions")
-        self.actions = plugin.load_plugins(paths.ACTIONS_PATH, "actions")
+        self.conditions = plugin.load_plugins(
+            paths.CONDITIONS_PATH,
+            "conditions",
+            interface=EventCondition,
+        )
+
+        # Mypy fails to typecheck here because
+        # https://github.com/python/mypy/issues/4717
+        # The workarounds are ugly, so we will wait
+        # for that to be fixed.
+        self.actions = plugin.load_plugins(
+            paths.ACTIONS_PATH,
+            "actions",
+            interface=EventAction,
+        )
 
     def reset(self) -> None:
         """Clear out running events.  Use when changing maps."""
@@ -152,7 +163,7 @@ class EventEngine:
         self,
         name: str,
         parameters: Optional[Sequence[Any]] = None,
-    ) -> Optional[EventAction]:
+    ) -> Optional[EventAction[Any]]:
         """
         Get an action that is loaded into the engine.
 

@@ -74,17 +74,9 @@ class PluginManager:
 
     def __init__(
         self,
-        base_folders: Optional[Sequence[str]] = None,
     ) -> None:
-        if base_folders is None:
-            base_folders = [
-                "/data/data/org.tuxemon.game/files",
-                "exe.win32-2.7",
-                "Tuxemon",
-                "/mnt/Tuxemon",
-            ]
+
         self.folders: Sequence[str] = []
-        self.base_folders = base_folders
         self.modules: List[str] = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
@@ -205,34 +197,6 @@ def load_directory(plugin_folder: str) -> PluginManager:
     manager.collectPlugins()
 
     return manager
-
-
-def get_available_methods(
-    plugin_manager: PluginManager,
-    *,
-    interface: Type[PluginObject] = PluginObject
-) -> Mapping[str, Mapping[str, Any]]:
-    """
-    Gets the available methods in a plugin manager.
-
-    Parameter:
-        plugin_manager: Plugin manager with modules already loaded.
-        interface: Superclass or protocol of the classes.
-
-    Returns:
-        Sequence of loaded methods.
-
-    """
-    methods = {}
-    for plugin in plugin_manager.getAllPlugins(interface=interface):
-        items = inspect.getmembers(
-            plugin.plugin_object,
-            predicate=inspect.ismethod,
-        )
-        for method in items:
-            methods[method[0]] = {"method": method[1], "module": plugin.name}
-
-    return methods
 
 
 def get_available_classes(

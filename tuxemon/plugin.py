@@ -96,9 +96,17 @@ class PluginManager:
         ]
 
     def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:
+        """
+        Set the locations where to look for plugins.
+
+        Parameters:
+            plugin_folders: Sequence of folders that might contain plugins.
+
+        """
         self.folders = plugin_folders
 
     def collectPlugins(self) -> None:
+        """Collect the plugins from the folders."""
         for folder in self.folders:
             logger.debug("searching for plugins: %s", folder)
             folder = folder.replace("\\", "/")
@@ -124,8 +132,19 @@ class PluginManager:
 
     def getAllPlugins(
         self,
+        *,
         interface: Type[InterfaceValue],
     ) -> Sequence[Plugin[Type[InterfaceValue]]]:
+        """
+        Get a sequence of loaded plugins.
+
+        Parameters:
+            interface: Superclass or protocol of the returned classes.
+
+        Returns:
+            Sequence of plugins loaded.
+
+        """
         imported_modules = []
         for module in self.modules:
             logger.debug("Searching module: " + str(module))
@@ -171,13 +190,14 @@ class PluginManager:
 
 
 def load_directory(plugin_folder: str) -> PluginManager:
-    """Loads and imports a directory of plugins.
+    """
+    Loads and imports a directory of plugins.
 
-    :param plugin_folder: The folder to look for plugin files.
-    :type plugin_folder: String
+    Parameters:
+        plugin_folder: The folder where to look for plugin files.
 
-    :rtype: Dictionary
-    :returns: A dictionary of imported plugins.
+    Returns:
+        A plugin manager, with the modules already loaded.
 
     """
     manager = PluginManager()
@@ -189,15 +209,19 @@ def load_directory(plugin_folder: str) -> PluginManager:
 
 def get_available_methods(
     plugin_manager: PluginManager,
+    *,
     interface: Type[PluginObject] = PluginObject
 ) -> Mapping[str, Mapping[str, Any]]:
-    """Gets the available methods in a dictionary of plugins.
+    """
+    Gets the available methods in a plugin manager.
 
-    :param plugin_manager: A dictionary of modules.
-    :type plugin_manager: yapsy.PluginManager
+    Parameter:
+        plugin_manager: Plugin manager with modules already loaded.
+        interface: Superclass or protocol of the classes.
 
-    :rtype: Dictionary
-    :returns: A dictionary containing the methods from loaded plugins.
+    Returns:
+        Sequence of loaded methods.
+
     """
     methods = {}
     for plugin in plugin_manager.getAllPlugins(interface=interface):
@@ -213,15 +237,19 @@ def get_available_methods(
 
 def get_available_classes(
     plugin_manager: PluginManager,
+    *,
     interface: Type[InterfaceValue],
 ) -> Sequence[Type[InterfaceValue]]:
-    """Gets the available methods in a dictionary of plugins.
+    """
+    Gets the available classes in a plugin manager.
 
-    :param plugin_manager: A dictionary of modules.
-    :type plugin_manager: yapsy.PluginManager
+    Parameter:
+        plugin_manager: Plugin manager with modules already loaded.
+        interface: Superclass or protocol of the returned classes.
 
-    :rtype: list
-    :returns: A list containing the classes from loaded plugins.
+    Returns:
+        Sequence of loaded classes.
+
     """
     classes = []
     for plugin in plugin_manager.getAllPlugins(interface=interface):
@@ -256,11 +284,19 @@ def load_plugins(
     *,
     interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject
 ) -> Mapping[str, Union[Type[InterfaceValue], Type[PluginObject]]]:
-    """Load classes using plugin system
+    """
+    Load classes using plugin system.
 
-    :param str path: where plugins are stored
-    :param str category: optional string for debugging info
-    :rtype: dict
+    Parameters:
+        path: Location of the modules to load.
+        category: Optional string for debugging info.
+        interface: Superclass or protocol of the returned classes. If no
+            class is given, they are only required to have a `name` attribute.
+
+    Returns:
+        A dictionary mapping the `name` attribute of each class to the class
+        itself.
+
     """
     classes = dict()
     plugins = load_directory(path)

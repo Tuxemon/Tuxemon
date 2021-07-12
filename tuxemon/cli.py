@@ -199,6 +199,39 @@ class CommandLine(cmd.Cmd):
         self.action("add_monster", (monster, level))
         print(f"Added {monster} to the party!")
 
+    def do_add_item(self, line:str) -> None:
+        """
+        Add item to the player's bag.
+        Parameters:
+            line: arguments
+        """
+        args = line.split(" ")
+        try:
+            item = args[0]
+            if len( item.replace(" ", "") ) < 1:
+                raise(ValueError)
+
+            # Check, if the amount of items was added as an argument
+            try:
+                amount = int(args[1])
+            except IndexError:
+                amount = 1
+            except ValueError:
+                # Move the handling one level down
+                raise(ValueError)
+        except:
+            print("Usage: add_item <slug> [amount]")
+            return
+
+        # Check, if the monster exists
+        if not item in db.database["item"]:
+            print(f"Item {item} doesn't exist!")
+            return
+
+        for i in range(amount):
+            self.action("add_item", (item,))
+        print(f"Added {item} (amount: {amount}) to the bag!")
+
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

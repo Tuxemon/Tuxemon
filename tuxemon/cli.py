@@ -199,6 +199,7 @@ class CommandLine(cmd.Cmd):
         self.action("add_monster", (monster, level))
         print(f"Added {monster} to the party!")
 
+
     def do_add_item(self, line:str) -> None:
         """
         Add item to the player's bag.
@@ -230,8 +231,27 @@ class CommandLine(cmd.Cmd):
 
         for i in range(amount):
             self.action("add_item", (item,))
+        self.action("update_inventory")
         print(f"Added {item} (amount: {amount}) to the bag!")
 
+    def do_set_health(self, line:str) -> None:
+        """
+        Sets the monster's health.
+        Parameters:
+            line: arguments
+        """
+        # Usage info
+        usage_info = "Usage: set_health <target_level> [slot]\ntarget_level must contain a number between 0 and 100\nIf no slot is provided, all monsters in the party will be selected"
+        args = line.split(" ")
+
+        # target_level is between 0 and 100, instead of original 0 to 1, to make it more user friendly
+        target_health = int(args[0]) / 100
+
+        try:
+            slot = int(args[1])
+            self.action("set_monster_health",(slot, target_health))
+        except:
+            self.action("set_monster_health", (None, target_health))
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

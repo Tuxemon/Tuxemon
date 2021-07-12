@@ -31,6 +31,7 @@ import cmd
 import code
 import logging
 import pprint
+from tuxemon.db import db
 from threading import Thread
 from typing import TYPE_CHECKING
 
@@ -78,6 +79,10 @@ class CommandLine(cmd.Cmd):
         self.cmd_thread = Thread(target=self.cmdloop)
         self.cmd_thread.daemon = True
         self.cmd_thread.start()
+
+        # For executing actions like add_item,
+        # to avoid defining this variable mutiple times
+        self.action = app.event_engine.execute_action
 
     def emptyline(self) -> bool:
         """If an empty line was entered at the command line, do nothing."""
@@ -164,6 +169,35 @@ class CommandLine(cmd.Cmd):
         print("self.pp.pprint(self.__dict__)")
         self.pp.pprint(self.__dict__)
         code.interact(local=locals())
+
+    def do_add_monster(self, line:str) -> None:
+        """
+        Add monster to the player's party.
+        Parameters:
+            line: arguments
+        """
+        args = line.split(" ")
+        try:
+            monster = args[0]
+            if len( monster.replace(" ", "") ) < 1:
+                raise(ValueError)
+
+            # Check, if level was added as an argument, if not, it will be set to 20
+            try:
+                level = args[1]
+            except:
+                level = 20
+        except:
+            print("Usage: add_monster <slug> [level]")
+            return
+
+        # Check, if the monster exists
+        if not monster in db.database["monster"]:
+            print(f"Monster {monster} doesn't exist!")
+            return
+
+        self.action("add_monster", (monster, level))
+        print(f"Added {monster} to the party!")
 
     def postcmd(self, stop: bool, line: str) -> bool:
         """

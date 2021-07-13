@@ -258,6 +258,14 @@ class CommandLine(cmd.Cmd):
         except:
             self.action("set_monster_health", (None, target_health))
 
+    def do_random_encounter(self, line:str) -> None:
+        """
+        Generates random encounter.
+        Parameters:
+            line: ignored
+        """
+        self.action("random_encounter", ("default_encounter",100))
+
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

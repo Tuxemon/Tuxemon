@@ -242,16 +242,22 @@ class CommandLine(cmd.Cmd):
         """
         # Usage info
         usage_info = "Usage: set_health <target_level> [slot]\ntarget_level must contain a number between 0 and 100\nIf no slot is provided, all monsters in the party will be selected"
+
         args = line.split(" ")
 
         # target_level is between 0 and 100, instead of original 0 to 1, to make it more user friendly
-        target_health = int(args[0]) / 100
+        try:
+            target_health = int(args[0]) / 100
+        except:
+            print(usage_info)
+            return
 
         try:
             slot = int(args[1])
             self.action("set_monster_health",(slot, target_health))
         except:
             self.action("set_monster_health", (None, target_health))
+
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

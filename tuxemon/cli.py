@@ -273,8 +273,6 @@ class CommandLine(cmd.Cmd):
         Parameters:
             line: arguments
         """
-        print("WARNING: This command is incomplete.")
-        input("Press Enter to continue. ")
         from tuxemon.event.actions.start_battle import StartBattleActionParameters
         usage_info = "Usage: trainer_battle <npc_slug>\nor\ntrainer_battle list\nnpc_slug - The npc in the npc database\nlist - List all npcs in the database"
         args = line.split(" ")

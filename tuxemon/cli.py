@@ -290,7 +290,9 @@ class CommandLine(cmd.Cmd):
                 if "monsters" in db.database["npc"][i]:
                     print(i)
         elif trainer in db.database["npc"]:
+            self.action("create_npc", (trainer,7,6))
             self.action("start_battle", (StartBattleActionParameters(npc_slug=trainer)))
+            self.action("remove_npc", (trainer,))
 
     def do_teleport(self, line:str) -> None:
         """

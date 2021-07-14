@@ -150,17 +150,17 @@ cli_enabled = True
 
 **Commands**
 
- - help — shows all commands
- - credits — shows the copyright text
- - exit — exits the game
- - python — Starts the python shell, that you can use to modify the game directly. For advanced users.
- - add_item <slug> [amount] — Adds the item (defined in `slug` parameter)
- - set_health <target_level> [slot] — Sets the health of the monster in your party. If `slot` argument isn't specified, all monsters in your party will be affected.
- - random_encounter — Sets you in a wild tuxemon battle, similar to walking in tall grass.
- - trainer_battle <npc_slug> — Sets you in a trainer battle with specified npc.
- - trainer_battle list — Gives you a list of fightable trainers.
- - teleport <x> <y> [map_file] — Teleports you to the specific tile. If `map_file` argument is specified, you'll get teleported to a selected map file.
- - whereami — Prints out the map filename
+ - `help` — shows all commands
+ - `credits` — shows the copyright text
+ - `exit` — exits the game
+ - `python` — Starts the python shell, that you can use to modify the game directly. For advanced users.
+ - `add_item <slug> [amount] — Adds the item (defined in `slug` parameter)
+ - `set_health <target_level> [slot]` — Sets the health of the monster in your party. If `slot` argument isn't specified, all monsters in your party will be affected.
+ - `random_encounter` — Sets you in a wild tuxemon battle, similar to walking in tall grass.
+ - `trainer_battle <npc_slug>` — Sets you in a trainer battle with specified npc.
+ - `trainer_battle list` — Gives you a list of fightable trainers.
+ - `teleport <x> <y> [map_file]` — Teleports you to the specific tile. If `map_file` argument is specified, you'll get teleported to a selected map file.
+ - `whereami` — Prints out the map filename
 
 Building
 --------

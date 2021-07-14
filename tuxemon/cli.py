@@ -32,6 +32,7 @@ import code
 import logging
 import pprint
 from tuxemon.db import db
+import os
 from threading import Thread
 from typing import TYPE_CHECKING
 
@@ -265,6 +266,54 @@ class CommandLine(cmd.Cmd):
             line: ignored
         """
         self.action("random_encounter", ("default_encounter",100))
+
+    def do_trainer_battle(self, line:str) -> None:
+        """
+        Generates random encounter.
+        Parameters:
+            line: arguments
+        """
+        print("doing trainer_battle")
+        usage_info = "Usage: trainer_battle <npc_slug>\nor\ntrainer_battle list\nnpc_slug - The npc in the npc database\nlist - List all npcs in the database"
+        args = line.split(" ")
+        try:
+            trainer = args[0]
+
+        except:
+            print(usage_info)
+            return
+
+        if trainer == "list":
+            for i in db.database["npc"]:
+                if "monsters" in db.database["npc"][i]:
+                    print(i)
+        elif trainer in db.database["npc"]:
+            self.action("start_battle", (trainer))
+
+    def do_teleport(self, line:str) -> None:
+        """
+        Teleports the player to specified coordinates and (optionally) the specified map
+        Parameters:
+            line: arguments
+        """
+        usage_info = "Usage: teleport <x> <y> [map_file]"
+        args = line.split(" ")
+
+        try:
+            x = args[0]
+            y = args[1]
+
+        except:
+            print(usage_info)
+            return
+
+        try:
+            map = args[2]
+        except:
+            map_filename = self.app.event_engine.current_map.data.filename
+            map = os.path.split( map_filename )[1]
+
+        self.action("teleport", (map, x, y))
 
     def postcmd(self, stop: bool, line: str) -> bool:
         """

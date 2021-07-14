@@ -315,6 +315,14 @@ class CommandLine(cmd.Cmd):
 
         self.action("teleport", (map, x, y))
 
+    def do_whereami(self, line:str) -> None:
+        """
+        Prints the map the player is at to the console
+        Parameters:
+            line: ignored
+        """
+        map = os.path.split(self.app.event_engine.current_map.data.filename)[1]
+        print(map)
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

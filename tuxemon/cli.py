@@ -273,7 +273,9 @@ class CommandLine(cmd.Cmd):
         Parameters:
             line: arguments
         """
-        print("doing trainer_battle")
+        print("WARNING: This command is incomplete.")
+        input("Press Enter to continue. ")
+        from tuxemon.event.actions.start_battle import StartBattleActionParameters
         usage_info = "Usage: trainer_battle <npc_slug>\nor\ntrainer_battle list\nnpc_slug - The npc in the npc database\nlist - List all npcs in the database"
         args = line.split(" ")
         try:
@@ -288,7 +290,7 @@ class CommandLine(cmd.Cmd):
                 if "monsters" in db.database["npc"][i]:
                     print(i)
         elif trainer in db.database["npc"]:
-            self.action("start_battle", (trainer))
+            self.action("start_battle", (StartBattleActionParameters(npc_slug=trainer)))
 
     def do_teleport(self, line:str) -> None:
         """
@@ -323,6 +325,7 @@ class CommandLine(cmd.Cmd):
         """
         map = os.path.split(self.app.event_engine.current_map.data.filename)[1]
         print(map)
+
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

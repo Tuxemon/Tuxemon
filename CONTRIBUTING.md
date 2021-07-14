@@ -69,6 +69,16 @@ guidelines to follow when adding new maps or modifiying existing ones.
 - You must use `translated_dialog` for all dialogs
 - The "base64 zlib compressed" map format is preferred
 
+## Map Tileset Guidelines
+Please read and understand the following information to ensure that your new maps can be
+quickly accepted into the project.
+
+- Maps should use the "core" tilesets whenever possible, and the "external tileset" .TSX file must be used
+- New maps should not have embedded tilesets -- use external tilesets only
+- New tilesets must be acceptable by our licence and content standards
+- New files should conform to the filename/structure guidelines
+- Obsolete assets should be avoided
+
 ## Compressed Assets
 If you are a content creator, please consider uploading your assets in a uncompressed or
 lossless format.  For sounds or music this would be either a wave (WAV) or FLAC file.
@@ -102,11 +112,12 @@ development if needed and then open a PR from your feature branch to our develop
 
 TL;DR: work from a feature branch, not the development branch
 
-## File names
+## File Name and Structure Guidelines
 - Must be lower case
 - No spaces
 - No special characters
 - Use letters, numbers, underscore (_) and dash (-) only
+- Files should be placed in the most appropriate folder
 - English is preferred because we have contributors who speak many languages
 
 **WHEN MAKING NEW CONTENT, IT IS BEST TO RENAME THINGS BEFORE WORKING ON THEM**
@@ -129,7 +140,7 @@ A play test should be conducted from a new game.
 It is an honor system, so please keep that in mind as we accept your changes.
 
 Translations
-------------
+============
 
 Tuxemon has support for several languages.  Because Tuxemon is a community project
 and not all members are intimately familiar with or fluent in each language, there
@@ -159,7 +170,7 @@ discord.
   fit correctly.
 
 Content Restrictions
---------------------
+====================
 
 The project is developed by and for a worldwide audience of all ages.  We ask that any
 contributions which includes word in text or image format be appropriate for people

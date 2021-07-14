@@ -165,8 +165,6 @@ cli_enabled = True
 Building
 --------
 
-
-
 There are many scripts for various builds in the buildconfig folder.  These
 are meant to be run from the project root directory, for example, to build
 the portable pypy build:
@@ -184,7 +182,7 @@ should not use them on your personal computer.  Use in a vm or container.
 License
 -------
 
-With the exception of the lib folder which may haves
+With the exception of the lib folder which may have
 its own license, all code in this project is licenced
 under the GPLv3.
 

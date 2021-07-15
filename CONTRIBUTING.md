@@ -12,15 +12,7 @@ re-distributed by the maintainers or others as part of the Git repository and
 cloned repositories, in compiled binaries, and any other ways permitted by the
 License.
 
-## What code can I contribute?
-Any of the issues on the [Tuxemon issue list](https://github.com/Tuxemon/Tuxemon/issues)
-are things we are looking to have implemented in Tuxemon. Feel free to fork the project
-and taking a shot at anything on the list! If you have a suggestion for a feature
-that's not on the current issues list, post a topic on the Programming section of the
-[Tuxemon Forums](https://forum.tuxemon.org/index.php) and discuss ways we might implement
-it in the game.
-
-## How do I contribute code?
+## How do I contribute?
 Tuxemon uses the ["Fork & Pull"](https://help.github.com/articles/using-pull-requests#fork--pull)
 method for code contributions. The *fork & pull* model lets anyone fork an existing
 repository and push changes to their personal fork without requiring access be
@@ -29,10 +21,17 @@ repository by the project maintainer. This model reduces the amount of friction 
 contributors and is popular with open source projects because it allows people to work
 independently without upfront coordination.
 
+## What code can I contribute?
+Any of the issues on the [Tuxemon issue list](https://github.com/Tuxemon/Tuxemon/issues)
+are things we are looking to have implemented in Tuxemon. Feel free to fork the project
+and taking a shot at anything on the list! If you have a suggestion for a feature
+that's not on the current issues list, open a GitHub issue about it or start a discussion
+on the discord.
+
 Before writing any code, discuss with the team on discord or open an issue -- there may be
 existing work on the topic or a team member with some tips on the problem. Sometimes we
 also have opinions about a feature or topic which we want done in a particular way to fit our
-project goals. In some cases we will ask for changes or reject something.  Asking the team
+project goals. In some cases we will ask for changes before merging something. Asking the team
 first will reduce your effort involved with a merge.
 
 ## How do I contribute artistic content?
@@ -160,9 +159,9 @@ what we can to make sure the game is fun and enjoyable to everyone.
 We use [Weblate](https://hosted.weblate.org/projects/tuxemon/) for translations.
 It is a powerful platform, but not without issues.  Occasionally it will have problems
 that an admin needs to resolve.  Please open an issue or contact a team member in the
-discord.
+discord if your weblate contributions are not being merged into the project.
 
-## Translations Guidelines
+### Translations Guidelines
 - Right-to-left langauges are not supported
 - Only the standard latin alphabet with some accents is supported
 - Our text rendering currently may not support your target language, but you can still

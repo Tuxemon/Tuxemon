@@ -25,6 +25,7 @@
 #
 
 import logging
+from collections import defaultdict
 from math import cos, sin, pi
 from typing import List, Iterator
 
@@ -184,6 +185,18 @@ class TMXMapLoader:
         collision_map = dict()
         collision_lines_map = set()
         edges = data.properties.get("edges")
+
+        gids_with_props = dict()
+        for gid, props in data.tile_properties.items():
+            conds = extract_region_properties(props)
+            gids_with_props[gid] = conds if conds else None
+
+        for layer in data.visible_tile_layers:
+            layer = data.layers[layer]
+            for x, y, gid in layer.iter_data():
+                tile_props = gids_with_props.get(gid)
+                if tile_props is not None:
+                    collision_map[(x, y)] = tile_props
 
         for obj in data.objects:
             if obj.type and obj.type.lower().startswith("collision"):

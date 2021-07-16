@@ -1,4 +1,4 @@
-Tuxemon 0.4.26
+Tuxemon 0.4.27
 ==============
 
 Tuxemon is a free, open source monster-fighting RPG.
@@ -12,7 +12,7 @@ Requirements
 
 Tuxemon uses a number of open source projects to work properly:
 
-* *python* - version 3.6+
+* *python* - version 3.8+
 * *python-pygame* - python game library
 * *python-pytmx* - python library to read Tiled Map Editor's TMX maps.
 * *python-pyscroll* - fast module for animated scrolling maps.

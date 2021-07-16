@@ -25,9 +25,8 @@
 #
 
 import logging
-from collections import defaultdict
 from math import cos, sin, pi
-from typing import List, Iterator
+from typing import Iterator
 
 import pytmx
 import yaml

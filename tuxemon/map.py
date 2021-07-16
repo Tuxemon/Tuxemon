@@ -31,6 +31,7 @@
 import logging
 from itertools import product
 from math import pi, atan2
+from typing import Dict, Optional
 
 import pyscroll
 
@@ -211,21 +212,45 @@ def orientation_by_angle(angle):
     return orientation
 
 
-def extract_region_properties(region):
-    # Loop through properties and create list of directions for each property
-    props = dict()
-    enter = []
-    exit = []
-    props["enter"] = enter
-    props["exit"] = exit
-    for key in region:
+def extract_region_properties(properties: Dict) -> Optional[Dict]:
+    """
+    Given a dictionary from Tiled properties, return a dictionary
+    suitable for collision detection.
+
+    Uses `exit_to`, `enter_from`, and `continue` keys.
+
+    Parameters:
+        properties: Dictionary of data from Tiled for object, tile, etc
+
+    Returns:
+        New dictionary for collision use.
+
+    """
+    # this could use a rewrite or re-thinking...
+    new_props = dict()
+    enters = []
+    exits = []
+    new_props["enter"] = enters
+    new_props["exit"] = exits
+    has_movement_modifier = False
+    for key in properties:
         if "enter" in key:
-            enter.extend(region[key].split())
+            enters.extend(properties[key].split())
+            has_movement_modifier = True
         elif "exit" in key:
-            exit.extend(region[key].split())
+            exits.extend(properties[key].split())
+            has_movement_modifier = True
         elif "continue" in key:
-            props["continue"] = region[key]
-    return props
+            new_props["continue"] = properties[key]
+            has_movement_modifier = True
+    # if there is an exit, but no explicit enter, then
+    # allow entering from all sides except the exit side
+    if exits and not enters:
+        new_props["enter"] = list({"up", "down", "left", "right"} - set(exits))
+    if has_movement_modifier:
+        return new_props
+    else:
+        return None
 
 
 class PathfindNode:
@@ -285,7 +310,7 @@ class TuxemonMap:
         :param List inits: List of events to be loaded once, when map is entered
         :param List interacts: List of intractable spaces
         :param Dict collision_map: Collision map
-        :param Dict collisions_lines_map: Collision map of lines
+        :param Set collisions_lines_map: Collision map of lines
         """
         self.interacts = interacts
         self.collision_map = collision_map

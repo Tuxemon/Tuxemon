@@ -26,7 +26,7 @@
 
 import logging
 from math import cos, sin, pi
-from typing import Iterator
+from typing import Iterator, Tuple
 
 import pytmx
 import yaml
@@ -185,38 +185,42 @@ class TMXMapLoader:
         collision_lines_map = set()
         edges = data.properties.get("edges")
 
+        # get all tiles which have properties and/or collisions
         gids_with_props = dict()
+        gids_with_colliders = dict()
         for gid, props in data.tile_properties.items():
             conds = extract_region_properties(props)
             gids_with_props[gid] = conds if conds else None
+            colliders = props.get("colliders")
+            if colliders is not None:
+                gids_with_colliders[gid] = colliders
 
+        # for each tile, apply the properties and collisions for the tile location
         for layer in data.visible_tile_layers:
             layer = data.layers[layer]
             for x, y, gid in layer.iter_data():
                 tile_props = gids_with_props.get(gid)
                 if tile_props is not None:
                     collision_map[(x, y)] = tile_props
+                colliders = gids_with_colliders.get(gid)
+                if colliders is not None:
+                    for obj in colliders:
+                        if obj.type and obj.type.lower().startswith("collision"):
+                            if getattr(obj, "closed", True):
+                                region_conditions = copy_dict_with_keys(obj.properties, region_properties)
+                                collision_map[(x, y)] = region_conditions
+                        for line in self.collision_lines_from_object(obj, tile_size):
+                            coords, direction = line
+                            lx, ly = coords
+                            line = (lx + x, ly + y), direction
+                            collision_lines_map.add(line)
 
         for obj in data.objects:
             if obj.type and obj.type.lower().startswith("collision"):
-                closed = getattr(obj, "closed", True)
-                if closed:
-                    # closed; polygon or region with bounding box
-                    for tile_position, conds in self.region_tiles(obj, tile_size):
-                        collision_map[tile_position] = conds if conds else None
-                else:
-                    # not closed; a line of one ore more segments
-                    for item in self.process_line(obj, tile_size):
-                        # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
-                        i, m, orientation = item
-                        if orientation == "vertical":
-                            collision_lines_map.add((i, "left"))
-                            collision_lines_map.add((m, "right"))
-                        elif orientation == "horizontal":
-                            collision_lines_map.add((m, "down"))
-                            collision_lines_map.add((i, "up"))
-                        else:
-                            raise Exception(orientation)
+                for tile_position, props in self.extract_tile_collisions(obj, tile_size):
+                    collision_map[tile_position] = props
+                for line in self.collision_lines_from_object(obj, tile_size):
+                    collision_lines_map.add(line)
             elif obj.type == "event":
                 events.append(self.load_event(obj, tile_size))
             elif obj.type == "init":
@@ -234,6 +238,24 @@ class TMXMapLoader:
             edges,
             filename,
         )
+
+    def extract_tile_collisions(self, tiled_object, tile_size):
+        if getattr(tiled_object, "closed", True):
+            yield from self.region_tiles(tiled_object, tile_size)
+
+    def collision_lines_from_object(self, tiled_object, tile_size):
+        # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
+        if not getattr(tiled_object, "closed", True):
+            for item in self.process_line(tiled_object, tile_size):
+                blocker0, blocker1, orientation = item
+                if orientation == "vertical":
+                    yield blocker0, "left"
+                    yield blocker1, "right"
+                elif orientation == "horizontal":
+                    yield blocker1, "down"
+                    yield blocker0, "up"
+                else:
+                    raise Exception(orientation)
 
     def process_line(self, line, tile_size):
         """Identify the tiles on either side of the line and block movement along it
@@ -256,7 +278,7 @@ class TMXMapLoader:
                 yield i, other, orientation
 
     @staticmethod
-    def region_tiles(region, grid_size):
+    def region_tiles(region: pytmx.TiledObject, grid_size: Tuple[int, int]):
         """Apply region properties to individual tiles
 
         Right now our collisions are defined in our tmx file as large regions
@@ -265,9 +287,12 @@ class TMXMapLoader:
         Loop through all of the collision objects in our tmx file. The
         region's bounding box will be snapped to the nearest tile coordinates.
 
-        :param region:
-        :param grid_size:
-        :return:
+        Parameters:
+            region: The Tiled object which contains collisions and movement modifiers
+            grid_size: The tile grid size
+
+        Returns:
+            Iterator of (tile position, properties) tuples
         """
         region_conditions = copy_dict_with_keys(region.properties, region_properties)
         rect = snap_rect(Rect(region.x, region.y, region.width, region.height), grid_size)

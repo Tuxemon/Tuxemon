@@ -104,7 +104,7 @@ def simple_damage_calculate(technique, user, target):
         logger.error("unhandled damage category %s %s", technique.category, technique.range)
         raise RuntimeError
 
-    mult = simple_damage_multiplier((technique.type1, technique.type2), (target.type1, target.type2))
+    mult = simple_damage_multiplier([technique.type1, technique.type2], (target.type1, target.type2))
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult

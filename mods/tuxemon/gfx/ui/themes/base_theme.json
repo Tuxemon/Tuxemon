@@ -1,0 +1,83 @@
+{
+    "#guiopedia_window":
+    {
+        "colours":
+         {
+             "dark_bg": "#4c5052"
+         },
+        "misc":
+        {
+            "title_bar_height": "28"
+        }
+    },
+
+     "#guiopedia_window.text_box":
+    {
+        "colours":
+         {
+             "dark_bg": "#21282d"
+         },
+        "misc":
+        {
+            "title_bar_height": "28"
+        }
+    },
+    "#guiopedia_window.#home_button":
+    {
+        "images":
+        {
+            "normal_image": {
+                "path": "mods/tuxemon/gfx/ui/icons/recover-icon.png"
+            }
+        },
+        "misc":
+        {
+            "shape": "ellipse"
+        }
+    },
+
+    "#guiopedia_window.label":
+    {
+         "colours":
+         {
+             "dark_bg": "#4c5052"
+         }
+    },
+
+    "#guiopedia_window.text_entry_line":
+    {
+        "colours":
+         {
+             "dark_bg": "#21282d"
+         },
+        "misc":
+        {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "12"
+        }
+    },
+
+    "#guiopedia_window.#title_bar":
+    {
+         "colours":
+         {
+             "normal_bg": "#35393e",
+             "hovered_bg": "#55595e"
+         },
+
+        "misc":
+        {
+            "text_horiz_alignment": "left",
+            "text_horiz_alignment_padding": "10"
+        }
+    },
+
+    "#guiopedia_window.#close_button":
+    {
+         "colours":
+         {
+             "normal_bg": "#35393e",
+             "hovered_bg": "#55595e"
+         }
+    }
+}

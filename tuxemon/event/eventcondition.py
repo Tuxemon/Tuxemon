@@ -48,7 +48,6 @@ class EventCondition:
             Value of the condition.
 
         """
-        pass
 
     def get_persist(self, session: Session) -> Mapping[str, Any]:
         """

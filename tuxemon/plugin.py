@@ -35,9 +35,19 @@ import os
 import re
 import sys
 from typing import (
-    Mapping, Sequence, Any, Optional, List, Iterable,
-    Protocol, Tuple, Type, TypeVar, Generic, overload, Union,
-    ClassVar, runtime_checkable
+    Mapping,
+    Sequence,
+    List,
+    Iterable,
+    Protocol,
+    Tuple,
+    Type,
+    TypeVar,
+    Generic,
+    overload,
+    Union,
+    ClassVar,
+    runtime_checkable,
 )
 from types import ModuleType
 
@@ -170,14 +180,10 @@ class PluginManager:
         # The typing error in issubclass will be solved
         # in https://github.com/python/typeshed/pull/5658
         predicate = (
-            inspect.isclass if interface is PluginObject
-            else lambda c: inspect.isclass(c) and issubclass(c, interface)
+            inspect.isclass if interface is PluginObject else lambda c: inspect.isclass(c) and issubclass(c, interface)
         )
 
-        members = inspect.getmembers(
-            module,
-            predicate=predicate
-        )
+        members = inspect.getmembers(module, predicate=predicate)
         return members
 
 
@@ -224,6 +230,7 @@ def get_available_classes(
 
 # Overloads until https://github.com/python/mypy/issues/3737 is fixed
 
+
 @overload
 def load_plugins(
     path: str,
@@ -234,19 +241,13 @@ def load_plugins(
 
 @overload
 def load_plugins(
-    path: str,
-    category: str = "plugins",
-    *,
-    interface: Type[InterfaceValue]
+    path: str, category: str = "plugins", *, interface: Type[InterfaceValue]
 ) -> Mapping[str, Type[InterfaceValue]]:
     pass
 
 
 def load_plugins(
-    path: str,
-    category: str = "plugins",
-    *,
-    interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject
+    path: str, category: str = "plugins", *, interface: Union[Type[InterfaceValue], Type[PluginObject]] = PluginObject
 ) -> Mapping[str, Union[Type[InterfaceValue], Type[PluginObject]]]:
     """
     Load classes using plugin system.

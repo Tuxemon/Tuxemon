@@ -66,10 +66,7 @@ class CommandLine(cmd.Cmd):
 
         # Set up the command line prompt itself
         self.prompt = "Tuxemon>> "
-        self.intro = (
-            'Tuxemon CLI\nType "help", "copyright", "credits"'
-            ' or "license" for more information.'
-        )
+        self.intro = 'Tuxemon CLI\nType "help", "copyright", "credits"' ' or "license" for more information.'
 
         # set up a  pretty printer so that shit is formatted nicely
         self.pp = pprint.PrettyPrinter(indent=4)
@@ -171,7 +168,7 @@ class CommandLine(cmd.Cmd):
         self.pp.pprint(self.__dict__)
         code.interact(local=locals())
 
-    def do_add_monster(self, line:str) -> None:
+    def do_add_monster(self, line: str) -> None:
         """
         Add monster to the player's party.
         Parameters:
@@ -180,8 +177,8 @@ class CommandLine(cmd.Cmd):
         args = line.split(" ")
         try:
             monster = args[0]
-            if len( monster.replace(" ", "") ) < 1:
-                raise(ValueError)
+            if len(monster.replace(" ", "")) < 1:
+                raise (ValueError)
 
             # Check, if level was added as an argument, if not, it will be set to 20
             try:
@@ -200,8 +197,7 @@ class CommandLine(cmd.Cmd):
         self.action("add_monster", (monster, level))
         print(f"Added {monster} to the party!")
 
-
-    def do_add_item(self, line:str) -> None:
+    def do_add_item(self, line: str) -> None:
         """
         Add item to the player's bag.
         Parameters:
@@ -210,8 +206,8 @@ class CommandLine(cmd.Cmd):
         args = line.split(" ")
         try:
             item = args[0]
-            if len( item.replace(" ", "") ) < 1:
-                raise(ValueError)
+            if len(item.replace(" ", "")) < 1:
+                raise (ValueError)
 
             # Check, if the amount of items was added as an argument
             try:
@@ -220,7 +216,7 @@ class CommandLine(cmd.Cmd):
                 amount = 1
             except ValueError:
                 # Move the handling one level down
-                raise(ValueError)
+                raise (ValueError)
         except:
             print("Usage: add_item <slug> [amount]")
             return
@@ -235,7 +231,7 @@ class CommandLine(cmd.Cmd):
         self.action("update_inventory")
         print(f"Added {item} (amount: {amount}) to the bag!")
 
-    def do_set_health(self, line:str) -> None:
+    def do_set_health(self, line: str) -> None:
         """
         Sets the monster's health.
         Parameters:
@@ -255,25 +251,26 @@ class CommandLine(cmd.Cmd):
 
         try:
             slot = int(args[1])
-            self.action("set_monster_health",(slot, target_health))
+            self.action("set_monster_health", (slot, target_health))
         except:
             self.action("set_monster_health", (None, target_health))
 
-    def do_random_encounter(self, line:str) -> None:
+    def do_random_encounter(self, line: str) -> None:
         """
         Generates random encounter.
         Parameters:
             line: ignored
         """
-        self.action("random_encounter", ("default_encounter",100))
+        self.action("random_encounter", ("default_encounter", 100))
 
-    def do_trainer_battle(self, line:str) -> None:
+    def do_trainer_battle(self, line: str) -> None:
         """
         Generates random encounter.
         Parameters:
             line: arguments
         """
         from tuxemon.event.actions.start_battle import StartBattleActionParameters
+
         usage_info = "Usage: trainer_battle <npc_slug>\nor\ntrainer_battle list\nnpc_slug - The npc in the npc database\nlist - List all npcs in the database"
         args = line.split(" ")
         try:
@@ -288,11 +285,11 @@ class CommandLine(cmd.Cmd):
                 if "monsters" in db.database["npc"][i]:
                     print(i)
         elif trainer in db.database["npc"]:
-            self.action("create_npc", (trainer,7,6))
+            self.action("create_npc", (trainer, 7, 6))
             self.action("start_battle", (StartBattleActionParameters(npc_slug=trainer)))
             self.action("remove_npc", (trainer,))
 
-    def do_teleport(self, line:str) -> None:
+    def do_teleport(self, line: str) -> None:
         """
         Teleports the player to specified coordinates and (optionally) the specified map
         Parameters:
@@ -313,11 +310,11 @@ class CommandLine(cmd.Cmd):
             map = args[2]
         except:
             map_filename = self.app.event_engine.current_map.data.filename
-            map = os.path.split( map_filename )[1]
+            map = os.path.split(map_filename)[1]
 
         self.action("teleport", (map, x, y))
 
-    def do_whereami(self, line:str) -> None:
+    def do_whereami(self, line: str) -> None:
         """
         Prints the map the player is at to the console
         Parameters:

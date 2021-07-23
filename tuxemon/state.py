@@ -32,8 +32,7 @@ import sys
 from abc import ABCMeta
 from importlib import import_module
 import pygame
-from typing import Any, Optional, Type, Generator, Mapping,\
-    Sequence, List, Tuple, Dict, Set
+from typing import Any, Optional, Type, Generator, Mapping, Sequence, List, Tuple, Dict, Set
 
 from tuxemon.compat import Rect
 from tuxemon.constants import paths
@@ -332,7 +331,8 @@ class StateManager:
                 yield c
 
     def collect_states_from_path(
-        self, folder: str,
+        self,
+        folder: str,
     ) -> Generator[Type[State], None, None]:
         """
         Load states from disk, but do not register it.

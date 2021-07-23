@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, Union, final
+from typing import NamedTuple, final
 
 
 class SetMonsterFlairActionParameters(NamedTuple):

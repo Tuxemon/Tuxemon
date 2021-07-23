@@ -4,8 +4,7 @@ from collections import defaultdict
 from math import sqrt, cos, sin, pi
 
 import pygame
-from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple,\
-    Mapping, Union
+from typing import Any, Optional, Callable, Sequence, DefaultDict, List, Tuple, Mapping, Union
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 
@@ -156,6 +155,7 @@ class Task(TaskBase):
         When chaining tasks, do not add the chained tasks to a group.
 
     """
+
     _valid_schedules = ("on interval", "on finish", "on abort")
 
     def __init__(
@@ -383,17 +383,13 @@ class Animation(pygame.sprite.Sprite):
     ) -> None:
 
         super().__init__()
-        self.targets: List[
-            Tuple[object, Mapping[str, Tuple[float, float]]]
-        ] = list()
+        self.targets: List[Tuple[object, Mapping[str, Tuple[float, float]]]] = list()
         self._targets: Sequence[object] = list()
         self.delay = delay
         self._state = ANIMATION_NOT_STARTED
         self._round_values = round_values
 
-        self._duration = (
-            self.default_duration if duration is None else duration
-        )
+        self._duration = self.default_duration if duration is None else duration
 
         if transition is None:
             transition = self.default_transition

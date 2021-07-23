@@ -232,10 +232,10 @@ class Monster:
         self.catch_rate = TuxemonConfig().default_monster_catch_rate
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
-        # set the span on which the catch_resistance will be. For more imformation check capture.py 
+        # set the span on which the catch_resistance will be. For more imformation check capture.py
         self.upper_catch_resistance = TuxemonConfig().default_upper_monster_catch_resistance
         self.lower_catch_Resistance = TuxemonConfig().default_lower_monster_catch_resistance
-        
+
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
         # to play the animations for those states.
@@ -302,8 +302,12 @@ class Monster:
 
         self.weight = results["weight"]
         self.catch_rate = results.get("catch_rate", TuxemonConfig().default_monster_catch_rate)
-        self.upper_catch_resistance = results.get("upper_catch_resistance",TuxemonConfig().default_upper_monster_catch_resistance)
-        self.lower_catch_resistance = results.get("lower_catch_resistance",TuxemonConfig().default_lower_monster_catch_resistance)
+        self.upper_catch_resistance = results.get(
+            "upper_catch_resistance", TuxemonConfig().default_upper_monster_catch_resistance
+        )
+        self.lower_catch_resistance = results.get(
+            "lower_catch_resistance", TuxemonConfig().default_lower_monster_catch_resistance
+        )
 
         # Look up the moves that this monster can learn AND LEARN THEM.
         moveset = results.get("moveset")

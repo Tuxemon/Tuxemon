@@ -26,8 +26,7 @@
 #
 #
 from __future__ import annotations
-from typing import Sequence, Any, Type, Tuple, Union, Optional, Protocol,\
-    Mapping, Dict, TypeVar
+from typing import Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar, Union
 import typing
 
 """
@@ -277,13 +276,11 @@ def cast_parameters_to_namedtuple(
     namedtuple_class: Type[NamedTupleTypeVar],
 ) -> NamedTupleTypeVar:
     valid_parameters = [
-        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f)
-        for f in namedtuple_class._fields
+        (get_types_tuple(typing.get_type_hints(namedtuple_class)[f]), f) for f in namedtuple_class._fields
     ]
 
     values = cast_values(parameters, valid_parameters)
     return namedtuple_class(*values)
-
 
 
 def show_item_result_as_dialog(session, item, result):

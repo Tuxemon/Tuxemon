@@ -41,8 +41,7 @@ from babel.messages.pofile import read_po
 from tuxemon.constants import paths
 from tuxemon import prepare
 from tuxemon.session import Session
-from typing import Generator, Optional, Mapping, Any, Iterable, Sequence,\
-    Callable
+from typing import Generator, Optional, Mapping, Any, Iterable, Sequence, Callable
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +51,7 @@ FALLBACK_LOCALE = "en_US"
 @dataclasses.dataclass(frozen=True, order=True)
 class LocaleInfo:
     """Information about a locale."""
+
     locale: str
     category: str
     domain: str

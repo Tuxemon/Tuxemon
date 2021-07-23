@@ -25,11 +25,9 @@
 
 from __future__ import annotations
 import logging
-from collections import namedtuple
 
 from tuxemon.tools import cast_parameters_to_namedtuple, NamedTupleProtocol
-from typing import Optional, Type, Sequence, Any, Tuple, NamedTuple, Union,\
-    TypeVar, Generic, ClassVar
+from typing import Any, ClassVar, Generic, Optional, Sequence, Type, TypeVar
 from types import TracebackType
 from tuxemon.session import Session
 from abc import ABC, abstractmethod
@@ -249,4 +247,3 @@ class EventAction(ABC, Generic[ParameterClass]):
         actions which require special handling before they are closed.
 
         """
-        pass

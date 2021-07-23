@@ -34,8 +34,7 @@ from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon import plugin
 from tuxemon import prepare
 from tuxemon.platform.const import buttons
-from typing import Optional, Mapping, Type, Sequence, Iterable, Any, Union,\
-    Generator, Dict, List, Tuple
+from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, Tuple, Union
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform.events import PlayerInput
@@ -324,10 +323,7 @@ class EventEngine:
 
         else:
             # optimal, less debug
-            if all(
-                self.check_condition(cond, map_event)
-                for cond in map_event.conds
-            ):
+            if all(self.check_condition(cond, map_event) for cond in map_event.conds):
                 self.start_event(map_event)
 
     def process_map_events(self, events: Iterable[EventObject]) -> None:

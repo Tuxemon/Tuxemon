@@ -15,7 +15,6 @@ RectType = TypeVar("RectType", bound="ReadOnlyRect", covariant=True)
 
 @runtime_checkable
 class HasRectAttribute(Protocol[RectType]):
-
     @property
     def rect(self) -> RectType:
         pass
@@ -30,6 +29,7 @@ RectLike = Union[
 
 class ReadOnlyRect(Protocol):
     """Interface of a PyGame compatible rect."""
+
     def __init__(
         self: SelfRectType,
         __arg: Union[HasRectAttribute[SelfRectType], RectLike[SelfRectType]],
@@ -43,12 +43,14 @@ class ReadOnlyRect(Protocol):
         return type(self)((self.x + x, self.y + y, self.w, self.h))
 
     def inflate(self: SelfRectType, x: int, y: int) -> SelfRectType:
-        return type(self)((
-            self.x - type(self.x)(x / 2),
-            self.y - type(self.y)(y / 2),
-            self.w + x,
-            self.h + y,
-        ))
+        return type(self)(
+            (
+                self.x - type(self.x)(x / 2),
+                self.y - type(self.y)(y / 2),
+                self.w + x,
+                self.h + y,
+            )
+        )
 
     def union(
         self: SelfRectType,
@@ -107,10 +109,7 @@ class ReadOnlyRect(Protocol):
         self: SelfRectType,
         __l: Sequence[RectLike[SelfRectType]],
     ) -> Sequence[int]:
-        return [
-            i for i, rect in enumerate(__l)
-            if intersect(self, type(self)(rect))
-        ]
+        return [i for i, rect in enumerate(__l) if intersect(self, type(self)(rect))]
 
     @property
     def top(self) -> int:
@@ -206,9 +205,7 @@ class ReadOnlyRect(Protocol):
 
 
 def intersect(r1: ReadOnlyRect, r2: ReadOnlyRect) -> bool:
-    return (
-        (r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)
-    ) and (
+    return ((r2.left <= r1.left < r2.right) or (r1.left <= r2.left < r1.right)) and (
         (r2.top <= r1.top < r2.bottom) or (r1.top <= r2.top < r1.bottom)
     )
 

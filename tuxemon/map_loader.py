@@ -96,6 +96,7 @@ class YAMLEventLoader:
     """
     Support for reading game events from a YAML file
     """
+
     def load_events(self, path: str) -> Iterator[EventObject]:
         """
         Load EventObjects from YAML file

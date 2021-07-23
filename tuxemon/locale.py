@@ -41,7 +41,7 @@ from babel.messages.pofile import read_po
 from tuxemon.constants import paths
 from tuxemon import prepare
 from tuxemon.session import Session
-from typing import Any, Callable, Generator, Iterable, Mapping, Sequence
+from typing import Generator, Optional, Mapping, Any, Iterable, Sequence, Callable
 
 logger = logging.getLogger(__name__)
 
@@ -181,7 +181,7 @@ class TranslatorPo:
     def format(
         self,
         text: str,
-        parameters: Mapping[str, Any] | None = None,
+        parameters: Optional[Mapping[str, Any]] = None,
     ) -> str:
         """
         Replaces variables in a translation string with the given parameters.
@@ -200,7 +200,7 @@ class TranslatorPo:
             text = text.format(**parameters)
         return text
 
-    def maybe_translate(self, text: str | None) -> str:
+    def maybe_translate(self, text: Optional[str]) -> str:
         """
         Try to translate the text. If ``None``, return empty string.
 
@@ -216,14 +216,12 @@ class TranslatorPo:
             return self.translate(text)
 
 
-def replace_text(context: Session, text: str) -> str:
+def replace_text(session: Session, text: str) -> str:
     """
     Replaces ``${{var}}`` tiled variables with their in-session value.
 
-    TODO: fix the docstrings
-
     Parameters:
-        context: Session containing the information to fill the variables.
+        session: Session containing the information to fill the variables.
         text: Text whose references to variables should be substituted.
 
     Examples:
@@ -231,12 +229,12 @@ def replace_text(context: Session, text: str) -> str:
         'Red is running away!'
 
     """
-    text = text.replace("${{name}}", context.player.name)
+    text = text.replace("${{name}}", session.player.name)
     text = text.replace("${{currency}}", "$")
     text = text.replace(r"\n", "\n")
 
-    for i in range(len(context.player.monsters)):
-        monster = context.player.monsters[i]
+    for i in range(len(session.player.monsters)):
+        monster = session.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace("${{monster_" + str(i) + "_desc}}", monster.description)
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)

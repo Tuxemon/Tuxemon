@@ -44,7 +44,7 @@ import logging
 import re
 from itertools import zip_longest
 
-from tuxemon.compat.rect import Rect
+from tuxemon.compat import Rect
 from tuxemon import prepare
 from tuxemon.locale import T
 

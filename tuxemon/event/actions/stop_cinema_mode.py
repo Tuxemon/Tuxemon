@@ -33,7 +33,7 @@ class StopCinemaModeAction(EventAction):
     valid_parameters = []
 
     def start(self):
-        world = self.context.client.current_state
+        world = self.session.client.current_state
         if world.cinema_state == "on":
             logger.info("Turning off cinema mode")
             world.cinema_state = "turning off"

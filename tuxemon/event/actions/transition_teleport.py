@@ -42,8 +42,8 @@ class TransitionTeleportAction(EventAction):
         # self.transition = self.session.client.event_engine.get_action("screen_transition", params)
         # self.transition.start()
         position = Position(self.parameters.x, self.parameters.y, 0, self.parameters.map_name)
-        self.context.client.release_controls()
-        self.context.world.teleport(self.context.player, position)
+        self.session.client.release_controls()
+        self.session.world.teleport(self.session.player, position)
 
     # def update(self):
     #     if not self.transition.done:

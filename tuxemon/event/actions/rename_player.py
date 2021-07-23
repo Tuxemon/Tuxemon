@@ -38,17 +38,17 @@ class RenamePlayerAction(EventAction):
     valid_parameters = []
 
     def set_player_name(self, name):
-        self.context.player.name = name
+        self.session.player.name = name
 
     def start(self):
-        self.context.client.push_state(
+        self.session.client.push_state(
             state_name="InputMenu",
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,
-            initial=self.context.player.name,
+            initial=self.session.player.name,
         )
 
     def update(self):
-        if self.context.client.get_state_by_name("InputMenu") is None:
+        if self.session.client.get_state_by_name("InputMenu") is None:
             self.stop()

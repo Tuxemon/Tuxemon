@@ -32,9 +32,9 @@ class AddItemAction(EventAction):
     valid_parameters = [(str, "item_slug"), ((int, None), "quantity")]
 
     def start(self):
-        player = self.context.player
+        player = self.session.player
         if self.parameters.quantity is None:
             quantity = 1
         else:
             quantity = self.parameters.quantity
-        player.alter_item_quantity(self.context, self.parameters.item_slug, quantity)
+        player.alter_item_quantity(self.session, self.parameters.item_slug, quantity)

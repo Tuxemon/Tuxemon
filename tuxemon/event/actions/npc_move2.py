@@ -38,7 +38,7 @@ class NpcMoveTileAction(EventAction):
     def start(self):
         npc_slug = self.raw_parameters[0]
         direction = self.raw_parameters[1]
-        self.npc = get_npc(self.context, npc_slug)
+        self.npc = get_npc(self.session, npc_slug)
         self.npc.velocity3 = self.npc.moverate * dirs3[direction]
 
     def update(self):

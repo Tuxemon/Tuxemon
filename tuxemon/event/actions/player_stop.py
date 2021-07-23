@@ -32,7 +32,7 @@ class PlayerStopAction(EventAction):
     valid_parameters = []
 
     def start(self):
-        world = self.context.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name("WorldState")
         if not world:
             return
 

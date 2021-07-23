@@ -89,7 +89,7 @@ class ItemCondition:
 
         self.session = session
         self.user = user
-        self.context = context
+        self.session = context
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

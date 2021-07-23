@@ -39,4 +39,4 @@ class ModifyPlayerAttributeAction(EventAction):
     def start(self):
         attribute = self.parameters[0]
         modifier = self.parameters[1]
-        CommonAction.modify_character_attribute(self.context.player, attribute, modifier)
+        CommonAction.modify_character_attribute(self.session.player, attribute, modifier)

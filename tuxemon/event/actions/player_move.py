@@ -39,10 +39,10 @@ class PlayerMoveAction(EventAction):
     valid_parameters = []
 
     def start(self):
-        npc = self.context.player
+        npc = self.session.player
         npc.move_direction(npc.facing)
 
     def update(self):
-        npc = self.context.player
+        npc = self.session.player
         npc.animation = "walking"
         self.stop()

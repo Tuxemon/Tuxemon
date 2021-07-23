@@ -43,10 +43,10 @@ class DialogAction(EventAction):
     valid_parameters = [(str, "text"), (str, "avatar")]
 
     def start(self):
-        text = replace_text(self.context, self.parameters.text)
-        avatar = get_avatar(self.context, self.parameters.avatar)
-        open_dialog(self.context, [text], avatar)
+        text = replace_text(self.session, self.parameters.text)
+        avatar = get_avatar(self.session, self.parameters.avatar)
+        open_dialog(self.session, [text], avatar)
 
     def update(self):
-        if self.context.client.get_state_by_name("DialogState") is None:
+        if self.session.client.get_state_by_name("DialogState") is None:
             self.stop()

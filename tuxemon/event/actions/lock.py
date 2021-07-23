@@ -27,4 +27,4 @@ class LockAction(EventAction):
     name = "lock"
 
     def start(self):
-        self.context.player.game_variables["LOCK_CONTROLS"] = True
+        self.session.player.game_variables["LOCK_CONTROLS"] = True

@@ -51,18 +51,18 @@ class SetMonsterHealthAction(EventAction):
             monster.current_hp = int(monster.hp * value)
 
     def start(self):
-        if not self.context.player.monsters:
+        if not self.session.player.monsters:
             return
 
         monster_slot = self.parameters[0]
         monster_health = self.parameters[1]
 
         if monster_slot is None:
-            for monster in self.context.player.monsters:
+            for monster in self.session.player.monsters:
                 self.set_health(monster, monster_health)
         else:
             try:
-                monster = self.context.player.monsters[monster_slot]
+                monster = self.session.player.monsters[monster_slot]
             except IndexError:
                 logger.error("invalid monster slot")
             else:

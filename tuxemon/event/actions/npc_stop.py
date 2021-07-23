@@ -34,12 +34,12 @@ class NpcStopAction(EventAction):
 
     def start(self):
         npc_slug = self.raw_parameters[0]
-        self.npc = get_npc(self.context, npc_slug)
+        self.npc = get_npc(self.session, npc_slug)
 
-        engine = self.context.engine
+        engine = self.session.engine
         for task_id, actionlist in engine.running_events.items():
             action = actionlist.running_action
             if actionlist.running_action.context.name == "npc_move_tile":
                 action.stop()
 
-        self.context.engine.set_message("player_moved")
+        self.session.engine.set_message("player_moved")

@@ -41,6 +41,6 @@ class CameraFollow(EventAction):
     valid_parameters = [(str, "text")]
 
     def start(self):
-        entity = get_npc(self.context, self.parameters[0])
-        state = self.context.client.get_state_by_name("WorldState")
+        entity = get_npc(self.session, self.parameters[0])
+        state = self.session.client.get_state_by_name("WorldState")
         state.follow(entity)

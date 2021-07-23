@@ -98,7 +98,7 @@ class EventAction:
     _param_factory = None
 
     def __init__(self, context: EventContext, parameters):
-        self.context = context
+        self.session = context
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

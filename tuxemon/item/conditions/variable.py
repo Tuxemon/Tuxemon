@@ -39,7 +39,7 @@ class VariableCondition(ItemCondition):
         var_name = self.parameters.var_name
         expect = self.parameters.expected
 
-        if self.context == "target":
+        if self.session == "target":
             context = target
         else:
             context = self.user

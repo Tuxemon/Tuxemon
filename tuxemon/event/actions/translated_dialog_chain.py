@@ -55,7 +55,7 @@ class TranslatedDialogChainAction(EventAction):
             if "=" in param:
                 replace.append(param)
             else:
-                avatar = get_avatar(self.context, param)
+                avatar = get_avatar(self.session, param)
 
         # If text is "${{end}}, then close the current dialog
         if key == "${{end}}":
@@ -64,12 +64,12 @@ class TranslatedDialogChainAction(EventAction):
         self.stop()
 
         pages = process_translate_text(
-            self.context,
+            self.session,
             key,
             replace,
         )
 
-        dialog = self.context.client.get_state_by_name("DialogState")
+        dialog = self.session.client.get_state_by_name("DialogState")
         if dialog:
             dialog.text_queue += pages
         else:
@@ -78,9 +78,9 @@ class TranslatedDialogChainAction(EventAction):
     def update(self):
         key = self.raw_parameters[0]
         if key == "${{end}}":
-            if self.context.client.get_state_by_name("DialogState") is None:
+            if self.session.client.get_state_by_name("DialogState") is None:
                 self.stop()
 
     def open_dialog(self, pages, avatar):
         logger.info("Opening chain dialog window")
-        open_dialog(self.context, pages, avatar)
+        open_dialog(self.session, pages, avatar)

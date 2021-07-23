@@ -42,11 +42,11 @@ class TranslatedDialogChoiceAction(EventAction):
     def start(self):
         def set_variable(var_value):
             player.game_variables[self.parameters.variable] = var_value
-            self.context.client.pop_state()
+            self.session.client.pop_state()
 
         # perform text substitutions
-        choices = replace_text(self.context, self.parameters.choices)
-        player = get_npc(self.context, "player")
+        choices = replace_text(self.session, self.parameters.choices)
+        player = get_npc(self.session, "player")
 
         # make menu options for each string between the colons
         var_list = choices.split(":")
@@ -56,10 +56,10 @@ class TranslatedDialogChoiceAction(EventAction):
             text = T.translate(val)
             var_menu.append((text, text, partial(set_variable, val)))
 
-        self.open_choice_dialog(self.context, var_menu)
+        self.open_choice_dialog(self.session, var_menu)
 
     def update(self):
-        if self.context.client.get_state_by_name("ChoiceState") is None:
+        if self.session.client.get_state_by_name("ChoiceState") is None:
             self.stop()
 
     def open_choice_dialog(self, session, menu):

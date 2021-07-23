@@ -29,4 +29,4 @@ class QuitAction(EventAction):
     valid_parameters = []
 
     def start(self):
-        self.context.client.stop()
+        self.session.client.stop()

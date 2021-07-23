@@ -37,13 +37,13 @@ class UpdateInventoryAction(EventAction):
     ]
 
     def start(self):
-        npc = get_npc(self.context, self.parameters.npc_slug)
+        npc = get_npc(self.session, self.parameters.npc_slug)
         if self.parameters.inventory_slug is None:
             return
 
         npc.inventory.update(
             decode_inventory(
-                self.context,
+                self.session,
                 npc,
                 db.database["inventory"][self.parameters.inventory_slug].get("inventory", {}),
             )

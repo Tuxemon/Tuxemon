@@ -37,6 +37,6 @@ class Walk(EventAction):
         npc.move_direction(npc.facing)
 
     def update(self):
-        npc = self.context.player
+        npc = self.session.player
         npc.animation = "walking"
         self.stop()

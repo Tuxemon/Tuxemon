@@ -49,7 +49,7 @@ class RandomEncounterAction(EventAction):
     ]
 
     def start(self):
-        player = self.context.player
+        player = self.session.player
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
@@ -74,7 +74,7 @@ class RandomEncounterAction(EventAction):
 
             # Add our players and setup combat
             # "queueing" it will mean it starts after the top of the stack is popped (or replaced)
-            self.context.client.queue_state(
+            self.session.client.queue_state(
                 "CombatState",
                 players=(player, npc),
                 combat_type="monster",
@@ -82,19 +82,19 @@ class RandomEncounterAction(EventAction):
             )
 
             # stop the player
-            world = self.context.client.get_state_by_name("WorldState")
+            world = self.session.client.get_state_by_name("WorldState")
             world.lock_controls()
             world.stop_player()
 
             # flash the screen
-            self.context.client.push_state("FlashTransition")
+            self.session.client.push_state("FlashTransition")
 
             # Start some music!
             filename = env["battle_music"]
-            self.context.client.event_engine.execute_action("play_music", [filename])
+            self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self):
-        if self.context.client.get_state_by_name("CombatState") is None:
+        if self.session.client.get_state_by_name("CombatState") is None:
             self.stop()
 
 

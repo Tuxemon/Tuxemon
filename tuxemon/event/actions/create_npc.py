@@ -45,12 +45,12 @@ class CreateNpcAction(EventAction):
         slug = self.parameters.npc_slug
 
         # Ensure that the NPC doesn't already exist
-        if get_npc(self.context.session, slug) is not None:
+        if get_npc(self.session.session, slug) is not None:
             return
 
         npc = NPC(slug)
         x = self.parameters.tile_pos_x
         y = self.parameters.tile_pos_y
-        map_name = self.context.map.name
+        map_name = self.session.map.name
         position = Position(x, y, 0, map_name)
-        self.context.world.add_entity(npc, position)
+        self.session.world.add_entity(npc, position)

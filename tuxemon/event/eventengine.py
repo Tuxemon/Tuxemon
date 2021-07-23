@@ -31,7 +31,6 @@ from collections import defaultdict
 from sessionlib import sessionmanager
 from dataclasses import dataclass
 from textwrap import dedent
-from typing import List
 
 from tuxemon.compat import Rect
 from tuxemon.event import MapCondition, EventObject, MapAction
@@ -72,8 +71,8 @@ class LoadedEvent:
     id: str
     name: str
     rect: Rect
-    conds: List[LoadedCondition]
-    acts: List[LoadedAction]
+    conds: list[LoadedCondition]
+    acts: list[LoadedAction]
 
 
 class EventEngine:
@@ -110,7 +109,7 @@ class EventEngine:
     def load_event(self, event: EventObject):
         self._load_event(event.id, event.name, event.rect, event.conds, event.acts)
 
-    def _load_event(self, event_id: str, name: str, rect: Rect, conditions: List, actions: List):
+    def _load_event(self, event_id: str, name: str, rect: Rect, conditions: list, actions: list):
         instanced_conds = list()
         triggers = set()
         for event_condition in conditions:

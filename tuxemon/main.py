@@ -26,7 +26,6 @@
 # main Sets up the states and main game loop.
 #
 from __future__ import annotations
-from typing import Optional
 import logging
 
 from tuxemon import prepare
@@ -39,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 
 def main(
-    load_slot: Optional[int] = None,
+    load_slot: int | None = None,
 ) -> None:
     """
     Configure and start the game.

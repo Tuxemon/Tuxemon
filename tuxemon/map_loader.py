@@ -33,7 +33,7 @@ import yaml
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
-from tuxemon.event import EventObject, MapAction, MapCondition
+from tuxemon.event import EventObject, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
@@ -48,9 +48,6 @@ from tuxemon.map import (
 )
 from tuxemon.script.oldparser import (
     event_actions_and_conditions,
-    parse_action_string,
-    parse_condition_string,
-    parse_behav_string,
     process_behav_string,
     process_condition_string,
     process_action_string,
@@ -60,9 +57,7 @@ from tuxemon.tools import copy_dict_with_keys, maybe_get_as_type
 logger = logging.getLogger(__name__)
 
 
-def new_event_object(
-    event_id: str, name: str, event_type: str, rect: Rect, properties: List
-) -> EventObject:
+def new_event_object(event_id: str, name: str, event_type: str, rect: Rect, properties: List) -> EventObject:
     """
     Return a new EventObject
 
@@ -135,9 +130,7 @@ class TMXMapLoader:
         Loading the map data is done using the pytmx library.
         """
         # TODO: remove the need to load graphics here
-        data = pytmx.TiledMap(
-            filepath, image_loader=scaled_image_loader, pixelalpha=True
-        )
+        data = pytmx.TiledMap(filepath, image_loader=scaled_image_loader, pixelalpha=True)
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()

@@ -32,8 +32,7 @@ import sys
 from abc import ABCMeta
 from importlib import import_module
 import pygame
-from typing import Any, Optional, Type, Generator, Mapping,\
-    Sequence, List, Tuple, Dict, Set
+from typing import Any, Generator, Mapping, Sequence
 
 from tuxemon.compat import Rect
 from tuxemon.constants import paths
@@ -159,7 +158,7 @@ class State:
         """
         remove_animations_of(target, self.animations)
 
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+    def process_event(self, event: PlayerInput) -> PlayerInput | None:
         """
         Handles player input events.
 
@@ -280,10 +279,10 @@ class StateManager:
         self.done = False
         self.current_time = 0.0
         self.package = "tuxemon.states"
-        self.state_resume_set: Set[State] = set()
-        self._state_queue: List[Tuple[str, Mapping[str, Any]]] = list()
-        self._state_stack: List[State] = list()
-        self._state_dict: Dict[str, Type[State]] = dict()
+        self.state_resume_set: set[State] = set()
+        self._state_queue: list[tuple[str, Mapping[str, Any]]] = list()
+        self._state_stack: list[State] = list()
+        self._state_dict: dict[str, type[State]] = dict()
 
     def auto_state_discovery(self) -> None:
         """Scan a folder, load states found in it, and register them."""
@@ -296,7 +295,7 @@ class StateManager:
             for state in self.collect_states_from_path(folder):
                 self.register_state(state)
 
-    def register_state(self, state: Type[State]) -> None:
+    def register_state(self, state: type[State]) -> None:
         """
         Add a state class.
 
@@ -311,7 +310,7 @@ class StateManager:
     @staticmethod
     def collect_states_from_module(
         import_name: str,
-    ) -> Generator[Type[State], None, None]:
+    ) -> Generator[type[State], None, None]:
         """
         Given a module, return all classes in it that are a game state.
 
@@ -332,8 +331,9 @@ class StateManager:
                 yield c
 
     def collect_states_from_path(
-        self, folder: str,
-    ) -> Generator[Type[State], None, None]:
+        self,
+        folder: str,
+    ) -> Generator[type[State], None, None]:
         """
         Load states from disk, but do not register it.
 
@@ -354,7 +354,7 @@ class StateManager:
             logger.error(template.format(folder))
             raise
 
-    def query_all_states(self) -> Mapping[str, Type[State]]:
+    def query_all_states(self) -> Mapping[str, type[State]]:
         """
         Return a dictionary of all loaded states.
 
@@ -381,7 +381,7 @@ class StateManager:
         """
         self._state_queue.append((state_name, kwargs))
 
-    def pop_state(self, state: Optional[State] = None) -> None:
+    def pop_state(self, state: State | None = None) -> None:
         """
         Pop some state.
 
@@ -503,7 +503,7 @@ class StateManager:
         return self._state_stack[0].name
 
     @property
-    def current_state(self) -> Optional[State]:
+    def current_state(self) -> State | None:
         """
         The currently running state, if any.
 

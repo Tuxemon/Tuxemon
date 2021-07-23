@@ -88,7 +88,7 @@ direction_map = {
 facing = "front", "back", "left", "right"
 
 
-def translate_short_path(path: str, position: Tuple[int, int]=(0, 0)) -> Iterator[str]:
+def translate_short_path(path: str, position: Tuple[int, int] = (0, 0)) -> Iterator[str]:
     """Translate condensed path strings into coordinate pairs
 
     Uses a string of U D L R characters; Up Down Left Right.

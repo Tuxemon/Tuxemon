@@ -62,15 +62,15 @@ class EventObject:
 __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
-def get_npc(context, slug):
+def get_npc(session, slug):
     """Gets an NPC object by slug.  None is returned if not found.
 
     Pass "player" to get the player's entity of this session.
 
-    :param tuxemon.event.eventengine.EventContext context
+    :param tuxemon.event.eventengine.EventContext session
     :param str slug: The slug of the NPC that exists on the current map.
     :rtype: Optional[tuxemon.npc.NPC]
     """
     if slug == "player":
-        return context.player
-    return context.world.get_entity(slug)
+        return session.player
+    return session.world.get_entity(slug)

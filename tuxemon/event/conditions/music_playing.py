@@ -27,7 +27,7 @@ class MusicPlayingCondition(EventCondition):
 
     name = "music_playing"
 
-    def test(self, context, event, condition):
+    def test(self, session, event, condition):
         """Checks to see if a particular piece of music is playing or not.
 
         :param session: The session object
@@ -48,7 +48,7 @@ class MusicPlayingCondition(EventCondition):
 
         # currently no way to query the names of states in the state game stack.
         # so we find names here.  possibly might make api to do this later.
-        names = {i.name for i in context.client.active_states}
+        names = {i.name for i in session.client.active_states}
         combat_states = {"FlashTransition", "CombatState"}
 
         # means "if any element of combat_states is in names"

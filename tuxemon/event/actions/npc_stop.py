@@ -39,7 +39,7 @@ class NpcStopAction(EventAction):
         engine = self.session.engine
         for task_id, actionlist in engine.running_events.items():
             action = actionlist.running_action
-            if actionlist.running_action.context.name == "npc_move_tile":
+            if actionlist.running_action.session.name == "npc_move_tile":
                 action.stop()
 
         self.session.engine.set_message("player_moved")

@@ -28,15 +28,15 @@ class NPCFacingCondition(EventCondition):
 
     name = "npc_facing"
 
-    def test(self, context, event, condition):
+    def test(self, session, event, condition):
         """Checks to see where an NPC is facing
 
         :param event:
-        :param context: The session object
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type context: tuxemon.session.Session
+        :type session: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -44,7 +44,7 @@ class NPCFacingCondition(EventCondition):
 
         Valid Parameters: npc_slug, direction ("up", "down", "left" or "right")
         """
-        player = get_npc(context, condition.parameters[0])
+        player = get_npc(session, condition.parameters[0])
         if not player:
             return False
         facing = condition.parameters[1]

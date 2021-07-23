@@ -29,6 +29,6 @@ class NPCAtCondition(EventCondition):
 
     name = "npc_at"
 
-    def test(self, context, event, condition):
-        entity = get_npc(context, condition.parameters[0])
+    def test(self, session, event, condition):
+        entity = get_npc(session, condition.parameters[0])
         return entity_at_position(entity, event)

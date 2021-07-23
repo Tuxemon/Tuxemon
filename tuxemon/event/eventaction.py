@@ -26,7 +26,7 @@
 import logging
 from collections import namedtuple
 
-from tuxemon.event.eventcontext import EventContext
+from tuxemon.event.eventsession import EventContext
 from tuxemon.tools import cast_values
 
 logger = logging.getLogger(__name__)
@@ -59,7 +59,7 @@ class EventAction:
     including the first frame it is started.  You should eventually
     stop the action during update.
 
-    The EventAction class supports the context protocol, and you may
+    The EventAction class supports the session protocol, and you may
     also use them outside of the EventEngine, but can only be run
     in a blocking manner.  Do not execute EventActions outside the Engine
     if the action will block forever, as it will freeze the game.
@@ -97,8 +97,8 @@ class EventAction:
     valid_parameters = list()
     _param_factory = None
 
-    def __init__(self, context: EventContext, parameters):
-        self.session = context
+    def __init__(self, session: EventContext, parameters):
+        self.session = session
 
         # TODO: METACLASS
         # make a namedtuple class that will generate the parameters

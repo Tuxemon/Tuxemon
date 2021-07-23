@@ -28,7 +28,7 @@ from __future__ import annotations
 import logging
 import uuid
 from collections import defaultdict
-from contextlib import contextmanager
+from sessionlib import sessionmanager
 from dataclasses import dataclass
 from textwrap import dedent
 from typing import List
@@ -37,7 +37,7 @@ from tuxemon.compat import Rect
 from tuxemon.event import MapCondition, EventObject, MapAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.event.eventcontext import EventContext
+from tuxemon.event.eventsession import EventContext
 from tuxemon.session import local_session, Session
 
 logger = logging.getLogger(__name__)
@@ -47,7 +47,7 @@ logger = logging.getLogger(__name__)
 class ActionList:
     session: Session
     actions: list
-    context: EventContext
+    session: EventContext
     index: int
     running_action: callable
 
@@ -141,7 +141,7 @@ class EventEngine:
         if parameters is None:
             parameters = list()
         action = self.actions[name]
-        context = EventContext(
+        session = EventContext(
             client=session.client,
             engine=self,
             map=self.map,
@@ -151,7 +151,7 @@ class EventEngine:
             name=name,
             parameters=parameters,
         )
-        return action(context, parameters)
+        return action(session, parameters)
 
     def get_condition(self, data: MapCondition) -> LoadedCondition:
         """Get a condition that is loaded into the engine"""
@@ -170,7 +170,7 @@ class EventEngine:
 
     @staticmethod
     def check_condition(session: Session, condition: LoadedCondition, map_event):
-        with add_error_context(map_event, condition, session):
+        with add_error_session(map_event, condition, session):
             result = condition.condition.test(session, map_event, condition)
             result = result == condition.operator
             logger.debug(
@@ -188,7 +188,7 @@ class EventEngine:
         actionlist = ActionList(
             session=session,
             actions=[action_token],
-            context=None,
+            session=None,
             index=0,
             running_action=None,
         )
@@ -269,14 +269,14 @@ class EventEngine:
                 pass
 
 
-@contextmanager
-def add_error_context(event, item, session):
+@sessionmanager
+def add_error_session(event, item, session):
     """
     :type event: tuxemon.event.EventObject
     :type item: tuxemon.event.MapCondition or event.MapAction
     :type session: tuxemon.session.Session
     """
-    # with add_error_context(e.map_event, e.current_map_action, e.context):
+    # with add_error_session(e.map_event, e.current_map_action, e.session):
     try:
         yield
     except Exception:

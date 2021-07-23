@@ -31,15 +31,15 @@ class PlayerFacingTileCondition(EventCondition):
 
     name = "player_facing_tile"
 
-    def test(self, context, event, condition):
+    def test(self, session, event, condition):
         """Checks to see the player is facing a tile position
 
         :param event:
-        :param context: The session object
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type context: tuxemon.session.Session
+        :type session: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -54,23 +54,23 @@ class PlayerFacingTileCondition(EventCondition):
         tile_location = None
 
         for coordinates in tiles:
-            if coordinates[1] == context.player.tile_pos[1]:
-                if coordinates[0] == context.player.tile_pos[0] - 1:
+            if coordinates[1] == session.player.tile_pos[1]:
+                if coordinates[0] == session.player.tile_pos[0] - 1:
                     logger.debug("Tile is to the left of the player")
                     tile_location = "left"
-                elif coordinates[0] == context.player.tile_pos[0] + 1:
+                elif coordinates[0] == session.player.tile_pos[0] + 1:
                     logger.debug("Tile is to the right of the player")
                     tile_location = "right"
 
-            elif coordinates[0] == context.player.tile_pos[0]:
-                if coordinates[1] == context.player.tile_pos[1] - 1:
+            elif coordinates[0] == session.player.tile_pos[0]:
+                if coordinates[1] == session.player.tile_pos[1] - 1:
                     logger.debug("Tile is above the player")
                     tile_location = "up"
-                elif coordinates[1] == context.player.tile_pos[1] + 1:
+                elif coordinates[1] == session.player.tile_pos[1] + 1:
                     logger.debug("Tile is below the player")
                     tile_location = "down"
 
-            if context.player.facing == tile_location:
+            if session.player.facing == tile_location:
                 return True
 
         return False

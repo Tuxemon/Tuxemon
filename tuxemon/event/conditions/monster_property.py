@@ -27,15 +27,15 @@ class MonsterPropertyCondition(EventCondition):
 
     name = "monster_property"
 
-    def test(self, context, event, condition):
+    def test(self, session, event, condition):
         """Checks to see if a monster property or condition is as asked
 
         :param event:
-        :param context: The session object
+        :param session: The session object
         :param condition: A dictionary of condition details. See :py:func:`map.Map.loadevents`
             for the format of the dictionary.
 
-        :type context: tuxemon.session.Session
+        :type session: tuxemon.session.Session
         :type condition: Dictionary
 
         :rtype: Boolean
@@ -46,10 +46,10 @@ class MonsterPropertyCondition(EventCondition):
         prop = condition.parameters[1]
         val = condition.parameters[2]
 
-        if int(slot) >= len(context.player.monsters):
+        if int(slot) >= len(session.player.monsters):
             return False
 
-        monster = context.player.monsters[slot]
+        monster = session.player.monsters[slot]
         if prop == "name":
             return monster.name == val
         elif prop == "level":

@@ -30,14 +30,14 @@ class ToUseTileCondition(EventCondition):
 
     name = "to_use_tile"
 
-    def test(self, context, event, condition):
+    def test(self, session, event, condition):
         """Checks to see the player is next to and facing a particular tile and that the Return button is pressed.
 
         :param event:
-        :param context: The session object
+        :param session: The session object
         :param condition: The condition details.
 
-        :type context: tuxemon.session.Session
+        :type session: tuxemon.session.Session
         :type condition: NamedTuple
 
         :rtype: Boolean
@@ -45,9 +45,9 @@ class ToUseTileCondition(EventCondition):
 
         Valid Parameters: None
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(context, event, condition)
+        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(session, event, condition)
         button_pressed = ButtonPressedCondition().test(
-            context,
+            session,
             event,
             MapCondition(
                 type="button_pressed",

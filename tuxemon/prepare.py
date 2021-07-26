@@ -26,6 +26,8 @@
 #
 # prepare Prepares the game environment.
 #
+from __future__ import annotations
+from typing import TYPE_CHECKING, List
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
@@ -37,6 +39,12 @@ import re
 
 from tuxemon.constants import paths
 from tuxemon import config
+
+if TYPE_CHECKING:
+    import pygame as pg
+    SCREEN: pg.surface.Surface
+    SCREEN_RECT: pg.rect.Rect
+    JOYSTICKS: List[pg.joystick.Joystick]
 
 logger = logging.getLogger(__name__)
 
@@ -110,7 +118,7 @@ SAVE_METHOD = "JSON"
 DEV_TOOLS = CONFIG.dev_tools
 
 
-def pygame_init():
+def pygame_init() -> None:
     """Eventually refactor out of prepare"""
     global JOYSTICKS
     global FONTS
@@ -171,7 +179,7 @@ def pygame_init():
 
 
 # Initialize the game framework
-def init():
+def init() -> None:
     from tuxemon import platform
 
     platform.init()
@@ -183,7 +191,7 @@ def init():
 # note: this has the potential of being a bottle neck doing to all the checking of paths
 # eventually, this should be configured at game launch, or in a config file instead
 # of looking all over creation for the required files.
-def fetch(*args):
+def fetch(*args: str) -> str:
     relative_path = os.path.join(*args)
 
     for mod_name in CONFIG.mods:

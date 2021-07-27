@@ -16,7 +16,7 @@ from tuxemon.compat import Rect
 from tuxemon import prepare
 from tuxemon.pyganim import PygAnimation, PygConductor
 from tuxemon.sprite import Sprite
-from tuxemon.tools import transform_resource_filename, scale_sequence, scale_rect
+from tuxemon.tools import transform_resource_filename, scale_sequence
 
 logger = logging.getLogger(__name__)
 
@@ -279,7 +279,7 @@ def scaled_image_loader(filename, colorkey, **kwargs):
     def load_image(rect=None, flags=None):
         if rect:
             # scale the rect to match the scaled image
-            rect = scale_rect(rect)
+            rect = scale_sequence(rect)
             try:
                 tile = image.subsurface(rect)
             except ValueError:

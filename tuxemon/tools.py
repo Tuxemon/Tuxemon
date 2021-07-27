@@ -26,7 +26,8 @@
 #
 #
 from __future__ import annotations
-from typing import Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar, Union
+from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
+    Union, Mapping, Iterable, TYPE_CHECKING, Callable)
 import typing
 
 """
@@ -43,11 +44,20 @@ import logging
 import re
 from itertools import zip_longest
 
-from tuxemon.compat import Rect
+from tuxemon.compat import ReadOnlyRect
 from tuxemon import prepare
 from tuxemon.locale import T
 
+if TYPE_CHECKING:
+    from tuxemon.session import Session
+    from tuxemon.sprite import Sprite
+    from tuxemon.item.item import Item
+    from tuxemon.state import State
+    import pygame
+
 logger = logging.getLogger(__name__)
+
+TVar = TypeVar("TVar")
 
 ValidParameterSingleType = Optional[Type[Any]]
 ValidParameterTypes = Union[
@@ -67,136 +77,148 @@ class NamedTupleProtocol(Protocol):
 NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
 
 
-def get_cell_coordinates(rect, point, size):
+def get_cell_coordinates(
+    rect: ReadOnlyRect,
+    point: Tuple[int, int],
+    size: Tuple[int, int],
+) -> Tuple[int, int]:
     """Find the cell of size, within rect, that point occupies."""
-    cell = [None, None]
     point = (point[0] - rect.x, point[1] - rect.y)
-    cell[0] = (point[0] // size[0]) * size[0]
-    cell[1] = (point[1] // size[1]) * size[1]
-    return tuple(cell)
+    cell_x = (point[0] // size[0]) * size[0]
+    cell_y = (point[1] // size[1]) * size[1]
+    return (cell_x, cell_y)
 
 
-def transform_resource_filename(*filename):
-    """Appends the resource folder name to a filename
+def transform_resource_filename(*filename: str) -> str:
+    """
+    Appends the resource folder name to a filename.
 
-    :param filename: String
-    :rtype: basestring
+    Parameters:
+        filename: Relative path of a resource.
+
+    Returns:
+        The absolute path of the resource.
+
     """
     return prepare.fetch(*filename)
 
 
-def new_scaled_rect(*args, **kwargs):
-    """Create a new rect and scale it
-
-    :param args: Normal args for a Rect
-    :param kwargs: Normal kwargs for a Rect
-    :rtype: tuxemon.compat.rect.Rect
+def scale_sequence(sequence: Sequence[int]) -> Sequence[int]:
     """
-    rect = Rect(*args, **kwargs)
-    return scale_rect(rect)
+    Scale a sequence of integers by the configured scale factor.
 
+    Parameters:
+        sequence: Sequence to scale.
 
-def scale_rect(rect, factor=prepare.SCALE):
-    """Scale a rect.  Returns a new object.
+    Returns:
+        Scaled sequence.
 
-    :param rect: Rect
-    :param factor: int
-    :rtype: tuxemon.compat.rect.Rect
-    """
-    return Rect([i * factor for i in list(rect)])
-
-
-def scale_sequence(sequence):
-    """Scale the thing
-
-    :param sequence:
-    :rtype: list
     """
     return [i * prepare.SCALE for i in sequence]
 
 
-def scale(number):
-    """Scale the thing
+def scale(number: int) -> int:
+    """
+    Scale an integer by the configured scale factor.
 
-    :param number: int
-    :rtype: int
+    Parameter:
+        number: Integer to scale.
+
+    Returns:
+        Scaled integer.
+
     """
     return prepare.SCALE * number
 
 
-def check_parameters(parameters, required=0, exit=True):
+def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
     """
-    Checks to see if a given list has the required number of items
-    """
-    if len(parameters) < required:
-        import inspect
+    Return a rect that is the area for a dialog box on the screen.
 
-        calling_function = inspect.stack()[1][3]
-        logger.error("'" + calling_function + "' requires at least " + str(required) + "parameters.")
-        if exit:
-            import sys
+    Note:
+        This only works with Pygame rects, as it modifies the attributes.
 
-            sys.exit(1)
-        return False
+    Parameters:
+        screen_rect: Rectangle of the screen.
 
-    else:
-        return True
+    Returns:
+        Rectangle for a dialog.
 
-
-def calc_dialog_rect(screen_rect):
-    """Return a rect that is the area for a dialog box on the screen
-
-    :param screen_rect:
-    :return:
     """
     rect = screen_rect.copy()
     if prepare.CONFIG.large_gui:
-        rect.height *= 0.4
+        rect.height *= 4
+        rect.height //= 10
         rect.bottomleft = screen_rect.bottomleft
     else:
-        rect.height *= 0.25
-        rect.width *= 0.8
+        rect.height //= 4
+        rect.width *= 8
+        rect.width //= 10
         rect.center = screen_rect.centerx, screen_rect.bottom - rect.height
     return rect
 
 
-def open_dialog(session, text, avatar=None, menu=None):
-    """Open a dialog with the standard window size
+def open_dialog(
+    session: Session,
+    text: Sequence[str],
+    avatar: Optional[Sprite] = None,
+    menu: Optional[Tuple[str, str, Callable[[], None]]] = None,
+) -> State:
+    """
+    Open a dialog with the standard window size.
 
-    :param tuxemon.session.Session session: Game session
-    :param text: list of strings
-    :param avatar: optional avatar sprite
-    :param menu: optional menu object
+    Parameters:
+        session: Game session.
+        text: List of strings.
+        avatar: Optional avatar sprite.
+        menu: Optional menu object.
 
-    :rtype: tuxemon.states.dialog.DialogState
+    Returns:
+        The pushed dialog state.
+
     """
     rect = calc_dialog_rect(session.client.screen.get_rect())
-    return session.client.push_state("DialogState", text=text, avatar=avatar, rect=rect, menu=menu)
+    return session.client.push_state(
+        "DialogState",
+        text=text,
+        avatar=avatar,
+        rect=rect,
+        menu=menu,
+    )
 
 
-def nearest(l):
-    """Use rounding to find nearest tile
-
-    :param l:
-    :return:
+def nearest(l: Iterable[float]) -> Sequence[int]:
     """
+    Use rounding to find nearest tile."""
     return tuple(int(round(i)) for i in l)
 
 
-def trunc(l):
+def trunc(l: Iterable[float]) -> Sequence[int]:
     return tuple(int(i) for i in l)
 
 
-def number_or_variable(session, value):
-    """Returns a numeric game variable by its name
-    If value is already a number, convert from string to float and return that
+def number_or_variable(
+    session: Session,
+    value: str,
+) -> float:
+    """
+    Returns a numeric game variable by its name.
 
-    :param session:
-    :param value: Union[str, float, int]
+    If ``value`` is already a number, convert from string to float and
+    return that.
 
-    :rtype: float
+    Parameters:
+        session: Session object, that contains the requested variable.
+        value: Name of the requested variable or string with numerical value.
 
-    :raises: ValueError
+    Returns:
+        Numerical value contained in the string or in the variable referenced
+        by that name.
+
+    Raises:
+        ValueError: If ``value`` is not a number but no numeric variable with
+        that name can be retrieved.
+
     """
     player = session.player
     if value.isdigit():
@@ -213,13 +235,18 @@ def cast_values(
     parameters: Sequence[Any],
     valid_parameters: Sequence[Tuple[ValidParameterTypes, str]],
 ) -> Sequence[Any]:
-    """Change all the string values to the expected type
+    """
+    Change all the string values to the expected type.
 
-    This will also check and enforce the correct parameters for actions
+    This will also check and enforce the correct parameters for actions.
 
-    :param parameters:
-    :param valid_parameters:
-    :return:
+    Parameters:
+        parameters: Parameters passed to the scripted object.
+        valid_parameters: Allowed parameters and their types.
+
+    Returns:
+        Parameters converted to their correct type.
+
     """
 
     # TODO: stability/testing
@@ -283,13 +310,19 @@ def cast_parameters_to_namedtuple(
     return namedtuple_class(*values)
 
 
-def show_item_result_as_dialog(session, item, result):
-    """Show generic dialog if item was used or not
+def show_item_result_as_dialog(
+    session: Session,
+    item: Item,
+    result: Mapping[str, Any],
+) -> None:
+    """
+    Show generic dialog if item was used or not.
 
-    :param tuxemon.session.Session session: Session
-    :param tuxemon.item.item.Item item: Item
-    :param dict result:
-    :return: None
+    Parameters:
+        session: Game session.
+        item: Item object.
+        result: A dict with a ``success`` key indicating sucess or failure.
+
     """
     msg_type = "use_success" if result["success"] else "use_failure"
     template = getattr(item, msg_type)
@@ -298,18 +331,16 @@ def show_item_result_as_dialog(session, item, result):
         open_dialog(session, [message])
 
 
-def split_escaped(string_to_split, delim=","):
-    """Splits a string by the specified deliminator excluding escaped
-    deliminators.
+def split_escaped(string_to_split: str, delim: str = ",") -> Sequence[str]:
+    """
+    Splits a string by the specified deliminator excluding escaped ones.
 
-    :param string_to_split: The string to split.
-    :param delim: The deliminator to split the string by.
+    Parameters:
+        string_to_split: The string to split.
+        delim: The deliminator to split the string by.
 
-    :type string_to_split: Str
-    :type delim: Str
-
-    :rtype: List
-    :returns: A list of the splitted string.
+    Returns:
+        A list of the splitted string.
 
     """
     # Split by "," unless it is escaped by a "\"
@@ -324,30 +355,41 @@ def split_escaped(string_to_split, delim=","):
     return split_list
 
 
-def round_to_divisible(x, base=16):
-    """Rounds a number to a divisible base.
+def round_to_divisible(x: float, base: int = 16) -> int:
+    """
+    Rounds a number to a divisible base.
 
     This is used to round collision areas that aren't defined well. This
     function assists in making sure collisions work if the map creator didn't
     set the collision areas to round numbers.
 
-    :param x: The number we want to round.
-    :param base: The base that we want our number to be divisible by. (Default: 16)
-    :type x: Float
-    :type base: Integer
-    :rtype: Integer
-    :returns: Rounded number that is divisible by "base".
+    Parameters:
+        x: The number we want to round.
+        base: The base that we want our number to be divisible by. By default
+            this is 16.
+
+    Returns:
+        Rounded number that is divisible by ``base``.
+
     """
     return int(base * round(float(x) / base))
 
 
-def copy_dict_with_keys(source, keys):
-    """Return new dict using only the keys/value from `keys`
+def copy_dict_with_keys(
+    source: Mapping[str, TVar],
+    keys: Iterable[str],
+) -> Mapping[str, TVar]:
+    """
+    Return new dict using only the keys/value from ``keys``.
 
-    If key from keys is not present no error is raised
+    If key from keys is not present no error is raised.
 
-    :param Dict source:
-    :param List[str] keys:
-    :rtype: Dict
+    Parameters:
+        source: Original mapping.
+        keys: Allowed keys in the output mapping.
+
+    Returns:
+        New mapping with the keys restricted to those in ``keys``.
+
     """
     return {k: source[k] for k in keys if k in source}

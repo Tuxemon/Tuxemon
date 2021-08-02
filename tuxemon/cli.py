@@ -331,10 +331,13 @@ class CommandLine(cmd.Cmd):
         Parameters:
             line: ignored
         """
-        # Yes, creating nested cmd instance would be better.
+        # Yes, creating nested cmd instance might be better.
+        
         print(f"Welcome to Event Shell!\nType '/help' for usage information, and '/actions' for action list. ")
         while True:
-            command = input("Tuxemon [event_sh] >>") # Ask user for input
+            # Used mostly for the EOFError
+            try: command = input("Tuxemon [event_sh] >> ") # Ask user for input
+            except EOFError: break
 
             if len(command.replace(" ", "")) == 0: continue # If empty, ignore (added replace command to not 
             # include spaces while counting)
@@ -342,7 +345,12 @@ class CommandLine(cmd.Cmd):
             # Handling shell commands (not events)
             if command[0] == "/": 
                 if command[1:] == "help":
-                    print("help") # Placeholder
+                    print("Shell commands (not interpreted as events):",
+                        "/help - Command help, the one you are currently seeing",
+                        "/actions - All actions", sep="\n")
+                elif command[1:] == "actions":
+                    print( " ".join(self.event_engine.actions) )
+                        
                 elif command[1:] == "exit":
         	        break # Bye
                 continue
@@ -358,7 +366,7 @@ class CommandLine(cmd.Cmd):
                     self.action(args[0], tuple(args[1:]))
                 except Exception as ex:
                     print(f"An error occured ({ex})")
-                
+        print("\nExiting Event Shell...")
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.

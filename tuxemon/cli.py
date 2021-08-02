@@ -80,7 +80,8 @@ class CommandLine(cmd.Cmd):
 
         # For executing actions like add_item,
         # to avoid defining this variable mutiple times
-        self.action = app.event_engine.execute_action
+        self.event_engine = app.event_engine
+        self.action = self.event_engine.execute_action
 
     def emptyline(self) -> bool:
         """If an empty line was entered at the command line, do nothing."""
@@ -323,6 +324,41 @@ class CommandLine(cmd.Cmd):
         map = os.path.split(self.app.event_engine.current_map.data.filename)[1]
         print(map)
 
+    def do_event_sh(self, line: str) -> None:
+        """
+        Starts the event shell.
+        Used for relatively low level access to event actions, while being easier to use than python console.
+        Parameters:
+            line: ignored
+        """
+        # Yes, creating nested cmd instance would be better.
+        print(f"Welcome to Event Shell!\nType '/help' for usage information, and '/actions' for action list. ")
+        while True:
+            command = input("Tuxemon [event_sh] >>") # Ask user for input
+
+            if len(command.replace(" ", "")) == 0: continue # If empty, ignore (added replace command to not 
+            # include spaces while counting)
+
+            # Handling shell commands (not events)
+            if command[0] == "/": 
+                if command[1:] == "help":
+                    print("help") # Placeholder
+                elif command[1:] == "exit":
+        	        break # Bye
+                continue
+
+            args = command.split(" ")
+
+        	# Test, if the command exists
+            if self.event_engine.get_action(args[0]) == None:
+                print(f"Command {args[0]} doesn't exist!")
+
+            else:
+                try:
+                    self.action(args[0], tuple(args[1:]))
+                except Exception as ex:
+                    print(f"An error occured ({ex})")
+                
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.
@@ -333,3 +369,4 @@ class CommandLine(cmd.Cmd):
         """
         # Check to see if we have exited
         return self.app.exit
+

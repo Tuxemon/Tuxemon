@@ -329,16 +329,22 @@ class CommandLine(cmd.Cmd):
         Starts the event shell.
         Used for relatively low level access to event actions, while being easier to use than python console.
         Parameters:
-            line: ignored
+            line: command to execute, event shell exits after it
         """
         # Yes, creating nested cmd instance might be better.
-        
+        if len(line.replace(" ", "")) > 0:
+            line_execute = True 
+        else: line_execute = False
         print(f"Welcome to Event Shell!\nType '/help' for usage information, and '/actions' for action list. ")
         while True:
-            # Used mostly for the EOFError
-            try: command = input("Tuxemon [event_sh] >> ") # Ask user for input
-            except EOFError: break
+        
+            if not line_execute:
+                # Used mostly for the EOFError
+                try: command = input("Tuxemon [event_sh] >> ") # Ask user for input
+                except EOFError: break
 
+            else:
+                command = line
             if len(command.replace(" ", "")) == 0: continue # If empty, ignore (added replace command to not 
             # include spaces while counting)
 
@@ -353,8 +359,8 @@ class CommandLine(cmd.Cmd):
                         
                 elif command[1:] == "exit":
         	        break # Bye
+                if line_execute: break
                 continue
-
             args = command.split(" ")
 
         	# Test, if the command exists
@@ -366,6 +372,9 @@ class CommandLine(cmd.Cmd):
                     self.action(args[0], tuple(args[1:]))
                 except Exception as ex:
                     print(f"An error occured ({ex})")
+
+            if line_execute: break
+
         print("\nExiting Event Shell...")
     def postcmd(self, stop: bool, line: str) -> bool:
         """

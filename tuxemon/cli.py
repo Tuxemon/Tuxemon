@@ -35,6 +35,7 @@ from tuxemon.db import db
 import os
 from threading import Thread
 from typing import TYPE_CHECKING
+import shlex
 
 if TYPE_CHECKING:
     from tuxemon.client import Client
@@ -383,7 +384,7 @@ class CommandLine(cmd.Cmd):
                 elif command[0] == "!":
                     print( self.event_engine.check_condition(command[1:],"none") )
                 """
-                args = command.split(" ")
+                args = shlex.split(command)
 
             	# Test, if the command exists
                 if self.event_engine.get_action(args[0]) == None:

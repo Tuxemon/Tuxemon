@@ -164,6 +164,8 @@ class TranslatorPo:
 
         """
         localedir = os.path.join(paths.CACHE_DIR, "l18n")
+        fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+
         for info in self.search_locales():
             if info.locale == locale_name and info.domain == domain:
                 trans = gettext.translation(
@@ -171,10 +173,11 @@ class TranslatorPo:
                     localedir,
                     [locale_name],
                 )
+                trans.add_fallback(fallback)
                 break
         else:
             logger.warning(f"Locale {locale_name} not found. Using fallback.")
-            trans = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+            trans = fallback
         trans.install()
         self.translate = trans.gettext
 

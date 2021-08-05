@@ -36,7 +36,7 @@ import os
 from threading import Thread
 from typing import TYPE_CHECKING
 import shlex
-
+import re
 if TYPE_CHECKING:
     from tuxemon.client import Client
 
@@ -352,7 +352,12 @@ class CommandLine(cmd.Cmd):
             # include spaces while counting)
 
             # Queue for commands
-            queue = prompt.split(";")
+
+            # Parsing the prompt for semicolons
+
+            # Solution to the finding semicolons taken from here: https://stackoverflow.com/a/2787979
+            parse = parse = re.split(''';(?=(?:[^'"]|'[^']*'|"[^"]*")*$)''', prompt)
+            queue = list(parse)
 
             # Process the queue
             for command in queue:
@@ -384,6 +389,8 @@ class CommandLine(cmd.Cmd):
                 elif command[0] == "!":
                     print( self.event_engine.check_condition(command[1:],"none") )
                 """
+
+                # Parse the arguments
                 args = shlex.split(command)
 
             	# Test, if the command exists

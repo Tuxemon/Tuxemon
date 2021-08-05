@@ -353,7 +353,8 @@ class CommandLine(cmd.Cmd):
                 if command[1:] == "help":
                     print("Shell commands (not interpreted as events):",
                         "/help - Command help, the one you are currently seeing",
-                        "/actions - All actions", sep="\n")
+                        "/actions - All actions",
+                        "/exit - Exit the event shell", sep="\n")
                 elif command[1:] == "actions":
                     print( " ".join(self.event_engine.actions) )
                         

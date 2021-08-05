@@ -2,6 +2,7 @@ from functools import partial
 
 from tuxemon.compat import Rect
 from tuxemon import tools
+from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import events
@@ -11,9 +12,6 @@ from tuxemon.ui.text import TextArea
 class InputMenu(Menu):
     background = None
     draw_borders = False
-
-    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
-    alphabet_length = 26
 
     def startup(self, *items, **kwargs):
         """
@@ -29,6 +27,8 @@ class InputMenu(Menu):
         """
         super().startup(*items, **kwargs)
         self.input_string = kwargs.get("initial", "")
+        self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
+        self.n_columns = int(T.translate("menu_alphabet_n_columns"))
 
         # area where the input will be shown
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
@@ -55,11 +55,16 @@ class InputMenu(Menu):
         return rect
 
     def initialize_items(self):
-        self.menu_items.columns = self.alphabet_length // 2
+        self.menu_items.columns = self.n_columns
 
         # add the keys
         for char in self.chars:
-            yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
+            if char == "\0":
+                empty = MenuItem(self.shadow_text(" "), None, None, None)
+                empty.enabled = False
+                yield empty
+            else:
+                yield MenuItem(self.shadow_text(char), None, None, partial(self.add_input_char, char))
 
         # backspace key
         yield MenuItem(self.shadow_text("←"), None, None, self.backspace)

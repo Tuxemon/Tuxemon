@@ -58,6 +58,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 TVar = TypeVar("TVar")
+TVarSequence = TypeVar("TVarSequence", bound=Tuple[int, ...])
 
 ValidParameterSingleType = Optional[Type[Any]]
 ValidParameterTypes = Union[
@@ -103,7 +104,7 @@ def transform_resource_filename(*filename: str) -> str:
     return prepare.fetch(*filename)
 
 
-def scale_sequence(sequence: Sequence[int]) -> Sequence[int]:
+def scale_sequence(sequence: TVarSequence) -> TVarSequence:
     """
     Scale a sequence of integers by the configured scale factor.
 
@@ -114,7 +115,7 @@ def scale_sequence(sequence: Sequence[int]) -> Sequence[int]:
         Scaled sequence.
 
     """
-    return [i * prepare.SCALE for i in sequence]
+    return type(sequence)(i * prepare.SCALE for i in sequence)
 
 
 def scale(number: int) -> int:

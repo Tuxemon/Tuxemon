@@ -336,45 +336,65 @@ class CommandLine(cmd.Cmd):
             line_execute = True 
         else: line_execute = False
         print(f"Welcome to Event Shell!\nType '/help' for usage information, and '/actions' for action list. ")
-        while True:
+
+        running = True
+        while running:
         
             if not line_execute:
                 # Used mostly for the EOFError
-                try: command = input("Tuxemon [event_sh] >> ") # Ask user for input
+                try: prompt = input("Tuxemon [event_sh] >> ") # Ask user for input
                 except EOFError: break
 
             else:
-                command = line
-            if len(command.replace(" ", "")) == 0: continue # If empty, ignore (added replace command to not 
+                prompt = line
+            if len(prompt.replace(" ", "")) == 0: continue # If empty, ignore (added replace command to not 
             # include spaces while counting)
 
-            # Handling shell commands (not events)
-            if command[0] == "/": 
-                if command[1:] == "help":
-                    print("Shell commands (not interpreted as events):",
-                        "/help - Command help, the one you are currently seeing",
-                        "/actions - All actions",
-                        "/exit - Exit the event shell", sep="\n")
-                elif command[1:] == "actions":
-                    print( " ".join(self.event_engine.actions) )
-                        
-                elif command[1:] == "exit":
-        	        break # Bye
+            # Queue for commands
+            queue = prompt.split(";")
+
+            # Process the queue
+            for command in queue:
+                # If first symbol is a space, cut it out
+                if command[0] == " ": command = command[1:]
+
+                # Handling shell commands (not events)
+                if command[0] == "/": 
+                    if command[1:] == "help":
+                        print("Shell commands (not interpreted as events):",
+                            "/help - Command help, the one you are currently seeing",
+                            "/actions - All actions",
+                            "/exit - Exit the event shell", sep="\n")
+                    elif command[1:] == "actions":
+                        print( " ".join(self.event_engine.actions) )
+
+                    elif command[1:] == "conditions":
+                        print( " ".join(self.event_engine.conditions) )
+                    elif command[1:] == "exit":
+                        running = False
+                        break # Bye
+                    if line_execute: break
+                    continue
+
+                """
+                # Condition checking, currently broken, because check_condition requies an event object
+                # to be present on the map.
+                elif command[0] == "!":
+                    print( self.event_engine.check_condition(command[1:],"none") )
+                """
+                args = command.split(" ")
+
+            	# Test, if the command exists
+                if self.event_engine.get_action(args[0]) == None:
+                    print(f"Command {args[0]} doesn't exist!")
+
+                else:
+                    try:
+                        self.action(args[0], tuple(args[1:]))
+                    except Exception as ex:
+                        print(f"An error occured ({ex})")
+
                 if line_execute: break
-                continue
-            args = command.split(" ")
-
-        	# Test, if the command exists
-            if self.event_engine.get_action(args[0]) == None:
-                print(f"Command {args[0]} doesn't exist!")
-
-            else:
-                try:
-                    self.action(args[0], tuple(args[1:]))
-                except Exception as ex:
-                    print(f"An error occured ({ex})")
-
-            if line_execute: break
 
         print("\nExiting Event Shell...")
     def postcmd(self, stop: bool, line: str) -> bool:

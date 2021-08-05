@@ -24,6 +24,7 @@
 #
 #
 
+from __future__ import annotations
 import logging
 import math
 
@@ -36,6 +37,11 @@ from tuxemon.platform.const import buttons
 from tuxemon.pyganim import PygAnimation
 from tuxemon import graphics
 from tuxemon.tools import scale as set
+from typing import Optional, Callable, Any, Sequence, List, Union, TYPE_CHECKING
+from tuxemon.platform.events import PlayerInput
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger()
 
@@ -43,8 +49,8 @@ logger = logging.getLogger()
 class Sprite(pygame.sprite.DirtySprite):
     dirty = False
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, *args: pygame.sprite.Group) -> None:
+        super().__init__(*args)
         self.visible = True
         self._rotation = 0
         self._image = None
@@ -54,27 +60,39 @@ class Sprite(pygame.sprite.DirtySprite):
         self._needs_rescale = False
         self._needs_update = False
 
-    def draw(self, surface, rect=None):
-        """Draw the sprite to the surface
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+        rect: Optional[pygame.rect.Rect] = None,
+    ) -> pygame.rect.Rect:
+        """
+        Draw the sprite to the surface.
 
         This operation does not scale the sprite, so it may exceed
         the size of the area passed.
 
-        :param surface: Surface to be drawn on
-        :param rect: Area to contain the sprite
-        :return: Area of the surface that was modified
-        :rtype: pygame.rect.Rect
+        Parameters:
+            surface: Surface to be drawn on.
+            rect: Area to contain the sprite.
+
+        Returns:
+            Area of the surface that was modified.
+
         """
         # should draw to surface without generating a cached copy
         if rect is None:
             rect = surface.get_rect()
         return self._draw(surface, rect)
 
-    def _draw(self, surface, rect):
+    def _draw(
+        self,
+        surface: pygame.surface.Surface,
+        rect: pygame.rect.Rect,
+    ) -> pygame.rect.Rect:
         return surface.blit(self._image, rect)
 
     @property
-    def image(self):
+    def image(self) -> Optional[pygame.surface.Surface]:
         # should always be a cached copy
         if self._needs_update:
             self.update_image()
@@ -83,7 +101,7 @@ class Sprite(pygame.sprite.DirtySprite):
         return self._image
 
     @image.setter
-    def image(self, image):
+    def image(self, image: Optional[pygame.surface.Surface]) -> None:
         if image is None:
             self._original_image = None
             return
@@ -95,7 +113,7 @@ class Sprite(pygame.sprite.DirtySprite):
         self._original_image = image
         self._needs_update = True
 
-    def update_image(self):
+    def update_image(self) -> None:
         if self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
             h = self.rect.height if self._height is None else self._height
@@ -117,11 +135,11 @@ class Sprite(pygame.sprite.DirtySprite):
 
     # width and height are API that may not stay
     @property
-    def width(self):
+    def width(self) -> int:
         return self._width
 
     @width.setter
-    def width(self, width):
+    def width(self, width: int) -> None:
         width = int(round(width, 0))
         if not width == self._width:
             self._width = width
@@ -130,11 +148,11 @@ class Sprite(pygame.sprite.DirtySprite):
 
     # width and height are API that may not stay
     @property
-    def height(self):
+    def height(self) -> int:
         return self._height
 
     @height.setter
-    def height(self, height):
+    def height(self, height: int) -> None:
         height = int(round(height, 0))
         if not height == self._height:
             self._height = height
@@ -142,11 +160,11 @@ class Sprite(pygame.sprite.DirtySprite):
             self._needs_update = True
 
     @property
-    def rotation(self):
+    def rotation(self) -> int:
         return self._rotation
 
     @rotation.setter
-    def rotation(self, value):
+    def rotation(self, value: float) -> None:
         value = int(round(value, 0)) % 360
         if not value == self._rotation:
             self._rotation = value
@@ -154,21 +172,31 @@ class Sprite(pygame.sprite.DirtySprite):
 
 
 class CaptureDeviceSprite(Sprite):
-    def __init__(self, **kwargs):
-        self.tray = kwargs["tray"]
-        self.monster = kwargs["monster"]
-        self.sprite = kwargs["sprite"]
-        self.state = kwargs["state"]
+    def __init__(
+        self,
+        *,
+        tray: Sprite,
+        monster: Monster,
+        sprite: Sprite,
+        state: str,
+    ) -> None:
+        self.tray = tray
+        self.monster = monster
+        self.sprite = sprite
+        self.state = state
         self.empty = graphics.load_and_scale("gfx/ui/combat/empty_slot_icon.png")
         self.faint = graphics.load_and_scale("gfx/ui/icons/party/party_icon03.png")
         self.alive = graphics.load_and_scale("gfx/ui/icons/party/party_icon01.png")
         self.effected = graphics.load_and_scale("gfx/ui/icons/party/party_icon02.png")
         super().__init__()
 
-    def update_state(self):
-        """Updates the state of the capture device.
+    def update_state(self) -> str:
+        """
+        Updates the state of the capture device.
 
-        :return: the new state
+        Returns:
+            The new state.
+
         """
         if self.state == "empty":
             self.sprite.image = self.empty
@@ -183,11 +211,16 @@ class CaptureDeviceSprite(Sprite):
             self.sprite.image = self.alive
         return self.state
 
-    def draw(self, animate):
-        """Animates the capture device in game.
+    def draw(
+        self,
+        animate: Callable[..., None],
+    ) -> None:
+        """
+        Animates the capture device in game.
 
-        :param animate: the animation function
-        :return:
+        Parameters:
+            animate: The animation function.
+
         """
         sprite = self.sprite
         sprite.image = graphics.convert_alpha_to_colorkey(sprite.image)
@@ -197,7 +230,8 @@ class CaptureDeviceSprite(Sprite):
 
 
 class SpriteGroup(pygame.sprite.LayeredUpdates):
-    """Sane variation of a pygame sprite group
+    """
+    Sane variation of a pygame sprite group.
 
     Features:
     * Supports Layers
@@ -207,25 +241,32 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
     * Get bounding rect of all children
 
     Variations from standard group:
-    * SpriteGroup.add no longer accepts a sequence, use SpriteGroup.extend
+    * SpriteGroup.add no longer accepts a sequence, use SpriteGroup.extend.
+
     """
 
-    _init_rect = Rect(0, 0, 0, 0)
+    _init_rect = pygame.rect.Rect(0, 0, 0, 0)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *, default_layer: int = 0) -> None:
         self._spritelayers = dict()
-        self._spritelist = list()
+        self._spritelist: List[pygame.sprite.Sprite] = list()
         pygame.sprite.AbstractGroup.__init__(self)
-        self._default_layer = kwargs.get("default_layer", 0)
+        self._default_layer = default_layer
 
-    def __nonzero__(self):
+    def __nonzero__(self) -> bool:
         return bool(self._spritelist)
 
-    def __getitem__(self, item):
+    def __getitem__(
+        self,
+        item: Union[int, slice],
+    ) -> Union[pygame.sprite.Sprite, Sequence[pygame.sprite.Sprite]]:
         # patch in indexing / slicing support
         return self._spritelist.__getitem__(item)
 
-    def draw(self, surface):
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+    ) -> List[pygame.rect.Rect]:
         spritedict = self.spritedict
         surface_blit = surface.blit
         dirty = self.lostsprites
@@ -256,8 +297,12 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             spritedict[s] = newrect
         return dirty
 
-    def extend(self, sprites, **kwargs):
-        """Add a sequence of sprites to the SpriteGroup
+    def extend(
+        self,
+        sprites: Sequence[pygame.sprite.Sprite],
+        **kwargs: Any,
+    ) -> None:
+        """Add a sequence of sprites to the SpriteGroup.
 
         :param sprites: Sequence (list, set, etc)
         :param kwargs:
@@ -269,7 +314,13 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
             kwargs["_index"] = index
             self.add(sprite, **kwargs)
 
-    def add(self, sprite, **kwargs):
+    def add(
+        self,
+        sprite: pygame.sprite.Sprite,
+        *,
+        layer: Optional[int] = None,
+        **kwargs: Any,
+    ) -> None:
         """Add a sprite to group.  do not pass a sequence or iterator
 
         LayeredUpdates.add(*sprites, **kwargs): return None
@@ -279,7 +330,6 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         neither the sprite nor **kwarg has a 'layer', then the default layer is
         used to add the sprites.
         """
-        layer = kwargs.get("layer")
         if isinstance(sprite, pygame.sprite.Sprite):
             if not self.has_internal(sprite):
                 self.add_internal(sprite, layer)
@@ -287,45 +337,45 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
         else:
             raise TypeError
 
-    def calc_bounding_rect(self):
+    def calc_bounding_rect(self) -> pygame.rect.Rect:
         """A rect object that contains all sprites of this group"""
         sprites = self.sprites()
         if not sprites:
             return self.rect
         elif len(sprites) == 1:
-            return Rect(sprites[0].rect)
+            return pygame.rect.Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
 
 class RelativeGroup(SpriteGroup):
     """
-    Drawing operations are relative to the group's rect
+    Drawing operations are relative to the group's rect.
     """
 
-    rect = Rect(0, 0, 0, 0)
+    rect = pygame.rect.Rect(0, 0, 0, 0)
 
-    def __init__(self, **kwargs):
-        self.parent = kwargs.get("parent")
+    def __init__(self, *, parent=None, **kwargs) -> None:
+        self.parent = parent
         super().__init__(**kwargs)
 
-    def calc_bounding_rect(self):
-        """A rect object that contains all sprites of this group"""
-        rect = super().calc_bounding_rect()
-        # return self.calc_absolute_rect(rect)
-        return rect
-
-    def calc_absolute_rect(self, rect):
+    def calc_absolute_rect(
+        self,
+        rect: pygame.rect.Rect,
+    ) -> pygame.rect.Rect:
         self.update_rect_from_parent()
         return rect.move(self.rect.topleft)
 
-    def update_rect_from_parent(self):
+    def update_rect_from_parent(self) -> None:
         try:
             self.rect = self.parent()
         except TypeError:
-            self.rect = Rect(self.parent.rect)
+            self.rect = pygame.rect.Rect(self.parent.rect)
 
-    def draw(self, surface):
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+    ) -> List[pygame.rect.Rect]:
         self.update_rect_from_parent()
         topleft = self.rect.topleft
 
@@ -360,20 +410,24 @@ class MenuSpriteGroup(SpriteGroup):
     """
     Sprite Group to be used for menus.
 
-    Includes functions for moving a cursor around the screen
+    Includes functions for moving a cursor around the screen.
+
     """
 
-    def determine_cursor_movement(self, index, event):
-        """Given an event, determine a new selected item offset
+    def determine_cursor_movement(self, index: int, event: PlayerInput) -> int:
+        """
+        Given an event, determine a new selected item offset.
 
-        You must pass the currently selected object
-        The return value will be the newly selected object index
+        You must pass the currently selected object.
+        The return value will be the newly selected object index.
 
-        :param index: Index of the item in the list
-        :param event: tuxemon.input.PlayerInput
+        Parameters:
+            index: Index of the item in the list.
+            event: Player event that may cause to select another menu item.
 
-        :returns: New menu item offset
-        :rtype: int
+        Returns:
+            New menu item offset
+
         """
         # TODO: some sort of smart way to pick items based on location on screen
         if not len(self):
@@ -412,45 +466,59 @@ class VisualSpriteList(RelativeGroup):
     orientation = "horizontal"  # default, and only implemented
     expand = True  # will fill all space of parent, if false, will be more compact
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self._needs_arrange = False
         self._columns = 1
         self.line_spacing = None
 
     @property
-    def columns(self):
+    def columns(self) -> int:
         return self._columns
 
     @columns.setter
-    def columns(self, value):
+    def columns(self, value: int) -> None:
         self._columns = value
         self._needs_arrange = True
 
-    def calc_bounding_rect(self):
+    def calc_bounding_rect(self) -> pygame.rect.Rect:
         if self._needs_arrange:
             self.arrange_menu_items()
         return super().calc_bounding_rect()
 
-    def add(self, item, **kwargs):
-        """Add something to the stacker
-        do not add iterables to this function.  use 'extend'
-        :param item: stuff to add
-        :returns: None
+    def add(
+        self,
+        item: pygame.sprite.Sprite,
+        **kwargs: Any,
+    ) -> None:
+        """
+        Add something to the stacker.
+
+        Do not add iterables to this function. Use 'extend'.
+
+        Parameters:
+            item: Stuff to add.
+
         """
         super().add(item, **kwargs)
         self._needs_arrange = True
 
-    def remove(self, *items):
+    def remove(
+        self,
+        *items: pygame.sprite.Sprite,
+    ) -> None:
         super().remove(*items)
         self._needs_arrange = True
 
-    def draw(self, surface):
+    def draw(
+        self,
+        surface: pygame.surface.Surface,
+    ) -> None:
         if self._needs_arrange:
             self.arrange_menu_items()
         super().draw(surface)
 
-    def arrange_menu_items(self):
+    def arrange_menu_items(self) -> None:
         """Iterate through menu items and position them in the menu
         Defaults to a multi-column layout with items placed horizontally first.
 
@@ -489,26 +557,39 @@ class VisualSpriteList(RelativeGroup):
 
         self._needs_arrange = False
 
-    def determine_cursor_movement(self, *args):
-        """Given an event, determine a new selected item offset
+    def determine_cursor_movement(
+        self,
+        index: int,
+        event: PlayerInput,
+    ) -> int:
+        """
+        Given an event, determine a new selected item offset.
 
-        You must pass the currently selected object
-        The return value will be the newly selected object index
+        You must pass the currently selected object.
+        The return value will be the newly selected object index.
 
-        :param index: Index of the item in the list
-        :param event: pygame.Event
-        :returns: New menu item offset
+        Parameters:
+            index: Index of the item in the list.
+            event: Player event that may cause to select another menu item.
+
+        Returns:
+            New menu item offset
+
         """
         if self.orientation == "horizontal":
-            return self._determine_cursor_movement_horizontal(*args)
+            return self._determine_cursor_movement_horizontal(index, event)
         else:
             raise RuntimeError
 
-    def _determine_cursor_movement_horizontal(self, index, event):
+    def _determine_cursor_movement_horizontal(
+        self,
+        index: int,
+        event: PlayerInput,
+    ) -> int:
         """Given an event, determine a new selected item offset
 
-        You must pass the currently selected object
-        The return value will be the newly selected object index
+        You must pass the currently selected object.
+        The return value will be the newly selected object index.
 
         This is for menus that are laid out horizontally first:
            [1] [2] [3]
@@ -517,9 +598,13 @@ class VisualSpriteList(RelativeGroup):
         Works pretty well for most menus, but large grids may require
         handling them differently.
 
-        :param index: Index of the item in the list
-        :type event: tuxemon.game_event.player_input.InputEvent
-        :returns: New menu item offset
+        Parameters:
+            index: Index of the item in the list.
+            event: Player event that may cause to select another menu item.
+
+        Returns:
+            New menu item offset
+
         """
         # sanity check:
         # if there are 0 or 1 enabled items, then ignore movement

@@ -62,7 +62,7 @@ MAP_RENAMES: Mapping[int, Mapping[str, str]] = {
 
 def upgrade_save(save_data: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Updates current map if necessary.
+    Updates savegame if necessary.
 
     This function can modify the passed save data.
 

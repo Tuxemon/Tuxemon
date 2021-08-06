@@ -26,39 +26,55 @@
 #
 #
 
+from __future__ import annotations
 import logging
-from collections import namedtuple
+from typing import NamedTuple, Optional, Sequence, TYPE_CHECKING, Tuple
+
+if TYPE_CHECKING:
+    from tuxemon.technique import Technique
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
-type_chart = namedtuple("TypeChart", ["strong_attack", "weak_attack", "extra_damage", "resist_damage"])
+
+class TypeChart(NamedTuple):
+    strong_attack: Optional[str]
+    weak_attack: Optional[str]
+    extra_damage: Optional[str]
+    resist_damage: Optional[str]
+
+
 TYPES = {
-    "aether": type_chart(None, None, None, None),
-    "normal": type_chart(None, None, None, None),
-    "wood": type_chart("earth", "fire", "metal", "water"),
-    "fire": type_chart("metal", "earth", "water", "wood"),
-    "earth": type_chart("water", "metal", "wood", "fire"),
-    "metal": type_chart("wood", "water", "fire", "earth"),
-    "water": type_chart("fire", "wood", "earth", "metal"),
+    "aether": TypeChart(None, None, None, None),
+    "normal": TypeChart(None, None, None, None),
+    "wood": TypeChart("earth", "fire", "metal", "water"),
+    "fire": TypeChart("metal", "earth", "water", "wood"),
+    "earth": TypeChart("water", "metal", "wood", "fire"),
+    "metal": TypeChart("wood", "water", "fire", "earth"),
+    "water": TypeChart("fire", "wood", "earth", "metal"),
 }
 
 
-def simple_damage_multiplier(attack_types, target_types):
-    """Calculates damage multiplier based on strengths and weaknesses
-
-    :param attack_types: The names of the types of the technique.
-    :param target_types: The names of the types of the target.
-
-    :type attack_types: list
-    :type attack_types: list
-
-    :rtype: number
-    :returns: the attack multiplier
+def simple_damage_multiplier(
+    attack_types: Sequence[Optional[str]],
+    target_types: Sequence[str],
+) -> float:
     """
-    m = 1
+    Calculates damage multiplier based on strengths and weaknesses.
+
+    Parameters:
+        attack_types: The names of the types of the technique.
+        target_types: The names of the types of the target.
+
+    Returns:
+        The attack multiplier.
+
+    """
+    m = 1.0
     for attack_type in attack_types:
         if attack_type is None:
             continue
+
         for target_type in target_types:
             body = TYPES.get(target_type, TYPES["aether"])
             if body.extra_damage is None:
@@ -72,18 +88,22 @@ def simple_damage_multiplier(attack_types, target_types):
     return m
 
 
-def simple_damage_calculate(technique, user, target):
-    """Calculates the damage of a technique based on stats and multiplier.
+def simple_damage_calculate(
+    technique: Technique,
+    user: Monster,
+    target: Monster,
+) -> Tuple[int, float]:
+    """
+    Calculates the damage of a technique based on stats and multiplier.
 
-    :param technique: The technique to calculate for.
-    :param user: The user of the technique.
-    :param target: The one the technique is being used on.
+    Parameters:
+        technique: The technique to calculate for.
+        user: The user of the technique.
+        target: The one the technique is being used on.
 
-    :type technique: tuxemon.technique.Technique
-    :type user: tuxemon.monster.Monster
-    :type target: tuxemon.monster.Monster
+    Returns:
+        A tuple (damage, multiplier).
 
-    :return: damage, multiplier
     """
     if technique.range == "melee":
         user_strength = user.melee * (7 + user.level)
@@ -110,50 +130,62 @@ def simple_damage_calculate(technique, user, target):
     return damage, mult
 
 
-def simple_poison(technique, user, target):
-    """Simple poison based on target's full hp.
+def simple_poison(
+    technique: Technique,
+    user: Monster,
+    target: Monster,
+) -> float:
+    """
+    Simple poison based on target's full hp.
 
-    :param technique: The technique causing poison.
-    :param user: The user of the technique.
-    :param target: The one the technique is being used on.
+    Parameters:
+        technique: The technique causing poison.
+        user: The user of the technique.
+        target: The one the technique is being used on.
 
-    :type technique: tuxemon.technique.Technique
-    :type user: tuxemon.monster.Monster
-    :type target: tuxemon.monster.Monster
+    Returns:
+        Inflicted damage.
 
-    :return: damage
     """
     damage = target.hp / 8
     return damage
 
 
-def simple_recover(technique, target):
-    """Simple recover based on target's full hp.
+def simple_recover(
+    technique: Technique,
+    target: Monster,
+) -> float:
+    """
+    Simple recover based on target's full hp.
 
-    :param technique: The technique causing recover.
-    :param target: The one being healed.
+    Parameters:
+        technique: The technique causing recover.
+        target: The one being healed.
 
-    :type technique: tuxemon.technique.Technique
-    :type target: tuxemon.monster.Monster
+    Returns:
+        Recovered health.
 
-    :return: heal
     """
     heal = min(target.hp / 16, target.hp - target.current_hp)
     return heal
 
 
-def simple_lifeleech(technique, user, target):
-    """Simple lifeleech based on a few factors.
+def simple_lifeleech(
+    technique: Technique,
+    user: Monster,
+    target: Monster,
+) -> float:
+    """
+    Simple lifeleech based on a few factors.
 
-    :param technique: The technique causing lifeleech.
-    :param user: The user of the technique.
-    :param target: The one the technique is being used on.
+    Parameters:
+        technique: The technique causing lifeleech.
+        user: The user of the technique.
+        target: The one the technique is being used on.
 
-    :type technique: tuxemon.technique.Technique
-    :type user: tuxemon.monster.Monster
-    :type target: tuxemon.monster.Monster
+    Returns:
+        Inflicted damage.
 
-    :return: damage
     """
     damage = min(target.hp / 2, target.current_hp, user.hp - user.current_hp)
     return damage

@@ -27,11 +27,11 @@
 # config Configuration parser.
 #
 #
+from __future__ import annotations
 from typing import Mapping, Any, Optional
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
-from __future__ import annotations
 import configparser
 from collections import OrderedDict
 

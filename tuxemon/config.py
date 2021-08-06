@@ -27,9 +27,11 @@
 # config Configuration parser.
 #
 #
+from typing import Mapping, Any, Optional
 """
 NOTE: REWRITE WHEN py2.7 SUPPORT IS DROPPED!
 """
+from __future__ import annotations
 import configparser
 from collections import OrderedDict
 
@@ -40,12 +42,13 @@ Animation.default_transition = "out_quint"
 
 
 class TuxemonConfig:
-    """Handles loading of the configuration file for the primary game and map editor.
+    """
+    Handles loading of the config file for the primary game and map editor.
 
     Do not forget to edit the default configuration specified below!
     """
 
-    def __init__(self, config_path=None):
+    def __init__(self, config_path: Optional[str] = None) -> None:
         # load default config
         cfg = generate_default_config()
         self.cfg = cfg
@@ -122,10 +125,12 @@ class TuxemonConfig:
         self.mods = ["tuxemon"]
 
 
-def get_custom_pygame_keyboard_controls(cfg):
+def get_custom_pygame_keyboard_controls(
+    cfg: configparser.ConfigParser,
+) -> Mapping[Optional[str], int]:
     import pygame.locals
 
-    custom_controls = {None: events.UNICODE}
+    custom_controls: Mapping[Optional[str], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
         button_value = getattr(buttons, key, None)
@@ -142,12 +147,15 @@ def get_custom_pygame_keyboard_controls(cfg):
     return custom_controls
 
 
-def get_defaults():
-    """Generate a config from defaults
+def get_defaults() -> Mapping[str, Any]:
+    """
+    Generate a config from defaults.
 
     When making game changes, do not forget to edit this config!
 
-    :rtype: OrderedDict
+    Returns:
+        Mapping of default values.
+
     """
     return OrderedDict(
         (
@@ -220,7 +228,16 @@ def get_defaults():
                     )
                 ),
             ),
-            ("logging", OrderedDict((("loggers", "all"), ("debug_logging", True), ("debug_level", "error")))),
+            (
+                "logging",
+                OrderedDict(
+                    (
+                        ("loggers", "all"),
+                        ("debug_logging", True),
+                        ("debug_level", "error"),
+                    )
+                )
+            ),
             (
                 "controls",
                 OrderedDict(
@@ -240,7 +257,7 @@ def get_defaults():
     )
 
 
-def generate_default_config():
+def generate_default_config() -> configparser.ConfigParser:
     """Get new config file from defaults
 
     :rtype: configparser.ConfigParser
@@ -250,18 +267,27 @@ def generate_default_config():
     return cfg
 
 
-def populate_config(config, data):
-    """Workaround awful configparser defaults.
-
-    :type data: dict
-    :return:
+def populate_config(
+    config: configparser.ConfigParser,
+    data: Mapping[str, Any],
+) -> None:
     """
-    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked, dumb.  WTF's all over.
-    # so we fill in values manually, because they won't be read or written otherwise.
+    Workaround awful configparser defaults.
+
+    Parameters:
+        config: The configuration object.
+        data: New defaults.
+
+    """
+    # ConfigParser py2.7 'defaults' is absolutely braindead, half-baked,
+    # dumb. WTF's all over.
+    # So we fill in values manually, because they won't be read or written
+    # otherwise.
     for k, v in data.items():
         try:
             config.add_section(k)
         except configparser.DuplicateSectionError:
             pass
         for option, value in v.items():
-            config.set(k, option, str(value))  # yes.  all values must be stored as a string
+            # Yes. All values must be stored as a string.
+            config.set(k, option, str(value))

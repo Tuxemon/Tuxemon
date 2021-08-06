@@ -240,6 +240,13 @@ msgid "run"
 msgstr "Flucht"
 
 ## MENU TRANSLATIONS ##
+
+msgid "menu_alphabet"
+msgstr "AÄBCDEFGHIJKLMNOÖPQRS\0TUÜVWXYZaäbcdefghijklmnoöpqrsßtuüvwxyz1234567890.-!\0\0"
+
+msgid "menu_alphabet_n_columns"
+msgstr "15"
+
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Info"

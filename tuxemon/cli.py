@@ -35,7 +35,8 @@ from tuxemon.db import db
 import os
 from threading import Thread
 from typing import TYPE_CHECKING
-
+import shlex
+import re
 if TYPE_CHECKING:
     from tuxemon.client import Client
 
@@ -80,7 +81,8 @@ class CommandLine(cmd.Cmd):
 
         # For executing actions like add_item,
         # to avoid defining this variable mutiple times
-        self.action = app.event_engine.execute_action
+        self.event_engine = app.event_engine
+        self.action = self.event_engine.execute_action
 
     def emptyline(self) -> bool:
         """If an empty line was entered at the command line, do nothing."""
@@ -323,6 +325,87 @@ class CommandLine(cmd.Cmd):
         map = os.path.split(self.app.event_engine.current_map.data.filename)[1]
         print(map)
 
+    def do_event_sh(self, line: str) -> None:
+        """
+        Starts the event shell.
+        Used for relatively low level access to event actions, while being easier to use than python console.
+        Parameters:
+            line: command to execute, event shell exits after it
+        """
+        # Yes, creating nested cmd instance might be better.
+        if len(line.replace(" ", "")) > 0:
+            line_execute = True 
+        else: line_execute = False
+        print(f"Welcome to Event Shell!\nType '/help' for usage information, and '/actions' for action list. ")
+
+        running = True
+        while running:
+        
+            if not line_execute:
+                # Used mostly for the EOFError
+                try: prompt = input("Tuxemon [event_sh] >> ") # Ask user for input
+                except EOFError: break
+
+            else:
+                prompt = line
+            if len(prompt.replace(" ", "")) == 0: continue # If empty, ignore (added replace command to not 
+            # include spaces while counting)
+
+            # Queue for commands
+
+            # Parsing the prompt for semicolons
+
+            # Solution to the finding semicolons taken from here: https://stackoverflow.com/a/2787979
+            parse = parse = re.split(''';(?=(?:[^'"]|'[^']*'|"[^"]*")*$)''', prompt)
+            queue = list(parse)
+
+            # Process the queue
+            for command in queue:
+                # If first symbol is a space, cut it out
+                if command[0] == " ": command = command[1:]
+
+                # Handling shell commands (not events)
+                if command[0] == "/": 
+                    if command[1:] == "help":
+                        print("Shell commands (not interpreted as events):",
+                            "/help - Command help, the one you are currently seeing",
+                            "/actions - All actions",
+                            "/conditions - All conditions",
+                            "/exit - Exit the event shell", sep="\n")
+                    elif command[1:] == "actions":
+                        print( " ".join(self.event_engine.actions) )
+
+                    elif command[1:] == "conditions":
+                        print( " ".join(self.event_engine.conditions) )
+                    elif command[1:] == "exit":
+                        running = False
+                        break # Bye
+                    if line_execute: break
+                    continue
+
+                """
+                # Condition checking, currently broken, because check_condition requies an event object
+                # to be present on the map.
+                elif command[0] == "!":
+                    print( self.event_engine.check_condition(command[1:],"none") )
+                """
+
+                # Parse the arguments
+                args = shlex.split(command)
+
+            	# Test, if the command exists
+                if self.event_engine.get_action(args[0]) == None:
+                    print(f"Command {args[0]} doesn't exist!")
+
+                else:
+                    try:
+                        self.action(args[0], tuple(args[1:]))
+                    except Exception as ex:
+                        print(f"An error occured ({ex})")
+
+                if line_execute: break
+
+        print("\nExiting Event Shell...")
     def postcmd(self, stop: bool, line: str) -> bool:
         """
         If the application has exited, exit here as well.
@@ -333,3 +416,4 @@ class CommandLine(cmd.Cmd):
         """
         # Check to see if we have exited
         return self.app.exit
+

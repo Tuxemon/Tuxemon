@@ -27,7 +27,7 @@
 #
 #
 
-
+from __future__ import annotations
 import base64
 import datetime
 import json
@@ -38,6 +38,9 @@ import pygame
 
 from tuxemon import prepare
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
+from tuxemon.session import Session
+from typing import Mapping, Any, Optional, Dict
+from tuxemon.client import Client
 
 try:
     import cbor
@@ -50,13 +53,15 @@ slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 
 
-def get_save_data(session):
-    """Gets a dictionary which represents the state of the session.
+def get_save_data(session: Session) -> Mapping[str, Any]:
+    """
+    Gets a dictionary which represents the state of the session.
 
-    :param tuxemon.session.Session session: Game session
+    Parameters:
+        session: Game session.
 
-    :rtype: Dictionary
-    :returns: Game data to save, must be JSON encodable.
+    Returns:
+        Game data to save, must be JSON encodable.
 
     """
     save_data = session.player.get_state(session)
@@ -69,9 +74,16 @@ def get_save_data(session):
     return save_data
 
 
-def capture_screenshot(client):
+def capture_screenshot(client: Client) -> pygame.surface.Surface:
     """
-    :type client: tuxemon.client.Client
+    Capture a screenshot.
+
+    Parameters:
+        client: Tuxemon client.
+
+    Returns:
+        Captured image.
+
     """
     screenshot = pygame.Surface(client.screen.get_size())
     world = client.get_state_by_name("WorldState")
@@ -79,19 +91,16 @@ def capture_screenshot(client):
     return screenshot
 
 
-def save(save_data, slot):
-    """Saves the current game state to a file using shelve.
+def save(
+    save_data: Mapping[str, Any],
+    slot: int,
+) -> None:
+    """
+    Saves the current game state to a file using CBOR or JSON.
 
-    :param save_data: The data to save.
-    :param screenshot: An image of the current frame
-    :param slot: The save slot to save the data to.
-
-    :type save_data: Dictionary
-    :type screenshot: pygame.Image
-    :type slot: Integer
-
-    :rtype: None
-    :returns: None
+    Parameters:
+        save_data: The data to save.
+        slot: The save slot to save the data to.
 
     """
     # Save a screenshot of the current frame
@@ -102,20 +111,22 @@ def save(save_data, slot):
         text = json.dumps(save_data, indent=4, separators=(",", ": "))
     with open(save_path, "w") as f:
         logger.info("Saving data to save file: " + save_path)
-        # Don't dump straight to the file: if we crash it would corrupt the save_data
+        # Don't dump straight to the file: if we crash it would corrupt
+        # the save_data
         f.write(text)
 
 
-def load(slot):
-    """Loads game state data from a shelved save file.
-
-    :param slot: The save slot to load game data from.
-    :type slot: Integer
-
-    :rtype: Dictionary
-    :returns: Dictionary containing game data to load.
+def load(slot: int) -> Optional[Mapping[str, Any]]:
     """
+    Loads game state data from a save file.
 
+    Parameters:
+        slot: The save slot to load game data from.
+
+    Returns:
+        Dictionary containing game data to load.
+
+    """
     save_path = f"{prepare.SAVE_PATH}{slot}.save"
     save_data = open_save_file(save_path)
     if save_data:
@@ -130,7 +141,7 @@ def load(slot):
         return save_data
 
 
-def open_save_file(save_path):
+def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
     try:
         with open(save_path) as save_file:
             try:
@@ -150,7 +161,7 @@ def open_save_file(save_path):
         return None
 
 
-def get_index_of_latest_save():
+def get_index_of_latest_save() -> Optional[int]:
     times = []
     for slot_index in range(3):
         save_path = f"{prepare.SAVE_PATH}{slot_index + 1}.save"

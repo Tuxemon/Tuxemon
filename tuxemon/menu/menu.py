@@ -203,7 +203,8 @@ class Menu(state.State):
 
             for item in items:
                 self.add(item)
-                item.enabled = self.is_valid_entry(item.game_object)
+                if item.enabled:
+                    item.enabled = self.is_valid_entry(item.game_object)
 
             if hasattr(self.menu_items, "arrange_menu_items"):
                 self.menu_items.arrange_menu_items()

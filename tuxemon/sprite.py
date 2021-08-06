@@ -355,7 +355,12 @@ class RelativeGroup(SpriteGroup):
 
     rect = pygame.rect.Rect(0, 0, 0, 0)
 
-    def __init__(self, *, parent=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        parent: Union[RelativeGroup, Callable[[], pygame.rect.Rect],  None] = None,
+        **kwargs: Any,
+    ) -> None:
         self.parent = parent
         super().__init__(**kwargs)
 

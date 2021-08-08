@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-14 05:41+0200\n"
-"PO-Revision-Date: 2021-06-15 15:32+0000\n"
+"PO-Revision-Date: 2021-08-06 15:33+0000\n"
 "Last-Translator: Carlos Ramos Carreño <carlosramosca@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
 "es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR The Tuxemon Team
@@ -3151,3 +3151,70 @@ msgstr "¡Rompe los moldes de la naturaleza!"
 
 msgid "professorexists1.5"
 msgstr "¡Eh, hola!"
+
+msgid "spyder_nimrod_antimony2"
+msgstr "Años de trabajo, tirados por el desagüe en minutos. "
+
+msgid "spyder_nimrod_antimony1"
+msgstr ""
+"¡Oh dios, has destruido los prototipos! ¡Estábamos a punto de empezar la "
+"producción en masa!"
+
+msgid "reg_papers_description"
+msgstr "Un paquete de inscripciones para el Desafío"
+
+msgid "tabatownbattlearea"
+msgstr "Arena de Batalla Certificada de Omnichannel - Pueblo Taba"
+
+msgid "goodbye2"
+msgstr ""
+"¡Hasta la vista ${{name}}! Y buena suerte en el Desafío, la necesitarás."
+
+msgid "goodbye"
+msgstr ""
+"No dejes que el Desafío te impida venir a verme. De hecho… quizás te "
+"encuentre yo antes."
+
+msgid "gasp4"
+msgstr ""
+"Está bien, dejaré vuestras inscripciones intactas. De momento.\n"
+"John, Grant, llevad al que se hace llamar Profesor Tuxemon a su nuevo hogar."
+
+msgid "gasp3"
+msgstr "Si eso es verdad, hay más en ti de lo que pensaba…"
+
+msgid "brokethegasp3"
+msgstr ""
+"Por favor, señora de Omnichannel, la madre de ${{name}} quería que se "
+"unieran al Desafío para ver la región entera.\n"
+"${{name}} no lo está haciendo por el trabajo, lo están haciendo por la "
+"experiencia."
+
+msgid "brokethegasp2"
+msgstr "Tú. ¿Por qué estás hablando? No te he dado permiso para hablar."
+
+msgid "brokethegasp"
+msgstr ""
+"Señora, si me disculpa, ${{name}} lo está haciendo para algo más que un "
+"trabajo."
+
+msgid "gasp2"
+msgstr ""
+"¿Qué estás haciendo ahí con este… criminal?\n"
+"… … …\n"
+"… … …\n"
+"¿Unirte al Desafío? ¿De verdad vas a someterte a ese sinsentido?\n"
+"Si todo lo que querías es un trabajo en Omnichannel, podrías simplemente "
+"haberme preguntado.\n"
+"Estoy segura de que podría encontrar un… uso para ti si estás interesado."
+
+msgid "wewnicefight"
+msgstr ""
+"¡Guau, buena pelea!\n"
+"Déjame curar tus Tuxemon rápidamente…\n"
+"Y… ¡ya está! ¡Todo listo!\n"
+"Con un poco más de práctica, y quizás algunos Tuxemon más, seguro que podrás "
+"realizar el Desafío.\n"
+
+msgid "tuxemontime1.5"
+msgstr "¿Supongo que esto significa que has decidido unirte al Desafío?"

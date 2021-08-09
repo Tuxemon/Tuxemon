@@ -27,40 +27,56 @@
 #
 #
 
-
+from __future__ import annotations
 import json
 import logging
 import os
 from operator import itemgetter
 
 from tuxemon import prepare
+from typing import Any, Mapping, Dict, Sequence
 
 logger = logging.getLogger(__name__)
 
 
-def process_targets(json_targets):
+def process_targets(json_targets: Mapping[str, int]) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
     example: ["own monster", "enemy monster"]
 
-    :param json_targets:
-    :return:
-    """
+    Parameters:
+        json_targets: Dictionary of targets.
 
+    Returns:
+        Order of preference for targets.
+
+    """
     return list(
-        map(itemgetter(0), filter(itemgetter(1), sorted(json_targets.items(), key=itemgetter(1), reverse=True)))
+        map(
+            itemgetter(0),
+            filter(
+                itemgetter(1),
+                sorted(
+                    json_targets.items(),
+                    key=itemgetter(1),
+                    reverse=True,
+                ),
+            )
+        )
     )
 
 
 class JSONDatabase:
-    """Handles connecting to the game database for resources such as monsters,
-    stats, etc.
+    """
+    Handles connecting to the game database for resources.
+
+    Examples of such resources include monsters, stats, etc.
 
     """
 
-    def __init__(self, dir="all"):
-        self.path = None
-        self.database = {
+    def __init__(self, dir: str = "all") -> None:
+        self.path = ""
+        self.database: Dict[str, Dict[str, Any]] = {
             "item": {},
             "monster": {},
             "npc": {},
@@ -73,17 +89,15 @@ class JSONDatabase:
         }
         # self.load(dir)
 
-    def load(self, directory="all"):
-        """Loads all data from JSON files located under our data path.
+    def load(self, directory: str = "all") -> None:
+        """
+        Loads all data from JSON files located under our data path.
 
-        :param directory: The directory under resources/db/ to load. Defaults
-            to "all".
-        :type directory: String
-
-        :returns: None
+        Parameters:
+            directory: The directory under mods/tuxemon/db/ to load. Defaults
+                to "all".
 
         """
-
         self.path = prepare.fetch("db")
         if directory == "all":
             self.load_json("item")
@@ -98,16 +112,14 @@ class JSONDatabase:
         else:
             self.load_json(directory)
 
-    def load_json(self, directory):
-        """Loads all JSON items under a specified path.
+    def load_json(self, directory: str) -> None:
+        """
+        Loads all JSON items under a specified path.
 
-        :param directory: The directory under resources/db/ to look in.
-        :type directory: String
-
-        :returns: None
+        Parameters:
+            directory: The directory under mods/tuxemon/db/ to look in.
 
         """
-
         for json_item in os.listdir(os.path.join(self.path, directory)):
 
             # Only load .json files.
@@ -128,15 +140,13 @@ class JSONDatabase:
             else:
                 self.load_dict(item, directory)
 
-    def load_dict(self, item, table):
-        """Loads a single json object as a dictionary and adds it to the appropriate db table
+    def load_dict(self, item: Mapping[str, Any], table: str) -> None:
+        """
+        Loads a single json object and adds it to the appropriate db table.
 
-        :param item: The json object to load in
-        :type item: dict
-        :param table: The db table to load the object into
-        :type table: String
-
-        :returns None
+        Parameters:
+            item: The json object to load in.
+            table: The db table to load the object into.
 
         """
 
@@ -145,31 +155,36 @@ class JSONDatabase:
         else:
             logger.warning("Error: Item with slug %s was already loaded.", item)
 
-    def lookup(self, slug, table="monster"):
-        """Looks up a monster, technique, item, or npc based on slug.
+    def lookup(self, slug: str, table: str = "monster") -> Mapping[str, Any]:
+        """
+        Looks up a monster, technique, item, or npc based on slug.
 
-        :param slug: The slug of the monster, technique, item, or npc.  A short English identifier.
-        :param table: Which index to do the search in. Can be: "monster",
-            "item", "npc", or "technique".
-        :type slug: String
-        :type table: String
+        Parameters:
+            slug: The slug of the monster, technique, item, or npc.  A short
+                English identifier.
+            table: Which index to do the search in. Can be: "monster",
+                "item", "npc", or "technique".
 
-        :rtype: Dict
-        :returns: A dictionary from the resulting lookup.
+        Returns:
+            A dictionary from the resulting lookup.
 
         """
         return set_defaults(self.database[table][slug], table)
 
-    def lookup_file(self, table, slug):
-        """Does a lookup with the given slug in the given table, expecting a dictionary with two keys, 'slug' and 'file'
+    def lookup_file(self, table: str, slug: str) -> str:
+        """
+        Does a lookup with the given slug in the given table.
 
-        :param slug: The slug of the file record.
-        :param table: The table to do the lookup in, such as "sounds" or "music"
-        :type slug: String
-        :type table: String
+        It expects a dictionary with two keys, 'slug' and 'file'.
 
-        :rtype: String
-        :returns: The 'file' property of the resulting dictionary OR the slug if it doesn't exist.
+        Parameters:
+            slug: The slug of the file record.
+            table: The table to do the lookup in, such as "sounds" or "music".
+
+        Returns:
+            The 'file' property of the resulting dictionary OR the slug if it
+            doesn't exist.
+
         """
 
         filename = self.database[table][slug]["file"] or slug
@@ -178,33 +193,8 @@ class JSONDatabase:
 
         return filename
 
-    def lookup_sprite(self, slug, table="sprite"):
-        """Looks up a monster's sprite image paths based on monster slug.
-        NOTE: This method has been deprecated. Use the following instead:
-        JSONDatabase.database['monster'][slug]['sprites']
 
-        :param table:
-        :param slug: The monster ID to look up.
-        :type slug: String
-        :param slug: The monster slug to look up.
-        :type slug: String
-
-        :rtype: List
-        :returns: A list of sprites
-
-        """
-
-        logger.warning("lookup_sprite is deprecated. Use JSONDatabase.database")
-        results = {
-            "sprite_battle1": self.database["monster"][slug]["sprites"]["battle1"],
-            "sprite_battle2": self.database["monster"][slug]["sprites"]["battle2"],
-            "sprite_menu1": self.database["monster"][slug]["sprites"]["menu1"],
-        }
-
-        return results
-
-
-def set_defaults(results, table):
+def set_defaults(results: Dict[str, Any], table: str) -> Mapping[str, Any]:
     if table == "monster":
         name = results["slug"]
 

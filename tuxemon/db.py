@@ -34,12 +34,111 @@ import os
 from operator import itemgetter
 
 from tuxemon import prepare
-from typing import Any, Mapping, Dict, Sequence
+from typing import Any, Mapping, Dict, Sequence, TypedDict, overload, Literal
 
 logger = logging.getLogger(__name__)
 
 
-def process_targets(json_targets: Mapping[str, int]) -> Sequence[str]:
+JSONTarget = Mapping[str, int]
+
+
+class JSONItemOptionalFields(TypedDict, total=False):
+    conditions: Sequence[str]
+    effects: Sequence[str]
+
+
+class JSONItem(JSONItemOptionalFields):
+    slug: str
+    use_item: str
+    use_success: str
+    use_failure: str
+    sort: str
+    sprite: str
+    target: JSONTarget
+    type: str
+    usable_in: Sequence[str]
+
+
+class JSONMonsterMovesetItem(TypedDict):
+    level_learned: int
+    technique: str
+
+
+class JSONMonsterSprites(TypedDict):
+    battle1: str
+    battle2: str
+    menu1: str
+    menu2: str
+
+
+class JSONMonsterSounds(TypedDict, total=False):
+    combat_call: str
+    faint_call: str
+
+
+class JSONMonsterOptionalFields(TypedDict, total=False):
+    shape: str
+    types: Sequence[str]
+    catch_rate: float
+    lower_catch_resistance: float
+    upper_catch_resistance: float
+    moveset: Sequence[JSONMonsterMovesetItem]
+    evolutions: Sequence[Any]  # I do not know the type
+    sounds: JSONMonsterSounds
+
+
+class JSONMonster(JSONMonsterOptionalFields):
+    slug: str
+    category: str
+    ai: str
+    weight: float
+    sprites: JSONMonsterSprites
+
+
+class JSONTechniqueOptionalFields(TypedDict, total=False):
+    use_tech: str
+    use_success: str
+    use_failure: str
+    types: Sequence[str]
+    power: float
+    is_fast: bool
+    recharge: int
+    is_area: bool
+    range: str
+    accuracy: float
+    potency: float
+
+
+class JSONTechnique(JSONTechniqueOptionalFields):
+    slug: str
+    sort: str
+    category: str
+    icon: str
+    effects: Sequence[str]
+    target: JSONTarget
+    animation: str
+    sfx: str
+
+
+class JSONNpc(TypedDict):
+    slug: str
+    sprite_name: str
+    combat_front: str
+    combat_back: str
+
+
+class JSONBattleGraphics(TypedDict):
+    island_back: str
+    island_front: str
+
+
+class JSONEnvironment(TypedDict):
+    slug: str
+    battle_music: str
+    battle_graphics: JSONBattleGraphics
+
+
+def process_targets(json_targets: JSONTarget) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
     example: ["own monster", "enemy monster"]
@@ -154,6 +253,34 @@ class JSONDatabase:
             self.database[table][item["slug"]] = item
         else:
             logger.warning("Error: Item with slug %s was already loaded.", item)
+
+    @overload
+    def lookup(self, slug: str) -> JSONMonster:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["monster"]) -> JSONMonster:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["technique"]) -> JSONTechnique:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["item"]) -> JSONItem:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["npc"]) -> JSONNpc:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["environment"],
+    ) -> JSONEnvironment:
+        pass
 
     def lookup(self, slug: str, table: str = "monster") -> Mapping[str, Any]:
         """

@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class SoundProtocol(Protocol):
 
-    def play(self) -> Any:
+    def play(self) -> object:
         pass
 
 

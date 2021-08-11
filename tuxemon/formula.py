@@ -134,7 +134,7 @@ def simple_poison(
     technique: Technique,
     user: Monster,
     target: Monster,
-) -> float:
+) -> int:
     """
     Simple poison based on target's full hp.
 
@@ -147,14 +147,14 @@ def simple_poison(
         Inflicted damage.
 
     """
-    damage = target.hp / 8
+    damage = target.hp // 8
     return damage
 
 
 def simple_recover(
     technique: Technique,
     target: Monster,
-) -> float:
+) -> int:
     """
     Simple recover based on target's full hp.
 
@@ -166,7 +166,7 @@ def simple_recover(
         Recovered health.
 
     """
-    heal = min(target.hp / 16, target.hp - target.current_hp)
+    heal = min(target.hp // 16, target.hp - target.current_hp)
     return heal
 
 
@@ -174,7 +174,7 @@ def simple_lifeleech(
     technique: Technique,
     user: Monster,
     target: Monster,
-) -> float:
+) -> int:
     """
     Simple lifeleech based on a few factors.
 
@@ -187,5 +187,5 @@ def simple_lifeleech(
         Inflicted damage.
 
     """
-    damage = min(target.hp / 2, target.current_hp, user.hp - user.current_hp)
+    damage = min(target.hp // 2, target.current_hp, user.hp - user.current_hp)
     return damage

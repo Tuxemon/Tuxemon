@@ -28,25 +28,46 @@
 #
 #
 
+from __future__ import annotations
 import logging
 import random
-from collections import namedtuple
+
 
 from tuxemon import formula
 from tuxemon import prepare
 from tuxemon.db import db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
+from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
-tech_ret_value = namedtuple("use", "name success properties")
+
+class EffectResult(TypedDict, total=False):
+    damage: int
+    element_multiplier: float
+    success: bool
+    should_tackle: bool
+    status: Optional[Technique]
 
 
-def merge_results(result, meta_result):
+class TechniqueResult(EffectResult):
+    name: str
+    # Related Mypy bug: https://github.com/python/mypy/issues/8714
+    success: bool
+    should_tackle: bool
+    capture: bool
+    statuses: List[Optional[Technique]]
+
+
+def merge_results(result: EffectResult, meta_result: TechniqueResult) -> TechniqueResult:
     status = result.pop("status", None)
     if status:
         meta_result["statuses"].append(status)
+    # Known Mypy bug: https://github.com/python/mypy/issues/6462
     meta_result.update(result)
     return meta_result
 
@@ -56,41 +77,46 @@ class Technique:
     in battle.
     """
 
-    def __init__(self, slug=None, carrier=None, link=None):
+    def __init__(
+        self,
+        slug: Optional[str] = None,
+        carrier: Optional[Monster] = None,
+        link: Optional[Monster] = None,
+    ) -> None:
         self._combat_counter = 0  # number of turns that this technique has been active
-        self.accuracy = 0
-        self.animation = None
+        self.accuracy = 0.0
+        self.animation = ""
         self.can_apply_status = False
         self.carrier = carrier
         self.category = "attack"
-        self.effect = []
-        self.icon = None
-        self.images = []
+        self.effect: Sequence[str] = []
+        self.icon = ""
+        self.images: Sequence[str] = []
         self.is_area = False
         self.is_fast = False
         self.link = link
         self.name = "Pound"
-        self.next_use = 0
-        self.potency = 0
-        self.power = 1
-        self.range = None
+        self.next_use = 0.0
+        self.potency = 0.0
+        self.power = 1.0
+        self.range: Optional[str] = None
         self.recharge_length = 0
-        self.sfx = None
-        self.sort = None
+        self.sfx = ""
+        self.sort = ""
         self.slug = slug
-        self.target = list()
-        self.type1 = "aether"
-        self.type2 = None
-        self.use_item = None
-        self.use_success = None
-        self.use_failure = None
-        self.use_tech = None
+        self.target: Sequence[str] = []
+        self.type1: Optional[str] = "aether"
+        self.type2: Optional[str] = None
+        self.use_item = ""
+        self.use_success = ""
+        self.use_failure = ""
+        self.use_tech = ""
 
         # If a slug of the technique was provided, autoload it.
         if slug:
             self.load(slug)
 
-    def load(self, slug):
+    def load(self, slug: str) -> None:
         """Loads and sets this technique's attributes from the technique
         database. The technique is looked up in the database by slug.
 
@@ -127,13 +153,13 @@ class Technique:
         else:
             self.type1 = self.type2 = None
 
-        self.power = results.get("power")
-        self.is_fast = results.get("is_fast")
-        self.recharge_length = results.get("recharge")
-        self.is_area = results.get("is_area")
-        self.range = results.get("range")
-        self.accuracy = results.get("accuracy")
-        self.potency = results.get("potency")
+        self.power = results.get("power", self.power)
+        self.is_fast = results.get("is_fast", self.is_fast)
+        self.recharge_length = results.get("recharge", self.recharge_length)
+        self.is_area = results.get("is_area", self.is_area)
+        self.range = results.get("range", self.range)
+        self.accuracy = results.get("accuracy", self.accuracy)
+        self.potency = results.get("potency", self.potency)
         self.effect = results["effects"]
         self.target = process_targets(results["target"])
 
@@ -148,52 +174,56 @@ class Technique:
         # Load the sound effect for this technique
         self.sfx = results["sfx"]
 
-    def advance_round(self, number=1):
-        """Advance the turn counters for this technique
+    def advance_round(self, number: int = 1) -> None:
+        """
+        Advance the turn counters for this technique.
 
-        Techniques have two counters currently, a "combat counter" and a "life counter".
+        Techniques have two counters currently, a "combat counter" and a
+        "life counter".
         Combat counters should be reset with combat begins.
-        Life counters will be set to zero when the Technique is created, but will never
-        be reset.
+        Life counters will be set to zero when the Technique is created,
+        but will never be reset.
 
-        Calling this function will advance both counters
+        Calling this function will advance both counters.
 
-        :return: None
         """
         self._combat_counter += 1
         self._life_counter += 1
 
-    def recharge(self):
+    def recharge(self) -> None:
         self.next_use -= 1
 
-    def full_recharge(self):
+    def full_recharge(self) -> None:
         self.next_use = 0
 
-    def reset_combat_counter(self):
+    def reset_combat_counter(self) -> None:
         """Reset the combat counter."""
         self._combat_counter = 0
 
-    def use(self, user, target):
-        """Applies this technique's effects as defined in the "effect" column of the technique
-        database. This method will execute a function with the same name as the effect defined in
-        the database. If you want to add a new effect, simply create a new function under the
-        Technique class with the name of the effect you define in monster.db.
+    def use(self, user: Monster, target: Monster) -> TechniqueResult:
+        """
+        Apply the technique.
 
-        :param user: The Monster object that used this technique.
-        :param target: Monster object that we are using this technique on.
+        Applies this technique's effects as defined in the "effect" column of
+        the technique database. This method will execute a function with the
+        same name as the effect defined in the database. If you want to add a
+        new effect, simply create a new function under the Technique class
+        with the name of the effect you define in monster.db.
 
-        :type user: tuxemon.monster.Monster
-        :type target: tuxemon.monster.Monster
+        Parameters:
+            user: The Monster object that used this technique.
+            target: Monster object that we are using this technique on.
 
-        :rtype: dictionary
-        :returns: a dictionary with the effect name, success and misc properties
+        Returns:
+            A dictionary with the effect name, success and misc properties.
 
-        **Examples:**
+        Examples:
 
         >>> poison_tech = Technique("technique_poison_sting")
         >>> bulbatux.learn(poison_tech)
         >>>
         >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
+
         """
         # Loop through all the effects of this technique and execute the effect's function.
         # TODO: more robust API
@@ -201,7 +231,7 @@ class Technique:
         # TODO: consider moving message templates to the JSON DB
 
         # defaults for the return. items can override these values in their return.
-        meta_result = {
+        meta_result: TechniqueResult = {
             "name": self.name,
             "success": False,
             "should_tackle": False,
@@ -237,38 +267,47 @@ class Technique:
 
         return meta_result
 
-    def calculate_damage(self, user, target):
-        """Calc. damage for the damage technique
+    def calculate_damage(
+        self,
+        user: Monster,
+        target: Monster,
+    ) -> Tuple[int, float]:
+        """
+        Calculate damage for the damage technique.
 
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
+        Parameters:
+            user: The Monster object that used this technique.
+            target: The Monster object that we are using this technique on.
 
-        :type user: tuxemon.monster.Monster
-        :type target: tuxemon.monster.Monster
+        Returns:
+            A tuple (damage, multiplier).
 
-        :rtype: tuple(int, str)
         """
         return formula.simple_damage_calculate(self, user, target)
 
-    def damage(self, user, target):
-        """This effect applies damage to a target monster. Damage calculations are based upon the
-        original Pokemon battle damage formula. This effect will be applied if "damage" is defined
-        in this technique's effect list.
+    def damage(self, user: Monster, target: Monster) -> EffectResult:
+        """
+        Apply damage.
 
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
+        This effect applies damage to a target monster. Damage calculations
+        are based upon the original Pokemon battle damage formula. This
+        effect will be applied if "damage" is defined in this technique's
+        effect list.
 
-        :type user: tuxemon.monster.Monster
-        :type target: tuxemon.monster.Monster
+        Parameters:
+            user: The Monster object that used this technique.
+            target: The Monster object that we are using this technique on.
 
-        :rtype: dict
+        Returns:
+            Dict summarizing the result.
+
         """
         hit = self.accuracy >= random.random()
         if hit or self.is_area:
             self.can_apply_status = True
             damage, mult = self.calculate_damage(user, target)
             if not hit:
-                damage /= 2
+                damage //= 2
             target.current_hp -= damage
         else:
             damage = 0
@@ -281,16 +320,17 @@ class Technique:
             "success": bool(damage),
         }
 
-    def apply_status(self, slug, target):
-        """This effect has a chance to apply a status effect to a target monster.
+    def apply_status(self, slug: str, target: Monster) -> EffectResult:
+        """
+        This effect has a chance to apply a status effect to a target monster.
 
-        :param target: The Monster object that we are using this technique on.
-        :param slug: The Monster object that we are using this technique on.
+        Parameters:
+            slug: Name of the status effect.
+            target: The Monster object that we are using this technique on.
 
-        :type user: tuxemon.monster.Monster
-        :type target: tuxemon.monster.Monster
+        Returns:
+            Dict summarizing the result.
 
-        :rtype: dict
         """
         already_applied = any(t for t in target.status if t.slug == slug)
         success = not already_applied and self.can_apply_status and self.potency >= random.random()
@@ -303,16 +343,17 @@ class Technique:
             "status": tech,
         }
 
-    def apply_lifeleech(self, user, target):
-        """This effect has a chance to apply the lifeleech status effect to a target monster.
+    def apply_lifeleech(self, user: Monster, target: Monster) -> EffectResult:
+        """
+        This effect has a chance to apply the lifeleech status effect.
 
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
+        Parameters:
+            user: The Monster object that used this technique.
+            target: The Monster object that we are using this technique on.
 
-        :type user: tuxemon.monster.Monster
-        :type target: tuxemon.monster.Monster
+        Returns:
+            Dict summarizing the result.
 
-        :rtype: dict
         """
         already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
         success = not already_applied and self.can_apply_status and self.potency >= random.random()
@@ -324,7 +365,8 @@ class Technique:
             "status": tech,
         }
 
-    def poison(self, target):
+    def poison(self, target: Monster) -> EffectResult:
+        assert self.link
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
         return {
@@ -333,7 +375,7 @@ class Technique:
             "success": bool(damage),
         }
 
-    def recover(self, target):
+    def recover(self, target: Monster) -> EffectResult:
         heal = formula.simple_recover(self, target)
         target.current_hp += heal
         return {
@@ -342,8 +384,9 @@ class Technique:
             "success": bool(heal),
         }
 
-    def lifeleech(self, target):
+    def lifeleech(self, target: Monster) -> EffectResult:
         user = self.link
+        assert user
         damage = formula.simple_lifeleech(self, user, target)
         target.current_hp -= damage
         user.current_hp += damage
@@ -353,16 +396,19 @@ class Technique:
             "success": bool(damage),
         }
 
-    def faint(self, user, target):
-        """Faint this monster.  Typically, called by combat to faint self, not others.
+    def faint(self, user: Monster, target: Monster) -> EffectResult:
+        """
+        Faint this monster.
 
-        :param user: The Monster object that used this technique.
-        :param target: The Monster object that we are using this technique on.
+        Typically, called by combat to faint self, not others.
 
-        :type user: tuxemon.monster.Monster
-        :type target: tuxemon.monster.Monster
+        Parameters:
+            user: The Monster object that used this technique.
+            target: The Monster object that we are using this technique on.
 
-        :rtype: dict
+        Returns:
+            Dict summarizing the result.
+
         """
         # TODO: implement into the combat state, currently not used
 
@@ -378,21 +424,21 @@ class Technique:
             "success": True,
         }
 
-    def swap(self, user, target):
-        """Used just for combat: change order of monsters
+    def swap(self, user: Monster, target: Monster) -> EffectResult:
+        """
+        Used just for combat: change order of monsters.
 
-        Position of monster in party will be changed
+        Position of monster in party will be changed.
 
-        :param user: tuxemon.monster.Monster
-        :param target: tuxemon.monster.Monster
+        Returns:
+            Dict summarizing the result.
 
-        :rtype: dict
         """
         # TODO: implement actions as events, so that combat state can find them
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up later
         # TODO: these values are set in combat_menus.py
 
-        def swap_add():
+        def swap_add() -> None:
             # TODO: make accommodations for battlefield positions
             combat_state.add_monster_into_play(user, target)
 
@@ -416,5 +462,5 @@ class Technique:
             "should_tackle": False,
         }
 
-    def get_state(self):
+    def get_state(self) -> Optional[str]:
         return self.slug

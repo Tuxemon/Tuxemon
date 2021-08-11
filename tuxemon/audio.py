@@ -1,3 +1,4 @@
+from __future__ import annotations
 import logging
 import os.path
 
@@ -6,21 +7,35 @@ from pygame import mixer
 
 from tuxemon.db import db
 from tuxemon.tools import transform_resource_filename
+from typing import Protocol, Any
 
 logger = logging.getLogger(__name__)
 
 
-def load_sound(slug):
-    """Load a sound from disk, identified by it's slug in the db
+class SoundProtocol(Protocol):
 
-    :param slug: slug for the file record to load
-    :type slug: String
-    :rtype: tuxemon.platform.mixer.Sound
+    def play(self) -> object:
+        pass
+
+
+class DummySound():
+
+    def play(self) -> None:
+        pass
+
+
+def load_sound(slug: str) -> SoundProtocol:
     """
+    Load a sound from disk, identified by it's slug in the db.
 
-    class DummySound:
-        def play(self):
-            pass
+    Parameters:
+        slug: slug for the file record to load
+
+    Returns:
+        Loaded sound, or a placeholder silent sound if it is
+        not found.
+
+    """
 
     if slug is None:
         return DummySound()

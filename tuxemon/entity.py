@@ -23,20 +23,27 @@
 # Leif Theden <leif.theden@gmail.com>
 #
 
+from __future__ import annotations
 from tuxemon.math import Point2, Vector3, Point3
 from tuxemon.map import proj
+from typing import Sequence, Mapping
+from tuxemon.session import Session
 
 
 class Entity:
-    """Eventually a class for all things that exist on the
-    game map, like NPCs, players, objects, etc
+    """
+    Entity in the game.
+
+    Eventually a class for all things that exist on the
+    game map, like NPCs, players, objects, etc.
 
     Need to refactor in most NPC code to here.
     Need to refactor -out- all drawing/sprite code.
-    Consider to refactor out world position/movement into "Body" class
+    Consider to refactor out world position/movement into "Body" class.
+
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.slug = None
         self.world = None
         self.instance_id = None
@@ -46,33 +53,34 @@ class Entity:
         self.velocity3 = Vector3(0, 0, 0)
         self.update_location = False
 
-    # === PHYSICS START ================================================================
-    def stop_moving(self):
-        """Completely stop all movement
+    # === PHYSICS START =======================================================
+    def stop_moving(self) -> None:
+        """
+        Completely stop all movement.
 
-        :return: None
         """
         self.velocity3.x = 0
         self.velocity3.y = 0
         self.velocity3.z = 0
 
-    def pos_update(self):
+    def pos_update(self) -> None:
         """WIP.  Required to be called after position changes
 
-        :return:
         """
         self.tile_pos = proj(self.position3)
 
-    def update_physics(self, td):
-        """Move the entity according to the movement vector
+    def update_physics(self, td: float) -> None:
+        """
+        Move the entity according to the movement vector.
 
-        :param td:
-        :return:
+        Parameters:
+            td: Time delta (elapsed time).
+
         """
         self.position3 += self.velocity3 * td
         self.pos_update()
 
-    def set_position(self, pos):
+    def set_position(self, pos: Sequence[float]) -> None:
         """Set the entity's position in the game world
 
         :param pos:
@@ -82,29 +90,37 @@ class Entity:
         self.position3.y = pos[1]
         self.pos_update()
 
-    # === PHYSICS END ==================================================================
+    # === PHYSICS END =========================================================
 
     @property
-    def moving(self):
-        """Is the entity moving?
+    def moving(self) -> bool:
+        """
+        Return ``True`` if the entity is moving.
 
-        :rtype: bool
         """
         return not self.velocity3 == (0, 0, 0)
 
-    def get_state(self, session):
-        """Get Entities internal state for saving/loading
+    def get_state(self, session: Session) -> Mapping[str, str]:
+        """
+        Get Entities internal state for saving/loading.
 
-        :param tuxemon.session.Session session:
-        :rtype: Dict[str, str]
+        Parameters:
+            session: Game session.
+
         """
         raise NotImplementedError
 
-    def set_state(self, session, save_data):
-        """Recreates entity from saved data
+    def set_state(
+        self,
+        session: Session,
+        save_data: Mapping[str, str],
+    ) -> None:
+        """
+        Recreates entity from saved data.
 
-        :param tuxemon.session.Session session:
-        :param Dict save_data: Data used to recreate the Entity
-        :rtype: Dict[str, str]
+        Parameters:
+            session: Game session.
+            ave_data: Data used to recreate the Entity.
+
         """
         raise NotImplementedError

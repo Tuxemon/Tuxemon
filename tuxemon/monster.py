@@ -27,16 +27,21 @@
 #
 #
 
+from __future__ import annotations
 import logging
 import random
 import uuid
 
 from tuxemon import ai, fusion, graphics
-from tuxemon.db import db
+from tuxemon.db import db, JSONMonsterMovesetItem, JSONMonsterEvolutionItem
 from tuxemon.locale import T
 from tuxemon.technique import Technique
 from tuxemon.config import TuxemonConfig
+from typing import Optional, List, TYPE_CHECKING, Any, Mapping, Sequence, Dict
 
+if TYPE_CHECKING:
+    import pygame
+    from tuxemon.states.combat.combat import EnqueuedAction
 
 logger = logging.getLogger(__name__)
 
@@ -171,20 +176,22 @@ MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 # class definition for tuxemon flairs:
 class Flair:
-    def __init__(self, category, name):
+    def __init__(self, category: str, name: str) -> None:
         self.category = category
         self.name = name
 
 
 # class definition for first active tuxemon to use in combat:
 class Monster:
-    """A class for a Tuxemon monster object. This class acts as a skeleton for
+    """
+    Tuxemon monster.
+
+    A class for a Tuxemon monster object. This class acts as a skeleton for
     a Tuxemon, fetching its details from a database.
 
-    :param: None
     """
 
-    def __init__(self, save_data=None):
+    def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
             save_data = dict()
 
@@ -203,13 +210,13 @@ class Monster:
         self.hp = 0
         self.level = 0
 
-        self.moves = []  # list of technique objects. Used in combat.
-        self.moveset = []  # list of possible technique objects.
-        self.evolutions = []  # list of possible evolution objects.
-        self.flairs = {}  # dictionary of flairs, one is picked randomly.
+        self.moves: List[Technique] = []  # list of technique objects. Used in combat.
+        self.moveset: List[JSONMonsterMovesetItem] = []  # list of possible technique objects.
+        self.evolutions: List[JSONMonsterEvolutionItem] = []  # list of possible evolution objects.
+        self.flairs: Dict[str, Flair] = {}  # dictionary of flairs, one is picked randomly.
         self.battle_cry = ""  # slug for a sound file, used primarly when they enter battle
         self.faint_cry = ""  # slug for a sound file, used when the monster faints
-        self.ai = None
+        self.ai: Optional[ai.AI] = None
         self.owner = None  # set to NPC instance if they own it
 
         # The multiplier for experience
@@ -217,14 +224,14 @@ class Monster:
         self.total_experience = 0
 
         self.type1 = "aether"
-        self.type2 = None
+        self.type2: Optional[str] = None
         self.shape = "landrace"
 
-        self.status = list()
+        self.status: List[Technique] = list()
         self.status_damage = 0
         self.status_turn = 0
 
-        self.weight = 0
+        self.weight = 0.0
 
         # The multiplier for checks when a monster ball is thrown this should be a value betwen 0-255 meaning that
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system calculations.
@@ -246,7 +253,7 @@ class Monster:
         self.body = fusion.Body()
 
         # Set up our sprites.
-        self.sprites = {}
+        self.sprites: Dict[str, pygame.surface.Surface] = {}
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
         self.menu_sprite_1 = ""
@@ -256,11 +263,19 @@ class Monster:
         self.set_stats()
         self.set_flairs()
 
-    def spawn(self, father):
-        """Create's a new Monster, with this monster as the mother and the passed in monster as father.
+    def spawn(self, father: Monster) -> Monster:
+        """
+        Spawn a child monster.
 
-        :param father: The monster.Monster to be father of this monsterous child.
-        :type father : tuxemon.monster.Monster
+        Creates a new Monster, with this monster as the mother and the passed
+        in monster as father.
+
+        Parameters:
+            The monster.Monster to be father of this monsterous child.
+
+        Returns:
+            Child monster.
+
         """
         child = Monster()
         child.load_from_db(self.slug)
@@ -272,14 +287,15 @@ class Monster:
 
         return child
 
-    def load_from_db(self, slug):
-        """Loads and sets this monster's attributes from the monster.db database.
+    def load_from_db(self, slug: str) -> None:
+        """
+        Loads and sets this monster's attributes from the monster.db database.
+
         The monster is looked up in the database by name.
 
-        :param slug: Slug to lookup
-        :type slug: str
+        Parameters:
+            slug: Slug to lookup
 
-        :rtype: None
         """
 
         # Look up the monster by name and set the attributes in this instance
@@ -301,12 +317,17 @@ class Monster:
                 self.type2 = results["types"][1].lower()
 
         self.weight = results["weight"]
-        self.catch_rate = results.get("catch_rate", TuxemonConfig().default_monster_catch_rate)
+        self.catch_rate = results.get(
+            "catch_rate",
+            TuxemonConfig().default_monster_catch_rate,
+        )
         self.upper_catch_resistance = results.get(
-            "upper_catch_resistance", TuxemonConfig().default_upper_monster_catch_resistance
+            "upper_catch_resistance",
+            TuxemonConfig().default_upper_monster_catch_resistance,
         )
         self.lower_catch_resistance = results.get(
-            "lower_catch_resistance", TuxemonConfig().default_lower_monster_catch_resistance
+            "lower_catch_resistance",
+            TuxemonConfig().default_lower_monster_catch_resistance,
         )
 
         # Look up the moves that this monster can learn AND LEARN THEM.
@@ -342,18 +363,17 @@ class Monster:
         elif ai_result == "RandomAI":
             self.ai = ai.RandomAI()
 
-    def learn(self, technique):
-        """Adds a technique to this tuxemon's moveset.
+    def learn(
+        self,
+        technique: Technique,
+    ) -> None:
+        """
+        Adds a technique to this tuxemon's moveset.
 
-        :param technique: The monster.Technique object for
-            the monster to learn.
+        Parameters:
+            technique: The technique for the monster to learn.
 
-        :type technique: tuxemon.monster.Technique
-
-        :rtype: None
-        :returns: None
-
-        **Examples:**
+        Examples:
 
         >>> bulbatux.learn(Technique())
         >>> bulbatux.moves[0].use(bulbatux, target=tuxmander)
@@ -362,20 +382,20 @@ class Monster:
 
         self.moves.append(technique)
 
-    def give_experience(self, amount=1):
-        """Gives the Monster a specified amount of experience, and levels
+    def give_experience(self, amount: int = 1) -> None:
+        """
+        Increase experience.
+
+        Gives the Monster a specified amount of experience, and levels
         up the monster if necessary.
 
-        :param amount: The amount of experience to add to the monster.
+        Parameters:
+            amount: The amount of experience to add to the monster.
 
-        :type amount: Integer
-
-        :rtype: None
-        :returns: None
-
-        **Example:**
+        Example:
 
         >>> bulbatux.give_experience(20)
+
         """
         self.total_experience += amount
 
@@ -383,20 +403,22 @@ class Monster:
         while self.total_experience >= self.experience_required(1):
             self.level_up()
 
-    def apply_status(self, status):
-        """Apply a status to the monster
+    def apply_status(self, status: Technique) -> None:
+        """
+        Apply a status to the monster.
 
-        :type status: tuxemon.technique.Technique
-        :rtype: None
+        Parameters:
+            status: The status technique.
+
         """
         self.status.append(status)
 
-    def set_stats(self):
-        """Sets the monsters initial stats, or improves stats
-        when called during a level up.
+    def set_stats(self) -> None:
+        """
+        Set or improve stats.
 
-        :rtype: None
-        :returns: None
+        Sets the monsters initial stats, or improves stats
+        when called during a level up.
 
         """
         if self.level < 10:
@@ -413,12 +435,10 @@ class Monster:
         self.ranged = shape["ranged"] * multiplier
         self.speed = shape["speed"] * multiplier
 
-    def level_up(self):
-        """Increases a Monster's level by one and increases stats
-        accordingly
+    def level_up(self) -> None:
+        """
+        Increases a Monster's level by one and increases stats accordingly.
 
-        :rtype: None
-        :returns: None
         """
         logger.info("Leveling %s from %i to %i!" % (self.name, self.level, self.level + 1))
         # Increase Level and stats
@@ -433,38 +453,45 @@ class Monster:
                 technique = Technique(move["technique"])
                 self.learn(technique)
 
-    def set_level(self, level=5):
-        """Sets the Monster's level to the specified arbitrary level,
+    def set_level(self, level: int = 5) -> None:
+        """
+        Set monster level.
+
+        Sets the Monster's level to the specified arbitrary level,
         and modifies experience accordingly.
 
-        :param level: The level to set the monster to.
+        Parameters:
+            level: The level to set the monster to.
 
-        :type level: Integer
-
-        :rtype: None
-        :returns: None
-
-        **Example:**
+        Example:
 
         >>> bulbatux.set_level(20)
+
         """
         self.level = level
         self.total_experience = self.experience_required()
         self.set_stats()
 
-    def experience_required(self, level_ofs=0):
-        """Gets the experience requirement for the given level.
-
-        :rtype: Integer
-        :returns: Required exp
+    def experience_required(self, level_ofs: int = 0) -> int:
         """
-        return self.experience_required_modifier * (self.level + level_ofs) ** 3
+        Gets the experience requirement for the given level.
 
-    def get_evolution(self, path):
-        """Checks if an evolution is valid and gets the resulting monster.
+        Parameters:
+            level_ofs: Difference in levels with the current level.
 
-        :rtype: String
-        :returns: New monster slug if valid, None otherwise
+        Returns:
+            Required experience.
+
+        """
+        return self.experience_required_modifier * (self.level + level_ofs)**3
+
+    def get_evolution(self, path: str) -> Optional[str]:
+        """
+        Checks if an evolution is valid and gets the resulting monster.
+
+        Returns:
+            New monster slug if valid, None otherwise
+
         """
         for evolution in self.evolutions:
             if evolution["path"] == path:
@@ -474,11 +501,17 @@ class Monster:
                     return evolution["monster_slug"]
         return None
 
-    def get_sprite(self, sprite, **kwargs):
-        """Gets a specific type of sprite for the monster.
+    def get_sprite(self, sprite: str, **kwargs: Any) -> pygame.surface.Surface:
+        """
+        Gets a specific type of sprite for the monster.
 
-        :rtype: Pygame surface
-        :returns: The surface of the monster sprite
+        Parameters:
+            sprite: Name of the sprite type.
+            kwargs: Additional parameters to pass to the loading function.
+
+        Returns:
+            The surface of the monster sprite.
+
         """
         if sprite == "front":
             surface = graphics.load_sprite(self.front_battle_sprite, **kwargs)
@@ -498,12 +531,8 @@ class Monster:
 
         return surface
 
-    def set_flairs(self):
-        """Sets the flairs of this monster if they were not already configured
-
-        :rtype: None
-        :returns: None
-        """
+    def set_flairs(self) -> None:
+        """Set flairs of this monster if they were not already configured."""
         if len(self.flairs) > 0 or self.slug == "":
             return
 
@@ -511,34 +540,42 @@ class Monster:
         flairs = results.get("flairs")
         if flairs:
             for flair in flairs:
-                flair = Flair(flair["category"], random.choice(flair["names"]))
-                self.flairs[flair.category] = flair
+                new_flair = Flair(
+                    flair["category"],
+                    random.choice(flair["names"]),
+                )
+                self.flairs[new_flair.category] = new_flair
 
-    def get_sprite_path(self, sprite):
+    def get_sprite_path(self, sprite: str) -> str:
         """
+        Get a sprite path.
+
         Paths are set up by convention, so the file extension is unknown.
         This adds the appropriate file extension if the sprite exists,
         and returns a dummy image if it can't be found.
 
-        rtype: String
-        returns: path to sprite or placeholder image
+        Returns:
+            Path to sprite or placeholder image.
+
         """
         try:
-            exts = ["png", "gif", "jpg", "jpeg"]
-            for ext in exts:
-                path = "%s.png" % sprite
-                full_path = graphics.transform_resource_filename(path)
-                if full_path:
-                    return full_path
+            path = "%s.png" % sprite
+            full_path = graphics.transform_resource_filename(path)
+            if full_path:
+                return full_path
         except OSError:
-            logger.debug(f"Could not find monster sprite {sprite}")
-            return MISSING_IMAGE
+            pass
 
-    def load_sprites(self):
-        """Loads the monster's sprite images as Pygame surfaces.
+        logger.debug(f"Could not find monster sprite {sprite}")
+        return MISSING_IMAGE
 
-        :rtype: Boolean
-        :returns: True if the sprites are already loaded.
+    def load_sprites(self) -> bool:
+        """
+        Loads the monster's sprite images as Pygame surfaces.
+
+        Returns:
+            ``True`` if the sprites are already loaded.
+
         """
         if len(self.sprites):
             return True
@@ -548,13 +585,13 @@ class Monster:
         self.sprites["menu"] = graphics.load_and_scale(self.menu_sprite_1)
         return False
 
-    def get_state(self):
-        """Prepares a dictionary of the monster to be saved to a file
+    def get_state(self) -> Mapping[str, Any]:
+        """
+        Prepares a dictionary of the monster to be saved to a file.
 
-        :param: None
+        Returns:
+            Dictionary containing all the information about the monster.
 
-        :rtype: Dictionary
-        :returns: Dictionary containing all the information about the monster
         """
         save_data = {attr: getattr(self, attr) for attr in SIMPLE_PERSISTANCE_ATTRIBUTES if getattr(self, attr)}
 
@@ -570,14 +607,12 @@ class Monster:
 
         return save_data
 
-    def set_state(self, save_data):
-        """Loads information from saved data
+    def set_state(self, save_data: Mapping[str, Any]) -> None:
+        """
+        Loads information from saved data.
 
-        :param save_data: Data used to reconstruct the monster
-        :type save_data: Dictionary
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            save_data: Data used to reconstruct the monster.
 
         """
         if not save_data:
@@ -599,7 +634,7 @@ class Monster:
 
         self.load_sprites()
 
-    def end_combat(self):
+    def end_combat(self) -> None:
         for move in self.moves:
             move.full_recharge()
 
@@ -608,16 +643,18 @@ class Monster:
         else:
             self.status = []
 
-    def speed_test(self, action):
+    def speed_test(self, action: EnqueuedAction) -> float:
         if action.technique.is_fast:
             return random.randrange(0, self.speed) * 1.5
         else:
             return random.randrange(0, self.speed)
 
 
-def decode_monsters(json_data):
+def decode_monsters(
+    json_data: Sequence[Mapping[str, Any]],
+) -> Sequence[Monster]:
     return [Monster(save_data=mon) for mon in json_data or {}]
 
 
-def encode_monsters(mons):
+def encode_monsters(mons: Sequence[Monster]) -> Sequence[Mapping[str, Any]]:
     return [mon.get_state() for mon in mons]

@@ -484,7 +484,7 @@ def get_avatar(
         avatar: The identifier of the avatar to be used.
 
     Returns:
-        The surface of the monster or NPC avatar sprite
+        The surface of the monster or NPC avatar sprite.
 
     """
     # TODO: remove the need for this import

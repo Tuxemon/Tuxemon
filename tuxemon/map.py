@@ -37,7 +37,7 @@ import pyscroll
 
 from tuxemon.compat import Rect
 from tuxemon import prepare
-from tuxemon.lib.euclid import Vector2, Vector3, Point2
+from tuxemon.math import Vector2, Vector3, Point2
 from tuxemon.tools import round_to_divisible
 
 logger = logging.getLogger(__name__)

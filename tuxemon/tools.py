@@ -29,6 +29,7 @@ from __future__ import annotations
 from typing import (Any, Optional, Protocol, Sequence, Tuple, Type, TypeVar,
     Union, Mapping, Iterable, TYPE_CHECKING, Callable)
 import typing
+from tuxemon.math import Vector2
 
 """
 
@@ -194,8 +195,8 @@ def nearest(l: Iterable[float]) -> Sequence[int]:
     return tuple(int(round(i)) for i in l)
 
 
-def trunc(l: Iterable[float]) -> Sequence[int]:
-    return tuple(int(i) for i in l)
+def vector2_to_tile_pos(vector: Vector2) -> Tuple[int, int]:
+    return (int(vector[0]), int(vector[1]))
 
 
 def number_or_variable(

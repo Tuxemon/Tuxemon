@@ -240,28 +240,20 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
     * Supports sprites with visible flag
     * Get bounding rect of all children
 
-    Variations from standard group:
-    * SpriteGroup.add no longer accepts a sequence, use SpriteGroup.extend.
-
     """
 
-    _init_rect = pygame.rect.Rect(0, 0, 0, 0)
-
     def __init__(self, *, default_layer: int = 0) -> None:
-        self._spritelayers = dict()
-        self._spritelist: List[pygame.sprite.Sprite] = list()
-        pygame.sprite.AbstractGroup.__init__(self)
-        self._default_layer = default_layer
+        super().__init__(default_layer=default_layer)
 
     def __nonzero__(self) -> bool:
-        return bool(self._spritelist)
+        return bool(self.sprites())
 
     def __getitem__(
         self,
         item: Union[int, slice],
     ) -> Union[pygame.sprite.Sprite, Sequence[pygame.sprite.Sprite]]:
         # patch in indexing / slicing support
-        return self._spritelist.__getitem__(item)
+        return self.sprites()[item]
 
     def draw(
         self,
@@ -296,46 +288,6 @@ class SpriteGroup(pygame.sprite.LayeredUpdates):
                 dirty_append(newrect)
             spritedict[s] = newrect
         return dirty
-
-    def extend(
-        self,
-        sprites: Sequence[pygame.sprite.Sprite],
-        **kwargs: Any,
-    ) -> None:
-        """Add a sequence of sprites to the SpriteGroup.
-
-        :param sprites: Sequence (list, set, etc)
-        :param kwargs:
-        :returns: None
-        """
-        if "_index" in kwargs.keys():
-            raise KeyError
-        for index, sprite in enumerate(sprites):
-            kwargs["_index"] = index
-            self.add(sprite, **kwargs)
-
-    def add(
-        self,
-        sprite: pygame.sprite.Sprite,
-        *,
-        layer: Optional[int] = None,
-        **kwargs: Any,
-    ) -> None:
-        """Add a sprite to group.  do not pass a sequence or iterator
-
-        LayeredUpdates.add(*sprites, **kwargs): return None
-        If the sprite you add has an attribute _layer, then that layer will be
-        used. If **kwarg contains 'layer', then the passed sprites will be
-        added to that layer (overriding the sprite._layer attribute). If
-        neither the sprite nor **kwarg has a 'layer', then the default layer is
-        used to add the sprites.
-        """
-        if isinstance(sprite, pygame.sprite.Sprite):
-            if not self.has_internal(sprite):
-                self.add_internal(sprite, layer)
-                sprite.add_internal(self)
-        else:
-            raise TypeError
 
     def calc_bounding_rect(self) -> pygame.rect.Rect:
         """A rect object that contains all sprites of this group"""
@@ -493,7 +445,7 @@ class VisualSpriteList(RelativeGroup):
 
     def add(
         self,
-        item: pygame.sprite.Sprite,
+        *sprites: pygame.sprite.Sprite,
         **kwargs: Any,
     ) -> None:
         """
@@ -505,7 +457,7 @@ class VisualSpriteList(RelativeGroup):
             item: Stuff to add.
 
         """
-        super().add(item, **kwargs)
+        super().add(*sprites, **kwargs)
         self._needs_arrange = True
 
     def remove(

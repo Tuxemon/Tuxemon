@@ -53,8 +53,8 @@ class Sprite(pygame.sprite.DirtySprite):
         super().__init__(*args)
         self.visible = True
         self._rotation = 0
-        self._image = None
-        self._original_image = None
+        self._image: Optional[pygame.surface.Surface] = None
+        self._original_image: Optional[pygame.surface.Surface] = None
         self._width = 0
         self._height = 0
         self._needs_rescale = False

@@ -28,6 +28,7 @@ from tuxemon.math import Point2, Vector3, Point3
 from tuxemon.map import proj
 from typing import Sequence, Mapping
 from tuxemon.session import Session
+from tuxemon.tools import vector2_to_tile_pos
 
 
 class Entity:
@@ -44,10 +45,10 @@ class Entity:
     """
 
     def __init__(self) -> None:
-        self.slug = None
+        self.slug = ""
         self.world = None
         self.instance_id = None
-        self.tile_pos = Point2(0, 0)
+        self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)
         self.acceleration3 = Vector3(0, 0, 0)  # not used currently, just set velocity
         self.velocity3 = Vector3(0, 0, 0)
@@ -67,7 +68,7 @@ class Entity:
         """WIP.  Required to be called after position changes
 
         """
-        self.tile_pos = proj(self.position3)
+        self.tile_pos = vector2_to_tile_pos(proj(self.position3))
 
     def update_physics(self, td: float) -> None:
         """

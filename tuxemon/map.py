@@ -31,7 +31,7 @@
 import logging
 from itertools import product
 from math import pi, atan2
-from typing import Dict, Optional
+from typing import Dict, Optional, Literal
 
 import pyscroll
 
@@ -41,6 +41,8 @@ from tuxemon.math import Vector2, Vector3, Point2
 from tuxemon.tools import round_to_divisible
 
 logger = logging.getLogger(__name__)
+
+Direction = Literal["up", "down", "left", "right"]
 
 # direction => vector
 dirs3 = {
@@ -95,7 +97,7 @@ def get_direction(base, target):
         return "left" if x_offset > 0 else "right"
 
 
-def proj(point):
+def proj(point: Vector3) -> Vector2:
     """Project 3d coordinates to 2d.
 
     Not necessarily for use on a screen.
@@ -454,5 +456,5 @@ class TuxemonMap:
 
     def _npc_to_rect(self, npc):
         """Returns a pygame.Rect (in screen-coords) version of an NPC's bounding box."""
-        pos = self.get_pos_from_tilepos(npc.tile_pos)
+        pos = self.get_pos_from_tilepos(proj(npc.position3))
         return Rect(pos, self.tile_size)

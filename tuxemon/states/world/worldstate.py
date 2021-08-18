@@ -35,7 +35,7 @@ import pygame
 
 from tuxemon.compat import Rect
 from tuxemon import prepare, state, networking
-from tuxemon.map import PathfindNode, dirs2, pairs
+from tuxemon.map import PathfindNode, dirs2, pairs, proj
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons, events
@@ -379,7 +379,7 @@ class WorldState(state.State):
             self.current_map.initialize_renderer()
 
         # get player coords to center map
-        cx, cy = nearest(self.project(self.player.tile_pos))
+        cx, cy = nearest(self.project(self.player.position3))
 
         # offset center point for player sprite
         cx += prepare.TILE_SIZE[0] // 2
@@ -778,7 +778,7 @@ class WorldState(state.State):
 
     def _npc_to_pgrect(self, npc):
         """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
-        pos = self.get_pos_from_tilepos(npc.tile_pos)
+        pos = self.get_pos_from_tilepos(proj(npc.position3))
         return Rect(pos, self.tile_size)
 
     ####################################################

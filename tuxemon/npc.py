@@ -28,10 +28,13 @@
 # npc
 #
 
+from __future__ import annotations
 import logging
 import os
 from math import hypot
-from typing import List
+from typing import List, Optional, Mapping, Any, Sequence, TYPE_CHECKING, Tuple,\
+    TypedDict, Dict, Iterable, Union
+import uuid
 
 from tuxemon.compat import Rect
 from tuxemon import pyganim
@@ -40,11 +43,23 @@ from tuxemon.entity import Entity
 from tuxemon.item.item import Item
 from tuxemon.item.item import decode_inventory, encode_inventory
 from tuxemon.locale import T
-from tuxemon.map import proj, facing, dirs3, dirs2, get_direction
+from tuxemon.map import proj, facing, dirs3, dirs2, get_direction, Direction
 from tuxemon.monster import Monster, MAX_LEVEL, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
-from tuxemon.tools import nearest, trunc
+from tuxemon.tools import vector2_to_tile_pos
 from tuxemon.graphics import load_and_scale
+from tuxemon.session import Session
+from tuxemon.math import Vector2
+from tuxemon.technique import Technique
+from tuxemon.states.combat.combat import EnqueuedAction
+
+if TYPE_CHECKING:
+    import pygame
+
+    SpriteMap = Union[
+        Mapping[str, pygame.surface.Surface],
+        Mapping[str, pyganim.PygAnimation],
+    ]
 
 logger = logging.getLogger(__name__)
 
@@ -56,18 +71,24 @@ animation_mapping = {
 }
 
 
-def tile_distance(tile0, tile1):
+def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
     x0, y0 = tile0
     x1, y1 = tile1
     return hypot(x1 - x0, y1 - y0)
 
 
+class InventoryItem(TypedDict):
+    item: Item
+    quantity: int
+
+
 class NPC(Entity):
-    """Class for humanoid type game objects, NPC, Players, etc
+    """
+    Class for humanoid type game objects, NPC, Players, etc.
 
     Currently, all movement is handled by a queue called "path".  This queue
-    provides robust movement in a tile based environment.  It supports arbitrary
-    length paths for directly setting a series of movements.
+    provides robust movement in a tile based environment.  It supports
+    arbitrary length paths for directly setting a series of movements.
 
     Pathfinding is accomplished by setting the path directly.
 
@@ -76,7 +97,13 @@ class NPC(Entity):
 
     party_limit = 6  # The maximum number of tuxemon this npc can hold
 
-    def __init__(self, npc_slug, sprite_name=None, combat_front=None, combat_back=None):
+    def __init__(
+        self,
+        npc_slug: str,
+        sprite_name: Optional[str] = None,
+        combat_front: Optional[str] = None,
+        combat_back: Optional[str] = None,
+    ) -> None:
         super().__init__()
 
         # load initial data from the npc database
@@ -102,32 +129,32 @@ class NPC(Entity):
 
         # general
         self.behavior = "wander"  # not used for now
-        self.game_variables = {}  # Tracks the game state
-        self.interactions = []  # List of ways player can interact with the Npc
+        self.game_variables: Dict[str, Any] = {}  # Tracks the game state
+        self.interactions: Sequence[str] = []  # List of ways player can interact with the Npc
         self.isplayer = False  # used for various tests, idk
-        self.monsters = []  # This is a list of tuxemon the npc has. Do not modify directly
-        self.inventory = {}  # The Player's inventory.
+        self.monsters: List[Monster] = []  # This is a list of tuxemon the npc has. Do not modify directly
+        self.inventory: Dict[str, InventoryItem] = {}  # The Player's inventory.
         # Variables for long-term item and monster storage
         # Keeping these seperate so other code can safely
         # assume that all values are lists
-        self.monster_boxes = dict()
-        self.item_boxes = dict()
+        self.monster_boxes: Dict[str, List[Monster]] = {}
+        self.item_boxes: Dict[str, Sequence[Item]] = {}
 
         # combat related
         self.ai = None  # Whether or not this player has AI associated with it
         self.speed = 10  # To determine combat order (not related to movement!)
-        self.moves = []  # list of techniques
+        self.moves: Sequence[Technique] = []  # list of techniques
 
         # pathfinding and waypoint related
-        self.pathfinding = None
-        self.path = []
+        self.pathfinding: Optional[Tuple[int, int]] = None
+        self.path: List[Tuple[int, int]] = []
         self.final_move_dest = [0, 0]  # Stores the final destination sent from a client
 
         # This is used to 'set back' when lost, and make movement robust.
         # If entity falls off of map due to a bug, it can be returned to this value.
         # When moving to a waypoint, this is used to detect if movement has overshot
         # the destination due to speed issues or framerate jitters.
-        self.path_origin = None
+        self.path_origin: Optional[Tuple[int, int]] = None
 
         # movement related
         self.move_direction = None  # Set this value to move the npc (see below)
@@ -143,19 +170,26 @@ class NPC(Entity):
         # TODO: move sprites into renderer so class can be used headless
         self.playerHeight = 0
         self.playerWidth = 0
-        self.standing = {}  # Standing animation frames
-        self.sprite = {}  # Moving animation frames
+        self.standing: Dict[str, pygame.surface.Surface] = {}  # Standing animation frames
+        self.sprite: Dict[str, pyganim.PygAnimation] = {}  # Moving animation frames
         self.moveConductor = pyganim.PygConductor()
         self.load_sprites()
-        self.rect = Rect(self.tile_pos, (self.playerWidth, self.playerHeight))  # Collision rect
+        self.rect = Rect((
+            self.tile_pos[0],
+            self.tile_pos[1],
+            self.playerWidth,
+            self.playerHeight),
+        )  # Collision rect
 
-    def get_state(self, session):
-        """Prepares a dictionary of the npc to be saved to a file
+    def get_state(self, session: Session) -> Mapping[str, Any]:
+        """
+        Prepares a dictionary of the npc to be saved to a file.
 
-        :param tuxemon.session.Session session:
+        Parameters:
+            session: Game session.
 
-        :rtype: Dictionary
-        :returns: Dictionary containing all the information about the npc
+        Returns:
+            Dictionary containing all the information about the npc.
 
         """
 
@@ -168,7 +202,7 @@ class NPC(Entity):
             "player_name": self.name,
             "monster_boxes": dict(),
             "item_boxes": dict(),
-            "tile_pos": nearest(self.tile_pos),
+            "tile_pos": self.tile_pos,
         }
 
         for key, value in self.monster_boxes.items():
@@ -178,17 +212,19 @@ class NPC(Entity):
 
         return state
 
-    def set_state(self, session, save_data):
-        """Recreates npc from saved data
+    def set_state(
+        self,
+        session: Session,
+        save_data: Mapping[str, Any],
+    ) -> None:
+        """
+        Recreates npc from saved data.
 
-        :param tuxemon.session.Session session:
-        :param Dict save_data: Data used to recreate the player
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            session: Game session.
+            save_data: Data used to recreate the NPC.
 
         """
-
         self.facing = save_data.get("facing", "down")
         self.game_variables = save_data["game_variables"]
         self.inventory = decode_inventory(session, self, save_data.get("inventory", {}))
@@ -199,11 +235,8 @@ class NPC(Entity):
         for key, value in save_data["item_boxes"].items():
             self.item_boxes[key] = decode_inventory(session, self, value)
 
-    def load_sprites(self):
-        """Load sprite graphics
-
-        :return:
-        """
+    def load_sprites(self) -> None:
+        """Load sprite graphics."""
         # TODO: refactor animations into renderer
         # Get all of the player's standing animation images.
         self.standing = {}
@@ -215,8 +248,8 @@ class NPC(Entity):
         self.playerWidth, self.playerHeight = self.standing["front"].get_size()  # The player's sprite size in pixels
 
         # avoid cutoff frames when steps don't line up with tile movement
-        frames = 3
-        frame_duration = (1000 / CONFIG.player_walkrate) / frames / 1000 * 2
+        n_frames = 3
+        frame_duration = (1000 / CONFIG.player_walkrate) / n_frames / 1000 * 2
 
         # Load all of the player's sprite animations
         anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
@@ -225,7 +258,7 @@ class NPC(Entity):
                 "sprites/{}_{}.{}.png".format(self.sprite_name, anim_type, str(num).rjust(3, "0")) for num in range(4)
             ]
 
-            frames = []
+            frames: List[Tuple[pygame.surface.Surface, float]] = []
             for image in images:
                 surface = load_and_scale(image)
                 frames.append((surface, frame_duration))
@@ -237,92 +270,103 @@ class NPC(Entity):
         # at the same time, so that way they'll always be in sync with each other.
         self.moveConductor.add(self.sprite)
 
-    def get_sprites(self, layer):
-        """Get the surfaces and layers for the sprite
+    def get_sprites(
+        self,
+        layer: int,
+    ) -> Sequence[Tuple[pygame.surface.Surface, Vector2, int]]:
+        """
+        Get the surfaces and layers for the sprite.
 
-        Used to render the player
+        Used to render the NPC.
 
-        TODO: Move the 'layer' to the NPC class so characters
-        can define their own drawing layer.
+        Parameters:
+            layer: The layer to draw the sprite on.
 
-        :param layer: The layer to draw the sprite on.
-        :type layer: Int
+        Returns:
+            Tuple containing the surface to plot, the current position
+            of the NPC and the layer.
 
-        :return:
         """
 
-        def get_frame(d, ani):
+        def get_frame(
+            d: SpriteMap,
+            ani: str,
+        ) -> pygame.surface.Surface:
             frame = d[ani]
-            try:
+            if isinstance(frame, pyganim.PygAnimation):
                 surface = frame.getCurrentFrame()
                 frame.rate = self.moverate / CONFIG.player_walkrate
                 return surface
-            except AttributeError:
+            else:
                 return frame
 
         # TODO: move out to the world renderer
-        frame_dict = self.sprite if self.moving else self.standing
+        frame_dict: SpriteMap = self.sprite if self.moving else self.standing
         state = animation_mapping[self.moving][self.facing]
-        return [(get_frame(frame_dict, state), self.tile_pos, layer)]
+        return [(get_frame(frame_dict, state), proj(self.position3), layer)]
 
-    def pathfind(self, destination) -> List:
-        """Find a path and also start it
+    def pathfind(self, destination: Tuple[int, int]) -> None:
+        """
+        Find a path and also start it.
 
         If asked to pathfind, an NPC will pathfind until it:
         * reaches the destination
         * NPC.cancel_movement() is called
 
-        If blocked, the NPC will wait until it is able to move
+        If blocked, the NPC will wait until it is able to move.
 
-        Queries the world for a valid path
+        Queries the world for a valid path.
+
+        Parameters:
+            destination: Desired final position.
+
         """
         self.pathfinding = destination
-        path = self.world.pathfind(tuple(int(i) for i in self.tile_pos), destination)
+        path = self.world.pathfind(self.tile_pos, destination)
         if path:
             self.path = path
             self.next_waypoint()
 
-    def check_continue(self):
+    def check_continue(self) -> None:
         try:
-            pos = tuple(int(i) for i in self.tile_pos)
-            direction_next = self.world.collision_map[pos]["continue"]
+            direction_next = self.world.collision_map[self.tile_pos]["continue"]
             self.move_one_tile(direction_next)
         except (KeyError, TypeError):
             pass
 
-    def stop_moving(self):
-        """Completely stop all movement
+    def stop_moving(self) -> None:
+        """
+        Completely stop all movement.
 
         Be careful, if stopped while in the path, it might not be tile-aligned.
 
-        May continue if move_direction is set
+        May continue if move_direction is set.
 
-        :return: None
         """
         self.velocity3.x = 0
         self.velocity3.y = 0
         self.velocity3.z = 0
 
-    def cancel_path(self):
-        """Stop following a path.
+    def cancel_path(self) -> None:
+        """
+        Stop following a path.
 
-        NPC may still continue to move if move_direction has been set
+        NPC may still continue to move if move_direction has been set.
 
-        :return:
         """
         self.path = []
         self.pathfinding = None
         self.path_origin = None
 
-    def cancel_movement(self):
-        """Gracefully stop moving.  If in a path, then will finish tile movement.
+    def cancel_movement(self) -> None:
+        """
+        Gracefully stop moving.  If in a path, then will finish tile movement.
 
         Generally, use this if you want to stop.  Will stop at a tile coord.
 
-        :return:
         """
         self.move_direction = None
-        if self.tile_pos == self.path_origin:
+        if proj(self.position3) == self.path_origin:
             # we *just* started a new path; discard it and stop
             self.abort_movement()
         elif self.path and self.moving:
@@ -334,8 +378,9 @@ class NPC(Entity):
             self.stop_moving()
             self.cancel_path()
 
-    def abort_movement(self):
-        """Stop moving, cancel paths, and reset tile position to center
+    def abort_movement(self) -> None:
+        """
+        Stop moving, cancel paths, and reset tile position to center.
 
         The tile postion will be truncated, so even if there is another
         closer tile, it will always return the the tile where movement
@@ -347,13 +392,14 @@ class NPC(Entity):
         :return:
         """
         if self.path_origin is not None:
-            self.tile_pos = tuple(self.path_origin)
+            self.tile_pos = self.path_origin
         self.move_direction = None
         self.stop_moving()
         self.cancel_path()
 
-    def move(self, time_passed_seconds):
-        """Move the entity around the game world
+    def move(self, time_passed_seconds: float) -> None:
+        """
+        Move the entity around the game world.
 
         * check if the move_direction variable is set
         * set the movement speed
@@ -361,10 +407,10 @@ class NPC(Entity):
         * control walking animations
         * send network updates
 
-        :param time_passed_seconds: A float of the time that has passed since the last frame.
-            This is generated by clock.tick() / 1000.0.
+        Parameters:
+            time_passed_seconds: A float of the time that has passed since the
+                last frame. This is generated by clock.tick() / 1000.0.
 
-        :type time_passed_seconds: Float
         """
         # update physics.  eventually move to another class
         self.update_physics(time_passed_seconds)
@@ -402,49 +448,51 @@ class NPC(Entity):
             self.cancel_movement()
             self.moveConductor.stop()
 
-    def move_one_tile(self, direction):
-        """Ask entity to move one tile
-
-        :type direction: str
-        :param direction: up, down, left right
-
-        :return: None
+    def move_one_tile(self, direction: Direction) -> None:
         """
-        self.path.append(trunc(self.tile_pos + dirs2[direction]))
+        Ask entity to move one tile.
 
-    def valid_movement(self, tile):
-        """Check the game map to determine if a tile can be moved into
+        Parameters:
+            direction: Direction where to move.
+
+        """
+        self.path.append(vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction]))
+
+    def valid_movement(self, tile: Tuple[int, int]) -> bool:
+        """
+        Check the game map to determine if a tile can be moved into.
 
         * Only checks adjacent tiles
         * Uses all advanced tile movements, like continue tiles
 
-        :param tile:
-        :return:
+        Parameters:
+            tile: Coordinates of the tile.
+
+        Returns:
+            If the tile can me moved into.
+
         """
-        return tile in self.world.get_exits(trunc(self.tile_pos)) or self.ignore_collisions
+        return tile in self.world.get_exits(self.tile_pos) or self.ignore_collisions
 
     @property
-    def move_destination(self):
-        """Only used for the player_moved condition.
-
-        :return:
-        """
+    def move_destination(self) -> Optional[Sequence[int]]:
+        """Only used for the player_moved condition."""
         if self.path:
             return self.path[-1]
         else:
             return None
 
-    def next_waypoint(self):
-        """Take the next step of the path, stop if way is blocked
+    def next_waypoint(self) -> None:
+        """
+        Take the next step of the path, stop if way is blocked.
 
         * This must be called after a path is set
         * Not needed to be called if existing path is modified
         * If the next waypoint is blocked, the waypoint will be removed
 
-        :return: None
         """
         target = self.path[-1]
-        direction = get_direction(self.tile_pos, target)
+        direction = get_direction(proj(self.position3), target)
         self.facing = direction
         if self.valid_movement(target):
             # pyganim has horrible clock drift.  even after one animation
@@ -456,7 +504,7 @@ class NPC(Entity):
             # eventually, there will need to be a global clock for the game,
             # not based on wall time, to prevent visual glitches.
             self.moveConductor.play()
-            self.path_origin = tuple(self.tile_pos)
+            self.path_origin = self.tile_pos
             self.velocity3 = self.moverate * dirs3[direction]
         else:
             # the target is blocked now
@@ -471,19 +519,20 @@ class NPC(Entity):
                 # give up and wait until the target is clear again
                 pass
 
-    def check_waypoint(self):
-        """Check if the waypoint is reached and sets new waypoint if so
+    def check_waypoint(self) -> None:
+        """
+        Check if the waypoint is reached and sets new waypoint if so.
 
         * For most accurate speed, tests distance traveled.
         * Doesn't verify the target position, just distance
         * Assumes once waypoint is set, direction doesn't change
         * Honors continue tiles
 
-        :return: None
         """
         target = self.path[-1]
+        assert self.path_origin
         expected = tile_distance(self.path_origin, target)
-        traveled = tile_distance(self.tile_pos, self.path_origin)
+        traveled = tile_distance(proj(self.position3), self.path_origin)
         if traveled >= expected:
             self.set_position(target)
             self.path.pop()
@@ -492,50 +541,37 @@ class NPC(Entity):
             if self.path:
                 self.next_waypoint()
 
-    def pos_update(self):
-        """WIP.  Required to be called after position changes
-
-        :return:
-        """
-        self.tile_pos = proj(self.position3)
+    def pos_update(self) -> None:
+        """WIP.  Required to be called after position changes."""
+        self.tile_pos = vector2_to_tile_pos(proj(self.position3))
         self.network_notify_location_change()
 
-    def network_notify_start_moving(self, direction):
-        r"""WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
+    def network_notify_start_moving(self, direction: Direction) -> None:
+        r"""WIP guesswork ¯\_(ツ)_/¯"""
         if self.world.game.isclient or self.world.game.ishost:
             self.world.game.client.update_player(direction, event_type="CLIENT_MOVE_START")
 
-    def network_notify_stop_moving(self):
-        r"""WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
+    def network_notify_stop_moving(self) -> None:
+        r"""WIP guesswork ¯\_(ツ)_/¯"""
         if self.world.game.isclient or self.world.game.ishost:
             self.world.game.client.update_player(self.facing, event_type="CLIENT_MOVE_COMPLETE")
 
-    def network_notify_location_change(self):
-        r"""WIP guesswork ¯\_(ツ)_/¯
-
-        :return:
-        """
+    def network_notify_location_change(self) -> None:
+        r"""WIP guesswork ¯\_(ツ)_/¯"""
         self.update_location = True
 
     ####################################################
     #                   Monsters                       #
     ####################################################
-    def add_monster(self, monster):
-        """Adds a monster to the player's list of monsters. If the player's party is full, it
-        will send the monster to PCState archive.
+    def add_monster(self, monster: Monster) -> None:
+        """
+        Adds a monster to the npc's list of monsters.
 
-        :param monster: The monster.Monster object to add to the player's party.
+        If the player's party is full, it will send the monster to
+        PCState archive.
 
-        :type monster: tuxemon.monster.Monster
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            monster: The monster to add to the npc's party.
 
         """
         monster.owner = self
@@ -545,71 +581,83 @@ class NPC(Entity):
             self.monsters.append(monster)
             self.set_party_status()
 
-    def find_monster(self, monster_slug):
-        """Finds a monster in the player's list of monsters.
+    def find_monster(self, monster_slug: str) -> Optional[Monster]:
+        """
+        Finds a monster in the npc's list of monsters.
 
-        :param monster_slug: The slug name of the monster
-        :type monster_slug: str
+        Parameters:
+            monster_slug: The slug name of the monster.
 
-        :rtype: tuxemon.monster.Monster
-        :returns: Monster found
+        Returns:
+            Monster found.
+
         """
         for monster in self.monsters:
             if monster.slug == monster_slug:
                 return monster
 
-    def find_monster_by_id(self, instance_id):
-        """Finds a monster in the player's list which has the given instance_id.
+        return None
 
-        :param instance_id: The instance_id of the monster.
-        :type instance_id: uuid.UUID4
+    def find_monster_by_id(self, instance_id: uuid.UUID) -> Optional[Monster]:
+        """
+        Finds a monster in the npc's list which has the given id.
 
-        :rtype: tuxemon.monster.Monster
-        :return: Monster found, or None.
+        Parameters:
+            instance_id: The instance_id of the monster.
+
+        Returns:
+            Monster found, or None.
 
         """
-        return next((m for m in self.monsters if m.instance_id == instance_id), None)
+        return next(
+            (m for m in self.monsters if m.instance_id == instance_id),
+            None,
+        )
 
-    def find_monster_in_storage(self, instance_id):
-        """Finds a monster in the player's storage boxes which has the given instance_id.
+    def find_monster_in_storage(
+        self,
+        instance_id: uuid.UUID,
+    ) -> Optional[Monster]:
+        """
+        Finds a monster in the npc's storage boxes which has the given id.
 
-        :param instance_id: The insance_id of the monster.
-        :type instance_id: uuid.UUID4
+        Parameters:
+            instance_id: The insance_id of the monster.
 
-        :rtype: tuxemon.monster.Monster
-        :return: Monster found, or None.
+        Returns:
+            Monster found, or None.
 
         """
         monster = None
         for box in self.monster_boxes.values():
-            monster = next((m for m in box if m.instance_id == instance_id), None)
+            monster = next(
+                (m for m in box if m.instance_id == instance_id),
+                None,
+            )
             if monster is not None:
                 break
 
         return monster
 
-    def remove_monster(self, monster):
-        """Removes a monster from this player's party.
+    def remove_monster(self, monster: Monster) -> None:
+        """
+        Removes a monster from this npc's party.
 
-        :param monster: Monster to remove from the player's party.
+        Parameters:
+            monster: Monster to remove from the npc's party.
 
-        :type monster: tuxemon.monster.Monster
-
-        :rtype: None
-        :returns: None
         """
         if monster in self.monsters:
             self.monsters.remove(monster)
             self.set_party_status()
 
-    def remove_monster_from_storage(self, monster):
-        """Removes the monster from the player's storage.
+    def remove_monster_from_storage(self, monster: Monster) -> None:
+        """
+        Removes the monster from the npc's storage.
 
-        :param monster: Monster to remove from storage.
-        :type monster: tuxemon.monster.Monster
+        Parameters:
+            monster: Monster to remove from storage.
 
-        :return: None
-        :rtype: None
         """
 
         for box in self.monster_boxes.values():
@@ -617,26 +665,19 @@ class NPC(Entity):
                 box.remove(monster)
                 return
 
-    def switch_monsters(self, index_1, index_2):
-        """Swap two monsters in this player's party
+    def switch_monsters(self, index_1: int, index_2: int) -> None:
+        """
+        Swap two monsters in this npc's party.
 
-        :param index_1: The indexes of the monsters to switch in the player's party.
-        :param index_2: The indexes of the monsters to switch in the player's party.
+        Parameters:
+            index_1: The indexes of the monsters to switch in the npc's party.
+            index_2: The indexes of the monsters to switch in the npc's party.
 
-        :type index_1: int
-        :type index_2: int
-
-        :rtype: None
-        :returns: None
         """
         self.monsters[index_1], self.monsters[index_2] = self.monsters[index_2], self.monsters[index_1]
 
-    def load_party(self):
-        """Loads the party of this npc from their npc.json entry.
-
-        :rtype: None
-        :returns: None
-        """
+    def load_party(self) -> None:
+        """Loads the party of this npc from their npc.json entry."""
         for monster in self.monsters:
             self.remove_monster(monster)
 
@@ -655,12 +696,8 @@ class NPC(Entity):
             # Add our monster to the NPC's party
             self.add_monster(monster)
 
-    def set_party_status(self):
-        """Records important information about all monsters in the party.
-
-        :rtype: None
-        :returns: None
-        """
+    def set_party_status(self) -> None:
+        """Records important information about all monsters in the party."""
         if not self.isplayer or len(self.monsters) == 0:
             return
 
@@ -678,15 +715,26 @@ class NPC(Entity):
         self.game_variables["party_level_highest"] = level_highest
         self.game_variables["party_level_average"] = level_average
 
-    def give_item(self, session, target, item, quantity):
+    def give_item(
+        self,
+        session: Session,
+        target: NPC,
+        item: Item,
+        quantity: int,
+    ) -> bool:
         subtract = self.alter_item_quantity(session, item.slug, -quantity)
         give = target.alter_item_quantity(session, item.slug, quantity)
         return subtract and give
 
-    def has_item(self, item_slug):
+    def has_item(self, item_slug: str) -> bool:
         return self.inventory.get(item_slug) is not None
 
-    def alter_item_quantity(self, session, item_slug, amount):
+    def alter_item_quantity(
+        self,
+        session: Session,
+        item_slug: str,
+        amount: int,
+    ) -> bool:
         success = True
         item = self.inventory.get(item_slug)
         if amount > 0:
@@ -710,5 +758,5 @@ class NPC(Entity):
 
         return success
 
-    def speed_test(self, action):
+    def speed_test(self, action: EnqueuedAction) -> float:
         return self.speed

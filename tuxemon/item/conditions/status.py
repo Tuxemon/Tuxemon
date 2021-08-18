@@ -23,17 +23,26 @@
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
-
+from __future__ import annotations
 from tuxemon.item.itemcondition import ItemCondition
+from typing import NamedTuple
+from tuxemon.monster import Monster
 
 
-class StatusCondition(ItemCondition):
-    """Checks against the creature's current statuses.
+class StatusConditionParameters(NamedTuple):
+    expected: str
+
+
+class StatusCondition(ItemCondition[StatusConditionParameters]):
+    """
+    Checks against the creature's current statuses.
+
     Accepts a single parameter and returns whether it is applied.
+
     """
 
     name = "status"
-    valid_parameters = [(str, "expected")]
+    param_class = StatusConditionParameters
 
-    def test(self, target):
+    def test(self, target: Monster) -> bool:
         return self.parameters.expected in target.status

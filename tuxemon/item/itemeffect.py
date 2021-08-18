@@ -31,10 +31,8 @@
 
 from __future__ import annotations
 import logging
-from collections import namedtuple
 
-from tuxemon.tools import cast_values, NamedTupleProtocol,\
-    cast_parameters_to_namedtuple
+from tuxemon.tools import NamedTupleProtocol, cast_parameters_to_namedtuple
 from typing import TypeVar, Generic, ClassVar, Type, Sequence, Any, TypedDict,\
     TYPE_CHECKING
 from tuxemon.session import Session

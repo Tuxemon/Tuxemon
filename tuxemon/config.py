@@ -94,9 +94,9 @@ class TuxemonConfig:
         self.encounter_rate_modifier = cfg.getfloat("gameplay", "encounter_rate_modifier")
         self.default_monster_storage_box = cfg.get("gameplay", "default_monster_storage_box")
         self.default_item_storage_box = cfg.get("gameplay", "default_item_storage_box")
-        self.default_monster_catch_rate = cfg.get("gameplay", "default_monster_catch_rate")
-        self.default_upper_monster_catch_resistance = cfg.get("gameplay", "default_upper_monster_catch_resistance")
-        self.default_lower_monster_catch_resistance = cfg.get("gameplay", "default_lower_monster_catch_resistance")
+        self.default_monster_catch_rate = cfg.getfloat("gameplay", "default_monster_catch_rate")
+        self.default_upper_monster_catch_resistance = cfg.getfloat("gameplay", "default_upper_monster_catch_resistance")
+        self.default_lower_monster_catch_resistance = cfg.getfloat("gameplay", "default_lower_monster_catch_resistance")
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")

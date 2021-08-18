@@ -64,6 +64,17 @@ class JSONMonsterMovesetItem(TypedDict):
     technique: str
 
 
+class JSONMonsterEvolutionItem(TypedDict):
+    path: str
+    at_level: int
+    monster_slug: str
+
+
+class JSONMonsterFlairItem(TypedDict):
+    category: str
+    names: Sequence[str]
+
+
 class JSONMonsterSprites(TypedDict):
     battle1: str
     battle2: str
@@ -83,7 +94,8 @@ class JSONMonsterOptionalFields(TypedDict, total=False):
     lower_catch_resistance: float
     upper_catch_resistance: float
     moveset: Sequence[JSONMonsterMovesetItem]
-    evolutions: Sequence[Any]  # I do not know the type
+    evolutions: Sequence[JSONMonsterEvolutionItem]
+    flairs: Sequence[JSONMonsterFlairItem]
     sounds: JSONMonsterSounds
 
 

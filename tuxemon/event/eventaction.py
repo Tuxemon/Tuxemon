@@ -129,7 +129,7 @@ class EventAction(ABC, Generic[ParameterClass]):
             else:
                 self.parameters = parameters
 
-        except:
+        except ValueError:
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
             logger.error(self.param_class)

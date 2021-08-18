@@ -26,25 +26,36 @@
 # Adam Chevalier <chevalieradam2@gmail.com>
 #
 
-
+from __future__ import annotations
 import logging
 import random
 
 from math import sqrt
 
-from tuxemon.item.itemeffect import ItemEffect
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from typing import NamedTuple
+from tuxemon.monster import Monster
 
 
 logger = logging.getLogger(__name__)
 
 
-class CaptureEffect(ItemEffect):
+class CaptureEffectResult(ItemEffectResult):
+    capture: bool
+    num_shakes: int
+
+
+class CaptureEffectParameters(NamedTuple):
+    power: int
+
+
+class CaptureEffect(ItemEffect[CaptureEffectParameters]):
     """Attempts to capture the target with 'power' capture strength."""
 
     name = "capture"
-    valid_parameters = [(int, "power")]
+    param_class = CaptureEffectParameters
 
-    def apply(self, target):
+    def apply(self, target: Monster) -> CaptureEffectResult:
         # Set up variables for capture equation
         status_modifier = 0
 

@@ -29,16 +29,30 @@
 #
 #
 
-
+from __future__ import annotations
 import logging
 from collections import namedtuple
 
-from tuxemon.tools import cast_values
+from tuxemon.tools import cast_values, NamedTupleProtocol,\
+    cast_parameters_to_namedtuple
+from typing import TypeVar, Generic, ClassVar, Type, Sequence, Any, TypedDict,\
+    TYPE_CHECKING
+from tuxemon.session import Session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
+    from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
+ParameterClass = TypeVar("ParameterClass", bound=NamedTupleProtocol)
 
-class ItemEffect:
+
+class ItemEffectResult(TypedDict):
+    success: bool
+
+
+class ItemEffect(Generic[ParameterClass]):
     """ItemEffects are executed by items.
 
     ItemEffect subclasses implement "effects" defined in Tuxemon items.
@@ -79,47 +93,42 @@ class ItemEffect:
     (Monster, "monster_slug")   => a Monster instance will be created
     """
 
-    name = "GenericEffect"
-    valid_parameters = list()
-    _param_factory = None
+    name: ClassVar[str] = "GenericEffect"
+    param_class: ClassVar[Type[ParameterClass]]
 
-    def __init__(self, session, user, parameters):
-        """
-
-        :type user: NPC
-        :type parameters: list
-        """
+    def __init__(
+        self,
+        session: Session,
+        user: NPC,
+        parameters: Sequence[Any],
+    ) -> None:
 
         self.session = session
         self.user = user
-
-        # TODO: METACLASS
-        # make a namedtuple class that will generate the parameters
-        # the patching of the class attribute should only happen once
-        if self.__class__._param_factory is None:
-            self.__class__._param_factory = namedtuple("parameters", [i[1] for i in self.valid_parameters])
 
         # if you need the parameters before they are processed, use this
         self.raw_parameters = parameters
 
         # parse parameters
         try:
-            if self.valid_parameters:
+            if self.param_class._fields:
 
                 # cast the parameters to the correct type, as defined in cls.valid_parameters
-                values = cast_values(parameters, self.valid_parameters)
-                self.parameters = self._param_factory(*values)
+                self.parameters = cast_parameters_to_namedtuple(
+                    parameters,
+                    self.param_class,
+                )
             else:
                 self.parameters = parameters
 
         except ValueError:
             logger.error(f"error while parsing for {self.name}")
             logger.error(f"cannot parse parameters: {parameters}")
-            logger.error(self.valid_parameters)
+            logger.error(self.param_class)
             logger.error("please check the parameters and verify they are correct")
             self.parameters = None
 
         self._done = False
 
-    def apply(self, target):
+    def apply(self, target: Monster) -> ItemEffectResult:
         pass

@@ -38,6 +38,7 @@ from tuxemon.locale import T
 
 from tuxemon import plugin
 from tuxemon.constants import paths
+from tuxemon.item.itemeffect import ItemEffect
 
 logger = logging.getLogger(__name__)
 
@@ -73,7 +74,11 @@ class Item:
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects:
-            Item.effects = plugin.load_plugins(paths.ITEM_EFFECT_PATH, "effects")
+            Item.effects = plugin.load_plugins(
+                paths.ITEM_EFFECT_PATH,
+                "effects",
+                interface=ItemEffect,
+            )
             Item.conditions = plugin.load_plugins(paths.ITEM_CONDITION_PATH, "conditions")
 
         # If a slug of the item was provided, auto-load it from the item database.

@@ -29,7 +29,7 @@
 #
 #
 
-
+from __future__ import annotations
 import logging
 
 from tuxemon import prepare, graphics
@@ -38,49 +38,72 @@ from tuxemon.locale import T
 
 from tuxemon import plugin
 from tuxemon.constants import paths
-from tuxemon.item.itemeffect import ItemEffect
+from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.session import Session
+
+from typing import Mapping, Any, Type, Optional, Sequence, Dict, TYPE_CHECKING,\
+    ClassVar, TypedDict
+import pygame
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
+
+
+class InventoryItemOptional(TypedDict, total=False):
+    infinite: bool
+
+
+class InventoryItem(InventoryItemOptional):
+    item: Item
+    quantity: int
 
 
 class Item:
     """An item object is an item that can be used either in or out of combat."""
 
-    effects = dict()
-    conditions = dict()
+    effects_classes: ClassVar[Mapping[str, Type[ItemEffect[Any]]]] = {}
+    conditions_classes: ClassVar[Mapping[str, Type[ItemCondition[Any]]]] = {}
 
-    def __init__(self, session, user, slug):
+    def __init__(
+        self,
+        session: Session,
+        user: NPC,
+        slug: str,
+    ) -> None:
         self.session = session
         self.user = user
         self.slug = slug
         self.name = "None"
         self.description = "None"
-        self.images = []
-        self.type = None
+        self.images: Sequence[str] = []
+        self.type: Optional[str] = None
         self.sfx = None
         self.sprite = ""  # The path to the sprite to load.
-        self.surface = None  # The pygame.Surface object of the item.
+        self.surface: Optional[pygame.surface.Surface] = None  # The pygame.Surface object of the item.
         self.surface_size_original = (0, 0)  # The original size of the image before scaling.
 
-        self.effects = {}
-        self.conditions = {}
+        self.effects: Sequence[ItemEffect[Any]] = []
+        self.conditions: Sequence[ItemCondition[Any]] = []
 
         self.sort = ""
         self.use_item = ""
         self.use_success = ""
         self.use_failure = ""
-        self.usable_in = ""
-        self.target = list()
+        self.usable_in: Sequence[str] = []
+        self.target: Sequence[str] = []
 
         # load effect and condition plugins if it hasn't been done already
-        if not Item.effects:
-            Item.effects = plugin.load_plugins(
+        if not Item.effects_classes:
+            Item.effects_classes = plugin.load_plugins(
                 paths.ITEM_EFFECT_PATH,
                 "effects",
                 interface=ItemEffect,
             )
-            Item.conditions = plugin.load_plugins(
+            Item.conditions_classes = plugin.load_plugins(
                 paths.ITEM_CONDITION_PATH,
                 "conditions",
                 interface=ItemCondition,
@@ -90,16 +113,14 @@ class Item:
         if slug:
             self.load(slug)
 
-    def load(self, slug):
-        """Loads and sets this items's attributes from the item.db database. The item is looked up
-        in the database by slug.
+    def load(self, slug: str) -> None:
+        """Loads and sets this items's attributes from the item.db database.
 
-        :param slug: The item slug to look up in the monster.item database.
+        The item is looked up in the database by slug.
 
-        :type slug: String
+        Parameters:
+            slug: The item slug to look up in the monster.item database.
 
-        :rtype: None
-        :returns: None
         """
 
         try:
@@ -129,23 +150,30 @@ class Item:
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
-    def parse_effects(self, raw):
-        """Takes raw effects list from the item's json and parses it into a form more suitable for the engine.
-
-        :param raw: The raw effects list pulled from the item's db entry.
-        :type raw: list
-
-        :rtype: list
-        :returns: effects turned into a list of ItemEffect objects
+    def parse_effects(
+        self,
+        raw: Sequence[str],
+    ) -> Sequence[ItemEffect[Any]]:
         """
+        Convert effect strings to effect objects.
 
+        Takes raw effects list from the item's json and parses it into a
+        form more suitable for the engine.
+
+        Parameters:
+            raw: The raw effects list pulled from the item's db entry.
+
+        Returns:
+            Effects turned into a list of ItemEffect objects.
+
+        """
         ret = list()
 
         for line in raw:
             name = line.split()[0]
             params = line.split()[1].split(",")
             try:
-                effect = Item.effects[name]
+                effect = Item.effects_classes[name]
             except KeyError:
                 error = f'Error: ItemEffect "{name}" not implemented'
                 logger.error(error)
@@ -154,16 +182,23 @@ class Item:
 
         return ret
 
-    def parse_conditions(self, raw):
-        """Takes raw condition list from the item's json and parses it into a form more suitable for the engine.
-
-        :param raw: The raw conditions list pulled from the item's db entry.
-        :type raw: list
-
-        :rtype: list
-        :returns: conditions turned into a list of ItemCondition objects
+    def parse_conditions(
+        self,
+        raw: Sequence[str],
+    ) -> Sequence[ItemCondition[Any]]:
         """
+        Convert condition strings to condition objects.
 
+        Takes raw condition list from the item's json and parses it into a
+        form more suitable for the engine.
+
+        Parameters:
+            raw: The raw conditions list pulled from the item's db entry.
+
+        Returns:
+            Conditions turned into a list of ItemCondition objects.
+
+        """
         ret = list()
 
         for line in raw:
@@ -173,7 +208,7 @@ class Item:
             context = args[0]
             params = args[1:]
             try:
-                condition = Item.conditions[name]
+                condition = Item.conditions_classes[name]
             except KeyError:
                 error = f'Error: ItemCondition "{name}" not implemented'
                 logger.error(error)
@@ -182,28 +217,27 @@ class Item:
 
         return ret
 
-    def advance_round(self):
-        """Advance round for items that take many rounds to use
+    def advance_round(self) -> None:
+        """
+        Advance round for items that take many rounds to use.
 
         * This currently has no use, and may not stay.  It is added
           so that the Item class and Technique class are interchangeable.
 
-        :return: None
         """
         return
 
-    def validate(self, target):
-        """Ensures that the target meets all conditions that the
-        item has on it's use.
-
-        :param target: The monster or object that we are using this item on.
-
-        :type target: Any
-
-        :rtype: bool
-        :returns: whether the item may be used by the user on the target.
+    def validate(self, target: Optional[Monster]) -> bool:
         """
+        Check if the target meets all conditions that the item has on it's use.
 
+        Parameters:
+            target: The monster or object that we are using this item on.
+
+        Returns:
+            Whether the item may be used by the user on the target.
+
+        """
         if not self.conditions:
             return True
         if not target:
@@ -216,21 +250,27 @@ class Item:
 
         return result
 
-    def use(self, user, target):
-        """Applies this items's effects as defined in the "effect" column of the item database.
-
-        :param user: The monster or object that is using this item.
-        :param target: The monster or object that we are using this item on.
-
-        :type user: Varies
-        :type target: Varies
-
-        :rtype: dict
-        :returns: a dictionary with various effect result properties
+    def use(self, user: NPC, target: Monster) -> ItemEffectResult:
         """
+        Applies this items's effects as defined in the "effect" column of
+        the item database.
 
-        # defaults for the return. items can override these values in their return.
-        meta_result = {"name": self.name, "num_shakes": 0, "capture": False, "should_tackle": False, "success": False}
+        Parameters:
+            user: The monster or object that is using this item.
+            target: The monster or object that we are using this item on.
+
+        Returns:
+            A dictionary with various effect result properties
+
+        """
+        # defaults for the return. items can override these values.
+        meta_result: ItemEffectResult = {
+            "name": self.name,
+            "num_shakes": 0,
+            "capture": False,
+            "should_tackle": False,
+            "success": False,
+        }
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
@@ -247,22 +287,31 @@ class Item:
         return meta_result
 
 
-def decode_inventory(session, owner, data):
-    """Reconstruct inventory from a save_data dict
+def decode_inventory(
+    session: Session,
+    owner: NPC,
+    data: Mapping[str, Any],
+) -> Mapping[str, InventoryItem]:
+    """
+    Reconstruct inventory from a data dict.
 
-    :param session:
-    :param owner:
-    :param data: save data inventory
-    :type data: Dictionary
+    Parameters:
+        session: Game session.
+        owner: Inventory owner.
+        data: Save data inventory.
 
-    :rtype: Dictionary
-    :returns: New inventory
+    Returns:
+        New inventory
+
     """
     out = {}
+    item: InventoryItem
     for slug, quant in data.items():
-        item = {"item": Item(session, owner, slug)}
+        item = {
+            "item": Item(session, owner, slug),
+            "quantity": 1,
+        }
         if quant is None:
-            item["quantity"] = 1
             # Infinite is used for shopkeepers
             # to ensure they don't run out of an item
             item["infinite"] = True
@@ -272,13 +321,17 @@ def decode_inventory(session, owner, data):
     return out
 
 
-def encode_inventory(inventory):
-    """Construct JSON encodable dict for saving
+def encode_inventory(
+    inventory: Mapping[str, InventoryItem],
+) -> Mapping[str, Any]:
+    """
+    Construct JSON encodable dict for saving.
 
-    :param inventory: the inventory of the player
-    :type inventory: Dictionary
+    Parameters:
+        inventory: the inventory of the player
 
-    :rtype: Dictionary
-    :returns: inventory save_data
+    Returns:
+        Inventory save_data
+
     """
     return {itm["item"].slug: itm["quantity"] for itm in inventory.values()}

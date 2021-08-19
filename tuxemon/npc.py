@@ -40,7 +40,7 @@ from tuxemon.compat import Rect
 from tuxemon import pyganim
 from tuxemon.db import db
 from tuxemon.entity import Entity
-from tuxemon.item.item import Item
+from tuxemon.item.item import Item, InventoryItem
 from tuxemon.item.item import decode_inventory, encode_inventory
 from tuxemon.locale import T
 from tuxemon.map import proj, facing, dirs3, dirs2, get_direction, Direction
@@ -75,11 +75,6 @@ def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
     x0, y0 = tile0
     x1, y1 = tile1
     return hypot(x1 - x0, y1 - y0)
-
-
-class InventoryItem(TypedDict):
-    item: Item
-    quantity: int
 
 
 class NPC(Entity):
@@ -138,7 +133,7 @@ class NPC(Entity):
         # Keeping these seperate so other code can safely
         # assume that all values are lists
         self.monster_boxes: Dict[str, List[Monster]] = {}
-        self.item_boxes: Dict[str, Sequence[Item]] = {}
+        self.item_boxes: Dict[str, Mapping[str, InventoryItem]] = {}
 
         # combat related
         self.ai = None  # Whether or not this player has AI associated with it

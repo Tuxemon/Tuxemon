@@ -27,9 +27,11 @@
 from __future__ import annotations
 import logging
 from collections import namedtuple
-from typing import NamedTuple, Sequence, Optional
-from tuxemon.player import Player
+from typing import NamedTuple, Sequence, Optional, TYPE_CHECKING
 from tuxemon.session import Session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -65,17 +67,17 @@ class EventObject(NamedTuple):
 __all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
 
 
-def get_npc(session: Session, slug: str) -> Optional[Player]:
-    """Gets an NPC object by slug.
+def get_npc(session: Session, slug: str) -> Optional[NPC]:
+    """
+    Gets an NPC object by slug.
 
-    :param session: The session object
-    :param slug: The slug of the NPC that exists on the current map.
+    Parameters:
+        session: The session object
+        slug: The slug of the NPC that exists on the current map.
 
-    :type session: tuxemon.session.Session
-    :type slug: str
+    Returns:
+        The NPC object or None if the NPC is not found.
 
-    :rtype: tuxemon.player.Player
-    :returns: The NPC object or None if the NPC is not found.
     """
     if slug == "player":
         return session.player

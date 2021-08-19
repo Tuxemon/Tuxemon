@@ -26,7 +26,7 @@
 
 import logging
 from math import cos, sin, pi
-from typing import Iterator, Tuple
+from typing import Iterator, Tuple, Sequence, Generator, Optional, Mapping, Any
 
 import pytmx
 import yaml
@@ -44,11 +44,18 @@ from tuxemon.map import (
     angle_of_points,
     orientation_by_angle,
     extract_region_properties,
+    Orientation,
+    Direction, RegionProperties,
 )
 from tuxemon.tools import split_escaped, copy_dict_with_keys
 from tuxemon.lib.bresenham import bresenham
 
 logger = logging.getLogger(__name__)
+
+RegionTile = Tuple[
+    Tuple[int, int],
+    Optional[Mapping[str, Any]],
+]
 
 # TODO: standardize and document these values
 region_properties = [
@@ -62,7 +69,7 @@ region_properties = [
 ]
 
 
-def parse_action_string(text):
+def parse_action_string(text: str) -> Tuple[str, Sequence[str]]:
     words = text.split(" ", 1)
     act_type = words[0]
     if len(words) > 1:
@@ -72,7 +79,7 @@ def parse_action_string(text):
     return act_type, args
 
 
-def parse_condition_string(text):
+def parse_condition_string(text: str) -> Tuple[str, str, Sequence[str]]:
     words = text.split(" ", 2)
     operator, cond_type = words[0:2]
     if len(words) > 2:
@@ -82,7 +89,7 @@ def parse_condition_string(text):
     return operator, cond_type, args
 
 
-def parse_behav_string(behav_string):
+def parse_behav_string(behav_string: str) -> Tuple[str, Sequence[str]]:
     words = behav_string.split(" ", 1)
     behav_type = words[0]
     if len(words) > 1:
@@ -148,7 +155,7 @@ class TMXMapLoader:
 
     """
 
-    def load(self, filename):
+    def load(self, filename: str) -> TuxemonMap:
         """Load map data from a tmx map file
 
         Loading the map data is done using the pytmx library.
@@ -171,10 +178,12 @@ class TMXMapLoader:
 
         .. image:: images/map/map_editor_action01.png
 
-        :param filename: The path to the tmx map file to load.
-        :type filename: String
+        Parameters:
+            filename: The path to the tmx map file to load.
 
-        :rtype: tuxemon.map.TuxemonMap
+        Returns:
+            The loaded map.
+
         """
         data = pytmx.TiledMap(filename, image_loader=scaled_image_loader, pixelalpha=True)
         tile_size = (data.tilewidth, data.tileheight)
@@ -182,7 +191,7 @@ class TMXMapLoader:
         events = list()
         inits = list()
         interacts = list()
-        collision_map = dict()
+        collision_map: Mapping[Tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         edges = data.properties.get("edges")
 
@@ -240,11 +249,19 @@ class TMXMapLoader:
             filename,
         )
 
-    def extract_tile_collisions(self, tiled_object, tile_size):
+    def extract_tile_collisions(
+        self,
+        tiled_object: pytmx.TiledObject,
+        tile_size: Tuple[int, int],
+    ) -> Generator[RegionTile, None, None]:
         if getattr(tiled_object, "closed", True):
             yield from self.region_tiles(tiled_object, tile_size)
 
-    def collision_lines_from_object(self, tiled_object, tile_size):
+    def collision_lines_from_object(
+        self,
+        tiled_object: pytmx.TiledObject,
+        tile_size: Tuple[int, int],
+    ) -> Generator[Tuple[Tuple[int, int], Direction], None, None]:
         # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
         if not getattr(tiled_object, "closed", True):
             for item in self.process_line(tiled_object, tile_size):
@@ -258,13 +275,12 @@ class TMXMapLoader:
                 else:
                     raise Exception(orientation)
 
-    def process_line(self, line, tile_size):
-        """Identify the tiles on either side of the line and block movement along it
-
-        :param line:
-        :param tile_size:
-        :return:
-        """
+    def process_line(
+        self,
+        line: pytmx.TiledObject,
+        tile_size: Tuple[int, int],
+    ) -> Generator[Tuple[Tuple[int, int], Tuple[int, int], Orientation], None, None]:
+        """Identify the tiles on either side of the line and block movement along it."""
         if len(line.points) < 2:
             raise ValueError("Error: collision lines must be at least 2 points")
         for point_0, point_1 in zip(line.points, line.points[1:]):
@@ -279,8 +295,12 @@ class TMXMapLoader:
                 yield i, other, orientation
 
     @staticmethod
-    def region_tiles(region: pytmx.TiledObject, grid_size: Tuple[int, int]):
-        """Apply region properties to individual tiles
+    def region_tiles(
+        region: pytmx.TiledObject,
+        grid_size: Tuple[int, int],
+    ) -> Generator[RegionTile, None, None]:
+        """
+        Apply region properties to individual tiles.
 
         Right now our collisions are defined in our tmx file as large regions
         that the player can't pass through. We need to convert these areas
@@ -289,23 +309,39 @@ class TMXMapLoader:
         region's bounding box will be snapped to the nearest tile coordinates.
 
         Parameters:
-            region: The Tiled object which contains collisions and movement modifiers
-            grid_size: The tile grid size
+            region: The Tiled object which contains collisions and movement
+                modifiers.
+            grid_size: The tile grid size.
 
-        Returns:
-            Iterator of (tile position, properties) tuples
+        Yields:
+            Tuples with form (tile position, properties).
         """
-        region_conditions = copy_dict_with_keys(region.properties, region_properties)
-        rect = snap_rect(Rect(region.x, region.y, region.width, region.height), grid_size)
+        region_conditions = copy_dict_with_keys(
+            region.properties,
+            region_properties,
+        )
+        rect = snap_rect(
+            Rect((region.x, region.y, region.width, region.height)),
+            grid_size,
+        )
         for tile_position in tiles_inside_rect(rect, grid_size):
             yield tile_position, extract_region_properties(region_conditions)
 
-    def load_event(self, obj, tile_size):
-        """Load an Event from the map
+    def load_event(
+        self,
+        obj: pytmx.TiledObject,
+        tile_size: Tuple[int, int],
+    ) -> EventObject:
+        """
+        Load an Event from the map.
 
-        :param obj:
-        :param tile_size:
-        :rtype: EventObject
+        Parameters:
+            obj: Tiled object that represents an event.
+            tile_size: Size of a tile.
+
+        Returns:
+            Loaded event.
+
         """
         conds = []
         acts = []

@@ -24,14 +24,15 @@ import logging
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique import Technique
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Union, Optional
+from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
 
 class SetMonsterStatusActionParameters(NamedTuple):
-    slot: int
-    status: str
+    slot: Union[int, None]
+    status: Union[str, None]
 
 
 @final
@@ -47,7 +48,7 @@ class SetMonsterStatusAction(EventAction[SetMonsterStatusActionParameters]):
     param_class = SetMonsterStatusActionParameters
 
     @staticmethod
-    def set_status(monster, value):
+    def set_status(monster: Monster, value: Optional[str]) -> None:
         if value is None:
             monster.status = list()
         else:

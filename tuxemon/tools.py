@@ -259,7 +259,7 @@ def cast_values(
         t, v = i
         try:
             for tt in t[0]:
-                if tt is None:
+                if tt is None or tt is type(None):
                     return None
 
                 if v is None:

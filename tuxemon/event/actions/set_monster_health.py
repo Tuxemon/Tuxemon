@@ -23,14 +23,15 @@ from __future__ import annotations
 import logging
 
 from tuxemon.event.eventaction import EventAction
-from typing import NamedTuple, final
+from typing import NamedTuple, final, Union, Optional
+from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
 
 class SetMonsterHealthActionParameters(NamedTuple):
-    slot: int
-    health: float
+    slot: Union[int, None]
+    health: Union[float, None]
 
 
 @final
@@ -48,7 +49,7 @@ class SetMonsterHealthAction(EventAction[SetMonsterHealthActionParameters]):
     param_class = SetMonsterHealthActionParameters
 
     @staticmethod
-    def set_health(monster, value):
+    def set_health(monster: Monster, value: Optional[float]) -> None:
         if value is None:
             monster.current_hp = monster.hp
         else:

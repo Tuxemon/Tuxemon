@@ -204,7 +204,7 @@
   <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
   <object id="141" type="collision" x="352" y="80" width="16" height="16"/>
   <object id="153" type="collision" x="0" y="208" width="192" height="160"/>
-  <object id="154" type="collision" x="0" y="160" width="176" height="16"/>
+  <object id="154" type="collision" x="0" y="160" width="192" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">

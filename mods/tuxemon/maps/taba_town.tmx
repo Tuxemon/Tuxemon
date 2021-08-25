@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="155">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="64" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="159">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -204,7 +204,14 @@
   <object id="113" type="collision" x="576" y="544" width="16" height="16"/>
   <object id="141" type="collision" x="352" y="80" width="16" height="16"/>
   <object id="153" type="collision" x="0" y="208" width="192" height="160"/>
-  <object id="154" type="collision" x="0" y="160" width="192" height="16"/>
+  <object id="154" type="collision" x="0" y="160" width="176" height="16"/>
+  <object id="158" type="collision" x="176" y="160" width="16" height="16">
+   <properties>
+    <property name="continue" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_to" value="down"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -873,6 +880,13 @@
     <property name="act2" value="remove_npc rock"/>
     <property name="cond1" value="is variable_set havetuxemon:yes"/>
     <property name="cond2" value="is npc_exists postboy"/>
+   </properties>
+  </object>
+  <object id="157" name="propeller cat" type="event" x="64" y="64" width="16" height="64">
+   <properties>
+    <property name="act10" value="random_encounter propellercat"/>
+    <property name="cond10" value="is player_moved"/>
+    <property name="cond20" value="is player_at"/>
    </properties>
   </object>
  </objectgroup>

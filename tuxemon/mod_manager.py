@@ -50,11 +50,7 @@ class Manager:
             # Adding author name to prevent conflicts,
             # They will be resolved server side though ¯\_(ツ)_/¯
             with open(f"{outfolder}/meta.json", "w") as metafile:
-                meta = {
-                    "author": author,
-                    "name": name,
-                    "release": release
-                }
+                meta = self.get_package_info(author, name)
                 metafile.write(json.dumps(meta, indent=4))
 
     def extract(self,file, outfolder):
@@ -62,3 +58,7 @@ class Manager:
         with zipfile.ZipFile(file) as zip_:
             zip_.extractall(path=os.path.join(paths.BASEDIR, "mods", outfolder))
 
+    def get_package_info(self, author, name):
+        """Get specified package info. Always downloads the info from the server."""
+        with urllib.request.urlopen(self.url + f"/api/packages/{author}/{name}") as packages:
+             return json.loads(packages.read().decode("UTF-8"))

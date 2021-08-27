@@ -169,6 +169,9 @@ msgstr "{name} took poison damage!"
 msgid "combat_state_lifeleech_get"
 msgstr "{user} is leeching health from {target}."
 
+msgid "combat_state_overfeed_get"
+msgstr "{user} Overfed {target}."
+
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"
 
@@ -302,6 +305,9 @@ msgstr "Poison"
 
 msgid "status_lifeleech"
 msgstr "Lifeleech"
+
+msgid "status_overfeed"
+msgstr "Overfeed"
 
 msgid "status_recover"
 msgstr "Recover"

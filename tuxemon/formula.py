@@ -189,3 +189,10 @@ def simple_lifeleech(
     """
     damage = min(target.hp // 2, target.current_hp, user.hp - user.current_hp)
     return damage
+def simple_overfeed(
+        technique: Technique,
+        user: Monster,
+        target: Monster,
+) -> int:
+    speed = target.speed // 2
+    return speed

@@ -49,10 +49,9 @@ TYPES = {
     "normal": TypeChart(None, None, None, None),
     "wood": TypeChart("earth", "fire", "metal", "water"),
     "fire": TypeChart("metal", "earth", "water", "wood"),
-    "earth": TypeChart("water", "metal", "flying", "fire"),
+    "earth": TypeChart("water", "metal", "wood", "fire"),
     "metal": TypeChart("wood", "water", "fire", "earth"),
     "water": TypeChart("fire", "wood", "earth", "metal"),
-    "flying": TypeChart("earth", "metal", "metal", "wood"),
 }
 
 

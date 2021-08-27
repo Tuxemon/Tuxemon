@@ -62,3 +62,20 @@ class Manager:
         """Get specified package info. Always downloads the info from the server."""
         with urllib.request.urlopen(self.url + f"/api/packages/{author}/{name}") as packages:
              return json.loads(packages.read().decode("UTF-8"))
+
+    def write_package_to_list(self, path_to_folder, name):
+        """Writes specified package to the package list"""
+        # Write the absolute path to the list
+        with open(paths.USER_GAME_DATA_DIR + "/package.list" , "w+") as file:
+            if not len(file.read()) == 0:
+                before = json.loads(file.read())
+            else:
+                before = {}
+
+            to_append = {name: path_to_meta}
+            after = {**before, **to_append}
+            file.write(
+                json.dumps(after, indent=4)
+            )
+
+            

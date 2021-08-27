@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="123">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="124">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -338,7 +338,7 @@
     <property name="cond20" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="88" name="Teleport to Leather Town" type="event" x="624" y="160" width="16" height="16">
+  <object id="88" name="Teleport to Leather Town" type="event" x="624" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport leather_town.tmx,0,31,0.3"/>
     <property name="act20" value="player_face right"/>
@@ -346,7 +346,7 @@
     <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="89" name="Teleport to Leather Town" type="event" x="624" y="176" width="16" height="16">
+  <object id="89" name="Teleport to Leather Town" type="event" x="624" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport leather_town.tmx,0,32,0.3"/>
     <property name="act20" value="player_face right"/>
@@ -354,7 +354,7 @@
     <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
-  <object id="90" name="Teleport to Leather Town" type="event" x="624" y="192" width="16" height="16">
+  <object id="90" name="Teleport to Leather Town" type="event" x="624" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport leather_town.tmx,0,33,0.3"/>
     <property name="act20" value="player_face right"/>
@@ -472,6 +472,14 @@
     <property name="act40" value="set_variable omnichannelhere:here"/>
     <property name="act50" value="player_face left"/>
     <property name="cond10" value="is variable_set iamsecret:ohno"/>
+   </properties>
+  </object>
+  <object id="123" name="Teleport to Leather Town" type="event" x="624" y="160" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport leather_town.tmx,0,30,0.3"/>
+    <property name="act20" value="player_face right"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing right"/>
    </properties>
   </object>
  </objectgroup>

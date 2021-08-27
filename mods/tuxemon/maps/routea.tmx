@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="56">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="57">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -25,7 +25,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHFlrlOA0EMhqcAEjp4AyooOarQcwoJ6Dh6oKKEgioEeqDjGRA9yRvQcvQk78H1/2H/YFkzZDZCYMnZGY/97YztzW4I/yfvIyF8QBvQM6fnmJeVjUoIm9CbSOxtxHYxFMJlQq9gnwRrqgTvDjHNhLZgHxsOYRzK/Z3gcFZj++vHq4E1D334JR7zrZrYvXE8yP7IU03IoIj7F7wX5Lyd0A7sFO3va/b96/e3jDxXoNWEjsJOyeXRdxoxM4U2qyG0oJrPwj4HVQ/S34rfH9e24L9daBusDlTzHdh3oepBy+I4xqO9jpiYnsLegKoH6WtFvJo1RsaHqANV51T/eVfycJyepPzE03puPXT/3g2KgXhaz+V5Tmourl9X/rx90HkZXj3jJmV4Gbhk/+XEWp/Y/0vsfWBjNF5BP1tRD/n/P8tbQ4yeKfqv431B5XuNcWLQz/aOzZ948tUzxd44LpTvIfJsv/TjaV05iV1XzZnFvsZ9YvvzvAXELhpdMizmUXnhOMbT/bieI8oLfT1PZ/McWxNbG/op3xx7nj2bPRdzcGTqwvqwNhTlh2PPo01i+0wx3L/kvhhojdMUT2fQ+RVjeeJq7SeeamJ5b0Vfs6dVU973FcrvrRRPvmLxSr7tadVUdvV57LzyJYd9K253A4kf+cR4DNG6zWMC1TXLP8VTrPJo+0jPCvtpD477hR7g2o8nrr9OeEMxt7xH1OkpQ+03N7/Jbcwz5mWF36USO5aN109tus6W
+   eAHFlrFSFEEQhidAODN8AyIMRaIjF8SySslEcyEihIDoOMyVjGegzOXewFQl9+49FPh/2A+7pma83SsLu6pvZ3q6v53p7r3dlP6fXM6ndCUdSo8z/aB5V3m9kNKW9KwQ+7lg+ziX0qeKnsi+LNbjDrwvijmv6Ej2xQcpPZJ6f4c6XNTS/qbx+mKtSb/9I57zTU3i3jyeZX/mURMzLHDvg/dTOR9XdCK7hf3dzv785vt7rjwvSHsVfSi7pS3Pvk8Us9LoeS+lkZT5U9lXpfSg/aPk+/PaG/lvNzoWayJl/lb2d1J6MLI8LvFsHyimpEeyD6X0oH2jwOtHY2G8pzpYOSf9l7uap+PcSc0PHutt68H9727QDOCx3paXc2pzuPk6+cvts8678AYtbtKF1wJX7b82sdGn9P9Seh/EGMab6uco9FD+/xd5LxXDM2X/V3pfWP1ecxwM+8XeifmDhy/PlHvjoFG/h8yL/TKNxzo5KV1fhDPDPtV9SvvLec8Uux50I7CcR/LicYnH/bzeRsiLfXMeZ8s5sSaxNvYj3x7nvHi2eC7nYD/UxfVxbSzkx+OcZxsS+4wY7x/52gxY87TG4wycn5jIg8va33jUJPJ+N33tnqamvu8vqb+3ajx8YflqfuxpaoqdPi+dF19z3LdwbzZQ+cGnxHMI6zGPFdSNGf8aj1jyGPuIZ8X99F6OO43u6jqNBze/LuWGZh5531WnH1M0fm/zPR5jLhTfRfxNisQxNq7XSqrORg==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="40">
@@ -41,7 +41,7 @@
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="44" name="Teleport to Flower City" type="event" x="192" y="624" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport flower_city.tmx,11,0,0.3"/>
+    <property name="act10" value="transition_teleport flower_city.tmx,12,0,0.3"/>
     <property name="act20" value="player_face down"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing down"/>
@@ -77,7 +77,15 @@
     <property name="cond20" value="is player_facing up"/>
    </properties>
   </object>
-  <object id="55" name="Player Spawn" type="event" x="208" y="608" width="16" height="16"/>
+  <object id="55" name="Player Spawn" type="event" x="176" y="608" width="16" height="16"/>
+  <object id="56" name="Teleport to Flower City" type="event" x="176" y="624" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport flower_city.tmx,11,0,0.3"/>
+    <property name="act20" value="player_face down"/>
+    <property name="cond10" value="is player_at"/>
+    <property name="cond20" value="is player_facing down"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="2" type="collision" x="128" y="208" width="32" height="80"/>
@@ -94,10 +102,10 @@
   <object id="14" type="collision" x="224" y="16" width="80" height="16"/>
   <object id="16" type="collision" x="288" y="32" width="16" height="592"/>
   <object id="17" type="collision" x="16" y="48" width="16" height="576"/>
-  <object id="18" type="collision" x="32" y="608" width="160" height="16"/>
-  <object id="19" type="collision" x="224" y="608" width="64" height="16"/>
-  <object id="20" type="collision" x="176" y="624" width="16" height="16"/>
-  <object id="21" type="collision" x="224" y="624" width="16" height="16"/>
+  <object id="18" type="collision" x="32" y="608" width="144" height="16"/>
+  <object id="19" type="collision" x="208" y="608" width="80" height="16"/>
+  <object id="20" type="collision" x="160" y="624" width="16" height="16"/>
+  <object id="21" type="collision" x="208" y="624" width="16" height="16"/>
   <object id="22" type="collision" x="32" y="48" width="160" height="16"/>
   <object id="23" type="collision" x="48" y="64" width="128" height="112"/>
   <object id="24" type="collision" x="64" y="16" width="96" height="32"/>

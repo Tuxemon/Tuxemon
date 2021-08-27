@@ -418,9 +418,8 @@ class Technique:
             
                 
         return {
-            "damage": damage,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
+            "speed": target.speed,
+            "success": bool(speed),
         }
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """

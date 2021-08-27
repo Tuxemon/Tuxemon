@@ -84,6 +84,7 @@ class Technique:
         link: Optional[Monster] = None,
     ) -> None:
         self._combat_counter = 0  # number of turns that this technique has been active
+        self._life_counter = 0
         self.accuracy = 0.0
         self.animation = ""
         self.can_apply_status = False
@@ -250,15 +251,20 @@ class Technique:
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
                 result = self.apply_status("status_recover", user)
+            elif effect == "overfeed":
+                result = self.apply_status("status_overfeed", target)
             elif effect == "status":
-                if self.category == "poison":
-                    result = self.poison(target)
-                elif self.category == "lifeleech":
-                    result = self.lifeleech(target)
-                elif self.category == "recover":
-                    result = self.recover(target)
-                else:
-                    result = getattr(self, self.category)(target)
+                for category in self.category:
+                    if self.category == "poison":
+                        result = self.poison(target)
+                    elif self.category == "lifeleech":
+                        result = self.lifeleech(target)
+                    elif self.category == "recover":
+                        result = self.recover(target)
+                    elif self.category == "overfeed":
+                        result = self.overfeed(target)
+                    else:
+                        result = getattr(self, self.category)(target)
             else:
                 result = getattr(self, str(effect))(user, target)
             meta_result = merge_results(result, meta_result)
@@ -364,7 +370,16 @@ class Technique:
         return {
             "status": tech,
         }
-
+    def apply_overfeed(self, user: Monster, target: Monster) -> EffectResult:
+        already_applied = any(t for t in target.status if t.slug == "status_overfeed")
+        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        tech = None
+        if success:
+            tech = Technique("status_overfeed", carrier=target, link=user)
+            target.apply_status(tech)
+        return {
+            "status": tech,
+        }
     def poison(self, target: Monster) -> EffectResult:
         assert self.link
         damage = formula.simple_poison(self, self.link, target)
@@ -395,7 +410,18 @@ class Technique:
             "should_tackle": bool(damage),
             "success": bool(damage),
         }
-
+    def overfeed(self, target: Monster) -> EffectResult:
+        user = self.link
+        assert user
+        target.current_hp = target.hp
+        target.speed = formula.simple_overfeed(self, user, target)
+            
+                
+        return {
+            "damage": damage,
+            "should_tackle": bool(damage),
+            "success": bool(damage),
+        }
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """
         Faint this monster.

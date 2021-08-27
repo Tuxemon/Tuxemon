@@ -4,7 +4,7 @@
   "use_success": "generic_success",
   "use_failure": "generic_failure",
   "animation": "drip_green",
-  "sfx": "sfx_bite",
+  "sfx": "sfx_pulse",
   "icon": "gfx/ui/icons/status/poison-icon.png",
   "category": "poison",
   "sort": "meta",

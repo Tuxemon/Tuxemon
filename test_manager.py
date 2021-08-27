@@ -6,4 +6,4 @@ man = Manager()
 
 pprint(man.list_packages())
 
-man.download_package("marcin", "tuxemon-main", 0)
+man.download_package("package", 0, "http://127.0.0.1:5000")

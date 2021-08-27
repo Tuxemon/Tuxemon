@@ -419,7 +419,7 @@ class Technique:
                 
         return {
             "speed": target.speed,
-            "success": bool(speed),
+            "success": bool(target.speed),
         }
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """

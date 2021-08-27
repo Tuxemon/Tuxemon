@@ -9,28 +9,41 @@ import zipfile
 
 class Manager:
 
-    def __init__(self, url="http://127.0.0.1:5000", *other_urls, caching=False):
+    def __init__(self, *other_urls, caching=False):
+        # TODO: Recreate the __init__
+
+
+        if len(other_urls) == 0:
+            other_urls = ["http://127.0.0.1"]
         packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
-        self.url = []
-        self.url.append(url)
-        self.url += other_urls
-        self.packages = []
+        self.url = list(other_urls)[0]
+        self.packages = {}
 
-        for url in self.url:
+        print(self.url, type(self.url))
+        for i in self.url:
+            print(i, type(i))
+            self.packages = {**self.packages, **self.update(i)}
+            print(self.packages)
+            
+            
+        """
+        for current_url in self.url:
+            print(current_url)
             if caching:
                 if pathlib.Path(packages_path + f"-{url.replace('/', '_')}").exists():
                     with open(packages_path + f"-{url.replace('/', '_')}") as file:
                         self.packages.append(json.loads(file.read()))
                 else:
-                    self.packages.append(self.update(url))
-                    """with urllib.request.urlopen(url + "/api/packages") as packages:
-                        self.packages = json.loads(packages.read().decode("UTF-8"))"""
+                    self.packages.append(self.update(current_url))
+                    ##with urllib.request.urlopen(url + "/api/packages") as packages:
+                    #    self.packages = json.loads(packages.read().decode("UTF-8"))
 
                     with open(packages_path + f"-{url.replace('/', '_')}", "w") as file:
                         file.write(json.dumps(self.packages, indent=4))
             else:
-                self.packages.append( self.update(url) )
+                self.packages.append(self.update(current_url))
+"""
 
     def update(self, url):
         """Returns the response from the server"""

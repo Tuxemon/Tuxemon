@@ -114,7 +114,6 @@ class Manager:
         Returns None, if key 'mods' doesn't exist"""
         print()
         for i in self.packages:
-            breakpoint()
             if i["name"] == name:
                 print(i)
                 return i["repo"]

@@ -24,10 +24,11 @@ class Manager:
         for i in self.url[0]:
             print(i, type(i))
             for package in self.update(i):
+                #package["repo"] = i
                 print(f"DEBUG: {package}")
                 self.packages.append(package)
             #print(self.packages)
-            
+        print(self.packages)
             
         """
         for current_url in self.url:
@@ -107,6 +108,21 @@ class Manager:
         """Get specified package info. Always downloads the info from the server."""
         with urllib.request.urlopen(repo + f"/api/packages/{name}") as packages:
             return json.loads(packages.read().decode("UTF-8"))
+
+    def get_package_repo(self, name):
+        """Reads the origin of an package.
+        Returns None, if key 'mods' doesn't exist"""
+        print()
+        for i in self.packages:
+            breakpoint()
+            if i["name"] == name:
+                print(i)
+                return i["repo"]
+                """
+                if "repo" in i: return i["repo"]
+                else: return None
+                """
+            else: print(f"{i} not in the name")
 
     def write_package_to_list(self, path_to_folder, name):
         """Writes specified package to the package list"""

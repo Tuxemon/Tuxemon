@@ -17,14 +17,16 @@ class Manager:
             other_urls = ["http://127.0.0.1"]
         packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
-        self.url = list(other_urls)[0]
-        self.packages = {}
+        self.url = other_urls
+        self.packages = []
 
         print(self.url, type(self.url))
-        for i in self.url:
+        for i in self.url[0]:
             print(i, type(i))
-            self.packages = {**self.packages, **self.update(i)}
-            print(self.packages)
+            for package in self.update(i):
+                print(f"DEBUG: {package}")
+                self.packages.append(package)
+            #print(self.packages)
             
             
         """
@@ -58,7 +60,7 @@ class Manager:
         """
         self.packages = []
         print(self.url)
-        for url in self.url:
+        for url in self.url[0]:
             with urllib.request.urlopen(url + "/api/packages") as packages:
                 self.packages.append(json.loads(packages.read().decode("UTF-8")))
 

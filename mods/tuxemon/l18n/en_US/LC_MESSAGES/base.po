@@ -3001,9 +3001,9 @@ msgstr "Rawr!"
 
 
 msgid "spyder_omnichannel_zoolander1"
-msgstr ""
+msgstr "You really are a diamond in the rough, aren't you?"
 msgid "spyder_omnichannel_donald1"
-msgstr ""
+msgstr "Back again? I should have fed you into the meat grinder back at Scoop HQ."
 msgid "spyder_hospital_warning1"
 msgstr "Bzzzz. Lifeform detected. \n Doors remain closed."
 msgid "spyder_hospital_nurse1"

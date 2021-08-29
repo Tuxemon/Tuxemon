@@ -45,7 +45,6 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-
 class EffectResult(TypedDict, total=False):
     damage: int
     element_multiplier: float
@@ -76,7 +75,6 @@ class Technique:
     """A technique object is a particular skill that tuxemon monsters can use
     in battle.
     """
-
     def __init__(
         self,
         slug: Optional[str] = None,
@@ -87,7 +85,7 @@ class Technique:
         self._life_counter = 0
         self.accuracy = 0.0
         self.animation = ""
-        self.can_apply_status = False
+        self.can_apply_status = True
         self.carrier = carrier
         self.category = "attack"
         self.effect: Sequence[str] = []
@@ -100,6 +98,12 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
+        self.statspeed: Sequence[str] = []
+        self.stathp: Sequence[str] = []
+        self.statranged: Sequence[str] = []
+        self.statarmour: Sequence[str]= []
+        self.statmelee: Sequence[str] = []
+        self.statdodge: Sequence[str] = []
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""
@@ -112,6 +116,7 @@ class Technique:
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
+
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -155,6 +160,15 @@ class Technique:
             self.type1 = self.type2 = None
 
         self.power = results.get("power", self.power)
+
+
+        self.statspeed = results.get("statspeed")
+        self.stathp = results.get("stathp")
+        self.statarmour = results.get("statarmour")
+        self.statmelee = results.get("statmelee")
+        self.statranged = results.get("statranged")
+        self.statdodge = results.get("statdodge")
+
         self.is_fast = results.get("is_fast", self.is_fast)
         self.recharge_length = results.get("recharge", self.recharge_length)
         self.is_area = results.get("is_area", self.is_area)
@@ -202,6 +216,7 @@ class Technique:
         self._combat_counter = 0
 
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
+        
         """
         Apply the technique.
 
@@ -239,9 +254,21 @@ class Technique:
             "capture": False,
             "statuses": [],
         }
-
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
+        statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
+        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+        print(statsmaster)
+        if None not in statsmaster:
+            for stat in statsmaster:
+                for paramater in range(len(stat)):
+                    print(stat)
+                    value = stat['value']
+                    dividing = stat['dividing']
+                    override = stat['overridetofull']
+                    if value > 0 and override == False:
+                        statvalue = getattr(target, statslugs[paramater])
+                        print(statvalue)
         for effect in self.effect:
             if effect == "damage":
                 result = self.damage(user, target)
@@ -251,18 +278,14 @@ class Technique:
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
                 result = self.apply_status("status_recover", user)
-            elif effect == "overfeed":
-                result = self.apply_status("status_overfeed", target)
             elif effect == "status":
                 for category in self.category:
-                    if self.category == "poison":
+                    if category == "poison":
                         result = self.poison(target)
-                    elif self.category == "lifeleech":
+                    elif category == "lifeleech":
                         result = self.lifeleech(target)
-                    elif self.category == "recover":
+                    elif category == "recover":
                         result = self.recover(target)
-                    elif self.category == "overfeed":
-                        result = self.overfeed(target)
                     else:
                         result = getattr(self, self.category)(target)
             else:
@@ -272,6 +295,7 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
+
 
     def calculate_damage(
         self,
@@ -339,10 +363,10 @@ class Technique:
 
         """
         already_applied = any(t for t in target.status if t.slug == slug)
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        success = not already_applied and self.potency >= random.random()
         tech = None
         if success:
-            tech = Technique(slug, carrier=target)
+            tech = Technique(slug, target)
             target.apply_status(tech)
 
         return {
@@ -362,7 +386,7 @@ class Technique:
 
         """
         already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        success = not already_applied and self.potency >= random.random()
         tech = None
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)
@@ -370,18 +394,8 @@ class Technique:
         return {
             "status": tech,
         }
-    def apply_overfeed(self, user: Monster, target: Monster) -> EffectResult:
-        already_applied = any(t for t in target.status if t.slug == "status_overfeed")
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
-        tech = None
-        if success:
-            tech = Technique("status_overfeed", carrier=target, link=user)
-            target.apply_status(tech)
-        return {
-            "status": tech,
-        }
+
     def poison(self, target: Monster) -> EffectResult:
-        assert self.link
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
         return {

@@ -424,6 +424,17 @@ class Technique:
             "should_tackle": bool(damage),
             "success": bool(damage),
         }
+    def overfeed(self, target: Monster) -> EffectResult:
+        user = self.link
+        assert user
+        target.current_hp = target.hp
+        target.speed = formula.simple_overfeed(self, user, target)
+            
+                
+        return {
+            "speed": target.speed,
+            "success": bool(target.speed),
+        }
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """
         Faint this monster.

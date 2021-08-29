@@ -119,7 +119,12 @@ class JSONTechniqueOptionalFields(TypedDict, total=False):
     range: str
     accuracy: float
     potency: float
-
+    statspeed: Sequence[str]
+    stathp: Sequence[str]
+    statarmour: Sequence[str]
+    statdodge: Sequence[str]
+    statmelee: Sequence[str]
+    statranged: Sequence[str]
 
 class JSONTechnique(JSONTechniqueOptionalFields):
     slug: str
@@ -149,7 +154,6 @@ class JSONEnvironment(TypedDict):
     battle_music: str
     battle_graphics: JSONBattleGraphics
 
-
 def process_targets(json_targets: JSONTarget) -> Sequence[str]:
     """Return values in order of preference for targeting things.
 
@@ -175,8 +179,6 @@ def process_targets(json_targets: JSONTarget) -> Sequence[str]:
             )
         )
     )
-
-
 class JSONDatabase:
     """
     Handles connecting to the game database for resources.

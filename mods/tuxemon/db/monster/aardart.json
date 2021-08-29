@@ -12,12 +12,16 @@
             "technique": "hibernate"
         },
         {
-            "level_learned": 6,
+            "level_learned": 8,
             "technique": "stampede"
         },
 	{
-            "level_learned": 10,
+            "level_learned": 11,
             "technique": "overfeed"
+        },
+	{
+            "level_learned": 17,
+            "technique": "feint"
         }
     ],
     "shape": "Varmint",

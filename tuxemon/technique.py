@@ -297,22 +297,23 @@ class Technique:
         '''
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-        if None not in statsmaster and [] not in statsmaster:
-            for stat, slug in zip(statsmaster, statslugs):
-                value = stat['value']
-                dividing = stat['dividing']
-                override = stat['overridetofull']
-                basestatvalue = getattr(target, slug)
-                if value > 0 and override == False:
-                    if dividing == False:
-                        newstatvalue = basestatvalue + value
-                    else:
-                        newstatvalue = basestatvalue // value
-                    success = True
-                    setattr(target, slug, newstatvalue)
-                if override == True and slug == 'hp':
-                    success = True
-                    target.current_hp = target.hp
+        for stat, slug in zip(statsmaster, statslugs):
+            if not stat:
+                continue
+            value = stat['value']
+            dividing = stat['dividing']
+            override = stat['overridetofull']
+            basestatvalue = getattr(target, slug)
+            if value > 0 and override == False:
+                if dividing == False:
+                    newstatvalue = basestatvalue + value
+                else:
+                    newstatvalue = basestatvalue // value
+                success = True
+                setattr(target, slug, newstatvalue)
+            if override == True and slug == 'hp':
+                success = True
+                target.current_hp = target.hp
         return {
             "success": bool(stat)
         }

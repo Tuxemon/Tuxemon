@@ -28,7 +28,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt1EsKgzAUheGroMQNuP/dqLW+H3XaTei0vzhxqGKJyj3wQSY3CSeiyLMSGZEYCV5I8cbRZMzmKFCiQo2jaZht0aHHBwM02oA2oA2c1YDxRb7eImC9N+v5eZ87xHfvcEu9o40GJsfGqXrmlRsIN/4vRv12/vaMPxWIFeA=
+   eAHt1NsKQFAQheFJ2Xgpr+98Pt56E7/cuETKpln1lQvD7JWI/CuRLxIjQYoMOe6mYLZEhRoNWtxNx2yPASMmzNBoA9qANvBUA74RWdxdwPXVHOe353whxvnClrrjGw3ot/FG63a/0zv5vwhP3mf3ae3cbgWnOxQq
   </data>
  </layer>
  <layer id="3" name="Filler" width="20" height="40">

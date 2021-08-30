@@ -285,7 +285,13 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
+    
     def changestats(self, user: Monster, target: Monster) -> EffectResult:
+        ''' JSON SYNTAX:
+        Value: the number to change the stat by, default is add, use negative to subtract.
+        Dividing: set this to True to divide instead of adding or subtracting the value.
+        Overridetofull: in most cases you wont need this, if True it will set the stat to its original value rather than the specified value, but due to the way the 
+        game is coded, it currently only works on hp.
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
         if None not in statsmaster and [] not in statsmaster:

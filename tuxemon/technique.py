@@ -85,7 +85,7 @@ class Technique:
         self._life_counter = 0
         self.accuracy = 0.0
         self.animation = ""
-        self.can_apply_status = True
+        self.can_apply_status = False
         self.carrier = carrier
         self.category = "attack"
         self.effect: Sequence[str] = []

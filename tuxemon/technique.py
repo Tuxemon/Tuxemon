@@ -70,6 +70,10 @@ def merge_results(result: EffectResult, meta_result: TechniqueResult) -> Techniq
     meta_result.update(result)
     return meta_result
 
+class JSONStat(TypedDict):
+    value: int 
+    dividing: bool
+    overridetofull: bool
 
 class Technique:
     """A technique object is a particular skill that tuxemon monsters can use
@@ -98,12 +102,12 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
-        self.statspeed: Sequence[str] = []
-        self.stathp: Sequence[str] = []
-        self.statranged: Sequence[str] = []
-        self.statarmour: Sequence[str]= []
-        self.statmelee: Sequence[str] = []
-        self.statdodge: Sequence[str] = []
+        self.statspeed: JSONStat
+        self.stathp: JSONStat
+        self.statarmour: JSONStat
+        self.statdodge: JSONStat
+        self.statmelee: JSONStat
+        self.statranged: JSONStat
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""
@@ -383,7 +387,7 @@ class Technique:
         """
         
         already_applied = any(t for t in target.status if t.slug == slug)
-        success = not already_applied and self.can_apply_status self.potency >= random.random()
+        success = not already_applied and self.can_apply_status and self.potency >= random.random()
         tech = None
         if success:
             tech = Technique(slug, carrier=target)

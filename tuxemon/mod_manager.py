@@ -6,6 +6,7 @@ import os
 import json
 import zipfile
 
+# TODO: Set up logging
 
 class Manager:
 
@@ -81,9 +82,14 @@ class Manager:
         """Returns package dictionary, either from the server or the cache"""
         return self.packages
 
-    def download_package(self, name, release, repo, dont_extract=False):
+    def download_package(self, name, release, repo=None, dont_extract=False):
         """Downloads the specified package"""
         print(name, release, repo)
+        if repo is None:
+            repo = self.get_package_repo(name)
+
+        if repo[-1] == "/":
+            repo = repo[:-1]
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
         filename = os.path.join(paths.CACHE_DIR + f"/{name}.{release}.zip")
 

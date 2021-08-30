@@ -35,7 +35,7 @@ import random
 
 from tuxemon import formula
 from tuxemon import prepare
-from tuxemon.db import db, process_targets
+from tuxemon.db import db, process_targets, JSONStat
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
@@ -70,10 +70,6 @@ def merge_results(result: EffectResult, meta_result: TechniqueResult) -> Techniq
     meta_result.update(result)
     return meta_result
 
-class JSONStat(TypedDict):
-    value: int 
-    dividing: bool
-    overridetofull: bool
 
 class Technique:
     """A technique object is a particular skill that tuxemon monsters can use
@@ -102,12 +98,12 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
-        self.statspeed: JSONStat
-        self.stathp: JSONStat
-        self.statarmour: JSONStat
-        self.statdodge: JSONStat
-        self.statmelee: JSONStat
-        self.statranged: JSONStat
+        self.statspeed: db.JSONStat
+        self.stathp: db.JSONStat
+        self.statarmour: db.JSONStat
+        self.statdodge: db.JSONStat
+        self.statmelee: db.JSONStat
+        self.statranged: db.JSONStat
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""

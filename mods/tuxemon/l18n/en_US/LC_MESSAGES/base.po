@@ -170,7 +170,9 @@ msgid "combat_state_lifeleech_get"
 msgstr "{user} is leeching health from {target}."
 
 msgid "combat_state_overfeed_get"
+
 msgstr "{user} Overfed {target}. {target}'s speed was halved, {target}'s hp was fully restored"
+
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"
@@ -3001,9 +3003,9 @@ msgstr "Rawr!"
 
 
 msgid "spyder_omnichannel_zoolander1"
-msgstr ""
+msgstr "You really are a diamond in the rough, aren't you?"
 msgid "spyder_omnichannel_donald1"
-msgstr ""
+msgstr "Back again? I should have fed you into the meat grinder back at Scoop HQ."
 msgid "spyder_hospital_warning1"
 msgstr "Bzzzz. Lifeform detected. \n Doors remain closed."
 msgid "spyder_hospital_nurse1"
@@ -3063,7 +3065,7 @@ msgstr "Trick question - it's both!"
 msgid "spyder_scoop_sign"
 msgstr "Scoop HQ: Almost good enough to eat!"
 
-msgid "spyder_leatherhouse2_snugglepot2"
+msgid "spyder_leatherhouse2_snugglepot"
 msgstr "Wow! One day I'm going to be a trainer just like you!"
 
 msgid "spyder_successful_boulder"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="61">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="65">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -24,75 +24,66 @@
  <tileset firstgid="4947" name="Stairs" tilewidth="16" tileheight="16" tilecount="24" columns="8">
   <image source="../gfx/tilesets/stairs.png" width="128" height="48"/>
  </tileset>
- <tileset firstgid="4971" name="Plants" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/plants.png" width="64" height="64"/>
+ <tileset firstgid="4971" name="Plants" tilewidth="16" tileheight="16" tilecount="2" columns="1">
+  <image source="../gfx/tilesets/plants.png" width="16" height="32"/>
  </tileset>
- <tileset firstgid="4987" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
+ <tileset firstgid="4973" name="Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="500" columns="20">
   <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_Kelvin_Shadewing.png" width="320" height="400"/>
  </tileset>
- <tileset firstgid="5487" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
+ <tileset firstgid="5473" name="Objects_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="660" columns="33">
   <image source="../gfx/tilesets/Objects_by_ArMM1998.png" width="528" height="320"/>
  </tileset>
- <tileset firstgid="6147" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="6133" name="Kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="6163" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
+ <tileset firstgid="6149" name="Interior_Tiles_by_Mike_Bramson" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/Interior_Tiles_by_Mike_Bramson.png" width="176" height="128"/>
  </tileset>
- <tileset firstgid="6251" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
+ <tileset firstgid="6237" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
   <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
  </tileset>
- <tileset firstgid="7251" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
+ <tileset firstgid="7237" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
   <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
  </tileset>
- <tileset firstgid="7461" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
+ <tileset firstgid="7447" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
   <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
  </tileset>
- <tileset firstgid="7515" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
+ <tileset firstgid="7501" name="Furniture" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="../gfx/tilesets/furniture.png" width="192" height="96"/>
  </tileset>
- <tileset firstgid="7587" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
+ <tileset firstgid="7573" name="Electronics" tilewidth="16" tileheight="16" tilecount="16" columns="4">
   <image source="../gfx/tilesets/electronics.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="7603" name="items" tilewidth="16" tileheight="16" tilecount="100" columns="10">
-  <image source="../gfx/tilesets/items.png" width="160" height="160"/>
+ <tileset firstgid="7589" name="items" tilewidth="16" tileheight="16" tilecount="6" columns="3">
+  <image source="../gfx/tilesets/items.png" width="48" height="32"/>
  </tileset>
- <tileset firstgid="7703" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
+ <tileset firstgid="7595" name="Interiors by Redshrike" tilewidth="16" tileheight="16" tilecount="84" columns="7">
   <image source="../gfx/tilesets/Interiors by Redshrike.png" width="112" height="192"/>
  </tileset>
- <tileset firstgid="7787" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="7679" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <tileset firstgid="7943" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
+ <tileset firstgid="7835" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
   <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="8391" name="Brute" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../gfx/tilesets/Brute.gif" width="16" height="16"/>
- </tileset>
- <tileset firstgid="8392" name="Landrace" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../gfx/tilesets/Landrace.gif" width="16" height="16"/>
- </tileset>
- <tileset firstgid="8393" name="Land_bird" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="../gfx/tilesets/Land_bird.gif" width="16" height="16"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAFLlGRgSKQy7gSaR228EWgmtbGXLAPDKB4Ng9E0MDLSAAAhuo1D
+   eAELlmRgCKYyrgaaR228GGgmtbGNLAPDKB4Ng9E0MDLSAACYBXwJ
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAGtk00OAUEQhWthh5WRsJuDcAsSh7FwGAsbd7DDrfQX80Wl0xYyXtLprldVr36GiIhuHbEsR4y10dkUvW3SHGvb2z/u2+qjsihPTgtdIfMhxnjvVt51GuGp/btJxH44h3LPhgB5uF9xLDmP/p11SprycDXquvRkbXzkgmcfkTXPhSf2Mvidk1tNcu8lD1g7a8ob7y7rmzhjrJtrq1nPDu8+3bXzzZMm+jXUlLd/bPfJbNaEy5q8QZ4Fu9U/vHvmLVqa7DejtrNPTb4doNdaEz736Bu+BfKdGT87aGm2cr9xeSd+J35X7jD/98a+6eEFhV40nA==
+   eAGtk0EOQUEMhrsQFlix4BJchsRhLBzGwsbGCfVP5os/zeDJ06Rpp9N+7dQTETHdRsxSkbFncXbJ2xtz7JnZ/mEfmxdlla60J+sMuiqHfGyv7j6PQOv9YRJxbHpKu2gJxBX7Vc5WczEmccWq1L6aid66o1Z1zrxmnnJvjck7ZWHWWjE+MdlltdTJ0td7v2Mqzj7ZNe9b5h1zilulxyTH3+UxZ8qX+Ft07s2v+FCm9utSz343hKl8nxHfOe4PZXrNN993wu+k74od+n9vrK9ZnvJsKJc=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBi5QEmC+n6nhZnUd+WoiaMhMPJCAAC6gwB1
+   eAFjYBi5QESC+n6nhZnUd+WoiaMhMPJCAABQ2wBZ
   </data>
  </layer>
  <layer id="4" name="Above Player" width="21" height="15">
   <data encoding="base64" compression="zlib">
-   eAFjYBjZYIIwAwMMD/eQgPkTRI8C2oVAAzeq2eh8VNlRHr1CAADhGgTp
+   eAFjYBjZoEmYgQGGh3tIwPwJokcB7UKggRvVbHQ+quwoj14hAAC/owSV
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -318,6 +309,29 @@
    <properties>
     <property name="act1" value="set_variable environment:snow"/>
     <property name="cond1" value="not variable_set environment:snow"/>
+   </properties>
+  </object>
+  <object id="62" name="Create LapinouA" type="event" x="144" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_lapinoua,9,6"/>
+    <property name="act2" value="npc_wander spyder_scoop_lapinoua"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_lapinoua"/>
+    <property name="cond2" value="not variable_set scooplapinoua:yes"/>
+   </properties>
+  </object>
+  <object id="63" name="Create CochiniA" type="event" x="288" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_cochinia,18,10"/>
+    <property name="act2" value="npc_wander spyder_scoop_cochinia"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_cochinia"/>
+    <property name="cond2" value="not variable_set scoopcochinia:yes"/>
+   </properties>
+  </object>
+  <object id="64" name="Create Landrace" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_scoop_landrace,10,9"/>
+    <property name="cond1" value="not npc_exists spyder_scoop_landrace"/>
+    <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
  </objectgroup>

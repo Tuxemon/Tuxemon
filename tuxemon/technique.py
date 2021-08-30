@@ -297,9 +297,8 @@ class Technique:
         '''
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-        if None not in statsmaster and [] not in statsmaster:
-            for stat, slug in zip(statsmaster, statslugs):
-                value = stat['value']
+        for stat, slug in zip(statsmaster, statslugs):
+            if not stat:
                 dividing = stat['dividing']
                 override = stat['overridetofull']
                 basestatvalue = getattr(target, slug)

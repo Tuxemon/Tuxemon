@@ -349,7 +349,6 @@ class Technique:
             if not hit:
                 damage //= 2
             target.current_hp -= damage
-            success = damage
         else:
             damage = 0
             mult = 1
@@ -375,10 +374,10 @@ class Technique:
         """
         
         already_applied = any(t for t in target.status if t.slug == slug)
-        success = not already_applied and self.potency >= random.random()
+        success = not already_applied and self.can_apply_status self.potency >= random.random()
         tech = None
         if success:
-            tech = Technique(slug, target)
+            tech = Technique(slug, carrier=target)
             target.apply_status(tech)
 
         return {

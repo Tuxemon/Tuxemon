@@ -288,21 +288,17 @@ class Technique:
     def changestats(self, user: Monster, target: Monster) -> EffectResult:
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-        print(statsmaster)
         if None not in statsmaster and [] not in statsmaster:
             for stat, slug in zip(statsmaster, statslugs):
-                print(stat)
                 value = stat['value']
                 dividing = stat['dividing']
                 override = stat['overridetofull']
                 basestatvalue = getattr(target, slug)
                 if value > 0 and override == False:
-                    print(basestatvalue)
                     if dividing == False:
                         newstatvalue = basestatvalue + value
                     else:
                         newstatvalue = basestatvalue // value
-                    print(newstatvalue)
                     success = True
                     setattr(target, slug, newstatvalue)
                 if override == True and slug == 'hp':

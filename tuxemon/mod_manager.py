@@ -60,10 +60,22 @@ class Manager:
         populates it from the data from the repositories.
         """
         self.packages = []
+
+        #print(self.url, type(self.url))
+        for i in self.url[0]:
+            print(i, type(i))
+            for package in self.update(i):
+                #package["repo"] = i
+                print(f"DEBUG: {package}")
+                self.packages.append(package)
+            #print(self.packages)
+        print(self.packages)
+        """
+        self.packages = []
         print(self.url)
         for url in self.url[0]:
             with urllib.request.urlopen(url + "/api/packages") as packages:
-                self.packages.append(json.loads(packages.read().decode("UTF-8")))
+                self.packages.append(json.loads(packages.read().decode("UTF-8")))"""
 
     def list_packages(self):
         """Returns package dictionary, either from the server or the cache"""

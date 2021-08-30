@@ -256,24 +256,14 @@ class Technique:
         }
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
-        statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
-        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-        print(statsmaster)
-        if None not in statsmaster:
-            for stat in statsmaster:
-                for paramater in range(len(stat)):
-                    print(stat)
-                    value = stat['value']
-                    dividing = stat['dividing']
-                    override = stat['overridetofull']
-                    if value > 0 and override == False:
-                        statvalue = getattr(target, statslugs[paramater])
-                        print(statvalue)
+       
         for effect in self.effect:
             if effect == "damage":
                 result = self.damage(user, target)
             elif effect == "poison":
                 result = self.apply_status("status_poison", target)
+            elif effect == "statchange":
+                result = self.changestats(user, target)
             elif effect == "lifeleech":
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
@@ -295,8 +285,32 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
-
-
+    def changestats(self, user: Monster, target: Monster) -> EffectResult:
+        statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
+        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+        print(statsmaster)
+        if None not in statsmaster and [] not in statsmaster:
+            for stat, slug in zip(statsmaster, statslugs):
+                print(stat)
+                value = stat['value']
+                dividing = stat['dividing']
+                override = stat['overridetofull']
+                basestatvalue = getattr(target, slug)
+                if value > 0 and override == False:
+                    print(basestatvalue)
+                    if dividing == False:
+                        newstatvalue = basestatvalue + value
+                    else:
+                        newstatvalue = basestatvalue // value
+                    print(newstatvalue)
+                    success = True
+                    setattr(target, slug, newstatvalue)
+                if override == True and slug == 'hp':
+                    success = True
+                    target.current_hp = target.hp
+        return {
+            "success": bool(stat)
+        }
     def calculate_damage(
         self,
         user: Monster,
@@ -339,6 +353,7 @@ class Technique:
             if not hit:
                 damage //= 2
             target.current_hp -= damage
+            success = damage
         else:
             damage = 0
             mult = 1
@@ -362,6 +377,7 @@ class Technique:
             Dict summarizing the result.
 
         """
+        
         already_applied = any(t for t in target.status if t.slug == slug)
         success = not already_applied and self.potency >= random.random()
         tech = None
@@ -424,17 +440,7 @@ class Technique:
             "should_tackle": bool(damage),
             "success": bool(damage),
         }
-    def overfeed(self, target: Monster) -> EffectResult:
-        user = self.link
-        assert user
-        target.current_hp = target.hp
-        target.speed = formula.simple_overfeed(self, user, target)
-            
-                
-        return {
-            "speed": target.speed,
-            "success": bool(target.speed),
-        }
+
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """
         Faint this monster.
@@ -500,6 +506,5 @@ class Technique:
             "success": True,
             "should_tackle": False,
         }
-
     def get_state(self) -> Optional[str]:
         return self.slug

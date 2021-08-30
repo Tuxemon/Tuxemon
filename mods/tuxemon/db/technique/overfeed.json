@@ -2,8 +2,10 @@
   "accuracy": 1,
   "animation": "drip_green",
   "can_apply_status": true,
-  "category": "status",
-  "effects": [],
+  "category": "physical",
+  "effects": [
+    "statchange"
+  ],
   "healing_power": 0,
   "icon": "",
   "is_area": false,
@@ -47,5 +49,5 @@
   ],
   "use_failure": "combat_miss",
   "use_success": "combat_used_x",
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_state_overfeed_get"
 }

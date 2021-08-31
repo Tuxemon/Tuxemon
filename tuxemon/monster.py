@@ -304,7 +304,7 @@ class Monster:
         if results is None:
             logger.error(f"monster {slug} is not found")
             raise RuntimeError
-
+        self.level = random.randint(2,5)
         self.slug = results["slug"]  # short English identifier
         self.name = T.translate(results["slug"])  # translated name
         self.description = T.translate("{}_description".format(results["slug"]))  # translated description
@@ -335,7 +335,7 @@ class Monster:
         if moveset:
             for move in moveset:
                 self.moveset.append(move)
-                if move["level_learned"] >= self.level:
+                if move["level_learned"] <= self.level:
                     technique = Technique(move["technique"])
                     self.learn(technique)
 
@@ -448,7 +448,7 @@ class Monster:
 
         # Learn New Moves
         for move in self.moveset:
-            if move["level_learned"] >= self.level:
+            if move["level_learned"] == self.level:
                 logger.info("{} learned technique {}!".format(self.name, move["technique"]))
                 technique = Technique(move["technique"])
                 self.learn(technique)

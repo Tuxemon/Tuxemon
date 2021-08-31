@@ -35,7 +35,7 @@ import random
 
 from tuxemon import formula
 from tuxemon import prepare
-from tuxemon.db import db, process_targets
+from tuxemon.db import db, process_targets, JSONStat
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
@@ -44,7 +44,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
-
 
 class EffectResult(TypedDict, total=False):
     damage: int
@@ -76,7 +75,6 @@ class Technique:
     """A technique object is a particular skill that tuxemon monsters can use
     in battle.
     """
-
     def __init__(
         self,
         slug: Optional[str] = None,
@@ -100,6 +98,12 @@ class Technique:
         self.next_use = 0.0
         self.potency = 0.0
         self.power = 1.0
+        self.statspeed: db.JSONStat
+        self.stathp: db.JSONStat
+        self.statarmour: db.JSONStat
+        self.statdodge: db.JSONStat
+        self.statmelee: db.JSONStat
+        self.statranged: db.JSONStat
         self.range: Optional[str] = None
         self.recharge_length = 0
         self.sfx = ""
@@ -112,6 +116,7 @@ class Technique:
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
+
 
         # If a slug of the technique was provided, autoload it.
         if slug:
@@ -155,6 +160,15 @@ class Technique:
             self.type1 = self.type2 = None
 
         self.power = results.get("power", self.power)
+
+
+        self.statspeed = results.get("statspeed")
+        self.stathp = results.get("stathp")
+        self.statarmour = results.get("statarmour")
+        self.statmelee = results.get("statmelee")
+        self.statranged = results.get("statranged")
+        self.statdodge = results.get("statdodge")
+
         self.is_fast = results.get("is_fast", self.is_fast)
         self.recharge_length = results.get("recharge", self.recharge_length)
         self.is_area = results.get("is_area", self.is_area)
@@ -202,6 +216,7 @@ class Technique:
         self._combat_counter = 0
 
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
+        
         """
         Apply the technique.
 
@@ -239,14 +254,16 @@ class Technique:
             "capture": False,
             "statuses": [],
         }
-
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
+       
         for effect in self.effect:
             if effect == "damage":
                 result = self.damage(user, target)
             elif effect == "poison":
                 result = self.apply_status("status_poison", target)
+            elif effect == "statchange":
+                result = self.changestats(user, target)
             elif effect == "lifeleech":
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
@@ -255,14 +272,12 @@ class Technique:
                 result = self.apply_status("status_overfeed", target)
             elif effect == "status":
                 for category in self.category:
-                    if self.category == "poison":
+                    if category == "poison":
                         result = self.poison(target)
-                    elif self.category == "lifeleech":
+                    elif category == "lifeleech":
                         result = self.lifeleech(target)
-                    elif self.category == "recover":
+                    elif category == "recover":
                         result = self.recover(target)
-                    elif self.category == "overfeed":
-                        result = self.overfeed(target)
                     else:
                         result = getattr(self, self.category)(target)
             else:
@@ -272,7 +287,36 @@ class Technique:
         self.next_use = self.recharge_length
 
         return meta_result
-
+    
+    def changestats(self, user: Monster, target: Monster) -> EffectResult:
+        ''' JSON SYNTAX:
+        Value: the number to change the stat by, default is add, use negative to subtract.
+        Dividing: set this to True to divide instead of adding or subtracting the value.
+        Overridetofull: in most cases you wont need this, if True it will set the stat to its original value rather than the specified value, but due to the way the 
+        game is coded, it currently only works on hp.
+        '''
+        statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
+        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+        for stat, slug in zip(statsmaster, statslugs):
+            if not stat:
+                continue
+            value = stat['value']
+            dividing = stat['dividing']
+            override = stat['overridetofull']
+            basestatvalue = getattr(target, slug)
+            if value > 0 and override == False:
+                if dividing == False:
+                    newstatvalue = basestatvalue + value
+                else:
+                    newstatvalue = basestatvalue // value
+                success = True
+                setattr(target, slug, newstatvalue)
+            if override == True and slug == 'hp':
+                success = True
+                target.current_hp = target.hp
+        return {
+            "success": bool(stat)
+        }
     def calculate_damage(
         self,
         user: Monster,
@@ -338,6 +382,7 @@ class Technique:
             Dict summarizing the result.
 
         """
+        
         already_applied = any(t for t in target.status if t.slug == slug)
         success = not already_applied and self.can_apply_status and self.potency >= random.random()
         tech = None
@@ -362,7 +407,7 @@ class Technique:
 
         """
         already_applied = any(t for t in target.status if t.slug == "status_lifeleech")
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
+        success = not already_applied and self.potency >= random.random()
         tech = None
         if success:
             tech = Technique("status_lifeleech", carrier=target, link=user)
@@ -381,7 +426,6 @@ class Technique:
             "status": tech,
         }
     def poison(self, target: Monster) -> EffectResult:
-        assert self.link
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
         return {
@@ -486,6 +530,5 @@ class Technique:
             "success": True,
             "should_tackle": False,
         }
-
     def get_state(self) -> Optional[str]:
         return self.slug

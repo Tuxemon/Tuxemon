@@ -27,6 +27,7 @@ from tuxemon.graphics import get_avatar
 from tuxemon.locale import process_translate_text
 from tuxemon.tools import open_dialog
 from typing import NamedTuple, final
+from tuxemon.states.dialog import DialogState
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +78,7 @@ class TranslatedDialogChainAction(EventAction[TranslatedDialogChainActionParamet
             replace,
         )
 
-        dialog = self.session.client.get_state_by_name("DialogState")
+        dialog = self.session.client.get_state_by_name(DialogState)
         if dialog:
             dialog.text_queue += pages
         else:
@@ -86,7 +87,7 @@ class TranslatedDialogChainAction(EventAction[TranslatedDialogChainActionParamet
     def update(self) -> None:
         key = self.raw_parameters[0]
         if key == "${{end}}":
-            if self.session.client.get_state_by_name("DialogState") is None:
+            if self.session.client.get_state_by_name(DialogState) is None:
                 self.stop()
 
     def open_dialog(self, pages, avatar):

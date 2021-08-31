@@ -27,6 +27,7 @@ from tuxemon.locale import replace_text
 from tuxemon.session import Session
 from tuxemon.state import State
 from typing import NamedTuple, final, Tuple, Callable, Sequence
+from tuxemon.states.choice import ChoiceState
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +66,7 @@ class DialogChoiceAction(EventAction[DialogChoiceActionParameters]):
         self.open_choice_dialog(self.session, var_menu)
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("ChoiceState") is None:
+        if self.session.client.get_state_by_name(ChoiceState) is None:
             self.stop()
 
     def open_choice_dialog(

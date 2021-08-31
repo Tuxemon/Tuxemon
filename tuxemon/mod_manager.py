@@ -5,21 +5,22 @@ import pathlib
 import os
 import json
 import zipfile
-
+import shutil
 
 class Manager:
 
     def __init__(self, *other_urls, caching=False):
         # TODO: Recreate the __init__
+        # TODO: Cache updates by default
 
 
         if len(other_urls) == 0:
-            other_urls = ["http://127.0.0.1"]
+            other_urls = ["http://127.0.0.1:5000"]
         packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
         self.url = other_urls
         self.packages = []
-
+        """
         print(self.url, type(self.url))
         for i in self.url[0]:
             print(i, type(i))
@@ -29,7 +30,7 @@ class Manager:
                 self.packages.append(package)
             #print(self.packages)
         print(self.packages)
-            
+        """ 
         """
         for current_url in self.url:
             print(current_url)
@@ -66,10 +67,10 @@ class Manager:
             print(i, type(i))
             for package in self.update(i):
                 #package["repo"] = i
-                print(f"DEBUG: {package}")
+                #print(f"DEBUG: {package}")
                 self.packages.append(package)
             #print(self.packages)
-        print(self.packages)
+        #print(self.packages)
         """
         self.packages = []
         print(self.url)
@@ -81,13 +82,22 @@ class Manager:
         """Returns package dictionary, either from the server or the cache"""
         return self.packages
 
-    def download_package(self, name, release, repo, dont_extract=False):
+    def download_package(self, name, release, repo=None, dont_extract=False):
         """Downloads the specified package"""
         print(name, release, repo)
+        if repo is None:
+            repo = self.get_package_repo(name)
+
+            # Remove trailing slash
+            if repo[-1] == "/":
+                repo = repo[:-1]
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
         filename = os.path.join(paths.CACHE_DIR + f"/{name}.{release}.zip")
 
-        urllib.request.urlretrieve(url, filename=filename)
+        # Apperantly this function is ported from urllib from python2.
+        # Maybe replace this in the future?
+        # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
+        urllib.request.urlretrieve(url, filename=filename) 
 
         outfolder = os.path.join(paths.BASEDIR, "mods", f"{name}")
 
@@ -124,7 +134,7 @@ class Manager:
     def get_package_repo(self, name):
         """Reads the origin of an package.
         Returns None, if key 'mods' doesn't exist"""
-        print()
+        #print()
         for i in self.packages:
             if i["name"] == name:
                 print(i)
@@ -149,3 +159,43 @@ class Manager:
             file.write(
                 json.dumps(after, indent=4)
             )
+
+    def read_package_from_list(self, name):
+        """Reads path of the specified mod"""
+        #try:
+        with open(paths.USER_GAME_DATA_DIR + "/package.list") as file:
+            data = file.read()
+            print(f"DEBUG_READPKG: {data}\n{paths.USER_GAME_DATA_DIR + '/package.list'}")
+            return json.loads(data)[name]
+            """else:
+                print("Empty")
+                return None
+                #raise ValueError"""
+        #except (FileNotFoundError, ValueError) as e:
+        #    print(e, "Error")
+        #    return None
+
+    def remove_package_from_list(self, name):
+        """Removes specified package from the package list"""
+        breakpoint()
+        # Write the absolute path to the list
+        with open(paths.USER_GAME_DATA_DIR + "/package.list", "r+") as file:
+            data = file.read()
+            if not len(data) == 0:
+                before = json.loads(data)
+            else:
+                raise ValueError("The package.list is empty.")
+
+            del before[name]
+            file.write(
+                json.dumps(before, indent=4)
+            )
+
+
+    def remove_package(self, name):
+        """Removes the local package"""
+        # Get the path
+        path = self.read_package_from_list(name)
+
+        shutil.rmtree(path, ignore_errors=True)
+        self.remove_package_from_list(name)

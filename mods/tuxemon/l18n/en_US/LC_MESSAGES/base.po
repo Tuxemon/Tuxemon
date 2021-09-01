@@ -171,8 +171,13 @@ msgstr "{user} is leeching health from {target}."
 
 msgid "combat_state_overfeed_get"
 
-msgstr "{user} Overfed {target}. {target}'s speed was halved, {target}'s hp was fully restored"
+msgstr "{user} Overfed {target}. {target} 's speed was halved, {target}' s hp was fully restored"
 
+msgid "combat_amnesia_get"
+msgstr "{user} 's dodge fell. \n {user} 's attack damage types rose."
+
+msgid "combat_levitate_get"
+msgstr "{user} rose higher into the air. \n {user} 's dodge increased."
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"

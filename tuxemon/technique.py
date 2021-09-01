@@ -297,25 +297,38 @@ class Technique:
         '''
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+        newstatvalue = 0
         for stat, slug in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat['value']
-            dividing = stat['dividing']
+            minvalue = stat['minvalue']
+            maxvalue = stat['maxvalue']
+            iterator = stat['iterator']
             override = stat['overridetofull']
             basestatvalue = getattr(target, slug)
-            if value > 0 and override == False:
-                if dividing == False:
-                    newstatvalue = basestatvalue + value
-                else:
+            if maxvalue:
+                value = random.randint(minvalue,maxvalue)
+            else:
+                value = minvalue
+            if value > 0 and  override == False:
+                if iterator == '/':
                     newstatvalue = basestatvalue // value
-                success = True
-                setattr(target, slug, newstatvalue)
+                    setattr(target, slug, newstatvalue)
+                elif iterator == '+':
+                    newstatvalue = basestatvalue + value
+                    setattr(target, slug, newstatvalue)
+                elif iterator == '-':
+                    newstatvalue = basestatvalue - value
+                    setattr(target, slug, newstatvalue)
+                elif iterator == '*':
+                    newstatvalue = basestatvalue * value
+                    setattr(target, slug, newstatvalue)
             if override == True and slug == 'hp':
-                success = True
                 target.current_hp = target.hp
+                newstatvalue = target.current_hp
+                setattr(target, slug, newstatvalue)
         return {
-            "success": bool(stat)
+            "success": bool(newstatvalue)
         }
     def calculate_damage(
         self,

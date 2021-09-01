@@ -3,7 +3,7 @@
   "animation": "sparks_gold_alt",
   "category": "physical",
   "effects": [
-    "damage"
+    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
@@ -11,13 +11,25 @@
   "is_fast": false,
   "potency": 1,
   "power": 2.25,
+  "statdodge": {
+    "minvalue": 0, "maxvalue": 3, "iterator":"-", "overridetofull":false
+  },
+  "statmelee": {
+    "minvalue": 2, "maxvalue": 2, "iterator":"+", "overridetofull":false
+  },
+  "statranged": {
+    "minvalue": 2, "maxvalue": 2, "iterator":"+", "overridetofull":false
+  },
+  "stathp": {
+    "minvalue": 4, "maxvalue": 8, "iterator":"-", "overridetofull":false
+  },
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_shine",
   "slug": "amnesia",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
     "item": 0,
@@ -30,6 +42,6 @@
     "metal"
   ],
   "use_failure": "combat_miss",
-  "use_success": null,
+  "use_success": "combat_amnesia_get",
   "use_tech": "combat_used_x"
 }

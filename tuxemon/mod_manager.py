@@ -9,7 +9,10 @@ import shutil
 
 class Manager:
 
-    def __init__(self, *other_urls, caching=False):
+    def __init__(self, *other_urls, default_to_cache=True):
+        """
+        (basic) Mod managment library.
+        """
         # TODO: Recreate the __init__
         # TODO: Cache updates by default
 
@@ -22,6 +25,8 @@ class Manager:
         self.url = other_urls
         self.packages = []
 
+        if default_to_cache:
+            self.packages = self.read_from_cache()
 
     def write_to_cache(self):
         """Writes self.packages to the cache file"""

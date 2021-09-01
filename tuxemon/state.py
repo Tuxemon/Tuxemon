@@ -32,7 +32,8 @@ import sys
 from abc import ABCMeta
 from importlib import import_module
 import pygame
-from typing import Any, Optional, Type, Generator, Mapping, Sequence, List, Tuple, Dict, Set
+from typing import Any, Optional, Type, Generator, Mapping, Sequence, List, Tuple, Dict, Set,\
+    TYPE_CHECKING
 
 from tuxemon.compat import Rect
 from tuxemon.constants import paths
@@ -42,6 +43,9 @@ from tuxemon.animation import Task
 from tuxemon.animation import remove_animations_of
 from tuxemon.sprite import SpriteGroup, Sprite
 from tuxemon.platform.events import PlayerInput
+
+if TYPE_CHECKING:
+    from tuxemon.client import Client
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +79,7 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, client: StateManager) -> None:
+    def __init__(self, client: Client) -> None:
         """
         Do not override this unless there is a special need.
 

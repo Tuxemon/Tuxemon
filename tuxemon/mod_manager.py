@@ -177,7 +177,6 @@ class Manager:
 
     def remove_package_from_list(self, name):
         """Removes specified package from the package list"""
-        breakpoint()
         # Write the absolute path to the list
         with open(paths.USER_GAME_DATA_DIR + "/package.list", "r+") as file:
             data = file.read()

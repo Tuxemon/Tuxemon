@@ -16,10 +16,12 @@ class Manager:
 
         if len(other_urls) == 0:
             other_urls = ["http://127.0.0.1:5000"]
+
         packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
         self.url = other_urls
         self.packages = []
+
         """
         print(self.url, type(self.url))
         for i in self.url[0]:
@@ -49,6 +51,21 @@ class Manager:
                 self.packages.append(self.update(current_url))
 """
 
+    def write_to_cache(self):
+        """Writes self.packages to the cache file"""
+        
+        
+        #if pathlib.Path(packages_path + f"-{url.replace('/', '_')}").exists():
+        with open(self.packages_path, "w") as file:
+            file.write(
+                json.dumps(self.packages, indent=4)
+            )
+    def read_from_cache(self):
+        """Read self.packages from the cache file"""
+        with open(self.packages_path) as file:
+            return json.loads(file.read())
+        
+
     def update(self, url):
         """Returns the response from the server"""
         with urllib.request.urlopen(url + "/api/packages") as packages:
@@ -62,21 +79,9 @@ class Manager:
         """
         self.packages = []
 
-        #print(self.url, type(self.url))
-        for i in self.url[0]:
-            print(i, type(i))
+        for i in self.url:
             for package in self.update(i):
-                #package["repo"] = i
-                #print(f"DEBUG: {package}")
                 self.packages.append(package)
-            #print(self.packages)
-        #print(self.packages)
-        """
-        self.packages = []
-        print(self.url)
-        for url in self.url[0]:
-            with urllib.request.urlopen(url + "/api/packages") as packages:
-                self.packages.append(json.loads(packages.read().decode("UTF-8")))"""
 
     def list_packages(self):
         """Returns package dictionary, either from the server or the cache"""
@@ -91,6 +96,7 @@ class Manager:
             # Remove trailing slash
             if repo[-1] == "/":
                 repo = repo[:-1]
+        
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
         filename = os.path.join(paths.CACHE_DIR + f"/{name}.{release}.zip")
 
@@ -105,8 +111,6 @@ class Manager:
 
         if not dont_extract:
             self.extract(filename, outfolder)
-            # Adding author name to prevent conflicts,
-            # They will be resolved server side though ¯\_(ツ)_/¯ (now changed)
             with open(f"{outfolder}/meta.json", "w") as metafile:
                 meta = self.get_package_info(name, repo)
                 metafile.write(json.dumps(meta, indent=4))

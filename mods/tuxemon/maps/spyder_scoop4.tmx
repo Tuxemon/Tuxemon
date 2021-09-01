@@ -221,9 +221,12 @@
     <property name="act61" value="remove_npc spyder_scoop_landrace"/>
     <property name="act71" value="pathfind spyder_scoop_weaver,11,3 "/>
     <property name="act81" value="remove_npc spyder_scoop_weaver"/>
-    <property name="act89" value="pathfind spyder_scoop_arachne,10,3"/>
-    <property name="act90" value="remove_npc spyder_scoop_arachne"/>
+    <property name="act89" value="pathfind spyder_scoop_arachne,10,4"/>
+    <property name="act90" value="npc_face spyder_scoop_arachne,down"/>
     <property name="act91" value="translated_dialog spyder_scoop_landrace3"/>
+    <property name="act92" value="pathfind spyder_scoop_arachne,10,3"/>
+    <property name="act93" value="npc_face spyder_scoop_arachne,right"/>
+    <property name="act95" value="remove_npc spyder_scoop_arachne"/>
     <property name="behav1" value="talk spyder_scoop_landrace"/>
     <property name="cond1" value="not variable_set scooplandrace:yes"/>
    </properties>

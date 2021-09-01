@@ -17,7 +17,7 @@ class Manager:
         if len(other_urls) == 0:
             other_urls = ["http://127.0.0.1:5000"]
 
-        packages_path = os.path.join(paths.CACHE_DIR, "packages")
+        self.packages_path = os.path.join(paths.CACHE_DIR, "packages")
 
         self.url = other_urls
         self.packages = []
@@ -53,9 +53,7 @@ class Manager:
 
     def write_to_cache(self):
         """Writes self.packages to the cache file"""
-        
-        
-        #if pathlib.Path(packages_path + f"-{url.replace('/', '_')}").exists():
+
         with open(self.packages_path, "w") as file:
             file.write(
                 json.dumps(self.packages, indent=4)
@@ -64,7 +62,13 @@ class Manager:
         """Read self.packages from the cache file"""
         with open(self.packages_path) as file:
             return json.loads(file.read())
-        
+
+    def cache_to_pkglist(self):
+        """
+        Override self.packages with the cache.
+        Uses self.packages = self.read_from_cache()
+        """
+        self.packages = self.read_from_cache()
 
     def update(self, url):
         """Returns the response from the server"""
@@ -82,6 +86,8 @@ class Manager:
         for i in self.url:
             for package in self.update(i):
                 self.packages.append(package)
+
+        self.write_to_cache()
 
     def list_packages(self):
         """Returns package dictionary, either from the server or the cache"""

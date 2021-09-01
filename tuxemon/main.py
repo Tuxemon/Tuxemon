@@ -55,10 +55,9 @@ def main(
     config = prepare.CONFIG
 
     import pygame
-    from tuxemon.client import Client
+    from tuxemon.client import LocalPygameClient
 
-    client = Client(config.window_caption)
-    client.auto_state_discovery()
+    client = LocalPygameClient(config)
 
     # global/singleton hack for now
     setattr(prepare, "GLOBAL_CONTROL", client)

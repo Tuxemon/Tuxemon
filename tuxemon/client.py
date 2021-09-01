@@ -56,15 +56,13 @@ class LocalPygameClient:
 
     Contains the game loop, and contains
     the event_loop which passes events to States as needed.
+
+    Parameters:
+        config: The config for the game.
+
     """
 
     def __init__(self, config: TuxemonConfig) -> None:
-        """Constructor
-
-        Parameters:
-            config: The config for the game
-
-        """
         self.config = config
 
         self.state_manager = StateManager("tuxemon.states", on_state_change=self.on_state_change)
@@ -346,15 +344,15 @@ class LocalPygameClient:
         events = self.input_manager.release_controls()
         self.key_events = list(self.process_events(events))
 
-    def update_states(self, dt: float) -> None:
+    def update_states(self, time_delta: float) -> None:
         """
         Checks if a state is done or has called for a game quit.
 
         Parameters:
-            dt: Time delta - Amount of time passed since last frame.
+            time_delta: Amount of time passed since last frame.
 
         """
-        self.state_manager.update(dt)
+        self.state_manager.update(time_delta)
         if self.state_manager.current_state is None:
             self.exit = True
 

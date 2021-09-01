@@ -280,17 +280,19 @@ class State:
 
 
 class StateManager:
-    """Allows game states to be managed like a queue"""
+    """
+    Allows game states to be managed like a queue
 
+    Parameters:
+        package: Name of package to search for states.
+        on_state_change: Optional callback to be executed when top state changes.
+
+    """
     def __init__(
-        self, package: str, on_state_change: Optional[callable] = None
+        self,
+        package: str,
+        on_state_change: Optional[callable] = None
     ) -> None:
-        """Constructor
-
-        Parameters:
-            package: name of package to search for States
-
-        """
         self.package = package
         # TODO: consider API for handling hooks
         self._on_state_change_hook = on_state_change
@@ -390,16 +392,19 @@ class StateManager:
             logger.error(template.format(folder))
             raise
 
-    def update(self, *args, **kwargs) -> None:
+    def update(self, time_delta: float) -> None:
         """
         Run update on all active states, which doing some internal housekeeping
 
         WIP.  This may change at some point, especially handling of paused states.
 
+        Parameters:
+            time_delta: Amount of time passed since last frame.
+
         """
         for state in self.active_states:
             self._check_resume(state)
-            state.update(*args, **kwargs)
+            state.update(time_delta)
 
     def _check_resume(self, state: State) -> None:
         """

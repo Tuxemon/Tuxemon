@@ -37,7 +37,7 @@ def load_sound(slug: str) -> SoundProtocol:
 
     """
 
-    if slug is None:
+    if slug is None or slug == '':
         return DummySound()
 
     # get the filename from the db

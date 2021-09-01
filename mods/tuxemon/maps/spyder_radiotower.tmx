@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
+<map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
  <tileset firstgid="1" name="Pacheesi Tiles" tilewidth="16" tileheight="16" tilecount="21" columns="7">
   <image source="../gfx/tilesets/Pacheesi Tiles.png" width="112" height="48"/>
  </tileset>
@@ -25,39 +25,39 @@
   <image source="../gfx/tilesets/Terrain_by_KelvinShadewing.png" width="304" height="240"/>
  </tileset>
  <tileset firstgid="3145" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="0" columns="15"/>
- <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="640" height="400"/>
+ <tileset firstgid="3145" name="Cave_Tiles_by_ArMM1998_(Tuxemon_Style)" tilewidth="16" tileheight="16" tilecount="160" columns="16">
+  <image source="../gfx/tilesets/Cave_Tiles_by_ArMM1998_(Tuxemon_Style).png" width="256" height="160"/>
  </tileset>
- <tileset firstgid="4145" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
+ <tileset firstgid="3305" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
   <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
  </tileset>
- <tileset firstgid="4301" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+ <tileset firstgid="3461" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
- <tileset firstgid="4829" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+ <tileset firstgid="3989" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="7421" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+ <tileset firstgid="6581" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAE7KcfAcAqIT5OAzwDVfgTiT0D8mQT8BahWUp6BQQqIpUnAMkC1jkDsBMTOJGCXUX1Yw2s0XLCno9FwGTzhAgAfRn8n
+   eAFrlGZgaALiZhJwC1DtSiBeBcSrScBrgGovAvElIL5MAr4CVPsTiH8B8W8S8J9RfVjDazRcsKej0XAZPOECAGdIMgo=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYGBgqBZnYFgJxMhgNZA/B4jvIImvArJBamGgG8jeicQHie8G8tcA8Rsk8V1ANkgtDMxGYsPE0OnpUDX41C6QYWBYCMSLgHgxEIPAciLM3gBUuxGINwHxZqg+iG785AGg2oNAfAiID5Og7wJQ7UUgvgTEl0nQh981o7KjIUB+CIhxMjCIAzGpwA6ox54MfaTaAwAyNhuB
+   eAFjYGBgMBZhYEgEYmSQDOSHAPEUJPEkIBukFgacgexCJD5IvBjITwHiJUjiRUA2SC0MBCOxYWLotD9UDT61EZIMDJFAHAXE0UAMAvFEmJ0BVJsJxFlAnA3VB9GNn6wAqq0E4iogriZBXwdQbScQdwFxNwn68LtmVHY0BMgPATFOBgZxICYV2AH12JOhj1R7ACC3EYs=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYKAO+CzIwPAFiGFgM5C9BYkPE0enOYUYGLiAGAZOAvWcIkLfWqCa9Wh4HRH6DgPVHEXDR4jQB3PfKD0aAqMhQPsQAABcjA79
+   eAFjYKAOWM3HwLAGiGEgG8jOQeLDxNHpg0A1h5DUNQLZTUh8dPUwfipQTToaTiNCXzVQTS0ariFCH8zeUXo0BEZDgPYhAACjZQsf
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYBh4MFkc4oaFggwMi4D4HxATAxZD9W0Hqt8BxCJCxOgaVTMaAqMhMNhDAAD2wgWQ
+   eAFjYBh44C0CcUMkHwNDFBBvA2JiQDRUXz5QfQEQnyFSHzFmj6oZDYHREBi4EAAAhpwENw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

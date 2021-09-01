@@ -3,6 +3,7 @@
   "animation": "drip_green",
   "category": "physical",
   "effects": [
+    "poison",
     "damage"
   ],
   "healing_power": 0,

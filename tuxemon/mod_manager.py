@@ -22,34 +22,6 @@ class Manager:
         self.url = other_urls
         self.packages = []
 
-        """
-        print(self.url, type(self.url))
-        for i in self.url[0]:
-            print(i, type(i))
-            for package in self.update(i):
-                #package["repo"] = i
-                print(f"DEBUG: {package}")
-                self.packages.append(package)
-            #print(self.packages)
-        print(self.packages)
-        """ 
-        """
-        for current_url in self.url:
-            print(current_url)
-            if caching:
-                if pathlib.Path(packages_path + f"-{url.replace('/', '_')}").exists():
-                    with open(packages_path + f"-{url.replace('/', '_')}") as file:
-                        self.packages.append(json.loads(file.read()))
-                else:
-                    self.packages.append(self.update(current_url))
-                    ##with urllib.request.urlopen(url + "/api/packages") as packages:
-                    #    self.packages = json.loads(packages.read().decode("UTF-8"))
-
-                    with open(packages_path + f"-{url.replace('/', '_')}", "w") as file:
-                        file.write(json.dumps(self.packages, indent=4))
-            else:
-                self.packages.append(self.update(current_url))
-"""
 
     def write_to_cache(self):
         """Writes self.packages to the cache file"""

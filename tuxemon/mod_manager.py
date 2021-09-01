@@ -81,7 +81,7 @@ class Manager:
                 repo = repo[:-1]
         
         url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
-        filename = os.path.join(paths.CACHE_DIR + f"/{name}.{release}.zip")
+        filename = os.path.join(paths.CACHE_DIR + f"/downloaded_packages/{name}.{release}.zip")
 
         # Apperantly this function is ported from urllib from python2.
         # Maybe replace this in the future?

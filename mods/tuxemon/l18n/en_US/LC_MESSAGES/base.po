@@ -169,15 +169,30 @@ msgstr "{name} took poison damage!"
 msgid "combat_state_lifeleech_get"
 msgstr "{user} is leeching health from {target}."
 
+msgid "dodge_increased"
+{user} 's dodge increasedd"
+
+msgid "speed_halved"
+{user} 's speed was halved"
+
+msgid "hp_restored"
+{user} 's hp was restored"
+
 msgid "combat_state_overfeed_get"
+msgstr "{user} Overfed {target}" + speed_halved + hp_restored
 
-msgstr "{user} Overfed {target}. {target} 's speed was halved, {target}' s hp was fully restored"
+msgid " dodge_fell"
+msgstr "{user} 's dodge fell. 
 
-msgid "combat_amnesia_get"
-msgstr "{user} 's dodge fell. \n {user} 's attack damage types rose."
+msgid "attacks_rose"
+{user} 's attack damage types rose."
+
 
 msgid "combat_levitate_get"
-msgstr "{user} rose higher into the air. \n {user} 's dodge increased."
+msgstr "{user} rose higher into the air." + dodge_increased
+
+msgid "combat_amnesia_get"
+msgstr dodge_fell + attacks_rose
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"

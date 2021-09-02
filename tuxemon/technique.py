@@ -216,7 +216,6 @@ class Technique:
         """Reset the combat counter."""
         self._combat_counter = 0
     def keep_old_stats(self):
-        mon = self.target
         self.old_stats_data.append([mon.speed, mon.hp, mon.armour, mon.melee, mon.ranged, mon.dodge])
         return self.old_stats_data
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
@@ -320,13 +319,16 @@ class Technique:
                 "*": operator.mul,
                 "/": operator.floordiv,
                 }
-
                 newstatvalue = ops_dict[operation](basestatvalue, value)
                 setattr(target, slugdata, newstatvalue)
             if slugdata == 'hp':
                 if override :
                     target.current_hp = target.hp
                 newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
+            if newstatvalue <= 0:
+                newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
         return {
             "success": bool(newstatvalue)
         }

@@ -13,10 +13,10 @@
   "potency": 1,
   "power": 0,
   "statspeed": {
-    "minvalue": 2, "maxvalue": 2, "iterator":"/", "overridetofull":false
+    "value": 2, "operation":"/"
   },
   "stathp": {
-    "minvalue": 0, "maxvalue": 0, "iterator":".", "overridetofull":true
+    "value": 0, "operation":".", "overridetofull":true
   },
   "range": "melee",
   "recharge": 8,

@@ -310,7 +310,7 @@ class Technique:
             override = stat.get('overridetofull')
             basestatvalue = getattr(target, slugdata)
             if max_deviation:
-                value = random.randint(value,max_deviation)
+                value = random.randint(value - max_deviation, value + max_deviation)
                 
             if value > 0 and override != True:
                 ops_dict = {

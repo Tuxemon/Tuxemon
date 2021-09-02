@@ -26,30 +26,53 @@
 # states.world Handles the world map and player movement.
 #
 #
-
+from __future__ import annotations
 import itertools
 import logging
 import os
 
 import pygame
 
-from tuxemon.compat import Rect
+from pygame.rect import Rect
 from tuxemon import prepare, state, networking
-from tuxemon.map import PathfindNode, dirs2, pairs, proj
+from tuxemon.map import PathfindNode, dirs2, pairs, proj, RegionProperties,\
+    Direction, TuxemonMap
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.platform.const import intentions
 from tuxemon.platform.const import buttons, events
+from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.tools import nearest
+from tuxemon.graphics import ColorLike
+from typing import Optional, Sequence, Mapping, Tuple, Union, TypedDict, Dict,\
+    List, Set, Any
+from tuxemon.player import Player
+from tuxemon.entity import Entity
+from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
-direction_map = {
+direction_map: Mapping[int, Direction] = {
     intentions.UP: "up",
     intentions.DOWN: "down",
     intentions.LEFT: "left",
     intentions.RIGHT: "right",
 }
+
+
+class EntityCollision(TypedDict):
+    entity: Entity
+
+
+CollisionDict = Dict[
+    Tuple[int, int],
+    Union[EntityCollision, RegionProperties, None],
+]
+
+CollisionMap = Mapping[
+    Tuple[int, int],
+    Union[EntityCollision, RegionProperties, None],
+]
 
 
 class WorldState(state.State):
@@ -66,7 +89,7 @@ class WorldState(state.State):
         buttons.BACK: intentions.WORLD_MENU,
     }
 
-    def startup(self):
+    def startup(self, **kwargs: Any) -> None:
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -77,17 +100,17 @@ class WorldState(state.State):
         #                           Player Details                           #
         ######################################################################
 
-        self.npcs = {}
-        self.npcs_off_map = {}
-        self.player = None
-        self.wants_to_move_player = None
+        self.npcs: Dict[str, NPC] = {}
+        self.npcs_off_map: Dict[str, NPC] = {}
+        self.player: Optional[Player] = None
+        self.wants_to_move_player: Optional[Direction] = None
         self.allow_player_movement = True
 
         ######################################################################
         #                              Map                                   #
         ######################################################################
 
-        self.current_map = None
+        self.current_map: Optional[TuxemonMap] = None
 
         ######################################################################
         #                            Transitions                             #
@@ -95,7 +118,7 @@ class WorldState(state.State):
 
         # default variables for transition
         self.transition_alpha = 0
-        self.transition_surface = None
+        self.transition_surface: Optional[pygame.surface.Surface] = None
         self.in_transition = False
 
         # The delayed teleport variable is used to perform a teleport in the
@@ -142,25 +165,27 @@ class WorldState(state.State):
 
         self.map_animations = dict()
 
-    def resume(self):
+    def resume(self) -> None:
         """Called after returning focus to this state"""
         self.unlock_controls()
 
-    def pause(self):
+    def pause(self) -> None:
         """Called before another state gets focus"""
         self.lock_controls()
         self.stop_player()
 
-    def fade_and_teleport(self, duration=2):
-        """Fade out, teleport, fade in
-
-        :return:
+    def fade_and_teleport(self, duration: float = 2) -> None:
         """
+        Fade out, teleport, fade in.
 
-        def cleanup():
+        Parameters:
+            duration: Duration of the fade out. The fade in is slightly larger.
+
+        """
+        def cleanup() -> None:
             self.in_transition = False
 
-        def fade_in():
+        def fade_in() -> None:
             self.trigger_fade_in(duration)
             self.task(cleanup, duration)
 
@@ -176,35 +201,41 @@ class WorldState(state.State):
         task = self.task(self.handle_delayed_teleport, duration)
         task.chain(fade_in, duration + 0.5)
 
-    def trigger_fade_in(self, duration=2):
-        """World state has own fade code b/c moving maps doesn't change state
+    def trigger_fade_in(self, duration: float = 2) -> None:
+        """
+        World state has own fade code b/c moving maps doesn't change state.
 
-        :returns: None
+        Parameters:
+            duration: Duration of the fade in.
+
         """
         self.set_transition_surface()
         self.animate(self, transition_alpha=0, initial=255, duration=duration, round_values=True)
         self.task(self.unlock_controls, duration - 0.5)  # unlock controls before fade ends
 
-    def trigger_fade_out(self, duration=2):
-        """World state has own fade code b/c moving maps doesn't change state
+    def trigger_fade_out(self, duration: float = 2) -> None:
+        """
+        World state has own fade code b/c moving maps doesn't change state.
 
-        * will cause player to teleport if set somewhere else
+        * Will cause player to teleport if set somewhere else.
 
-        :returns: None
+        Parameters:
+            duration: Duration of the fade out.
+
         """
         self.set_transition_surface()
         self.animate(self, transition_alpha=255, initial=0, duration=duration, round_values=True)
         self.stop_player()
         self.lock_controls()
 
-    def handle_delayed_teleport(self):
-        """Call to teleport player if delayed_teleport is set
+    def handle_delayed_teleport(self) -> None:
+        """
+        Call to teleport player if delayed_teleport is set.
 
-        * load a map
-        * move player
-        * send data to network about teleport
+        * Load a map
+        * Move player
+        * Send data to network about teleport
 
-        :return: None
         """
         if self.delayed_teleport:
             self.stop_player()
@@ -224,15 +255,12 @@ class WorldState(state.State):
 
             self.delayed_teleport = False
 
-    def set_transition_surface(self, color=(0, 0, 0)):
+    def set_transition_surface(self, color: ColorLike = (0, 0, 0)) -> None:
         self.transition_surface = pygame.Surface(self.client.screen.get_size())
         self.transition_surface.fill(color)
 
-    def broadcast_player_teleport_change(self):
-        """Tell clients/host that player has moved or changed map after teleport
-
-        :return:
-        """
+    def broadcast_player_teleport_change(self) -> None:
+        """Tell clients/host that player has moved after teleport."""
         # Set the transition variable in event_data to false when we're done
         self.client.event_data["transition"] = False
 
@@ -250,15 +278,12 @@ class WorldState(state.State):
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
-    def update(self, time_delta):
-        """The primary game loop that executes the world's game functions every frame.
+    def update(self, time_delta: float) -> None:
+        """
+        The primary game loop that executes the world's functions every frame.
 
-        :param time_delta: Amount of time passed since last frame.
-
-        :type time_delta: Float
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            time_delta: Amount of time passed since last frame.
 
         """
         super().update(time_delta)
@@ -266,24 +291,19 @@ class WorldState(state.State):
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
 
-    def draw(self, surface):
-        """Draw the game world to the screen
+    def draw(self, surface: pygame.surface.Surface) -> None:
+        """
+        Draw the game world to the screen.
 
-        :param surface:
-        :return:
+        Parameters:
+            surface: Surface to draw into.
+
         """
         self.screen = surface
         self.map_drawing(surface)
         self.fullscreen_animations(surface)
 
-    def translate_input_event(self, event):
-        """
-
-        :type event: tuxemon.input.events.PlayerInput
-        :rtype: tuxemon.input.events.PlayerInput
-        """
-        from tuxemon.platform.events import PlayerInput
-
+    def translate_input_event(self, event: PlayerInput) -> PlayerInput:
         try:
             return PlayerInput(self.keymap[event.button], event.value, event.hold_time)
         except KeyError:
@@ -295,9 +315,12 @@ class WorldState(state.State):
 
         return event
 
-    def process_event(self, event):
-        """Handles player input events. This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        """
+        Handles player input events.
+
+        This function is only called when the player provides input such
+        as pressing a key or clicking the mouse.
 
         Since this is part of a chain of event handlers, the return value
         from this method becomes input for the next one.  Returning None
@@ -306,8 +329,13 @@ class WorldState(state.State):
 
         You should return None if you have handled input here.
 
-        :type event: tuxemon.input.PlayerInput
-        :rtype: Optional[input.PlayerInput]
+        Parameters:
+            event: Event to handle.
+
+        Returns:
+            Passed events, if other states should process it, ``None``
+            otherwise.
+
         """
         event = self.translate_input_event(event)
 
@@ -316,18 +344,18 @@ class WorldState(state.State):
                 logger.info("Opening main menu!")
                 self.client.release_controls()
                 self.client.push_state("WorldMenuState")
-                return
+                return None
 
         # map may not have a player registered
         if self.player is None:
-            return
+            return None
 
         if event.button == intentions.INTERACT:
             if event.pressed:
                 multiplayer = False
                 if multiplayer:
                     self.check_interactable_space()
-                    return
+                    return None
 
         if event.button == intentions.RUN:
             if event.held:
@@ -343,16 +371,16 @@ class WorldState(state.State):
                 self.wants_to_move_player = direction
                 if self.allow_player_movement:
                     self.move_player(direction)
-                return
+                return None
             elif not event.pressed:
                 if direction == self.wants_to_move_player:
                     self.stop_player()
-                    return
+                    return None
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
                 self.player.ignore_collisions = not self.player.ignore_collisions
-                return
+                return None
 
         # if we made it this far, return the event for others to use
         return event
@@ -360,13 +388,12 @@ class WorldState(state.State):
     ####################################################
     #                   Map Drawing                    #
     ####################################################
-    def map_drawing(self, surface):
-        """Draws the map tiles in a layered order.
+    def map_drawing(self, surface: pygame.surface.Surface) -> None:
+        """
+        Draws the map tiles in a layered order.
 
-        :param: None
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            surface: Surface to draw into.
 
         """
         # TODO: move all drawing into a "WorldView" widget
@@ -430,53 +457,65 @@ class WorldState(state.State):
     #            Pathfinding and Collisions            #
     ####################################################
     """
-    eventually refactor pathing/collisions into a more generic class
+    Eventually refactor pathing/collisions into a more generic class
     so it doesn't rely on a running game, players, or a screen
     """
 
-    def add_player(self, player):
-        """WIP.  Eventually handle players coming and going (for server)
+    def add_player(self, player: Player) -> None:
+        """
+        WIP.  Eventually handle players coming and going (for server).
 
-        :param player:
-        :return:
+        Parameters:
+            player: Player to add to the world.
+
         """
         self.player = player
         self.add_entity(player)
 
-    def add_entity(self, entity):
+    def add_entity(self, entity: NPC) -> None:
         """
+        Add an entity to the world.
 
-        :type entity: tuxemon.entity.Entity
-        :return:
+        Parameters:
+            entity: Entity to add.
+
         """
         entity.world = self
         self.npcs[entity.slug] = entity
 
-    def get_entity(self, slug):
+    def get_entity(self, slug: str) -> Optional[NPC]:
         """
+        Get an entity from the world.
 
-        :type slug: str
-        :return:
+        Parameters:
+            slug: The entity slug.
+
         """
         return self.npcs.get(slug)
 
-    def remove_entity(self, slug):
+    def remove_entity(self, slug: str) -> None:
         """
+        Remove an entity from the world.
 
-        :type slug: str
-        :return:
+        Parameters:
+            slug: The entity slug.
+
         """
         del self.npcs[slug]
 
-    def get_all_entities(self):
-        """List of players and NPCs, for collision checking
-
-        :return:
+    def get_all_entities(self) -> Sequence[NPC]:
         """
-        return self.npcs.values()
+        List of players and NPCs, for collision checking.
 
-    def get_collision_map(self):
-        """Return dictionary for collision testing
+        Returns:
+            The list of entities in the map.
+
+        """
+        return list(self.npcs.values())
+
+    def get_collision_map(self) -> CollisionMap:
+        """
+        Return dictionary for collision testing.
 
         Returns a dictionary where keys are (x, y) tile tuples
         and the values are tiles or NPCs.
@@ -485,15 +524,16 @@ class WorldState(state.State):
         This will not respect map changes to collisions
         after the map has been loaded!
 
-        :rtype: dict
-        :returns: A dictionary of collision tiles
+        Returns:
+            A dictionary of collision tiles.
+
         """
         # TODO: overlapping tiles/objects by returning a list
-        collision_dict = dict()
+        collision_dict: CollisionDict = {}
 
         # Get all the NPCs' tile positions
         for npc in self.get_all_entities():
-            pos = nearest(npc.tile_pos)
+            pos = npc.tile_pos
             collision_dict[pos] = {"entity": npc}
 
         # tile layout takes precedence
@@ -501,13 +541,22 @@ class WorldState(state.State):
 
         return collision_dict
 
-    def pathfind(self, start, dest):
-        """Pathfind
+    def pathfind(
+        self,
+        start: Tuple[int, int],
+        dest: Tuple[int, int],
+    ) -> Optional[Sequence[Tuple[int, int]]]:
+        """
+        Pathfind.
 
-        :param start:
-        :type dest: tuple
+        Parameters:
+            start: Initial tile position.
+            dest: Target tile position.
 
-        :return:
+        Returns:
+            Sequence of tile positions of the steps, if a path exists.
+            ``None`` otherwise.
+
         """
         pathnode = self.pathfind_r(
             dest,
@@ -534,14 +583,25 @@ class WorldState(state.State):
                 + ". Are you sure that an obstacle-free path exists?"
             )
 
-    def pathfind_r(self, dest, queue, known_nodes):
-        """Breadth first search algorithm
+            return None
 
-        :type dest: tuple
-        :type queue: list
-        :type known_nodes: set
+    def pathfind_r(
+        self,
+        dest: Tuple[int, int],
+        queue: List[PathfindNode],
+        known_nodes: Set[PathfindNode],
+    ) -> Optional[PathfindNode]:
+        """
+        Breadth first search algorithm.
 
-        :rtype: list
+        Parameters:
+            dest: Target tile position.
+            queue: Queue of nodes to explore.
+            known_nodes: Already explored nodes.
+
+        Returns:
+            A node with the path if it exist. ``None`` otherwise.
+
         """
         # The collisions shouldn't have changed whilst we were calculating,
         # so it saves time to reuse the map.
@@ -556,16 +616,24 @@ class WorldState(state.State):
                     known_nodes.add(new_node.get_value())
                     queue.append(new_node)
 
-    def get_explicit_tile_exits(self, position, tile, skip_nodes):
-        """Check for exits from tile which are defined in the map
+        return None
 
-        This will return exits which were defined by the map creator
+    def get_explicit_tile_exits(
+        self,
+        position: Tuple[int, int],
+        tile: Union[RegionProperties, EntityCollision],
+        skip_nodes: Optional[Set[Tuple[int, int]]] = None,
+    ) -> Optional[Sequence[Tuple[int, int]]]:
+        """Check for exits from tile which are defined in the map.
 
-        Checks "continue" and "exits" properties of the tile
+        This will return exits which were defined by the map creator.
 
-        :param position: tuple
-        :param tile:
-        :param skip_nodes: set
+        Checks "continue" and "exits" properties of the tile.
+
+        Parameters:
+            position: Original position.
+            tile: Region properties of the tile.
+            skip_nodes: Set of nodes to skip.
         :return: list
         """
         # Check if the players current position has any exit limitations.
@@ -590,18 +658,29 @@ class WorldState(state.State):
             return adjacent_tiles
         except KeyError:
             pass
+        
+        return None
 
-    def get_exits(self, position, collision_map=None, skip_nodes=None):
-        """Return list of tiles which can be moved into
+    def get_exits(
+        self,
+        position: Tuple[int, int],
+        collision_map: Optional[CollisionMap] = None,
+        skip_nodes: Optional[Set[Tuple[int, int]]] = None,
+    ) -> Sequence[Tuple[int, int]]:
+        """
+        Return list of tiles which can be moved into.
 
         This checks for adjacent tiles while checking for walls,
-        npcs, and collision lines, one-way tiles, etc
+        npcs, and collision lines, one-way tiles, etc.
 
-        :param position: tuple
-        :param collision_map: dict
-        :param skip_nodes: set
+        Parameters:
+            position: Original position.
+            collision_map: Mapping of collisions with entities and terrain.
+            skip_nodes: Set of nodes to skip.
 
-        :rtype: list
+        Returns:
+            Sequence of adjacent and traversable tile positions.
+
         """
         # TODO: rename this
         # get tile-level and npc/entity blockers
@@ -673,70 +752,73 @@ class WorldState(state.State):
     ####################################################
     #                Player Movement                   #
     ####################################################
-    def lock_controls(self):
-        """Prevent input from moving the player
-
-        :return:
-        """
+    def lock_controls(self) -> None:
+        """Prevent input from moving the player."""
         self.allow_player_movement = False
 
-    def unlock_controls(self):
-        """Allow the player to move
+    def unlock_controls(self) -> None:
+        """
+        Allow the player to move.
 
         If the player was previously holding a direction down,
         then the player will start moving after this is called.
 
-        :return:
         """
         self.allow_player_movement = True
         if self.wants_to_move_player:
             self.move_player(self.wants_to_move_player)
 
-    def stop_player(self):
-        """Reset controls and stop player movement at once.  Do not lock controls
+    def stop_player(self) -> None:
+        """
+        Reset controls and stop player movement at once. Do not lock controls.
 
         Movement is gracefully stopped.  If player was in a movement, then
         complete it before stopping.
 
-        :return:
         """
         self.wants_to_move_player = None
         self.client.release_controls()
         self.player.cancel_movement()
 
-    def stop_and_reset_player(self):
-        """Reset controls, stop player and abort movement.  Do not lock controls.
+    def stop_and_reset_player(self) -> None:
+        """
+        Reset controls, stop player and abort movement. Do not lock controls.
 
         Movement is aborted here, so the player will not complete movement
         to a tile.  It will be reset to the tile where movement started.
 
         Use if you don't want to trigger another tile event.
 
-        :return:
         """
         self.wants_to_move_player = None
         self.client.release_controls()
         self.player.abort_movement()
 
-    def move_player(self, direction):
-        """Move player in a direction.  Changes facing.
+    def move_player(self, direction: Direction) -> None:
+        """
+        Move player in a direction. Changes facing.
 
-        :param direction:
-        :return:
+        Parameters:
+            direction: New direction of the player.
+
         """
         self.player.move_direction = direction
 
-    def get_pos_from_tilepos(self, tile_position):
-        """Returns the map pixel coordinate based on tile position.
+    def get_pos_from_tilepos(
+        self,
+        tile_position: Tuple[int, int],
+    ) -> Tuple[int, int]:
+        """
+        Returns the map pixel coordinate based on tile position.
 
-        USE this to draw to the screen
+        USE this to draw to the screen.
 
-        :param tile_position: An [x, y] tile position.
+        Parameters:
+            tile_position: An [x, y] tile position.
 
-        :type tile_position: List
+        Returns:
+            The pixel coordinates to draw at the given tile position.
 
-        :rtype: List
-        :returns: The pixel coordinates to draw at the given tile position.
         """
         cx, cy = self.current_map.renderer.get_center_offset()
         px, py = self.project(tile_position)
@@ -744,14 +826,19 @@ class WorldState(state.State):
         y = py + cy
         return x, y
 
-    def project(self, position):
+    def project(
+        self,
+        position: Tuple[int, int],
+    ) -> Tuple[int, int]:
         return position[0] * self.tile_size[0], position[1] * self.tile_size[1]
 
-    def move_npcs(self, time_delta):
-        """Move NPCs and Players around according to their state
+    def move_npcs(self, time_delta: float) -> None:
+        """
+        Move NPCs and Players around according to their state.
 
-        :type time_delta: float
-        :return:
+        Parameters:
+            time_delta: Ellapsed time.
+
         """
         # TODO: This function may be moved to a server
         # Draw any game NPC's
@@ -763,12 +850,14 @@ class WorldState(state.State):
                 networking.update_client(entity, char_dict, self.client)
                 entity.update_location = False
 
-        # Move any multiplayer characters that are off map so we know where they should be when we change maps.
+        # Move any multiplayer characters that are off map so we know where
+        # they should be when we change maps.
         for entity in self.npcs_off_map.values():
             entity.move(time_delta, self)
 
     def _collision_box_to_pgrect(self, box):
-        """Returns a Rect (in screen-coords) version of a collision box (in world-coords)."""
+        """
+        Returns a Rect (in screen-coords) version of a collision box (in world-coords)."""
 
         # For readability
         x, y = self.get_pos_from_tilepos(box)
@@ -776,7 +865,7 @@ class WorldState(state.State):
 
         return Rect(x, y, tw, th)
 
-    def _npc_to_pgrect(self, npc):
+    def _npc_to_pgrect(self, npc: NPC) -> pygame.rect.Rect:
         """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
         pos = self.get_pos_from_tilepos(proj(npc.position3))
         return Rect(pos, self.tile_size)
@@ -784,7 +873,7 @@ class WorldState(state.State):
     ####################################################
     #                Debug Drawing                     #
     ####################################################
-    def debug_drawing(self, surface):
+    def debug_drawing(self, surface: pygame.surface.Surface) -> None:
         from pygame.gfxdraw import box
 
         surface.lock()
@@ -816,15 +905,14 @@ class WorldState(state.State):
 
         surface.unlock()
 
-    def midscreen_animations(self, surface):
-        """Handles midscreen animations that will be drawn UNDER menus and dialog.
+    def midscreen_animations(self, surface: pygame.surface.Surface) -> None:
+        """
+        Handles midscreen animations that will be drawn UNDER menus and dialog.
 
         NOTE: BROKEN
 
-        :param surface: surface to draw on
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            surface: Surface to draw on.
 
         """
         raise RuntimeError("deprecated.  refactor!")
@@ -869,13 +957,12 @@ class WorldState(state.State):
     ####################################################
     #         Full Screen Animations Functions         #
     ####################################################
-    def fullscreen_animations(self, surface):
-        """Handles fullscreen animations such as transitions, cutscenes, etc.
+    def fullscreen_animations(self, surface: pygame.surface.Surface) -> None:
+        """
+        Handles fullscreen animations such as transitions, cutscenes, etc.
 
-        :param surface: Surface to draw onto
-
-        :rtype: None
-        :returns: None
+        Parameters:
+            surface: Surface to draw onto.
 
         """
         if self.in_transition:
@@ -885,7 +972,7 @@ class WorldState(state.State):
     ####################################################
     #             Map Change/Load Functions            #
     ####################################################
-    def change_map(self, map_name):
+    def change_map(self, map_name: str) -> None:
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
@@ -917,29 +1004,38 @@ class WorldState(state.State):
             if eo.name.lower() == "player spawn":
                 self.player.set_position((eo.x, eo.y))
 
-    def load_map(self, path):
-        """Returns map data as a dictionary to be used for map changing
-        :rtype: tuxemon.map.TuxemonMap
+    def load_map(self, path: str) -> TuxemonMap:
+        """
+        Returns map data as a dictionary to be used for map changing.
+
+        Parameters:
+            path: Path of the map to load.
+
+        Returns:
+            Loaded map.
+
         """
         txmn_map = TMXMapLoader().load(path)
         yaml_path = path[:-4] + ".yaml"
         # TODO: merge the events from both sources
         if os.path.exists(yaml_path):
-            txmn_map.events.extend(YAMLEventLoader().load_events(yaml_path))
+            new_events = list(txmn_map.events)
+            new_events.extend(YAMLEventLoader().load_events(yaml_path))
+            txmn_map.events = new_events
         return txmn_map
 
-    def check_interactable_space(self):
-        """Checks to see if any Npc objects around the player are interactable. It then populates a menu
-        of possible actions.
+    def check_interactable_space(self) -> bool:
+        """
+        Checks to see if any Npc objects around the player are interactable.
 
-        :param: None
+        It then populates a menu of possible actions.
 
-        :rtype: Bool
-        :returns: True if there is an Npc to interact with.
+        Returns:
+            ``True`` if there is an Npc to interact with. ``False`` otherwise.
 
         """
         collision_dict = self.player.get_collision_map(self)
-        player_tile_pos = nearest(self.player.tile_pos)
+        player_tile_pos = self.player.tile_pos
         collisions = self.player.collision_check(player_tile_pos, collision_dict, self.collision_lines_map)
         if not collisions:
             pass
@@ -963,8 +1059,11 @@ class WorldState(state.State):
                         else:
                             continue
 
-    def handle_interaction(self, event_data, registry):
-        """Presents options window when another player has interacted with this player.
+        return False
+
+    def handle_interaction(self, event_data, registry) -> None:
+        """
+        Presents options window when another player has interacted with this player.
 
         :param event_data: Information on the type of interaction and who sent it.
         :param registry:

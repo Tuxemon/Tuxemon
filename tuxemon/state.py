@@ -55,6 +55,9 @@ from tuxemon.session import local_session
 from tuxemon.sprite import SpriteGroup, Sprite
 from tuxemon.platform.events import PlayerInput
 
+if TYPE_CHECKING:
+    from tuxemon.client import Client
+
 logger = logging.getLogger(__name__)
 
 

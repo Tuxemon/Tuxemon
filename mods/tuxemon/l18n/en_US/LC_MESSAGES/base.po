@@ -185,7 +185,7 @@ msgid " dodge_fell"
 msgstr "{user} 's dodge fell. 
 
 msgid "attacks_rose"
-msgstr{user} 's attack damage types rose."
+msgstr {user} 's attack damage types rose."
 
 
 msgid "combat_levitate_get"

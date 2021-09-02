@@ -179,7 +179,7 @@ msgid "hp_restored"
 msgstr {user} 's hp was restored"
 
 msgid "combat_state_overfeed_get"
-msgstr "{user} Overfed {target}" + speed_halved + hp_restored
+msgstr "{user} Overfed {target}"
 
 msgid " dodge_fell"
 msgstr "{user} 's dodge fell. 
@@ -187,12 +187,11 @@ msgstr "{user} 's dodge fell.
 msgid "attacks_rose"
 msgstr {user} 's attack damage types rose."
 
-
 msgid "combat_levitate_get"
-msgstr "{user} rose higher into the air." + dodge_increased
+msgstr "{user} rose higher into the air."
 
 msgid "combat_amnesia_get"
-msgstr dodge_fell + attacks_rose
+msgstr "{user} has gotten amnesia"
 
 msgid "combat_state_lifeleech_success"
 msgstr "{user} lost health to lifeleech!"

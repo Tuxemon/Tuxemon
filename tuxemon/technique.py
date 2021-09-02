@@ -216,9 +216,7 @@ class Technique:
         """Reset the combat counter."""
         self._combat_counter = 0
     def keep_old_stats(self):
-        for player in self.active_players:
-            for mon in player.monsters:
-                self.old_stats_data.append([mon.speed, mon.hp, mon.armour, mon.melee, mon.ranged, mon.dodge])
+        self.old_stats_data.append([mon.speed, mon.hp, mon.armour, mon.melee, mon.ranged, mon.dodge])
         return self.old_stats_data
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
         

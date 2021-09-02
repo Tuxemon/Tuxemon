@@ -24,11 +24,14 @@
 #
 
 from __future__ import annotations
-from tuxemon.math import Point2, Vector3, Point3
+from tuxemon.math import Vector3, Point3
 from tuxemon.map import proj
-from typing import Sequence, Mapping
+from typing import Sequence, Mapping, Optional, TYPE_CHECKING
 from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos
+
+if TYPE_CHECKING:
+    from tuxemon.states.world.worldstate import WorldState
 
 
 class Entity:
@@ -46,7 +49,7 @@ class Entity:
 
     def __init__(self) -> None:
         self.slug = ""
-        self.world = None
+        self.world: Optional[WorldState] = None
         self.instance_id = None
         self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)

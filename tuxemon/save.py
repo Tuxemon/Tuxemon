@@ -40,7 +40,7 @@ from tuxemon import prepare
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 from tuxemon.session import Session
 from typing import Mapping, Any, Optional, Dict
-from tuxemon.client import Client
+from tuxemon.client import LocalPygameClient
 from tuxemon.states.world.worldstate import WorldState
 
 try:
@@ -75,7 +75,7 @@ def get_save_data(session: Session) -> Mapping[str, Any]:
     return save_data
 
 
-def capture_screenshot(client: Client) -> pygame.surface.Surface:
+def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
     """
     Capture a screenshot.
 

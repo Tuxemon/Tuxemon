@@ -23,7 +23,7 @@ from typing import Tuple, Sequence, Any, Iterable, Generator, Union, Optional,\
 from tuxemon.session import Session
 
 if TYPE_CHECKING:
-    from tuxemon.client import Client
+    from tuxemon.client import LocalPygameClient
 
 logger = logging.getLogger(__name__)
 
@@ -448,7 +448,7 @@ def scaled_image_loader(
     return load_image
 
 
-def capture_screenshot(game: Client) -> pygame.surface.Surface:
+def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
     """
     Capture a screenshot of the current map.
 

@@ -109,7 +109,7 @@ class JSONMonster(JSONMonsterOptionalFields):
 class JSONStat(TypedDict, total=False):
     value: int
     maxdeviation: int
-    iterator: str
+    operation: str
     overridetofull: bool
 
 class JSONTechniqueOptionalFields(TypedDict, total=False):

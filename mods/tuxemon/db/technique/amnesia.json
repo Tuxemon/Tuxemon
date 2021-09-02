@@ -12,16 +12,16 @@
   "potency": 1,
   "power": 2.25,
   "statdodge": {
-    "minvalue": 0, "maxvalue": 3, "iterator":"-", "overridetofull":false
+    "minvalue": 0, "maxvalue": 3, "iterator":"-"
   },
   "statmelee": {
-    "minvalue": 2, "maxvalue": 2, "iterator":"+", "overridetofull":false
+    "minvalue": 2, "maxvalue": 2, "iterator":"+"
   },
   "statranged": {
-    "minvalue": 2, "maxvalue": 2, "iterator":"+", "overridetofull":false
+    "minvalue": 2, "maxvalue": 2, "iterator":"+"
   },
   "stathp": {
-    "minvalue": 4, "maxvalue": 8, "iterator":"-", "overridetofull":false
+    "minvalue": 4, "maxvalue": 8, "iterator":"-"
   },
   "range": "reach",
   "recharge": 2,

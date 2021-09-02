@@ -304,9 +304,9 @@ class Technique:
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat.get('value')
+            value = stat.get('value', 0)
             max_deviation = stat.get('max_deviation', 0)
-            operation = stat.get('operation')
+            operation = stat.get('operation', '+')
             override = stat.get('overridetofull', False)
             basestatvalue = getattr(target, slugdata)
             if max_deviation:

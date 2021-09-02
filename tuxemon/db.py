@@ -107,8 +107,8 @@ class JSONMonster(JSONMonsterOptionalFields):
     sprites: JSONMonsterSprites
 
 class JSONStat(TypedDict, total=False):
-    minvalue: int
-    maxvalue: int
+    value: int
+    maxdeviation: int
     iterator: str
     overridetofull: bool
 

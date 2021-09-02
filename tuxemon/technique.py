@@ -422,16 +422,6 @@ class Technique:
         return {
             "status": tech,
         }
-    def apply_overfeed(self, user: Monster, target: Monster) -> EffectResult:
-        already_applied = any(t for t in target.status if t.slug == "status_overfeed")
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
-        tech = None
-        if success:
-            tech = Technique("status_overfeed", carrier=target, link=user)
-            target.apply_status(tech)
-        return {
-            "status": tech,
-        }
     def poison(self, target: Monster) -> EffectResult:
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
@@ -460,17 +450,6 @@ class Technique:
             "damage": damage,
             "should_tackle": bool(damage),
             "success": bool(damage),
-        }
-    def overfeed(self, target: Monster) -> EffectResult:
-        user = self.link
-        assert user
-        target.current_hp = target.hp
-        target.speed = formula.simple_overfeed(self, user, target)
-            
-                
-        return {
-            "speed": target.speed,
-            "success": bool(target.speed),
         }
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """

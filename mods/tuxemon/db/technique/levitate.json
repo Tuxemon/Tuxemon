@@ -12,7 +12,7 @@
   "potency": 1,
   "power": 0,
   "statdodge": {
-    "minvalue": 4, "max_deviation": 2, "operation":"+", "overridetofull":false
+    "value": 4, "max_deviation": 2, "operation":"+", "overridetofull":false
   },
   "range": "special",
   "recharge": 2,

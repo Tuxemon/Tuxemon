@@ -12,16 +12,16 @@
   "potency": 1,
   "power": 2.25,
   "statdodge": {
-    "minvalue": 0, "maxvalue": 3, "operation":"-"
+    "minvalue": 0, "max_deviation": 3, "operation":"-"
   },
   "statmelee": {
-    "minvalue": 2, "maxvalue": 2, "operation":"+"
+    "minvalue": 2"operation":"+"
   },
   "statranged": {
-    "minvalue": 2, "maxvalue": 2, "operation":"+"
+    "minvalue": 2,  "operation":"+"
   },
   "stathp": {
-    "minvalue": 4, "maxvalue": 8, "operation":"-"
+    "minvalue": 4, "maxv_deviation": 8, "operation":"-"
   },
   "range": "reach",
   "recharge": 2,

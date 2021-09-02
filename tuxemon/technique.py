@@ -311,22 +311,16 @@ class Technique:
             else:
                 value = minvalue
             if value > 0 and  override == False:
-                if iterator == '/':
-                    newstatvalue = basestatvalue // value
-                    setattr(target, slug, newstatvalue)
-                elif iterator == '+':
-                    newstatvalue = basestatvalue + value
-                    setattr(target, slug, newstatvalue)
-                elif iterator == '-':
-                    newstatvalue = basestatvalue - value
-                    setattr(target, slug, newstatvalue)
-                elif iterator == '*':
-                    newstatvalue = basestatvalue * value
-                    setattr(target, slug, newstatvalue)
-            if override == True and slug == 'hp':
-                target.current_hp = target.hp
-                newstatvalue = target.current_hp
+                ops_dict = {
+                "+": operator.add,
+                "-": operator.sub,
+                "*": operator.mul,
+                "/": operator.floordiv,
+            }
+
+                newstatvalue = ops_dict[operator](basestatvalue, value)
                 setattr(target, slug, newstatvalue)
+                
         return {
             "success": bool(newstatvalue)
         }

@@ -324,10 +324,10 @@ class Technique:
 
                 newstatvalue = ops_dict[operation](basestatvalue, value)
                 setattr(target, slugdata, newstatvalue)
-            if override and slugdata == 'hp':
-                target.current_hp = target.hp
+            if slugdata == 'hp':
+                if override :
+                    target.current_hp = target.hp
                 newstatvalue = target.current_hp
-            print(newstatvalue)   
         return {
             "success": bool(newstatvalue)
         }

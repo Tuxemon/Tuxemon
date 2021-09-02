@@ -329,7 +329,7 @@ class Technique:
             if slugdata == 'hp':
                 if override :
                     target.current_hp = target.hp
-                newstatvalue = target.current_hp
+                newstatvalue = 1
         return {
             "success": bool(newstatvalue)
         }

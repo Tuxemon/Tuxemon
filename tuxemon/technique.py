@@ -39,7 +39,7 @@ from tuxemon.db import db, process_targets, JSONStat
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
-
+import operator
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
@@ -116,6 +116,7 @@ class Technique:
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
+        self.old_stats_data = []
 
 
         # If a slug of the technique was provided, autoload it.
@@ -214,7 +215,11 @@ class Technique:
     def reset_combat_counter(self) -> None:
         """Reset the combat counter."""
         self._combat_counter = 0
-
+    def keep_old_stats(self):
+        for player in self.active_players:
+            for mon in player.monsters:
+                self.old_stats_data.append([mon.speed, mon.hp, mon.armour, mon.melee, mon.ranged, mon.dodge])
+        return self.old_stats_data
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
         
         """
@@ -298,29 +303,31 @@ class Technique:
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
         newstatvalue = 0
-        for stat, slug in zip(statsmaster, statslugs):
+        for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            minvalue = stat['minvalue']
-            maxvalue = stat['maxvalue']
-            iterator = stat['iterator']
-            override = stat['overridetofull']
-            basestatvalue = getattr(target, slug)
-            if maxvalue:
-                value = random.randint(minvalue,maxvalue)
-            else:
-                value = minvalue
-            if value > 0 and  override == False:
+            value = stat.get('value')
+            max_deviation = stat.get('max_deviation')
+            operation = stat.get('operation')
+            override = stat.get('overridetofull')
+            basestatvalue = getattr(target, slugdata)
+            if max_deviation:
+                value = random.randint(value,max_deviation)
+                
+            if value > 0 and override != True:
                 ops_dict = {
                 "+": operator.add,
                 "-": operator.sub,
                 "*": operator.mul,
                 "/": operator.floordiv,
-            }
+                }
 
-                newstatvalue = ops_dict[operator](basestatvalue, value)
-                setattr(target, slug, newstatvalue)
-                
+                newstatvalue = ops_dict[operation](basestatvalue, value)
+                setattr(target, slugdata, newstatvalue)
+            if override and slugdata == 'hp':
+                target.current_hp = target.hp
+                newstatvalue = target.current_hp
+            print(newstatvalue)   
         return {
             "success": bool(newstatvalue)
         }

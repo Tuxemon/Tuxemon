@@ -15,7 +15,7 @@
     "minvalue": 0, "max_deviation": 3, "operation":"-"
   },
   "statmelee": {
-    "value": 2"operation":"+"
+    "value": 2, "operation":"+"
   },
   "statranged": {
     "value": 2,  "operation":"+"

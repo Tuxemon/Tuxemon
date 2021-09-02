@@ -38,7 +38,7 @@ from typing import TYPE_CHECKING
 import shlex
 import re
 if TYPE_CHECKING:
-    from tuxemon.client import Client
+    from tuxemon.client import LocalPygameClient
 
 logger = logging.getLogger(__name__)
 
@@ -61,7 +61,7 @@ class CommandLine(cmd.Cmd):
 
     """
 
-    def __init__(self, app: Client) -> None:
+    def __init__(self, app: LocalPygameClient) -> None:
         # Initiate the parent class
         cmd.Cmd.__init__(self)
 

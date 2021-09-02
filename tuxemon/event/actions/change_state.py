@@ -42,5 +42,9 @@ class ChangeStateAction(EventAction[ChangeStateActionParameters]):
 
     def start(self) -> None:
         # Don't override previous state if we are still in the state.
-        if self.session.client.state_name != self.parameters.state_name:
+        current_state = self.session.client.current_state
+        if current_state is None:
+            # obligatory "should not happen"
+            raise RuntimeError
+        if current_state.name != self.parameters.state_name:
             self.session.client.push_state(self.parameters.state_name)

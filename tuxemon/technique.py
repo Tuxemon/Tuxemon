@@ -305,13 +305,9 @@ class Technique:
             if not stat:
                 continue
             value = stat.get('value')
-            max_deviation = stat.get('max_deviation')
+            max_deviation = stat.get('max_deviation', 0)
             operation = stat.get('operation')
-            override = stat.get('overridetofull')
-            if not override:
-                override = False
-            if not max_deviation:
-                max_deviation = False
+            override = stat.get('overridetofull', False)
             basestatvalue = getattr(target, slugdata)
             if max_deviation:
                 value = random.randint(value - max_deviation, value + max_deviation)

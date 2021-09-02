@@ -32,8 +32,18 @@ import sys
 from abc import ABCMeta
 from importlib import import_module
 import pygame
-from typing import Any, Optional, Type, Generator, Mapping, Sequence, List, Tuple, Dict, Set,\
-    TYPE_CHECKING
+from typing import (
+    Any,
+    Optional,
+    Type,
+    Generator,
+    Mapping,
+    Sequence,
+    List,
+    Tuple,
+    Dict,
+    Set,
+)
 
 from tuxemon.compat import Rect
 from tuxemon.constants import paths
@@ -41,6 +51,7 @@ from tuxemon import prepare, graphics
 from tuxemon.animation import Animation
 from tuxemon.animation import Task
 from tuxemon.animation import remove_animations_of
+from tuxemon.session import local_session
 from tuxemon.sprite import SpriteGroup, Sprite
 from tuxemon.platform.events import PlayerInput
 
@@ -64,13 +75,6 @@ class State:
        pause         - Called when state is no longer active
        shutdown      - Called before state is destroyed
 
-    Parameters:
-        client: The client class that this state belongs to.
-
-    Attributes:
-        force_draw: If True, state will never be skipped in drawing phase.
-        rect: Area of the screen will be drawn on.
-
     """
 
     __metaclass__ = ABCMeta
@@ -79,19 +83,29 @@ class State:
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
 
-    def __init__(self, client: Client) -> None:
-        """
+    def __init__(self, parent: StateManager) -> None:
+        """Constructor
+
+        Parameters:
+            parent: The StateManager class that this state belongs to.
+
+        Attributes:
+            force_draw: If True, state will never be skipped in drawing phase.
+            rect: Area of the screen will be drawn on.
+
         Do not override this unless there is a special need.
 
         All init for the State, loading of config, images, etc should
         be done in State.startup or State.resume, not here.
 
         """
-        self.client = client
+        self.parent = parent
         self.start_time = 0.0
         self.current_time = 0.0
         self.animations = pygame.sprite.Group()  # only animations and tasks
         self.sprites = SpriteGroup()  # all sprites that draw on the screen
+        # TODO: fix local session
+        self.client = local_session.client
 
     @property
     def name(self) -> str:
@@ -211,7 +225,7 @@ class State:
 
     def startup(self, **kwargs: Any) -> None:
         """
-        Called when scene is added to State Stack.
+        Called when scene is added to the state stack.
 
         This will be called:
         * after state is pushed and before next update
@@ -229,8 +243,8 @@ class State:
         Called before update when state is newly in focus.
 
         This will be called:
-        * before update after being pushed to the stack
-        * before update after state has been paused
+        * after startup and before next update
+        * after a pop operation which causes this state to be in focus
 
         After being called, state will begin to receive player input.
         Could be called several times over lifetime of state.
@@ -269,27 +283,34 @@ class State:
 
 
 class StateManager:
-    """Mix-in style class for use with Client class.
+    """
+    Allows game states to be managed like a queue
 
-    This is currently undergoing a refactor of sorts, API may not be stable.
+    Parameters:
+        package: Name of package to search for states.
+        on_state_change: Optional callback to be executed when top state changes.
 
     """
-
-    def __init__(self) -> None:
-        """Currently no need to call __init__
-        function is declared to provide IDE with some info on the class only
-        this may change in the future, do not rely on this behaviour.
-        """
-        self.done = False
-        self.current_time = 0.0
-        self.package = ""
+    def __init__(
+        self,
+        package: str,
+        on_state_change: Optional[callable] = None
+    ) -> None:
+        self.package = package
+        # TODO: consider API for handling hooks
+        self._on_state_change_hook = on_state_change
         self._state_queue: List[Tuple[str, Mapping[str, Any]]] = list()
         self._state_stack: List[State] = list()
         self._state_dict: Dict[str, Type[State]] = dict()
-        self._state_resume_set: Set[State] = set()
+        self._resume_set: Set[State] = set()
 
     def auto_state_discovery(self) -> None:
-        """Scan a folder, load states found in it, and register them."""
+        """
+        Scan a folder, load states found in it, and register them.
+
+        TODO: this functionality duplicates the plugin code
+
+        """
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
         logger.debug(f"loading game states from {state_folder}")
@@ -308,8 +329,24 @@ class StateManager:
 
         """
         name = state.__name__
-        logger.debug(f"loading state: {state.__name__}")
+        logger.debug(f"loading state: {name}")
         self._state_dict[name] = state
+
+    def _instance(self, state_name: str) -> State:
+        """
+        Create new instance of State.  Builder patter, WIP
+
+        Parameters:
+            state_name: Name of state to create
+
+        """
+        try:
+            state = self._state_dict[state_name]
+        except KeyError:
+            logger.critical(f"Cannot find state: {state_name}")
+            raise RuntimeError
+        instance = state(self)
+        return instance
 
     @staticmethod
     def collect_states_from_module(
@@ -358,6 +395,37 @@ class StateManager:
             logger.error(template.format(folder))
             raise
 
+    def update(self, time_delta: float) -> None:
+        """
+        Run update on all active states, which doing some internal housekeeping
+
+        WIP.  This may change at some point, especially handling of paused states.
+
+        Parameters:
+            time_delta: Amount of time passed since last frame.
+
+        """
+        for state in self.active_states:
+            self._check_resume(state)
+            state.update(time_delta)
+
+    def _check_resume(self, state: State) -> None:
+        """
+        Call resume on states that are in the resume set
+
+        Typically states will resume right before an update, but if an update
+        has not been called before an update, then the resume will be missed.
+
+        This is used to enforce the symmetry between resume/pause calls.
+
+        Parameters:
+            state: State to check for resume
+
+        """
+        if state in self._resume_set:
+            self._resume_set.remove(state)
+            state.resume()
+
     def query_all_states(self) -> Mapping[str, Type[State]]:
         """
         Return a dictionary of all loaded states.
@@ -390,11 +458,8 @@ class StateManager:
         Pop some state.
 
         The default state is the current one. The previously running state
-        will resume.
-
-        If there is a queued state, then that state will be resumed, not the
-        previous!
-        Game loop will end if the last state is popped.
+        will resume, unless there is a queued state, then that state will be
+        become the new current state, not the previous.
 
         Parameters:
             state: The state to remove from stack. Use None (or omit) for
@@ -407,38 +472,52 @@ class StateManager:
             self.replace_state(state_name, **kwargs)
             return
 
-        # no queued state, so proceed as normal
+        # raise error if stack is empty
+        if not self._state_stack:
+            logger.critical("Attempted to pop state when stack was empty.")
+            raise RuntimeError
+
+        # pop the top state
         if state is None:
-            index = 0
-        elif state in self._state_stack:
+            state = self._state_stack[0]
+
+        try:
             index = self._state_stack.index(state)
-        else:
-            logger.critical(
-                "Attempted to pop state when state was not active.",
-            )
+        except IndexError:
+            logger.critical("Attempted to pop state when state was not active.")
             raise RuntimeError
 
         if index == 0:
-            logger.debug("resetting controls due to state change")
-            self.release_controls()
+            self._state_stack.pop(0)
+            self._check_resume(state)
+            state.pause()
+            state.shutdown()
+            if self._state_stack:
+                self._resume_set.add(self._state_stack[0])
+            if self._on_state_change_hook:
+                self._on_state_change_hook()
+        else:
+            self._state_stack.remove(state)
 
+    def remove_state(self, state: State) -> None:
+        """
+        Remove state by passing a reference to it
+
+        Parameters:
+            state: State to remove
+
+        """
         try:
-            previous = self._state_stack.pop(index)
+            index = self._state_stack.index(state)
         except IndexError:
-            logger.critical("Attempted to pop state when no state was active.")
+            logger.critical("Attempted to remove state which is not in the stack")
             raise RuntimeError
 
-        previous.pause()
-        previous.shutdown()
-
-        if index == 0 and self._state_stack:
-            self._state_stack[0].resume()
-        elif index and self._state_stack:
-            pass
+        if index == 0:
+            self.pop_state()
         else:
-            # TODO: make API for quiting the app main loop
-            self.done = True
-            self._wants_to_exit = True
+            self._state_stack.remove(state)
+            state.shutdown()
 
     def push_state(self, state_name: str, **kwargs: Any) -> State:
         """
@@ -453,25 +532,18 @@ class StateManager:
             Instanced state.
 
         """
-        try:
-            state = self._state_dict[state_name]
-        except KeyError:
-            logger.critical(f"Cannot find state: {state_name}")
-            raise RuntimeError
-
         previous = self.current_state
-        logger.debug("resetting controls due to state change")
-        self.release_controls()
-
         if previous is not None:
+            self._check_resume(previous)
             previous.pause()
 
-        instance = state(self)
+        instance = self._instance(state_name)
+        instance.startup(**kwargs)
+        self._resume_set.add(instance)
         self._state_stack.insert(0, instance)
 
-        instance.controller = self
-        instance.startup(**kwargs)
-        self._state_resume_set.add(instance)
+        if self._on_state_change_hook:
+            self._on_state_change_hook()
 
         return instance
 
@@ -492,24 +564,23 @@ class StateManager:
             Instanced state.
 
         """
+        # raise error if stack is empty
+        if not self._state_stack:
+            logger.critical("Attempted to replace state when stack was empty.")
+            raise RuntimeError
+
         previous = self._state_stack[0]
         instance = self.push_state(state_name, **kwargs)
-        self.pop_state(previous)
+        self.remove_state(previous)
         return instance
-
-    @property
-    def state_name(self) -> str:
-        """
-        Name of state currently running.
-
-        TODO: phase this out?
-        """
-        return self._state_stack[0].name
 
     @property
     def current_state(self) -> Optional[State]:
         """
-        The currently running state, if any.
+        Return the currently running state, if any.
+
+        Returns:
+            Currently running state
 
         """
         try:
@@ -522,5 +593,25 @@ class StateManager:
         """
         Sequence of states that are active.
 
+        Returns:
+            List of active states
+
         """
         return self._state_stack[:]
+
+    def get_state_by_name(self, state_name: str) -> Optional[State]:
+        """
+        Query the state stack for a state by the name supplied.
+
+        Parameters:
+            state_name: Name of a state.
+
+        Returns:
+            State with that name, if one exist. ``None`` otherwise.
+
+        """
+        for state in self._state_stack:
+            if state.__class__.__name__ == state_name:
+                return state
+
+        return None

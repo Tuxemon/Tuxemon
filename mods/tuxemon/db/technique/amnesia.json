@@ -15,13 +15,13 @@
     "minvalue": 0, "max_deviation": 3, "operation":"-"
   },
   "statmelee": {
-    "minvalue": 2"operation":"+"
+    "value": 2"operation":"+"
   },
   "statranged": {
-    "minvalue": 2,  "operation":"+"
+    "value": 2,  "operation":"+"
   },
   "stathp": {
-    "minvalue": 4, "maxv_deviation": 8, "operation":"-"
+    "value": 4, "operation":"-"
   },
   "range": "reach",
   "recharge": 2,

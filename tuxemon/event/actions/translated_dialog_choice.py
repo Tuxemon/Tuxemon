@@ -27,6 +27,7 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
 from typing import NamedTuple, final
+from tuxemon.states.choice import ChoiceState
 
 logger = logging.getLogger(__name__)
 
@@ -67,7 +68,7 @@ class TranslatedDialogChoiceAction(EventAction[TranslatedDialogChoiceActionParam
         self.open_choice_dialog(self.session, var_menu)
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("ChoiceState") is None:
+        if self.session.client.get_state_by_name(ChoiceState) is None:
             self.stop()
 
     def open_choice_dialog(self, session, menu):

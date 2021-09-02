@@ -45,7 +45,13 @@ from tuxemon.session import local_session
 from tuxemon.state import StateManager, State
 from tuxemon.map import TuxemonMap
 from tuxemon.platform.events import PlayerInput
-from typing import Iterable, Generator, Optional, Tuple, Mapping, Any, Dict, Sequence
+
+from typing import Iterable, Generator, Optional, Tuple, Mapping, Any, Dict,\
+    overload, Type, TypeVar, Union
+from tuxemon.states.world.worldstate import WorldState
+
+
+StateType = TypeVar("StateType", bound=State)
 
 logger = logging.getLogger(__name__)
 
@@ -441,7 +447,7 @@ class LocalPygameClient:
             registry: Locally hosted Neteria client/server registry.
 
         """
-        world = self.get_state_by_name("WorldState")
+        world = self.get_state_by_name(WorldState)
         if not world:
             return
 
@@ -475,7 +481,7 @@ class LocalPygameClient:
             File path of the current map, if there is one.
 
         """
-        world = self.get_state_by_name("WorldState")
+        world = self.get_state_by_name(WorldState)
         if not world:
             return None
 
@@ -495,10 +501,29 @@ class LocalPygameClient:
 
         # extract map name from path
         return os.path.basename(map_path)
-
+      
     """
     The following methods provide an interface to the state stack
     """
+
+    @overload
+    def get_state_by_name(self, name: str) -> Optional[State]:
+        pass
+
+    @overload
+    def get_state_by_name(self, name: Type[StateType]) -> Optional[StateType]:
+        pass
+
+    def get_state_by_name(
+        self,
+        name: Union[str, Type[State]],
+    ) -> Optional[State]:
+        """
+        Query the state stack for a state by the name supplied.
+        """
+        for state in self.active_states:
+            if state.__class__.__name__ == name or state.__class__ == name:
+                return state
 
     def queue_state(self, state_name: str, **kwargs: Any) -> None:
         """Queue a state"""

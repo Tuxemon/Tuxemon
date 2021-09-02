@@ -26,6 +26,7 @@ from tuxemon import ai
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,7 @@ class CreateNpcAction(EventAction[CreateNpcActionParameters]):
 
     def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
         if not world:
             return
 

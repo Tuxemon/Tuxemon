@@ -26,6 +26,8 @@ from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -51,15 +53,15 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
             logger.debug("battle is not legal, won't start")
-            return False
+            return
 
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
         if not world:
-            return False
+            return
 
         npc = world.get_entity(self.parameters.npc_slug)
         if len(npc.monsters) == 0:
-            return False
+            return
 
         # Lookup the environment
         env_slug = "grass"
@@ -78,5 +80,5 @@ class StartBattleAction(EventAction[StartBattleActionParameters]):
         self.session.client.event_engine.execute_action("play_music", [filename])
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("CombatState") is None:
+        if self.session.client.get_state_by_name(CombatState) is None:
             self.stop()

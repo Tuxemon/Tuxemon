@@ -27,6 +27,9 @@ from __future__ import annotations
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.states.monster import MonsterMenuState
+from tuxemon.menu.input import InputMenu
 
 
 class RenameMonsterActionParameters(NamedTuple):
@@ -45,7 +48,7 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
 
     def start(self) -> None:
         # Get a copy of the world state.
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
         if world is None:
             return
 
@@ -55,14 +58,16 @@ class RenameMonsterAction(EventAction[RenameMonsterActionParameters]):
 
     def update(self) -> None:
         if (
-            self.session.client.get_state_by_name("MonsterMenuState") is None
-            and self.session.client.get_state_by_name("InputMenu") is None
+            self.session.client.get_state_by_name(MonsterMenuState) is None
+            and self.session.client.get_state_by_name(InputMenu) is None
         ):
             self.stop()
 
     def set_monster_name(self, name: str) -> None:
         self.monster.name = name
-        self.session.client.get_state_by_name("MonsterMenuState").refresh_menu_items()
+        monster_menu_state = self.session.client.get_state_by_name(MonsterMenuState)
+        if monster_menu_state:
+            monster_menu_state.refresh_menu_items()
 
     def prompt_for_name(self, menu_item):
         self.monster = menu_item.game_object

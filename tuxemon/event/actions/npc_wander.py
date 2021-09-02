@@ -25,6 +25,8 @@ import random
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.npc import NPC
 
 
 class NpcWanderActionParameters(NamedTuple):
@@ -44,9 +46,13 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
 
     def start(self) -> None:
         npc = get_npc(self.session, self.parameters.npc_slug)
-        world = self.session.client.get_state_by_name("WorldState")
+        maybe_world = self.session.client.get_state_by_name(WorldState)
+        if not maybe_world:
+            return
 
-        def move() -> None:
+        world = maybe_world
+
+        def move(world: WorldState, npc: NPC) -> None:
             # Don't interrupt existing movement
             if npc.moving or npc.path:
                 return
@@ -77,7 +83,7 @@ class NpcWanderAction(EventAction[NpcWanderActionParameters]):
                 time = (0.5 + 0.5 * random.random()) * frequency
                 world.task(schedule, time)
 
-            move()
+            move(world, npc)
 
         # Schedule the first move
         schedule()

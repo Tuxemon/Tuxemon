@@ -24,6 +24,7 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import dirs2, get_direction
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
 
 
 class PlayerFaceActionParameters(NamedTuple):
@@ -51,7 +52,10 @@ class PlayerFaceAction(EventAction[PlayerFaceActionParameters]):
 
         # If we're doing a transition, only change the player's facing when we've reached the apex
         # of the transition.
-        world_state = self.session.client.get_state_by_name("WorldState")
+        world_state = self.session.client.get_state_by_name(WorldState)
+        if world_state is None:
+            return
+
         if world_state.in_transition:
             world_state.delayed_facing = direction
         else:

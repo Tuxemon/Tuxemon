@@ -21,6 +21,7 @@
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.states.world.worldstate import WorldState
 
 
 class NPCExistsCondition(EventCondition):
@@ -43,7 +44,7 @@ class NPCExistsCondition(EventCondition):
 
         Valid Parameters: npc_slug
         """
-        world = session.client.get_state_by_name("WorldState")
+        world = session.client.get_state_by_name(WorldState)
         if not world:
             return
 

@@ -30,6 +30,8 @@ from tuxemon.tools import open_dialog
 from tuxemon.graphics import get_avatar
 import logging
 from typing import NamedTuple, final
+from tuxemon.states.world.worldstate import WorldState
+from tuxemon.states.dialog import DialogState
 
 logger = logging.getLogger(__name__)
 
@@ -58,15 +60,15 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
 
     def start(self) -> None:
         npc_slug, breeding_mother, breeding_father = self.parameters
-        world = self.session.client.get_state_by_name("WorldState")
+        world = self.session.client.get_state_by_name(WorldState)
         if not world:
-            return False
+            return
 
         npc_slug = npc_slug.replace("player", "npc_red")
         trainer = world.get_entity(npc_slug)
         if trainer is None:
             logger.error(f"Could not find NPC corresponding to slug {npc_slug}")
-            return False
+            return
 
         mother_id = uuid.UUID(trainer.game_variables[breeding_mother])
         father_id = uuid.UUID(trainer.game_variables[breeding_father])
@@ -83,10 +85,10 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
 
         if mother is None:
             logger.error(f"Could not find (mother) monster with instance id {mother_id}")
-            return False
+            return
         if father is None:
             logger.error(f"Could not find (father) monster with instance id {father_id}")
-            return False
+            return
 
         new_mon = mother.spawn(father)
         trainer.add_monster(new_mon)
@@ -104,7 +106,7 @@ class SpawnMonsterAction(EventAction[SpawnMonsterActionParameters]):
         )
 
     def update(self) -> None:
-        if self.session.client.get_state_by_name("DialogState") is None:
+        if self.session.client.get_state_by_name(DialogState) is None:
             self.stop()
 
     def open_dialog(self, pages, avatar):

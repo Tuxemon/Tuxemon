@@ -459,8 +459,11 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
         The captured screenshot.
 
     """
+    from tuxemon.states.world.worldstate import WorldState
+
     screenshot = pygame.Surface(game.screen.get_size())
-    world = game.get_state_by_name("WorldState")
+    world = game.get_state_by_name(WorldState)
+    assert world
     world.draw(screenshot)
     return screenshot
 

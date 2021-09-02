@@ -41,6 +41,7 @@ from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 from tuxemon.session import Session
 from typing import Mapping, Any, Optional, Dict
 from tuxemon.client import LocalPygameClient
+from tuxemon.states.world.worldstate import WorldState
 
 try:
     import cbor
@@ -86,7 +87,8 @@ def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
 
     """
     screenshot = pygame.Surface(client.screen.get_size())
-    world = client.get_state_by_name("WorldState")
+    world = client.get_state_by_name(WorldState)
+    assert world
     world.draw(screenshot)
     return screenshot
 

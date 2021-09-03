@@ -4,23 +4,26 @@ from fusion.py
 
 if __name__ == "__main__":
     #### EXAMPLES ####
+    # Note: this test is non-functional
+    # The Tuxemon selected here serve only 
+    # as examples of potential fusions.	
 
     # Load the sprite data.
-    bulbasaur = Body()
-    bulbasaur.load('fusion/Bulbasaur.json')
+    #sapsnap = Body()
+    #sapsnap.load('fusion/sapsnap.json')
 
-    gyarados = Body()
-    gyarados.load('fusion/Gyarados.json')
+    #vivitron = Body()
+    #vivitron.load('fusion/vivitron.json')
 
     # Fuse the sprites.
-    fuse(body=bulbasaur, face=gyarados)
-    fuse(body=gyarados, face=bulbasaur)
-    #fuse(body=gyarados, face=geodude)
-    #fuse(body=geodude, face=gyarados)
-    #fuse(body=bulbasaur, face=geodude)
-    #fuse(body=geodude, face=bulbasaur)
+    #fuse(body=sapsnap, face=vivitron)
+    #fuse(body=vivitron, face=sapsnap)
+    #fuse(body=vivitron, face=rockitten)
+    #fuse(body=rockitten, face=vivitron)
+    #fuse(body=sapsnap, face=rockitten)
+    #fuse(body=rockitten, face=sapsnap)
 
 
     # Save the sprite data to a file
-    #bulbasaur.save()
-    #gyarados.save()
+    #sapsnap.save()
+    #vivitron.save()

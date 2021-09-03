@@ -24,7 +24,7 @@ class PushWhenEmpty(StateManagerTestBase):
         self.sm = StateManager("head.tail")
         self.create_and_register_state("a")
         self.state_a = self.sm.push_state("a")
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_a, self.sm.current_state)
@@ -46,7 +46,7 @@ class PushWhenNotEmpty(StateManagerTestBase):
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_b, self.sm.current_state)
@@ -78,7 +78,7 @@ class Pop(StateManagerTestBase):
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         self.sm.pop_state()
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_a, self.sm.current_state)
@@ -129,7 +129,7 @@ class Resume(StateManagerTestBase):
         self.assertEqual(0, self.state_a.shutdown.call_count)
 
     def test_resume_called_during_update(self):
-        self.sm.update()
+        self.sm.update(0)
         self.assertEqual(1, self.state_a.update.call_count)
         self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(1, self.state_a.resume.call_count)
@@ -139,7 +139,7 @@ class Resume(StateManagerTestBase):
     def test_resume_called_during_update_after_pop(self):
         self.state_b = self.sm.push_state("b")
         self.sm.pop_state()
-        self.sm.update()
+        self.sm.update(0)
         self.assertEqual(1, self.state_a.update.call_count)
         self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(2, self.state_a.resume.call_count)
@@ -156,7 +156,7 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.state_b = self.sm.push_state("b")
         # remove the current state
         self.sm.remove_state(self.state_b)
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_a, self.sm.current_state)
@@ -189,7 +189,7 @@ class RemoveWhenNotCurrent(StateManagerTestBase):
         self.state_b = self.sm.push_state("b")
         # remove a state that is not current
         self.sm.remove_state(self.state_a)
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_b, self.sm.current_state)
@@ -220,7 +220,7 @@ class Replace(StateManagerTestBase):
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.replace_state("b")
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_b, self.sm.current_state)
@@ -253,7 +253,7 @@ class Enqueue(StateManagerTestBase):
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         self.sm.queue_state("c")
-        self.sm.update()
+        self.sm.update(0)
 
     def test_current_state(self):
         self.assertEqual(self.state_b, self.sm.current_state)
@@ -273,7 +273,7 @@ class EnqueueThenPop(StateManagerTestBase):
         self.state_b = self.sm.push_state("b")
         self.sm.queue_state("c")
         self.sm.pop_state()
-        self.sm.update()
+        self.sm.update(0)
 
     @skip("need to mock the factory")
     def test_current_state(self):

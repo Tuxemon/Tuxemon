@@ -199,7 +199,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("net_controller_enabled", False),
                         ("locale", "en_US"),
                         ("dev_tools", False),
-                        ("recompile_translations", False),
+                        ("recompile_translations", True),
                     )
                 ),
             ),

@@ -42,6 +42,7 @@ from tuxemon.session import Session
 from typing import Mapping, Any, Optional, Dict
 from tuxemon.client import LocalPygameClient
 from tuxemon.states.world.worldstate import WorldState
+from tuxemon import prepare
 
 try:
     import cbor
@@ -52,7 +53,7 @@ logger = logging.getLogger(__name__)
 
 slot_number = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
-
+config = prepare.CONFIG
 
 def get_save_data(session: Session) -> Mapping[str, Any]:
     """

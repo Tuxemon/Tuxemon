@@ -79,6 +79,12 @@ class LocalPygameClient:
         self.fps = config.fps
         self.show_fps = config.show_fps
         self.current_time = 0.0
+        # frames that were active during update must also be active during draw.
+        # successive calls the StateManager.active_states will be different if
+        # a state has been pushed or popped, so this list is used to only draw
+        # the last ones there were updated.
+        # TODO: rethink this. might be better to queue all state operations, then change later
+        self._active_states_this_frame = list()
 
         # somehow this value is being patched somewhere
         self.events = list()
@@ -329,6 +335,9 @@ class LocalPygameClient:
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
         self.event_data = {}
+
+        # see __init__ for explanation of this attribute
+        self._active_states_this_frame = self.state_manager.active_states
         self.event_engine.update(time_delta)
 
         if self.event_data:
@@ -377,7 +386,7 @@ class LocalPygameClient:
         # force_draw is used for transitions, mostly
         to_draw = list()
         full_screen = surface.get_rect()
-        for state in self.active_states:
+        for state in self._active_states_this_frame:
             to_draw.append(state)
 
             # if this state covers the screen

@@ -163,7 +163,10 @@ class CombatState(CombatAnimations):
         self.show_combat_dialog()
         self.transition_phase("begin")
         self.task(partial(setattr, self, "phase", "ready"), 3)
-
+        self.old_stats_data = []
+        for player in self.active_players:
+            for mon in player.monsters:
+                self.old_stats_data.append([0,0,0,0,0,0])
     def update(self, time_delta):
         """Update the combat state.  State machine is checked.
 
@@ -663,6 +666,7 @@ class CombatState(CombatAnimations):
         """
         technique.advance_round()
 
+   
         # This is the time, in seconds, that the animation takes to finish.
         action_time = 3.0
         result = technique.use(user, target)
@@ -870,13 +874,22 @@ class CombatState(CombatAnimations):
     def end_combat(self):
         """End the combat"""
         # TODO: End combat differently depending on winning or losing
+        old_stats_data = Technique.keep_old_stats(self)
+        for player in self.active_players:
+            for mon, i in zip(player.monsters, range(len(player.monsters))):
+                mon.end_combat()
+                statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+                for stat in range(len(self.old_stats_data[i])):
+                    if  self.old_stats_data[i][stat] > 0:
+                            setattr(mon, statslugs[stat], self.old_stats_data[i][stat])
+                            print(getattr(mon, statslugs[stat]))
+                # clear action queue
+        self._action_queue = list()
+        oldstatsdata = []
         for player in self.active_players:
             for mon in player.monsters:
-                mon.end_combat()
-
-        # clear action queue
-        self._action_queue = list()
-
+                  oldstatsdata.append([0,0,0,0,0,0])         
+        self.old_stats_data = Technique.keep_old_stats(self)
         # fade music out
         self.client.event_engine.execute_action("fadeout_music", [1000])
 

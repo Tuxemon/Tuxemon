@@ -407,6 +407,7 @@ class StateManager:
             time_delta: Amount of time passed since last frame.
 
         """
+        logger.debug("updating states")
         for state in self.active_states:
             self._check_resume(state)
             state.update(time_delta)
@@ -425,6 +426,7 @@ class StateManager:
 
         """
         if state in self._resume_set:
+            logger.debug("removing %s from resume set", state.name)
             self._resume_set.remove(state)
             state.resume()
 
@@ -453,6 +455,7 @@ class StateManager:
                 new state.
 
         """
+        logger.debug("queue state: %s", state_name)
         self._state_queue.append((state_name, kwargs))
 
     def pop_state(self, state: Optional[State] = None) -> None:
@@ -472,6 +475,7 @@ class StateManager:
         if self._state_queue:
             state_name, kwargs = self._state_queue.pop(0)
             self.replace_state(state_name, **kwargs)
+            logger.debug("pop state, using queue instead: %s", state_name)
             return
 
         # raise error if stack is empty
@@ -490,6 +494,7 @@ class StateManager:
             raise RuntimeError
 
         if index == 0:
+            logger.debug("pop state: %s", state.name)
             self._state_stack.pop(0)
             self._check_resume(state)
             state.pause()
@@ -499,6 +504,7 @@ class StateManager:
             if self._on_state_change_hook:
                 self._on_state_change_hook()
         else:
+            logger.debug("pop-remove state: %s", state.name)
             self._state_stack.remove(state)
 
     def remove_state(self, state: State) -> None:
@@ -516,8 +522,10 @@ class StateManager:
             raise RuntimeError
 
         if index == 0:
+            logger.debug("remove-pop state: %s", state.name)
             self.pop_state()
         else:
+            logger.debug("remove state: %s", state.name)
             self._state_stack.remove(state)
             state.shutdown()
 
@@ -534,6 +542,7 @@ class StateManager:
             Instanced state.
 
         """
+        logger.debug("push state: %s", state_name)
         previous = self.current_state
         if previous is not None:
             self._check_resume(previous)
@@ -566,6 +575,7 @@ class StateManager:
             Instanced state.
 
         """
+        logger.debug("replace state: %s", state_name)
         # raise error if stack is empty
         if not self._state_stack:
             logger.critical("Attempted to replace state when stack was empty.")

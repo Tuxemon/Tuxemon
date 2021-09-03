@@ -876,10 +876,10 @@ class CombatState(CombatAnimations):
         # TODO: End combat differently depending on winning or losing
         old_stats_data = Technique.keep_old_stats(self)
         for player in self.active_players:
-            for mon, i in zip(player.monsters, range(len(player.monsters))):
+            for i, mon in enumerate(player.monsters):
                 mon.end_combat()
                 statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-                for stat in range(len(self.old_stats_data[i])):
+                for j, stat in enumerate(self.old_stats_data[i]):
                     if  self.old_stats_data[i][stat] > 0:
                             setattr(mon, statslugs[stat], self.old_stats_data[i][stat])
                             print(getattr(mon, statslugs[stat]))

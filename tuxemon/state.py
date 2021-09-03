@@ -26,7 +26,6 @@
 from __future__ import annotations
 import inspect
 import logging
-import os
 import os.path
 import sys
 from abc import ABCMeta
@@ -43,6 +42,10 @@ from typing import (
     Tuple,
     Dict,
     Set,
+    overload,
+    TypeVar,
+    Union,
+    Callable,
 )
 
 from tuxemon.compat import Rect
@@ -55,11 +58,9 @@ from tuxemon.session import local_session
 from tuxemon.sprite import SpriteGroup, Sprite
 from tuxemon.platform.events import PlayerInput
 
-if TYPE_CHECKING:
-    from tuxemon.client import Client
-
 logger = logging.getLogger(__name__)
 
+StateType = TypeVar("StateType", bound="State")
 
 class State:
     """This is a prototype class for States.
@@ -288,13 +289,14 @@ class StateManager:
 
     Parameters:
         package: Name of package to search for states.
-        on_state_change: Optional callback to be executed when top state changes.
+        on_state_change: Optional callback to be executed when top state
+            changes.
 
     """
     def __init__(
         self,
         package: str,
-        on_state_change: Optional[callable] = None
+        on_state_change: Optional[Callable[[], None]] = None
     ) -> None:
         self.package = package
         # TODO: consider API for handling hooks
@@ -599,7 +601,21 @@ class StateManager:
         """
         return self._state_stack[:]
 
+    @overload
     def get_state_by_name(self, state_name: str) -> Optional[State]:
+        pass
+
+    @overload
+    def get_state_by_name(
+        self,
+        state_name: Type[StateType],
+    ) -> Optional[StateType]:
+        pass
+
+    def get_state_by_name(
+        self,
+        state_name: Union[str, Type[State]],
+    ) -> Optional[State]:
         """
         Query the state stack for a state by the name supplied.
 
@@ -610,8 +626,11 @@ class StateManager:
             State with that name, if one exist. ``None`` otherwise.
 
         """
-        for state in self._state_stack:
-            if state.__class__.__name__ == state_name:
+        for state in self.active_states:
+            if (
+                state.__class__.__name__ == state_name
+                or state.__class__ == state_name
+            ):
                 return state
 
         return None

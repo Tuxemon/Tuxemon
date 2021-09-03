@@ -47,7 +47,7 @@ from tuxemon.map import TuxemonMap
 from tuxemon.platform.events import PlayerInput
 
 from typing import Iterable, Generator, Optional, Tuple, Mapping, Any, Dict,\
-    overload, Type, TypeVar, Union
+    overload, Type, TypeVar, Union, Sequence
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -501,29 +501,30 @@ class LocalPygameClient:
 
         # extract map name from path
         return os.path.basename(map_path)
-      
+
     """
     The following methods provide an interface to the state stack
     """
 
     @overload
-    def get_state_by_name(self, name: str) -> Optional[State]:
+    def get_state_by_name(self, state_name: str) -> Optional[State]:
         pass
 
     @overload
-    def get_state_by_name(self, name: Type[StateType]) -> Optional[StateType]:
+    def get_state_by_name(
+        self,
+        state_name: Type[StateType],
+    ) -> Optional[StateType]:
         pass
 
     def get_state_by_name(
         self,
-        name: Union[str, Type[State]],
+        state_name: Union[str, Type[State]],
     ) -> Optional[State]:
         """
         Query the state stack for a state by the name supplied.
         """
-        for state in self.active_states:
-            if state.__class__.__name__ == name or state.__class__ == name:
-                return state
+        return self.state_manager.get_state_by_name(state_name)
 
     def queue_state(self, state_name: str, **kwargs: Any) -> None:
         """Queue a state"""
@@ -540,10 +541,6 @@ class LocalPygameClient:
     def replace_state(self, state_name: str, **kwargs: Any) -> State:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
-
-    def get_state_by_name(self, name_name: str) -> Optional[State]:
-        """Return State object by name"""
-        return self.state_manager.get_state_by_name(name_name)
 
     @property
     def active_states(self) -> Sequence[State]:

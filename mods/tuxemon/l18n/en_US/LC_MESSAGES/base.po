@@ -170,7 +170,7 @@ msgid "combat_state_lifeleech_get"
 msgstr "{user} is leeching health from {target}."
 
 msgid "dodge_increased"
-msgstr {user}'s {stat} increased."
+msgstr "{user}'s {stat} increased."
 
 msgid "speed_halved"
 msgstr "{user}'s speed was halved."

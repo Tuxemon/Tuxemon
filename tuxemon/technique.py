@@ -39,7 +39,7 @@ from tuxemon.db import db, process_targets, JSONStat
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
-
+import operator
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
@@ -116,6 +116,7 @@ class Technique:
         self.use_success = ""
         self.use_failure = ""
         self.use_tech = ""
+        self.old_stats_data = []
 
 
         # If a slug of the technique was provided, autoload it.
@@ -214,7 +215,10 @@ class Technique:
     def reset_combat_counter(self) -> None:
         """Reset the combat counter."""
         self._combat_counter = 0
-
+    def keep_old_stats(self):
+        mon = self.target
+        self.old_stats_data.append([mon.speed, mon.hp, mon.armour, mon.melee, mon.ranged, mon.dodge])
+        return self.old_stats_data
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
         
         """
@@ -297,25 +301,37 @@ class Technique:
         '''
         statsmaster = [self.statspeed, self.stathp, self.statarmour, self.statmelee, self.statranged, self.statdodge]
         statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
-        for stat, slug in zip(statsmaster, statslugs):
+        newstatvalue = 0
+        for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat['value']
-            dividing = stat['dividing']
-            override = stat['overridetofull']
-            basestatvalue = getattr(target, slug)
-            if value > 0 and override == False:
-                if dividing == False:
-                    newstatvalue = basestatvalue + value
-                else:
-                    newstatvalue = basestatvalue // value
-                success = True
-                setattr(target, slug, newstatvalue)
-            if override == True and slug == 'hp':
-                success = True
-                target.current_hp = target.hp
+            value = stat.get('value', 0)
+            max_deviation = stat.get('max_deviation', 0)
+            operation = stat.get('operation', '+')
+            override = stat.get('overridetofull', False)
+            basestatvalue = getattr(target, slugdata)
+            if max_deviation:
+                value = random.randint(value - max_deviation, value + max_deviation)
+                
+            if value > 0 and override != True:
+                ops_dict = {
+                "+": operator.add,
+                "-": operator.sub,
+                "*": operator.mul,
+                "/": operator.floordiv,
+                }
+                newstatvalue = ops_dict[operation](basestatvalue, value)
+                setattr(target, slugdata, newstatvalue)
+            if slugdata == 'hp':
+                if override :
+                    target.current_hp = target.hp
+                newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
+            if newstatvalue <= 0:
+                newstatvalue = 1
+                setattr(target, slugdata, newstatvalue)
         return {
-            "success": bool(stat)
+            "success": bool(newstatvalue)
         }
     def calculate_damage(
         self,
@@ -415,16 +431,6 @@ class Technique:
         return {
             "status": tech,
         }
-    def apply_overfeed(self, user: Monster, target: Monster) -> EffectResult:
-        already_applied = any(t for t in target.status if t.slug == "status_overfeed")
-        success = not already_applied and self.can_apply_status and self.potency >= random.random()
-        tech = None
-        if success:
-            tech = Technique("status_overfeed", carrier=target, link=user)
-            target.apply_status(tech)
-        return {
-            "status": tech,
-        }
     def poison(self, target: Monster) -> EffectResult:
         damage = formula.simple_poison(self, self.link, target)
         target.current_hp -= damage
@@ -453,17 +459,6 @@ class Technique:
             "damage": damage,
             "should_tackle": bool(damage),
             "success": bool(damage),
-        }
-    def overfeed(self, target: Monster) -> EffectResult:
-        user = self.link
-        assert user
-        target.current_hp = target.hp
-        target.speed = formula.simple_overfeed(self, user, target)
-            
-                
-        return {
-            "speed": target.speed,
-            "success": bool(target.speed),
         }
     def faint(self, user: Monster, target: Monster) -> EffectResult:
         """

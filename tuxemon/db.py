@@ -106,9 +106,10 @@ class JSONMonster(JSONMonsterOptionalFields):
     weight: float
     sprites: JSONMonsterSprites
 
-class JSONStat(TypedDict):
-    value: int 
-    dividing: bool
+class JSONStat(TypedDict, total=False):
+    value: int
+    maxdeviation: int
+    operation: str
     overridetofull: bool
 
 class JSONTechniqueOptionalFields(TypedDict, total=False):
@@ -129,6 +130,12 @@ class JSONTechniqueOptionalFields(TypedDict, total=False):
     statdodge: JSONStat
     statmelee: JSONStat
     statranged: JSONStat
+    userstatspeed: JSONStat
+    usertathp: JSONStat
+    userstatarmour: JSONStat
+    userstatdodge: JSONStat
+    userstatmelee: JSONStat
+    userstatranged: JSONStat
 
 class JSONTechnique(JSONTechniqueOptionalFields):
     slug: str

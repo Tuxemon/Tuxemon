@@ -6,7 +6,6 @@ from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
 
-
 class LoadMenuState(SaveMenuState):
     def startup(self, *items, **kwargs):
         if "selected_index" not in kwargs:

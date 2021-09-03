@@ -19,8 +19,10 @@ _DEFAULT_EXTENSION_MAP = {
     "json": "json",
     "gz": "gzip",
     "save": "gzip",
+    "csave": "gzip",
     "bz": "bz2",
-    "lzma": "lzma"
+    "lzma": "lzma",
+    "lza": "lzma"
 }
 
 _DEFAULT_COMPRESSION_WRITE_MODES = {

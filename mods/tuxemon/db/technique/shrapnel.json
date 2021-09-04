@@ -1,5 +1,5 @@
 {
-  "accuracy": 0.5,
+  "accuracy": 0.4,
   "animation": "explosion_small",
   "category": "physical",
   "effects": [
@@ -10,7 +10,7 @@
   "is_area": true,
   "is_fast": true,
   "potency": null,
-  "power": 3.0,
+  "power": 2.5,
   "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_blaster",

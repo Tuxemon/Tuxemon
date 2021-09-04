@@ -16,12 +16,24 @@
             "technique": "stampede"
         },
 	    {
-            "level_learned": 11,
+            "level_learned": 15,
             "technique": "overfeed"
         },
 	    {
-            "level_learned": 17,
+            "level_learned": 25,
             "technique": "feint"
+        },
+        {
+            "level_learned": 21,
+            "technique": "dash"
+        },
+        {
+            "level_learned": 29,
+            "technique": "recklessabandon"
+        },
+        {
+            "level_learned": 34,
+            "technique": "tremor"
         }
     ],
     "shape": "Varmint",

@@ -142,6 +142,9 @@ class Technique:
 
         # technique use notifications (translated!)
         # NOTE: should be `self.use_tech`, but Technique and Item have overlapping checks
+        self.now_asleep = T.maybe_translate(results.get("combat_now_asleep"))
+        self.sleeping = T.maybe_translate(results.get("combat_sleeping"))
+        self.woke = T.maybe_translate(results.get("combat_woke_up"))
         self.use_item = T.maybe_translate(results.get("use_tech"))
         self.use_success = T.maybe_translate(results.get("use_success"))
         self.use_failure = T.maybe_translate(results.get("use_failure"))
@@ -220,7 +223,7 @@ class Technique:
         self.old_stats_data.append([mon.speed, mon.hp, mon.armour, mon.melee, mon.ranged, mon.dodge])
         return self.old_stats_data
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
-        
+
         """
         Apply the technique.
 
@@ -260,7 +263,10 @@ class Technique:
         }
         # TODO: handle conflicting values from multiple technique actions
         # TODO: for example, how to handle one saying success, and another not?
-       
+        print(target.sleep)
+        if target.sleep > 0:
+            self.staysleep(target)
+            return meta_result
         for effect in self.effect:
             if effect == "damage":
                 result = self.damage(user, target)
@@ -272,12 +278,15 @@ class Technique:
                 result = self.apply_lifeleech(user, target)
             elif effect == "recover":
                 result = self.apply_status("status_recover", user)
-            elif effect == "overfeed":
-                result = self.apply_status("status_overfeed", target)
+            elif effect == "sleep":
+                result = self.apply_sleep(user, target)
+                print("b")
             elif effect == "status":
                 for category in self.category:
                     if category == "poison":
                         result = self.poison(target)
+                    elif category == "sleep":
+                        result = self.sleep(target)
                     elif category == "lifeleech":
                         result = self.lifeleech(target)
                     elif category == "recover":
@@ -320,6 +329,7 @@ class Technique:
                 "*": operator.mul,
                 "/": operator.floordiv,
                 }
+
                 newstatvalue = ops_dict[operation](basestatvalue, value)
                 setattr(target, slugdata, newstatvalue)
             if slugdata == 'hp':
@@ -409,7 +419,16 @@ class Technique:
         return {
             "status": tech,
         }
+    def apply_sleep(self, user: Monster, target: Monster) -> EffectResult:
+        success = True
+        tech = None
+        if success:
+            tech = Technique("status_sleep", carrier=target)
+            target.apply_status(tech)
 
+        return {
+            "status": tech,
+        }
     def apply_lifeleech(self, user: Monster, target: Monster) -> EffectResult:
         """
         This effect has a chance to apply the lifeleech status effect.
@@ -430,6 +449,23 @@ class Technique:
             target.apply_status(tech)
         return {
             "status": tech,
+        }
+    def staysleep(self, target: Monster) -> EffectResult:
+        if target.sleep > 0:
+            target.sleep -= 1
+            return {
+                "should_tackle": False,
+                "success": bool(target.sleep)
+            }
+    def sleep(self, target: Monster) -> EffectResult:
+        if target.sleep <= 0:
+            target.sleep = random.randint(2,5)
+        else:
+            pass
+        return {
+            "should_tackle": False,
+            "success": bool(target.sleep)
+
         }
     def poison(self, target: Monster) -> EffectResult:
         damage = formula.simple_poison(self, self.link, target)

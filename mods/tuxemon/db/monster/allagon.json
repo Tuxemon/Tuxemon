@@ -8,11 +8,15 @@
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 2,
+            "level_learned": 8,
             "technique": "shrapnel"
         },
         {
-            "level_learned": 2,
+            "level_learned": 13,
+            "technique": "lock_on"
+        },
+        {
+            "level_learned": 17,
             "technique": "rust_bomb"
         }
     ],

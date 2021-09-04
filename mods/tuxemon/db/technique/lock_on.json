@@ -1,24 +1,22 @@
 {
   "accuracy": 1,
-  "animation": "buff_rage",
+  "animation": "hit03",
+  "can_apply_status": true,
   "category": "physical",
   "effects": [
-    "statchange"
   ],
   "healing_power": 0,
   "icon": "",
   "is_area": false,
   "is_fast": false,
+  "guarantee_next_hit": true,
   "potency": 1,
   "power": 0,
-  "statrange": {
-    "value": 3, "operation":"+"
-  },
-  "range": "special",
-  "recharge": 1,
-  "sfx": "sfx_blaster",
-  "slug": "fume",
-  "sort": "damage",
+  "range": "melee",
+  "recharge": 2,
+  "sfx": "sfx_pulse",
+  "slug": "lockon",
+  "sort": "meta",
   "target": {
     "enemy monster": 0,
     "enemy team": 0,
@@ -29,9 +27,9 @@
     "own trainer": 0
   },
   "types": [
-    "aether"
+    "metal"
   ],
   "use_failure": "combat_miss",
-  "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_success": "combat_used_x",
+  "use_tech": "combat_state_lock_on"
 }

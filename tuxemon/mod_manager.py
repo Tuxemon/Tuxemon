@@ -70,7 +70,7 @@ class Manager:
         """Returns package dictionary, either from the server or the cache"""
         return self.packages
 
-    def download_package(self, name, release, repo=None, dont_extract=False):
+    def download_package(self, name, release, repo=None, dont_extract=False, install_deps=True):
         """Downloads the specified package"""
         print(name, release, repo)
         if repo is None:
@@ -86,9 +86,10 @@ class Manager:
         # Apperantly this function is ported from urllib from python2.
         # Maybe replace this in the future?
         # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
-        urllib.request.urlretrieve(url, filename=filename) 
+        urllib.request.urlretrieve(url, filename=filename)
 
         outfolder = os.path.join(paths.BASEDIR, "mods", f"{name}")
+        print(outfolder, "\n", paths.BASEDIR, "\n")
 
         self.write_package_to_list(outfolder, name)
 
@@ -98,15 +99,20 @@ class Manager:
                 meta = self.get_package_info(name, repo)
                 metafile.write(json.dumps(meta, indent=4))
 
-    def download_packages(self, name, release, repo, dont_extract=False):
+        if install_deps:
+            # This function calls download_package, might cause issues
+            self.install_dependencies(name, release, repo, dont_extract=dont_extract)
+
+    def install_dependencies(self, name, release, repo, dont_extract=False):
         """Same as the download_package(), but it includes dependency installing"""
         # Get info
-        meta = self.get_package_info(author, name, repo)
-        if "depends" in meta:
+        meta = self.get_package_info(name, repo)
+        if "dependencies" in meta:
             dependencies = meta["dependencies"]
 
             for pack in dependencies:
-               pass
+                self.download_package(pack, release, repo, dont_extract=dont_extract, install_deps=False)
+        else: print("no deps")
 
     def extract(self, file, outfolder):
         """Extracts the specified zip archive to the mods directory"""
